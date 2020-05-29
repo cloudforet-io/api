@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+package spaceone.api.repository.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/repository/v1/repository.proto";
+
+service Schema {
+    rpc create (CreateSchemaRequest) returns (SchemaInfo) {
+        option (google.api.http) = { post: "/repository/v1/schemas" };
+    }
+    rpc update (UpdateSchemaRequest) returns (SchemaInfo) {
+        option (google.api.http) = { put: "/repository/v1/schema/{schema}" };
+    }
+    rpc delete (SchemaRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/repository/v1/schema/{schema}" };
+    }
+    rpc get (GetRepositorySchemaRequest) returns (SchemaInfo) {
+        option (google.api.http) = { get: "/repository/v1/schemas/{schema}" };
+    }
+    rpc list (SchemaQuery) returns (SchemasInfo) {
+        option (google.api.http) = {
+            get: "/repository/v1/schemas"
+            additional_bindings {
+                post: "/repository/v1/schemas/search"
+            }
+        };
+    }
+    rpc stat (SchemaStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/repository/v1/schemas/stat" };
+    }
+}
+
+message CreateSchemaRequest {
+    string name = 1;                            // required
+    string service_type = 2;                    // required
+
+    google.protobuf.Struct schema = 11;         // required
+    repeated string labels = 12;                // optional
+    google.protobuf.Struct tags = 13;           // optional
+
+    string project_id = 21;                     // optional
+    string domain_id = 22;                      // required
+}
+
+message UpdateSchemaRequest {
+    string name = 1;                            // required
+
+    google.protobuf.Struct schema = 11;         // optional
+    repeated string labels = 12;                // optional
+    google.protobuf.Struct tags = 13;           // optional
+
+    string domain_id = 21;                      // required
+}
+
+message SchemaRequest {
+    string name = 1;                            // required
+    string domain_id = 2;                       // required
+}
+
+message GetRepositorySchemaRequest {
+    string name = 1;                            // required
+    string domain_id = 2;                       // required
+    string repository_id = 3;                   // optional
+    repeated string only = 4;                   // optional
+}
+
+message SchemaQuery {
+    spaceone.api.core.v1.Query query = 1;       // optional
+    string name = 2;                            // optional
+    string service_type = 3;                    // optional
+    string project_id = 4;                      // required
+    string repository_id = 5;                   // required
+    string domain_id = 6;                       // required
+}
+
+message SchemaInfo {
+    string name = 1;
+    string service_type = 2;
+
+    google.protobuf.Struct schema = 11;
+    repeated string labels = 12;
+    google.protobuf.Struct tags = 13;
+
+    RepositoryInfo repository_info = 21;
+    string project_id = 22;
+    string domain_id = 23;
+
+    google.protobuf.Timestamp created_at = 31;
+}
+
+message SchemasInfo {
+    repeated SchemaInfo results = 1;
+    int32 total_count = 2;
+}
+
+message SchemaStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string repository_id = 2;                           // required
+    string domain_id = 3;                               // required
+}

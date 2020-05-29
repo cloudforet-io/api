@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/handler.proto";
+
+service Domain {
+    rpc create (CreateDomainRequest) returns (DomainInfo) {
+        option (google.api.http) = { post: "/identity/v1/domains" };
+    }
+    rpc update (UpdateDomainRequest) returns (DomainInfo) {
+        option (google.api.http) = { put: "/identity/v1/domain/{domain_id}" };
+    }
+    rpc delete (DomainRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/identity/v1/domain/{domain_id}" };
+    }
+    rpc enable (DomainRequest) returns (DomainInfo) {
+        option (google.api.http) = { put: "/identity/v1/domain/{domain_id}" };
+    }
+    rpc disable (DomainRequest) returns (DomainInfo) {
+        option (google.api.http) = { put: "/identity/v1/domain/{domain_id}" };
+    }
+    rpc get (GetDomainRequest) returns (DomainInfo) {
+        option (google.api.http) = { get: "/identity/v1/domain/{domain_id}" };
+    }
+    rpc list (DomainQuery) returns (DomainsInfo) {
+        option (google.api.http) = {
+            get: "/identity/v1/domains"
+            additional_bindings {
+                post: "/identity/v1/domains/search"
+            }
+        };
+    }
+    rpc stat (DomainStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/identity/v1/domains/stat" };
+    }
+
+    rpc get_public_key (spaceone.api.core.v1.AuthenticationRequest)
+    returns (spaceone.api.core.v1.AuthenticationResponse) {}
+
+    rpc get_domain_key (spaceone.api.core.v1.AuthenticationRequest)
+    returns (DomainKeyResponse) {}
+}
+
+message CreateDomainRequest {
+    string name = 1;                        // required
+    PluginInfo plugin_info = 2; // optional
+    google.protobuf.Struct config = 3;      // optional
+    google.protobuf.Struct tags = 4;        // optional
+}
+
+message UpdateDomainRequest {
+    string domain_id = 1;                   // required
+    PluginInfo plugin_info = 2; // optional
+    google.protobuf.Struct config = 3;      // optional
+    google.protobuf.Struct tags = 4;        // optional
+}
+
+message DomainRequest {
+    string domain_id = 1;                   // required
+}
+
+message GetDomainRequest {
+    string domain_id = 1;                   // required
+    repeated string only = 2;               // optional
+}
+
+message DomainQuery {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    spaceone.api.core.v1.Query query = 1;   // optional
+    string domain_id = 2;                   // optional
+    string name = 3;                        // optional
+    State state = 4;                        // optional
+}
+
+message DomainInfo {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    string domain_id = 1;
+    string name = 2;
+    State state = 3;
+    PluginInfo plugin_info = 4;
+    google.protobuf.Struct config = 5;
+    google.protobuf.Struct tags = 6;
+    google.protobuf.Timestamp created_at = 7;
+    google.protobuf.Timestamp deleted_at = 8;
+}
+
+message DomainsInfo {
+    repeated DomainInfo results = 1;
+    int32 total_count = 2;
+}
+
+message DomainStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+}
+
+message PluginInfo {
+    string plugin_id = 1;
+    string version = 2;
+    string secret_id = 3;
+    google.protobuf.Struct options = 4;
+}
+
+message DomainKeyResponse {
+    string domain_id = 1;
+    string domain_key = 2;
+}

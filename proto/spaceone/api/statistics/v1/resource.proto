@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package spaceone.api.statistics.v1;
+
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Resource {
+    rpc stat (ResourceStatRequest) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/statistics/v1/resources/stat" };
+    }
+}
+
+message JoinQuery {
+    enum JoinType {
+        LEFT = 0;
+        RIGHT = 1;
+        OUTER = 2;
+        INNER = 3;
+    }
+
+    repeated string keys = 1;                           // optional
+    JoinType type = 2;                                  // optional
+    string data_source_id = 3;                          // optional
+    string resource_type = 4;                           // required
+    spaceone.api.core.v1.StatisticsQuery query = 5;     // required
+}
+
+message Formula {
+    string name = 1;                                    // required
+    string formula = 2;                                 // required
+}
+
+message ResourceStatRequest {
+    string data_source_id = 1;                          // optional
+    string resource_type = 2;                           // required
+    spaceone.api.core.v1.StatisticsQuery query = 3;     // required
+    repeated JoinQuery join = 4;                        // optional
+    repeated Formula formulas = 5;                      // optional
+    string domain_id = 6;                               // required
+}

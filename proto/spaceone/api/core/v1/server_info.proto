@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package spaceone.api.core.v1;
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+service ServerInfo {
+    rpc get_version (google.protobuf.Empty) returns (VersionInfo) {}
+}
+
+message VersionInfo {
+    string version = 1;
+}

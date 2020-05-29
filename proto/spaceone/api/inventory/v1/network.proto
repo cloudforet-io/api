@@ -1,0 +1,127 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/inventory/v1/region.proto";
+import "spaceone/api/inventory/v1/zone.proto";
+
+
+service Network {
+    rpc create (CreateNetworkRequest) returns (NetworkInfo) {
+        option (google.api.http) = { post: "/inventory/v1/networks" };
+    }
+    rpc update (UpdateNetworkRequest) returns (NetworkInfo) {
+        option (google.api.http) = { put: "/inventory/v1/network/{network_id}" };
+    }
+    rpc pin_data (PinNetworkDataRequest) returns (NetworkInfo) {
+        option (google.api.http) = { put: "/inventory/v1/network/{network_id}/pin-data" };
+    }
+    rpc delete (NetworkRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/inventory/v1/network/{network_id}" };
+    }
+    rpc get (GetNetworkRequest) returns (NetworkInfo) {
+        option (google.api.http) = { get: "/inventory/v1/network/{network_id}" };
+    }
+    rpc list (NetworkQuery) returns (NetworksInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/networks"
+            additional_bindings {
+                post: "/inventory/v1/networks/search"
+            }
+        };
+    }
+    rpc stat (NetworkStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/networks/stat" };
+    }
+}
+
+message NetworkReference {
+    string resource_id = 1;
+    string external_link = 2;
+}
+
+message CreateNetworkRequest {
+    string name = 1;                        // required
+    string cidr = 2;                        // required
+
+    google.protobuf.Struct data = 11;       // optional
+    google.protobuf.Struct metadata = 12;   // optional
+    NetworkReference reference = 13;        // optional
+    google.protobuf.Struct tags = 14;       // optional
+
+    string zone_id = 21;                    // required
+    string domain_id = 22;                  // required
+}
+
+message UpdateNetworkRequest {
+    string network_id = 1;                  // required
+    string name = 2;                        // optional
+
+    google.protobuf.Struct data = 11;       // optional
+    google.protobuf.Struct metadata = 12;   // optional
+    NetworkReference reference = 13;        // optional
+    google.protobuf.Struct tags = 14;       // optional
+
+    string domain_id = 21;                  // required
+}
+
+message PinNetworkDataRequest {
+    string network_id = 1;                  // required
+    repeated string keys = 2;               // required
+    string domain_id = 3;                   // required
+}
+
+message NetworkRequest {
+    string network_id = 1;                  // required
+    string domain_id = 2;                   // required
+}
+
+message GetNetworkRequest {
+    string network_id = 1;                  // required
+    string domain_id = 2;                   // required
+    repeated string only = 3;               // optional
+}
+
+message NetworkQuery {
+    spaceone.api.core.v1.Query query = 1;   // optional
+    string network_id = 2;                  // optional
+    string name = 3;                        // optional
+    string cidr = 4;                        // optional
+
+    string zone_id = 11;                    // optional
+    string region_id = 12;                  // optional
+    string domain_id = 13;                  // required
+}
+
+message NetworkInfo {
+    string network_id = 1;
+    string name = 2;
+    string cidr = 3;
+
+    google.protobuf.Struct data = 11;
+    google.protobuf.Struct metadata = 12;
+    NetworkReference reference = 13;
+    google.protobuf.Struct tags = 14;
+    google.protobuf.Struct collection_info = 15;
+
+    RegionInfo region_info = 21;
+    ZoneInfo zone_info = 22;
+    string domain_id = 23;
+
+    google.protobuf.Timestamp created_at = 31;
+}
+
+message NetworksInfo {
+    repeated NetworkInfo results = 1;
+    int32 total_count = 2;
+}
+
+message NetworkStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}

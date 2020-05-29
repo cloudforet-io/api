@@ -1,0 +1,117 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service CloudServiceType {
+    rpc create (CreateServiceTypeRequest) returns (CloudServiceTypeInfo) {
+        option (google.api.http) = { post: "/inventory/v1/cloud-service-types" };
+    }
+    rpc update (UpdateCloudServiceTypeRequest) returns (CloudServiceTypeInfo) {
+        option (google.api.http) = { put: "/inventory/v1/cloud-service-type/{cloud_service_type_id}" };
+    }
+    rpc pin_data (PinCloudServiceTypeDataRequest) returns (CloudServiceTypeInfo) {
+        option (google.api.http) = { put: "/inventory/v1/cloud-service-type/{cloud_service_type_id}/pin-data" };
+    }
+    rpc delete (CloudServiceTypeRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/inventory/v1/cloud-service-type/{cloud_service_type_id}" };
+    }
+    rpc get (GetCloudServiceTypeRequest) returns (CloudServiceTypeInfo) {
+        option (google.api.http) = { get: "/inventory/v1/cloud-service-type/{cloud_service_type_id}" };
+    }
+    rpc list (CloudServiceTypeQuery) returns (CloudServiceTypesInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/cloud-service-types"
+            additional_bindings {
+                post: "/inventory/v1/cloud-service-types/search"
+            }
+        };
+    }
+    rpc stat (CloudServiceTypeStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/cloud-service-types/stat" };
+    }
+}
+
+message CreateServiceTypeRequest {
+    string name = 1;                            // optional
+    string provider = 2;                        // optional
+    string group = 3;                           // optional
+
+    google.protobuf.Struct metadata = 11;       // optional
+    google.protobuf.ListValue labels = 12;      // optional
+    google.protobuf.Struct tags = 13;           // optional
+
+    string domain_id = 21;                      // required
+}
+
+message UpdateCloudServiceTypeRequest {
+    string cloud_service_type_id = 1;           // required
+
+    google.protobuf.Struct metadata = 11;       // optional
+    google.protobuf.ListValue labels = 12;       // optional
+    google.protobuf.Struct tags = 13;            // optional
+
+    string domain_id = 21;                       // required
+}
+
+message PinCloudServiceTypeDataRequest {
+    string cloud_service_type_id = 1;           // required
+    repeated string keys = 2;                   // required
+    string domain_id = 3;                       // required
+}
+
+message CloudServiceTypeRequest {
+    string cloud_service_type_id = 1;           // required
+    string domain_id = 2;                       // required
+}
+
+message GetCloudServiceTypeRequest {
+    string cloud_service_type_id = 1;           // required
+    string domain_id = 2;                       // required
+    repeated string only = 3;                   // optional
+}
+
+message CloudServiceTypeQuery {
+    spaceone.api.core.v1.Query query = 1;       // optional
+    string cloud_service_type_id = 2;           // optional
+    string name = 3;                            // optional
+    string provider = 4;                        // optional
+    string group = 5;                           // optional
+    bool include_cloud_service_count = 6;       // optional
+
+    string domain_id = 11;                      // optional
+}
+
+message CloudServiceTypeInfo {
+    string cloud_service_type_id = 1;
+    string name = 2;
+    string provider = 3;
+    string group = 4;
+
+    google.protobuf.Struct metadata = 11;
+    google.protobuf.Struct tags = 12;
+    repeated string labels = 13;
+    google.protobuf.Struct collection_info = 14;
+    int32 cloud_service_count = 15;
+
+    string domain_id = 21;
+
+    google.protobuf.Timestamp created_at = 31;
+    google.protobuf.Timestamp updated_at = 32;
+}
+
+message CloudServiceTypesInfo {
+    repeated CloudServiceTypeInfo results = 1;
+    int32 total_count = 2;
+}
+
+message CloudServiceTypeStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}

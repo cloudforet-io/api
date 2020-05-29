@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package spaceone.api.statistics.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service History {
+    rpc create (CreateHistoryRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/statistics/v1/history" };
+    }
+    rpc list (QueryHistoryRequest) returns (HistoryInfo) {
+        option (google.api.http) = {
+            get: "/statistics/v1/history"
+            additional_bindings {
+                post: "/statistics/v1/history/query"
+            }
+        };
+    }
+    rpc stat (HistoryStatRequest) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/statistics/v1/history/stat" };
+    }
+    rpc diff (DiffHistoryRequest) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/statistics/v1/history/diff" };
+    }
+}
+
+message CreateHistoryRequest {
+    string schedule_id = 1; // required
+    string domain_id = 2; // required
+}
+
+message QueryHistoryRequest {
+    spaceone.api.core.v1.Query query = 1; // optional
+    string topic = 2; // required
+    string domain_id = 3; // required
+}
+
+message HistoryValueInfo {
+    string topic = 1;
+    google.protobuf.Struct values = 2;
+    string domain_id = 3;
+    google.protobuf.Timestamp created_at = 4;
+}
+
+message HistoryInfo {
+    repeated HistoryValueInfo results = 1;
+    int32 total_count = 2;
+}
+
+message HistoryStatRequest {
+    spaceone.api.core.v1.StatisticsQuery query = 1; // required
+    string topic = 2; // required
+    string domain_id = 3; // required
+}
+
+message DiffHistoryRequest {
+    string topic = 1; // required
+    repeated spaceone.api.core.v1.Filter filter = 2; // optional
+    repeated spaceone.api.core.v1.Filter filter_or = 3; // optional
+    string from = 4; // required
+    string to = 5; // optional
+    repeated string default_fields = 6; // required
+    repeated string diff_fields = 7; // required
+    string domain_id = 8; // required
+}

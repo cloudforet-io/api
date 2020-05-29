@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+service DomainOwner {
+    rpc create (CreateDomainOwner) returns (DomainOwnerInfo) {
+        option (google.api.http) = { post: "/identity/v1/domain/{domain_id}/owner" };
+    }
+    rpc update (UpdateDomainOwner) returns (DomainOwnerInfo) {
+        option (google.api.http) = { put: " /identity/v1/domain/{domain_id}/owner" };
+    }
+    rpc delete (DomainOwnerRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/identity/v1/domain/{domain_id}/owner" };
+    }
+    rpc get (GetDomainOwnerRequest) returns (DomainOwnerInfo) {
+        option (google.api.http) = { get: "/identity/v1/domain/{domain_id}/owner" };
+    }
+}
+
+message CreateDomainOwner {
+    string owner_id = 1;                // required
+    string password = 2;                // required
+    string name = 3;                    // optional
+    string email = 4;                   // optional
+    string mobile = 5;                  // optional
+    string language = 7;                // optional
+    string timezone = 8;                // optional
+    string domain_id = 10;              // required
+}
+
+message UpdateDomainOwner {
+    string owner_id = 1;                // required
+    string password = 2;                // optional
+    string name = 3;                    // optional
+    string email = 4;                   // optional
+    string mobile = 5;                  // optional
+    string language = 7;                // optional
+    string timezone = 8;                // optional
+    string domain_id = 10;              // required
+}
+
+message DomainOwnerRequest {
+    string domain_id = 1;               // required
+    string owner_id = 2;                // required
+}
+
+message GetDomainOwnerRequest {
+    string domain_id = 1;               // required
+    string owner_id = 2;                // required
+    repeated string only = 3;           // optional
+}
+
+message DomainOwnerInfo {
+    string owner_id = 1;
+    string name = 2;
+    string email = 3;
+    string mobile = 5;
+    string language = 7;
+    string timezone = 8;
+    google.protobuf.Timestamp last_accessed_at = 11;
+    google.protobuf.Timestamp created_at = 12;
+    string domain_id = 13;
+}

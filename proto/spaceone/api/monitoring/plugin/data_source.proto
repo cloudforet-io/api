@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package spaceone.api.monitoring.plugin;
+
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/plugin.proto";
+
+
+service DataSource {
+    rpc verify (PluginVerifyRequest) returns (stream PluginVerifyResponse) {}
+}
+
+message PluginVerifyRequest {
+    google.protobuf.Struct options = 1;         // required
+    google.protobuf.Struct secret_data = 2;     // required
+}
+
+message PluginVerifyInfo {
+    google.protobuf.Struct options = 1;
+}
+
+message PluginVerifyResponse {
+    string resource_type = 1;                                   // required
+    repeated spaceone.api.core.v1.PluginAction actions = 2;     // optional
+    PluginVerifyInfo result = 3;                                // required
+}

@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service Policy {
+    rpc create (CreatePolicyRequest) returns (PolicyInfo) {
+        option (google.api.http) = { post: "/identity/v1/policies" };
+    }
+    rpc update (UpdatePolicyRequest) returns (PolicyInfo) {
+        option (google.api.http) = { put: "/identity/v1/policy/{policy_id}" };
+    }
+    rpc delete (PolicyRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/identity/v1/policy/{policy_id}" };
+    }
+    rpc get (GetPolicyRequest) returns (PolicyInfo) {
+        option (google.api.http) = { get: "/identity/v1/policy/{policy_id}" };
+    }
+    rpc list (PolicyQuery) returns (PoliciesInfo) {
+        option (google.api.http) = {
+            get: "/identity/v1/policies"
+            additional_bindings {
+                post: "/identity/v1/policies/search"
+            }
+        };
+    }
+    rpc stat (PolicyStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/identity/v1/policies/stat" };
+    }
+}
+
+message CreatePolicyRequest {
+    string name = 1;                        // required
+    repeated string permissions = 2;        // required
+    string domain_id = 3;                   // required
+    google.protobuf.Struct tags = 4;        // optional
+}
+
+message UpdatePolicyRequest {
+    string policy_id = 1;                   // required
+    string name = 2;                        // optional
+    repeated string permissions = 3;        // optional
+    string domain_id = 4;                   // required
+    google.protobuf.Struct tags = 5;        // optional
+}
+
+message PolicyRequest {
+    string policy_id = 1;                   // required
+    string domain_id = 2;                   // required
+}
+
+message GetPolicyRequest {
+    string policy_id = 1;                   // required
+    string domain_id = 2;                   // required
+    repeated string only = 3;               // optional
+}
+
+message PolicyQuery {
+    spaceone.api.core.v1.Query query = 1;   // optional
+    string policy_id = 2;                   // optional
+    string name = 3;                        // optional
+    string domain_id = 4;                   // required
+}
+
+message PolicyInfo {
+    string policy_id = 1;
+    string name = 2;
+    repeated string permissions = 3;
+    string domain_id = 4;
+    google.protobuf.Struct tags = 5;
+    google.protobuf.Timestamp created_at = 6;
+}
+
+message PoliciesInfo {
+    repeated PolicyInfo results = 1;
+    int32 total_count = 2;
+}
+
+message PolicyStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}

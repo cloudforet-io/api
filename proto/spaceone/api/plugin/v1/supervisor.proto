@@ -1,0 +1,173 @@
+syntax = "proto3";
+
+package spaceone.api.plugin.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service Supervisor {
+    rpc publish (PublishSupervisorRequest) returns (SupervisorInfo) {
+        option (google.api.http) = { post: "/plugin/v1/supervisors"};
+    }
+    rpc register (RegisterSupervisorRequest) returns (SupervisorInfo) {
+        option (google.api.http) = { post: "/plugin/v1/supervisor/{supervisor_id}/register" };
+    }
+    rpc update (RegisterSupervisorRequest) returns (SupervisorInfo) {
+        option (google.api.http) = { put: "/plugin/v1/supervisor/{supervisor_id}" };
+    }
+    rpc deregister (SupervisorRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/plugin/v1/supervisor/{supervisor_id}/register" };
+    }
+    rpc enable (SupervisorRequest) returns (SupervisorInfo) {
+        option (google.api.http) = { put: "/plugin/v1/supervisor/{supervisor_id}/enable" };
+    }
+    rpc disable (SupervisorRequest) returns (SupervisorInfo) {
+        option (google.api.http) = { put: "/plugin/v1/supervisor/{supervisor_id}/disable" };
+    }
+    rpc recover_plugin (RecoverPluginRequest) returns (PluginInfo) {
+        option (google.api.http) = { post: "/plugin/v1/supervisor/{supervisor_id}/plugin/{plugin_id}/recover" };
+    }
+    rpc get (GetSupervisorRequest) returns (SupervisorInfo) {
+        option (google.api.http) = { get: "/plugin/v1/supervisor/{supervisor_id}" };
+    }
+    rpc list (SupervisorQuery) returns (SupervisorsInfo) {
+        option (google.api.http) = {
+            get: "/plugin/v1/supervisors"
+            additional_bindings {
+                post: "/plugin/v1/supervisors/search"
+            }
+        };
+    }
+    rpc stat (SupervisorStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/plugin/v1/supervisors/stat" };
+    }
+    rpc list_plugins (PluginQuery) returns (PluginsInfo) {
+        option (google.api.http) = {
+            get: "/plugin/v1/supervisor/{supervisor_id}/plugins"
+            additional_bindings {
+                post: "/plugin/v1/supervisor/{supervisor_id}/plugins/search"
+            }
+        };
+    }
+}
+
+message PublishSupervisorRequest {
+    string name = 1;                        // required
+    string hostname = 2;                    // required
+    string secret_key = 3;                  // optional
+    repeated PluginInfo plugin_info = 4;    // optional
+    google.protobuf.Struct tags = 5;        // optional
+    bool is_public = 6;                     // optional
+    string domain_id = 7;                   // required
+}
+
+message RegisterSupervisorRequest {
+    string supervisor_id = 1;               // required
+    string name = 2;                        // required
+    bool is_public = 3;                     // optional
+    int32 priority = 4;                     // optional
+    google.protobuf.Struct labels = 5;      // optional
+    google.protobuf.Struct tags = 6;        // optional
+    string domain_id = 7;                   // required
+}
+
+message SupervisorRequest {
+    string supervisor_id = 1;               // required
+    string domain_id = 2;                   // required
+}
+
+message GetSupervisorRequest {
+    string supervisor_id = 1;               // required
+    string domain_id = 2;                   // required
+    repeated string only = 3;               // optional
+}
+
+message RecoverPluginRequest {
+    string supervisor_id = 1;               // required
+    string plugin_id = 2;                   // required
+    string version = 3;                     // required
+    string domain_id = 4;                   // required
+}
+
+message SupervisorInfo {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+        PENDING = 3;
+        DISCONNECTED = 4;
+    }
+
+    string supervisor_id = 1;
+    string name = 2;
+    string hostname = 3;
+    State state = 4;
+    bool is_public = 5;
+
+    string domain_id = 7;
+    google.protobuf.Struct tags = 8;
+    google.protobuf.Struct labels = 9;
+    google.protobuf.Timestamp created_at = 10;
+    google.protobuf.Timestamp updated_at = 11;
+}
+
+message SupervisorQuery {
+    spaceone.api.core.v1.Query query = 1;    // optional
+    string supervisor_id = 2;                // optional
+    string name = 3;                         // optional
+    bool is_public = 4;                      // optional
+    string domain_id = 5;                    // required
+}
+
+message SupervisorsInfo {
+    repeated SupervisorInfo results = 1;
+    int32 total_count = 2;
+}
+
+message SupervisorStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}
+
+message PluginQuery {
+    enum State {
+        NONE = 0;
+        PROVISIONING = 1;
+        ACTIVE = 2;
+        RE_PROVISIONING = 3;
+        ERROR = 4;
+    }
+    spaceone.api.core.v1.Query query = 1;   // optional
+    string supervisor_id = 2;               // optional
+    string hostname = 3;                    // optional
+    string plugin_id = 4;                   // optional
+    string version = 5;                     // optional
+    State state = 6;                        // optional
+    string endpoint = 7;                    // optional
+    string domain_id = 8;                   // required
+}
+
+message PluginInfo {
+    enum State {
+        NONE = 0;
+        PROVISIONING = 1;
+        ACTIVE = 2;
+        RE_PROVISIONING = 3;
+        ERROR = 4;
+    }
+    string plugin_id = 1;
+    string version = 2;
+    State state = 3;
+    string endpoint = 4;
+    string supervisor_id = 5;
+    string supervisor_name = 6;
+    bool managed = 7;
+}
+
+message PluginsInfo {
+    repeated PluginInfo results = 1;
+    int32   total_count = 2;
+}

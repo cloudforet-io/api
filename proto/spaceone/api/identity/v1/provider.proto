@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service Provider {
+    rpc create (CreateProviderRequest) returns (ProviderInfo) {
+        option (google.api.http) = { post: "/identity/v1/providers" };
+    }
+    rpc update (UpdateProviderRequest) returns (ProviderInfo) {
+        option (google.api.http) = { put: "/identity/v1/provider/{provider_id}" };
+    }
+    rpc delete (ProviderRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/identity/v1/provider/{provider_id}" };
+    }
+    rpc get (GetProviderRequest) returns (ProviderInfo) {
+        option (google.api.http) = { get: "/identity/v1/provider/{provider_id}" };
+    }
+    rpc list (ProviderQuery) returns (ProvidersInfo) {
+        option (google.api.http) = {
+            get: "/identity/v1/providers"
+            additional_bindings {
+                post: "/identity/v1/providers/search"
+            }
+        };
+    }
+    rpc stat (ProviderStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/identity/v1/providers/stat" };
+    }
+}
+
+message CreateProviderRequest {
+    string provider = 1;                    // required
+    string name = 2;                        // required
+    google.protobuf.Struct template = 3;    // optional
+    google.protobuf.Struct metadata = 4;    // optional
+    google.protobuf.Struct capability = 5;  // optional
+    google.protobuf.Struct tags = 6;        // optional
+}
+
+message UpdateProviderRequest {
+    string provider = 1;                    // required
+    string name = 2;                        // optional
+    google.protobuf.Struct template = 3;    // optional
+    google.protobuf.Struct metadata = 4;    // optional
+    google.protobuf.Struct capability = 5;  // optional
+    google.protobuf.Struct tags = 6;        // optional
+}
+
+message ProviderRequest {
+    string provider = 1;                    // required
+}
+
+message GetProviderRequest {
+    string provider = 1;                    // required
+    repeated string only = 2;               // optional
+}
+
+message ProviderQuery {
+    spaceone.api.core.v1.Query query = 1;   // optional
+    string provider = 2;                    // optional
+    string name = 3;                        // optional
+}
+
+message ProviderInfo {
+    string provider = 1;
+    string name = 2;
+    google.protobuf.Struct template = 3;
+    google.protobuf.Struct metadata = 4;
+    google.protobuf.Struct capability = 5;
+    google.protobuf.Struct tags = 6;
+    google.protobuf.Timestamp created_at = 7;
+}
+
+message ProvidersInfo {
+    repeated ProviderInfo results = 1;
+    int32 total_count = 2;
+}
+
+message ProviderStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+}

@@ -1,0 +1,182 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/identity/v1/role.proto";
+import "spaceone/api/identity/v1/user.proto";
+
+
+service ProjectGroup {
+    rpc create (CreateProjectGroupRequest) returns (ProjectGroupInfo) {
+        option (google.api.http) = { post: "/identity/v1/project-groups" };
+    }
+    rpc update (UpdateProjectGroupRequest) returns (ProjectGroupInfo) {
+        option (google.api.http) = { put: "/identity/v1/project-group/{project_group_id}" };
+    }
+    rpc delete (ProjectGroupRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/identity/v1/project-group/{project_id}" };
+    }
+    rpc add_member (ProjectGroupMemberRequest) returns (ProjectGroupMemberInfo) {
+        option (google.api.http) = { post: "/identity/v1/project-group/{project_group_id}/members" };
+    }
+    rpc modify_member (ProjectGroupMemberRequest) returns (ProjectGroupMemberInfo) {
+        option (google.api.http) = { put: "/identity/v1/project-group/{project_group_id}/member/{user_id}" };
+    }
+    rpc remove_member (RemoveProjectGroupMemberRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/identity/v1/project-group/{project_group_id}/member/{user_id}" };
+    }
+    rpc get (GetProjectGroupRequest) returns (ProjectGroupInfo) {
+        option (google.api.http) = { get: "/identity/v1/project-group/{project_group_id}" };
+    }
+    rpc list (ProjectGroupQuery) returns (ProjectGroupsInfo) {
+        option (google.api.http) = {
+            get: "/identity/v1/project-groups"
+            additional_bindings {
+                post: "/identity/v1/project-groups/search"
+            }
+        };
+    }
+    rpc stat (ProjectGroupStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/identity/v1/project-groups/stat" };
+    }
+    rpc list_members (ProjectGroupMemberQuery) returns (ProjectGroupMembersInfo) {
+        option (google.api.http) = {
+            get: "/identity/v1/project-group/{project_group_id}/members"
+            additional_bindings {
+                post: "/identity/v1/project-group/{project_id}/members/search"
+            }
+        };
+    }
+    rpc list_projects (ProjectGroupProjectQuery) returns (ProjectGroupProjectsInfo) {
+        option (google.api.http) = {
+            get: "/identity/v1/project-group/{project_group_id}/projects"
+            additional_bindings {
+                post: "/identity/v1/project-group/{project_id}/projects/search"
+            }
+        };
+    }
+}
+
+message CreateProjectGroupRequest {
+    string name = 1;                                // required
+    string parent_project_group_id = 2;             // required
+    string domain_id = 3;                           // required
+    string template_id = 4;                         // optional
+    google.protobuf.Struct tags = 5;                // optional
+}
+
+message UpdateProjectGroupRequest {
+    string project_group_id = 1;                    // required
+    string parent_project_group_id = 2;             // required
+    string name = 3;                                // optional
+    bool release_parent_project_group = 4;          // optional
+    string domain_id = 5;                           // required
+    string template_id = 6;                         // optional
+    google.protobuf.Struct tags = 7;                // optional
+}
+
+message ProjectGroupRequest {
+    string project_group_id = 1;                    // required
+    string domain_id = 2;                           // required
+}
+
+message GetProjectGroupRequest {
+    string project_group_id = 1;                    // required
+    string domain_id = 2;                           // required
+    repeated string only = 3;                       // optional
+}
+
+message ProjectGroupMemberRequest {
+    string project_group_id = 1;                    // required
+    string user_id = 2;                             // required
+    string domain_id = 3;                           // required
+    repeated string roles = 4;                      // required
+    repeated string labels = 5;                     // required
+}
+
+message RemoveProjectGroupMemberRequest {
+    string project_group_id = 1;                    // required
+    string user_id = 2;                             // required
+    string domain_id = 3;                           // required
+}
+
+message ProjectGroupQuery {
+    spaceone.api.core.v1.Query query = 1;           // optional
+    string project_group_id = 2;                    // optional
+    string parent_project_group_id = 3;             // optional
+    string name = 4;                                // optional
+    string template_id = 5;                         // optional
+    string domain_id = 6;                           // required
+}
+
+message ProjectGroupInfo {
+    string project_group_id = 1;
+    string name = 2;
+    //repeated Template fields = 3;                 // TODO: Not be implemented TEMPLATE yet
+    //string template_id = 4;                       // TODO: Not be implemented TEMPLATE yet
+    ProjectGroupInfo parent_project_group_info = 5;
+    string domain_id = 6;
+    google.protobuf.Struct tags = 7;
+    string created_by = 8;
+    google.protobuf.Timestamp created_at = 9;
+    google.protobuf.Timestamp deleted_at = 10;
+}
+
+message ProjectGroupsInfo {
+    repeated ProjectGroupInfo results = 1;
+    int32 total_count = 2;
+}
+
+message ProjectGroupMemberQuery {
+    spaceone.api.core.v1.Query query = 1;           // optional
+    string project_group_id = 2;                    // required
+    string user_id = 3;                             // optional
+    string domain_id = 4;                           // required
+}
+
+message ProjectGroupMemberInfo {
+    ProjectGroupInfo project_group_info = 1;
+    spaceone.api.identity.v1.UserInfo user_info = 2;
+    repeated spaceone.api.identity.v1.RoleInfo roles = 3;
+    repeated string labels = 4;
+}
+
+message ProjectGroupMembersInfo {
+    repeated ProjectGroupMemberInfo results = 1;
+    int32 total_count = 2;
+}
+
+message ProjectGroupProjectQuery {
+    spaceone.api.core.v1.Query query = 1;           // optional
+    string project_group_id = 2;                    // required
+    bool recursive = 3;                             // optional
+    string domain_id = 4;                           // required
+}
+
+message ProjectGroupProjectInfo {
+    string project_id = 1;
+    string name = 2;
+    string state = 3;
+    //google.protobuf.Struct template_data = 4; // TODO: Not be implemented template service yet
+    ProjectGroupInfo project_group_info = 5;
+    string domain_id = 6;
+    google.protobuf.Struct tags = 7;
+    string created_by = 8;
+    google.protobuf.Timestamp created_at = 9;
+    google.protobuf.Timestamp deleted_at = 10;
+}
+
+message ProjectGroupProjectsInfo {
+    repeated ProjectGroupProjectInfo results = 1;
+    int32 total_count = 2;
+}
+
+message ProjectGroupStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}

@@ -1,0 +1,141 @@
+syntax = "proto3";
+
+package spaceone.api.statistics.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Schedule {
+    rpc add (AddScheduleRequest) returns (ScheduleInfo) {
+        option (google.api.http) = { post: "/statistics/v1/schedules" };
+    }
+    rpc update (UpdateScheduleRequest) returns (ScheduleInfo) {
+        option (google.api.http) = { put: "/statistics/v1/schedule/{schedule_id}" };
+    }
+    rpc enable (ScheduleRequest) returns (ScheduleInfo) {
+        option (google.api.http) = { put: "/statistics/v1/schedule/{schedule_id}/enable" };
+    }
+    rpc disable (ScheduleRequest) returns (ScheduleInfo) {
+        option (google.api.http) = { put: "/statistics/v1/schedule/{schedule_id}/disable" };
+    }
+    rpc delete (ScheduleRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/statistics/v1/schedule/{schedule_id}" };
+    }
+    rpc get (GetScheduleRequest) returns (ScheduleInfo) {
+        option (google.api.http) = { get: "/statistics/v1/schedule/{schedule_id}" };
+    }
+    rpc list (ScheduleQuery) returns (SchedulesInfo) {
+        option (google.api.http) = {
+            get: "/statistics/v1/schedules"
+            additional_bindings {
+                post: "/statistics/v1/schedules/search"
+            }
+        };
+    }
+    rpc stat (ScheduleStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/statistics/v1/schedules/stat" };
+    }
+}
+
+message Scheduled {
+    string cron = 1;
+    int32 interval = 2;
+    repeated int32 minutes = 3;
+    repeated int32 hours = 4;
+}
+
+message ScheduleJoinQuery {
+    enum JoinType {
+        LEFT = 0;
+        RIGHT = 1;
+        OUTER = 2;
+        INNER = 3;
+    }
+
+    repeated string keys = 1;                           // optional
+    JoinType type = 2;                                  // optional
+    string data_source_id = 3;                          // optional
+    string resource_type = 4;                           // required
+    spaceone.api.core.v1.StatisticsQuery query = 5;     // required
+}
+
+message ScheduleFormula {
+    string name = 1;                                    // required
+    string formula = 2;                                 // required
+}
+
+message QueryOption {
+    string data_source_id = 2;                          // optional
+    string resource_type = 3;                           // required
+    spaceone.api.core.v1.StatisticsQuery query = 4;     // required
+    repeated ScheduleJoinQuery join = 5;                // optional
+    repeated ScheduleFormula formulas = 6;              // optional
+}
+
+message AddScheduleRequest {
+    string topic = 1;                                   // required
+    QueryOption options = 2;                            // required
+    Scheduled schedule = 3;                             // required
+    google.protobuf.Struct tags = 4;                    // optional
+    string domain_id = 5;                               // required
+}
+
+message UpdateScheduleRequest {
+    string schedule_id = 1;                             // required
+    Scheduled schedule = 2;                             // optional
+    google.protobuf.Struct tags = 3;                    // optional
+    string domain_id = 4;                               // required
+}
+
+message ScheduleRequest {
+    string schedule_id = 1;                             // required
+    string domain_id = 2;                               // required
+}
+
+message GetScheduleRequest {
+    string schedule_id = 1;                             // required
+    string domain_id = 2;                               // required
+    repeated string only = 3;                           // optional
+}
+
+message ScheduleQuery {
+    spaceone.api.core.v1.Query query = 1;               // optional
+    string schedule_id = 2;                             // optional
+    string topic = 3;                                   // optional
+    string state = 4;                                   // optional
+    string data_source_id = 5;                          // optional
+    string resource_type = 6;                           // optional
+    string domain_id = 7;                               // required
+}
+
+message ScheduleInfo {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    string schedule_id = 1;
+    string topic = 2;
+    State state = 3;
+    google.protobuf.Struct options = 4;
+    Scheduled schedule = 5;
+    google.protobuf.Struct tags = 6;
+    string domain_id = 7;
+    google.protobuf.Timestamp created_at = 8;
+    google.protobuf.Timestamp last_scheduled_at = 9;
+}
+
+message SchedulesInfo {
+    repeated ScheduleInfo results = 1;
+    int32 total_count = 2;
+}
+
+message ScheduleStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}

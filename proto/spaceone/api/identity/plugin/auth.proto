@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package spaceone.api.identity.plugin;
+
+import "google/protobuf/struct.proto";
+
+service Auth {
+    rpc verify (VerifyRequest) returns (AuthVerifyInfo) {}
+    rpc find (FindRequest) returns (UsersInfo) {}
+    rpc login (LoginRequest) returns (UserInfo) {}
+}
+
+message VerifyRequest {
+    google.protobuf.Struct options = 1;     // required
+    google.protobuf.Struct secret_data = 2; // required
+}
+
+message FindRequest {
+    google.protobuf.Struct options = 1;     // required
+    google.protobuf.Struct secret_data = 2; // required
+    string user_id = 3;                     // optional
+    string keyword = 4;                     // optional
+}
+
+message LoginRequest {
+    google.protobuf.Struct options = 1;             // required
+    google.protobuf.Struct secret_data = 2;         // required
+    google.protobuf.Struct user_credentials = 3;    // required
+}
+
+message UserInfo {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+        UNIDENTIFIED = 3;
+    }
+    string user_id = 1;
+    string name = 2;
+    string email = 3;
+    string mobile = 4;
+    string group = 5;
+    State state = 6;
+}
+
+message UsersInfo {
+    repeated UserInfo results = 1;
+    int32 total_count = 2;
+}
+
+message AuthVerifyInfo {
+    google.protobuf.Struct options = 1;
+}

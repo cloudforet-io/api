@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/inventory/v1/collector.proto";
+
+service Job {
+    rpc list (JobsQuery) returns (JobsInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/jobs"
+            additional_bindings {
+                post: "/inventory/v1/jobs/search"
+            }
+        };
+    }
+    rpc stat (JobStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/jobs/stat" };
+    }
+}
+
+
+enum JobState {
+    JOB_STATE_NONE = 0;
+    CREATED = 1;
+    CANCELED = 2;
+    IN_PROGRESS = 3;
+    FINISHED = 4;
+    FAILURE = 5;
+    TIMEOUT = 6;
+}
+
+message JobsQuery {
+    spaceone.api.core.v1.Query query = 1;               // optional
+    string job_id = 2;
+    JobState state = 3;
+    string collector_id = 4;
+
+    string resource_type = 11;
+    string resource_id = 12;
+    string domain_id = 20;
+}
+
+message JobsInfo {
+    repeated JobInfo results = 1;
+    int32 total_count = 2;
+}
+
+message JobStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}

@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package spaceone.api.monitoring.plugin;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/plugin.proto";
+
+
+service Metric {
+    rpc list (MetricRequest) returns (stream PluginMetricsResponse) {}
+    rpc get_data (MetricDataRequest) returns (stream PluginMetricDataResponse) {}
+}
+
+message MetricRequest {
+    google.protobuf.Struct options = 1;         // required
+    google.protobuf.Struct secret_data = 2;     // required
+    string resource = 3;                        // required
+}
+
+message MetricDataRequest {
+    google.protobuf.Struct options = 1;         // required
+    google.protobuf.Struct secret_data = 2;     // required
+    string resource = 3;                        // required
+    string metric = 4;                          // required
+    google.protobuf.Timestamp start = 5;        // required
+    google.protobuf.Timestamp end = 6;          // required
+    int32 period = 7;                           // required
+    string stat = 8;                            // required
+}
+
+message MetricInfo {
+    string key = 1;
+    string name = 2;
+    google.protobuf.Struct unit = 3;
+    string chart_type = 4;
+    google.protobuf.Struct chart_options = 5;
+}
+
+message MetricsInfo {
+    repeated MetricInfo metrics = 1;
+}
+
+message MetricDataInfo {
+    google.protobuf.ListValue labels = 1;
+    google.protobuf.ListValue values = 2;
+}
+
+message PluginMetricsResponse {
+    string resource_type = 1;                                   // required
+    repeated spaceone.api.core.v1.PluginAction actions = 2;     // optional
+    MetricsInfo result = 3;                                     // required
+}
+
+message PluginMetricDataResponse {
+    string resource_type = 1;                                   // required
+    repeated spaceone.api.core.v1.PluginAction actions = 2;     // optional
+    MetricDataInfo result = 3;                                  // required
+}

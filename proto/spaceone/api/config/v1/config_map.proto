@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package spaceone.api.config.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service ConfigMap {
+    rpc create (CreateConfigMapRequest) returns (ConfigMapInfo) {
+        option (google.api.http) = { post: "/config/v1/config-maps" };
+    }
+    rpc update (UpdateConfigMapRequest) returns (ConfigMapInfo) {
+        option (google.api.http) = { put: "/config/v1/config-map/{name}" };
+    }
+    rpc delete (ConfigMapRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/config/v1/config-map/{name}" };
+    }
+    rpc get (GetConfigMapRequest) returns (ConfigMapInfo) {
+        option (google.api.http) = { get: "/config/v1/config-map/{name}" };
+    }
+    rpc list (ConfigMapQuery) returns (ConfigMapsInfo) {
+        option (google.api.http) = {
+            get: "/config/v1/config-maps"
+            additional_bindings {
+                post: "/config/v1/config-maps/search"
+            }
+        };
+    }
+    rpc stat (ConfigMapStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/config/v1/config-maps/stat" };
+    }
+}
+
+message CreateConfigMapRequest {
+    string name = 1;                        // required
+    google.protobuf.Struct data = 2;        // required
+    google.protobuf.Struct tags = 3;        // optional
+    string domain_id = 4;                   // required
+}
+
+message UpdateConfigMapRequest {
+    string name = 1;                        // required
+    google.protobuf.Struct data = 2;        // optional
+    google.protobuf.Struct tags = 3;        // optional
+    string domain_id = 4;                   // required
+}
+
+message ConfigMapRequest {
+    string name = 1;                        // required
+    string domain_id = 2;                   // required
+}
+
+message GetConfigMapRequest {
+    string name = 1;                        // required
+    string domain_id = 2;                   // required
+    repeated string only = 3;               // optional
+}
+
+message ConfigMapQuery {
+    spaceone.api.core.v1.Query query = 1;   // optional
+    string name = 2;                        // optional
+    string domain_id = 3;                   // required
+}
+
+message ConfigMapInfo {
+    string name = 1;
+    google.protobuf.Struct data = 2;
+    google.protobuf.Struct tags = 3;
+    string domain_id = 4;
+    google.protobuf.Timestamp created_at = 5;
+}
+
+message ConfigMapsInfo {
+    repeated ConfigMapInfo results = 1;
+    int32 total_count = 2;
+}
+
+message ConfigMapStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}

@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service APIKey {
+    rpc create (CreateAPIKeyRequest) returns (APIKeyInfo) {
+        option (google.api.http) = { post: "/identity/v1/api-keys" };
+    }
+    rpc enable (APIKeyRequest) returns (APIKeyInfo) {
+        option (google.api.http) = { put: "/identity/v1/api-key/{api_key_id}/enable" };
+    }
+    rpc disable (APIKeyRequest) returns (APIKeyInfo) {
+        option (google.api.http) = { put: "/identity/v1/api-key/{api_key_id}/disable" };
+    }
+    rpc update_role (UpdateAPIKeyRoleRequest) returns (APIKeyInfo) {
+        option (google.api.http) = { put: "/identity/v1/api-key/{api_key_id}/roles"};
+    }
+    rpc update_allowed_hosts (UpdateAPIKeyHostsRequest) returns (APIKeyInfo) {
+        option (google.api.http) = { put: "/identity/v1/api-key/{api_key_id}/allowed-hosts"};
+    }
+    rpc delete (APIKeyRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/identity/v1/api-key/{api_key_id}" };
+    }
+    rpc get (GetAPIKeyRequest) returns (APIKeyInfo) {
+        option (google.api.http) = { get: "/identity/v1/api-key/{api_key_id}"};
+    }
+    rpc list (APIKeyQuery) returns (APIKeysInfo) {
+        option (google.api.http) = {
+            get: "/identity/v1/api-keys"
+            additional_bindings {
+                post: "/identity/v1/api-keys/search"
+            }
+        };
+    }
+    rpc stat (APIKeyStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/identity/v1/api-keys/stat" };
+    }
+}
+
+message CreateAPIKeyRequest {
+    enum APIKeyType {
+        NONE = 0;
+        USER = 1;
+        SYSTEM = 2;
+        DELEGATION = 3;
+        DOMAIN = 4;
+    }
+
+    APIKeyType api_key_type = 1;        // required
+    string user_id = 2;                 // required
+    string domain_id = 3;               // required
+}
+
+message APIKeyRequest {
+    string api_key_id = 1;              // required
+    string domain_id = 2;               // required
+}
+
+message GetAPIKeyRequest {
+    string api_key_id = 1;              // required
+    string domain_id = 2;               // required
+    repeated string only = 3;           // optional
+}
+
+message Acls {
+    string name = 1;                    // optional
+    string cidr = 2;                    // required
+}
+
+message APIKeyInfo {
+    enum State {
+        NONE_STATE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+//    enum APIKeyType {
+//        NONE_TYPE = 0;
+//        USER = 1;
+//        SYSTEM = 2;
+//        DELEGATION = 3;
+//        DOMAIN = 4;
+//    }
+
+    string api_key_id = 1;
+    string api_key = 2;
+    State state = 3;
+//    APIKeyType api_key_type = 4;
+    string user_id = 5;
+    string domain_id = 6;
+//    repeated spaceone.api.identity.v1.RoleInfo roles = 7;
+    repeated Acls allowed_hosts = 8;
+    google.protobuf.Timestamp last_accessed_at = 9;
+    google.protobuf.Timestamp created_at = 10;
+}
+
+message UpdateAPIKeyRoleRequest {
+    string api_key_id = 1;
+    google.protobuf.ListValue roles = 2;
+    string domain_id = 3;
+}
+
+message UpdateAPIKeyHostsRequest {
+    string api_key_id = 1;
+    repeated Acls allowed_hosts = 2;
+    string domain_id = 3;
+}
+
+message APIKeyQuery {
+    enum State {
+        NONE_STATE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+    enum APIKeyType {
+        NONE_TYPE = 0;
+        USER = 1;
+        SYSTEM = 2;
+        DELEGATION = 3;
+        DOMAIN = 4;
+    }
+
+    string api_key_id = 1;
+    State state = 2;
+    APIKeyType api_key_type = 3;
+    string user_id = 4;
+    spaceone.api.core.v1.Query query = 5;
+    string domain_id = 6;
+}
+
+message APIKeysInfo {
+    repeated APIKeyInfo results = 1;
+    int32 total_count = 2;
+}
+
+message APIKeyStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}

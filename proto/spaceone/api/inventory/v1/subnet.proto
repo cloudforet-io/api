@@ -1,0 +1,169 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/inventory/v1/region.proto";
+import "spaceone/api/inventory/v1/zone.proto";
+import "spaceone/api/inventory/v1/network.proto";
+import "spaceone/api/inventory/v1/network_type.proto";
+import "spaceone/api/inventory/v1/network_policy.proto";
+
+
+service Subnet {
+    rpc create (CreateSubnetRequest) returns (SubnetInfo) {
+        option (google.api.http) = { post: "/inventory/v1/subnets" };
+    }
+    rpc update (UpdateSubnetRequest) returns (SubnetInfo) {
+        option (google.api.http) = { put: "/inventory/v1/subnet/{subnet_id}" };
+    }
+    rpc pin_data (PinSubnetDataRequest) returns (SubnetInfo) {
+        option (google.api.http) = { put: "/inventory/v1/subnet/{subnet_id}/pin-data" };
+    }
+    rpc delete (SubnetRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/inventory/v1/subnet/{subnet_id}" };
+    }
+    rpc get (GetSubnetRequest) returns (SubnetInfo) {
+        option (google.api.http) = { get: "/inventory/v1/subnet/{subnet_id}" };
+    }
+    rpc list (SubnetQuery) returns (SubnetsInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/subnets"
+            additional_bindings {
+                post: "/inventory/v1/subnets/search"
+            }
+        };
+    }
+    rpc stat (SubnetStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/subnets/stat" };
+    }
+}
+
+message IPRange {
+    string start = 1;
+    string end = 2;
+}
+
+message SubnetReference {
+    string resource_id = 1;
+    string external_link = 2;
+}
+
+message CreateSubnetRequest {
+    string cidr = 1;                        // required
+    string name = 2;                        // optional
+    repeated IPRange ip_ranges = 3;         // optional
+    string gateway = 4;                     // optional
+    int32 vlan = 5;                         // optional
+
+    google.protobuf.Struct data = 11;       // optional
+    google.protobuf.Struct metadata = 12;   // optional
+    SubnetReference reference = 13;         // optional
+    google.protobuf.Struct tags = 14;       // optional
+
+    string network_id = 21;                 // required
+    string network_type_id = 22;            // required
+    string network_policy_id = 23;          // optional
+    string project_id = 24;                 // required
+    string domain_id = 25;                  // required
+}
+
+message UpdateSubnetRequest {
+    string subnet_id = 1;                   // required
+    string name = 2;                        // optional
+    repeated IPRange ip_ranges = 3;         // optional
+    string gateway = 4;                     // optional
+    int32 vlan = 5;                         // optional
+
+    google.protobuf.Struct data = 11;       // optional
+    google.protobuf.Struct metadata = 12;   // optional
+    SubnetReference reference = 13;         // optional
+    google.protobuf.Struct tags = 14;       // optional
+
+    string network_type_id = 21;            // optional
+    string network_policy_id = 22;          // optional
+    string project_id = 23;                 // optional
+    string domain_id = 24;                  // required
+
+    bool release_project = 31;              // optional
+}
+
+message PinSubnetDataRequest {
+    string subnet_id = 1;                   // required
+    repeated string keys = 2;               // required
+    string domain_id = 3;                   // required
+}
+
+message SubnetRequest {
+    string subnet_id = 1;                   // required
+    string domain_id = 2;                   // required
+}
+
+message GetSubnetRequest {
+    string subnet_id = 1;                   // required
+    string domain_id = 2;                   // required
+    repeated string only = 3;               // optional
+}
+
+message SubnetQuery {
+    spaceone.api.core.v1.Query query = 1;   // optional
+    string subnet_id = 2;                   // optional
+    string name = 3;                        // optional
+    string cidr = 4;                        // optional
+    string gateway = 5;                     // optional
+    int32 vlan = 6;                         // optional
+
+    string network_id = 11;                 // optional
+    string network_type_id = 12;            // optional
+    string network_policy_id = 13;          // optional
+    string zone_id = 14;                    // optional
+    string region_id = 15;                  // optional
+    string project_id = 16;                 // optional
+    string domain_id = 17;                  // required
+}
+
+message SubnetInfo {
+    enum State {
+        NONE = 0;
+        AVAILABLE = 1;
+        ALLOCATED = 2;
+        RESERVED = 3;
+    }
+
+    string subnet_id = 1;
+    string name = 3;
+    string cidr = 4;
+    repeated IPRange ip_ranges = 5;
+    string gateway = 6;
+    int32 vlan = 7;
+
+    google.protobuf.Struct data = 11;
+    google.protobuf.Struct metadata = 12;
+    SubnetReference reference = 13;
+    google.protobuf.Struct tags = 14;
+    google.protobuf.Struct collection_info = 15;
+
+    NetworkInfo network_info = 21;
+    NetworkTypeInfo network_type_info = 22;
+    NetworkPolicyInfo network_policy_info = 23;
+    RegionInfo region_info = 24;
+    ZoneInfo zone_info = 25;
+    string project_id = 26;
+    string domain_id = 27;
+
+    google.protobuf.Timestamp created_at = 31;
+}
+
+message SubnetsInfo {
+    repeated SubnetInfo results = 1;
+    int32 total_count = 2;
+}
+
+message SubnetStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}

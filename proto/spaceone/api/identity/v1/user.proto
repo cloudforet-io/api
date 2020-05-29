@@ -1,0 +1,168 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/identity/v1/role.proto";
+
+
+service User {
+    rpc create (CreateUserRequest) returns (UserInfo) {
+        option (google.api.http) = { post: "/identity/v1/users" };
+    }
+    rpc update (UpdateUserRequest) returns (UserInfo) {
+        option (google.api.http) = { put: "/identity/v1/users" };
+    }
+    rpc enable (UserRequest) returns (UserInfo) {
+        option (google.api.http) = { put: "/identity/v1/user/{user_id}/enable" };
+    }
+    rpc disable (UserRequest) returns (UserInfo) {
+        option (google.api.http) = { put: "/identity/v1/user/{user_id}/disable" };
+    }
+    rpc update_role (UpdateUserRoleRequest) returns (UserInfo) {
+        option (google.api.http) = { put: "/identity/v1/user/{user_id}/roles" };
+    }
+    rpc delete (UserRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/identity/v1/users" };
+    }
+    rpc get (GetUserRequest) returns (UserInfo) {
+        option (google.api.http) = { get: "/identity/v1/user/{user_id}" };
+    }
+    rpc list (UserQuery) returns (UsersInfo) {
+        option (google.api.http) = {
+            get: "/identity/v1/users"
+            additional_bindings {
+                post: "/identity/v1/users/search"
+            }
+        };
+    }
+    rpc stat (UserStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/identity/v1/users/stat" };
+    }
+    rpc find (FindUserQuery) returns (FindUsersInfo) {
+        option (google.api.http) = { post: "/identity/v1/users/find" };
+    }
+    rpc sync (UserRequest) returns (UserInfo) {
+        option (google.api.http) = { post: "/identity/v1/users/sync" };
+    }
+}
+
+message CreateUserRequest {
+    string user_id = 1;                 // required
+    string password = 2;                // optional
+    string name = 3;                    // optional
+    string email = 4;                   // optional
+    string mobile = 5;                  // optional
+    string group = 6;                   // optional
+    string language = 7;                // optional
+    string timezone = 8;                // optional
+    google.protobuf.Struct tags = 9;    // optional
+    string domain_id = 10;              // optional
+}
+
+message UserInfo {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+        UNIDENTIFIED = 3;
+    }
+
+    string user_id = 1;
+    string name = 2;
+    State state = 3;
+    string email = 4;
+    string mobile = 5;
+    string group = 6;
+    string language = 7;
+    string timezone = 8;
+    repeated spaceone.api.identity.v1.RoleInfo roles = 9;
+    google.protobuf.Struct tags = 10;
+    google.protobuf.Timestamp last_accessed_at = 11;
+    google.protobuf.Timestamp created_at = 12;
+    string domain_id = 13;
+}
+
+message UpdateUserRequest {
+    string user_id = 1;
+    string password = 2;
+    string name = 3;
+    string email = 4;
+    string mobile = 5;
+    string group = 6;
+    string language = 7;
+    string timezone = 8;
+    google.protobuf.Struct tags = 9;
+    string domain_id = 10;
+}
+
+message UpdateUserRoleRequest {
+    string user_id = 1;
+    google.protobuf.ListValue roles = 2;
+    string domain_id = 3;
+}
+
+message UserRequest {
+    string user_id = 1;                     // required
+    string domain_id = 2;                   // required
+}
+
+message GetUserRequest {
+    string user_id = 1;                     // required
+    string domain_id = 2;                   // required
+    repeated string only = 3;               // optional
+}
+
+message UserQuery {
+    spaceone.api.core.v1.Query query = 1;   // optional
+    string user_id = 2;                     // optional
+    string name = 3;                        // optional
+    string state = 4;                       // optional
+    string email = 5;                       // optional
+    string mobile = 6;                      // optional
+    string group = 7;                       // optional
+    string role_id = 8;                     // optional
+    string project_id = 9;                  // optional
+    string project_group_id = 10;           // optional
+    string domain_id =11;                   // optional
+}
+
+message UsersInfo {
+    repeated UserInfo results = 1;
+    int32 total_count = 2;
+}
+
+message UserStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}
+
+message FindUserSearch {
+    oneof search_alias {
+        string user_id = 1;
+        string keyword = 2;
+    }
+}
+
+message FindUserQuery {
+    FindUserSearch search = 1;
+    string domain_id = 2;
+}
+
+message FindUserInfo {
+    string user_id = 1;
+    string name = 2;
+    string email = 3;
+    string mobile = 4;
+    string group = 5;
+    string state = 6;
+}
+
+message FindUsersInfo {
+    repeated FindUserInfo results = 1;
+    int32 total_count = 2;
+}

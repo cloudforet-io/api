@@ -1,0 +1,150 @@
+syntax = "proto3";
+
+package spaceone.api.repository.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/repository/v1/repository.proto";
+
+service Plugin {
+    rpc register (CreatePluginRequest) returns (PluginInfo) {
+        option (google.api.http) = { post: "/repository/v1/plugins" };
+    }
+    rpc update (UpdatePluginRequest) returns (PluginInfo) {
+        option (google.api.http) = { put: "/repository/v1/plugin/{plugin_id}" };
+    }
+    rpc deregister (PluginRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/repository/v1/plugin/{plugin_id}" };
+    }
+    rpc enable (PluginRequest) returns (PluginInfo) {
+        option (google.api.http) = { put: "/repository/v1/plugin/{plugin_id}/enable" };
+    }
+    rpc disable (PluginRequest) returns (PluginInfo) {
+        option (google.api.http) = { put: "/repository/v1/plugin/{plugin_id}/disable" };
+    }
+    rpc get_versions (RepositoryPluginRequest) returns (VersionsInfo) {
+        option (google.api.http) = { get: "/repository/v1/plugins/{plugin_id}/versions" };
+    }
+    rpc get (GetRepositoryPluginRequest) returns (PluginInfo) {
+        option (google.api.http) = { get: "/repository/v1/plugins/{plugin_id}" };
+    }
+    rpc list (PluginQuery) returns (PluginsInfo) {
+        option (google.api.http) = {
+            get: "/repository/v1/plugins"
+            additional_bindings {
+                post: "/repository/v1/plugins/search"
+            }
+        };
+    }
+    rpc stat (PluginStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/repository/v1/plugins/stat" };
+    }
+}
+
+message CreatePluginRequest {
+    string name = 1;                            // required
+    string service_type = 2;                    // required
+    string image = 3;                           // required
+    string provider = 4;                        // optional
+
+    google.protobuf.Struct capability = 11;     // optional
+    google.protobuf.Struct template = 12;       // optional
+    repeated string labels = 13;                // optional
+    google.protobuf.Struct tags = 14;           // optional
+
+    string project_id = 21;                     // optional
+    string domain_id = 22;                      // required
+}
+
+message UpdatePluginRequest {
+    string plugin_id = 1;                       // required
+    string name = 2;                            // optional
+
+    google.protobuf.Struct capability = 11;     // optional
+    google.protobuf.Struct template = 12;       // optional
+    repeated string labels = 13;                // optional
+    google.protobuf.Struct tags = 14;           // optional
+
+    string domain_id = 21;                      // required
+}
+
+message PluginRequest {
+    string plugin_id = 1;                       // required
+    string domain_id = 2;                       // required
+}
+
+message RepositoryPluginRequest {
+    string plugin_id = 1;                       // required
+    string domain_id = 2;                       // required
+    string repository_id = 3;                   // optional
+}
+
+message GetRepositoryPluginRequest {
+    string plugin_id = 1;                       // required
+    string domain_id = 2;                       // required
+    string repository_id = 3;                   // optional
+    repeated string only = 4;                   // optional
+}
+
+message PluginQuery {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    spaceone.api.core.v1.Query query = 1;       // optional
+    string plugin_id = 2;                       // optional
+    string name = 3;                            // optional
+    State state = 4;                            // optional
+    string service_type = 5;                    // optional
+    string provider = 6;                        // optional
+    string repository_id = 7;                   // required
+    string domain_id = 8;                       // required
+}
+
+message PluginInfo {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    string plugin_id = 1;
+    string name = 2;
+    string image = 3;
+    string registry_url = 4;
+    State  state = 5;
+    string service_type = 6;
+    string provider = 7;
+
+    google.protobuf.Struct capability = 11;
+    google.protobuf.Struct template = 12;
+    repeated string labels = 13;
+    google.protobuf.Struct tags = 14;
+
+    RepositoryInfo repository_info = 21;
+    string project_id = 22;
+    string domain_id = 23;
+
+    google.protobuf.Timestamp created_at = 31;
+}
+
+message PluginsInfo {
+    repeated PluginInfo results = 1;
+    int32 total_count = 2;
+}
+
+message VersionsInfo {
+    repeated string results = 1;
+    int32 total_count = 2;
+}
+
+message PluginStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string repository_id = 2;                           // required
+    string domain_id = 3;                               // required
+}

@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.plugin;
+
+import "google/protobuf/struct.proto";
+
+service Collector {
+    rpc verify (VerifyRequest) returns (CollectorVerifyInfo) {}
+    rpc collect (CollectRequest) returns (stream ResourceInfo) {}
+}
+
+message VerifyRequest {
+    google.protobuf.Struct options = 1;     // required
+    google.protobuf.Struct secret_data = 2; // required
+}
+
+message CollectRequest {
+    google.protobuf.Struct options = 1;     // required
+    google.protobuf.Struct secret_data = 2; // required
+    google.protobuf.Struct filter = 3;      // optional
+    string zone_id = 4;                     // optional
+    string pool_id = 5;                     // optional
+}
+
+
+message ResourceInfo {
+    enum State {
+        NONE = 0;
+        CREATED = 1;
+        PENDING = 2;
+        INPROGRESS = 3;
+        SUCCESS = 4;
+        FAILURE = 5;
+        TIMEOUT = 6;
+        IDLE = 7;
+    }
+    State state = 1;
+    string message = 2;
+    string resource_type = 3;
+    google.protobuf.Struct match_rules = 4;
+    google.protobuf.Struct replace_rules = 5;
+    google.protobuf.Struct resource = 6;
+}
+
+message CollectorVerifyInfo {
+    google.protobuf.Struct options = 1;
+}

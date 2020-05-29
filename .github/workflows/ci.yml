@@ -1,0 +1,42 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set environment virables
+      run: |
+        echo "::set-env name=SERVICE::api"
+        echo "::set-env name=IMAGE_PREFIX::spaceone"
+
+        echo "::set-env name=DOCKER_UPLOAD::false"
+        echo "::set-env name=PYPI_UPLOAD::true"
+        echo "::set-env name=LOCATION_DOCKERFILE::."
+        echo "::set-env name=LOCATION_SETUP_PY::dist/python"
+
+        echo "::set-env name=SUDO::true"
+        version=$(cat VERSION)${{ github.run_id }}
+        echo "::set-env name=VERSION::$version"
+    #        echo "::set-env name=POST_BRANCH::master"
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install dependencies
+      run: |
+        sudo python -m pip install --upgrade pip
+        sudo pip install setuptools wheel twine
+    - name: Build and publish
+      run: |
+        make all
+        cd $LOCATION_SETUP_PY
+        sudo python setup.py sdist bdist_wheel
+        sudo twine upload dist/*.whl --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }} --verbose

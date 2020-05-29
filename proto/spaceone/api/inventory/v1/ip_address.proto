@@ -1,0 +1,166 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/inventory/v1/network.proto";
+import "spaceone/api/inventory/v1/subnet.proto";
+import "spaceone/api/inventory/v1/zone.proto";
+
+
+service IPAddress {
+    rpc allocate (AllocateIPRequest) returns (IPInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v1/ip-addresses/allocate"
+            additional_bindings {
+                post: "/inventory/v1/ip-address/{ip_address}/allocate"
+            }
+         };
+    }
+    rpc reserve (ReserveIPRequest) returns (IPInfo) {
+        option (google.api.http) = { put: "/inventory/v1/ip-address/{ip_address}/reserve" };
+    }
+    rpc release (IPRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/inventory/v1/ip-address/{ip_address}/release" };
+    }
+    rpc update (UpdateIPRequest) returns (IPInfo) {
+        option (google.api.http) = { put: "/inventory/v1/ip-address/{ip_address}" };
+    }
+    rpc pin_data (PinIPDataRequest) returns (IPInfo) {
+        option (google.api.http) = { put: "/inventory/v1/ip-address/{ip_address}/pin-data" };
+    }
+    rpc get (GetIPRequest) returns (IPInfo) {
+        option (google.api.http) = { get: "/inventory/v1/ip-address/{ip_address}" };
+    }
+    rpc list (IPQuery) returns (IPsInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/ip-addresses"
+            additional_bindings {
+                post: "/inventory/v1/ip-addresses/search"
+            }
+        };
+    }
+    rpc stat (IPStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/ip-addresses/stat" };
+    }
+}
+
+message IPReference {
+    string resource_id = 1;
+    string external_link = 2;
+}
+
+message Resource {
+    string type = 1;
+    string id = 2;
+}
+
+message AllocateIPRequest {
+    string ip_address = 1;                  // optional
+    Resource resource = 2;                  // optional
+
+    google.protobuf.Struct data = 11;       // optional
+    google.protobuf.Struct metadata = 12;   // optional
+    IPReference reference = 13;             // optional
+    google.protobuf.Struct tags = 14;       // optional
+
+    string subnet_id = 21;                  // required
+    string domain_id = 22;                  // required
+}
+
+message ReserveIPRequest {
+    string ip_address = 1;                  // required
+    google.protobuf.Struct tags = 2;        // optional
+    string subnet_id = 3;                   // required
+    string domain_id = 4;                   // required
+}
+
+message UpdateIPRequest {
+    string ip_address = 1;                  // optional
+    Resource resource = 2;                  // optional
+
+    google.protobuf.Struct data = 11;       // optional
+    google.protobuf.Struct metadata = 12;   // optional
+    IPReference reference = 13;             // optional
+    google.protobuf.Struct tags = 14;       // optional
+
+    string subnet_id = 21;                  // required
+    string domain_id = 22;                  // required
+}
+
+message PinIPDataRequest {
+    string ip_address = 1;                  // required
+    repeated string keys = 2;               // required
+    string subnet_id = 3;                   // required
+    string domain_id = 4;                   // required
+}
+
+message IPRequest {
+    string ip_address = 1;                  // required
+    string subnet_id = 2;                   // required
+    string domain_id = 3;                   // required
+}
+
+message GetIPRequest {
+    string ip_address = 1;                  // required
+    string subnet_id = 2;                   // required
+    string domain_id = 3;                   // required
+    repeated string only = 4;               // optional
+}
+
+message IPQuery {
+    enum State {
+        NONE = 0;
+        ALLOCATED = 1;
+        RESERVED = 2;
+    }
+
+    spaceone.api.core.v1.Query query = 1;   // optional
+    string ip_address = 2;                  // optional
+    State state = 3;                        // optional
+
+    string subnet_id = 11;                   // optional
+    string network_id = 12;                  // optional
+    string zone_id = 13;                     // optional
+    string region_id = 14;                   // optional
+    string domain_id = 15;                   // required
+}
+
+message IPInfo {
+    enum State {
+        NONE = 0;
+        ALLOCATED = 1;
+        RESERVED = 2;
+    }
+
+    string ip_address = 1;
+    State state = 2;
+    Resource resource = 3;
+
+    google.protobuf.Struct data = 11;
+    google.protobuf.Struct metadata = 12;
+    IPReference reference = 13;
+    google.protobuf.Struct tags = 14;
+    google.protobuf.Struct collection_info = 15;
+
+    NetworkInfo network_info = 21;
+    SubnetInfo subnet_info = 22;
+    ZoneInfo zone_info = 23;
+    string domain_id = 24;
+
+    google.protobuf.Timestamp updated_at = 31;
+}
+
+message IPsInfo {
+    repeated IPInfo results = 1;
+    int32 total_count = 2;
+}
+
+message IPStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}

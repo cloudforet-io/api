@@ -1,0 +1,196 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/inventory/v1/region.proto";
+import "spaceone/api/inventory/v1/zone.proto";
+import "spaceone/api/inventory/v1/pool.proto";
+
+
+service Server {
+    rpc create (CreateServerRequest) returns (ServerInfo) {
+        option (google.api.http) = { post: "/inventory/v1/servers" };
+    }
+    rpc update (UpdateServerRequest) returns (ServerInfo) {
+        option (google.api.http) = { put: "/inventory/v1/server/{server_id}" };
+    }
+    rpc pin_data (PinServerDataRequest) returns (ServerInfo) {
+        option (google.api.http) = { put: "/inventory/v1/server/{server_id}/pin-data" };
+    }
+    rpc delete (ServerRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/inventory/v1/server/{server_id}" };
+    }
+    rpc get (GetServerRequest) returns (ServerInfo) {
+        option (google.api.http) = { get: "/inventory/v1/server/{server_id}" };
+    }
+    rpc list (ServerQuery) returns (ServersInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/servers"
+            additional_bindings {
+                post: "/inventory/v1/servers/search"
+            }
+        };
+    }
+    rpc stat (ServerStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/servers/stat" };
+    }
+}
+
+enum ServerState {
+    STATE_NONE = 0;
+    PENDING = 1;
+    INSERVICE = 2;
+    MAINTENANCE = 3;
+    CLOSED = 4;
+    DELETED = 5;
+}
+
+enum ServerType {
+    SERVER_TYPE_NONE = 0;
+    BAREMETAL = 1;
+    VM = 2;
+    HYPERVISOR = 3;
+    UNKNOWN = 4;
+}
+
+enum ServerOSType {
+    OS_TYPE_NONE = 0;
+    LINUX = 1;
+    WINDOWS = 2;
+}
+
+message ServerReference {
+    string resource_id = 1;
+    string external_link = 2;
+}
+
+message CreateServerRequest {
+    string name = 1;                            // optional
+    ServerState state = 2;                      // optional
+    string primary_ip_address = 3;              // required
+    ServerType server_type = 4;                 // optional
+    ServerOSType os_type = 5;                   // required
+    string provider = 6;                        // optional
+
+    google.protobuf.Struct data = 11;           // optional
+    google.protobuf.Struct metadata = 12;       // optional
+    google.protobuf.ListValue nics  = 13;       // optional
+    google.protobuf.ListValue disks  = 14;      // optional
+    ServerReference reference = 15;             // optional
+    google.protobuf.Struct tags = 16;           // optional
+
+    string asset_id = 21;                       // optional
+    string pool_id = 22;                        // optional
+    string zone_id = 23;                        // optional
+    string region_id = 24;                      // optional
+    string project_id = 25;                     // optional
+    string domain_id = 26;                      // required
+}
+
+message UpdateServerRequest {
+    string server_id = 1;                       // required
+    string name = 2;                            // optional
+    ServerState state = 3;                      // optional
+    string primary_ip_address = 4;              // optional
+    ServerType server_type = 5;                 // optional
+    ServerOSType os_type = 6;                   // optional
+    string provider = 7;                        // optional
+
+    google.protobuf.Struct data = 11;           // optional
+    google.protobuf.Struct metadata = 12;       // optional
+    google.protobuf.ListValue nics  = 13;       // optional
+    google.protobuf.ListValue disks  = 14;      // optional
+    ServerReference reference = 15;             // optional
+    google.protobuf.Struct tags = 16;           // optional
+
+    string asset_id = 21;                       // optional
+    string pool_id = 22;                        // optional
+    string zone_id = 23;                        // optional
+    string region_id = 24;                      // optional
+    string project_id = 25;                     // optional
+    string domain_id = 26;                      // required
+
+    bool release_region = 33;                   // optional
+    bool release_project = 34;                  // optional
+}
+
+message PinServerDataRequest {
+    string server_id = 1;                       // required
+    repeated string keys = 2;                   // required
+    string domain_id = 3;                       // required
+}
+
+message ServerRequest {
+    string server_id = 1;                       // required
+    string domain_id = 2;                       // required
+}
+
+message GetServerRequest {
+    string server_id = 1;                       // required
+    string domain_id = 2;                       // required
+    repeated string only = 3;                   // optional
+}
+
+message ServerQuery {
+    spaceone.api.core.v1.Query query = 1;       // optional
+    string server_id = 2;                       // optional
+    string name = 3;                            // optional
+    string state = 4;                           // optional
+    string primary_ip_address = 5;              // optional
+    string ip_addresses = 6;                    // optional
+    ServerType server_type = 7;                 // optional
+    ServerOSType os_type = 8;                   // optional
+    string provider = 9;                        // optional
+
+    string asset_id = 11;                       // optional
+    string pool_id = 12;                        // optional
+    string zone_id = 13;                        // optional
+    string region_id = 14;                      // optional
+    string resource_group_id = 15;              // optional
+    string project_id = 16;                     // optional
+    string domain_id = 17;                      // optional
+}
+
+message ServerInfo {
+    string server_id = 1;
+    string name = 2;
+    ServerState state = 3;
+    string primary_ip_address = 4;
+    google.protobuf.ListValue ip_addresses = 5;
+    ServerType server_type = 6;
+    ServerOSType os_type = 7;
+    string provider = 8;
+
+    google.protobuf.Struct data = 11;
+    google.protobuf.Struct metadata = 12;
+    google.protobuf.ListValue nics  = 13;
+    google.protobuf.ListValue disks  = 14;
+    ServerReference reference = 15;
+    google.protobuf.Struct tags = 16;
+    google.protobuf.Struct collection_info = 17;
+
+    PoolInfo pool_info = 21;
+    ZoneInfo zone_info = 22;
+    RegionInfo region_info = 23;
+    string project_id = 24;
+    string domain_id = 25;
+
+    google.protobuf.Timestamp created_at = 31;
+    google.protobuf.Timestamp updated_at = 32;
+    google.protobuf.Timestamp deleted_at = 33;
+}
+
+message ServersInfo {
+    repeated ServerInfo results = 1;
+    int32 total_count = 2;
+}
+
+message ServerStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}

@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package spaceone.api.plugin.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+
+service Plugin {
+    rpc get_plugin_endpoint (PluginEndpointRequest) returns (PluginEndpoint) {
+        option (google.api.http) = { post: "/plugin/v1/plugin/{plugin_id}/get-endpoint" };
+    }
+    rpc notify_failure (PluginFailureRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { put: "/plugin/v1/plugin/{plugin_id}/notify-failure" };
+    }
+}
+
+message PluginEndpointRequest {
+    string plugin_id = 1;                   // required
+    string version = 2;                     // required
+    google.protobuf.Struct labels = 3;      // optional
+    string domain_id = 4;                   // required
+}
+
+message PluginFailureRequest {
+    string supervisor_id = 1;               // required
+    string plugin_id = 2;                   // required
+    string version = 3;                     // required
+    string domain_id = 4;                   // required
+}
+
+message PluginEndpoint {
+    string endpoint = 1;
+    string access_token = 2;
+}

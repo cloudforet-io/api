@@ -1,0 +1,141 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Region {
+    rpc create (CreateRegionRequest) returns (RegionInfo) {
+        option (google.api.http) = { post: "/inventory/v1/regions" };
+    }
+    rpc update (UpdateRegionRequest) returns (RegionInfo) {
+        option (google.api.http) = { put: "/inventory/v1/region/{region_id}" };
+    }
+    rpc delete (RegionRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/inventory/v1/region/{region_id}" };
+    }
+    rpc get (GetRegionRequest) returns (RegionInfo) {
+        option (google.api.http) = { get: "/inventory/v1/region/{region_id}" };
+    }
+    rpc add_member (RegionMemberRequest) returns (RegionMemberInfo) {
+        option (google.api.http) = { get: "/inventory/v1/region/{region_id}/members" };
+    }
+    rpc modify_member (RegionMemberRequest) returns (RegionMemberInfo) {
+        option (google.api.http) = { get: "/inventory/v1/region/{region_id}/member/{user_id}" };
+    }
+    rpc remove_member (RemoveRegionMemberRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { get: "/inventory/v1/region/{region_id}/member/{user_id}" };
+    }
+    rpc list_members (RegionMemberQuery) returns (RegionMembersInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/region/{region_id}/members"
+            additional_bindings {
+                post: "/inventory/v1/region/{region_id}/members/search"
+            }
+        };
+    }
+    rpc list (RegionQuery) returns (RegionsInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/regions"
+            additional_bindings {
+                post: "/inventory/v1/regions/search"
+            }
+        };
+    }
+    rpc stat (RegionStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/regions/stat" };
+    }
+}
+
+message CreateRegionRequest {
+    string name = 1;                        // required
+    google.protobuf.Struct tags = 2;        // optional
+    string domain_id = 3;                   // required
+}
+
+message UpdateRegionRequest {
+    string region_id = 1;                   // required
+    string name = 2;                        // optional
+    google.protobuf.Struct tags = 3;        // optional
+    string domain_id = 4;                   // required
+}
+
+message RegionRequest {
+    string region_id = 1;                   // required
+    string domain_id = 2;                   // required
+}
+
+message GetRegionRequest {
+    string region_id = 1;                   // required
+    string domain_id = 2;                   // required
+    repeated string only = 3;               // optional
+}
+
+message RegionQuery {
+    spaceone.api.core.v1.Query query = 1;   // optional
+    string region_id = 2;                   // optional
+    string name = 3;                        // optional
+    string domain_id = 4;                   // required
+}
+
+message RegionInfo {
+    enum State {
+        NONE = 0;
+        ACTIVE = 1;
+        DELETED = 2;
+    }
+
+    string region_id = 1;
+    State state = 2;
+    string name = 3;
+    google.protobuf.Struct tags = 4;
+    string domain_id = 5;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp deleted_at = 7;
+}
+
+message RegionsInfo {
+    repeated RegionInfo results = 1;
+    int32 total_count = 2;
+}
+
+message RegionMemberRequest {
+    string region_id = 1;                   // required
+    string user_id = 2;                     // required
+    repeated string labels = 3;             // optional
+    string domain_id = 4;                   // required
+}
+
+message RemoveRegionMemberRequest {
+    string region_id = 1;                   // required
+    string user_id = 2;                     // required
+    string domain_id = 3;                   // required
+}
+
+message RegionMemberQuery {
+    spaceone.api.core.v1.Query query = 1;   // optional
+    string region_id = 2;                   // optional
+    string user_id = 3;                     // optional
+    string domain_id = 4;
+}
+
+message RegionMemberInfo {
+    RegionInfo region_info = 1;
+    google.protobuf.Struct user_info = 2;
+    repeated string labels = 3;
+}
+
+message RegionMembersInfo {
+    repeated RegionMemberInfo results = 1;
+    int32 total_count = 2;
+}
+
+message RegionStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    string domain_id = 2;                               // required
+}

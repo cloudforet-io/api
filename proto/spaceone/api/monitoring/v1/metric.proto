@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package spaceone.api.monitoring.v1;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+
+service Metric {
+    rpc get_data (MetricDataRequest) returns (MetricDataInfo) {
+        option (google.api.http) = { get: "/monitoring/v1/data-source/{data_source_id}/metric-data" };
+    }
+    rpc list (MetricRequest) returns (MetricsInfo) {
+        option (google.api.http) = { get: "/monitoring/v1/data-source/{data_source_id}/metrics" };
+    }
+}
+
+message MetricRequest {
+    string data_source_id = 1;                  // required
+    string resource_type = 2;                   // required
+    repeated string resources = 3;              // required
+    string domain_id = 4;                       // required
+}
+
+message MetricDataRequest {
+    string data_source_id = 1;                  // required
+    string resource_type = 2;                   // required
+    repeated string resources = 3;              // required
+    string metric = 4;                          // required
+    google.protobuf.Timestamp start = 5;        // required
+    google.protobuf.Timestamp end = 6;          // required
+    int32 period = 7;                           // optional
+    string stat = 8;                            // optional
+    string domain_id = 9;                       // required
+}
+
+message MetricInfo {
+    string key = 1;
+    string name = 2;
+    google.protobuf.Struct unit = 3;
+    string chart_type = 4;
+    google.protobuf.Struct chart_options = 5;
+}
+
+message MetricsInfo {
+    repeated MetricInfo metrics = 1;
+    google.protobuf.Struct available_resources = 2;
+    string domain_id = 3;
+}
+
+message MetricDataInfo {
+    google.protobuf.ListValue labels = 1;
+    google.protobuf.Struct resource_values = 2;
+    string domain_id = 3;
+}

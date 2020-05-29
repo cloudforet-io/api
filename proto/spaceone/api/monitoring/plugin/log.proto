@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package spaceone.api.monitoring.plugin;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/plugin.proto";
+
+
+service Log {
+    rpc list (LogRequest) returns (stream PluginLogsResponse) {}
+}
+
+message Sort {
+    string key = 1;
+    bool desc = 2;
+}
+
+message LogRequest {
+    google.protobuf.Struct options = 1;         // required
+    google.protobuf.Struct secret_data = 2;     // required
+    google.protobuf.Struct filter = 3;          // required
+    string resource = 4;                        // optional
+    google.protobuf.Timestamp start = 5;        // optional
+    google.protobuf.Timestamp end = 6;          // optional
+    Sort sort = 7;                              // optional
+    int32 limit = 8;                            // optional
+}
+
+message LogsInfo {
+    google.protobuf.ListValue logs = 1;
+}
+
+message PluginLogsResponse {
+    string resource_type = 1;                                   // required
+    repeated spaceone.api.core.v1.PluginAction actions = 2;     // optional
+    LogsInfo result = 3;                                        // required
+}
