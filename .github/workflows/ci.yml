@@ -44,8 +44,7 @@ jobs:
         cmp --silent master_branch/$LOCATION_VERSION/VERSION $LOCATION_VERSION/VERSION || \
         echo "::set-env name=IS_NEW_VERSION::true"
 
-        version=$(cat $LOCATION_VERSION/VERSION)-${{ github.run_id }}
-        echo "::set-env name=VERSION::$version"
+        echo "$(cat $LOCATION_VERSION/VERSION)-${{ github.run_id }}">$LOCATION_VERSION/VERSION
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -89,7 +88,7 @@ jobs:
           else
             twine upload dist/*.whl --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }} --verbose
         fi
-#      continue-on-error: true
+      continue-on-error: true
 
     - name: Merge branch automatically
       if: steps.test.outcome == 'success'
