@@ -14,7 +14,7 @@ jobs:
     - name: Set environment virables
       env:
         SERVICE: api
-        PYPI_UPLOAD: false # upload pypi if this is true
+        PYPI_UPLOAD: true # upload pypi if this is true
         # LOCATION points the parent directory
         LOCATION_SETUP_PY: dist/python # optional. for pypi upload
         LOCATION_VERSION: . # the location for VERSION file (ex- . means the location of VERSION is ./VERSION)
@@ -44,8 +44,7 @@ jobs:
         cmp --silent master_branch/$LOCATION_VERSION/VERSION $LOCATION_VERSION/VERSION || \
         echo "::set-env name=IS_NEW_VERSION::true"
 
-        version=$(cat $LOCATION_VERSION/VERSION)-${{ github.run_id }}
-        echo "::set-env name=VERSION::$version"
+        echo "$(cat $LOCATION_VERSION/VERSION)-${{ github.run_id }}">$LOCATION_VERSION/VERSION
 
     - name: Set up Python
       uses: actions/setup-python@v2
