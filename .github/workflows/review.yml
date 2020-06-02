@@ -1,0 +1,53 @@
+name: SpaceONE Review
+
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  review:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set environment virables
+      env:
+        # LOCATION points the parent directory
+        LOCATION_SETUP_PY: dist/python # optional. for pypi upload
+        IS_SUDO: false
+      run: |
+        echo "::set-env name=LOCATION_SETUP_PY::$LOCATION_SETUP_PY"
+        echo "::set-env name=IS_SUDO::$IS_SUDO"
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install dependencies
+      run: |
+        if [ $IS_SUDO = true ]
+          then
+            sudo python -m pip install --upgrade pip
+            sudo pip install setuptools wheel twine
+          else
+            python -m pip install --upgrade pip
+            pip install setuptools wheel twine
+        fi
+    - name: Build
+      run: |
+        if test -f "Makefile"; then
+          make all
+        fi
+        cd $LOCATION_SETUP_PY
+        if [ $IS_SUDO = true ]
+          then
+            sudo python setup.py sdist bdist_wheel
+          else
+            python setup.py sdist bdist_wheel
+        fi
+    - name: Test
+      id: test
+      run: |
+        echo "Running test ... None"
+        # fail test or pass test
