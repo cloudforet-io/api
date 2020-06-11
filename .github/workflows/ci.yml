@@ -33,8 +33,8 @@ jobs:
           echo "::set-env name=LOCATION_DOCKERFILE::$LOCATION_DOCKERFILE"
           echo "::set-env name=IMAGE_PREFIX::$IMAGE_PREFIX"
           echo "::set-env name=IS_SUDO::$IS_SUDO"
-          echo "::set-env name=VERSION::$(cat $LOCATION_VERSION/VERSION)-${{ github.run_id }}"
-          echo "$(cat $LOCATION_VERSION/VERSION)-${{ github.run_id }}">$LOCATION_VERSION/VERSION
+          echo "::set-env name=VERSION::$(cat $LOCATION_VERSION/VERSION).${{ github.run_id }}"
+          echo "$(cat $LOCATION_VERSION/VERSION).${{ github.run_id }}">$LOCATION_VERSION/VERSION
           EOF
 
           bash set_env.sh
@@ -88,39 +88,27 @@ jobs:
       - name: Install dependencies
         if: env.PYPI_UPLOAD == 'true'
         run: |
-          if [ $IS_SUDO = true ]
-            then
-              sudo python -m pip install --upgrade pip
-              sudo pip install setuptools wheel twine
-            else
-              python -m pip install --upgrade pip
-              pip install setuptools wheel twine
-          fi
+          python -m pip install --upgrade pip
+          pip install setuptools wheel twine
 
       - name: Build
         if: env.PYPI_UPLOAD == 'true'
         run: |
           if test -f "Makefile"; then
             make all
+            if [ $IS_SUDO = true ]
+              then
+                sudo chmod -R 777 dist
+            fi
           fi
           cd $LOCATION_SETUP_PY
-          if [ $IS_SUDO = true ]
-            then
-              sudo python setup.py sdist bdist_wheel
-            else
-              python setup.py sdist bdist_wheel
-          fi
+          python setup.py sdist bdist_wheel
       - name: Upload Pypi
         if: env.PYPI_UPLOAD == 'true'
         id: upload
         run: |
           cd $LOCATION_SETUP_PY
-          if [ $IS_SUDO = true ]
-            then
-              sudo twine upload dist/*.whl --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }} --verbose
-            else
-              twine upload dist/*.whl --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }} --verbose
-          fi
+          twine upload dist/*.whl --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }} --verbose
 
   docker:
     needs: initialize
