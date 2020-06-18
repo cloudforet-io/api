@@ -1,10 +1,5 @@
 FROM ubuntu:18.04
 
-RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-RUN sed -i 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-RUN sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-RUN sed -i 's/extras.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-
 ENV DEFAULT_CODE all
 ENV BIN_DIR /opt/bin
 ENV PKG_DIR /tmp/pkg
