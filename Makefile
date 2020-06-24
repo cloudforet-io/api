@@ -3,7 +3,7 @@ VERSION = v1
 DOCKER_NAME = spaceone/api_builder
 
 .PHONY: help
-.PHONY: all python doc
+.PHONY: all python json
 .PHONY: clean
 
 define banner
@@ -30,16 +30,16 @@ help:
 	@echo "Make Options:"
 	@echo " all                 - Generate all : ${TARGET}"
 	@echo " python              - Generate python protobuf"
-	@echo " doc                 - Generate API document"
+	@echo " json                - Generate API artifact json files"
 	@echo " clean               - Clean up dist directory"
 
 all:
 	$(call banner, "Generate all : ${TARGET}")
 	$(call build, "all")
 
-doc:
-	$(call banner, "Generate API document")
-	$(call build, "doc")
+json:
+	$(call banner, "Generate API json files")
+	$(call build, "json")
 
 python:
 	$(call banner, "Generate python protobuf")
@@ -48,3 +48,4 @@ python:
 clean:
 	$(call banner, "Clean up dist directory")
 	sudo rm -rf dist
+	sudo rm -rf artifact

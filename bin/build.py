@@ -10,11 +10,15 @@ import glob
 from pathlib import Path
 
 PROJECT = 'spaceone'
+EXTENSION = ['json', 'markdown']
+OUTPUT_TO_DOC = EXTENSION[0]
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'template')
 PROTO_DIR = os.path.join(BASE_DIR, 'proto')
 OUTPUT_DIR = os.path.join(BASE_DIR, 'dist')
-AVAILABLE_CODES = ['all', 'python', 'doc']
+ARTIFACT_DIR = os.path.join(BASE_DIR, 'artifact')
+VERSION = os.path.join(BASE_DIR, 'VERSION')
+AVAILABLE_CODES = ['all', 'python', 'json']
 DEFAULT_THIRD_PARTY_DIR = 'third_party/googleapis:third_party/protobuf/src'
 DEFAULT_CODE = 'all'
 
@@ -40,6 +44,7 @@ def _get_env():
     return {
         'proto_dir': os.environ.get('PROTO_DIR', PROTO_DIR),
         'output_dir': os.environ.get('OUTPUT_DIR', OUTPUT_DIR),
+        'artifact_dir': os.environ.get('OUTPUT_DIR', ARTIFACT_DIR),
         'default_third_party_dir': _get_default_third_party_dir(),
         'default_code': os.environ.get('DEFAULT_CODE', DEFAULT_CODE),
         'protoc-gen-doc': shutil.which('protoc-gen-doc')
@@ -48,24 +53,24 @@ def _get_env():
 
 def _get_args():
     env = _get_env()
-    parser = argparse.ArgumentParser(description='Cloud One API Builder',
-                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+    parser = argparse.ArgumentParser(description='Cloud One API Builder', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('target', metavar='<target>', help='Cloud One Service. (core, identity, inventory, etc.)')
     parser.add_argument('-p', '--proto-dir', type=str, help='Protocol Buffers Directory.', default=env['proto_dir'])
-    parser.add_argument('-t', '--third-party-dir', type=str, help='Third Pary Protocol Buffers Directory.', default=[],
-                        action='append')
+    parser.add_argument('-t', '--third-party-dir', type=str, help='Third Pary Protocol Buffers Directory.', default=[],action='append')
     parser.add_argument('-o', '--output-dir', type=str, help='Output Directory.', default=env['output_dir'])
-    parser.add_argument('-c', '--code', type=str, help='Generate Code.', choices=AVAILABLE_CODES,
-                        default=env['default_code'])
+    parser.add_argument('-a', '--artifact-dir', type=str, help='Artifact JSON Directory.', default=env['artifact_dir'])
+    parser.add_argument('-c', '--code', type=str, help='Generate Code.', choices=AVAILABLE_CODES, default=env['default_code'])
     parser.add_argument('-d', '--debug', help='Debug Mode.', action='store_true')
 
     args = parser.parse_args()
-
     params = {}
     params['target'] = args.target
     params['proto_path'] = os.path.join(args.proto_dir, PROJECT, 'api', params['target'])
     params['output_dir'] = args.output_dir
+    params['artifact_dir'] = args.artifact_dir
+    params['version'] = _get_api_version()
     params['code'] = args.code
     params['debug'] = args.debug
 
@@ -82,6 +87,11 @@ def _get_args():
 def _get_proto_files(proto_path):
     return [proto_file for proto_file in glob.iglob(os.path.join(proto_path, '**', '*.proto'), recursive=True)]
 
+def _get_api_version():
+    with open(VERSION, 'r') as f:
+        version = f.read().strip()
+        f.close()
+        return version
 
 def _make_output_path(output_dir, code):
     output_path = os.path.join(output_dir, code)
@@ -179,7 +189,10 @@ def _doc_compile(proto_file, output_path, proto_path_list, debug):
 
     # proto name
     temp = os.path.split(proto_file)
-    cmd.append(f'--doc_opt=html,{temp[1]}.html')
+    temporary_name = temp[1].split('.')
+    cap_name = temporary_name[0].capitalize()
+
+    cmd.append(f'--doc_opt={OUTPUT_TO_DOC},{cap_name}.{OUTPUT_TO_DOC}')
 
     cmd.append(proto_file)
 
@@ -201,20 +214,26 @@ def _compile_code(params, code, proto_file):
     if code == 'python':
         _python_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
 
-    elif code == 'doc':
+    elif code == 'json':
+        output_path = os.path.join(params['artifact_dir'], code, params['version'])
         _doc_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
 
 
 def build(params):
     proto_files = _get_proto_files(params['proto_path'])
     for code in _get_generate_codes(params['code']):
-        _make_output_path(params['output_dir'], code)
+        if (code == 'json'):
+            _make_output_path(params['artifact_dir'], code)
+        else:
+            _make_output_path(params['output_dir'], code)
 
         for proto_file in proto_files:
             _compile_code(params, code, proto_file)
 
-        _make_build_environment(params['output_dir'], code)
-
+        if(code == 'json'):
+            _make_build_environment(params['artifact_dir'], code)
+        else:
+            _make_build_environment(params['output_dir'], code)
 
 if __name__ == '__main__':
     params = _get_args()
