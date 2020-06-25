@@ -63,55 +63,179 @@ service ProjectGroup {
 }
 
 message CreateProjectGroupRequest {
-    string name = 1;                                // required
-    string parent_project_group_id = 2;             // required
-    string domain_id = 3;                           // required
-    string template_id = 4;                         // optional
-    google.protobuf.Struct tags = 5;                // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string name = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string parent_project_group_id = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string template_id = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 5;
 }
 
 message UpdateProjectGroupRequest {
-    string project_group_id = 1;                    // required
-    string parent_project_group_id = 2;             // required
-    string name = 3;                                // optional
-    bool release_parent_project_group = 4;          // optional
-    string domain_id = 5;                           // required
-    string template_id = 6;                         // optional
-    google.protobuf.Struct tags = 7;                // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string project_group_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string parent_project_group_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    bool release_parent_project_group = 4;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    string template_id = 6;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 7;
 }
 
 message ProjectGroupRequest {
-    string project_group_id = 1;                    // required
-    string domain_id = 2;                           // required
+    /*
+    is_required: true
+    desc:
+    */
+    string project_group_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
 
 message GetProjectGroupRequest {
-    string project_group_id = 1;                    // required
-    string domain_id = 2;                           // required
-    repeated string only = 3;                       // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string project_group_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string only = 3;
 }
 
 message ProjectGroupMemberRequest {
-    string project_group_id = 1;                    // required
-    string user_id = 2;                             // required
-    string domain_id = 3;                           // required
-    repeated string roles = 4;                      // required
-    repeated string labels = 5;                     // required
+    /*
+    is_required: true
+    desc:
+    */
+    string project_group_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string user_id = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    repeated string roles = 4;
+    /*
+    is_required: true
+    desc:
+    */
+    repeated string labels = 5;
 }
 
 message RemoveProjectGroupMemberRequest {
-    string project_group_id = 1;                    // required
-    string user_id = 2;                             // required
-    string domain_id = 3;                           // required
+    /*
+    is_required: true
+    desc:
+    */
+    string project_group_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string user_id = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
 }
 
 message ProjectGroupQuery {
-    spaceone.api.core.v1.Query query = 1;           // optional
-    string project_group_id = 2;                    // optional
-    string parent_project_group_id = 3;             // optional
-    string name = 4;                                // optional
-    string template_id = 5;                         // optional
-    string domain_id = 6;                           // required
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string project_group_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string parent_project_group_id = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    string template_id = 5;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 6;
 }
 
 message ProjectGroupInfo {
@@ -133,10 +257,26 @@ message ProjectGroupsInfo {
 }
 
 message ProjectGroupMemberQuery {
-    spaceone.api.core.v1.Query query = 1;           // optional
-    string project_group_id = 2;                    // required
-    string user_id = 3;                             // optional
-    string domain_id = 4;                           // required
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string project_group_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string user_id = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message ProjectGroupMemberInfo {
@@ -152,10 +292,26 @@ message ProjectGroupMembersInfo {
 }
 
 message ProjectGroupProjectQuery {
-    spaceone.api.core.v1.Query query = 1;           // optional
-    string project_group_id = 2;                    // required
-    bool recursive = 3;                             // optional
-    string domain_id = 4;                           // required
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string project_group_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    bool recursive = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message ProjectGroupProjectInfo {
@@ -177,6 +333,14 @@ message ProjectGroupProjectsInfo {
 }
 
 message ProjectGroupStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }

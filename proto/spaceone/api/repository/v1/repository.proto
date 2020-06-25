@@ -35,32 +35,88 @@ service Repository {
 }
 
 message CreateRepositoryRequest {
-    string name = 1;                        // required
-    string repository_type = 2;             // required
-    string endpoint = 10;                   // optional
-    string version = 11;                    // optional
-    string secret_id = 12;                  // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string name = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string repository_type = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string endpoint = 10;
+    /*
+    is_required: false
+    desc:
+    */
+    string version = 11;
+    /*
+    is_required: false
+    desc:
+    */
+    string secret_id = 12;
 }
 
 message UpdateRepositoryRequest {
-    string repository_id = 1;               // required
-    string name = 2;                        // required
+    /*
+    is_required: true
+    desc:
+    */
+    string repository_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string name = 2;
 }
 
 message RepositoryRequest {
-    string repository_id = 1;               // required
+    /*
+    is_required: true
+    desc:
+    */
+    string repository_id = 1;
 }
 
 message GetRepositoryRequest {
-    string repository_id = 1;               // required
-    repeated string only = 2;               // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string repository_id = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string only = 2;
 }
 
 message RepositoryQuery {
-    spaceone.api.core.v1.Query query = 1;   // optional
-    string repository_id = 2;               // optional
-    string name = 3;                        // optional
-    string repository_type = 4;             // optional
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string repository_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string repository_type = 4;
 }
 
 message RepositoryInfo {
@@ -79,6 +135,14 @@ message RepositoriesInfo {
 }
 
 message RepositoryStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }

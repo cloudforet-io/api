@@ -35,7 +35,11 @@ enum JobState {
 }
 
 message JobsQuery {
-    spaceone.api.core.v1.Query query = 1;               // optional
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
     string job_id = 2;
     JobState state = 3;
     string collector_id = 4;
@@ -51,6 +55,14 @@ message JobsInfo {
 }
 
 message JobStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }

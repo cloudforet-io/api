@@ -16,17 +16,49 @@ service Plugin {
 }
 
 message PluginEndpointRequest {
-    string plugin_id = 1;                   // required
-    string version = 2;                     // required
-    google.protobuf.Struct labels = 3;      // optional
-    string domain_id = 4;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string plugin_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string version = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct labels = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message PluginFailureRequest {
-    string supervisor_id = 1;               // required
-    string plugin_id = 2;                   // required
-    string version = 3;                     // required
-    string domain_id = 4;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string supervisor_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string plugin_id = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string version = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message PluginEndpoint {

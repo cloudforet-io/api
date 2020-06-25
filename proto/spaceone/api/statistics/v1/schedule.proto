@@ -55,61 +55,192 @@ message ScheduleJoinQuery {
         OUTER = 2;
         INNER = 3;
     }
-
-    repeated string keys = 1;                           // optional
-    JoinType type = 2;                                  // optional
-    string data_source_id = 3;                          // optional
-    string resource_type = 4;                           // required
-    spaceone.api.core.v1.StatisticsQuery query = 5;     // required
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string keys = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    JoinType type = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string data_source_id = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string resource_type = 4;
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 5;
 }
 
 message ScheduleFormula {
-    string name = 1;                                    // required
-    string formula = 2;                                 // required
+    /*
+    is_required: true
+    desc:
+    */
+    string name = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string formula = 2;
 }
 
 message QueryOption {
-    string data_source_id = 2;                          // optional
-    string resource_type = 3;                           // required
-    spaceone.api.core.v1.StatisticsQuery query = 4;     // required
-    repeated ScheduleJoinQuery join = 5;                // optional
-    repeated ScheduleFormula formulas = 6;              // optional
+    /*
+    is_required: false
+    desc:
+    */
+    string data_source_id = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string resource_type = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated ScheduleJoinQuery join = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated ScheduleFormula formulas = 6;
 }
 
 message AddScheduleRequest {
-    string topic = 1;                                   // required
-    QueryOption options = 2;                            // required
-    Scheduled schedule = 3;                             // required
-    google.protobuf.Struct tags = 4;                    // optional
-    string domain_id = 5;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    string topic = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    QueryOption options = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    Scheduled schedule = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 4;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 5;
 }
 
 message UpdateScheduleRequest {
-    string schedule_id = 1;                             // required
-    Scheduled schedule = 2;                             // optional
-    google.protobuf.Struct tags = 3;                    // optional
-    string domain_id = 4;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    string schedule_id = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    Scheduled schedule = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message ScheduleRequest {
-    string schedule_id = 1;                             // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    string schedule_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
 
 message GetScheduleRequest {
-    string schedule_id = 1;                             // required
-    string domain_id = 2;                               // required
-    repeated string only = 3;                           // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string schedule_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string only = 3;
 }
 
 message ScheduleQuery {
-    spaceone.api.core.v1.Query query = 1;               // optional
-    string schedule_id = 2;                             // optional
-    string topic = 3;                                   // optional
-    string state = 4;                                   // optional
-    string data_source_id = 5;                          // optional
-    string resource_type = 6;                           // optional
-    string domain_id = 7;                               // required
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string schedule_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string topic = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string state = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    string data_source_id = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    string resource_type = 6;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 7;
 }
 
 message ScheduleInfo {
@@ -136,6 +267,14 @@ message SchedulesInfo {
 }
 
 message ScheduleStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }

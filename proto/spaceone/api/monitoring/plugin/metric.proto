@@ -14,20 +14,64 @@ service Metric {
 }
 
 message MetricRequest {
-    google.protobuf.Struct options = 1;         // required
-    google.protobuf.Struct secret_data = 2;     // required
-    google.protobuf.Value resource = 3;         // required
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct options = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct secret_data = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Value resource = 3;
 }
 
 message MetricDataRequest {
-    google.protobuf.Struct options = 1;         // required
-    google.protobuf.Struct secret_data = 2;     // required
-    google.protobuf.Value resource = 3;         // required
-    string metric = 4;                          // required
-    google.protobuf.Timestamp start = 5;        // required
-    google.protobuf.Timestamp end = 6;          // required
-    int32 period = 7;                           // required
-    string stat = 8;                            // required
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct options = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct secret_data = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Value resource = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string metric = 4;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Timestamp start = 5;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Timestamp end = 6;
+    /*
+    is_required: true
+    desc:
+    */
+    int32 period = 7;
+    /*
+    is_required: true
+    desc:
+    */
+    string stat = 8;
 }
 
 message MetricInfo {
@@ -48,13 +92,37 @@ message MetricDataInfo {
 }
 
 message PluginMetricsResponse {
-    string resource_type = 1;                                   // required
-    repeated spaceone.api.core.v1.PluginAction actions = 2;     // optional
-    MetricsInfo result = 3;                                     // required
+    /*
+    is_required: true
+    desc:
+    */
+    string resource_type = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated spaceone.api.core.v1.PluginAction actions = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    MetricsInfo result = 3;
 }
 
 message PluginMetricDataResponse {
-    string resource_type = 1;                                   // required
-    repeated spaceone.api.core.v1.PluginAction actions = 2;     // optional
-    MetricDataInfo result = 3;                                  // required
+    /*
+    is_required: true
+    desc:
+    */
+    string resource_type = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated spaceone.api.core.v1.PluginAction actions = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    MetricDataInfo result = 3;
 }

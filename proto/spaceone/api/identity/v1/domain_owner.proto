@@ -22,35 +22,119 @@ service DomainOwner {
 }
 
 message CreateDomainOwner {
-    string owner_id = 1;                // required
-    string password = 2;                // required
-    string name = 3;                    // optional
-    string email = 4;                   // optional
-    string mobile = 5;                  // optional
-    string language = 7;                // optional
-    string timezone = 8;                // optional
-    string domain_id = 10;              // required
+    /*
+    is_required: true
+    desc:
+    */
+    string owner_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string password = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string email = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    string mobile = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    string language = 7;
+    /*
+    is_required: false
+    desc:
+    */
+    string timezone = 8;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 10;
 }
 
 message UpdateDomainOwner {
-    string owner_id = 1;                // required
-    string password = 2;                // optional
-    string name = 3;                    // optional
-    string email = 4;                   // optional
-    string mobile = 5;                  // optional
-    string language = 7;                // optional
-    string timezone = 8;                // optional
-    string domain_id = 10;              // required
+    /*
+    is_required: true
+    desc:
+    */
+    string owner_id = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string password = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string email = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    string mobile = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    string language = 7;
+    /*
+    is_required: false
+    desc:
+    */
+    string timezone = 8;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 10;
 }
 
 message DomainOwnerRequest {
-    string domain_id = 1;               // required
-    string owner_id = 2;                // required
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string owner_id = 2;
 }
 
 message GetDomainOwnerRequest {
+    /*
+    is_required: true
+    desc:
+    */
     string domain_id = 1;               // required
+    /*
+    is_required: true
+    desc:
+    */
     string owner_id = 2;                // required
+    /*
+    is_required: false
+    desc:
+    */
     repeated string only = 3;           // optional
 }
 

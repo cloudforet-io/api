@@ -10,16 +10,44 @@ service Collector {
 }
 
 message VerifyRequest {
-    google.protobuf.Struct options = 1;     // required
-    google.protobuf.Struct secret_data = 2; // required
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct options = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct secret_data = 2;
 }
 
 message CollectRequest {
-    google.protobuf.Struct options = 1;     // required
-    google.protobuf.Struct secret_data = 2; // required
-    google.protobuf.Struct filter = 3;      // optional
-    string zone_id = 4;                     // optional
-    string pool_id = 5;                     // optional
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct options = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct secret_data = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct filter = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string zone_id = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    string pool_id = 5;
 }
 
 

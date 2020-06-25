@@ -115,11 +115,31 @@ message SupervisorInfo {
 }
 
 message SupervisorQuery {
-    spaceone.api.core.v1.Query query = 1;    // optional
-    string supervisor_id = 2;                // optional
-    string name = 3;                         // optional
-    bool is_public = 4;                      // optional
-    string domain_id = 5;                    // required
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string supervisor_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    bool is_public = 4;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 5;
 }
 
 message SupervisorsInfo {
@@ -128,8 +148,16 @@ message SupervisorsInfo {
 }
 
 message SupervisorStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
 
 message PluginQuery {
@@ -140,14 +168,46 @@ message PluginQuery {
         RE_PROVISIONING = 3;
         ERROR = 4;
     }
-    spaceone.api.core.v1.Query query = 1;   // optional
-    string supervisor_id = 2;               // optional
-    string hostname = 3;                    // optional
-    string plugin_id = 4;                   // optional
-    string version = 5;                     // optional
-    State state = 6;                        // optional
-    string endpoint = 7;                    // optional
-    string domain_id = 8;                   // required
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string supervisor_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string hostname = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string plugin_id = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    string version = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    State state = 6;
+    /*
+    is_required: false
+    desc:
+    */
+    string endpoint = 7;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 8;
 }
 
 message PluginInfo {

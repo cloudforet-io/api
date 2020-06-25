@@ -54,36 +54,108 @@ service Zone {
 }
 
 message CreateZoneRequest {
-    string name = 1;                        // required
-    string region_id = 2;                   // required
-    string domain_id = 3;                   // required
-    google.protobuf.Struct tags = 4;        // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string name = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string region_id = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 4;
 }
 
 message UpdateZoneRequest {
-    string zone_id = 1;                     // required
-    string name = 2;                        // optional
-    google.protobuf.Struct tags = 3;        // optional
-    string domain_id = 4;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string zone_id = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message ZoneRequest {
-    string zone_id = 1;                     // required
-    string domain_id = 2;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string zone_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
 
 message GetZoneRequest {
-    string zone_id = 1;                     // required
-    string domain_id = 2;                   // required
-    repeated string only = 3;               // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string zone_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string only = 3;
 }
 
 message ZoneQuery {
-    string zone_id = 1;                     // optional
-    string region_id = 2;                   // optional
-    spaceone.api.core.v1.Query query = 3;   // optional
-    string name = 4;                        // optional
-    string domain_id = 5;                   // required
+    /*
+    is_required: false
+    desc:
+    */
+    string zone_id = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string region_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 4;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 5;
 }
 
 message ZoneInfo {
@@ -109,23 +181,67 @@ message ZonesInfo {
 }
 
 message ZoneMemberRequest {
-    string zone_id = 1;                     // required
-    string user_id = 2;                     // required
-    repeated string labels = 3;             // optional
-    string domain_id = 4;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string zone_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string user_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string labels = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message RemoveZoneMemberRequest {
-    string zone_id = 1;                     // required
-    string user_id = 2;                     // required
-    string domain_id = 3;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string zone_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string user_id = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
 }
 
 message ZoneMemberQuery {
-    spaceone.api.core.v1.Query query = 1;   // optional
-    string zone_id = 2;                     // optional
-    string user_id = 3;                     // optional
-    string domain_id = 4;                   // required
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string zone_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string user_id = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message ZoneMemberInfo {
@@ -140,6 +256,14 @@ message ZoneMembersInfo {
 }
 
 message ZoneStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }

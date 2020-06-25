@@ -77,31 +77,95 @@ message PluginInfo {
 }
 
 message CreateCollectorRequest {
-    string name = 1;                        // required
-    PluginInfo plugin_info = 2; 			// required
-    int32  priority = 3;                    // optional
-    google.protobuf.Struct tags = 5;        // optional
-    string domain_id = 6;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string name = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    PluginInfo plugin_info = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    int32  priority = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 5;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 6;
 }
 
 message UpdateCollectorRequest {
-	string collector_id = 1;				// required
-    string name = 2;                        // required
-    PluginInfo plugin_info = 3; 			// required
-    int32  priority = 4;                    // optional
-    google.protobuf.Struct tags = 6;        // optional
-    string domain_id = 7;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+	  string collector_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string name = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    PluginInfo plugin_info = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    int32  priority = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 6;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 7;
 }
 
 message CollectorRequest {
-    string collector_id = 1;                // required
-	string domain_id = 2;					// required
+    /*
+    is_required: true
+    desc:
+    */
+    string collector_id = 1;
+	  /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
 
 message GetCollectorRequest {
-    string collector_id = 1;                // required
-	string domain_id = 2;					// required
-    repeated string only = 3;               // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string collector_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+	  string domain_id = 2;
+	  /*
+    is_required: false
+    desc:
+    */
+    repeated string only = 3;
 }
 
 message CollectorQuery {
@@ -131,9 +195,21 @@ message CollectRequest {
 }
 
 message VerifyPluginRequest {
-    string collector_id = 1;            // required
-    string secret_id = 2;           // required
-    string domain_id = 3;           
+    /*
+    is_required: true
+    desc:
+    */
+    string collector_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string secret_id = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
 }
 message CollectorInfo {
 	enum State {
@@ -160,8 +236,16 @@ message CollectorsInfo {
 }
 
 message CollectorStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
 
 message VerifyInfo {

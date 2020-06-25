@@ -60,56 +60,176 @@ message Resource {
 }
 
 message AllocateIPRequest {
-    string ip_address = 1;                  // optional
-    Resource resource = 2;                  // optional
-
-    google.protobuf.Struct data = 11;       // optional
-    google.protobuf.Struct metadata = 12;   // optional
-    IPReference reference = 13;             // optional
-    google.protobuf.Struct tags = 14;       // optional
-
-    string subnet_id = 21;                  // required
-    string domain_id = 22;                  // required
+    /*
+    is_required: false
+    desc:
+    */
+    string ip_address = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    Resource resource = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct data = 11;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct metadata = 12;
+    /*
+    is_required: false
+    desc:
+    */
+    IPReference reference = 13;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 14;
+    /*
+    is_required: true
+    desc:
+    */
+    string subnet_id = 21;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 22;
 }
 
 message ReserveIPRequest {
-    string ip_address = 1;                  // required
-    google.protobuf.Struct tags = 2;        // optional
-    string subnet_id = 3;                   // required
-    string domain_id = 4;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string ip_address = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string subnet_id = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message UpdateIPRequest {
-    string ip_address = 1;                  // optional
-    Resource resource = 2;                  // optional
-
-    google.protobuf.Struct data = 11;       // optional
-    google.protobuf.Struct metadata = 12;   // optional
-    IPReference reference = 13;             // optional
-    google.protobuf.Struct tags = 14;       // optional
-
-    string subnet_id = 21;                  // required
-    string domain_id = 22;                  // required
+    /*
+    is_required: false
+    desc:
+    */
+    string ip_address = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    Resource resource = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct data = 11;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct metadata = 12;
+    /*
+    is_required: false
+    desc:
+    */
+    IPReference reference = 13;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 14;
+    /*
+    is_required: true
+    desc:
+    */
+    string subnet_id = 21;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 22;
 }
 
 message PinIPDataRequest {
-    string ip_address = 1;                  // required
-    repeated string keys = 2;               // required
-    string subnet_id = 3;                   // required
-    string domain_id = 4;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string ip_address = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    repeated string keys = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string subnet_id = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message IPRequest {
-    string ip_address = 1;                  // required
-    string subnet_id = 2;                   // required
-    string domain_id = 3;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string ip_address = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string subnet_id = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
 }
 
 message GetIPRequest {
-    string ip_address = 1;                  // required
-    string subnet_id = 2;                   // required
-    string domain_id = 3;                   // required
-    repeated string only = 4;               // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string ip_address = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string subnet_id = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string only = 4;
 }
 
 message IPQuery {
@@ -118,16 +238,46 @@ message IPQuery {
         ALLOCATED = 1;
         RESERVED = 2;
     }
-
+    /*
+    is_required: false
+    desc:
+    */
     spaceone.api.core.v1.Query query = 1;   // optional
+    /*
+    is_required: false
+    desc:
+    */
     string ip_address = 2;                  // optional
-    State state = 3;                        // optional
-
-    string subnet_id = 11;                   // optional
-    string network_id = 12;                  // optional
-    string zone_id = 13;                     // optional
-    string region_id = 14;                   // optional
-    string domain_id = 15;                   // required
+    /*
+    is_required: false
+    desc:
+    */
+    State state = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string subnet_id = 11;
+    /*
+    is_required: false
+    desc:
+    */
+    string network_id = 12;
+    /*
+    is_required: false
+    desc:
+    */
+    string zone_id = 13;
+    /*
+    is_required: false
+    desc:
+    */
+    string region_id = 14;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 15;
 }
 
 message IPInfo {
@@ -161,6 +311,14 @@ message IPsInfo {
 }
 
 message IPStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }

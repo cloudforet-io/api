@@ -14,15 +14,51 @@ service Log {
 }
 
 message LogRequest {
-    string data_source_id = 1;                  // required
-    string resource_type = 2;                   // optional
-    string resource_id = 3;                     // optional
-    google.protobuf.Timestamp start = 5;        // optional
-    google.protobuf.Timestamp end = 6;          // optional
-    google.protobuf.Struct filter = 8;          // optional
-    google.protobuf.Struct sort = 9;            // optional
-    int32 limit = 7;                            // optional
-    string domain_id = 10;                      // required
+    /*
+    is_required: true
+    desc:
+    */
+    string data_source_id = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string resource_type = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string resource_id = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Timestamp start = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Timestamp end = 6;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct filter = 8;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct sort = 9;
+    /*
+    is_required: false
+    desc:
+    */
+    int32 limit = 7;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 10;
 }
 
 message LogDataInfo {

@@ -39,53 +39,156 @@ service CloudServiceType {
 }
 
 message CreateServiceTypeRequest {
-    string name = 1;                            // optional
-    string provider = 2;                        // optional
-    string group = 3;                           // optional
-
-    google.protobuf.Struct metadata = 11;       // optional
-    google.protobuf.ListValue labels = 12;      // optional
-    google.protobuf.Struct tags = 13;           // optional
-
-    string domain_id = 21;                      // required
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string provider = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string group = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct metadata = 11;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.ListValue labels = 12;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 13;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 21;
 }
 
 message UpdateCloudServiceTypeRequest {
-    string cloud_service_type_id = 1;           // required
-
-    google.protobuf.Struct metadata = 11;       // optional
-    google.protobuf.ListValue labels = 12;       // optional
-    google.protobuf.Struct tags = 13;            // optional
-
-    string domain_id = 21;                       // required
+    /*
+    is_required: true
+    desc:
+    */
+    string cloud_service_type_id = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct metadata = 11;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.ListValue labels = 12;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 13;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 21;
 }
 
 message PinCloudServiceTypeDataRequest {
-    string cloud_service_type_id = 1;           // required
-    repeated string keys = 2;                   // required
-    string domain_id = 3;                       // required
+    /*
+    is_required: true
+    desc:
+    */
+    string cloud_service_type_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    repeated string keys = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
 }
 
 message CloudServiceTypeRequest {
-    string cloud_service_type_id = 1;           // required
-    string domain_id = 2;                       // required
+    /*
+    is_required: true
+    desc:
+    */
+    string cloud_service_type_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
 
 message GetCloudServiceTypeRequest {
-    string cloud_service_type_id = 1;           // required
-    string domain_id = 2;                       // required
-    repeated string only = 3;                   // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string cloud_service_type_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string only = 3;
 }
 
 message CloudServiceTypeQuery {
-    spaceone.api.core.v1.Query query = 1;       // optional
-    string cloud_service_type_id = 2;           // optional
-    string name = 3;                            // optional
-    string provider = 4;                        // optional
-    string group = 5;                           // optional
-    bool include_cloud_service_count = 6;       // optional
-
-    string domain_id = 11;                      // optional
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string cloud_service_type_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string provider = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    string group = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    bool include_cloud_service_count = 6;
+    /*
+    is_required: false
+    desc:
+    */
+    string domain_id = 11;
 }
 
 message CloudServiceTypeInfo {
@@ -112,6 +215,14 @@ message CloudServiceTypesInfo {
 }
 
 message CloudServiceTypeStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }

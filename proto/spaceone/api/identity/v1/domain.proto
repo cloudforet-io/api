@@ -48,26 +48,70 @@ service Domain {
 }
 
 message CreateDomainRequest {
-    string name = 1;                        // required
-    PluginInfo plugin_info = 2; // optional
-    google.protobuf.Struct config = 3;      // optional
-    google.protobuf.Struct tags = 4;        // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string name = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    PluginInfo plugin_info = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct config = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 4;
 }
 
 message UpdateDomainRequest {
-    string domain_id = 1;                   // required
-    PluginInfo plugin_info = 2; // optional
-    google.protobuf.Struct config = 3;      // optional
-    google.protobuf.Struct tags = 4;        // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    PluginInfo plugin_info = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct config = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 4;
 }
 
 message DomainRequest {
-    string domain_id = 1;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 1;
 }
 
 message GetDomainRequest {
-    string domain_id = 1;                   // required
-    repeated string only = 2;               // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string only = 2;
 }
 
 message DomainQuery {
@@ -76,11 +120,26 @@ message DomainQuery {
         ENABLED = 1;
         DISABLED = 2;
     }
-
-    spaceone.api.core.v1.Query query = 1;   // optional
-    string domain_id = 2;                   // optional
-    string name = 3;                        // optional
-    State state = 4;                        // optional
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string domain_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    State state = 4;
 }
 
 message DomainInfo {
@@ -106,7 +165,11 @@ message DomainsInfo {
 }
 
 message DomainStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
 }
 
 message PluginInfo {
