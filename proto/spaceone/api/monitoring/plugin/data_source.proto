@@ -12,8 +12,16 @@ service DataSource {
 }
 
 message PluginVerifyRequest {
-    google.protobuf.Struct options = 1;         // required
-    google.protobuf.Struct secret_data = 2;     // required
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct options = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct secret_data = 2;
 }
 
 message PluginVerifyInfo {
@@ -21,7 +29,19 @@ message PluginVerifyInfo {
 }
 
 message PluginVerifyResponse {
-    string resource_type = 1;                                   // required
-    repeated spaceone.api.core.v1.PluginAction actions = 2;     // optional
-    PluginVerifyInfo result = 3;                                // required
+    /*
+    is_required: true
+    desc:
+    */
+    string resource_type = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated spaceone.api.core.v1.PluginAction actions = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    PluginVerifyInfo result = 3;
 }

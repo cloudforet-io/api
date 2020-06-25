@@ -35,36 +35,108 @@ service Provider {
 }
 
 message CreateProviderRequest {
-    string provider = 1;                    // required
-    string name = 2;                        // required
-    google.protobuf.Struct template = 3;    // optional
-    google.protobuf.Struct metadata = 4;    // optional
-    google.protobuf.Struct capability = 5;  // optional
-    google.protobuf.Struct tags = 6;        // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string provider = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string name = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct template = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct metadata = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct capability = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 6;
 }
 
 message UpdateProviderRequest {
-    string provider = 1;                    // required
-    string name = 2;                        // optional
-    google.protobuf.Struct template = 3;    // optional
-    google.protobuf.Struct metadata = 4;    // optional
-    google.protobuf.Struct capability = 5;  // optional
-    google.protobuf.Struct tags = 6;        // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string provider = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct template = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct metadata = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct capability = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 6;
 }
 
 message ProviderRequest {
-    string provider = 1;                    // required
+    /*
+    is_required: true
+    desc:
+    */
+    string provider = 1;
 }
 
 message GetProviderRequest {
-    string provider = 1;                    // required
-    repeated string only = 2;               // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string provider = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string only = 2;
 }
 
 message ProviderQuery {
-    spaceone.api.core.v1.Query query = 1;   // optional
-    string provider = 2;                    // optional
-    string name = 3;                        // optional
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string provider = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 3;
 }
 
 message ProviderInfo {
@@ -83,5 +155,9 @@ message ProvidersInfo {
 }
 
 message ProviderStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
 }

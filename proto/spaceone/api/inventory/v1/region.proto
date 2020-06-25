@@ -53,34 +53,98 @@ service Region {
 }
 
 message CreateRegionRequest {
-    string name = 1;                        // required
-    google.protobuf.Struct tags = 2;        // optional
-    string domain_id = 3;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string name = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
 }
 
 message UpdateRegionRequest {
-    string region_id = 1;                   // required
-    string name = 2;                        // optional
-    google.protobuf.Struct tags = 3;        // optional
-    string domain_id = 4;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string region_id = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message RegionRequest {
-    string region_id = 1;                   // required
-    string domain_id = 2;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string region_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
 
 message GetRegionRequest {
-    string region_id = 1;                   // required
-    string domain_id = 2;                   // required
-    repeated string only = 3;               // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string region_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string only = 3;
 }
 
 message RegionQuery {
-    spaceone.api.core.v1.Query query = 1;   // optional
-    string region_id = 2;                   // optional
-    string name = 3;                        // optional
-    string domain_id = 4;                   // required
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string region_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message RegionInfo {
@@ -105,22 +169,66 @@ message RegionsInfo {
 }
 
 message RegionMemberRequest {
-    string region_id = 1;                   // required
-    string user_id = 2;                     // required
-    repeated string labels = 3;             // optional
-    string domain_id = 4;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string region_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string user_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string labels = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message RemoveRegionMemberRequest {
-    string region_id = 1;                   // required
-    string user_id = 2;                     // required
-    string domain_id = 3;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string region_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string user_id = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
 }
 
 message RegionMemberQuery {
-    spaceone.api.core.v1.Query query = 1;   // optional
-    string region_id = 2;                   // optional
-    string user_id = 3;                     // optional
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string region_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string user_id = 3;
+    /*
+    is_required: true
+    desc:
+    */
     string domain_id = 4;
 }
 
@@ -136,6 +244,14 @@ message RegionMembersInfo {
 }
 
 message RegionStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }

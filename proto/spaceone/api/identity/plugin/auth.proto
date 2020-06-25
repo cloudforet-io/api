@@ -11,21 +11,57 @@ service Auth {
 }
 
 message VerifyRequest {
-    google.protobuf.Struct options = 1;     // required
-    google.protobuf.Struct secret_data = 2; // required
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct options = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct secret_data = 2;
 }
 
 message FindRequest {
-    google.protobuf.Struct options = 1;     // required
-    google.protobuf.Struct secret_data = 2; // required
-    string user_id = 3;                     // optional
-    string keyword = 4;                     // optional
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct options = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct secret_data = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string user_id = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string keyword = 4;
 }
 
 message LoginRequest {
-    google.protobuf.Struct options = 1;             // required
-    google.protobuf.Struct secret_data = 2;         // required
-    google.protobuf.Struct user_credentials = 3;    // required
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct options = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct secret_data = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct user_credentials = 3;
 }
 
 message UserInfo {

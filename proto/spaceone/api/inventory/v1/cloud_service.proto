@@ -45,63 +45,201 @@ message CloudServiceReference {
 }
 
 message CreateServiceRequest {
-    string cloud_service_type = 1;              // required
-    string provider = 2;                        // required
-    string cloud_service_group = 3;             // optional
-
-    google.protobuf.Struct data = 11;           // required
-    google.protobuf.Struct metadata = 12;       // optional
-    CloudServiceReference reference = 13;       // optional
-    google.protobuf.Struct tags = 14;           // optional
-
-    string region_id = 21;                      // optional
-    string project_id = 22;                     // optional
-    string domain_id = 23;                      // required
+    /*
+    is_required: true
+    desc:
+    */
+    string cloud_service_type = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string provider = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string cloud_service_group = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Struct data = 11;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct metadata = 12;
+    /*
+    is_required: false
+    desc:
+    */
+    CloudServiceReference reference = 13;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 14;
+    /*
+    is_required: false
+    desc:
+    */
+    string region_id = 21;
+    /*
+    is_required: false
+    desc:
+    */
+    string project_id = 22;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 23;
 }
 
 message UpdateCloudServiceRequest {
-    string cloud_service_id = 1;                // required
-
-    google.protobuf.Struct data = 11;           // optional
-    google.protobuf.Struct metadata = 12;       // optional
-    CloudServiceReference reference = 13;       // optional
-    google.protobuf.Struct tags = 14;           // optional
-
-    string region_id = 21;                      // optional
-    string project_id = 22;                     // optional
-    string domain_id = 23;                      // required
-
-    bool release_project = 30;                  // optional
-    bool release_region = 31;                   // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string cloud_service_id = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct data = 11;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct metadata = 12;
+    /*
+    is_required: false
+    desc:
+    */
+    CloudServiceReference reference = 13;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 14;
+    /*
+    is_required: false
+    desc:
+    */
+    string region_id = 21;
+    /*
+    is_required: false
+    desc:
+    */
+    string project_id = 22;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 23;
+    /*
+    is_required: false
+    desc:
+    */
+    bool release_project = 30;
+    /*
+    is_required: false
+    desc:
+    */
+    bool release_region = 31;
 }
 
 message PinCloudServiceDataRequest {
-    string cloud_service_id = 1;                // required
-    repeated string keys = 2;                   // required
-    string domain_id = 3;                       // required
+    /*
+    is_required: true
+    desc:
+    */
+    string cloud_service_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    repeated string keys = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
 }
 
 message CloudServiceRequest {
-    string cloud_service_id = 1;                // required
-    string domain_id = 2;                       // required
+    /*
+    is_required: true
+    desc:
+    */
+    string cloud_service_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
 
 message GetCloudServiceRequest {
-    string cloud_service_id = 1;                // required
-    string domain_id = 2;                       // required
-    repeated string only = 3;                   // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string cloud_service_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string only = 3;
 }
 
 message CloudServiceQuery {
-    spaceone.api.core.v1.Query query = 1;       // optional
-    string cloud_service_id = 2;                // optional
-    string cloud_service_type = 3;              // optional
-    string provider = 4;                        // optional
-    string cloud_service_group = 5;             // optional
-
-    string region_id = 21;                      // optional
-    string project_id = 24;                     // optional
-    string domain_id = 25;                      // optional
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string cloud_service_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string cloud_service_type = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string provider = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    string cloud_service_group = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    string region_id = 21;
+    /*
+    is_required: false
+    desc:
+    */
+    string project_id = 24;
+    /*
+    is_required: false
+    desc:
+    */
+    string domain_id = 25;
 }
 
 message CloudServiceInfo {
@@ -130,6 +268,14 @@ message CloudServicesInfo {
 }
 
 message CloudServiceStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }

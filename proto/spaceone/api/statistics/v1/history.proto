@@ -30,14 +30,34 @@ service History {
 }
 
 message CreateHistoryRequest {
-    string schedule_id = 1; // required
-    string domain_id = 2; // required
+    /*
+    is_required: true
+    desc:
+    */
+    string schedule_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
 
 message QueryHistoryRequest {
-    spaceone.api.core.v1.Query query = 1; // optional
-    string topic = 2; // required
-    string domain_id = 3; // required
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string topic = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
 }
 
 message HistoryValueInfo {
@@ -53,18 +73,62 @@ message HistoryInfo {
 }
 
 message HistoryStatRequest {
-    spaceone.api.core.v1.StatisticsQuery query = 1; // required
-    string topic = 2; // required
-    string domain_id = 3; // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string topic = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
 }
 
 message DiffHistoryRequest {
-    string topic = 1; // required
-    repeated spaceone.api.core.v1.Filter filter = 2; // optional
-    repeated spaceone.api.core.v1.Filter filter_or = 3; // optional
-    string from = 4; // required
-    string to = 5; // optional
-    repeated string default_fields = 6; // required
-    repeated string diff_fields = 7; // required
-    string domain_id = 8; // required
+    /*
+    is_required: true
+    desc:
+    */
+    string topic = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated spaceone.api.core.v1.Filter filter = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated spaceone.api.core.v1.Filter filter_or = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string from = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    string to = 5;
+    /*
+    is_required: true
+    desc:
+    */
+    repeated string default_fields = 6;
+    /*
+    is_required: true
+    desc:
+    */
+    repeated string diff_fields = 7;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 8;
 }

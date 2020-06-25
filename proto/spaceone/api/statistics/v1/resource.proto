@@ -20,24 +20,75 @@ message JoinQuery {
         OUTER = 2;
         INNER = 3;
     }
-
-    repeated string keys = 1;                           // optional
-    JoinType type = 2;                                  // optional
-    string data_source_id = 3;                          // optional
-    string resource_type = 4;                           // required
-    spaceone.api.core.v1.StatisticsQuery query = 5;     // required
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string keys = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    JoinType type = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string data_source_id = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string resource_type = 4;
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 5;
 }
 
 message Formula {
-    string name = 1;                                    // required
-    string formula = 2;                                 // required
+    /*
+    is_required: true
+    desc:
+    */
+    string name = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string formula = 2;
 }
 
 message ResourceStatRequest {
-    string data_source_id = 1;                          // optional
-    string resource_type = 2;                           // required
-    spaceone.api.core.v1.StatisticsQuery query = 3;     // required
-    repeated JoinQuery join = 4;                        // optional
-    repeated Formula formulas = 5;                      // optional
-    string domain_id = 6;                               // required
+    /*
+    is_required: false
+    desc:
+    */
+    string data_source_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string resource_type = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated JoinQuery join = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated Formula formulas = 5;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 6;
 }

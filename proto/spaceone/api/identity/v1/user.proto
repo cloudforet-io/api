@@ -107,27 +107,91 @@ message UpdateUserRoleRequest {
 }
 
 message UserRequest {
-    string user_id = 1;                     // required
-    string domain_id = 2;                   // required
+    /*
+    is_required: true
+    desc:
+    */
+    string user_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
 
 message GetUserRequest {
-    string user_id = 1;                     // required
-    string domain_id = 2;                   // required
-    repeated string only = 3;               // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string user_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string only = 3;
 }
 
 message UserQuery {
+    /*
+    is_required: false
+    desc:
+    */
     spaceone.api.core.v1.Query query = 1;   // optional
+    /*
+    is_required: false
+    desc:
+    */
     string user_id = 2;                     // optional
+    /*
+    is_required: false
+    desc:
+    */
     string name = 3;                        // optional
+    /*
+    is_required: false
+    desc:
+    */
     string state = 4;                       // optional
+    /*
+    is_required: false
+    desc:
+    */
     string email = 5;                       // optional
+    /*
+    is_required: false
+    desc:
+    */
     string mobile = 6;                      // optional
+    /*
+    is_required: false
+    desc:
+    */
     string group = 7;                       // optional
+    /*
+    is_required: false
+    desc:
+    */
     string role_id = 8;                     // optional
+    /*
+    is_required: false
+    desc:
+    */
     string project_id = 9;                  // optional
+    /*
+    is_required: false
+    desc:
+    */
     string project_group_id = 10;           // optional
+    /*
+    is_required: false
+    desc:
+    */
     string domain_id =11;                   // optional
 }
 
@@ -137,8 +201,16 @@ message UsersInfo {
 }
 
 message UserStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
 
 message FindUserSearch {

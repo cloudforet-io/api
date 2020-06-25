@@ -17,22 +17,74 @@ service Metric {
 }
 
 message MetricRequest {
-    string data_source_id = 1;                  // required
-    string resource_type = 2;                   // required
-    repeated string resources = 3;              // required
-    string domain_id = 4;                       // required
+    /*
+    is_required: true
+    desc:
+    */
+    string data_source_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string resource_type = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    repeated string resources = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 4;
 }
 
 message MetricDataRequest {
-    string data_source_id = 1;                  // required
-    string resource_type = 2;                   // required
-    repeated string resources = 3;              // required
-    string metric = 4;                          // required
-    google.protobuf.Timestamp start = 5;        // required
-    google.protobuf.Timestamp end = 6;          // required
-    int32 period = 7;                           // optional
-    string stat = 8;                            // optional
-    string domain_id = 9;                       // required
+    /*
+    is_required: true
+    desc:
+    */
+    string data_source_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string resource_type = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    repeated string resources = 3;
+    /*
+    is_required: true
+    desc:
+    */
+    string metric = 4;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Timestamp start = 5;
+    /*
+    is_required: true
+    desc:
+    */
+    google.protobuf.Timestamp end = 6;
+    /*
+    is_required: false
+    desc:
+    */
+    int32 period = 7;
+    /*
+    is_required: false
+    desc:
+    */
+    string stat = 8;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 9;
 }
 
 message MetricInfo {

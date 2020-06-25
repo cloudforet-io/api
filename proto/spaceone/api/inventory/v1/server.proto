@@ -70,90 +70,336 @@ message ServerReference {
 }
 
 message CreateServerRequest {
-    string name = 1;                            // optional
-    ServerState state = 2;                      // optional
-    string primary_ip_address = 3;              // required
-    ServerType server_type = 4;                 // optional
-    ServerOSType os_type = 5;                   // required
-    string provider = 6;                        // optional
-
-    google.protobuf.Struct data = 11;           // optional
-    google.protobuf.Struct metadata = 12;       // optional
-    google.protobuf.ListValue nics  = 13;       // optional
-    google.protobuf.ListValue disks  = 14;      // optional
-    ServerReference reference = 15;             // optional
-    google.protobuf.Struct tags = 16;           // optional
-
-    string asset_id = 21;                       // optional
-    string pool_id = 22;                        // optional
-    string zone_id = 23;                        // optional
-    string region_id = 24;                      // optional
-    string project_id = 25;                     // optional
-    string domain_id = 26;                      // required
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    ServerState state = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string primary_ip_address = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    ServerType server_type = 4;
+    /*
+    is_required: true
+    desc:
+    */
+    ServerOSType os_type = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    string provider = 6;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct data = 11;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct metadata = 12;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.ListValue nics  = 13;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.ListValue disks  = 14;
+    /*
+    is_required: false
+    desc:
+    */
+    ServerReference reference = 15;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 16;
+    /*
+    is_required: false
+    desc:
+    */
+    string asset_id = 21;
+    /*
+    is_required: false
+    desc:
+    */
+    string pool_id = 22;
+    /*
+    is_required: false
+    desc:
+    */
+    string zone_id = 23;
+    /*
+    is_required: false
+    desc:
+    */
+    string region_id = 24;
+    /*
+    is_required: false
+    desc:
+    */
+    string project_id = 25;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 26;
 }
 
 message UpdateServerRequest {
-    string server_id = 1;                       // required
-    string name = 2;                            // optional
-    ServerState state = 3;                      // optional
-    string primary_ip_address = 4;              // optional
-    ServerType server_type = 5;                 // optional
-    ServerOSType os_type = 6;                   // optional
-    string provider = 7;                        // optional
-
-    google.protobuf.Struct data = 11;           // optional
-    google.protobuf.Struct metadata = 12;       // optional
-    google.protobuf.ListValue nics  = 13;       // optional
-    google.protobuf.ListValue disks  = 14;      // optional
-    ServerReference reference = 15;             // optional
-    google.protobuf.Struct tags = 16;           // optional
-
-    string asset_id = 21;                       // optional
-    string pool_id = 22;                        // optional
-    string zone_id = 23;                        // optional
-    string region_id = 24;                      // optional
-    string project_id = 25;                     // optional
-    string domain_id = 26;                      // required
-
-    bool release_region = 33;                   // optional
-    bool release_project = 34;                  // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string server_id = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    ServerState state = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string primary_ip_address = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    ServerType server_type = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    ServerOSType os_type = 6;
+    /*
+    is_required: false
+    desc:
+    */
+    string provider = 7;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct data = 11;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct metadata = 12;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.ListValue nics  = 13;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.ListValue disks  = 14;
+    /*
+    is_required: false
+    desc:
+    */
+    ServerReference reference = 15;
+    /*
+    is_required: false
+    desc:
+    */
+    google.protobuf.Struct tags = 16;
+    /*
+    is_required: false
+    desc:
+    */
+    string asset_id = 21;
+    /*
+    is_required: false
+    desc:
+    */
+    string pool_id = 22;
+    /*
+    is_required: false
+    desc:
+    */
+    string zone_id = 23;
+    /*
+    is_required: false
+    desc:
+    */
+    string region_id = 24;
+    /*
+    is_required: false
+    desc:
+    */
+    string project_id = 25;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 26;
+    /*
+    is_required: false
+    desc:
+    */
+    bool release_region = 33;
+    /*
+    is_required: false
+    desc:
+    */
+    bool release_project = 34;
 }
 
 message PinServerDataRequest {
-    string server_id = 1;                       // required
-    repeated string keys = 2;                   // required
-    string domain_id = 3;                       // required
+    /*
+    is_required: true
+    desc:
+    */
+    string server_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    repeated string keys = 2;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 3;
 }
 
 message ServerRequest {
-    string server_id = 1;                       // required
-    string domain_id = 2;                       // required
+    /*
+    is_required: true
+    desc:
+    */
+    string server_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
 
 message GetServerRequest {
-    string server_id = 1;                       // required
-    string domain_id = 2;                       // required
-    repeated string only = 3;                   // optional
+    /*
+    is_required: true
+    desc:
+    */
+    string server_id = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    repeated string only = 3;
 }
 
 message ServerQuery {
-    spaceone.api.core.v1.Query query = 1;       // optional
-    string server_id = 2;                       // optional
-    string name = 3;                            // optional
-    string state = 4;                           // optional
-    string primary_ip_address = 5;              // optional
-    string ip_addresses = 6;                    // optional
-    ServerType server_type = 7;                 // optional
-    ServerOSType os_type = 8;                   // optional
-    string provider = 9;                        // optional
-
-    string asset_id = 11;                       // optional
-    string pool_id = 12;                        // optional
-    string zone_id = 13;                        // optional
-    string region_id = 14;                      // optional
-    string resource_group_id = 15;              // optional
-    string project_id = 16;                     // optional
-    string domain_id = 17;                      // optional
+    /*
+    is_required: false
+    desc:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    desc:
+    */
+    string server_id = 2;
+    /*
+    is_required: false
+    desc:
+    */
+    string name = 3;
+    /*
+    is_required: false
+    desc:
+    */
+    string state = 4;
+    /*
+    is_required: false
+    desc:
+    */
+    string primary_ip_address = 5;
+    /*
+    is_required: false
+    desc:
+    */
+    string ip_addresses = 6;
+    /*
+    is_required: false
+    desc:
+    */
+    ServerType server_type = 7;
+    /*
+    is_required: false
+    desc:
+    */
+    ServerOSType os_type = 8;
+    /*
+    is_required: false
+    desc:
+    */
+    string provider = 9;
+    /*
+    is_required: false
+    desc:
+    */
+    string asset_id = 11;
+    /*
+    is_required: false
+    desc:
+    */
+    string pool_id = 12;
+    /*
+    is_required: false
+    desc:
+    */
+    string zone_id = 13;
+    /*
+    is_required: false
+    desc:
+    */
+    string region_id = 14;
+    /*
+    is_required: false
+    desc:
+    */
+    string resource_group_id = 15;
+    /*
+    is_required: false
+    desc:
+    */
+    string project_id = 16;
+    /*
+    is_required: false
+    desc:
+    */
+    string domain_id = 17;
 }
 
 message ServerInfo {
@@ -191,6 +437,14 @@ message ServersInfo {
 }
 
 message ServerStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    desc:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    desc:
+    */
+    string domain_id = 2;
 }
