@@ -1,0 +1,1262 @@
+{
+  "files": [
+    {
+      "name": "spaceone/api/inventory/v1/subnet.proto",
+      "description": "",
+      "package": "spaceone.api.inventory.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [
+        {
+          "name": "State",
+          "longName": "SubnetInfo.State",
+          "fullName": "spaceone.api.inventory.v1.SubnetInfo.State",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "AVAILABLE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "ALLOCATED",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "RESERVED",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "CreateSubnetRequest",
+          "longName": "CreateSubnetRequest",
+          "fullName": "spaceone.api.inventory.v1.CreateSubnetRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "cidr",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "ip_ranges",
+              "description": "is_required: false\ndesc:",
+              "label": "repeated",
+              "type": "IPRange",
+              "longType": "IPRange",
+              "fullType": "spaceone.api.inventory.v1.IPRange",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "gateway",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "vlan",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "data",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "reference",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "SubnetReference",
+              "longType": "SubnetReference",
+              "fullType": "spaceone.api.inventory.v1.SubnetReference",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "network_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "network_type_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "network_policy_id",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetSubnetRequest",
+          "longName": "GetSubnetRequest",
+          "fullName": "spaceone.api.inventory.v1.GetSubnetRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "subnet_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "only",
+              "description": "is_required: false\ndesc:",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "IPRange",
+          "longName": "IPRange",
+          "fullName": "spaceone.api.inventory.v1.IPRange",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "start",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "end",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PinSubnetDataRequest",
+          "longName": "PinSubnetDataRequest",
+          "fullName": "spaceone.api.inventory.v1.PinSubnetDataRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "subnet_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "keys",
+              "description": "is_required: true\ndesc:",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SubnetInfo",
+          "longName": "SubnetInfo",
+          "fullName": "spaceone.api.inventory.v1.SubnetInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "subnet_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "cidr",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "ip_ranges",
+              "description": "",
+              "label": "repeated",
+              "type": "IPRange",
+              "longType": "IPRange",
+              "fullType": "spaceone.api.inventory.v1.IPRange",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "gateway",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "vlan",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "data",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "reference",
+              "description": "",
+              "label": "",
+              "type": "SubnetReference",
+              "longType": "SubnetReference",
+              "fullType": "spaceone.api.inventory.v1.SubnetReference",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "collection_info",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "network_info",
+              "description": "",
+              "label": "",
+              "type": "NetworkInfo",
+              "longType": "NetworkInfo",
+              "fullType": "spaceone.api.inventory.v1.NetworkInfo",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "network_type_info",
+              "description": "",
+              "label": "",
+              "type": "NetworkTypeInfo",
+              "longType": "NetworkTypeInfo",
+              "fullType": "spaceone.api.inventory.v1.NetworkTypeInfo",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "network_policy_info",
+              "description": "",
+              "label": "",
+              "type": "NetworkPolicyInfo",
+              "longType": "NetworkPolicyInfo",
+              "fullType": "spaceone.api.inventory.v1.NetworkPolicyInfo",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "region_info",
+              "description": "",
+              "label": "",
+              "type": "RegionInfo",
+              "longType": "RegionInfo",
+              "fullType": "spaceone.api.inventory.v1.RegionInfo",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "zone_info",
+              "description": "",
+              "label": "",
+              "type": "ZoneInfo",
+              "longType": "ZoneInfo",
+              "fullType": "spaceone.api.inventory.v1.ZoneInfo",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "created_at",
+              "description": "",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SubnetQuery",
+          "longName": "SubnetQuery",
+          "fullName": "spaceone.api.inventory.v1.SubnetQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "Query",
+              "longType": "spaceone.api.core.v1.Query",
+              "fullType": "spaceone.api.core.v1.Query",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "subnet_id",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "cidr",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "gateway",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "vlan",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "network_id",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "network_type_id",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "network_policy_id",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "zone_id",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "region_id",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SubnetReference",
+          "longName": "SubnetReference",
+          "fullName": "spaceone.api.inventory.v1.SubnetReference",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "resource_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "external_link",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SubnetRequest",
+          "longName": "SubnetRequest",
+          "fullName": "spaceone.api.inventory.v1.SubnetRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "subnet_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SubnetStatQuery",
+          "longName": "SubnetStatQuery",
+          "fullName": "spaceone.api.inventory.v1.SubnetStatQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "StatisticsQuery",
+              "longType": "spaceone.api.core.v1.StatisticsQuery",
+              "fullType": "spaceone.api.core.v1.StatisticsQuery",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SubnetsInfo",
+          "longName": "SubnetsInfo",
+          "fullName": "spaceone.api.inventory.v1.SubnetsInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "SubnetInfo",
+              "longType": "SubnetInfo",
+              "fullType": "spaceone.api.inventory.v1.SubnetInfo",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateSubnetRequest",
+          "longName": "UpdateSubnetRequest",
+          "fullName": "spaceone.api.inventory.v1.UpdateSubnetRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "subnet_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "ip_ranges",
+              "description": "is_required: false\ndesc:",
+              "label": "repeated",
+              "type": "IPRange",
+              "longType": "IPRange",
+              "fullType": "spaceone.api.inventory.v1.IPRange",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "gateway",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "vlan",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "data",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "reference",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "SubnetReference",
+              "longType": "SubnetReference",
+              "fullType": "spaceone.api.inventory.v1.SubnetReference",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "network_type_id",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "network_policy_id",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc:",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "release_project",
+              "description": "is_required: false\ndesc:",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "Subnet",
+          "longName": "Subnet",
+          "fullName": "spaceone.api.inventory.v1.Subnet",
+          "description": "",
+          "methods": [
+            {
+              "name": "create",
+              "description": "",
+              "requestType": "CreateSubnetRequest",
+              "requestLongType": "CreateSubnetRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CreateSubnetRequest",
+              "requestStreaming": false,
+              "responseType": "SubnetInfo",
+              "responseLongType": "SubnetInfo",
+              "responseFullType": "spaceone.api.inventory.v1.SubnetInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/subnets"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update",
+              "description": "",
+              "requestType": "UpdateSubnetRequest",
+              "requestLongType": "UpdateSubnetRequest",
+              "requestFullType": "spaceone.api.inventory.v1.UpdateSubnetRequest",
+              "requestStreaming": false,
+              "responseType": "SubnetInfo",
+              "responseLongType": "SubnetInfo",
+              "responseFullType": "spaceone.api.inventory.v1.SubnetInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/inventory/v1/subnet/{subnet_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "pin_data",
+              "description": "",
+              "requestType": "PinSubnetDataRequest",
+              "requestLongType": "PinSubnetDataRequest",
+              "requestFullType": "spaceone.api.inventory.v1.PinSubnetDataRequest",
+              "requestStreaming": false,
+              "responseType": "SubnetInfo",
+              "responseLongType": "SubnetInfo",
+              "responseFullType": "spaceone.api.inventory.v1.SubnetInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/inventory/v1/subnet/{subnet_id}/pin-data"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "delete",
+              "description": "",
+              "requestType": "SubnetRequest",
+              "requestLongType": "SubnetRequest",
+              "requestFullType": "spaceone.api.inventory.v1.SubnetRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "DELETE",
+                      "pattern": "/inventory/v1/subnet/{subnet_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get",
+              "description": "",
+              "requestType": "GetSubnetRequest",
+              "requestLongType": "GetSubnetRequest",
+              "requestFullType": "spaceone.api.inventory.v1.GetSubnetRequest",
+              "requestStreaming": false,
+              "responseType": "SubnetInfo",
+              "responseLongType": "SubnetInfo",
+              "responseFullType": "spaceone.api.inventory.v1.SubnetInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/inventory/v1/subnet/{subnet_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "list",
+              "description": "",
+              "requestType": "SubnetQuery",
+              "requestLongType": "SubnetQuery",
+              "requestFullType": "spaceone.api.inventory.v1.SubnetQuery",
+              "requestStreaming": false,
+              "responseType": "SubnetsInfo",
+              "responseLongType": "SubnetsInfo",
+              "responseFullType": "spaceone.api.inventory.v1.SubnetsInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/inventory/v1/subnets"
+                    },
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/subnets/search"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "stat",
+              "description": "",
+              "requestType": "SubnetStatQuery",
+              "requestLongType": "SubnetStatQuery",
+              "requestFullType": "spaceone.api.inventory.v1.SubnetStatQuery",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/subnets/stat"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}
