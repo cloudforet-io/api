@@ -36,34 +36,98 @@ service ConfigMap {
 }
 
 message CreateConfigMapRequest {
-    string name = 1;                        // required
-    google.protobuf.Struct data = 2;        // required
-    google.protobuf.Struct tags = 3;        // optional
-    string domain_id = 4;                   // required
+    /*
+    is_required: true
+    note:
+    */
+    string name = 1;
+    /*
+    is_required: true
+    note:
+    */
+    google.protobuf.Struct data = 2;
+    /*
+    is_required: false
+    note:
+    */
+    google.protobuf.Struct tags = 3;
+    /*
+    is_required: true
+    note:
+    */
+    string domain_id = 4;
 }
 
 message UpdateConfigMapRequest {
-    string name = 1;                        // required
-    google.protobuf.Struct data = 2;        // optional
-    google.protobuf.Struct tags = 3;        // optional
-    string domain_id = 4;                   // required
+    /*
+    is_required: true
+    note:
+    */
+    string name = 1;
+    /*
+    is_required: false
+    note:
+    */
+    google.protobuf.Struct data = 2;
+    /*
+    is_required: false
+    note:
+    */
+    google.protobuf.Struct tags = 3;
+    /*
+    is_required: true
+    note:
+    */
+    string domain_id = 4;
 }
 
 message ConfigMapRequest {
-    string name = 1;                        // required
-    string domain_id = 2;                   // required
+    /*
+    is_required: true
+    note:
+    */
+    string name = 1;
+    /*
+    is_required: true
+    note:
+    */
+    string domain_id = 2;
 }
 
 message GetConfigMapRequest {
-    string name = 1;                        // required
-    string domain_id = 2;                   // required
-    repeated string only = 3;               // optional
+    /*
+    is_required: true
+    note:
+    */
+    string name = 1;
+    /*
+    is_required: true
+    note:
+    */
+    string domain_id = 2;
+    /*
+    is_required: false
+    note:
+    */
+    repeated string only = 3;
 }
 
 message ConfigMapQuery {
-    spaceone.api.core.v1.Query query = 1;   // optional
-    string name = 2;                        // optional
-    string domain_id = 3;                   // required
+    /*
+    is_required: false
+    note:
+    */
+    spaceone.api.core.v1.Query query = 1;
+    /*
+    is_required: false
+    note:
+    */
+    string name = 2;
+    /*
+    is_required: true
+    note:
+    */
+    string domain_id = 3;
 }
 
 message ConfigMapInfo {
@@ -80,6 +144,14 @@ message ConfigMapsInfo {
 }
 
 message ConfigMapStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    /*
+    is_required: true
+    note:
+    */
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    /*
+    is_required: true
+    note:
+    */
+    string domain_id = 2;
 }
