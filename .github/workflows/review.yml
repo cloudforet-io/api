@@ -39,12 +39,3 @@ jobs:
       run: |
         echo "Running test ... None"
         # fail test or pass test
-    - name: Slack
-      if: always()
-      uses: 8398a7/action-slack@v3.2.0
-      with:
-        status: ${{job.status}}
-        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-        author_name: Github Action Slack
-      env:
-        SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
