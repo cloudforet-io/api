@@ -39,6 +39,7 @@ service CloudService {
     }
 }
 
+
 message CloudServiceReference {
     string resource_id = 1;
     string external_link = 2;
@@ -247,6 +248,7 @@ message CloudServiceInfo {
     string cloud_service_type = 2;
     string provider = 3;
     string cloud_service_group = 4;
+    string state = 5;
 
     google.protobuf.Struct data = 11;
     google.protobuf.Struct metadata = 12;
@@ -260,6 +262,7 @@ message CloudServiceInfo {
 
     google.protobuf.Timestamp created_at = 31;
     google.protobuf.Timestamp updated_at = 32;
+    google.protobuf.Timestamp deleted_at = 33;
 }
 
 message CloudServicesInfo {
