@@ -14,6 +14,44 @@ service User {
     rpc create (CreateUserRequest) returns (UserInfo) {
         option (google.api.http) = { post: "/identity/v1/users" };
     }
+    /*
+    desc: Update user info by given user_id
+    note:
+    request_example: >-
+      {
+	      "user_id": "dkang@mz.co.kr",
+        "tags": {
+            "user1": "Reuters",
+            "user2": "Bloomberg"
+        },
+	      "domain_id": "{{DOMAIN_ID}}"
+      }
+    response_example: >-
+      {
+        "roles": [],
+        "user_id": "dkang@mz.co.kr",
+        "name": "Dong Yoo kang",
+        "state": "ENABLED",
+        "email": "dkang@mz.co.kr",
+        "mobile": "",
+        "group": "",
+        "language": "en",
+        "timezone": "UTC",
+        "tags": {
+            "user1": "Reuters",
+            "user2": "Bloomberg"
+        },
+        "last_accessed_at": {
+            "seconds": "1593161630",
+            "nanos": 79000000
+        },
+        "created_at": {
+            "seconds": "1593161630",
+            "nanos": 79000000
+        },
+        "domain_id": "domain-fd6e23a5ae36"
+      }
+    */
     rpc update (UpdateUserRequest) returns (UserInfo) {
         option (google.api.http) = { put: "/identity/v1/users" };
     }
