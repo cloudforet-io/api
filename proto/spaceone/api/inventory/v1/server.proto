@@ -8,8 +8,6 @@ import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 import "spaceone/api/inventory/v1/region.proto";
-import "spaceone/api/inventory/v1/zone.proto";
-import "spaceone/api/inventory/v1/pool.proto";
 
 
 service Server {
@@ -420,11 +418,9 @@ message ServerInfo {
     google.protobuf.Struct tags = 16;
     google.protobuf.Struct collection_info = 17;
 
-    PoolInfo pool_info = 21;
-    ZoneInfo zone_info = 22;
-    RegionInfo region_info = 23;
-    string project_id = 24;
-    string domain_id = 25;
+    RegionInfo region_info = 21;
+    string project_id = 22;
+    string domain_id = 23;
 
     google.protobuf.Timestamp created_at = 31;
     google.protobuf.Timestamp updated_at = 32;
