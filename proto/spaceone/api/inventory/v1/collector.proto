@@ -77,94 +77,46 @@ message PluginInfo {
 }
 
 message CreateCollectorRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string name = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     PluginInfo plugin_info = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     int32  priority = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct tags = 5;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 6;
 }
 
 message UpdateCollectorRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
 	  string collector_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: false
     string name = 2;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: false
     PluginInfo plugin_info = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     int32  priority = 4;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct tags = 6;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 7;
 }
 
 message CollectorRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string collector_id = 1;
-	  /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
 
 message GetCollectorRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string collector_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
-	  string domain_id = 2;
-	  /*
-    is_required: false
-    desc:
-    */
+    // is_required: true
+    string domain_id = 2;
+	// is_required: false
     repeated string only = 3;
 }
 
@@ -184,31 +136,27 @@ message CollectorQuery {
     string domain_id = 7;
 }
 
-// TODO: more fields
 message CollectRequest {
+    // is_required: true
     string collector_id = 1;
+    // is_required: false
     google.protobuf.Struct filter = 2;
+    // is_required: false
     string secret_id = 3;
+    // is_required: false
     string collect_mode = 4;
+    // is_required: true
     string domain_id = 5;
-    bool use_cache = 6;             // optional
+    // is_required: false
+    bool use_cache = 6;
 }
 
 message VerifyPluginRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string collector_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: false
     string secret_id = 2;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 3;
 }
 message CollectorInfo {
@@ -236,15 +184,9 @@ message CollectorsInfo {
 }
 
 message CollectorStatQuery {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
 
@@ -252,7 +194,6 @@ message VerifyInfo {
     bool status = 1;
 }
 
-// TODO: more fields
 message JobInfo {
 	enum State {
 		NONE = 0;
@@ -285,39 +226,62 @@ message Scheduled {
 }
 
 message CreateScheduleRequest {
+    // is_required: true
     string domain_id = 1;
+    // is_required: true
     string collector_id = 2;
+    // is_required: false
     string name = 3;
+    // is_required: false
     string collect_mode = 4;
+    // is_required: true
     Scheduled schedule = 5;
+    // is_required: false
     google.protobuf.Struct filter = 6;
 }
 
 message UpdateScheduleRequest {
+    // is_required: true
     string domain_id = 1;
+    // is_required: true
     string schedule_id = 2;
+    // is_required: true
     string collector_id = 3;
+    // is_required: false
     string name = 4;
+    // is_required: false
     string collect_mode = 5;
+    // is_required: false
     Scheduled schedule = 6;
+    // is_required: false
     google.protobuf.Struct filter = 7;
 }
 
 message ScheduleRequest {
+    // is_required: true
     string domain_id = 1;
+    // is_required: true
     string schedule_id = 2;
+    // is_required: true
     string collector_id = 3;
 }
 message DeleteScheduleRequest {
+    // is_required: true
     string domain_id = 1;
+    // is_required: true
     string schedule_id = 2;
+    // is_required: true
     string collector_id = 3;
 }
 
 message ScheduleQuery {
+    // is_required: false
     spaceone.api.core.v1.Query query = 1;
+    // is_required: true
 	string collector_id = 2;
+    // is_required: false
     string schedule_id = 3;
+    // is_required: true
     string domain_id = 4;
 }
 

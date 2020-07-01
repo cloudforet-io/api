@@ -46,200 +46,94 @@ message CloudServiceReference {
 }
 
 message CreateServiceRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string cloud_service_type = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string provider = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: true
     string cloud_service_group = 3;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     google.protobuf.Struct data = 11;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct metadata = 12;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     CloudServiceReference reference = 13;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct tags = 14;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string region_id = 21;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string project_id = 22;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 23;
 }
 
 message UpdateCloudServiceRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string cloud_service_id = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct data = 11;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct metadata = 12;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     CloudServiceReference reference = 13;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct tags = 14;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string region_id = 21;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string project_id = 22;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 23;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     bool release_project = 30;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     bool release_region = 31;
 }
 
 message PinCloudServiceDataRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string cloud_service_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     repeated string keys = 2;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 3;
 }
 
 message CloudServiceRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string cloud_service_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
 
 message GetCloudServiceRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string cloud_service_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated string only = 3;
 }
 
 message CloudServiceQuery {
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     spaceone.api.core.v1.Query query = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string cloud_service_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string cloud_service_type = 3;
-    /*
-    is_required: false
-    desc:
-    */
-    string provider = 4;
-    /*
-    is_required: false
-    desc:
-    */
-    string cloud_service_group = 5;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
+    string cloud_service_group = 4;
+    // is_required: false
+    string provider = 5;
+    // is_required: false
+    string state = 6;
+    // is_required: false
     string region_id = 21;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string project_id = 24;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: true
     string domain_id = 25;
 }
 
@@ -271,14 +165,8 @@ message CloudServicesInfo {
 }
 
 message CloudServiceStatQuery {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
