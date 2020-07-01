@@ -67,6 +67,38 @@ message ServerReference {
     string external_link = 2;
 }
 
+message ServerNIC {
+    // is_required: true
+    int32 device_index = 1;
+    // is_required: false
+    string device = 2;
+    // is_required: false
+    string nic_type = 3;
+    // is_required: true
+    repeated string ip_addresses = 4;
+    // is_required: false
+    string cidr = 5;
+    // is_required: false
+    string mac_address = 6;
+    // is_required: false
+    string public_ip_address = 7;
+    // is_required: false
+    google.protobuf.Struct tags = 8;
+}
+
+message ServerDisk {
+    // is_required: true
+    int32 device_index = 1;
+    // is_required: false
+    string device = 2;
+    // is_required: false
+    string disk_type = 3;
+    // is_required: false
+    float size = 4;
+    // is_required: false
+    google.protobuf.Struct tags = 5;
+}
+
 message CreateServerRequest {
     // is_required: false
     string name = 1;
@@ -85,9 +117,9 @@ message CreateServerRequest {
     // is_required: false
     google.protobuf.Struct metadata = 12;
     // is_required: false
-    google.protobuf.ListValue nics  = 13;
+    repeated ServerNIC nics  = 13;
     // is_required: false
-    google.protobuf.ListValue disks  = 14;
+    repeated ServerDisk disks  = 14;
     // is_required: false
     ServerReference reference = 15;
     // is_required: false
@@ -121,9 +153,9 @@ message UpdateServerRequest {
     // is_required: false
     google.protobuf.Struct metadata = 12;
     // is_required: false
-    google.protobuf.ListValue nics  = 13;
+    repeated ServerNIC nics  = 13;
     // is_required: false
-    google.protobuf.ListValue disks  = 14;
+    repeated ServerDisk disks  = 14;
     // is_required: false
     ServerReference reference = 15;
     // is_required: false
@@ -205,8 +237,8 @@ message ServerInfo {
 
     google.protobuf.Struct data = 11;
     google.protobuf.Struct metadata = 12;
-    google.protobuf.ListValue nics  = 13;
-    google.protobuf.ListValue disks  = 14;
+    repeated ServerNIC nics  = 13;
+    repeated ServerDisk disks  = 14;
     ServerReference reference = 15;
     google.protobuf.Struct tags = 16;
     google.protobuf.Struct collection_info = 17;
