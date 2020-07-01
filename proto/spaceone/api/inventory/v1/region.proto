@@ -22,23 +22,6 @@ service Region {
     rpc get (GetRegionRequest) returns (RegionInfo) {
         option (google.api.http) = { get: "/inventory/v1/region/{region_id}" };
     }
-    rpc add_member (RegionMemberRequest) returns (RegionMemberInfo) {
-        option (google.api.http) = { get: "/inventory/v1/region/{region_id}/members" };
-    }
-    rpc modify_member (RegionMemberRequest) returns (RegionMemberInfo) {
-        option (google.api.http) = { get: "/inventory/v1/region/{region_id}/member/{user_id}" };
-    }
-    rpc remove_member (RemoveRegionMemberRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { get: "/inventory/v1/region/{region_id}/member/{user_id}" };
-    }
-    rpc list_members (RegionMemberQuery) returns (RegionMembersInfo) {
-        option (google.api.http) = {
-            get: "/inventory/v1/region/{region_id}/members"
-            additional_bindings {
-                post: "/inventory/v1/region/{region_id}/members/search"
-            }
-        };
-    }
     rpc list (RegionQuery) returns (RegionsInfo) {
         option (google.api.http) = {
             get: "/inventory/v1/regions"
@@ -165,81 +148,6 @@ message RegionInfo {
 
 message RegionsInfo {
     repeated RegionInfo results = 1;
-    int32 total_count = 2;
-}
-
-message RegionMemberRequest {
-    /*
-    is_required: true
-    desc:
-    */
-    string region_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
-    string user_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
-    repeated string labels = 3;
-    /*
-    is_required: true
-    desc:
-    */
-    string domain_id = 4;
-}
-
-message RemoveRegionMemberRequest {
-    /*
-    is_required: true
-    desc:
-    */
-    string region_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
-    string user_id = 2;
-    /*
-    is_required: true
-    desc:
-    */
-    string domain_id = 3;
-}
-
-message RegionMemberQuery {
-    /*
-    is_required: false
-    desc:
-    */
-    spaceone.api.core.v1.Query query = 1;
-    /*
-    is_required: false
-    desc:
-    */
-    string region_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
-    string user_id = 3;
-    /*
-    is_required: true
-    desc:
-    */
-    string domain_id = 4;
-}
-
-message RegionMemberInfo {
-    RegionInfo region_info = 1;
-    google.protobuf.Struct user_info = 2;
-    repeated string labels = 3;
-}
-
-message RegionMembersInfo {
-    repeated RegionMemberInfo results = 1;
     int32 total_count = 2;
 }
 
