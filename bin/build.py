@@ -8,6 +8,7 @@ import argparse
 import subprocess
 import glob
 from pathlib import Path
+from shutil import copyfile
 
 PROJECT = 'spaceone'
 EXTENSION = ['json', 'markdown']
@@ -193,7 +194,6 @@ def _doc_compile(proto_file, output_path, proto_path_list, debug):
     cap_name = temporary_name[0].capitalize()
 
     cmd.append(f'--doc_opt={OUTPUT_TO_DOC},{cap_name}.{OUTPUT_TO_DOC}')
-
     cmd.append(proto_file)
 
     if debug:
@@ -206,6 +206,13 @@ def _doc_compile(proto_file, output_path, proto_path_list, debug):
         _error(f"Failed to compile : {proto_file}")
 
     print(f"[SUCCESS] Document Compile : {proto_file}")
+
+def _version_factoring():
+    ver_path = os.path.join(BASE_DIR, 'VERSION')
+    art_path = os.path.join(ARTIFACT_DIR, 'json')
+    art_file = os.path.join(art_path, 'VERSION')
+    if (os.path.exists(art_path) and not os.path.isfile(art_file)):
+        copyfile(ver_path, art_file)
 
 
 def _compile_code(params, code, proto_file):
@@ -235,6 +242,13 @@ def build(params):
         else:
             _make_build_environment(params['output_dir'], code)
 
+    if (params['code'] == 'json'):
+        _version_factoring()
+
+
 if __name__ == '__main__':
     params = _get_args()
     build(params)
+
+
+
