@@ -1,0 +1,1509 @@
+{
+  "files": [
+    {
+      "name": "spaceone/api/inventory/v1/server.proto",
+      "description": "",
+      "package": "spaceone.api.inventory.v1",
+      "hasEnums": true,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [
+        {
+          "name": "ServerOSType",
+          "longName": "ServerOSType",
+          "fullName": "spaceone.api.inventory.v1.ServerOSType",
+          "description": "",
+          "values": [
+            {
+              "name": "OS_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "LINUX",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WINDOWS",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ServerState",
+          "longName": "ServerState",
+          "fullName": "spaceone.api.inventory.v1.ServerState",
+          "description": "",
+          "values": [
+            {
+              "name": "STATE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "PENDING",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "INSERVICE",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "MAINTENANCE",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "CLOSED",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "DELETED",
+              "number": "5",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ServerType",
+          "longName": "ServerType",
+          "fullName": "spaceone.api.inventory.v1.ServerType",
+          "description": "",
+          "values": [
+            {
+              "name": "SERVER_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "BAREMETAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "VM",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "HYPERVISOR",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "UNKNOWN",
+              "number": "4",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "CreateServerRequest",
+          "longName": "CreateServerRequest",
+          "fullName": "spaceone.api.inventory.v1.CreateServerRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "is_required: false",
+              "label": "",
+              "type": "ServerState",
+              "longType": "ServerState",
+              "fullType": "spaceone.api.inventory.v1.ServerState",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "primary_ip_address",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "server_type",
+              "description": "is_required: false",
+              "label": "",
+              "type": "ServerType",
+              "longType": "ServerType",
+              "fullType": "spaceone.api.inventory.v1.ServerType",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "os_type",
+              "description": "is_required: true",
+              "label": "",
+              "type": "ServerOSType",
+              "longType": "ServerOSType",
+              "fullType": "spaceone.api.inventory.v1.ServerOSType",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "data",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "nics",
+              "description": "is_required: false",
+              "label": "repeated",
+              "type": "ServerNIC",
+              "longType": "ServerNIC",
+              "fullType": "spaceone.api.inventory.v1.ServerNIC",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "disks",
+              "description": "is_required: false",
+              "label": "repeated",
+              "type": "ServerDisk",
+              "longType": "ServerDisk",
+              "fullType": "spaceone.api.inventory.v1.ServerDisk",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "reference",
+              "description": "is_required: false",
+              "label": "",
+              "type": "ServerReference",
+              "longType": "ServerReference",
+              "fullType": "spaceone.api.inventory.v1.ServerReference",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "region_id",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetServerRequest",
+          "longName": "GetServerRequest",
+          "fullName": "spaceone.api.inventory.v1.GetServerRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "server_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "only",
+              "description": "is_required: false",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PinServerDataRequest",
+          "longName": "PinServerDataRequest",
+          "fullName": "spaceone.api.inventory.v1.PinServerDataRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "server_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "keys",
+              "description": "is_required: true",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ServerDisk",
+          "longName": "ServerDisk",
+          "fullName": "spaceone.api.inventory.v1.ServerDisk",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "device_index",
+              "description": "is_required: true",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "device",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "disk_type",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "size",
+              "description": "is_required: false",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ServerInfo",
+          "longName": "ServerInfo",
+          "fullName": "spaceone.api.inventory.v1.ServerInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "server_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "ServerState",
+              "longType": "ServerState",
+              "fullType": "spaceone.api.inventory.v1.ServerState",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "primary_ip_address",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "ip_addresses",
+              "description": "",
+              "label": "",
+              "type": "ListValue",
+              "longType": "google.protobuf.ListValue",
+              "fullType": "google.protobuf.ListValue",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "server_type",
+              "description": "",
+              "label": "",
+              "type": "ServerType",
+              "longType": "ServerType",
+              "fullType": "spaceone.api.inventory.v1.ServerType",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "os_type",
+              "description": "",
+              "label": "",
+              "type": "ServerOSType",
+              "longType": "ServerOSType",
+              "fullType": "spaceone.api.inventory.v1.ServerOSType",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "data",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "nics",
+              "description": "",
+              "label": "repeated",
+              "type": "ServerNIC",
+              "longType": "ServerNIC",
+              "fullType": "spaceone.api.inventory.v1.ServerNIC",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "disks",
+              "description": "",
+              "label": "repeated",
+              "type": "ServerDisk",
+              "longType": "ServerDisk",
+              "fullType": "spaceone.api.inventory.v1.ServerDisk",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "reference",
+              "description": "",
+              "label": "",
+              "type": "ServerReference",
+              "longType": "ServerReference",
+              "fullType": "spaceone.api.inventory.v1.ServerReference",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "collection_info",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "region_info",
+              "description": "",
+              "label": "",
+              "type": "RegionInfo",
+              "longType": "RegionInfo",
+              "fullType": "spaceone.api.inventory.v1.RegionInfo",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "created_at",
+              "description": "",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "updated_at",
+              "description": "",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "deleted_at",
+              "description": "",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ServerNIC",
+          "longName": "ServerNIC",
+          "fullName": "spaceone.api.inventory.v1.ServerNIC",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "device_index",
+              "description": "is_required: true",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "device",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "nic_type",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "ip_addresses",
+              "description": "is_required: true",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "cidr",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "mac_address",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "public_ip_address",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ServerQuery",
+          "longName": "ServerQuery",
+          "fullName": "spaceone.api.inventory.v1.ServerQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "is_required: false\ndesc: core query",
+              "label": "",
+              "type": "Query",
+              "longType": "spaceone.api.core.v1.Query",
+              "fullType": "spaceone.api.core.v1.Query",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "server_id",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "primary_ip_address",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "ip_addresses",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "server_type",
+              "description": "is_required: false",
+              "label": "",
+              "type": "ServerType",
+              "longType": "ServerType",
+              "fullType": "spaceone.api.inventory.v1.ServerType",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "os_type",
+              "description": "is_required: false",
+              "label": "",
+              "type": "ServerOSType",
+              "longType": "ServerOSType",
+              "fullType": "spaceone.api.inventory.v1.ServerOSType",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "region_id",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ServerReference",
+          "longName": "ServerReference",
+          "fullName": "spaceone.api.inventory.v1.ServerReference",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "resource_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "external_link",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ServerRequest",
+          "longName": "ServerRequest",
+          "fullName": "spaceone.api.inventory.v1.ServerRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "server_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ServerStatQuery",
+          "longName": "ServerStatQuery",
+          "fullName": "spaceone.api.inventory.v1.ServerStatQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "is_required: true",
+              "label": "",
+              "type": "StatisticsQuery",
+              "longType": "spaceone.api.core.v1.StatisticsQuery",
+              "fullType": "spaceone.api.core.v1.StatisticsQuery",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ServersInfo",
+          "longName": "ServersInfo",
+          "fullName": "spaceone.api.inventory.v1.ServersInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "ServerInfo",
+              "longType": "ServerInfo",
+              "fullType": "spaceone.api.inventory.v1.ServerInfo",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateServerRequest",
+          "longName": "UpdateServerRequest",
+          "fullName": "spaceone.api.inventory.v1.UpdateServerRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "server_id",
+              "description": "is_required: true\ndesc: server unique id",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "is_required: false",
+              "label": "",
+              "type": "ServerState",
+              "longType": "ServerState",
+              "fullType": "spaceone.api.inventory.v1.ServerState",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "primary_ip_address",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "server_type",
+              "description": "is_required: false",
+              "label": "",
+              "type": "ServerType",
+              "longType": "ServerType",
+              "fullType": "spaceone.api.inventory.v1.ServerType",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "os_type",
+              "description": "is_required: false",
+              "label": "",
+              "type": "ServerOSType",
+              "longType": "ServerOSType",
+              "fullType": "spaceone.api.inventory.v1.ServerOSType",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "data",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "nics",
+              "description": "is_required: false",
+              "label": "repeated",
+              "type": "ServerNIC",
+              "longType": "ServerNIC",
+              "fullType": "spaceone.api.inventory.v1.ServerNIC",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "disks",
+              "description": "is_required: false",
+              "label": "repeated",
+              "type": "ServerDisk",
+              "longType": "ServerDisk",
+              "fullType": "spaceone.api.inventory.v1.ServerDisk",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "reference",
+              "description": "is_required: false",
+              "label": "",
+              "type": "ServerReference",
+              "longType": "ServerReference",
+              "fullType": "spaceone.api.inventory.v1.ServerReference",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "region_id",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "release_region",
+              "description": "is_required: false",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "release_project",
+              "description": "is_required: false",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "Server",
+          "longName": "Server",
+          "fullName": "spaceone.api.inventory.v1.Server",
+          "description": "",
+          "methods": [
+            {
+              "name": "create",
+              "description": "",
+              "requestType": "CreateServerRequest",
+              "requestLongType": "CreateServerRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CreateServerRequest",
+              "requestStreaming": false,
+              "responseType": "ServerInfo",
+              "responseLongType": "ServerInfo",
+              "responseFullType": "spaceone.api.inventory.v1.ServerInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/servers"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update",
+              "description": "",
+              "requestType": "UpdateServerRequest",
+              "requestLongType": "UpdateServerRequest",
+              "requestFullType": "spaceone.api.inventory.v1.UpdateServerRequest",
+              "requestStreaming": false,
+              "responseType": "ServerInfo",
+              "responseLongType": "ServerInfo",
+              "responseFullType": "spaceone.api.inventory.v1.ServerInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/inventory/v1/server/{server_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "pin_data",
+              "description": "",
+              "requestType": "PinServerDataRequest",
+              "requestLongType": "PinServerDataRequest",
+              "requestFullType": "spaceone.api.inventory.v1.PinServerDataRequest",
+              "requestStreaming": false,
+              "responseType": "ServerInfo",
+              "responseLongType": "ServerInfo",
+              "responseFullType": "spaceone.api.inventory.v1.ServerInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/inventory/v1/server/{server_id}/pin-data"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "delete",
+              "description": "",
+              "requestType": "ServerRequest",
+              "requestLongType": "ServerRequest",
+              "requestFullType": "spaceone.api.inventory.v1.ServerRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "DELETE",
+                      "pattern": "/inventory/v1/server/{server_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get",
+              "description": "",
+              "requestType": "GetServerRequest",
+              "requestLongType": "GetServerRequest",
+              "requestFullType": "spaceone.api.inventory.v1.GetServerRequest",
+              "requestStreaming": false,
+              "responseType": "ServerInfo",
+              "responseLongType": "ServerInfo",
+              "responseFullType": "spaceone.api.inventory.v1.ServerInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/inventory/v1/server/{server_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "list",
+              "description": "",
+              "requestType": "ServerQuery",
+              "requestLongType": "ServerQuery",
+              "requestFullType": "spaceone.api.inventory.v1.ServerQuery",
+              "requestStreaming": false,
+              "responseType": "ServersInfo",
+              "responseLongType": "ServersInfo",
+              "responseFullType": "spaceone.api.inventory.v1.ServersInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/inventory/v1/servers"
+                    },
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/servers/search"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "stat",
+              "description": "",
+              "requestType": "ServerStatQuery",
+              "requestLongType": "ServerStatQuery",
+              "requestFullType": "spaceone.api.inventory.v1.ServerStatQuery",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/servers/stat"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}
