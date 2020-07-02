@@ -50,97 +50,49 @@ message RolePolicy {
     }
 
     PolicyType policy_type = 1;
-
-    oneof policy_info {
-        string url = 2;
-        string policy_id = 3;
-    }
+    string policy_id = 2;
+    string repository_id = 3;
 }
 
 message CreateRoleRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string name = 1;
-    /*
-    is_required: true
-    desc:
-    */
-    string domain_id = 2;
-    /*
-    is_required: true
-    desc:
-    */
-    RoleType role_type = 3;
-    /*
-    is_required: true
-    desc:
-    */
-    repeated RolePolicy policies = 4;
-    /*
-    is_required: false
-    desc:
-    */
-    google.protobuf.Struct tags = 5;
+    // is_required: true
+    RoleType role_type = 2;
+    // is_required: true
+    repeated RolePolicy policies = 3;
+    // is_required: false
+    google.protobuf.Struct tags = 4;
+    // is_required: true
+    string domain_id = 5;
 }
 
 message UpdateRoleRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string role_id = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string name = 2;
-    /*
-    is_required: true
-    desc:
-    */
-    string domain_id = 3;
-    /*
-    is_required: true
-    desc:
-    */
-    repeated RolePolicy policies = 4;
-    /*
-    is_required: false
-    desc:
-    */
-    google.protobuf.Struct tags = 5;
+    // is_required: false
+    repeated RolePolicy policies = 3;
+    // is_required: false
+    google.protobuf.Struct tags = 4;
+    // is_required: true
+    string domain_id = 5;
 }
 
 message RoleRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string role_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
 
 message GetRoleRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string role_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated string only = 3;
 }
 
@@ -156,31 +108,16 @@ message RoleInfo {
 }
 
 message RoleQuery {
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     spaceone.api.core.v1.Query query = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string role_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string name = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     RoleType role_type = 5;
-    /*
-    is_required: true
-    desc:
-    */
-    string domain_id = 11;
+    // is_required: true
+    string domain_id = 6;
 
 }
 
@@ -190,14 +127,8 @@ message RolesInfo {
 }
 
 message RoleStatQuery {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }

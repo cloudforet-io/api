@@ -35,107 +35,53 @@ service Policy {
 }
 
 message CreatePolicyRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string name = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     repeated string permissions = 2;
-    /*
-    is_required: true
-    desc:
-    */
-    string domain_id = 3;
-    /*
-    is_required: false
-    desc:
-    */
-    google.protobuf.Struct tags = 4;
+    // is_required: false
+    google.protobuf.Struct tags = 3;
+    // is_required: true
+    string domain_id = 4;
 }
 
 message UpdatePolicyRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string policy_id = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string name = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated string permissions = 3;
-    /*
-    is_required: true
-    desc:
-    */
-    string domain_id = 4;
-    /*
-    is_required: false
-    desc:
-    */
-    google.protobuf.Struct tags = 5;
+    // is_required: false
+    google.protobuf.Struct tags = 4;
+    // is_required: true
+    string domain_id = 5;
 }
 
 message PolicyRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string policy_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
 
 message GetPolicyRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string policy_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated string only = 3;
 }
 
 message PolicyQuery {
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     spaceone.api.core.v1.Query query = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string policy_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string name = 3;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: false
     string domain_id = 4;
 }
 
@@ -154,14 +100,8 @@ message PoliciesInfo {
 }
 
 message PolicyStatQuery {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
