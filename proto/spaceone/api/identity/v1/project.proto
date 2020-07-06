@@ -57,53 +57,81 @@ service Project {
 
 message CreateProjectRequest {
 
-    string name = 1;                            // required
-    string project_group_id = 2;                // required
-    string domain_id = 3;                       // required
-    google.protobuf.Struct template_data = 4;   // optional
-    google.protobuf.Struct tags = 5;            // optional
+    // is_required: true
+    string name = 1;
+    // is_required: true
+    string project_group_id = 2;
+    // is_required: true
+    string domain_id = 3;
+    // is_required: false
+    google.protobuf.Struct template_data = 4;
+    // is_required: false
+    google.protobuf.Struct tags = 5;
 }
 
 message UpdateProjectRequest {
-    string project_id = 1;                      // required
-    string project_group_id = 2;                // optional
-    string name = 3;                            // optional
-    string domain_id = 4;                       // required
-    google.protobuf.Struct template_data = 5;   // optional
-    google.protobuf.Struct tags = 6;            // optional
+    // is_required: true
+    string project_id = 1;
+    // is_required: false
+    string project_group_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: true
+    string domain_id = 4;
+    // is_required: false
+    google.protobuf.Struct template_data = 5;
+    // is_required: false
+    google.protobuf.Struct tags = 6;
 }
 
 message ProjectRequest {
-    string project_id = 1;                      // required
-    string domain_id = 2;                       // required
+    // is_required: true
+    string project_id = 1;
+    // is_required: true
+    string domain_id = 2;
 }
 
 message GetProjectRequest {
-    string project_id = 1;                      // required
-    string domain_id = 2;                       // required
-    repeated string only = 3;                   // optional
+    // is_required: true
+    string project_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
 }
 
 message ProjectMemberRequest {
-    string project_id = 1;                      // required
-    string user_id = 2;                         // required
-    string domain_id = 3;                       // required
-    repeated string roles = 4;                  // required
-    repeated string labels = 5;                 // required
+    // is_required: true
+    string project_id = 1;
+    // is_required: true
+    string user_id = 2;
+    // is_required: true
+    string domain_id = 3;
+    // is_required: false
+    repeated string roles = 4;
+    // is_required: false
+    repeated string labels = 5;
 }
 
 message RemoveProjectMemberRequest {
-    string project_id = 1;                      // required
-    string user_id = 2;                         // required
-    string domain_id = 3;                       // required
+    // is_required: true
+    string project_id = 1;
+    // is_required: true
+    string user_id = 2;
+    // is_required: true
+    string domain_id = 3;
 }
 
 message ProjectQuery {
-    spaceone.api.core.v1.Query query = 1;       // optional
-    string project_id = 2;                      // optional
-    string project_group_id = 3;                // optional
-    string domain_id = 4;                       // required
-    string name = 5;                            // optional
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string project_id = 2;
+    string project_group_id = 3;
+    // is_required: true
+    string domain_id = 4;
+    // is_required: false
+    string name = 5;
 }
 
 message ProjectInfo {
@@ -125,15 +153,21 @@ message ProjectsInfo {
 }
 
 message ProjectStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;     // required
-    string domain_id = 2;                               // required
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
 }
 
 message ProjectMemberQuery {
-    spaceone.api.core.v1.Query query = 1;       // optional
-    string project_id = 2;                      // required
-    string domain_id = 3;                       // required
-    string user_id = 4;                         // optional
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: true
+    string project_id = 2;
+    // is_required: true
+    string domain_id = 3;
+    // is_required: false
+    string user_id = 4;
 }
 
 message ProjectMemberInfo {

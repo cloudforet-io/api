@@ -13,63 +13,30 @@ service Metric {
 }
 
 message MetricRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     google.protobuf.Struct options = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     google.protobuf.Struct secret_data = 2;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     google.protobuf.Value resource = 3;
 }
 
 message MetricDataRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     google.protobuf.Struct options = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     google.protobuf.Struct secret_data = 2;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     google.protobuf.Value resource = 3;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string metric = 4;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     google.protobuf.Timestamp start = 5;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     google.protobuf.Timestamp end = 6;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: false
     int32 period = 7;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: false
     string stat = 8;
 }
 
@@ -91,37 +58,19 @@ message MetricDataInfo {
 }
 
 message PluginMetricsResponse {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string resource_type = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated spaceone.api.core.v1.PluginAction actions = 2;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     MetricsInfo result = 3;
 }
 
 message PluginMetricDataResponse {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string resource_type = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated spaceone.api.core.v1.PluginAction actions = 2;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     MetricDataInfo result = 3;
 }

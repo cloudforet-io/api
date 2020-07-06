@@ -20,75 +20,36 @@ message JoinQuery {
         OUTER = 2;
         INNER = 3;
     }
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated string keys = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     JoinType type = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string data_source_id = 3;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string resource_type = 4;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 5;
 }
 
 message Formula {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string name = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string formula = 2;
 }
 
 message ResourceStatRequest {
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string data_source_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string resource_type = 2;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated JoinQuery join = 4;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated Formula formulas = 5;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 6;
 }

@@ -45,147 +45,69 @@ service Plugin {
 }
 
 message CreatePluginRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string name = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string service_type = 2;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string image = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string provider = 4;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct capability = 11;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct template = 12;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated string labels = 13;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct tags = 14;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string project_id = 21;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 22;
 }
 
 message UpdatePluginRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string plugin_id = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string name = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct capability = 11;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct template = 12;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated string labels = 13;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct tags = 14;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 21;
 }
 
 message PluginRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string plugin_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
 
 message RepositoryPluginRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string plugin_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string repository_id = 3;
 }
 
 message GetRepositoryPluginRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string plugin_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string repository_id = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated string only = 4;
 }
 
@@ -195,45 +117,21 @@ message PluginQuery {
         ENABLED = 1;
         DISABLED = 2;
     }
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     spaceone.api.core.v1.Query query = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string plugin_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string name = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     State state = 4;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string service_type = 5;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string provider = 6;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string repository_id = 7;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 8;
 }
 
@@ -270,25 +168,17 @@ message PluginsInfo {
 }
 
 message VersionsInfo {
-    repeated string version = 1;                // Deprecated
+    // desc: deprecated field
+    repeated string version = 1;
     int32 total_count = 2;
     repeated string results = 3;
 }
 
 message PluginStatQuery {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string repository_id = 2;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 3;
 }
