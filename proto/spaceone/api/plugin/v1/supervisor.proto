@@ -55,41 +55,64 @@ service Supervisor {
 }
 
 message PublishSupervisorRequest {
-    string name = 1;                        // required
-    string hostname = 2;                    // required
-    string secret_key = 3;                  // optional
-    repeated PluginInfo plugin_info = 4;    // optional
-    google.protobuf.Struct tags = 5;        // optional
-    bool is_public = 6;                     // optional
-    string domain_id = 7;                   // required
+    // is_required: true
+    string name = 1;
+    // is_required: true
+    string hostname = 2;
+    // is_required: false
+    string secret_key = 3;
+    // is_required: false
+    repeated PluginInfo plugin_info = 4;
+    // is_required: false
+    google.protobuf.Struct tags = 5;
+    // is_required: false
+    bool is_public = 6;
+    // is_required: true
+    string domain_id = 7;
 }
 
 message RegisterSupervisorRequest {
-    string supervisor_id = 1;               // required
-    string name = 2;                        // required
-    bool is_public = 3;                     // optional
-    int32 priority = 4;                     // optional
-    google.protobuf.Struct labels = 5;      // optional
-    google.protobuf.Struct tags = 6;        // optional
-    string domain_id = 7;                   // required
+    // is_required: true
+    string supervisor_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    bool is_public = 3;
+    // is_required: false
+    int32 priority = 4;
+    // is_required: false
+    google.protobuf.Struct labels = 5;
+    // is_required: false
+    google.protobuf.Struct tags = 6;
+    // is_required: true
+    string domain_id = 7;
 }
 
 message SupervisorRequest {
-    string supervisor_id = 1;               // required
-    string domain_id = 2;                   // required
+    // is_required: true
+    string supervisor_id = 1;
+    // is_required: true
+    string domain_id = 2;
 }
 
 message GetSupervisorRequest {
-    string supervisor_id = 1;               // required
-    string domain_id = 2;                   // required
-    repeated string only = 3;               // optional
+    // is_required: true
+    string supervisor_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
 }
 
 message RecoverPluginRequest {
-    string supervisor_id = 1;               // required
-    string plugin_id = 2;                   // required
-    string version = 3;                     // required
-    string domain_id = 4;                   // required
+    // is_required: true
+    string supervisor_id = 1;
+    // is_required: true
+    string plugin_id = 2;
+    // is_required: true
+    string version = 3;
+    // is_required: true
+    string domain_id = 4;
 }
 
 message SupervisorInfo {
@@ -115,30 +138,15 @@ message SupervisorInfo {
 }
 
 message SupervisorQuery {
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     spaceone.api.core.v1.Query query = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string supervisor_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string name = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     bool is_public = 4;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 5;
 }
 
@@ -148,15 +156,9 @@ message SupervisorsInfo {
 }
 
 message SupervisorStatQuery {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
 
@@ -168,45 +170,21 @@ message PluginQuery {
         RE_PROVISIONING = 3;
         ERROR = 4;
     }
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     spaceone.api.core.v1.Query query = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string supervisor_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string hostname = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string plugin_id = 4;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string version = 5;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     State state = 6;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string endpoint = 7;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 8;
 }
 

@@ -94,16 +94,26 @@ service User {
 }
 
 message CreateUserRequest {
-    string user_id = 1;                 // required
-    string password = 2;                // optional
-    string name = 3;                    // optional
-    string email = 4;                   // optional
-    string mobile = 5;                  // optional
-    string group = 6;                   // optional
-    string language = 7;                // optional
-    string timezone = 8;                // optional
-    google.protobuf.Struct tags = 9;    // optional
-    string domain_id = 10;              // optional
+    // is_required: true
+    string user_id = 1;
+    // is_required: false
+    string password = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    string email = 4;
+    // is_required: false
+    string mobile = 5;
+    // is_required: false
+    string group = 6;
+    // is_required: false
+    string language = 7;
+    // is_required: false
+    string timezone = 8;
+    // is_required: false
+    google.protobuf.Struct tags = 9;
+    // is_required: true
+    string domain_id = 10;
 }
 
 message UserInfo {
@@ -130,110 +140,71 @@ message UserInfo {
 }
 
 message UpdateUserRequest {
+    // is_required: true
     string user_id = 1;
+    // is_required: false
     string password = 2;
+    // is_required: false
     string name = 3;
+    // is_required: false
     string email = 4;
+    // is_required: false
     string mobile = 5;
+    // is_required: false
     string group = 6;
+    // is_required: false
     string language = 7;
+    // is_required: false
     string timezone = 8;
+    // is_required: false
     google.protobuf.Struct tags = 9;
+    // is_required: true
     string domain_id = 10;
 }
 
 message UpdateUserRoleRequest {
+    // is_required: true
     string user_id = 1;
+    // is_required: true
     google.protobuf.ListValue roles = 2;
+    // is_required: true
     string domain_id = 3;
 }
 
 message UserRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string user_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
 
 message GetUserRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string user_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated string only = 3;
 }
 
 message UserQuery {
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     spaceone.api.core.v1.Query query = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string user_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string name = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string state = 4;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string email = 5;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string mobile = 6;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string group = 7;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string role_id = 8;
-    /*
-    is_required: false
-    desc:
-    */
-    string project_id = 9;
-    /*
-    is_required: false
-    desc:
-    */
-    string project_group_id = 10;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string domain_id =11;
 }
 
@@ -243,15 +214,9 @@ message UsersInfo {
 }
 
 message UserStatQuery {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
 

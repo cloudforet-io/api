@@ -55,191 +55,92 @@ message ScheduleJoinQuery {
         OUTER = 2;
         INNER = 3;
     }
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated string keys = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     JoinType type = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string data_source_id = 3;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string resource_type = 4;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 5;
 }
 
 message ScheduleFormula {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string name = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string formula = 2;
 }
 
 message QueryOption {
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string data_source_id = 2;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string resource_type = 3;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 4;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated ScheduleJoinQuery join = 5;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated ScheduleFormula formulas = 6;
 }
 
 message AddScheduleRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string topic = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     QueryOption options = 2;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     Scheduled schedule = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct tags = 4;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 5;
 }
 
 message UpdateScheduleRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string schedule_id = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     Scheduled schedule = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct tags = 3;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 4;
 }
 
 message ScheduleRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string schedule_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
 
 message GetScheduleRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string schedule_id = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated string only = 3;
 }
 
 message ScheduleQuery {
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     spaceone.api.core.v1.Query query = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string schedule_id = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string topic = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string state = 4;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string data_source_id = 5;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string resource_type = 6;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 7;
 }
 
@@ -267,14 +168,8 @@ message SchedulesInfo {
 }
 
 message ScheduleStatQuery {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }

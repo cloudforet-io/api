@@ -35,132 +35,63 @@ service Provider {
 }
 
 message CreateProviderRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string provider = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string name = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct template = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct metadata = 4;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct capability = 5;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct tags = 6;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: true
     string domain_id = 7;
 }
 
 message UpdateProviderRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string provider = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string name = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct template = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct metadata = 4;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct capability = 5;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     google.protobuf.Struct tags = 6;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: true
     string domain_id = 7;
 }
 
 message ProviderRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string provider = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
 
 message GetProviderRequest {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string provider = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     repeated string only = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: true
     string domain_id = 3;
 }
 
 message ProviderQuery {
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     spaceone.api.core.v1.Query query = 1;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string provider = 2;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: false
     string name = 3;
-    /*
-    is_required: false
-    desc:
-    */
+    // is_required: true
     string domain_id = 4;
 }
 
@@ -180,9 +111,8 @@ message ProvidersInfo {
 }
 
 message ProviderStatQuery {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
 }
