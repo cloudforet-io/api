@@ -7,9 +7,11 @@ import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 
 service Plugin {
+    //desc: Retrieve plugins end points.
     rpc get_plugin_endpoint (PluginEndpointRequest) returns (PluginEndpoint) {
         option (google.api.http) = { post: "/plugin/v1/plugin/{plugin_id}/get-endpoint" };
     }
+    //desc: send a notification if it has failed.
     rpc notify_failure (PluginFailureRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { put: "/plugin/v1/plugin/{plugin_id}/notify-failure" };
     }
