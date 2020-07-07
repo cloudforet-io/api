@@ -1,0 +1,128 @@
+syntax = "proto3";
+
+package spaceone.api.repository.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/repository/v1/repository.proto";
+
+service Policy {
+    rpc create (CreatePolicyRequest) returns (PolicyInfo) {
+        option (google.api.http) = { post: "/repository/v1/policies" };
+    }
+    rpc update (UpdatePolicyRequest) returns (PolicyInfo) {
+        option (google.api.http) = { put: "/repository/v1/policy/{policy}" };
+    }
+    rpc delete (PolicyRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/repository/v1/policy/{policy}" };
+    }
+    rpc get (GetRepositoryPolicyRequest) returns (PolicyInfo) {
+        option (google.api.http) = { get: "/repository/v1/policies/{policy}" };
+    }
+    rpc list (PolicyQuery) returns (PoliciesInfo) {
+        option (google.api.http) = {
+            get: "/repository/v1/policies"
+            additional_bindings {
+                post: "/repository/v1/policies/search"
+            }
+        };
+    }
+    rpc stat (PolicyStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/repository/v1/policies/stat" };
+    }
+}
+
+message CreatePolicyRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: true
+    repeated string permissions = 2;
+    // is_required: false
+    repeated string labels = 11;
+    // is_required: false
+    google.protobuf.Struct tags = 12;
+    // is_required: false
+    string project_id = 21;
+    // is_required: true
+    string domain_id = 22;
+}
+
+message UpdatePolicyRequest {
+    // is_required: true
+    string policy_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    repeated string permissions = 3;
+    // is_required: false
+    repeated string labels = 11;
+    // is_required: false
+    google.protobuf.Struct tags = 12;
+    // is_required: true
+    string domain_id = 21;
+}
+
+message PolicyRequest {
+    // is_required: true
+    string policy_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetRepositoryPolicyRequest {
+    // is_required: true
+    string policy_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    string repository_id = 3;
+    // is_required: false
+    repeated string only = 4;
+}
+
+message PolicyQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string policy_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    string project_id = 4;
+    // is_required: true
+    string repository_id = 5;
+    // is_required: true
+    string domain_id = 6;
+}
+
+message PolicyInfo {
+    string name = 1;
+    string service_type = 2;
+
+    google.protobuf.Struct policy = 11;
+    repeated string labels = 12;
+    google.protobuf.Struct tags = 13;
+
+    RepositoryInfo repository_info = 21;
+    string project_id = 22;
+    string domain_id = 23;
+
+    google.protobuf.Timestamp created_at = 31;
+}
+
+message PoliciesInfo {
+    repeated PolicyInfo results = 1;
+    int32 total_count = 2;
+}
+
+message PolicyStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string repository_id = 2;
+    // is_required: true
+    string domain_id = 3;
+}
