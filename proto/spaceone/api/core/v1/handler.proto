@@ -5,16 +5,20 @@ package spaceone.api.core.v1;
 import "google/protobuf/struct.proto";
 
 message AuthorizationRequest {
+    enum Scope {
+        NONE = 0;
+        PROJECT = 1;
+    }
+
     string service = 1;
     string resource = 2;
     string verb = 3;
-    string project_id = 4;
+    Scope scope = 4;
+    string project_id = 5;
 }
 
 message AuthorizationResponse {
     string role_type = 1;
-    bool allowed = 2;
-    string reason = 3;
 }
 
 message AuthenticationRequest {
