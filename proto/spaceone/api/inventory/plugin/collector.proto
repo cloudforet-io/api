@@ -2,11 +2,18 @@ syntax = "proto3";
 
 package spaceone.api.inventory.plugin;
 
+import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 
 service Collector {
-    rpc verify (VerifyRequest) returns (CollectorVerifyInfo) {}
+    rpc init (InitRequest) returns (PluginInfo) {}
+    rpc verify (VerifyRequest) returns (google.protobuf.Empty) {}
     rpc collect (CollectRequest) returns (stream ResourceInfo) {}
+}
+
+message InitRequest {
+    // is_required: true
+    google.protobuf.Struct options = 1;
 }
 
 message VerifyRequest {
@@ -23,10 +30,6 @@ message CollectRequest {
     google.protobuf.Struct secret_data = 2;
     // is_required: true
     google.protobuf.Struct filter = 3;
-    // is_required: true
-    string zone_id = 4;
-    // is_required: true
-    string pool_id = 5;
 }
 
 
@@ -45,10 +48,13 @@ message ResourceInfo {
     string message = 2;
     string resource_type = 3;
     google.protobuf.Struct match_rules = 4;
-    google.protobuf.Struct replace_rules = 5;
     google.protobuf.Struct resource = 6;
 }
 
 message CollectorVerifyInfo {
     google.protobuf.Struct options = 1;
+}
+
+message PluginInfo {
+    google.protobuf.Struct metadata = 1;
 }

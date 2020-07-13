@@ -15,6 +15,12 @@ service Collector {
     rpc update (UpdateCollectorRequest) returns (CollectorInfo) {
         option (google.api.http) = { put: "/inventory/v1/collector/{collector_id}" };
     }
+    rpc update_plugin (UpdatePluginRequest) returns (CollectorInfo) {
+        option (google.api.http) = { put: "/inventory/v1/collector/{collector_id}/plugin" };
+    }
+    rpc verify_plugin (VerifyPluginRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/inventory/v1/collector/{collector_id}/plugin/verify" };
+    }
     rpc delete (CollectorRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/inventory/v1/collector/{collector_id}" };
     }
@@ -41,10 +47,6 @@ service Collector {
     rpc collect (CollectRequest) returns (JobInfo) {
         option (google.api.http) = { post: "/inventory/v1/collector/{collector_id}/collect" };
     }
-    rpc verify_plugin (VerifyPluginRequest) returns (VerifyInfo) {
-        option (google.api.http) = { post: "/inventory/v1/collector/{collector_id}/plugin/verify" };
-    }
-
     rpc add_schedule (CreateScheduleRequest) returns (ScheduleInfo) {
         option (google.api.http) = { post: "/inventory/v1/collector/{collector_id}/schedule" };
     }
@@ -74,6 +76,7 @@ message PluginInfo {
     string secret_id = 4;
     string secret_group_id = 5;
     string provider = 6;
+    string service_account_id = 7;
 }
 
 message CreateCollectorRequest {
@@ -87,6 +90,13 @@ message CreateCollectorRequest {
     google.protobuf.Struct tags = 5;
     // is_required: true
     string domain_id = 6;
+    // is_required: false
+    // desc: default is true
+    bool is_public = 10;
+    // is_required: false
+    // desc: if is_public is false, project_id is required
+    string project_id = 11;
+
 }
 
 message UpdateCollectorRequest {
@@ -95,6 +105,7 @@ message UpdateCollectorRequest {
     // is_required: false
     string name = 2;
     // is_required: false
+    // note: deprecated, use update_plugin
     PluginInfo plugin_info = 3;
     // is_required: false
     int32  priority = 4;
@@ -102,6 +113,17 @@ message UpdateCollectorRequest {
     google.protobuf.Struct tags = 6;
     // is_required: true
     string domain_id = 7;
+}
+
+message UpdatePluginRequest {
+    // is_required: true
+    string collector_id = 1;
+    // is_required: false
+    string version = 2;
+    // is_required: false
+    google.protobuf.Struct options = 3;
+    // is_required: true
+    string domain_id = 4;
 }
 
 message CollectorRequest {
@@ -176,6 +198,8 @@ message CollectorInfo {
     string domain_id = 10;
     string provider = 11;
     google.protobuf.Struct capability = 12;
+    bool is_public = 20;
+    string project_id = 21;
 }
 
 message CollectorsInfo {
