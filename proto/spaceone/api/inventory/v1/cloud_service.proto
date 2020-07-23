@@ -7,7 +7,6 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
-import "spaceone/api/inventory/v1/region.proto";
 
 
 service CloudService {
@@ -60,12 +59,15 @@ message CreateServiceRequest {
     CloudServiceReference reference = 13;
     // is_required: false
     google.protobuf.Struct tags = 14;
-    // is_required: false
-    string region_id = 21;
+
     // is_required: false
     string project_id = 22;
     // is_required: true
     string domain_id = 23;
+    // is_required: false
+    string region_code = 24;
+    // is_required: false
+    string region_type = 25;
 }
 
 message UpdateCloudServiceRequest {
@@ -79,8 +81,7 @@ message UpdateCloudServiceRequest {
     CloudServiceReference reference = 13;
     // is_required: false
     google.protobuf.Struct tags = 14;
-    // is_required: false
-    string region_id = 21;
+
     // is_required: false
     string project_id = 22;
     // is_required: true
@@ -129,12 +130,15 @@ message CloudServiceQuery {
     string provider = 5;
     // is_required: false
     string state = 6;
-    // is_required: false
-    string region_id = 21;
+
     // is_required: false
     string project_id = 24;
     // is_required: true
     string domain_id = 25;
+    // is_required: false
+    string region_code = 26;
+    // is_required: false
+    string region_type = 27;
 }
 
 message CloudServiceInfo {
@@ -150,9 +154,10 @@ message CloudServiceInfo {
     google.protobuf.Struct tags = 14;
     google.protobuf.Struct collection_info = 15;
 
-    RegionInfo region_info = 21;
     string project_id = 22;
     string domain_id = 23;
+    string region_code = 24;
+    string region_type = 25;
 
     google.protobuf.Timestamp created_at = 31;
     google.protobuf.Timestamp updated_at = 32;
