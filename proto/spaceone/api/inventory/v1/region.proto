@@ -42,6 +42,11 @@ message CreateRegionRequest {
     google.protobuf.Struct tags = 2;
     // is_required: true
     string domain_id = 3;
+
+    // is_required: true
+    string region_code = 4;
+    // is_required: true
+    string region_type = 5;
 }
 
 message UpdateRegionRequest {
@@ -80,6 +85,11 @@ message RegionQuery {
     string name = 3;
     // is_required: true
     string domain_id = 4;
+
+    // is_required: false
+    string region_code = 5;
+    // is_required: false
+    string region_type = 6;
 }
 
 message RegionInfo {
@@ -96,6 +106,10 @@ message RegionInfo {
     string domain_id = 5;
     google.protobuf.Timestamp created_at = 6;
     google.protobuf.Timestamp deleted_at = 7;
+
+    string region_code = 8;
+    string region_type = 9;
+    google.protobuf.Struct collection_info = 10;
 }
 
 message RegionsInfo {
