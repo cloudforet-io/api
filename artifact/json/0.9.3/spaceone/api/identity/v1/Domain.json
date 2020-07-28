@@ -1,0 +1,875 @@
+{
+  "files": [
+    {
+      "name": "spaceone/api/identity/v1/domain.proto",
+      "description": "",
+      "package": "spaceone.api.identity.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [
+        {
+          "name": "State",
+          "longName": "DomainInfo.State",
+          "fullName": "spaceone.api.identity.v1.DomainInfo.State",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "State",
+          "longName": "DomainQuery.State",
+          "fullName": "spaceone.api.identity.v1.DomainQuery.State",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "CreateDomainRequest",
+          "longName": "CreateDomainRequest",
+          "fullName": "spaceone.api.identity.v1.CreateDomainRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "is_required: false",
+              "label": "",
+              "type": "PluginInfo",
+              "longType": "PluginInfo",
+              "fullType": "spaceone.api.identity.v1.PluginInfo",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "config",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DomainInfo",
+          "longName": "DomainInfo",
+          "fullName": "spaceone.api.identity.v1.DomainInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "State",
+              "longType": "DomainInfo.State",
+              "fullType": "spaceone.api.identity.v1.DomainInfo.State",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "",
+              "label": "",
+              "type": "PluginInfo",
+              "longType": "PluginInfo",
+              "fullType": "spaceone.api.identity.v1.PluginInfo",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "config",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "created_at",
+              "description": "",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "deleted_at",
+              "description": "",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DomainKeyResponse",
+          "longName": "DomainKeyResponse",
+          "fullName": "spaceone.api.identity.v1.DomainKeyResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_key",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DomainQuery",
+          "longName": "DomainQuery",
+          "fullName": "spaceone.api.identity.v1.DomainQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Query",
+              "longType": "spaceone.api.core.v1.Query",
+              "fullType": "spaceone.api.core.v1.Query",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "is_required: false",
+              "label": "",
+              "type": "State",
+              "longType": "DomainQuery.State",
+              "fullType": "spaceone.api.identity.v1.DomainQuery.State",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DomainRequest",
+          "longName": "DomainRequest",
+          "fullName": "spaceone.api.identity.v1.DomainRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DomainStatQuery",
+          "longName": "DomainStatQuery",
+          "fullName": "spaceone.api.identity.v1.DomainStatQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "is_required: true",
+              "label": "",
+              "type": "StatisticsQuery",
+              "longType": "spaceone.api.core.v1.StatisticsQuery",
+              "fullType": "spaceone.api.core.v1.StatisticsQuery",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DomainsInfo",
+          "longName": "DomainsInfo",
+          "fullName": "spaceone.api.identity.v1.DomainsInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "DomainInfo",
+              "longType": "DomainInfo",
+              "fullType": "spaceone.api.identity.v1.DomainInfo",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetDomainRequest",
+          "longName": "GetDomainRequest",
+          "fullName": "spaceone.api.identity.v1.GetDomainRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "only",
+              "description": "is_required: false",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PluginInfo",
+          "longName": "PluginInfo",
+          "fullName": "spaceone.api.identity.v1.PluginInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "plugin_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateDomainRequest",
+          "longName": "UpdateDomainRequest",
+          "fullName": "spaceone.api.identity.v1.UpdateDomainRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "is_required: false",
+              "label": "",
+              "type": "PluginInfo",
+              "longType": "PluginInfo",
+              "fullType": "spaceone.api.identity.v1.PluginInfo",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "config",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "Domain",
+          "longName": "Domain",
+          "fullName": "spaceone.api.identity.v1.Domain",
+          "description": "",
+          "methods": [
+            {
+              "name": "create",
+              "description": "",
+              "requestType": "CreateDomainRequest",
+              "requestLongType": "CreateDomainRequest",
+              "requestFullType": "spaceone.api.identity.v1.CreateDomainRequest",
+              "requestStreaming": false,
+              "responseType": "DomainInfo",
+              "responseLongType": "DomainInfo",
+              "responseFullType": "spaceone.api.identity.v1.DomainInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v1/domains"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update",
+              "description": "",
+              "requestType": "UpdateDomainRequest",
+              "requestLongType": "UpdateDomainRequest",
+              "requestFullType": "spaceone.api.identity.v1.UpdateDomainRequest",
+              "requestStreaming": false,
+              "responseType": "DomainInfo",
+              "responseLongType": "DomainInfo",
+              "responseFullType": "spaceone.api.identity.v1.DomainInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/identity/v1/domain/{domain_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "delete",
+              "description": "",
+              "requestType": "DomainRequest",
+              "requestLongType": "DomainRequest",
+              "requestFullType": "spaceone.api.identity.v1.DomainRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "DELETE",
+                      "pattern": "/identity/v1/domain/{domain_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "enable",
+              "description": "",
+              "requestType": "DomainRequest",
+              "requestLongType": "DomainRequest",
+              "requestFullType": "spaceone.api.identity.v1.DomainRequest",
+              "requestStreaming": false,
+              "responseType": "DomainInfo",
+              "responseLongType": "DomainInfo",
+              "responseFullType": "spaceone.api.identity.v1.DomainInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/identity/v1/domain/{domain_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "disable",
+              "description": "",
+              "requestType": "DomainRequest",
+              "requestLongType": "DomainRequest",
+              "requestFullType": "spaceone.api.identity.v1.DomainRequest",
+              "requestStreaming": false,
+              "responseType": "DomainInfo",
+              "responseLongType": "DomainInfo",
+              "responseFullType": "spaceone.api.identity.v1.DomainInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/identity/v1/domain/{domain_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get",
+              "description": "",
+              "requestType": "GetDomainRequest",
+              "requestLongType": "GetDomainRequest",
+              "requestFullType": "spaceone.api.identity.v1.GetDomainRequest",
+              "requestStreaming": false,
+              "responseType": "DomainInfo",
+              "responseLongType": "DomainInfo",
+              "responseFullType": "spaceone.api.identity.v1.DomainInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/identity/v1/domain/{domain_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "list",
+              "description": "",
+              "requestType": "DomainQuery",
+              "requestLongType": "DomainQuery",
+              "requestFullType": "spaceone.api.identity.v1.DomainQuery",
+              "requestStreaming": false,
+              "responseType": "DomainsInfo",
+              "responseLongType": "DomainsInfo",
+              "responseFullType": "spaceone.api.identity.v1.DomainsInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/identity/v1/domains"
+                    },
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v1/domains/search"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "stat",
+              "description": "",
+              "requestType": "DomainStatQuery",
+              "requestLongType": "DomainStatQuery",
+              "requestFullType": "spaceone.api.identity.v1.DomainStatQuery",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v1/domains/stat"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get_public_key",
+              "description": "",
+              "requestType": "AuthenticationRequest",
+              "requestLongType": ".spaceone.api.core.v1.AuthenticationRequest",
+              "requestFullType": "spaceone.api.core.v1.AuthenticationRequest",
+              "requestStreaming": false,
+              "responseType": "AuthenticationResponse",
+              "responseLongType": ".spaceone.api.core.v1.AuthenticationResponse",
+              "responseFullType": "spaceone.api.core.v1.AuthenticationResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "get_domain_key",
+              "description": "",
+              "requestType": "AuthenticationRequest",
+              "requestLongType": ".spaceone.api.core.v1.AuthenticationRequest",
+              "requestFullType": "spaceone.api.core.v1.AuthenticationRequest",
+              "requestStreaming": false,
+              "responseType": "DomainKeyResponse",
+              "responseLongType": "DomainKeyResponse",
+              "responseFullType": "spaceone.api.identity.v1.DomainKeyResponse",
+              "responseStreaming": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}
