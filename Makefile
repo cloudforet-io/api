@@ -1,4 +1,4 @@
-TARGET = core identity repository plugin secret inventory monitoring statistics config
+TARGET = sample core identity repository plugin secret inventory monitoring statistics config
 VERSION = v1
 DOCKER_NAME = spaceone/api_builder
 
