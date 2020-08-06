@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package spaceone.api.report.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "google/api/http.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Template {
+    rpc get (GetTemplateRequest) returns (TemplateInfo) {
+        option (google.api.http) = {post: "/report/v1/template/{template_id}"};
+    }
+    rpc list (TemplateQuery) returns (TemplatesInfo) {
+        option (google.api.http) = {
+            get: "/report/v1/templates"
+            additional_bindings {
+                post: "/report/v1/templates/search"
+            }
+        };
+    }
+
+}
+
+message GetTemplateRequest {
+    // is_required: true
+    string domain_id = 1;
+    // is_required: true
+    string template_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+enum TemplateState  {
+    ENABLE = 0;
+    DISABLE = 1;
+}
+
+message TemplateQuery {
+    // is_required: true
+    string domain_id = 1;
+    // is_required: false
+    string template_id = 2;
+    // is_required : false
+    string name = 3;
+    // is_required : false
+    TemplateState state = 4;
+}
+
+message TemplateInfo {
+    string domain_id = 1;
+    string template_id = 2;
+    string name = 3;
+    TemplateState state = 4;
+    google.protobuf.Struct options = 5;
+}
+
+message TemplatesInfo {
+    repeated TemplateInfo results = 1;
+    int32 total_count = 2;
+}
