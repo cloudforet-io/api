@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service TaskItem {
+    rpc list (TaskItemQuery) returns (TaskItemsInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/task-items"
+            additional_bindings {
+                post: "/inventory/v1/task-items/search"
+            }
+        };
+    }
+    rpc stat (TaskItemStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/task-items/stat" };
+    }
+}
+
+
+enum TaskItemState {
+    TASK_ITEM_STATE_NONE = 0;
+    CREATE = 1;
+    UPDATE = 2;
+    DELETE = 3;
+    FAILURE = 4;
+}
+
+message TaskItemQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string resource_id = 2;
+    // is_required: false
+    string resource_type = 3;
+    // is_required: false
+    string job_task_id = 4;
+    // is_required: false
+    string job_id = 5;
+    // is_required: false
+    TaskItemState state = 6;
+    // is_required: true
+    string domain_id = 20;
+}
+
+message ErrorInfo {
+    string error_code = 1;
+    string message = 2;
+    google.protobuf.Struct additional = 3;
+}
+
+message TaskItemInfo {
+    string resource_id = 1;
+    string resource_type = 2;
+    repeated string references = 3;
+    string job_task_id = 4;
+    string job_id = 5;
+    TaskItemState state = 6;
+    repeated ErrorInfo errors = 7;
+
+    string project_id = 20;
+    string domain_id = 21;
+}
+
+message TaskItemsInfo {
+    repeated TaskItemInfo results = 1;
+    int32 total_count = 2;
+}
+
+message TaskItemStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
