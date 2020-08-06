@@ -20,16 +20,16 @@ service TaskItem {
     }
 }
 
+enum TaskItemState {
+    TASK_ITEM_STATE_NONE = 0;
+    TASK_ITEM_CREATE = 1;
+    TASK_ITEM_UPDATE = 2;
+    TASK_ITEM_DELETE = 3;
+    TASK_ITEM_FAILURE = 4;
+}
 
 message TaskItemQuery {
-    enum TaskItemState {
-        TASK_ITEM_STATE_NONE = 0;
-        CREATE = 1;
-        UPDATE = 2;
-        DELETE = 3;
-        FAILURE = 4;
-    }
-    // is_required: false
+   // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
     string resource_id = 2;
@@ -52,13 +52,6 @@ message ErrorInfo {
 }
 
 message TaskItemInfo {
-    enum TaskItemState {
-        TASK_ITEM_STATE_NONE = 0;
-        CREATE = 1;
-        UPDATE = 2;
-        DELETE = 3;
-        FAILURE = 4;
-    }
     string resource_id = 1;
     string resource_type = 2;
     repeated string references = 3;

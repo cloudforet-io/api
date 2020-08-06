@@ -21,17 +21,15 @@ service JobTask {
     }
 }
 
-
-
+enum JobTaskState {
+    JOB_TASK_STATE_NONE = 0;
+    JOB_TASK_PENDING = 1;
+    JOB_TASK_IN_PROGRESS = 2;
+    JOB_TASK_SUCCESS = 3;
+    JOB_TASK_FAILURE = 4;
+}
 
 message JobTaskQuery {
-    enum JobTaskState {
-        JOB_TASK_STATE_NONE = 0;
-        PENDING = 1;
-        IN_PROGRESS = 2;
-        SUCCESS = 3;
-        FAILURE = 4;
-    }
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -59,13 +57,6 @@ message ErrorInfo {
 }
 
 message JobTaskInfo {
-    enum JobTaskState {
-        JOB_TASK_STATE_NONE = 0;
-        PENDING = 1;
-        IN_PROGRESS = 2;
-        SUCCESS = 3;
-        FAILURE = 4;
-    }
     string job_task_id = 1;
     string job_id = 2;
     JobTaskState state = 3;
