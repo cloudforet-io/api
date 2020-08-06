@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service JobTask {
+    rpc list (JobTaskQuery) returns (JobTasksInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/job-tasks"
+            additional_bindings {
+                post: "/inventory/v1/job-tasks/search"
+            }
+        };
+    }
+    rpc stat (JobTaskStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/job-tasks/stat" };
+    }
+}
+
+
+enum JobTaskState {
+    JOB_TASK_STATE_NONE = 0;
+    PENDING = 1;
+    IN_PROGRESS = 2;
+    SUCCESS = 3;
+    FAILURE = 4;
+}
+
+message JobTaskQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string job_task_id = 2;
+    // is_required: false
+    string job_id = 3;
+    // is_required: false
+    JobTaskState state = 4;
+    // is_required: true
+    string domain_id = 20;
+}
+
+message SecretInfo {
+    string secret_id = 1;
+    string name = 2;
+    string provider = 3;
+    string service_account_id = 4;
+    string project_id = 5;
+}
+
+message ErrorInfo {
+    string error_code = 1;
+    string message = 2;
+    google.protobuf.Struct additional = 3;
+}
+
+message JobTaskInfo {
+    string job_task_id = 1;
+    string job_id = 2;
+    JobTaskState state = 3;
+    SecretInfo secret_info = 4;
+    repeated ErrorInfo errors = 5;
+
+    string project_id = 20;
+    string domain_id = 21;
+
+    google.protobuf.Timestamp started_at = 30;
+    google.protobuf.Timestamp finished_at = 31;
+}
+
+message JobTasksInfo {
+    repeated JobTaskInfo results = 1;
+    int32 total_count = 2;
+}
+
+message JobTaskStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
