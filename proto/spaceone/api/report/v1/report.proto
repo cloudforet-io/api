@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package spaceone.api.report.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "google/api/http.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/report/v1/storage.proto";
+
+service Report {
+    rpc get (GetReportRequest) returns (ReportInfo) {
+        option (google.api.http) = {get: "/report/v1/report/{report_id}"};
+    }
+    rpc list (ReportQuery) returns (ReportsInfo) {
+        option (google.api.http) = {
+            get: "/report/v1/reports"
+            additional_bindings {
+                post: "/report/v1/reports/search"
+            }
+        };
+    }
+    rpc create (CreateReportRequest) returns (ReportInfo) {
+        option (google.api.http) = {post: "/report/v1/reports"};
+    }
+}
+
+message GetReportRequest {
+    // is_required: true
+    string domain_id = 1;
+    // is_required: true
+    string report_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message ReportQuery {
+    // is_required: true
+    string domain_id = 1;
+    // is_required: false
+    spaceone.api.core.v1.Query query = 2;
+    // is_required: false
+    string report_id = 3;
+    // is_required : false
+    string template_id = 4;
+    // is_required : false
+    string storage_id = 5;
+    // is_required : false
+    string schedule_id = 6;
+    // is_required : false
+    string created_by = 7;
+    // is_required : false
+    ReportInfo.State state = 8;
+}
+
+message CreateReportRequest {
+    // is_required: true
+    string domain_id = 1;
+    // is_required: true
+    string template_id = 2;
+    // is_required : true
+    string name = 3;
+    // is_required : false
+    google.protobuf.Struct template_options = 4;
+    // is_required : false
+    string storage_id = 5;
+}
+
+message ReportError {
+    string code = 1;
+    string message = 2;
+}
+
+message ReportInfo {
+    enum State {
+        CREATED = 0;
+        IN_PROGRESS = 1;
+        FAILURE = 2;
+        TIMEOUT = 3;
+        CANCELED = 4;
+        FINISHED = 5;
+    }
+    string domain_id = 1;
+    string report_id = 2;
+    string template_id = 3;
+    spaceone.api.report.v1.StorageInfo storage_info = 4;
+    string storage_path = 5;
+    google.protobuf.Struct template_options = 6;
+    State state = 7;
+    string download_url = 8;
+    string created_by = 9;
+    string schedule_id = 10;
+    google.protobuf.Timestamp created_at = 11;
+    ReportError error = 12;
+}
+
+message ReportsInfo {
+    repeated ReportInfo results = 1;
+    int32 total_count = 2;
+}
