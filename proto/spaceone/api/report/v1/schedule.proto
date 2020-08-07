@@ -90,7 +90,10 @@ message ScheduleStatQuery {
     // is_required: true
     string domain_id = 2;
 }
-
+enum ScheduleState  {
+    ENABLE = 0;
+    DISABLE = 1;
+}
 
 message ScheduleQuery {
     // is_required: true
@@ -107,7 +110,10 @@ message ScheduleQuery {
     string storage_id = 6;
     // is_required : false
     google.protobuf.Timestamp created_at = 7;
+    // is_required : false
+    ScheduleState state = 8;
 }
+
 
 message ScheduleInfo {
     string domain_id = 1;
@@ -116,9 +122,10 @@ message ScheduleInfo {
     string template_id = 4;
     google.protobuf.Struct template_options = 5;
     string storage_id = 6;
-    google.protobuf.Struct schedule = 7;
-    google.protobuf.Timestamp created_at = 8;
-    google.protobuf.Timestamp last_schedule_at = 9;
+    ScheduleState state = 7;
+    google.protobuf.Struct schedule = 8;
+    google.protobuf.Timestamp created_at = 9;
+    google.protobuf.Timestamp last_schedule_at = 10;
 }
 
 message SchedulesInfo {
