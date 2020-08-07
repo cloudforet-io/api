@@ -34,12 +34,13 @@ message GetTemplateRequest {
     repeated string only = 3;
 }
 
-enum TemplateState  {
-    ENABLE = 0;
-    DISABLE = 1;
-}
+
 
 message TemplateQuery {
+    enum State  {
+        ENABLE = 0;
+        DISABLE = 1;
+    }
     // is_required: true
     string domain_id = 1;
     // is_required: false
@@ -47,13 +48,17 @@ message TemplateQuery {
     // is_required : false
     string name = 3;
     // is_required : false
-    TemplateState state = 4;
+    State state = 4;
 }
 
 message TemplateInfo {
+    enum State  {
+        ENABLE = 0;
+        DISABLE = 1;
+    }
     string template_id = 1;
     string name = 2;
-    TemplateState state = 3;
+    State state = 3;
     google.protobuf.Struct options = 4;
 }
 

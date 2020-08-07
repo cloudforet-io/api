@@ -90,12 +90,13 @@ message ScheduleStatQuery {
     // is_required: true
     string domain_id = 2;
 }
-enum ScheduleState  {
-    ENABLE = 0;
-    DISABLE = 1;
-}
+
 
 message ScheduleQuery {
+    enum State  {
+        ENABLE = 0;
+        DISABLE = 1;
+    }
     // is_required: true
     string domain_id = 1;
     // is_required: false
@@ -111,18 +112,22 @@ message ScheduleQuery {
     // is_required : false
     google.protobuf.Timestamp created_at = 7;
     // is_required : false
-    ScheduleState state = 8;
+    State state = 8;
 }
 
 
 message ScheduleInfo {
+    enum State  {
+        ENABLE = 0;
+        DISABLE = 1;
+    }
     string domain_id = 1;
     string schedule_id = 2;
     string name = 3;
     string template_id = 4;
     google.protobuf.Struct template_options = 5;
     string storage_id = 6;
-    ScheduleState state = 7;
+    State state = 7;
     google.protobuf.Struct schedule = 8;
     google.protobuf.Timestamp created_at = 9;
     google.protobuf.Timestamp last_schedule_at = 10;
