@@ -6,6 +6,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/inventory/v1/collector.proto";
 
 service JobTask {
     rpc list (JobTaskQuery) returns (JobTasksInfo) {
@@ -21,15 +22,14 @@ service JobTask {
     }
 }
 
-enum JobTaskState {
-    JOB_TASK_STATE_NONE = 0;
-    JOB_TASK_PENDING = 1;
-    JOB_TASK_IN_PROGRESS = 2;
-    JOB_TASK_SUCCESS = 3;
-    JOB_TASK_FAILURE = 4;
-}
-
 message JobTaskQuery {
+    enum JobTaskState {
+        JOB_TASK_STATE_NONE = 0;
+        PENDING = 1;
+        IN_PROGRESS = 2;
+        SUCCESS = 3;
+        FAILURE = 4;
+    }
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -50,18 +50,19 @@ message SecretInfo {
     string project_id = 5;
 }
 
-message ErrorInfo {
-    string error_code = 1;
-    string message = 2;
-    google.protobuf.Struct additional = 3;
-}
-
 message JobTaskInfo {
+    enum JobTaskState {
+        JOB_TASK_STATE_NONE = 0;
+        PENDING = 1;
+        IN_PROGRESS = 2;
+        SUCCESS = 3;
+        FAILURE = 4;
+    }
     string job_task_id = 1;
     string job_id = 2;
     JobTaskState state = 3;
     SecretInfo secret_info = 4;
-    repeated ErrorInfo errors = 5;
+    repeated spaceone.api.inventory.v1.ErrorInfo errors = 5;
 
     string project_id = 20;
     string domain_id = 21;

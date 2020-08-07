@@ -219,6 +219,12 @@ message VerifyInfo {
     bool status = 1;
 }
 
+message ErrorInfo {
+    string error_code = 1;
+    string message = 2;
+    google.protobuf.Struct additional = 3;
+}
+
 message JobInfo {
 	enum State {
 		NONE = 0;
@@ -240,7 +246,8 @@ message JobInfo {
     google.protobuf.Timestamp finished_at = 8;
     CollectorInfo collector_info = 10;
     google.protobuf.Struct filter = 11;
-    repeated string collected_resources = 20;
+    repeated ErrorInfo errors = 20;
+    int32 total_tasks = 21;
 }
 
 message Scheduled {
