@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package spaceone.api.power_scheduler.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service Schedule {
+    rpc create (CreateScheduleRequest) returns (ScheduleInfo) {
+        option (google.api.http) = { post: "/power-scheduler/v1/schedules" };
+    }
+    rpc update (UpdateScheduleRequest) returns (ScheduleInfo) {
+        option (google.api.http) = { put: "/power-scheduler/v1/schedule/{schedule_id}" };
+    }
+    rpc delete (ScheduleRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/power-scheduler/v1/schedule/{schedule_id}" };
+    }
+    rpc get (GetScheduleRequest) returns (ScheduleInfo) {
+        option (google.api.http) = { get: "/power-scheduler/v1/schedule/{schedule_id}" };
+    }
+    rpc list (ScheduleQuery) returns (SchedulesInfo) {
+        option (google.api.http) = {
+            get: "/power-scheduler/v1/schedules"
+            additional_bindings {
+                post: "/power-scheduler/v1/schedules/search"
+            }
+        };
+    }
+    rpc stat (ScheduleStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/power-scheduler/v1/schedules/stat" };
+    }
+}
+
+message CreateScheduleRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: false
+    google.protobuf.Struct tags = 11;
+    // is_required: true
+    string project_id = 21;
+    // is_required: true
+    string domain_id = 22;
+}
+
+message UpdateScheduleRequest {
+    // is_required: true
+    string schedule_id = 1;
+    // is_required: false
+    google.protobuf.Struct tags = 11;
+    // is_required: true
+    string domain_id = 21;
+}
+
+message ScheduleRequest {
+    // is_required: true
+    string schedule_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetScheduleRequest {
+    // is_required: true
+    string schedule_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message ScheduleQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string schedule_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: true
+    string state = 4;
+    // is_required: true
+    string resource_group_id = 5;
+    // is_required: true
+    string project_id = 6;
+    // is_required: true
+    string domain_id = 7;
+}
+
+message ResourceGroup {
+    string resource_group_id = 1;
+    int32 priority = 2;
+}
+
+message ScheduleInfo {
+    string schedule_id = 1;
+    string name = 2;
+    string state = 3;
+
+    repeated ResourceGroup resource_groups = 11;
+    google.protobuf.Struct tags = 12;
+
+    string project_id = 21;
+    string domain_id = 22;
+    string created_by = 23;
+
+    google.protobuf.Timestamp created_at = 31;
+}
+
+message SchedulesInfo {
+    repeated ScheduleInfo results = 1;
+    int32 total_count = 2;
+}
+
+message ScheduleStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
