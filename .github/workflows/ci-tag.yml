@@ -43,6 +43,14 @@ jobs:
           echo "::set-env name=VERSION::$VERSION"
 
           echo "$VERSION">$LOCATION_VERSION/VERSION
+
+          # LATEST_TAG true or false
+          if [[ $VERSION =~ ^[0-9]\.[0-9]\.[0-9]$ ]];
+          then
+            echo "::set-env name=LATEST_TAG::true"
+          else
+            echo "::set-env name=LATEST_TAG::false"
+          fi
           EOF
 
           bash set_env.sh
@@ -91,6 +99,14 @@ jobs:
         run: |
           cd $LOCATION_SETUP_PY
           twine upload dist/*.whl --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }} --verbose
+
+      - name: Create the version branch automatically
+        if: env.LATEST_TAG == 'true'
+        uses: peterjgrainger/action-create-branch@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: ${{ env.VERSION }}
 
       - name: Slack
         if: always()
