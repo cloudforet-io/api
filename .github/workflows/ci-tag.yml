@@ -1,31 +1,48 @@
-name: SpaceONE CI
+name: SpaceONE CI Tag
 
 on:
   push:
-    branches:
-      - master
+    # recursive wild card
+    tags:
+      - "**"
+  workflow_dispatch:
+    inputs:
+      tag:
+        # can replace github.event.inputs.tag <=> steps.getTag.outputs.tag
+        default: 1.2.3
+
 jobs:
   initialize:
+    if: github.repository_owner == 'spaceone-dev'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: olegtarasov/get-tag@v2
+        id: getTag
+
+      - name: Set version
+        run: |
+          if [ ${{ steps.getTag.outputs.tag }} ]
+          then
+            echo "::set-env name=VERSION::${{ steps.getTag.outputs.tag }}"
+          else
+            echo "::set-env name=VERSION::${{ github.event.inputs.tag }}"
+          fi
 
       - name: Set environment virables
         env:
           # 이 곳에서 환경변수를 통해 설정 관리
-          PYPI_UPLOAD: true # upload pypi if this is true
           # LOCATION points the parent directory
           LOCATION_SETUP_PY: dist/python # optional. for pypi upload
           LOCATION_VERSION: . # the location for VERSION file (ex- . means the location of VERSION is ./VERSION)
         run: |
           cat <<EOF>set_env.sh
-          echo "::set-env name=SERVICE::$(cut -d'/' -f2 <<<${{github.repository}})"
-          echo "::set-env name=PYPI_UPLOAD::$PYPI_UPLOAD"
-          echo "::set-env name=DOCKER_UPLOAD::$DOCKER_UPLOAD"
           echo "::set-env name=LOCATION_SETUP_PY::$LOCATION_SETUP_PY"
           echo "::set-env name=LOCATION_VERSION::$LOCATION_VERSION"
-          echo "::set-env name=VERSION::$(cat $LOCATION_VERSION/VERSION).${{ github.run_id }}"
-          echo "$(cat $LOCATION_VERSION/VERSION).${{ github.run_id }}">$LOCATION_VERSION/VERSION
+
+          echo "::set-env name=VERSION::$VERSION"
+
+          echo "$VERSION">$LOCATION_VERSION/VERSION
           EOF
 
           bash set_env.sh
@@ -37,26 +54,6 @@ jobs:
           path: set_env.sh
       - run: |
           cat set_env.sh
-
-      - name: Clone master branch
-        uses: actions/checkout@v2
-        with:
-          ref: master
-          path: master_branch
-          
-      - name: Compare version
-        run: |
-          echo "MASTER BRANCH VERSION"
-          cat master_branch/$LOCATION_VERSION/VERSION
-          echo -e "\n\n"
-
-          echo "PR VERSION"
-          cat $LOCATION_VERSION/VERSION
-          echo -e "\n\n"
-
-          echo "::set-env name=IS_NEW_VERSION::false"
-          cmp --silent master_branch/$LOCATION_VERSION/VERSION $LOCATION_VERSION/VERSION || \
-          echo "::set-env name=IS_NEW_VERSION::true"
 
   pypi:
     if: github.repository_owner == 'spaceone-dev'
@@ -73,29 +70,28 @@ jobs:
           bash set_env.sh
 
       - name: Set up Python
-        if: env.PYPI_UPLOAD == 'true'
         uses: actions/setup-python@v2
         with:
           python-version: '3.8'
+
       - name: Install dependencies
-        if: env.PYPI_UPLOAD == 'true'
         run: |
           python -m pip install --upgrade pip
           pip install setuptools wheel twine
 
       - name: Build
-        if: env.PYPI_UPLOAD == 'true'
         run: |
           make all
           sudo chmod -R 777 dist
           cd $LOCATION_SETUP_PY
           python setup.py sdist bdist_wheel
+
       - name: Upload Pypi
-        if: env.PYPI_UPLOAD == 'true'
         id: upload
         run: |
           cd $LOCATION_SETUP_PY
           twine upload dist/*.whl --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }} --verbose
+
       - name: Slack
         if: always()
         uses: 8398a7/action-slack@v3.2.0
