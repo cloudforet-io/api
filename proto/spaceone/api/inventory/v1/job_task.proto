@@ -35,19 +35,19 @@ message JobTaskQuery {
     // is_required: false
     string job_task_id = 2;
     // is_required: false
-    string job_id = 3;
+    JobTaskState state = 3;
     // is_required: false
-    JobTaskState state = 4;
+    string job_id = 4;
+    // is_required: false
+    string secret_id = 5;
+    // is_required: false
+    string provider = 6;
+    // is_required: false
+    string service_account_id = 7;
+    // is_required: false
+    string project_id = 8;
     // is_required: true
-    string domain_id = 20;
-}
-
-message SecretInfo {
-    string secret_id = 1;
-    string name = 2;
-    string provider = 3;
-    string service_account_id = 4;
-    string project_id = 5;
+    string domain_id = 9;
 }
 
 message JobTaskInfo {
@@ -59,16 +59,22 @@ message JobTaskInfo {
         FAILURE = 4;
     }
     string job_task_id = 1;
-    string job_id = 2;
-    JobTaskState state = 3;
-    SecretInfo secret_info = 4;
-    repeated spaceone.api.inventory.v1.ErrorInfo errors = 5;
+    JobTaskState state = 2;
+    int32 created_count = 3;
+    int32 updated_count = 4;
+    int32 failure_count = 5;
+    repeated spaceone.api.inventory.v1.ErrorInfo errors = 6;
 
-    string project_id = 20;
-    string domain_id = 21;
+    string job_id = 11;
+    string secret_id = 12;
+    string provider = 13;
+    string service_account_id = 14;
+    string project_id = 15;
+    string domain_id = 16;
 
-    google.protobuf.Timestamp started_at = 30;
-    google.protobuf.Timestamp finished_at = 31;
+    google.protobuf.Timestamp created_at = 21;
+    google.protobuf.Timestamp started_at = 22;
+    google.protobuf.Timestamp finished_at = 23;
 }
 
 message JobTasksInfo {
