@@ -236,18 +236,20 @@ message JobInfo {
         TIMEOUT = 6;
 	}
 
-    string domain_id = 1;
-    string job_id = 2;
-    State state = 3;
-    int32 created_count = 4;
-    int32 updated_count = 5;
-    string collect_mode = 6;
-    google.protobuf.Timestamp created_at = 7;
-    google.protobuf.Timestamp finished_at = 8;
-    CollectorInfo collector_info = 10;
-    google.protobuf.Struct filter = 11;
-    repeated ErrorInfo errors = 20;
-    int32 total_tasks = 21;
+    string job_id = 1;
+    State state = 2;
+    google.protobuf.Struct filter = 3;
+    int32 total_tasks = 4;
+    int32 remained_tasks = 5;
+    repeated ErrorInfo errors = 6;
+
+    CollectorInfo collector_info = 11;
+    string project_id = 12;
+    string domain_id = 13;
+
+    google.protobuf.Timestamp created_at = 21;
+    google.protobuf.Timestamp updated_at = 22;
+    google.protobuf.Timestamp finished_at = 23;
 }
 
 message Scheduled {
