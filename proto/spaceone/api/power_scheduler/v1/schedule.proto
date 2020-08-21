@@ -15,6 +15,21 @@ service Schedule {
     rpc update (UpdateScheduleRequest) returns (ScheduleInfo) {
         option (google.api.http) = { put: "/power-scheduler/v1/schedule/{schedule_id}" };
     }
+    rpc enable (ScheduleRequest) returns (ScheduleInfo) {
+        option (google.api.http) = { put: "/power-scheduler/v1/schedule/{schedule_id}/enable" };
+    }
+    rpc disable (ScheduleRequest) returns (ScheduleInfo) {
+        option (google.api.http) = { put: "/power-scheduler/v1/schedule/{schedule_id}/disable" };
+    }
+    rpc append_resource_group (CreateResourceGroupRequest) returns (ScheduleInfo) {
+        option (google.api.http) = { put: "/power-scheduler/v1/schedule/{schedule_id}/resource_group/{resource_group_id}/append" };
+    }
+    rpc update_resource_group (ResourceGroupRequest) returns (ScheduleInfo) {
+        option (google.api.http) = { put: "/power-scheduler/v1/schedule/{schedule_id}/resource_group/{resource_group_id}" };
+    }
+    rpc remove_resource_group (ResourceGroupRequest) returns (ScheduleInfo) {
+        option (google.api.http) = { put: "/power-scheduler/v1/schedule/{schedule_id}/resource_group/{resource_group_id}/remove" };
+    }
     rpc delete (ScheduleRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/power-scheduler/v1/schedule/{schedule_id}" };
     }
@@ -34,11 +49,18 @@ service Schedule {
     }
 }
 
+enum ScheduleState {
+    ENABLED = 0;
+    DISABLED = 1;
+}
+
 message CreateScheduleRequest {
     // is_required: true
     string name = 1;
     // is_required: false
     google.protobuf.Struct tags = 11;
+    // is_required: true
+    string user_id = 23;
     // is_required: true
     string project_id = 21;
     // is_required: true
@@ -51,7 +73,7 @@ message UpdateScheduleRequest {
     // is_required: false
     google.protobuf.Struct tags = 11;
     // is_required: true
-    string domain_id = 21;
+    string domain_id = 22;
 }
 
 message ScheduleRequest {
@@ -90,6 +112,28 @@ message ScheduleQuery {
 message ResourceGroup {
     string resource_group_id = 1;
     int32 priority = 2;
+}
+
+message CreateResourceGroupRequest {
+    // is_required: true
+    string schedule_id = 1;
+    // is_required: true
+    string resource_group_id = 2;
+    // is_required: false
+    int32 priority = 3;
+    // is_required: true
+    string domain_id = 22;
+}
+
+message ResourceGroupRequest {
+    // is_required: true
+    string schedule_id = 1;
+    // is_required: true
+    string resource_group_id = 2;
+    // is_required: true
+    int32 priority = 3;
+    // is_required: true
+    string domain_id = 22;
 }
 
 message ScheduleInfo {
