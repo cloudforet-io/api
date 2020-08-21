@@ -226,18 +226,18 @@ message ErrorInfo {
 }
 
 message JobInfo {
-	enum State {
-		NONE = 0;
-		CREATED = 1;
-		CANCELED = 2;
+    enum Status {
+        NONE = 0;
+        CREATED = 1;
+        CANCELED = 2;
         IN_PROGRESS = 3;
-        FINISHED = 4;
-        FAILURE = 5;
+        SUCCESS = 4;
+        ERROR = 5;
         TIMEOUT = 6;
 	}
 
     string job_id = 1;
-    State state = 2;
+    Status status = 2;
     google.protobuf.Struct filter = 3;
     int32 total_tasks = 4;
     int32 remained_tasks = 5;
