@@ -22,23 +22,23 @@ service Job {
 }
 
 
-enum JobState {
-    JOB_STATE_NONE = 0;
-    CREATED = 1;
-    CANCELED = 2;
-    IN_PROGRESS = 3;
-    SUCCESS = 4;
-    ERROR = 5;
-    TIMEOUT = 6;
-}
-
 message JobsQuery {
+    enum JobStatus {
+        JOB_STATE_NONE = 0;
+        CREATED = 1;
+        CANCELED = 2;
+        IN_PROGRESS = 3;
+        SUCCESS = 4;
+        ERROR = 5;
+        TIMEOUT = 6;
+    }
+
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
     string job_id = 2;
     // is_required: false
-    JobState state = 3;
+    JobStatus status = 3;
     // is_required: false
     string collector_id = 4;
     // is_required: false
