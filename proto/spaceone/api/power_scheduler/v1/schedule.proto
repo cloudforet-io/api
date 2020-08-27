@@ -50,8 +50,9 @@ service Schedule {
 }
 
 enum ScheduleState {
-    ENABLED = 0;
-    DISABLED = 1;
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
 }
 
 message CreateScheduleRequest {
@@ -70,6 +71,10 @@ message CreateScheduleRequest {
 message UpdateScheduleRequest {
     // is_required: true
     string schedule_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    ScheduleState state = 3;
     // is_required: false
     google.protobuf.Struct tags = 11;
     // is_required: true
@@ -99,11 +104,11 @@ message ScheduleQuery {
     string schedule_id = 2;
     // is_required: false
     string name = 3;
-    // is_required: true
-    string state = 4;
-    // is_required: true
+    // is_required: false
+    ScheduleState state = 4;
+    // is_required: false
     string resource_group_id = 5;
-    // is_required: true
+    // is_required: false
     string project_id = 6;
     // is_required: true
     string domain_id = 7;
@@ -139,7 +144,7 @@ message ResourceGroupRequest {
 message ScheduleInfo {
     string schedule_id = 1;
     string name = 2;
-    string state = 3;
+    ScheduleState state = 3;
 
     repeated ResourceGroup resource_groups = 11;
     google.protobuf.Struct tags = 12;
