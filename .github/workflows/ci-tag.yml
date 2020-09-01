@@ -1,8 +1,6 @@
-name: SpaceONE CI Tag
-
+name: SpaceONE CI tag push
 on:
   push:
-    # recursive wild card
     tags:
       - "**"
   workflow_dispatch:
@@ -11,81 +9,60 @@ on:
         # can replace github.event.inputs.tag <=> steps.getTag.outputs.tag
         default: 1.2.3
 
+env:
+  LOCATION_SETUP_PY: dist/python # optional. for pypi upload
+  LOCATION_VERSION: . # the location for VERSION file (ex- . means the location of VERSION is ./VERSION)
+
 jobs:
   initialize:
-    if: github.repository_owner == 'spaceone-dev'
     runs-on: ubuntu-latest
+    outputs:
+      VERSION: ${{ steps.job1.outputs.VERSION }}
+      LATEST_TAG: ${{ steps.job2.outputs.LATEST_TAG }}
     steps:
       - uses: actions/checkout@v2
       - uses: olegtarasov/get-tag@v2
         id: getTag
-
-      - name: Set version
+      - name: calculate_version
+        id: job1
         run: |
           if [ ${{ steps.getTag.outputs.tag }} ]
           then
-            echo "::set-env name=VERSION::${{ steps.getTag.outputs.tag }}"
+            echo "::set-output name=VERSION::${{ steps.getTag.outputs.tag }}"
           else
-            echo "::set-env name=VERSION::${{ github.event.inputs.tag }}"
+            echo "::set-output name=VERSION::${{ github.event.inputs.tag }}"
           fi
-
-      - name: Set environment virables
+      - name: set latest_tag
+        id: job2
         env:
-          # 이 곳에서 환경변수를 통해 설정 관리
-          # LOCATION points the parent directory
-          LOCATION_SETUP_PY: dist/python # optional. for pypi upload
-          LOCATION_VERSION: . # the location for VERSION file (ex- . means the location of VERSION is ./VERSION)
+          VERSION: ${{ steps.job1.outputs.VERSION }}
         run: |
-          cat <<EOF>set_env.sh
-          echo "::set-env name=LOCATION_SETUP_PY::$LOCATION_SETUP_PY"
-          echo "::set-env name=LOCATION_VERSION::$LOCATION_VERSION"
-
-          echo "::set-env name=VERSION::$VERSION"
-
-          echo "$VERSION">$LOCATION_VERSION/VERSION
-
           # LATEST_TAG true or false
           if [[ $VERSION =~ ^[0-9]\.[0-9]\.[0-9]$ ]];
           then
-            echo "::set-env name=LATEST_TAG::true"
+            echo "::set-output name=LATEST_TAG::true"
           else
-            echo "::set-env name=LATEST_TAG::false"
+            echo "::set-output name=LATEST_TAG::false"
           fi
-          EOF
-
-          bash set_env.sh
-
-      - name: save envs
-        uses: actions/upload-artifact@v2
-        with:
-          name: set_env.sh
-          path: set_env.sh
-      - run: |
-          cat set_env.sh
 
   pypi:
     if: github.repository_owner == 'spaceone-dev'
     needs: initialize
     runs-on: ubuntu-latest
+    env:
+      version: ${{ needs.initialize.outputs.VERSION }}
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: set_env.sh
-
-      - name: Set environment variables
-        run: |
-          bash set_env.sh
-
+      - name: set version
+        run: echo "$version">$LOCATION_VERSION/VERSION
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.8'
-
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install setuptools wheel twine
+            python -m pip install --upgrade pip
+            pip install setuptools wheel twine
 
       - name: Build
         run: |
@@ -100,14 +77,21 @@ jobs:
           cd $LOCATION_SETUP_PY
           twine upload dist/*.whl --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }} --verbose
 
-      - name: Create the version branch automatically
+  branch:
+    if: github.repository_owner == 'spaceone-dev'
+    needs: [initialize,pypi]
+    env:
+      VERSION: ${{ needs.initialize.outputs.VERSION }}
+      LATEST_TAG: ${{ needs.initialize.outputs.LATEST_TAG }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: make branch
         if: env.LATEST_TAG == 'true'
-        uses: peterjgrainger/action-create-branch@v1.0.0
+        uses: peterjgrainger/action-create-branch@v2.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           branch: ${{ env.VERSION }}
-
       - name: Slack
         if: always()
         uses: 8398a7/action-slack@v3.2.0

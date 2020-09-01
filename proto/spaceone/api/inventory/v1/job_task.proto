@@ -23,7 +23,7 @@ service JobTask {
 }
 
 message JobTaskQuery {
-    enum JobTaskState {
+    enum JobTaskStatus {
         JOB_TASK_STATE_NONE = 0;
         PENDING = 1;
         IN_PROGRESS = 2;
@@ -35,7 +35,7 @@ message JobTaskQuery {
     // is_required: false
     string job_task_id = 2;
     // is_required: false
-    JobTaskState state = 3;
+    JobTaskStatus status = 3;
     // is_required: false
     string job_id = 4;
     // is_required: false
@@ -51,7 +51,7 @@ message JobTaskQuery {
 }
 
 message JobTaskInfo {
-    enum JobTaskState {
+    enum JobTaskStatus {
         JOB_TASK_STATE_NONE = 0;
         PENDING = 1;
         IN_PROGRESS = 2;
@@ -59,7 +59,7 @@ message JobTaskInfo {
         FAILURE = 4;
     }
     string job_task_id = 1;
-    JobTaskState state = 2;
+    JobTaskStatus status = 2;
     int32 created_count = 3;
     int32 updated_count = 4;
     int32 failure_count = 5;
