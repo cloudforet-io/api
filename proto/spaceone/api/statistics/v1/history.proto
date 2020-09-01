@@ -24,9 +24,6 @@ service History {
     rpc stat (HistoryStatRequest) returns (google.protobuf.Struct) {
         option (google.api.http) = { post: "/statistics/v1/history/stat" };
     }
-    rpc diff (DiffHistoryRequest) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/statistics/v1/history/diff" };
-    }
 }
 
 message CreateHistoryRequest {
@@ -39,7 +36,7 @@ message CreateHistoryRequest {
 message QueryHistoryRequest {
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
-    // is_required: true
+    // is_required: false
     string topic = 2;
     // is_required: true
     string domain_id = 3;
@@ -60,27 +57,8 @@ message HistoryInfo {
 message HistoryStatRequest {
     // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
+    // is_required: false
     string topic = 2;
     // is_required: true
     string domain_id = 3;
-}
-
-message DiffHistoryRequest {
-    // is_required: true
-    string topic = 1;
-    // is_required: false
-    repeated spaceone.api.core.v1.Filter filter = 2;
-    // is_required: false
-    repeated spaceone.api.core.v1.Filter filter_or = 3;
-    // is_required: true
-    string from = 4;
-    // is_required: false
-    string to = 5;
-    // is_required: true
-    repeated string default_fields = 6;
-    // is_required: true
-    repeated string diff_fields = 7;
-    // is_required: true
-    string domain_id = 8;
 }
