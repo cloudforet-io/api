@@ -1,0 +1,87 @@
+name: "[CI]pypi dev test"
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: '`x.y.zdeva` 형태로 버전을 입력해주세요.'
+        required: true
+        default: 1.2.3dev0
+
+# env:
+#   SERVICE: python-core
+
+jobs:
+  
+  condition_check:
+    runs-on: ubuntu-latest
+    outputs:
+      NOT_FIRST_TAG: ${{ steps.job1.outputs.not_first_tag }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: if not master, exit
+        run: |
+          if [ ${{ github.ref }} != refs/heads/master ]
+            then exit 1
+          fi
+
+  pypi:
+    if: github.repository_owner == 'spaceone-dev'
+    needs: [condition_check, update_local_version_file]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: set version
+        run: |
+          echo ${{ github.event.inputs.tag }} > src/VERSION
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install dependencies
+        run: |
+            python -m pip install --upgrade pip
+            pip install setuptools wheel twine
+      - name: Build
+        run: |
+          make all
+          sudo chmod -R 777 dist
+          cd dist/python
+          python setup.py sdist bdist_wheel
+      - name: Upload Pypi
+        id: upload
+        run: |
+          cd dist/python
+          twine upload dist/*.whl --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }} --verbose
+
+  # docker:
+  #   needs: [condition_check, update_local_version_file, pypi]
+  #   if: github.repository_owner == 'spaceone-dev'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: versioning by the convetion
+  #       run: |
+  #         echo "::set-env name=VERSION::$(echo ${{ github.event.inputs.tag }} | sed -e 's/-//g')"
+  #     - name: Upload docker
+  #       uses: docker/build-push-action@v1
+  #       with:
+  #         path: .
+  #         repository: spaceone/${{ env.SERVICE }}
+  #         username: ${{ secrets.DOCKER_USERNAME }}
+  #         password: ${{ secrets.DOCKER_PASSWORD }}
+  #         tags: ${{ env.VERSION }}
+
+  notify_to_slack:
+    if: github.repository_owner == 'spaceone-dev'
+    needs: [condition_check, pypi]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack
+        if: always()
+        uses: 8398a7/action-slack@v3.2.0
+        with:
+          status: ${{job.status}}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+          author_name: Github Action Slack
+        env:
+          SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
