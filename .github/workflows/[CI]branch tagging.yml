@@ -25,7 +25,7 @@ jobs:
           fi
       - name: if not same branch, exit
         run: |
-          if [ $(echo ${{ github.event.inputs.tag }} | cut -c 1-5) != $(cat src/VERSION | cut -c 2-6) ]
+          if [ $(echo ${{ github.event.inputs.tag }} | cut -c 1-5) != $(cat VERSION | cut -c 2-6) ]
             then exit 1
           fi
       - name: totally same version, redeploy dockerhub
