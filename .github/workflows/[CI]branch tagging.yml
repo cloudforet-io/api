@@ -31,7 +31,7 @@ jobs:
       - name: totally same version, redeploy dockerhub
         id: job1
         run: |
-          if [ $(cat src/VERSION) = v${{ github.event.inputs.tag }} ]
+          if [ $(cat VERSION) = v${{ github.event.inputs.tag }} ]
             then echo "::set-output name=not_first_tag::true"
             else echo "::set-output name=not_first_tag::false"
           fi
@@ -61,7 +61,7 @@ jobs:
           git config user.name admin-spaceone
           git config user.email admin@spaceone.dev
           git pull
-          echo ${{ env.VERSION }} > src/VERSION
+          echo ${{ env.VERSION }} > VERSION
           git add .
           git commit -m "[CI/CD] release version ${{ env.VERSION }}"
           git tag ${{ env.VERSION }} ${{ github.ref }} 
@@ -75,7 +75,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: set version
         run: |
-          echo ${{ github.event.inputs.tag }} > src/VERSION
+          echo ${{ github.event.inputs.tag }} > VERSION
       - name: Set up Python
         uses: actions/setup-python@v2
         with:

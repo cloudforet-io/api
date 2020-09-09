@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: get existing official version
         run: |
-          echo "::set-env name=current::$(echo src/VERSION | cut -c 2-6)"
+          echo "::set-env name=current::$(echo VERSION | cut -c 2-6)"
           echo "::set-env name=new_ver::$(echo ${{ env.VERSION }} | cut -c 1-5)"
       - name: Is new_ver is latest?
         run: |
@@ -36,7 +36,7 @@ jobs:
         if: ${{ env.LATEST_TAG }} == 'true'
         uses: actions/checkout@v2
       - run: |
-          echo v${{ env.VERSION }} > src/VERSION
+          echo v${{ env.VERSION }} > VERSION
           git config user.name admin-spaceone
           git config user.email admin@spaceone.dev
           git add .
