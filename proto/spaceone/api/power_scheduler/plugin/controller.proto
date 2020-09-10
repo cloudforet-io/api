@@ -10,7 +10,6 @@ service Controller {
     rpc verify (VerifyRequest) returns (google.protobuf.Empty) {}
     rpc start (StartRequest) returns (google.protobuf.Empty) {}
     rpc stop (StopRequest) returns (google.protobuf.Empty) {}
-    rpc getRetryResourceStatus (RetryListRequest) returns (RetryResourceStatusInfo) {}
 }
 
 message InitRequest {
@@ -29,34 +28,6 @@ message PluginInfo {
     google.protobuf.Struct metadata = 1;
 }
 
-message RetryListRequest {
-    // is_required: true
-    string schedule_status = 1;
-    // is_required: true
-    repeated RetryTargetResourcesParams target_resources_params = 2;
-}
-
-message RetryTargetResourcesParams {
-    google.protobuf.Struct secret_data = 1;
-    repeated RetryTargetResources target_resources = 2;
-}
-
-message RetryTargetResources {
-    string resource_id = 1;
-    string resource_type = 2;
-}
-
-message RetryResourceStatusInfo {
-    string requested_schedule_status = 1;
-    repeated RetryResources resources = 2;
-}
-
-message RetryResources {
-    string resource_id = 1;
-    string resource_type = 2;
-    string resource_status = 3;
-}
-
 message Resource {
     google.protobuf.Struct resource = 1;
     string resource_type = 2;
@@ -69,12 +40,32 @@ message ResourcesParams {
 
 message StartRequest {
     // is_required: true
-    repeated ResourcesParams resources_params = 1;
+    google.protobuf.Struct options = 1;
+    // is_required: true
+    google.protobuf.Struct secret_data = 2;
+    // is_required: true
+    string resource_id = 3;
+    // is_required: true
+    string resource_type = 4;
+    // is_required: false
+    google.protobuf.Struct resource_data = 5;
+    // is_required: false
+    string schema = 6;
 }
 
 message StopRequest {
     // is_required: true
-    repeated ResourcesParams resources_params = 1;
+    google.protobuf.Struct options = 1;
+    // is_required: true
+    google.protobuf.Struct secret_data = 2;
+    // is_required: true
+    string resource_id = 3;
+    // is_required: true
+    string resource_type = 4;
+    // is_required: false
+    google.protobuf.Struct resource_data = 5;
+    // is_required: false
+    string schema = 6;
 }
 
 message ResourceInfo {
