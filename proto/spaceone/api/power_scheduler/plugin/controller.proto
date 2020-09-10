@@ -10,6 +10,7 @@ service Controller {
     rpc verify (VerifyRequest) returns (google.protobuf.Empty) {}
     rpc start (StartRequest) returns (google.protobuf.Empty) {}
     rpc stop (StopRequest) returns (google.protobuf.Empty) {}
+    rpc getRetryResourceStatus (RetryListRequest) returns (RetryResourceStatusInfo) {}
 }
 
 message InitRequest {
@@ -28,24 +29,52 @@ message PluginInfo {
     google.protobuf.Struct metadata = 1;
 }
 
-message Resource {
-    google.protobuf.Struct resource = 1;
-    string resource_type =2;
+message RetryListRequest {
+    // is_required: true
+    string schedule_status = 1;
+    // is_required: true
+    repeated RetryTargetResourcesParams target_resources_params = 2;
 }
 
-message ResourcesParam {
+message RetryTargetResourcesParams {
     google.protobuf.Struct secret_data = 1;
-    repeated Resource resources =2;
+    repeated RetryTargetResources target_resources = 2;
+}
+
+message RetryTargetResources {
+    string resource_id = 1;
+    string resource_type = 2;
+}
+
+message RetryResourceStatusInfo {
+    string requested_schedule_status = 1;
+    repeated RetryResources resources = 2;
+}
+
+message RetryResources {
+    string resource_id = 1;
+    string resource_type = 2;
+    string resource_status = 3;
+}
+
+message Resource {
+    google.protobuf.Struct resource = 1;
+    string resource_type = 2;
+}
+
+message ResourcesParams {
+    google.protobuf.Struct secret_data = 1;
+    repeated Resource resources = 2;
 }
 
 message StartRequest {
     // is_required: true
-    repeated ResourcesParam resources_params = 1;
+    repeated ResourcesParams resources_params = 1;
 }
 
 message StopRequest {
     // is_required: true
-    repeated ResourcesParam resources_params = 1;
+    repeated ResourcesParams resources_params = 1;
 }
 
 message ResourceInfo {
