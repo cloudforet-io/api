@@ -101,8 +101,9 @@ message PolicyQuery {
 message PolicyInfo {
     string policy_id = 1;
     string name = 2;
-
+    // desc: list of permissions
     repeated string permissions = 11;
+    // desc: list of labels
     repeated string labels = 12;
     google.protobuf.Struct tags = 13;
 
@@ -114,6 +115,7 @@ message PolicyInfo {
 }
 
 message PoliciesInfo {
+    // desc: list of PolicyInfo
     repeated PolicyInfo results = 1;
     int32 total_count = 2;
 }
