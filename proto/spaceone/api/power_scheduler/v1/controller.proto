@@ -32,7 +32,7 @@ service Controller {
     rpc stat (ControllerStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = { post: "/power-scheduler/v1/controllers/stat" };
     }
-    rpc control (ControlRequest) returns (JobInfo) {
+    rpc control (ControlRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/power-scheduler/v1/controller/{controller_id}/control" };
     }
     rpc update_plugin (UpdatePluginRequest) returns (ControllerInfo) {
