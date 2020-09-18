@@ -1,13 +1,18 @@
 syntax = "proto3";
 
 package spaceone.api.monitoring.plugin;
-
+import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "spaceone/api/core/v1/plugin.proto";
 
 
 service DataSource {
-    rpc verify (PluginVerifyRequest) returns (stream PluginVerifyResponse) {}
+    rpc init (InitRequest) returns (PluginInfo) {}
+    rpc verify (PluginVerifyRequest) returns (google.protobuf.Empty) {}
+}
+
+message InitRequest {
+    // is_required: true
+    google.protobuf.Struct options = 1;
 }
 
 message PluginVerifyRequest {
@@ -15,17 +20,10 @@ message PluginVerifyRequest {
     google.protobuf.Struct options = 1;
     // is_required: true
     google.protobuf.Struct secret_data = 2;
-}
-
-message PluginVerifyInfo {
-    google.protobuf.Struct options = 1;
-}
-
-message PluginVerifyResponse {
-    // is_required: true
-    string resource_type = 1;
     // is_required: false
-    repeated spaceone.api.core.v1.PluginAction actions = 2;
-    // is_required: true
-    PluginVerifyInfo result = 3;
+    string schema = 3;
+}
+
+message PluginInfo {
+    google.protobuf.Struct metadata = 1;
 }

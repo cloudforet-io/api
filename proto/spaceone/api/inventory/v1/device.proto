@@ -1,0 +1,170 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/inventory/v1/device_type.proto";
+
+
+service Device {
+    rpc create (CreateDeviceRequest) returns (DeviceInfo) {
+        option (google.api.http) = { post: "/inventory/v1/devices" };
+    }
+    rpc update (UpdateDeviceRequest) returns (DeviceInfo) {
+        option (google.api.http) = { put: "/inventory/v1/device/{device_id}" };
+    }
+    rpc pin_data (PinDeviceRequest) returns (DeviceInfo) {
+        option (google.api.http) = { put: "/inventory/v1/device/{device_id}/pin-data" };
+    }
+    rpc delete (DeviceRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/inventory/v1/device/{device_id}" };
+    }
+    rpc get (GetDeviceRequest) returns (DeviceInfo) {
+        option (google.api.http) = { get: "/inventory/v1/device/{device_id}" };
+    }
+    rpc list (DeviceQuery) returns (DevicesInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/devices"
+            additional_bindings {
+                post: "/inventory/v1/devices/search"
+            }
+        };
+    }
+    rpc stat (DeviceStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/devices/stat" };
+    }
+}
+
+message DeviceReference {
+    string resource_id = 1;
+    string external_link = 2;
+}
+
+message CreateDeviceRequest {
+    // is_required: true
+    string device_type_id = 1;
+    // is_required: false
+    string project_id = 2;
+    // is_required: false
+    string region_code = 3;
+    // is_required: false
+    string region_type = 4;
+    // is_required: true
+    google.protobuf.Struct data = 11;
+    // is_required: false
+    DeviceReference reference = 12;
+    // is_required: false
+    google.protobuf.Struct tags = 13;
+    // is_required: true
+    string domain_id = 21;
+}
+
+message UpdateDeviceRequest {
+    // is_required: true
+    string device_id = 1;
+    // is_required: false
+    string project_id = 2;
+    // is_required: false
+    string region_code = 3;
+    // is_required: false
+    string region_type = 4;
+
+    // is_required: false
+    bool release_project = 11;
+    // is_required: false
+    bool release_region = 12;
+
+    // is_required: false
+    google.protobuf.Struct data = 21;
+    // is_required: false
+    DeviceReference reference = 22;
+    // is_required: false
+    google.protobuf.Struct tags = 23;
+
+    // is_required: true
+    string domain_id = 31;
+}
+
+message PinDeviceRequest {
+    // is_required: true
+    string device_id = 1;
+    // is_required: true
+    repeated string keys = 2;
+    // is_required: true
+    string domain_id = 3;
+}
+
+message DeviceRequest {
+    // is_required: true
+    string device_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetDeviceRequest {
+    // is_required: true
+    string device_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message DeviceQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string device_id = 2;
+    // is_required: false
+    string device_type_id = 3;
+    // is_required: false
+    string project_id = 4;
+    // is_required: false
+    string region_code = 5;
+    // is_required: false
+    string region_type = 6;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message DeviceInfo {
+    enum DeviceState {
+        STATE_NONE = 0;
+        INSTOCK = 1;
+        INSERVICE = 2;
+        DELETED = 3;
+    }
+
+    string device_id = 1;
+    DeviceState state = 2;
+    string project_id = 3;
+    string region_code = 4;
+    string region_type = 5;
+
+    google.protobuf.Struct data = 11;
+    DeviceTypeInfo device_type_info = 12;
+    DeviceReference reference = 13;
+    google.protobuf.Struct tags = 14;
+    google.protobuf.Struct collection_info = 15;
+
+    string domain_id = 21;
+
+    google.protobuf.Timestamp created_at = 31;
+    google.protobuf.Timestamp updated_at = 32;
+}
+
+message DevicesInfo {
+    repeated DeviceInfo results = 1;
+    int32 total_count = 2;
+}
+
+message DeviceStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
