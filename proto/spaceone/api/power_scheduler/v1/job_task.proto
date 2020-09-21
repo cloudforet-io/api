@@ -24,12 +24,20 @@ service JobTask {
 
 message JobTaskQuery {
     enum JobTaskStatus {
-        JOB_TASK_STATE_NONE = 0;
-        PENDING = 1;
-        IN_PROGRESS = 2;
-        SUCCESS = 3;
-        FAILURE = 4;
+        JOB_TASK_STATUS_NONE = 0;
+        CREATED = 1;
+        PENDING = 2;
+        CANCELED = 3;
+        IN_PROGRESS = 4;
+        SUCCESS = 5;
+        FAILURE = 6;
     }
+
+    enum ControlAction {
+        RUNNING = 0;
+        STOPPED = 1;
+    }
+
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -39,11 +47,11 @@ message JobTaskQuery {
     // is_required: false
     string job_id = 4;
     // is_required: false
-    string secret_id = 5;
+    ControlAction control_action = 5;
     // is_required: false
-    string provider = 6;
+    string schedule_id = 6;
     // is_required: false
-    string service_account_id = 7;
+    string resource_group_id = 7;
     // is_required: false
     string project_id = 8;
     // is_required: true
@@ -52,24 +60,33 @@ message JobTaskQuery {
 
 message JobTaskInfo {
     enum JobTaskStatus {
-        JOB_TASK_STATE_NONE = 0;
-        PENDING = 1;
-        IN_PROGRESS = 2;
-        SUCCESS = 3;
-        FAILURE = 4;
+        NONE = 0;
+        CREATED = 1;
+        PENDING = 2;
+        CANCELED = 3;
+        IN_PROGRESS = 4;
+        SUCCESS = 5;
+        FAILURE = 6;
     }
+
+    enum ControlAction {
+        RUNNING = 0;
+        STOPPED = 1;
+    }
+
     string job_task_id = 1;
     JobTaskStatus status = 2;
     int32 success_count = 4;
     int32 failure_count = 5;
-    repeated spaceone.api.power_scheduler.v1.ErrorInfo errors = 6;
-
-    string job_id = 11;
-    string secret_id = 12;
-    string provider = 13;
-    string service_account_id = 14;
-    string project_id = 15;
-    string domain_id = 16;
+    int32 total_count = 6;
+    repeated spaceone.api.power_scheduler.v1.ErrorInfo errors = 7;
+    string job_id = 8;
+    ControlAction control_action = 9;
+    string schedule_id = 10;
+    string resource_group_id = 11;
+    string priority = 12;
+    string project_id = 13;
+    string domain_id = 14;
 
     google.protobuf.Timestamp created_at = 21;
     google.protobuf.Timestamp started_at = 22;
