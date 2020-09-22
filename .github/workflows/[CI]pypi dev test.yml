@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: '`x.y.zdeva` 형태로 버전을 입력해주세요.'
+        description: '`vx.y.z-deva` 형태로 버전을 입력해주세요.'
         required: true
         default: v1.2.3-dev1
 
@@ -34,7 +34,7 @@ jobs:
           fi
       - name: if not test release, exit
         run: |
-          if [[ !(${{ env.VERSION }} =~ ^v[0-9]\.[0-9]\.[0-9]dev(.*)$) ]];
+          if [[ !(${{ env.TAG }} =~ ^v[0-9]\.[0-9]\.[0-9]-dev(.*)$) ]];
             then exit 1
           fi
 
@@ -48,7 +48,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: set version
         run: |
-          echo ${{ env.VERSION }} | cut -c 2- | sed -e 's/-//g' > src/VERSION
+          echo ${{ env.VERSION }} | cut -c 2- | sed -e 's/-//g' > VERSION
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -101,7 +101,7 @@ jobs:
 
   notify_to_slack:
     if: github.repository_owner == 'spaceone-dev'
-    needs: [condition_check, update_local_version_file, pypi]
+    needs: [condition_check, pypi]
     runs-on: ubuntu-latest
     steps:
       - name: Slack
