@@ -11,14 +11,14 @@ import "spaceone/api/power_scheduler/v1/job.proto";
 service JobTask {
     rpc list (JobTaskQuery) returns (JobTasksInfo) {
         option (google.api.http) = {
-            get: "/power_scheduler/v1/job-tasks"
+            get: "/power-scheduler/v1/job-tasks"
             additional_bindings {
-                post: "/power_scheduler/v1/job-tasks/search"
+                post: "/power-scheduler/v1/job-tasks/search"
             }
         };
     }
     rpc stat (JobTaskStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/power_scheduler/v1/job-tasks/stat" };
+        option (google.api.http) = { post: "/power-scheduler/v1/job-tasks/stat" };
     }
 }
 
