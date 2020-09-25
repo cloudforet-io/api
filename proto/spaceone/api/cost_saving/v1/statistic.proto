@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package spaceone.api.cost_saving.v1;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service Statistic {
+    rpc create (CreateStatisticRequest) returns (StatisticInfo) {
+        option (google.api.http) = { post: "/cost-saving/v1/statistic" };
+    }
+    rpc list (StatisticQuery) returns (StatisticsInfo) {
+        option (google.api.http) = {
+            get: "/cost-saving/v1/statistics"
+            additional_bindings {
+                post: "/cost-saving/v1/statistics/search"
+            }
+        };
+    }
+}
+
+message CreateStatisticRequest {
+    // is_required: true
+    string cost_saving_stat_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: true
+    string project_id = 3;
+    // is_required: true
+    string provider = 4;
+    // is_required: false
+    string environment = 5;
+    // is_required: true
+    string region = 6;
+    string resource_type = 7;
+    string saving_by = 8;
+    string cost_code = 9;
+    string cost = 10;
+}
+
+
+
+message StatisticQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: true
+    string project_id = 3;
+    // is_required: false
+    string start_hour = 4;
+    // is_required: false
+    string end_hour = 5;
+    // is_required: false
+    int32 aggregation = 6;
+}
+
+message StatisticInfo {
+    string cost_saving_stat_id = 1;
+    string domain_id = 2;
+    string project_id = 3;
+    string saving_by = 4;
+    string environment = 5;
+    string provider = 6;
+    string region = 7;
+    string resource_type = 8;
+
+    float cost = 11;
+
+    google.protobuf.Timestamp created_at = 21;
+    google.protobuf.Timestamp update_at = 22;
+    google.protobuf.Timestamp expired_at = 23;
+}
+
+message StatisticsInfo {
+    repeated StatisticInfo results = 1;
+    int32 total_count = 2;
+}
