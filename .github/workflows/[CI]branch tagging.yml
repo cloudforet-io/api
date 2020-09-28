@@ -48,7 +48,7 @@ jobs:
       - name: totally same version, redeploy dockerhub
         id: job1
         run: |
-          if [ "$(cat src/VERSION)" == "${{ env.TAG }}" ]
+          if [ "$(cat VERSION)" == "${{ env.TAG }}" ]
             then echo "::set-output name=not_first_tag::true"
             else echo "::set-output name=not_first_tag::false"
           fi
@@ -83,7 +83,7 @@ jobs:
           git config user.email github-actions@github.com
           git config user.name github-actions
           git pull
-          echo ${{ env.VERSION }} > src/VERSION
+          echo ${{ env.VERSION }} > VERSION
           git add .
           git commit -m "[CI/CD] release version ${{ env.VERSION }}"
           git tag ${{ env.VERSION }} 
@@ -94,7 +94,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git pull
-          echo ${{ env.VERSION }} > src/VERSION
+          echo ${{ env.VERSION }} > VERSION
           git add .
           git commit -m "[CI/CD] release version ${{ env.VERSION }}"
           \git tag -f ${{ env.VERSION }} 
@@ -113,7 +113,7 @@ jobs:
           ref: ${{ env.BRANCH }}
       - name: set version
         run: |
-          echo ${{ env.VERSION }} | cut -c 2- | sed -e 's/-//g' > src/VERSION
+          echo ${{ env.VERSION }} | cut -c 2- | sed -e 's/-//g' > VERSION
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
