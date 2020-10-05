@@ -10,7 +10,7 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service CloudServiceType {
-    rpc create (CreateServiceTypeRequest) returns (CloudServiceTypeInfo) {
+    rpc create (CreateCloudServiceTypeRequest) returns (CloudServiceTypeInfo) {
         option (google.api.http) = { post: "/inventory/v1/cloud-service-types" };
     }
     rpc update (UpdateCloudServiceTypeRequest) returns (CloudServiceTypeInfo) {
@@ -38,7 +38,7 @@ service CloudServiceType {
     }
 }
 
-message CreateServiceTypeRequest {
+message CreateCloudServiceTypeRequest {
     // is_required: true
     string name = 1;
     // is_required: true

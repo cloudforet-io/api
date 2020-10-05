@@ -1,38 +1,54 @@
 name: "[CI]pypi dev test"
 on:
+  push:
+    tags:
+      - "v*.*"
   workflow_dispatch:
     inputs:
       tag:
-        description: '`x.y.zdeva` 형태로 버전을 입력해주세요.'
+        description: '`vx.y.z-deva` 형태로 버전을 입력해주세요.'
         required: true
-        default: 1.2.3dev0
-
-# env:
-#   SERVICE: python-core
+        default: v1.2.3-dev1
 
 jobs:
   
   condition_check:
     runs-on: ubuntu-latest
     outputs:
-      NOT_FIRST_TAG: ${{ steps.job1.outputs.not_first_tag }}
+      TAG: ${{ steps.set_env.outputs.TAG }}
     steps:
-      - uses: actions/checkout@v2
-      - name: if not master, exit
+      - name: set TAG env
+        id: set_env
         run: |
-          if [ ${{ github.ref }} != refs/heads/master ]
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]
+            then
+              echo "::set-env name=TAG::${{ github.event.inputs.tag }}"
+              echo "::set-output name=TAG::${{ github.event.inputs.tag }}"
+              echo "::set-env name=BRANCH::$(echo ${{ github.event.inputs.tag }} | cut -c 2-6 | awk '{print "release-"$1}')"
+              echo "::set-output name=BRANCH::$(echo ${{ github.event.inputs.tag }} | cut -c 2-6 | awk '{print "release-"$1}')"
+            else [[ "${{ github.event_name }}" == "push" ]]
+              echo "::set-env name=TAG::$(echo ${{ github.ref }} | cut -c 11-)"
+              echo "::set-output name=TAG::$(echo ${{ github.ref }} | cut -c 11-)"
+              echo "::set-env name=BRANCH::$(echo ${{ github.ref }} | cut -c 12-16 | awk '{print "release-"$1}')"
+              echo "::set-output name=BRANCH::$(echo ${{ github.ref }} | cut -c 12-16 | awk '{print "release-"$1}')"
+          fi
+      - name: if not test release, exit
+        run: |
+          if [[ !(${{ env.TAG }} =~ ^v[0-9]\.[0-9]\.[0-9]-dev(.*)$) ]];
             then exit 1
           fi
 
   pypi:
     if: github.repository_owner == 'spaceone-dev'
-    needs: [condition_check, update_local_version_file]
+    needs: [condition_check]
     runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ needs.condition_check.outputs.TAG }}
     steps:
       - uses: actions/checkout@v2
       - name: set version
         run: |
-          echo ${{ github.event.inputs.tag }} > VERSION
+          echo ${{ env.VERSION }} | cut -c 2- | sed -e 's/-//g' > VERSION
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -57,16 +73,28 @@ jobs:
   #   needs: [condition_check, update_local_version_file, pypi]
   #   if: github.repository_owner == 'spaceone-dev'
   #   runs-on: ubuntu-latest
+  #   env:
+  #     VERSION: ${{ needs.condition_check.outputs.TAG }}
+  #     BRANCH: ${{ needs.condition_check.outputs.BRANCH }}
   #   steps:
   #     - uses: actions/checkout@v2
-  #     - name: versioning by the convetion
+  #       with:
+  #         ref: ${{ env.BRANCH }}
+  #     - name: versioning,determine repo
   #       run: |
-  #         echo "::set-env name=VERSION::$(echo ${{ github.event.inputs.tag }} | sed -e 's/-//g')"
-  #     - name: Upload docker
+  #         if [[ ${{ env.VERSION }} =~ ^v[0-9]\.[0-9]\.[0-9]rc(.*)$ ]];
+  #           then echo "::set-env name=REPO::pyengine"
+  #           else echo "::set-env name=REPO::spaceone"
+  #         fi
+  #         echo "::set-env name=VERSION::$(echo ${{ env.VERSION }} | cut -c 2- | sed -e 's/-//g')"
+  #     - name: get service name
+  #       run: |
+  #         echo "::set-env name=SERVICE::$(echo ${{ github.repository }} | cut -c 14-)"
+  #     - name: Upload docker, only version tag
   #       uses: docker/build-push-action@v1
   #       with:
   #         path: .
-  #         repository: spaceone/${{ env.SERVICE }}
+  #         repository: ${{ env.REPO }}/${{ env.SERVICE }}
   #         username: ${{ secrets.DOCKER_USERNAME }}
   #         password: ${{ secrets.DOCKER_PASSWORD }}
   #         tags: ${{ env.VERSION }}

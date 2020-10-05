@@ -8,8 +8,8 @@ import "spaceone/api/core/v1/plugin.proto";
 
 
 service Metric {
-    rpc list (MetricRequest) returns (stream PluginMetricsResponse) {}
-    rpc get_data (MetricDataRequest) returns (stream PluginMetricDataResponse) {}
+    rpc list (MetricRequest) returns (PluginMetricsResponse) {}
+    rpc get_data (MetricDataRequest) returns (PluginMetricDataResponse) {}
 }
 
 message MetricRequest {
@@ -19,6 +19,8 @@ message MetricRequest {
     google.protobuf.Struct secret_data = 2;
     // is_required: true
     google.protobuf.Value resource = 3;
+    // is_required: false
+    string schema = 4;
 }
 
 message MetricDataRequest {
@@ -38,6 +40,8 @@ message MetricDataRequest {
     int32 period = 7;
     // is_required: false
     string stat = 8;
+    // is_required: false
+    string schema = 9;
 }
 
 message MetricInfo {

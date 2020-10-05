@@ -35,13 +35,13 @@ service ScheduleRule {
 }
 
 enum ScheduleRuleState {
-    ScheduleRuleState_NONE = 0;
+    SCHEDULERULESTATE_NONE = 0;
     RUNNING = 1;
     STOPPED = 2;
 }
 
 enum RuleType {
-    RuleType_NONE = 0;
+    RULETYPE_NONE = 0;
     ROUTINE = 1;
     TICKET = 2;
 }
@@ -131,6 +131,7 @@ message RuleInfo {
     repeated Rule rule = 5;
     string timezone = 6;
     int32 priority = 7;
+    string schedule_id = 8;
 
     google.protobuf.Struct tags = 12;
     string project_id = 21;

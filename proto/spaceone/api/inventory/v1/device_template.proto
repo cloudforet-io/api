@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service DeviceTemplate {
+    rpc create (CreateDeviceTemplateRequest) returns (DeviceTemplateInfo) {
+        option (google.api.http) = { post: "/inventory/v1/device-templates" };
+    }
+    rpc update (UpdateDeviceTemplateRequest) returns (DeviceTemplateInfo) {
+        option (google.api.http) = { put: "/inventory/v1/device-template/{device_template_id}" };
+    }
+    rpc delete (DeviceTemplateRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/inventory/v1/device-template/{device_template_id}" };
+    }
+    rpc get (GetDeviceTemplateRequest) returns (DeviceTemplateInfo) {
+        option (google.api.http) = { get: "/inventory/v1/device-template/{device_template_id}" };
+    }
+    rpc list (DeviceTemplateQuery) returns (DeviceTemplatesInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/device-templates"
+            additional_bindings {
+                post: "/inventory/v1/device-templates/search"
+            }
+        };
+    }
+    rpc stat (DeviceTemplateStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/device-templates/stat" };
+    }
+}
+
+message CreateDeviceTemplateRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: true
+    string device_type_id = 2;
+    // is_required: true
+    google.protobuf.Struct data = 11;
+    // is_required: false
+    google.protobuf.Struct tags = 12;
+    // is_required: true
+    string domain_id = 21;
+}
+
+message UpdateDeviceTemplateRequest {
+    // is_required: true
+    string device_template_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    google.protobuf.Struct data = 11;
+    // is_required: false
+    google.protobuf.Struct tags = 12;
+    // is_required: true
+    string domain_id = 21;
+}
+
+message DeviceTemplateRequest {
+    // is_required: true
+    string device_template_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetDeviceTemplateRequest {
+    // is_required: true
+    string device_template_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message DeviceTemplateQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string device_template_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    string device_type_id = 4;
+    // is_required: false
+    string domain_id = 11;
+}
+
+message DeviceTemplateInfo {
+    string device_template_id = 1;
+    string name = 2;
+
+    google.protobuf.Struct data = 11;
+    google.protobuf.Struct tags = 12;
+
+    string domain_id = 21;
+
+    google.protobuf.Timestamp created_at = 31;
+}
+
+message DeviceTemplatesInfo {
+    repeated DeviceTemplateInfo results = 1;
+    int32 total_count = 2;
+}
+
+message DeviceTemplateStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}

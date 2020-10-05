@@ -14,6 +14,9 @@ service Report {
     rpc get (GetReportRequest) returns (ReportInfo) {
         option (google.api.http) = {get: "/report/v1/report/{report_id}"};
     }
+    rpc get_download_url (GetDownloadURLRequest) returns (ReportDownloadInfo) {
+        option (google.api.http) = {get: "/report/v1/report/{report_id}/download_url"};
+    }
     rpc list (ReportQuery) returns (ReportsInfo) {
         option (google.api.http) = {
             get: "/report/v1/reports"
@@ -25,6 +28,13 @@ service Report {
     rpc create (CreateReportRequest) returns (ReportInfo) {
         option (google.api.http) = {post: "/report/v1/reports"};
     }
+}
+
+message GetDownloadURLRequest {
+    // is_required: true
+    string domain_id = 1;
+    // is_required: true
+    string report_id = 2;
 }
 
 message GetReportRequest {
@@ -73,6 +83,10 @@ message ReportError {
     string message = 2;
 }
 
+message ReportDownloadInfo {
+    string download_url = 1;
+}
+
 message ReportInfo {
     enum State {
         CREATED = 0;
@@ -89,11 +103,10 @@ message ReportInfo {
     string storage_path = 5;
     google.protobuf.Struct template_options = 6;
     State state = 7;
-    string download_url = 8;
-    string created_by = 9;
-    string schedule_id = 10;
-    google.protobuf.Timestamp created_at = 11;
-    ReportError error = 12;
+    string created_by = 8;
+    string schedule_id = 9;
+    google.protobuf.Timestamp created_at = 10;
+    ReportError error = 11;
 }
 
 message ReportsInfo {
