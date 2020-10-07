@@ -2,15 +2,11 @@ syntax = "proto3";
 
 package spaceone.api.cost_saving.v1;
 
-import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 
 service Statistic {
-    rpc create (CreateStatisticRequest) returns (StatisticInfo) {
-        option (google.api.http) = { post: "/cost-saving/v1/statistic" };
-    }
     rpc list (StatisticQuery) returns (StatisticsInfo) {
         option (google.api.http) = {
             get: "/cost-saving/v1/statistics"
@@ -20,27 +16,6 @@ service Statistic {
         };
     }
 }
-
-message CreateStatisticRequest {
-    // is_required: true
-    string cost_saving_stat_id = 1;
-    // is_required: true
-    string domain_id = 2;
-    // is_required: true
-    string project_id = 3;
-    // is_required: true
-    string provider = 4;
-    // is_required: false
-    string environment = 5;
-    // is_required: true
-    string region = 6;
-    string resource_type = 7;
-    string saving_by = 8;
-    string cost_code = 9;
-    string cost = 10;
-}
-
-
 
 message StatisticQuery {
     // is_required: false
