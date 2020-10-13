@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package spaceone.api.cost_saving.v1;
 
+import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
@@ -14,6 +15,10 @@ service Statistic {
                 post: "/cost-saving/v1/statistics/search"
             }
         };
+    }
+
+    rpc stat (StatisticStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/cost-saving/v1/statistics/stat" };
     }
 }
 
@@ -30,6 +35,13 @@ message StatisticQuery {
     string end_hour = 5;
     // is_required: false
     int32 aggregation = 6;
+}
+
+message StatisticStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
 }
 
 message StatisticInfo {
