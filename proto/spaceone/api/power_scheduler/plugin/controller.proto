@@ -10,6 +10,7 @@ service Controller {
     rpc verify (VerifyRequest) returns (google.protobuf.Empty) {}
     rpc start (StartRequest) returns (google.protobuf.Empty) {}
     rpc stop (StopRequest) returns (google.protobuf.Empty) {}
+    rpc reboot (RebootRequest) returns (google.protobuf.Empty) {}
 }
 
 message InitRequest {
@@ -54,6 +55,21 @@ message StartRequest {
 }
 
 message StopRequest {
+    // is_required: true
+    google.protobuf.Struct options = 1;
+    // is_required: true
+    google.protobuf.Struct secret_data = 2;
+    // is_required: true
+    string resource_id = 3;
+    // is_required: true
+    string resource_type = 4;
+    // is_required: false
+    google.protobuf.Struct resource_data = 5;
+    // is_required: false
+    string schema = 6;
+}
+
+message RebootRequest {
     // is_required: true
     google.protobuf.Struct options = 1;
     // is_required: true
