@@ -134,15 +134,17 @@ message CloudServiceQuery {
     string provider = 5;
     // is_required: false
     string state = 6;
+    // is_required: false
+    string region_code = 7;
+    // is_required: false
+    string region_type = 8;
 
     // is_required: false
-    string project_id = 24;
+    string resource_group_id = 21;
+    // is_required: false
+    string project_id = 22;
     // is_required: true
-    string domain_id = 25;
-    // is_required: false
-    string region_code = 26;
-    // is_required: false
-    string region_type = 27;
+    string domain_id = 23;
 }
 
 message CloudServiceInfo {
@@ -178,4 +180,6 @@ message CloudServiceStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true
     string domain_id = 2;
+    // is_required: false
+    string resource_group_id = 3;
 }
