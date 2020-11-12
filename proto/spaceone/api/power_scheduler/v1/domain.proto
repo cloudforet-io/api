@@ -12,7 +12,7 @@ service Domain {
     rpc enable (DomainRequest) returns (DomainInfo) {
         option (google.api.http) = { put: "/power-scheduler/v1/domain/{domain_id}/enable" };
     }
-    rpc disable (DomainRequest) returns (DomainInfo) {
+    rpc disable (DomainRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { put: "/power-scheduler/v1/domain/{domain_id}/disable" };
     }
     rpc get (DomainRequest) returns (DomainInfo) {
