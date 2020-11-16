@@ -113,26 +113,30 @@ message CreateServerRequest {
     // is_required: false
     string provider = 6;
     // is_required: false
-    string region_code = 7;
+    string cloud_service_group = 7;
     // is_required: false
-    string region_type = 8;
+    string cloud_service_type = 8;
+    // is_required: false
+    string region_code = 9;
+    // is_required: false
+    string region_type = 10;
 
     // is_required: false
-    google.protobuf.Struct data = 11;
+    google.protobuf.Struct data = 21;
     // is_required: false
-    google.protobuf.Struct metadata = 12;
+    google.protobuf.Struct metadata = 22;
     // is_required: false
-    repeated ServerNIC nics  = 13;
+    repeated ServerNIC nics  = 23;
     // is_required: false
-    repeated ServerDisk disks  = 14;
+    repeated ServerDisk disks  = 24;
     // is_required: false
-    ServerReference reference = 15;
+    ServerReference reference = 25;
     // is_required: false
-    google.protobuf.Struct tags = 16;
+    google.protobuf.Struct tags = 26;
     // is_required: false
-    string project_id = 22;
+    string project_id = 31;
     // is_required: true
-    string domain_id = 23;
+    string domain_id = 32;
 }
 
 message UpdateServerRequest {
@@ -152,26 +156,30 @@ message UpdateServerRequest {
     // is_required: false
     string provider = 7;
     // is_required: false
-    google.protobuf.Struct data = 11;
+    string cloud_service_group = 8;
     // is_required: false
-    google.protobuf.Struct metadata = 12;
+    string cloud_service_type = 9;
     // is_required: false
-    repeated ServerNIC nics  = 13;
     // is_required: false
-    repeated ServerDisk disks  = 14;
+    string region_code = 10;
     // is_required: false
-    ServerReference reference = 15;
+    string region_type = 11;
+    google.protobuf.Struct data = 21;
     // is_required: false
-    google.protobuf.Struct tags = 16;
+    google.protobuf.Struct metadata = 22;
+    // is_required: false
+    repeated ServerNIC nics  = 23;
+    // is_required: false
+    repeated ServerDisk disks  = 24;
+    // is_required: false
+    ServerReference reference = 25;
+    // is_required: false
+    google.protobuf.Struct tags = 26;
 
     // is_required: false
-    string region_code = 20;
-    // is_required: false
-    string region_type = 21;
-    // is_required: false
-    string project_id = 22;
+    string project_id = 31;
     // is_required: true
-    string domain_id = 23;
+    string domain_id = 32;
     // is_required: false
     bool release_region = 33;
     // is_required: false
@@ -224,9 +232,13 @@ message ServerQuery {
     // is_required: false
     string provider = 9;
     // is_required: false
-    string region_code = 10;
+    string cloud_service_group = 10;
     // is_required: false
-    string region_type = 11;
+    string cloud_service_type = 11;
+    // is_required: false
+    string region_code = 12;
+    // is_required: false
+    string region_type = 13;
 
     // is_required: false
     string resource_group_id = 21;
@@ -246,24 +258,26 @@ message ServerInfo {
     ServerOSType os_type = 7;
 
     string provider = 8;
-    string region_code = 9;
-    string region_type = 10;
+    string cloud_service_group= 9;
+    string cloud_service_type = 10;
+    string region_code = 11;
+    string region_type = 12;
 
-    google.protobuf.Struct data = 11;
-    google.protobuf.Struct metadata = 12;
-    repeated ServerNIC nics  = 13;
-    repeated ServerDisk disks  = 14;
-    ServerReference reference = 15;
-    google.protobuf.Struct tags = 16;
-    google.protobuf.Struct collection_info = 17;
+    google.protobuf.Struct data = 21;
+    google.protobuf.Struct metadata = 22;
+    repeated ServerNIC nics  = 23;
+    repeated ServerDisk disks  = 24;
+    ServerReference reference = 25;
+    google.protobuf.Struct tags = 26;
+    google.protobuf.Struct collection_info = 27;
 
 
-    string project_id = 22;
-    string domain_id = 23;
+    string project_id = 31;
+    string domain_id = 32;
 
-    google.protobuf.Timestamp created_at = 31;
-    google.protobuf.Timestamp updated_at = 32;
-    google.protobuf.Timestamp deleted_at = 33;
+    google.protobuf.Timestamp created_at = 41;
+    google.protobuf.Timestamp updated_at = 42;
+    google.protobuf.Timestamp deleted_at = 43;
 }
 
 message ServersInfo {
