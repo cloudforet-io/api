@@ -22,14 +22,14 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]
             then
-              echo "::set-env name=TAG::${{ github.event.inputs.tag }}"
+              echo "TAG=${{ github.event.inputs.tag }}" >> $GITHUB_ENV
               echo "::set-output name=TAG::${{ github.event.inputs.tag }}"
-              echo "::set-env name=BRANCH::$(echo ${{ github.event.inputs.tag }} | cut -c 2-6 | awk '{print "release-"$1}')"
+              echo "BRANCH=$(echo ${{ github.event.inputs.tag }} | cut -c 2-6 | awk '{print "release-"$1}')" >> $GITHUB_ENV
               echo "::set-output name=BRANCH::$(echo ${{ github.event.inputs.tag }} | cut -c 2-6 | awk '{print "release-"$1}')"
             else [[ "${{ github.event_name }}" == "push" ]]
-              echo "::set-env name=TAG::$(echo ${{ github.ref }} | cut -c 11-)"
+              echo "TAG=$(echo ${{ github.ref }} | cut -c 11-)" >> $GITHUB_ENV
               echo "::set-output name=TAG::$(echo ${{ github.ref }} | cut -c 11-)"
-              echo "::set-env name=BRANCH::$(echo ${{ github.ref }} | cut -c 12-16 | awk '{print "release-"$1}')"
+              echo "BRANCH=$(echo ${{ github.ref }} | cut -c 12-16 | awk '{print "release-"$1}')" >> $GITHUB_ENV
               echo "::set-output name=BRANCH::$(echo ${{ github.ref }} | cut -c 12-16 | awk '{print "release-"$1}')"
           fi
       - name: if not test release, exit
@@ -83,13 +83,13 @@ jobs:
   #     - name: versioning,determine repo
   #       run: |
   #         if [[ ${{ env.VERSION }} =~ v[0-9]\.[0-9]\.[0-9](.*)rc([0-9]|[1-9][0-9]) ]];
-  #           then echo "::set-env name=REPO::pyengine"
-  #           else echo "::set-env name=REPO::spaceone"
+  #           then echo "REPO=pyengine" >> $GITHUB_ENV
+  #           else echo "REPO=spaceone" >> $GITHUB_ENV
   #         fi
-  #         echo "::set-env name=VERSION::$(echo ${{ env.VERSION }} | cut -c 2- | sed -e 's/-//g')"
+  #         echo "VERSION=$(echo ${{ env.VERSION }} | cut -c 2- | sed -e 's/-//g')" >> $GITHUB_ENV
   #     - name: get service name
   #       run: |
-  #         echo "::set-env name=SERVICE::$(echo ${{ github.repository }} | cut -c 14-)"
+  #         echo "SERVICE=$(echo ${{ github.repository }} | cut -c 14-)" >> $GITHUB_ENV
   #     - name: Upload docker, only version tag
   #       uses: docker/build-push-action@v1
   #       with:

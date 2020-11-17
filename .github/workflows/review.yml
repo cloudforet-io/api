@@ -16,7 +16,7 @@ jobs:
         # LOCATION points the parent directory
         LOCATION_SETUP_PY: dist/python # optional. for pypi upload
       run: |
-        echo "::set-env name=LOCATION_SETUP_PY::$LOCATION_SETUP_PY"
+        echo "LOCATION_SETUP_PY=$LOCATION_SETUP_PY" >> $GITHUB_ENV
 
     - name: Set up Python
       uses: actions/setup-python@v2
