@@ -116,6 +116,12 @@ message CloudServiceTypeQuery {
     string provider = 4;
     // is_required: false
     string group = 5;
+    // is_required: false
+    bool is_primary = 6;
+    // is_required: false
+    bool is_major = 7;
+    // is_required: false
+    string resource_type = 8;
     // is_required: true
     string domain_id = 11;
 }
@@ -127,6 +133,7 @@ message CloudServiceTypeInfo {
     string group = 4;
     bool is_primary = 5;
     bool is_major = 6;
+    string resource_type = 7;
 
     google.protobuf.Struct metadata = 11;
     google.protobuf.Struct tags = 12;
