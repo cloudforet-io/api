@@ -67,6 +67,15 @@ message ScheduleJoinQuery {
     spaceone.api.core.v1.StatisticsQuery query = 5;
 }
 
+message ScheduleAppendQuery {
+    // is_required: false
+    string data_source_id = 1;
+    // is_required: true
+    string resource_type = 2;
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 3;
+}
+
 message ScheduleFormula {
     // is_required: false
     string name = 1;
@@ -87,6 +96,8 @@ message QueryOption {
     repeated ScheduleJoinQuery join = 5;
     // is_required: false
     repeated ScheduleFormula formulas = 6;
+    // is_required: false
+    repeated ScheduleAppendQuery append = 7;
 }
 
 message AddScheduleRequest {
