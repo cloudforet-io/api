@@ -65,15 +65,19 @@ message ScheduleJoinQuery {
     string resource_type = 4;
     // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 5;
+    // is_required: false
+    google.protobuf.Struct extend_data = 6;
 }
 
-message ScheduleAppendQuery {
+message ScheduleConcatQuery {
     // is_required: false
     string data_source_id = 1;
     // is_required: true
     string resource_type = 2;
     // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 3;
+    // is_required: false
+    google.protobuf.Struct extend_data = 4;
 }
 
 message ScheduleFormula {
@@ -97,7 +101,9 @@ message QueryOption {
     // is_required: false
     repeated ScheduleFormula formulas = 6;
     // is_required: false
-    repeated ScheduleAppendQuery append = 7;
+    repeated ScheduleConcatQuery concat = 7;
+    // is_required: false
+    google.protobuf.Struct extend_data = 8;
 }
 
 message AddScheduleRequest {
