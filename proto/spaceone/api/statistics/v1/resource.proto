@@ -32,6 +32,15 @@ message JoinQuery {
     spaceone.api.core.v1.StatisticsQuery query = 5;
 }
 
+message AppendQuery {
+    // is_required: false
+    string data_source_id = 1;
+    // is_required: true
+    string resource_type = 2;
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 3;
+}
+
 message Formula {
     // is_required: false
     string name = 1;
@@ -54,4 +63,6 @@ message ResourceStatRequest {
     repeated Formula formulas = 5;
     // is_required: true
     string domain_id = 6;
+    // is_required: false
+    repeated AppendQuery append = 7;
 }
