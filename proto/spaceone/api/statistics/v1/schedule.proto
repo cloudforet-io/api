@@ -81,12 +81,10 @@ message ScheduleConcatQuery {
 }
 
 message ScheduleFormula {
-    // is_required: false
-    string name = 1;
     // is_required: true
-    string formula = 2;
+    string formula = 1;
     // is_required: false
-    string operator = 3;
+    string operator = 2;
 }
 
 message QueryOption {
@@ -104,6 +102,8 @@ message QueryOption {
     repeated ScheduleConcatQuery concat = 7;
     // is_required: false
     google.protobuf.Struct extend_data = 8;
+    // is_required: false
+    google.protobuf.Struct fill_na = 9;
 }
 
 message AddScheduleRequest {
