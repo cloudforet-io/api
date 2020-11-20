@@ -32,6 +32,15 @@ service Controller {
     rpc stat (ControllerStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = { post: "/power-scheduler/v1/controllers/stat" };
     }
+    rpc control (ControlRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/power-scheduler/v1/controller/{controller_id}/control" };
+    }
+    rpc update_plugin (UpdatePluginRequest) returns (ControllerInfo) {
+        option (google.api.http) = { put: "/power-scheduler/v1/controller/{controller_id}/plugin" };
+    }
+    rpc verify_plugin (VerifyPluginRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/power-scheduler/v1/controller/{controller_id}/plugin/verify" };
+    }
 }
 
 message PluginInfo {
@@ -114,4 +123,37 @@ message ControllerStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true
     string domain_id = 2;
+}
+
+message ControlRequest {
+    // is_required: true
+    string controller_id = 1;
+    // is_required: false
+    google.protobuf.Struct filter = 2;
+    // is_required: false
+    string secret_id = 3;
+    // is_required: true
+    string domain_id = 4;
+    // is_required: false
+    bool use_cache = 5;
+}
+
+message UpdatePluginRequest {
+    // is_required: true
+    string controller_id = 1;
+    // is_required: false
+    string version = 2;
+    // is_required: false
+    google.protobuf.Struct options = 3;
+    // is_required: true
+    string domain_id = 4;
+}
+
+message VerifyPluginRequest {
+    // is_required: true
+    string controller_id = 1;
+    // is_required: false
+    string secret_id = 2;
+    // is_required: true
+    string domain_id = 3;
 }

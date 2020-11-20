@@ -45,8 +45,8 @@ message CreateRegionRequest {
 
     // is_required: true
     string region_code = 4;
-    // is_required: true
-    string region_type = 5;
+    // is_required: false
+    string provider = 5;
 }
 
 message UpdateRegionRequest {
@@ -89,26 +89,19 @@ message RegionQuery {
     // is_required: false
     string region_code = 5;
     // is_required: false
-    string region_type = 6;
+    string provider = 6;
 }
 
 message RegionInfo {
-    enum State {
-        NONE = 0;
-        ACTIVE = 1;
-        DELETED = 2;
-    }
-
     string region_id = 1;
-    State state = 2;
-    string name = 3;
-    google.protobuf.Struct tags = 4;
-    string domain_id = 5;
-    google.protobuf.Timestamp created_at = 6;
-    google.protobuf.Timestamp deleted_at = 7;
+    string name = 2;
+    google.protobuf.Struct tags = 3;
+    string domain_id = 4;
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
 
     string region_code = 8;
-    string region_type = 9;
+    string provider = 9;
     google.protobuf.Struct collection_info = 10;
 }
 

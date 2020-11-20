@@ -1,43 +1,36 @@
 syntax = "proto3";
 
-package spaceone.api.power_scheduler.v1;
+package spaceone.api.cost_saving.v1;
 
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
-import "spaceone/api/power_scheduler/v1/job.proto";
+import "spaceone/api/cost_saving/v1/job.proto";
+
 
 service JobTask {
     rpc list (JobTaskQuery) returns (JobTasksInfo) {
         option (google.api.http) = {
-            get: "/power-scheduler/v1/job-tasks"
+            get: "/cost-saving/v1/job-tasks"
             additional_bindings {
-                post: "/power-scheduler/v1/job-tasks/search"
+                post: "/cost-saving/v1/job-tasks/search"
             }
         };
     }
     rpc stat (JobTaskStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/power-scheduler/v1/job-tasks/stat" };
+        option (google.api.http) = { post: "/cost-saving/v1/job-tasks/stat" };
     }
 }
 
 message JobTaskQuery {
     enum JobTaskStatus {
-        JOB_TASK_STATUS_NONE = 0;
-        CREATED = 1;
-        PENDING = 2;
-        CANCELED = 3;
-        IN_PROGRESS = 4;
-        SUCCESS = 5;
-        FAILURE = 6;
+        JOB_TASK_STATE_NONE = 0;
+        PENDING = 1;
+        IN_PROGRESS = 2;
+        SUCCESS = 3;
+        FAILURE = 4;
     }
-
-    enum ControlAction {
-        RUNNING = 0;
-        STOPPED = 1;
-    }
-
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -47,46 +40,34 @@ message JobTaskQuery {
     // is_required: false
     string job_id = 4;
     // is_required: false
-    ControlAction control_action = 5;
+    string provider = 5;
     // is_required: false
-    string schedule_id = 6;
+    string service_account_id = 6;
     // is_required: false
-    string resource_group_id = 7;
-    // is_required: false
-    string project_id = 8;
+    string project_id = 7;
     // is_required: true
-    string domain_id = 9;
+    string domain_id = 8;
 }
 
 message JobTaskInfo {
     enum JobTaskStatus {
-        NONE = 0;
-        CREATED = 1;
-        PENDING = 2;
-        CANCELED = 3;
-        IN_PROGRESS = 4;
-        SUCCESS = 5;
-        FAILURE = 6;
+        JOB_TASK_STATE_NONE = 0;
+        PENDING = 1;
+        IN_PROGRESS = 2;
+        SUCCESS = 3;
+        FAILURE = 4;
     }
-
-    enum ControlAction {
-        RUNNING = 0;
-        STOPPED = 1;
-    }
-
     string job_task_id = 1;
     JobTaskStatus status = 2;
-    int32 success_count = 4;
-    int32 failure_count = 5;
-    int32 total_count = 6;
-    repeated spaceone.api.power_scheduler.v1.ErrorInfo errors = 7;
-    string job_id = 8;
-    ControlAction control_action = 9;
-    string schedule_id = 10;
-    string resource_group_id = 11;
-    int32 priority = 12;
-    string project_id = 13;
-    string domain_id = 14;
+    int32 success_count = 3;
+    int32 failure_count = 4;
+    repeated spaceone.api.cost_saving.v1.ErrorInfo errors = 5;
+
+    string job_id = 11;
+    string provider = 12;
+    string service_account_id = 13;
+    string project_id = 14;
+    string domain_id = 15;
 
     google.protobuf.Timestamp created_at = 21;
     google.protobuf.Timestamp started_at = 22;

@@ -1,41 +1,35 @@
 syntax = "proto3";
 
-package spaceone.api.power_scheduler.v1;
+package spaceone.api.cost_saving.v1;
 
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 import "spaceone/api/core/v1/query.proto";
-import "spaceone/api/power_scheduler/v1/schedule.proto";
 
 service Job {
     rpc list (JobsQuery) returns (JobsInfo) {
         option (google.api.http) = {
-            get: "/power-scheduler/v1/jobs"
+            get: "/cost-saving/v1/jobs"
             additional_bindings {
-                post: "/power-scheduler/v1/jobs/search"
+                post: "/cost-saving/v1/jobs/search"
             }
         };
     }
     rpc stat (JobStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/power-scheduler/v1/jobs/stat" };
+        option (google.api.http) = { post: "/cost-saving/v1/jobs/stat" };
     }
 }
 
 message JobsQuery {
     enum JobStatus {
-        JOB_STATUS_NONE = 0;
+        JOB_STATE_NONE = 0;
         CREATED = 1;
         CANCELED = 2;
         IN_PROGRESS = 3;
         SUCCESS = 4;
         ERROR = 5;
         TIMEOUT = 6;
-    }
-
-    enum ControlAction {
-        RUNNING = 0;
-        STOPPED = 1;
     }
 
     // is_required: false
@@ -45,19 +39,9 @@ message JobsQuery {
     // is_required: false
     JobStatus status = 3;
     // is_required: false
-    string schedule_id = 4;
-    // is_required: false
-    ControlAction control_action = 5;
-    // is_required: false
-    string project_id = 6;
+    string project_id = 4;
     // is_required: true
-    string domain_id = 7;
-}
-
-message ErrorInfo {
-    string error_code = 1;
-    string message = 2;
-    google.protobuf.Struct additional = 3;
+    string domain_id = 5;
 }
 
 message JobInfo {
@@ -71,11 +55,6 @@ message JobInfo {
         TIMEOUT = 6;
 	}
 
-    enum ControlAction {
-        RUNNING = 0;
-        STOPPED = 1;
-    }
-
     string job_id = 1;
     Status status = 2;
     google.protobuf.Struct filter = 3;
@@ -83,10 +62,8 @@ message JobInfo {
     int32 remained_tasks = 5;
     repeated ErrorInfo errors = 6;
 
-    ScheduleInfo schedule_info = 11;
-    ControlAction control_action = 12;
-    string project_id = 13;
-    string domain_id = 14;
+    string project_id = 12;
+    string domain_id = 13;
 
     google.protobuf.Timestamp created_at = 21;
     google.protobuf.Timestamp updated_at = 22;
@@ -103,4 +80,10 @@ message JobStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true
     string domain_id = 2;
+}
+
+message ErrorInfo {
+    string error_code = 1;
+    string message = 2;
+    google.protobuf.Struct additional = 3;
 }
