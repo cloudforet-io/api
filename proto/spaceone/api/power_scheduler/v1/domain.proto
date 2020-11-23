@@ -28,11 +28,7 @@ service Domain {
     }
 }
 
-enum DomainState {
-    NONE = 0;
-    ENABLED = 1;
-    DISABLED = 2;
-}
+
 
 message DomainRequest {
     // is_required: true
@@ -40,6 +36,11 @@ message DomainRequest {
 }
 
 message DomainQuery {
+  enum DomainState {
+      DOMAIN_STATE_NONE = 0;
+      ENABLED = 1;
+      DISABLED = 2;
+  };
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -49,6 +50,12 @@ message DomainQuery {
 }
 
 message DomainInfo {
+  enum DomainState {
+      DOMAIN_STATE_NONE = 0;
+      ENABLED = 1;
+      DISABLED = 2;
+  };
+
     string domain_id = 1;
     DomainState state = 2;
 }
