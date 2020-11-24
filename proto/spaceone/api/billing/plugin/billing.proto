@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package spaceone.api.billing.plugin;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "spaceone/api/core/v1/plugin.proto";
+
+
+service Billing {
+    rpc get_data (BillingDataRequest) returns (PluginBillingDataResponse) {}
+}
+
+message BillingDataRequest {
+    // is_required: true
+    google.protobuf.Struct options = 1;
+    // is_required: true
+    google.protobuf.Struct secret_data = 2;
+    // is_required: false
+    google.protobuf.Struct filter = 3;
+    // is_required: false
+    repeated string aggregation = 4;
+    // is_required: false
+    google.protobuf.Timestamp start = 5;
+    // is_required: true
+    google.protobuf.Timestamp end = 6;
+    // is_required: false
+    string granularity = 7;
+    // is_required: false
+    string schema = 9;
+}
+
+message BillingData {
+    // is_required: true
+    string date = 1;
+    // is_required: true
+    double cost = 2;
+    // is_required: false
+    string currency = 3;
+}
+
+message BillingInfo {
+    // is_required: true
+    string resource_type = 1;
+    // is_required: true
+    repeated BillingData billing_data= 2;
+    // is_required: false
+    string name = 3;
+}
+
+message PluginBillingDataResponse {
+    // is_required: true
+    repeated BillingInfo results = 1;
+    // is_required: true
+    int32 total_count = 2;
+}
