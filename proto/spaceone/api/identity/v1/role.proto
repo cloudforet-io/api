@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 
 service Role {
@@ -62,7 +63,7 @@ message CreateRoleRequest {
     // is_required: true
     repeated RolePolicy policies = 3;
     // is_required: false
-    google.protobuf.Struct tags = 4;
+    repeated spaceone.api.core.v1.Tag tags = 4;
     // is_required: true
     string domain_id = 5;
 }
@@ -75,7 +76,7 @@ message UpdateRoleRequest {
     // is_required: false
     repeated RolePolicy policies = 3;
     // is_required: false
-    google.protobuf.Struct tags = 4;
+    repeated spaceone.api.core.v1.Tag tags = 4;
     // is_required: true
     string domain_id = 5;
 }
@@ -101,7 +102,7 @@ message RoleInfo {
     string name = 2;
     RoleType role_type = 3;
     repeated RolePolicy policies = 4;
-    google.protobuf.Struct tags = 5;
+    repeated spaceone.api.core.v1.Tag tags = 5;
     string domain_id = 11;
     google.protobuf.Timestamp created_at = 21;
     google.protobuf.Timestamp deleted_at = 22;

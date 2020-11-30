@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 
 service Region {
@@ -39,7 +40,7 @@ message CreateRegionRequest {
     // is_required: true
     string name = 1;
     // is_required: false
-    google.protobuf.Struct tags = 2;
+    repeated spaceone.api.core.v1.Tag tags = 2;
     // is_required: true
     string domain_id = 3;
 
@@ -55,7 +56,7 @@ message UpdateRegionRequest {
     // is_required: false
     string name = 2;
     // is_required: false
-    google.protobuf.Struct tags = 3;
+    repeated spaceone.api.core.v1.Tag tags = 3;
     // is_required: true
     string domain_id = 4;
 }
@@ -95,7 +96,7 @@ message RegionQuery {
 message RegionInfo {
     string region_id = 1;
     string name = 2;
-    google.protobuf.Struct tags = 3;
+    repeated spaceone.api.core.v1.Tag tags = 3;
     string domain_id = 4;
     google.protobuf.Timestamp created_at = 5;
     google.protobuf.Timestamp updated_at = 6;

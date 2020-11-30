@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 import "spaceone/api/repository/v1/repository.proto";
 
 service Plugin {
@@ -60,7 +61,7 @@ message CreatePluginRequest {
     // is_required: false
     repeated string labels = 13;
     // is_required: false
-    google.protobuf.Struct tags = 14;
+    repeated spaceone.api.core.v1.Tag tags = 14;
     // is_required: false
     string project_id = 21;
     // is_required: true
@@ -79,7 +80,7 @@ message UpdatePluginRequest {
     // is_required: false
     repeated string labels = 13;
     // is_required: false
-    google.protobuf.Struct tags = 14;
+    repeated spaceone.api.core.v1.Tag tags = 14;
     // is_required: true
     string domain_id = 21;
 }
@@ -153,7 +154,7 @@ message PluginInfo {
     google.protobuf.Struct capability = 11;
     google.protobuf.Struct template = 12;
     repeated string labels = 13;
-    google.protobuf.Struct tags = 14;
+    repeated spaceone.api.core.v1.Tag tags = 14;
 
     RepositoryInfo repository_info = 21;
     string project_id = 22;

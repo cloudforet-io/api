@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 
 service Server {
@@ -82,7 +83,7 @@ message ServerNIC {
     // is_required: false
     string public_ip_address = 7;
     // is_required: false
-    google.protobuf.Struct tags = 8;
+    repeated spaceone.api.core.v1.Tag tags = 8;
 }
 
 message ServerDisk {
@@ -95,7 +96,7 @@ message ServerDisk {
     // is_required: false
     float size = 4;
     // is_required: false
-    google.protobuf.Struct tags = 5;
+    repeated spaceone.api.core.v1.Tag tags = 5;
 }
 
 message CreateServerRequest {
@@ -130,7 +131,7 @@ message CreateServerRequest {
     // is_required: false
     ServerReference reference = 25;
     // is_required: false
-    google.protobuf.Struct tags = 26;
+    repeated spaceone.api.core.v1.Tag tags = 26;
     // is_required: false
     string project_id = 31;
     // is_required: true
@@ -170,7 +171,7 @@ message UpdateServerRequest {
     // is_required: false
     ServerReference reference = 25;
     // is_required: false
-    google.protobuf.Struct tags = 26;
+    repeated spaceone.api.core.v1.Tag tags = 26;
 
     // is_required: false
     string project_id = 31;
@@ -261,7 +262,7 @@ message ServerInfo {
     repeated ServerNIC nics  = 23;
     repeated ServerDisk disks  = 24;
     ServerReference reference = 25;
-    google.protobuf.Struct tags = 26;
+    repeated spaceone.api.core.v1.Tag tags = 26;
     google.protobuf.Struct collection_info = 27;
 
 

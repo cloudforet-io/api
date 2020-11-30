@@ -10,6 +10,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 
 service DomainConfig {
@@ -44,7 +45,7 @@ message CreateDomainConfigRequest {
     // is_required: true
     google.protobuf.Struct data = 2;
     // is_required: false
-    google.protobuf.Struct tags = 3;
+    repeated spaceone.api.core.v1.Tag tags = 3;
     // is_required: false
     string schema = 4;
     // is_required: true
@@ -57,7 +58,7 @@ message UpdateDomainConfigRequest {
     // is_required: false
     google.protobuf.Struct data = 2;
     // is_required: false
-    google.protobuf.Struct tags = 3;
+    repeated spaceone.api.core.v1.Tag tags = 3;
     // is_required: false
     string schema = 4;
     // is_required: true
@@ -92,7 +93,7 @@ message DomainConfigQuery {
 message DomainConfigInfo {
     string name = 1;
     google.protobuf.Struct data = 2;
-    google.protobuf.Struct tags = 3;
+    repeated spaceone.api.core.v1.Tag tags = 3;
     string schema = 4;
     string domain_id = 5;
     google.protobuf.Timestamp created_at = 6;

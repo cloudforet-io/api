@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 service Supervisor {
     rpc publish (PublishSupervisorRequest) returns (SupervisorInfo) {
@@ -64,7 +65,7 @@ message PublishSupervisorRequest {
     // is_required: false
     repeated PluginInfo plugin_info = 4;
     // is_required: false
-    google.protobuf.Struct tags = 5;
+    repeated spaceone.api.core.v1.Tag tags = 5;
     // is_required: false
     bool is_public = 6;
     // is_required: true
@@ -83,7 +84,7 @@ message RegisterSupervisorRequest {
     // is_required: false
     google.protobuf.Struct labels = 5;
     // is_required: false
-    google.protobuf.Struct tags = 6;
+    repeated spaceone.api.core.v1.Tag tags = 6;
     // is_required: true
     string domain_id = 7;
 }
@@ -131,7 +132,7 @@ message SupervisorInfo {
     bool is_public = 5;
 
     string domain_id = 7;
-    google.protobuf.Struct tags = 8;
+    repeated spaceone.api.core.v1.Tag tags = 8;
     google.protobuf.Struct labels = 9;
     google.protobuf.Timestamp created_at = 10;
     google.protobuf.Timestamp updated_at = 11;
