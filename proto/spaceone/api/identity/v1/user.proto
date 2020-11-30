@@ -11,6 +11,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 import "spaceone/api/identity/v1/role.proto";
 
 
@@ -23,11 +24,14 @@ service User {
     note:
     request_example: >-
       {
-	      "user_id": "dkang@mz.co.kr",
-        "tags": {
-            "user1": "Reuters",
-            "user2": "Bloomberg"
-        },
+	    "user_id": "dkang@mz.co.kr",
+        "tags": [{
+          "key": "user1",
+          "value": "Reuters"
+        }, {
+          "key": "user2",
+          "value": "Bloomberg"
+        }],
 	      "domain_id": "{{DOMAIN_ID}}"
       }
     response_example: >-
@@ -41,10 +45,13 @@ service User {
         "group": "",
         "language": "en",
         "timezone": "UTC",
-        "tags": {
-            "user1": "Reuters",
-            "user2": "Bloomberg"
-        },
+        "tags": [{
+          "key": "user1",
+          "value": "Reuters"
+        }, {
+          "key": "user2",
+          "value": "Bloomberg"
+        }],
         "last_accessed_at": {
             "seconds": "1593161630",
             "nanos": 79000000
@@ -111,7 +118,7 @@ message CreateUserRequest {
     // is_required: false
     string timezone = 8;
     // is_required: false
-    google.protobuf.Struct tags = 9;
+    repeated spaceone.api.core.v1.Tag tags = 9;
     // is_required: true
     string domain_id = 10;
 }
@@ -133,7 +140,7 @@ message UserInfo {
     string language = 7;
     string timezone = 8;
     repeated spaceone.api.identity.v1.RoleInfo roles = 9;
-    google.protobuf.Struct tags = 10;
+    repeated spaceone.api.core.v1.Tag tags = 10;
     google.protobuf.Timestamp last_accessed_at = 11;
     google.protobuf.Timestamp created_at = 12;
     string domain_id = 13;
@@ -157,7 +164,7 @@ message UpdateUserRequest {
     // is_required: false
     string timezone = 8;
     // is_required: false
-    google.protobuf.Struct tags = 9;
+    repeated spaceone.api.core.v1.Tag tags = 9;
     // is_required: true
     string domain_id = 10;
 }

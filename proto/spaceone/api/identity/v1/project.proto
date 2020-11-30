@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 import "spaceone/api/identity/v1/role.proto";
 import "spaceone/api/identity/v1/project_group.proto";
 import "spaceone/api/identity/v1/user.proto";
@@ -66,7 +67,7 @@ message CreateProjectRequest {
     // is_required: false
     google.protobuf.Struct template_data = 4;
     // is_required: false
-    google.protobuf.Struct tags = 5;
+    repeated spaceone.api.core.v1.Tag tags = 5;
 }
 
 message UpdateProjectRequest {
@@ -81,7 +82,7 @@ message UpdateProjectRequest {
     // is_required: false
     google.protobuf.Struct template_data = 5;
     // is_required: false
-    google.protobuf.Struct tags = 6;
+    repeated spaceone.api.core.v1.Tag tags = 6;
 }
 
 message ProjectRequest {
@@ -144,7 +145,7 @@ message ProjectInfo {
     //google.protobuf.Struct template_data = 4; // TODO: Not be implemented template service yet
     spaceone.api.identity.v1.ProjectGroupInfo project_group_info = 5;
     string domain_id = 6;
-    google.protobuf.Struct tags = 7;
+    repeated spaceone.api.core.v1.Tag tags = 7;
     string created_by = 8;
     google.protobuf.Timestamp created_at = 9;
     google.protobuf.Timestamp deleted_at = 10;

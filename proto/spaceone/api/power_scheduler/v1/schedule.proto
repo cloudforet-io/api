@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 service Schedule {
     rpc create (CreateScheduleRequest) returns (ScheduleInfo) {
@@ -59,7 +60,7 @@ message CreateScheduleRequest {
     // is_required: true
     string name = 1;
     // is_required: false
-    google.protobuf.Struct tags = 11;
+    repeated spaceone.api.core.v1.Tag tags = 11;
     // is_required: true
     string user_id = 23;
     // is_required: true
@@ -76,7 +77,7 @@ message UpdateScheduleRequest {
     // is_required: false
     ScheduleState state = 3;
     // is_required: false
-    google.protobuf.Struct tags = 11;
+    repeated spaceone.api.core.v1.Tag tags = 11;
     // is_required: true
     string domain_id = 22;
 }
@@ -147,7 +148,7 @@ message ScheduleInfo {
     ScheduleState state = 3;
 
     repeated ResourceGroup resource_groups = 11;
-    google.protobuf.Struct tags = 12;
+    repeated spaceone.api.core.v1.Tag tags = 12;
 
     string project_id = 21;
     string domain_id = 22;

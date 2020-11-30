@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 
 service DeviceType {
@@ -47,7 +48,7 @@ message CreateDeviceTypeRequest {
     // is_required: false
     google.protobuf.Struct metadata = 13;
     // is_required: false
-    google.protobuf.Struct tags = 14;
+    repeated spaceone.api.core.v1.Tag tags = 14;
     // is_required: true
     string domain_id = 21;
 }
@@ -64,7 +65,7 @@ message UpdateDeviceTypeRequest {
     // is_required: false
     google.protobuf.Struct metadata = 13;
     // is_required: false
-    google.protobuf.Struct tags = 14;
+    repeated spaceone.api.core.v1.Tag tags = 14;
     // is_required: true
     string domain_id = 21;
 }
@@ -104,7 +105,7 @@ message DeviceTypeInfo {
     DeviceTypeInfo parent_device_type_info = 12;
     google.protobuf.Struct template = 13;
     google.protobuf.Struct metadata = 14;
-    google.protobuf.Struct tags = 15;
+    repeated spaceone.api.core.v1.Tag tags = 15;
 
     string domain_id = 21;
 

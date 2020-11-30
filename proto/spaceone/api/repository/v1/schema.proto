@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 import "spaceone/api/repository/v1/repository.proto";
 
 service Schema {
@@ -45,7 +46,7 @@ message CreateSchemaRequest {
     // is_required: false
     repeated string labels = 12;
     // is_required: false
-    google.protobuf.Struct tags = 13;
+    repeated spaceone.api.core.v1.Tag tags = 13;
     // is_required: false
     string project_id = 21;
     // is_required: true
@@ -60,7 +61,7 @@ message UpdateSchemaRequest {
     // is_required: false
     repeated string labels = 12;
     // is_required: false
-    google.protobuf.Struct tags = 13;
+    repeated spaceone.api.core.v1.Tag tags = 13;
     // is_required: true
     string domain_id = 21;
 }
@@ -104,7 +105,7 @@ message SchemaInfo {
 
     google.protobuf.Struct schema = 11;
     repeated string labels = 12;
-    google.protobuf.Struct tags = 13;
+    repeated spaceone.api.core.v1.Tag tags = 13;
 
     RepositoryInfo repository_info = 21;
     string project_id = 22;
