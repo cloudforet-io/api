@@ -41,8 +41,6 @@ service User {
         "name": "Dong Yoo kang",
         "state": "ENABLED",
         "email": "dkang@mz.co.kr",
-        "mobile": "",
-        "group": "",
         "language": "en",
         "timezone": "UTC",
         "tags": [{
@@ -100,6 +98,18 @@ service User {
     }
 }
 
+enum UserBackend {
+    NONE_BACKEND = 0;
+    LOCAL = 1;
+    EXTERNAL = 2;
+}
+
+enum UserIssueToken {
+    NONE_ISSUE_TOKEN = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+}
+
 message CreateUserRequest {
     // is_required: true
     string user_id = 1;
@@ -110,9 +120,9 @@ message CreateUserRequest {
     // is_required: false
     string email = 4;
     // is_required: false
-    string mobile = 5;
-    // is_required: false
-    string group = 6;
+    UserIssueToken issue_token = 5;
+    // is_required: true
+    UserBackend backend = 6;
     // is_required: false
     string language = 7;
     // is_required: false
@@ -128,15 +138,15 @@ message UserInfo {
         NONE = 0;
         ENABLED = 1;
         DISABLED = 2;
-        UNIDENTIFIED = 3;
+        PENDING = 3;
     }
 
     string user_id = 1;
     string name = 2;
     State state = 3;
     string email = 4;
-    string mobile = 5;
-    string group = 6;
+    UserIssueToken issue_token = 5;
+    UserBackend backend = 6;
     string language = 7;
     string timezone = 8;
     repeated spaceone.api.identity.v1.RoleInfo roles = 9;
@@ -156,9 +166,7 @@ message UpdateUserRequest {
     // is_required: false
     string email = 4;
     // is_required: false
-    string mobile = 5;
-    // is_required: false
-    string group = 6;
+    UserIssueToken mobile = 5;
     // is_required: false
     string language = 7;
     // is_required: false
@@ -245,9 +253,7 @@ message FindUserInfo {
     string user_id = 1;
     string name = 2;
     string email = 3;
-    string mobile = 4;
-    string group = 5;
-    string state = 6;
+    repeated spaceone.api.core.v1.Tag tags = 4;
 }
 
 message FindUsersInfo {
