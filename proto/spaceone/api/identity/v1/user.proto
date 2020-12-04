@@ -104,10 +104,10 @@ enum UserBackend {
     EXTERNAL = 2;
 }
 
-enum UserIssueToken {
-    NONE_ISSUE_TOKEN = 0;
-    ENABLED = 1;
-    DISABLED = 2;
+enum UserType {
+    NONE_USER_TYPE = 0;
+    USER = 1;
+    API_USER = 2;
 }
 
 message CreateUserRequest {
@@ -120,7 +120,7 @@ message CreateUserRequest {
     // is_required: false
     string email = 4;
     // is_required: false
-    UserIssueToken issue_token = 5;
+    UserType user_type = 5;
     // is_required: true
     UserBackend backend = 6;
     // is_required: false
@@ -145,7 +145,7 @@ message UserInfo {
     string name = 2;
     State state = 3;
     string email = 4;
-    UserIssueToken issue_token = 5;
+    UserType user_type = 5;
     UserBackend backend = 6;
     string language = 7;
     string timezone = 8;
@@ -165,8 +165,6 @@ message UpdateUserRequest {
     string name = 3;
     // is_required: false
     string email = 4;
-    // is_required: false
-    UserIssueToken mobile = 5;
     // is_required: false
     string language = 7;
     // is_required: false
@@ -214,9 +212,9 @@ message UserQuery {
     // is_required: false
     string email = 5;
     // is_required: false
-    string mobile = 6;
+    UserType user_type = 6;
     // is_required: false
-    string group = 7;
+    UserBackend backend = 7;
     // is_required: false
     string role_id = 8;
     // is_required: false
