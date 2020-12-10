@@ -43,9 +43,6 @@ service Domain {
 
     rpc get_public_key (spaceone.api.core.v1.AuthenticationRequest)
     returns (spaceone.api.core.v1.AuthenticationResponse) {}
-
-    rpc get_domain_key (spaceone.api.core.v1.AuthenticationRequest)
-    returns (DomainKeyResponse) {}
 }
 
 message CreateDomainRequest {
@@ -130,9 +127,4 @@ message PluginInfo {
     string version = 2;
     string secret_id = 3;
     google.protobuf.Struct options = 4;
-}
-
-message DomainKeyResponse {
-    string domain_id = 1;
-    string domain_key = 2;
 }

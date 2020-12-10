@@ -18,12 +18,6 @@ service APIKey {
     rpc disable (APIKeyRequest) returns (APIKeyInfo) {
         option (google.api.http) = { put: "/identity/v1/api-key/{api_key_id}/disable" };
     }
-    rpc update_role (UpdateAPIKeyRoleRequest) returns (APIKeyInfo) {
-        option (google.api.http) = { put: "/identity/v1/api-key/{api_key_id}/roles"};
-    }
-    rpc update_allowed_hosts (UpdateAPIKeyHostsRequest) returns (APIKeyInfo) {
-        option (google.api.http) = { put: "/identity/v1/api-key/{api_key_id}/allowed-hosts"};
-    }
     rpc delete (APIKeyRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/identity/v1/api-key/{api_key_id}" };
     }
@@ -44,33 +38,26 @@ service APIKey {
 }
 
 message CreateAPIKeyRequest {
-    enum APIKeyType {
-        NONE = 0;
-        USER = 1;
-        SYSTEM = 2;
-        DELEGATION = 3;
-        DOMAIN = 4;
-    }
-
-    APIKeyType api_key_type = 1;        // required
-    string user_id = 2;                 // required
-    string domain_id = 3;               // required
+    // is_required: true
+    string user_id = 1;
+    // is_required: true
+    string domain_id = 2;
 }
 
 message APIKeyRequest {
-    string api_key_id = 1;              // required
-    string domain_id = 2;               // required
+    // is_required: true
+    string api_key_id = 1;
+    // is_required: true
+    string domain_id = 2;
 }
 
 message GetAPIKeyRequest {
-    string api_key_id = 1;              // required
-    string domain_id = 2;               // required
-    repeated string only = 3;           // optional
-}
-
-message Acls {
-    string name = 1;                    // optional
-    string cidr = 2;                    // required
+    // is_required: true
+    string api_key_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
 }
 
 message APIKeyInfo {
@@ -79,36 +66,14 @@ message APIKeyInfo {
         ENABLED = 1;
         DISABLED = 2;
     }
-//    enum APIKeyType {
-//        NONE_TYPE = 0;
-//        USER = 1;
-//        SYSTEM = 2;
-//        DELEGATION = 3;
-//        DOMAIN = 4;
-//    }
 
     string api_key_id = 1;
     string api_key = 2;
     State state = 3;
-//    APIKeyType api_key_type = 4;
-    string user_id = 5;
-    string domain_id = 6;
-//    repeated spaceone.api.identity.v1.RoleInfo roles = 7;
-    repeated Acls allowed_hosts = 8;
-    google.protobuf.Timestamp last_accessed_at = 9;
-    google.protobuf.Timestamp created_at = 10;
-}
-
-message UpdateAPIKeyRoleRequest {
-    string api_key_id = 1;
-    google.protobuf.ListValue roles = 2;
-    string domain_id = 3;
-}
-
-message UpdateAPIKeyHostsRequest {
-    string api_key_id = 1;
-    repeated Acls allowed_hosts = 2;
-    string domain_id = 3;
+    string user_id = 4;
+    string domain_id = 5;
+    google.protobuf.Timestamp last_accessed_at = 10;
+    google.protobuf.Timestamp created_at = 11;
 }
 
 message APIKeyQuery {
@@ -117,20 +82,17 @@ message APIKeyQuery {
         ENABLED = 1;
         DISABLED = 2;
     }
-    enum APIKeyType {
-        NONE_TYPE = 0;
-        USER = 1;
-        SYSTEM = 2;
-        DELEGATION = 3;
-        DOMAIN = 4;
-    }
 
-    string api_key_id = 1;
-    State state = 2;
-    APIKeyType api_key_type = 3;
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string api_key_id = 2;
+    // is_required: false
+    State state = 3;
+    // is_required: false
     string user_id = 4;
-    spaceone.api.core.v1.Query query = 5;
-    string domain_id = 6;
+    // is_required: true
+    string domain_id = 5;
 }
 
 message APIKeysInfo {
@@ -139,14 +101,8 @@ message APIKeysInfo {
 }
 
 message APIKeyStatQuery {
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    /*
-    is_required: true
-    desc:
-    */
+    // is_required: true
     string domain_id = 2;
 }
