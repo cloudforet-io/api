@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package spaceone.api.power_scheduler.v1;
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service Domain {
+    rpc enable (DomainRequest) returns (DomainInfo) {
+        option (google.api.http) = { put: "/power-scheduler/v1/domain/{domain_id}/enable" };
+    }
+    rpc disable (DomainRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { put: "/power-scheduler/v1/domain/{domain_id}/disable" };
+    }
+    rpc get (DomainRequest) returns (DomainInfo) {
+        option (google.api.http) = { get: "/power-scheduler/v1/domain/{domain_id}" };
+    }
+    rpc list (DomainQuery) returns (DomainsInfo) {
+        option (google.api.http) = {
+            get: "/power-scheduler/v1/domains"
+            additional_bindings {
+                post: "/power-scheduler/v1/domains/search"
+            }
+        };
+    }
+}
+
+
+
+message DomainRequest {
+    // is_required: true
+    string domain_id = 1;
+}
+
+message DomainQuery {
+  enum DomainState {
+      DOMAIN_STATE_NONE = 0;
+      ENABLED = 1;
+      DISABLED = 2;
+  };
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    DomainState state = 2;
+    // is_required: true
+    string domain_id = 3;
+}
+
+message DomainInfo {
+  enum DomainState {
+      DOMAIN_STATE_NONE = 0;
+      ENABLED = 1;
+      DISABLED = 2;
+  };
+
+    string domain_id = 1;
+    DomainState state = 2;
+}
+
+message DomainsInfo {
+    repeated DomainInfo results = 1;
+    int32 total_count = 2;
+}
+

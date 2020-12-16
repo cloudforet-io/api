@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 service Provider {
     rpc create (CreateProviderRequest) returns (ProviderInfo) {
@@ -46,7 +47,7 @@ message CreateProviderRequest {
     // is_required: false
     google.protobuf.Struct capability = 5;
     // is_required: false
-    google.protobuf.Struct tags = 6;
+    repeated spaceone.api.core.v1.Tag tags = 6;
     // is_required: true
     string domain_id = 7;
 }
@@ -63,7 +64,7 @@ message UpdateProviderRequest {
     // is_required: false
     google.protobuf.Struct capability = 5;
     // is_required: false
-    google.protobuf.Struct tags = 6;
+    repeated spaceone.api.core.v1.Tag tags = 6;
     // is_required: true
     string domain_id = 7;
 }
@@ -101,7 +102,7 @@ message ProviderInfo {
     google.protobuf.Struct template = 3;
     google.protobuf.Struct metadata = 4;
     google.protobuf.Struct capability = 5;
-    google.protobuf.Struct tags = 6;
+    repeated spaceone.api.core.v1.Tag tags = 6;
     google.protobuf.Timestamp created_at = 7;
 }
 

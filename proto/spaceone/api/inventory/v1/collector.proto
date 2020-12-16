@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 service Collector {
     rpc create (CreateCollectorRequest) returns (CollectorInfo) {
@@ -88,7 +89,7 @@ message CreateCollectorRequest {
     // is_required: false
     int32  priority = 3;
     // is_required: false
-    google.protobuf.Struct tags = 5;
+    repeated spaceone.api.core.v1.Tag tags = 5;
     // is_required: true
     string domain_id = 6;
     // is_required: false
@@ -111,7 +112,7 @@ message UpdateCollectorRequest {
     // is_required: false
     int32  priority = 4;
     // is_required: false
-    google.protobuf.Struct tags = 6;
+    repeated spaceone.api.core.v1.Tag tags = 6;
     // is_required: true
     string domain_id = 7;
 }
@@ -193,7 +194,7 @@ message CollectorInfo {
 	State state = 3;
     PluginInfo plugin_info = 4;
     int32  priority = 5;
-    google.protobuf.Struct tags = 7;
+    repeated spaceone.api.core.v1.Tag tags = 7;
     google.protobuf.Timestamp created_at = 8;
     google.protobuf.Timestamp last_collected_at = 9;
     string domain_id = 10;

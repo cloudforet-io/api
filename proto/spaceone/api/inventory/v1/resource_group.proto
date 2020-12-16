@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 
 service ResourceGroup {
@@ -38,8 +39,10 @@ service ResourceGroup {
 message Resource {
     // is_required: true
     string resource_type = 1;
-    // is_required: true
+    // is_required: false
     google.protobuf.ListValue filter = 2;
+    // is_required: false
+    string keyword = 3;
 }
 
 message CreateResourceGroupRequest {
@@ -48,7 +51,9 @@ message CreateResourceGroupRequest {
     // is_required: true
     repeated Resource resources = 2;
     // is_required: false
-    google.protobuf.Struct tags = 3;
+    google.protobuf.Struct options = 3;
+    // is_required: false
+    repeated spaceone.api.core.v1.Tag tags = 4;
 
     // is_required: true
     string project_id = 11;
@@ -64,7 +69,9 @@ message UpdateResourceGroupRequest {
     // is_required: false
     repeated Resource resources = 3;
     // is_required: false
-    google.protobuf.Struct tags = 4;
+    google.protobuf.Struct options = 4;
+    // is_required: false
+    repeated spaceone.api.core.v1.Tag tags = 5;
 
     // is_required: false
     bool release_project = 11;
@@ -107,10 +114,11 @@ message ResourceGroupInfo {
     string resource_group_id = 1;
     string name = 2;
     repeated Resource resources = 3;
-    google.protobuf.Struct tags = 4;
-    string project_id = 5;
-    string domain_id = 6;
-    google.protobuf.Timestamp created_at = 7;
+    google.protobuf.Struct options = 4;
+    repeated spaceone.api.core.v1.Tag tags = 5;
+    string project_id = 6;
+    string domain_id = 7;
+    google.protobuf.Timestamp created_at = 8;
 }
 
 message ResourceGroupsInfo {

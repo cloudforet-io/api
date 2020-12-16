@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package spaceone.api.cost_saving.v1;
+
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service Job {
+    rpc list (JobsQuery) returns (JobsInfo) {
+        option (google.api.http) = {
+            get: "/cost-saving/v1/jobs"
+            additional_bindings {
+                post: "/cost-saving/v1/jobs/search"
+            }
+        };
+    }
+    rpc stat (JobStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/cost-saving/v1/jobs/stat" };
+    }
+}
+
+message JobsQuery {
+    enum JobStatus {
+        JOB_STATE_NONE = 0;
+        CREATED = 1;
+        CANCELED = 2;
+        IN_PROGRESS = 3;
+        SUCCESS = 4;
+        ERROR = 5;
+        TIMEOUT = 6;
+    }
+
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string job_id = 2;
+    // is_required: false
+    JobStatus status = 3;
+    // is_required: false
+    string project_id = 4;
+    // is_required: true
+    string domain_id = 5;
+}
+
+message JobInfo {
+    enum Status {
+        NONE = 0;
+        CREATED = 1;
+        CANCELED = 2;
+        IN_PROGRESS = 3;
+        SUCCESS = 4;
+        ERROR = 5;
+        TIMEOUT = 6;
+	}
+
+    string job_id = 1;
+    Status status = 2;
+    google.protobuf.Struct filter = 3;
+    int32 total_tasks = 4;
+    int32 remained_tasks = 5;
+    repeated ErrorInfo errors = 6;
+
+    string project_id = 12;
+    string domain_id = 13;
+
+    google.protobuf.Timestamp created_at = 21;
+    google.protobuf.Timestamp updated_at = 22;
+    google.protobuf.Timestamp finished_at = 23;
+}
+
+message JobsInfo {
+    repeated JobInfo results = 1;
+    int32 total_count = 2;
+}
+
+message JobStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message ErrorInfo {
+    string error_code = 1;
+    string message = 2;
+    google.protobuf.Struct additional = 3;
+}

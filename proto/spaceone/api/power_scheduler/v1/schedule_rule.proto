@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 service ScheduleRule {
     rpc create (CreateScheduleRuleRequest) returns (RuleInfo) {
@@ -49,7 +50,7 @@ enum RuleType {
 message CreateScheduleRuleRequest {
     // is_required: true
     string schedule_id = 1;
-    // is_required: true
+    // is_required: false
     string name = 2;
     // is_required: true
     ScheduleRuleState state = 3;
@@ -60,7 +61,7 @@ message CreateScheduleRuleRequest {
     // is_required: false
     int32 priority = 6;
     // is_required: false
-    google.protobuf.Struct tags = 11;
+    repeated spaceone.api.core.v1.Tag tags = 11;
     // is_required: true
     string user_id = 23;
     // is_required: true
@@ -77,7 +78,7 @@ message UpdateScheduleRuleRequest {
     // is_required: false
     repeated Rule rule = 4;
     // is_required: false
-    google.protobuf.Struct tags = 11;
+    repeated spaceone.api.core.v1.Tag tags = 11;
     // is_required: true
     string domain_id = 22;
 }
@@ -118,8 +119,10 @@ message ScheduleRuleQuery {
 }
 
 message Rule {
-    string day = 1;
-    string date = 2;
+    oneof format {
+        string day = 1;
+        string date = 2;
+    }
     repeated int32 times = 3;
 }
 
@@ -129,11 +132,10 @@ message RuleInfo {
     ScheduleRuleState state = 3;
     RuleType rule_type = 4;
     repeated Rule rule = 5;
-    string timezone = 6;
-    int32 priority = 7;
-    string schedule_id = 8;
+    int32 priority = 6;
+    string schedule_id = 7;
 
-    google.protobuf.Struct tags = 12;
+    repeated spaceone.api.core.v1.Tag tags = 12;
     string project_id = 21;
     string domain_id = 22;
 
