@@ -9,7 +9,6 @@ import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 import "spaceone/api/core/v1/tag.proto";
 import "spaceone/api/identity/v1/role.proto";
-import "spaceone/api/identity/v1/user.proto";
 
 
 service ProjectGroup {
@@ -21,15 +20,6 @@ service ProjectGroup {
     }
     rpc delete (ProjectGroupRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/identity/v1/project-group/{project_id}" };
-    }
-    rpc add_member (ProjectGroupMemberRequest) returns (ProjectGroupMemberInfo) {
-        option (google.api.http) = { post: "/identity/v1/project-group/{project_group_id}/members" };
-    }
-    rpc modify_member (ProjectGroupMemberRequest) returns (ProjectGroupMemberInfo) {
-        option (google.api.http) = { put: "/identity/v1/project-group/{project_group_id}/member/{user_id}" };
-    }
-    rpc remove_member (RemoveProjectGroupMemberRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/identity/v1/project-group/{project_group_id}/member/{user_id}" };
     }
     rpc get (GetProjectGroupRequest) returns (ProjectGroupInfo) {
         option (google.api.http) = { get: "/identity/v1/project-group/{project_group_id}" };
@@ -45,7 +35,16 @@ service ProjectGroup {
     rpc stat (ProjectGroupStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = { post: "/identity/v1/project-groups/stat" };
     }
-    rpc list_members (ProjectGroupMemberQuery) returns (ProjectGroupMembersInfo) {
+    rpc add_member (AddProjectGroupMemberRequest) returns (ProjectGroupRoleBindingInfo) {
+        option (google.api.http) = { post: "/identity/v1/project-group/{project_group_id}/members" };
+    }
+    rpc modify_member (ModifyProjectGroupMemberRequest) returns (ProjectGroupRoleBindingInfo) {
+        option (google.api.http) = { put: "/identity/v1/project-group/{project_group_id}/member/{user_id}" };
+    }
+    rpc remove_member (RemoveProjectGroupMemberRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/identity/v1/project-group/{project_group_id}/member/{user_id}" };
+    }
+    rpc list_members (ProjectGroupMemberQuery) returns (ProjectGroupRoleBindingsInfo) {
         option (google.api.http) = {
             get: "/identity/v1/project-group/{project_group_id}/members"
             additional_bindings {
@@ -68,25 +67,25 @@ message CreateProjectGroupRequest {
     string name = 1;
     // is_required: false
     string parent_project_group_id = 2;
-    // is_required: true
-    string domain_id = 3;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 5;
+    repeated spaceone.api.core.v1.Tag tags = 3;
+        // is_required: true
+    string domain_id = 4;
 }
 
 message UpdateProjectGroupRequest {
     // is_required: true
     string project_group_id = 1;
     // is_required: false
-    string parent_project_group_id = 2;
+    string name = 2;
     // is_required: false
-    string name = 3;
+    string parent_project_group_id = 3;
     // is_required: false
     bool release_parent_project_group = 4;
-    // is_required: true
-    string domain_id = 5;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 7;
+    repeated spaceone.api.core.v1.Tag tags = 5;
+    // is_required: true
+    string domain_id = 6;
 }
 
 message ProjectGroupRequest {
@@ -105,17 +104,60 @@ message GetProjectGroupRequest {
     repeated string only = 3;
 }
 
-message ProjectGroupMemberRequest {
+message ProjectGroupQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string project_group_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    string parent_project_group_id = 4;
+    // is_required: true
+    string domain_id = 5;
+}
+
+message ProjectGroupInfo {
+    string project_group_id = 1;
+    string name = 2;
+    repeated spaceone.api.core.v1.Tag tags = 3;
+    ProjectGroupInfo parent_project_group_info = 4;
+    string domain_id = 11;
+    string created_by = 21;
+    google.protobuf.Timestamp created_at = 22;
+}
+
+message ProjectGroupsInfo {
+    repeated ProjectGroupInfo results = 1;
+    int32 total_count = 2;
+}
+
+message AddProjectGroupMemberRequest {
     // is_required: true
     string project_group_id = 1;
     // is_required: true
     string user_id = 2;
+    // is_required: false
+    string role_id = 3;
+    // is_required: false
+    repeated string labels = 4;
+    // is_required: false
+    repeated spaceone.api.core.v1.Tag tags = 5;
     // is_required: true
-    string domain_id = 3;
+    string domain_id = 6;
+}
+
+message ModifyProjectGroupMemberRequest {
+    // is_required: true
+    string project_group_id = 1;
+    // is_required: true
+    string user_id = 2;
     // is_required: false
-    repeated string roles = 4;
+    repeated string labels = 3;
     // is_required: false
-    repeated string labels = 5;
+    repeated spaceone.api.core.v1.Tag tags = 4;
+    // is_required: true
+    string domain_id = 5;
 }
 
 message RemoveProjectGroupMemberRequest {
@@ -127,37 +169,6 @@ message RemoveProjectGroupMemberRequest {
     string domain_id = 3;
 }
 
-message ProjectGroupQuery {
-    // is_required: false
-    spaceone.api.core.v1.Query query = 1;
-    // is_required: false
-    string project_group_id = 2;
-    // is_required: false
-    string parent_project_group_id = 3;
-    // is_required: false
-    string name = 4;
-    // is_required: false
-    string user_id = 6;
-    // is_required: true
-    string domain_id = 7;
-}
-
-message ProjectGroupInfo {
-    string project_group_id = 1;
-    string name = 2;
-    ProjectGroupInfo parent_project_group_info = 5;
-    string domain_id = 6;
-    repeated spaceone.api.core.v1.Tag tags = 7;
-    string created_by = 8;
-    google.protobuf.Timestamp created_at = 9;
-    google.protobuf.Timestamp deleted_at = 10;
-}
-
-message ProjectGroupsInfo {
-    repeated ProjectGroupInfo results = 1;
-    int32 total_count = 2;
-}
-
 message ProjectGroupMemberQuery {
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
@@ -165,19 +176,28 @@ message ProjectGroupMemberQuery {
     string project_group_id = 2;
     // is_required: false
     string user_id = 3;
+    // is_required: false
+    string role_id = 4;
+    // is_required: false
+    string include_parent_member = 5;
     // is_required: true
-    string domain_id = 4;
+    string domain_id = 6;
 }
 
-message ProjectGroupMemberInfo {
-    ProjectGroupInfo project_group_info = 1;
-    spaceone.api.identity.v1.UserInfo user_info = 2;
-    repeated spaceone.api.identity.v1.RoleInfo roles = 3;
-    repeated string labels = 4;
+message ProjectGroupRoleBindingInfo {
+    string role_binding_id = 1;
+    string resource_type = 2;
+    string resource_id = 3;
+    spaceone.api.identity.v1.RoleInfo role_info = 4;
+    ProjectGroupInfo project_group_info = 5;
+    repeated string labels = 7;
+    repeated spaceone.api.core.v1.Tag tags = 8;
+    string domain_id = 11;
+    google.protobuf.Timestamp created_at = 21;
 }
 
-message ProjectGroupMembersInfo {
-    repeated ProjectGroupMemberInfo results = 1;
+message ProjectGroupRoleBindingsInfo {
+    repeated ProjectGroupRoleBindingInfo results = 1;
     int32 total_count = 2;
 }
 
@@ -195,13 +215,11 @@ message ProjectGroupProjectQuery {
 message ProjectGroupProjectInfo {
     string project_id = 1;
     string name = 2;
-    string state = 3;
-    ProjectGroupInfo project_group_info = 5;
-    string domain_id = 6;
-    repeated spaceone.api.core.v1.Tag tags = 7;
-    string created_by = 8;
-    google.protobuf.Timestamp created_at = 9;
-    google.protobuf.Timestamp deleted_at = 10;
+    repeated spaceone.api.core.v1.Tag tags = 3;
+    spaceone.api.identity.v1.ProjectGroupInfo project_group_info = 4;
+    string domain_id = 11;
+    string created_by = 21;
+    google.protobuf.Timestamp created_at = 22;
 }
 
 message ProjectGroupProjectsInfo {
@@ -214,6 +232,4 @@ message ProjectGroupStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true
     string domain_id = 2;
-    // is_required: false
-    string user_id = 3;
 }

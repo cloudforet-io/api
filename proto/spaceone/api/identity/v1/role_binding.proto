@@ -1,0 +1,133 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
+import "spaceone/api/identity/v1/project.proto";
+import "spaceone/api/identity/v1/project_group.proto";
+import "spaceone/api/identity/v1/role.proto";
+
+
+service RoleBinding {
+    rpc create (CreateRoleBindingRequest) returns (RoleBindingInfo) {
+        option (google.api.http) = { post: "/identity/v1/role-bindings" };
+    }
+    rpc update (UpdateRoleBindingRequest) returns (RoleBindingInfo) {
+        option (google.api.http) = { put: "/identity/v1/role-bindings/{role_binding_id}" };
+    }
+    rpc delete (RoleBindingRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/identity/v1/role-bindings/{role_binding_id}" };
+    }
+    rpc get (GetRoleBindingRequest) returns (RoleBindingInfo) {
+        option (google.api.http) = { get: "/identity/v1/role-bindings/{role_binding_id}" };
+    }
+    rpc list (RoleBindingQuery) returns (RoleBindingsInfo) {
+        option (google.api.http) = {
+            get: "/identity/v1/role-bindings"
+            additional_bindings {
+                post: "/identity/v1/role-bindings/search"
+            }
+        };
+    }
+    rpc stat (RoleBindingStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/identity/v1/roles/stat" };
+    }
+}
+
+message CreateRoleBindingRequest {
+    // is_required: true
+    string resource_type = 1;
+    // is_required: true
+    string resource_id = 2;
+    // is_required: true
+    string role_id = 3;
+    // is_required: false
+    string project_id = 4;
+    // is_required: false
+    string project_group_id = 5;
+    // is_required: false
+    repeated string labels = 6;
+    // is_required: false
+    repeated spaceone.api.core.v1.Tag tags = 7;
+    // is_required: true
+    string domain_id = 8;
+}
+
+message UpdateRoleBindingRequest {
+    // is_required: true
+    string role_binding_id = 1;
+    // is_required: false
+    repeated string labels = 2;
+    // is_required: false
+    repeated spaceone.api.core.v1.Tag tags = 3;
+    // is_required: true
+    string domain_id = 4;
+}
+
+message RoleBindingRequest {
+    // is_required: true
+    string role_binding_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetRoleBindingRequest {
+    // is_required: true
+    string role_binding_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message RoleBindingInfo {
+    string role_binding_id = 1;
+    string resource_type = 2;
+    string resource_id = 3;
+    spaceone.api.identity.v1.RoleInfo role_info = 4;
+    spaceone.api.identity.v1.ProjectInfo project_info = 5;
+    spaceone.api.identity.v1.ProjectGroupInfo project_group_info = 6;
+    repeated string labels = 7;
+    repeated spaceone.api.core.v1.Tag tags = 8;
+    string domain_id = 11;
+    google.protobuf.Timestamp created_at = 21;
+}
+
+message RoleBindingQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string role_binding_id = 2;
+    // is_required: false
+    string resource_type = 3;
+    // is_required: false
+    string resource_id = 4;
+    // is_required: false
+    string role_id = 5;
+    // is_required: false
+    string role_type = 6;
+    // is_required: false
+    string project_id = 7;
+    // is_required: false
+    string project_group_id = 8;
+    // is_required: true
+    string domain_id = 9;
+
+}
+
+message RoleBindingsInfo {
+    repeated RoleBindingInfo results = 1;
+    int32 total_count = 2;
+}
+
+message RoleBindingStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
