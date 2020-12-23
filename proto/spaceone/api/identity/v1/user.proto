@@ -12,7 +12,6 @@ import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 import "spaceone/api/core/v1/tag.proto";
-import "spaceone/api/identity/v1/role.proto";
 
 
 service User {
@@ -36,7 +35,6 @@ service User {
       }
     response_example: >-
       {
-        "roles": [],
         "user_id": "dkang@mz.co.kr",
         "name": "Dong Yoo kang",
         "state": "ENABLED",
@@ -69,9 +67,6 @@ service User {
     }
     rpc disable (UserRequest) returns (UserInfo) {
         option (google.api.http) = { put: "/identity/v1/user/{user_id}/disable" };
-    }
-    rpc update_role (UpdateUserRoleRequest) returns (UserInfo) {
-        option (google.api.http) = { put: "/identity/v1/user/{user_id}/roles" };
     }
     rpc delete (UserRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/identity/v1/users" };
@@ -133,29 +128,6 @@ message CreateUserRequest {
     string domain_id = 10;
 }
 
-message UserInfo {
-    enum State {
-        NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-        PENDING = 3;
-    }
-
-    string user_id = 1;
-    string name = 2;
-    State state = 3;
-    string email = 4;
-    UserType user_type = 5;
-    UserBackend backend = 6;
-    string language = 7;
-    string timezone = 8;
-    repeated spaceone.api.identity.v1.RoleInfo roles = 9;
-    repeated spaceone.api.core.v1.Tag tags = 10;
-    google.protobuf.Timestamp last_accessed_at = 11;
-    google.protobuf.Timestamp created_at = 12;
-    string domain_id = 13;
-}
-
 message UpdateUserRequest {
     // is_required: true
     string user_id = 1;
@@ -173,15 +145,6 @@ message UpdateUserRequest {
     repeated spaceone.api.core.v1.Tag tags = 9;
     // is_required: true
     string domain_id = 10;
-}
-
-message UpdateUserRoleRequest {
-    // is_required: true
-    string user_id = 1;
-    // is_required: true
-    google.protobuf.ListValue roles = 2;
-    // is_required: true
-    string domain_id = 3;
 }
 
 message UserRequest {
@@ -216,9 +179,29 @@ message UserQuery {
     // is_required: false
     UserBackend backend = 7;
     // is_required: false
-    string role_id = 8;
-    // is_required: false
     string domain_id =11;
+}
+
+message UserInfo {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+        PENDING = 3;
+    }
+
+    string user_id = 1;
+    string name = 2;
+    State state = 3;
+    string email = 4;
+    UserType user_type = 5;
+    UserBackend backend = 6;
+    string language = 7;
+    string timezone = 8;
+    repeated spaceone.api.core.v1.Tag tags = 10;
+    google.protobuf.Timestamp last_accessed_at = 11;
+    google.protobuf.Timestamp created_at = 12;
+    string domain_id = 13;
 }
 
 message UsersInfo {
