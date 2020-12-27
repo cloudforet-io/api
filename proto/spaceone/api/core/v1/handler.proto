@@ -7,20 +7,24 @@ import "google/protobuf/struct.proto";
 message AuthorizationRequest {
     enum Scope {
         NONE = 0;
-        PROJECT = 1;
-        SYSTEM = 2;
+        SYSTEM = 1;
+        DOMAIN = 2;
+        PROJECT = 3;
     }
 
     string service = 1;
     string resource = 2;
     string verb = 3;
     Scope scope = 4;
-    string project_id = 5;
-    string project_group_id = 6;
+    string domain_id = 5;
+    string project_id = 6;
+    string project_group_id = 7;
 }
 
 message AuthorizationResponse {
     string role_type = 1;
+    repeated string projects = 2;
+    repeated string project_groups = 3;
 }
 
 message AuthenticationRequest {
