@@ -3,12 +3,11 @@ syntax = "proto3";
 package spaceone.api.billing.v1;
 
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 
 
 service Billing {
-    rpc get_data (BillingDataRequest) returns (BillingDataInfo) {
+    rpc get_data (BillingDataRequest) returns (google.protobuf.Struct) {
         option (google.api.http) = { get: "/billing/v1/billing/get-data" };
     }
 }
@@ -34,23 +33,9 @@ message BillingDataRequest {
     string granularity = 8;
     // is_required: true
     string domain_id = 9;
+    // is_required: false
+    google.protobuf.Struct sort = 10;
+    // is_required: false
+    int32 limit = 11;
 }
 
-message BillingData {
-    string date = 1;
-    double cost = 2;
-    string currency = 3;
-}
-
-message BillingInfo {
-    string service_account_id = 1;
-    string resource_type = 2;
-    string name = 3;
-    repeated BillingData billing_data = 4;
-    string domain_id = 5;
-}
-
-message BillingDataInfo {
-    repeated BillingInfo results = 1;
-    int32 total_count = 2;
-}
