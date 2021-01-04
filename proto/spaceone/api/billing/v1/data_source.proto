@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package spaceone.api.monitoring.v1;
+package spaceone.api.billing.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
@@ -12,36 +12,36 @@ import "spaceone/api/core/v1/tag.proto";
 
 service DataSource {
     rpc register (RegisterDataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/data-sources" };
+        option (google.api.http) = { post: "/billing/v1/data-sources" };
     }
     rpc update (UpdateDataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/data-source/{data_source_id}" };
+        option (google.api.http) = { put: "/billing/v1/data-source/{data_source_id}" };
     }
     rpc enable (DataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/data-source/{data_source_id}/enable" };
+        option (google.api.http) = { put: "/billing/v1/data-source/{data_source_id}/enable" };
     }
     rpc disable (DataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/data-source/{data_source_id}/disable" };
+        option (google.api.http) = { put: "/billing/v1/data-source/{data_source_id}/disable" };
     }
     rpc deregister (DataSourceRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/monitoring/v1/data-source/{data_source_id}" };
+        option (google.api.http) = { delete: "/billing/v1/data-source/{data_source_id}" };
     }
     rpc verify_plugin (DataSourceRequest) returns (VerifyInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/data-source/{data_source_id}/plugin/verify" };
+        option (google.api.http) = { put: "/billing/v1/data-source/{data_source_id}/plugin/verify" };
     }
     rpc get (GetDataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = { get: "/monitoring/v1/data-source/{data_source_id}" };
+        option (google.api.http) = { get: "/billing/v1/data-source/{data_source_id}" };
     }
     rpc list (DataSourceQuery) returns (DataSourcesInfo) {
         option (google.api.http) = {
-            get: "/monitoring/v1/data-sources"
+            get: "/billing/v1/data-sources"
             additional_bindings {
-                post: "/monitoring/v1/data-sources/search"
+                post: "/billing/v1/data-sources/search"
             }
         };
     }
     rpc stat (DataSourceStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/monitoring/v1/data-sources/stat" };
+        option (google.api.http) = { post: "/billing/v1/data-sources/stat" };
     }
 }
 
@@ -54,12 +54,7 @@ message PluginInfo {
         string secret_id = 4;
         string provider = 5;
     }
-}
-
-enum MonitoringType {
-    NONE = 0;
-    METRIC = 1;
-    LOG = 2;
+    google.protobuf.Struct metadata = 6;
 }
 
 message RegisterDataSourceRequest {
@@ -112,8 +107,6 @@ message DataSourceQuery {
     // is_required: false
     string state = 4;
     // is_required: false
-    MonitoringType monitoring_type = 5;
-    // is_required: false
     string provider = 6;
     // is_required: true
     string domain_id = 7;
@@ -133,13 +126,12 @@ message DataSourceInfo {
     string data_source_id = 1;
     string name = 2;
     State state = 3;
-    MonitoringType monitoring_type = 4;
-    string provider = 5;
-    google.protobuf.Struct capability = 6;
-    PluginInfo plugin_info = 7;
-    repeated spaceone.api.core.v1.Tag tags = 8;
-    string domain_id = 9;
-    google.protobuf.Timestamp created_at = 10;
+    string provider = 4;
+    google.protobuf.Struct capability = 5;
+    PluginInfo plugin_info = 6;
+    repeated spaceone.api.core.v1.Tag tags = 7;
+    string domain_id = 8;
+    google.protobuf.Timestamp created_at = 9;
 }
 
 message DataSourcesInfo {

@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 
 service CloudServiceType {
@@ -46,11 +47,19 @@ message CreateCloudServiceTypeRequest {
     // is_required: true
     string group = 3;
     // is_required: false
+    string service_code = 4;
+    // is_required: false
+    bool is_primary = 5;
+    // is_required: false
+    bool is_major = 6;
+    // is_required: false
+    string resource_type = 7;
+    // is_required: false
     google.protobuf.Struct metadata = 11;
     // is_required: false
     google.protobuf.ListValue labels = 12;
     // is_required: false
-    google.protobuf.Struct tags = 13;
+    repeated spaceone.api.core.v1.Tag tags = 13;
     // is_required: true
     string domain_id = 21;
 }
@@ -59,11 +68,19 @@ message UpdateCloudServiceTypeRequest {
     // is_required: true
     string cloud_service_type_id = 1;
     // is_required: false
+    string service_code = 2;
+    // is_required: false
+    bool is_primary = 3;
+    // is_required: false
+    bool is_major = 4;
+    // is_required: false
+    string resource_type = 5;
+    // is_required: false
     google.protobuf.Struct metadata = 11;
     // is_required: false
     google.protobuf.ListValue labels = 12;
     // is_required: false
-    google.protobuf.Struct tags = 13;
+    repeated spaceone.api.core.v1.Tag tags = 13;
     // is_required: true
     string domain_id = 21;
 }
@@ -104,6 +121,14 @@ message CloudServiceTypeQuery {
     string provider = 4;
     // is_required: false
     string group = 5;
+    // is_required: false
+    string service_code = 6;
+    // is_required: false
+    bool is_primary = 7;
+    // is_required: false
+    bool is_major = 8;
+    // is_required: false
+    string resource_type = 9;
     // is_required: true
     string domain_id = 11;
 }
@@ -113,9 +138,13 @@ message CloudServiceTypeInfo {
     string name = 2;
     string provider = 3;
     string group = 4;
+    string service_code = 5;
+    bool is_primary = 6;
+    bool is_major = 7;
+    string resource_type = 8;
 
     google.protobuf.Struct metadata = 11;
-    google.protobuf.Struct tags = 12;
+    repeated spaceone.api.core.v1.Tag tags = 12;
     repeated string labels = 13;
     google.protobuf.Struct collection_info = 14;
 

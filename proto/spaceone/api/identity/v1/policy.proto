@@ -7,6 +7,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 service Policy {
     rpc create (CreatePolicyRequest) returns (PolicyInfo) {
@@ -40,7 +41,7 @@ message CreatePolicyRequest {
     // is_required: true
     repeated string permissions = 2;
     // is_required: false
-    google.protobuf.Struct tags = 3;
+    repeated spaceone.api.core.v1.Tag tags = 3;
     // is_required: true
     string domain_id = 4;
 }
@@ -53,7 +54,7 @@ message UpdatePolicyRequest {
     // is_required: false
     repeated string permissions = 3;
     // is_required: false
-    google.protobuf.Struct tags = 4;
+    repeated spaceone.api.core.v1.Tag tags = 4;
     // is_required: true
     string domain_id = 5;
 }
@@ -90,7 +91,7 @@ message PolicyInfo {
     string name = 2;
     repeated string permissions = 3;
     string domain_id = 4;
-    google.protobuf.Struct tags = 5;
+    repeated spaceone.api.core.v1.Tag tags = 5;
     google.protobuf.Timestamp created_at = 6;
 }
 

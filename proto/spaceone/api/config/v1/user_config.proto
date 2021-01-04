@@ -1,6 +1,5 @@
 /*
-desc: Config Map API which configure environments for account
-note: User must set ConfigMap prior to any API requests
+desc: Config Map API which configure environments for user
  */
 syntax = "proto3";
 
@@ -11,64 +10,65 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
 
 
-service ConfigMap {
-    rpc create (CreateConfigMapRequest) returns (ConfigMapInfo) {
-        option (google.api.http) = { post: "/config/v1/config-maps" };
+service UserConfig {
+    rpc create (CreateUserConfigRequest) returns (UserConfigInfo) {
+        option (google.api.http) = { post: "/config/v1/user-configs" };
     }
-    rpc update (UpdateConfigMapRequest) returns (ConfigMapInfo) {
-        option (google.api.http) = { put: "/config/v1/config-map/{name}" };
+    rpc update (UpdateUserConfigRequest) returns (UserConfigInfo) {
+        option (google.api.http) = { put: "/config/v1/user-config/{name}" };
     }
-    rpc delete (ConfigMapRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/config/v1/config-map/{name}" };
+    rpc delete (UserConfigRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/config/v1/user-config/{name}" };
     }
-    rpc get (GetConfigMapRequest) returns (ConfigMapInfo) {
-        option (google.api.http) = { get: "/config/v1/config-map/{name}" };
+    rpc get (GetUserConfigRequest) returns (UserConfigInfo) {
+        option (google.api.http) = { get: "/config/v1/user-config/{name}" };
     }
-    rpc list (ConfigMapQuery) returns (ConfigMapsInfo) {
+    rpc list (UserConfigQuery) returns (UserConfigsInfo) {
         option (google.api.http) = {
-            get: "/config/v1/config-maps"
+            get: "/config/v1/user-configs"
             additional_bindings {
-                post: "/config/v1/config-maps/search"
+                post: "/config/v1/user-configs/search"
             }
         };
     }
-    rpc stat (ConfigMapStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/config/v1/config-maps/stat" };
+    rpc stat (UserConfigStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/config/v1/user-configs/stat" };
     }
 }
 
-message CreateConfigMapRequest {
+message CreateUserConfigRequest {
     // is_required: true
     string name = 1;
     // is_required: true
     google.protobuf.Struct data = 2;
     // is_required: false
-    google.protobuf.Struct tags = 3;
+    repeated spaceone.api.core.v1.Tag tags = 3;
     // is_required: true
     string domain_id = 4;
 }
 
-message UpdateConfigMapRequest {
+message UpdateUserConfigRequest {
     // is_required: true
     string name = 1;
     // is_required: false
     google.protobuf.Struct data = 2;
     // is_required: false
-    google.protobuf.Struct tags = 3;
+    repeated spaceone.api.core.v1.Tag tags = 3;
     // is_required: true
     string domain_id = 4;
 }
 
-message ConfigMapRequest {
+message UserConfigRequest {
     // is_required: true
     string name = 1;
     // is_required: true
     string domain_id = 2;
 }
 
-message GetConfigMapRequest {
+message GetUserConfigRequest {
     // is_required: true
     string name = 1;
     // is_required: true
@@ -77,7 +77,7 @@ message GetConfigMapRequest {
     repeated string only = 3;
 }
 
-message ConfigMapQuery {
+message UserConfigQuery {
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -86,20 +86,20 @@ message ConfigMapQuery {
     string domain_id = 3;
 }
 
-message ConfigMapInfo {
+message UserConfigInfo {
     string name = 1;
     google.protobuf.Struct data = 2;
-    google.protobuf.Struct tags = 3;
+    repeated spaceone.api.core.v1.Tag tags = 3;
     string domain_id = 4;
     google.protobuf.Timestamp created_at = 5;
 }
 
-message ConfigMapsInfo {
-    repeated ConfigMapInfo results = 1;
+message UserConfigsInfo {
+    repeated UserConfigInfo results = 1;
     int32 total_count = 2;
 }
 
-message ConfigMapStatQuery {
+message UserConfigStatQuery {
     // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true

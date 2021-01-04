@@ -17,9 +17,13 @@ service Token {
 
 message IssueTokenRequest {
     // is_required: true
-    google.protobuf.Struct credentials = 1;
+    string user_id = 1;
     // is_required: true
-    string domain_id = 2;
+    google.protobuf.Struct credentials = 2;
+    // is_required: false
+    string user_type = 3;
+    // is_required: true
+    string domain_id = 4;
 }
 
 message TokenInfo {
