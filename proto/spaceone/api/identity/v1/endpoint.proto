@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v1;
+
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Endpoint {
+    rpc list (EndpointQuery) returns (EndpointsInfo) {
+        option (google.api.http) = {
+            get: "/identity/v1/endpoints"
+            additional_bindings {
+                post: "/identity/v1/endpoints/search"
+            }
+        };
+    }
+}
+
+message EndpointInfo {
+    enum EndpointState {
+        NONE = 0;
+        ACTIVE = 1;
+        INACTIVE = 2;
+    }
+
+    string service = 1;
+    string name = 2;
+    string endpoint = 3;
+    EndpointState state = 4;
+    string version = 5;
+}
+
+message EndpointQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string service = 2;
+    // is_required: true
+    string domain_id = 6;
+
+}
+
+message EndpointsInfo {
+    repeated EndpointInfo results = 1;
+    int32 total_count = 2;
+}

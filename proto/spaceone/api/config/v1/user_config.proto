@@ -1,0 +1,107 @@
+/*
+desc: Config Map API which configure environments for user
+ */
+syntax = "proto3";
+
+package spaceone.api.config.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
+
+
+service UserConfig {
+    rpc create (CreateUserConfigRequest) returns (UserConfigInfo) {
+        option (google.api.http) = { post: "/config/v1/user-configs" };
+    }
+    rpc update (UpdateUserConfigRequest) returns (UserConfigInfo) {
+        option (google.api.http) = { put: "/config/v1/user-config/{name}" };
+    }
+    rpc delete (UserConfigRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/config/v1/user-config/{name}" };
+    }
+    rpc get (GetUserConfigRequest) returns (UserConfigInfo) {
+        option (google.api.http) = { get: "/config/v1/user-config/{name}" };
+    }
+    rpc list (UserConfigQuery) returns (UserConfigsInfo) {
+        option (google.api.http) = {
+            get: "/config/v1/user-configs"
+            additional_bindings {
+                post: "/config/v1/user-configs/search"
+            }
+        };
+    }
+    rpc stat (UserConfigStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/config/v1/user-configs/stat" };
+    }
+}
+
+message CreateUserConfigRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: true
+    google.protobuf.Struct data = 2;
+    // is_required: false
+    repeated spaceone.api.core.v1.Tag tags = 3;
+    // is_required: true
+    string domain_id = 4;
+}
+
+message UpdateUserConfigRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: false
+    google.protobuf.Struct data = 2;
+    // is_required: false
+    repeated spaceone.api.core.v1.Tag tags = 3;
+    // is_required: true
+    string domain_id = 4;
+}
+
+message UserConfigRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetUserConfigRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message UserConfigQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: true
+    string domain_id = 3;
+}
+
+message UserConfigInfo {
+    string name = 1;
+    google.protobuf.Struct data = 2;
+    repeated spaceone.api.core.v1.Tag tags = 3;
+    string domain_id = 4;
+    google.protobuf.Timestamp created_at = 5;
+}
+
+message UserConfigsInfo {
+    repeated UserConfigInfo results = 1;
+    int32 total_count = 2;
+}
+
+message UserConfigStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}

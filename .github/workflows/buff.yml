@@ -10,23 +10,15 @@ jobs:
   buff:
     if: github.repository_owner == 'spaceone-dev'
     runs-on: ubuntu-latest
-
+    env:
+      SERVICE: api
+      PYPI_UPLOAD: true # upload pypi if this is true
+      # LOCATION points the parent directory
+      LOCATION_SETUP_PY: dist/python # optional. for pypi upload
+      LOCATION_VERSION: . # the location for VERSION file (ex- . means the location of VERSION is ./VERSION)
+      IS_SUDO: true
     steps:
     - uses: actions/checkout@v2
-    - name: Set environment virables
-      env:
-        SERVICE: api
-        PYPI_UPLOAD: true # upload pypi if this is true
-        # LOCATION points the parent directory
-        LOCATION_SETUP_PY: dist/python # optional. for pypi upload
-        LOCATION_VERSION: . # the location for VERSION file (ex- . means the location of VERSION is ./VERSION)
-        IS_SUDO: true
-      run: |
-        echo "::set-env name=SERVICE::$SERVICE"
-        echo "::set-env name=PYPI_UPLOAD::$PYPI_UPLOAD"
-        echo "::set-env name=LOCATION_SETUP_PY::$LOCATION_SETUP_PY"
-        echo "::set-env name=LOCATION_VERSION::$LOCATION_VERSION"
-        echo "::set-env name=IS_SUDO::$IS_SUDO"
     - name: Clone master branch
       uses: actions/checkout@v2
       with:
@@ -40,10 +32,10 @@ jobs:
         echo "PR VERSION"
         cat $LOCATION_VERSION/VERSION
         echo -e "\n\n"
-        echo "::set-env name=IS_NEW_VERSION::false"
+        echo "IS_NEW_VERSION=false" >> $GITHUB_ENV
         cmp --silent master_branch/$LOCATION_VERSION/VERSION $LOCATION_VERSION/VERSION || \
-        echo "::set-env name=IS_NEW_VERSION::true"
-        echo "::set-env name=API_DOC_VERSION::$(cat $LOCATION_VERSION/VERSION)"
+        echo "IS_NEW_VERSION=true" >> $GITHUB_ENV
+        echo "API_DOC_VERSION=$(cat $LOCATION_VERSION/VERSION)" >> $GITHUB_ENV
         echo "$(cat $LOCATION_VERSION/VERSION)-${{ github.run_id }}">$LOCATION_VERSION/VERSION
     - name: Update API doc Version
       run: |

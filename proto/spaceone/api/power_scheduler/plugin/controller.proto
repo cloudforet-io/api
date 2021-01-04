@@ -8,8 +8,8 @@ import "google/protobuf/struct.proto";
 service Controller {
     rpc init (InitRequest) returns (PluginInfo) {}
     rpc verify (VerifyRequest) returns (google.protobuf.Empty) {}
-    rpc start (StartRequest) returns (google.protobuf.Empty) {}
-    rpc stop (StopRequest) returns (google.protobuf.Empty) {}
+    rpc start (StartRequest) returns (UpdateInfo) {}
+    rpc stop (StopRequest) returns (UpdateInfo) {}
     rpc reboot (RebootRequest) returns (google.protobuf.Empty) {}
 }
 
@@ -81,4 +81,9 @@ message ResourceInfo {
     string message = 2;
     string resource_type = 3;
     google.protobuf.Struct resource = 4;
+}
+
+message UpdateInfo {
+    string action = 1;
+    google.protobuf.Struct data = 2;
 }
