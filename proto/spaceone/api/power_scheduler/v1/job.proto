@@ -38,6 +38,11 @@ message JobsQuery {
         STOPPED = 1;
     }
 
+    enum JobType {
+        APPLY = 0;
+        MAINTAIN = 1;
+    }
+
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -52,6 +57,8 @@ message JobsQuery {
     string project_id = 6;
     // is_required: true
     string domain_id = 7;
+    // is_required: false
+    JobType job_type = 8;
 }
 
 message ErrorInfo {
@@ -76,6 +83,11 @@ message JobInfo {
         STOPPED = 1;
     }
 
+    enum JobType {
+        APPLY = 0;
+        MAINTAIN = 1;
+    }
+
     string job_id = 1;
     Status status = 2;
     google.protobuf.Struct filter = 3;
@@ -87,6 +99,7 @@ message JobInfo {
     ControlAction control_action = 12;
     string project_id = 13;
     string domain_id = 14;
+    JobType job_type = 15;
 
     google.protobuf.Timestamp created_at = 21;
     google.protobuf.Timestamp updated_at = 22;
