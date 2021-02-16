@@ -13,63 +13,88 @@ service Resource {
     }
 }
 
-message JoinQuery {
+message StatAggregateQuery {
+    // is_required: true
+    string resource_type = 1;
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 2;
+    // is_required: false
+    google.protobuf.Struct extend_data = 3;
+}
+
+message StatAggregateJoin {
     enum JoinType {
         LEFT = 0;
         RIGHT = 1;
         OUTER = 2;
         INNER = 3;
     }
-    // is_required: false
-    repeated string keys = 1;
-    // is_required: false
-    JoinType type = 2;
-    // is_required: false
-    string data_source_id = 3;
+
     // is_required: true
-    string resource_type = 4;
+    string resource_type = 1;
     // is_required: true
-    spaceone.api.core.v1.StatisticsQuery query = 5;
+    spaceone.api.core.v1.StatisticsQuery query = 2;
     // is_required: false
-    google.protobuf.Struct extend_data = 6;
+    google.protobuf.Struct extend_data = 3;
+    // is_required: false
+    JoinType type = 4;
+    // is_required: false
+    repeated string keys = 5;
 }
 
-message ConcatQuery {
-    // is_required: false
-    string data_source_id = 1;
+message StatAggregateConcat {
     // is_required: true
-    string resource_type = 2;
+    string resource_type = 1;
     // is_required: true
-    spaceone.api.core.v1.StatisticsQuery query = 3;
+    spaceone.api.core.v1.StatisticsQuery query = 2;
     // is_required: false
-    google.protobuf.Struct extend_data = 4;
-
+    google.protobuf.Struct extend_data = 3;
 }
 
-message Formula {
+message StatAggregateSort {
     // is_required: true
-    string formula = 1;
+    string key = 1;
     // is_required: false
-    string operator = 2;
+    bool desc = 2;
+}
+
+message StatAggregateFormula {
+    // is_required: true
+    oneof formula_alias {
+        string eval = 1;
+        string query = 2;
+    }
+}
+
+message StatAggregateFillNA {
+    // is_required: true
+    google.protobuf.Struct data = 1;
+}
+
+message StatAggregate {
+    // is_required: true
+    oneof aggregate_alias {
+        StatAggregateQuery query = 1;
+        StatAggregateJoin join = 2;
+        StatAggregateConcat concat = 3;
+        StatAggregateSort sort = 4;
+        StatAggregateFormula formula = 5;
+        StatAggregateFillNA fill_na = 6;
+    }
+}
+
+message StatPage {
+    // is_required: false
+    uint32 start = 1;
+    // is_required: true
+    uint32 limit = 2;
 }
 
 message ResourceStatRequest {
-    // is_required: false
-    string data_source_id = 1;
     // is_required: true
-    string resource_type = 2;
+    repeated StatAggregate aggregate = 1;
+    // is_required: false
+    StatPage page = 2;
     // is_required: true
-    spaceone.api.core.v1.StatisticsQuery query = 3;
-    // is_required: false
-    repeated JoinQuery join = 4;
-    // is_required: false
-    repeated Formula formulas = 5;
-    // is_required: true
-    string domain_id = 6;
-    // is_required: false
-    repeated ConcatQuery concat = 7;
-    // is_required: false
-    google.protobuf.Struct extend_data = 8;
-    // is_required: false
-    google.protobuf.Struct fill_na = 9;
+    string domain_id = 3;
 }
