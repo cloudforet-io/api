@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package spaceone.api.spot_automation.plugin;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+
+service Controller {
+    rpc init (InitRequest) returns (PluginInfo) {}
+    rpc verify (VerifyRequest) returns (google.protobuf.Empty) {}
+    rpc patch (PatchRequest) returns (ResponseInfo) {}
+}
+
+message InitRequest {
+    // is_required: true
+    google.protobuf.Struct options = 1;
+}
+
+message VerifyRequest {
+    // is_required: true
+    google.protobuf.Struct options = 1;
+    // is_required: true
+    google.protobuf.Struct secret_data = 2;
+}
+
+message PluginInfo {
+    google.protobuf.Struct metadata = 1;
+}
+
+message ResponseInfo {
+    google.protobuf.Struct data = 1;
+}
+
+message PatchRequest {
+    // is_required: true
+    google.protobuf.Struct secret_data = 1;
+    // is_required: true
+    string action = 2;
+    // is_required: true
+    google.protobuf.Struct command = 3;
+}
