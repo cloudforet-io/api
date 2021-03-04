@@ -83,27 +83,9 @@ message ResourceInfo {
     google.protobuf.Struct resource = 4;
 }
 
-message PowerSchedulerInfo {
-    // is_required: true
-    int32 original_desired_capacity = 1;
-    // is_required: true
-    int32 original_min_size = 2;
-    // is_required: true
-    string original_instance_type = 3;
-}
-
-message DataInfo {
-    // is_required: true
-    int32 desired_capacity = 1;
-    // is_required: true
-    int32 min_size = 2;
-    // is_required: true
-    PowerSchedulerInfo power_scheduler = 3;
-}
-
 message UpdateInfo {
     // is_required: true
     string action = 1;
     // is_required: true
-    DataInfo data = 2;
+    google.protobuf.Struct data = 2;
 }
