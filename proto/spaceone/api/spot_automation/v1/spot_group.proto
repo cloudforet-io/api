@@ -58,9 +58,11 @@ message CreateSpotGroupRequest {
     // is_required: true
     string resource_type = 3;
     // is_required: true
-    string provider = 4;
+    string cloud_service_id = 4;
+    // is_required: true
+    string provider = 5;
     // is_required: false
-    SpotGroupOptions options = 5;
+    SpotGroupOptions options = 6;
     // is_required: false
     repeated spaceone.api.core.v1.Tag tags = 11;
     // is_required: true
@@ -78,6 +80,7 @@ message UpdateSpotGroupRequest {
     string name = 2;
     // is_required: false
     SpotGroupOptions options = 3;
+    // is_required: false
     repeated spaceone.api.core.v1.Tag tags = 11;
     // is_required: true
     string domain_id = 21;
@@ -130,9 +133,10 @@ message SpotGroupInfo {
     string name = 2;
     string resource_id = 3;
     string resource_type = 4;
-    string provider = 5;
-    SpotGroupOptions options = 6;
-    string project_id = 7;
+    string cloud_service_id = 5
+    string provider = 6;
+    SpotGroupOptions options = 7;
+    string project_id = 8;
 
     repeated spaceone.api.core.v1.Tag tags = 11;
     string domain_id = 12;
