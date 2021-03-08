@@ -93,28 +93,25 @@ message AggregateCount {
     string name = 1;
 }
 
-message StatisticsAggregate {
-    repeated AggregateUnwind unwind = 1;
-    AggregateGroup group = 2;
-    AggregateCount count = 3;
+message AggregateSort {
+    string key = 1;
+    bool desc = 2;
 }
 
-message StatisticsSort {
-    string name = 1;
-    bool desc = 2;
+message StatisticsAggregate {
+    oneof aggregate_alias {
+        AggregateUnwind unwind = 1;
+        AggregateGroup group = 2;
+        AggregateCount count = 3;
+        AggregateSort sort = 4;
+    }
 }
 
 message StatisticsQuery {
     repeated Filter filter = 1;
     repeated Filter filter_or = 2;
-    StatisticsAggregate aggregate = 3;
-    StatisticsSort sort = 4;
-
-    oneof limit_result {
-        Page page = 5;
-        uint32 limit = 6;
-    }
-
-    string distinct = 7;
-    string keyword = 8;
+    repeated StatisticsAggregate aggregate = 3;
+    Page page = 4;
+    string distinct = 5;
+    string keyword = 6;
 }
