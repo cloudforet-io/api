@@ -34,13 +34,15 @@ message JobsQuery {
     }
 
     enum ControlAction {
-        RUNNING = 0;
-        STOPPED = 1;
+        CONTROL_ACTION_NONE = 0;
+        RUNNING = 1;
+        STOPPED = 2;
     }
 
     enum JobType {
-        APPLY = 0;
-        MAINTAIN = 1;
+        JOB_TYPE_NONE = 0;
+        APPLY = 1;
+        MAINTAIN = 2;
     }
 
     // is_required: false
@@ -79,13 +81,15 @@ message JobInfo {
 	}
 
     enum ControlAction {
-        RUNNING = 0;
-        STOPPED = 1;
+        CONTROL_ACTION_NONE = 0;
+        RUNNING = 1;
+        STOPPED = 2;
     }
 
     enum JobType {
-        APPLY = 0;
-        MAINTAIN = 1;
+        JOB_TYPE_NONE = 0;
+        APPLY = 1;
+        MAINTAIN = 2;
     }
 
     string job_id = 1;
