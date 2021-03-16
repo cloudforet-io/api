@@ -22,7 +22,7 @@ service SpotGroup {
     rpc get (GetSpotGroupRequest) returns (SpotGroupInfo) {
         option (google.api.http) = { get: "/spot-automation/v1/spot-group/{spot_group_id}" };
     }
-    rpc list (SpotGroupQuery) returns (SpotGroupsInfo) {
+    rpc list (QuerySpotGroupRequest) returns (SpotGroupsInfo) {
         option (google.api.http) = {
             get: "/spot-automation/v1/spot-groups"
             additional_bindings {
@@ -30,11 +30,11 @@ service SpotGroup {
             }
         };
     }
-    rpc interrupt (InterruptRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { post: "/spot-automation/v1/spot-groups/interrupt" };
-    }
-    rpc stat (SpotGroupStatQuery) returns (google.protobuf.Struct) {
+    rpc stat (SpotGroupStatRequest) returns (google.protobuf.Struct) {
         option (google.api.http) = { post: "/spot-automation/v1/spot-groups/stat" };
+    }
+    rpc get_candidates (GetCandidatesRequest) returns (CandidatesInfo) {
+        option (google.api.http) = { get: "/spot-automation/v1/spot-group/candidates" };
     }
 }
 
@@ -47,7 +47,12 @@ message SpotGroupOptions {
     int32 min_ondemand_size = 1;
     int32 min_ondemand_ratio = 2;
     repeated string recommend_types = 3;
-    SpotReplaceStrategy replace_strategy =4;
+    SpotReplaceStrategy replace_strategy = 4;
+}
+
+message SpotGroupResourceReference {
+    string resource_id = 1;
+    string external_link = 2;
 }
 
 message CreateSpotGroupRequest {
@@ -57,18 +62,14 @@ message CreateSpotGroupRequest {
     string resource_id = 2;
     // is_required: true
     string resource_type = 3;
-    // is_required: true
-    string provider = 4;
     // is_required: false
-    SpotGroupOptions options = 5;
+    SpotGroupOptions options = 10;
     // is_required: false
     repeated spaceone.api.core.v1.Tag tags = 11;
     // is_required: true
     string user_id = 21;
     // is_required: true
-    string project_id = 22;
-    // is_required: true
-    string domain_id = 23;
+    string domain_id = 22;
 }
 
 message UpdateSpotGroupRequest {
@@ -78,6 +79,7 @@ message UpdateSpotGroupRequest {
     string name = 2;
     // is_required: false
     SpotGroupOptions options = 3;
+    // is_required: false
     repeated spaceone.api.core.v1.Tag tags = 11;
     // is_required: true
     string domain_id = 21;
@@ -99,30 +101,41 @@ message GetSpotGroupRequest {
     repeated string only = 3;
 }
 
-message InterruptRequest {
+message GetCandidatesRequest {
     // is_required: true
-    string provider = 1;
+    string resource_id = 1;
     // is_required: true
-    string data = 2;
+    string resource_type = 2;
+    // is_required: true
+    string domain_id = 3;
 }
 
-message SpotGroupQuery {
+message QuerySpotGroupRequest {
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
     string spot_group_id = 2;
     // is_required: false
-    string name = 4;
+    string name = 3;
     // is_required: false
-    string resource_id = 5;
+    string resource_id = 4;
     // is_required: false
-    string resource_type = 6;
+    string resource_type = 5;
     // is_required: false
-    string provider = 7;
+    string provider = 6;
     // is_required: false
-    string project_id = 8;
+    string project_id = 7;
+    // is_required: false
+    string region_code = 8;
     // is_required: true
     string domain_id = 9;
+}
+
+message SpotGroupStatRequest {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
 }
 
 message SpotGroupInfo {
@@ -130,14 +143,18 @@ message SpotGroupInfo {
     string name = 2;
     string resource_id = 3;
     string resource_type = 4;
-    string provider = 5;
-    SpotGroupOptions options = 6;
-    string project_id = 7;
+    string region_code = 5;
+    string provider = 6;
+    string cloud_service_group = 7;
+    string cloud_service_type = 8;
+    SpotGroupResourceReference reference = 9;
+    SpotGroupOptions options = 10;
+    string project_id = 11;
 
-    repeated spaceone.api.core.v1.Tag tags = 11;
-    string domain_id = 12;
-    string created_by = 13;
-    google.protobuf.Timestamp created_at = 14;
+    repeated spaceone.api.core.v1.Tag tags = 20;
+    string domain_id = 21;
+    string created_by = 22;
+    google.protobuf.Timestamp created_at = 23;
 }
 
 message SpotGroupsInfo {
@@ -145,9 +162,12 @@ message SpotGroupsInfo {
     int32 total_count = 2;
 }
 
-message SpotGroupStatQuery {
-    // is_required: true
-    spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
-    string domain_id = 2;
+message CandidateInfo {
+    string type = 1;
+    int32 priority = 2;
+}
+
+message CandidatesInfo {
+    repeated CandidateInfo results = 1;
+    int32 total_count = 2;
 }
