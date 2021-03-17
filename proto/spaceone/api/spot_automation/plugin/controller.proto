@@ -9,6 +9,7 @@ service Controller {
     rpc init (InitRequest) returns (PluginInfo) {}
     rpc verify (VerifyRequest) returns (google.protobuf.Empty) {}
     rpc patch (PatchRequest) returns (ResponseInfo) {}
+    rpc get_instance_count_status (HistoryRequest) returns (HistoryInfo) {}
 }
 
 message InitRequest {
@@ -38,4 +39,15 @@ message PatchRequest {
     string action = 2;
     // is_required: true
     google.protobuf.Struct command = 3;
+}
+
+message HistoryInfo {
+    google.protobuf.Struct history_info = 1;
+}
+
+message HistoryRequest {
+    // is_required: true
+    string resource_id = 1;
+    // is_required: true
+    google.protobuf.Struct secret_data = 2;
 }
