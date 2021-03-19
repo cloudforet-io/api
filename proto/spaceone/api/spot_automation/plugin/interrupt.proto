@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package spaceone.api.spot_automation.plugin;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+
+service Interrupt {
+    rpc setup (SetupRequest) returns (google.protobuf.Empty) {}
+    rpc handle (HandleRequest) returns (google.protobuf.Empty) {}
+}
+
+message SetupRequest {
+    // is_required: true
+    google.protobuf.Struct secret_data = 2;
+}
+
+message HandleRequest {
+    // is_required: true
+    string spot_group_resource_id = 1;
+    // is_required: true
+    string resource_id = 2;
+    // is_required: true
+    google.protobuf.Struct secret_data = 3;
+}
