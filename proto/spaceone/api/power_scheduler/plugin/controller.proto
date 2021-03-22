@@ -8,8 +8,8 @@ import "google/protobuf/struct.proto";
 service Controller {
     rpc init (InitRequest) returns (PluginInfo) {}
     rpc verify (VerifyRequest) returns (google.protobuf.Empty) {}
-    rpc start (StartRequest) returns (google.protobuf.Empty) {}
-    rpc stop (StopRequest) returns (google.protobuf.Empty) {}
+    rpc start (StartRequest) returns (UpdateInfo) {}
+    rpc stop (StopRequest) returns (UpdateInfo) {}
     rpc reboot (RebootRequest) returns (google.protobuf.Empty) {}
 }
 
@@ -41,47 +41,29 @@ message ResourcesParams {
 
 message StartRequest {
     // is_required: true
-    google.protobuf.Struct options = 1;
+    google.protobuf.Struct secret_data = 1;
     // is_required: true
-    google.protobuf.Struct secret_data = 2;
-    // is_required: true
-    string resource_id = 3;
-    // is_required: true
-    string resource_type = 4;
+    google.protobuf.Struct resource_data = 2;
     // is_required: false
-    google.protobuf.Struct resource_data = 5;
-    // is_required: false
-    string schema = 6;
+    string schema = 3;
 }
 
 message StopRequest {
     // is_required: true
-    google.protobuf.Struct options = 1;
+    google.protobuf.Struct secret_data = 1;
     // is_required: true
-    google.protobuf.Struct secret_data = 2;
-    // is_required: true
-    string resource_id = 3;
-    // is_required: true
-    string resource_type = 4;
+    google.protobuf.Struct resource_data = 2;
     // is_required: false
-    google.protobuf.Struct resource_data = 5;
-    // is_required: false
-    string schema = 6;
+    string schema = 3;
 }
 
 message RebootRequest {
     // is_required: true
-    google.protobuf.Struct options = 1;
+    google.protobuf.Struct secret_data = 1;
     // is_required: true
-    google.protobuf.Struct secret_data = 2;
-    // is_required: true
-    string resource_id = 3;
-    // is_required: true
-    string resource_type = 4;
+    google.protobuf.Struct resource_data = 2;
     // is_required: false
-    google.protobuf.Struct resource_data = 5;
-    // is_required: false
-    string schema = 6;
+    string schema = 3;
 }
 
 message ResourceInfo {
@@ -99,4 +81,11 @@ message ResourceInfo {
     string message = 2;
     string resource_type = 3;
     google.protobuf.Struct resource = 4;
+}
+
+message UpdateInfo {
+    // is_required: true
+    string action = 1;
+    // is_required: true
+    google.protobuf.Struct data = 2;
 }

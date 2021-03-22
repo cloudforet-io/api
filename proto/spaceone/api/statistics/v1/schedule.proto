@@ -8,6 +8,7 @@ import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 import "spaceone/api/core/v1/tag.proto";
+import "spaceone/api/statistics/v1/resource.proto";
 
 
 service Schedule {
@@ -49,69 +50,19 @@ message Scheduled {
     repeated int32 hours = 4;
 }
 
-message ScheduleJoinQuery {
-    enum JoinType {
-        LEFT = 0;
-        RIGHT = 1;
-        OUTER = 2;
-        INNER = 3;
-    }
-    // is_required: false
-    repeated string keys = 1;
-    // is_required: false
-    JoinType type = 2;
-    // is_required: false
-    string data_source_id = 3;
-    // is_required: true
-    string resource_type = 4;
-    // is_required: true
-    spaceone.api.core.v1.StatisticsQuery query = 5;
-    // is_required: false
-    google.protobuf.Struct extend_data = 6;
-}
-
-message ScheduleConcatQuery {
-    // is_required: false
-    string data_source_id = 1;
-    // is_required: true
-    string resource_type = 2;
-    // is_required: true
-    spaceone.api.core.v1.StatisticsQuery query = 3;
-    // is_required: false
-    google.protobuf.Struct extend_data = 4;
-}
-
-message ScheduleFormula {
-    // is_required: true
-    string formula = 1;
-    // is_required: false
-    string operator = 2;
-}
 
 message QueryOption {
-    // is_required: false
-    string data_source_id = 2;
     // is_required: true
-    string resource_type = 3;
-    // is_required: true
-    spaceone.api.core.v1.StatisticsQuery query = 4;
+    StatAggregate aggregate = 1;
     // is_required: false
-    repeated ScheduleJoinQuery join = 5;
-    // is_required: false
-    repeated ScheduleFormula formulas = 6;
-    // is_required: false
-    repeated ScheduleConcatQuery concat = 7;
-    // is_required: false
-    google.protobuf.Struct extend_data = 8;
-    // is_required: false
-    google.protobuf.Struct fill_na = 9;
+    StatPage page = 2;
 }
 
 message AddScheduleRequest {
     // is_required: true
     string topic = 1;
     // is_required: true
-    QueryOption options = 2;
+    google.protobuf.Struct options = 2;
     // is_required: true
     Scheduled schedule = 3;
     // is_required: false
@@ -157,11 +108,9 @@ message ScheduleQuery {
     // is_required: false
     string state = 4;
     // is_required: false
-    string data_source_id = 5;
-    // is_required: false
-    string resource_type = 6;
+    string resource_type = 5;
     // is_required: true
-    string domain_id = 7;
+    string domain_id = 6;
 }
 
 message ScheduleInfo {

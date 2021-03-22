@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package spaceone.api.spot_automation.v1;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service History {
+    rpc list (QueryHistoryRequest) returns (HistoryInfo) {
+        option (google.api.http) = {
+            get: "/spot-automation/v1/history"
+            additional_bindings {
+                post: "/spot-automation/v1/history/search"
+            }
+        };
+    }
+    rpc stat (HistoryStatRequest) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/spot-automation/v1/history/stat" };
+    }
+}
+
+message QueryHistoryRequest {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string spot_group_id = 2;
+    // is_required: true
+    string domain_id = 10;
+}
+
+message HistoryStatRequest {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message HistoryValueInfo {
+    string history_id = 1;
+    string spot_group_id = 2;
+    int32 ondemand_count = 3;
+    int32 spot_count = 4;
+    int32 total_count = 5;
+    google.protobuf.Timestamp created_at = 10;
+}
+
+message HistoryInfo {
+    repeated HistoryValueInfo results = 1;
+    int32 total_count = 2;
+}

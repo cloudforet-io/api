@@ -1,0 +1,160 @@
+syntax = "proto3";
+
+package spaceone.api.spot_automation.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/tag.proto";
+
+service Controller {
+    rpc create (CreateControllerRequest) returns (ControllerInfo) {
+        option (google.api.http) = { post: "/spot-automation/v1/controllers" };
+    }
+    rpc update (UpdateControllerRequest) returns (ControllerInfo) {
+        option (google.api.http) = { put: "/spot-automation/v1/controller/{controller_id}" };
+    }
+    rpc delete (ControllerRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/spot-automation/v1/controller/{controller_id}" };
+    }
+    rpc get (GetControllerRequest) returns (ControllerInfo) {
+        option (google.api.http) = { get: "/spot-automation/v1/controller/{controller_id}" };
+    }
+    rpc list (ControllerQuery) returns (ControllersInfo) {
+        option (google.api.http) = {
+            get: "/spot-automation/v1/controllers"
+            additional_bindings {
+                post: "/spot-automation/v1/controllers/search"
+            }
+        };
+    }
+    rpc stat (ControllerStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/spot-automation/v1/controllers/stat" };
+    }
+    rpc control (ControlRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/spot-automation/v1/controller/{controller_id}/control" };
+    }
+    rpc update_plugin (UpdatePluginRequest) returns (ControllerInfo) {
+        option (google.api.http) = { put: "/spot-automation/v1/controller/{controller_id}/plugin" };
+    }
+    rpc verify_plugin (VerifyPluginRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/spot-automation/v1/controller/{controller_id}/plugin/verify" };
+    }
+}
+
+message PluginInfo {
+    string plugin_id = 1;
+    string version = 2;
+    google.protobuf.Struct options = 3;
+    string provider = 4;
+    google.protobuf.Struct metadata = 10;
+}
+
+message CreateControllerRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: true
+    PluginInfo plugin_info = 2;
+    // is_required: false
+    repeated spaceone.api.core.v1.Tag tags = 11;
+    // is_required: true
+    string domain_id = 22;
+}
+
+message UpdateControllerRequest {
+    // is_required: true
+    string controller_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    PluginInfo plugin_info = 3;
+    // is_required: false
+    repeated spaceone.api.core.v1.Tag tags = 11;
+    // is_required: true
+    string domain_id = 22;
+}
+
+message ControllerRequest {
+    // is_required: true
+    string controller_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetControllerRequest {
+    // is_required: true
+    string controller_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message ControllerQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string controller_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: true
+    string domain_id = 4;
+}
+
+message ControllerInfo {
+	string controller_id = 1;
+    string name = 2;
+    string provider = 3;
+    google.protobuf.Struct capability = 4;
+    PluginInfo plugin_info = 5;
+    repeated spaceone.api.core.v1.Tag tags = 6;
+    google.protobuf.Timestamp created_at = 7;
+    string domain_id = 10;
+}
+
+message ControllersInfo {
+    repeated ControllerInfo results = 1;
+    int32 total_count = 2;
+}
+
+message ControllerStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message ControlRequest {
+    // is_required: true
+    string controller_id = 1;
+    // is_required: false
+    google.protobuf.Struct filter = 2;
+    // is_required: false
+    string secret_id = 3;
+    // is_required: true
+    string domain_id = 4;
+    // is_required: false
+    bool use_cache = 5;
+}
+
+message UpdatePluginRequest {
+    // is_required: true
+    string controller_id = 1;
+    // is_required: false
+    string version = 2;
+    // is_required: false
+    google.protobuf.Struct options = 3;
+    // is_required: true
+    string domain_id = 4;
+}
+
+message VerifyPluginRequest {
+    // is_required: true
+    string controller_id = 1;
+    // is_required: false
+    string secret_id = 2;
+    // is_required: true
+    string domain_id = 3;
+}

@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package spaceone.api.spot_automation.v1;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service Interrupt {
+    rpc interrupt (InterruptRequest) returns (InterruptInfo) {
+        option (google.api.http) = { post: "/spot-automation/v1/interrupt/interrupt" };
+    }
+    rpc list (QueryInterruptRequest) returns (InterruptsInfo) {
+        option (google.api.http) = {
+            get: "/spot-automation/v1/interrupts"
+            additional_bindings {
+                post: "/spot-automation/v1/interrupts/search"
+            }
+        };
+    }
+    rpc stat (InterruptStatRequest) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/spot-automation/v1/interrupts/stat" };
+    }
+}
+
+message InterruptResourceReference {
+    string resource_id = 1;
+    string external_link = 2;
+}
+
+message InterruptRequest {
+    // is_required: true
+    string provider = 1;
+    // is_required: true
+    string data = 2;
+}
+
+message QueryInterruptRequest {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string spot_group_id = 2;
+    // is_required: true
+    string domain_id = 10;
+}
+
+message InterruptStatRequest {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message InterruptInfo {
+    string interrupt_id = 1;
+    string spot_group_id = 2;
+    string type = 3;
+    InterruptResourceReference reference = 4;
+    string availability_zone = 5;
+    string region_code = 6;
+    string provider = 7;
+    google.protobuf.Timestamp created_at = 10;
+}
+
+message InterruptsInfo {
+    repeated InterruptInfo results = 1;
+    int32 total_count = 2;
+}
