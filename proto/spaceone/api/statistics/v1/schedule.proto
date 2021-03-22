@@ -4,10 +4,8 @@ package spaceone.api.statistics.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
-import "spaceone/api/core/v1/tag.proto";
 import "spaceone/api/statistics/v1/resource.proto";
 
 
@@ -66,7 +64,7 @@ message AddScheduleRequest {
     // is_required: true
     Scheduled schedule = 3;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 4;
+    google.protobuf.Struct tags = 4;
     // is_required: true
     string domain_id = 5;
 }
@@ -77,7 +75,7 @@ message UpdateScheduleRequest {
     // is_required: false
     Scheduled schedule = 2;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 3;
+    google.protobuf.Struct tags = 3;
     // is_required: true
     string domain_id = 4;
 }
@@ -125,10 +123,10 @@ message ScheduleInfo {
     State state = 3;
     google.protobuf.Struct options = 4;
     Scheduled schedule = 5;
-    repeated spaceone.api.core.v1.Tag tags = 6;
+    google.protobuf.Struct tags = 6;
     string domain_id = 7;
-    google.protobuf.Timestamp created_at = 8;
-    google.protobuf.Timestamp last_scheduled_at = 9;
+    string created_at = 8;
+    string last_scheduled_at = 9;
 }
 
 message SchedulesInfo {

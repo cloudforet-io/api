@@ -4,8 +4,8 @@ package spaceone.api.cost_saving.v1;
 
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/timestamp.proto";
 import "spaceone/api/core/v1/query.proto";
+
 
 service Job {
     rpc list (JobsQuery) returns (JobsInfo) {
@@ -65,9 +65,9 @@ message JobInfo {
     string project_id = 12;
     string domain_id = 13;
 
-    google.protobuf.Timestamp created_at = 21;
-    google.protobuf.Timestamp updated_at = 22;
-    google.protobuf.Timestamp finished_at = 23;
+    string created_at = 21;
+    string updated_at = 22;
+    string finished_at = 23;
 }
 
 message JobsInfo {

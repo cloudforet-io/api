@@ -4,10 +4,8 @@ package spaceone.api.identity.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
-import "spaceone/api/core/v1/tag.proto";
 import "spaceone/api/identity/v1/role.proto";
 
 
@@ -68,7 +66,7 @@ message CreateProjectGroupRequest {
     // is_required: false
     string parent_project_group_id = 2;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 3;
+    google.protobuf.Struct tags = 3;
         // is_required: true
     string domain_id = 4;
 }
@@ -83,7 +81,7 @@ message UpdateProjectGroupRequest {
     // is_required: false
     bool release_parent_project_group = 4;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 5;
+    google.protobuf.Struct tags = 5;
     // is_required: true
     string domain_id = 6;
 }
@@ -122,11 +120,11 @@ message ProjectGroupQuery {
 message ProjectGroupInfo {
     string project_group_id = 1;
     string name = 2;
-    repeated spaceone.api.core.v1.Tag tags = 3;
+    google.protobuf.Struct tags = 3;
     ProjectGroupInfo parent_project_group_info = 4;
     string domain_id = 11;
     string created_by = 21;
-    google.protobuf.Timestamp created_at = 22;
+    string created_at = 22;
 }
 
 message ProjectGroupsInfo {
@@ -142,9 +140,9 @@ message AddProjectGroupMemberRequest {
     // is_required: false
     string role_id = 3;
     // is_required: false
-    repeated string labels = 4;
+    google.protobuf.ListValue labels = 4;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 5;
+    google.protobuf.Struct tags = 5;
     // is_required: true
     string domain_id = 6;
 }
@@ -155,9 +153,9 @@ message ModifyProjectGroupMemberRequest {
     // is_required: true
     string user_id = 2;
     // is_required: false
-    repeated string labels = 3;
+    google.protobuf.ListValue labels = 3;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 4;
+    google.protobuf.Struct tags = 4;
     // is_required: true
     string domain_id = 5;
 }
@@ -192,10 +190,10 @@ message ProjectGroupRoleBindingInfo {
     string resource_id = 3;
     spaceone.api.identity.v1.RoleInfo role_info = 4;
     ProjectGroupInfo project_group_info = 5;
-    repeated string labels = 7;
-    repeated spaceone.api.core.v1.Tag tags = 8;
+    google.protobuf.ListValue labels = 7;
+    google.protobuf.Struct tags = 8;
     string domain_id = 11;
-    google.protobuf.Timestamp created_at = 21;
+    string created_at = 21;
 }
 
 message ProjectGroupRoleBindingsInfo {
@@ -217,11 +215,11 @@ message ProjectGroupProjectQuery {
 message ProjectGroupProjectInfo {
     string project_id = 1;
     string name = 2;
-    repeated spaceone.api.core.v1.Tag tags = 3;
+    google.protobuf.Struct tags = 3;
     spaceone.api.identity.v1.ProjectGroupInfo project_group_info = 4;
     string domain_id = 11;
     string created_by = 21;
-    google.protobuf.Timestamp created_at = 22;
+    string created_at = 22;
 }
 
 message ProjectGroupProjectsInfo {

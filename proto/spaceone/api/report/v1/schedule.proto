@@ -4,7 +4,6 @@ package spaceone.api.report.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "google/api/http.proto";
 import "spaceone/api/core/v1/query.proto";
@@ -110,7 +109,7 @@ message ScheduleQuery {
     // is_required : false
     string storage_id = 6;
     // is_required : false
-    google.protobuf.Timestamp created_at = 7;
+    string created_at = 7;
     // is_required : false
     State state = 8;
 }
@@ -129,8 +128,8 @@ message ScheduleInfo {
     string storage_id = 6;
     State state = 7;
     google.protobuf.Struct schedule = 8;
-    google.protobuf.Timestamp created_at = 9;
-    google.protobuf.Timestamp last_schedule_at = 10;
+    string created_at = 9;
+    string last_schedule_at = 10;
 }
 
 message SchedulesInfo {

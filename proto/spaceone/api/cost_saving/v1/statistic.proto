@@ -3,9 +3,9 @@ syntax = "proto3";
 package spaceone.api.cost_saving.v1;
 
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+
 
 service Statistic {
     rpc list (StatisticQuery) returns (StatisticsInfo) {
@@ -56,9 +56,9 @@ message StatisticInfo {
 
     float cost = 11;
 
-    google.protobuf.Timestamp created_at = 21;
-    google.protobuf.Timestamp update_at = 22;
-    google.protobuf.Timestamp expired_at = 23;
+    string created_at = 21;
+    string update_at = 22;
+    string expired_at = 23;
 }
 
 message StatisticsInfo {
