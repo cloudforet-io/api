@@ -43,11 +43,20 @@ enum SpotReplaceStrategy {
     OPTIMAL = 1;
 }
 
+enum SpotMinSeclectionType {
+    COUNT = 0;
+    RATIO = 1;
+}
+
+message MinOndemand {
+    SpotMinSeclectionType type = 1;
+    int32 value = 2;
+}
+
 message SpotGroupOptions {
-    int32 min_ondemand_size = 1;
-    int32 min_ondemand_ratio = 2;
-    repeated string recommend_types = 3;
-    SpotReplaceStrategy replace_strategy = 4;
+    MinOndemand min_ondemand = 1;
+    repeated string recommend_types = 2;
+    SpotReplaceStrategy replace_strategy = 3;
 }
 
 message SpotGroupResourceReference {
@@ -62,7 +71,7 @@ message CreateSpotGroupRequest {
     string resource_id = 2;
     // is_required: true
     string resource_type = 3;
-    // is_required: false
+    // is_required: true
     SpotGroupOptions options = 10;
     // is_required: false
     repeated spaceone.api.core.v1.Tag tags = 11;
