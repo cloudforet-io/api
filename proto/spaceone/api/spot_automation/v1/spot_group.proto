@@ -38,18 +38,6 @@ service SpotGroup {
     }
 }
 
-enum SpotReplaceStrategy {
-    CHEAPEST = 0;
-    OPTIMAL = 1;
-}
-
-message SpotGroupOptions {
-    int32 min_ondemand_size = 1;
-    int32 min_ondemand_ratio = 2;
-    repeated string recommend_types = 3;
-    SpotReplaceStrategy replace_strategy = 4;
-}
-
 message SpotGroupResourceReference {
     string resource_id = 1;
     string external_link = 2;
@@ -62,8 +50,8 @@ message CreateSpotGroupRequest {
     string resource_id = 2;
     // is_required: true
     string resource_type = 3;
-    // is_required: false
-    SpotGroupOptions options = 10;
+    // is_required: true
+    google.protobuf.Struct options = 10;
     // is_required: false
     repeated spaceone.api.core.v1.Tag tags = 11;
     // is_required: true
@@ -78,7 +66,7 @@ message UpdateSpotGroupRequest {
     // is_required: false
     string name = 2;
     // is_required: false
-    SpotGroupOptions options = 3;
+    google.protobuf.Struct options = 3;
     // is_required: false
     repeated spaceone.api.core.v1.Tag tags = 11;
     // is_required: true
@@ -148,7 +136,7 @@ message SpotGroupInfo {
     string cloud_service_group = 7;
     string cloud_service_type = 8;
     SpotGroupResourceReference reference = 9;
-    SpotGroupOptions options = 10;
+    google.protobuf.Struct options = 10;
     string project_id = 11;
 
     repeated spaceone.api.core.v1.Tag tags = 20;
