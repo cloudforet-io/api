@@ -7,7 +7,8 @@ import "google/protobuf/struct.proto";
 
 service Interrupt {
     rpc setup (SetupRequest) returns (google.protobuf.Empty) {}
-    rpc handle (HandleRequest) returns (google.protobuf.Empty) {}
+    rpc confirm (ConfirmInterruptRequest) returns (google.protobuf.Empty) {}
+    rpc handle (HandleRequest) returns (HandleInfo) {}
 }
 
 message SetupRequest {
@@ -17,11 +18,20 @@ message SetupRequest {
     google.protobuf.Struct secret_data = 2;
 }
 
+message ConfirmInterruptRequest {
+    // is_required: true
+    string data = 1;
+    // is_required: true
+    google.protobuf.Struct secret_data = 2;
+}
+
 message HandleRequest {
     // is_required: true
-    string spot_group_resource_id = 1;
+    string data = 1;
     // is_required: true
-    string resource_id = 2;
-    // is_required: true
-    google.protobuf.Struct secret_data = 3;
+    google.protobuf.Struct secret_data = 2;
+}
+
+message HandleInfo {
+    string resource_id = 1;
 }
