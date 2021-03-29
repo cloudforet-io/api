@@ -26,6 +26,9 @@ service DataSource {
     rpc deregister (DataSourceRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/monitoring/v1/data-source/{data_source_id}" };
     }
+    rpc update_plugin (UpdateDataSourcePluginRequest) returns (DataSourceInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/data-source/{data_source_id}/plugin" };
+    }
     rpc verify_plugin (DataSourceRequest) returns (VerifyInfo) {
         option (google.api.http) = { put: "/monitoring/v1/data-source/{data_source_id}/plugin/verify" };
     }
@@ -82,6 +85,17 @@ message UpdateDataSourceRequest {
     PluginInfo plugin_info = 3;
     // is_required: false
     repeated spaceone.api.core.v1.Tag tags = 4;
+    // is_required: true
+    string domain_id = 5;
+}
+
+message UpdateDataSourcePluginRequest {
+    // is_required: true
+    string data_source_id = 1;
+    // is_required: false
+    string version = 2;
+    // is_required: false
+    google.protobuf.Struct options = 3;
     // is_required: true
     string domain_id = 5;
 }

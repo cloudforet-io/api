@@ -30,11 +30,11 @@ service SpotGroup {
             }
         };
     }
-    rpc stat (SpotGroupStatRequest) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/spot-automation/v1/spot-groups/stat" };
-    }
     rpc get_candidates (GetCandidatesRequest) returns (CandidatesInfo) {
         option (google.api.http) = { get: "/spot-automation/v1/spot-group/candidates" };
+    }
+    rpc stat (SpotGroupStatRequest) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/spot-automation/v1/spot-groups/stat" };
     }
 }
 
