@@ -5,8 +5,12 @@ package spaceone.api.spot_automation.v1;
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "google/protobuf/empty.proto";
 
 service Interrupt {
+    rpc confirm (ConfirmRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/spot-automation/v1/interrupt/confirm" };
+    }
     rpc interrupt (InterruptRequest) returns (InterruptInfo) {
         option (google.api.http) = { post: "/spot-automation/v1/interrupt/interrupt" };
     }
@@ -26,6 +30,13 @@ service Interrupt {
 message InterruptResourceReference {
     string resource_id = 1;
     string external_link = 2;
+}
+
+message ConfirmRequest {
+    // is_required: true
+    string provider = 1;
+    // is_required: true
+    string data = 2;
 }
 
 message InterruptRequest {

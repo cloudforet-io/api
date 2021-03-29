@@ -7,7 +7,7 @@ import "spaceone/api/core/v1/plugin.proto";
 
 
 service Log {
-    rpc list (LogRequest) returns (stream PluginLogsResponse) {}
+    rpc list (LogRequest) returns (stream LogsDataInfo) {}
 }
 
 message Sort {
@@ -36,15 +36,6 @@ message LogRequest {
     string schema = 9;
 }
 
-message LogsInfo {
+message LogsDataInfo {
     google.protobuf.ListValue logs = 1;
-}
-
-message PluginLogsResponse {
-    // is_required: true
-    string resource_type = 1;
-    // is_required: false
-    repeated spaceone.api.core.v1.PluginAction actions = 2;
-    // is_required: true
-    LogsInfo result = 3;
 }

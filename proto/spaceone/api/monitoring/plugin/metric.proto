@@ -7,8 +7,8 @@ import "spaceone/api/core/v1/plugin.proto";
 
 
 service Metric {
-    rpc list (MetricRequest) returns (PluginMetricsResponse) {}
-    rpc get_data (MetricDataRequest) returns (PluginMetricDataResponse) {}
+    rpc list (MetricRequest) returns (MetricsInfo) {}
+    rpc get_data (MetricDataRequest) returns (MetricDataInfo) {}
 }
 
 message MetricRequest {
@@ -59,22 +59,4 @@ message MetricsInfo {
 message MetricDataInfo {
     google.protobuf.ListValue labels = 1;
     google.protobuf.ListValue values = 2;
-}
-
-message PluginMetricsResponse {
-    // is_required: true
-    string resource_type = 1;
-    // is_required: false
-    repeated spaceone.api.core.v1.PluginAction actions = 2;
-    // is_required: true
-    MetricsInfo result = 3;
-}
-
-message PluginMetricDataResponse {
-    // is_required: true
-    string resource_type = 1;
-    // is_required: false
-    repeated spaceone.api.core.v1.PluginAction actions = 2;
-    // is_required: true
-    MetricDataInfo result = 3;
 }

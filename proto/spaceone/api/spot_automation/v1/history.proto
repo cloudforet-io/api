@@ -3,6 +3,7 @@ syntax = "proto3";
 package spaceone.api.spot_automation.v1;
 
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 
@@ -42,7 +43,9 @@ message HistoryValueInfo {
     int32 ondemand_count = 3;
     int32 spot_count = 4;
     int32 total_count = 5;
-    string created_at = 10;
+    string domain_id = 6;
+    string history_at = 7;
+    google.protobuf.Timestamp created_at = 10;
 }
 
 message HistoryInfo {
