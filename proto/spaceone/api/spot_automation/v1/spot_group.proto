@@ -30,11 +30,11 @@ service SpotGroup {
             }
         };
     }
-    rpc stat (SpotGroupStatRequest) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/spot-automation/v1/spot-groups/stat" };
-    }
     rpc get_candidates (GetCandidatesRequest) returns (CandidatesInfo) {
         option (google.api.http) = { get: "/spot-automation/v1/spot-group/candidates" };
+    }
+    rpc stat (SpotGroupStatRequest) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/spot-automation/v1/spot-groups/stat" };
     }
 }
 
@@ -95,7 +95,9 @@ message GetCandidatesRequest {
     // is_required: true
     string resource_type = 2;
     // is_required: true
-    string domain_id = 3;
+    int32 limit = 3;
+    // is_required: true
+    string domain_id = 4;
 }
 
 message QuerySpotGroupRequest {
