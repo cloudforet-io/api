@@ -50,6 +50,8 @@ message CreateServiceRequest {
     string provider = 2;
     // is_required: true
     string cloud_service_group = 3;
+    // is_required: false
+    string name = 4;
     // is_required: true
     google.protobuf.Struct data = 11;
     // is_required: false
@@ -70,6 +72,8 @@ message CreateServiceRequest {
 message UpdateCloudServiceRequest {
     // is_required: true
     string cloud_service_id = 1;
+    // is_required: false
+    string name = 2;
     // is_required: false
     google.protobuf.Struct data = 11;
     // is_required: false
@@ -131,6 +135,8 @@ message CloudServiceQuery {
     string state = 6;
     // is_required: false
     string region_code = 7;
+    // is_required: false
+    string name = 8;
 
     // is_required: false
     string resource_group_id = 21;
@@ -146,6 +152,7 @@ message CloudServiceInfo {
     string provider = 3;
     string cloud_service_group = 4;
     string state = 5;
+    string name = 6;
 
     google.protobuf.Struct data = 11;
     google.protobuf.Struct metadata = 12;
