@@ -3,7 +3,6 @@ syntax = "proto3";
 package spaceone.api.monitoring.plugin;
 
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "spaceone/api/core/v1/plugin.proto";
 
 
@@ -26,9 +25,9 @@ message LogRequest {
     // is_required: false
     google.protobuf.Value resource = 4;
     // is_required: false
-    google.protobuf.Timestamp start = 5;
+    string start = 5;
     // is_required: false
-    google.protobuf.Timestamp end = 6;
+    string end = 6;
     // is_required: false
     Sort sort = 7;
     // is_required: false

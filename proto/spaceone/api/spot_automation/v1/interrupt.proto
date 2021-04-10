@@ -3,7 +3,6 @@ syntax = "proto3";
 package spaceone.api.spot_automation.v1;
 
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 import "google/protobuf/empty.proto";
@@ -37,30 +36,14 @@ message ConfirmRequest {
     // is_required: true
     string provider = 1;
     // is_required: true
-    string region_code = 2;
-    // is_required: true
-    string domain_id = 3;
-    // is_required: true
-    string secret_id = 4;
-    // is_required: true
-    string token = 5;
-    // is_required: true
-    string data = 6;
+    string data = 2;
 }
 
 message InterruptRequest {
     // is_required: true
     string provider = 1;
     // is_required: true
-    string region_code = 2;
-    // is_required: true
-    string domain_id = 3;
-    // is_required: true
-    string secret_id = 4;
-    // is_required: true
-    string token = 5;
-    // is_required: true
-    string data = 6;
+    string data = 2;
 }
 
 message QueryInterruptRequest {
@@ -87,9 +70,7 @@ message InterruptInfo {
     string availability_zone = 5;
     string region_code = 6;
     string provider = 7;
-    string project_id = 8;
-    string domain_id = 9;
-    google.protobuf.Timestamp created_at = 10;
+    string created_at = 10;
 }
 
 message InterruptsInfo {

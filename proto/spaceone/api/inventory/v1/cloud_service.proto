@@ -4,10 +4,8 @@ package spaceone.api.inventory.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
-import "spaceone/api/core/v1/tag.proto";
 
 
 service CloudService {
@@ -52,6 +50,8 @@ message CreateServiceRequest {
     string provider = 2;
     // is_required: true
     string cloud_service_group = 3;
+    // is_required: false
+    string name = 4;
     // is_required: true
     google.protobuf.Struct data = 11;
     // is_required: false
@@ -59,7 +59,7 @@ message CreateServiceRequest {
     // is_required: false
     CloudServiceReference reference = 13;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 14;
+    google.protobuf.Struct tags = 14;
 
     // is_required: false
     string project_id = 22;
@@ -73,13 +73,15 @@ message UpdateCloudServiceRequest {
     // is_required: true
     string cloud_service_id = 1;
     // is_required: false
+    string name = 2;
+    // is_required: false
     google.protobuf.Struct data = 11;
     // is_required: false
     google.protobuf.Struct metadata = 12;
     // is_required: false
     CloudServiceReference reference = 13;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 14;
+    google.protobuf.Struct tags = 14;
 
     // is_required: false
     string region_code = 20;
@@ -133,6 +135,8 @@ message CloudServiceQuery {
     string state = 6;
     // is_required: false
     string region_code = 7;
+    // is_required: false
+    string name = 8;
 
     // is_required: false
     string resource_group_id = 21;
@@ -148,20 +152,21 @@ message CloudServiceInfo {
     string provider = 3;
     string cloud_service_group = 4;
     string state = 5;
+    string name = 6;
 
     google.protobuf.Struct data = 11;
     google.protobuf.Struct metadata = 12;
     CloudServiceReference reference = 13;
-    repeated spaceone.api.core.v1.Tag tags = 14;
+    google.protobuf.Struct tags = 14;
     google.protobuf.Struct collection_info = 15;
 
     string project_id = 22;
     string domain_id = 23;
     string region_code = 24;
 
-    google.protobuf.Timestamp created_at = 31;
-    google.protobuf.Timestamp updated_at = 32;
-    google.protobuf.Timestamp deleted_at = 33;
+    string created_at = 31;
+    string updated_at = 32;
+    string deleted_at = 33;
 }
 
 message CloudServicesInfo {

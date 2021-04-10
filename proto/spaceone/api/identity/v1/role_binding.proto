@@ -4,10 +4,8 @@ package spaceone.api.identity.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
-import "spaceone/api/core/v1/tag.proto";
 import "spaceone/api/identity/v1/project.proto";
 import "spaceone/api/identity/v1/project_group.proto";
 import "spaceone/api/identity/v1/role.proto";
@@ -51,9 +49,9 @@ message CreateRoleBindingRequest {
     // is_required: false
     string project_group_id = 5;
     // is_required: false
-    repeated string labels = 6;
+    google.protobuf.ListValue labels = 6;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 7;
+    google.protobuf.Struct tags = 7;
     // is_required: true
     string domain_id = 8;
 }
@@ -62,9 +60,9 @@ message UpdateRoleBindingRequest {
     // is_required: true
     string role_binding_id = 1;
     // is_required: false
-    repeated string labels = 2;
+    google.protobuf.ListValue labels = 2;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 3;
+    google.protobuf.Struct tags = 3;
     // is_required: true
     string domain_id = 4;
 }
@@ -92,10 +90,10 @@ message RoleBindingInfo {
     spaceone.api.identity.v1.RoleInfo role_info = 4;
     spaceone.api.identity.v1.ProjectInfo project_info = 5;
     spaceone.api.identity.v1.ProjectGroupInfo project_group_info = 6;
-    repeated string labels = 7;
-    repeated spaceone.api.core.v1.Tag tags = 8;
+    google.protobuf.ListValue labels = 7;
+    google.protobuf.Struct tags = 8;
     string domain_id = 11;
-    google.protobuf.Timestamp created_at = 21;
+    string created_at = 21;
 }
 
 message RoleBindingQuery {
