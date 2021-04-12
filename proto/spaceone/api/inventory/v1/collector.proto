@@ -4,10 +4,9 @@ package spaceone.api.inventory.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
-import "spaceone/api/core/v1/tag.proto";
+
 
 service Collector {
     rpc create (CreateCollectorRequest) returns (CollectorInfo) {
@@ -89,7 +88,7 @@ message CreateCollectorRequest {
     // is_required: false
     int32  priority = 3;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 5;
+    google.protobuf.Struct tags = 5;
     // is_required: true
     string domain_id = 6;
     // is_required: false
@@ -112,7 +111,7 @@ message UpdateCollectorRequest {
     // is_required: false
     int32  priority = 4;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 6;
+    google.protobuf.Struct tags = 6;
     // is_required: true
     string domain_id = 7;
 }
@@ -194,9 +193,9 @@ message CollectorInfo {
 	State state = 3;
     PluginInfo plugin_info = 4;
     int32  priority = 5;
-    repeated spaceone.api.core.v1.Tag tags = 7;
-    google.protobuf.Timestamp created_at = 8;
-    google.protobuf.Timestamp last_collected_at = 9;
+    google.protobuf.Struct tags = 7;
+    string created_at = 8;
+    string last_collected_at = 9;
     string domain_id = 10;
     string provider = 11;
     google.protobuf.Struct capability = 12;
@@ -248,9 +247,9 @@ message JobInfo {
     string project_id = 12;
     string domain_id = 13;
 
-    google.protobuf.Timestamp created_at = 21;
-    google.protobuf.Timestamp updated_at = 22;
-    google.protobuf.Timestamp finished_at = 23;
+    string created_at = 21;
+    string updated_at = 22;
+    string finished_at = 23;
 }
 
 message Scheduled {
@@ -326,8 +325,8 @@ message ScheduleInfo {
     string name = 3;
     string collect_mode = 4;
     Scheduled schedule = 5;
-    google.protobuf.Timestamp created_at = 10;
-    google.protobuf.Timestamp last_scheduled_at = 11;
+    string created_at = 10;
+    string last_scheduled_at = 11;
     CollectorInfo collector_info = 20;
     google.protobuf.Struct filter = 21;
 }

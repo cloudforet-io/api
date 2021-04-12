@@ -4,10 +4,9 @@ package spaceone.api.spot_automation.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
-import "spaceone/api/core/v1/tag.proto";
+
 
 service SpotGroup {
     rpc create (CreateSpotGroupRequest) returns (SpotGroupInfo) {
@@ -30,11 +29,11 @@ service SpotGroup {
             }
         };
     }
-    rpc stat (SpotGroupStatRequest) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/spot-automation/v1/spot-groups/stat" };
-    }
     rpc get_candidates (GetCandidatesRequest) returns (CandidatesInfo) {
         option (google.api.http) = { get: "/spot-automation/v1/spot-group/candidates" };
+    }
+    rpc stat (SpotGroupStatRequest) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/spot-automation/v1/spot-groups/stat" };
     }
 }
 
@@ -53,7 +52,7 @@ message CreateSpotGroupRequest {
     // is_required: true
     google.protobuf.Struct options = 10;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 11;
+    google.protobuf.Struct tags = 11;
     // is_required: true
     string user_id = 21;
     // is_required: true
@@ -68,7 +67,7 @@ message UpdateSpotGroupRequest {
     // is_required: false
     google.protobuf.Struct options = 3;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 11;
+    google.protobuf.Struct tags = 11;
     // is_required: true
     string domain_id = 21;
 }
@@ -95,7 +94,9 @@ message GetCandidatesRequest {
     // is_required: true
     string resource_type = 2;
     // is_required: true
-    string domain_id = 3;
+    int32 limit = 3;
+    // is_required: true
+    string domain_id = 4;
 }
 
 message QuerySpotGroupRequest {
@@ -139,10 +140,10 @@ message SpotGroupInfo {
     google.protobuf.Struct options = 10;
     string project_id = 11;
 
-    repeated spaceone.api.core.v1.Tag tags = 20;
+    google.protobuf.Struct tags = 20;
     string domain_id = 21;
     string created_by = 22;
-    google.protobuf.Timestamp created_at = 23;
+    string created_at = 23;
 }
 
 message SpotGroupsInfo {

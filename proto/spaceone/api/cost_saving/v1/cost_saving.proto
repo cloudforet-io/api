@@ -4,7 +4,6 @@ package spaceone.api.cost_saving.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 
@@ -114,19 +113,20 @@ message CostSavingStatQuery {
 
 message CostSavingInfo {
     string cost_saving_id = 1;
-    string domain_id = 2;
-    string project_id = 3;
-    string saving_by = 4;
-    State state = 5;
-
-    string provider = 11;
-    string region = 12;
-    string resource_type = 13;
-    google.protobuf.Struct data = 14;
-
-    google.protobuf.Timestamp created_at = 21;
-    google.protobuf.Timestamp updated_at = 22;
-    google.protobuf.Timestamp expired_at = 23;
+    float cost_normal = 2;
+    float cost_saving = 3;
+    float saving_result = 4;
+    string provider = 5;
+    string resource_type = 6;
+    string region_code = 7;
+    string project_id = 8;
+    string domain_id = 9;
+    string saving_service = 10;
+    string saving_by = 11;
+    google.protobuf.Struct calc_dimensions = 12;
+    google.protobuf.Timestamp saving_begin_at = 13;
+    int32 saving_duration = 14;
+    google.protobuf.Timestamp created_at = 15;
 }
 
 message CostSavingsInfo {

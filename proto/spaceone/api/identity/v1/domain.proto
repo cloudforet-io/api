@@ -4,11 +4,10 @@ package spaceone.api.identity.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 import "spaceone/api/core/v1/handler.proto";
-import "spaceone/api/core/v1/tag.proto";
+
 
 service Domain {
     rpc create (CreateDomainRequest) returns (DomainInfo) {
@@ -53,7 +52,7 @@ message CreateDomainRequest {
     // is_required: false
     google.protobuf.Struct config = 3;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 4;
+    google.protobuf.Struct tags = 4;
 }
 
 message UpdateDomainRequest {
@@ -64,7 +63,7 @@ message UpdateDomainRequest {
     // is_required: false
     google.protobuf.Struct config = 3;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 4;
+    google.protobuf.Struct tags = 4;
 }
 
 message DomainRequest {
@@ -107,9 +106,9 @@ message DomainInfo {
     State state = 3;
     PluginInfo plugin_info = 4;
     google.protobuf.Struct config = 5;
-    repeated spaceone.api.core.v1.Tag tags = 6;
-    google.protobuf.Timestamp created_at = 7;
-    google.protobuf.Timestamp deleted_at = 8;
+    google.protobuf.Struct tags = 6;
+    string created_at = 7;
+    string deleted_at = 8;
 }
 
 message DomainsInfo {
