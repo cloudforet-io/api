@@ -2,14 +2,23 @@ syntax = "proto3";
 
 package spaceone.api.cost_saving.v1;
 
+import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 
 service CostSaving {
-    rpc record (RecordRequest) returns (RecordInfo) {
-        option (google.api.http) = { post: "/cost-saving/v1/record" };
+    rpc create (CreateCostSavingRequest) returns (CostSavingInfo) {
+        option (google.api.http) = { post: "/cost-saving/v1/cost-saving" };
+    }
+    rpc update (UpdateCostSavingRequest) returns (CostSavingInfo) {
+        option (google.api.http) = { put: "/cost-saving/v1/cost-saving/{cost_saving_id}" };
+    }
+    rpc delete (CostSavingRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/cost-saving/v1/cost-saving/{cost_saving_id}" };
+    }
+    rpc get (GetCostSavingRequest) returns (CostSavingInfo) {
+        option (google.api.http) = { get: "/cost-saving/v1/cost-saving/{cost_saving_id}" };
     }
     rpc list (CostSavingQuery) returns (CostSavingsInfo) {
         option (google.api.http) = {
@@ -24,64 +33,74 @@ service CostSaving {
     }
 }
 
-enum SavingMode {
-    MODE_NONE = 0;
-    SAVING = 1;
-    NORMAL = 2;
+enum State {
+    NONE = 0;
+    RUNNING = 1;
+    STOPPED = 2;
 }
 
-message RecordRequest {
+message CreateCostSavingRequest {
     // is_required: true
-    string resource_type = 1;
-    // is_required: true
-    SavingMode saving_mode = 2;
-    // is_required: true
-    google.protobuf.Struct calc_dimensions = 3;
-    // is_required: true
-    string saving_service = 4;
-    // is_required: true
-    string saving_by = 5;
-    // is_required: true
-    string region_code = 6;
+    string domain_id = 1;
     // is_required: false
-    string project_id = 7;
+    string project_id = 2;
     // is_required: true
-    string provider = 8;
+    string saving_by = 3;
     // is_required: true
-    string domain_id = 9;
+    State state = 4;
+    // is_required: false
+    google.protobuf.Struct tags = 5;
+    // is_required: true
+    string region = 6;
+    // is_required: true
+    string provider = 7;
+    // is_required: true
+    google.protobuf.Struct resource = 11;
 }
 
-message RecordInfo {
-    string record_id = 1;
-    string resource_type = 2;
-    SavingMode saving_mode = 3;
-    google.protobuf.Struct calc_dimensions = 4;
-    string provider = 5;
-    string region_code = 6;
-    string project_id = 7;
-    string domain_id = 8;
-    string saving_service = 9;
-    string saving_by = 10;
-    google.protobuf.Timestamp created_at = 11;
+message UpdateCostSavingRequest {
+    // is_required: true
+    string cost_saving_id = 1;
+    // is_required: false
+    string saving_by = 2;
+    // is_required: false
+    State state = 3;
+    // is_required: false
+    string project_id = 4;
+    // is_required: false
+    google.protobuf.Struct saving_details = 11;
+    // is_required: true
+    string domain_id = 22;
 }
 
+message CostSavingRequest {
+    // is_required: true
+    string cost_saving_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetCostSavingRequest {
+    // is_required: true
+    string cost_saving_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
 message CostSavingQuery {
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
-    string resource_type = 2;
+    string cost_saving_id = 2;
     // is_required: false
-    string provider = 3;
+    State state = 3;
     // is_required: false
-    string region_code = 5;
+    string saving_by = 5;
     // is_required: false
     string project_id = 6;
-    // is_required: false
-    string saving_service = 7;
-    // is_required: false
-    string saving_by = 8;
     // is_required: true
-    string domain_id = 10;
+    string domain_id = 7;
 }
 
 message CostSavingStatQuery {

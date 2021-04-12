@@ -4,10 +4,8 @@ package spaceone.api.billing.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
-import "spaceone/api/core/v1/tag.proto";
 
 
 service DataSource {
@@ -63,7 +61,7 @@ message RegisterDataSourceRequest {
     // is_required: true
     PluginInfo plugin_info = 3;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 4;
+    google.protobuf.Struct tags = 4;
     // is_required: true
     string domain_id = 8;
 }
@@ -76,7 +74,7 @@ message UpdateDataSourceRequest {
     // is_required: false
     PluginInfo plugin_info = 3;
     // is_required: false
-    repeated spaceone.api.core.v1.Tag tags = 4;
+    google.protobuf.Struct tags = 4;
     // is_required: true
     string domain_id = 5;
 }
@@ -129,9 +127,9 @@ message DataSourceInfo {
     string provider = 4;
     google.protobuf.Struct capability = 5;
     PluginInfo plugin_info = 6;
-    repeated spaceone.api.core.v1.Tag tags = 7;
+    google.protobuf.Struct tags = 7;
     string domain_id = 8;
-    google.protobuf.Timestamp created_at = 9;
+    string created_at = 9;
 }
 
 message DataSourcesInfo {
