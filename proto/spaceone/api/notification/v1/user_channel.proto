@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package spaceone.api.monitoring.v1;
+package spaceone.api.notification.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
@@ -10,33 +10,33 @@ import "spaceone/api/core/v1/query.proto";
 
 service UserChannel {
     rpc create (CreateUserChannelRequest) returns (UserChannelInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/user-channels" };
+        option (google.api.http) = { post: "/notification/v1/user-channels" };
     }
     rpc update (UpdateUserChannelRequest) returns (UserChannelInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/user-channel/{user_channel_id}" };
+        option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}" };
     }
     rpc enable (UserChannelRequest) returns (UserChannelInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/user-channel/{user_channel_id}/enable" };
+        option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}/enable" };
     }
     rpc disable (UserChannelRequest) returns (UserChannelInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/user-channel/{user_channel_id}/disable" };
+        option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}/disable" };
     }
     rpc delete (UserChannelRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/monitoring/v1/user-channel/{user_channel_id}" };
+        option (google.api.http) = { delete: "/notification/v1/user-channel/{user_channel_id}" };
     }
     rpc get (GetUserChannelRequest) returns (UserChannelInfo) {
-        option (google.api.http) = { get: "/monitoring/v1/user-channel/{user_channel_id}" };
+        option (google.api.http) = { get: "/notification/v1/user-channel/{user_channel_id}" };
     }
     rpc list (UserChannelQuery) returns (UserChannelsInfo) {
         option (google.api.http) = {
-            get: "/monitoring/v1/user-channels"
+            get: "/notification/v1/user-channels"
             additional_bindings {
-                post: "/monitoring/v1/user-channels/search"
+                post: "/notification/v1/user-channels/search"
             }
         };
     }
     rpc stat (UserChannelStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/monitoring/v1/user-channels/stat" };
+        option (google.api.http) = { post: "/notification/v1/user-channels/stat" };
     }
 }
 
