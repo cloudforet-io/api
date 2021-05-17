@@ -1,0 +1,159 @@
+syntax = "proto3";
+
+package spaceone.api.monitoring.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Webhook {
+    rpc create (CreateWebhookRequest) returns (WebhookInfo) {
+        option (google.api.http) = { post: "/monitoring/v1/webhooks" };
+    }
+    rpc update (UpdateWebhookRequest) returns (WebhookInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/webhook/{webhook_id}" };
+    }
+    rpc update_plugin (UpdateWebhookPluginRequest) returns (WebhookInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/webhook/{webhook_id}/plugin" };
+    }
+    rpc enable (WebhookRequest) returns (WebhookInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/webhook/{webhook_id}/enable" };
+    }
+    rpc disable (WebhookRequest) returns (WebhookInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/webhook/{webhook_id}/disable" };
+    }
+    rpc delete (WebhookRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/monitoring/v1/webhook/{webhook_id}" };
+    }
+    rpc get (GetWebhookRequest) returns (WebhookInfo) {
+        option (google.api.http) = { get: "/monitoring/v1/webhook/{webhook_id}" };
+    }
+    rpc list (WebhookQuery) returns (WebhooksInfo) {
+        option (google.api.http) = {
+            get: "/monitoring/v1/webhooks"
+            additional_bindings {
+                post: "/monitoring/v1/webhooks/search"
+            }
+        };
+    }
+    rpc stat (WebhookStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/monitoring/v1/webhooks/stat" };
+    }
+}
+
+message PluginInfo{
+    string plugin_id = 1;
+    string version = 2;
+    google.protobuf.Struct options = 3;
+    google.protobuf.Struct metadata = 6;
+}
+
+message CreateWebhookRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: true
+    PluginInfo plugin_info = 2;
+    // is_required: false
+    google.protobuf.Struct tags = 3;
+    // is_required: true
+    string project_id = 11;
+    // is_required: true
+    string domain_id = 12;
+}
+
+message UpdateWebhookRequest {
+    // is_required: true
+    string webhook_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    google.protobuf.Struct tags = 3;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message UpdateWebhookPluginRequest {
+    // is_required: true
+    string webhook_id = 1;
+    // is_required: false
+    string version = 2;
+    // is_required: false
+    google.protobuf.Struct options = 3;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message WebhookRequest {
+    // is_required: true
+    string webhook_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetWebhookRequest {
+    // is_required: true
+    string webhook_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message WebhookQuery {
+    enum WebhookState {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string webhook_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    WebhookState state = 4;
+    // is_required: false
+    string access_key = 5;
+    // is_required: false
+    string webhook_url = 6;
+    // is_required: false
+    string project_id = 7;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message WebhookInfo {
+    enum WebhookState {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    string webhook_id = 1;
+    string name = 2;
+    WebhookState state = 3;
+    string access_key = 4;
+    string webhook_url = 5;
+    google.protobuf.Struct capability = 6;
+    PluginInfo plugin_info = 7;
+    google.protobuf.Struct tags = 8;
+    string project_id = 11;
+    string domain_id = 12;
+    string created_at = 21;
+}
+
+message WebhooksInfo {
+    repeated WebhookInfo results = 1;
+    int32 total_count = 2;
+}
+
+message WebhookStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}

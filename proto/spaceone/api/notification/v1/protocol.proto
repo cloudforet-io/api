@@ -1,0 +1,166 @@
+syntax = "proto3";
+
+package spaceone.api.monitoring.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Protocol {
+    rpc create (CreateProtocolRequest) returns (ProtocolInfo) {
+        option (google.api.http) = { post: "/monitoring/v1/protocols" };
+    }
+    rpc update (UpdateProtocolRequest) returns (ProtocolInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/protocol/{protocol_id}" };
+    }
+    rpc update_plugin (UpdateProtocolPluginRequest) returns (ProtocolInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/protocol/{protocol_id}/plugin" };
+    }
+    rpc enable (ProtocolRequest) returns (ProtocolInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/protocol/{protocol_id}/enable" };
+    }
+    rpc disable (ProtocolRequest) returns (ProtocolInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/protocol/{protocol_id}/disable" };
+    }
+    rpc delete (ProtocolRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/monitoring/v1/protocol/{protocol_id}" };
+    }
+    rpc get (GetProtocolRequest) returns (ProtocolInfo) {
+        option (google.api.http) = { get: "/monitoring/v1/protocol/{protocol_id}" };
+    }
+    rpc list (ProtocolQuery) returns (ProtocolsInfo) {
+        option (google.api.http) = {
+            get: "/monitoring/v1/protocols"
+            additional_bindings {
+                post: "/monitoring/v1/protocols/search"
+            }
+        };
+    }
+    rpc stat (ProtocolStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/monitoring/v1/protocols/stat" };
+    }
+}
+
+message PluginInfo{
+    string plugin_id = 1;
+    string version = 2;
+    google.protobuf.Struct options = 3;
+    google.protobuf.Struct metadata = 6;
+}
+
+message CreateProtocolRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: true
+    PluginInfo plugin_info = 2;
+    // is_required: false
+    google.protobuf.Struct tags = 3;
+    // is_required: true
+    string project_id = 11;
+    // is_required: true
+    string domain_id = 12;
+}
+
+message UpdateProtocolRequest {
+    // is_required: true
+    string protocol_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    google.protobuf.Struct tags = 3;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message UpdateProtocolPluginRequest {
+    // is_required: true
+    string protocol_id = 1;
+    // is_required: false
+    string version = 2;
+    // is_required: false
+    google.protobuf.Struct options = 3;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message ProtocolRequest {
+    // is_required: true
+    string protocol_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetProtocolRequest {
+    // is_required: true
+    string protocol_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message ProtocolQuery {
+    enum ProtocolState {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    enum ProtocolType {
+        PROTOCOL_TYPE_NONE = 0;
+        INTERNAL = 1;
+        EXTERNAL = 2;
+    }
+
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string protocol_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    ProtocolState state = 4;
+    // is_required: false
+    ProtocolType protocol_type = 5;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message ProtocolInfo {
+    enum ProtocolState {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    enum ProtocolType {
+        PROTOCOL_TYPE_NONE = 0;
+        INTERNAL = 1;
+        EXTERNAL = 2;
+    }
+
+    string protocol_id = 1;
+    string name = 2;
+    ProtocolState state = 3;
+    ProtocolType protocol_type = 4;
+    string resource_type = 5;
+    google.protobuf.Struct capability = 6;
+    PluginInfo plugin_info = 7;
+    google.protobuf.Struct tags = 8;
+    string domain_id = 11;
+    string created_at = 21;
+}
+
+message ProtocolsInfo {
+    repeated ProtocolInfo results = 1;
+    int32 total_count = 2;
+}
+
+message ProtocolStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
