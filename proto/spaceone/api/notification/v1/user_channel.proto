@@ -1,0 +1,171 @@
+syntax = "proto3";
+
+package spaceone.api.monitoring.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service UserChannel {
+    rpc create (CreateUserChannelRequest) returns (UserChannelInfo) {
+        option (google.api.http) = { post: "/monitoring/v1/user-channels" };
+    }
+    rpc update (UpdateUserChannelRequest) returns (UserChannelInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/user-channel/{user_channel_id}" };
+    }
+    rpc enable (UserChannelRequest) returns (UserChannelInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/user-channel/{user_channel_id}/enable" };
+    }
+    rpc disable (UserChannelRequest) returns (UserChannelInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/user-channel/{user_channel_id}/disable" };
+    }
+    rpc delete (UserChannelRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/monitoring/v1/user-channel/{user_channel_id}" };
+    }
+    rpc get (GetUserChannelRequest) returns (UserChannelInfo) {
+        option (google.api.http) = { get: "/monitoring/v1/user-channel/{user_channel_id}" };
+    }
+    rpc list (UserChannelQuery) returns (UserChannelsInfo) {
+        option (google.api.http) = {
+            get: "/monitoring/v1/user-channels"
+            additional_bindings {
+                post: "/monitoring/v1/user-channels/search"
+            }
+        };
+    }
+    rpc stat (UserChannelStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/monitoring/v1/user-channels/stat" };
+    }
+}
+
+message UserChannelSchedule {
+    enum DayOfWeek {
+        NONE = 0;
+        MON = 1;
+        TUE = 2;
+        WED = 3;
+        THU = 4;
+        FRI = 5;
+        SAT = 6;
+        SUN = 7;
+    }
+
+    repeated DayOfWeek day_of_week = 1;
+    int32 start_hour = 2;
+    int32 end_hour = 3;
+}
+
+message CreateUserChannelRequest {
+    // is_required: true
+    string protocol_id = 1;
+    // is_required: true
+    string name = 2;
+    // is_required: true
+    string schema = 3;
+    // is_required: true
+    google.protobuf.Struct data = 4;
+    // is_required: false
+    repeated string subscriptions = 5;
+    // is_required: false
+    UserChannelSchedule schedule = 6;
+    // is_required: false
+    google.protobuf.Struct tags = 7;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message UpdateUserChannelRequest {
+    // is_required: true
+    string user_channel_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    google.protobuf.Struct data = 3;
+    // is_required: false
+    repeated string subscriptions = 4;
+    // is_required: false
+    UserChannelSchedule schedule = 5;
+    // is_required: false
+    google.protobuf.Struct tags = 6;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message UserChannelRequest {
+    // is_required: true
+    string user_channel_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetUserChannelRequest {
+    // is_required: true
+    string user_channel_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message UserChannelQuery {
+    enum UserChannelState {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string user_channel_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    UserChannelState state = 4;
+    // is_required: false
+    string schema = 5;
+    // is_required: false
+    string secret_id = 6;
+    // is_required: false
+    string protocol_id = 11;
+    // is_required: false
+    string user_id = 12;
+    // is_required: true
+    string domain_id = 13;
+}
+
+message UserChannelInfo {
+    enum UserChannelState {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    string user_channel_id = 1;
+    string name = 2;
+    UserChannelState state = 3;
+    string schema = 4;
+    google.protobuf.Struct data = 5;
+    string secret_id = 6;
+    repeated string subscriptions = 7;
+    UserChannelSchedule schedule = 8;
+    google.protobuf.Struct tags = 9;
+    string protocol_id = 11;
+    string user_id = 12;
+    string domain_id = 13;
+    string created_at = 21;
+}
+
+message UserChannelsInfo {
+    repeated UserChannelInfo results = 1;
+    int32 total_count = 2;
+}
+
+message UserChannelStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
