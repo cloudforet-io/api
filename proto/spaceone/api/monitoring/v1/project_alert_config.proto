@@ -6,6 +6,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/monitoring/v1/escalation_policy.proto";
 
 
 service ProjectAlertConfig {
@@ -96,7 +97,7 @@ message ProjectAlertConfigQuery {
 message ProjectAlertConfigInfo {
     string project_id = 1;
     NotificationOptions notification_options = 2;
-    string escalation_policy_id = 3;
+    spaceone.api.monitoring.v1.EscalationPolicyInfo escalation_policy_info = 3;
     string domain_id = 11;
     string created_at = 21;
 }
