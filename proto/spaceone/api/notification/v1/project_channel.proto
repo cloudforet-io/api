@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package spaceone.api.monitoring.v1;
+package spaceone.api.notification.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
@@ -10,33 +10,33 @@ import "spaceone/api/core/v1/query.proto";
 
 service ProjectChannel {
     rpc create (CreateProjectChannelRequest) returns (ProjectChannelInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/project-channels" };
+        option (google.api.http) = { post: "/notification/v1/project-channels" };
     }
     rpc update (UpdateProjectChannelRequest) returns (ProjectChannelInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/project-channel/{project_channel_id}" };
+        option (google.api.http) = { put: "/notification/v1/project-channel/{project_channel_id}" };
     }
     rpc enable (ProjectChannelRequest) returns (ProjectChannelInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/project-channel/{project_channel_id}/enable" };
+        option (google.api.http) = { put: "/notification/v1/project-channel/{project_channel_id}/enable" };
     }
     rpc disable (ProjectChannelRequest) returns (ProjectChannelInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/project-channel/{project_channel_id}/disable" };
+        option (google.api.http) = { put: "/notification/v1/project-channel/{project_channel_id}/disable" };
     }
     rpc delete (ProjectChannelRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/monitoring/v1/project-channel/{project_channel_id}" };
+        option (google.api.http) = { delete: "/notification/v1/project-channel/{project_channel_id}" };
     }
     rpc get (GetProjectChannelRequest) returns (ProjectChannelInfo) {
-        option (google.api.http) = { get: "/monitoring/v1/project-channel/{project_channel_id}" };
+        option (google.api.http) = { get: "/notification/v1/project-channel/{project_channel_id}" };
     }
     rpc list (ProjectChannelQuery) returns (ProjectChannelsInfo) {
         option (google.api.http) = {
-            get: "/monitoring/v1/project-channels"
+            get: "/notification/v1/project-channels"
             additional_bindings {
-                post: "/monitoring/v1/project-channels/search"
+                post: "/notification/v1/project-channels/search"
             }
         };
     }
     rpc stat (ProjectChannelStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/monitoring/v1/project-channels/stat" };
+        option (google.api.http) = { post: "/notification/v1/project-channels/stat" };
     }
 }
 
