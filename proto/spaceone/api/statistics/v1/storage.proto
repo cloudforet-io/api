@@ -1,0 +1,161 @@
+syntax = "proto3";
+
+package spaceone.api.statistics.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/statistics/v1/resource.proto";
+
+
+service Storage {
+    rpc register (RegisterStorageRequest) returns (StorageInfo) {
+        option (google.api.http) = { post: "/statistics/v1/storages" };
+    }
+    rpc update (UpdateStorageRequest) returns (StorageInfo) {
+        option (google.api.http) = { put: "/statistics/v1/storage/{storage_id}" };
+    }
+    rpc update_plugin (UpdateStoragePluginRequest) returns (StorageInfo) {
+        option (google.api.http) = { put: "/spot-automation/v1/storage/{storage_id}/plugin" };
+    }
+    rpc verify_plugin (StorageRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/spot-automation/v1/storage/{storage_id}/plugin/verify" };
+    }
+    rpc enable (StorageRequest) returns (StorageInfo) {
+        option (google.api.http) = { put: "/statistics/v1/storage/{schedule_id}/enable" };
+    }
+    rpc disable (StorageRequest) returns (StorageInfo) {
+        option (google.api.http) = { put: "/statistics/v1/storage/{schedule_id}/disable" };
+    }
+    rpc deregister (StorageRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/statistics/v1/storage/{schedule_id}" };
+    }
+    rpc get (GetStorageRequest) returns (StorageInfo) {
+        option (google.api.http) = { get: "/statistics/v1/storage/{schedule_id}" };
+    }
+    rpc list (StorageQuery) returns (StoragesInfo) {
+        option (google.api.http) = {
+            get: "/statistics/v1/storages"
+            additional_bindings {
+                post: "/statistics/v1/storages/search"
+            }
+        };
+    }
+    rpc stat (StorageStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/statistics/v1/storages/stat" };
+    }
+}
+
+message PluginRequest {
+    string plugin_id = 1;
+    string version = 2;
+    google.protobuf.Struct options = 3;
+    string secret_data = 4;
+    string schema = 5;
+}
+
+message PluginInfo {
+    string plugin_id = 1;
+    string version = 2;
+    google.protobuf.Struct options = 3;
+    string secret_id = 4;
+    google.protobuf.Struct metadata = 5;
+}
+
+message RegisterStorageRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: false
+    PluginRequest plugin_info = 2;
+    // is_required: false
+    google.protobuf.Struct tags = 3;
+    // is_required: true
+    string user_id = 11;
+    // is_required: true
+    string domain_id = 12;
+}
+
+message UpdateStorageRequest {
+    // is_required: true
+    string storage_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    google.protobuf.Struct tags = 3;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message UpdateStoragePluginRequest {
+    // is_required: true
+    string storage_id = 1;
+    // is_required: false
+    string version = 2;
+    // is_required: false
+    google.protobuf.Struct options = 3;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message StorageRequest {
+    // is_required: true
+    string storage_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetStorageRequest {
+    // is_required: true
+    string storage_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message StorageQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string storage_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    string state = 4;
+    // is_required: false
+    string user_id = 5;
+    // is_required: true
+    string domain_id = 6;
+}
+
+message StorageInfo {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    string storage_id = 1;
+    string name = 2;
+    State state = 3;
+    google.protobuf.Struct options = 4;
+    google.protobuf.Struct capability = 5;
+    PluginInfo plugin_info = 6;
+    google.protobuf.Struct tags = 7;
+    string user_id = 8;
+    string domain_id = 9;
+    string created_at = 10;
+}
+
+message StoragesInfo {
+    repeated StorageInfo results = 1;
+    int32 total_count = 2;
+}
+
+message StorageStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
