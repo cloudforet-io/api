@@ -30,7 +30,7 @@ service Alert {
     rpc remove_responder (RemoveAlertResponderRequest) returns (AlertInfo) {
         option (google.api.http) = { delete: "/monitoring/v1/alert/{alert_id}/responders" };
     }
-    rpc delete (AlertRequest) returns (AlertInfo) {
+    rpc delete (AlertRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/monitoring/v1/alert/{alert_id}" };
     }
     rpc get (GetAlertRequest) returns (AlertInfo) {
@@ -50,13 +50,13 @@ service Alert {
 }
 
 enum AlertUrgency {
-    NONE = 0;
+    ALERT_URGENCY_NONE = 0;
     HIGH = 1;
     LOW = 2;
 }
 
 enum AlertState {
-    NONE = 0;
+    ALERT_STATE_NONE = 0;
     TRIGGERED = 1;
     ACKNOWLEDGED = 2;
     RESOLVED = 3;
