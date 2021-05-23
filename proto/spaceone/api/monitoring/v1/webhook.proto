@@ -43,7 +43,7 @@ service Webhook {
     }
 }
 
-message PluginInfo{
+message WebhookPluginInfo{
     string plugin_id = 1;
     string version = 2;
     google.protobuf.Struct options = 3;
@@ -54,7 +54,7 @@ message CreateWebhookRequest {
     // is_required: true
     string name = 1;
     // is_required: true
-    PluginInfo plugin_info = 2;
+    WebhookPluginInfo plugin_info = 2;
     // is_required: false
     google.protobuf.Struct tags = 3;
     // is_required: true
@@ -139,7 +139,7 @@ message WebhookInfo {
     string access_key = 4;
     string webhook_url = 5;
     google.protobuf.Struct capability = 6;
-    PluginInfo plugin_info = 7;
+    WebhookPluginInfo plugin_info = 7;
     google.protobuf.Struct tags = 8;
     string project_id = 11;
     string domain_id = 12;
