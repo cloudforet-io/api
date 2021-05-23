@@ -15,6 +15,9 @@ service ProjectChannel {
     rpc update (UpdateProjectChannelRequest) returns (ProjectChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/project-channel/{project_channel_id}" };
     }
+    rpc set_subscription (UpdateSubscriptionRequest) returns (ProjectChannelInfo) {
+        option (google.api.http) = { put: "/notification/v1/project-channel/{project_channel_id}/subscription" };
+    }
     rpc enable (ProjectChannelRequest) returns (ProjectChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/project-channel/{project_channel_id}/enable" };
     }
@@ -67,18 +70,21 @@ message CreateProjectChannelRequest {
     // is_required: true
     google.protobuf.Struct data = 4;
     // is_required: false
-    repeated string subscriptions = 5;
+    bool is_subscribe = 5;
     // is_required: false
-    string notification_level = 6;
+    repeated string subscriptions = 6;
     // is_required: false
-    ProjectChannelSchedule schedule = 7;
+    string notification_level = 7;
     // is_required: false
-    google.protobuf.Struct tags = 8;
+    ProjectChannelSchedule schedule = 8;
+    // is_required: false
+    google.protobuf.Struct tags = 9;
     // is_required: true
-    string project_id = 11;
+    string project_id = 10;
     // is_required: true
-    string domain_id = 12;
+    string domain_id = 11;
 }
+
 
 message UpdateProjectChannelRequest {
     // is_required: true
@@ -88,15 +94,24 @@ message UpdateProjectChannelRequest {
     // is_required: false
     google.protobuf.Struct data = 3;
     // is_required: false
-    repeated string subscriptions = 4;
+    string notification_level = 4;
     // is_required: false
-    string notification_level = 5;
+    ProjectChannelSchedule schedule = 5;
     // is_required: false
-    ProjectChannelSchedule schedule = 6;
-    // is_required: false
-    google.protobuf.Struct tags = 7;
+    google.protobuf.Struct tags = 6;
     // is_required: true
     string domain_id = 11;
+}
+
+message UpdateSubscriptionRequest {
+    // is_required: true
+    string project_channel_id = 1;
+    // is_required: true
+    bool is_subscribe = 2;
+    // is_required: false
+    repeated string subscriptions = 3;
+    // is_required: true
+    string domain_id = 4;
 }
 
 message ProjectChannelRequest {
@@ -121,7 +136,6 @@ message ProjectChannelQuery {
         ENABLED = 1;
         DISABLED = 2;
     }
-
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -138,7 +152,7 @@ message ProjectChannelQuery {
     string notification_level = 7;
     // is_required: false
     string protocol_id = 11;
-    // is_required: false
+    // is_required: true
     string project_id = 12;
     // is_required: true
     string domain_id = 13;
@@ -150,20 +164,20 @@ message ProjectChannelInfo {
         ENABLED = 1;
         DISABLED = 2;
     }
-
     string project_channel_id = 1;
     string name = 2;
     ProjectChannelState state = 3;
     string schema = 4;
     google.protobuf.Struct data = 5;
     string secret_id = 6;
-    repeated string subscriptions = 7;
-    string notification_level = 8;
-    ProjectChannelSchedule schedule = 9;
-    google.protobuf.Struct tags = 10;
-    string protocol_id = 11;
-    string project_id = 12;
-    string domain_id = 13;
+    bool is_subscribe = 7;
+    repeated string subscriptions = 8;
+    string notification_level = 9;
+    ProjectChannelSchedule schedule = 10;
+    google.protobuf.Struct tags = 11;
+    string protocol_id = 12;
+    string project_id = 13;
+    string domain_id = 14;
     string created_at = 21;
 }
 
