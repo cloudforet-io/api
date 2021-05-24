@@ -15,6 +15,9 @@ service UserChannel {
     rpc update (UpdateUserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}" };
     }
+    rpc set_subscription (UpdateSubscriptionRequest) returns (UserChannelInfo) {
+        option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}/subscription" };
+    }
     rpc enable (UserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}/enable" };
     }
@@ -67,11 +70,15 @@ message CreateUserChannelRequest {
     // is_required: true
     google.protobuf.Struct data = 4;
     // is_required: false
-    repeated string subscriptions = 5;
+    bool is_subscribe = 5;
     // is_required: false
-    UserChannelSchedule schedule = 6;
+    repeated string subscriptions = 6;
     // is_required: false
-    google.protobuf.Struct tags = 7;
+    UserChannelSchedule schedule = 7;
+    // is_required: false
+    google.protobuf.Struct tags = 8;
+    // is_required: true
+    string user_id = 9;
     // is_required: true
     string domain_id = 11;
 }
@@ -84,13 +91,22 @@ message UpdateUserChannelRequest {
     // is_required: false
     google.protobuf.Struct data = 3;
     // is_required: false
-    repeated string subscriptions = 4;
+    UserChannelSchedule schedule = 4;
     // is_required: false
-    UserChannelSchedule schedule = 5;
-    // is_required: false
-    google.protobuf.Struct tags = 6;
+    google.protobuf.Struct tags = 5;
     // is_required: true
     string domain_id = 11;
+}
+
+message UpdateSubscriptionRequest {
+    // is_required: true
+    string user_channel_id = 1;
+    // is_required: true
+    bool is_subscribe = 2;
+    // is_required: false
+    repeated string subscriptions = 3;
+    // is_required: true
+    string domain_id = 4;
 }
 
 message UserChannelRequest {
@@ -149,9 +165,10 @@ message UserChannelInfo {
     string schema = 4;
     google.protobuf.Struct data = 5;
     string secret_id = 6;
-    repeated string subscriptions = 7;
-    UserChannelSchedule schedule = 8;
-    google.protobuf.Struct tags = 9;
+    bool is_subscribe = 7;
+    repeated string subscriptions = 8;
+    UserChannelSchedule schedule = 9;
+    google.protobuf.Struct tags = 10;
     string protocol_id = 11;
     string user_id = 12;
     string domain_id = 13;
