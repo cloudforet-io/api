@@ -15,7 +15,7 @@ service UserChannel {
     rpc update (UpdateUserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}" };
     }
-    rpc set_subscription (UpdateSubscriptionRequest) returns (UserChannelInfo) {
+    rpc set_subscription (UpdateUserChannelSubscriptionRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}/subscription" };
     }
     rpc enable (UserChannelRequest) returns (UserChannelInfo) {
@@ -98,7 +98,7 @@ message UpdateUserChannelRequest {
     string domain_id = 11;
 }
 
-message UpdateSubscriptionRequest {
+message UpdateUserChannelSubscriptionRequest {
     // is_required: true
     string user_channel_id = 1;
     // is_required: true
