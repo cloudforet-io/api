@@ -57,6 +57,16 @@ message ProjectChannelSchedule {
     int32 end_hour = 3;
 }
 
+enum NotificationLevel {
+    NOTIFICATION_LEVEL_NONE = 0;
+    ALL = 1;
+    LV1 = 2;
+    LV2 = 3;
+    LV3 = 4;
+    LV4 = 5;
+    LV5 = 6;
+}
+
 message CreateProjectChannelRequest {
     // is_required: true
     string protocol_id = 1;
@@ -69,7 +79,7 @@ message CreateProjectChannelRequest {
     // is_required: false
     repeated string subscriptions = 5;
     // is_required: false
-    string notification_level = 6;
+    NotificationLevel notification_level = 6;
     // is_required: false
     ProjectChannelSchedule schedule = 7;
     // is_required: false
@@ -90,7 +100,7 @@ message UpdateProjectChannelRequest {
     // is_required: false
     repeated string subscriptions = 4;
     // is_required: false
-    string notification_level = 5;
+    NotificationLevel notification_level = 5;
     // is_required: false
     ProjectChannelSchedule schedule = 6;
     // is_required: false
@@ -135,7 +145,7 @@ message ProjectChannelQuery {
     // is_required: false
     string secret_id = 6;
     // is_required: false
-    string notification_level = 7;
+    NotificationLevel notification_level = 7;
     // is_required: false
     string protocol_id = 11;
     // is_required: false
@@ -158,7 +168,7 @@ message ProjectChannelInfo {
     google.protobuf.Struct data = 5;
     string secret_id = 6;
     repeated string subscriptions = 7;
-    string notification_level = 8;
+    NotificationLevel notification_level = 8;
     ProjectChannelSchedule schedule = 9;
     google.protobuf.Struct tags = 10;
     string protocol_id = 11;

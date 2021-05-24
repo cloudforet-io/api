@@ -44,7 +44,17 @@ enum EscalationFinishCondition {
 }
 
 message EscalationPolicyRule {
-    string notification_level = 1;
+    enum NotificationLevel {
+        NONE = 0;
+        ALL = 1;
+        LV1 = 2;
+        LV2 = 3;
+        LV3 = 4;
+        LV4 = 5;
+        LV5 = 6;
+    }
+
+    NotificationLevel notification_level = 1;
     int32 escalate_minutes = 2;
 }
 
