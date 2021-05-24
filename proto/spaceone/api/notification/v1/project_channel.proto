@@ -15,7 +15,7 @@ service ProjectChannel {
     rpc update (UpdateProjectChannelRequest) returns (ProjectChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/project-channel/{project_channel_id}" };
     }
-    rpc set_subscription (UpdateSubscriptionRequest) returns (ProjectChannelInfo) {
+    rpc set_subscription (UpdateProjectChannelSubscriptionRequest) returns (ProjectChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/project-channel/{project_channel_id}/subscription" };
     }
     rpc enable (ProjectChannelRequest) returns (ProjectChannelInfo) {
@@ -114,7 +114,7 @@ message UpdateProjectChannelRequest {
     string domain_id = 11;
 }
 
-message UpdateSubscriptionRequest {
+message UpdateProjectChannelSubscriptionRequest {
     // is_required: true
     string project_channel_id = 1;
     // is_required: true
