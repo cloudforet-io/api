@@ -43,8 +43,18 @@ enum EscalationFinishCondition {
     HIGH_ONLY = 2;
 }
 
-message EscalationPolicyRules {
-    string notification_level = 1;
+message EscalationPolicyRule {
+    enum NotificationLevel {
+        NONE = 0;
+        ALL = 1;
+        LV1 = 2;
+        LV2 = 3;
+        LV3 = 4;
+        LV4 = 5;
+        LV5 = 6;
+    }
+
+    NotificationLevel notification_level = 1;
     int32 escalate_minutes = 2;
 }
 
@@ -52,7 +62,7 @@ message CreateEscalationPolicyRequest {
     // is_required: true
     string name = 1;
     // is_required: true
-    repeated EscalationPolicyRules rules = 2;
+    repeated EscalationPolicyRule rules = 2;
     // is_required: false
     int32 repeat_count = 3;
     // is_required: false
@@ -71,7 +81,7 @@ message UpdateEscalationPolicyRequest {
     // is_required: false
     string name = 2;
     // is_required: false
-    repeated EscalationPolicyRules rules = 3;
+    repeated EscalationPolicyRule rules = 3;
     // is_required: false
     int32 repeat_count = 4;
     // is_required: false
@@ -113,7 +123,7 @@ message EscalationPolicyInfo {
     string escalation_policy_id = 1;
     string name = 2;
     bool is_default = 3;
-    repeated EscalationPolicyRules rules = 4;
+    repeated EscalationPolicyRule rules = 4;
     int32 repeat_count = 5;
     string project_id = 6;
     google.protobuf.Struct tags = 7;
