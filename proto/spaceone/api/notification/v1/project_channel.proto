@@ -43,6 +43,16 @@ service ProjectChannel {
     }
 }
 
+enum NotificationLevel {
+    NONE = 0;
+    ALL = 1;
+    LV1 = 2;
+    LV2 = 3;
+    LV3 = 4;
+    LV4 = 5;
+    LV5 = 6;
+}
+
 message ProjectChannelSchedule {
     enum DayOfWeek {
         NONE = 0;
@@ -70,13 +80,15 @@ message CreateProjectChannelRequest {
     // is_required: true
     google.protobuf.Struct data = 4;
     // is_required: false
-    repeated string subscriptions = 5;
+    bool is_subscribe = 5;
     // is_required: false
-    string notification_level = 6;
+    repeated string subscriptions = 6;
     // is_required: false
-    ProjectChannelSchedule schedule = 7;
+    NotificationLevel notification_level = 7;
     // is_required: false
-    google.protobuf.Struct tags = 8;
+    ProjectChannelSchedule schedule = 8;
+    // is_required: false
+    google.protobuf.Struct tags = 9;
     // is_required: true
     string project_id = 11;
     // is_required: true
@@ -93,7 +105,7 @@ message UpdateProjectChannelRequest {
     // is_required: false
     repeated string subscriptions = 4;
     // is_required: false
-    string notification_level = 5;
+    NotificationLevel notification_level = 5;
     // is_required: false
     ProjectChannelSchedule schedule = 6;
     // is_required: false
@@ -149,7 +161,7 @@ message ProjectChannelQuery {
     // is_required: false
     string secret_id = 6;
     // is_required: false
-    string notification_level = 7;
+    NotificationLevel notification_level = 7;
     // is_required: false
     string protocol_id = 11;
     // is_required: false
@@ -171,14 +183,15 @@ message ProjectChannelInfo {
     string schema = 4;
     google.protobuf.Struct data = 5;
     string secret_id = 6;
-    repeated string subscriptions = 7;
-    string notification_level = 8;
-    ProjectChannelSchedule schedule = 9;
-    google.protobuf.Struct tags = 10;
-    string protocol_id = 11;
-    string project_id = 12;
-    string domain_id = 13;
-    string created_at = 21;
+    bool is_subscribe = 7;
+    repeated string subscriptions = 8;
+    NotificationLevel notification_level = 9;
+    ProjectChannelSchedule schedule = 10;
+    google.protobuf.Struct tags = 11;
+    string protocol_id = 21;
+    string project_id = 22;
+    string domain_id = 23;
+    string created_at = 31;
 }
 
 message ProjectChannelsInfo {
