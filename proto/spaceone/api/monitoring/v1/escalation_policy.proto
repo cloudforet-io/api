@@ -37,12 +37,6 @@ service EscalationPolicy {
     }
 }
 
-enum EscalationFinishCondition {
-    FINISH_CONDITION_NONE = 0;
-    ALL = 1;
-    HIGH_ONLY = 2;
-}
-
 message EscalationPolicyRule {
     enum NotificationLevel {
         NONE = 0;
@@ -59,6 +53,12 @@ message EscalationPolicyRule {
 }
 
 message CreateEscalationPolicyRequest {
+    enum EscalationFinishCondition {
+        NONE = 0;
+        ACKNOWLEDGED = 1;
+        RESOLVED = 2;
+    }
+
     // is_required: true
     string name = 1;
     // is_required: true
@@ -76,6 +76,12 @@ message CreateEscalationPolicyRequest {
 }
 
 message UpdateEscalationPolicyRequest {
+    enum EscalationFinishCondition {
+        NONE = 0;
+        ACKNOWLEDGED = 1;
+        RESOLVED = 2;
+    }
+
     // is_required: true
     string escalation_policy_id = 1;
     // is_required: false
@@ -115,6 +121,12 @@ message EscalationPolicyQuery {
         PROJECT = 2;
     }
 
+    enum EscalationFinishCondition {
+        NONE = 0;
+        ACKNOWLEDGED = 1;
+        RESOLVED = 2;
+    }
+
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -138,6 +150,12 @@ message EscalationPolicyInfo {
         SCOPE_NONE = 0;
         GLOBAL = 1;
         PROJECT = 2;
+    }
+
+    enum EscalationFinishCondition {
+        NONE = 0;
+        ACKNOWLEDGED = 1;
+        RESOLVED = 2;
     }
 
     string escalation_policy_id = 1;
