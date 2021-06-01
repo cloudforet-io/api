@@ -16,6 +16,15 @@ service Domain {
     rpc update (UpdateDomainRequest) returns (DomainInfo) {
         option (google.api.http) = { put: "/identity/v1/domain/{domain_id}" };
     }
+    rpc change_auth_plugin (ChangeAuthRequest) returns (DomainInfo) {
+        option (google.api.http) = { put: "/identity/v1/domain/{domain_id}/change_auth_plugin" };
+    }
+    rpc update_plugin (UpdatePluginRequest) returns (DomainInfo) {
+        option (google.api.http) = { put: "/identity/v1/domain/{domain_id}/plugin" };
+    }
+    rpc verify_plugin (DomainRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/identity/v1/domain/{domain_id}/plugin/verify" };
+    }
     rpc delete (DomainRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/identity/v1/domain/{domain_id}" };
     }
@@ -64,6 +73,24 @@ message UpdateDomainRequest {
     google.protobuf.Struct config = 3;
     // is_required: false
     google.protobuf.Struct tags = 4;
+}
+
+message ChangeAuthRequest {
+    // is_required: true
+    string domain_id = 1;
+    // is_required: false
+    PluginInfo plugin_info = 2;
+    // is_required: false
+    string release_auth_plugin = 3;
+}
+
+message UpdatePluginRequest {
+    // is_required: true
+    string domain_id = 1;
+    // is_required: false
+    string version = 2;
+    // is_required: false
+    google.protobuf.Struct options = 3;
 }
 
 message DomainRequest {
@@ -126,4 +153,6 @@ message PluginInfo {
     string version = 2;
     string secret_id = 3;
     google.protobuf.Struct options = 4;
+    google.protobuf.Struct secret_data = 5;
+    string schema = 6;
 }
