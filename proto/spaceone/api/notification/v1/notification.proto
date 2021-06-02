@@ -1,0 +1,163 @@
+syntax = "proto3";
+
+package spaceone.api.notification.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Protocol {
+    rpc create (CreateNotificationRequest) returns (NotificationInfo) {
+        option (google.api.http) = { post: "/notification/v1/notifications" };
+    }
+    rpc delete (NotificationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/notification/v1/notification/{notification_id}" };
+    }
+    rpc get (GetNotificationRequest) returns (NotificationInfo) {
+        option (google.api.http) = { get: "/notification/v1/notification/{notification_id}" };
+    }
+    rpc list (NotificationQuery) returns (NotificationsInfo) {
+        option (google.api.http) = {
+            get: "/notification/v1/notifications"
+            additional_bindings {
+                post: "/notification/v1/notifications/search"
+            }
+        };
+    }
+    rpc stat (NotificationStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/notification/v1/notifications/stat" };
+    }
+}
+
+message CreateNotificationRequest {
+    enum NotificationType {
+        NOTIFICATION_TYPE_NONE = 0;
+        INFO = 1;
+        ERROR = 2;
+        SUCCESS = 3;
+        WARNING = 4;
+    }
+    enum NotificationLEVEL {
+        NONE = 0;
+        ALL = 1;
+        LV1 = 2;
+        LV2 = 3;
+        LV3 = 4;
+        LV4 = 5;
+        LV5 = 6;
+    }
+    // is_required: true
+    string resource_type = 1;
+    // is_required: true
+    string resource_id = 2;
+    // is_required: true
+    string topic = 3;
+    // is_required: true
+    google.protobuf.Struct message = 4;
+    // is_required: false
+    NotificationType notification_type = 5;
+    // is_required: false
+    NotificationLEVEL notification_level = 7;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message NotificationRequest {
+    // is_required: true
+    string notification_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetNotificationRequest {
+    // is_required: true
+    string notification_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message NotificationQuery {
+    enum NotificationType {
+        NOTIFICATION_TYPE_NONE = 0;
+        INFO = 1;
+        ERROR = 2;
+        SUCCESS = 3;
+        WARNING = 4;
+    }
+    enum NotificationLEVEL {
+        NONE = 0;
+        ALL = 1;
+        LV1 = 2;
+        LV2 = 3;
+        LV3 = 4;
+        LV4 = 5;
+        LV5 = 6;
+    }
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string notification_id = 2;
+    // is_required: false
+    string topic = 3;
+    // is_required: false
+    NotificationType notification_type = 4;
+    // is_required: false
+    NotificationLEVEL notification_level = 5;
+    // is_required: false
+    bool is_read = 6;
+    // is_required: false
+    string parent_notification_id = 7;
+    // is_required: false
+    string project_id = 8;
+    // is_required: false
+    string user_id = 9;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message NotificationInfo {
+    enum NotificationType {
+        NOTIFICATION_TYPE_NONE = 0;
+        INFO = 1;
+        ERROR = 2;
+        SUCCESS = 3;
+        WARNING = 4;
+    }
+    enum NotificationLEVEL {
+        NONE = 0;
+        ALL = 1;
+        LV1 = 2;
+        LV2 = 3;
+        LV3 = 4;
+        LV4 = 5;
+        LV5 = 6;
+    }
+
+    string notification_id = 1;
+    string topic = 2;
+    google.protobuf.Struct message = 3;
+    NotificationType notification_type = 4;
+    NotificationLEVEL notification_level = 5;
+    bool is_read = 6;
+    string parent_notification_id = 7;
+    string project_id = 8;
+    string user_id = 9;
+    string domain_id = 11;
+    string created_at = 21;
+}
+
+message NotificationsInfo {
+    repeated NotificationInfo results = 1;
+    int32 total_count = 2;
+}
+
+message NotificationStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
