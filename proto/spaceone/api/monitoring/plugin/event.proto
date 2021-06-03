@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package spaceone.api.monitoring.plugin;
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+
+
+service Event {
+    rpc parse (ParseRequest) returns (EventInfo) {}
+}
+
+message ParseRequest {
+    // is_required: true
+    google.protobuf.Struct options = 1;
+    // is_required: true
+    google.protobuf.Struct raw_data = 2;
+}
+
+
+message AffectedResource {
+    string resource_id = 1;
+    string name = 2;
+    string ip_address = 3;
+}
+
+message EventInfo {
+    string title = 1;
+    string description = 2;
+    AffectedResource affected_resource = 3;
+    string rule = 4;
+    google.protobuf.Struct tags = 5;
+}
