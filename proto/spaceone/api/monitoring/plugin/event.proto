@@ -16,13 +16,6 @@ message ParseRequest {
     google.protobuf.Struct raw_data = 2;
 }
 
-message Resource {
-    string resource_id = 1;
-    string name = 2;
-    string ip_address = 3;
-    string resource_type = 4;
-}
-
 message EventInfo {
     enum Severity {
         SEVERITY_NONE = 0;
@@ -34,12 +27,13 @@ message EventInfo {
     }
 
     string event_key = 1;
-    string title = 2;
-    string description = 3;
-    Severity severity = 4;
-    Resource resource = 5;
-    string rule = 6;
-    google.protobuf.Struct tags = 7;
+    string event_type = 2;
+    string title = 3;
+    string description = 4;
+    Severity severity = 5;
+    google.protobuf.Struct resource = 6;
+    string rule = 7;
+    google.protobuf.Struct tags = 8;
 }
 
 message EventsInfo {
