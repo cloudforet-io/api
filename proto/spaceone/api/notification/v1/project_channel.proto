@@ -15,6 +15,9 @@ service ProjectChannel {
     rpc update (UpdateProjectChannelRequest) returns (ProjectChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/project-channel/{project_channel_id}" };
     }
+    rpc set_schedule (UpdateProjectChannelScheduleRequest) returns (ProjectChannelInfo) {
+        option (google.api.http) = { put: "/notification/v1/project-channel/{project_channel_id}/schedule" };
+    }
     rpc set_subscription (UpdateProjectChannelSubscriptionRequest) returns (ProjectChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/project-channel/{project_channel_id}/subscription" };
     }
@@ -86,9 +89,11 @@ message CreateProjectChannelRequest {
     // is_required: false
     NotificationLevel notification_level = 7;
     // is_required: false
-    ProjectChannelSchedule schedule = 8;
+    bool is_scheduled = 8;
     // is_required: false
-    google.protobuf.Struct tags = 9;
+    ProjectChannelSchedule schedule = 9;
+    // is_required: false
+    google.protobuf.Struct tags = 10;
     // is_required: true
     string project_id = 11;
     // is_required: true
@@ -112,6 +117,17 @@ message UpdateProjectChannelRequest {
     google.protobuf.Struct tags = 7;
     // is_required: true
     string domain_id = 11;
+}
+
+message UpdateProjectChannelScheduleRequest {
+    // is_required: true
+    string project_channel_id = 1;
+    // is_required: true
+    bool is_schedule = 2;
+    // is_required: false
+    ProjectChannelSchedule schedule = 3;
+    // is_required: true
+    string domain_id = 4;
 }
 
 message UpdateProjectChannelSubscriptionRequest {
@@ -186,8 +202,9 @@ message ProjectChannelInfo {
     bool is_subscribe = 7;
     repeated string subscriptions = 8;
     NotificationLevel notification_level = 9;
-    ProjectChannelSchedule schedule = 10;
-    google.protobuf.Struct tags = 11;
+    bool is_scheduled = 10;
+    ProjectChannelSchedule schedule = 11;
+    google.protobuf.Struct tags = 12;
     string protocol_id = 21;
     string project_id = 22;
     string domain_id = 23;

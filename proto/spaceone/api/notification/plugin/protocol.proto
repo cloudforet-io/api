@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package spaceone.api.notification.plugin;
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+
+
+service Protocol {
+    rpc init (InitRequest) returns (PluginInfo) {}
+    rpc verify (PluginVerifyRequest) returns (google.protobuf.Empty) {}
+}
+
+message InitRequest {
+    // is_required: true
+    google.protobuf.Struct options = 1;
+}
+
+message PluginVerifyRequest {
+    // is_required: true
+    google.protobuf.Struct options = 1;
+    // is_required: true
+    google.protobuf.Struct secret_data = 2;
+}
+
+message PluginInfo {
+    google.protobuf.Struct metadata = 1;
+}
