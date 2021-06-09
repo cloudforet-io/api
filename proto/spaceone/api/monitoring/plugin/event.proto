@@ -6,7 +6,7 @@ import "google/protobuf/struct.proto";
 
 
 service Event {
-    rpc parse (ParseRequest) returns (EventInfo) {}
+    rpc parse (ParseRequest) returns (EventsInfo) {}
 }
 
 message ParseRequest {
@@ -16,17 +16,32 @@ message ParseRequest {
     google.protobuf.Struct raw_data = 2;
 }
 
-
-message AffectedResource {
+message Resource {
     string resource_id = 1;
     string name = 2;
     string ip_address = 3;
+    string resource_type = 4;
 }
 
-message EventInfo {
-    string title = 1;
-    string description = 2;
-    AffectedResource affected_resource = 3;
-    string rule = 4;
-    google.protobuf.Struct tags = 5;
+message EventResult {
+    enum Severity {
+        SEVERITY_NONE = 0;
+        CRITICAL = 1;
+        ERROR = 2;
+        WARNING = 3;
+        INFO = 4;
+        NOT_AVAILABLE = 5;
+    }
+
+    string event_key = 1;
+    string title = 2;
+    string description = 3;
+    Severity severity = 4;
+    Resource resource = 5;
+    string rule = 6;
+    google.protobuf.Struct tags = 7;
+}
+
+message EventsInfo {
+    repeated EventResult results = 1;
 }
