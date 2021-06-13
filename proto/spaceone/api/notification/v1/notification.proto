@@ -9,7 +9,7 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service Notification {
-    rpc create (CreateNotificationRequest) returns (NotificationInfo) {
+    rpc create (CreateNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/notification/v1/notifications" };
     }
     rpc delete (NotificationRequest) returns (google.protobuf.Empty) {
