@@ -35,14 +35,15 @@ service ProjectAlertConfig {
     }
 }
 
-message NotificationOptions {
+message AlertOptions {
     enum UrgencyOption {
         NONE = 0;
         ALL = 1;
         HIGH_ONLY = 2;
     }
 
-    UrgencyOption urgency = 1;
+    UrgencyOption notification_urgency = 1;
+    bool auto_recovery = 2;
 }
 
 message CreateProjectAlertConfigRequest {
@@ -51,7 +52,7 @@ message CreateProjectAlertConfigRequest {
     // is_required: false
     string escalation_policy_id = 2;
     // is_required: false
-    NotificationOptions notification_options = 3;
+    AlertOptions options = 3;
     // is_required: true
     string domain_id = 11;
 }
@@ -62,7 +63,7 @@ message UpdateProjectAlertConfigRequest {
     // is_required: false
     string escalation_policy_id = 2;
     // is_required: false
-    NotificationOptions notification_options = 3;
+    AlertOptions options = 3;
     // is_required: true
     string domain_id = 11;
 }
@@ -96,7 +97,7 @@ message ProjectAlertConfigQuery {
 
 message ProjectAlertConfigInfo {
     string project_id = 1;
-    NotificationOptions notification_options = 2;
+    AlertOptions options = 2;
     spaceone.api.monitoring.v1.EscalationPolicyInfo escalation_policy_info = 3;
     string domain_id = 11;
     string created_at = 21;
