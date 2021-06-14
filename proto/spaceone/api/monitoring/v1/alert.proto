@@ -16,7 +16,7 @@ service Alert {
         option (google.api.http) = { put: "/monitoring/v1/alert/{alert_id}" };
     }
     rpc update_state (UpdateAlertStateRequest) returns (AlertInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/alert/{alert_id}/state" };
+        option (google.api.http) = { post: "/monitoring/v1/alert/{alert_id}/{access_key}/{state}" };
     }
     rpc merge (MergeAlertRequest) returns (AlertInfo) {
         option (google.api.http) = { post: "/monitoring/v1/alerts/merge" };
@@ -88,15 +88,17 @@ message UpdateAlertRequest {
     // is_required: false
     string title = 2;
     // is_required: false
-    string status_message = 3;
+    string state = 3;
     // is_required: false
-    string description = 4;
+    string status_message = 4;
     // is_required: false
-    string assignee = 5;
+    string description = 5;
     // is_required: false
-    AlertUrgency urgency = 6;
+    string assignee = 6;
     // is_required: false
-    string project_id = 7;
+    AlertUrgency urgency = 7;
+    // is_required: false
+    string project_id = 8;
     // is_required: true
     string domain_id = 11;
 }
@@ -105,11 +107,9 @@ message UpdateAlertStateRequest {
     // is_required: true
     string alert_id = 1;
     // is_required: true
-    AlertState state = 2;
+    string access_key = 2;
     // is_required: false
-    string status_message = 3;
-    // is_required: true
-    string domain_id = 4;
+    string state = 3;
 }
 
 message MergeAlertRequest {

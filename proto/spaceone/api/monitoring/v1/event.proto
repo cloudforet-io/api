@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package spaceone.api.monitoring.v1;
+
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Event {
+    rpc create (CreateEventRequest) returns (EventInfo) {
+        option (google.api.http) = { post: "/monitoring/v1/webhook/{webhook_id}/{access_key}/events" };
+    }
+    rpc get (GetEventRequest) returns (EventInfo) {
+        option (google.api.http) = { get: "/monitoring/v1/event/{event_id}" };
+    }
+    rpc list (EventQuery) returns (EventsInfo) {
+        option (google.api.http) = {
+            get: "/monitoring/v1/events"
+            additional_bindings {
+                post: "/monitoring/v1/events/search"
+            }
+        };
+    }
+    rpc stat (EventStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/monitoring/v1/events/stat" };
+    }
+}
+
+message EventResource {
+    string resource_id = 1;
+    string resource_type = 2;
+    string name = 3;
+    string ip_address = 4;
+}
+
+message CreateEventRequest {
+    // is_required: true
+    string webhook_id = 1;
+    // is_required: true
+    string access_key = 2;
+    // is_required: true
+    google.protobuf.Struct data = 3;
+}
+
+message GetEventRequest {
+    // is_required: true
+    string event_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message EventQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string event_id = 2;
+    // is_required: false
+    string event_key = 3;
+    // is_required: false
+    string event_type = 4;
+    // is_required: false
+    string severity = 5;
+    // is_required: false
+    string resource_id = 6;
+    // is_required: false
+    string alert_id = 7;
+    // is_required: false
+    string webhook_id = 8;
+    // is_required: false
+    string project_id = 9;
+    // is_required: false
+    string domain_id = 10;
+}
+
+message EventInfo {
+    string event_id = 1;
+    string event_key = 2;
+    string event_type = 3;
+    string title = 4;
+    string description = 5;
+    string severity = 6;
+    string rule = 7;
+    EventResource resource = 8;
+    google.protobuf.Struct raw_data = 9;
+    google.protobuf.Struct tags = 10;
+    string alert_id = 21;
+    string webhook_id = 22;
+    string project_id = 23;
+    string domain_id = 24;
+    string created_at = 31;
+    string occurred_at = 32;
+}
+
+message EventsInfo {
+    repeated EventInfo results = 1;
+    int32 total_count = 2;
+}
+
+message EventStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
