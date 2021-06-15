@@ -24,11 +24,17 @@ service Alert {
     rpc snooze (SnoozeAlertRequest) returns (AlertInfo) {
         option (google.api.http) = { post: "/monitoring/v1/alert/{alert_id}/snooze" };
     }
-    rpc add_responder (AddAlertResponderRequest) returns (AlertInfo) {
+    rpc add_responder (AlertResponderRequest) returns (AlertInfo) {
         option (google.api.http) = { post: "/monitoring/v1/alert/{alert_id}/responders" };
     }
-    rpc remove_responder (RemoveAlertResponderRequest) returns (AlertInfo) {
+    rpc remove_responder (AlertResponderRequest) returns (AlertInfo) {
         option (google.api.http) = { delete: "/monitoring/v1/alert/{alert_id}/responders" };
+    }
+    rpc add_project_dependency (AlertProjectDependencyRequest) returns (AlertInfo) {
+        option (google.api.http) = { post: "/monitoring/v1/alert/{alert_id}/project-dependencies" };
+    }
+    rpc remove_project_dependency (AlertProjectDependencyRequest) returns (AlertInfo) {
+        option (google.api.http) = { delete: "/monitoring/v1/alert/{alert_id}/project-dependency/{project_id}" };
     }
     rpc delete (AlertRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/monitoring/v1/alert/{alert_id}" };
@@ -60,6 +66,13 @@ enum AlertState {
     TRIGGERED = 1;
     ACKNOWLEDGED = 2;
     RESOLVED = 3;
+}
+
+message AlertResource {
+    string resource_id = 1;
+    string resource_type = 2;
+    string name = 3;
+    string ip_address = 4;
 }
 
 message AlertResponder {
@@ -130,7 +143,7 @@ message SnoozeAlertRequest {
     string domain_id = 3;
 }
 
-message AddAlertResponderRequest {
+message AlertResponderRequest {
     // is_required: true
     string alert_id = 1;
     // is_required: true
@@ -141,15 +154,13 @@ message AddAlertResponderRequest {
     string domain_id = 4;
 }
 
-message RemoveAlertResponderRequest {
+message AlertProjectDependencyRequest {
     // is_required: true
     string alert_id = 1;
     // is_required: true
-    string resource_type = 2;
+    string project_id = 2;
     // is_required: true
-    string resource_id = 3;
-    // is_required: true
-    string domain_id = 4;
+    string domain_id = 3;
 }
 
 message AlertRequest {
@@ -207,11 +218,15 @@ message AlertInfo {
     string assignee = 7;
     AlertUrgency urgency = 8;
     string severity = 9;
-    bool is_snoozed = 10;
-    string snoozed_end_time = 11;
-    int32 escalation_level = 12;
-    int32 escalation_ttl = 13;
-    repeated AlertResponder responders = 14;
+    string rule = 10;
+    AlertResource resource = 11;
+    google.protobuf.Struct additional_info = 12;
+    bool is_snoozed = 13;
+    string snoozed_end_time = 14;
+    int32 escalation_step = 15;
+    int32 escalation_ttl = 16;
+    repeated AlertResponder responders = 17;
+    repeated string project_dependencies = 18;
     string webhook_id = 21;
     string escalation_policy_id = 22;
     string project_id = 23;
