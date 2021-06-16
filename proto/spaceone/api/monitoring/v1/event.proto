@@ -2,13 +2,14 @@ syntax = "proto3";
 
 package spaceone.api.monitoring.v1;
 
+import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 
 
 service Event {
-    rpc create (CreateEventRequest) returns (EventInfo) {
+    rpc create (CreateEventRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/monitoring/v1/webhook/{webhook_id}/{access_key}/events" };
     }
     rpc get (GetEventRequest) returns (EventInfo) {
