@@ -1,0 +1,175 @@
+syntax = "proto3";
+
+package spaceone.api.monitoring.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service EventRule {
+    rpc create (CreateEventRuleRequest) returns (EventRuleInfo) {
+        option (google.api.http) = { post: "/monitoring/v1/event-rules" };
+    }
+    rpc update (UpdateEventRuleRequest) returns (EventRuleInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/event-rule/{event_rule_id}" };
+    }
+    rpc change_order (ChangeEventRuleOrderRequest) returns (EventRuleInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/event-rule/{event_rule_id}/order" };
+    }
+    rpc delete (EventRuleRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/monitoring/v1/event-rule/{event_rule_id}" };
+    }
+    rpc get (GetEventRuleRequest) returns (EventRuleInfo) {
+        option (google.api.http) = { get: "/monitoring/v1/event-rule/{event_rule_id}" };
+    }
+    rpc list (EventRuleQuery) returns (EventRulesInfo) {
+        option (google.api.http) = {
+            get: "/monitoring/v1/event-rules"
+            additional_bindings {
+                post: "/monitoring/v1/event-rules/search"
+            }
+        };
+    }
+    rpc stat (EventRuleStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/monitoring/v1/event-rules/stat" };
+    }
+}
+
+message EventRuleCondition {
+    string key = 1;
+    string value = 2;
+    string operator = 3;
+}
+
+message EventRuleActionResponder {
+    string resource_type = 1;
+    string resource_id = 2;
+}
+
+message EventRuleAction {
+    string change_assignee = 1;
+    string change_urgency = 2;
+    string change_project = 3;
+    repeated string add_project_dependency = 4;
+    repeated EventRuleActionResponder add_responder = 5;
+    google.protobuf.Struct add_additional_info = 6;
+    bool no_notification = 7;
+}
+
+message EventRuleOptions {
+    bool stop_processing = 1;
+}
+
+message CreateEventRuleRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: true
+    repeated EventRuleCondition conditions = 2;
+    // is_required: true
+    EventRuleAction action = 3;
+    // is_required: false
+    EventRuleOptions options = 4;
+    // is_required: false
+    string project_id = 5;
+    // is_required: false
+    google.protobuf.Struct tags = 6;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message UpdateEventRuleRequest {
+    // is_required: true
+    string event_rule_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    repeated EventRuleCondition conditions = 3;
+    // is_required: false
+    EventRuleAction action = 4;
+    // is_required: false
+    EventRuleOptions options = 5;
+    // is_required: false
+    google.protobuf.Struct tags = 6;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message ChangeEventRuleOrderRequest {
+    // is_required: true
+    string event_rule_id = 1;
+    // is_required: true
+    int32 order = 2;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message EventRuleRequest {
+    // is_required: true
+    string event_rule_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetEventRuleRequest {
+    // is_required: true
+    string event_rule_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message EventRuleQuery {
+    enum EventRuleScope {
+        SCOPE_NONE = 0;
+        GLOBAL = 1;
+        PROJECT = 2;
+    }
+
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string event_rule_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    EventRuleScope scope = 4;
+    // is_required: false
+    string project_id = 5;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message EventRuleInfo {
+    enum EventRuleScope {
+        SCOPE_NONE = 0;
+        GLOBAL = 1;
+        PROJECT = 2;
+    }
+
+    string event_rule_id = 1;
+    string name = 2;
+    int32 order = 3;
+    repeated EventRuleCondition conditions = 4;
+    EventRuleAction action = 5;
+    EventRuleOptions options = 6;
+    EventRuleScope scope = 7;
+    string project_id = 8;
+    google.protobuf.Struct tags = 9;
+    string domain_id = 11;
+    string created_at = 21;
+}
+
+message EventRulesInfo {
+    repeated EventRuleInfo results = 1;
+    int32 total_count = 2;
+}
+
+message EventRuleStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
