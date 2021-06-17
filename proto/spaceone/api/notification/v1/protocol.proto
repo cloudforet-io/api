@@ -43,10 +43,19 @@ service Protocol {
     }
 }
 
+message PluginRequest{
+    string plugin_id = 1;
+    string version = 2;
+    google.protobuf.Struct options = 3;
+    google.protobuf.Struct secret_data = 4;
+    string schema = 5;
+}
+
 message PluginInfo{
     string plugin_id = 1;
     string version = 2;
     google.protobuf.Struct options = 3;
+    google.protobuf.Struct secret_id = 4;
     google.protobuf.Struct metadata = 6;
 }
 
@@ -54,7 +63,7 @@ message CreateProtocolRequest {
     // is_required: true
     string name = 1;
     // is_required: true
-    PluginInfo plugin_info = 2;
+    PluginRequest plugin_info = 2;
     // is_required: false
     google.protobuf.Struct tags = 3;
     // is_required: true
