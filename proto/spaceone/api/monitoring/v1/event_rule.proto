@@ -48,7 +48,7 @@ message EventRuleActionResponder {
     string resource_id = 2;
 }
 
-message EventRuleAction {
+message EventRuleActions {
     string change_assignee = 1;
     string change_urgency = 2;
     string change_project = 3;
@@ -68,7 +68,7 @@ message CreateEventRuleRequest {
     // is_required: true
     repeated EventRuleCondition conditions = 2;
     // is_required: true
-    EventRuleAction actions = 3;
+    EventRuleActions actions = 3;
     // is_required: false
     EventRuleOptions options = 4;
     // is_required: false
@@ -87,7 +87,7 @@ message UpdateEventRuleRequest {
     // is_required: false
     repeated EventRuleCondition conditions = 3;
     // is_required: false
-    EventRuleAction actions = 4;
+    EventRuleActions actions = 4;
     // is_required: false
     EventRuleOptions options = 5;
     // is_required: false
@@ -153,7 +153,7 @@ message EventRuleInfo {
     string name = 2;
     int32 order = 3;
     repeated EventRuleCondition conditions = 4;
-    EventRuleAction actions = 5;
+    EventRuleActions actions = 5;
     EventRuleOptions options = 6;
     EventRuleScope scope = 7;
     string project_id = 8;
