@@ -6,20 +6,20 @@ import "google/protobuf/struct.proto";
 
 
 service Webhook {
-    rpc init (InitRequest) returns (PluginInfo) {}
-    rpc verify (PluginVerifyRequest) returns (google.protobuf.Empty) {}
+    rpc init (WebhookInitRequest) returns (WebhookPluginInfo) {}
+    rpc verify (WebhookPluginVerifyRequest) returns (google.protobuf.Empty) {}
 }
 
-message InitRequest {
+message WebhookInitRequest {
     // is_required: true
     google.protobuf.Struct options = 1;
 }
 
-message PluginVerifyRequest {
+message WebhookPluginVerifyRequest {
     // is_required: true
     google.protobuf.Struct options = 1;
 }
 
-message PluginInfo {
+message WebhookPluginInfo {
     google.protobuf.Struct metadata = 1;
 }
