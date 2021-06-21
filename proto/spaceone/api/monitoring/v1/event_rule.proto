@@ -63,23 +63,37 @@ message EventRuleOptions {
 }
 
 message CreateEventRuleRequest {
+    enum ConditionsPolicy {
+        NONE = 0;
+        ALL = 1;
+        ANY = 2;
+    }
+
     // is_required: true
     string name = 1;
     // is_required: true
     repeated EventRuleCondition conditions = 2;
     // is_required: true
-    EventRuleActions actions = 3;
+    ConditionsPolicy conditions_policy = 3;
+    // is_required: true
+    EventRuleActions actions = 4;
     // is_required: false
-    EventRuleOptions options = 4;
+    EventRuleOptions options = 5;
     // is_required: false
-    string project_id = 5;
+    string project_id = 6;
     // is_required: false
-    google.protobuf.Struct tags = 6;
+    google.protobuf.Struct tags = 7;
     // is_required: true
     string domain_id = 11;
 }
 
 message UpdateEventRuleRequest {
+    enum ConditionsPolicy {
+        NONE = 0;
+        ALL = 1;
+        ANY = 2;
+    }
+
     // is_required: true
     string event_rule_id = 1;
     // is_required: false
@@ -87,11 +101,13 @@ message UpdateEventRuleRequest {
     // is_required: false
     repeated EventRuleCondition conditions = 3;
     // is_required: false
-    EventRuleActions actions = 4;
+    ConditionsPolicy conditions_policy = 4;
     // is_required: false
-    EventRuleOptions options = 5;
+    EventRuleActions actions = 5;
     // is_required: false
-    google.protobuf.Struct tags = 6;
+    EventRuleOptions options = 6;
+    // is_required: false
+    google.protobuf.Struct tags = 7;
     // is_required: true
     string domain_id = 11;
 }
@@ -149,15 +165,22 @@ message EventRuleInfo {
         PROJECT = 2;
     }
 
+    enum ConditionsPolicy {
+        NONE = 0;
+        ALL = 1;
+        ANY = 2;
+    }
+
     string event_rule_id = 1;
     string name = 2;
     int32 order = 3;
     repeated EventRuleCondition conditions = 4;
-    EventRuleActions actions = 5;
-    EventRuleOptions options = 6;
-    EventRuleScope scope = 7;
-    string project_id = 8;
-    google.protobuf.Struct tags = 9;
+    ConditionsPolicy conditions_policy = 5;
+    EventRuleActions actions = 6;
+    EventRuleOptions options = 7;
+    EventRuleScope scope = 8;
+    string project_id = 9;
+    google.protobuf.Struct tags = 10;
     string domain_id = 11;
     string created_at = 21;
 }
