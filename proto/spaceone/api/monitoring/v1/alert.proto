@@ -201,13 +201,15 @@ message AlertQuery {
     // is_required: false
     string resource_id = 10;
     // is_required: false
-    string webhook_id = 11;
+    string triggered_by = 11;
     // is_required: false
-    string escalation_policy_id = 12;
+    string webhook_id = 12;
     // is_required: false
-    string project_id = 13;
+    string escalation_policy_id = 13;
+    // is_required: false
+    string project_id = 14;
     // is_required: true
-    string domain_id = 14;
+    string domain_id = 15;
 }
 
 message AlertInfo {
@@ -229,10 +231,11 @@ message AlertInfo {
     int32 escalation_ttl = 16;
     repeated AlertResponder responders = 17;
     repeated string project_dependencies = 18;
-    string webhook_id = 21;
-    string escalation_policy_id = 22;
-    string project_id = 23;
-    string domain_id = 24;
+    string triggered_by = 21;
+    string webhook_id = 22;
+    string escalation_policy_id = 23;
+    string project_id = 24;
+    string domain_id = 25;
     string created_at = 31;
     string updated_at = 32;
     string acknowledged_at = 33;
