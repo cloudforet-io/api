@@ -9,27 +9,44 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service Protocol {
+    // desc: Creates a new Protocol.
+    // Protocol is the definition of which method to use when dispatching the Notifications through a Channel.
+    // When creating a protocol, you must specify the plugins provided from the repository, and you must also set the credentials to be set in the plugin if necessary.
     rpc create (CreateProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = { post: "/notification/v1/protocols" };
     }
+    // desc: Updates a Protocol information.
+    // Update methods can update name, tags only. If you want to update plugin version or options, you can use update_plugin method.
     rpc update (UpdateProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = { put: "/notification/v1/protocol/{protocol_id}" };
     }
+    // desc: Updates a plugin for Protocol.
+    // This method is usually used when redeploying a deployed plugin container to a new version.
     rpc update_plugin (UpdateProtocolPluginRequest) returns (ProtocolInfo) {
         option (google.api.http) = { put: "/notification/v1/protocol/{protocol_id}/plugin" };
     }
+    // desc: Enables a Protocol.
+    // If the disabled Protocol is enabled, the Protocol can be used again and the notification can be dispatched.
     rpc enable (ProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = { put: "/notification/v1/protocol/{protocol_id}/enable" };
     }
+    // desc: Disables a Protocol.
+    // If you disable the Protocol, the notification will not be dispatched, even if they are created.
     rpc disable (ProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = { put: "/notification/v1/protocol/{protocol_id}/disable" };
     }
+    // desc: Delete the protocol.
+    // If there is even one channel using the protocol, it cannot be deleted.
     rpc delete (ProtocolRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/notification/v1/protocol/{protocol_id}" };
     }
+    // desc: Gets a single Protocol.
     rpc get (GetProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = { get: "/notification/v1/protocol/{protocol_id}" };
     }
+    // desc: Lists the specified Protocols.
+    // Can search information using the query format provided by SpaceONE.
+    // Detailed information about Query format can be checked in the Search Query pages.
     rpc list (ProtocolQuery) returns (ProtocolsInfo) {
         option (google.api.http) = {
             get: "/notification/v1/protocols"
@@ -44,69 +61,105 @@ service Protocol {
 }
 
 message PluginRequest{
+    // is_required: true
+    // desc: The ID of plugin.
     string plugin_id = 1;
+    // is_required: true
+    // desc: The version of plugin.
     string version = 2;
+    // is_required: false
+    // desc: The Options that contains information about using plugin
     google.protobuf.Struct options = 3;
+    // is_required: false
+    // desc: The data for using plugin if necessary. This data is encrypted and stored in the Secret service.
     google.protobuf.Struct secret_data = 4;
+    // is_required: false
+    // desc: The name of schema.
+    // When the secret_data is stored in the Secret service, it can be set with schema if the schema is existed.
+    // The schema is provided through the Repository service.
     string schema = 5;
 }
 
 message PluginInfo{
+    // desc: The ID of plugin set in the Protocol
     string plugin_id = 1;
+    // desc: The version of plugin.
     string version = 2;
+    // desc: The Options that contains information about using plugin
     google.protobuf.Struct options = 3;
+    // desc: The ID of the Secret containing encrypted data to be used in the plugin
     string secret_id = 4;
+    // desc: The metadata of plugin. It includes schema for the data that must be set for the Channel when creating the Channel using a Protocol.
+    // The schema follows the JSON Schema format.
     google.protobuf.Struct metadata = 6;
 }
 
 message CreateProtocolRequest {
     // is_required: true
+    // desc: The name of Protocol. It can have a maximum of 255 characters.
     string name = 1;
     // is_required: true
+    // desc: Describe a Plugin information for protocol that include was used plugin, specific version, schema etc.
     PluginRequest plugin_info = 2;
     // is_required: false
+    // desc: The tags for protocol.
     google.protobuf.Struct tags = 3;
     // is_required: true
+    // desc: The ID of project
     string project_id = 11;
     // is_required: true
+    // desc: The ID of domain to which the Protocol belongs
     string domain_id = 12;
 }
 
 message UpdateProtocolRequest {
     // is_required: true
+    // desc: The ID of Protocol
     string protocol_id = 1;
     // is_required: false
+    // desc: The Name of Protocol. It can have a maximum of 255 characters.
     string name = 2;
     // is_required: false
+    // desc: The tags for protocol. When updating, existing tag information is deleted all and will be updated with new.
     google.protobuf.Struct tags = 3;
     // is_required: true
+    // desc: The ID of domain to which the Protocol belongs
     string domain_id = 11;
 }
 
 message UpdateProtocolPluginRequest {
     // is_required: true
+    // desc: The ID of Protocol
     string protocol_id = 1;
     // is_required: false
+    // desc: The version of plugin you want to update. Version means the tags of plugin container image in repository that specific market place.
     string version = 2;
     // is_required: false
+    // desc: The Options that contains information about using plugin
     google.protobuf.Struct options = 3;
     // is_required: true
+    // desc: The ID of domain to which the Protocol belongs
     string domain_id = 11;
 }
 
 message ProtocolRequest {
     // is_required: true
+    // desc: The ID of Protocol
     string protocol_id = 1;
     // is_required: true
+    // desc: The ID of domain to which the Protocol belongs
     string domain_id = 2;
 }
 
 message GetProtocolRequest {
     // is_required: true
+    // desc: The ID of Protocol
     string protocol_id = 1;
     // is_required: true
+    // desc: The ID of domain to which the Protocol belongs
     string domain_id = 2;
     // is_required: false
+    // desc: The list of the Protocol information column you want to be returned. It must be specified in the ProtocolInfo.
     repeated string only = 3;
 }
 
@@ -124,16 +177,22 @@ message ProtocolQuery {
     }
 
     // is_required: false
+    // desc: Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
+    // desc: The ID of Protocol
     string protocol_id = 2;
     // is_required: false
+    // desc: The name of Protocol
     string name = 3;
     // is_required: false
+    // desc: The state of Protocol. Can be selected one the listed type only.
     ProtocolState state = 4;
     // is_required: false
+    // desc: The type of Protocol. Can be selected one the listed type only.
     ProtocolType protocol_type = 5;
     // is_required: true
+    // desc: The ID of domain to which the Protocol belongs
     string domain_id = 11;
 }
 
@@ -150,26 +209,40 @@ message ProtocolInfo {
         EXTERNAL = 2;
     }
 
+    // desc: The ID of Protocol.
     string protocol_id = 1;
+    // desc: The name of Protocol.
     string name = 2;
+    // desc: The state of Protocol.
     ProtocolState state = 3;
+    // desc : The type of Protocol.
     ProtocolType protocol_type = 4;
+    // desc : Resource type for Protocol. Currently only identity.Project or identity.User can be set.
     string resource_type = 5;
+    // desc : The capability information for the Protocol. It included supported schema for the Protocol.
     google.protobuf.Struct capability = 6;
+    // desc: the plugin information set in Protocol.
     PluginInfo plugin_info = 7;
+    // desc: The tags for protocol.
     google.protobuf.Struct tags = 8;
+    // desc : The ID of domain to which the Protocol belongs
     string domain_id = 11;
+    // desc : Protocol creation time.
     string created_at = 21;
 }
 
 message ProtocolsInfo {
+    // desc : List of queried protocols.
     repeated ProtocolInfo results = 1;
+    // desc : Total counts of queried Protocols
     int32 total_count = 2;
 }
 
 message ProtocolStatQuery {
     // is_required: true
+    // desc: Statistics Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true
+    // desc: The ID of domain to which the Protocol belongs
     string domain_id = 2;
 }
