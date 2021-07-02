@@ -1,0 +1,1197 @@
+{
+  "files": [
+    {
+      "name": "spaceone/api/notification/v1/protocol.proto",
+      "description": "",
+      "package": "spaceone.api.notification.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [
+        {
+          "name": "ProtocolState",
+          "longName": "ProtocolInfo.ProtocolState",
+          "fullName": "spaceone.api.notification.v1.ProtocolInfo.ProtocolState",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ProtocolType",
+          "longName": "ProtocolInfo.ProtocolType",
+          "fullName": "spaceone.api.notification.v1.ProtocolInfo.ProtocolType",
+          "description": "",
+          "values": [
+            {
+              "name": "PROTOCOL_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "INTERNAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "EXTERNAL",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ProtocolState",
+          "longName": "ProtocolQuery.ProtocolState",
+          "fullName": "spaceone.api.notification.v1.ProtocolQuery.ProtocolState",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ProtocolType",
+          "longName": "ProtocolQuery.ProtocolType",
+          "fullName": "spaceone.api.notification.v1.ProtocolQuery.ProtocolType",
+          "description": "",
+          "values": [
+            {
+              "name": "PROTOCOL_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "INTERNAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "EXTERNAL",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "CreateProtocolRequest",
+          "longName": "CreateProtocolRequest",
+          "fullName": "spaceone.api.notification.v1.CreateProtocolRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "is_required: true\ndesc: The name of Protocol. It can have a maximum of 255 characters.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "is_required: true\ndesc: Describe a Plugin information for protocol that include was used plugin, specific version, schema etc.",
+              "label": "",
+              "type": "PluginRequest",
+              "longType": "PluginRequest",
+              "fullType": "spaceone.api.notification.v1.PluginRequest",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "is_required: false\ndesc: The tags for protocol.",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "is_required: true\ndesc: The ID of project",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetProtocolRequest",
+          "longName": "GetProtocolRequest",
+          "fullName": "spaceone.api.notification.v1.GetProtocolRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "protocol_id",
+              "description": "is_required: true\ndesc: The ID of Protocol",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "only",
+              "description": "is_required: false\ndesc: The list of the Protocol information column you want to be returned. It must be specified in the ProtocolInfo.",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PluginInfo",
+          "longName": "PluginInfo",
+          "fullName": "spaceone.api.notification.v1.PluginInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "plugin_id",
+              "description": "desc: The ID of plugin set in the Protocol",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "desc: The version of plugin.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "desc: The Options that contains information about using plugin",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_id",
+              "description": "desc: The ID of the Secret containing encrypted data to be used in the plugin",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "desc: The metadata of plugin. It includes schema for the data that must be set for the Channel when creating the Channel using a Protocol.\nThe schema follows the JSON Schema format.",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PluginRequest",
+          "longName": "PluginRequest",
+          "fullName": "spaceone.api.notification.v1.PluginRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "plugin_id",
+              "description": "is_required: true\ndesc: The ID of plugin.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "is_required: true\ndesc: The version of plugin.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "is_required: false\ndesc: The Options that contains information about using plugin",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_data",
+              "description": "is_required: false\ndesc: The data for using plugin if necessary. This data is encrypted and stored in the Secret service.",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schema",
+              "description": "is_required: false\ndesc: The name of schema.\nWhen the secret_data is stored in the Secret service, it can be set with schema if the schema is existed.\nThe schema is provided through the Repository service.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ProtocolInfo",
+          "longName": "ProtocolInfo",
+          "fullName": "spaceone.api.notification.v1.ProtocolInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "protocol_id",
+              "description": "desc: The ID of Protocol.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "desc: The name of Protocol.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "desc: The state of Protocol.",
+              "label": "",
+              "type": "ProtocolState",
+              "longType": "ProtocolInfo.ProtocolState",
+              "fullType": "spaceone.api.notification.v1.ProtocolInfo.ProtocolState",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "protocol_type",
+              "description": "desc : The type of Protocol.",
+              "label": "",
+              "type": "ProtocolType",
+              "longType": "ProtocolInfo.ProtocolType",
+              "fullType": "spaceone.api.notification.v1.ProtocolInfo.ProtocolType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_type",
+              "description": "desc : Resource type for Protocol. Currently only identity.Project or identity.User can be set.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "capability",
+              "description": "desc : The capability information for the Protocol. It included supported schema for the Protocol.",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "desc: the plugin information set in Protocol.",
+              "label": "",
+              "type": "PluginInfo",
+              "longType": "PluginInfo",
+              "fullType": "spaceone.api.notification.v1.PluginInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "desc: The tags for protocol.",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "desc : The ID of domain to which the Protocol belongs",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "created_at",
+              "description": "desc : Protocol creation time.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ProtocolQuery",
+          "longName": "ProtocolQuery",
+          "fullName": "spaceone.api.notification.v1.ProtocolQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "is_required: false\ndesc: Query format provided by SpaceONE. Please check the link for more information.",
+              "label": "",
+              "type": "Query",
+              "longType": "spaceone.api.core.v1.Query",
+              "fullType": "spaceone.api.core.v1.Query",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "protocol_id",
+              "description": "is_required: false\ndesc: The ID of Protocol",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "is_required: false\ndesc: The name of Protocol",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "is_required: false\ndesc: The state of Protocol. Can be selected one the listed type only.",
+              "label": "",
+              "type": "ProtocolState",
+              "longType": "ProtocolQuery.ProtocolState",
+              "fullType": "spaceone.api.notification.v1.ProtocolQuery.ProtocolState",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "protocol_type",
+              "description": "is_required: false\ndesc: The type of Protocol. Can be selected one the listed type only.",
+              "label": "",
+              "type": "ProtocolType",
+              "longType": "ProtocolQuery.ProtocolType",
+              "fullType": "spaceone.api.notification.v1.ProtocolQuery.ProtocolType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ProtocolRequest",
+          "longName": "ProtocolRequest",
+          "fullName": "spaceone.api.notification.v1.ProtocolRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "protocol_id",
+              "description": "is_required: true\ndesc: The ID of Protocol",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ProtocolStatQuery",
+          "longName": "ProtocolStatQuery",
+          "fullName": "spaceone.api.notification.v1.ProtocolStatQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "is_required: true\ndesc: Statistics Query format provided by SpaceONE. Please check the link for more information.",
+              "label": "",
+              "type": "StatisticsQuery",
+              "longType": "spaceone.api.core.v1.StatisticsQuery",
+              "fullType": "spaceone.api.core.v1.StatisticsQuery",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ProtocolsInfo",
+          "longName": "ProtocolsInfo",
+          "fullName": "spaceone.api.notification.v1.ProtocolsInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "desc : List of queried protocols.",
+              "label": "repeated",
+              "type": "ProtocolInfo",
+              "longType": "ProtocolInfo",
+              "fullType": "spaceone.api.notification.v1.ProtocolInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "desc : Total counts of queried Protocols",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateProtocolPluginRequest",
+          "longName": "UpdateProtocolPluginRequest",
+          "fullName": "spaceone.api.notification.v1.UpdateProtocolPluginRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "protocol_id",
+              "description": "is_required: true\ndesc: The ID of Protocol",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "is_required: false\ndesc: The version of plugin you want to update. Version means the tags of plugin container image in repository that specific market place.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "is_required: false\ndesc: The Options that contains information about using plugin",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateProtocolRequest",
+          "longName": "UpdateProtocolRequest",
+          "fullName": "spaceone.api.notification.v1.UpdateProtocolRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "protocol_id",
+              "description": "is_required: true\ndesc: The ID of Protocol",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "is_required: false\ndesc: The Name of Protocol. It can have a maximum of 255 characters.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "is_required: false\ndesc: The tags for protocol. When updating, existing tag information is deleted all and will be updated with new.",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "Protocol",
+          "longName": "Protocol",
+          "fullName": "spaceone.api.notification.v1.Protocol",
+          "description": "",
+          "methods": [
+            {
+              "name": "create",
+              "description": "desc: Creates a new Protocol.\nProtocol is the definition of which method to use when dispatching the Notifications through a Channel.\nWhen creating a protocol, you must specify the plugins provided from the repository, and you must also set the credentials to be set in the plugin if necessary.",
+              "requestType": "CreateProtocolRequest",
+              "requestLongType": "CreateProtocolRequest",
+              "requestFullType": "spaceone.api.notification.v1.CreateProtocolRequest",
+              "requestStreaming": false,
+              "responseType": "ProtocolInfo",
+              "responseLongType": "ProtocolInfo",
+              "responseFullType": "spaceone.api.notification.v1.ProtocolInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/notification/v1/protocols"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update",
+              "description": "desc: Updates a Protocol information.\nUpdate methods can update name, tags only. If you want to update plugin version or options, you can use update_plugin method.",
+              "requestType": "UpdateProtocolRequest",
+              "requestLongType": "UpdateProtocolRequest",
+              "requestFullType": "spaceone.api.notification.v1.UpdateProtocolRequest",
+              "requestStreaming": false,
+              "responseType": "ProtocolInfo",
+              "responseLongType": "ProtocolInfo",
+              "responseFullType": "spaceone.api.notification.v1.ProtocolInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/notification/v1/protocol/{protocol_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update_plugin",
+              "description": "desc: Updates a plugin for Protocol.\nThis method is usually used when redeploying a deployed plugin container to a new version.",
+              "requestType": "UpdateProtocolPluginRequest",
+              "requestLongType": "UpdateProtocolPluginRequest",
+              "requestFullType": "spaceone.api.notification.v1.UpdateProtocolPluginRequest",
+              "requestStreaming": false,
+              "responseType": "ProtocolInfo",
+              "responseLongType": "ProtocolInfo",
+              "responseFullType": "spaceone.api.notification.v1.ProtocolInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/notification/v1/protocol/{protocol_id}/plugin"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "enable",
+              "description": "desc: Enables a Protocol.\nIf the disabled Protocol is enabled, the Protocol can be used again and the notification can be dispatched.",
+              "requestType": "ProtocolRequest",
+              "requestLongType": "ProtocolRequest",
+              "requestFullType": "spaceone.api.notification.v1.ProtocolRequest",
+              "requestStreaming": false,
+              "responseType": "ProtocolInfo",
+              "responseLongType": "ProtocolInfo",
+              "responseFullType": "spaceone.api.notification.v1.ProtocolInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/notification/v1/protocol/{protocol_id}/enable"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "disable",
+              "description": "desc: Disables a Protocol.\nIf you disable the Protocol, the notification will not be dispatched, even if they are created.",
+              "requestType": "ProtocolRequest",
+              "requestLongType": "ProtocolRequest",
+              "requestFullType": "spaceone.api.notification.v1.ProtocolRequest",
+              "requestStreaming": false,
+              "responseType": "ProtocolInfo",
+              "responseLongType": "ProtocolInfo",
+              "responseFullType": "spaceone.api.notification.v1.ProtocolInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/notification/v1/protocol/{protocol_id}/disable"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "delete",
+              "description": "desc: Delete the protocol.\nIf there is even one channel using the protocol, it cannot be deleted.",
+              "requestType": "ProtocolRequest",
+              "requestLongType": "ProtocolRequest",
+              "requestFullType": "spaceone.api.notification.v1.ProtocolRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "DELETE",
+                      "pattern": "/notification/v1/protocol/{protocol_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get",
+              "description": "desc: Gets a single Protocol.",
+              "requestType": "GetProtocolRequest",
+              "requestLongType": "GetProtocolRequest",
+              "requestFullType": "spaceone.api.notification.v1.GetProtocolRequest",
+              "requestStreaming": false,
+              "responseType": "ProtocolInfo",
+              "responseLongType": "ProtocolInfo",
+              "responseFullType": "spaceone.api.notification.v1.ProtocolInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/notification/v1/protocol/{protocol_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "list",
+              "description": "desc: Lists the specified Protocols.\nCan search information using the query format provided by SpaceONE.\nDetailed information about Query format can be checked in the Search Query pages.",
+              "requestType": "ProtocolQuery",
+              "requestLongType": "ProtocolQuery",
+              "requestFullType": "spaceone.api.notification.v1.ProtocolQuery",
+              "requestStreaming": false,
+              "responseType": "ProtocolsInfo",
+              "responseLongType": "ProtocolsInfo",
+              "responseFullType": "spaceone.api.notification.v1.ProtocolsInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/notification/v1/protocols"
+                    },
+                    {
+                      "method": "POST",
+                      "pattern": "/notification/v1/protocols/search"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "stat",
+              "description": "",
+              "requestType": "ProtocolStatQuery",
+              "requestLongType": "ProtocolStatQuery",
+              "requestFullType": "spaceone.api.notification.v1.ProtocolStatQuery",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/notification/v1/protocols/stat"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}
