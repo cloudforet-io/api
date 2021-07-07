@@ -9,30 +9,53 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service UserChannel {
+    // desc: Creates a new User Channel.
+    // User channel is the definition of the channel that delivers the notification to users when the notification is created.
+    // When creating a User Channel, one of the protocols must be selected, and an notification is dispatched through the selected protocol.
     rpc create (CreateUserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = { post: "/notification/v1/user-channels" };
     }
+    // desc: Updates a User Channel information.
+    // Protocol that has already been set cannot be changed. Instead, the data required to be dispatched notification for user channel is can be updated.
     rpc update (UpdateUserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}" };
     }
+    // desc: Schedule settings for user channels.
+    // When a notification is created, you can set the day and time you want to receive it through the schedule.
+    // When you set the day of the week in the schedule, you can receive a notification only on the set day of the week.
+    // If you also set the start time and end time with day of the week, you can receive a notification only at the set time on the set day of the week.
+    // If there is no schedule, notifications will be dispatched at all times through user channel.
     rpc set_schedule (UpdateUserChannelScheduleRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}/schedule" };
     }
+    // desc: Subscription settings for user channels
+    // If the user channel have subscriptions, notification is dispatched only if the topic of the notification is the same as the one set in the subscriptions.
+    // If no subscriptions in user channel, notifications will be dispatched all.
     rpc set_subscription (UpdateUserChannelSubscriptionRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}/subscription" };
     }
+    // desc: Enables a User Channel.
+    // If the disabled user channel is enabled, the user channel can be used again and the notification can be dispatched.
+    // Even if the user channel is enabled, if the protocol being used in the user channel is disabled, the notification is not dispatched.
     rpc enable (UserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}/enable" };
     }
+    // desc: Disables a User Channel.
+    // If you disable the user channel, the notification will not be dispatched, even if they are created.
     rpc disable (UserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}/disable" };
     }
+    // desc: Delete the User Channel.
     rpc delete (UserChannelRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/notification/v1/user-channel/{user_channel_id}" };
     }
+    // desc: Gets a single User Channel.
     rpc get (GetUserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = { get: "/notification/v1/user-channel/{user_channel_id}" };
     }
+    // desc: Lists the specified User Channel.
+    // Can search information using the query format provided by SpaceONE.
+    // Detailed information about Query format can be checked in the Search Query pages.
     rpc list (UserChannelQuery) returns (UserChannelsInfo) {
         option (google.api.http) = {
             get: "/notification/v1/user-channels"
@@ -57,85 +80,127 @@ message UserChannelSchedule {
         SAT = 6;
         SUN = 7;
     }
-
+    // desc: Day of the week to be notified.
+    // As a list type, only types that can be specified from MON to SUN can be set.
     repeated DayOfWeek day_of_week = 1;
+    // desc: Start time to receive notifications.
+    // Only integer type can be set, and 0 to 23 can be.
     int32 start_hour = 2;
+    // desc: End time to receive notifications.
+    // Only integer type can be set, and 1 to 24 can be.
     int32 end_hour = 3;
 }
 
 message CreateUserChannelRequest {
     // is_required: true
+    // desc: The ID of protocol that will be set in user channel.
     string protocol_id = 1;
     // is_required: true
+    // desc: The name of User Channel. It can have a maximum of 255 characters.
     string name = 2;
     // is_required: true
+    // desc: The data for using user channel.
+    // This data is encrypted and stored in the Secret service if JSON schema in the protocol's metadata is set to SECRET type.
+    // In this case, the secret ID that is stored in the security service will be returned and the data value will be empty.
+    // if JSON schema in the protocol's metadata is set to PLAIN_TEXT type, This data is not encrypted and stored directly in the DB.
     google.protobuf.Struct data = 3;
     // is_required: false
+    // desc: Indicates whether subscriptions will be used.
     bool is_subscribe = 4;
     // is_required: false
+    // desc: When using subscriptions, it indicates the topic list to subscription.
+    // If is_subscribe is set to false, this value is ignored.
     repeated string subscriptions = 5;
     // is_required: false
+    // desc: Indicates whether schedule will be used.
     bool is_scheduled = 6;
     // is_required: false
+    // desc: Schedule for which you want to receive notifications through the user channel.
     UserChannelSchedule schedule = 7;
     // is_required: false
+    // desc: The tags for user channel.
     google.protobuf.Struct tags = 8;
     // is_required: true
+    // desc: The ID of user
     string user_id = 21;
     // is_required: true
+    // desc: The ID of domain.
     string domain_id = 22;
 }
 
 message UpdateUserChannelRequest {
     // is_required: true
+    // desc: The ID of user channel.
     string user_channel_id = 1;
     // is_required: false
+    // desc: The name of user channel. It can have a maximum of 255 characters.
     string name = 2;
     // is_required: false
+    // desc: The data for using user channel.
+    // This data is encrypted and stored in the Secret service if JSON schema in the protocol's metadata is set to SECRET type.
+    // In this case, the secret ID that is stored in the security service will be returned and the data value will be empty.
+    // if JSON schema in the protocol's metadata is set to PLAIN_TEXT type, This data is not encrypted and stored directly in the DB.
     google.protobuf.Struct data = 3;
     // is_required: false
+    // desc: Set the level of notification.
+    // If a notification has a level and a notification level that this channel can receive is set, a notification is dispatched only if the notification level is the same.
     UserChannelSchedule schedule = 4;
     // is_required: false
+    // desc: The tags for user channel.
     google.protobuf.Struct tags = 5;
     // is_required: true
+    // desc: The ID of domain.
     string domain_id = 11;
 }
 
 message UpdateUserChannelScheduleRequest {
     // is_required: true
+    // desc: The ID of user channel.
     string user_channel_id = 1;
     // is_required: true
+    // desc: Indicates whether schedule will be used.
     bool is_scheduled = 2;
     // is_required: false
+    // desc: Schedule for which you want to receive notifications through the user channel.
     UserChannelSchedule schedule = 3;
     // is_required: true
+    // desc: The ID of domain.
     string domain_id = 4;
 }
 
 message UpdateUserChannelSubscriptionRequest {
     // is_required: true
+    // desc: The ID of user channel.
     string user_channel_id = 1;
     // is_required: true
+    // desc: Indicates whether subscriptions will be used.
     bool is_subscribe = 2;
     // is_required: false
+    // If is_subscribe is set to false, this value is ignored.
     repeated string subscriptions = 3;
     // is_required: true
+    // desc: The ID of domain.
     string domain_id = 4;
 }
 
 message UserChannelRequest {
     // is_required: true
+    // desc: The ID of user channel.
     string user_channel_id = 1;
     // is_required: true
+    // desc: The ID of domain.
     string domain_id = 2;
 }
 
 message GetUserChannelRequest {
     // is_required: true
+    // desc: The ID of user channel.
     string user_channel_id = 1;
     // is_required: true
+    // desc: The ID of domain.
     string domain_id = 2;
     // is_required: false
+    // desc: The list of the user channel information column you want to be returned. It must be specified in the UserChannelInfo.
     repeated string only = 3;
 }
 
@@ -145,22 +210,29 @@ message UserChannelQuery {
         ENABLED = 1;
         DISABLED = 2;
     }
-
     // is_required: false
+    // desc: Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
+    // desc: The ID of user channel.
     string user_channel_id = 2;
     // is_required: false
+    // desc: The name of user channel. It can have a maximum of 255 characters.
     string name = 3;
     // is_required: false
+    // desc: The state of user channel. ENABLED or DISABLED only.
     UserChannelState state = 4;
     // is_required: false
+    // The ID of secret encrypted data in the security service
     string secret_id = 5;
     // is_required: false
+    // desc: The ID of protocol set in the user channel.
     string protocol_id = 11;
     // is_required: false
+    // desc: The ID of user using the user channel.
     string user_id = 12;
     // is_required: true
+    // desc: The ID of domain.
     string domain_id = 13;
 }
 
@@ -170,31 +242,48 @@ message UserChannelInfo {
         ENABLED = 1;
         DISABLED = 2;
     }
-
+    // desc: The ID of user channel.
     string user_channel_id = 1;
+    // desc: The name of user channel
     string name = 2;
+    // desc: The state of user channel. ENABLED or DISABLED only.
     UserChannelState state = 3;
+    // desc: The data for using user channel.
     google.protobuf.Struct data = 4;
+    // The ID of secret encrypted data in the security service
     string secret_id = 5;
+    // desc: Indicates whether subscriptions will be used.
     bool is_subscribe = 6;
+    // desc: The topic list to subscription.
     repeated string subscriptions = 7;
+    // desc: Indicates whether schedule will be used.
     bool is_scheduled = 8;
+    // desc: Schedule for which you want to receive notifications through the user channel.
     UserChannelSchedule schedule = 9;
+    // desc: The tags for user channel.
     google.protobuf.Struct tags = 10;
+    // desc: The ID of protocol set in the user channel.
     string protocol_id = 11;
+    // desc: The ID of user using the user channel.
     string user_id = 12;
+    // desc: The ID of domain.
     string domain_id = 13;
+    // desc: User channel creation time.
     string created_at = 21;
 }
 
 message UserChannelsInfo {
+    // desc : List of queried user channels.
     repeated UserChannelInfo results = 1;
+    // desc : Total counts of queried user channels.
     int32 total_count = 2;
 }
 
 message UserChannelStatQuery {
     // is_required: true
+    // desc: Statistics Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true
+    // desc: The ID of domain.
     string domain_id = 2;
 }
