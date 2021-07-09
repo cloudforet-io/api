@@ -104,12 +104,6 @@ message CreateProtocolRequest {
     // is_required: false
     // desc: The tags for protocol.
     google.protobuf.Struct tags = 3;
-    // is_required: true
-    // desc: The ID of project.
-    string project_id = 11;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
-    string domain_id = 12;
 }
 
 message UpdateProtocolRequest {
@@ -122,9 +116,6 @@ message UpdateProtocolRequest {
     // is_required: false
     // desc: The tags for protocol. When updating, existing tag information is deleted all and will be updated with new.
     google.protobuf.Struct tags = 3;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
-    string domain_id = 11;
 }
 
 message UpdateProtocolPluginRequest {
@@ -137,27 +128,18 @@ message UpdateProtocolPluginRequest {
     // is_required: false
     // desc: The Options that contains information about using plugin.
     google.protobuf.Struct options = 3;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
-    string domain_id = 11;
 }
 
 message ProtocolRequest {
     // is_required: true
     // desc: The ID of Protocol.
     string protocol_id = 1;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
-    string domain_id = 2;
 }
 
 message GetProtocolRequest {
     // is_required: true
     // desc: The ID of Protocol.
     string protocol_id = 1;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
-    string domain_id = 2;
     // is_required: false
     // desc: The list of the Protocol information column you want to be returned. It must be specified in the ProtocolInfo.
     repeated string only = 3;
@@ -191,9 +173,6 @@ message ProtocolQuery {
     // is_required: false
     // desc: The type of Protocol. INTERNAL or EXTERNAL only.
     ProtocolType protocol_type = 5;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
-    string domain_id = 11;
 }
 
 message ProtocolInfo {
@@ -227,8 +206,6 @@ message ProtocolInfo {
     PluginInfo plugin_info = 7;
     // desc: The tags for protocol.
     google.protobuf.Struct tags = 8;
-    // desc: The ID of domain to which the Protocol belongs.
-    string domain_id = 11;
     // desc: Protocol creation time.
     string created_at = 21;
 }
@@ -244,7 +221,4 @@ message ProtocolStatQuery {
     // is_required: true
     // desc: Statistics Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
-    string domain_id = 2;
 }
