@@ -9,15 +9,26 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service Notification {
+    // desc: Creates a new Notification.
+    // Notification is
     rpc create (CreateNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/notification/v1/notifications" };
     }
+    // desc: Delete the Notification.
     rpc delete (NotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/notification/v1/notification/{notification_id}" };
     }
+    // desc: Change the notifications to read status.
+    rpc set_read (SetReadNotificationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/notification/v1/notifications/read" };
+    }
+    // desc: Gets a single Notification.
     rpc get (GetNotificationRequest) returns (NotificationInfo) {
         option (google.api.http) = { get: "/notification/v1/notification/{notification_id}" };
     }
+    // desc: Lists the specified notifications.
+    // Can search information using the query format provided by SpaceONE.
+    // Detailed information about Query format can be checked in the Search Query pages.
     rpc list (NotificationQuery) returns (NotificationsInfo) {
         option (google.api.http) = {
             get: "/notification/v1/notifications"
@@ -59,27 +70,42 @@ message CreateNotificationRequest {
     // is_required: false
     NotificationType notification_type = 5;
     // is_required: false
+    // desc: The level of notification.
     NotificationLEVEL notification_level = 7;
     // is_required: true
+    // The ID of domain.
     string domain_id = 11;
 }
 
 message NotificationRequest {
     // is_required: true
+    // desc: The ID of Notification.
     string notification_id = 1;
     // is_required: true
+    // The ID of domain.
+    string domain_id = 2;
+}
+
+message SetReadNotificationRequest {
+    // is_required: true
+    // desc: The ID list of notification that want to change read status.
+    repeated string notifications = 1;
+    // is_required: true
+    // The ID of domain.
     string domain_id = 2;
 }
 
 message GetNotificationRequest {
     // is_required: true
+    // desc: The ID of Notification.
     string notification_id = 1;
     // is_required: true
+    // The ID of domain.
     string domain_id = 2;
     // is_required: false
+    // desc: The list of the notification information column you want to be returned. It must be specified in the NotificationInfo.
     repeated string only = 3;
-    // is_required: false
-    bool set_read = 4;
+
 }
 
 message NotificationQuery {
@@ -100,8 +126,10 @@ message NotificationQuery {
         LV5 = 6;
     }
     // is_required: false
+    // desc: Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
+    // desc: The ID of notification.
     string notification_id = 2;
     // is_required: false
     string topic = 3;
@@ -116,10 +144,10 @@ message NotificationQuery {
     // is_required: false
     string project_id = 8;
     // is_required: false
+    // The ID of user.
     string user_id = 9;
-    // is_required: false
-    bool set_read = 10;
     // is_required: true
+    // The ID of domain.
     string domain_id = 11;
 }
 
@@ -141,25 +169,37 @@ message NotificationInfo {
         LV5 = 6;
     }
 
+    // The ID of notification.
     string notification_id = 1;
     string topic = 2;
     google.protobuf.Struct message = 3;
+    // desc : The type of notification.
     NotificationType notification_type = 4;
+    // desc: The level of notification.
     NotificationLEVEL notification_level = 5;
+    // desc: Whether or not to check the notification.
+    // If notification has been returned at least once through the Get or List method, is_read is changed to True .
     bool is_read = 6;
+    // desc: The ID of user to whom the notification was dispatched.
     string user_id = 11;
+    // desc: The ID of domain
     string domain_id = 12;
+    // desc: Notification creation time.
     string created_at = 21;
 }
 
 message NotificationsInfo {
+    // desc : List of queried notifications.
     repeated NotificationInfo results = 1;
+    // desc : Total counts of queried notifications.
     int32 total_count = 2;
 }
 
 message NotificationStatQuery {
     // is_required: true
+    // desc: Statistics Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true
+    // The ID of domain.
     string domain_id = 2;
 }
