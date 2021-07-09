@@ -18,6 +18,10 @@ service Notification {
     rpc delete (NotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/notification/v1/notification/{notification_id}" };
     }
+    // desc: Change the notifications to read status.
+    rpc set_read (SetReadNotificationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/notification/v1/notifications/read" };
+    }
     // desc: Gets a single Notification.
     rpc get (GetNotificationRequest) returns (NotificationInfo) {
         option (google.api.http) = { get: "/notification/v1/notification/{notification_id}" };
@@ -82,6 +86,15 @@ message NotificationRequest {
     string domain_id = 2;
 }
 
+message SetReadNotificationRequest {
+    // is_required: true
+    // desc: The ID list of notification that want to change read status.
+    repeated string notifications = 1;
+    // is_required: true
+    // The ID of domain.
+    string domain_id = 2;
+}
+
 message GetNotificationRequest {
     // is_required: true
     // desc: The ID of Notification.
@@ -92,9 +105,7 @@ message GetNotificationRequest {
     // is_required: false
     // desc: The list of the notification information column you want to be returned. It must be specified in the NotificationInfo.
     repeated string only = 3;
-    // is_required: false
-    // desc:
-    bool set_read = 4;
+
 }
 
 message NotificationQuery {
@@ -135,8 +146,6 @@ message NotificationQuery {
     // is_required: false
     // The ID of user.
     string user_id = 9;
-    // is_required: false
-    bool set_read = 10;
     // is_required: true
     // The ID of domain.
     string domain_id = 11;
