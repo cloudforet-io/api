@@ -10,7 +10,9 @@ import "spaceone/api/core/v1/query.proto";
 
 service Notification {
     // desc: Creates a new Notification.
-    // Notification is
+    // A notification is a definition of an event to be delivered to the user.
+    // When a notification is created, it is propagated through the channel of the project to which the notification belongs,
+    // and if an internal channel or user channel is set, the notification is also propagated to the user.
     rpc create (CreateNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/notification/v1/notifications" };
     }
@@ -19,6 +21,7 @@ service Notification {
         option (google.api.http) = { delete: "/notification/v1/notification/{notification_id}" };
     }
     // desc: Change the notifications to read status.
+    // When the notification is created, the is_read value is False, and when the set_read method is used, the read state can be changed.
     rpc set_read (SetReadNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/notification/v1/notifications/read" };
     }
@@ -60,14 +63,22 @@ message CreateNotificationRequest {
         LV5 = 6;
     }
     // is_required: true
+    // The type of resource to which the notification is dispatched.
+    // Currently, only "identity.Project" or "identity.User" can be set.
     string resource_type = 1;
     // is_required: true
+    // The ID of the resource to which notifications are dispatched.
+    // If resource_type is "identity.Project", then resource_id requires a project ID values.
+    // If resource_type is "identity.User", then resource_id requires a user ID value.
     string resource_id = 2;
     // is_required: true
+    // desc: The topic of notification.
     string topic = 3;
     // is_required: true
+    // This message is used for each protocol.
     google.protobuf.Struct message = 4;
     // is_required: false
+    // desc: The type of notification.
     NotificationType notification_type = 5;
     // is_required: false
     // desc: The level of notification.
@@ -105,7 +116,6 @@ message GetNotificationRequest {
     // is_required: false
     // desc: The list of the notification information column you want to be returned. It must be specified in the NotificationInfo.
     repeated string only = 3;
-
 }
 
 message NotificationQuery {
@@ -132,16 +142,23 @@ message NotificationQuery {
     // desc: The ID of notification.
     string notification_id = 2;
     // is_required: false
+    // desc: The topic of notification.
     string topic = 3;
     // is_required: false
+    // desc: The type of notification.
     NotificationType notification_type = 4;
     // is_required: false
+    // desc: The level of notification.
     NotificationLEVEL notification_level = 5;
     // is_required: false
+    // desc: Whether or not to check the notification.
+    // If is_read is False, the user has not checked the notification yet.
     bool is_read = 6;
     // is_required: false
+    // The ID of parent notification. Not used yet.
     string parent_notification_id = 7;
     // is_required: false
+    // The project ID to which the notification will be dispatched.
     string project_id = 8;
     // is_required: false
     // The ID of user.
@@ -171,14 +188,17 @@ message NotificationInfo {
 
     // The ID of notification.
     string notification_id = 1;
+    // desc: The topic of notification.
     string topic = 2;
+    // desc: The contents of notification.
+    // This message is used for each protocol.
     google.protobuf.Struct message = 3;
-    // desc : The type of notification.
+    // desc: The type of notification.
     NotificationType notification_type = 4;
     // desc: The level of notification.
     NotificationLEVEL notification_level = 5;
     // desc: Whether or not to check the notification.
-    // If notification has been returned at least once through the Get or List method, is_read is changed to True .
+    // If notification has been returned at least once through the Get or List method, is_read is changed to True.
     bool is_read = 6;
     // desc: The ID of user to whom the notification was dispatched.
     string user_id = 11;
