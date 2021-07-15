@@ -6,22 +6,33 @@ import "google/protobuf/struct.proto";
 
 
 service Protocol {
+    // desc: Initialized when protocol plugin is created first.
+    // When this method is executed, plugin return the metadata required when the plug-in is executed.
     rpc init (InitRequest) returns (PluginInfo) {}
+    // desc: A method that proves whether the plugin can be running.
+    // If there is no return value, it means that normal execution is possible.
     rpc verify (PluginVerifyRequest) returns (google.protobuf.Empty) {}
 }
 
 message InitRequest {
     // is_required: true
+    // desc: Option value used when initializing the plugin.
     google.protobuf.Struct options = 1;
 }
 
 message PluginVerifyRequest {
     // is_required: true
+    // desc: Option values required for the plugin to work.
     google.protobuf.Struct options = 1;
     // is_required: true
+    // desc: The secret value required for the plugin to work.
+    // The secret data usually includes the credential information required for the plugin to access the external system.
     google.protobuf.Struct secret_data = 2;
 }
 
 message PluginInfo {
+    // desc: Metadata value required to input various values required for plugin to work.
+    // Metadata value required to input various values required for plugin to work.
+    // In the case of protocol plugins, when creating a channel, the plugin contains the definition of additional data (channel data) required for channel transmission.
     google.protobuf.Struct metadata = 1;
 }

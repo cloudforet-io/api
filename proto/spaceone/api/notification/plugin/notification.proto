@@ -6,6 +6,7 @@ import "google/protobuf/struct.proto";
 
 
 service Notification {
+    // desc: A method to propagate the Notification to external systems.
     rpc dispatch (PluginDispatchRequest) returns (google.protobuf.Empty) {}
 }
 
@@ -18,13 +19,19 @@ message PluginDispatchRequest {
         WARNING = 4;
     }
     // is_required: true
+    // desc: Option value required for notification delivery.
     google.protobuf.Struct options = 1;
     // is_required: true
+    // desc: Message containing notification information
     google.protobuf.Struct message = 2;
     // is_required: true
+    // desc: The type of Notification
     NotificationType notification_type = 3;
     // is_required: true
+    // desc: Secret value required for notification delivery.
+    // The secret data usually includes the credential information required for the plugin to access the external system.
     google.protobuf.Struct secret_data = 4;
     // is_required: true
+    // desc: Channel data required for notification delivery.
     google.protobuf.Struct channel_data = 5;
 }
