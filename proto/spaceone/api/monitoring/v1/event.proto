@@ -76,21 +76,12 @@ message EventQuery {
 }
 
 message EventInfo {
-    enum Severity {
-        SEVERITY_NONE = 0;
-        CRITICAL = 1;
-        ERROR = 2;
-        WARNING = 3;
-        INFO = 4;
-        NOT_AVAILABLE = 5;
-        NONE = 6;
-    }
     string event_id = 1;
     string event_key = 2;
     string event_type = 3;
     string title = 4;
     string description = 5;
-    Severity severity = 6;
+    string severity = 6;
     string rule = 7;
     EventResource resource = 8;
     google.protobuf.Struct raw_data = 9;
