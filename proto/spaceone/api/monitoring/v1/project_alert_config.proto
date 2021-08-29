@@ -37,13 +37,19 @@ service ProjectAlertConfig {
 
 message AlertOptions {
     enum UrgencyOption {
-        NONE = 0;
+        URGENCY_NONE = 0;
         ALL = 1;
         HIGH_ONLY = 2;
     }
 
+    enum RecoveryOption {
+        RECOVERY_NONE = 0;
+        AUTO = 1;
+        MANUAL = 2;
+    }
+
     UrgencyOption notification_urgency = 1;
-    bool auto_recovery = 2;
+    RecoveryOption recovery_mode = 2;
 }
 
 message CreateProjectAlertConfigRequest {
