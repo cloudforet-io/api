@@ -18,14 +18,21 @@ service Plugin {
 }
 
 message PluginEndpointRequest {
+    enum AutoUpgrade {
+        MANUAL = 0;
+        AUTO = 1;
+    }
+
     // is_required: true
     string plugin_id = 1;
     // is_required: true
     string version = 2;
-    // is_required: true
+    // is_required: false
     google.protobuf.Struct labels = 3;
     // is_required: true
     string domain_id = 4;
+    // is_required: false
+    AutoUpgrade auto_upgrade = 5;
 }
 
 message PluginFailureRequest {
@@ -42,4 +49,5 @@ message PluginFailureRequest {
 message PluginEndpoint {
     string endpoint = 1;
     string access_token = 2;
+    string updated_version = 3;
 }
