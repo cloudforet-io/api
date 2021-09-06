@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import shutil
 import os
@@ -88,11 +87,13 @@ def _get_args():
 def _get_proto_files(proto_path):
     return [proto_file for proto_file in glob.iglob(os.path.join(proto_path, '**', '*.proto'), recursive=True)]
 
+
 def _get_api_version():
     with open(VERSION, 'r') as f:
         version = f.read().strip()
         f.close()
         return version
+
 
 def _make_output_path(output_dir, code):
     output_path = os.path.join(output_dir, code)
@@ -159,6 +160,7 @@ def _make_build_environment(output_dir, code):
                 if not os.path.exists(init_path):
                     Path(init_path).touch()
 
+
 def _python_compile(proto_file, output_path, proto_path_list, debug):
     cmd = ['python3', '-m', 'grpc_tools.protoc', f'--python_out={output_path}', f'--grpc_python_out={output_path}']
     for proto_path in proto_path_list:
@@ -175,6 +177,7 @@ def _python_compile(proto_file, output_path, proto_path_list, debug):
         _error(f"Failed to compile : {proto_file}")
 
     print(f"[SUCCESS] Python Compile : {proto_file}")
+
 
 def _doc_compile(proto_file, output_path, proto_path_list, debug):
     # check GOPATH
@@ -207,11 +210,12 @@ def _doc_compile(proto_file, output_path, proto_path_list, debug):
 
     print(f"[SUCCESS] Document Compile : {proto_file}")
 
+
 def _version_factoring():
     ver_path = os.path.join(BASE_DIR, 'VERSION')
     art_path = os.path.join(ARTIFACT_DIR, 'json')
     art_file = os.path.join(art_path, 'VERSION')
-    if (os.path.exists(art_path) and not os.path.isfile(art_file)):
+    if os.path.exists(art_path) and not os.path.isfile(art_file):
         copyfile(ver_path, art_file)
 
 
@@ -229,7 +233,7 @@ def _compile_code(params, code, proto_file):
 def build(params):
     proto_files = _get_proto_files(params['proto_path'])
     for code in _get_generate_codes(params['code']):
-        if (code == 'json'):
+        if code == 'json':
             _make_output_path(params['artifact_dir'], code)
         else:
             _make_output_path(params['output_dir'], code)
@@ -237,12 +241,12 @@ def build(params):
         for proto_file in proto_files:
             _compile_code(params, code, proto_file)
 
-        if(code == 'json'):
+        if code == 'json':
             _make_build_environment(params['artifact_dir'], code)
         else:
             _make_build_environment(params['output_dir'], code)
 
-    if (params['code'] == 'json'):
+    if params['code'] == 'json':
         _version_factoring()
 
 
