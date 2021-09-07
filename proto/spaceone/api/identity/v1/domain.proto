@@ -85,12 +85,20 @@ message ChangeAuthRequest {
 }
 
 message UpdatePluginRequest {
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
     // is_required: true
     string domain_id = 1;
     // is_required: false
     string version = 2;
     // is_required: false
     google.protobuf.Struct options = 3;
+    // is_required: false
+    UpgradeMode upgrade_mode = 4;
 }
 
 message DomainRequest {
