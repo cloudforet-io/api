@@ -149,6 +149,12 @@ message DomainStatQuery {
 }
 
 message PluginInfo {
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
     string plugin_id = 1;
     string version = 2;
     string secret_id = 3;
@@ -156,5 +162,5 @@ message PluginInfo {
     google.protobuf.Struct secret_data = 5;
     string schema = 6;
     google.protobuf.Struct metadata = 7;
-    string upgrade_mode = 8;
+    UpgradeMode upgrade_mode = 8;
 }
