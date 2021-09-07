@@ -18,7 +18,7 @@ service Plugin {
 }
 
 message PluginEndpointRequest {
-    enum AutoUpgrade {
+    enum UpgradeMode {
         MANUAL = 0;
         AUTO = 1;
     }
@@ -32,7 +32,7 @@ message PluginEndpointRequest {
     // is_required: true
     string domain_id = 4;
     // is_required: false
-    AutoUpgrade auto_upgrade = 5;
+    UpgradeMode upgrade_mode = 5;
 }
 
 message PluginFailureRequest {
