@@ -20,6 +20,10 @@ service Notification {
     rpc delete (NotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/notification/v1/notification/{notification_id}" };
     }
+    // desc: Delete all Notifications.
+    rpc delete_all (NotificationDeleteAllRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/notification/v1/notification/delete_all" };
+    }
     // desc: Change the notifications to read status.
     // When the notification is created, the is_read value is False, and when the set_read method is used, the read state can be changed.
     rpc set_read (SetReadNotificationRequest) returns (google.protobuf.Empty) {
@@ -94,6 +98,13 @@ message NotificationRequest {
     string notification_id = 1;
     // is_required: true
     // desc: The ID of domain.
+    string domain_id = 2;
+}
+
+message NotificationDeleteAllRequest {
+    // is_required: true
+    // desc: ID list of users to be deleted
+    repeated string users = 1;
     string domain_id = 2;
 }
 
