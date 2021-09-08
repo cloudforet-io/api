@@ -61,6 +61,12 @@ service Protocol {
 }
 
 message PluginRequest{
+    enum UpgradeMode {
+        NONE = 0;
+        AUTO = 1;
+        MANUAL = 2;
+    }
+
     // is_required: true
     // desc: The ID of plugin.
     string plugin_id = 1;
@@ -78,9 +84,19 @@ message PluginRequest{
     // When the secret_data is stored in the Secret service, it can be set with schema if the schema is existed.
     // The schema is provided through the Repository service.
     string schema = 5;
+    // is_required: false
+    // desc: Auto upgrade feature for plugin.
+    // If the upgrade mode is AUTO, check the latest plugin version when running the plugin, and if a new version is existed, replace the plugin and then run it.
+    UpgradeMode upgrade_mode = 6;
 }
 
 message PluginInfo{
+    enum UpgradeMode {
+        NONE = 0;
+        AUTO = 1;
+        MANUAL = 2;
+    }
+
     // desc: The ID of plugin set in the Protocol.
     string plugin_id = 1;
     // desc: The version of plugin.
@@ -92,6 +108,9 @@ message PluginInfo{
     // desc: The metadata of plugin. It includes schema for the data that must be set for the Channel when creating the Channel using a Protocol.
     // The schema follows the JSON Schema format.
     google.protobuf.Struct metadata = 6;
+    // desc: Auto upgrade for plugin.
+    // If the upgrade_mode is AUTO, check the latest plugin version when running the plugin, and if a new version is existed, replace the plugin and then run it.
+    UpgradeMode upgrade_mode = 7;
 }
 
 message CreateProtocolRequest {
