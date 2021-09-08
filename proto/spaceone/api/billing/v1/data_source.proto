@@ -44,6 +44,12 @@ service DataSource {
 }
 
 message PluginInfo {
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
     string plugin_id = 1;
     string version = 2;
     google.protobuf.Struct options = 3;
@@ -53,6 +59,7 @@ message PluginInfo {
         string provider = 5;
     }
     google.protobuf.Struct metadata = 6;
+    UpgradeMode upgrade_mode = 7;
 }
 
 message RegisterDataSourceRequest {

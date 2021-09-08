@@ -70,6 +70,12 @@ service Collector {
 }
 
 message PluginInfo {
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
     string plugin_id = 1;
     string version = 2;
     google.protobuf.Struct options = 3;
@@ -78,6 +84,7 @@ message PluginInfo {
     string provider = 6;
     string service_account_id = 7;
     google.protobuf.Struct metadata = 10;
+    UpgradeMode upgrade_mode = 11;
 }
 
 message CreateCollectorRequest {
@@ -118,6 +125,12 @@ message UpdateCollectorRequest {
 }
 
 message UpdatePluginRequest {
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
     // is_required: true
     string collector_id = 1;
     // is_required: false
@@ -126,6 +139,8 @@ message UpdatePluginRequest {
     google.protobuf.Struct options = 3;
     // is_required: true
     string domain_id = 4;
+    // is_required: false
+    UpgradeMode upgrade_mode = 5;
 }
 
 message CollectorRequest {
@@ -184,14 +199,15 @@ message VerifyPluginRequest {
     string domain_id = 3;
 }
 message CollectorInfo {
-	enum State {
-		NONE = 0;
-		ENABLED = 1;
-		DISABLED = 2;
-	}
-	string collector_id = 1;
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+	  string collector_id = 1;
     string name = 2;
-	State state = 3;
+	  State state = 3;
     PluginInfo plugin_info = 4;
     int32  priority = 5;
     google.protobuf.Struct tags = 7;
