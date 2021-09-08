@@ -47,10 +47,17 @@ service DataSource {
 }
 
 message DataSourcePluginInfo{
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
     string plugin_id = 1;
     string version = 2;
     google.protobuf.Struct options = 3;
     google.protobuf.Struct metadata = 6;
+    UpgradeMode upgrade_mode = 7;
 
     oneof plugin_secret {
         string secret_id = 4;
@@ -87,14 +94,22 @@ message UpdateDataSourceRequest {
 }
 
 message UpdateDataSourcePluginRequest {
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
     // is_required: true
     string data_source_id = 1;
     // is_required: false
     string version = 2;
     // is_required: false
     google.protobuf.Struct options = 3;
+    // is_required: false
+    UpgradeMode upgrade_mode = 4;
     // is_required: true
-    string domain_id = 5;
+    string domain_id = 11;
 }
 
 message DataSourceRequest {

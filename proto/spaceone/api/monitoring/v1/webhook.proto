@@ -47,10 +47,17 @@ service Webhook {
 }
 
 message WebhookPluginInfo{
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
     string plugin_id = 1;
     string version = 2;
     google.protobuf.Struct options = 3;
-    google.protobuf.Struct metadata = 6;
+    google.protobuf.Struct metadata = 4;
+    UpgradeMode upgrade_mode = 5;
 }
 
 message CreateWebhookRequest {
@@ -78,12 +85,20 @@ message UpdateWebhookRequest {
 }
 
 message UpdateWebhookPluginRequest {
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
     // is_required: true
     string webhook_id = 1;
     // is_required: false
     string version = 2;
     // is_required: false
     google.protobuf.Struct options = 3;
+    // is_required: false
+    UpgradeMode upgrade_mode = 4;
     // is_required: true
     string domain_id = 11;
 }
