@@ -27,7 +27,7 @@ service DataSource {
     rpc update_plugin (UpdateDataSourcePluginRequest) returns (DataSourceInfo) {
         option (google.api.http) = { put: "/monitoring/v1/data-source/{data_source_id}/plugin" };
     }
-    rpc verify_plugin (DataSourceRequest) returns (VerifyInfo) {
+    rpc verify_plugin (DataSourceRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { put: "/monitoring/v1/data-source/{data_source_id}/plugin/verify" };
     }
     rpc get (GetDataSourceRequest) returns (DataSourceInfo) {
@@ -143,10 +143,6 @@ message DataSourceQuery {
     string provider = 6;
     // is_required: true
     string domain_id = 7;
-}
-
-message VerifyInfo {
-    bool status = 1;
 }
 
 message DataSourceInfo {
