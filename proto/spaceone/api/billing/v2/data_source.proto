@@ -1,0 +1,172 @@
+syntax = "proto3";
+
+package spaceone.api.billing.v2.data_source;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service DataSource {
+    rpc register (RegisterDataSourceRequest) returns (DataSourceInfo) {
+        option (google.api.http) = { post: "/billing/v1/data-sources" };
+    }
+    rpc update (UpdateDataSourceRequest) returns (DataSourceInfo) {
+        option (google.api.http) = { put: "/billing/v1/data-source/{data_source_id}" };
+    }
+    rpc update_plugin (UpdateDataSourceRequest) returns (DataSourceInfo) {
+        option (google.api.http) = { put: "/billing/v1/data-source/{data_source_id}/plugin" };
+    }
+    rpc verify_plugin (UpdateDataSourceRequest) returns (DataSourceInfo) {
+        option (google.api.http) = { post: "/billing/v1/data-source/{data_source_id}/plugin/verify" };
+    }
+    rpc enable (DataSourceRequest) returns (DataSourceInfo) {
+        option (google.api.http) = { put: "/billing/v1/data-source/{data_source_id}/enable" };
+    }
+    rpc disable (DataSourceRequest) returns (DataSourceInfo) {
+        option (google.api.http) = { put: "/billing/v1/data-source/{data_source_id}/disable" };
+    }
+    rpc deregister (DataSourceRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/billing/v1/data-source/{data_source_id}" };
+    }
+    rpc get (GetDataSourceRequest) returns (DataSourceInfo) {
+        option (google.api.http) = { get: "/billing/v1/data-source/{data_source_id}" };
+    }
+    rpc list (DataSourceQuery) returns (DataSourcesInfo) {
+        option (google.api.http) = {
+            get: "/billing/v1/data-sources"
+            additional_bindings {
+                post: "/billing/v1/data-sources/search"
+            }
+        };
+    }
+    rpc stat (DataSourceStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/billing/v1/data-sources/stat" };
+    }
+}
+
+message PluginInfo {
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
+    string plugin_id = 1;
+    string version = 2;
+    google.protobuf.Struct options = 3;
+    google.protobuf.Struct metadata = 4;
+    google.protobuf.Struct secret_data = 5;
+    string schema = 6;
+    string secret_id = 7;
+    UpgradeMode upgrade_mode = 8;
+}
+
+message RegisterDataSourceRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: true
+    string data_source_type = 2;
+    // is_required: false
+    google.protobuf.Struct template = 3;
+    // is_required: false
+    PluginInfo plugin_info = 4;
+    // is_required: false
+    google.protobuf.Struct tags = 5;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message UpdateDataSourceRequest {
+    // is_required: true
+    string data_source_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    google.protobuf.Struct template = 3;
+    // is_required: false
+    google.protobuf.Struct tags = 4;
+    // is_required: true
+    string domain_id = 5;
+}
+
+message UpdateWebhookPluginRequest {
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
+    // is_required: true
+    string webhook_id = 1;
+    // is_required: false
+    string version = 2;
+    // is_required: false
+    google.protobuf.Struct options = 3;
+    // is_required: false
+    UpgradeMode upgrade_mode = 4;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message DataSourceRequest {
+    // is_required: true
+    string data_source_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetDataSourceRequest {
+    // is_required: true
+    string data_source_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message DataSourceQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string data_source_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    string state = 4;
+    // is_required: false
+    string provider = 6;
+    // is_required: true
+    string domain_id = 7;
+}
+
+message DataSourceInfo {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    string data_source_id = 1;
+    string name = 2;
+    State state = 3;
+    string provider = 4;
+    google.protobuf.Struct capability = 5;
+    PluginInfo plugin_info = 6;
+    google.protobuf.Struct tags = 7;
+    string domain_id = 8;
+    string created_at = 9;
+}
+
+message DataSourcesInfo {
+    repeated DataSourceInfo results = 1;
+    int32 total_count = 2;
+}
+
+message DataSourceStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
