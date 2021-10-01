@@ -18,7 +18,7 @@ service Webhook {
     rpc update_plugin (UpdateWebhookPluginRequest) returns (WebhookInfo) {
         option (google.api.http) = { put: "/monitoring/v1/webhook/{webhook_id}/plugin" };
     }
-    rpc verify_plugin (UpdateWebhookPluginRequest) returns (google.protobuf.Empty) {
+    rpc verify_plugin (WebhookRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/monitoring/v1/webhook/{webhook_id}/plugin/verify" };
     }
     rpc enable (WebhookRequest) returns (WebhookInfo) {
