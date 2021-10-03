@@ -15,10 +15,10 @@ service DataSource {
     rpc update (UpdateDataSourceRequest) returns (DataSourceInfo) {
         option (google.api.http) = { put: "/billing/v1/data-source/{data_source_id}" };
     }
-    rpc update_plugin (UpdateDataSourceRequest) returns (DataSourceInfo) {
+    rpc update_plugin (UpdateDataSourcePluginRequest) returns (DataSourceInfo) {
         option (google.api.http) = { put: "/billing/v1/data-source/{data_source_id}/plugin" };
     }
-    rpc verify_plugin (UpdateDataSourceRequest) returns (DataSourceInfo) {
+    rpc verify_plugin (DataSourceRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/billing/v1/data-source/{data_source_id}/plugin/verify" };
     }
     rpc enable (DataSourceRequest) returns (DataSourceInfo) {
@@ -29,6 +29,9 @@ service DataSource {
     }
     rpc deregister (DataSourceRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/billing/v1/data-source/{data_source_id}" };
+    }
+    rpc sync (SyncDataSourceRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/billing/v1/data-source/{data_source_id}/sync" };
     }
     rpc get (GetDataSourceRequest) returns (DataSourceInfo) {
         option (google.api.http) = { get: "/billing/v1/data-source/{data_source_id}" };
@@ -44,6 +47,12 @@ service DataSource {
     rpc stat (DataSourceStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = { post: "/billing/v1/data-sources/stat" };
     }
+}
+
+enum DataSourceType {
+    NONE = 0;
+    LOCAL = 1;
+    EXTERNAL = 2;
 }
 
 message PluginInfo {
@@ -67,13 +76,15 @@ message RegisterDataSourceRequest {
     // is_required: true
     string name = 1;
     // is_required: true
-    string data_source_type = 2;
+    DataSourceType data_source_type = 2;
     // is_required: false
-    google.protobuf.Struct template = 3;
+    string provider = 3;
     // is_required: false
-    PluginInfo plugin_info = 4;
+    google.protobuf.Struct template = 4;
     // is_required: false
-    google.protobuf.Struct tags = 5;
+    PluginInfo plugin_info = 5;
+    // is_required: false
+    google.protobuf.Struct tags = 6;
     // is_required: true
     string domain_id = 11;
 }
@@ -88,10 +99,10 @@ message UpdateDataSourceRequest {
     // is_required: false
     google.protobuf.Struct tags = 4;
     // is_required: true
-    string domain_id = 5;
+    string domain_id = 11;
 }
 
-message UpdateWebhookPluginRequest {
+message UpdateDataSourcePluginRequest {
     enum UpgradeMode {
         NONE = 0;
         MANUAL = 1;
@@ -99,13 +110,24 @@ message UpdateWebhookPluginRequest {
     }
 
     // is_required: true
-    string webhook_id = 1;
+    string data_source_id = 1;
     // is_required: false
     string version = 2;
     // is_required: false
     google.protobuf.Struct options = 3;
     // is_required: false
     UpgradeMode upgrade_mode = 4;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message SyncDataSourceRequest {
+    // is_required: true
+    string data_source_id = 1;
+    // is_required: false
+    string start = 2;
+    // is_required: false
+    string end = 3;
     // is_required: true
     string domain_id = 11;
 }
@@ -136,9 +158,11 @@ message DataSourceQuery {
     // is_required: false
     string state = 4;
     // is_required: false
+    DataSourceType data_source_type = 5;
+    // is_required: false
     string provider = 6;
     // is_required: true
-    string domain_id = 7;
+    string domain_id = 11;
 }
 
 message DataSourceInfo {
@@ -151,12 +175,14 @@ message DataSourceInfo {
     string data_source_id = 1;
     string name = 2;
     State state = 3;
-    string provider = 4;
-    google.protobuf.Struct capability = 5;
+    DataSourceType data_source_type = 4;
+    string provider = 5;
     PluginInfo plugin_info = 6;
-    google.protobuf.Struct tags = 7;
-    string domain_id = 8;
-    string created_at = 9;
+    google.protobuf.Struct template = 7;
+    google.protobuf.Struct tags = 8;
+    string domain_id = 11;
+    string created_at = 21;
+    string last_synchronized_at = 22;
 }
 
 message DataSourcesInfo {
