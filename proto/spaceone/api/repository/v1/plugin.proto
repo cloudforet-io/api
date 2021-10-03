@@ -54,6 +54,10 @@ message CreatePluginRequest {
     // is_required: false
     string provider = 4;
     // is_required: false
+    string registry_type = 5;
+    // is_required: false
+    string registry_url = 6;
+    // is_required: false
     google.protobuf.Struct capability = 11;
     // is_required: false
     google.protobuf.Struct template = 12;
@@ -133,6 +137,9 @@ message PluginQuery {
     string repository_id = 7;
     // is_required: true
     string domain_id = 8;
+    // is_required: false
+    string registry_type = 9;
+
 }
 
 message PluginInfo {
@@ -149,6 +156,7 @@ message PluginInfo {
     State  state = 5;
     string service_type = 6;
     string provider = 7;
+    string registry_type = 8;
 
     google.protobuf.Struct capability = 11;
     google.protobuf.Struct template = 12;
