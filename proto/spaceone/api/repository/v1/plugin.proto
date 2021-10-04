@@ -44,6 +44,11 @@ service Plugin {
     }
 }
 
+enum PublicRegistryType {
+    NONE_REGISTRY_TYPE = 0;
+    DOCKER_HUB = 1;
+    AWS_PUBLIC_ECR = 2;
+}
 
 message CreatePluginRequest {
     // is_required: true
@@ -55,7 +60,7 @@ message CreatePluginRequest {
     // is_required: false
     string provider = 4;
     // is_required: false
-    string registry_type = 5;
+    PublicRegistryType registry_type = 5;
     // is_required: false
     google.protobuf.Struct registry_config = 6;
     // is_required: false
@@ -139,7 +144,7 @@ message PluginQuery {
     // is_required: true
     string domain_id = 8;
     // is_required: false
-    string registry_type = 9;
+    PublicRegistryType registry_type = 9;
 
 }
 
@@ -157,7 +162,7 @@ message PluginInfo {
     State  state = 5;
     string service_type = 6;
     string provider = 7;
-    string registry_type = 8;
+    PublicRegistryType registry_type = 8;
     google.protobuf.Struct registry_config = 9;
 
     google.protobuf.Struct capability = 11;
