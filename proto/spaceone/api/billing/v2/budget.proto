@@ -1,0 +1,190 @@
+syntax = "proto3";
+
+package spaceone.api.billing.v2.budget;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Budget {
+    rpc create (CreateBudgetRequest) returns (BudgetInfo) {
+        option (google.api.http) = { post: "/billing/v2/budgets" };
+    }
+    rpc update (UpdateBudgetRequest) returns (BudgetInfo) {
+        option (google.api.http) = { put: "/billing/v2/budget/{budget_id}" };
+    }
+    rpc set_notification (SetBudgetNotificationRequest) returns (BudgetInfo) {
+        option (google.api.http) = { put: "/billing/v2/budget/{budget_id}/notification" };
+    }
+    rpc delete (BudgetRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/billing/v2/budget/{budget_id}" };
+    }
+    rpc get (GetBudgetRequest) returns (BudgetInfo) {
+        option (google.api.http) = { get: "/billing/v2/budget/{budget_id}" };
+    }
+    rpc list (BudgetQuery) returns (BudgetsInfo) {
+        option (google.api.http) = {
+            get: "/billing/v2/budgets"
+            additional_bindings {
+                post: "/billing/v2/budgets/search"
+            }
+        };
+    }
+    rpc stat (BudgetStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/billing/v2/budgets/stat" };
+    }
+}
+
+enum TimeUnit {
+    NONE = 0;
+    TOTAL = 1;
+    MONTHLY = 2;
+    YEARLY = 3;
+}
+
+message PlannedLimits {
+    string date = 1;
+    int64 limit = 2;
+}
+
+message TimePeriod {
+    string start = 1;
+    string end = 2;
+}
+
+message MonthlyBudgetCost {
+    string date = 1;
+    int64 limit = 2;
+    int64 usd_cost = 3;
+}
+
+message BudgetNotification {
+    enum Unit {
+        UNIT_NONE = 0;
+        PERCENT = 1;
+        ACTUAL_COST = 2;
+    }
+
+    enum NotificationType {
+        NOTIFICATION_TYPE_NONE = 0;
+        CRITICAL = 1;
+        WARNING = 2;
+    }
+
+    int64 threshold = 1;
+    Unit unit = 2;
+    NotificationType notification_type = 3;
+}
+
+message CreateBudgetRequest {
+    // is_required: false
+    string name = 1;
+    // is_required: false
+    int64 limit = 2;
+    // is_required: false
+    PlannedLimits planned_limits = 3;
+    // is_required: false
+    google.protobuf.Struct cost_types = 4;
+    // is_required: false
+    TimeUnit time_unit = 5;
+    // is_required: false
+    TimePeriod time_period = 6;
+    // is_required: false
+    repeated BudgetNotification notifications = 7;
+    // is_required: false
+    google.protobuf.Struct tags = 8;
+    // is_required: false
+    string project_id = 11;
+    // is_required: false
+    string project_group_id = 12;
+    // is_required: true
+    string domain_id = 13;
+}
+
+message UpdateBudgetRequest {
+    // is_required: true
+    string budget_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    int64 limit = 3;
+    // is_required: false
+    PlannedLimits planned_limits = 4;
+    // is_required: false
+    google.protobuf.Struct tags = 5;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message SetBudgetNotificationRequest {
+    // is_required: true
+    string budget_id = 1;
+    // is_required: true
+    repeated BudgetNotification notifications = 2;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message BudgetRequest {
+    // is_required: true
+    string budget_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetBudgetRequest {
+    // is_required: true
+    string budget_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message BudgetQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string budget_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    string project_id = 4;
+    // is_required: false
+    string project_group_id = 5;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message BudgetInfo {
+    string budget_id = 1;
+    string name = 2;
+    int64 limit = 3;
+    PlannedLimits planned_limits = 4;
+    int64 total_usd_cost = 5;
+    repeated MonthlyBudgetCost monthly_costs = 6;
+    google.protobuf.Struct cost_types = 7;
+    TimeUnit time_unit = 8;
+    TimePeriod time_period = 9;
+    repeated BudgetNotification notifications = 10;
+    google.protobuf.Struct tags = 11;
+    string project_id = 21;
+    string project_group_id = 22;
+    string domain_id = 23;
+    string created_at = 31;
+    string updated_at = 32;
+}
+
+message BudgetsInfo {
+    repeated BudgetInfo results = 1;
+    int32 total_count = 2;
+}
+
+message BudgetStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}

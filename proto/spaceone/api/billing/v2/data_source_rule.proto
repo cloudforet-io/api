@@ -1,0 +1,169 @@
+syntax = "proto3";
+
+package spaceone.api.billing.v2.data_source_rule;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service DataSourceRule {
+    rpc create (CreateDataSourceRuleRequest) returns (DataSourceRuleInfo) {
+        option (google.api.http) = { post: "/billing/v2/data_source_rules" };
+    }
+    rpc update (UpdateDataSourceRuleRequest) returns (DataSourceRuleInfo) {
+        option (google.api.http) = { put: "/billing/v2/data_source_rule/{data_source_rule_id}" };
+    }
+    rpc change_order (ChangeDataSourceRuleOrderRequest) returns (DataSourceRuleInfo) {
+        option (google.api.http) = { put: "/billing/v2/data_source_rule/{data_source_rule_id}/order" };
+    }
+    rpc delete (DataSourceRuleRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/billing/v2/data_source_rule/{data_source_rule_id}" };
+    }
+    rpc get (GetDataSourceRuleRequest) returns (DataSourceRuleInfo) {
+        option (google.api.http) = { get: "/billing/v2/data_source_rule/{data_source_rule_id}" };
+    }
+    rpc list (DataSourceRuleQuery) returns (DataSourceRulesInfo) {
+        option (google.api.http) = {
+            get: "/billing/v2/data_source_rules"
+            additional_bindings {
+                post: "/billing/v2/data_source_rules/search"
+            }
+        };
+    }
+    rpc stat (DataSourceRuleStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/billing/v2/data_source_rules/stat" };
+    }
+}
+
+enum ConditionsPolicy {
+    NONE = 0;
+    ALL = 1;
+    ANY = 2;
+    ALWAYS = 3;
+}
+
+message DataSourceRuleCondition {
+    string key = 1;
+    string value = 2;
+    string operator = 3;
+}
+
+message MatchRule {
+    string source = 1;
+    string target = 2;
+}
+
+message DataSourceRuleActions {
+    string change_project = 1;
+    MatchRule match_project = 2;
+    MatchRule match_service_account = 3;
+    google.protobuf.Struct add_additional_info = 4;
+}
+
+message DataSourceRuleOptions {
+    bool stop_processing = 1;
+}
+
+message CreateDataSourceRuleRequest {
+    // is_required: false
+    string name = 1;
+    // is_required: false
+    repeated DataSourceRuleCondition conditions = 2;
+    // is_required: true
+    ConditionsPolicy conditions_policy = 3;
+    // is_required: true
+    DataSourceRuleActions actions = 4;
+    // is_required: false
+    DataSourceRuleOptions options = 5;
+    // is_required: false
+    google.protobuf.Struct tags = 6;
+    // is_required: true
+    string data_source_id = 11;
+    // is_required: true
+    string domain_id = 12;
+}
+
+message UpdateDataSourceRuleRequest {
+    // is_required: true
+    string data_source_rule_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    repeated DataSourceRuleCondition conditions = 3;
+    // is_required: false
+    ConditionsPolicy conditions_policy = 4;
+    // is_required: false
+    DataSourceRuleActions actions = 5;
+    // is_required: false
+    DataSourceRuleOptions options = 6;
+    // is_required: false
+    google.protobuf.Struct tags = 7;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message ChangeDataSourceRuleOrderRequest {
+    // is_required: true
+    string data_source_rule_id = 1;
+    // is_required: true
+    int32 order = 2;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message DataSourceRuleRequest {
+    // is_required: true
+    string data_source_rule_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetDataSourceRuleRequest {
+    // is_required: true
+    string data_source_rule_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message DataSourceRuleQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string data_source_rule_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    string data_source_id = 4;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message DataSourceRuleInfo {
+    string data_source_rule_id = 1;
+    string name = 2;
+    int32 order = 3;
+    repeated DataSourceRuleCondition conditions = 4;
+    ConditionsPolicy conditions_policy = 5;
+    DataSourceRuleActions actions = 6;
+    DataSourceRuleOptions options = 7;
+    google.protobuf.Struct tags = 8;
+    string data_source_id = 11;
+    string domain_id = 12;
+    string created_at = 21;
+}
+
+message DataSourceRulesInfo {
+    repeated DataSourceRuleInfo results = 1;
+    int32 total_count = 2;
+}
+
+message DataSourceRuleStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}

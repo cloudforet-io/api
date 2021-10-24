@@ -11,33 +11,33 @@ import "spaceone/api/billing/v2/data_source.proto";
 
 service Schedule {
     rpc create (CreateScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { post: "/billing/v1/schedules" };
+        option (google.api.http) = { post: "/billing/v2/schedules" };
     }
     rpc update (UpdateScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { put: "/billing/v1/schedule/{schedule_id}" };
+        option (google.api.http) = { put: "/billing/v2/schedule/{schedule_id}" };
     }
     rpc enable (ScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { put: "/billing/v1/schedule/{schedule_id}/enable" };
+        option (google.api.http) = { put: "/billing/v2/schedule/{schedule_id}/enable" };
     }
     rpc disable (ScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { put: "/billing/v1/schedule/{schedule_id}/disable" };
+        option (google.api.http) = { put: "/billing/v2/schedule/{schedule_id}/disable" };
     }
-    rpc deregister (ScheduleRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/billing/v1/schedule/{schedule_id}" };
+    rpc delete (ScheduleRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/billing/v2/schedule/{schedule_id}" };
     }
     rpc get (GetScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { get: "/billing/v1/schedule/{schedule_id}" };
+        option (google.api.http) = { get: "/billing/v2/schedule/{schedule_id}" };
     }
     rpc list (ScheduleQuery) returns (SchedulesInfo) {
         option (google.api.http) = {
-            get: "/billing/v1/schedules"
+            get: "/billing/v2/schedules"
             additional_bindings {
-                post: "/billing/v1/schedules/search"
+                post: "/billing/v2/schedules/search"
             }
         };
     }
     rpc stat (ScheduleStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/billing/v1/schedules/stat" };
+        option (google.api.http) = { post: "/billing/v2/schedules/stat" };
     }
 }
 

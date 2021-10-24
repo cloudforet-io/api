@@ -1,0 +1,156 @@
+syntax = "proto3";
+
+package spaceone.api.billing.v2.cost;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Cost {
+    rpc create (CreateCostRequest) returns (CostInfo) {
+        option (google.api.http) = { post: "/billing/v2/costs" };
+    }
+    rpc delete (CostRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/billing/v2/cost/{cost_id}" };
+    }
+    rpc get (GetCostRequest) returns (CostInfo) {
+        option (google.api.http) = { get: "/billing/v2/cost/{cost_id}" };
+    }
+    rpc list (CostQuery) returns (CostsInfo) {
+        option (google.api.http) = {
+            get: "/billing/v2/costs"
+            additional_bindings {
+                post: "/billing/v2/costs/search"
+            }
+        };
+    }
+    rpc stat (CostStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/billing/v2/costs/stat" };
+    }
+}
+
+message CreateCostRequest {
+    // is_required: true
+    int64 original_cost = 1;
+    // is_required: true
+    string original_currency = 2;
+    // is_required: false
+    int64 usage_quantity = 3;
+    // is_required: false
+    string provider = 4;
+    // is_required: false
+    string region_code = 5;
+    // is_required: false
+    string product = 6;
+    // is_required: false
+    string account = 7;
+    // is_required: false
+    string type = 8;
+    // is_required: false
+    string resource_group = 9;
+    // is_required: false
+    string resource = 10;
+    // is_required: false
+    google.protobuf.Struct tags = 21;
+    // is_required: false
+    google.protobuf.Struct additional_info = 22;
+    // is_required: false
+    string service_account_id = 31;
+    // is_required: true
+    string project_id = 32;
+    // is_required: true
+    string data_source_id = 33;
+    // is_required: true
+    string domain_id = 34;
+    // is_required: false
+    string billed_at = 41;
+    // is_required: false
+    string created_at = 42;
+}
+
+message CostRequest {
+    // is_required: true
+    string cost_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetCostRequest {
+    // is_required: true
+    string cost_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message CostQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string cost_id = 2;
+    // is_required: false
+    string cost_key = 3;
+    // is_required: false
+    string original_currency = 4;
+    // is_required: false
+    string provider = 5;
+    // is_required: false
+    string region_code = 6;
+    // is_required: false
+    string product = 7;
+    // is_required: false
+    string account = 8;
+    // is_required: false
+    string type = 9;
+    // is_required: false
+    string resource_group = 10;
+    // is_required: false
+    string resource = 11;
+    // is_required: false
+    string service_account_id = 21;
+    // is_required: false
+    string project_id = 22;
+    // is_required: false
+    string data_source_id = 23;
+    // is_required: true
+    string domain_id = 24;
+}
+
+message CostInfo {
+    string cost_id = 1;
+    string cost_key = 2;
+    int64 usd_cost = 3;
+    string original_currency = 4;
+    int64 original_cost = 5;
+    int64 usage_quantity = 6;
+    string provider = 7;
+    string region_code = 8;
+    string product = 9;
+    string account = 10;
+    string type = 11;
+    string resource_group = 12;
+    string resource = 13;
+    google.protobuf.Struct tags = 21;
+    google.protobuf.Struct additional_info = 22;
+    string service_account_id = 31;
+    string project_id = 32;
+    string data_source_id = 33;
+    string domain_id = 34;
+    string billed_at = 41;
+    string created_at = 42;
+}
+
+message CostsInfo {
+    repeated CostInfo results = 1;
+    int32 total_count = 2;
+}
+
+message CostStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
