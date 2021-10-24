@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+package spaceone.api.billing.v2.dashboard;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Dashboard {
+    rpc create (CreateDashboardRequest) returns (DashboardInfo) {
+        option (google.api.http) = { post: "/billing/v2/dashboards" };
+    }
+    rpc update (UpdateDashboardRequest) returns (DashboardInfo) {
+        option (google.api.http) = { put: "/billing/v2/dashboard/{dashboard_id}" };
+    }
+    rpc change_scope (UpdateDashboardRequest) returns (DashboardInfo) {
+        option (google.api.http) = { put: "/billing/v2/dashboard/{dashboard_id}/scope" };
+    }
+    rpc delete (DashboardRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/billing/v2/dashboard/{dashboard_id}" };
+    }
+    rpc get (GetDashboardRequest) returns (DashboardInfo) {
+        option (google.api.http) = { get: "/billing/v2/dashboard/{dashboard_id}" };
+    }
+    rpc list (DashboardQuery) returns (DashboardsInfo) {
+        option (google.api.http) = {
+            get: "/billing/v2/dashboards"
+            additional_bindings {
+                post: "/billing/v2/dashboards/search"
+            }
+        };
+    }
+    rpc stat (DashboardStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/billing/v2/dashboards/stat" };
+    }
+}
+
+enum Scope {
+    NONE = 0;
+    PUBLIC = 1;
+    PRIVATE = 2;
+}
+
+message CreateDashboardRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: true
+    Scope scope = 2;
+    // is_required: false
+    string default_layout_id = 3;
+    // is_required: false
+    google.protobuf.ListValue custom_layouts = 4;
+    // is_required: false
+    google.protobuf.Struct default_filter = 5;
+    // is_required: false
+    google.protobuf.Struct tags = 6;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message UpdateDashboardRequest {
+    // is_required: true
+    string dashboard_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    string default_layout_id = 3;
+    // is_required: false
+    google.protobuf.ListValue custom_layouts = 4;
+    // is_required: false
+    google.protobuf.Struct default_filter = 5;
+    // is_required: false
+    google.protobuf.Struct tags = 6;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message ChangeDashboardScopeRequest {
+    // is_required: true
+    string dashboard_id = 1;
+    // is_required: true
+    Scope scope = 2;
+    // is_required: true
+    string domain_id = 3;
+}
+
+message DashboardRequest {
+    // is_required: true
+    string dashboard_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetDashboardRequest {
+    // is_required: true
+    string dashboard_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message DashboardQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string dashboard_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    Scope scope = 4;
+    // is_required: false
+    string user_id = 5;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message DashboardInfo {
+    string dashboard_id = 1;
+    string name = 2;
+    Scope scope = 3;
+    string default_layout_id = 4;
+    google.protobuf.ListValue custom_layouts = 5;
+    google.protobuf.Struct default_filter = 6;
+    google.protobuf.Struct tags = 7;
+    string user_id = 11;
+    string domain_id = 12;
+    string created_at = 21;
+    string updated_at = 22;
+}
+
+message DashboardsInfo {
+    repeated DashboardInfo results = 1;
+    int32 total_count = 2;
+}
+
+message DashboardStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}

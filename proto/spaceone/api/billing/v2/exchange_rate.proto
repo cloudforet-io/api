@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package spaceone.api.billing.v2.exchange_rate;
+
+import "google/api/annotations.proto";
+
+
+service ExchangeRate {
+    rpc set (SetExchangeRateRequest) returns (ExchangeRateInfo) {
+        option (google.api.http) = { post: "/billing/v2/exchange-rate/{currency}/set" };
+    }
+    rpc reset (ExchangeRateRequest) returns (ExchangeRateInfo) {
+        option (google.api.http) = { post: "/billing/v2/exchange-rate/{currency}/reset" };
+    }
+    rpc get (ExchangeRateRequest) returns (ExchangeRateInfo) {
+        option (google.api.http) = { get: "/billing/v2/exchange-rate/{currency}" };
+    }
+    rpc list (ExchangeRateQuery) returns (ExchangeRateInfo) {
+        option (google.api.http) = {
+            get: "/billing/v2/exchange-rates"
+            additional_bindings {
+                post: "/billing/v2/exchange-rates/search"
+            }
+        };
+    }
+}
+
+message SetExchangeRateRequest {
+    // is_required: true
+    string currency = 1;
+    // is_required: true
+    int32  rate = 2;
+    // is_required: true
+    string domain_id = 12;
+}
+
+message ExchangeRateRequest {
+    // is_required: true
+    string currency = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message ExchangeRateQuery {
+    // is_required: true
+    string domain_id = 11;
+}
+
+message ExchangeRateInfo {
+    string currency = 1;
+    int32  rate = 2;
+    bool is_default = 3;
+    string domain_id = 11;
+}
+
+message ExchangeRatesInfo {
+    repeated ExchangeRateInfo results = 1;
+    int32 total_count = 2;
+}
