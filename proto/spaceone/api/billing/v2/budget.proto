@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package spaceone.api.billing.v2.budget;
+package spaceone.api.billing.v2;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
@@ -37,13 +37,6 @@ service Budget {
     }
 }
 
-enum TimeUnit {
-    NONE = 0;
-    TOTAL = 1;
-    MONTHLY = 2;
-    YEARLY = 3;
-}
-
 message PlannedLimit {
     string date = 1;
     int64 limit = 2;
@@ -78,6 +71,13 @@ message BudgetNotification {
 }
 
 message CreateBudgetRequest {
+    enum TimeUnit {
+        NONE = 0;
+        TOTAL = 1;
+        MONTHLY = 2;
+        YEARLY = 3;
+    }
+
     // is_required: false
     string name = 1;
     // is_required: false
@@ -160,6 +160,13 @@ message BudgetQuery {
 }
 
 message BudgetInfo {
+    enum TimeUnit {
+        NONE = 0;
+        TOTAL = 1;
+        MONTHLY = 2;
+        YEARLY = 3;
+    }
+
     string budget_id = 1;
     string name = 2;
     int64 limit = 3;

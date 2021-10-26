@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package spaceone.api.billing.v2.cost_query_set;
+package spaceone.api.billing.v2;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
@@ -37,13 +37,13 @@ service CostQuerySet {
     }
 }
 
-enum Scope {
-    NONE = 0;
-    PUBLIC = 1;
-    PRIVATE = 2;
-}
-
 message CreateCostQuerySetRequest {
+    enum Scope {
+        NONE = 0;
+        PUBLIC = 1;
+        PRIVATE = 2;
+    }
+
     // is_required: true
     string name = 1;
     // is_required: true
@@ -70,6 +70,12 @@ message UpdateCostQuerySetRequest {
 }
 
 message ChangeCostQuerySetScopeRequest {
+    enum Scope {
+        NONE = 0;
+        PUBLIC = 1;
+        PRIVATE = 2;
+    }
+
     // is_required: true
     string cost_query_set_id = 1;
     // is_required: true
@@ -95,6 +101,12 @@ message GetCostQuerySetRequest {
 }
 
 message CostQuerySetQuery {
+    enum Scope {
+        NONE = 0;
+        PUBLIC = 1;
+        PRIVATE = 2;
+    }
+
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -110,6 +122,12 @@ message CostQuerySetQuery {
 }
 
 message CostQuerySetInfo {
+    enum Scope {
+        NONE = 0;
+        PUBLIC = 1;
+        PRIVATE = 2;
+    }
+
     string cost_query_set_id = 1;
     string name = 2;
     Scope scope = 3;

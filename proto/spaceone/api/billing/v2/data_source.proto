@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package spaceone.api.billing.v2.data_source;
+package spaceone.api.billing.v2;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
@@ -49,12 +49,6 @@ service DataSource {
     }
 }
 
-enum DataSourceType {
-    NONE = 0;
-    LOCAL = 1;
-    EXTERNAL = 2;
-}
-
 message PluginInfo {
     enum UpgradeMode {
         NONE = 0;
@@ -73,6 +67,12 @@ message PluginInfo {
 }
 
 message RegisterDataSourceRequest {
+    enum DataSourceType {
+        NONE = 0;
+        LOCAL = 1;
+        EXTERNAL = 2;
+    }
+
     // is_required: true
     string name = 1;
     // is_required: true
@@ -149,6 +149,12 @@ message GetDataSourceRequest {
 }
 
 message DataSourceQuery {
+    enum DataSourceType {
+        NONE = 0;
+        LOCAL = 1;
+        EXTERNAL = 2;
+    }
+
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -167,9 +173,15 @@ message DataSourceQuery {
 
 message DataSourceInfo {
     enum State {
-        NONE = 0;
+        STATE_NONE = 0;
         ENABLED = 1;
         DISABLED = 2;
+    }
+
+    enum DataSourceType {
+        TYPE_NONE = 0;
+        LOCAL = 1;
+        EXTERNAL = 2;
     }
 
     string data_source_id = 1;
