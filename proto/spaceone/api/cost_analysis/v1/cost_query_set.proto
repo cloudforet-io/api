@@ -15,7 +15,7 @@ service CostQuerySet {
     rpc update (UpdateCostQuerySetRequest) returns (CostQuerySetInfo) {
         option (google.api.http) = { put: "/cost-analysis/v2/cost_query_set/{cost_query_set_id}" };
     }
-    rpc change_scope (UpdateCostQuerySetRequest) returns (CostQuerySetInfo) {
+    rpc change_scope (ChangeCostQuerySetScopeRequest) returns (CostQuerySetInfo) {
         option (google.api.http) = { put: "/cost-analysis/v2/cost_query_set/{cost_query_set_id}/scope" };
     }
     rpc delete (CostQuerySetRequest) returns (google.protobuf.Empty) {

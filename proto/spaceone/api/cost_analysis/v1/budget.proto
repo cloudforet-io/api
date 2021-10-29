@@ -39,17 +39,12 @@ service Budget {
 
 message PlannedLimit {
     string date = 1;
-    int64 limit = 2;
-}
-
-message TimePeriod {
-    string start = 1;
-    string end = 2;
+    float limit = 2;
 }
 
 message MonthlyBudgetCost {
     string date = 1;
-    int64 usd_cost = 2;
+    float usd_cost = 2;
 }
 
 message BudgetNotification {
@@ -65,7 +60,7 @@ message BudgetNotification {
         WARNING = 2;
     }
 
-    int64 threshold = 1;
+    float threshold = 1;
     Unit unit = 2;
     NotificationType notification_type = 3;
 }
@@ -81,19 +76,21 @@ message CreateBudgetRequest {
     // is_required: false
     string name = 1;
     // is_required: false
-    int64 limit = 2;
+    float limit = 2;
     // is_required: false
     repeated PlannedLimit planned_limits = 3;
     // is_required: false
     google.protobuf.Struct cost_types = 4;
-    // is_required: false
+    // is_required: true
     TimeUnit time_unit = 5;
+    // is_required: true
+    string start = 6;
+    // is_required: true
+    string end = 7;
     // is_required: false
-    TimePeriod time_period = 6;
+    repeated BudgetNotification notifications = 8;
     // is_required: false
-    repeated BudgetNotification notifications = 7;
-    // is_required: false
-    google.protobuf.Struct tags = 8;
+    google.protobuf.Struct tags = 9;
     // is_required: false
     string project_id = 11;
     // is_required: false
@@ -108,11 +105,11 @@ message UpdateBudgetRequest {
     // is_required: false
     string name = 2;
     // is_required: false
-    int64 limit = 3;
+    float limit = 3;
     // is_required: false
     repeated PlannedLimit planned_limits = 4;
     // is_required: false
-    TimePeriod time_period = 5;
+    string end = 5;
     // is_required: false
     google.protobuf.Struct tags = 6;
     // is_required: true
@@ -169,20 +166,21 @@ message BudgetInfo {
 
     string budget_id = 1;
     string name = 2;
-    int64 limit = 3;
+    float limit = 3;
     repeated PlannedLimit planned_limits = 4;
-    int64 total_usd_cost = 5;
+    float total_usd_cost = 5;
     repeated MonthlyBudgetCost monthly_costs = 6;
     google.protobuf.Struct cost_types = 7;
     TimeUnit time_unit = 8;
-    TimePeriod time_period = 9;
-    repeated BudgetNotification notifications = 10;
-    google.protobuf.Struct tags = 11;
-    string project_id = 21;
-    string project_group_id = 22;
-    string domain_id = 23;
-    string created_at = 31;
-    string updated_at = 32;
+    string start = 9;
+    string end = 10;
+    repeated BudgetNotification notifications = 11;
+    google.protobuf.Struct tags = 21;
+    string project_id = 31;
+    string project_group_id = 32;
+    string domain_id = 33;
+    string created_at = 41;
+    string updated_at = 42;
 }
 
 message BudgetsInfo {

@@ -15,7 +15,7 @@ service Dashboard {
     rpc update (UpdateDashboardRequest) returns (DashboardInfo) {
         option (google.api.http) = { put: "/cost-analysis/v2/dashboard/{dashboard_id}" };
     }
-    rpc change_scope (UpdateDashboardRequest) returns (DashboardInfo) {
+    rpc change_scope (ChangeDashboardScopeRequest) returns (DashboardInfo) {
         option (google.api.http) = { put: "/cost-analysis/v2/dashboard/{dashboard_id}/scope" };
     }
     rpc delete (DashboardRequest) returns (google.protobuf.Empty) {
