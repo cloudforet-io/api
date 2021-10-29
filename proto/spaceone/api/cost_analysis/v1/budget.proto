@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package spaceone.api.billing.v2;
+package spaceone.api.cost_analysis.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
@@ -10,30 +10,30 @@ import "spaceone/api/core/v1/query.proto";
 
 service Budget {
     rpc create (CreateBudgetRequest) returns (BudgetInfo) {
-        option (google.api.http) = { post: "/billing/v2/budgets" };
+        option (google.api.http) = { post: "/cost-analysis/v2/budgets" };
     }
     rpc update (UpdateBudgetRequest) returns (BudgetInfo) {
-        option (google.api.http) = { put: "/billing/v2/budget/{budget_id}" };
+        option (google.api.http) = { put: "/cost-analysis/v2/budget/{budget_id}" };
     }
     rpc set_notification (SetBudgetNotificationRequest) returns (BudgetInfo) {
-        option (google.api.http) = { put: "/billing/v2/budget/{budget_id}/notification" };
+        option (google.api.http) = { put: "/cost-analysis/v2/budget/{budget_id}/notification" };
     }
     rpc delete (BudgetRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/billing/v2/budget/{budget_id}" };
+        option (google.api.http) = { delete: "/cost-analysis/v2/budget/{budget_id}" };
     }
     rpc get (GetBudgetRequest) returns (BudgetInfo) {
-        option (google.api.http) = { get: "/billing/v2/budget/{budget_id}" };
+        option (google.api.http) = { get: "/cost-analysis/v2/budget/{budget_id}" };
     }
     rpc list (BudgetQuery) returns (BudgetsInfo) {
         option (google.api.http) = {
-            get: "/billing/v2/budgets"
+            get: "/cost-analysis/v2/budgets"
             additional_bindings {
-                post: "/billing/v2/budgets/search"
+                post: "/cost-analysis/v2/budgets/search"
             }
         };
     }
     rpc stat (BudgetStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/billing/v2/budgets/stat" };
+        option (google.api.http) = { post: "/cost-analysis/v2/budgets/stat" };
     }
 }
 

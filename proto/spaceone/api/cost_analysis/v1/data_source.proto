@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package spaceone.api.billing.v2;
+package spaceone.api.cost_analysis.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
@@ -10,42 +10,42 @@ import "spaceone/api/core/v1/query.proto";
 
 service DataSource {
     rpc register (RegisterDataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = { post: "/billing/v2/data-sources" };
+        option (google.api.http) = { post: "/cost-analysis/v2/data-sources" };
     }
     rpc update (UpdateDataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = { put: "/billing/v2/data-source/{data_source_id}" };
+        option (google.api.http) = { put: "/cost-analysis/v2/data-source/{data_source_id}" };
     }
     rpc update_plugin (UpdateDataSourcePluginRequest) returns (DataSourceInfo) {
-        option (google.api.http) = { put: "/billing/v2/data-source/{data_source_id}/plugin" };
+        option (google.api.http) = { put: "/cost-analysis/v2/data-source/{data_source_id}/plugin" };
     }
     rpc verify_plugin (DataSourceRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { post: "/billing/v2/data-source/{data_source_id}/plugin/verify" };
+        option (google.api.http) = { post: "/cost-analysis/v2/data-source/{data_source_id}/plugin/verify" };
     }
     rpc enable (DataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = { put: "/billing/v2/data-source/{data_source_id}/enable" };
+        option (google.api.http) = { put: "/cost-analysis/v2/data-source/{data_source_id}/enable" };
     }
     rpc disable (DataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = { put: "/billing/v2/data-source/{data_source_id}/disable" };
+        option (google.api.http) = { put: "/cost-analysis/v2/data-source/{data_source_id}/disable" };
     }
     rpc deregister (DataSourceRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/billing/v2/data-source/{data_source_id}" };
+        option (google.api.http) = { delete: "/cost-analysis/v2/data-source/{data_source_id}" };
     }
     rpc sync (SyncDataSourceRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { post: "/billing/v2/data-source/{data_source_id}/sync" };
+        option (google.api.http) = { post: "/cost-analysis/v2/data-source/{data_source_id}/sync" };
     }
     rpc get (GetDataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = { get: "/billing/v2/data-source/{data_source_id}" };
+        option (google.api.http) = { get: "/cost-analysis/v2/data-source/{data_source_id}" };
     }
     rpc list (DataSourceQuery) returns (DataSourcesInfo) {
         option (google.api.http) = {
-            get: "/billing/v2/data-sources"
+            get: "/cost-analysis/v2/data-sources"
             additional_bindings {
-                post: "/billing/v2/data-sources/search"
+                post: "/cost-analysis/v2/data-sources/search"
             }
         };
     }
     rpc stat (DataSourceStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/billing/v2/data-sources/stat" };
+        option (google.api.http) = { post: "/cost-analysis/v2/data-sources/stat" };
     }
 }
 

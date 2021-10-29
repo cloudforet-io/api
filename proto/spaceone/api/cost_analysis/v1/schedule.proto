@@ -1,43 +1,42 @@
 syntax = "proto3";
 
-package spaceone.api.billing.v2;
+package spaceone.api.cost_analysis.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
-import "spaceone/api/billing/v2/data_source.proto";
 
 
 service Schedule {
     rpc create (CreateScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { post: "/billing/v2/schedules" };
+        option (google.api.http) = { post: "/cost-analysis/v2/schedules" };
     }
     rpc update (UpdateScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { put: "/billing/v2/schedule/{schedule_id}" };
+        option (google.api.http) = { put: "/cost-analysis/v2/schedule/{schedule_id}" };
     }
     rpc enable (ScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { put: "/billing/v2/schedule/{schedule_id}/enable" };
+        option (google.api.http) = { put: "/cost-analysis/v2/schedule/{schedule_id}/enable" };
     }
     rpc disable (ScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { put: "/billing/v2/schedule/{schedule_id}/disable" };
+        option (google.api.http) = { put: "/cost-analysis/v2/schedule/{schedule_id}/disable" };
     }
     rpc delete (ScheduleRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/billing/v2/schedule/{schedule_id}" };
+        option (google.api.http) = { delete: "/cost-analysis/v2/schedule/{schedule_id}" };
     }
     rpc get (GetScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { get: "/billing/v2/schedule/{schedule_id}" };
+        option (google.api.http) = { get: "/cost-analysis/v2/schedule/{schedule_id}" };
     }
     rpc list (ScheduleQuery) returns (SchedulesInfo) {
         option (google.api.http) = {
-            get: "/billing/v2/schedules"
+            get: "/cost-analysis/v2/schedules"
             additional_bindings {
-                post: "/billing/v2/schedules/search"
+                post: "/cost-analysis/v2/schedules/search"
             }
         };
     }
     rpc stat (ScheduleStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/billing/v2/schedules/stat" };
+        option (google.api.http) = { post: "/cost-analysis/v2/schedules/stat" };
     }
 }
 
