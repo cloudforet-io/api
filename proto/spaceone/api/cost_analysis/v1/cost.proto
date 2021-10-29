@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package spaceone.api.billing.v2;
+package spaceone.api.cost_analysis.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
@@ -10,24 +10,24 @@ import "spaceone/api/core/v1/query.proto";
 
 service Cost {
     rpc create (CreateCostRequest) returns (CostInfo) {
-        option (google.api.http) = { post: "/billing/v2/costs" };
+        option (google.api.http) = { post: "/cost-analysis/v2/costs" };
     }
     rpc delete (CostRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/billing/v2/cost/{cost_id}" };
+        option (google.api.http) = { delete: "/cost-analysis/v2/cost/{cost_id}" };
     }
     rpc get (GetCostRequest) returns (CostInfo) {
-        option (google.api.http) = { get: "/billing/v2/cost/{cost_id}" };
+        option (google.api.http) = { get: "/cost-analysis/v2/cost/{cost_id}" };
     }
     rpc list (CostQuery) returns (CostsInfo) {
         option (google.api.http) = {
-            get: "/billing/v2/costs"
+            get: "/cost-analysis/v2/costs"
             additional_bindings {
-                post: "/billing/v2/costs/search"
+                post: "/cost-analysis/v2/costs/search"
             }
         };
     }
     rpc stat (CostStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/billing/v2/costs/stat" };
+        option (google.api.http) = { post: "/cost-analysis/v2/costs/stat" };
     }
 }
 
