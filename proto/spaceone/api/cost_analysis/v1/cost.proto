@@ -33,11 +33,11 @@ service Cost {
 
 message CreateCostRequest {
     // is_required: true
-    int64 original_cost = 1;
+    float original_cost = 1;
     // is_required: true
     string original_currency = 2;
     // is_required: false
-    int64 usage_quantity = 3;
+    float usage_quantity = 3;
     // is_required: false
     string provider = 4;
     // is_required: false
@@ -122,10 +122,10 @@ message CostQuery {
 message CostInfo {
     string cost_id = 1;
     string cost_key = 2;
-    int64 usd_cost = 3;
+    float usd_cost = 3;
     string original_currency = 4;
-    int64 original_cost = 5;
-    int64 usage_quantity = 6;
+    float original_cost = 5;
+    float usage_quantity = 6;
     string provider = 7;
     string region_code = 8;
     string product = 9;
