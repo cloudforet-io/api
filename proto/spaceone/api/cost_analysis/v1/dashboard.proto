@@ -44,35 +44,51 @@ message CreateDashboardRequest {
         PRIVATE = 2;
     }
 
+    enum Granularity {
+        GRANULARITY_NONE = 0;
+        MONTHLY = 1;
+        YEARLY = 2;
+    }
+
     // is_required: true
     string name = 1;
     // is_required: true
     Scope scope = 2;
+    // is_required: true
+    Granularity granularity = 3;
     // is_required: false
-    string default_layout_id = 3;
+    string default_layout_id = 4;
     // is_required: false
-    google.protobuf.ListValue custom_layouts = 4;
+    google.protobuf.ListValue custom_layouts = 5;
     // is_required: false
-    google.protobuf.Struct default_filter = 5;
+    google.protobuf.Struct default_filter = 6;
     // is_required: false
-    google.protobuf.Struct tags = 6;
+    google.protobuf.Struct tags = 7;
     // is_required: true
     string domain_id = 11;
 }
 
 message UpdateDashboardRequest {
+    enum Granularity {
+        GRANULARITY_NONE = 0;
+        MONTHLY = 1;
+        YEARLY = 2;
+    }
+
     // is_required: true
     string dashboard_id = 1;
     // is_required: false
     string name = 2;
     // is_required: false
-    string default_layout_id = 3;
+    Granularity granularity = 3;
     // is_required: false
-    google.protobuf.ListValue custom_layouts = 4;
+    string default_layout_id = 4;
     // is_required: false
-    google.protobuf.Struct default_filter = 5;
+    google.protobuf.ListValue custom_layouts = 5;
     // is_required: false
-    google.protobuf.Struct tags = 6;
+    google.protobuf.Struct default_filter = 6;
+    // is_required: false
+    google.protobuf.Struct tags = 7;
     // is_required: true
     string domain_id = 11;
 }
@@ -115,6 +131,12 @@ message DashboardQuery {
         PRIVATE = 2;
     }
 
+    enum Granularity {
+        GRANULARITY_NONE = 0;
+        MONTHLY = 1;
+        YEARLY = 2;
+    }
+
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -124,7 +146,9 @@ message DashboardQuery {
     // is_required: false
     Scope scope = 4;
     // is_required: false
-    string user_id = 5;
+    Granularity granularity = 5;
+    // is_required: false
+    string user_id = 6;
     // is_required: true
     string domain_id = 11;
 }
@@ -136,13 +160,20 @@ message DashboardInfo {
         PRIVATE = 2;
     }
 
+    enum Granularity {
+        GRANULARITY_NONE = 0;
+        MONTHLY = 1;
+        YEARLY = 2;
+    }
+
     string dashboard_id = 1;
     string name = 2;
     Scope scope = 3;
-    string default_layout_id = 4;
-    google.protobuf.ListValue custom_layouts = 5;
-    google.protobuf.Struct default_filter = 6;
-    google.protobuf.Struct tags = 7;
+    Granularity granularity = 4;
+    string default_layout_id = 5;
+    google.protobuf.ListValue custom_layouts = 6;
+    google.protobuf.Struct default_filter = 7;
+    google.protobuf.Struct tags = 8;
     string user_id = 11;
     string domain_id = 12;
     string created_at = 21;
