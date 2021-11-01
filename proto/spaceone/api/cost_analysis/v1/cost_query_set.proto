@@ -38,16 +38,8 @@ service CostQuerySet {
 }
 
 message CreateCostQuerySetRequest {
-    enum Scope {
-        NONE = 0;
-        PUBLIC = 1;
-        PRIVATE = 2;
-    }
-
     // is_required: true
     string name = 1;
-    // is_required: true
-    Scope scope = 2;
     // is_required: true
     google.protobuf.Struct options = 3;
     // is_required: false
