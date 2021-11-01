@@ -38,14 +38,8 @@ service Dashboard {
 }
 
 message CreateDashboardRequest {
-    enum Scope {
-        NONE = 0;
-        PUBLIC = 1;
-        PRIVATE = 2;
-    }
-
     enum Granularity {
-        GRANULARITY_NONE = 0;
+        NONE = 0;
         MONTHLY = 1;
         YEARLY = 2;
     }
@@ -53,24 +47,22 @@ message CreateDashboardRequest {
     // is_required: true
     string name = 1;
     // is_required: true
-    Scope scope = 2;
-    // is_required: true
-    Granularity granularity = 3;
+    Granularity granularity = 2;
     // is_required: false
-    string default_layout_id = 4;
+    string default_layout_id = 3;
     // is_required: false
-    google.protobuf.ListValue custom_layouts = 5;
+    google.protobuf.ListValue custom_layouts = 4;
     // is_required: false
-    google.protobuf.Struct default_filter = 6;
+    google.protobuf.Struct default_filter = 5;
     // is_required: false
-    google.protobuf.Struct tags = 7;
+    google.protobuf.Struct tags = 6;
     // is_required: true
     string domain_id = 11;
 }
 
 message UpdateDashboardRequest {
     enum Granularity {
-        GRANULARITY_NONE = 0;
+        NONE = 0;
         MONTHLY = 1;
         YEARLY = 2;
     }
@@ -126,13 +118,13 @@ message GetDashboardRequest {
 
 message DashboardQuery {
     enum Scope {
-        NONE = 0;
+        SCOPE_NONE = 0;
         PUBLIC = 1;
         PRIVATE = 2;
     }
 
     enum Granularity {
-        GRANULARITY_NONE = 0;
+        NONE = 0;
         MONTHLY = 1;
         YEARLY = 2;
     }
@@ -155,13 +147,13 @@ message DashboardQuery {
 
 message DashboardInfo {
     enum Scope {
-        NONE = 0;
+        SCOPE_NONE = 0;
         PUBLIC = 1;
         PRIVATE = 2;
     }
 
     enum Granularity {
-        GRANULARITY_NONE = 0;
+        NONE = 0;
         MONTHLY = 1;
         YEARLY = 2;
     }
