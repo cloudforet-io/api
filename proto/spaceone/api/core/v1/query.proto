@@ -21,9 +21,15 @@ message Filter {
     }
 }
 
+message SortKey {
+    string key = 1;
+    bool desc = 2;
+}
+
 message Sort {
     string key = 1;
     bool desc = 2;
+    repeated SortKey keys = 3;
 }
 
 message Page {
@@ -56,6 +62,18 @@ message AggregateGroupKey {
     string date_format = 5;
 }
 
+message AggregateGroupSubField {
+    oneof key_alias {
+        string key = 1;
+        string k = 2;
+    }
+
+    oneof name_alias {
+        string name = 3;
+        string n = 4;
+    }
+}
+
 message AggregateGroupField {
     oneof key_alias {
         string key = 1;
@@ -72,12 +90,7 @@ message AggregateGroupField {
         string o = 6;
     }
 
-    oneof operator_value {
-        string value = 7;
-        string v = 8;
-    }
-
-    string date_format = 9;
+    repeated AggregateGroupSubField fields = 7;
 }
 
 message AggregateGroup {
@@ -96,6 +109,7 @@ message AggregateCount {
 message AggregateSort {
     string key = 1;
     bool desc = 2;
+    repeated SortKey keys = 3;
 }
 
 message StatisticsAggregate {
