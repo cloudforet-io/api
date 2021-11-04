@@ -41,6 +41,8 @@ message CreateSchemaRequest {
     // is_required: true
     string service_type = 2;
     // is_required: true
+    string schema_id = 3;
+    // is_required: true
     google.protobuf.Struct schema = 11;
     // is_required: false
     google.protobuf.ListValue labels = 12;
@@ -70,6 +72,8 @@ message SchemaRequest {
     string name = 1;
     // is_required: true
     string domain_id = 2;
+    // is_required: false
+    string schema_id = 3;
 }
 
 message GetRepositorySchemaRequest {
@@ -81,9 +85,16 @@ message GetRepositorySchemaRequest {
     string repository_id = 3;
     // is_required: false
     repeated string only = 4;
+    // is_required: false
+    string schema_id = 5;
 }
 
 message SchemaQuery {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -96,11 +107,16 @@ message SchemaQuery {
     string repository_id = 5;
     // is_required: true
     string domain_id = 6;
+    // is_required: false
+    string schema_id = 7;
+    // is_required: false
+    State state = 8;
 }
 
 message SchemaInfo {
     string name = 1;
     string service_type = 2;
+    string schema_id = 3;
 
     google.protobuf.Struct schema = 11;
     google.protobuf.ListValue labels = 12;
