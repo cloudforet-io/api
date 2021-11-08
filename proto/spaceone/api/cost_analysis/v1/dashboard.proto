@@ -46,16 +46,14 @@ message CreateDashboardRequest {
 
     // is_required: true
     string name = 1;
-    // is_required: true
-    Granularity granularity = 2;
     // is_required: false
     string default_layout_id = 3;
     // is_required: false
-    google.protobuf.ListValue custom_layouts = 4;
+    google.protobuf.ListValue custom_layouts = 3;
     // is_required: false
-    google.protobuf.Struct default_filter = 5;
+    google.protobuf.Struct default_filter = 4;
     // is_required: false
-    google.protobuf.Struct tags = 6;
+    google.protobuf.Struct tags = 5;
     // is_required: true
     string domain_id = 11;
 }
@@ -72,15 +70,13 @@ message UpdateDashboardRequest {
     // is_required: false
     string name = 2;
     // is_required: false
-    Granularity granularity = 3;
+    string default_layout_id = 3;
     // is_required: false
-    string default_layout_id = 4;
+    google.protobuf.ListValue custom_layouts = 4;
     // is_required: false
-    google.protobuf.ListValue custom_layouts = 5;
+    google.protobuf.Struct default_filter = 5;
     // is_required: false
-    google.protobuf.Struct default_filter = 6;
-    // is_required: false
-    google.protobuf.Struct tags = 7;
+    google.protobuf.Struct tags = 6;
     // is_required: true
     string domain_id = 11;
 }
@@ -138,9 +134,7 @@ message DashboardQuery {
     // is_required: false
     Scope scope = 4;
     // is_required: false
-    Granularity granularity = 5;
-    // is_required: false
-    string user_id = 6;
+    string user_id = 5;
     // is_required: true
     string domain_id = 11;
 }
@@ -161,11 +155,10 @@ message DashboardInfo {
     string dashboard_id = 1;
     string name = 2;
     Scope scope = 3;
-    Granularity granularity = 4;
-    string default_layout_id = 5;
-    google.protobuf.ListValue custom_layouts = 6;
-    google.protobuf.Struct default_filter = 7;
-    google.protobuf.Struct tags = 8;
+    string default_layout_id = 4;
+    google.protobuf.ListValue custom_layouts = 5;
+    google.protobuf.Struct default_filter = 6;
+    google.protobuf.Struct tags = 7;
     string user_id = 11;
     string domain_id = 12;
     string created_at = 21;
