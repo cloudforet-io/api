@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package spaceone.api.cost_analysis.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service BudgetUsage {
+    rpc get (GetBudgetUsageRequest) returns (BudgetUsageInfo) {
+        option (google.api.http) = { get: "/cost-analysis/v1/budget/{budget_id}/usage" };
+    }
+    rpc list (BudgetUsageQuery) returns (BudgetUsagesInfo) {
+        option (google.api.http) = {
+            get: "/cost-analysis/v1/budget-usages"
+            additional_bindings {
+                post: "/cost-analysis/v1/budget-usages/search"
+            }
+        };
+    }
+    rpc stat (BudgetUsageStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/cost-analysis/v2/budget-usages/stat" };
+    }
+}
+
+message GetBudgetUsageRequest {
+    // is_required: true
+    string budget_id = 1;
+    // is_required: true
+    string date = 2;
+    // is_required: true
+    string domain_id = 3;
+    // is_required: false
+    repeated string only = 4;
+}
+
+message BudgetUsageQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string budget_id = 2;
+    // is_required: false
+    string date = 3;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message BudgetUsageInfo {
+    string budget_id_ = 1;
+    string date = 2;
+    float usd_cost = 3;
+    float limit = 4;
+    string domain_id = 11;
+    string updated_at = 21;
+}
+
+message BudgetUsagesInfo {
+    repeated BudgetUsageInfo results = 1;
+    int32 total_count = 2;
+}
+
+message BudgetUsageStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
