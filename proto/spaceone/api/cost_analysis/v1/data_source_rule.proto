@@ -10,30 +10,30 @@ import "spaceone/api/core/v1/query.proto";
 
 service DataSourceRule {
     rpc create (CreateDataSourceRuleRequest) returns (DataSourceRuleInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v2/data_source_rules" };
+        option (google.api.http) = { post: "/cost-analysis/v1/data_source_rules" };
     }
     rpc update (UpdateDataSourceRuleRequest) returns (DataSourceRuleInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v2/data_source_rule/{data_source_rule_id}" };
+        option (google.api.http) = { put: "/cost-analysis/v1/data_source_rule/{data_source_rule_id}" };
     }
     rpc change_order (ChangeDataSourceRuleOrderRequest) returns (DataSourceRuleInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v2/data_source_rule/{data_source_rule_id}/order" };
+        option (google.api.http) = { put: "/cost-analysis/v1/data_source_rule/{data_source_rule_id}/order" };
     }
     rpc delete (DataSourceRuleRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v2/data_source_rule/{data_source_rule_id}" };
+        option (google.api.http) = { delete: "/cost-analysis/v1/data_source_rule/{data_source_rule_id}" };
     }
     rpc get (GetDataSourceRuleRequest) returns (DataSourceRuleInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v2/data_source_rule/{data_source_rule_id}" };
+        option (google.api.http) = { get: "/cost-analysis/v1/data_source_rule/{data_source_rule_id}" };
     }
     rpc list (DataSourceRuleQuery) returns (DataSourceRulesInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v2/data_source_rules"
+            get: "/cost-analysis/v1/data_source_rules"
             additional_bindings {
-                post: "/cost-analysis/v2/data_source_rules/search"
+                post: "/cost-analysis/v1/data_source_rules/search"
             }
         };
     }
     rpc stat (DataSourceRuleStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v2/data_source_rules/stat" };
+        option (google.api.http) = { post: "/cost-analysis/v1/data_source_rules/stat" };
     }
 }
 

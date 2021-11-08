@@ -10,30 +10,30 @@ import "spaceone/api/core/v1/query.proto";
 
 service Dashboard {
     rpc create (CreateDashboardRequest) returns (DashboardInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v2/dashboards" };
+        option (google.api.http) = { post: "/cost-analysis/v1/dashboards" };
     }
     rpc update (UpdateDashboardRequest) returns (DashboardInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v2/dashboard/{dashboard_id}" };
+        option (google.api.http) = { put: "/cost-analysis/v1/dashboard/{dashboard_id}" };
     }
     rpc change_scope (ChangeDashboardScopeRequest) returns (DashboardInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v2/dashboard/{dashboard_id}/scope" };
+        option (google.api.http) = { put: "/cost-analysis/v1/dashboard/{dashboard_id}/scope" };
     }
     rpc delete (DashboardRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v2/dashboard/{dashboard_id}" };
+        option (google.api.http) = { delete: "/cost-analysis/v1/dashboard/{dashboard_id}" };
     }
     rpc get (GetDashboardRequest) returns (DashboardInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v2/dashboard/{dashboard_id}" };
+        option (google.api.http) = { get: "/cost-analysis/v1/dashboard/{dashboard_id}" };
     }
     rpc list (DashboardQuery) returns (DashboardsInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v2/dashboards"
+            get: "/cost-analysis/v1/dashboards"
             additional_bindings {
-                post: "/cost-analysis/v2/dashboards/search"
+                post: "/cost-analysis/v1/dashboards/search"
             }
         };
     }
     rpc stat (DashboardStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v2/dashboards/stat" };
+        option (google.api.http) = { post: "/cost-analysis/v1/dashboards/stat" };
     }
 }
 
@@ -46,16 +46,14 @@ message CreateDashboardRequest {
 
     // is_required: true
     string name = 1;
-    // is_required: true
-    Granularity granularity = 2;
     // is_required: false
-    string default_layout_id = 3;
+    string default_layout_id = 2;
     // is_required: false
-    google.protobuf.ListValue custom_layouts = 4;
+    google.protobuf.ListValue custom_layouts = 3;
     // is_required: false
-    google.protobuf.Struct default_filter = 5;
+    google.protobuf.Struct default_filter = 4;
     // is_required: false
-    google.protobuf.Struct tags = 6;
+    google.protobuf.Struct tags = 5;
     // is_required: true
     string domain_id = 11;
 }
@@ -72,15 +70,13 @@ message UpdateDashboardRequest {
     // is_required: false
     string name = 2;
     // is_required: false
-    Granularity granularity = 3;
+    string default_layout_id = 3;
     // is_required: false
-    string default_layout_id = 4;
+    google.protobuf.ListValue custom_layouts = 4;
     // is_required: false
-    google.protobuf.ListValue custom_layouts = 5;
+    google.protobuf.Struct default_filter = 5;
     // is_required: false
-    google.protobuf.Struct default_filter = 6;
-    // is_required: false
-    google.protobuf.Struct tags = 7;
+    google.protobuf.Struct tags = 6;
     // is_required: true
     string domain_id = 11;
 }
@@ -138,9 +134,7 @@ message DashboardQuery {
     // is_required: false
     Scope scope = 4;
     // is_required: false
-    Granularity granularity = 5;
-    // is_required: false
-    string user_id = 6;
+    string user_id = 5;
     // is_required: true
     string domain_id = 11;
 }
@@ -161,11 +155,10 @@ message DashboardInfo {
     string dashboard_id = 1;
     string name = 2;
     Scope scope = 3;
-    Granularity granularity = 4;
-    string default_layout_id = 5;
-    google.protobuf.ListValue custom_layouts = 6;
-    google.protobuf.Struct default_filter = 7;
-    google.protobuf.Struct tags = 8;
+    string default_layout_id = 4;
+    google.protobuf.ListValue custom_layouts = 5;
+    google.protobuf.Struct default_filter = 6;
+    google.protobuf.Struct tags = 7;
     string user_id = 11;
     string domain_id = 12;
     string created_at = 21;
