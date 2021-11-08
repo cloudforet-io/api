@@ -10,30 +10,30 @@ import "spaceone/api/core/v1/query.proto";
 
 service Dashboard {
     rpc create (CreateDashboardRequest) returns (DashboardInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v2/dashboards" };
+        option (google.api.http) = { post: "/cost-analysis/v1/dashboards" };
     }
     rpc update (UpdateDashboardRequest) returns (DashboardInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v2/dashboard/{dashboard_id}" };
+        option (google.api.http) = { put: "/cost-analysis/v1/dashboard/{dashboard_id}" };
     }
     rpc change_scope (ChangeDashboardScopeRequest) returns (DashboardInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v2/dashboard/{dashboard_id}/scope" };
+        option (google.api.http) = { put: "/cost-analysis/v1/dashboard/{dashboard_id}/scope" };
     }
     rpc delete (DashboardRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v2/dashboard/{dashboard_id}" };
+        option (google.api.http) = { delete: "/cost-analysis/v1/dashboard/{dashboard_id}" };
     }
     rpc get (GetDashboardRequest) returns (DashboardInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v2/dashboard/{dashboard_id}" };
+        option (google.api.http) = { get: "/cost-analysis/v1/dashboard/{dashboard_id}" };
     }
     rpc list (DashboardQuery) returns (DashboardsInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v2/dashboards"
+            get: "/cost-analysis/v1/dashboards"
             additional_bindings {
-                post: "/cost-analysis/v2/dashboards/search"
+                post: "/cost-analysis/v1/dashboards/search"
             }
         };
     }
     rpc stat (DashboardStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v2/dashboards/stat" };
+        option (google.api.http) = { post: "/cost-analysis/v1/dashboards/stat" };
     }
 }
 

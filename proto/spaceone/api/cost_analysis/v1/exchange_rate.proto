@@ -7,19 +7,19 @@ import "google/api/annotations.proto";
 
 service ExchangeRate {
     rpc set (SetExchangeRateRequest) returns (ExchangeRateInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v2/exchange-rate/{currency}/set" };
+        option (google.api.http) = { post: "/cost-analysis/v1/exchange-rate/{currency}/set" };
     }
     rpc reset (ExchangeRateRequest) returns (ExchangeRateInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v2/exchange-rate/{currency}/reset" };
+        option (google.api.http) = { post: "/cost-analysis/v1/exchange-rate/{currency}/reset" };
     }
     rpc get (ExchangeRateRequest) returns (ExchangeRateInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v2/exchange-rate/{currency}" };
+        option (google.api.http) = { get: "/cost-analysis/v1/exchange-rate/{currency}" };
     }
     rpc list (ExchangeRateQuery) returns (ExchangeRateInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v2/exchange-rates"
+            get: "/cost-analysis/v1/exchange-rates"
             additional_bindings {
-                post: "/cost-analysis/v2/exchange-rates/search"
+                post: "/cost-analysis/v1/exchange-rates/search"
             }
         };
     }

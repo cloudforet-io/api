@@ -10,41 +10,36 @@ import "spaceone/api/core/v1/query.proto";
 
 service Budget {
     rpc create (CreateBudgetRequest) returns (BudgetInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v2/budgets" };
+        option (google.api.http) = { post: "/cost-analysis/v1/budgets" };
     }
     rpc update (UpdateBudgetRequest) returns (BudgetInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v2/budget/{budget_id}" };
+        option (google.api.http) = { put: "/cost-analysis/v1/budget/{budget_id}" };
     }
     rpc set_notification (SetBudgetNotificationRequest) returns (BudgetInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v2/budget/{budget_id}/notification" };
+        option (google.api.http) = { put: "/cost-analysis/v1/budget/{budget_id}/notification" };
     }
     rpc delete (BudgetRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v2/budget/{budget_id}" };
+        option (google.api.http) = { delete: "/cost-analysis/v1/budget/{budget_id}" };
     }
     rpc get (GetBudgetRequest) returns (BudgetInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v2/budget/{budget_id}" };
+        option (google.api.http) = { get: "/cost-analysis/v1/budget/{budget_id}" };
     }
     rpc list (BudgetQuery) returns (BudgetsInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v2/budgets"
+            get: "/cost-analysis/v1/budgets"
             additional_bindings {
-                post: "/cost-analysis/v2/budgets/search"
+                post: "/cost-analysis/v1/budgets/search"
             }
         };
     }
     rpc stat (BudgetStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v2/budgets/stat" };
+        option (google.api.http) = { post: "/cost-analysis/v1/budgets/stat" };
     }
 }
 
 message PlannedLimit {
     string date = 1;
     float limit = 2;
-}
-
-message MonthlyBudgetCost {
-    string date = 1;
-    float usd_cost = 2;
 }
 
 message BudgetNotification {
@@ -168,8 +163,7 @@ message BudgetInfo {
     string name = 2;
     float limit = 3;
     repeated PlannedLimit planned_limits = 4;
-    float total_usd_cost = 5;
-    repeated MonthlyBudgetCost monthly_costs = 6;
+    float total_usage_usd_cost = 5;
     google.protobuf.Struct cost_types = 7;
     TimeUnit time_unit = 8;
     string start = 9;

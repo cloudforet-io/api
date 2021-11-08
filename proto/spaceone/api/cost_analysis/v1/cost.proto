@@ -10,24 +10,24 @@ import "spaceone/api/core/v1/query.proto";
 
 service Cost {
     rpc create (CreateCostRequest) returns (CostInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v2/costs" };
+        option (google.api.http) = { post: "/cost-analysis/v1/costs" };
     }
     rpc delete (CostRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v2/cost/{cost_id}" };
+        option (google.api.http) = { delete: "/cost-analysis/v1/cost/{cost_id}" };
     }
     rpc get (GetCostRequest) returns (CostInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v2/cost/{cost_id}" };
+        option (google.api.http) = { get: "/cost-analysis/v1/cost/{cost_id}" };
     }
     rpc list (CostQuery) returns (CostsInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v2/costs"
+            get: "/cost-analysis/v1/costs"
             additional_bindings {
-                post: "/cost-analysis/v2/costs/search"
+                post: "/cost-analysis/v1/costs/search"
             }
         };
     }
     rpc stat (CostStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v2/costs/stat" };
+        option (google.api.http) = { post: "/cost-analysis/v1/costs/stat" };
     }
 }
 

@@ -10,30 +10,30 @@ import "spaceone/api/core/v1/query.proto";
 
 service CostQuerySet {
     rpc create (CreateCostQuerySetRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v2/cost_query_sets" };
+        option (google.api.http) = { post: "/cost-analysis/v1/cost_query_sets" };
     }
     rpc update (UpdateCostQuerySetRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v2/cost_query_set/{cost_query_set_id}" };
+        option (google.api.http) = { put: "/cost-analysis/v1/cost_query_set/{cost_query_set_id}" };
     }
     rpc change_scope (ChangeCostQuerySetScopeRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v2/cost_query_set/{cost_query_set_id}/scope" };
+        option (google.api.http) = { put: "/cost-analysis/v1/cost_query_set/{cost_query_set_id}/scope" };
     }
     rpc delete (CostQuerySetRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v2/cost_query_set/{cost_query_set_id}" };
+        option (google.api.http) = { delete: "/cost-analysis/v1/cost_query_set/{cost_query_set_id}" };
     }
     rpc get (GetCostQuerySetRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v2/cost_query_set/{cost_query_set_id}" };
+        option (google.api.http) = { get: "/cost-analysis/v1/cost_query_set/{cost_query_set_id}" };
     }
     rpc list (CostQuerySetQuery) returns (CostQuerySetsInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v2/cost_query_sets"
+            get: "/cost-analysis/v1/cost_query_sets"
             additional_bindings {
-                post: "/cost-analysis/v2/cost_query_sets/search"
+                post: "/cost-analysis/v1/cost_query_sets/search"
             }
         };
     }
     rpc stat (CostQuerySetStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v2/cost_query_sets/stat" };
+        option (google.api.http) = { post: "/cost-analysis/v1/cost_query_sets/stat" };
     }
 }
 
