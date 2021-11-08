@@ -8,37 +8,23 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service BudgetUsage {
-    rpc get (GetBudgetUsageRequest) returns (BudgetUsageInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v1/budget/{budget_id}/usage" };
-    }
     rpc list (BudgetUsageQuery) returns (BudgetUsagesInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v1/budget-usages"
+            get: "/cost-analysis/v1/budget/{budget_id}/usage"
             additional_bindings {
-                post: "/cost-analysis/v1/budget-usages/search"
+                post: "/cost-analysis/v1/budget/{budget_id}/usage/search"
             }
         };
     }
     rpc stat (BudgetUsageStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v2/budget-usages/stat" };
+        option (google.api.http) = { post: "/cost-analysis/v1/budget/{budget_id}/usage/stat" };
     }
-}
-
-message GetBudgetUsageRequest {
-    // is_required: true
-    string budget_id = 1;
-    // is_required: true
-    string date = 2;
-    // is_required: true
-    string domain_id = 3;
-    // is_required: false
-    repeated string only = 4;
 }
 
 message BudgetUsageQuery {
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // is_required: true
     string budget_id = 2;
     // is_required: false
     string date = 3;
