@@ -74,6 +74,23 @@ message AggregateGroupSubField {
     }
 }
 
+message AggregateGroupSubCondition {
+    oneof key_alias {
+        string key = 1;
+        string k = 2;
+    }
+
+    oneof value_alias {
+        string value = 3;
+        string v = 4;
+    }
+
+    oneof operator_alias {
+        string operator = 5;
+        string o = 6;
+    }
+}
+
 message AggregateGroupField {
     oneof key_alias {
         string key = 1;
@@ -91,6 +108,12 @@ message AggregateGroupField {
     }
 
     repeated AggregateGroupSubField fields = 7;
+
+    oneof condition_alias {
+        AggregateGroupSubCondition condition = 8;
+        AggregateGroupSubCondition c = 9;
+    }
+
 }
 
 message AggregateGroup {
