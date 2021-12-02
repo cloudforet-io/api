@@ -120,13 +120,15 @@ message CloudServiceTypeQuery {
     // is_required: false
     string group = 5;
     // is_required: false
-    string service_code = 6;
+    string cloud_service_type_key = 6;
     // is_required: false
-    bool is_primary = 7;
+    string service_code = 7;
     // is_required: false
-    bool is_major = 8;
+    bool is_primary = 8;
     // is_required: false
-    string resource_type = 9;
+    bool is_major = 9;
+    // is_required: false
+    string resource_type = 10;
     // is_required: true
     string domain_id = 11;
 }
@@ -136,15 +138,15 @@ message CloudServiceTypeInfo {
     string name = 2;
     string provider = 3;
     string group = 4;
-    string service_code = 5;
-    bool is_primary = 6;
-    bool is_major = 7;
-    string resource_type = 8;
+    string cloud_service_type_key = 5;
+    string service_code = 6;
+    bool is_primary = 7;
+    bool is_major = 8;
+    string resource_type = 9;
 
     google.protobuf.Struct metadata = 11;
     google.protobuf.Struct tags = 12;
     google.protobuf.ListValue labels = 13;
-    google.protobuf.Struct collection_info = 14;
 
     string domain_id = 21;
 

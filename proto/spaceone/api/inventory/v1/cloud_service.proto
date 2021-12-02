@@ -52,6 +52,12 @@ message CreateServiceRequest {
     string cloud_service_group = 3;
     // is_required: false
     string name = 4;
+    // is_required: false
+    string account = 5;
+    // is_required: false
+    string type = 6;
+    // is_required: false
+    float size = 7;
     // is_required: true
     google.protobuf.Struct data = 11;
     // is_required: false
@@ -62,11 +68,11 @@ message CreateServiceRequest {
     google.protobuf.Struct tags = 14;
 
     // is_required: false
+    string region_code = 21;
+    // is_required: false
     string project_id = 22;
     // is_required: true
     string domain_id = 23;
-    // is_required: false
-    string region_code = 24;
 }
 
 message UpdateCloudServiceRequest {
@@ -74,6 +80,12 @@ message UpdateCloudServiceRequest {
     string cloud_service_id = 1;
     // is_required: false
     string name = 2;
+    // is_required: false
+    string account = 3;
+    // is_required: false
+    string type = 4;
+    // is_required: false
+    float size = 5;
     // is_required: false
     google.protobuf.Struct data = 11;
     // is_required: false
@@ -126,18 +138,21 @@ message CloudServiceQuery {
     // is_required: false
     string cloud_service_id = 2;
     // is_required: false
-    string cloud_service_type = 3;
+    string name = 3;
     // is_required: false
-    string cloud_service_group = 4;
+    string state = 4;
     // is_required: false
-    string provider = 5;
+    string account = 5;
     // is_required: false
-    string state = 6;
+    string type = 6;
     // is_required: false
-    string region_code = 7;
+    string cloud_service_type = 7;
     // is_required: false
-    string name = 8;
-
+    string cloud_service_group = 8;
+    // is_required: false
+    string provider = 9;
+    // is_required: false
+    string region_code = 10;
     // is_required: false
     string resource_group_id = 21;
     // is_required: false
@@ -148,11 +163,14 @@ message CloudServiceQuery {
 
 message CloudServiceInfo {
     string cloud_service_id = 1;
-    string cloud_service_type = 2;
-    string provider = 3;
-    string cloud_service_group = 4;
-    string state = 5;
-    string name = 6;
+    string name = 2;
+    string state = 3;
+    string account = 4;
+    string type = 5;
+    float size = 6;
+    string cloud_service_type = 7;
+    string cloud_service_group = 8;
+    string provider = 9;
 
     google.protobuf.Struct data = 11;
     google.protobuf.Struct metadata = 12;
@@ -160,13 +178,14 @@ message CloudServiceInfo {
     google.protobuf.Struct tags = 14;
     google.protobuf.Struct collection_info = 15;
 
+    string region_code = 21;
     string project_id = 22;
     string domain_id = 23;
-    string region_code = 24;
 
     string created_at = 31;
     string updated_at = 32;
     string deleted_at = 33;
+    string launched_at = 34;
 }
 
 message CloudServicesInfo {
