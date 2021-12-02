@@ -15,9 +15,6 @@ service CloudServiceType {
     rpc update (UpdateCloudServiceTypeRequest) returns (CloudServiceTypeInfo) {
         option (google.api.http) = { put: "/inventory/v1/cloud-service-type/{cloud_service_type_id}" };
     }
-    rpc pin_data (PinCloudServiceTypeDataRequest) returns (CloudServiceTypeInfo) {
-        option (google.api.http) = { put: "/inventory/v1/cloud-service-type/{cloud_service_type_id}/pin-data" };
-    }
     rpc delete (CloudServiceTypeRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/inventory/v1/cloud-service-type/{cloud_service_type_id}" };
     }
@@ -81,15 +78,6 @@ message UpdateCloudServiceTypeRequest {
     google.protobuf.Struct tags = 13;
     // is_required: true
     string domain_id = 21;
-}
-
-message PinCloudServiceTypeDataRequest {
-    // is_required: true
-    string cloud_service_type_id = 1;
-    // is_required: true
-    repeated string keys = 2;
-    // is_required: true
-    string domain_id = 3;
 }
 
 message CloudServiceTypeRequest {
