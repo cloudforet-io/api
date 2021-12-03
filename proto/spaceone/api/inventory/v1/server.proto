@@ -37,23 +37,6 @@ service Server {
     }
 }
 
-enum ServerState {
-    STATE_NONE = 0;
-    PENDING = 1;
-    INSERVICE = 2;
-    MAINTENANCE = 3;
-    CLOSED = 4;
-    DELETED = 5;
-}
-
-enum ServerType {
-    SERVER_TYPE_NONE = 0;
-    BAREMETAL = 1;
-    VM = 2;
-    HYPERVISOR = 3;
-    UNKNOWN = 4;
-}
-
 enum ServerOSType {
     OS_TYPE_NONE = 0;
     LINUX = 1;
@@ -101,22 +84,24 @@ message CreateServerRequest {
     // is_required: false
     string name = 1;
     // is_required: false
-    ServerState state = 2;
-    // is_required: false
-    string primary_ip_address = 3;
-    // is_required: false
-    ServerType server_type = 4;
+    string primary_ip_address = 2;
     // is_required: true
-    ServerOSType os_type = 5;
+    ServerOSType os_type = 3;
+    // is_required: false
+    string account = 4;
+    // is_required: false
+    string type = 5;
+    // is_required: false
+    float size = 6;
 
     // is_required: false
-    string provider = 6;
+    string provider = 7;
     // is_required: false
-    string cloud_service_group = 7;
+    string cloud_service_group = 8;
     // is_required: false
-    string cloud_service_type = 8;
+    string cloud_service_type = 9;
     // is_required: false
-    string region_code = 9;
+    string region_code = 10;
 
     // is_required: false
     google.protobuf.Struct data = 21;
@@ -138,26 +123,27 @@ message CreateServerRequest {
 
 message UpdateServerRequest {
     // is_required: true
-    // desc: server unique id
     string server_id = 1;
     // is_required: false
     string name = 2;
     // is_required: false
-    ServerState state = 3;
+    string primary_ip_address = 3;
     // is_required: false
-    string primary_ip_address = 4;
+    ServerOSType os_type = 4;
     // is_required: false
-    ServerType server_type = 5;
+    string account = 5;
     // is_required: false
-    ServerOSType os_type = 6;
+    string type = 6;
     // is_required: false
-    string provider = 7;
+    float size = 7;
     // is_required: false
-    string cloud_service_group = 8;
+    string provider = 8;
     // is_required: false
-    string cloud_service_type = 9;
+    string cloud_service_group = 9;
     // is_required: false
-    string region_code = 10;
+    string cloud_service_type = 10;
+    // is_required: false
+    string region_code = 11;
     // is_required: false
     google.protobuf.Struct data = 21;
     // is_required: false
@@ -220,18 +206,21 @@ message ServerQuery {
     // is_required: false
     string ip_addresses = 6;
     // is_required: false
-    ServerType server_type = 7;
+    ServerOSType os_type = 7;
     // is_required: false
-    ServerOSType os_type = 8;
+    string account = 8;
+    // is_required: false
+    string type = 9;
+    // is_required: false
 
     // is_required: false
-    string provider = 9;
+    string provider = 10;
     // is_required: false
-    string cloud_service_group = 10;
+    string cloud_service_group = 11;
     // is_required: false
-    string cloud_service_type = 11;
+    string cloud_service_type = 12;
     // is_required: false
-    string region_code = 12;
+    string region_code = 13;
 
     // is_required: false
     string resource_group_id = 21;
@@ -244,16 +233,18 @@ message ServerQuery {
 message ServerInfo {
     string server_id = 1;
     string name = 2;
-    ServerState state = 3;
+    string state = 3;
     string primary_ip_address = 4;
-    google.protobuf.ListValue ip_addresses = 5;
-    ServerType server_type = 6;
-    ServerOSType os_type = 7;
+    repeated string ip_addresses = 5;
+    ServerOSType os_type = 6;
+    string account = 7;
+    string type = 8;
+    float size = 9;
 
-    string provider = 8;
-    string cloud_service_group= 9;
-    string cloud_service_type = 10;
-    string region_code = 11;
+    string provider = 10;
+    string cloud_service_group= 11;
+    string cloud_service_type = 12;
+    string region_code = 13;
 
     google.protobuf.Struct data = 21;
     google.protobuf.Struct metadata = 22;
@@ -270,6 +261,7 @@ message ServerInfo {
     string created_at = 41;
     string updated_at = 42;
     string deleted_at = 43;
+    string launched_at = 44;
 }
 
 message ServersInfo {

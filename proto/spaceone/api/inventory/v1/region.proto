@@ -37,15 +37,14 @@ service Region {
 message CreateRegionRequest {
     // is_required: true
     string name = 1;
-    // is_required: false
-    google.protobuf.Struct tags = 2;
     // is_required: true
-    string domain_id = 3;
-
-    // is_required: true
-    string region_code = 4;
+    string region_code = 2;
     // is_required: false
-    string provider = 5;
+    string provider = 3;
+    // is_required: false
+    google.protobuf.Struct tags = 4;
+    // is_required: true
+    string domain_id = 5;
 }
 
 message UpdateRegionRequest {
@@ -82,26 +81,26 @@ message RegionQuery {
     string region_id = 2;
     // is_required: false
     string name = 3;
-    // is_required: true
-    string domain_id = 4;
-
+    // is_required: false
+    string region_key = 4;
     // is_required: false
     string region_code = 5;
     // is_required: false
     string provider = 6;
+    // is_required: true
+    string domain_id = 7;
 }
 
 message RegionInfo {
     string region_id = 1;
     string name = 2;
-    google.protobuf.Struct tags = 3;
-    string domain_id = 4;
-    string created_at = 5;
-    string updated_at = 6;
-
-    string region_code = 8;
-    string provider = 9;
-    google.protobuf.Struct collection_info = 10;
+    string region_key = 3;
+    string region_code = 4;
+    string provider = 5;
+    google.protobuf.Struct tags = 6;
+    string domain_id = 7;
+    string created_at = 8;
+    string updated_at = 9;
 }
 
 message RegionsInfo {
