@@ -92,8 +92,7 @@ message CreateServerRequest {
     // is_required: false
     string instance_type = 5;
     // is_required: false
-    float size = 6;
-
+    string launched_at = 6;
     // is_required: false
     string provider = 7;
     // is_required: false
@@ -102,8 +101,6 @@ message CreateServerRequest {
     string cloud_service_type = 9;
     // is_required: false
     string region_code = 10;
-    // is_required: false
-    string launched_at = 11;
 
     // is_required: false
     google.protobuf.Struct data = 21;
@@ -137,7 +134,7 @@ message UpdateServerRequest {
     // is_required: false
     string instance_type = 6;
     // is_required: false
-    float size = 7;
+    string launched_at = 7;
     // is_required: false
     string provider = 8;
     // is_required: false
@@ -146,8 +143,7 @@ message UpdateServerRequest {
     string cloud_service_type = 10;
     // is_required: false
     string region_code = 11;
-    // is_required: false
-    string launched_at = 12;
+
     // is_required: false
     google.protobuf.Struct data = 21;
     // is_required: false
@@ -243,12 +239,10 @@ message ServerInfo {
     ServerOSType os_type = 6;
     string account = 7;
     string instance_type = 8;
-    float size = 9;
-
-    string provider = 10;
-    string cloud_service_group= 11;
-    string cloud_service_type = 12;
-    string region_code = 13;
+    string provider = 9;
+    string cloud_service_group= 10;
+    string cloud_service_type = 11;
+    string region_code = 12;
 
     google.protobuf.Struct data = 21;
     google.protobuf.Struct metadata = 22;
@@ -257,7 +251,6 @@ message ServerInfo {
     ServerReference reference = 25;
     google.protobuf.Struct tags = 26;
     google.protobuf.Struct collection_info = 27;
-
 
     string project_id = 31;
     string domain_id = 32;
