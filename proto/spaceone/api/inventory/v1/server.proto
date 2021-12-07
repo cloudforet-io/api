@@ -90,7 +90,7 @@ message CreateServerRequest {
     // is_required: false
     string account = 4;
     // is_required: false
-    string type = 5;
+    string instance_type = 5;
     // is_required: false
     float size = 6;
 
@@ -102,6 +102,8 @@ message CreateServerRequest {
     string cloud_service_type = 9;
     // is_required: false
     string region_code = 10;
+    // is_required: false
+    string launched_at = 11;
 
     // is_required: false
     google.protobuf.Struct data = 21;
@@ -133,7 +135,7 @@ message UpdateServerRequest {
     // is_required: false
     string account = 5;
     // is_required: false
-    string type = 6;
+    string instance_type = 6;
     // is_required: false
     float size = 7;
     // is_required: false
@@ -144,6 +146,8 @@ message UpdateServerRequest {
     string cloud_service_type = 10;
     // is_required: false
     string region_code = 11;
+    // is_required: false
+    string launched_at = 12;
     // is_required: false
     google.protobuf.Struct data = 21;
     // is_required: false
@@ -210,7 +214,7 @@ message ServerQuery {
     // is_required: false
     string account = 8;
     // is_required: false
-    string type = 9;
+    string instance_type = 9;
     // is_required: false
 
     // is_required: false
@@ -238,7 +242,7 @@ message ServerInfo {
     repeated string ip_addresses = 5;
     ServerOSType os_type = 6;
     string account = 7;
-    string type = 8;
+    string instance_type = 8;
     float size = 9;
 
     string provider = 10;
