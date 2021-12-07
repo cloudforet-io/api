@@ -55,9 +55,11 @@ message CreateServiceRequest {
     // is_required: false
     string account = 5;
     // is_required: false
-    string type = 6;
+    string instance_type = 6;
     // is_required: false
     float size = 7;
+    // is_required: false
+    string launched_at = 8;
     // is_required: true
     google.protobuf.Struct data = 11;
     // is_required: false
@@ -83,9 +85,11 @@ message UpdateCloudServiceRequest {
     // is_required: false
     string account = 3;
     // is_required: false
-    string type = 4;
+    string instance_type = 4;
     // is_required: false
     float size = 5;
+    // is_required: false
+    string launched_at = 6;
     // is_required: false
     google.protobuf.Struct data = 11;
     // is_required: false
@@ -144,7 +148,7 @@ message CloudServiceQuery {
     // is_required: false
     string account = 5;
     // is_required: false
-    string type = 6;
+    string instance_type = 6;
     // is_required: false
     string cloud_service_type = 7;
     // is_required: false
@@ -166,7 +170,7 @@ message CloudServiceInfo {
     string name = 2;
     string state = 3;
     string account = 4;
-    string type = 5;
+    string instance_type = 5;
     float size = 6;
     string cloud_service_type = 7;
     string cloud_service_group = 8;
