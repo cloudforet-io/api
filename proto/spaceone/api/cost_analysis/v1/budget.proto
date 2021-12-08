@@ -137,6 +137,13 @@ message GetBudgetRequest {
 }
 
 message BudgetQuery {
+    enum TimeUnit {
+        NONE = 0;
+        TOTAL = 1;
+        MONTHLY = 2;
+        YEARLY = 3;
+    }
+
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
@@ -147,6 +154,8 @@ message BudgetQuery {
     string project_id = 4;
     // is_required: false
     string project_group_id = 5;
+    // is_required: false
+    TimeUnit time_unit = 6;
     // is_required: true
     string domain_id = 11;
 }
@@ -164,11 +173,11 @@ message BudgetInfo {
     float limit = 3;
     repeated PlannedLimit planned_limits = 4;
     float total_usage_usd_cost = 5;
-    google.protobuf.Struct cost_types = 7;
-    TimeUnit time_unit = 8;
-    string start = 9;
-    string end = 10;
-    repeated BudgetNotification notifications = 11;
+    google.protobuf.Struct cost_types = 6;
+    TimeUnit time_unit = 7;
+    string start = 8;
+    string end = 9;
+    repeated BudgetNotification notifications = 10;
     google.protobuf.Struct tags = 21;
     string project_id = 31;
     string project_group_id = 32;
