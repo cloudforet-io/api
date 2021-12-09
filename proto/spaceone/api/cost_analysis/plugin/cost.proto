@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package spaceone.api.cost_analysis.job;
+import "google/protobuf/struct.proto";
+
+
+service Cost {
+    rpc get_data (GetDataRequest) returns (CostsInfo) {}
+}
+
+message GetDataRequest {
+    // is_required: true
+    google.protobuf.Struct options = 1;
+    // is_required: true
+    google.protobuf.Struct secret_data = 2;
+    // is_required: false
+    string schema = 3;
+    // is_required: true
+    string start = 4;
+    // is_required: true
+    string end = 5;
+    // is_required: false
+    google.protobuf.Struct task_options = 6;
+}
+
+message CostInfo {
+    string cost_key = 1;
+    float cost = 2;
+    string currency = 3;
+    float usage_quantity = 4;
+    string provider = 5;
+    string region_code = 6;
+    string product = 7;
+    string account = 8;
+    string resource_type = 9;
+    string resource_group = 10;
+    string resource = 11;
+    google.protobuf.Struct tags = 12;
+    google.protobuf.Struct additional_info = 13;
+    string billed_at = 14;
+}
+
+message CostsInfo {
+    repeated CostInfo results = 1;
+}
