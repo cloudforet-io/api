@@ -15,9 +15,6 @@ service CostQuerySet {
     rpc update (UpdateCostQuerySetRequest) returns (CostQuerySetInfo) {
         option (google.api.http) = { put: "/cost-analysis/v1/cost_query_set/{cost_query_set_id}" };
     }
-    rpc change_scope (ChangeCostQuerySetScopeRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v1/cost_query_set/{cost_query_set_id}/scope" };
-    }
     rpc delete (CostQuerySetRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/cost-analysis/v1/cost_query_set/{cost_query_set_id}" };
     }
@@ -46,6 +43,8 @@ message CreateCostQuerySetRequest {
     google.protobuf.Struct tags = 4;
     // is_required: true
     string domain_id = 11;
+    // is_required: false
+    string user_id = 12;
 }
 
 message UpdateCostQuerySetRequest {
@@ -59,21 +58,6 @@ message UpdateCostQuerySetRequest {
     google.protobuf.Struct tags = 4;
     // is_required: true
     string domain_id = 11;
-}
-
-message ChangeCostQuerySetScopeRequest {
-    enum Scope {
-        NONE = 0;
-        PUBLIC = 1;
-        PRIVATE = 2;
-    }
-
-    // is_required: true
-    string cost_query_set_id = 1;
-    // is_required: true
-    Scope scope = 2;
-    // is_required: true
-    string domain_id = 3;
 }
 
 message CostQuerySetRequest {
