@@ -15,9 +15,6 @@ service Dashboard {
     rpc update (UpdateDashboardRequest) returns (DashboardInfo) {
         option (google.api.http) = { put: "/cost-analysis/v1/dashboard/{dashboard_id}" };
     }
-    rpc change_scope (ChangeDashboardScopeRequest) returns (DashboardInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v1/dashboard/{dashboard_id}/scope" };
-    }
     rpc delete (DashboardRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/cost-analysis/v1/dashboard/{dashboard_id}" };
     }
@@ -37,11 +34,17 @@ service Dashboard {
     }
 }
 
+
+message DashboardPeriod {
+    string start = 1;
+    string end = 2;
+}
+
 message CreateDashboardRequest {
-    enum Granularity {
+    enum PeriodType {
         NONE = 0;
-        MONTHLY = 1;
-        YEARLY = 2;
+        AUTO = 1;
+        FIXED = 2;
     }
 
     // is_required: true
@@ -53,16 +56,22 @@ message CreateDashboardRequest {
     // is_required: false
     google.protobuf.Struct default_filter = 4;
     // is_required: false
-    google.protobuf.Struct tags = 5;
+    PeriodType period_type = 5;
+    // is_required: false
+    DashboardPeriod period = 6;
+    // is_required: false
+    google.protobuf.Struct tags = 7;
     // is_required: true
     string domain_id = 11;
+    // is_required: false
+    string user_id = 12;
 }
 
 message UpdateDashboardRequest {
-    enum Granularity {
+    enum PeriodType {
         NONE = 0;
-        MONTHLY = 1;
-        YEARLY = 2;
+        AUTO = 1;
+        FIXED = 2;
     }
 
     // is_required: true
@@ -76,24 +85,13 @@ message UpdateDashboardRequest {
     // is_required: false
     google.protobuf.Struct default_filter = 5;
     // is_required: false
-    google.protobuf.Struct tags = 6;
+    PeriodType period_type = 6;
+    // is_required: false
+    DashboardPeriod period = 7;
+    // is_required: false
+    google.protobuf.Struct tags = 8;
     // is_required: true
     string domain_id = 11;
-}
-
-message ChangeDashboardScopeRequest {
-    enum Scope {
-        NONE = 0;
-        PUBLIC = 1;
-        PRIVATE = 2;
-    }
-
-    // is_required: true
-    string dashboard_id = 1;
-    // is_required: true
-    Scope scope = 2;
-    // is_required: true
-    string domain_id = 3;
 }
 
 message DashboardRequest {
@@ -119,10 +117,10 @@ message DashboardQuery {
         PRIVATE = 2;
     }
 
-    enum Granularity {
+    enum PeriodType {
         NONE = 0;
-        MONTHLY = 1;
-        YEARLY = 2;
+        AUTO = 1;
+        FIXED = 2;
     }
 
     // is_required: false
@@ -134,7 +132,9 @@ message DashboardQuery {
     // is_required: false
     Scope scope = 4;
     // is_required: false
-    string user_id = 5;
+    PeriodType period_type = 5;
+    // is_required: false
+    string user_id = 6;
     // is_required: true
     string domain_id = 11;
 }
@@ -146,10 +146,10 @@ message DashboardInfo {
         PRIVATE = 2;
     }
 
-    enum Granularity {
+    enum PeriodType {
         NONE = 0;
-        MONTHLY = 1;
-        YEARLY = 2;
+        AUTO = 1;
+        FIXED = 2;
     }
 
     string dashboard_id = 1;
@@ -158,7 +158,9 @@ message DashboardInfo {
     string default_layout_id = 4;
     google.protobuf.ListValue custom_layouts = 5;
     google.protobuf.Struct default_filter = 6;
-    google.protobuf.Struct tags = 7;
+    PeriodType period_type = 7;
+    DashboardPeriod period = 8;
+    google.protobuf.Struct tags = 9;
     string user_id = 11;
     string domain_id = 12;
     string created_at = 21;
