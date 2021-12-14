@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package spaceone.api.cost_analysis.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Job {
+    rpc cancel (JobRequest) returns (JobInfo) {
+        option (google.api.http) = { post: "/cost-analysis/v1/job/{job_id}/cancel" };
+    }
+    rpc get (GetJobRequest) returns (JobInfo) {
+        option (google.api.http) = { get: "/cost-analysis/v1/job/{job_id}" };
+    }
+    rpc list (JobQuery) returns (JobsInfo) {
+        option (google.api.http) = {
+            get: "/cost-analysis/v1/jobs"
+            additional_bindings {
+                post: "/cost-analysis/v1/jobs/search"
+            }
+        };
+    }
+    rpc stat (JobStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/cost-analysis/v1/jobs/stat" };
+    }
+}
+
+message JobRequest {
+    // is_required: true
+    string job_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetJobRequest {
+    // is_required: true
+    string job_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message JobQuery {
+    enum Status {
+        SCOPE_NONE = 0;
+        IN_PROGRESS = 1;
+        SUCCESS = 2;
+        FAILURE = 3;
+        TIMEOUT = 4;
+        CANCELED = 5;
+    }
+
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string job_id = 2;
+    // is_required: false
+    Status status = 3;
+    // is_required: false
+    string data_source_id = 11;
+    // is_required: true
+    string domain_id = 12;
+}
+
+message JobInfo {
+    enum Status {
+        SCOPE_NONE = 0;
+        IN_PROGRESS = 1;
+        SUCCESS = 2;
+        FAILURE = 3;
+        TIMEOUT = 4;
+        CANCELED = 5;
+    }
+
+    string job_id = 1;
+    Status status = 2;
+    string error_code = 3;
+    string error_message = 4;
+    int32 total_tasks = 5;
+    int32 remained_tasks = 6;
+    string data_source_id = 11;
+    string domain_id = 12;
+    string created_at = 21;
+    string updated_at = 22;
+    string finished_at = 23;
+    string last_changed_at = 24;
+}
+
+message JobsInfo {
+    repeated JobInfo results = 1;
+    int32 total_count = 2;
+}
+
+message JobStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
