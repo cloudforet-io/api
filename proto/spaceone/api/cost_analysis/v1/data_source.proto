@@ -6,6 +6,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/cost_analysis/v1/job.proto";
 
 
 service DataSource {
@@ -30,7 +31,7 @@ service DataSource {
     rpc deregister (DataSourceRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/cost-analysis/v1/data-source/{data_source_id}" };
     }
-    rpc sync (SyncDataSourceRequest) returns (google.protobuf.Empty) {
+    rpc sync (SyncDataSourceRequest) returns (spaceone.api.cost_analysis.v1.JobInfo) {
         option (google.api.http) = { post: "/cost-analysis/v1/data-source/{data_source_id}/sync" };
     }
     rpc get (GetDataSourceRequest) returns (DataSourceInfo) {
