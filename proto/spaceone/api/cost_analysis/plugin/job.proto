@@ -25,7 +25,12 @@ message TaskInfo {
     google.protobuf.Struct task_options = 1;
 }
 
+message ChangedInfo {
+    string start = 1;
+    string end = 2;
+}
+
 message TasksInfo {
     repeated TaskInfo tasks = 1;
-    string last_changed_at = 2;
+    repeated ChangedInfo changed = 2;
 }
