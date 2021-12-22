@@ -66,6 +66,11 @@ message JobQuery {
     string domain_id = 12;
 }
 
+message ChangedInfo {
+    string start = 1;
+    string end = 2;
+}
+
 message JobInfo {
     enum Status {
         SCOPE_NONE = 0;
@@ -87,7 +92,7 @@ message JobInfo {
     string created_at = 21;
     string updated_at = 22;
     string finished_at = 23;
-    string last_changed_at = 24;
+    repeated ChangedInfo changed = 24;
 }
 
 message JobsInfo {
