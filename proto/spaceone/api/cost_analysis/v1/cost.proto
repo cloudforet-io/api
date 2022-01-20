@@ -45,15 +45,17 @@ message CreateCostRequest {
     // is_required: false
     string region_code = 6;
     // is_required: false
-    string product = 7;
+    string category = 7;
     // is_required: false
-    string account = 8;
+    string product = 8;
     // is_required: false
-    string usage_type = 9;
+    string account = 9;
     // is_required: false
-    string resource_group = 10;
+    string usage_type = 10;
     // is_required: false
-    string resource = 11;
+    string resource_group = 11;
+    // is_required: false
+    string resource = 12;
     // is_required: false
     google.protobuf.Struct tags = 21;
     // is_required: false
@@ -68,8 +70,6 @@ message CreateCostRequest {
     string domain_id = 34;
     // is_required: false
     string billed_at = 41;
-    // is_required: false
-    string created_at = 42;
 }
 
 message CostRequest {
@@ -94,15 +94,15 @@ message CostQuery {
     // is_required: false
     string cost_id = 2;
     // is_required: false
-    string cost_key = 3;
+    string original_currency = 3;
     // is_required: false
-    string original_currency = 4;
+    string provider = 4;
     // is_required: false
-    string provider = 5;
+    string region_code = 5;
     // is_required: false
-    string region_code = 6;
+    string region_key = 6;
     // is_required: false
-    string region_key = 7;
+    string category = 7;
     // is_required: false
     string product = 8;
     // is_required: false
@@ -129,14 +129,14 @@ message CostQuery {
 
 message CostInfo {
     string cost_id = 1;
-    string cost_key = 2;
-    float usd_cost = 3;
-    string original_currency = 4;
-    float original_cost = 5;
-    float usage_quantity = 6;
-    string provider = 7;
-    string region_code = 8;
-    string region_key = 9;
+    float usd_cost = 2;
+    string original_currency = 3;
+    float original_cost = 4;
+    float usage_quantity = 5;
+    string provider = 6;
+    string region_code = 7;
+    string region_key = 8;
+    string category = 9;
     string product = 10;
     string account = 11;
     string usage_type = 12;
