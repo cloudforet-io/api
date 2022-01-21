@@ -26,6 +26,9 @@ service Cost {
             }
         };
     }
+    rpc analyze (CostAnalyzeQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/cost-analysis/v1/costs/analyze" };
+    }
     rpc stat (CostStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = { post: "/cost-analysis/v1/costs/stat" };
     }
@@ -114,10 +117,6 @@ message CostQuery {
     // is_required: false
     string resource = 12;
     // is_required: false
-    string start = 13;
-    // is_required: false
-    string end = 14;
-    // is_required: false
     string service_account_id = 21;
     // is_required: false
     string project_id = 22;
@@ -157,13 +156,43 @@ message CostsInfo {
     int32 total_count = 2;
 }
 
+message CostAnalyzeQuery {
+    enum Granularity {
+        UNIT_NONE = 0;
+        ACCUMULATED = 1;
+        DAILY = 2;
+        MONTHLY = 3;
+        YEARLY = 4;
+    }
+
+    // is_required: true
+    Granularity granularity = 1;
+    // is_required: true
+    string start = 2;
+    // is_required: true
+    string end = 3;
+    // is_required: false
+    repeated string group_by = 4;
+    // is_required: false
+    google.protobuf.ListValue filter = 5;
+    // is_required: false
+    int32 limit = 6;
+    // is_required: false
+    spaceone.api.core.v1.Page page = 7;
+    // is_required: false
+    spaceone.api.core.v1.Sort sort = 8;
+    // is_required: false
+    bool include_usage_quantity = 9;
+    // is_required: false
+    bool include_others = 10;
+    // is_required: true
+    string domain_id = 11;
+
+}
+
 message CostStatQuery {
     // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true
     string domain_id = 2;
-    // is_required: false
-    string start = 3;
-    // is_required: false
-    string end = 4;
 }
