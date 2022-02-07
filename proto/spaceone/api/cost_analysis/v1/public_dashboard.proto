@@ -8,39 +8,39 @@ import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 
 
-service Dashboard {
-    rpc create (CreateDashboardRequest) returns (DashboardInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v1/dashboards" };
+service PublicDashboard {
+    rpc create (CreatePublicDashboardRequest) returns (PublicDashboardInfo) {
+        option (google.api.http) = { post: "/cost-analysis/v1/public-dashboards" };
     }
-    rpc update (UpdateDashboardRequest) returns (DashboardInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v1/dashboard/{dashboard_id}" };
+    rpc update (UpdatePublicDashboardRequest) returns (PublicDashboardInfo) {
+        option (google.api.http) = { put: "/cost-analysis/v1/public-dashboard/{public_dashboard_id}" };
     }
-    rpc delete (DashboardRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v1/dashboard/{dashboard_id}" };
+    rpc delete (PublicDashboardRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/cost-analysis/v1/public-dashboard/{public_dashboard_id}" };
     }
-    rpc get (GetDashboardRequest) returns (DashboardInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v1/dashboard/{dashboard_id}" };
+    rpc get (GetPublicDashboardRequest) returns (PublicDashboardInfo) {
+        option (google.api.http) = { get: "/cost-analysis/v1/public-dashboard/{public_dashboard_id}" };
     }
-    rpc list (DashboardQuery) returns (DashboardsInfo) {
+    rpc list (PublicDashboardQuery) returns (PublicDashboardsInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v1/dashboards"
+            get: "/cost-analysis/v1/public-dashboards"
             additional_bindings {
-                post: "/cost-analysis/v1/dashboards/search"
+                post: "/cost-analysis/v1/public-dashboards/search"
             }
         };
     }
-    rpc stat (DashboardStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/dashboards/stat" };
+    rpc stat (PublicDashboardStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/cost-analysis/v1/public-dashboards/stat" };
     }
 }
 
 
-message DashboardPeriod {
+message PublicDashboardPeriod {
     string start = 1;
     string end = 2;
 }
 
-message CreateDashboardRequest {
+message CreatePublicDashboardRequest {
     enum PeriodType {
         NONE = 0;
         AUTO = 1;
@@ -58,16 +58,14 @@ message CreateDashboardRequest {
     // is_required: false
     PeriodType period_type = 5;
     // is_required: false
-    DashboardPeriod period = 6;
+    PublicDashboardPeriod period = 6;
     // is_required: false
     google.protobuf.Struct tags = 7;
     // is_required: true
     string domain_id = 11;
-    // is_required: false
-    string user_id = 12;
 }
 
-message UpdateDashboardRequest {
+message UpdatePublicDashboardRequest {
     enum PeriodType {
         NONE = 0;
         AUTO = 1;
@@ -75,7 +73,7 @@ message UpdateDashboardRequest {
     }
 
     // is_required: true
-    string dashboard_id = 1;
+    string public_dashboard_id = 1;
     // is_required: false
     string name = 2;
     // is_required: false
@@ -87,36 +85,30 @@ message UpdateDashboardRequest {
     // is_required: false
     PeriodType period_type = 6;
     // is_required: false
-    DashboardPeriod period = 7;
+    PublicDashboardPeriod period = 7;
     // is_required: false
     google.protobuf.Struct tags = 8;
     // is_required: true
     string domain_id = 11;
 }
 
-message DashboardRequest {
+message PublicDashboardRequest {
     // is_required: true
-    string dashboard_id = 1;
+    string public_dashboard_id = 1;
     // is_required: true
     string domain_id = 2;
 }
 
-message GetDashboardRequest {
+message GetPublicDashboardRequest {
     // is_required: true
-    string dashboard_id = 1;
+    string public_dashboard_id = 1;
     // is_required: true
     string domain_id = 2;
     // is_required: false
     repeated string only = 3;
 }
 
-message DashboardQuery {
-    enum Scope {
-        SCOPE_NONE = 0;
-        PUBLIC = 1;
-        PRIVATE = 2;
-    }
-
+message PublicDashboardQuery {
     enum PeriodType {
         NONE = 0;
         AUTO = 1;
@@ -126,53 +118,41 @@ message DashboardQuery {
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
-    string dashboard_id = 2;
+    string public_dashboard_id = 2;
     // is_required: false
     string name = 3;
     // is_required: false
-    Scope scope = 4;
-    // is_required: false
-    PeriodType period_type = 5;
-    // is_required: false
-    string user_id = 6;
+    PeriodType period_type = 4;
     // is_required: true
     string domain_id = 11;
 }
 
-message DashboardInfo {
-    enum Scope {
-        SCOPE_NONE = 0;
-        PUBLIC = 1;
-        PRIVATE = 2;
-    }
-
+message PublicDashboardInfo {
     enum PeriodType {
         NONE = 0;
         AUTO = 1;
         FIXED = 2;
     }
 
-    string dashboard_id = 1;
+    string public_dashboard_id = 1;
     string name = 2;
-    Scope scope = 3;
-    string default_layout_id = 4;
-    google.protobuf.ListValue custom_layouts = 5;
-    google.protobuf.Struct default_filter = 6;
-    PeriodType period_type = 7;
-    DashboardPeriod period = 8;
-    google.protobuf.Struct tags = 9;
-    string user_id = 11;
-    string domain_id = 12;
+    string default_layout_id = 3;
+    google.protobuf.ListValue custom_layouts = 4;
+    google.protobuf.Struct default_filter = 5;
+    PeriodType period_type = 6;
+    PublicDashboardPeriod period = 7;
+    google.protobuf.Struct tags = 8;
+    string domain_id = 11;
     string created_at = 21;
     string updated_at = 22;
 }
 
-message DashboardsInfo {
-    repeated DashboardInfo results = 1;
+message PublicDashboardsInfo {
+    repeated PublicDashboardInfo results = 1;
     int32 total_count = 2;
 }
 
-message DashboardStatQuery {
+message PublicDashboardStatQuery {
     // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true
