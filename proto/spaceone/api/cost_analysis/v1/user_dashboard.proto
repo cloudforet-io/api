@@ -1,0 +1,163 @@
+syntax = "proto3";
+
+package spaceone.api.cost_analysis.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service UserDashboard {
+    rpc create (CreateUserDashboardRequest) returns (UserDashboardInfo) {
+        option (google.api.http) = { post: "/cost-analysis/v1/user-dashboards" };
+    }
+    rpc update (UpdateUserDashboardRequest) returns (UserDashboardInfo) {
+        option (google.api.http) = { put: "/cost-analysis/v1/user-dashboard/{user_dashboard_id}" };
+    }
+    rpc delete (UserDashboardRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/cost-analysis/v1/user-dashboard/{user_dashboard_id}" };
+    }
+    rpc get (GetUserDashboardRequest) returns (UserDashboardInfo) {
+        option (google.api.http) = { get: "/cost-analysis/v1/user-dashboard/{user_dashboard_id}" };
+    }
+    rpc list (UserDashboardQuery) returns (UserDashboardsInfo) {
+        option (google.api.http) = {
+            get: "/cost-analysis/v1/user-dashboards"
+            additional_bindings {
+                post: "/cost-analysis/v1/user-dashboards/search"
+            }
+        };
+    }
+    rpc stat (UserDashboardStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/cost-analysis/v1/user-dashboards/stat" };
+    }
+}
+
+
+message UserDashboardPeriod {
+    string start = 1;
+    string end = 2;
+}
+
+message CreateUserDashboardRequest {
+    enum PeriodType {
+        NONE = 0;
+        AUTO = 1;
+        FIXED = 2;
+    }
+
+    // is_required: true
+    string name = 1;
+    // is_required: false
+    string default_layout_id = 2;
+    // is_required: false
+    google.protobuf.ListValue custom_layouts = 3;
+    // is_required: false
+    google.protobuf.Struct default_filter = 4;
+    // is_required: false
+    PeriodType period_type = 5;
+    // is_required: false
+    UserDashboardPeriod period = 6;
+    // is_required: false
+    google.protobuf.Struct tags = 7;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message UpdateUserDashboardRequest {
+    enum PeriodType {
+        NONE = 0;
+        AUTO = 1;
+        FIXED = 2;
+    }
+
+    // is_required: true
+    string user_dashboard_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    string default_layout_id = 3;
+    // is_required: false
+    google.protobuf.ListValue custom_layouts = 4;
+    // is_required: false
+    google.protobuf.Struct default_filter = 5;
+    // is_required: false
+    PeriodType period_type = 6;
+    // is_required: false
+    UserDashboardPeriod period = 7;
+    // is_required: false
+    google.protobuf.Struct tags = 8;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message UserDashboardRequest {
+    // is_required: true
+    string user_dashboard_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetUserDashboardRequest {
+    // is_required: true
+    string user_dashboard_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message UserDashboardQuery {
+    enum PeriodType {
+        NONE = 0;
+        AUTO = 1;
+        FIXED = 2;
+    }
+
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string user_dashboard_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    PeriodType period_type = 4;
+    // is_required: false
+    string user_id = 5;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message UserDashboardInfo {
+    enum PeriodType {
+        NONE = 0;
+        AUTO = 1;
+        FIXED = 2;
+    }
+
+    string user_dashboard_id = 1;
+    string name = 2;
+    string default_layout_id = 3;
+    google.protobuf.ListValue custom_layouts = 4;
+    google.protobuf.Struct default_filter = 5;
+    PeriodType period_type = 6;
+    UserDashboardPeriod period = 7;
+    google.protobuf.Struct tags = 8;
+    string user_id = 11;
+    string domain_id = 12;
+    string created_at = 21;
+    string updated_at = 22;
+}
+
+message UserDashboardsInfo {
+    repeated UserDashboardInfo results = 1;
+    int32 total_count = 2;
+}
+
+message UserDashboardStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
