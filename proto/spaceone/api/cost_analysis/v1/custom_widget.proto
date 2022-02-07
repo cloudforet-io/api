@@ -8,33 +8,33 @@ import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 
 
-service CostQuerySet {
-    rpc create (CreateCostQuerySetRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v1/cost-query-sets" };
+service CustomWidget {
+    rpc create (CreateCustomWidgetRequest) returns (CustomWidgetInfo) {
+        option (google.api.http) = { post: "/cost-analysis/v1/custom-widgets" };
     }
-    rpc update (UpdateCostQuerySetRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v1/cost-query-set/{cost_query_set_id}" };
+    rpc update (UpdateCustomWidgetRequest) returns (CustomWidgetInfo) {
+        option (google.api.http) = { put: "/cost-analysis/v1/custom-widget/{custom_widget_id}" };
     }
-    rpc delete (CostQuerySetRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v1/cost-query-set/{cost_query_set_id}" };
+    rpc delete (CustomWidgetRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/cost-analysis/v1/custom-widget/{custom_widget_id}" };
     }
-    rpc get (GetCostQuerySetRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v1/cost-query-set/{cost_query_set_id}" };
+    rpc get (GetCustomWidgetRequest) returns (CustomWidgetInfo) {
+        option (google.api.http) = { get: "/cost-analysis/v1/custom-widget/{custom_widget_id}" };
     }
-    rpc list (CostQuerySetQuery) returns (CostQuerySetsInfo) {
+    rpc list (CustomWidgetQuery) returns (CustomWidgetsInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v1/cost-query-sets"
+            get: "/cost-analysis/v1/custom-widgets"
             additional_bindings {
-                post: "/cost-analysis/v1/cost-query-sets/search"
+                post: "/cost-analysis/v1/custom-widgets/search"
             }
         };
     }
-    rpc stat (CostQuerySetStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/cost-query-sets/stat" };
+    rpc stat (CustomWidgetStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/cost-analysis/v1/custom-widgets/stat" };
     }
 }
 
-message CreateCostQuerySetRequest {
+message CreateCustomWidgetRequest {
     // is_required: true
     string name = 1;
     // is_required: true
@@ -45,9 +45,9 @@ message CreateCostQuerySetRequest {
     string domain_id = 11;
 }
 
-message UpdateCostQuerySetRequest {
+message UpdateCustomWidgetRequest {
     // is_required: true
-    string cost_query_set_id = 1;
+    string custom_widget_id = 1;
     // is_required: false
     string name = 2;
     // is_required: false
@@ -58,27 +58,27 @@ message UpdateCostQuerySetRequest {
     string domain_id = 11;
 }
 
-message CostQuerySetRequest {
+message CustomWidgetRequest {
     // is_required: true
-    string cost_query_set_id = 1;
+    string custom_widget_id = 1;
     // is_required: true
     string domain_id = 2;
 }
 
-message GetCostQuerySetRequest {
+message GetCustomWidgetRequest {
     // is_required: true
-    string cost_query_set_id = 1;
+    string custom_widget_id = 1;
     // is_required: true
     string domain_id = 2;
     // is_required: false
     repeated string only = 3;
 }
 
-message CostQuerySetQuery {
+message CustomWidgetQuery {
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
-    string cost_query_set_id = 2;
+    string custom_widget_id = 2;
     // is_required: false
     string name = 3;
     // is_required: false
@@ -87,8 +87,8 @@ message CostQuerySetQuery {
     string domain_id = 11;
 }
 
-message CostQuerySetInfo {
-    string cost_query_set_id = 1;
+message CustomWidgetInfo {
+    string custom_widget_id = 1;
     string name = 2;
     google.protobuf.Struct options = 3;
     google.protobuf.Struct tags = 4;
@@ -98,12 +98,12 @@ message CostQuerySetInfo {
     string updated_at = 22;
 }
 
-message CostQuerySetsInfo {
-    repeated CostQuerySetInfo results = 1;
+message CustomWidgetsInfo {
+    repeated CustomWidgetInfo results = 1;
     int32 total_count = 2;
 }
 
-message CostQuerySetStatQuery {
+message CustomWidgetStatQuery {
     // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true
