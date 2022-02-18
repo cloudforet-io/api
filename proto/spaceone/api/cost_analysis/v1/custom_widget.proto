@@ -13,13 +13,13 @@ service CustomWidget {
         option (google.api.http) = { post: "/cost-analysis/v1/custom-widgets" };
     }
     rpc update (UpdateCustomWidgetRequest) returns (CustomWidgetInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v1/custom-widget/{custom_widget_id}" };
+        option (google.api.http) = { put: "/cost-analysis/v1/custom-widget/{widget_id}" };
     }
     rpc delete (CustomWidgetRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v1/custom-widget/{custom_widget_id}" };
+        option (google.api.http) = { delete: "/cost-analysis/v1/custom-widget/{widget_id}" };
     }
     rpc get (GetCustomWidgetRequest) returns (CustomWidgetInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v1/custom-widget/{custom_widget_id}" };
+        option (google.api.http) = { get: "/cost-analysis/v1/custom-widget/{widget_id}" };
     }
     rpc list (CustomWidgetQuery) returns (CustomWidgetsInfo) {
         option (google.api.http) = {
@@ -47,7 +47,7 @@ message CreateCustomWidgetRequest {
 
 message UpdateCustomWidgetRequest {
     // is_required: true
-    string custom_widget_id = 1;
+    string widget_id = 1;
     // is_required: false
     string name = 2;
     // is_required: false
@@ -60,14 +60,14 @@ message UpdateCustomWidgetRequest {
 
 message CustomWidgetRequest {
     // is_required: true
-    string custom_widget_id = 1;
+    string widget_id = 1;
     // is_required: true
     string domain_id = 2;
 }
 
 message GetCustomWidgetRequest {
     // is_required: true
-    string custom_widget_id = 1;
+    string widget_id = 1;
     // is_required: true
     string domain_id = 2;
     // is_required: false
@@ -78,7 +78,7 @@ message CustomWidgetQuery {
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
-    string custom_widget_id = 2;
+    string widget_id = 2;
     // is_required: false
     string name = 3;
     // is_required: false
@@ -88,7 +88,7 @@ message CustomWidgetQuery {
 }
 
 message CustomWidgetInfo {
-    string custom_widget_id = 1;
+    string widget_id = 1;
     string name = 2;
     google.protobuf.Struct options = 3;
     google.protobuf.Struct tags = 4;
