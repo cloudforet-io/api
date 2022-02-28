@@ -16,6 +16,10 @@ service Notification {
     rpc create (CreateNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/notification/v1/notifications" };
     }
+    // desc: Push a new Notification directly.
+    rpc push (PushNotificationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/notification/v1/notifications/push" };
+    }
     // desc: Delete the Notification.
     rpc delete (NotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/notification/v1/notification/{notification_id}" };
@@ -89,6 +93,22 @@ message CreateNotificationRequest {
     NotificationLEVEL notification_level = 7;
     // is_required: true
     // desc: The ID of domain.
+    string domain_id = 11;
+}
+`
+message PushNotificationRequest {
+    // is_required: true
+    // desc: The ID of Protocol.
+    string protocol_id = 1;
+    // is_required: true
+    string data = 2;
+    // is_required: true
+    google.protobuf.Struct message = 3;
+    // is_required: false
+    string notification_type = 4;
+    // is_required: false
+    string notification_level = 5;
+    // is_required: true
     string domain_id = 11;
 }
 
