@@ -12,11 +12,14 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service UserConfig {
-    rpc create (CreateUserConfigRequest) returns (UserConfigInfo) {
+    rpc create (SetUserConfigRequest) returns (UserConfigInfo) {
         option (google.api.http) = { post: "/config/v1/user-configs" };
     }
-    rpc update (UpdateUserConfigRequest) returns (UserConfigInfo) {
+    rpc update (SetUserConfigRequest) returns (UserConfigInfo) {
         option (google.api.http) = { put: "/config/v1/user-config/{name}" };
+    }
+    rpc set (SetUserConfigRequest) returns (UserConfigInfo) {
+        option (google.api.http) = { post: "/config/v1/user-config/{name}" };
     }
     rpc delete (UserConfigRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/config/v1/user-config/{name}" };
@@ -37,21 +40,10 @@ service UserConfig {
     }
 }
 
-message CreateUserConfigRequest {
+message SetUserConfigRequest {
     // is_required: true
     string name = 1;
     // is_required: true
-    google.protobuf.Struct data = 2;
-    // is_required: false
-    google.protobuf.Struct tags = 3;
-    // is_required: true
-    string domain_id = 4;
-}
-
-message UpdateUserConfigRequest {
-    // is_required: true
-    string name = 1;
-    // is_required: false
     google.protobuf.Struct data = 2;
     // is_required: false
     google.protobuf.Struct tags = 3;
@@ -93,6 +85,7 @@ message UserConfigInfo {
     string user_id = 4;
     string domain_id = 5;
     string created_at = 6;
+    string updated_at = 6;
 }
 
 message UserConfigsInfo {
