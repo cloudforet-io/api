@@ -17,7 +17,7 @@ RUN python3 -m pip install --upgrade pip && \
     python3 -m pip install --upgrade -r ${PKG_DIR}/pip_requirements.txt
 
 RUN unzip ${PKG_DIR}/protoc-3.6.1-linux-x86_64.zip -d /usr/local
-RUN go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
+RUN go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
 
 WORKDIR ${BIN_DIR}
 CMD ["python3", "build.py", "-h"]
