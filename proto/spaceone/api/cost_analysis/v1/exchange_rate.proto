@@ -12,6 +12,13 @@ service ExchangeRate {
     rpc reset (ExchangeRateRequest) returns (ExchangeRateInfo) {
         option (google.api.http) = { post: "/cost-analysis/v1/exchange-rate/{currency}/reset" };
     }
+    rpc enable (ExchangeRateRequest) returns (ExchangeRateInfo) {
+        option (google.api.http) = { post: "/cost-analysis/v1/exchange-rate/{currency}/enable" };
+    }
+
+    rpc disable (ExchangeRateRequest) returns (ExchangeRateInfo) {
+        option (google.api.http) = { post: "/cost-analysis/v1/exchange-rate/{currency}/disable" };
+    }
     rpc get (ExchangeRateRequest) returns (ExchangeRateInfo) {
         option (google.api.http) = { get: "/cost-analysis/v1/exchange-rate/{currency}" };
     }
@@ -47,9 +54,16 @@ message ExchangeRateQuery {
 }
 
 message ExchangeRateInfo {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
     string currency = 1;
     float rate = 2;
-    bool is_default = 3;
+    State state = 3;
+    bool is_default = 4;
     string domain_id = 11;
 }
 
