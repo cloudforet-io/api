@@ -207,9 +207,11 @@ message AlertQuery {
     // is_required: false
     string resource_id = 10;
     // is_required: false
-    string account = 11;
+    string provider = 11;
     // is_required: false
-    string triggered_by = 12;
+    string account = 12;
+    // is_required: false
+    string triggered_by = 13;
     // is_required: false
     string webhook_id = 21;
     // is_required: false
@@ -232,14 +234,15 @@ message AlertInfo {
     string severity = 9;
     string rule = 10;
     AlertResource resource = 11;
-    string account = 12;
-    bool is_snoozed = 13;
-    string snoozed_end_time = 14;
-    int32 escalation_step = 15;
-    int32 escalation_ttl = 16;
-    repeated AlertResponder responders = 17;
-    repeated string project_dependencies = 18;
-    string image_url = 19;
+    string provider = 12;
+    string account = 13;
+    bool is_snoozed = 14;
+    string snoozed_end_time = 15;
+    int32 escalation_step = 16;
+    int32 escalation_ttl = 17;
+    repeated AlertResponder responders = 18;
+    repeated string project_dependencies = 19;
+    string image_url = 20;
     google.protobuf.Struct additional_info = 21;
     string triggered_by = 31;
     string webhook_id = 32;
