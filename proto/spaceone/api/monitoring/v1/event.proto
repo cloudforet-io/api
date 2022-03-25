@@ -66,13 +66,17 @@ message EventQuery {
     // is_required: false
     string resource_id = 6;
     // is_required: false
-    string alert_id = 7;
+    string provider = 7;
     // is_required: false
-    string webhook_id = 8;
+    string account = 8;
     // is_required: false
-    string project_id = 9;
+    string alert_id = 11;
     // is_required: false
-    string domain_id = 10;
+    string webhook_id = 12;
+    // is_required: false
+    string project_id = 13;
+    // is_required: false
+    string domain_id = 14;
 }
 
 message EventInfo {
@@ -84,15 +88,17 @@ message EventInfo {
     string severity = 6;
     string rule = 7;
     EventResource resource = 8;
-    google.protobuf.Struct raw_data = 9;
-    google.protobuf.Struct additional_info = 10;
+    string provider = 9;
+    string account = 10;
     string image_url = 11;
-    string alert_id = 21;
-    string webhook_id = 22;
-    string project_id = 23;
-    string domain_id = 24;
-    string created_at = 31;
-    string occurred_at = 32;
+    google.protobuf.Struct raw_data = 21;
+    google.protobuf.Struct additional_info = 22;
+    string alert_id = 31;
+    string webhook_id = 32;
+    string project_id = 33;
+    string domain_id = 34;
+    string created_at = 41;
+    string occurred_at = 42;
 }
 
 message EventsInfo {

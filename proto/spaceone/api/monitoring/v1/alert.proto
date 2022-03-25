@@ -207,15 +207,19 @@ message AlertQuery {
     // is_required: false
     string resource_id = 10;
     // is_required: false
-    string triggered_by = 11;
+    string provider = 11;
     // is_required: false
-    string webhook_id = 12;
+    string account = 12;
     // is_required: false
-    string escalation_policy_id = 13;
+    string triggered_by = 13;
     // is_required: false
-    string project_id = 14;
+    string webhook_id = 21;
+    // is_required: false
+    string escalation_policy_id = 22;
+    // is_required: false
+    string project_id = 23;
     // is_required: true
-    string domain_id = 15;
+    string domain_id = 24;
 }
 
 message AlertInfo {
@@ -230,24 +234,26 @@ message AlertInfo {
     string severity = 9;
     string rule = 10;
     AlertResource resource = 11;
-    google.protobuf.Struct additional_info = 12;
-    bool is_snoozed = 13;
-    string snoozed_end_time = 14;
-    int32 escalation_step = 15;
-    int32 escalation_ttl = 16;
-    repeated AlertResponder responders = 17;
-    repeated string project_dependencies = 18;
-    string image_url = 19;
-    string triggered_by = 21;
-    string webhook_id = 22;
-    string escalation_policy_id = 23;
-    string project_id = 24;
-    string domain_id = 25;
-    string created_at = 31;
-    string updated_at = 32;
-    string acknowledged_at = 33;
-    string resolved_at = 34;
-    string escalated_at = 35;
+    string provider = 12;
+    string account = 13;
+    bool is_snoozed = 14;
+    string snoozed_end_time = 15;
+    int32 escalation_step = 16;
+    int32 escalation_ttl = 17;
+    repeated AlertResponder responders = 18;
+    repeated string project_dependencies = 19;
+    string image_url = 20;
+    google.protobuf.Struct additional_info = 21;
+    string triggered_by = 31;
+    string webhook_id = 32;
+    string escalation_policy_id = 33;
+    string project_id = 34;
+    string domain_id = 35;
+    string created_at = 41;
+    string updated_at = 42;
+    string acknowledged_at = 43;
+    string resolved_at = 44;
+    string escalated_at = 45;
 }
 
 message AlertsInfo {
