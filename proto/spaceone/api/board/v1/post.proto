@@ -75,7 +75,7 @@ message UpdatePostRequest {
   PostOptions options = 6;
   // is_required: false
   string writer = 7;
-  // is_required: true
+  // is_required: false
   string domain_id = 10;
 }
 
@@ -84,7 +84,7 @@ message SendNotificationRequest {
   string board_id = 1;
   // is_required: true
   string post_id = 2;
-  // is_required: true
+  // is_required: false
   string domain_id = 3;
 }
 
@@ -93,7 +93,7 @@ message PostRequest {
   string board_id = 1;
   // is_required: true
   string post_id = 2;
-  // is_required: true
+  // is_required: false
   string domain_id = 3;
 }
 
@@ -104,7 +104,7 @@ message GetPostRequest {
   string post_id = 2;
   // is_required: false
   repeated string only = 3;
-  // is_required: true
+  // is_required: false
   string domain_id = 7;
 }
 
@@ -119,7 +119,7 @@ message PostQuery {
   string writer = 4;
   // is_required: false
   string user_id = 5;
-  // is_required: true
+  // is_required: false
   string domain_id = 6;
   // is_required: false
   spaceone.api.core.v1.Query query = 7;
@@ -138,17 +138,18 @@ message PostInfo {
     DOMAIN = 1;
   }
   string board_id = 1;
-  string category = 2;
-  string title = 3;
-  string contents = 4;
-  PostOptions options = 5;
-  int32 view_count = 6;
-  string writer = 7;
-  Scope scope = 8;
-  string domain_id = 9;
-  string user_id = 10;
-  string created_at = 11;
-  string updated_at = 12;
+  string post_id = 2;
+  string category = 3;
+  string title = 4;
+  string contents = 5;
+  PostOptions options = 6;
+  int32 view_count = 7;
+  string writer = 8;
+  Scope scope = 9;
+  string domain_id = 10;
+  string user_id = 11;
+  string created_at = 12;
+  string updated_at = 13;
 }
 
 message PostsInfo {
