@@ -48,14 +48,20 @@ message EventRuleActionResponder {
     string resource_id = 2;
 }
 
+message MatchRule {
+    string source = 1;
+    string target = 2;
+}
+
 message EventRuleActions {
     string change_assignee = 1;
     string change_urgency = 2;
     string change_project = 3;
     repeated string add_project_dependency = 4;
     repeated EventRuleActionResponder add_responder = 5;
-    google.protobuf.Struct add_additional_info = 6;
-    bool no_notification = 7;
+    MatchRule match_service_account = 6;
+    google.protobuf.Struct add_additional_info = 7;
+    bool no_notification = 8;
 }
 
 message EventRuleOptions {
@@ -67,6 +73,7 @@ message CreateEventRuleRequest {
         NONE = 0;
         ALL = 1;
         ANY = 2;
+        ALWAYS = 3;
     }
 
     // is_required: true
@@ -92,6 +99,7 @@ message UpdateEventRuleRequest {
         NONE = 0;
         ALL = 1;
         ANY = 2;
+        ALWAYS = 3;
     }
 
     // is_required: true
@@ -169,6 +177,7 @@ message EventRuleInfo {
         NONE = 0;
         ALL = 1;
         ANY = 2;
+        ALWAYS = 3;
     }
 
     string event_rule_id = 1;
