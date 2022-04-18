@@ -1,4 +1,4 @@
-TARGET = sample core identity repository plugin secret inventory monitoring notification statistics config power_scheduler cost_saving billing spot_automation cost_analysis
+TARGET = sample core identity repository plugin secret inventory monitoring notification statistics config power_scheduler cost_saving billing spot_automation cost_analysis board
 VERSION = v1
 DOCKER_NAME = spaceone/api_builder
 
