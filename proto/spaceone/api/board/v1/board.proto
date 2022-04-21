@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package spaceone.api.board.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service Board {
+  rpc create (CreateBoardRequest) returns (BoardInfo) {
+    option (google.api.http) = {post: "/board/v1/boards"};
+  }
+  rpc update (UpdateBoardRequest) returns (BoardInfo) {
+    option (google.api.http) = {put: "/board/v1/board/{board_id}"};
+  }
+  rpc set_categories (SetBoardCategoriesRequest) returns (BoardInfo){
+    option (google.api.http) = {put: "/board/v1/board/{board_id}/set-categories"};
+  }
+  rpc delete (BoardRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {delete: "/board/v1/board/{board_id}"};
+  }
+  rpc get (GetBoardRequest) returns (BoardInfo) {
+    option (google.api.http) = {get: "/board/v1/board/{board_id}"};
+  }
+  rpc list (BoardQuery) returns (BoardsInfo) {
+    option (google.api.http) = {
+      get: "/board/v1/boards"
+      additional_bindings {
+        post: "/board/v1/boards/search"
+      }
+    };
+  }
+  rpc stat (BoardStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {post: "/board/v1/boards/stat"};
+  }
+}
+
+message CreateBoardRequest {
+  // is_required: true
+  string name = 1;
+  // is_required: false
+  repeated string categories = 2;
+  // is_required: false
+  google.protobuf.Struct tags = 3;
+}
+
+message UpdateBoardRequest {
+  // is_required: true
+  string board_id = 1;
+  // is_required: false
+  string name = 2;
+  // is_required: false
+  google.protobuf.Struct tags = 3;
+}
+
+message SetBoardCategoriesRequest{
+  // is_required: true
+  string board_id = 1;
+  // is_required: false
+  repeated string categories = 2;
+}
+
+message BoardRequest {
+  // is_required: true
+  string board_id = 1;
+}
+
+message GetBoardRequest {
+  // is_required: true
+  string board_id = 1;
+  // is_required: false
+  repeated string only = 3;
+}
+
+message BoardQuery {
+  // is_required: false
+  string board_id = 1;
+  // is_required: false
+  string name = 2;
+  // is_required: false
+  spaceone.api.core.v1.Query query = 3;
+}
+
+message BoardStatQuery {
+  // is_required: true
+  spaceone.api.core.v1.StatisticsQuery query = 1;
+}
+
+message BoardInfo {
+  string board_id = 1;
+  string name = 2;
+  repeated string categories = 3;
+  google.protobuf.Struct tags = 4;
+  string created_at = 11;
+}
+
+message BoardsInfo {
+  repeated BoardInfo results = 1;
+  int32 total_count = 2;
+}

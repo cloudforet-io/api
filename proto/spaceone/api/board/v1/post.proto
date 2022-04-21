@@ -1,0 +1,156 @@
+syntax = "proto3";
+
+package spaceone.api.board.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service Post {
+  rpc create (CreatePostRequest) returns (PostInfo) {
+    option (google.api.http) = {post: "/board/v1/board/{board_id}/posts"};
+  }
+  rpc update (UpdatePostRequest) returns (PostInfo) {
+    option (google.api.http) = {put: "/board/v1/board/{board_id}/post/{post_id}"};
+  }
+  rpc send_notification (SendNotificationRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {post: "/board/v1/board/{board_id}/post/{post_id}/send-notification"};
+  }
+  rpc delete (PostRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {delete: "/board/v1/board/{board_id}/post/{post_id}"};
+  }
+  rpc get (GetPostRequest) returns (PostInfo) {
+    option (google.api.http) = {get: "/board/v1/board/{board_id}/post/{post_id}"};
+  }
+  rpc list (PostQuery) returns (PostsInfo) {
+    option (google.api.http) = {
+      get: "/board/v1/board/{board_id}/posts"
+      additional_bindings {
+        post: "/board/v1/board/{board_id}/posts/search"
+      }
+    };
+  }
+  rpc stat (PostStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {post: "/board/v1/board/{board_id}/posts/stat"};
+  }
+}
+
+message PostOptions {
+  bool is_pinned = 1;
+  bool is_popup = 2;
+}
+
+message CreatePostRequest {
+  // is_required: true
+  string board_id = 1;
+  // is_required: false
+  string category = 2;
+  // is_required: true
+  string title = 3;
+  // is_required: true
+  string contents = 4;
+  // is_required: false
+  PostOptions options = 5;
+  // is_required: false
+  string writer = 6;
+  // is_required: false
+  string domain_id = 10;
+}
+
+message UpdatePostRequest {
+  // is_required: true
+  string board_id = 1;
+  // is_required: true
+  string post_id = 2;
+  // is_required: false
+  string category = 3;
+  // is_required: false
+  string title = 4;
+  // is_required: false
+  string contents = 5;
+  // is_required: false
+  PostOptions options = 6;
+  // is_required: false
+  string writer = 7;
+  // is_required: false
+  string domain_id = 10;
+}
+
+message SendNotificationRequest {
+  // is_required: true
+  string board_id = 1;
+  // is_required: true
+  string post_id = 2;
+  // is_required: false
+  string domain_id = 3;
+}
+
+message PostRequest {
+  // is_required: true
+  string board_id = 1;
+  // is_required: true
+  string post_id = 2;
+  // is_required: false
+  string domain_id = 3;
+}
+
+message GetPostRequest {
+  // is_required: true
+  string board_id = 1;
+  // is_required: true
+  string post_id = 2;
+  // is_required: false
+  repeated string only = 3;
+  // is_required: false
+  string domain_id = 7;
+}
+
+message PostQuery {
+  // is_required: true
+  string board_id = 1;
+  // is_required: false
+  string post_id = 2;
+  // is_required: false
+  string category = 3;
+  // is_required: false
+  string writer = 4;
+  // is_required: false
+  string user_id = 5;
+  // is_required: false
+  string domain_id = 6;
+  // is_required: false
+  spaceone.api.core.v1.Query query = 7;
+}
+
+message PostStatQuery {
+  // is_required: true
+  spaceone.api.core.v1.StatisticsQuery query = 1;
+  // is_required: true
+  string domain_id = 2;
+}
+
+message PostInfo {
+  enum Scope {
+    SYSTEM = 0;
+    DOMAIN = 1;
+  }
+  string board_id = 1;
+  string post_id = 2;
+  string category = 3;
+  string title = 4;
+  string contents = 5;
+  PostOptions options = 6;
+  int32 view_count = 7;
+  string writer = 8;
+  Scope scope = 9;
+  string domain_id = 10;
+  string user_id = 11;
+  string created_at = 12;
+  string updated_at = 13;
+}
+
+message PostsInfo {
+  repeated PostInfo results = 1;
+  int32 total_count = 2;
+}
