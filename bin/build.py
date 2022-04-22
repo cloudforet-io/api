@@ -253,6 +253,7 @@ def build(params):
 if __name__ == '__main__':
     params = _get_args()
     build(params)
+    print("PoC")
 
 
 
