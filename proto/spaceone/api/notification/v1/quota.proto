@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+package spaceone.api.notification.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Quota {
+    // desc: Creates a new Quota for Protocol.
+    rpc create (CreateQuotaRequest) returns (QuotaInfo) {
+        option (google.api.http) = { post: "/notification/v1/quotas" };
+    }
+    // desc: Updates a exist Quota information.
+    rpc update (UpdateQuotaRequest) returns (QuotaInfo) {
+        option (google.api.http) = { put: "/notification/v1/quota/{quota_id}" };
+    }
+    // desc: Delete the Quota.
+    rpc delete (QuotaRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/notification/v1/quota/{quota_id}" };
+    }
+    // desc: Gets a single Quota information.
+    rpc get (QuotaRequest) returns (QuotaInfo) {
+        option (google.api.http) = { get: "/notification/v1/quota/{quota_id}" };
+    }
+    // desc: Lists the specified Quota information.
+    // Can search information using the query format provided by SpaceONE.
+    // Detailed information about Query format can be checked in the Search Query pages.
+    rpc list (QuotaQuery) returns (QuotasInfo) {
+        option (google.api.http) = {
+            get: "/notification/v1/quotas"
+            additional_bindings {
+                post: "/notification/v1/quotas/search"
+            }
+        };
+    }
+    rpc stat (QuotaStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/notification/v1/quotas/stat" };
+    }
+}
+
+message CreateQuotaRequest {
+    // is_required: true
+    string protocol_id = 1;
+    // is_required: true
+    // desc: The information about Quota limitation.
+    google.protobuf.Struct limit = 2;
+    // is_required: true
+    // desc: The ID of domain.
+    string domain_id = 11;
+}
+
+message UpdateQuotaRequest {
+    // is_required: true
+    // desc: The ID of Quota.
+    string quota_id = 1;
+    // is_required: true
+    // desc: The information about Quota limitation.
+    google.protobuf.Struct limit = 2;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message QuotaRequest {
+    // is_required: true
+    // desc: The ID of Quota.
+    string quota_id = 1;
+    // is_required: true
+    // desc: The ID of domain.
+    string domain_id = 11;
+}
+
+message QuotaQuery {
+    // is_required: false
+    // desc: Query format provided by SpaceONE. Please check the link for more information.
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    // desc: The ID of Quota.
+    string quota_id = 2;
+    // is_required: false
+    // desc: The ID of Protocol.
+    string protocol_id = 3;
+    // is_required: true
+    // desc: The ID of domain.
+    string domain_id = 11;
+}
+
+message QuotaInfo {
+    // desc: The ID of Quota.
+    string quota_id = 1;
+    // desc: The ID of Protocol.
+    string protocol_id = 2;
+    // desc: The information about Quota limitation.
+    google.protobuf.Struct limit = 3;
+    // desc: The ID of domain
+    string domain_id = 11;
+}
+
+message QuotasInfo {
+    // desc: List of queried Quota.
+    repeated QuotaInfo results = 1;
+    // desc: Total counts of queried Quota.
+    int32 total_count = 2;
+}
+
+message QuotaStatQuery {
+    // is_required: true
+    // desc: Statistics Query format provided by SpaceONE. Please check the link for more information.
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    // desc: The ID of domain.
+    string domain_id = 2;
+}

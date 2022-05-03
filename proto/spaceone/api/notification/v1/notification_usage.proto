@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package spaceone.api.notification.v1;
+
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service NotificationUsage {
+    // desc: Lists for the Notification usage information.
+    // Can search information using the query format provided by SpaceONE.
+    // Detailed information about Query format can be checked in the Search Query pages.
+    rpc list (NotificationUsageQuery) returns (NotificationUsagesInfo) {
+        option (google.api.http) = {
+            get: "/notification/v1/notification-usages"
+            additional_bindings {
+                post: "/notification/v1/notification-usages/search"
+            }
+        };
+    }
+    rpc stat (NotificationUsageStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/notification/v1/notification-usages/stat" };
+    }
+}
+
+message NotificationUsageQuery {
+    // is_required: false
+    // desc: Query format provided by SpaceONE. Please check the link for more information.
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    // desc: The ID of Protocol.
+    string protocol_id = 2;
+    // is_required: true
+    // desc: The ID of domain.
+    string domain_id = 11;
+}
+
+message NotificationUsageInfo {
+    // desc: The ID of Protocol.
+    string protocol_id = 1;
+    // desc: Usage Date.
+    string usage_date = 2;
+    // desc: Usage Month.
+    string usage_month = 3;
+    // desc: Usage count using actual notifications.
+    int32 count = 4;
+    // desc: The ID of domain
+    string domain_id = 11;
+}
+
+message NotificationUsagesInfo {
+    // desc: List of queried Notification Usage.
+    repeated NotificationUsageInfo results = 1;
+    // desc: Total counts of queried Notification Usage.
+    int32 total_count = 2;
+}
+
+message NotificationUsageStatQuery {
+    // is_required: true
+    // desc: Statistics Query format provided by SpaceONE. Please check the link for more information.
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    // desc: The ID of domain.
+    string domain_id = 2;
+}
