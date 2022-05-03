@@ -36,10 +36,7 @@ service Post {
   }
 }
 
-message PostOptions {
-  bool is_pinned = 1;
-  bool is_popup = 2;
-}
+
 
 message CreatePostRequest {
   // is_required: true
@@ -51,7 +48,7 @@ message CreatePostRequest {
   // is_required: true
   string contents = 4;
   // is_required: false
-  PostOptions options = 5;
+  google.protobuf.Struct options = 5;
   // is_required: false
   string writer = 6;
   // is_required: false
@@ -70,7 +67,7 @@ message UpdatePostRequest {
   // is_required: false
   string contents = 5;
   // is_required: false
-  PostOptions options = 6;
+  google.protobuf.Struct options = 6;
   // is_required: false
   string writer = 7;
   // is_required: false
@@ -140,7 +137,7 @@ message PostInfo {
   string category = 3;
   string title = 4;
   string contents = 5;
-  PostOptions options = 6;
+  google.protobuf.Struct options = 6;
   int32 view_count = 7;
   string writer = 8;
   Scope scope = 9;
