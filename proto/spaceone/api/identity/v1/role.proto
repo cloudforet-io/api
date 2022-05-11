@@ -52,6 +52,17 @@ message RolePolicy {
     string policy_id = 2;
 }
 
+message PagePermission {
+    enum Permission {
+        NONE = 0;
+        VIEW = 1;
+        MANAGE = 2;
+    }
+
+    string page = 1;
+    Permission permission = 2;
+}
+
 message CreateRoleRequest {
     // is_required: true
     string name = 1;
@@ -60,9 +71,11 @@ message CreateRoleRequest {
     // is_required: true
     repeated RolePolicy policies = 3;
     // is_required: false
-    google.protobuf.Struct tags = 4;
+    repeated PagePermission page_permissions = 4;
+    // is_required: false
+    google.protobuf.Struct tags = 5;
     // is_required: true
-    string domain_id = 5;
+    string domain_id = 6;
 }
 
 message UpdateRoleRequest {
@@ -73,9 +86,13 @@ message UpdateRoleRequest {
     // is_required: false
     repeated RolePolicy policies = 3;
     // is_required: false
-    google.protobuf.Struct tags = 4;
+    repeated PagePermission page_permissions = 4;
+    // is_required: false
+    google.protobuf.Struct tags = 5;
+    // is_required: false
+    bool release_page_permissions = 6;
     // is_required: true
-    string domain_id = 5;
+    string domain_id = 7;
 }
 
 message RoleRequest {
@@ -99,7 +116,8 @@ message RoleInfo {
     string name = 2;
     RoleType role_type = 3;
     repeated RolePolicy policies = 4;
-    google.protobuf.Struct tags = 5;
+    repeated PagePermission page_permissions = 5;
+    google.protobuf.Struct tags = 6;
     string domain_id = 11;
     string created_at = 21;
     string deleted_at = 22;
@@ -114,8 +132,10 @@ message RoleQuery {
     string name = 3;
     // is_required: false
     RoleType role_type = 5;
+    // is_required: false
+    string policy_id = 6;
     // is_required: true
-    string domain_id = 6;
+    string domain_id = 7;
 
 }
 
