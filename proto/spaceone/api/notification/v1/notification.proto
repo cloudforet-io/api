@@ -20,7 +20,7 @@ desc: Notification service Methods
  */
 service Notification {
     /*
-    desc: Create a new Notification.
+    desc: Create a new Notification. When a notification is created, it is propagated through the channel of the project to which the notification belongs, and if an internal channel or user channel is set, the notification is also propagated to the user.
     note: ''
     request_example:
         domain_id: xxxxx-aws-abcd
@@ -34,7 +34,7 @@ service Notification {
     }
     /*
     desc: Push a new Notification directly.
-    note: ''
+    note: When a notification is created, it is propagated through the channel of the project to which the notification belongs, and if an internal channel or user channel is set, the notification is also propagated to the user.
     request_example: >-
       {
        "domain_id" : "xxxx-aws-abcd",
@@ -62,6 +62,8 @@ service Notification {
     }
     /*
     desc: Delete all Notifications.
+    When a notification is created, it is propagated through the channel of the project to which the notification belongs,
+    and if an internal channel or user channel is set, the notification is also propagated to the user.
     note: ''
     request_example:
       domain_id: xxxxx-aws-abcd
