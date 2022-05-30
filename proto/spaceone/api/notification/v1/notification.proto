@@ -1,3 +1,10 @@
+/*
+desc: A notification is a definition of an event to be delivered to the user.
+When a notification is created, it is propagated through the channel of the project to which the notification belongs,
+and if an internal channel or user channel is set, the notification is also propagated to the user.
+note: This is sample of notification
+ */
+
 syntax = "proto3";
 
 package spaceone.api.notification.v1;
@@ -8,28 +15,66 @@ import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 
 
+/*
+desc: Notification service Methods
+ */
 service Notification {
-    // desc: Creates a new Notification..
-    // A notification is a definition of an event to be delivered to the user.
-    // When a notification is created, it is propagated through the channel of the project to which the notification belongs,
-    // and if an internal channel or user channel is set, the notification is also propagated to the user.
+    /*
+    desc: Create a new Notification.
+    note: ''
+    request_example:
+        domain_id: xxxxx-aws-abcd
+        tags:
+            env: dev
+    response_example:
+        domain_id: xxxxx-aws-abcd
+    */
     rpc create (CreateNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/notification/v1/notifications" };
     }
-    // desc: Push a new Notification directly.
+    /*
+    desc: Push a new Notification directly.
+    note: ''
+    request_example: >-
+      {
+       "domain_id" : "xxxx-aws-abcd",
+        "tags" : { "env" : "dev" }
+       }
+    response_example: >-
+      {"domain_id" : "xxxx-aws-abcd"}
+    */
     rpc push (PushNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/notification/v1/notifications/push" };
     }
-    // desc: Delete the Notification.
+    /*
+    desc: Delete the Notification.
+    note: ''
+    request_example: >-
+        {
+            "domain_id" : "xxxx-aws-abcd",
+            "tags" : { "env" : "dev" }
+        }
+    response_example: >-
+        {"domain_id" : "xxxx-aws-abcd"}
+    */
     rpc delete (NotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/notification/v1/notification/{notification_id}" };
     }
-    // desc: Delete all Notifications.
+    /*
+    desc: Delete all Notifications.
+    note: ''
+    request_example:
+      domain_id: xxxxx-aws-abcd
+      tags:
+        env: dev
+    response_example:
+      domain_id: xxxxx-aws-abcd
+    */
     rpc delete_all (NotificationDeleteAllRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/notification/v1/notification/delete_all" };
     }
     // desc: Change the notifications to read status.
-    // When the notification is created, the is_read value is False, and when the set_read method is used, the read state can be changed.
+    // note: When the notification is created, the is_read value is False, and when the set_read method is used, the read state can be changed.
     rpc set_read (SetReadNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/notification/v1/notifications/read" };
     }
@@ -38,7 +83,7 @@ service Notification {
         option (google.api.http) = { get: "/notification/v1/notification/{notification_id}" };
     }
     // desc: Lists the specified notifications.
-    // Can search information using the query format provided by SpaceONE.
+    // note: Can search information using the query format provided by SpaceONE.
     // Detailed information about Query format can be checked in the Search Query pages.
     rpc list (NotificationQuery) returns (NotificationsInfo) {
         option (google.api.http) = {
