@@ -31,7 +31,7 @@ service Notification {
         option (google.api.http) = { post: "/notification/v1/notifications" };
     }
     /*
-    desc: Push a new Notification directly.
+    desc: Push a new Notification directly.When a notification is created, it is propagated through the channel of the project to which the notification belongs, and if an internal channel or user channel is set, the notification is also propagated to the user.
     note: ''
     request_example: >-
       {
@@ -45,7 +45,7 @@ service Notification {
         option (google.api.http) = { post: "/notification/v1/notifications/push" };
     }
     /*
-    desc: Delete the Notification.
+    desc: Delete the Notification. When a notification is created,\n it is propagated through the channel of the project to which the notification belongs,\n and if an internal channel or user channel is set,\n the notification is also propagated to the user.
     note: ''
     request_example: >-
       {
@@ -59,7 +59,7 @@ service Notification {
         option (google.api.http) = { delete: "/notification/v1/notification/{notification_id}" };
     }
     /*
-    desc: Delete all Notifications.
+    desc: Delete all Notifications. `When a notification is created,` `it is propagated through the channel of the project to which the notification belongs,` `and if an internal channel or user channel is set,` `the notification is also propagated to the user.`
     note: ''
     request_example: >-
       {
