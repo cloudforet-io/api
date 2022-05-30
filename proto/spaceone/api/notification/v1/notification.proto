@@ -20,14 +20,19 @@ desc: Notification service Methods
  */
 service Notification {
     /*
-    desc: Create a new Notification. When a notification is created, it is propagated through the channel of the project to which the notification belongs, and if an internal channel or user channel is set, the notification is also propagated to the user.
+    desc: Create a new Notification.
+    When a notification is created,
+    it is propagated through the channel of the project to which the notification belongs,
+    and if an internal channel or user channel is set,
+    the notification is also propagated to the user.
     note: ''
-    request_example:
-        domain_id: xxxxx-aws-abcd
-        tags:
-            env: dev
-    response_example:
-        domain_id: xxxxx-aws-abcd
+    request_example: >-
+      {
+       "domain_id" : "xxxx-aws-abcd",
+        "tags" : { "env" : "dev" }
+       }
+    response_example: >-
+      {"domain_id" : "xxxx-aws-abcd"}
     */
     rpc create (CreateNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/notification/v1/notifications" };
@@ -50,12 +55,12 @@ service Notification {
     desc: Delete the Notification.
     note: ''
     request_example: >-
-        {
-            "domain_id" : "xxxx-aws-abcd",
-            "tags" : { "env" : "dev" }
-        }
+      {
+       "domain_id" : "xxxx-aws-abcd",
+        "tags" : { "env" : "dev" }
+       }
     response_example: >-
-        {"domain_id" : "xxxx-aws-abcd"}
+      {"domain_id" : "xxxx-aws-abcd"}
     */
     rpc delete (NotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/notification/v1/notification/{notification_id}" };
@@ -65,12 +70,13 @@ service Notification {
     When a notification is created, it is propagated through the channel of the project to which the notification belongs,
     and if an internal channel or user channel is set, the notification is also propagated to the user.
     note: ''
-    request_example:
-      domain_id: xxxxx-aws-abcd
-      tags:
-        env: dev
-    response_example:
-      domain_id: xxxxx-aws-abcd
+    request_example: >-
+      {
+       "domain_id" : "xxxx-aws-abcd",
+        "tags" : { "env" : "dev" }
+       }
+    response_example: >-
+      {"domain_id" : "xxxx-aws-abcd"}
     */
     rpc delete_all (NotificationDeleteAllRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/notification/v1/notification/delete_all" };
