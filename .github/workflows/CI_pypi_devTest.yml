@@ -34,7 +34,7 @@ jobs:
           fi
       - name: if not test release, exit
         run: |
-          if [[ !(${{ env.TAG }} =~ ^v[0-9]\.[0-9]\.[0-9]-dev(.*)$) ]];
+          if [[ !(${{ env.TAG }} =~ ^v[0-9]\.[0-9]?[0-9]\.[0-9]?[0-9]-dev(.*)$) ]];
             then exit 1
           fi
 
