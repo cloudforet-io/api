@@ -60,6 +60,8 @@ message CreateServiceRequest {
     float instance_size = 7;
     // is_required: false
     string launched_at = 8;
+    // is_required: false
+    repeated string ip_addresses = 9;
     // is_required: true
     google.protobuf.Struct data = 11;
     // is_required: false
@@ -90,6 +92,8 @@ message UpdateCloudServiceRequest {
     float instance_size = 5;
     // is_required: false
     string launched_at = 6;
+    // is_required: false
+    repeated string ip_addresses = 7;
     // is_required: false
     google.protobuf.Struct data = 11;
     // is_required: false
@@ -183,6 +187,7 @@ message CloudServiceInfo {
     CloudServiceReference reference = 13;
     google.protobuf.Struct tags = 14;
     google.protobuf.Struct collection_info = 15;
+    repeated string ip_addresses = 16;
 
     string region_code = 21;
     string project_id = 22;
