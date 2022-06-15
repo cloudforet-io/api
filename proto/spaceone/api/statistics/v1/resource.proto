@@ -51,11 +51,18 @@ message StatAggregateConcat {
     google.protobuf.Struct extend_data = 3;
 }
 
+message SortKey {
+    string key = 1;
+    bool desc = 2;
+}
+
 message StatAggregateSort {
-    // is_required: true
+    // is_required: false
     string key = 1;
     // is_required: false
     bool desc = 2;
+    // is_required: false
+    repeated SortKey keys = 3;
 }
 
 message StatAggregateFormula {
