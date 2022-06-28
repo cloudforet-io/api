@@ -16,21 +16,19 @@ message LogRequest {
     // is_required: true
     string data_source_id = 1;
     // is_required: true
-    string resource_type = 2;
+    string resource_id = 2;
+    // is_required: false
+    string keyword = 3;
+    // is_required: false
+    string start = 10;
+    // is_required: false
+    string end = 11;
+    // is_required: false
+    google.protobuf.Struct sort = 15;
+    // is_required: false
+    int32 limit = 16;
     // is_required: true
-    string resource_id = 3;
-    // is_required: false
-    string start = 5;
-    // is_required: false
-    string end = 6;
-    // is_required: false
-    google.protobuf.Struct filter = 8;
-    // is_required: false
-    google.protobuf.Struct sort = 9;
-    // is_required: false
-    int32 limit = 7;
-    // is_required: true
-    string domain_id = 10;
+    string domain_id = 20;
 }
 
 message LogDataInfo {
