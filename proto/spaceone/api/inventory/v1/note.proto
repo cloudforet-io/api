@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Note {
+    rpc create (CreateNoteRequest) returns (NoteInfo) {
+        option (google.api.http) = { post: "/monitoring/v1/notes" };
+    }
+    rpc update (UpdateNoteRequest) returns (NoteInfo) {
+        option (google.api.http) = { put: "/monitoring/v1/note/{note_id}" };
+    }
+    rpc delete (NoteRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/monitoring/v1/note/{note_id}" };
+    }
+    rpc get (GetNoteRequest) returns (NoteInfo) {
+        option (google.api.http) = { get: "/monitoring/v1/note/{note_id}" };
+    }
+    rpc list (NoteQuery) returns (NotesInfo) {
+        option (google.api.http) = {
+            get: "/monitoring/v1/notes"
+            additional_bindings {
+                post: "/monitoring/v1/notes/search"
+            }
+        };
+    }
+    rpc stat (NoteStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/monitoring/v1/notes/stat" };
+    }
+}
+
+message CreateNoteRequest {
+    // is_required: true
+    string alert_id = 1;
+    // is_required: true
+    string note = 2;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message UpdateNoteRequest {
+    // is_required: true
+    string recoard_id = 1;
+    // is_required: false
+    string note = 2;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message NoteRequest {
+    // is_required: true
+    string note_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetNoteRequest {
+    // is_required: true
+    string note_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message NoteQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string note_id = 2;
+    // is_required: false
+    string record_id = 3;
+    // is_required: false
+    string created_by = 4;
+    // is_required: false
+    string project_id = 5;
+    // is_required: false
+    string domain_id = 6;
+}
+
+message NoteInfo {
+    string note_id = 1;
+    string alert_id = 2;
+    string note = 3;
+    string created_by = 11;
+    string project_id = 12;
+    string domain_id = 13;
+    string created_at = 21;
+}
+
+message NotesInfo {
+    repeated NoteInfo results = 1;
+    int32 total_count = 2;
+}
+
+message NoteStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
