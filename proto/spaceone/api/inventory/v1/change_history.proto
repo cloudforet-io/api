@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service ChangeHistory {
+    rpc list (ChangeHistoryQuery) returns (ChangeHistoryInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/change-history"
+            additional_bindings {
+                post: "/inventory/v1/change-history/search"
+            }
+        };
+    }
+    rpc stat (ChangeHistoryStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/change-history/stat" };
+    }
+}
+
+
+message ChangeHistoryQuery {
+    enum RecordAction {
+        NONE = 0;
+        CREATE = 1;
+        UPDATE = 2;
+        DELETE = 3;
+    }
+
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string cloud_service_id = 2;
+    // is_required: false
+    RecordAction action = 3;
+    // is_required: false
+    string user_id = 4;
+    // is_required: false
+    string collector_id = 5;
+    // is_required: false
+    string job_id = 6;
+    // is_required: true
+    string domain_id = 7;
+}
+
+message RecordDiff {
+    string key = 1;
+    google.protobuf.Value before = 2;
+    google.protobuf.Value after = 3;
+}
+
+message RecordInfo {
+    enum RecordAction {
+        NONE = 0;
+        CREATE = 1;
+        UPDATE = 2;
+        DELETE = 3;
+    }
+
+    string record_id = 1;
+    string cloud_service_id = 2;
+    RecordAction action = 3;
+    repeated RecordDiff diff = 4;
+    string user_id = 5;
+    string collector_id = 6;
+    string job_id = 7;
+    string domain_id = 8;
+    string updated_at = 11;
+}
+
+message ChangeHistoryInfo {
+    repeated RecordInfo results = 1;
+    int32 total_count = 2;
+}
+
+message ChangeHistoryStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
