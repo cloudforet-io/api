@@ -10,33 +10,33 @@ import "spaceone/api/core/v1/query.proto";
 
 service Note {
     rpc create (CreateNoteRequest) returns (NoteInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/notes" };
+        option (google.api.http) = { post: "/inventory/v1/notes" };
     }
     rpc update (UpdateNoteRequest) returns (NoteInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/note/{note_id}" };
+        option (google.api.http) = { put: "/inventory/v1/note/{note_id}" };
     }
     rpc delete (NoteRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/monitoring/v1/note/{note_id}" };
+        option (google.api.http) = { delete: "/inventory/v1/note/{note_id}" };
     }
     rpc get (GetNoteRequest) returns (NoteInfo) {
-        option (google.api.http) = { get: "/monitoring/v1/note/{note_id}" };
+        option (google.api.http) = { get: "/inventory/v1/note/{note_id}" };
     }
     rpc list (NoteQuery) returns (NotesInfo) {
         option (google.api.http) = {
-            get: "/monitoring/v1/notes"
+            get: "/inventory/v1/notes"
             additional_bindings {
-                post: "/monitoring/v1/notes/search"
+                post: "/inventory/v1/notes/search"
             }
         };
     }
     rpc stat (NoteStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/monitoring/v1/notes/stat" };
+        option (google.api.http) = { post: "/inventory/v1/notes/stat" };
     }
 }
 
 message CreateNoteRequest {
     // is_required: true
-    string alert_id = 1;
+    string record_id = 1;
     // is_required: true
     string note = 2;
     // is_required: true
@@ -45,7 +45,7 @@ message CreateNoteRequest {
 
 message UpdateNoteRequest {
     // is_required: true
-    string recoard_id = 1;
+    string note_id = 1;
     // is_required: false
     string note = 2;
     // is_required: true
@@ -76,9 +76,9 @@ message NoteQuery {
     // is_required: false
     string record_id = 3;
     // is_required: false
-    string created_by = 4;
+    string cloud_service_id = 4;
     // is_required: false
-    string project_id = 5;
+    string created_by = 5;
     // is_required: false
     string domain_id = 6;
 }
