@@ -15,9 +15,6 @@ service CloudService {
     rpc update (UpdateCloudServiceRequest) returns (CloudServiceInfo) {
         option (google.api.http) = { put: "/inventory/v1/cloud-service/{cloud_service_id}" };
     }
-    rpc pin_data (PinCloudServiceDataRequest) returns (CloudServiceInfo) {
-        option (google.api.http) = { put: "/inventory/v1/cloud-service/{cloud_service_id}/pin-data" };
-    }
     rpc delete (CloudServiceRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/inventory/v1/cloud-service/{cloud_service_id}" };
     }
