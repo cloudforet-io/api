@@ -9,14 +9,14 @@ import "spaceone/api/core/v1/query.proto";
 service ChangeHistory {
     rpc list (ChangeHistoryQuery) returns (ChangeHistoryInfo) {
         option (google.api.http) = {
-            get: "/inventory/v1/change-history"
+            get: "/inventory/v1/cloud-service/{cloud_service_id}/change-history"
             additional_bindings {
-                post: "/inventory/v1/change-history/search"
+                post: "/inventory/v1/cloud-service/{cloud_service_id}/change-history/search"
             }
         };
     }
     rpc stat (ChangeHistoryStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/inventory/v1/change-history/stat" };
+        option (google.api.http) = { post: "/inventory/v1/cloud-service/{cloud_service_id}/change-history/stat" };
     }
 }
 
@@ -31,7 +31,7 @@ message ChangeHistoryQuery {
 
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // is_required: true
     string cloud_service_id = 2;
     // is_required: false
     RecordAction action = 3;
@@ -92,4 +92,6 @@ message ChangeHistoryStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true
     string domain_id = 2;
+    // is_required: true
+    string cloud_service_id = 3;
 }
