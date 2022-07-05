@@ -41,14 +41,24 @@ message ChangeHistoryQuery {
     string collector_id = 5;
     // is_required: false
     string job_id = 6;
+    // is_required: false
+    string updated_by = 7;
     // is_required: true
-    string domain_id = 7;
+    string domain_id = 8;
 }
 
 message RecordDiff {
+    enum DiffType {
+        NONE = 0;
+        ADDED = 1;
+        CHANGED = 2;
+        DELETED = 3;
+    }
+
     string key = 1;
     google.protobuf.Value before = 2;
     google.protobuf.Value after = 3;
+    DiffType type = 4;
 }
 
 message RecordInfo {
@@ -67,7 +77,8 @@ message RecordInfo {
     string user_id = 6;
     string collector_id = 7;
     string job_id = 8;
-    string domain_id = 9;
+    string updated_by = 9;
+    string domain_id = 10;
     string created_at = 11;
 }
 
