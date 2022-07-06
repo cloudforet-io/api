@@ -47,19 +47,19 @@ message ChangeHistoryQuery {
     string domain_id = 8;
 }
 
-message RecordDiff {
-    enum DiffType {
-        NONE = 0;
-        ADDED = 1;
-        CHANGED = 2;
-        DELETED = 3;
-    }
-
-    string key = 1;
-    google.protobuf.Value before = 2;
-    google.protobuf.Value after = 3;
-    DiffType type = 4;
-}
+//message RecordDiff {
+//    enum DiffType {
+//        NONE = 0;
+//        ADDED = 1;
+//        CHANGED = 2;
+//        DELETED = 3;
+//    }
+//
+//    string key = 1;
+//    google.protobuf.Value before = 2;
+//    google.protobuf.Value after = 3;
+//    DiffType type = 4;
+//}
 
 message RecordInfo {
     enum RecordAction {
@@ -72,7 +72,8 @@ message RecordInfo {
     string record_id = 1;
     string cloud_service_id = 2;
     RecordAction action = 3;
-    repeated RecordDiff diff = 4;
+    google.protobuf.ListValue diff = 4;
+//    repeated RecordDiff diff = 4;
     int32 diff_count = 5;
     string user_id = 6;
     string collector_id = 7;
