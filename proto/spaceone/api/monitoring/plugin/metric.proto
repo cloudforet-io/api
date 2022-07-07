@@ -26,7 +26,7 @@ message MetricDataRequest {
     // is_required: true
     google.protobuf.Struct secret_data = 2;
     // is_required: true
-    google.protobuf.Struct query = 3;
+    google.protobuf.Struct metric_query = 3;
     // is_required: true
     // desc: metric identifier in case of requested metric info is not a single.
     string metric = 4;
@@ -45,8 +45,9 @@ message MetricDataRequest {
 message MetricInfo {
     string key = 1;
     string name = 2;
-    string unit = 3;
-    google.protobuf.Struct query = 4;
+    string group = 3;
+    string unit = 4;
+    google.protobuf.Struct metric_query = 5;
 }
 
 message MetricsInfo {
