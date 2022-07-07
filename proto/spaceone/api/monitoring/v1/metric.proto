@@ -19,40 +19,35 @@ message MetricRequest {
     // is_required: true
     string data_source_id = 1;
     // is_required: true
-    string resource_type = 2;
+    repeated string resources = 2;
     // is_required: true
-    repeated string resources = 3;
-    // is_required: true
-    string domain_id = 4;
+    string domain_id = 10;
 }
 
 message MetricDataRequest {
     // is_required: true
     string data_source_id = 1;
     // is_required: true
-    string resource_type = 2;
+    google.protobuf.Struct query = 2;
     // is_required: true
-    repeated string resources = 3;
+    string metric = 3;
     // is_required: true
-    string metric = 4;
+    string start = 10;
     // is_required: true
-    string start = 5;
-    // is_required: true
-    string end = 6;
+    string end = 11;
     // is_required: false
-    int32 period = 7;
+    int32 period = 12;
     // is_required: false
-    string stat = 8;
+    string stat = 13;
     // is_required: true
-    string domain_id = 9;
+    string domain_id = 20;
 }
 
 message MetricInfo {
     string key = 1;
     string name = 2;
-    google.protobuf.Struct unit = 3;
-    string chart_type = 4;
-    google.protobuf.Struct chart_options = 5;
+    google.protobuf.Struct query = 3;
+    string unit = 4;
 }
 
 message MetricsInfo {
@@ -63,6 +58,6 @@ message MetricsInfo {
 
 message MetricDataInfo {
     google.protobuf.ListValue labels = 1;
-    google.protobuf.Struct resource_values = 2;
+    google.protobuf.Struct values = 2;
     string domain_id = 3;
 }

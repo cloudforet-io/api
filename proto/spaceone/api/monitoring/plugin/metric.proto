@@ -15,7 +15,7 @@ message MetricRequest {
     // is_required: true
     google.protobuf.Struct secret_data = 2;
     // is_required: true
-    google.protobuf.Value resource = 3;
+    google.protobuf.Struct query = 3;
     // is_required: false
     string schema = 4;
 }
@@ -26,7 +26,7 @@ message MetricDataRequest {
     // is_required: true
     google.protobuf.Struct secret_data = 2;
     // is_required: true
-    google.protobuf.Struct resource = 3;
+    google.protobuf.Struct metric_query = 3;
     // is_required: true
     // desc: metric identifier in case of requested metric info is not a single.
     string metric = 4;
@@ -45,9 +45,9 @@ message MetricDataRequest {
 message MetricInfo {
     string key = 1;
     string name = 2;
-    google.protobuf.Struct unit = 3;
-    string chart_type = 4;
-    google.protobuf.Struct chart_options = 5;
+    string group = 3;
+    string unit = 4;
+    google.protobuf.Struct metric_query = 5;
 }
 
 message MetricsInfo {
