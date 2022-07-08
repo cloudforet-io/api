@@ -7,11 +7,11 @@ import "google/api/annotations.proto";
 
 
 service Metric {
-    rpc get_data (MetricDataRequest) returns (MetricDataInfo) {
-        option (google.api.http) = { get: "/monitoring/v1/data-source/{data_source_id}/metric-data" };
-    }
     rpc list (MetricRequest) returns (MetricsInfo) {
         option (google.api.http) = { get: "/monitoring/v1/data-source/{data_source_id}/metrics" };
+    }
+    rpc get_data (MetricDataRequest) returns (MetricDataInfo) {
+        option (google.api.http) = { get: "/monitoring/v1/data-source/{data_source_id}/metric-data" };
     }
 }
 
@@ -28,7 +28,7 @@ message MetricDataRequest {
     // is_required: true
     string data_source_id = 1;
     // is_required: true
-    google.protobuf.Struct query = 2;
+    google.protobuf.Struct metric_query = 2;
     // is_required: true
     string metric = 3;
     // is_required: true
