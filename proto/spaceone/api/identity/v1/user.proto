@@ -60,6 +60,9 @@ service User {
     rpc update (UpdateUserRequest) returns (UserInfo) {
         option (google.api.http) = { put: "/identity/v1/users" };
     }
+    rpc set_required_actions (SetRequiredActionsRequest) returns (UserInfo) {
+        option (google.api.http) = { post: "/identity/v1/users/set-required-actions" };
+    }
     rpc enable (UserRequest) returns (UserInfo) {
         option (google.api.http) = { put: "/identity/v1/user/{user_id}/enable" };
     }
@@ -103,6 +106,12 @@ enum UserType {
     API_USER = 2;
 }
 
+enum UserRequiredAction {
+    NONE_ACTION = 0;
+    UPDATE_PASSWORD = 1;
+}
+
+
 message CreateUserRequest {
     // is_required: true
     string user_id = 1;
@@ -143,6 +152,15 @@ message UpdateUserRequest {
     google.protobuf.Struct tags = 9;
     // is_required: true
     string domain_id = 10;
+}
+
+message SetRequiredActionsRequest {
+    // is_required: true
+    string user_id = 1;
+    // is_required: true
+    repeated UserRequiredAction actions = 2;
+    // is_required: true
+    string domain_id = 3;
 }
 
 message UserRequest {
@@ -196,6 +214,7 @@ message UserInfo {
     UserBackend backend = 6;
     string language = 7;
     string timezone = 8;
+    repeated UserRequiredAction required_actions = 9;
     google.protobuf.Struct tags = 10;
     string last_accessed_at = 11;
     string created_at = 12;
