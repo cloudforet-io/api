@@ -1,0 +1,1395 @@
+{
+  "files": [
+    {
+      "name": "spaceone/api/monitoring/v1/event_rule.proto",
+      "description": "desc: An EventRule is a rule to transform the request data when an Event is generated.",
+      "package": "spaceone.api.monitoring.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [
+        {
+          "name": "ConditionsPolicy",
+          "longName": "CreateEventRuleRequest.ConditionsPolicy",
+          "fullName": "spaceone.api.monitoring.v1.CreateEventRuleRequest.ConditionsPolicy",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ALL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "ANY",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "ALWAYS",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ConditionsPolicy",
+          "longName": "EventRuleInfo.ConditionsPolicy",
+          "fullName": "spaceone.api.monitoring.v1.EventRuleInfo.ConditionsPolicy",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ALL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "ANY",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "ALWAYS",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "EventRuleScope",
+          "longName": "EventRuleInfo.EventRuleScope",
+          "fullName": "spaceone.api.monitoring.v1.EventRuleInfo.EventRuleScope",
+          "description": "",
+          "values": [
+            {
+              "name": "SCOPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "GLOBAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PROJECT",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "EventRuleScope",
+          "longName": "EventRuleQuery.EventRuleScope",
+          "fullName": "spaceone.api.monitoring.v1.EventRuleQuery.EventRuleScope",
+          "description": "",
+          "values": [
+            {
+              "name": "SCOPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "GLOBAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PROJECT",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ConditionsPolicy",
+          "longName": "UpdateEventRuleRequest.ConditionsPolicy",
+          "fullName": "spaceone.api.monitoring.v1.UpdateEventRuleRequest.ConditionsPolicy",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ALL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "ANY",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "ALWAYS",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "ChangeEventRuleOrderRequest",
+          "longName": "ChangeEventRuleOrderRequest",
+          "fullName": "spaceone.api.monitoring.v1.ChangeEventRuleOrderRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "event_rule_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "order",
+              "description": "is_required: true",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CreateEventRuleRequest",
+          "longName": "CreateEventRuleRequest",
+          "fullName": "spaceone.api.monitoring.v1.CreateEventRuleRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "conditions",
+              "description": "is_required: true",
+              "label": "repeated",
+              "type": "EventRuleCondition",
+              "longType": "EventRuleCondition",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleCondition",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "conditions_policy",
+              "description": "is_required: true",
+              "label": "",
+              "type": "ConditionsPolicy",
+              "longType": "CreateEventRuleRequest.ConditionsPolicy",
+              "fullType": "spaceone.api.monitoring.v1.CreateEventRuleRequest.ConditionsPolicy",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "actions",
+              "description": "is_required: true",
+              "label": "",
+              "type": "EventRuleActions",
+              "longType": "EventRuleActions",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleActions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "is_required: false",
+              "label": "",
+              "type": "EventRuleOptions",
+              "longType": "EventRuleOptions",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EventRuleActionResponder",
+          "longName": "EventRuleActionResponder",
+          "fullName": "spaceone.api.monitoring.v1.EventRuleActionResponder",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "resource_type",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EventRuleActions",
+          "longName": "EventRuleActions",
+          "fullName": "spaceone.api.monitoring.v1.EventRuleActions",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "change_assignee",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "change_urgency",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "change_project",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "add_project_dependency",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "add_responder",
+              "description": "",
+              "label": "repeated",
+              "type": "EventRuleActionResponder",
+              "longType": "EventRuleActionResponder",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleActionResponder",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "match_service_account",
+              "description": "",
+              "label": "",
+              "type": "MatchRule",
+              "longType": "MatchRule",
+              "fullType": "spaceone.api.monitoring.v1.MatchRule",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "add_additional_info",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "no_notification",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EventRuleCondition",
+          "longName": "EventRuleCondition",
+          "fullName": "spaceone.api.monitoring.v1.EventRuleCondition",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "key",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "operator",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EventRuleInfo",
+          "longName": "EventRuleInfo",
+          "fullName": "spaceone.api.monitoring.v1.EventRuleInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "event_rule_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "order",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "conditions",
+              "description": "",
+              "label": "repeated",
+              "type": "EventRuleCondition",
+              "longType": "EventRuleCondition",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleCondition",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "conditions_policy",
+              "description": "",
+              "label": "",
+              "type": "ConditionsPolicy",
+              "longType": "EventRuleInfo.ConditionsPolicy",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleInfo.ConditionsPolicy",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "actions",
+              "description": "",
+              "label": "",
+              "type": "EventRuleActions",
+              "longType": "EventRuleActions",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleActions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "EventRuleOptions",
+              "longType": "EventRuleOptions",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "scope",
+              "description": "",
+              "label": "",
+              "type": "EventRuleScope",
+              "longType": "EventRuleInfo.EventRuleScope",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleInfo.EventRuleScope",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "created_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EventRuleOptions",
+          "longName": "EventRuleOptions",
+          "fullName": "spaceone.api.monitoring.v1.EventRuleOptions",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "stop_processing",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EventRuleQuery",
+          "longName": "EventRuleQuery",
+          "fullName": "spaceone.api.monitoring.v1.EventRuleQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Query",
+              "longType": "spaceone.api.core.v1.Query",
+              "fullType": "spaceone.api.core.v1.Query",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "event_rule_id",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "scope",
+              "description": "is_required: false",
+              "label": "",
+              "type": "EventRuleScope",
+              "longType": "EventRuleQuery.EventRuleScope",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleQuery.EventRuleScope",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EventRuleRequest",
+          "longName": "EventRuleRequest",
+          "fullName": "spaceone.api.monitoring.v1.EventRuleRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "event_rule_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EventRuleStatQuery",
+          "longName": "EventRuleStatQuery",
+          "fullName": "spaceone.api.monitoring.v1.EventRuleStatQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "is_required: true",
+              "label": "",
+              "type": "StatisticsQuery",
+              "longType": "spaceone.api.core.v1.StatisticsQuery",
+              "fullType": "spaceone.api.core.v1.StatisticsQuery",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EventRulesInfo",
+          "longName": "EventRulesInfo",
+          "fullName": "spaceone.api.monitoring.v1.EventRulesInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "EventRuleInfo",
+              "longType": "EventRuleInfo",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetEventRuleRequest",
+          "longName": "GetEventRuleRequest",
+          "fullName": "spaceone.api.monitoring.v1.GetEventRuleRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "event_rule_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "only",
+              "description": "is_required: false",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MatchRule",
+          "longName": "MatchRule",
+          "fullName": "spaceone.api.monitoring.v1.MatchRule",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "source",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "target",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateEventRuleRequest",
+          "longName": "UpdateEventRuleRequest",
+          "fullName": "spaceone.api.monitoring.v1.UpdateEventRuleRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "event_rule_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "is_required: false",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "conditions",
+              "description": "is_required: false",
+              "label": "repeated",
+              "type": "EventRuleCondition",
+              "longType": "EventRuleCondition",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleCondition",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "conditions_policy",
+              "description": "is_required: false",
+              "label": "",
+              "type": "ConditionsPolicy",
+              "longType": "UpdateEventRuleRequest.ConditionsPolicy",
+              "fullType": "spaceone.api.monitoring.v1.UpdateEventRuleRequest.ConditionsPolicy",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "actions",
+              "description": "is_required: false",
+              "label": "",
+              "type": "EventRuleActions",
+              "longType": "EventRuleActions",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleActions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "is_required: false",
+              "label": "",
+              "type": "EventRuleOptions",
+              "longType": "EventRuleOptions",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "is_required: false",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "is_required: true",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "EventRule",
+          "longName": "EventRule",
+          "fullName": "spaceone.api.monitoring.v1.EventRule",
+          "description": "",
+          "methods": [
+            {
+              "name": "create",
+              "description": "desc: Creates a new EventRule. You can filter the Events to apply the EventRule by setting the input parameter `Conditions`. The method can change the Events' assignee or Project.\nrequest_example: \u003e-\n{\n\"conditions\": [{\"key\": \"description\", \"value\": \"API\", \"operator\": \"contain\"}],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\"change_assignee\": \"user1@email.com\",\n\"change_urgency\": \"LOW\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {\"type\": \"personal rule\"},\n\"no_notification\": True},\n\"options\": {},\n\"project_id\": \"project-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 1,\n\"conditions\": [\n{\n\"key\": \"description\",\n\"value\": \"API\",\n\"operator\": \"contain\"\n}\n],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\n\"change_assignee\": \"user1@email.com\",\n\"change_urgency\": \"LOW\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {\n\"type\": \"personal rule\"\n},\n\"no_notification\": true\n},\n\"options\": {},\n\"scope\": \"PROJECT\",\n\"project_id\": \"project-123456789012\",\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-02T06:02:31.517Z\"\n}",
+              "requestType": "CreateEventRuleRequest",
+              "requestLongType": "CreateEventRuleRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.CreateEventRuleRequest",
+              "requestStreaming": false,
+              "responseType": "EventRuleInfo",
+              "responseLongType": "EventRuleInfo",
+              "responseFullType": "spaceone.api.monitoring.v1.EventRuleInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/monitoring/v1/event-rules"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update",
+              "description": "desc: Changes a priority order between EventRules to apply. EventRules are filtered by the order configured.\nrequest_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"conditions\": [{\"key\": \"description\", \"value\": \"ELB\", \"operator\": \"contain\"}],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\"change_assignee\": \"user2@email.com\",\n\"change_urgency\": \"HIGH\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {\"type\": \"personal rule\"},\n\"no_notification\": true},\n\"options\": {},\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 2,\n\"conditions\": [\n{\n\"key\": \"description\",\n\"value\": \"ELB\",\n\"operator\": \"contain\"\n}\n],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\n\"change_assignee\": \"user2@email.com\",\n\"change_urgency\": \"HIGH\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {\n\"type\": \"personal rule\"\n},\n\"no_notification\": true\n},\n\"options\": {},\n\"scope\": \"PROJECT\",\n\"project_id\": \"project-123456789012\",\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T06:02:31.517Z\"\n}",
+              "requestType": "UpdateEventRuleRequest",
+              "requestLongType": "UpdateEventRuleRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.UpdateEventRuleRequest",
+              "requestStreaming": false,
+              "responseType": "EventRuleInfo",
+              "responseLongType": "EventRuleInfo",
+              "responseFullType": "spaceone.api.monitoring.v1.EventRuleInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/monitoring/v1/event-rule/{event_rule_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "change_order",
+              "description": "desc: Updates a specific EventRule. You can make changes in EventRule settings.\nrequest_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 2,\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 2,\n\"conditions\": [\n{\n\"key\": \"description\",\n\"value\": \"API\",\n\"operator\": \"contain\"\n}\n],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\n\"change_assignee\": \"user1@email.com\",\n\"change_urgency\": \"LOW\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {\n\"type\": \"personal rule\"\n},\n\"no_notification\": true\n},\n\"options\": {},\n\"scope\": \"PROJECT\",\n\"project_id\": \"project-123456789012\",\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-02T06:02:31.517Z\"\n}",
+              "requestType": "ChangeEventRuleOrderRequest",
+              "requestLongType": "ChangeEventRuleOrderRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.ChangeEventRuleOrderRequest",
+              "requestStreaming": false,
+              "responseType": "EventRuleInfo",
+              "responseLongType": "EventRuleInfo",
+              "responseFullType": "spaceone.api.monitoring.v1.EventRuleInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "PUT",
+                      "pattern": "/monitoring/v1/event-rule/{event_rule_id}/order"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "delete",
+              "description": "desc: Deletes a specific EventRule. You must assign an EventRule resource to delete by specifying `event_rule_id`.\nrequest_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}",
+              "requestType": "EventRuleRequest",
+              "requestLongType": "EventRuleRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.EventRuleRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "DELETE",
+                      "pattern": "/monitoring/v1/event-rule/{event_rule_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get",
+              "description": "desc: Gets a specific EventRule. Prints detailed information about the EventRule.\nrequest_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 2,\n\"conditions\": [\n{\n\"key\": \"title\",\n\"value\": \"ELB\",\n\"operator\": \"contain\"\n}\n],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\n\"change_assignee\": \"user1@email.com\",\n\"change_urgency\": \"LOW\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {},\n\"no_notification\": true\n},\n\"options\": {},\n\"scope\": \"PROJECT\",\n\"project_id\": \"project-123456789012\",\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T06:12:30.226Z\"\n}",
+              "requestType": "GetEventRuleRequest",
+              "requestLongType": "GetEventRuleRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.GetEventRuleRequest",
+              "requestStreaming": false,
+              "responseType": "EventRuleInfo",
+              "responseLongType": "EventRuleInfo",
+              "responseFullType": "spaceone.api.monitoring.v1.EventRuleInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/monitoring/v1/event-rule/{event_rule_id}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "list",
+              "description": "desc: Gets a list of all EventRules. You can use a query to get a filtered list of EventRules. For example, you can adjust the scope of the list to a certain Project or Domain.\nrequest_example: \u003e-\n{\n\"project_id\": \"project-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 1,\n\"conditions\": [\n{\n\"key\": \"title\",\n\"value\": \"AWS\",\n\"operator\": \"contain\"\n}\n],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\n\"change_assignee\": \"user2@email.com\",\n\"change_urgency\": \"HIGH\",\n\"add_additional_info\": {},\n\"no_notification\": true\n},\n\"options\": {},\n\"scope\": \"PROJECT\",\n\"project_id\": \"project-123456789012\",\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T06:33:58.388Z\"\n},\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 2,\n\"conditions\": [\n{\n\"key\": \"title\",\n\"value\": \"ELB\",\n\"operator\": \"contain\"\n}\n],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\n\"change_assignee\": \"user1@email.com\",\n\"change_urgency\": \"LOW\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {},\n\"no_notification\": true\n},\n\"options\": {},\n\"scope\": \"PROJECT\",\n\"project_id\": \"project-123456789012\",\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T06:12:30.226Z\"\n}\n],\n\"total_count\": 2\n}",
+              "requestType": "EventRuleQuery",
+              "requestLongType": "EventRuleQuery",
+              "requestFullType": "spaceone.api.monitoring.v1.EventRuleQuery",
+              "requestStreaming": false,
+              "responseType": "EventRulesInfo",
+              "responseLongType": "EventRulesInfo",
+              "responseFullType": "spaceone.api.monitoring.v1.EventRulesInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/monitoring/v1/event-rules"
+                    },
+                    {
+                      "method": "POST",
+                      "pattern": "/monitoring/v1/event-rules/search"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "stat",
+              "description": "",
+              "requestType": "EventRuleStatQuery",
+              "requestLongType": "EventRuleStatQuery",
+              "requestFullType": "spaceone.api.monitoring.v1.EventRuleStatQuery",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/monitoring/v1/event-rules/stat"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}
