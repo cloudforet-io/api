@@ -1,3 +1,6 @@
+/*
+desc: A Webhook is a plugin receiving data from external monitoring systems.
+ */
 syntax = "proto3";
 
 package spaceone.api.monitoring.plugin;
@@ -6,7 +9,13 @@ import "google/protobuf/struct.proto";
 
 
 service Webhook {
+    /*
+    desc: Verifies a specific Webhook. You must specify the parameter `secret_data`, encrypted account data of the Webhook to validate.
+     */
     rpc init (WebhookInitRequest) returns (WebhookPluginInfo) {}
+    /*
+    desc: Initializes a specific Webhook. During initialization, the Webhook information to be passed to the Webhook user is delivered as `metadata`. Webhook information includes its name and version.
+     */
     rpc verify (WebhookPluginVerifyRequest) returns (google.protobuf.Empty) {}
 }
 

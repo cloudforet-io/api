@@ -1,3 +1,6 @@
+/*
+desc: A DataSource is a plugin instance receiving Metric and Log data from cloud services.
+ */
 syntax = "proto3";
 
 package spaceone.api.monitoring.plugin;
@@ -6,7 +9,13 @@ import "google/protobuf/struct.proto";
 
 
 service DataSource {
+    /*
+    desc: Initializes a specific DataSource. During initialization, the DataSource information to be passed to the DataSource user is delivered as `metadata`. DataSource information includes its name and version.
+     */
     rpc init (InitRequest) returns (PluginInfo) {}
+    /*
+    desc: Verifies a specific DataSource. You must specify the parameter `secret_data`, encrypted account data of the DataSource to validate.
+     */
     rpc verify (PluginVerifyRequest) returns (google.protobuf.Empty) {}
 }
 

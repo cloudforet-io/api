@@ -1,3 +1,6 @@
+/*
+desc: An EventRule is a rule to transform the request data when an Event is generated.
+ */
 syntax = "proto3";
 
 package spaceone.api.monitoring.v1;
@@ -9,21 +12,251 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service EventRule {
+    /*
+    desc: Creates a new EventRule. You can filter the Events to apply the EventRule by setting the input parameter `Conditions`. The method can change the Events' assignee or Project.
+    request_example: >-
+        {
+          "conditions": [{"key": "description", "value": "API", "operator": "contain"}],
+          "conditions_policy": "ALL",
+          "actions": {"change_assignee": "user1@email.com",
+          "change_urgency": "LOW",
+          "change_project": "project-123456789012",
+          "add_additional_info": {"type": "personal rule"},
+          "no_notification": True},
+          "options": {},
+          "project_id": "project-123456789012",
+          "domain_id": "domain-123456789012"
+         }
+    response_example: >-
+        {
+          "event_rule_id": "er-123456789012",
+          "order": 1,
+          "conditions": [
+          {
+          "key": "description",
+          "value": "API",
+          "operator": "contain"
+          }
+          ],
+          "conditions_policy": "ALL",
+          "actions": {
+          "change_assignee": "user1@email.com",
+          "change_urgency": "LOW",
+          "change_project": "project-123456789012",
+          "add_additional_info": {
+          "type": "personal rule"
+          },
+          "no_notification": true
+          },
+          "options": {},
+          "scope": "PROJECT",
+          "project_id": "project-123456789012",
+          "tags": {},
+          "domain_id": "domain-123456789012",
+          "created_at": "2022-01-02T06:02:31.517Z"
+         }
+     */
     rpc create (CreateEventRuleRequest) returns (EventRuleInfo) {
         option (google.api.http) = { post: "/monitoring/v1/event-rules" };
     }
+    /*
+    desc: Changes a priority order between EventRules to apply. EventRules are filtered by the order configured.
+    request_example: >-
+        {
+          "event_rule_id": "er-123456789012",
+          "conditions": [{"key": "description", "value": "ELB", "operator": "contain"}],
+          "conditions_policy": "ALL",
+          "actions": {"change_assignee": "user2@email.com",
+          "change_urgency": "HIGH",
+          "change_project": "project-123456789012",
+          "add_additional_info": {"type": "personal rule"},
+          "no_notification": true},
+          "options": {},
+          "domain_id": "domain-123456789012"
+         }
+    response_example: >-
+        {
+          "event_rule_id": "er-123456789012",
+          "order": 2,
+          "conditions": [
+          {
+          "key": "description",
+          "value": "ELB",
+          "operator": "contain"
+          }
+          ],
+          "conditions_policy": "ALL",
+          "actions": {
+          "change_assignee": "user2@email.com",
+          "change_urgency": "HIGH",
+          "change_project": "project-123456789012",
+          "add_additional_info": {
+          "type": "personal rule"
+          },
+          "no_notification": true
+          },
+          "options": {},
+          "scope": "PROJECT",
+          "project_id": "project-123456789012",
+          "tags": {},
+          "domain_id": "domain-123456789012",
+          "created_at": "2022-01-01T06:02:31.517Z"
+         }
+     */
     rpc update (UpdateEventRuleRequest) returns (EventRuleInfo) {
         option (google.api.http) = { put: "/monitoring/v1/event-rule/{event_rule_id}" };
     }
+    /*
+    desc: Updates a specific EventRule. You can make changes in EventRule settings.
+    request_example: >-
+        {
+          "event_rule_id": "er-123456789012",
+          "order": 2,
+          "domain_id": "domain-123456789012"
+         }
+    response_example: >-
+        {
+          "event_rule_id": "er-123456789012",
+          "order": 2,
+          "conditions": [
+          {
+          "key": "description",
+          "value": "API",
+          "operator": "contain"
+          }
+          ],
+          "conditions_policy": "ALL",
+          "actions": {
+          "change_assignee": "user1@email.com",
+          "change_urgency": "LOW",
+          "change_project": "project-123456789012",
+          "add_additional_info": {
+          "type": "personal rule"
+          },
+          "no_notification": true
+          },
+          "options": {},
+          "scope": "PROJECT",
+          "project_id": "project-123456789012",
+          "tags": {},
+          "domain_id": "domain-123456789012",
+          "created_at": "2022-01-02T06:02:31.517Z"
+         }
+     */
     rpc change_order (ChangeEventRuleOrderRequest) returns (EventRuleInfo) {
         option (google.api.http) = { put: "/monitoring/v1/event-rule/{event_rule_id}/order" };
     }
+    /*
+    desc: Deletes a specific EventRule. You must assign an EventRule resource to delete by specifying `event_rule_id`.
+    request_example: >-
+        {
+          "event_rule_id": "er-123456789012",
+          "domain_id": "domain-123456789012"
+         }
+     */
     rpc delete (EventRuleRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/monitoring/v1/event-rule/{event_rule_id}" };
     }
+    /*
+    desc: Gets a specific EventRule. Prints detailed information about the EventRule.
+    request_example: >-
+        {
+          "event_rule_id": "er-123456789012",
+          "domain_id": "domain-123456789012"
+         }
+    response_example: >-
+        {
+          "event_rule_id": "er-123456789012",
+          "order": 2,
+          "conditions": [
+          {
+          "key": "title",
+          "value": "ELB",
+          "operator": "contain"
+          }
+          ],
+          "conditions_policy": "ALL",
+          "actions": {
+          "change_assignee": "user1@email.com",
+          "change_urgency": "LOW",
+          "change_project": "project-123456789012",
+          "add_additional_info": {},
+          "no_notification": true
+          },
+          "options": {},
+          "scope": "PROJECT",
+          "project_id": "project-123456789012",
+          "tags": {},
+          "domain_id": "domain-123456789012",
+          "created_at": "2022-01-01T06:12:30.226Z"
+         }
+     */
     rpc get (GetEventRuleRequest) returns (EventRuleInfo) {
         option (google.api.http) = { get: "/monitoring/v1/event-rule/{event_rule_id}" };
     }
+    /*
+    desc: Gets a list of all EventRules. You can use a query to get a filtered list of EventRules. For example, you can adjust the scope of the list to a certain Project or Domain.
+    request_example: >-
+        {
+          "project_id": "project-123456789012",
+          "domain_id": "domain-123456789012"
+         }
+    response_example: >-
+        {
+          "results": [
+          {
+          "event_rule_id": "er-123456789012",
+          "order": 1,
+          "conditions": [
+          {
+          "key": "title",
+          "value": "AWS",
+          "operator": "contain"
+          }
+          ],
+          "conditions_policy": "ALL",
+          "actions": {
+          "change_assignee": "user2@email.com",
+          "change_urgency": "HIGH",
+          "add_additional_info": {},
+          "no_notification": true
+          },
+          "options": {},
+          "scope": "PROJECT",
+          "project_id": "project-123456789012",
+          "tags": {},
+          "domain_id": "domain-123456789012",
+          "created_at": "2022-01-01T06:33:58.388Z"
+          },
+          {
+          "event_rule_id": "er-123456789012",
+          "order": 2,
+          "conditions": [
+          {
+          "key": "title",
+          "value": "ELB",
+          "operator": "contain"
+          }
+          ],
+          "conditions_policy": "ALL",
+          "actions": {
+          "change_assignee": "user1@email.com",
+          "change_urgency": "LOW",
+          "change_project": "project-123456789012",
+          "add_additional_info": {},
+          "no_notification": true
+          },
+          "options": {},
+          "scope": "PROJECT",
+          "project_id": "project-123456789012",
+          "tags": {},
+          "domain_id": "domain-123456789012",
+          "created_at": "2022-01-01T06:12:30.226Z"
+          }
+          ],
+          "total_count": 2
+         }
+     */
     rpc list (EventRuleQuery) returns (EventRulesInfo) {
         option (google.api.http) = {
             get: "/monitoring/v1/event-rules"
