@@ -86,9 +86,7 @@ service Post {
     option (google.api.http) = {put: "/board/v1/board/{board_id}/post/{post_id}"};
   }
   /*
-  desc:
-  request_example: >-
-  response_example: >-
+  desc: Not Implemented
    */
   rpc send_notification (SendNotificationRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {post: "/board/v1/board/{board_id}/post/{post_id}/send-notification"};
@@ -101,7 +99,6 @@ service Post {
       "post_id": "post-2118473ce15e",
       "domain_id": "domain-123456789012"
     }
-  response_example: >-
    */
   rpc delete (PostRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {delete: "/board/v1/board/{board_id}/post/{post_id}"};
@@ -180,9 +177,8 @@ service Post {
                 "created_at": "2022-06-10T07:01:44.384Z",
                 "updated_at": "2022-06-10T07:01:44.384Z"
             }
-        ...
         ],
-        "total_count": 12
+        "total_count": 2
     }
    */
   rpc list (PostQuery) returns (PostsInfo) {
