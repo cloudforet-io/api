@@ -1,0 +1,148 @@
+syntax = "proto3";
+
+package spaceone.api.file_manager.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service File {
+    rpc add (CreateFileRequest) returns (FileInfo) {
+        option (google.api.http) = { post: "/file-manager/v1/files" };
+    }
+    rpc update (UpdateFileRequest) returns (FileInfo) {
+        option (google.api.http) = { put: "/file-manager/v1/file/{file_id}" };
+    }
+    rpc delete (FileRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/file-manager/v1/file/{file_id}" };
+    }
+    rpc get_download_url (FileRequest) returns (FileInfo) {
+        option (google.api.http) = { get: "/file-manager/v1/file/{file_id}/download-url" };
+    }
+    rpc get (GetFileRequest) returns (FileInfo) {
+        option (google.api.http) = { get: "/file-manager/v1/file/{file_id}" };
+    }
+    rpc list (FileQuery) returns (FilesInfo) {
+        option (google.api.http) = {
+            get: "/file-manager/v1/files"
+            additional_bindings {
+                post: "/file-manager/v1/files/search"
+            }
+        };
+    }
+    rpc stat (FileStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/file-manager/v1/files/stat" };
+    }
+}
+
+enum FileState {
+    STATE_NONE = 0;
+    PENDING = 1;
+    DONE = 2;
+}
+
+enum FileScope {
+    SCOPE_NONE = 0;
+    GLOBAL = 1;
+    PROJECT = 2;
+}
+
+message FileReference {
+    string resource_type = 1;
+    string resource_id = 2;
+}
+
+message CreateFileRequest {
+    // is_required: true
+    string name = 1;
+    // is_required: false
+    google.protobuf.Struct tags = 2;
+    // is_required: false
+    FileReference reference = 3;
+    // is_required: false
+    string project_id = 11;
+    // is_required: true
+    string domain_id = 12;
+}
+
+message UpdateFileRequest {
+    // is_required: true
+    string file_id = 1;
+    // is_required: false
+    google.protobuf.Struct tags = 2;
+    // is_required: false
+    FileReference reference = 3;
+    // is_required: false
+    string project_id = 11;
+    // is_required: true
+    string domain_id = 12;
+}
+
+message FileRequest {
+    // is_required: true
+    string file_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetFileRequest {
+    // is_required: true
+    string file_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message FileQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string file_id = 2;
+    /// is_required: false
+    string name = 3;
+    // is_required: false
+    FileState state = 4;
+    // is_required: false
+    FileScope scope = 5;
+    // is_required: false
+    string file_type = 6;
+    // is_required: false
+    string resource_type = 7;
+    // is_required: false
+    string resource_id = 8;
+    // is_required: false
+    string project_id = 11;
+    // is_required: true
+    string domain_id = 12;
+}
+
+message FileInfo {
+    string file_id = 1;
+    string name = 2;
+    FileState state = 3;
+    FileScope scope = 4;
+    string file_type = 5;
+    string upload_url = 6;
+    google.protobuf.Struct upload_options = 7;
+    string download_url = 8;
+    google.protobuf.Struct tags = 9;
+    FileReference reference = 10;
+    string project_id = 11;
+    string domain_id = 12;
+    string created_at = 21;
+}
+
+message FilesInfo {
+    repeated FileInfo results = 1;
+    int32 total_count = 2;
+}
+
+message FileStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
