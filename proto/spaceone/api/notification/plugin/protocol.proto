@@ -1,3 +1,6 @@
+/*
+desc: A Protocol is a plugin instance defining how a User receives data from Cloudforet.
+*/
 syntax = "proto3";
 
 package spaceone.api.notification.plugin;
@@ -6,11 +9,25 @@ import "google/protobuf/struct.proto";
 
 
 service Protocol {
-    // desc: Initialized when protocol plugin is created first.
-    // When this method is executed, plugin return the metadata required when the plug-in is executed.
+    /*
+    desc: Initializes a specific Protocol. During initialization, the Protocol information to be passed to the Protocol user is delivered as `metadata`. Protocol information includes its name and version.
+    request_example: >-
+      {
+        "options": {}
+      }
+    response_example: >-
+      {
+        "metadata": {}
+      }
+    */
     rpc init (InitRequest) returns (PluginInfo) {}
-    // desc: A method that proves whether the plugin can be running.
-    // If there is no return value, it means that normal execution is possible.
+    /*
+    desc: Verifies if a specific Protocol is a valid plugin instance.
+    request_example: >-
+      {
+        "options": {}
+      }
+    */
     rpc verify (PluginVerifyRequest) returns (google.protobuf.Empty) {}
 }
 

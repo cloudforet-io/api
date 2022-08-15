@@ -1,3 +1,6 @@
+/*
+desc: An ExchangeRate is a resource defining the exchange rate of currencies. This resource can set a custom exchange rate for a specific domain, separately from the exchange rate of the default domain set in `config`.
+*/
 syntax = "proto3";
 
 package spaceone.api.cost_analysis.v1;
@@ -6,22 +9,113 @@ import "google/api/annotations.proto";
 
 
 service ExchangeRate {
+    /*
+    desc: Overrides a value of a specific ExchangeRate. This method is used to change the ExchangeRate in a specific domain. You can set the `currency` and `rate` of the resource.
+    request_example: >-
+      {
+        "currency": "KRW",
+        "rate": 1300
+      }
+    response_example: >-
+      {
+        "currency": "KRW",
+        "rate": 1300.0,
+        "state": "ENABLED",
+        "is_default": true
+      }
+    */
     rpc set (SetExchangeRateRequest) returns (ExchangeRateInfo) {
         option (google.api.http) = { post: "/cost-analysis/v1/exchange-rate/{currency}/set" };
     }
+    /*
+    desc: Resets a value of a specific ExchangeRate and changes the ExchangeRate to the ExchangeRate of the `default` domain.
+    request_example: >-
+      {
+        "currency": "KRW",
+      }
+    response_example: >-
+      {
+        "currency": "KRW",
+        "rate": 1242.7,
+        "state": "ENABLED",
+        "is_default": true,
+        "domain_id": "domain-58010aa2e451"
+      }
+    */
     rpc reset (ExchangeRateRequest) returns (ExchangeRateInfo) {
         option (google.api.http) = { post: "/cost-analysis/v1/exchange-rate/{currency}/reset" };
     }
+    /*
+    desc: ''
+    request_example: >-
+      {
+      }
+    response_example: >-
+      {
+
+      }
+    */
     rpc enable (ExchangeRateRequest) returns (ExchangeRateInfo) {
         option (google.api.http) = { post: "/cost-analysis/v1/exchange-rate/{currency}/enable" };
     }
+    /*
+    desc: ''
+    request_example: >-
+      {
 
+      }
+    response_example: >-
+      {
+
+      }
+    */
     rpc disable (ExchangeRateRequest) returns (ExchangeRateInfo) {
         option (google.api.http) = { post: "/cost-analysis/v1/exchange-rate/{currency}/disable" };
     }
+    /*
+    desc: Gets a specific ExchangeRate. Prints detailed information about the ExchangeRate, including  `currency` and `rate`.
+    request_example: >-
+      {
+        "currency": "KRW"
+      }
+    response_example: >-
+      {
+        "currency": "KRW",
+        "rate": 1242.7,
+        "state": "ENABLED",
+        "is_default": true,
+        "domain_id": "domain-58010aa2e451"
+      }
+    */
     rpc get (ExchangeRateRequest) returns (ExchangeRateInfo) {
         option (google.api.http) = { get: "/cost-analysis/v1/exchange-rate/{currency}" };
     }
+    /*
+    desc: Gets a list of all ExchangeRates. You can use a query to get a filtered list of ExchangeRates.
+    request_example: >-
+      {
+      }
+    response_example: >-
+      {
+        "results": [
+            {
+                "currency": "JPY",
+                "rate": 129.8,
+                "state": "ENABLED",
+                "is_default": true,
+                "domain_id": "domain-58010aa2e451"
+            },
+            {
+                "currency": "KRW",
+                "rate": 1242.7,
+                "state": "ENABLED",
+                "is_default": true,
+                "domain_id": "domain-58010aa2e451"
+            }
+        ],
+        "total_count": 2
+      }
+    */
     rpc list (ExchangeRateQuery) returns (ExchangeRatesInfo) {
         option (google.api.http) = {
             get: "/cost-analysis/v1/exchange-rates"

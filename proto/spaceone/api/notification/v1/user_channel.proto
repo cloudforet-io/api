@@ -1,3 +1,6 @@
+/*
+desc: A UserChannel is a destination where Notifications are delivered. Notifications are generated via the Protocol set by each User.
+*/
 syntax = "proto3";
 
 package spaceone.api.notification.v1;
@@ -9,53 +12,285 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service UserChannel {
-    // desc: Creates a new User Channel.
-    // User channel is the definition of the channel that delivers the notification to users when the notification is created.
-    // When creating a User Channel, one of the protocols must be selected, and an notification is dispatched through the selected protocol.
+    /*
+    desc: Creates a new UserChannel. A UserChannel is a channel that delivers a Notification to users when the Notification is created. When creating a UserChannel, one Protocol must be selected, and an Notification is dispatched via the selected Protocol.
+    request_example: >-
+      {
+        "protocol_id": "protocol-123456789012",
+        "name": "Email",
+        "data": {
+            "email": "user1@email.com"
+        },
+        "user_id": "user1@email.com",
+        "domain_id": "domain-123456789012"
+      }
+    response_example: >-
+      {
+        "user_channel_id": "user-ch-123456789012",
+        "name": "Email",
+        "state": "ENABLED",
+        "data": {
+            "email": "user1@email.com"
+        },
+        "protocol_id": "protocol-123456789012",
+        "user_id": "user1@email.com",
+        "domain_id": "domain-123456789012",
+        "created_at": "2022-01-01T08:28:49.108Z"
+      }
+    */
     rpc create (CreateUserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = { post: "/notification/v1/user-channels" };
     }
-    // desc: Updates a User Channel information.
-    // Protocol that has already been set cannot be changed. Instead, the data required to be dispatched notification for user channel is can be updated.
+    /*
+    desc: Updates a specific UserChannel. A UserChannel that has already been configured cannot be changed. Instead, the data required for dispatching Notifications to a UserChannel can be updated.
+    request_example: >-
+      {
+        "user_channel_id": "user-ch-123456789012",
+        "name": "Email2",
+        "data": {
+            "email": "user1@gmail.com"
+        },
+        "tags": {
+            "type": "test"
+        }
+      }
+    response_example: >-
+      {
+        "user_channel_id": "user-ch-123456789012",
+        "name": "Email2",
+        "state": "ENABLED",
+        "data": {
+            "email": "user1@gmail.com"
+        },
+        "protocol_id": "protocol-123456789012",
+        "user_id": "user1@email.com",
+        "tags": {
+            "type": "test"
+        },
+        "domain_id": "domain-123456789012",
+        "created_at": "2022-01-01T08:28:49.108Z"
+      }
+    */
     rpc update (UpdateUserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}" };
     }
-    // desc: Schedule settings for user channels.
-    // When a notification is created, you can set the day and time you want to receive it through the schedule.
-    // When you set the day of the week in the schedule, you can receive a notification only on the set day of the week.
-    // If you also set the start time and end time with day of the week, you can receive a notification only at the set time on the set day of the week.
-    // If there is no schedule, notifications will be dispatched at all times through user channel.
+    /*
+    desc: Sets a schedule for a UserChannel. A schedule defines the time to receive a Notification. When a Notification is created, you can set the day of the week and time you want to receive it. When you set the day of the week, you can receive a notification only on the day of the week you set. If you also set the start time and end time with the day of the week, you can receive a Notification only at the scheduled time on the day of the week you set. If there is no schedule set in a UserChannel, Notifications will be dispatched at all times via the UserChannel.
+    request_example: >-
+      {
+        "user_channel_id": "user-ch-28097e8d5d59",
+        "is_scheduled": true,
+        "schedule": {
+            "day_of_week": [
+                "MON",
+                "TUE",
+                "WED",
+                "THU",
+                "FRI"
+            ],
+            "end_hour": 9
+        },
+        "domain_id": "domain-58010aa2e451"
+      }
+    response_example: >-
+      {
+        "user_channel_id": "user-ch-28097e8d5d59",
+        "name": "my-email",
+        "state": "ENABLED",
+        "data": {
+            "email": "seolmin@mz.co.kr"
+        },
+        "is_scheduled": true,
+        "schedule": {
+            "day_of_week": [
+                "MON",
+                "TUE",
+                "WED",
+                "THU",
+                "FRI"
+            ],
+            "end_hour": 9
+        },
+        "protocol_id": "protocol-e000a677ebdb",
+        "user_id": "user1@cloudforet.io",
+        "domain_id": "domain-58010aa2e451",
+        "created_at": "2022-06-03T08:28:49.108Z"
+      }
+    */
     rpc set_schedule (UpdateUserChannelScheduleRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}/schedule" };
     }
-    // desc: Subscription settings for user channels
-    // If the user channel have subscriptions, notification is dispatched only if the topic of the notification is the same as the one set in the subscriptions.
-    // If no subscriptions in user channel, notifications will be dispatched all.
+    /*
+    desc: Sets a subscription for a UserChannel. A subscription is a topic for channels to subscribe to and get notified about. If a UserChannel has subscriptions, a Notification is dispatched only if the topic of the Notification is the same as the one set in the subscriptions. If there is no subscription in a UserChannel, all Notifications will be dispatched.
+    request_example: >-
+      {
+        "user_channel_id": "user-ch-28097e8d5d59",
+        "is_subscribe": true,
+        "subscriptions": [
+            "monitoring.Alert"
+        ],
+        "domain_id": "domain-58010aa2e451"
+      }
+    response_example: >-
+      {
+        "user_channel_id": "user-ch-28097e8d5d59",
+        "name": "my-email",
+        "state": "ENABLED",
+        "data": {
+            "email": "user1@cloudforet.io"
+        },
+        "is_subscribe": true,
+        "subscriptions": [
+            "monitoring.Alert"
+        ],
+        "is_scheduled": true,
+        "schedule": {
+            "day_of_week": [
+                "MON",
+                "TUE",
+                "WED",
+                "THU",
+                "FRI"
+            ],
+            "end_hour": 9
+        },
+        "protocol_id": "protocol-e000a677ebdb",
+        "user_id": "user1@cloudforet.io",
+        "domain_id": "domain-58010aa2e451",
+        "created_at": "2022-06-03T08:28:49.108Z"
+      }
+    */
     rpc set_subscription (UpdateUserChannelSubscriptionRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}/subscription" };
     }
-    // desc: Enables a User Channel.
-    // If the disabled user channel is enabled, the user channel can be used again and the notification can be dispatched.
-    // Even if the user channel is enabled, if the protocol being used in the user channel is disabled, the notification is not dispatched.
+    /*
+    desc: Enables a specific UserChannel. If a UserChannel is enabled, the UserChannel can be used and the Notification can be dispatched. Even if a UserChannel is enabled, if the Protocol used in the UserChannel is disabled, the Notification is not dispatched.
+    request_example: >-
+      {
+        "user_channel_id": "user-ch-123456789012"
+      }
+    response_example: >-
+      {
+        "user_channel_id": "user-ch-123456789012",
+        "name": "Email",
+        "state": "ENABLED",
+        "data": {
+            "email": "user1@email.com"
+        },
+        "protocol_id": "protocol-123456789012",
+        "user_id": "user1@email.com",
+        "domain_id": "domain-123456789012",
+        "created_at": "2022-01-01T08:28:49.108Z"
+      }
+    */
     rpc enable (UserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}/enable" };
     }
-    // desc: Disables a User Channel.
-    // If you disable the user channel, the notification will not be dispatched, even if they are created.
+    /*
+    desc: Disables a specific UserChannel. If a UserChannel is disabled, the Notification is not dispatched, even if it is created.
+    request_example: >-
+      {
+        "user_channel_id": "user-ch-123456789012"
+      }
+    response_example: >-
+      {
+        "user_channel_id": "user-ch-123456789012",
+        "name": "Email",
+        "state": "DISABLED",
+        "data": {
+            "email": "user1@email.com"
+        },
+        "protocol_id": "protocol-123456789012",
+        "user_id": "user1@email.com",
+        "domain_id": "domain-123456789012",
+        "created_at": "2022-01-01T08:28:49.108Z"
+      }
+    */
     rpc disable (UserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = { put: "/notification/v1/user-channel/{user_channel_id}/disable" };
     }
-    // desc: Delete the User Channel.
+    /*
+    desc: Deletes a specific UserChannel. You must specify the `user_channel_id` of the UserChannel to delete.
+    request_example: >-
+      {
+        "user_channel_id": "user-ch-123456789012",
+      }
+    */
     rpc delete (UserChannelRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/notification/v1/user-channel/{user_channel_id}" };
     }
-    // desc: Gets a single User Channel.
+    /*
+    desc: Gets a specific UserChannel. Prints detailed information about the UserChannel, including the Protocol configured and the Notification settings.
+    request_example: >-
+      {
+        "user_channel_id": "user-ch-123456789012",
+      }
+    response_example: >-
+      {
+        "user_channel_id": "user-ch-123456789012",
+        "name": "Email",
+        "state": "ENABLED",
+        "data": {
+            "email": "user1@email.com"
+        },
+        "protocol_id": "protocol-123456789012",
+        "user_id": "user1@email.com",
+        "domain_id": "domain-123456789012",
+        "created_at": "2022-01-01T08:28:49.108Z"
+      }
+    */
     rpc get (GetUserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = { get: "/notification/v1/user-channel/{user_channel_id}" };
     }
-    // desc: Lists the specified User Channel.
-    // Can search information using the query format provided by SpaceONE.
-    // Detailed information about Query format can be checked in the Search Query pages.
+    /*
+    desc: Gets a list of all UserChannels. You can use a query to get a filtered list of UserChannels.
+    request_example: >-
+      {
+        "query": {}
+      }
+    response_example: >-
+      {
+        "results": [
+            {
+                "user_channel_id": "user-ch-123456789012",
+                "name": "Email",
+                "state": "ENABLED",
+                "data": {
+                    "email": "user1@email.com"
+                },
+                "protocol_id": "protocol-123456789012",
+                "user_id": "user1@email.com",
+                "domain_id": "domain-123456789012",
+                "created_at": "2022-01-01T08:28:49.108Z"
+            },
+            {
+                "user_channel_id": "user-ch-98765432109",
+                "name": "Email",
+                "state": "ENABLED",
+                "data": {
+                    "email": "user2@email.com"
+                },
+                "is_scheduled": true,
+                "schedule": {
+                    "day_of_week": [
+                        "MON",
+                        "TUE",
+                        "WED",
+                        "THU",
+                        "FRI"
+                    ],
+                    "start_hour": 3,
+                    "end_hour": 23
+                },
+                "protocol_id": "protocol-123456789012",
+                "user_id": "user2@email.com",
+                "domain_id": "domain-123456789012",
+                "created_at": "2022-01-01T06:45:57.260Z"
+            }
+        ],
+        "total_count": 2
+      }
+    */
     rpc list (UserChannelQuery) returns (UserChannelsInfo) {
         option (google.api.http) = {
             get: "/notification/v1/user-channels"

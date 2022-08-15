@@ -1,3 +1,6 @@
+/*
+desc: A Plugin is a resource managing endpoints of the plugin instances deployed. If there is a plugin instance that does not work properly, the Plugin requests the Supervisor to redeploy the instance.
+*/
 syntax = "proto3";
 
 package spaceone.api.plugin.v1;
@@ -7,11 +10,22 @@ import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 
 service Plugin {
-    //desc: Retrieve plugins end points.
+    /*
+    desc: Gets the `endpoint` of a specific plugin instance. A Plugin returns only a single `endpoint` by determining `labels` and `priority`. If the requested plugin instance is already deployed, the `endpoint` is returned. If not, the `endpoint` is returned after deploying the plugin instance.
+    note: ''
+    request_example: >-
+      {
+        "plugin_id": "plugin-aws-sns-mon-webhook",
+        "version": "1.2.2",
+      }
+    response_example: >-
+      {
+        "endpoint": "grpc://endpoint-url:50051"
+      }
+    */
     rpc get_plugin_endpoint (PluginEndpointRequest) returns (PluginEndpoint) {
         option (google.api.http) = { post: "/plugin/v1/plugin/{plugin_id}/get-endpoint" };
     }
-    //desc: send a notification if it has failed.
     rpc notify_failure (PluginFailureRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { put: "/plugin/v1/plugin/{plugin_id}/notify-failure" };
     }

@@ -1,3 +1,6 @@
+/*
+desc: A Protocol defines the method to use when dispatching Notifications via a channel.
+*/
 syntax = "proto3";
 
 package spaceone.api.notification.v1;
@@ -9,44 +12,522 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service Protocol {
-    // desc: Creates a new Protocol.
-    // Protocol is the definition of which method to use when dispatching the Notifications through a Channel.
-    // When creating a protocol, you must specify the plugins provided from the repository, and you must also set the credentials to be set in the plugin if necessary.
+    /*
+    desc: Creates a new Protocol. When creating a protocol, you must specify the plugins provided from the repository, and you must also set the credentials to be set in the plugin if necessary.
+    request_example: >-
+      {
+        "name": "Email",
+        "plugin_info": {
+            "plugin_id": "plugin-email-noti-protocol",
+            "version": "1.0.1",
+            "options": {},
+            "secret_id": "secret-123546789012",
+            "metadata": {
+                "data": {
+                    "schema": {
+                        "properties": {
+                            "email": {
+                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
+                                "examples": [
+                                    "user1@test.com, user2@test.com"
+                                ],
+                                "minLength": 10.0,
+                                "description": "Email address to receive notifications",
+                                "type": "string",
+                                "title": "Email Address"
+                            }
+                        },
+                        "required": [
+                            "email"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "data_type": "PLAIN_TEXT"
+            },
+            "upgrade_mode": "AUTO"
+        },
+        "tags": {}
+      }
+    response_example: >-
+      {
+        "protocol_id": "protocol-123546789012",
+        "name": "Email",
+        "state": "ENABLED",
+        "protocol_type": "EXTERNAL",
+        "capability": {
+            "supported_schema": [
+                "email_smtp"
+            ]
+        },
+        "plugin_info": {
+            "plugin_id": "plugin-email-noti-protocol",
+            "version": "1.0.1",
+            "options": {},
+            "secret_id": "secret-123546789012",
+            "metadata": {
+                "data": {
+                    "schema": {
+                        "properties": {
+                            "email": {
+                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
+                                "examples": [
+                                    "user1@test.com, user2@test.com"
+                                ],
+                                "minLength": 10.0,
+                                "description": "Email address to receive notifications",
+                                "type": "string",
+                                "title": "Email Address"
+                            }
+                        },
+                        "required": [
+                            "email"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "data_type": "PLAIN_TEXT"
+            },
+            "upgrade_mode": "AUTO"
+        },
+        "tags": {},
+        "domain_id": "domain-123546789012",
+        "created_at": "2022-01-01T07:55:57.043Z"
+      }
+    */
     rpc create (CreateProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = { post: "/notification/v1/protocols" };
     }
-    // desc: Updates a Protocol information.
-    // Update methods can update name, tags only. If you want to update plugin version or options, you can use update_plugin method.
+    /*
+    desc: Updates a specific Protocol. The method `update` can update the name and tags only. If you want to update the plugin version or options, you can use `update_plugin` method.
+    request_example: >-
+      {
+        "protocol_id": "protocol-123456789012",
+        "name": "Email-test",
+        "tags": {
+            "type": "test"
+        }
+      }
+    response_example: >-
+      {
+        "protocol_id": "protocol-123546789012",
+        "name": "Email-test",
+        "state": "ENABLED",
+        "protocol_type": "EXTERNAL",
+        "capability": {
+            "supported_schema": [
+                "email_smtp"
+            ]
+        },
+        "plugin_info": {
+            "plugin_id": "plugin-email-noti-protocol",
+            "version": "1.0.1",
+            "options": {},
+            "secret_id": "secret-123546789012",
+            "metadata": {
+                "data": {
+                    "schema": {
+                        "properties": {
+                            "email": {
+                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
+                                "examples": [
+                                    "user1@test.com, user2@test.com"
+                                ],
+                                "minLength": 10.0,
+                                "description": "Email address to receive notifications",
+                                "type": "string",
+                                "title": "Email Address"
+                            }
+                        },
+                        "required": [
+                            "email"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "data_type": "PLAIN_TEXT"
+            },
+            "upgrade_mode": "AUTO"
+        },
+        "tags": {
+            "type": "test"
+        },
+        "domain_id": "domain-123546789012",
+        "created_at": "2022-01-01T07:55:57.043Z"
+      }
+    */
     rpc update (UpdateProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = { put: "/notification/v1/protocol/{protocol_id}" };
     }
-    // desc: Updates a plugin for Protocol.
-    // This method is usually used when redeploying a deployed plugin container to a new version.
+    /*
+    desc: Updates a plugin for a Protocol. It is usually used when redeploying a plugin to a new version.
+    request_example: >-
+      {
+        "protocol_id": "protocol-123456789012",
+        "version": "1.0.2",
+        "options": {},
+      }
+    response_example: >-
+      {
+        "protocol_id": "protocol-123546789012",
+        "name": "Email-test",
+        "state": "ENABLED",
+        "protocol_type": "EXTERNAL",
+        "capability": {
+            "supported_schema": [
+                "email_smtp"
+            ]
+        },
+        "plugin_info": {
+            "plugin_id": "plugin-email-noti-protocol",
+            "version": "1.0.2",
+            "options": {},
+            "secret_id": "secret-123546789012",
+            "metadata": {
+                "data": {
+                    "schema": {
+                        "properties": {
+                            "email": {
+                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
+                                "examples": [
+                                    "user1@test.com, user2@test.com"
+                                ],
+                                "minLength": 10.0,
+                                "description": "Email address to receive notifications",
+                                "type": "string",
+                                "title": "Email Address"
+                            }
+                        },
+                        "required": [
+                            "email"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "data_type": "PLAIN_TEXT"
+            },
+            "upgrade_mode": "AUTO"
+        },
+        "tags": {
+            "type": "test"
+        },
+        "domain_id": "domain-123546789012",
+        "created_at": "2022-01-01T07:55:57.043Z"
+      }
+    */
     rpc update_plugin (UpdateProtocolPluginRequest) returns (ProtocolInfo) {
         option (google.api.http) = { put: "/notification/v1/protocol/{protocol_id}/plugin" };
     }
-    // desc: Enables a Protocol.
-    // If the disabled Protocol is enabled, the Protocol can be used again and the notification can be dispatched.
+    /*
+    desc: Enables a specific Protocol. If the Protocol is enabled, the Protocol can be used and the Notification can be dispatched.
+    request_example: >-
+      {
+        "protocol_id": "protocol-123456789012"
+      }
+    response_example: >-
+      {
+        "protocol_id": "protocol-123546789012",
+        "name": "Email-test",
+        "state": "ENABLED",
+        "protocol_type": "EXTERNAL",
+        "capability": {
+            "supported_schema": [
+                "email_smtp"
+            ]
+        },
+        "plugin_info": {
+            "plugin_id": "plugin-email-noti-protocol",
+            "version": "1.0.2",
+            "options": {},
+            "secret_id": "secret-123546789012",
+            "metadata": {
+                "data": {
+                    "schema": {
+                        "properties": {
+                            "email": {
+                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
+                                "examples": [
+                                    "user1@test.com, user2@test.com"
+                                ],
+                                "minLength": 10.0,
+                                "description": "Email address to receive notifications",
+                                "type": "string",
+                                "title": "Email Address"
+                            }
+                        },
+                        "required": [
+                            "email"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "data_type": "PLAIN_TEXT"
+            },
+            "upgrade_mode": "AUTO"
+        },
+        "tags": {
+            "type": "test"
+        },
+        "domain_id": "domain-123546789012",
+        "created_at": "2022-01-01T07:55:57.043Z"
+      }
+    */
     rpc enable (ProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = { put: "/notification/v1/protocol/{protocol_id}/enable" };
     }
-    // desc: Disables a Protocol.
-    // If you disable the Protocol, the notification will not be dispatched, even if they are created.
+    /*
+    desc: Disables a specific Protocol. If a Protocol is disabled, the Notification will not be dispatched, even if it is created.
+    request_example: >-
+      {
+        "protocol_id": "protocol-123456789012"
+      }
+    response_example: >-
+      {
+        "protocol_id": "protocol-123546789012",
+        "name": "Email-test",
+        "state": "DISABLED",
+        "protocol_type": "EXTERNAL",
+        "capability": {
+            "supported_schema": [
+                "email_smtp"
+            ]
+        },
+        "plugin_info": {
+            "plugin_id": "plugin-email-noti-protocol",
+            "version": "1.0.2",
+            "options": {},
+            "secret_id": "secret-123546789012",
+            "metadata": {
+                "data": {
+                    "schema": {
+                        "properties": {
+                            "email": {
+                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
+                                "examples": [
+                                    "user1@test.com, user2@test.com"
+                                ],
+                                "minLength": 10.0,
+                                "description": "Email address to receive notifications",
+                                "type": "string",
+                                "title": "Email Address"
+                            }
+                        },
+                        "required": [
+                            "email"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "data_type": "PLAIN_TEXT"
+            },
+            "upgrade_mode": "AUTO"
+        },
+        "tags": {
+            "type": "test"
+        },
+        "domain_id": "domain-123546789012",
+        "created_at": "2022-01-01T07:55:57.043Z"
+      }
+    */
     rpc disable (ProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = { put: "/notification/v1/protocol/{protocol_id}/disable" };
     }
-    // desc: Delete the protocol.
-    // If there is even one channel using the protocol, it cannot be deleted.
+    /*
+    desc: Deletes a specific Protocol. If there exists a channel using the Protocol, it cannot be deleted.
+    request_example: >-
+      {
+        "protocol_id": "protocol-123456789012"
+      }
+    */
     rpc delete (ProtocolRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/notification/v1/protocol/{protocol_id}" };
     }
-    // desc: Gets a single Protocol.
+    /*
+    desc: Gets a specific Protocol. Prints detailed information about the Protocol.
+    request_example: >-
+      {
+        "protocol_id": "protocol-123456789012"
+      }
+    response_example: >-
+      {
+        "protocol_id": "protocol-123546789012",
+        "name": "Email-test",
+        "state": "DISABLED",
+        "protocol_type": "EXTERNAL",
+        "capability": {
+            "supported_schema": [
+                "email_smtp"
+            ]
+        },
+        "plugin_info": {
+            "plugin_id": "plugin-email-noti-protocol",
+            "version": "1.0.2",
+            "options": {},
+            "secret_id": "secret-123546789012",
+            "metadata": {
+                "data": {
+                    "schema": {
+                        "properties": {
+                            "email": {
+                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
+                                "examples": [
+                                    "user1@test.com, user2@test.com"
+                                ],
+                                "minLength": 10.0,
+                                "description": "Email address to receive notifications",
+                                "type": "string",
+                                "title": "Email Address"
+                            }
+                        },
+                        "required": [
+                            "email"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "data_type": "PLAIN_TEXT"
+            },
+            "upgrade_mode": "AUTO"
+        },
+        "tags": {
+            "type": "test"
+        },
+        "domain_id": "domain-123546789012",
+        "created_at": "2022-01-01T07:55:57.043Z"
+      }
+    */
     rpc get (GetProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = { get: "/notification/v1/protocol/{protocol_id}" };
     }
-    // desc: Lists the specified Protocols.
-    // Can search information using the query format provided by SpaceONE.
-    // Detailed information about Query format can be checked in the Search Query pages.
+    /*
+    desc: Gets a list of Protocols. You can use a query to get a filtered list of Protocols.
+    request_example: >-
+      {
+        "query": {}
+      }
+    response_example: >-
+      {
+        "results": [
+            {
+                "protocol_id": "protocol-123456789012",
+                "name": "Email",
+                "state": "ENABLED",
+                "protocol_type": "EXTERNAL",
+                "capability": {
+                    "supported_schema": [
+                        "email_smtp"
+                    ]
+                },
+                "plugin_info": {
+                    "plugin_id": "plugin-email-noti-protocol",
+                    "version": "1.0.1",
+                    "options": {},
+                    "secret_id": "secret-123456789012",
+                    "metadata": {
+                        "data_type": "PLAIN_TEXT",
+                        "data": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
+                                        "examples": [
+                                            "user1@test.com, user2@test.com"
+                                        ],
+                                        "minLength": 10.0,
+                                        "description": "Email address to receive notifications",
+                                        "type": "string",
+                                        "title": "Email Address"
+                                    }
+                                },
+                                "required": [
+                                    "email"
+                                ],
+                                "type": "object"
+                            }
+                        },
+                    },
+                    "upgrade_mode": "AUTO"
+                },
+                "tags": {},
+                "domain_id": "domain-123456789012",
+                "created_at": "2022-01-01T07:55:57.043Z"
+            },
+            {
+                "protocol_id": "protocol-987654321098",
+                "name": "Jira",
+                "state": "ENABLED",
+                "protocol_type": "EXTERNAL",
+                "capability": {
+                    "supported_schema": [
+                        "atlassian_jira"
+                    ]
+                },
+                "plugin_info": {
+                    "plugin_id": "plugin-jira-noti-protocol",
+                    "version": "0.2.0.20220422.172647",
+                    "options": {},
+                    "metadata": {
+                        "data": {
+                            "schema": {
+                                "required": [
+                                    "url",
+                                    "email",
+                                    "api_token",
+                                    "key"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "minLength": 4.0,
+                                        "description": "Atlassian account email address of token",
+                                        "type": "string",
+                                        "examples": [
+                                            "fred@example.com"
+                                        ],
+                                        "title": "Email"
+                                    },
+                                    "url": {
+                                        "type": "string",
+                                        "title": "JIRA URL",
+                                        "examples": [
+                                            "https://myjira.atlassian.net"
+                                        ],
+                                        "description": "Atlassian JIRA URL",
+                                        "minLength": 4.0
+                                    },
+                                    "api_token": {
+                                        "type": "string",
+                                        "description": "API token value to create your JIRA Ticket",
+                                        "title": "API Token",
+                                        "minLength": 4.0,
+                                        "examples": [
+                                            "xxxxxxxxxxxxxxxxxxxxxxxx"
+                                        ]
+                                    },
+                                    "key": {
+                                        "examples": [
+                                            "MYPRJ"
+                                        ],
+                                        "type": "string",
+                                        "description": "Project KEY representing Project ID",
+                                        "title": "Project KEY",
+                                        "minLength": 2.0
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "data_type": "SECRET"
+                    },
+                    "upgrade_mode": "AUTO"
+                },
+                "tags": {},
+                "domain_id": "domain-123456789012",
+                "created_at": "2022-01-01T06:54:33.367Z"
+            }
+        ],
+        "total_count": 2
+      }
+    */
     rpc list (ProtocolQuery) returns (ProtocolsInfo) {
         option (google.api.http) = {
             get: "/notification/v1/protocols"
