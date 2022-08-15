@@ -1,3 +1,6 @@
+/*
+desc: A Metric is a monitoring metric data delivered from an external cloud service via a DataSource.
+ */
 syntax = "proto3";
 
 package spaceone.api.monitoring.plugin;
@@ -5,7 +8,13 @@ package spaceone.api.monitoring.plugin;
 import "google/protobuf/struct.proto";
 
 service Metric {
+    /*
+    desc: Gets a list of all Metrics from a specific cloud service. You can use the method to list up the Metrics to collect before using the `get_data` method to collect the Metrics.
+     */
     rpc list (MetricRequest) returns (MetricsInfo) {}
+    /*
+    desc: Gets a Metric from a specific cloud service resource `instance`. By specifying the time period to collect the Metric, the Metric data value of the `instance` during the period is returned.
+     */
     rpc get_data (MetricDataRequest) returns (MetricDataInfo) {}
 }
 

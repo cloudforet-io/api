@@ -1,3 +1,6 @@
+/*
+desc: A Plugin is a resource containing data of deployable plugins such as container image and registry URL.
+ */
 syntax = "proto3";
 
 package spaceone.api.repository.v1;
@@ -10,27 +13,434 @@ import "spaceone/api/repository/v1/repository.proto";
 
 
 service Plugin {
+    /*
+    desc: Registers a Plugin. The parameter `registry_type`, meaning container registry type, can be either `DOCKER_HUB` or `AWS_PUBLIC_ECR`. The default value of the `registry_type` is `DOCKER_HUB`. The parameter `registry_url` is required if the `registry_type` is not `DOCKER_HUB`. The parameter `image` is limited to 40 characters.
+    request_example: >-
+        {
+            "name": "JIRA Issue notification",
+            "service_type": "notification.Procotol",
+            "image": "pyengine/plugin-jira-noti-protocol",
+            "registry_type": "DOCKER_HUB",
+            "registry_config": {},
+            "provider": "atlassian",
+            "capability": {
+                "supported_schema": [
+                    "atlassian_jira"
+                ]
+            },
+            "template": {
+                "options": {
+                    "schema": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                            "project_id": {
+                                "type": "string",
+                                "title": "Project ID",
+                                "minLength": 4.0
+                            },
+                            "sa_name": {
+                                "title": "Service Account",
+                                "type": "string",
+                                "minLength": 4.0
+                            }
+                        }
+                    }
+                }
+            },
+            "labels": [
+                "jira",
+                "atlassian",
+                "notification"
+            ],
+            "tags": {
+                "description": "Atlassian JIRA Issue notification",
+                "icon": "https://icon-path/jira-icon.png"
+            }
+        }
+    response_example: >-
+        {
+            "plugin_id": "plugin-jira-noti-protocol",
+            "name": "JIRA Issue notification",
+            "image": "pyengine/plugin-jira-noti-protocol",
+            "registry_url": "registry.hub.docker.com",
+            "state": "ENABLED",
+            "service_type": "notification.Procotol",
+            "provider": "atlassian",
+            "registry_type": "DOCKER_HUB",
+            "registry_config": {},
+            "capability": {
+                "supported_schema": [
+                    "atlassian_jira"
+                ]
+            },
+            "template": {
+                "options": {
+                    "schema": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                            "project_id": {
+                                "type": "string",
+                                "title": "Project ID",
+                                "minLength": 4.0
+                            },
+                            "sa_name": {
+                                "title": "Service Account",
+                                "type": "string",
+                                "minLength": 4.0
+                            }
+                        }
+                    }
+                }
+            },
+            "labels": [
+                "jira",
+                "atlassian",
+                "notification"
+            ],
+            "tags": {
+                "description": "Atlassian JIRA Issue notification",
+                "icon": "https://icon-path/jira-icon.png"
+            },
+            "repository_info": {
+                "repository_id": "repo-123456789012",
+                "name": "Marketplace",
+                "repository_type": "remote"
+            },
+            "domain_id": "domain-123456789012",
+            "created_at": "2022-01-01T08:02:38.094Z",
+            "updated_at": "2022-01-01T08:02:38.094Z"
+        }
+     */
     rpc register (CreatePluginRequest) returns (PluginInfo) {
         option (google.api.http) = { post: "/repository/v1/plugins" };
     }
+    /*
+    desc: Updates a specific Plugin registered. A Plugin can be updated only if its Repository's `repository_type` is `local`. You can make changes in Plugin settings, including `template` and its options, `schema`.
+    request_example: >-
+        {
+            "name": "JIRA Issue notification",
+            "capability": {
+                "supported_schema": [
+                    "atlassian_jira"
+                ]
+            },
+            "template": {
+                "options": {
+                    "schema": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                            "project_id": {
+                                "type": "string",
+                                "title": "Project ID",
+                                "minLength": 4.0
+                            },
+                            "sa_name": {
+                                "title": "Service Account",
+                                "type": "string",
+                                "minLength": 4.0
+                            }
+                        }
+                    }
+                }
+            },
+            "labels": [
+                "jira",
+                "atlassian",
+                "notification"
+            ],
+            "tags": {
+                "description": "Atlassian JIRA Issue notification",
+                "icon": "https://icon-path/jira-icon.png"
+            }
+        }
+    response_example: >-
+        {
+            "plugin_id": "plugin-jira-noti-protocol",
+            "name": "JIRA Issue notification",
+            "image": "pyengine/plugin-jira-noti-protocol",
+            "registry_url": "registry.hub.docker.com",
+            "state": "ENABLED",
+            "service_type": "notification.Procotol",
+            "provider": "atlassian",
+            "registry_type": "DOCKER_HUB",
+            "registry_config": {},
+            "capability": {
+                "supported_schema": [
+                    "atlassian_jira"
+                ]
+            },
+            "template": {
+                "options": {
+                    "schema": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                            "project_id": {
+                                "type": "string",
+                                "title": "Project ID",
+                                "minLength": 4.0
+                            },
+                            "sa_name": {
+                                "title": "Service Account",
+                                "type": "string",
+                                "minLength": 4.0
+                            }
+                        }
+                    }
+                }
+            },
+            "labels": [
+                "jira",
+                "atlassian",
+                "notification"
+            ],
+            "tags": {
+                "description": "Atlassian JIRA Issue notification",
+                "spaceone:plugin_name": "plugin-jira-noti-protocol",
+                "icon": "https://icon-path/jira-icon.png"
+            },
+            "repository_info": {
+                "repository_id": "repo-123456789012",
+                "name": "Marketplace",
+                "repository_type": "remote"
+            },
+            "domain_id": "domain-123456789012",
+            "created_at": "2022-01-01T08:02:38.094Z",
+            "updated_at": "2022-01-01T08:02:38.094Z"
+        }
+     */
     rpc update (UpdatePluginRequest) returns (PluginInfo) {
         option (google.api.http) = { put: "/repository/v1/plugin/{plugin_id}" };
     }
+    /*
+    desc: Deregisters and deletes a specific Plugin. You must specify the `plugin_id` of the Plugin to deregister.
+    request_example: >-
+        {
+            "plugin_id": "plugin-aws-sns-mon-webhook",
+            "domain_id": "domain-123456789012"
+        }
+    response_example: >-
+        {
+            "plugin_id": "plugin-aws-sns-mon-webhook",
+            "name": "AWS SNS Webhook",
+            "image": "pyengine/plugin-aws-sns-mon-webhook",
+            "registry_url": "registry.hub.docker.com",
+            "state": "ENABLED",
+            "service_type": "monitoring.Webhook",
+            "registry_type": "DOCKER_HUB",
+            "registry_config": {},
+            "capability": {},
+            "template": {},
+            "labels": [],
+            "tags": {
+                "icon": "https://icon-path/Amazon-SNS.svg"
+            },
+            "repository_info": {
+                "repository_id": "repo-123456789012",
+                "name": "Marketplace",
+                "repository_type": "remote"
+            },
+            "domain_id": "domain-987654321098",
+            "created_at": "2022-01-01T08:14:23.175Z",
+            "updated_at": "2022-01-01T08:14:23.175Z"
+        }
+     */
     rpc deregister (PluginRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/repository/v1/plugin/{plugin_id}" };
     }
+    /*
+    desc: Enables a specific Plugin. If the Plugin is enabled, the Plugin can be used as its parameter `state` becomes `ENABLED`.
+    request_example: >-
+        {
+            "plugin_id": "plugin-aws-sns-mon-webhook",
+            "domain_id": "domain-123456789012"
+        }
+    response_example: >-
+        {
+            "plugin_id": "plugin-aws-sns-mon-webhook",
+            "name": "AWS SNS Webhook",
+            "image": "pyengine/plugin-aws-sns-mon-webhook",
+            "registry_url": "registry.hub.docker.com",
+            "state": "ENABLED",
+            "service_type": "monitoring.Webhook",
+            "registry_type": "DOCKER_HUB",
+            "registry_config": {},
+            "capability": {},
+            "template": {},
+            "labels": [],
+            "tags": {
+                "icon": "https://icon-path/Amazon-SNS.svg"
+            },
+            "repository_info": {
+                "repository_id": "repo-123456789012",
+                "name": "Marketplace",
+                "repository_type": "remote"
+            },
+            "domain_id": "domain-987654321098",
+            "created_at": "2022-01-01T08:14:23.175Z",
+            "updated_at": "2022-01-01T08:14:23.175Z"
+        }
+     */
     rpc enable (PluginRequest) returns (PluginInfo) {
         option (google.api.http) = { put: "/repository/v1/plugin/{plugin_id}/enable" };
     }
+    /*
+    desc: Disables a specific Plugin. If the Plugin is disabled, the Plugin cannot be used as its parameter `state` becomes `DISABLED`.
+    request_example: >-
+        {
+            "plugin_id": "plugin-aws-sns-mon-webhook",
+            "domain_id": "domain-123456789012"
+        }
+    response_example: >-
+        {
+            "plugin_id": "plugin-aws-sns-mon-webhook",
+            "name": "AWS SNS Webhook",
+            "image": "pyengine/plugin-aws-sns-mon-webhook",
+            "registry_url": "registry.hub.docker.com",
+            "state": "ENABLED",
+            "service_type": "monitoring.Webhook",
+            "registry_type": "DOCKER_HUB",
+            "registry_config": {},
+            "capability": {},
+            "template": {},
+            "labels": [],
+            "tags": {
+                "icon": "https://icon-path/Amazon-SNS.svg"
+            },
+            "repository_info": {
+                "repository_id": "repo-123456789012",
+                "name": "Marketplace",
+                "repository_type": "remote"
+            },
+            "domain_id": "domain-987654321098",
+            "created_at": "2022-01-01T08:14:23.175Z",
+            "updated_at": "2022-01-01T08:14:23.175Z"
+        }
+     */
     rpc disable (PluginRequest) returns (PluginInfo) {
         option (google.api.http) = { put: "/repository/v1/plugin/{plugin_id}/disable" };
     }
+    /*
+    desc: Gets all version data of a specific Plugin from its Repository. The parameter `plugin_id` is used as an identifier of a Plugin to get version data.
+    request_example: >-
+        {
+            "plugin_id": "plugin-aws-sns-mon-webhook",
+            "domain_id": "domain-123456789012"
+        }
+    response_example: >-
+        {
+            "total_count": 1,
+            "results": [
+                "1.2.2",
+                "1.2.1.20220429.104002",
+                "1.2.1.20220422.161421",
+                "1.2.1.20220411.113807",
+                "1.2.1",
+            ]
+        }
+     */
     rpc get_versions (RepositoryPluginRequest) returns (VersionsInfo) {
         option (google.api.http) = { get: "/repository/v1/plugins/{plugin_id}/versions" };
     }
+    /*
+    desc: Gets a specific Plugin. Prints detailed information about the Plugin, including  `image`, `registry_url`, and `state`.
+    request_example: >-
+        {
+            "plugin_id": "plugin-aws-sns-mon-webhook",
+            "domain_id": "domain-123456789012"
+        }
+    response_example: >-
+        {
+            "plugin_id": "plugin-aws-sns-mon-webhook",
+            "name": "AWS SNS Webhook",
+            "image": "pyengine/plugin-aws-sns-mon-webhook",
+            "registry_url": "registry.hub.docker.com",
+            "state": "ENABLED",
+            "service_type": "monitoring.Webhook",
+            "registry_type": "DOCKER_HUB",
+            "registry_config": {},
+            "capability": {},
+            "template": {},
+            "labels": [],
+            "tags": {
+                "icon": "https://icon-url/Amazon-SNS.svg"
+            },
+            "repository_info": {
+                "repository_id": "repo-123456789012",
+                "name": "Marketplace",
+                "repository_type": "remote"
+            },
+            "domain_id": "domain-987654321098",
+            "created_at": "2021-06-14T08:14:23.175Z",
+            "updated_at": "2021-06-14T08:14:23.175Z"
+        }
+     */
     rpc get (GetRepositoryPluginRequest) returns (PluginInfo) {
         option (google.api.http) = { get: "/repository/v1/plugins/{plugin_id}" };
     }
+    /*
+    desc: Gets a list of all Plugins registered in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Plugins. You can use a query to get a filtered list of Plugins.
+    request_example: >-
+        {
+            'query': {},
+            'repository_id': 'repo-123456789012'
+        }
+    response_example: >-
+        {
+            "results": [
+                {
+                    "plugin_id": "plugin-api-direct-mon-webhook",
+                    "name": "API Direct Webhook",
+                    "image": "pyengine/plugin-api-direct-mon-webhook",
+                    "registry_url": "registry.hub.docker.com",
+                    "state": "ENABLED",
+                    "service_type": "monitoring.Webhook",
+                    "registry_type": "DOCKER_HUB",
+                    "registry_config": {},
+                    "capability": {},
+                    "template": {},
+                    "labels": [],
+                    "tags": {
+                        "icon": "https://icon-url/icon.svg"
+                    },
+                    "repository_info": {
+                        "repository_id": "repo-123456789012",
+                        "name": "Marketplace",
+                        "repository_type": "remote"
+                    },
+                    "domain_id": "domain-987654321098",
+                    "created_at": "2022-01-01T03:25:10.408Z",
+                    "updated_at": "2022-01-01T03:25:10.408Z"
+                },
+                {
+                    "plugin_id": "plugin-aws-hyperbilling-cost-datasource",
+                    "name": "AWS HyperBilling Cost Analysis Data Source",
+                    "image": "pyengine/plugin-aws-hyperbilling-cost-datasource",
+                    "registry_url": "registry.hub.docker.com",
+                    "state": "ENABLED",
+                    "service_type": "cost_analysis.DataSoruce",
+                    "registry_type": "DOCKER_HUB",
+                    "registry_config": {},
+                    "capability": {},
+                    "template": {},
+                    "labels": [],
+                    "tags": {},
+                    "repository_info": {
+                        "repository_id": "repo-123456789012",
+                        "name": "Marketplace",
+                        "repository_type": "remote"
+                    },
+                    "domain_id": "domain-987654321098",
+                    "created_at": "2022-01-01T04:56:55.082Z",
+                    "updated_at": "2022-01-01T04:56:55.082Z"
+                }
+            ],
+            "total_count": 2
+        }
+     */
     rpc list (PluginQuery) returns (PluginsInfo) {
         option (google.api.http) = {
             get: "/repository/v1/plugins"
