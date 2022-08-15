@@ -18,7 +18,7 @@ service File {
     rpc delete (FileRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/file-manager/v1/file/{file_id}" };
     }
-    rpc get_download_url (FileRequest) returns (FileInfo) {
+    rpc get_download_url (FileRequest) returns (FileDownloadInfo) {
         option (google.api.http) = { get: "/file-manager/v1/file/{file_id}/download-url" };
     }
     rpc get (GetFileRequest) returns (FileInfo) {
@@ -119,6 +119,10 @@ message FileQuery {
     string domain_id = 12;
 }
 
+message FileDownloadInfo {
+    string download_url = 1;
+}
+
 message FileInfo {
     string file_id = 1;
     string name = 2;
@@ -127,9 +131,8 @@ message FileInfo {
     string file_type = 5;
     string upload_url = 6;
     google.protobuf.Struct upload_options = 7;
-    string download_url = 8;
-    google.protobuf.Struct tags = 9;
-    FileReference reference = 10;
+    google.protobuf.Struct tags = 8;
+    FileReference reference = 9;
     string project_id = 11;
     string domain_id = 12;
     string created_at = 21;
