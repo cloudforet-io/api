@@ -1,3 +1,6 @@
+/*
+desc: A Collector is a plugin collecting data of external infrastructure resources.
+*/
 syntax = "proto3";
 
 package spaceone.api.inventory.plugin;
@@ -6,8 +9,41 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 
 service Collector {
+    /*
+    desc: Initializes a specific Collector. During initialization, the Collector information to be passed to the Collector user is delivered as `metadata`. Collector information includes its name and version.
+    request_example: >-
+      {
+
+      }
+    response_example: >-
+      {
+
+      }
+    */
     rpc init (InitRequest) returns (PluginInfo) {}
+    /*
+    desc: Verifies a specific Collector. You must specify the parameter `secret_data`, encrypted account data of the Collector to validate.
+    request_example: >-
+      {
+
+      }
+    response_example: >-
+      {
+
+      }
+    */
     rpc verify (VerifyRequest) returns (google.protobuf.Empty) {}
+    /*
+    desc: Collects data of external infrastructure resources by a specific Collector.
+    request_example: >-
+      {
+
+      }
+    response_example: >-
+      {
+
+      }
+    */
     rpc collect (CollectRequest) returns (stream ResourceInfo) {}
 }
 

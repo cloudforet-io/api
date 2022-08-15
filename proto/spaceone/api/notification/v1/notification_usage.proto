@@ -1,3 +1,6 @@
+/*
+desc: A NotificationUsage is a resource indicating daily Protocol usage. The limit set by the resource Quota is applied based on the NotificationUsage.
+*/
 syntax = "proto3";
 
 package spaceone.api.notification.v1;
@@ -8,9 +11,33 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service NotificationUsage {
-    // desc: Lists for the Notification usage information.
-    // Can search information using the query format provided by SpaceONE.
-    // Detailed information about Query format can be checked in the Search Query pages.
+    /*
+    desc: Gets a list of all NotificationUsages. You can use a query to get a filtered list of Notification Usages.
+    request_example: >-
+      {
+        "query": {}
+      }
+    response_example: >-
+      {
+        "results": [
+            {
+                "protocol_id": "protocol-123456789012",
+                "usage_date": "08",
+                "usage_month": "2022-05",
+                "count": 2,
+                "domain_id": "domain-123456789012"
+            },
+            {
+                "protocol_id": "protocol-123456789012",
+                "usage_date": "18",
+                "usage_month": "2022-05",
+                "count": 7,
+                "domain_id": "domain-123456789012"
+            }
+        ],
+        "total_count": 2
+      }
+    */
     rpc list (NotificationUsageQuery) returns (NotificationUsagesInfo) {
         option (google.api.http) = {
             get: "/notification/v1/notification-usages"

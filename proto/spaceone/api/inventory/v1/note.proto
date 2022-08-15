@@ -9,18 +9,73 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service Note {
+    /*
+    desc: ''
+    request_example: >-
+      {
+
+      }
+    response_example: >-
+      {
+
+      }
+    */
     rpc create (CreateNoteRequest) returns (NoteInfo) {
         option (google.api.http) = { post: "/inventory/v1/notes" };
     }
+    /*
+    desc: ''
+    request_example: >-
+      {
+
+      }
+    response_example: >-
+      {
+
+      }
+    */
     rpc update (UpdateNoteRequest) returns (NoteInfo) {
         option (google.api.http) = { put: "/inventory/v1/note/{note_id}" };
     }
+    /*
+    desc: ''
+    request_example: >-
+      {
+
+      }
+    response_example: >-
+      {
+
+      }
+    */
     rpc delete (NoteRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/inventory/v1/note/{note_id}" };
     }
+    /*
+    desc: ''
+    request_example: >-
+      {
+
+      }
+    response_example: >-
+      {
+
+      }
+    */
     rpc get (GetNoteRequest) returns (NoteInfo) {
         option (google.api.http) = { get: "/inventory/v1/note/{note_id}" };
     }
+    /*
+    desc: ''
+    request_example: >-
+      {
+
+      }
+    response_example: >-
+      {
+
+      }
+    */
     rpc list (NoteQuery) returns (NotesInfo) {
         option (google.api.http) = {
             get: "/inventory/v1/notes"

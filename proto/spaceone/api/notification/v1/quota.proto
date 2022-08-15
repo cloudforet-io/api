@@ -1,3 +1,6 @@
+/*
+desc: A Quota is a limit on protocol usage for a day or a month. You can manage the use of the protocol with a Quota.
+*/
 syntax = "proto3";
 
 package spaceone.api.notification.v1;
@@ -9,25 +12,115 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service Quota {
-    // desc: Creates a new Quota for Protocol.
+    /*
+    desc: Creates a new Quota limiting the use of a selected Protocol for a day or a month. If the parameter `limit` has no value, it will be deemed unlimited. If a Protocol has not set a Quota, the default Quota set in the Config will be applied.
+    request_example: >-
+      {
+        "protocol_id": "protocol-123456789012",
+        "limit": {
+            "day": 5.0,
+            "month": 7.0
+        },
+      }
+    response_example: >-
+      {
+        "quota_id": "quota-123456789012",
+        "protocol_id": "protocol-123456789012",
+        "limit": {
+            "day": 5.0,
+            "month": 7.0
+        },
+        "domain_id": "domain-123456789012"
+      }
+    */
     rpc create (CreateQuotaRequest) returns (QuotaInfo) {
         option (google.api.http) = { post: "/notification/v1/quotas" };
     }
-    // desc: Updates a exist Quota information.
+    /*
+    desc: Updates a specific Quota. You can make changes in Quota `limit`, managing the use of the Protocol.
+    request_example: >-
+      {
+        "quota_id": "quota-123456789012",
+        "limit": {
+            "day": 10.0,
+            "month": 15.0
+        },
+      }
+    response_example: >-
+      {
+        "quota_id": "quota-123456789012",
+        "protocol_id": "protocol-123456789012",
+        "limit": {
+            "day": 10.0,
+            "month": 15.0
+        },
+        "domain_id": "domain-123456789012"
+      }
+    */
     rpc update (UpdateQuotaRequest) returns (QuotaInfo) {
         option (google.api.http) = { put: "/notification/v1/quota/{quota_id}" };
     }
-    // desc: Delete the Quota.
+    /*
+    desc: Deletes a specific Quota. The default Quota set in the Config will be applied to the Protocol you deleted the Quota of.
+    request_example: >-
+      {
+        "quota_id": "quota-123456789012"
+      }
+    */
     rpc delete (QuotaRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { delete: "/notification/v1/quota/{quota_id}" };
     }
-    // desc: Gets a single Quota information.
+    /*
+    desc: Gets a specific Quota. Prints detailed information about the Quota, including the `limit` and the Protocol limited by the Quota.
+    request_example: >-
+      {
+        "quota_id": "quota-123456789012"
+      }
+    response_example: >-
+      {
+        "quota_id": "quota-123456789012",
+        "protocol_id": "protocol-123456789012",
+        "limit": {
+            "day": 10.0,
+            "month": 15.0
+        },
+        "domain_id": "domain-123456789012"
+      }
+    */
     rpc get (QuotaRequest) returns (QuotaInfo) {
         option (google.api.http) = { get: "/notification/v1/quota/{quota_id}" };
     }
-    // desc: Lists the specified Quota information.
-    // Can search information using the query format provided by SpaceONE.
-    // Detailed information about Query format can be checked in the Search Query pages.
+    /*
+    desc: Gets a list of all Quotas. You can use a query to get a filtered list of Quotas.
+    request_example: >-
+      {
+        "query": {}
+      }
+    response_example: >-
+      {
+        "results": [
+            {
+                "quota_id": "quota-123456789012",
+                "protocol_id": "protocol-123456789012",
+                "limit": {
+                    "day": 10.0,
+                    "month": 15.0
+                },
+                "domain_id": "domain-123456789012"
+            },
+            {
+                "quota_id": "quota-987654321098",
+                "protocol_id": "protocol-987654321098",
+                "limit": {
+                    "day": 5.0,
+                    "month": 7.0
+                },
+                "domain_id": "domain-123456789012"
+            }
+        ],
+        "total_count": 2
+      }
+    */
     rpc list (QuotaQuery) returns (QuotasInfo) {
         option (google.api.http) = {
             get: "/notification/v1/quotas"
