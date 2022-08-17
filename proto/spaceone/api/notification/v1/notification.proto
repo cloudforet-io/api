@@ -295,19 +295,11 @@ message PushNotificationRequest {
 
 message NotificationRequest {
     // is_required: true
-    // desc: The ID of Notification.
-    string notification_id = 1;
+    // desc: ID list of Notifications.
+    repeated string notifications = 1;
     // is_required: true
     // desc: The ID of domain.
     string domain_id = 2;
-}
-
-message NotificationDeleteAllRequest {
-    // is_required: true
-    // desc: ID list of users to be deleted
-    repeated string notifications = 1;
-    string user_id = 10;
-    string domain_id = 11;
 }
 
 message SetReadNotificationRequest {
