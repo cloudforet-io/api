@@ -97,17 +97,7 @@ service Notification {
         option (google.api.http) = { post: "/notification/v1/notifications/push" };
     }
     /*
-    desc: Deletes a specific Notification. You must specify the `notification_id` of the Notification to delete.
-    request_example: >-
-      {
-        "notification_id": "notification-4025c1b61225",
-      }
-    */
-    rpc delete (NotificationRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/notification/v1/notification/{notification_id}" };
-    }
-    /*
-    desc: Delete multiple Notifications. You must specify `notifications` of the list of Notifications to delete.
+    desc: Deletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.
     request_example: >-
       {
         "notifications": [
@@ -117,8 +107,8 @@ service Notification {
         ]
       }
     */
-    rpc delete_all (NotificationDeleteAllRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { post: "/notification/v1/notification/delete_all" };
+    rpc delete (NotificationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/notification/v1/notification/{notifications}" };
     }
     /*
     desc: Marks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.
