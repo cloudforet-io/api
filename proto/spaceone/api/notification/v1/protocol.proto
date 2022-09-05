@@ -165,7 +165,7 @@ service Protocol {
       {
         "protocol_id": "protocol-123456789012",
         "version": "1.0.2",
-        "options": {},
+        "options": {}
       }
     response_example: >-
       {
@@ -406,127 +406,59 @@ service Protocol {
         "query": {}
       }
     response_example: >-
-      {
-        "results": [
-            {
-                "protocol_id": "protocol-123456789012",
-                "name": "Email",
-                "state": "ENABLED",
-                "protocol_type": "EXTERNAL",
-                "capability": {
-                    "supported_schema": [
-                        "email_smtp"
+        {
+           "results":[
+              {
+                 "protocol_id":"protocol-123456789012",
+                 "name":"Email",
+                 "state":"ENABLED",
+                 "protocol_type":"EXTERNAL",
+                 "capability":{
+                    "supported_schema":[
+                       "email_smtp"
                     ]
-                },
-                "plugin_info": {
-                    "plugin_id": "plugin-email-noti-protocol",
-                    "version": "1.0.1",
-                    "options": {},
-                    "secret_id": "secret-123456789012",
-                    "metadata": {
-                        "data_type": "PLAIN_TEXT",
-                        "data": {
-                            "schema": {
-                                "properties": {
-                                    "email": {
-                                        "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-                                        "examples": [
-                                            "user1@test.com, user2@test.com"
-                                        ],
-                                        "minLength": 10.0,
-                                        "description": "Email address to receive notifications",
-                                        "type": "string",
-                                        "title": "Email Address"
-                                    }
-                                },
-                                "required": [
-                                    "email"
-                                ],
-                                "type": "object"
-                            }
-                        },
+                 },
+                 "plugin_info":{
+                    "plugin_id":"plugin-email-noti-protocol",
+                    "version":"1.0.1",
+                    "options":{
+
                     },
-                    "upgrade_mode": "AUTO"
-                },
-                "tags": {},
-                "domain_id": "domain-123456789012",
-                "created_at": "2022-01-01T07:55:57.043Z"
-            },
-            {
-                "protocol_id": "protocol-987654321098",
-                "name": "Jira",
-                "state": "ENABLED",
-                "protocol_type": "EXTERNAL",
-                "capability": {
-                    "supported_schema": [
-                        "atlassian_jira"
-                    ]
-                },
-                "plugin_info": {
-                    "plugin_id": "plugin-jira-noti-protocol",
-                    "version": "0.2.0.20220422.172647",
-                    "options": {},
-                    "metadata": {
-                        "data": {
-                            "schema": {
-                                "required": [
-                                    "url",
-                                    "email",
-                                    "api_token",
-                                    "key"
-                                ],
-                                "properties": {
-                                    "email": {
-                                        "minLength": 4.0,
-                                        "description": "Atlassian account email address of token",
-                                        "type": "string",
-                                        "examples": [
-                                            "fred@example.com"
-                                        ],
-                                        "title": "Email"
-                                    },
-                                    "url": {
-                                        "type": "string",
-                                        "title": "JIRA URL",
-                                        "examples": [
-                                            "https://myjira.atlassian.net"
-                                        ],
-                                        "description": "Atlassian JIRA URL",
-                                        "minLength": 4.0
-                                    },
-                                    "api_token": {
-                                        "type": "string",
-                                        "description": "API token value to create your JIRA Ticket",
-                                        "title": "API Token",
-                                        "minLength": 4.0,
-                                        "examples": [
-                                            "xxxxxxxxxxxxxxxxxxxxxxxx"
-                                        ]
-                                    },
-                                    "key": {
-                                        "examples": [
-                                            "MYPRJ"
-                                        ],
-                                        "type": "string",
-                                        "description": "Project KEY representing Project ID",
-                                        "title": "Project KEY",
-                                        "minLength": 2.0
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "data_type": "SECRET"
+                    "secret_id":"secret-123456789012",
+                    "metadata":{
+                       "data_type":"PLAIN_TEXT",
+                       "data":{
+                          "schema":{
+                             "properties":{
+                                "email":{
+                                   "pattern":"^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
+                                   "examples":[
+                                      "user1@test.com, user2@test.com"
+                                   ],
+                                   "minLength":10.0,
+                                   "description":"Email address to receive notifications",
+                                   "type":"string",
+                                   "title":"Email Address"
+                                }
+                             },
+                             "required":[
+                                "email"
+                             ],
+                             "type":"object"
+                          }
+                       }
                     },
-                    "upgrade_mode": "AUTO"
-                },
-                "tags": {},
-                "domain_id": "domain-123456789012",
-                "created_at": "2022-01-01T06:54:33.367Z"
-            }
-        ],
-        "total_count": 2
-      }
+                    "upgrade_mode":"AUTO"
+                 },
+                 "tags":{
+
+                 },
+                 "domain_id":"domain-123456789012",
+                 "created_at":"2022-01-01T07:55:57.043Z"
+              }
+           ],
+           "total_count":1
+        }
     */
     rpc list (ProtocolQuery) returns (ProtocolsInfo) {
         option (google.api.http) = {
