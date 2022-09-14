@@ -15,7 +15,6 @@ service Metric {
     request_example: >-
         {
             "data_source_id": "ds-31190a65a42a",
-            "resource_type": "inventory.CloudService",
             "resources": ["cloud-svc-cd0105d255da"],
             "domain_id": "domain-58010aa2e451"
         }
@@ -23,30 +22,52 @@ service Metric {
         {
             "metrics": [
                 {
-                    "key": "AWS/EC2.CPUUtilization",
+                    "key": "CPUUtilization",
+                    "group": "AWS/EC2",
                     "name": "CPUUtilization",
                     "unit": {
                         "y": "Percent",
                         "x": "Timestamp"
                     },
-                    "chart_type": "line",
-                    "chart_options": {}
+                    "metric_query": {
+                        "cloud-svc-cd0105d255da": {
+                            "Dimensions": [
+                                {
+                                    "Name": "InstanceId",
+                                    "Value": "i-0400cdd39f1a4d5e9"
+                                }
+                            ],
+                            "MetricName": "CPUUtilization",
+                            "Namespace": "AWS/EC2"
+                        }
+                    }
                 },
                 {
-                    "key": "AWS/EC2.NetworkIn",
+                    "key": "NetworkIn",
+                    "group": "AWS/EC2",
                     "name": "NetworkIn",
                     "unit": {
                         "y": "Bytes",
                         "x": "Timestamp"
                     },
-                    "chart_type": "line",
-                    "chart_options": {}
+                    "metric_query": {
+                        "cloud-svc-cd0105d255da": {
+                            "Dimensions": [
+                                {
+                                    "Name": "InstanceId",
+                                    "Value": "i-0400cdd39f1a4d5e9"
+                                }
+                            ],
+                            "MetricName": "NetworkIn",
+                            "Namespace": "AWS/EC2"
+                        }
+                    }
                 }
             ],
             "available_resources": {
                 "cloud-svc-cd0105d255da": true
             },
-            "domain_id": "domain-58010aa2e451"
+            "domain_id": "domain-31190a65a42a"
         }
      */
     rpc list (MetricRequest) returns (MetricsInfo) {
@@ -57,9 +78,19 @@ service Metric {
     request_example: >-
         {
             "data_source_id": "ds-31190a65a42a",
-            "resource_type": "inventory.CloudService",
-            "resources": ["cloud-svc-cd0105d255da"],
-            "metric": "AWS/EC2.CPUUtilization",
+            "metric_query": {
+                "cloud-svc-cd0105d255da": {
+                    "Dimensions": [
+                        {
+                            "Name": "InstanceId",
+                            "Value": "i-0400cdd39f1a4d5e9"
+                        }
+                    ],
+                    "MetricName": "CPUUtilization",
+                    "Namespace": "AWS/EC2"
+                }
+            },
+            "metric": "CPUUtilization",
             "start": "2022-06-21T03:11:29.438Z",
             "end": "2022-06-21T04:11:29.438Z",
             "stat": "AVERAGE",
