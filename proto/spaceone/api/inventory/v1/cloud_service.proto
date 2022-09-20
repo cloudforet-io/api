@@ -533,7 +533,6 @@ message CloudServiceInfo {
     google.protobuf.Struct metadata = 12;
     CloudServiceReference reference = 13;
     google.protobuf.Struct tags = 14;
-    repeated CloudServiceTag tags_info = 15;
     google.protobuf.Struct collection_info = 16;
     repeated string ip_addresses = 17;
 
@@ -544,18 +543,6 @@ message CloudServiceInfo {
     string created_at = 31;
     string updated_at = 32;
     string deleted_at = 33;
-}
-
-message CloudServiceTag {
-    enum TagType{
-        CUSTOM = 0;
-        PROVIDER = 1;
-    }
-    string key = 1;
-    string value = 2;
-    TagType type = 3;
-    string provider = 4;
-
 }
 
 message CloudServicesInfo {
