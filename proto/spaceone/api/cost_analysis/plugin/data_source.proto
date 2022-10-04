@@ -35,6 +35,8 @@ service DataSource {
 message InitRequest {
     // is_required: true
     google.protobuf.Struct options = 1;
+    // is_required: true
+    string domain_id = 2;
 }
 
 message PluginVerifyRequest {
@@ -44,6 +46,8 @@ message PluginVerifyRequest {
     google.protobuf.Struct secret_data = 2;
     // is_required: false
     string schema = 3;
+    // is_required: true
+    string domain_id = 4;
 }
 
 message PluginInfo {
