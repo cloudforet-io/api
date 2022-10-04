@@ -62,9 +62,7 @@ message CreateFileRequest {
     // is_required: false
     FileReference reference = 3;
     // is_required: false
-    string project_id = 11;
-    // is_required: true
-    string domain_id = 12;
+    string domain_id = 11;
 }
 
 message UpdateFileRequest {
@@ -75,22 +73,20 @@ message UpdateFileRequest {
     // is_required: false
     FileReference reference = 3;
     // is_required: false
-    string project_id = 11;
-    // is_required: true
-    string domain_id = 12;
+    string domain_id = 11;
 }
 
 message FileRequest {
     // is_required: true
     string file_id = 1;
-    // is_required: true
+    // is_required: false
     string domain_id = 2;
 }
 
 message GetFileRequest {
     // is_required: true
     string file_id = 1;
-    // is_required: true
+    // is_required: false
     string domain_id = 2;
     // is_required: false
     repeated string only = 3;
@@ -114,8 +110,8 @@ message FileQuery {
     // is_required: false
     string resource_id = 8;
     // is_required: false
-    string project_id = 11;
-    // is_required: true
+    string user_domain_id = 11;
+    // is_required: false
     string domain_id = 12;
 }
 
@@ -130,8 +126,9 @@ message FileInfo {
     string download_url = 8;
     google.protobuf.Struct tags = 9;
     FileReference reference = 10;
-    string project_id = 11;
-    string domain_id = 12;
+    string user_id = 11;
+    string user_domain_id = 12;
+    string domain_id = 13;
     string created_at = 21;
 }
 
