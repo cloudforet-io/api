@@ -1,0 +1,150 @@
+/*
+desc: description of dashboard
+*/
+syntax = "proto3";
+
+package spaceone.api.dashboard.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service DomainDashboard{
+
+  rpc create(CreateDomainDashboardRequest) returns (DomainDashboardInfo) {
+    option (google.api.http) = {post: "/dashboard/v1/domain-dashboards"};
+  }
+
+  rpc update (UpdateDomainDashboardRequest) returns (DomainDashboardInfo) {
+    option (google.api.http) = {put: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}"};
+  }
+
+  rpc delete (DomainDashboardRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {delete: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}"};
+  }
+
+  rpc get (GetDomainDashboardRequest) returns (DomainDashboardInfo) {
+    option (google.api.http) = {get: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}"};
+  }
+
+  rpc list (DomainDashboardQuery) returns (DomainDashboardsInfo) {
+    option (google.api.http) = {
+      get: "/dashboard/v1/domain-dashboards"
+      additional_bindings {
+        post: "/dashboard/v1/domain-dashboards/search"
+      }
+    };
+  }
+
+  rpc stat (DomainDashboardStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {post: "/dashboard/v1/domain-dashboards/stat"};
+  }
+}
+
+enum Scope {
+  DOMAIN = 0;
+  USER = 1;
+}
+
+message CreateDomainDashboardRequest {
+  // is_required: true
+  string name = 1;
+  // is_required: true
+  Scope scope = 2;
+  // is_required: false
+  google.protobuf.ListValue layouts = 3;
+  // is_required: false
+  google.protobuf.Struct options = 4;
+  // is_required: false
+  google.protobuf.Struct default_variables = 5;
+  // is_required: false
+  google.protobuf.ListValue labels = 10;
+  // is_required: false
+  google.protobuf.Struct tags = 11;
+  // is_required: false
+  string user_id = 20;
+  // is_required: true
+  string domain_id = 21;
+}
+
+message UpdateDomainDashboardRequest {
+  // is_required: true
+  string domain_dashboard_id = 1;
+  // is_required: false
+  string name = 2;
+  // is_required: false
+  google.protobuf.ListValue layouts = 3;
+  // is_required: false
+  google.protobuf.Struct options = 4;
+  // is_required: false
+  google.protobuf.Struct default_variables = 5;
+  // is_required: false
+  google.protobuf.ListValue labels = 10;
+  // is_required: false
+  google.protobuf.Struct tags = 11;
+  // is_required: false
+  string user_id = 20;
+  // is_required: true
+  string domain_id = 21;
+}
+
+message DomainDashboardRequest {
+  // is_required: true
+  string domain_dashboard_id = 1;
+  // is_required: true
+  string domain_id = 2;
+}
+
+message GetDomainDashboardRequest {
+  // is_required: true
+  string domain_dashboard_id = 1;
+  // is_required: true
+  string domain_id = 2;
+  // is_required: false
+  repeated string only = 3;
+}
+
+message DomainDashboardQuery {
+  // is_required: false
+  spaceone.api.core.v1.Query query = 1;
+  // is_required: false
+  string domain_dashboard_id = 2;
+  // is_required: false
+  string name = 3;
+  // is_required: false
+  Scope scope = 4;
+  // is_required: false
+  google.protobuf.ListValue labels = 5;
+  // is_required: false
+  string user_id = 10;
+  // is_required: true
+  string domain_id = 11;
+}
+
+message DomainDashboardInfo {
+  string domain_dashboard_id = 1;
+  string name = 2;
+  Scope scope = 3;
+  google.protobuf.ListValue layouts = 4;
+  google.protobuf.Struct options = 5;
+  google.protobuf.Struct default_variables = 6;
+  google.protobuf.ListValue labels = 10;
+  google.protobuf.Struct tags = 11;
+  string user_id = 20;
+  string domain_id = 21;
+  string created_at = 22;
+  string updated_at = 23;
+}
+
+message DomainDashboardsInfo {
+  repeated DomainDashboardInfo results = 1;
+  int32 total_count = 2;
+}
+
+message DomainDashboardStatQuery {
+  // is_required: true
+  spaceone.api.core.v1.StatisticsQuery query = 1;
+  // is_required: true
+  string domain_id = 2;
+}

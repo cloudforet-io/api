@@ -1,0 +1,150 @@
+/*
+desc: description of dashboard
+*/
+syntax = "proto3";
+
+package spaceone.api.dashboard.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service ProjectDashboard{
+
+  rpc create(CreateProjectDashboardRequest) returns (ProjectDashboardInfo) {
+    option (google.api.http) = {post: "/dashboard/v1/project-dashboards"};
+  }
+
+  rpc update (UpdateProjectDashboardRequest) returns (ProjectDashboardInfo) {
+    option (google.api.http) = {put: "/dashboard/v1/project-dashboard/{project_dashboard_id}"};
+  }
+
+  rpc delete (ProjectDashboardRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {delete: "/dashboard/v1/project-dashboard/{project_dashboard_id}"};
+  }
+
+  rpc get (GetProjectDashboardRequest) returns (ProjectDashboardInfo) {
+    option (google.api.http) = {get: "/dashboard/v1/project-dashboard/{project_dashboard_id}"};
+  }
+
+  rpc list (ProjectDashboardQuery) returns (ProjectDashboardsInfo) {
+    option (google.api.http) = {
+      get: "/dashboard/v1/project-dashboards"
+      additional_bindings {
+        post: "/dashboard/v1/project-dashboards/search"
+      }
+    };
+  }
+
+  rpc stat (ProjectDashboardStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {post: "/dashboard/v1/project-dashboards/stat"};
+  }
+}
+
+enum Scope {
+  PROJECT = 0;
+  USER = 1;
+}
+
+message CreateProjectDashboardRequest {
+  // is_required: true
+  string name = 1;
+  // is_required: true
+  Scope scope = 2;
+  // is_required: false
+  google.protobuf.ListValue layouts = 3;
+  // is_required: false
+  google.protobuf.Struct options = 4;
+  // is_required: false
+  google.protobuf.Struct default_variables = 5;
+  // is_required: false
+  google.protobuf.ListValue labels = 10;
+  // is_required: false
+  google.protobuf.Struct tags = 11;
+  // is_required: false
+  string user_id = 20;
+  // is_required: true
+  string domain_id = 21;
+}
+
+message UpdateProjectDashboardRequest {
+  // is_required: true
+  string project_dashboard_id = 1;
+  // is_required: false
+  string name = 2;
+  // is_required: false
+  google.protobuf.ListValue layouts = 3;
+  // is_required: false
+  google.protobuf.Struct options = 4;
+  // is_required: false
+  google.protobuf.Struct default_variables = 5;
+  // is_required: false
+  google.protobuf.ListValue labels = 10;
+  // is_required: false
+  google.protobuf.Struct tags = 11;
+  // is_required: false
+  string user_id = 20;
+  // is_required: true
+  string domain_id = 21;
+}
+
+message ProjectDashboardRequest {
+  // is_required: true
+  string project_dashboard_id = 1;
+  // is_required: true
+  string domain_id = 2;
+}
+
+message GetProjectDashboardRequest {
+  // is_required: true
+  string project_dashboard_id = 1;
+  // is_required: true
+  string domain_id = 2;
+  // is_required: false
+  repeated string only = 3;
+}
+
+message ProjectDashboardQuery {
+  // is_required: false
+  spaceone.api.core.v1.Query query = 1;
+  // is_required: false
+  string project_dashboard_id = 2;
+  // is_required: false
+  string name = 3;
+  // is_required: false
+  Scope scope = 4;
+  // is_required: false
+  google.protobuf.ListValue labels = 5;
+  // is_required: false
+  string user_id = 10;
+  // is_required: true
+  string domain_id = 11;
+}
+
+message ProjectDashboardInfo {
+  string project_dashboard_id = 1;
+  string name = 2;
+  Scope scope = 3;
+  google.protobuf.ListValue layouts = 4;
+  google.protobuf.Struct options = 5;
+  google.protobuf.Struct default_variables = 6;
+  google.protobuf.ListValue labels = 10;
+  google.protobuf.Struct tags = 11;
+  string user_id = 20;
+  string domain_id = 21;
+  string created_at = 22;
+  string updated_at = 23;
+}
+
+message ProjectDashboardsInfo {
+  repeated ProjectDashboardInfo results = 1;
+  int32 total_count = 2;
+}
+
+message ProjectDashboardStatQuery {
+  // is_required: true
+  spaceone.api.core.v1.StatisticsQuery query = 1;
+  // is_required: true
+  string domain_id = 2;
+}
