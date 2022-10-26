@@ -42,12 +42,11 @@ service ProjectDashboard{
   }
 }
 
-enum Scope {
-  PROJECT = 0;
-  USER = 1;
-}
-
 message CreateProjectDashboardRequest {
+  enum Scope {
+    PROJECT = 0;
+    USER = 1;
+  }
   // is_required: true
   string name = 1;
   // is_required: true
@@ -106,6 +105,10 @@ message GetProjectDashboardRequest {
 }
 
 message ProjectDashboardQuery {
+  enum Scope {
+    PROJECT = 0;
+    USER = 1;
+  }
   // is_required: false
   spaceone.api.core.v1.Query query = 1;
   // is_required: false
@@ -123,6 +126,10 @@ message ProjectDashboardQuery {
 }
 
 message ProjectDashboardInfo {
+  enum Scope {
+    PROJECT = 0;
+    USER = 1;
+  }
   string project_dashboard_id = 1;
   string name = 2;
   Scope scope = 3;
