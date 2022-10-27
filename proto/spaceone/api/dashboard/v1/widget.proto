@@ -62,8 +62,6 @@ message CreateWidgetRequest {
   google.protobuf.ListValue labels = 10;
   // is_required: false
   google.protobuf.Struct tags = 11;
-  // is_required: false
-  string user_id = 20;
   // is_required: true
   string domain_id = 21;
 }
@@ -85,8 +83,6 @@ message UpdateWidgetRequest {
   google.protobuf.ListValue labels = 10;
   // is_required: false
   google.protobuf.Struct tags = 11;
-  // is_required: false
-  string user_id = 20;
   // is_required: true
   string domain_id = 21;
 }
@@ -128,7 +124,7 @@ message WidgetInfo {
   string widget_id = 1;
   string name = 2;
   ViewMode view_mode = 3;
-  google.protobuf.Struct options = 4;
+  WidgetOptions options = 4;
   google.protobuf.Struct variables = 6;
   google.protobuf.Struct schema = 7;
   google.protobuf.ListValue labels = 10;
@@ -139,9 +135,24 @@ message WidgetInfo {
   string updated_at = 23;
 }
 
+message WidgetsInfo {
+  repeated WidgetInfo results = 1;
+  int32 total_count = 2;
+}
+
 message WidgetStatQuery {
   // is_required: true
   spaceone.api.core.v1.StatisticsQuery query = 1;
   // is_required: true
   string domain_id = 2;
+}
+
+message WidgetOptions {
+  WidgetDateRange date_range = 1;
+}
+
+message WidgetDateRange {
+  string period_type = 1;
+  string start = 2;
+  string end = 3;
 }
