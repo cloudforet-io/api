@@ -49,8 +49,6 @@ message CreateDomainDashboardRequest {
   }
   // is_required: true
   string name = 1;
-  // is_required: true
-  Scope scope = 2;
   // is_required: false
   google.protobuf.ListValue layouts = 3;
   // is_required: false
@@ -82,8 +80,6 @@ message UpdateDomainDashboardRequest {
   google.protobuf.ListValue labels = 10;
   // is_required: false
   google.protobuf.Struct tags = 11;
-  // is_required: false
-  string user_id = 20;
   // is_required: true
   string domain_id = 21;
 }
@@ -134,7 +130,7 @@ message DomainDashboardInfo {
   string name = 2;
   Scope scope = 3;
   google.protobuf.ListValue layouts = 4;
-  google.protobuf.Struct options = 5;
+  DomainDashboardOptions options = 5;
   google.protobuf.Struct default_variables = 6;
   google.protobuf.ListValue labels = 10;
   google.protobuf.Struct tags = 11;
@@ -154,4 +150,24 @@ message DomainDashboardStatQuery {
   spaceone.api.core.v1.StatisticsQuery query = 1;
   // is_required: true
   string domain_id = 2;
+}
+
+message DomainDashboardOptions {
+  DomainDashboardDateRange date_range = 1;
+  DomainDashboardCurrency currency = 2;
+}
+
+message DomainDashboardDateRange {
+  bool enabled = 1;
+  string period_type = 2;
+  DomainDashboardPeriod period = 3;
+}
+
+message DomainDashboardPeriod {
+  string start = 1;
+  string end = 2;
+}
+
+message DomainDashboardCurrency {
+  bool enabled = 1;
 }
