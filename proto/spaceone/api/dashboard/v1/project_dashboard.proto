@@ -42,6 +42,26 @@ service ProjectDashboard{
   }
 }
 
+message ProjectDashboardOptions {
+  ProjectDashboardDateRange date_range = 1;
+  ProjectDashboardCurrency currency = 2;
+}
+
+message ProjectDashboardDateRange {
+  bool enabled = 1;
+  string period_type = 2;
+  ProjectDashboardPeriod period = 3;
+}
+
+message ProjectDashboardPeriod {
+  string start = 1;
+  string end = 2;
+}
+
+message ProjectDashboardCurrency {
+  bool enabled = 1;
+}
+
 message CreateProjectDashboardRequest {
   enum Scope {
     PROJECT = 0;
@@ -52,7 +72,7 @@ message CreateProjectDashboardRequest {
   // is_required: false
   google.protobuf.ListValue layouts = 3;
   // is_required: false
-  google.protobuf.Struct options = 4;
+  ProjectDashboardOptions options = 4;
   // is_required: false
   google.protobuf.Struct default_variables = 5;
   // is_required: false
@@ -150,24 +170,4 @@ message ProjectDashboardStatQuery {
   spaceone.api.core.v1.StatisticsQuery query = 1;
   // is_required: true
   string domain_id = 2;
-}
-
-message ProjectDashboardOptions {
-  ProjectDashboardDateRange date_range = 1;
-  ProjectDashboardCurrency currency = 2;
-}
-
-message ProjectDashboardDateRange {
-  bool enabled = 1;
-  string period_type = 2;
-  ProjectDashboardPeriod period = 3;
-}
-
-message ProjectDashboardPeriod {
-  string start = 1;
-  string end = 2;
-}
-
-message ProjectDashboardCurrency {
-  bool enabled = 1;
 }

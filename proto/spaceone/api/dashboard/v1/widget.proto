@@ -47,13 +47,34 @@ enum ViewMode {
   FULL = 1;
 }
 
+
+message WidgetOptions {
+  WidgetDateRange date_range = 1;
+  WidgetCurrency currency = 2;
+}
+
+message WidgetDateRange {
+  bool enabled = 1;
+  string period_type = 2;
+  WidgetPeriod period = 3;
+}
+
+message WidgetPeriod {
+  string start = 1;
+  string end = 2;
+}
+
+message WidgetCurrency {
+  bool enabled = 1;
+}
+
+
+
 message CreateWidgetRequest {
   // is_required: true
   string name = 1;
   // is_required: true
-  ViewMode view_mode = 2;
-  // is_required: true
-  google.protobuf.Struct options = 3;
+  WidgetOptions options = 3;
   // is_required: false
   google.protobuf.Struct variables = 6;
   // is_required: false
@@ -72,9 +93,7 @@ message UpdateWidgetRequest {
   // is_required: false
   string name = 2;
   // is_required: false
-  ViewMode view_mode = 3;
-  // is_required: false
-  google.protobuf.Struct options = 4;
+  WidgetOptions options = 4;
   // is_required: false
   google.protobuf.Struct variables = 6;
   // is_required: false
@@ -111,8 +130,6 @@ message WidgetQuery {
   // is_required: false
   string name = 3;
   // is_required: false
-  ViewMode view_mode = 4;
-  // is_required: false
   google.protobuf.ListValue labels = 5;
   // is_required: false
   string user_id = 10;
@@ -123,7 +140,6 @@ message WidgetQuery {
 message WidgetInfo {
   string widget_id = 1;
   string name = 2;
-  ViewMode view_mode = 3;
   WidgetOptions options = 4;
   google.protobuf.Struct variables = 6;
   google.protobuf.Struct schema = 7;
@@ -145,14 +161,4 @@ message WidgetStatQuery {
   spaceone.api.core.v1.StatisticsQuery query = 1;
   // is_required: true
   string domain_id = 2;
-}
-
-message WidgetOptions {
-  WidgetDateRange date_range = 1;
-}
-
-message WidgetDateRange {
-  string period_type = 1;
-  string start = 2;
-  string end = 3;
 }
