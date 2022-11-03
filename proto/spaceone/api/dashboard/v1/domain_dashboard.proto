@@ -44,22 +44,24 @@ service DomainDashboard{
 
 message DomainDashboardOptions {
   DomainDashboardDateRange date_range = 1;
-  DomainDashboardCurrency currency = 2;
+  DomainDashboardSettings settings = 2;
 }
+
 
 message DomainDashboardDateRange {
-  bool enabled = 1;
-  string period_type = 2;
-  DomainDashboardPeriod period = 3;
+  enum PeriodType {
+    TYPE_NONE = 0;
+    AUTO = 1;
+    FIXED = 2;
+  }
+  PeriodType period_type = 1;
+  string start = 2;
+  string end = 3;
 }
 
-message DomainDashboardPeriod {
-  string start = 1;
-  string end = 2;
-}
-
-message DomainDashboardCurrency {
-  bool enabled = 1;
+message DomainDashboardSettings {
+  bool date_range = 1;
+  bool currency = 2;
 }
 
 message CreateDomainDashboardRequest {

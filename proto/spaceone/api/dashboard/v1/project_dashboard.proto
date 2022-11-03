@@ -44,22 +44,23 @@ service ProjectDashboard{
 
 message ProjectDashboardOptions {
   ProjectDashboardDateRange date_range = 1;
-  ProjectDashboardCurrency currency = 2;
+  ProjectDashboardSettings settings = 2;
 }
 
 message ProjectDashboardDateRange {
-  bool enabled = 1;
-  string period_type = 2;
-  ProjectDashboardPeriod period = 3;
+  enum PeriodType {
+    TYPE_NONE = 0;
+    AUTO = 1;
+    FIXED = 2;
+  }
+  PeriodType period_type = 1;
+  string start = 2;
+  string end = 3;
 }
 
-message ProjectDashboardPeriod {
-  string start = 1;
-  string end = 2;
-}
-
-message ProjectDashboardCurrency {
-  bool enabled = 1;
+message ProjectDashboardSettings {
+  bool date_range = 1;
+  bool currency = 2;
 }
 
 message CreateProjectDashboardRequest {
