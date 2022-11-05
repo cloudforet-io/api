@@ -42,41 +42,36 @@ service ProjectDashboard{
   }
 }
 
-message ProjectDashboardOptions {
-  ProjectDashboardDateRange date_range = 1;
-  ProjectDashboardSettings settings = 2;
+enum ProjectDashboardScope {
+  SCOPE_NONE = 0;
+  DOMAIN = 1;
+  USER = 2;
 }
 
 message ProjectDashboardDateRange {
-  enum PeriodType {
-    TYPE_NONE = 0;
-    AUTO = 1;
-    FIXED = 2;
-  }
-  PeriodType period_type = 1;
-  string start = 2;
-  string end = 3;
+  bool enabled = 1;
+}
+
+message ProjectDashboardCurrency {
+  bool enabled = 1;
 }
 
 message ProjectDashboardSettings {
-  bool date_range = 1;
-  bool currency = 2;
+  ProjectDashboardDateRange date_range = 1;
+  ProjectDashboardCurrency settings = 2;
 }
 
 message CreateProjectDashboardRequest {
-  enum Scope {
-    SCOPE_NONE = 0;
-    DOMAIN = 1;
-    USER = 2;
-  }
   // is_required: true
   string name = 1;
   // is_required: false
   google.protobuf.ListValue layouts = 3;
   // is_required: false
-  ProjectDashboardOptions options = 4;
+  google.protobuf.Struct dashboard_options = 5;
   // is_required: false
-  google.protobuf.Struct default_variables = 5;
+  ProjectDashboardSettings settings = 6;
+  // is_required: false
+  google.protobuf.Struct dashboard_options_schema = 7;
   // is_required: false
   google.protobuf.ListValue labels = 10;
   // is_required: false
@@ -89,15 +84,17 @@ message CreateProjectDashboardRequest {
 
 message UpdateProjectDashboardRequest {
   // is_required: true
-  string project_dashboard_id = 1;
+  string domain_dashboard_id = 1;
   // is_required: false
   string name = 2;
   // is_required: false
   google.protobuf.ListValue layouts = 3;
   // is_required: false
-  google.protobuf.Struct options = 4;
+  google.protobuf.Struct dashboard_options = 5;
   // is_required: false
-  google.protobuf.Struct default_variables = 5;
+  ProjectDashboardSettings settings = 6;
+  // is_required: false
+  google.protobuf.Struct dashboard_options_schema = 7;
   // is_required: false
   google.protobuf.ListValue labels = 10;
   // is_required: false
@@ -123,11 +120,6 @@ message GetProjectDashboardRequest {
 }
 
 message ProjectDashboardQuery {
-  enum Scope {
-    SCOPE_NONE = 0;
-    DOMAIN = 1;
-    USER = 2;
-  }
   // is_required: false
   spaceone.api.core.v1.Query query = 1;
   // is_required: false
@@ -135,7 +127,7 @@ message ProjectDashboardQuery {
   // is_required: false
   string name = 3;
   // is_required: false
-  Scope scope = 4;
+  ProjectDashboardScope scope = 4;
   // is_required: false
   string user_id = 10;
   // is_required: true
@@ -143,23 +135,20 @@ message ProjectDashboardQuery {
 }
 
 message ProjectDashboardInfo {
-  enum Scope {
-    SCOPE_NONE = 0;
-    DOMAIN = 1;
-    USER = 2;
-  }
-  string project_dashboard_id = 1;
+  string domain_dashboard_id = 1;
   string name = 2;
-  Scope scope = 3;
+  ProjectDashboardScope scope = 3;
   google.protobuf.ListValue layouts = 4;
-  ProjectDashboardOptions options = 5;
-  google.protobuf.Struct default_variables = 6;
+  google.protobuf.Struct dashboard_options = 5;
+  ProjectDashboardSettings settings = 6;
+  google.protobuf.Struct dashboard_options_schema = 7;
   google.protobuf.ListValue labels = 10;
   google.protobuf.Struct tags = 11;
   string user_id = 20;
-  string domain_id = 21;
-  string created_at = 22;
-  string updated_at = 23;
+  string project_id = 21;
+  string domain_id = 22;
+  string created_at = 23;
+  string updated_at = 24;
 }
 
 message ProjectDashboardsInfo {

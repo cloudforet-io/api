@@ -42,42 +42,36 @@ service DomainDashboard{
   }
 }
 
-message DomainDashboardOptions {
-  DomainDashboardDateRange date_range = 1;
-  DomainDashboardSettings settings = 2;
+enum DomainDashboardScope {
+  SCOPE_NONE = 0;
+  DOMAIN = 1;
+  USER = 2;
 }
 
-
 message DomainDashboardDateRange {
-  enum PeriodType {
-    TYPE_NONE = 0;
-    AUTO = 1;
-    FIXED = 2;
-  }
-  PeriodType period_type = 1;
-  string start = 2;
-  string end = 3;
+  bool enabled = 1;
+}
+
+message DomainDashboardCurrency {
+  bool enabled = 1;
 }
 
 message DomainDashboardSettings {
-  bool date_range = 1;
-  bool currency = 2;
+  DomainDashboardDateRange date_range = 1;
+  DomainDashboardCurrency settings = 2;
 }
 
 message CreateDomainDashboardRequest {
-  enum Scope {
-    SCOPE_NONE = 0;
-    DOMAIN = 1;
-    USER = 2;
-  }
   // is_required: true
   string name = 1;
   // is_required: false
   google.protobuf.ListValue layouts = 3;
   // is_required: false
-  DomainDashboardOptions options = 4;
+  google.protobuf.Struct dashboard_options = 5;
   // is_required: false
-  google.protobuf.Struct default_variables = 5;
+  DomainDashboardSettings settings = 6;
+  // is_required: false
+  google.protobuf.Struct dashboard_options_schema = 7;
   // is_required: false
   google.protobuf.ListValue labels = 10;
   // is_required: false
@@ -96,9 +90,11 @@ message UpdateDomainDashboardRequest {
   // is_required: false
   google.protobuf.ListValue layouts = 3;
   // is_required: false
-  google.protobuf.Struct options = 4;
+  google.protobuf.Struct dashboard_options = 5;
   // is_required: false
-  google.protobuf.Struct default_variables = 5;
+  DomainDashboardSettings settings = 6;
+  // is_required: false
+  google.protobuf.Struct dashboard_options_schema = 7;
   // is_required: false
   google.protobuf.ListValue labels = 10;
   // is_required: false
@@ -124,11 +120,6 @@ message GetDomainDashboardRequest {
 }
 
 message DomainDashboardQuery {
-  enum Scope {
-    SCOPE_NONE = 0;
-    DOMAIN = 1;
-    USER = 2;
-  }
   // is_required: false
   spaceone.api.core.v1.Query query = 1;
   // is_required: false
@@ -136,7 +127,7 @@ message DomainDashboardQuery {
   // is_required: false
   string name = 3;
   // is_required: false
-  Scope scope = 4;
+  DomainDashboardScope scope = 4;
   // is_required: false
   string user_id = 10;
   // is_required: true
@@ -144,17 +135,13 @@ message DomainDashboardQuery {
 }
 
 message DomainDashboardInfo {
-  enum Scope {
-    SCOPE_NONE = 0;
-    DOMAIN = 1;
-    USER = 2;
-  }
   string domain_dashboard_id = 1;
   string name = 2;
-  Scope scope = 3;
+  DomainDashboardScope scope = 3;
   google.protobuf.ListValue layouts = 4;
-  DomainDashboardOptions options = 5;
-  google.protobuf.Struct default_variables = 6;
+  google.protobuf.Struct dashboard_options = 5;
+  DomainDashboardSettings settings = 6;
+  google.protobuf.Struct dashboard_options_schema = 7;
   google.protobuf.ListValue labels = 10;
   google.protobuf.Struct tags = 11;
   string user_id = 20;
