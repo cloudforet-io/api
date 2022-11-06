@@ -42,27 +42,6 @@ service CustomWidget{
   }
 }
 
-message CustomWidgetOptions {
-  CustomWidgetDateRange date_range = 1;
-  CustomWidgetSettings settings = 2;
-}
-
-message CustomWidgetDateRange {
-  enum PeriodType {
-    TYPE_NONE = 0;
-    AUTO = 1;
-    FIXED = 2;
-  }
-  PeriodType period_type = 1;
-  string start = 2;
-  string end = 3;
-}
-
-message CustomWidgetSettings {
-  bool date_range = 1;
-  bool currency = 2;
-}
-
 message CreateCustomWidgetRequest {
   // is_required: true
   string name = 1;
