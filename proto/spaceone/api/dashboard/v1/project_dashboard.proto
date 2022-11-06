@@ -42,11 +42,6 @@ service ProjectDashboard{
   }
 }
 
-enum ProjectDashboardScope {
-  SCOPE_NONE = 0;
-  DOMAIN = 1;
-  USER = 2;
-}
 
 message ProjectDashboardDateRange {
   bool enabled = 1;
@@ -120,6 +115,11 @@ message GetProjectDashboardRequest {
 }
 
 message ProjectDashboardQuery {
+  enum Scope {
+    SCOPE_NONE = 0;
+    DOMAIN = 1;
+    USER = 2;
+  }
   // is_required: false
   spaceone.api.core.v1.Query query = 1;
   // is_required: false
@@ -127,7 +127,7 @@ message ProjectDashboardQuery {
   // is_required: false
   string name = 3;
   // is_required: false
-  ProjectDashboardScope scope = 4;
+  Scope scope = 4;
   // is_required: false
   string user_id = 10;
   // is_required: true
@@ -135,9 +135,14 @@ message ProjectDashboardQuery {
 }
 
 message ProjectDashboardInfo {
+  enum Scope {
+    SCOPE_NONE = 0;
+    DOMAIN = 1;
+    USER = 2;
+  }
   string domain_dashboard_id = 1;
   string name = 2;
-  ProjectDashboardScope scope = 3;
+  Scope scope = 3;
   google.protobuf.ListValue layouts = 4;
   google.protobuf.Struct dashboard_options = 5;
   ProjectDashboardSettings settings = 6;
