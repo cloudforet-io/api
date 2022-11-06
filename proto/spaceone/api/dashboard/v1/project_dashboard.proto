@@ -58,7 +58,9 @@ message ProjectDashboardSettings {
 
 message CreateProjectDashboardRequest {
   // is_required: true
-  string name = 1;
+  string project_id = 1;
+  // is_required: true
+  string name = 2;
   // is_required: false
   google.protobuf.ListValue layouts = 3;
   // is_required: false
@@ -125,9 +127,11 @@ message ProjectDashboardQuery {
   // is_required: false
   string project_dashboard_id = 2;
   // is_required: false
-  string name = 3;
+  string project_id = 3;
   // is_required: false
-  Scope scope = 4;
+  string name = 4;
+  // is_required: false
+  Scope scope = 5;
   // is_required: false
   string user_id = 10;
   // is_required: true
@@ -141,16 +145,16 @@ message ProjectDashboardInfo {
     USER = 2;
   }
   string domain_dashboard_id = 1;
-  string name = 2;
-  Scope scope = 3;
-  google.protobuf.ListValue layouts = 4;
-  google.protobuf.Struct dashboard_options = 5;
-  ProjectDashboardSettings settings = 6;
-  google.protobuf.Struct dashboard_options_schema = 7;
+  string project_id = 2;
+  string name = 3;
+  Scope scope = 4;
+  google.protobuf.ListValue layouts = 5;
+  google.protobuf.Struct dashboard_options = 6;
+  ProjectDashboardSettings settings = 7;
+  google.protobuf.Struct dashboard_options_schema = 8;
   google.protobuf.ListValue labels = 10;
   google.protobuf.Struct tags = 11;
   string user_id = 20;
-  string project_id = 21;
   string domain_id = 22;
   string created_at = 23;
   string updated_at = 24;
