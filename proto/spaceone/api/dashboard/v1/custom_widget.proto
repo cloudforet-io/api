@@ -44,13 +44,15 @@ service CustomWidget{
 
 message CreateCustomWidgetRequest {
   // is_required: true
-  string name = 1;
+  string widget_name = 1;
   // is_required: true
-  string widget_id = 2;
+  string title = 2;
   // is_required: true
   google.protobuf.Struct widget_options = 3;
   // is_required: false
   google.protobuf.Struct inherit_options = 4;
+  // is_required: false
+  google.protobuf.ListValue labels = 10;
   // is_required: false
   google.protobuf.Struct tags = 11;
   // is_required: true
@@ -61,11 +63,13 @@ message UpdateCustomWidgetRequest {
   // is_required: true
   string custom_widget_id = 1;
   // is_required: false
-  string name = 2;
+  string title = 2;
   // is_required: false
   google.protobuf.Struct widget_options = 3;
   // is_required: false
   google.protobuf.Struct inherit_options = 4;
+  // is_required: false
+  google.protobuf.ListValue labels = 10;
   // is_required: false
   google.protobuf.Struct tags = 11;
   // is_required: true
@@ -94,9 +98,9 @@ message CustomWidgetQuery {
   // is_required: false
   string custom_widget_id = 2;
   // is_required: false
-  string widget_id = 3;
+  string widget_name = 3;
   // is_required: false
-  string name = 4;
+  string title = 4;
   // is_required: false
   string user_id = 10;
   // is_required: true
@@ -105,11 +109,12 @@ message CustomWidgetQuery {
 
 message CustomWidgetInfo {
   string custom_widget_id = 1;
-  string widget_id = 2;
-  string name = 3;
+  string widget_name = 2;
+  string title = 3;
   string version = 4;
   google.protobuf.Struct widget_options = 5;
   google.protobuf.Struct inherit_options = 6;
+  google.protobuf.ListValue labels = 10;
   google.protobuf.Struct tags = 11;
   string user_id = 20;
   string domain_id = 21;
