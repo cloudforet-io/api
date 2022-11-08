@@ -28,6 +28,27 @@ service ProjectDashboard{
     option (google.api.http) = {get: "/dashboard/v1/project-dashboard/{project_dashboard_id}"};
   }
 
+  rpc delete_version (DeleteVersionProjectDashboardRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {delete: "/dashboard/v1/project-dashboard/{project_dashboard_id}/version/{version}"};
+  }
+
+  rpc revert_version (RevertVersionProjectDashboardRequest) returns (ProjectDashboardInfo) {
+    option (google.api.http) = {post: "/dashboard/v1/project-dashboard/{project_dashboard_id}/version/{version}/revert"};
+  }
+
+  rpc get_version (GetVersionProjectDashboardRequest) returns (ProjectDashboardVersionInfo) {
+    option (google.api.http) = {get: "/dashboard/v1/project-dashboard/{project_dashboard_id}/version/{version}"};
+  }
+
+  rpc list_versions (ProjectDashboardVersionQuery) returns (ProjectDashboardVersionsInfo) {
+    option (google.api.http) = {
+      get: "/dashboard/v1/project-dashboard/{project_dashboard_id}/versions"
+      additional_bindings {
+        post: "/dashboard/v1/project-dashboard/{project_dashboard_id}/versions/search"
+      }
+    };
+  }
+
   rpc list (ProjectDashboardQuery) returns (ProjectDashboardsInfo) {
     option (google.api.http) = {
       get: "/dashboard/v1/project-dashboards"
@@ -81,7 +102,7 @@ message CreateProjectDashboardRequest {
 
 message UpdateProjectDashboardRequest {
   // is_required: true
-  string domain_dashboard_id = 1;
+  string project_dashboard_id = 1;
   // is_required: false
   string name = 2;
   // is_required: false
@@ -116,6 +137,44 @@ message GetProjectDashboardRequest {
   repeated string only = 3;
 }
 
+message DeleteVersionProjectDashboardRequest {
+  // is_required: true
+  string project_dashboard_id = 1;
+  // is_required: true
+  int32 version = 4;
+  // is_required: true
+  string domain_id = 21;
+}
+
+message RevertVersionProjectDashboardRequest {
+  // is_required: true
+  string project_dashboard_id = 1;
+  // is_required: true
+  int32 version = 4;
+  // is_required: true
+  string domain_id = 21;
+}
+
+message GetVersionProjectDashboardRequest {
+  // is_required: true
+  string project_dashboard_id = 1;
+  // is_required: true
+  int32 version = 4;
+  // is_required: true
+  string domain_id = 21;
+}
+
+message ProjectDashboardVersionQuery {
+  // is_required: false
+  spaceone.api.core.v1.Query query = 1;
+  // is_required: true
+  string project_dashboard_id = 2;
+  // is_required: false
+  int32 version = 3;
+  // is_required: true
+  string domain_id = 10;
+}
+
 message ProjectDashboardQuery {
   enum Scope {
     SCOPE_NONE = 0;
@@ -148,10 +207,11 @@ message ProjectDashboardInfo {
   string project_id = 2;
   string name = 3;
   Scope scope = 4;
-  google.protobuf.ListValue layouts = 5;
-  google.protobuf.Struct dashboard_options = 6;
-  ProjectDashboardSettings settings = 7;
-  google.protobuf.Struct dashboard_options_schema = 8;
+  int32 version = 5;
+  google.protobuf.ListValue layouts = 6;
+  google.protobuf.Struct dashboard_options = 7;
+  ProjectDashboardSettings settings = 8;
+  google.protobuf.Struct dashboard_options_schema = 9;
   google.protobuf.ListValue labels = 10;
   google.protobuf.Struct tags = 11;
   string user_id = 20;
@@ -170,4 +230,21 @@ message ProjectDashboardStatQuery {
   spaceone.api.core.v1.StatisticsQuery query = 1;
   // is_required: true
   string domain_id = 2;
+}
+
+
+message ProjectDashboardVersionInfo {
+  string project_dashboard_id = 1;
+  int32 version = 2;
+  google.protobuf.ListValue layouts = 5;
+  google.protobuf.Struct dashboard_options = 6;
+  ProjectDashboardSettings settings = 7;
+  google.protobuf.Struct dashboard_options_schema = 8;
+  string domain_id = 21;
+  string created_at = 22;
+}
+
+message ProjectDashboardVersionsInfo {
+  repeated ProjectDashboardVersionInfo results = 1;
+  int32 total_count = 2;
 }
