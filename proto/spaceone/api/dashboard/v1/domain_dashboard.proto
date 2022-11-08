@@ -28,15 +28,15 @@ service DomainDashboard{
     option (google.api.http) = {get: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}"};
   }
 
-  rpc delete_version (DeleteVersionDomainDashboardRequest) returns (google.protobuf.Empty) {
+  rpc delete_version (DomainDashboardVersionRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {delete: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}"};
   }
 
-  rpc revert_version (RevertVersionDomainDashboardRequest) returns (DomainDashboardInfo) {
+  rpc revert_version (DomainDashboardVersionRequest) returns (DomainDashboardInfo) {
     option (google.api.http) = {post: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}/revert"};
   }
 
-  rpc get_version (GetVersionDomainDashboardRequest) returns (DomainDashboardVersionInfo) {
+  rpc get_version (GetDomainDashboardVersionRequest) returns (DomainDashboardVersionInfo) {
     option (google.api.http) = {get: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}"};
   }
 
@@ -134,7 +134,7 @@ message GetDomainDashboardRequest {
   repeated string only = 3;
 }
 
-message DeleteVersionDomainDashboardRequest {
+message DomainDashboardVersionRequest {
   // is_required: true
   string domain_dashboard_id = 1;
   // is_required: true
@@ -143,22 +143,15 @@ message DeleteVersionDomainDashboardRequest {
   string domain_id = 21;
 }
 
-message RevertVersionDomainDashboardRequest {
+message GetDomainDashboardVersionRequest {
   // is_required: true
   string domain_dashboard_id = 1;
   // is_required: true
-  int32 version = 4;
+  int32 version = 2;
   // is_required: true
-  string domain_id = 21;
-}
-
-message GetVersionDomainDashboardRequest {
-  // is_required: true
-  string domain_dashboard_id = 1;
-  // is_required: true
-  int32 version = 4;
-  // is_required: true
-  string domain_id = 21;
+  string domain_id = 10;
+  // is_required: false
+  repeated string only = 11;
 }
 
 message DomainDashboardVersionQuery {
