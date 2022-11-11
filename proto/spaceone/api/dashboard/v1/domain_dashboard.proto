@@ -1,0 +1,238 @@
+/*
+desc: description of dashboard
+*/
+syntax = "proto3";
+
+package spaceone.api.dashboard.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service DomainDashboard{
+
+  rpc create(CreateDomainDashboardRequest) returns (DomainDashboardInfo) {
+    option (google.api.http) = {post: "/dashboard/v1/domain-dashboards"};
+  }
+
+  rpc update (UpdateDomainDashboardRequest) returns (DomainDashboardInfo) {
+    option (google.api.http) = {put: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}"};
+  }
+
+  rpc delete (DomainDashboardRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {delete: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}"};
+  }
+
+  rpc get (GetDomainDashboardRequest) returns (DomainDashboardInfo) {
+    option (google.api.http) = {get: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}"};
+  }
+
+  rpc delete_version (DomainDashboardVersionRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {delete: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}"};
+  }
+
+  rpc revert_version (DomainDashboardVersionRequest) returns (DomainDashboardInfo) {
+    option (google.api.http) = {post: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}/revert"};
+  }
+
+  rpc get_version (GetDomainDashboardVersionRequest) returns (DomainDashboardVersionInfo) {
+    option (google.api.http) = {get: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}"};
+  }
+
+  rpc list_versions (DomainDashboardVersionQuery) returns (DomainDashboardVersionsInfo) {
+    option (google.api.http) = {
+      get: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}/versions"
+      additional_bindings {
+        post: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}/versions/search"
+      }
+    };
+  }
+
+  rpc list (DomainDashboardQuery) returns (DomainDashboardsInfo) {
+    option (google.api.http) = {
+      get: "/dashboard/v1/domain-dashboards"
+      additional_bindings {
+        post: "/dashboard/v1/domain-dashboards/search"
+      }
+    };
+  }
+
+  rpc stat (DomainDashboardStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {post: "/dashboard/v1/domain-dashboards/stat"};
+  }
+}
+
+message DomainDashboardDateRange {
+  bool enabled = 1;
+}
+
+message DomainDashboardCurrency {
+  bool enabled = 1;
+}
+
+message DomainDashboardSettings {
+  DomainDashboardDateRange date_range = 1;
+  DomainDashboardCurrency currency = 2;
+}
+
+message CreateDomainDashboardRequest {
+  // is_required: true
+  string name = 1;
+  // is_required: false
+  google.protobuf.ListValue layouts = 3;
+  // is_required: false
+  google.protobuf.Struct dashboard_options = 5;
+  // is_required: false
+  DomainDashboardSettings settings = 6;
+  // is_required: false
+  google.protobuf.Struct dashboard_options_schema = 7;
+  // is_required: false
+  google.protobuf.ListValue labels = 10;
+  // is_required: false
+  google.protobuf.Struct tags = 11;
+  // is_required: false
+  string user_id = 20;
+  // is_required: true
+  string domain_id = 21;
+}
+
+message UpdateDomainDashboardRequest {
+  // is_required: true
+  string domain_dashboard_id = 1;
+  // is_required: false
+  string name = 2;
+  // is_required: false
+  google.protobuf.ListValue layouts = 3;
+  // is_required: false
+  google.protobuf.Struct dashboard_options = 5;
+  // is_required: false
+  DomainDashboardSettings settings = 6;
+  // is_required: false
+  google.protobuf.Struct dashboard_options_schema = 7;
+  // is_required: false
+  google.protobuf.ListValue labels = 10;
+  // is_required: false
+  google.protobuf.Struct tags = 11;
+  // is_required: true
+  string domain_id = 21;
+}
+
+message DomainDashboardRequest {
+  // is_required: true
+  string domain_dashboard_id = 1;
+  // is_required: true
+  string domain_id = 2;
+}
+
+message GetDomainDashboardRequest {
+  // is_required: true
+  string domain_dashboard_id = 1;
+  // is_required: true
+  string domain_id = 2;
+  // is_required: false
+  repeated string only = 3;
+}
+
+message DomainDashboardVersionRequest {
+  // is_required: true
+  string domain_dashboard_id = 1;
+  // is_required: true
+  int32 version = 4;
+  // is_required: true
+  string domain_id = 21;
+}
+
+message GetDomainDashboardVersionRequest {
+  // is_required: true
+  string domain_dashboard_id = 1;
+  // is_required: true
+  int32 version = 2;
+  // is_required: true
+  string domain_id = 10;
+  // is_required: false
+  repeated string only = 11;
+}
+
+message DomainDashboardVersionQuery {
+  // is_required: false
+  spaceone.api.core.v1.Query query = 1;
+  // is_required: true
+  string domain_dashboard_id = 2;
+  // is_required: false
+  int32 version = 3;
+  // is_required: true
+  string domain_id = 10;
+}
+
+message DomainDashboardQuery {
+  enum Scope {
+    SCOPE_NONE = 0;
+    DOMAIN = 1;
+    USER = 2;
+  }
+  // is_required: false
+  spaceone.api.core.v1.Query query = 1;
+  // is_required: false
+  string domain_dashboard_id = 2;
+  // is_required: false
+  string name = 3;
+  // is_required: false
+  Scope scope = 4;
+  // is_required: false
+  string user_id = 10;
+  // is_required: true
+  string domain_id = 11;
+}
+
+message DomainDashboardInfo {
+  enum Scope {
+    SCOPE_NONE = 0;
+    DOMAIN = 1;
+    USER = 2;
+  }
+  string domain_dashboard_id = 1;
+  string name = 2;
+  Scope scope = 3;
+  int32 version = 4;
+  google.protobuf.ListValue layouts = 5;
+  google.protobuf.Struct dashboard_options = 6;
+  DomainDashboardSettings settings = 7;
+  google.protobuf.Struct dashboard_options_schema = 8;
+  google.protobuf.ListValue labels = 10;
+  google.protobuf.Struct tags = 11;
+  string user_id = 20;
+  string domain_id = 21;
+  string created_at = 22;
+  string updated_at = 23;
+}
+
+message DomainDashboardsInfo {
+  repeated DomainDashboardInfo results = 1;
+  int32 total_count = 2;
+}
+
+message DomainDashboardStatQuery {
+  // is_required: true
+  spaceone.api.core.v1.StatisticsQuery query = 1;
+  // is_required: true
+  string domain_id = 2;
+}
+
+
+message DomainDashboardVersionInfo {
+  string domain_dashboard_id = 1;
+  int32 version = 2;
+  bool latest = 3;
+  google.protobuf.ListValue layouts = 5;
+  google.protobuf.Struct dashboard_options = 6;
+  DomainDashboardSettings settings = 7;
+  google.protobuf.Struct dashboard_options_schema = 8;
+  string domain_id = 21;
+  string created_at = 22;
+}
+
+message DomainDashboardVersionsInfo {
+  repeated DomainDashboardVersionInfo results = 1;
+  int32 total_count = 2;
+}
