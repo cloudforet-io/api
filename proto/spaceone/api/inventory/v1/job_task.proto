@@ -12,10 +12,55 @@ import "spaceone/api/core/v1/query.proto";
 import "spaceone/api/inventory/v1/collector.proto";
 
 service JobTask {
+  /*
+  desc: Deletes a specific JobTask. You must specify the `job_task_id` of the JobTask to delete.
+  request_example: >-
+    {
+      "job_task_id": "job-task-123456789012",
+      "domain_id": "domain-123456789012"
+    }
+   */
   rpc delete (JobTaskRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {delete: "/inventory/v1/job-task/{job_task_id}"};
   }
-
+  /*
+  desc: Gets a specific JobTask. Prints detailed information about the JobTask, including its state, updated or failure counts, and error log.
+  request_example: >-
+    {
+      "job_task_id": "job-task-123456789012",
+      "domain_id": "domain-123456789012"
+    }
+  response_example: >-
+    {
+    "job_task_id": "job-task-123456789012",
+    "status": "FAILURE",
+    "updated_count": 199,
+    "failure_count": 1,
+    "errors": [
+        {
+            "error_code": "ERROR_PLUGIN",
+            "message": "{\"tags\": [\"Could not interpret the value as a list\"]}",
+            "additional": {
+                "domain_id": "domain-123456789012",
+                "resource_id": "eventarc-us-central1-function",
+                "resource_type": "inventory.CloudService",
+                "cloud_service_group": "Pub/Sub",
+                "cloud_service_type": "Subscription",
+                "provider": "google_cloud"
+            }
+        }
+    ],
+    "job_id": "job-123456789012",
+    "secret_id": "secret-123456789012",
+    "provider": "google_cloud",
+    "service_account_id": "sa-123456789012",
+    "project_id": "project-123456789012",
+    "domain_id": "domain-123456789012",
+    "created_at": "2022-01-01T11:00:02.588Z",
+    "started_at": "2022-01-01T11:00:02.819Z",
+    "finished_at": "2022-01-01T11:00:34.398Z"
+    }
+   */
   rpc get (GetJobTaskRequest) returns (JobTaskInfo) {
     option (google.api.http) = {get: "/inventory/v1/job-task/{job_task_id}"};
   }
