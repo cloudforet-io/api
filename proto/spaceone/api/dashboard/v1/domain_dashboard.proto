@@ -77,8 +77,15 @@ message DomainDashboardSettings {
 }
 
 message CreateDomainDashboardRequest {
+  enum Viewers {
+    SCOPE_NONE = 0;
+    PUBLIC = 1;
+    PRIVATE = 2;
+  }
   // is_required: true
   string name = 1;
+  // is_required: true
+  Viewers viewers = 2;
   // is_required: false
   google.protobuf.ListValue layouts = 3;
   // is_required: false
@@ -166,10 +173,10 @@ message DomainDashboardVersionQuery {
 }
 
 message DomainDashboardQuery {
-  enum Scope {
+  enum Viewers {
     SCOPE_NONE = 0;
-    DOMAIN = 1;
-    USER = 2;
+    PUBLIC = 1;
+    PRIVATE = 2;
   }
   // is_required: false
   spaceone.api.core.v1.Query query = 1;
@@ -178,7 +185,7 @@ message DomainDashboardQuery {
   // is_required: false
   string name = 3;
   // is_required: false
-  Scope scope = 4;
+  Viewers viewers = 4;
   // is_required: false
   string user_id = 10;
   // is_required: true
@@ -186,14 +193,14 @@ message DomainDashboardQuery {
 }
 
 message DomainDashboardInfo {
-  enum Scope {
+  enum Viewers {
     SCOPE_NONE = 0;
-    DOMAIN = 1;
-    USER = 2;
+    PUBLIC = 1;
+    PRIVATE = 2;
   }
   string domain_dashboard_id = 1;
   string name = 2;
-  Scope scope = 3;
+  Viewers viewers = 3;
   int32 version = 4;
   google.protobuf.ListValue layouts = 5;
   google.protobuf.Struct dashboard_options = 6;
