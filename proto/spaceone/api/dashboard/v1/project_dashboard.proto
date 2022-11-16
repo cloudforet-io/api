@@ -78,12 +78,19 @@ message ProjectDashboardSettings {
 }
 
 message CreateProjectDashboardRequest {
+  enum Viewers {
+    VIEWERS_NONE = 0;
+    PUBLIC = 1;
+    PRIVATE = 2;
+  }
   // is_required: true
   string project_id = 1;
   // is_required: true
   string name = 2;
+  // is_required: true
+  Viewers viewers = 3;
   // is_required: false
-  google.protobuf.ListValue layouts = 3;
+  google.protobuf.ListValue layouts = 4;
   // is_required: false
   google.protobuf.Struct dashboard_options = 5;
   // is_required: false
@@ -169,10 +176,10 @@ message ProjectDashboardVersionQuery {
 }
 
 message ProjectDashboardQuery {
-  enum Scope {
-    SCOPE_NONE = 0;
-    PROJECT = 1;
-    USER = 2;
+  enum Viewers {
+    VIEWERS_NONE = 0;
+    PUBLIC = 1;
+    PRIVATE = 2;
   }
   // is_required: false
   spaceone.api.core.v1.Query query = 1;
@@ -183,7 +190,7 @@ message ProjectDashboardQuery {
   // is_required: false
   string name = 4;
   // is_required: false
-  Scope scope = 5;
+  Viewers viewers = 5;
   // is_required: false
   string user_id = 10;
   // is_required: true
@@ -191,15 +198,15 @@ message ProjectDashboardQuery {
 }
 
 message ProjectDashboardInfo {
-  enum Scope {
-    SCOPE_NONE = 0;
-    PROJECT = 1;
-    USER = 2;
+  enum Viewers {
+    VIEWERS_NONE = 0;
+    PUBLIC = 1;
+    PRIVATE = 2;
   }
   string project_dashboard_id = 1;
   string project_id = 2;
   string name = 3;
-  Scope scope = 4;
+  Viewers viewers = 4;
   int32 version = 5;
   google.protobuf.ListValue layouts = 6;
   google.protobuf.Struct dashboard_options = 7;
