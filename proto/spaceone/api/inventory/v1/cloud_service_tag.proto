@@ -24,7 +24,7 @@ service CloudServiceTag {
 message CloudServiceTagQuery {
   // is_required: false
   spaceone.api.core.v1.Query query = 1;
-  // is_required: false
+  // is_required: true
   string cloud_service_id = 2;
   // is_required: false
   string key = 3;
@@ -32,20 +32,16 @@ message CloudServiceTagQuery {
   string type = 4;
   // is_required: false
   string provider = 5;
-  // is_required: false
-  string project_id = 6;
   // is_required: true
   string domain_id = 10;
 }
 
 message CloudServiceTagInfo {
-
-  string cloud_service_id = 2;
-  string key = 3;
-  string value = 4;
-  string type = 5;
-  string provider = 6;
-  string project_id = 7;
+  string cloud_service_id = 1;
+  string key = 2;
+  string value = 3;
+  string type = 4;
+  string provider = 5;
   string domain_id = 11;
   string created_at = 21;
 }
@@ -60,4 +56,6 @@ message CloudServiceTagStatQuery {
   spaceone.api.core.v1.StatisticsQuery query = 1;
   // is_required: true
   string domain_id = 2;
+  // is_required: true
+  string cloud_service_id = 3;
 }
