@@ -434,7 +434,7 @@ message AlertQuery {
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
-    int32 alert_number = 2;
+    string alert_number_str = 2;
     // is_required: false
     string alert_id = 3;
     // is_required: false
@@ -469,26 +469,27 @@ message AlertQuery {
 
 message AlertInfo {
     int32 alert_number = 1;
-    string alert_id = 2;
-    string title = 3;
-    AlertState state = 4;
-    string status_message = 5;
-    string description = 6;
-    string assignee = 7;
-    AlertUrgency urgency = 8;
-    string severity = 9;
-    string rule = 10;
-    AlertResource resource = 11;
-    string provider = 12;
-    string account = 13;
-    bool is_snoozed = 14;
-    string snoozed_end_time = 15;
-    int32 escalation_step = 16;
-    int32 escalation_ttl = 17;
-    repeated AlertResponder responders = 18;
-    repeated string project_dependencies = 19;
-    string image_url = 20;
-    google.protobuf.Struct additional_info = 21;
+    string alert_number_str = 2;
+    string alert_id = 3;
+    string title = 4;
+    AlertState state = 5;
+    string status_message = 6;
+    string description = 7;
+    string assignee = 8;
+    AlertUrgency urgency = 9;
+    string severity = 10;
+    string rule = 11;
+    AlertResource resource = 12;
+    string provider = 13;
+    string account = 14;
+    bool is_snoozed = 15;
+    string snoozed_end_time = 16;
+    int32 escalation_step = 17;
+    int32 escalation_ttl = 18;
+    repeated AlertResponder responders = 19;
+    repeated string project_dependencies = 20;
+    string image_url = 21;
+    google.protobuf.Struct additional_info = 22;
     string triggered_by = 31;
     string webhook_id = 32;
     string escalation_policy_id = 33;
