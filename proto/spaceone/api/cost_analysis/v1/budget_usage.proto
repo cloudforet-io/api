@@ -47,6 +47,9 @@ service BudgetUsage {
             }
         };
     }
+    rpc analyze (BudgetUsageAnalyzeQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/cost-analysis/v1/budget/{budget_id}/usage/analyze" };
+    }
     rpc stat (BudgetUsageStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = { post: "/cost-analysis/v1/budget/{budget_id}/usage/stat" };
     }
@@ -79,6 +82,13 @@ message BudgetUsageInfo {
 message BudgetUsagesInfo {
     repeated BudgetUsageInfo results = 1;
     int32 total_count = 2;
+}
+
+message BudgetUsageAnalyzeQuery {
+    // is_required: true
+    spaceone.api.core.v1.TimeSeriesAnalyzeQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
 }
 
 message BudgetUsageStatQuery {
