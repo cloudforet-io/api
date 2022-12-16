@@ -172,3 +172,31 @@ message StatisticsQuery {
     string distinct = 5;
     string keyword = 6;
 }
+
+message TimeSeriesAnalyzeQuery {
+    enum Granularity{
+        GRANULARITY_NONE = 0;
+        DAILY = 1;
+        MONTHLY = 2;
+        ACCUMULATED = 3;
+    }
+
+    Granularity granularity = 1;
+    string start = 2;
+    string end = 3;
+    repeated string group_by = 4;
+    repeated string field_group = 5;
+    repeated Filter filter = 6;
+    Page page = 7;
+    repeated SortKey sort = 8;
+    google.protobuf.Struct fields = 9;
+}
+
+message AnalyzeQuery {
+    repeated string group_by = 1;
+    repeated string field_group = 2;
+    repeated Filter filter = 3;
+    Page page = 4;
+    repeated SortKey sort = 5;
+    google.protobuf.Struct fields = 6;
+}
