@@ -63,19 +63,6 @@ service DomainDashboard{
   }
 }
 
-message DomainDashboardDateRange {
-  bool enabled = 1;
-}
-
-message DomainDashboardCurrency {
-  bool enabled = 1;
-}
-
-message DomainDashboardSettings {
-  DomainDashboardDateRange date_range = 1;
-  DomainDashboardCurrency currency = 2;
-}
-
 message CreateDomainDashboardRequest {
   enum Viewers {
     VIEWERS_NONE = 0;
@@ -91,7 +78,7 @@ message CreateDomainDashboardRequest {
   // is_required: false
   google.protobuf.Struct variables = 5;
   // is_required: false
-  DomainDashboardSettings settings = 6;
+  google.protobuf.Struct settings = 6;
   // is_required: false
   google.protobuf.Struct variables_schema = 7;
   // is_required: false
@@ -112,7 +99,7 @@ message UpdateDomainDashboardRequest {
   // is_required: false
   google.protobuf.Struct variables = 5;
   // is_required: false
-  DomainDashboardSettings settings = 6;
+  google.protobuf.Struct settings = 6;
   // is_required: false
   google.protobuf.Struct variables_schema = 7;
   // is_required: false
@@ -202,7 +189,7 @@ message DomainDashboardInfo {
   int32 version = 4;
   google.protobuf.ListValue layouts = 5;
   google.protobuf.Struct variables = 6;
-  DomainDashboardSettings settings = 7;
+  google.protobuf.Struct settings = 7;
   google.protobuf.Struct variables_schema = 8;
   google.protobuf.ListValue labels = 10;
   google.protobuf.Struct tags = 11;
@@ -231,7 +218,7 @@ message DomainDashboardVersionInfo {
   bool latest = 3;
   google.protobuf.ListValue layouts = 5;
   google.protobuf.Struct variables = 6;
-  DomainDashboardSettings settings = 7;
+  google.protobuf.Struct settings = 7;
   google.protobuf.Struct variables_schema = 8;
   string domain_id = 21;
   string created_at = 22;

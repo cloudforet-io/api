@@ -63,20 +63,6 @@ service ProjectDashboard{
   }
 }
 
-
-message ProjectDashboardDateRange {
-  bool enabled = 1;
-}
-
-message ProjectDashboardCurrency {
-  bool enabled = 1;
-}
-
-message ProjectDashboardSettings {
-  ProjectDashboardDateRange date_range = 1;
-  ProjectDashboardCurrency currency = 2;
-}
-
 message CreateProjectDashboardRequest {
   enum Viewers {
     VIEWERS_NONE = 0;
@@ -94,7 +80,7 @@ message CreateProjectDashboardRequest {
   // is_required: false
   google.protobuf.Struct variables = 5;
   // is_required: false
-  ProjectDashboardSettings settings = 6;
+  google.protobuf.Struct settings = 6;
   // is_required: false
   google.protobuf.Struct variables_schema = 7;
   // is_required: false
@@ -115,7 +101,7 @@ message UpdateProjectDashboardRequest {
   // is_required: false
   google.protobuf.Struct variables = 5;
   // is_required: false
-  ProjectDashboardSettings settings = 6;
+  google.protobuf.Struct settings = 6;
   // is_required: false
   google.protobuf.Struct variables_schema = 7;
   // is_required: false
@@ -208,7 +194,7 @@ message ProjectDashboardInfo {
   int32 version = 5;
   google.protobuf.ListValue layouts = 6;
   google.protobuf.Struct variables = 7;
-  ProjectDashboardSettings settings = 8;
+  google.protobuf.Struct settings = 8;
   google.protobuf.Struct variables_schema = 9;
   google.protobuf.ListValue labels = 10;
   google.protobuf.Struct tags = 11;
@@ -237,7 +223,7 @@ message ProjectDashboardVersionInfo {
   bool latest = 3;
   google.protobuf.ListValue layouts = 5;
   google.protobuf.Struct variables = 6;
-  ProjectDashboardSettings settings = 7;
+  google.protobuf.Struct settings = 7;
   google.protobuf.Struct variables_schema = 8;
   string domain_id = 21;
   string created_at = 22;
