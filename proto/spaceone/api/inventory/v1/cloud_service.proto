@@ -392,6 +392,14 @@ message CloudServiceReference {
     string external_link = 2;
 }
 
+message CollectionInfo {
+    string provider = 1;
+    string service_account_id = 2;
+    string secret_id = 3;
+    string collector_id = 4;
+    string last_collected_at = 5;
+}
+
 message CreateServiceRequest {
     // is_required: true
     string cloud_service_type = 1;
@@ -533,7 +541,8 @@ message CloudServiceInfo {
     google.protobuf.Struct metadata = 12;
     CloudServiceReference reference = 13;
     google.protobuf.Struct tags = 14;
-    google.protobuf.Struct collection_info = 16;
+    google.protobuf.Struct tag_keys = 15;
+    repeated CollectionInfo collection_info = 16;
     repeated string ip_addresses = 17;
 
     string region_code = 21;
