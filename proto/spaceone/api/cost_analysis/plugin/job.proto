@@ -30,6 +30,8 @@ message GetTasksRequest {
     string start = 4;
     // is_required: false
     string last_synchronized_at = 5;
+    // is_required: true
+    string domain_id = 6;
 }
 
 message TaskInfo {
@@ -39,6 +41,7 @@ message TaskInfo {
 message ChangedInfo {
     string start = 1;
     string end = 2;
+    google.protobuf.Struct filter = 3;
 }
 
 message TasksInfo {

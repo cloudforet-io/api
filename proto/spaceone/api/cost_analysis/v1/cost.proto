@@ -205,6 +205,9 @@ service Cost {
     rpc analyze (CostAnalyzeQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = { post: "/cost-analysis/v1/costs/analyze" };
     }
+    rpc analyze_v2 (CostAnalyzeV2Query) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/cost-analysis/v1/costs/analyze-v2" };
+    }
     rpc stat (CostStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = { post: "/cost-analysis/v1/costs/stat" };
     }
@@ -364,6 +367,13 @@ message CostAnalyzeQuery {
     // is_required: true
     string domain_id = 11;
 
+}
+
+message CostAnalyzeV2Query {
+    // is_required: true
+    spaceone.api.core.v1.TimeSeriesAnalyzeQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
 }
 
 message CostStatQuery {

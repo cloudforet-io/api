@@ -5,133 +5,202 @@ syntax = "proto3";
 
 package spaceone.api.inventory.v1;
 
+import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 import "spaceone/api/inventory/v1/collector.proto";
 
 service JobTask {
-    /*
-    desc: Gets a list of all JobTasks in a specific Job. You can use a query to get a filtered list of JobTasks.
-    request_example: >-
-      {
-        "query": {}
-      }
-    response_example: >-
-      {
-        "results": [
-            {
-                "job_task_id": "job_task-69b301d0fbfc",
-                "status": "SUCCESS",
-                "updated_count": 55,
-                "job_id": "job-587a3d3b4db3",
-                "secret_id": "secret-957e407bfc15",
-                "provider": "aws",
-                "service_account_id": "sa-a41ff4765671",
-                "project_id": "project-77dffd3f7cd3",
-                "domain_id": "domain-58010aa2e451",
-                "created_at": "2022-06-17T08:00:00.680Z",
-                "started_at": "2022-06-17T08:00:00.914Z",
-                "finished_at": "2022-06-17T08:05:48.933Z"
-            },
-            {
-                "job_task_id": "job_task-c5077338cf23",
-                "status": "SUCCESS",
-                "updated_count": 1921,
-                "job_id": "job-587a3d3b4db3",
-                "secret_id": "secret-1cd7417c1889",
-                "provider": "aws",
-                "service_account_id": "sa-5e186fcc7c91",
-                "project_id": "project-18655561c535",
-                "domain_id": "domain-58010aa2e451",
-                "created_at": "2022-06-17T08:00:00.582Z",
-                "started_at": "2022-06-17T08:00:00.814Z",
-                "finished_at": "2022-06-17T08:07:31.995Z"
-            }
-        ],
-        "total_count": 4839
-      }
-    */
-    rpc list (JobTaskQuery) returns (JobTasksInfo) {
-        option (google.api.http) = {
-            get: "/inventory/v1/job-tasks"
-            additional_bindings {
-                post: "/inventory/v1/job-tasks/search"
-            }
-        };
+  /*
+  desc: Deletes a specific JobTask. You must specify the `job_task_id` of the JobTask to delete.
+  request_example: >-
+    {
+      "job_task_id": "job-task-123456789012",
+      "domain_id": "domain-123456789012"
     }
-    rpc stat (JobTaskStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/inventory/v1/job-tasks/stat" };
+   */
+  rpc delete (JobTaskRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {delete: "/inventory/v1/job-task/{job_task_id}"};
+  }
+  /*
+  desc: Gets a specific JobTask. Prints detailed information about the JobTask, including its state, updated or failure counts, and error log.
+  request_example: >-
+    {
+      "job_task_id": "job-task-123456789012",
+      "domain_id": "domain-123456789012"
     }
+  response_example: >-
+    {
+    "job_task_id": "job-task-123456789012",
+    "status": "FAILURE",
+    "updated_count": 199,
+    "failure_count": 1,
+    "errors": [
+        {
+            "error_code": "ERROR_PLUGIN",
+            "message": "{\"tags\": [\"Could not interpret the value as a list\"]}",
+            "additional": {
+                "domain_id": "domain-123456789012",
+                "resource_id": "eventarc-us-central1-function",
+                "resource_type": "inventory.CloudService",
+                "cloud_service_group": "Pub/Sub",
+                "cloud_service_type": "Subscription",
+                "provider": "google_cloud"
+            }
+        }
+    ],
+    "job_id": "job-123456789012",
+    "secret_id": "secret-123456789012",
+    "provider": "google_cloud",
+    "service_account_id": "sa-123456789012",
+    "project_id": "project-123456789012",
+    "domain_id": "domain-123456789012",
+    "created_at": "2022-01-01T11:00:02.588Z",
+    "started_at": "2022-01-01T11:00:02.819Z",
+    "finished_at": "2022-01-01T11:00:34.398Z"
+    }
+   */
+  rpc get (GetJobTaskRequest) returns (JobTaskInfo) {
+    option (google.api.http) = {get: "/inventory/v1/job-task/{job_task_id}"};
+  }
+  /*
+  desc: Gets a list of all JobTasks in a specific Job. You can use a query to get a filtered list of JobTasks.
+  request_example: >-
+    {
+      "query": {}
+    }
+  response_example: >-
+    {
+      "results": [
+          {
+              "job_task_id": "job_task-69b301d0fbfc",
+              "status": "SUCCESS",
+              "updated_count": 55,
+              "job_id": "job-587a3d3b4db3",
+              "secret_id": "secret-957e407bfc15",
+              "provider": "aws",
+              "service_account_id": "sa-a41ff4765671",
+              "project_id": "project-77dffd3f7cd3",
+              "domain_id": "domain-58010aa2e451",
+              "created_at": "2022-06-17T08:00:00.680Z",
+              "started_at": "2022-06-17T08:00:00.914Z",
+              "finished_at": "2022-06-17T08:05:48.933Z"
+          },
+          {
+              "job_task_id": "job_task-c5077338cf23",
+              "status": "SUCCESS",
+              "updated_count": 1921,
+              "job_id": "job-587a3d3b4db3",
+              "secret_id": "secret-1cd7417c1889",
+              "provider": "aws",
+              "service_account_id": "sa-5e186fcc7c91",
+              "project_id": "project-18655561c535",
+              "domain_id": "domain-58010aa2e451",
+              "created_at": "2022-06-17T08:00:00.582Z",
+              "started_at": "2022-06-17T08:00:00.814Z",
+              "finished_at": "2022-06-17T08:07:31.995Z"
+          }
+      ],
+      "total_count": 4839
+    }
+  */
+  rpc list (JobTaskQuery) returns (JobTasksInfo) {
+    option (google.api.http) = {
+      get: "/inventory/v1/job-tasks"
+      additional_bindings {
+        post: "/inventory/v1/job-tasks/search"
+      }
+    };
+  }
+  rpc stat (JobTaskStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {post: "/inventory/v1/job-tasks/stat"};
+  }
+}
+
+message JobTaskRequest {
+  // is_required: true
+  string job_task_id = 1;
+  // is_required: true
+  string domain_id = 2;
+}
+
+message GetJobTaskRequest {
+  // is_required: true
+  string job_task_id = 1;
+  // is_required: true
+  string domain_id = 2;
+  // is_required: false
+  repeated string only = 3;
 }
 
 message JobTaskQuery {
-    enum JobTaskStatus {
-        JOB_TASK_STATE_NONE = 0;
-        PENDING = 1;
-        CANCELED = 2;
-        IN_PROGRESS = 3;
-        SUCCESS = 4;
-        FAILURE = 5;
-    }
-    // is_required: false
-    spaceone.api.core.v1.Query query = 1;
-    // is_required: false
-    string job_task_id = 2;
-    // is_required: false
-    JobTaskStatus status = 3;
-    // is_required: false
-    string job_id = 4;
-    // is_required: false
-    string secret_id = 5;
-    // is_required: false
-    string provider = 6;
-    // is_required: false
-    string service_account_id = 7;
-    // is_required: false
-    string project_id = 8;
-    // is_required: true
-    string domain_id = 9;
+  enum JobTaskStatus {
+    JOB_TASK_STATE_NONE = 0;
+    PENDING = 1;
+    CANCELED = 2;
+    IN_PROGRESS = 3;
+    SUCCESS = 4;
+    FAILURE = 5;
+  }
+  // is_required: false
+  spaceone.api.core.v1.Query query = 1;
+  // is_required: false
+  string job_task_id = 2;
+  // is_required: false
+  JobTaskStatus status = 3;
+  // is_required: false
+  string job_id = 4;
+  // is_required: false
+  string secret_id = 5;
+  // is_required: false
+  string provider = 6;
+  // is_required: false
+  string service_account_id = 7;
+  // is_required: false
+  string project_id = 8;
+  // is_required: true
+  string domain_id = 9;
 }
 
 message JobTaskInfo {
-    enum JobTaskStatus {
-        JOB_TASK_STATE_NONE = 0;
-        PENDING = 1;
-        CANCELED = 2;
-        IN_PROGRESS = 3;
-        SUCCESS = 4;
-        FAILURE = 5;
-    }
-    string job_task_id = 1;
-    JobTaskStatus status = 2;
-    int32 created_count = 3;
-    int32 updated_count = 4;
-    int32 failure_count = 5;
-    int32 deleted_count = 6;
-    int32 disconnected_count = 7;
-    repeated spaceone.api.inventory.v1.ErrorInfo errors = 9;
+  enum JobTaskStatus {
+    JOB_TASK_STATE_NONE = 0;
+    PENDING = 1;
+    CANCELED = 2;
+    IN_PROGRESS = 3;
+    SUCCESS = 4;
+    FAILURE = 5;
+  }
+  string job_task_id = 1;
+  JobTaskStatus status = 2;
+  int32 created_count = 3;
+  int32 updated_count = 4;
+  int32 failure_count = 5;
+  int32 deleted_count = 6;
+  int32 disconnected_count = 7;
+  repeated spaceone.api.inventory.v1.ErrorInfo errors = 9;
 
-    string job_id = 11;
-    string secret_id = 12;
-    string provider = 13;
-    string service_account_id = 14;
-    string project_id = 15;
-    string domain_id = 16;
+  string job_id = 11;
+  string secret_id = 12;
+  string provider = 13;
+  string service_account_id = 14;
+  string project_id = 15;
+  string domain_id = 16;
 
-    string created_at = 21;
-    string started_at = 22;
-    string finished_at = 23;
+  string created_at = 21;
+  string started_at = 22;
+  string finished_at = 23;
 }
 
 message JobTasksInfo {
-    repeated JobTaskInfo results = 1;
-    int32 total_count = 2;
+  repeated JobTaskInfo results = 1;
+  int32 total_count = 2;
 }
 
 message JobTaskStatQuery {
-    // is_required: true
-    spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
-    string domain_id = 2;
+  // is_required: true
+  spaceone.api.core.v1.StatisticsQuery query = 1;
+  // is_required: true
+  string domain_id = 2;
 }

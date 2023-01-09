@@ -1,0 +1,235 @@
+/*
+desc: description of dashboard
+*/
+syntax = "proto3";
+
+package spaceone.api.dashboard.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service ProjectDashboard{
+
+  rpc create(CreateProjectDashboardRequest) returns (ProjectDashboardInfo) {
+    option (google.api.http) = {post: "/dashboard/v1/project-dashboards"};
+  }
+
+  rpc update (UpdateProjectDashboardRequest) returns (ProjectDashboardInfo) {
+    option (google.api.http) = {put: "/dashboard/v1/project-dashboard/{project_dashboard_id}"};
+  }
+
+  rpc delete (ProjectDashboardRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {delete: "/dashboard/v1/project-dashboard/{project_dashboard_id}"};
+  }
+
+  rpc get (GetProjectDashboardRequest) returns (ProjectDashboardInfo) {
+    option (google.api.http) = {get: "/dashboard/v1/project-dashboard/{project_dashboard_id}"};
+  }
+
+  rpc delete_version (ProjectDashboardVersionRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {delete: "/dashboard/v1/project-dashboard/{project_dashboard_id}/version/{version}"};
+  }
+
+  rpc revert_version (ProjectDashboardVersionRequest) returns (ProjectDashboardInfo) {
+    option (google.api.http) = {post: "/dashboard/v1/project-dashboard/{project_dashboard_id}/version/{version}/revert"};
+  }
+
+  rpc get_version (GetProjectDashboardVersionRequest) returns (ProjectDashboardVersionInfo) {
+    option (google.api.http) = {get: "/dashboard/v1/project-dashboard/{project_dashboard_id}/version/{version}"};
+  }
+
+  rpc list_versions (ProjectDashboardVersionQuery) returns (ProjectDashboardVersionsInfo) {
+    option (google.api.http) = {
+      get: "/dashboard/v1/project-dashboard/{project_dashboard_id}/versions"
+      additional_bindings {
+        post: "/dashboard/v1/project-dashboard/{project_dashboard_id}/versions/search"
+      }
+    };
+  }
+
+  rpc list (ProjectDashboardQuery) returns (ProjectDashboardsInfo) {
+    option (google.api.http) = {
+      get: "/dashboard/v1/project-dashboards"
+      additional_bindings {
+        post: "/dashboard/v1/project-dashboards/search"
+      }
+    };
+  }
+
+  rpc stat (ProjectDashboardStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {post: "/dashboard/v1/project-dashboards/stat"};
+  }
+}
+
+message CreateProjectDashboardRequest {
+  enum Viewers {
+    VIEWERS_NONE = 0;
+    PUBLIC = 1;
+    PRIVATE = 2;
+  }
+  // is_required: true
+  string project_id = 1;
+  // is_required: true
+  string name = 2;
+  // is_required: true
+  Viewers viewers = 3;
+  // is_required: false
+  google.protobuf.ListValue layouts = 4;
+  // is_required: false
+  google.protobuf.Struct variables = 5;
+  // is_required: false
+  google.protobuf.Struct settings = 6;
+  // is_required: false
+  google.protobuf.Struct variables_schema = 7;
+  // is_required: false
+  google.protobuf.ListValue labels = 10;
+  // is_required: false
+  google.protobuf.Struct tags = 11;
+  // is_required: true
+  string domain_id = 21;
+}
+
+message UpdateProjectDashboardRequest {
+  // is_required: true
+  string project_dashboard_id = 1;
+  // is_required: false
+  string name = 2;
+  // is_required: false
+  google.protobuf.ListValue layouts = 3;
+  // is_required: false
+  google.protobuf.Struct variables = 5;
+  // is_required: false
+  google.protobuf.Struct settings = 6;
+  // is_required: false
+  google.protobuf.Struct variables_schema = 7;
+  // is_required: false
+  google.protobuf.ListValue labels = 10;
+  // is_required: false
+  google.protobuf.Struct tags = 11;
+  // is_required: true
+  string domain_id = 21;
+}
+
+message ProjectDashboardRequest {
+  // is_required: true
+  string project_dashboard_id = 1;
+  // is_required: true
+  string domain_id = 2;
+}
+
+message GetProjectDashboardRequest {
+  // is_required: true
+  string project_dashboard_id = 1;
+  // is_required: true
+  string domain_id = 2;
+  // is_required: false
+  repeated string only = 3;
+}
+
+message ProjectDashboardVersionRequest {
+  // is_required: true
+  string project_dashboard_id = 1;
+  // is_required: true
+  int32 version = 2;
+  // is_required: true
+  string domain_id = 11;
+}
+
+message GetProjectDashboardVersionRequest {
+  // is_required: true
+  string project_dashboard_id = 1;
+  // is_required: true
+  int32 version = 2;
+  // is_required: true
+  string domain_id = 10;
+  // is_required: false
+  repeated string only = 11;
+}
+
+message ProjectDashboardVersionQuery {
+  // is_required: false
+  spaceone.api.core.v1.Query query = 1;
+  // is_required: true
+  string project_dashboard_id = 2;
+  // is_required: false
+  int32 version = 3;
+  // is_required: true
+  string domain_id = 10;
+}
+
+message ProjectDashboardQuery {
+  enum Viewers {
+    VIEWERS_NONE = 0;
+    PUBLIC = 1;
+    PRIVATE = 2;
+  }
+  // is_required: false
+  spaceone.api.core.v1.Query query = 1;
+  // is_required: false
+  string project_dashboard_id = 2;
+  // is_required: false
+  string project_id = 3;
+  // is_required: false
+  string name = 4;
+  // is_required: false
+  Viewers viewers = 5;
+  // is_required: false
+  string user_id = 10;
+  // is_required: true
+  string domain_id = 11;
+}
+
+message ProjectDashboardInfo {
+  enum Viewers {
+    VIEWERS_NONE = 0;
+    PUBLIC = 1;
+    PRIVATE = 2;
+  }
+  string project_dashboard_id = 1;
+  string project_id = 2;
+  string name = 3;
+  Viewers viewers = 4;
+  int32 version = 5;
+  google.protobuf.ListValue layouts = 6;
+  google.protobuf.Struct variables = 7;
+  google.protobuf.Struct settings = 8;
+  google.protobuf.Struct variables_schema = 9;
+  google.protobuf.ListValue labels = 10;
+  google.protobuf.Struct tags = 11;
+  string user_id = 20;
+  string domain_id = 22;
+  string created_at = 23;
+  string updated_at = 24;
+}
+
+message ProjectDashboardsInfo {
+  repeated ProjectDashboardInfo results = 1;
+  int32 total_count = 2;
+}
+
+message ProjectDashboardStatQuery {
+  // is_required: true
+  spaceone.api.core.v1.StatisticsQuery query = 1;
+  // is_required: true
+  string domain_id = 2;
+}
+
+
+message ProjectDashboardVersionInfo {
+  string project_dashboard_id = 1;
+  int32 version = 2;
+  bool latest = 3;
+  google.protobuf.ListValue layouts = 5;
+  google.protobuf.Struct variables = 6;
+  google.protobuf.Struct settings = 7;
+  google.protobuf.Struct variables_schema = 8;
+  string domain_id = 21;
+  string created_at = 22;
+}
+
+message ProjectDashboardVersionsInfo {
+  repeated ProjectDashboardVersionInfo results = 1;
+  int32 total_count = 2;
+}
