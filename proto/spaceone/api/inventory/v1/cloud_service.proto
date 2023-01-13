@@ -380,7 +380,9 @@ service CloudService {
             }
         };
     }
-
+    rpc analyze (CloudServiceAnalyzeQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/cloud-services/analyze" };
+    }
     rpc stat (CloudServiceStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = { post: "/inventory/v1/cloud-services/stat" };
     }
@@ -559,11 +561,16 @@ message CloudServicesInfo {
     int32 total_count = 2;
 }
 
+message CloudServiceAnalyzeQuery {
+    // is_required: true
+    spaceone.api.core.v1.AnalyzeQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
 message CloudServiceStatQuery {
     // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true
     string domain_id = 2;
-    // is_required: false
-    string resource_group_id = 3;
 }
