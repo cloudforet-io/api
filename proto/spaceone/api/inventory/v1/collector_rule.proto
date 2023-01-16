@@ -1,0 +1,368 @@
+/*
+desc: A CollectorRule is a cloud service resource filtering the raw data from the Collector. The Cloud Service resource is created after the raw data is filtered by the CollectorRule.
+*/
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service CollectorRule {
+    /*
+    desc: Creates a new CollectorRule. When creating the cloud service, this method can apply two types of conditions: mapping projects where the cloud service incurred to the Cloud Service, and mapping cloud service accounts to the Cloud Service. By adjusting the `condition_policy` parameter, the CollectorRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.
+    request_example: >-
+      {
+        "name": "match_service_account_test",
+        "conditions_policy": "ALWAYS",
+        "actions": {
+            "match_service_account": {"source": "account", "target": "data.project_id"}
+        },
+        "options": {"stop_processing": true},
+        "tags": {"b": "c", "a": "b"},
+        "collector_id": "collector-2e39891cbbb5"
+      }
+    response_example: >-
+      {
+        "collector_rule_id": "collector-rule-c8055231e212",
+        "name": "match_service_account_test",
+        "order": 2,
+        "conditions_policy": "ALWAYS",
+        "actions": {
+            "match_service_account": {
+                "source": "account",
+                "target": "data.project_id"
+            }
+        },
+        "options": {
+            "stop_processing": true
+        },
+        "tags": {
+            "a": "b",
+            "b": "c"
+        },
+        "collector_id": "collector-2e39891cbbb5",
+        "domain_id": "domain-58010aa2e451",
+        "created_at": "2022-07-19T10:13:28.335Z"
+      }
+    */
+    rpc create (CreateCollectorRuleRequest) returns (CollectorRuleInfo) {
+        option (google.api.http) = { post: "/inventory/v1/collector_rules" };
+    }
+    /*
+    desc: Updates a specific CollectorRule. You can make changes in CollectorRule settings, including filtering conditions.
+    request_example: >-
+      {
+        "collector_rule_id": "collector-rule-c8055231e212",
+        "name": "match_service_account_test",
+        "conditions_policy": "ALWAYS",
+        "actions": {
+            "match_service_account": {
+                "source": "account",
+                "target": "data.project_id"
+            }
+        },
+        "options": {
+            "stop_processing": true
+        },
+        "tags": {"b": "c", "a": "b"}
+      }
+    response_example: >-
+      {
+        "collector_rule_id": "collector-rule-c8055231e212",
+        "name": "match_service_account_test",
+        "order": 2,
+        "conditions_policy": "ALWAYS",
+        "actions": {
+            "match_service_account": {
+                "source": "account",
+                "target": "data.project_id"
+            }
+        },
+        "options": {
+            "stop_processing": true
+        },
+        "tags": {
+            "a": "b",
+            "b": "c"
+        },
+        "collector_id": "collector-2e39891cbbb5",
+        "domain_id": "domain-58010aa2e451",
+        "created_at": "2022-07-19T10:13:28.335Z"
+      }
+    */
+    rpc update (UpdateCollectorRuleRequest) returns (CollectorRuleInfo) {
+        option (google.api.http) = { put: "/inventory/v1/collector_rule/{collector_rule_id}" };
+    }
+    /*
+    desc: Changes the priority order of the CollectorRules to apply. If there are multiple CollectorRules applied in a specific service account, the priority order of the resources is required. This method changes the priority order to apply CollectorRules.
+    request_example: >-
+      {
+        "collector_rule_id": "collector-rule-c8055231e212",
+        "order": 2
+      }
+    response_example: >-
+      {
+        "collector_rule_id": "collector-rule-c8055231e212",
+        "name": "match_service_account_test",
+        "order": 2,
+        "conditions_policy": "ALWAYS",
+        "actions": {
+            "match_service_account": {
+                "source": "account",
+                "target": "data.project_id"
+            }
+        },
+        "options": {
+            "stop_processing": true
+        },
+        "tags": {
+            "a": "b",
+            "b": "c"
+        },
+        "collector_id": "collector-2e39891cbbb5",
+        "domain_id": "domain-58010aa2e451",
+        "created_at": "2022-07-19T10:13:28.335Z"
+      }
+    */
+    rpc change_order (ChangeCollectorRuleOrderRequest) returns (CollectorRuleInfo) {
+        option (google.api.http) = { put: "/inventory/v1/collector_rule/{collector_rule_id}/order" };
+    }
+    /*
+    desc: Deletes a specific CollectorRule. You must specify the `collector_rule_id` of the CollectorRule to delete.
+    request_example: >-
+      {
+        "collector_rule_id": "collector-rule-c8055231e212",
+      }
+    */
+    rpc delete (CollectorRuleRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { delete: "/inventory/v1/collector_rule/{collector_rule_id}" };
+    }
+    /*
+    desc: Gets a specific CollectorRule. Prints detailed information about the CollectorRule, including  `conditions_policy` and conditions applied to Collector.
+    request_example: >-
+      {
+        "collector_rule_id": "collector-rule-c8055231e212",
+      }
+    response_example: >-
+      {
+        "collector_rule_id": "collector-rule-c8055231e212",
+        "name": "match_service_account",
+        "order": 1,
+        "conditions_policy": "ALWAYS",
+        "actions": {
+            "match_service_account": {
+                "source": "account",
+                "target": "data.project_id"
+            }
+        },
+        "options": {
+            "stop_processing": true
+        },
+        "tags": {},
+        "collector_id": "collector-2e39891cbbb5",
+        "domain_id": "domain-58010aa2e451",
+        "created_at": "2022-05-25T16:01:51.858Z"
+      }
+    */
+    rpc get (GetCollectorRuleRequest) returns (CollectorRuleInfo) {
+        option (google.api.http) = { get: "/inventory/v1/collector_rule/{collector_rule_id}" };
+    }
+    /*
+    desc: Gets a list of all CollectorRules. You can use a query to get a filtered list of CollectorRules.
+    request_example: >-
+      {
+        "query": {}
+      }
+    response_example: >-
+      {
+        "results": [
+            {
+                "collector_rule_id": "collector-rule-c8055231e212",
+                "name": "match_service_account",
+                "order": 1,
+                "conditions_policy": "ALWAYS",
+                "actions": {
+                    "match_service_account": {
+                        "source": "account",
+                        "target": "data.project_id"
+                    }
+                },
+                "options": {
+                    "stop_processing": true
+                },
+                "tags": {},
+                "collector_id": "collector-2e39891cbbb5",
+                "domain_id": "domain-58010aa2e451",
+                "created_at": "2022-05-25T16:01:51.858Z"
+            },
+            {
+                "collector_rule_id": "collector-rule-t3345231e167",
+                "name": "match_service_account",
+                "order": 1,
+                "conditions_policy": "ALWAYS",
+                "actions": {
+                    "match_service_account": {
+                        "source": "account",
+                        "target": "data.account_id"
+                    }
+                },
+                "options": {
+                    "stop_processing": true
+                },
+                "tags": {},
+                "collector_id": "collector-7163022d49a1",
+                "domain_id": "domain-58010aa2e451",
+                "created_at": "2022-06-03T16:00:54.099Z"
+            }
+        ],
+        "total_count": 2
+      }
+    */
+    rpc list (CollectorRuleQuery) returns (CollectorRulesInfo) {
+        option (google.api.http) = {
+            get: "/inventory/v1/collector_rules"
+            additional_bindings {
+                post: "/inventory/v1/collector_rules/search"
+            }
+        };
+    }
+    rpc stat (CollectorRuleStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/inventory/v1/collector_rules/stat" };
+    }
+}
+
+enum ConditionsPolicy {
+    NONE = 0;
+    ALL = 1;
+    ANY = 2;
+    ALWAYS = 3;
+}
+
+message CollectorRuleCondition {
+    string key = 1;
+    string value = 2;
+    string operator = 3;
+}
+
+message MatchRule {
+    string source = 1;
+    string target = 2;
+}
+
+message CollectorRuleActions {
+    string change_project = 1;
+    MatchRule match_project = 2;
+    MatchRule match_service_account = 3;
+    google.protobuf.Struct add_additional_info = 4;
+}
+
+message CollectorRuleOptions {
+    bool stop_processing = 1;
+}
+
+message CreateCollectorRuleRequest {
+    // is_required: false
+    string name = 1;
+    // is_required: false
+    repeated CollectorRuleCondition conditions = 2;
+    // is_required: true
+    ConditionsPolicy conditions_policy = 3;
+    // is_required: true
+    CollectorRuleActions actions = 4;
+    // is_required: false
+    CollectorRuleOptions options = 5;
+    // is_required: false
+    google.protobuf.Struct tags = 6;
+    // is_required: true
+    string collector_id = 11;
+    // is_required: true
+    string domain_id = 12;
+}
+
+message UpdateCollectorRuleRequest {
+    // is_required: true
+    string collector_rule_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    repeated CollectorRuleCondition conditions = 3;
+    // is_required: false
+    ConditionsPolicy conditions_policy = 4;
+    // is_required: false
+    CollectorRuleActions actions = 5;
+    // is_required: false
+    CollectorRuleOptions options = 6;
+    // is_required: false
+    google.protobuf.Struct tags = 7;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message ChangeCollectorRuleOrderRequest {
+    // is_required: true
+    string collector_rule_id = 1;
+    // is_required: true
+    int32 order = 2;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message CollectorRuleRequest {
+    // is_required: true
+    string collector_rule_id = 1;
+    // is_required: true
+    string domain_id = 2;
+}
+
+message GetCollectorRuleRequest {
+    // is_required: true
+    string collector_rule_id = 1;
+    // is_required: true
+    string domain_id = 2;
+    // is_required: false
+    repeated string only = 3;
+}
+
+message CollectorRuleQuery {
+    // is_required: false
+    spaceone.api.core.v1.Query query = 1;
+    // is_required: false
+    string collector_rule_id = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    string data_source_id = 4;
+    // is_required: true
+    string domain_id = 11;
+}
+
+message CollectorRuleInfo {
+    string collector_rule_id = 1;
+    string name = 2;
+    int32 order = 3;
+    repeated CollectorRuleCondition conditions = 4;
+    ConditionsPolicy conditions_policy = 5;
+    CollectorRuleActions actions = 6;
+    CollectorRuleOptions options = 7;
+    google.protobuf.Struct tags = 8;
+    string rule_type = 9;
+    string collector_id = 11;
+    string domain_id = 12;
+    string created_at = 21;
+}
+
+message CollectorRulesInfo {
+    repeated CollectorRuleInfo results = 1;
+    int32 total_count = 2;
+}
+
+message CollectorRuleStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 2;
+}
