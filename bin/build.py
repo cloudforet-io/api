@@ -18,7 +18,7 @@ PROTO_DIR = os.path.join(BASE_DIR, 'proto')
 OUTPUT_DIR = os.path.join(BASE_DIR, 'dist')
 ARTIFACT_DIR = os.path.join(BASE_DIR, 'artifact')
 VERSION = os.path.join(BASE_DIR, 'VERSION')
-AVAILABLE_CODES = ['all', 'python', 'json']
+AVAILABLE_CODES = ['all', 'python', 'go', 'json']
 DEFAULT_THIRD_PARTY_DIR = 'third_party/googleapis:third_party/protobuf/src'
 DEFAULT_CODE = 'all'
 
@@ -179,6 +179,47 @@ def _python_compile(proto_file, output_path, proto_path_list, debug):
     print(f"[SUCCESS] Python Compile : {proto_file}")
 
 
+def _go_compile(proto_file, output_path, proto_path_list, debug):
+    cmd = ['protoc', f'--go_out={output_path}', f'--go-grpc_out={output_path}']
+
+    for proto_path in proto_path_list:
+        cmd.append(f'--proto_path={proto_path}')
+
+    cmd.append(proto_file)
+
+    if debug:
+        print()
+        print(' '.join(cmd))
+
+    try:
+        subprocess.check_output(cmd)
+    except Exception:
+        _error(f"Failed to Go compile : {proto_file}")
+
+    print(f"[SUCCESS] Go Compile : {proto_file}")
+
+
+def _go_grpc_gateway_compile(proto_file, output_path, proto_path_list, debug):
+    cmd = ['protoc', '--grpc-gateway_opt=logtostderr=true', '--grpc-gateway_opt=standalone=true',
+           '--grpc-gateway_opt=generate_unbound_methods=true', f'--grpc-gateway_out={output_path}']
+
+    for proto_path in proto_path_list:
+        cmd.append(f'--proto_path={proto_path}')
+
+    cmd.append(proto_file)
+
+    if debug:
+        print()
+        print(' '.join(cmd))
+
+    try:
+        subprocess.check_output(cmd)
+    except Exception:
+        _error(f"Failed to RPC Gateway Compile : {proto_file}")
+
+    print(f"[SUCCESS] gRPC Gateway Compile : {proto_file}")
+
+
 def _doc_compile(proto_file, output_path, proto_path_list, debug):
     # check GOPATH
     if not os.environ.get('GOBIN'):
@@ -224,6 +265,10 @@ def _compile_code(params, code, proto_file):
 
     if code == 'python':
         _python_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
+
+    elif code == 'go':
+        _go_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
+        _go_grpc_gateway_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
 
     elif code == 'json':
         output_path = os.path.join(params['artifact_dir'], code, params['version'])
