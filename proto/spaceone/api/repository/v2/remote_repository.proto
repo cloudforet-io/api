@@ -2,10 +2,7 @@ syntax = "proto3";
 
 package spaceone.api.repository.v2;
 
-import "google/protobuf/empty.proto";
-import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
-import "spaceone/api/core/v1/query.proto";
 
 
 service RemoteRpository {
@@ -14,7 +11,7 @@ service RemoteRpository {
     }
 
     rpc list (RemoteRepositoryQuery) returns (RemoteRepositoriesInfo) {
-        option (google.api.http) = { post: "/repository/v2/remote-repository/list" }
+        option (google.api.http) = { post: "/repository/v2/remote-repository/list" };
     }
 }
 
