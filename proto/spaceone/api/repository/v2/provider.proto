@@ -39,9 +39,10 @@ service Provider {
 }
 
 enum SyncMode {
-    SYNC_MODE_NONE = 0;
-    MANUAL = 1;
-    AUTOMATIC = 2;
+    UNDEFINED = 0;
+    NONE = 1;
+    MANUAL = 2;
+    AUTOMATIC = 3;
 }
 
 message CreateProviderRequest {
@@ -149,9 +150,8 @@ message ProviderInfo {
     string color = 8;
     string icon = 9;
     string reference_url = 10;
-    google.protobuf.Struct metadata = 11;
-    google.protobuf.ListValue labels = 12;
-    google.protobuf.Struct tags = 13;
+    google.protobuf.ListValue labels = 11;
+    google.protobuf.Struct tags = 12;
     string domain_id = 21;
     string created_at = 31;
 }
