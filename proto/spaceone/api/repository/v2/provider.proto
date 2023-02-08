@@ -1,0 +1,162 @@
+syntax = "proto3";
+
+package spaceone.api.repository.v2;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Provider {
+    rpc create (CreateProviderRequest) returns (ProviderInfo) {
+        option (google.api.http) = { post: "/repository/v2/provider/create" };
+    }
+
+    rpc update (UpdateProviderRequest) returns (ProviderInfo) {
+        option (google.api.http) = { post: "/repository/v2/provider/update" };
+    }
+
+    rpc sync (ProviderRequest) returns (ProviderInfo) {
+        option (google.api.http) = { post: "/repository/v2/provider/sync" };
+    }
+
+    rpc delete (ProviderRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = { post: "/repository/v2/provider/delete" };
+    }
+
+    rpc get (GetProviderRequest) returns (ProviderInfo) {
+        option (google.api.http) = { post: "/repository/v2/provider/get" };
+    }
+
+    rpc list (ProviderQuery) returns (ProvidersInfo) {
+        option (google.api.http) = { post: "/repository/v2/providers/list" }
+    }
+
+    rpc stat (ProviderStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = { post: "/repository/v2/provider/stat" };
+    }
+}
+
+enum SyncMode {
+    SYNC_MODE_NONE = 0;
+    MANUAL = 1;
+    AUTOMATIC = 2;
+}
+
+message CreateProviderRequest {
+    // is_required: true
+    string provider = 1;
+    // is_required: true
+    string name = 2;
+    // is_required: false
+    SyncMode sync_mode = 3;
+    // is_required: false
+    google.protobuf.Struct sync_options = 4;
+    // is_required: false
+    google.protobuf.Struct description = 5;
+    // is_required: false
+    google.protobuf.Struct schema = 6;
+    // is_required: false
+    google.protobuf.Struct schema_options = 7;
+    // is_required: false
+    string color = 8;
+    // is_required: false
+    string icon = 9;
+    // is_required: false
+    string reference_url = 10;
+    // is_required: false
+    google.protobuf.ListValue labels = 11;
+    // is_required: false
+    google.protobuf.Struct tags = 12;
+    // is_required: false
+    string domain_id = 21;
+}
+
+message UpdateProviderRequest {
+    // is_required: true
+    string provider = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    SyncMode sync_mode = 3;
+    // is_required: false
+    google.protobuf.Struct sync_options = 4;
+    // is_required: false
+    google.protobuf.Struct description = 5;
+    // is_required: false
+    google.protobuf.Struct schema = 6;
+    // is_required: false
+    google.protobuf.Struct schema_options = 7;
+    // is_required: false
+    string color = 8;
+    // is_required: false
+    string icon = 9;
+    // is_required: false
+    string reference_url = 10;
+    // is_required: false
+    google.protobuf.ListValue labels = 11;
+    // is_required: false
+    google.protobuf.Struct tags = 12;
+    // is_required: false
+    string domain_id = 21;
+}
+
+message ProviderRequest {
+    // is_required: true
+    string provider = 1;
+    // is_required: false
+    string domain_id = 21;
+}
+
+message GetProviderRequest {
+    // is_required: true
+    string provider = 1;
+    // is_required: false
+    repeated string only = 2;
+    // is_required: false
+    string domain_id = 21;
+}
+
+message ProviderQuery {
+    // is_required: false
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: false
+    string provider = 2;
+    // is_required: false
+    string name = 3;
+    // is_required: false
+    google.protobuf.Struct sync_options = 4;
+    // is_required: false
+    string domain_id = 21;
+}
+
+message ProviderStatQuery {
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    string domain_id = 21;
+}
+
+message ProviderInfo {
+    string provider = 1;
+    string name = 2;
+    SyncMode sync_mode = 3;
+    google.protobuf.Struct sync_options = 4;
+    google.protobuf.Struct description = 5;
+    google.protobuf.Struct schema = 6;
+    google.protobuf.Struct schema_options = 7;
+    string color = 8;
+    string icon = 9;
+    string reference_url = 10;
+    google.protobuf.Struct metadata = 11;
+    google.protobuf.ListValue labels = 12;
+    google.protobuf.Struct tags = 13;
+    string domain_id = 21;
+    string created_at = 31;
+}
+
+message ProvidersInfo {
+    repeated ProviderInfo results = 1;
+    int32 total_count = 2;
+}
