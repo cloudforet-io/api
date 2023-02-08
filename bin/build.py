@@ -21,6 +21,7 @@ VERSION = os.path.join(BASE_DIR, 'VERSION')
 AVAILABLE_CODES = ['all', 'python', 'go', 'json']
 DEFAULT_THIRD_PARTY_DIR = 'third_party/googleapis:third_party/protobuf/src'
 DEFAULT_CODE = 'all'
+IMPORT_PATH_PREFIX = 'github.com/cloudforet-io/api/dist/go'
 
 
 def _error(msg):
@@ -54,11 +55,11 @@ def _get_env():
 def _get_args():
     env = _get_env()
 
-    parser = argparse.ArgumentParser(description='Cloud One API Builder', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser = argparse.ArgumentParser(description='Cloudforet API Builder', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('target', metavar='<target>', help='Cloud One Service. (core, identity, inventory, etc.)')
+    parser.add_argument('target', metavar='<target>', help='Cloudforet Service. (core, identity, inventory, etc.)')
     parser.add_argument('-p', '--proto-dir', type=str, help='Protocol Buffers Directory.', default=env['proto_dir'])
-    parser.add_argument('-t', '--third-party-dir', type=str, help='Third Pary Protocol Buffers Directory.', default=[],action='append')
+    parser.add_argument('-t', '--third-party-dir', type=str, help='Third Party Protocol Buffers Directory.', default=[], action='append')
     parser.add_argument('-o', '--output-dir', type=str, help='Output Directory.', default=env['output_dir'])
     parser.add_argument('-a', '--artifact-dir', type=str, help='Artifact JSON Directory.', default=env['artifact_dir'])
     parser.add_argument('-c', '--code', type=str, help='Generate Code.', choices=AVAILABLE_CODES, default=env['default_code'])
@@ -180,7 +181,8 @@ def _python_compile(proto_file, output_path, proto_path_list, debug):
 
 
 def _go_compile(proto_file, output_path, proto_path_list, debug):
-    cmd = ['protoc', f'--go_out={output_path}', f'--go-grpc_out={output_path}']
+    cmd = ['protoc', f'--go_out={output_path}', f'--go_opt=module={IMPORT_PATH_PREFIX}',
+            f'--go-grpc_out={output_path}', f'--go-grpc_opt=module={IMPORT_PATH_PREFIX}']
 
     for proto_path in proto_path_list:
         cmd.append(f'--proto_path={proto_path}')
@@ -201,7 +203,8 @@ def _go_compile(proto_file, output_path, proto_path_list, debug):
 
 def _go_grpc_gateway_compile(proto_file, output_path, proto_path_list, debug):
     cmd = ['protoc', '--grpc-gateway_opt=logtostderr=true', '--grpc-gateway_opt=standalone=true',
-           '--grpc-gateway_opt=generate_unbound_methods=true', f'--grpc-gateway_out={output_path}']
+           '--grpc-gateway_opt=generate_unbound_methods=true', f'--grpc-gateway_opt=module={IMPORT_PATH_PREFIX}',
+           f'--grpc-gateway_out={output_path}']
 
     for proto_path in proto_path_list:
         cmd.append(f'--proto_path={proto_path}')
