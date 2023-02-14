@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package spaceone.api.inventory.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1";
+
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
@@ -9,14 +11,15 @@ import "spaceone/api/core/v1/query.proto";
 service ChangeHistory {
     rpc list (ChangeHistoryQuery) returns (ChangeHistoryInfo) {
         option (google.api.http) = {
-            get: "/inventory/v1/cloud-service/{cloud_service_id}/change-history"
-            additional_bindings {
-                post: "/inventory/v1/cloud-service/{cloud_service_id}/change-history/search"
-            }
+            post: "/inventory/v1/change-history/list",
+            body: "*"
         };
     }
     rpc stat (ChangeHistoryStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/inventory/v1/cloud-service/change-history/stat" };
+        option (google.api.http) = {
+            post: "/inventory/v1/change-history/stat",
+            body: "*"
+        };
     }
 }
 
