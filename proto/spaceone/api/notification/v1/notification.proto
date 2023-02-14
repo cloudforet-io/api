@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.notification.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/notification/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -59,7 +61,10 @@ service Notification {
       }
     */
     rpc create (CreateNotificationRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { post: "/notification/v1/notifications" };
+        option (google.api.http) = {
+            post: "/notification/v1/notification/create",
+            body: "*"
+        };
     }
     /*
     desc: Manually raises a Notification. A Notification is raised with a message to be sent using a valid specific Protocol, and data used for a specific Protocol such as a phone number.
@@ -94,7 +99,10 @@ service Notification {
       }
     */
     rpc push (PushNotificationRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { post: "/notification/v1/notifications/push" };
+        option (google.api.http) = {
+            post: "/notification/v1/notification/push",
+            body: "*"
+        };
     }
     /*
     desc: Deletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.
@@ -108,7 +116,10 @@ service Notification {
       }
     */
     rpc delete (NotificationRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/notification/v1/notification/{notifications}" };
+        option (google.api.http) = {
+            post: "/notification/v1/notification/delete",
+            body: "*"
+        };
     }
     /*
     desc: Marks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.
@@ -121,7 +132,10 @@ service Notification {
       }
     */
     rpc set_read (SetReadNotificationRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { post: "/notification/v1/notifications/read" };
+        option (google.api.http) = {
+            post: "/notification/v1/notification/set-read",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Notification. Prints detailed information about the Notification, including not only the message contents(`title`, `description`) but also related data such as created time and urgency.
@@ -154,7 +168,10 @@ service Notification {
       }
     */
     rpc get (GetNotificationRequest) returns (NotificationInfo) {
-        option (google.api.http) = { get: "/notification/v1/notification/{notification_id}" };
+        option (google.api.http) = {
+            post: "/notification/v1/notification/get",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Notifications. You can use a query to get a filtered list of Notifications.
@@ -223,14 +240,15 @@ service Notification {
     */
     rpc list (NotificationQuery) returns (NotificationsInfo) {
         option (google.api.http) = {
-            get: "/notification/v1/notifications"
-            additional_bindings {
-                post: "/notification/v1/notifications/search"
-            }
+            post: "/notification/v1/notification/list",
+            body: "*"
         };
     }
     rpc stat (NotificationStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/notification/v1/notifications/stat" };
+        option (google.api.http) = {
+            post: "/notification/v1/notification/stat",
+            body: "*"
+        };
     }
 }
 
