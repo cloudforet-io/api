@@ -2,22 +2,35 @@ syntax = "proto3";
 
 package spaceone.api.identity.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v1";
+
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 
 
 service DomainOwner {
     rpc create (CreateDomainOwner) returns (DomainOwnerInfo) {
-        option (google.api.http) = { post: "/identity/v1/domain/{domain_id}/owner" };
+        option (google.api.http) = {
+            post: "/identity/v1/domain-owner/create",
+            body: "*"
+        };
     }
     rpc update (UpdateDomainOwner) returns (DomainOwnerInfo) {
-        option (google.api.http) = { put: " /identity/v1/domain/{domain_id}/owner" };
+        option (google.api.http) = {
+            post: "/identity/v1/domain-owner/update",
+            body: "*"};
     }
     rpc delete (DomainOwnerRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/identity/v1/domain/{domain_id}/owner" };
+        option (google.api.http) = {
+            post: "/identity/v1/domain-owner/delete",
+            body: "*"
+        };
     }
     rpc get (GetDomainOwnerRequest) returns (DomainOwnerInfo) {
-        option (google.api.http) = { get: "/identity/v1/domain/{domain_id}/owner" };
+        option (google.api.http) = {
+            post: "/identity/v1/domain-owner/get",
+            body: "*"
+        };
     }
 }
 

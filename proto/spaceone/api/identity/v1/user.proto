@@ -6,6 +6,8 @@ syntax = "proto3";
 
 package spaceone.api.identity.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -14,14 +16,17 @@ import "spaceone/api/core/v1/query.proto";
 
 service User {
     rpc create (CreateUserRequest) returns (UserInfo) {
-        option (google.api.http) = { post: "/identity/v1/users" };
+        option (google.api.http) = {
+            post: "/identity/v1/user/create",
+            body: "*"
+        };
     }
     /*
     desc: Update user info by given user_id
     note:
     request_example: >-
       {
-	    "user_id": "dkang@mz.co.kr",
+      "user_id": "dkang@mz.co.kr",
         "tags": [{
           "key": "user1",
           "value": "Reuters"
@@ -29,7 +34,7 @@ service User {
           "key": "user2",
           "value": "Bloomberg"
         }],
-	      "domain_id": "{{DOMAIN_ID}}"
+        "domain_id": "{{DOMAIN_ID}}"
       }
     response_example: >-
       {
@@ -58,39 +63,64 @@ service User {
       }
     */
     rpc update (UpdateUserRequest) returns (UserInfo) {
-        option (google.api.http) = { put: "/identity/v1/users" };
+        option (google.api.http) = {
+            post: "identity/v1/user/update",
+            body: "*"
+        };
     }
     rpc set_required_actions (SetRequiredActionsRequest) returns (UserInfo) {
-        option (google.api.http) = { post: "/identity/v1/users/set-required-actions" };
+        option (google.api.http) = {
+            post: "identity/v1/user/set-required-actions",
+            body: "*"
+        };
     }
     rpc enable (UserRequest) returns (UserInfo) {
-        option (google.api.http) = { put: "/identity/v1/user/{user_id}/enable" };
+        option (google.api.http) = {
+            post: "/identity/v1/user/enable",
+            body: "*"
+        };
     }
     rpc disable (UserRequest) returns (UserInfo) {
-        option (google.api.http) = { put: "/identity/v1/user/{user_id}/disable" };
+        option (google.api.http) = {
+            post: "/identity/v1/user/disable",
+            body: "*"
+        };
     }
     rpc delete (UserRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/identity/v1/users" };
+        option (google.api.http) = {
+            post: "/identity/v1/user/delete",
+            body: "*"
+        };
     }
     rpc get (GetUserRequest) returns (UserInfo) {
-        option (google.api.http) = { get: "/identity/v1/user/{user_id}" };
+        option (google.api.http) = {
+            post: "/identity/v1/user/get",
+            body: "*"
+        };
     }
     rpc list (UserQuery) returns (UsersInfo) {
         option (google.api.http) = {
-            get: "/identity/v1/users"
-            additional_bindings {
-                post: "/identity/v1/users/search"
-            }
+            post: "/identity/v1/user/list",
+            body: "*"
         };
     }
     rpc stat (UserStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/identity/v1/users/stat" };
+        option (google.api.http) = {
+            post: "/identity/v1/user/stat",
+            body: "*"
+        };
     }
     rpc find (FindUserQuery) returns (FindUsersInfo) {
-        option (google.api.http) = { post: "/identity/v1/users/find" };
+        option (google.api.http) = {
+            post: "/identity/v1/users/find",
+            body: "*"
+        };
     }
     rpc sync (UserRequest) returns (UserInfo) {
-        option (google.api.http) = { post: "/identity/v1/users/sync" };
+        option (google.api.http) = {
+            post: "/identity/v1/user/sync",
+            body: "*"
+        };
     }
 }
 
@@ -194,7 +224,7 @@ message UserQuery {
     // is_required: false
     UserBackend backend = 7;
     // is_required: false
-    string domain_id =11;
+    string domain_id = 11;
 }
 
 message UserInfo {

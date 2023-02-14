@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package spaceone.api.identity.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -10,27 +12,40 @@ import "spaceone/api/core/v1/query.proto";
 
 service Role {
     rpc create (CreateRoleRequest) returns (RoleInfo) {
-        option (google.api.http) = { post: "/identity/v1/roles" };
+        option (google.api.http) = {
+            post: "/identity/v1/role/create",
+            body: "*"
+        };
     }
     rpc update (UpdateRoleRequest) returns (RoleInfo) {
-        option (google.api.http) = { put: "/identity/v1/roles/{role_id}" };
+        option (google.api.http) = {
+            post: "/identity/v1/role/update",
+            body: "*"
+        };
     }
     rpc delete (RoleRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/identity/v1/roles/{role_id}" };
+        option (google.api.http) = {
+            post: "/identity/v1/role/delete",
+            body: "*"
+        };
     }
     rpc get (GetRoleRequest) returns (RoleInfo) {
-        option (google.api.http) = { get: "/identity/v1/roles/{role_id}" };
+        option (google.api.http) = {
+            post: "/identity/v1/role/get",
+            body: "*"
+        };
     }
     rpc list (RoleQuery) returns (RolesInfo) {
         option (google.api.http) = {
-            get: "/identity/v1/roles"
-            additional_bindings {
-                post: "/identity/v1/roles/search"
-            }
+            post: "/identity/v1/role/list",
+            body: "*"
         };
     }
     rpc stat (RoleStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/identity/v1/roles/stat" };
+        option (google.api.http) = {
+            post: "/identity/v1/role/stat",
+            body: "*"
+        };
     }
 }
 
