@@ -3,6 +3,7 @@ syntax = "proto3";
 package spaceone.api.repository.v2;
 
 import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
 
 
 service RemoteRepository {
@@ -22,9 +23,11 @@ message GetRemoteRepository {
 
 message RemoteRepositoryQuery {
     // is_required: false
-    string name = 1;
+    spaceone.api.core.v1.Query query = 1;
     // is_required: false
-    string version = 2;
+    string name = 2;
+    // is_required: false
+    string version = 3;
 }
 
 message RemoteRepositoryInfo {
