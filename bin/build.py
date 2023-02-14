@@ -18,7 +18,7 @@ PROTO_DIR = os.path.join(BASE_DIR, 'proto')
 OUTPUT_DIR = os.path.join(BASE_DIR, 'dist')
 ARTIFACT_DIR = os.path.join(BASE_DIR, 'artifact')
 VERSION = os.path.join(BASE_DIR, 'VERSION')
-AVAILABLE_CODES = ['all', 'python', 'go', 'json']
+AVAILABLE_CODES = ['all', 'python', 'go', 'gateway', 'json']
 DEFAULT_THIRD_PARTY_DIR = 'third_party/googleapis:third_party/protobuf/src'
 DEFAULT_CODE = 'all'
 IMPORT_PATH_PREFIX = 'github.com/cloudforet-io/api/dist/go'
@@ -161,6 +161,12 @@ def _make_build_environment(output_dir, code):
                 if not os.path.exists(init_path):
                     Path(init_path).touch()
 
+    elif code == 'go':
+        api_root_dir = os.path.join(output_dir, code, 'spaceone', 'api')
+
+    elif code =='gateway':
+        api_root_dir = os.path.join(output_dir, code, 'spaceone', 'api')
+
 
 def _python_compile(proto_file, output_path, proto_path_list, debug):
     cmd = ['python3', '-m', 'grpc_tools.protoc', f'--python_out={output_path}', f'--grpc_python_out={output_path}']
@@ -182,7 +188,7 @@ def _python_compile(proto_file, output_path, proto_path_list, debug):
 
 def _go_compile(proto_file, output_path, proto_path_list, debug):
     cmd = ['protoc', f'--go_out={output_path}', f'--go_opt=module={IMPORT_PATH_PREFIX}',
-            f'--go-grpc_out={output_path}', f'--go-grpc_opt=module={IMPORT_PATH_PREFIX}']
+           f'--go-grpc_out={output_path}', f'--go-grpc_opt=module={IMPORT_PATH_PREFIX}']
 
     for proto_path in proto_path_list:
         cmd.append(f'--proto_path={proto_path}')
@@ -202,9 +208,8 @@ def _go_compile(proto_file, output_path, proto_path_list, debug):
 
 
 def _go_grpc_gateway_compile(proto_file, output_path, proto_path_list, debug):
-    cmd = ['protoc', '--grpc-gateway_opt=logtostderr=true', '--grpc-gateway_opt=standalone=true',
-           '--grpc-gateway_opt=generate_unbound_methods=true', f'--grpc-gateway_opt=module={IMPORT_PATH_PREFIX}',
-           f'--grpc-gateway_out={output_path}']
+    cmd = ['protoc', '--grpc-gateway_opt=logtostderr=true', '--grpc-gateway_opt=generate_unbound_methods=true',
+           f'--grpc-gateway_opt=module={IMPORT_PATH_PREFIX}', f'--grpc-gateway_out={output_path}']
 
     for proto_path in proto_path_list:
         cmd.append(f'--proto_path={proto_path}')
@@ -218,7 +223,7 @@ def _go_grpc_gateway_compile(proto_file, output_path, proto_path_list, debug):
     try:
         subprocess.check_output(cmd)
     except Exception:
-        _error(f"Failed to RPC Gateway Compile : {proto_file}")
+        _error(f"Failed to gRPC Gateway Compile : {proto_file}")
 
     print(f"[SUCCESS] gRPC Gateway Compile : {proto_file}")
 
@@ -271,6 +276,8 @@ def _compile_code(params, code, proto_file):
 
     elif code == 'go':
         _go_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
+
+    elif code == 'gateway':
         _go_grpc_gateway_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
 
     elif code == 'json':
