@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.notification.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/notification/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -34,7 +36,10 @@ service Quota {
       }
     */
     rpc create (CreateQuotaRequest) returns (QuotaInfo) {
-        option (google.api.http) = { post: "/notification/v1/quotas" };
+        option (google.api.http) = {
+            post: "/notification/v1/quota/create",
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific Quota. You can make changes in Quota `limit`, managing the use of the Protocol.
@@ -58,7 +63,10 @@ service Quota {
       }
     */
     rpc update (UpdateQuotaRequest) returns (QuotaInfo) {
-        option (google.api.http) = { put: "/notification/v1/quota/{quota_id}" };
+        option (google.api.http) = {
+            post: "/notification/v1/quota/update",
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific Quota. The default Quota set in the Config will be applied to the Protocol you deleted the Quota of.
@@ -68,7 +76,10 @@ service Quota {
       }
     */
     rpc delete (QuotaRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/notification/v1/quota/{quota_id}" };
+        option (google.api.http) = {
+            post: "/notification/v1/quota/delete",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Quota. Prints detailed information about the Quota, including the `limit` and the Protocol limited by the Quota.
@@ -88,7 +99,10 @@ service Quota {
       }
     */
     rpc get (QuotaRequest) returns (QuotaInfo) {
-        option (google.api.http) = { get: "/notification/v1/quota/{quota_id}" };
+        option (google.api.http) = {
+            post: "/notification/v1/quota/get",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Quotas. You can use a query to get a filtered list of Quotas.
@@ -123,14 +137,15 @@ service Quota {
     */
     rpc list (QuotaQuery) returns (QuotasInfo) {
         option (google.api.http) = {
-            get: "/notification/v1/quotas"
-            additional_bindings {
-                post: "/notification/v1/quotas/search"
-            }
+            post: "/notification/v1/quota/list",
+            body: "*"
         };
     }
     rpc stat (QuotaStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/notification/v1/quotas/stat" };
+        option (google.api.http) = {
+            post: "/notification/v1/quota/stat",
+            body: "*"
+        };
     }
 }
 

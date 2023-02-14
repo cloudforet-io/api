@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.notification.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/notification/v1";
+
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
@@ -40,14 +42,15 @@ service NotificationUsage {
     */
     rpc list (NotificationUsageQuery) returns (NotificationUsagesInfo) {
         option (google.api.http) = {
-            get: "/notification/v1/notification-usages"
-            additional_bindings {
-                post: "/notification/v1/notification-usages/search"
-            }
+            post: "/notification/v1/notification-usage/list",
+            body: "*"
         };
     }
     rpc stat (NotificationUsageStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/notification/v1/notification-usages/stat" };
+        option (google.api.http) = {
+            post: "/notification/v1/notification-usage/stat",
+            body: "*"
+        };
     }
 }
 

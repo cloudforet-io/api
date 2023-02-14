@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.notification.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/notification/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -96,7 +98,10 @@ service Protocol {
       }
     */
     rpc create (CreateProtocolRequest) returns (ProtocolInfo) {
-        option (google.api.http) = { post: "/notification/v1/protocols" };
+        option (google.api.http) = {
+            post: "notification/v1/protocol/create",
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific Protocol. The method `update` can update the name and tags only. If you want to update the plugin version or options, you can use `update_plugin` method.
@@ -157,7 +162,10 @@ service Protocol {
       }
     */
     rpc update (UpdateProtocolRequest) returns (ProtocolInfo) {
-        option (google.api.http) = { put: "/notification/v1/protocol/{protocol_id}" };
+        option (google.api.http) = {
+            post: "notification/v1/protocol/update",
+            body: "*"
+        };
     }
     /*
     desc: Updates a plugin for a Protocol. It is usually used when redeploying a plugin to a new version.
@@ -216,7 +224,10 @@ service Protocol {
       }
     */
     rpc update_plugin (UpdateProtocolPluginRequest) returns (ProtocolInfo) {
-        option (google.api.http) = { put: "/notification/v1/protocol/{protocol_id}/plugin" };
+        option (google.api.http) = {
+            post: "notification/v1/protocol/update-plugin",
+            body: "*"
+        };
     }
     /*
     desc: Enables a specific Protocol. If the Protocol is enabled, the Protocol can be used and the Notification can be dispatched.
@@ -273,7 +284,10 @@ service Protocol {
       }
     */
     rpc enable (ProtocolRequest) returns (ProtocolInfo) {
-        option (google.api.http) = { put: "/notification/v1/protocol/{protocol_id}/enable" };
+        option (google.api.http) = {
+            post: "notification/v1/protocol/enable",
+            body: "*"
+        };
     }
     /*
     desc: Disables a specific Protocol. If a Protocol is disabled, the Notification will not be dispatched, even if it is created.
@@ -330,7 +344,10 @@ service Protocol {
       }
     */
     rpc disable (ProtocolRequest) returns (ProtocolInfo) {
-        option (google.api.http) = { put: "/notification/v1/protocol/{protocol_id}/disable" };
+        option (google.api.http) = {
+            post: "notification/v1/protocol/disable",
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific Protocol. If there exists a channel using the Protocol, it cannot be deleted.
@@ -340,7 +357,10 @@ service Protocol {
       }
     */
     rpc delete (ProtocolRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/notification/v1/protocol/{protocol_id}" };
+        option (google.api.http) = {
+            post: "notification/v1/protocol/delete",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Protocol. Prints detailed information about the Protocol.
@@ -397,7 +417,10 @@ service Protocol {
       }
     */
     rpc get (GetProtocolRequest) returns (ProtocolInfo) {
-        option (google.api.http) = { get: "/notification/v1/protocol/{protocol_id}" };
+        option (google.api.http) = {
+            post: "notification/v1/protocol/get",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of Protocols. You can use a query to get a filtered list of Protocols.
@@ -462,14 +485,15 @@ service Protocol {
     */
     rpc list (ProtocolQuery) returns (ProtocolsInfo) {
         option (google.api.http) = {
-            get: "/notification/v1/protocols"
-            additional_bindings {
-                post: "/notification/v1/protocols/search"
-            }
+            post: "notification/v1/protocol/list",
+            body: "*"
         };
     }
     rpc stat (ProtocolStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/notification/v1/protocols/stat" };
+        option (google.api.http) = {
+            post: "notification/v1/protocol/stat",
+            body: "*"
+        };
     }
 }
 
