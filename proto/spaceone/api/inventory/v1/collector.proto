@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.inventory.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -86,7 +88,10 @@ service Collector {
       }
     */
     rpc create (CreateCollectorRequest) returns (CollectorInfo) {
-        option (google.api.http) = { post: "/inventory/v1/collectors" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/create",
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific Collector. You can make changes in Collector settings, including `name` and `tags`.
@@ -147,7 +152,10 @@ service Collector {
       }
     */
     rpc update (UpdateCollectorRequest) returns (CollectorInfo) {
-        option (google.api.http) = { put: "/inventory/v1/collector/{collector_id}" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/update",
+            body: "*"
+        };
     }
     /*
     desc: Updates the plugin of a specific Collector. This method resets the plugin data in the Collector to update the `metadata`.
@@ -161,7 +169,10 @@ service Collector {
       }
     */
     rpc update_plugin (UpdatePluginRequest) returns (CollectorInfo) {
-        option (google.api.http) = { put: "/inventory/v1/collector/{collector_id}/plugin" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/update-plugin",
+            body: "*"
+        };
     }
     /*
     desc: Verifies the plugin of a specific Collector. This method validates the plugin data, `version` and `endpoint`.
@@ -175,7 +186,10 @@ service Collector {
       }
     */
     rpc verify_plugin (VerifyPluginRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { post: "/inventory/v1/collector/{collector_id}/plugin/verify" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/verify-plugin",
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific Collector. You must specify the `collector_id` of the Collector to delete.
@@ -189,7 +203,10 @@ service Collector {
       }
     */
     rpc delete (CollectorRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/inventory/v1/collector/{collector_id}" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/delete",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Collector. Prints detailed information about the Collector, including its state, basic information, and the plugin information used for cloud resource collection.
@@ -199,7 +216,10 @@ service Collector {
       }
     */
     rpc get (GetCollectorRequest) returns (CollectorInfo) {
-        option (google.api.http) = { get: "/inventory/v1/collector/{collector_id}" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/get",
+            body: "*"
+        };
     }
     /*
     desc: Enables a specific Collector. By enabling a Collector, you can communicate with a plugin used for collection.
@@ -248,7 +268,10 @@ service Collector {
       }
     */
     rpc enable (CollectorRequest) returns (CollectorInfo) {
-        option (google.api.http) = { put: "/inventory/v1/collector/{collector_id}/enable" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/enable",
+            body: "*"
+        };
     }
     /*
     desc: Disables a specific Collector. By disabling a Collector, you cannot communicate with a plugin used for collection.
@@ -297,7 +320,10 @@ service Collector {
       }
     */
     rpc disable (CollectorRequest) returns (CollectorInfo) {
-        option (google.api.http) = { put: "/inventory/v1/collector/{collector_id}/disable" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/disable",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Collectors. You can use a query to get a filtered list of Collectors.
@@ -366,14 +392,15 @@ service Collector {
     */
     rpc list (CollectorQuery) returns (CollectorsInfo) {
         option (google.api.http) = {
-            get: "/inventory/v1/collectors"
-            additional_bindings {
-                post: "/inventory/v1/collectors/search"
-            }
+            post: "/inventory/v1/collector/list",
+            body: "*"
         };
     }
     rpc stat (CollectorStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/inventory/v1/collectors/stat" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/stat",
+            body: "*"
+        };
     }
     /*
     desc: ''
@@ -387,7 +414,10 @@ service Collector {
       }
     */
     rpc collect (CollectRequest) returns (JobInfo) {
-        option (google.api.http) = { post: "/inventory/v1/collector/{collector_id}/collect" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/collect",
+            body: "*"
+        };
     }
     /*
     desc: Adds a schedule to a specific Collector. When specifying the time to collect, the schedule is assigned in units of one hour.The specified schedule is applied every day.
@@ -457,7 +487,10 @@ service Collector {
       }
     */
     rpc add_schedule (CreateScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { post: "/inventory/v1/collector/{collector_id}/schedule" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/add_schedule",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific schedule set in a specific Collector. You must specify the `collector_id` of the Collector and the `schedule_id` of the schedule.
@@ -524,7 +557,10 @@ service Collector {
       }
     */
     rpc get_schedule (ScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { get: "/inventory/v1/collector/{collector_id}/schedule/{schedule_id}" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/get-schedule",
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific schedule of the Collector. You can make changes in schedule settings, including `name` and collection time.
@@ -598,7 +634,10 @@ service Collector {
       }
     */
     rpc update_schedule (UpdateScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { post: "/inventory/v1/collector/{collector_id}/schedule/{schedule_id}" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/update-schedule",
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific schedule of the Collector. You must specify the `schedule_id` of the schedule to delete.
@@ -609,7 +648,10 @@ service Collector {
       }
     */
     rpc delete_schedule (DeleteScheduleRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete : "/inventory/v1/collector/{collector_id}/schedule/{schedule_id}" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/delete-schedule",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all schedules set in a specific Collector. You must specify the `collector_id` of the Collector to get the schedule from.
@@ -684,11 +726,9 @@ service Collector {
       }
     */
     rpc list_schedules (ScheduleQuery) returns (SchedulesInfo) {
-         option (google.api.http) = {
-            get: "/inventory/v1/collector/{collector_id}/schedules"
-            additional_bindings {
-                post: "/inventory/v1/collector/{collector_id}/schedules/search"
-            }
+        option (google.api.http) = {
+            post: "/inventory/v1/collector/list_schedules",
+            body: "*"
         };
     }
 }
@@ -734,7 +774,7 @@ message CreateCollectorRequest {
 
 message UpdateCollectorRequest {
     // is_required: true
-	  string collector_id = 1;
+    string collector_id = 1;
     // is_required: false
     string name = 2;
     // is_required: false
@@ -779,19 +819,19 @@ message GetCollectorRequest {
     string collector_id = 1;
     // is_required: true
     string domain_id = 2;
-	// is_required: false
+    // is_required: false
     repeated string only = 3;
 }
 
 message CollectorQuery {
-	enum State {
-		NONE = 0;
-		ENABLED = 1;
-		DISABLED = 2;
-	}
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
 
     spaceone.api.core.v1.Query query = 1;
-	string collector_id = 2;
+    string collector_id = 2;
     string name = 3;
     State state = 4;
     int32 priority = 5;
@@ -829,9 +869,9 @@ message CollectorInfo {
         DISABLED = 2;
     }
 
-	  string collector_id = 1;
+    string collector_id = 1;
     string name = 2;
-	  State state = 3;
+    State state = 3;
     PluginInfo plugin_info = 4;
     int32  priority = 5;
     google.protobuf.Struct tags = 7;
@@ -875,7 +915,7 @@ message JobInfo {
         SUCCESS = 4;
         ERROR = 5;
         TIMEOUT = 6;
-	}
+    }
 
     string job_id = 1;
     Status status = 2;
@@ -953,7 +993,7 @@ message ScheduleQuery {
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
     // is_required: true
-	string collector_id = 2;
+    string collector_id = 2;
     // is_required: false
     string schedule_id = 3;
     // is_required: true

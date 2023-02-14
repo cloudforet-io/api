@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.inventory.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -50,7 +52,10 @@ service CollectorRule {
       }
     */
     rpc create (CreateCollectorRuleRequest) returns (CollectorRuleInfo) {
-        option (google.api.http) = { post: "/inventory/v1/collector_rules" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector-rule/create",
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific CollectorRule. You can make changes in CollectorRule settings, including filtering conditions.
@@ -95,7 +100,10 @@ service CollectorRule {
       }
     */
     rpc update (UpdateCollectorRuleRequest) returns (CollectorRuleInfo) {
-        option (google.api.http) = { put: "/inventory/v1/collector_rule/{collector_rule_id}" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector-rule/update",
+            body: "*"
+        };
     }
     /*
     desc: Changes the priority order of the CollectorRules to apply. If there are multiple CollectorRules applied in a specific service account, the priority order of the resources is required. This method changes the priority order to apply CollectorRules.
@@ -129,7 +137,10 @@ service CollectorRule {
       }
     */
     rpc change_order (ChangeCollectorRuleOrderRequest) returns (CollectorRuleInfo) {
-        option (google.api.http) = { put: "/inventory/v1/collector_rule/{collector_rule_id}/order" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector-rule/change-order",
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific CollectorRule. You must specify the `collector_rule_id` of the CollectorRule to delete.
@@ -139,7 +150,10 @@ service CollectorRule {
       }
     */
     rpc delete (CollectorRuleRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/inventory/v1/collector_rule/{collector_rule_id}" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector-rule/delete",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific CollectorRule. Prints detailed information about the CollectorRule, including  `conditions_policy` and conditions applied to Collector.
@@ -169,7 +183,10 @@ service CollectorRule {
       }
     */
     rpc get (GetCollectorRuleRequest) returns (CollectorRuleInfo) {
-        option (google.api.http) = { get: "/inventory/v1/collector_rule/{collector_rule_id}" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector-rule/get",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all CollectorRules. You can use a query to get a filtered list of CollectorRules.
@@ -224,14 +241,15 @@ service CollectorRule {
     */
     rpc list (CollectorRuleQuery) returns (CollectorRulesInfo) {
         option (google.api.http) = {
-            get: "/inventory/v1/collector_rules"
-            additional_bindings {
-                post: "/inventory/v1/collector_rules/search"
-            }
+            post: "/inventory/v1/collector-rules/list",
+            body: "*"
         };
     }
     rpc stat (CollectorRuleStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/inventory/v1/collector_rules/stat" };
+        option (google.api.http) = {
+            post: "/inventory/v1/collector-rules/stat",
+            body: "*"
+        };
     }
 }
 

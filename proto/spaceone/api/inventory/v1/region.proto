@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.inventory.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -43,7 +45,10 @@ service Region {
       }
     */
     rpc create (CreateRegionRequest) returns (RegionInfo) {
-        option (google.api.http) = { post: "/inventory/v1/regions" };
+        option (google.api.http) = {
+            post: "/inventory/v1/region/create",
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific Region. You can make changes in Region settings, including `name` and `tags`. The `tags` contain the continent, latitude, and longitude.
@@ -75,7 +80,10 @@ service Region {
       }
     */
     rpc update (UpdateRegionRequest) returns (RegionInfo) {
-        option (google.api.http) = { put: "/inventory/v1/region/{region_id}" };
+        option (google.api.http) = {
+            post: "/inventory/v1/region/update",
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific Region. You must specify the `region_id` of the Region to delete.
@@ -85,7 +93,10 @@ service Region {
       }
     */
     rpc delete (RegionRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/inventory/v1/region/{region_id}" };
+        option (google.api.http) = {
+            post: "/inventory/v1/region/delete",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Region. Prints detailed information about the Region, including `name`, `region_code`, and a location coordinate.
@@ -111,7 +122,10 @@ service Region {
       }
     */
     rpc get (GetRegionRequest) returns (RegionInfo) {
-        option (google.api.http) = { get: "/inventory/v1/region/{region_id}" };
+        option (google.api.http) = {
+            post: "/inventory/v1/region/get",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Regions. You can use a query to get a filtered list of Regions.
@@ -166,14 +180,15 @@ service Region {
     */
     rpc list (RegionQuery) returns (RegionsInfo) {
         option (google.api.http) = {
-            get: "/inventory/v1/regions"
-            additional_bindings {
-                post: "/inventory/v1/regions/search"
-            }
+            post: "/inventory/v1/region/list",
+            body: "*"
         };
     }
     rpc stat (RegionStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/inventory/v1/regions/stat" };
+        option (google.api.http) = {
+            post: "/inventory/v1/region/stat",
+            body: "*"
+        };
     }
 }
 

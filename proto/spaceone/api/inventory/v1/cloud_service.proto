@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.inventory.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -124,7 +126,10 @@ service CloudService {
       }
     */
     rpc create (CreateServiceRequest) returns (CloudServiceInfo) {
-        option (google.api.http) = { post: "/inventory/v1/cloud-services" };
+        option (google.api.http) = {
+            post: "inventory/v1/cloud-service/create",
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific CloudService. You can make changes in CloudService settings, except for the classification system of CloudService and the information about the `resource` attribute value.
@@ -206,7 +211,10 @@ service CloudService {
       }
     */
     rpc update (UpdateCloudServiceRequest) returns (CloudServiceInfo) {
-        option (google.api.http) = { put: "/inventory/v1/cloud-service/{cloud_service_id}" };
+        option (google.api.http) = {
+            post: "inventory/v1/cloud-service/update",
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific CloudService. You must specify the `cloud_service_id` of the CloudService to delete.
@@ -216,7 +224,10 @@ service CloudService {
       }
     */
     rpc delete (CloudServiceRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/inventory/v1/cloud-service/{cloud_service_id}" };
+        option (google.api.http) = {
+            post: "inventory/v1/cloud-service/delete",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific CloudService. Prints detailed information about the CloudService, including its state, classification information, and attribute values.
@@ -289,7 +300,10 @@ service CloudService {
       }
     */
     rpc get (GetCloudServiceRequest) returns (CloudServiceInfo) {
-        option (google.api.http) = { get: "/inventory/v1/cloud-service/{cloud_service_id}" };
+        option (google.api.http) = {
+            post: "inventory/v1/cloud-service/get",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.
@@ -374,17 +388,21 @@ service CloudService {
     */
     rpc list (CloudServiceQuery) returns (CloudServicesInfo) {
         option (google.api.http) = {
-            get: "/inventory/v1/cloud-services"
-            additional_bindings {
-                post: "/inventory/v1/cloud-services/search"
-            }
+            post: "/inventory/v1/cloud-service/list",
+            body: "*"
         };
     }
     rpc analyze (CloudServiceAnalyzeQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/inventory/v1/cloud-services/analyze" };
+        option (google.api.http) = {
+            post: "/inventory/v1/cloud-service/analyze",
+            body: "*"
+        };
     }
     rpc stat (CloudServiceStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/inventory/v1/cloud-services/stat" };
+        option (google.api.http) = {
+            post: "/inventory/v1/cloud-service/stat",
+            body: "*"
+        };
     }
 }
 
