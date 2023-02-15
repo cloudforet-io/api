@@ -21,7 +21,9 @@ VERSION = os.path.join(BASE_DIR, 'VERSION')
 AVAILABLE_CODES = ['all', 'python', 'go', 'gateway', 'json']
 DEFAULT_THIRD_PARTY_DIR = 'third_party/googleapis:third_party/protobuf/src'
 DEFAULT_CODE = 'all'
-IMPORT_PATH_PREFIX = 'github.com/cloudforet-io/api/dist/go'
+REPOSITORY_URL = 'github.com/cloudforet-io/api'
+GO_MODULE_PATH = f'{REPOSITORY_URL}/dist'
+GO_PREFIX_IMPORT_PATH = f'{GO_MODULE_PATH}/go'
 
 
 def _error(msg):
@@ -164,8 +166,20 @@ def _make_build_environment(output_dir, code):
     elif code == 'go':
         api_root_dir = os.path.join(output_dir, code, 'spaceone', 'api')
 
-    elif code =='gateway':
-        api_root_dir = os.path.join(output_dir, code, 'spaceone', 'api')
+    elif code == 'gateway':
+        pass
+        # if os.path.exists(os.path.join(output_dir, 'go.mod')):
+        #     os.remove(os.path.join(output_dir, 'go.mod'))
+        #
+        # if os.path.exists(os.path.join(output_dir, 'go.sum')):
+        #     os.remove(os.path.join(output_dir, 'go.sum'))
+        #
+        # cmd = ['go', 'mod', 'init', GO_MODULE_PATH]
+        # subprocess.check_output(cmd, cwd=output_dir)
+        # cmd = ['go', 'mod', 'edit', '-replace', f"{REPOSITORY_URL}=./"]
+        # subprocess.check_output(cmd, cwd=output_dir)
+        # cmd = ['go', 'mod', 'tidy']
+        # subprocess.check_output(cmd, cwd=output_dir)
 
 
 def _python_compile(proto_file, output_path, proto_path_list, debug):
@@ -187,8 +201,8 @@ def _python_compile(proto_file, output_path, proto_path_list, debug):
 
 
 def _go_compile(proto_file, output_path, proto_path_list, debug):
-    cmd = ['protoc', f'--go_out={output_path}', f'--go_opt=module={IMPORT_PATH_PREFIX}',
-           f'--go-grpc_out={output_path}', f'--go-grpc_opt=module={IMPORT_PATH_PREFIX}']
+    cmd = ['protoc', f'--go_out={output_path}', f'--go_opt=module={GO_PREFIX_IMPORT_PATH}',
+           f'--go-grpc_out={output_path}', f'--go-grpc_opt=module={GO_PREFIX_IMPORT_PATH}']
 
     for proto_path in proto_path_list:
         cmd.append(f'--proto_path={proto_path}')
@@ -209,7 +223,7 @@ def _go_compile(proto_file, output_path, proto_path_list, debug):
 
 def _go_grpc_gateway_compile(proto_file, output_path, proto_path_list, debug):
     cmd = ['protoc', '--grpc-gateway_opt=logtostderr=true', '--grpc-gateway_opt=generate_unbound_methods=true',
-           f'--grpc-gateway_opt=module={IMPORT_PATH_PREFIX}', f'--grpc-gateway_out={output_path}']
+           f'--grpc-gateway_opt=module={GO_PREFIX_IMPORT_PATH}', f'--grpc-gateway_out={output_path}']
 
     for proto_path in proto_path_list:
         cmd.append(f'--proto_path={proto_path}')
