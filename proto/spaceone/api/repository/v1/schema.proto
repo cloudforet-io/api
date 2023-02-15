@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.repository.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/repository/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -46,7 +48,10 @@ service Schema {
         }
      */
     rpc create (CreateSchemaRequest) returns (SchemaInfo) {
-        option (google.api.http) = { post: "/repository/v1/schemas" };
+        option (google.api.http) = {
+            post: "/repository/v1/schema/create"
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific Schema. You can make changes in Schema settings, including `name`, `schema`, `labels`, and `tags`.
@@ -78,7 +83,10 @@ service Schema {
         }
      */
     rpc update (UpdateSchemaRequest) returns (SchemaInfo) {
-        option (google.api.http) = { put: "/repository/v1/schema/{schema}" };
+        option (google.api.http) = {
+            post: "/repository/v1/schema/update"
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific Schema. You must specify the `name` of the Schema to delete, as the `name` is an identifier of Schema resources.
@@ -88,7 +96,10 @@ service Schema {
         }
      */
     rpc delete (SchemaRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/repository/v1/schema/{schema}" };
+        option (google.api.http) = {
+            post: "/repository/v1/schema/delete"
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Schema. You must specify the `name` of the Schema to get, as the `name` is an identifier of Schema resources. You can use the parameter `repository_id` to limit the scope of the method to a specific Repository.
@@ -117,7 +128,10 @@ service Schema {
         }
      */
     rpc get (GetRepositorySchemaRequest) returns (SchemaInfo) {
-        option (google.api.http) = { get: "/repository/v1/schemas/{schema}" };
+        option (google.api.http) = {
+            post: "/repository/v1/schema/get"
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Schemas in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Schemas. You can use a query to get a filtered list of Schemas.
@@ -154,14 +168,15 @@ service Schema {
      */
     rpc list (SchemaQuery) returns (SchemasInfo) {
         option (google.api.http) = {
-            get: "/repository/v1/schemas"
-            additional_bindings {
-                post: "/repository/v1/schemas/search"
-            }
+            post: "/repository/v1/schema/list"
+            body: "*"
         };
     }
     rpc stat (SchemaStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/repository/v1/schemas/stat" };
+        option (google.api.http) = {
+            post: "/repository/v1/schema/stat"
+            body: "*"
+        };
     }
 }
 

@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.repository.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/repository/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -114,7 +116,10 @@ service Plugin {
         }
      */
     rpc register (CreatePluginRequest) returns (PluginInfo) {
-        option (google.api.http) = { post: "/repository/v1/plugins" };
+        option (google.api.http) = {
+            post: "repository/v1/plugin/register"
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific Plugin registered. A Plugin can be updated only if its Repository's `repository_type` is `local`. You can make changes in Plugin settings, including `template` and its options, `schema`.
@@ -213,7 +218,10 @@ service Plugin {
         }
      */
     rpc update (UpdatePluginRequest) returns (PluginInfo) {
-        option (google.api.http) = { put: "/repository/v1/plugin/{plugin_id}" };
+        option (google.api.http) = {
+            post: "repository/v1/plugin/update"
+            body: "*"
+        };
     }
     /*
     desc: Deregisters and deletes a specific Plugin. You must specify the `plugin_id` of the Plugin to deregister.
@@ -249,7 +257,10 @@ service Plugin {
         }
      */
     rpc deregister (PluginRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/repository/v1/plugin/{plugin_id}" };
+        option (google.api.http) = {
+            post: "repository/v1/plugin/deregister"
+            body: "*"
+        };
     }
     /*
     desc: Enables a specific Plugin. If the Plugin is enabled, the Plugin can be used as its parameter `state` becomes `ENABLED`.
@@ -285,7 +296,10 @@ service Plugin {
         }
      */
     rpc enable (PluginRequest) returns (PluginInfo) {
-        option (google.api.http) = { put: "/repository/v1/plugin/{plugin_id}/enable" };
+        option (google.api.http) = {
+            post: "repository/v1/plugin/enable"
+            body: "*"
+        };
     }
     /*
     desc: Disables a specific Plugin. If the Plugin is disabled, the Plugin cannot be used as its parameter `state` becomes `DISABLED`.
@@ -321,7 +335,10 @@ service Plugin {
         }
      */
     rpc disable (PluginRequest) returns (PluginInfo) {
-        option (google.api.http) = { put: "/repository/v1/plugin/{plugin_id}/disable" };
+        option (google.api.http) = {
+            post: "repository/v1/plugin/disable"
+            body: "*"
+        };
     }
     /*
     desc: Gets all version data of a specific Plugin from its Repository. The parameter `plugin_id` is used as an identifier of a Plugin to get version data.
@@ -343,7 +360,10 @@ service Plugin {
         }
      */
     rpc get_versions (RepositoryPluginRequest) returns (VersionsInfo) {
-        option (google.api.http) = { get: "/repository/v1/plugins/{plugin_id}/versions" };
+        option (google.api.http) = {
+            post: "repository/v1/plugin/get-versions"
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Plugin. Prints detailed information about the Plugin, including  `image`, `registry_url`, and `state`.
@@ -379,7 +399,10 @@ service Plugin {
         }
      */
     rpc get (GetRepositoryPluginRequest) returns (PluginInfo) {
-        option (google.api.http) = { get: "/repository/v1/plugins/{plugin_id}" };
+        option (google.api.http) = {
+            post: "repository/v1/plugin/get"
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Plugins registered in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Plugins. You can use a query to get a filtered list of Plugins.
@@ -443,14 +466,15 @@ service Plugin {
      */
     rpc list (PluginQuery) returns (PluginsInfo) {
         option (google.api.http) = {
-            get: "/repository/v1/plugins"
-            additional_bindings {
-                post: "/repository/v1/plugins/search"
-            }
+            post: "repository/v1/plugin/list"
+            body: "*"
         };
     }
     rpc stat (PluginStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/repository/v1/plugins/stat" };
+        option (google.api.http) = {
+            post: "repository/v1/plugin/stat"
+            body: "*"
+        };
     }
 }
 
