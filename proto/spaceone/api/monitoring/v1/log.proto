@@ -2,13 +2,18 @@ syntax = "proto3";
 
 package spaceone.api.monitoring.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1";
+
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 
 
 service Log {
     rpc list (LogRequest) returns (LogDataInfo) {
-        option (google.api.http) = { get: "/monitoring/v1/data-source/{data_source_id}/logs" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/log/list",
+            body: "*"
+        };
     }
 }
 

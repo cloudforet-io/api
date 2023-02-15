@@ -3,6 +3,8 @@ desc: An Alert, a set of Events, is the smallest unit to manage incidents.
  */
 syntax = "proto3";
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1";
+
 package spaceone.api.monitoring.v1;
 
 import "google/protobuf/empty.proto";
@@ -43,7 +45,10 @@ service Alert {
         }
      */
     rpc create (CreateAlertRequest) returns (AlertInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/alerts" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/alert/create",
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific Alert. You can make changes in Alert settings, including the `title`, `description`, `responder`, `state`, and `urgency`. The `responder` of the Alert is a User who is assigned to respond to the Alert.
@@ -77,7 +82,10 @@ service Alert {
         }
      */
     rpc update (UpdateAlertRequest) returns (AlertInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/alert/{alert_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/alert/update",
+            body: "*"
+        };
     }
     /*
     desc: Updates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.
@@ -89,13 +97,22 @@ service Alert {
         }
      */
     rpc update_state (UpdateAlertStateRequest) returns (AlertInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/alert/{alert_id}/{access_key}/{state}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/alert/update-state",
+            body: "*"
+        };
     }
     rpc merge (MergeAlertRequest) returns (AlertInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/alerts/merge" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/alert/merge",
+            body: "*"
+        };
     }
     rpc snooze (SnoozeAlertRequest) returns (AlertInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/alert/{alert_id}/snooze" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/alert/snooze",
+            body: "*"
+        };
     }
     /*
     desc: Adds a responder who receives a Notification about an Alert.
@@ -134,7 +151,10 @@ service Alert {
          }
      */
     rpc add_responder (AlertResponderRequest) returns (AlertInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/alert/{alert_id}/responders" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/alert/add-responder",
+            body: "*"
+        };
     }
     /*
     desc: Deletes a responder who receives a Notification about an Alert.
@@ -167,13 +187,22 @@ service Alert {
         }
      */
     rpc remove_responder (AlertResponderRequest) returns (AlertInfo) {
-        option (google.api.http) = { delete: "/monitoring/v1/alert/{alert_id}/responders" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/alert/remove-responder",
+            body: "*"
+        };
     }
     rpc add_project_dependency (AlertProjectDependencyRequest) returns (AlertInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/alert/{alert_id}/project-dependencies" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/alert/add-project-dependency",
+            body: "*"
+        };
     }
     rpc remove_project_dependency (AlertProjectDependencyRequest) returns (AlertInfo) {
-        option (google.api.http) = { delete: "/monitoring/v1/alert/{alert_id}/project-dependency/{project_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/alert/remove-project-dependency",
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific Alert and remove it from the list of Alerts. You must specify the `alert_id` of the Alert to delete.
@@ -184,7 +213,10 @@ service Alert {
          }
      */
     rpc delete (AlertRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/monitoring/v1/alert/{alert_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/alert/delete",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Alert. Prints detailed information about the Alert.
@@ -215,7 +247,10 @@ service Alert {
         }
      */
     rpc get (GetAlertRequest) returns (AlertInfo) {
-        option (google.api.http) = { get: "/monitoring/v1/alert/{alert_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/alert/get",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Alerts. You can use a query to get a filtered list of Alerts.
@@ -289,14 +324,15 @@ service Alert {
      */
     rpc list (AlertQuery) returns (AlertsInfo) {
         option (google.api.http) = {
-            get: "/monitoring/v1/alerts"
-            additional_bindings {
-                post: "/monitoring/v1/alerts/search"
-            }
+            post: "/monitoring/v1/alert/list",
+            body: "*"
         };
     }
     rpc stat (AlertStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/monitoring/v1/alerts/stat" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/alert/stat",
+            body: "*"
+        };
     }
 }
 

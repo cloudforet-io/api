@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.monitoring.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -16,7 +18,10 @@ service Event {
     desc: Creates a new Event. The Event creation process starts with validation checking whether the input data is from a webhook or not. After the input data is validated, the data is processed and used to create the Event.
      */
     rpc create (CreateEventRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { post: "/monitoring/v1/webhook/{webhook_id}/{access_key}/events" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/event/create",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Event matching the input parameters, `event_id` and `domain_id`. Prints detailed information about the Event.
@@ -66,7 +71,10 @@ service Event {
         }
      */
     rpc get (GetEventRequest) returns (EventInfo) {
-        option (google.api.http) = { get: "/monitoring/v1/event/{event_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/event/get",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Events. You must specify the `domain_id`. You can use a query to get a filtered list of Events.
@@ -162,14 +170,15 @@ service Event {
      */
     rpc list (EventQuery) returns (EventsInfo) {
         option (google.api.http) = {
-            get: "/monitoring/v1/events"
-            additional_bindings {
-                post: "/monitoring/v1/events/search"
-            }
+            post: "/monitoring/v1/event/list",
+            body: "*"
         };
     }
     rpc stat (EventStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/monitoring/v1/events/stat" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/event/stat",
+            body: "*"
+        };
     }
 }
 

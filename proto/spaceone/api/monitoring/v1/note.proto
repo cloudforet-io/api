@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.monitoring.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -32,7 +34,10 @@ service Note {
         }
      */
     rpc create (CreateNoteRequest) returns (NoteInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/notes" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/note/create",
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific Note. You must specify the `note_id` for Note validation check. If the Note exists, it is updated.
@@ -54,7 +59,10 @@ service Note {
         }
      */
     rpc update (UpdateNoteRequest) returns (NoteInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/note/{note_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/note/update",
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific Note. You must specify the `note_id` of the Note to delete.
@@ -65,7 +73,10 @@ service Note {
         }
      */
     rpc delete (NoteRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/monitoring/v1/note/{note_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/note/delete",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Note. You must specify the `note_id` and `domain_id`.
@@ -86,7 +97,10 @@ service Note {
         }
      */
     rpc get (GetNoteRequest) returns (NoteInfo) {
-        option (google.api.http) = { get: "/monitoring/v1/note/{note_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/note/get",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Notes. You can use a query to get a filtered list of Notes.
@@ -122,14 +136,15 @@ service Note {
      */
     rpc list (NoteQuery) returns (NotesInfo) {
         option (google.api.http) = {
-            get: "/monitoring/v1/notes"
-            additional_bindings {
-                post: "/monitoring/v1/notes/search"
-            }
+            post: "/monitoring/v1/note/list",
+            body: "*"
         };
     }
     rpc stat (NoteStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/monitoring/v1/notes/stat" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/note/stat",
+            body: "*"
+        };
     }
 }
 
