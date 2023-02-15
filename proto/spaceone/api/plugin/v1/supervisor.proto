@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.plugin.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/plugin/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -39,7 +41,10 @@ service Supervisor {
       }
     */
     rpc publish (PublishSupervisorRequest) returns (SupervisorInfo) {
-        option (google.api.http) = { post: "/plugin/v1/supervisors"};
+        option (google.api.http) = {
+            post: "/plugin/v1/supervisor/publish"
+            body: "*"
+        };
     }
     /*
     desc: Registers a specific Supervisor. You must specify the `supervisor_id` of the Supervisor to register. The `state` of the Supervisor changes from `PENDING` to `ENABLED`.
@@ -54,7 +59,10 @@ service Supervisor {
       }
     */
     rpc register (RegisterSupervisorRequest) returns (SupervisorInfo) {
-        option (google.api.http) = { post: "/plugin/v1/supervisor/{supervisor_id}/register" };
+        option (google.api.http) = {
+            post: "/plugin/v1/supervisor/register"
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific Supervisor. You can make changes in Supervisor settings, including `labels`, `tags`, and the `bool` type parameter `is_public`.
@@ -90,7 +98,10 @@ service Supervisor {
       }
     */
     rpc update (RegisterSupervisorRequest) returns (SupervisorInfo) {
-        option (google.api.http) = { put: "/plugin/v1/supervisor/{supervisor_id}" };
+        option (google.api.http) = {
+            post: "/plugin/v1/supervisor/update"
+            body: "*"
+        };
     }
     /*
     desc: Deregisters and deletes a specific Supervisor. You must specify the `supervisor_id` of the Supervisor to deregister.
@@ -101,7 +112,10 @@ service Supervisor {
       }
     */
     rpc deregister (SupervisorRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/plugin/v1/supervisor/{supervisor_id}/register" };
+        option (google.api.http) = {
+            post: "/plugin/v1/supervisor/deregister"
+            body: "*"
+        };
     }
     /*
     desc: Enables a specific Supervisor. By changing the `state` parameter to `ENABLED`, the Supervisor can deploy or delete the `pod` of the plugin instance.
@@ -125,7 +139,10 @@ service Supervisor {
       }
     */
     rpc enable (SupervisorRequest) returns (SupervisorInfo) {
-        option (google.api.http) = { put: "/plugin/v1/supervisor/{supervisor_id}/enable" };
+        option (google.api.http) = {
+            post: "/plugin/v1/supervisor/enable"
+            body: "*"
+        };
     }
     /*
     desc: Disables a specific Supervisor. By changing the `state` parameter to `DISABLED`, the Supervisor cannot deploy or delete the `pod` of the plugin instance.
@@ -149,7 +166,10 @@ service Supervisor {
       }
     */
     rpc disable (SupervisorRequest) returns (SupervisorInfo) {
-        option (google.api.http) = { put: "/plugin/v1/supervisor/{supervisor_id}/disable" };
+        option (google.api.http) = {
+            post: "/plugin/v1/supervisor/disable"
+            body: "*"
+        };
     }
     /*
     desc: Recovers a specific plugin instance in a specific Supervisor. Changes the `state` of the Supervisor to `RE-PROVISIONING`.
@@ -166,10 +186,16 @@ service Supervisor {
       }
     */
     rpc recover_plugin (RecoverPluginRequest) returns (PluginInfo) {
-        option (google.api.http) = { post: "/plugin/v1/supervisor/{supervisor_id}/plugin/{plugin_id}/recover" };
+        option (google.api.http) = {
+            post: "/plugin/v1/supervisor/recover-plugin"
+            body: "*"
+        };
     }
     rpc get (GetSupervisorRequest) returns (SupervisorInfo) {
-        option (google.api.http) = { get: "/plugin/v1/supervisor/{supervisor_id}" };
+        option (google.api.http) = {
+            post: "/plugin/v1/supervisor/get"
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Supervisors. You can use a query to get a filtered list of Supervisors.
@@ -209,14 +235,15 @@ service Supervisor {
     */
     rpc list (SupervisorQuery) returns (SupervisorsInfo) {
         option (google.api.http) = {
-            get: "/plugin/v1/supervisors"
-            additional_bindings {
-                post: "/plugin/v1/supervisors/search"
-            }
+            post: "/plugin/v1/supervisor/list"
+            body: "*"
         };
     }
     rpc stat (SupervisorStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/plugin/v1/supervisors/stat" };
+        option (google.api.http) = {
+            post: "/plugin/v1/supervisor/stat"
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all plugin instances regardless of Supervisors. Prints detailed information about the plugin instances, including `version`, `state`, and the relevant Supervisor.
@@ -258,10 +285,8 @@ service Supervisor {
     */
     rpc list_plugins (PluginQuery) returns (PluginsInfo) {
         option (google.api.http) = {
-            get: "/plugin/v1/supervisor/{supervisor_id}/plugins"
-            additional_bindings {
-                post: "/plugin/v1/supervisor/{supervisor_id}/plugins/search"
-            }
+            post: "/plugin/v1/supervisor/list-plugins"
+            body: "*"
         };
     }
 }
