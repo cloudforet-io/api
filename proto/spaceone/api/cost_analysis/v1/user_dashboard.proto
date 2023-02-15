@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.cost_analysis.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -112,7 +114,10 @@ service UserDashboard {
       }
     */
     rpc create (CreateUserDashboardRequest) returns (UserDashboardInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v1/user-dashboards" };
+        option (google.api.http) = {
+            post: "cost-analysis/v1/user-dashboard/create"
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific UserDashboard. You can make changes in widgets, including default widgets and CustomWidegets.
@@ -200,7 +205,10 @@ service UserDashboard {
       }
     */
     rpc update (UpdateUserDashboardRequest) returns (UserDashboardInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v1/user-dashboard/{user_dashboard_id}" };
+        option (google.api.http) = {
+            post: "cost-analysis/v1/user-dashboard/update"
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific UserDashboard. You must specify the `user_dashboard_id` of the UserDashboard to delete.
@@ -210,7 +218,10 @@ service UserDashboard {
       }
     */
     rpc delete (UserDashboardRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v1/user-dashboard/{user_dashboard_id}" };
+        option (google.api.http) = {
+            post: "cost-analysis/v1/user-dashboard/delete"
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific UserDashboard. Prints detailed information about the UserDashboard, including widegts used.
@@ -271,7 +282,10 @@ service UserDashboard {
       }
     */
     rpc get (GetUserDashboardRequest) returns (UserDashboardInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v1/user-dashboard/{user_dashboard_id}" };
+        option (google.api.http) = {
+            post: "cost-analysis/v1/user-dashboard/get"
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all UserDashboards. You can use a query to get a filtered list of UserDashboards.
@@ -386,14 +400,15 @@ service UserDashboard {
     */
     rpc list (UserDashboardQuery) returns (UserDashboardsInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v1/user-dashboards"
-            additional_bindings {
-                post: "/cost-analysis/v1/user-dashboards/search"
-            }
+            post: "cost-analysis/v1/user-dashboard/list"
+            body: "*"
         };
     }
     rpc stat (UserDashboardStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/user-dashboards/stat" };
+        option (google.api.http) = {
+            post: "cost-analysis/v1/user-dashboard/stat"
+            body: "*"
+        };
     }
 }
 
