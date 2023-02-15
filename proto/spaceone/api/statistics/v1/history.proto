@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.statistics.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/statistics/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -21,7 +23,10 @@ service History {
         }
      */
     rpc create (CreateHistoryRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { post: "/statistics/v1/history" };
+        option (google.api.http) = {
+            post: "/statistics/v1/history/create"
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Histories. You can use a query to get a filtered list of Histories.
@@ -65,14 +70,15 @@ service History {
      */
     rpc list (QueryHistoryRequest) returns (HistoryInfo) {
         option (google.api.http) = {
-            get: "/statistics/v1/history"
-            additional_bindings {
-                post: "/statistics/v1/history/query"
-            }
+            post: "/statistics/v1/history/list"
+            body: "*"
         };
     }
     rpc stat (HistoryStatRequest) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/statistics/v1/history/stat" };
+        option (google.api.http) = {
+            post: "/statistics/v1/history/stat"
+            body: "*"
+        };
     }
 }
 

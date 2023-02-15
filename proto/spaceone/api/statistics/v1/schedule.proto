@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.statistics.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/statistics/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -627,7 +629,10 @@ service Schedule {
         }
      */
     rpc add (AddScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { post: "/statistics/v1/schedules" };
+        option (google.api.http) = {
+            post: "statistics/v1/schedule/add"
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific Schedule. You can make changes in Schedule settings, including time intervals.
@@ -1072,7 +1077,10 @@ service Schedule {
         }
      */
     rpc update (UpdateScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { put: "/statistics/v1/schedule/{schedule_id}" };
+        option (google.api.http) = {
+            post: "/statistics/schedule/update"
+            body: "*"
+        };
     }
     /*
     desc: Enables a specific Schedule. If a Schedule is enabled, the query usage will be scheduled by the time interval specified.
@@ -1515,7 +1523,10 @@ service Schedule {
         }
      */
     rpc enable (ScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { put: "/statistics/v1/schedule/{schedule_id}/enable" };
+        option (google.api.http) = {
+            post: "/statistics/v1/schedule/enable"
+            body: "*"
+        };
     }
     /*
     desc: Disables a specific Schedule. If a Schedule is disabled, the query usage will not be scheduled.
@@ -1958,7 +1969,10 @@ service Schedule {
         }
      */
     rpc disable (ScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { put: "/statistics/v1/schedule/{schedule_id}/disable" };
+        option (google.api.http) = {
+            post: "/statistics/v1/schedule/disable"
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific Schedule. You must specify the `schedule_id` of the Schedule to delete.
@@ -1969,7 +1983,10 @@ service Schedule {
         }
      */
     rpc delete (ScheduleRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/statistics/v1/schedule/{schedule_id}" };
+        option (google.api.http) = {
+            post: "/statistics/v1/schedule/delete"
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Schedule. Prints detailed information about the Schedule, including the schedule interval and `state`.
@@ -2410,7 +2427,10 @@ service Schedule {
         }
      */
     rpc get (GetScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = { get: "/statistics/v1/schedule/{schedule_id}" };
+        option (google.api.http) = {
+            post: "statistics/v1/schedule/get"
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Schedules. You can use a query to get a filtered list of Schedules.
@@ -2857,14 +2877,15 @@ service Schedule {
      */
     rpc list (ScheduleQuery) returns (SchedulesInfo) {
         option (google.api.http) = {
-            get: "/statistics/v1/schedules"
-            additional_bindings {
-                post: "/statistics/v1/schedules/search"
-            }
+            post: "/statistics/v1/schedule/list"
+            body: "*"
         };
     }
     rpc stat (ScheduleStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/statistics/v1/schedules/stat" };
+        option (google.api.http) = {
+            post: "/statistics/v1/schedule/stat"
+            body: "*"
+        };
     }
 }
 
