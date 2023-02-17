@@ -54,12 +54,31 @@ def _get_env():
     }
 
 
+def _get_services_from_target(target):
+    _services = []
+
+    api_path_in_proto = os.path.join(PROTO_DIR, 'spaceone', 'api')
+
+    # Get all services name from proto path
+    for service in os.listdir(api_path_in_proto):
+        service_path_in_proto = os.path.join(api_path_in_proto, service)
+        if os.path.isdir(service_path_in_proto):
+            _services.append(service)
+
+    if target == 'all':
+        return _services
+    elif target in _services:
+        return [target]
+    else:
+        _error(f"Target({target}) is not found.")
+
+
 def _get_args():
     env = _get_env()
 
     parser = argparse.ArgumentParser(description='Cloudforet API Builder', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('target', metavar='<target>', help='Cloudforet Service. (core, identity, inventory, etc.)')
+    parser.add_argument('target', metavar='<target>', help='all or specific service. (core, identity, inventory, etc.)', default='all')
     parser.add_argument('-p', '--proto-dir', type=str, help='Protocol Buffers Directory.', default=env['proto_dir'])
     parser.add_argument('-t', '--third-party-dir', type=str, help='Third Party Protocol Buffers Directory.', default=[], action='append')
     parser.add_argument('-o', '--output-dir', type=str, help='Output Directory.', default=env['output_dir'])
@@ -68,17 +87,19 @@ def _get_args():
     parser.add_argument('-d', '--debug', help='Debug Mode.', action='store_true')
 
     args = parser.parse_args()
+
     params = {}
     params['target'] = args.target
-    params['proto_path'] = os.path.join(args.proto_dir, PROJECT, 'api', params['target'])
+    params['proto_path'] = [os.path.join(args.proto_dir, PROJECT, 'api', target) for target in _get_services_from_target(args.target)]
     params['output_dir'] = args.output_dir
     params['artifact_dir'] = args.artifact_dir
     params['version'] = _get_api_version()
     params['code'] = args.code
     params['debug'] = args.debug
 
-    if not os.path.exists(params['proto_path']):
-        _error(f"Protocol buffer's directory({params['proto_path']}) is not found.")
+    for _proto_path in params['proto_path']:
+        if not os.path.exists(_proto_path):
+            _error(f"Protocol buffer's directory({_proto_path}) is not found.")
 
     params['proto_path_list'] = [args.proto_dir]
     params['proto_path_list'].extend(env['default_third_party_dir'])
@@ -167,19 +188,18 @@ def _make_build_environment(output_dir, code):
         api_root_dir = os.path.join(output_dir, code, 'spaceone', 'api')
 
     elif code == 'gateway':
-        pass
-        # if os.path.exists(os.path.join(output_dir, 'go.mod')):
-        #     os.remove(os.path.join(output_dir, 'go.mod'))
-        #
-        # if os.path.exists(os.path.join(output_dir, 'go.sum')):
-        #     os.remove(os.path.join(output_dir, 'go.sum'))
-        #
-        # cmd = ['go', 'mod', 'init', GO_MODULE_PATH]
-        # subprocess.check_output(cmd, cwd=output_dir)
-        # cmd = ['go', 'mod', 'edit', '-replace', f"{REPOSITORY_URL}=./"]
-        # subprocess.check_output(cmd, cwd=output_dir)
-        # cmd = ['go', 'mod', 'tidy']
-        # subprocess.check_output(cmd, cwd=output_dir)
+        if os.path.exists(os.path.join(output_dir, 'go.mod')):
+            os.remove(os.path.join(output_dir, 'go.mod'))
+
+        if os.path.exists(os.path.join(output_dir, 'go.sum')):
+            os.remove(os.path.join(output_dir, 'go.sum'))
+
+        cmd = ['go', 'mod', 'init', GO_MODULE_PATH]
+        subprocess.check_output(cmd, cwd=output_dir)
+        cmd = ['go', 'mod', 'edit', '-replace', f"{REPOSITORY_URL}=./"]
+        subprocess.check_output(cmd, cwd=output_dir)
+        cmd = ['go', 'mod', 'tidy']
+        subprocess.check_output(cmd, cwd=output_dir)
 
 
 def _python_compile(proto_file, output_path, proto_path_list, debug):
@@ -300,7 +320,10 @@ def _compile_code(params, code, proto_file):
 
 
 def build(params):
-    proto_files = _get_proto_files(params['proto_path'])
+    proto_files = []
+    for pf in params['proto_path']:
+        proto_files.extend(_get_proto_files(pf))
+
     for code in _get_generate_codes(params['code']):
         if code == 'json':
             _make_output_path(params['artifact_dir'], code)
@@ -315,8 +338,8 @@ def build(params):
         else:
             _make_build_environment(params['output_dir'], code)
 
-    if params['code'] == 'json':
-        _version_factoring()
+        if params['code'] == 'json':
+            _version_factoring()
 
 
 if __name__ == '__main__':
