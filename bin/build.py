@@ -153,6 +153,24 @@ def _get_generate_codes(code):
         return [code]
 
 
+def _make_go_mod(output_dir):
+    try:
+        if os.path.exists(os.path.join(output_dir, 'go.mod')):
+            os.remove(os.path.join(output_dir, 'go.mod'))
+
+        if os.path.exists(os.path.join(output_dir, 'go.sum')):
+            os.remove(os.path.join(output_dir, 'go.sum'))
+
+        cmd = ['go', 'mod', 'init', GO_MODULE_PATH]
+        subprocess.check_output(cmd, cwd=output_dir)
+        cmd = ['go', 'mod', 'edit', '-replace', f"{REPOSITORY_URL}=./"]
+        subprocess.check_output(cmd, cwd=output_dir)
+        cmd = ['go', 'mod', 'tidy']
+        subprocess.check_output(cmd, cwd=output_dir)
+    except Exception as e:
+        _error(f"Failed to make go.mod.\n{e}")
+
+
 def _make_build_environment(output_dir, code):
     if code == 'python':
         # Copy setup.py
@@ -188,18 +206,7 @@ def _make_build_environment(output_dir, code):
         api_root_dir = os.path.join(output_dir, code, 'spaceone', 'api')
 
     elif code == 'gateway':
-        if os.path.exists(os.path.join(output_dir, 'go.mod')):
-            os.remove(os.path.join(output_dir, 'go.mod'))
-
-        if os.path.exists(os.path.join(output_dir, 'go.sum')):
-            os.remove(os.path.join(output_dir, 'go.sum'))
-
-        cmd = ['go', 'mod', 'init', GO_MODULE_PATH]
-        subprocess.check_output(cmd, cwd=output_dir)
-        cmd = ['go', 'mod', 'edit', '-replace', f"{REPOSITORY_URL}=./"]
-        subprocess.check_output(cmd, cwd=output_dir)
-        cmd = ['go', 'mod', 'tidy']
-        subprocess.check_output(cmd, cwd=output_dir)
+        _make_go_mod(output_dir)
 
 
 def _python_compile(proto_file, output_path, proto_path_list, debug):
