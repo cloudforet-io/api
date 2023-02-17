@@ -5,107 +5,81 @@ syntax = "proto3";
 
 package spaceone.api.board.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/board/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 
 service Board {
-  /*
-  desc: Creates a new Board with SYSTEM permission. The `name` of the board is only required. You can add one or more `categories` representing the Board's attributes.
-  request_example: >-
-    {
-      "name": "notice",
-      "categories": ["admin", "developer", "devops"],
-      "tags": {"a": "b"}
-    }
-  response_example: >-
-    {
-        "board_id": "board-123456789012",
+    /*
+    desc: Creates a new Board with SYSTEM permission. The `name` of the board is only required. You can add one or more `categories` representing the Board's attributes.
+    request_example: >-
+      {
         "name": "notice",
+        "categories": ["admin", "developer", "devops"],
+        "tags": {"a": "b"}
+      }
+    response_example: >-
+      {
+          "board_id": "board-123456789012",
+          "name": "notice",
+          "categories": [
+              "admin",
+              "developer",
+              "devops"
+          ],
+          "tags": {
+              "a": "b"
+          },
+          "created_at": "2022-01-01T06:47:27.759Z"
+      }
+    */
+    rpc create (CreateBoardRequest) returns (BoardInfo) {
+        option (google.api.http) = {
+            post: "/board/v1/board/create"
+            body: "*"
+        };
+    }
+    /*
+    desc: Updates a specific Board with SYSTEM permission. You can make changes in Board settings, including `name` and `tags`.
+    request_example: >-
+      {
+        "board_id": "board-123456789012",
+        "name": "system notice",
+        "tags": {"b": "c"}
+      }
+    response_example: >-
+      {
+        "board_id": "board-123456789012",
+        "name": "system notice",
         "categories": [
             "admin",
             "developer",
             "devops"
         ],
         "tags": {
-            "a": "b"
+            "b": "c"
         },
         "created_at": "2022-01-01T06:47:27.759Z"
+      }
+    */
+    rpc update (UpdateBoardRequest) returns (BoardInfo) {
+        option (google.api.http) = {
+            post: "/board/v1/board/update"
+            body: "*"
+        };
     }
-  */
-  rpc create (CreateBoardRequest) returns (BoardInfo) {
-    option (google.api.http) = {post: "/board/v1/boards"};
-  }
-  /*
-  desc: Updates a specific Board with SYSTEM permission. You can make changes in Board settings, including `name` and `tags`.
-  request_example: >-
-    {
-      "board_id": "board-123456789012",
-      "name": "system notice",
-      "tags": {"b": "c"}
-    }
-  response_example: >-
-    {
-      "board_id": "board-123456789012",
-      "name": "system notice",
-      "categories": [
-          "admin",
-          "developer",
-          "devops"
-      ],
-      "tags": {
-          "b": "c"
-      },
-      "created_at": "2022-01-01T06:47:27.759Z"
-    }
-  */
-  rpc update (UpdateBoardRequest) returns (BoardInfo) {
-    option (google.api.http) = {put: "/board/v1/board/{board_id}"};
-  }
-  /*
-  desc: Adds or changes `categories` of a specific Board with SYSTEM permission. A change in `categories` of a Board does not affect the `category` of the child Posts.
-  request_example: >-
-    {
-      "board_id": "board-123456789012",
-      "categories": ["Developer", "SRE", "Devops"]
-    }
-  response_example: >-
-    {
-      "board_id": "board-123456789012",
-      "name": "dev-notice",
-      "categories": [
-          "Developer",
-          "SRE",
-          "Devops"
-      ],
-      "tags": {
-          "b": "c"
-      },
-      "created_at": "2022-01-01T05:24:19.758Z"
-    }
-  */
-  rpc set_categories (SetBoardCategoriesRequest) returns (BoardInfo){
-    option (google.api.http) = {put: "/board/v1/board/{board_id}/set-categories"};
-  }
-  /*
-  desc: Deletes a specific Board with `SYSTEM` permission. You can delete a Board regardless of the presence of Posts created under the Board.
-  request_example: >-
-    {
-      "board_id": "board-123456789012"
-    }
-  */
-  rpc delete (BoardRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {delete: "/board/v1/board/{board_id}"};
-  }
-  /*
-  desc: Gets a specific Board. You must specify the `board_id` of the Board to get. Prints detailed information about the Board, including `name`, `categories`.
-  request_example: >-
-    {
-        "board_id": "board-123456789012"
-    }
-  response_example: >-
-    {
+    /*
+    desc: Adds or changes `categories` of a specific Board with SYSTEM permission. A change in `categories` of a Board does not affect the `category` of the child Posts.
+    request_example: >-
+      {
+        "board_id": "board-123456789012",
+        "categories": ["Developer", "SRE", "Devops"]
+      }
+    response_example: >-
+      {
         "board_id": "board-123456789012",
         "name": "dev-notice",
         "categories": [
@@ -117,118 +91,162 @@ service Board {
             "b": "c"
         },
         "created_at": "2022-01-01T05:24:19.758Z"
-    }
-  */
-  rpc get (GetBoardRequest) returns (BoardInfo) {
-    option (google.api.http) = {get: "/board/v1/board/{board_id}"};
-  }
-  /*
-  desc: Gets a list of all Boards. You can use a query to get a filtered list of Boards.
-  request_example: >-
-    {
-        "query": {}
-    }
-  response_example: >-
-    {
-        "results": [
-            {
-                "board_id": "board-123456789012",
-                "name": "dev-notice",
-                "categories": [
-                    "flower",
-                    "school",
-                    "spaceone"
-                ],
-                "tags": {
-                    "b": "c"
-                },
-                "created_at": "2022-01-01T05:16:08.549Z"
-            },
-            {
-                "board_id": "board-987654321098",
-                "name": "notice",
-                "tags": {
-                    "a": "b"
-                },
-                "created_at": "2022-01-01T05:24:19.758Z"
-            }
-        ],
-        "total_count": 2
-    }
-   */
-  rpc list (BoardQuery) returns (BoardsInfo) {
-    option (google.api.http) = {
-      get: "/board/v1/boards"
-      additional_bindings {
-        post: "/board/v1/boards/search"
       }
-    };
-  }
-  rpc stat (BoardStatQuery) returns (google.protobuf.Struct) {
-    option (google.api.http) = {post: "/board/v1/boards/stat"};
-  }
+    */
+    rpc set_categories (SetBoardCategoriesRequest) returns (BoardInfo){
+        option (google.api.http) = {
+            post: "/board/v1/board/set-categories"
+            body: "*"
+        };
+    }
+    /*
+    desc: Deletes a specific Board with `SYSTEM` permission. You can delete a Board regardless of the presence of Posts created under the Board.
+    request_example: >-
+      {
+        "board_id": "board-123456789012"
+      }
+    */
+    rpc delete (BoardRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/board/v1/board/delete"
+            body: "*"
+        };
+    }
+    /*
+    desc: Gets a specific Board. You must specify the `board_id` of the Board to get. Prints detailed information about the Board, including `name`, `categories`.
+    request_example: >-
+      {
+          "board_id": "board-123456789012"
+      }
+    response_example: >-
+      {
+          "board_id": "board-123456789012",
+          "name": "dev-notice",
+          "categories": [
+              "Developer",
+              "SRE",
+              "Devops"
+          ],
+          "tags": {
+              "b": "c"
+          },
+          "created_at": "2022-01-01T05:24:19.758Z"
+      }
+    */
+    rpc get (GetBoardRequest) returns (BoardInfo) {
+        option (google.api.http) = {
+            post: "/board/v1/board/get"
+            body: "*"
+        };
+    }
+    /*
+    desc: Gets a list of all Boards. You can use a query to get a filtered list of Boards.
+    request_example: >-
+      {
+          "query": {}
+      }
+    response_example: >-
+      {
+          "results": [
+              {
+                  "board_id": "board-123456789012",
+                  "name": "dev-notice",
+                  "categories": [
+                      "flower",
+                      "school",
+                      "spaceone"
+                  ],
+                  "tags": {
+                      "b": "c"
+                  },
+                  "created_at": "2022-01-01T05:16:08.549Z"
+              },
+              {
+                  "board_id": "board-987654321098",
+                  "name": "notice",
+                  "tags": {
+                      "a": "b"
+                  },
+                  "created_at": "2022-01-01T05:24:19.758Z"
+              }
+          ],
+          "total_count": 2
+      }
+     */
+    rpc list (BoardQuery) returns (BoardsInfo) {
+        option (google.api.http) = {
+            post: "/board/v1/board/list"
+            body: "*"
+        };
+    }
+    rpc stat (BoardStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/board/v1/board/stat"
+            body: "*"
+        };
+    }
 }
 
 message CreateBoardRequest {
-  // is_required: true
-  string name = 1;
-  // is_required: false
-  repeated string categories = 2;
-  // is_required: false
-  google.protobuf.Struct tags = 3;
+    // is_required: true
+    string name = 1;
+    // is_required: false
+    repeated string categories = 2;
+    // is_required: false
+    google.protobuf.Struct tags = 3;
 }
 
 message UpdateBoardRequest {
-  // is_required: true
-  string board_id = 1;
-  // is_required: false
-  string name = 2;
-  // is_required: false
-  google.protobuf.Struct tags = 3;
+    // is_required: true
+    string board_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    google.protobuf.Struct tags = 3;
 }
 
 message SetBoardCategoriesRequest{
-  // is_required: true
-  string board_id = 1;
-  // is_required: false
-  repeated string categories = 2;
+    // is_required: true
+    string board_id = 1;
+    // is_required: false
+    repeated string categories = 2;
 }
 
 message BoardRequest {
-  // is_required: true
-  string board_id = 1;
+    // is_required: true
+    string board_id = 1;
 }
 
 message GetBoardRequest {
-  // is_required: true
-  string board_id = 1;
-  // is_required: false
-  repeated string only = 3;
+    // is_required: true
+    string board_id = 1;
+    // is_required: false
+    repeated string only = 3;
 }
 
 message BoardQuery {
-  // is_required: false
-  string board_id = 1;
-  // is_required: false
-  string name = 2;
-  // is_required: false
-  spaceone.api.core.v1.Query query = 3;
+    // is_required: false
+    string board_id = 1;
+    // is_required: false
+    string name = 2;
+    // is_required: false
+    spaceone.api.core.v1.Query query = 3;
 }
 
 message BoardStatQuery {
-  // is_required: true
-  spaceone.api.core.v1.StatisticsQuery query = 1;
+    // is_required: true
+    spaceone.api.core.v1.StatisticsQuery query = 1;
 }
 
 message BoardInfo {
-  string board_id = 1;
-  string name = 2;
-  repeated string categories = 3;
-  google.protobuf.Struct tags = 4;
-  string created_at = 11;
+    string board_id = 1;
+    string name = 2;
+    repeated string categories = 3;
+    google.protobuf.Struct tags = 4;
+    string created_at = 11;
 }
 
 message BoardsInfo {
-  repeated BoardInfo results = 1;
-  int32 total_count = 2;
+    repeated BoardInfo results = 1;
+    int32 total_count = 2;
 }
