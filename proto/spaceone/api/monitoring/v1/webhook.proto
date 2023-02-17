@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.monitoring.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -45,7 +47,10 @@ service Webhook {
           }
      */
     rpc create (CreateWebhookRequest) returns (WebhookInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/webhooks" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/create",
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific Webhook. You can make changes in Webhook settings, including the name and tags.
@@ -76,7 +81,10 @@ service Webhook {
          }
      */
     rpc update (UpdateWebhookRequest) returns (WebhookInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/webhook/{webhook_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/update",
+            body: "*"
+        };
     }
     /*
     desc: Updates the plugin of a specific DataSource. You can change the `version` of the plugin and select the `upgrade_mode` among `AUTO`, `MANUAL`, and `NONE`.
@@ -109,7 +117,10 @@ service Webhook {
          }
      */
     rpc update_plugin (UpdateWebhookPluginRequest) returns (WebhookInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/webhook/{webhook_id}/plugin" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/update-plugin",
+            body: "*"
+        };
     }
     /*
     desc: Verifies a specific plugin for a Webhook.
@@ -120,7 +131,10 @@ service Webhook {
          }
      */
     rpc verify_plugin (WebhookRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { post: "/monitoring/v1/webhook/{webhook_id}/plugin/verify" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/verify-plugin",
+            body: "*"
+        };
     }
     /*
     desc: Enables a specific Webhook. By enabling a Webhook, you can communicate with an external application.
@@ -150,7 +164,10 @@ service Webhook {
          }
      */
     rpc enable (WebhookRequest) returns (WebhookInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/webhook/{webhook_id}/enable" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/enable",
+            body: "*"
+        };
     }
     /*
     desc: Disables a specific Webhook. By disabling a Webhook, you cannot communicate with an external application, as the webhook URL from the Webhook becomes invalid.
@@ -180,7 +197,10 @@ service Webhook {
          }
      */
     rpc disable (WebhookRequest) returns (WebhookInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/webhook/{webhook_id}/disable" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/disable",
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific Webhook. By deleting a Webhook, you cannot collect data from an external monitoring system, as the `REST URL` is also deleted.
@@ -191,7 +211,10 @@ service Webhook {
          }
      */
     rpc delete (WebhookRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/monitoring/v1/webhook/{webhook_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/delete",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Webhook. Prints detailed information about the Webhook, including the name, the version, and the created datetime.
@@ -221,7 +244,10 @@ service Webhook {
          }
      */
     rpc get (GetWebhookRequest) returns (WebhookInfo) {
-        option (google.api.http) = { get: "/monitoring/v1/webhook/{webhook_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/get",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Webhooks. You can use a query to get a filtered list of Webhooks.
@@ -276,14 +302,15 @@ service Webhook {
      */
     rpc list (WebhookQuery) returns (WebhooksInfo) {
         option (google.api.http) = {
-            get: "/monitoring/v1/webhooks"
-            additional_bindings {
-                post: "/monitoring/v1/webhooks/search"
-            }
+            post: "/monitoring/v1/webhook/list",
+            body: "*"
         };
     }
     rpc stat (WebhookStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/monitoring/v1/webhooks/stat" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/stat",
+            body: "*"
+        };
     }
 }
 

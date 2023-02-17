@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.monitoring.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1";
+
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
@@ -39,7 +41,10 @@ service MaintenanceWindow {
          }
      */
     rpc create (CreateMaintenanceWindowRequest) returns (MaintenanceWindowInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/maintenance-windows" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/maintenance-window/create",
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific MaintenanceWindow. You can make changes in MaintenanceWindow settings including, the `title` and the schedule.
@@ -70,7 +75,10 @@ service MaintenanceWindow {
          }
      */
     rpc update (UpdateMaintenanceWindowRequest) returns (MaintenanceWindowInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/maintenance-window/{maintenance_window_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/maintenance-window/update",
+            body: "*"
+        };
     }
     /*
     desc: Closes a MaintenanceWindow by changing the state of the MaintenanceWindow to `CLOSED` when the maintenance is completed. As the MaintenanceWindow is not deleted but closed, the maintenance history remains undeleted.
@@ -97,7 +105,10 @@ service MaintenanceWindow {
          }
      */
     rpc close (MaintenanceWindowRequest) returns (MaintenanceWindowInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/maintenance-window/{maintenance_window_id}/close" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/maintenance-window/close",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific MaintenanceWindow. Prints detailed information about the MaintenanceWindow, including the title and the schedule.
@@ -124,7 +135,10 @@ service MaintenanceWindow {
          }
      */
     rpc get (GetMaintenanceWindowRequest) returns (MaintenanceWindowInfo) {
-        option (google.api.http) = { get: "/monitoring/v1/maintenance-window/{maintenance_window_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/maintenance-window/get",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all MaintenanceWindows. You can use a query to get a filtered list of MaintenanceWindows.
@@ -172,14 +186,15 @@ service MaintenanceWindow {
      */
     rpc list (MaintenanceWindowQuery) returns (MaintenanceWindowsInfo) {
         option (google.api.http) = {
-            get: "/monitoring/v1/maintenance-windows"
-            additional_bindings {
-                post: "/monitoring/v1/maintenance-windows/search"
-            }
+            post: "/monitoring/v1/maintenance-window/list",
+            body: "*"
         };
     }
     rpc stat (MaintenanceWindowStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/monitoring/v1/maintenance-windows/stat" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/maintenance-window/stat",
+            body: "*"
+        };
     }
 }
 

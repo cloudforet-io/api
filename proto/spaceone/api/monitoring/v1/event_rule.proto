@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.monitoring.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -57,7 +59,10 @@ service EventRule {
          }
      */
     rpc create (CreateEventRuleRequest) returns (EventRuleInfo) {
-        option (google.api.http) = { post: "/monitoring/v1/event-rules" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/event-rule/create",
+            body: "*"
+        };
     }
     /*
     desc: Changes a priority order between EventRules to apply. EventRules are filtered by the order configured.
@@ -104,7 +109,10 @@ service EventRule {
          }
      */
     rpc update (UpdateEventRuleRequest) returns (EventRuleInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/event-rule/{event_rule_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/event-rule/update",
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific EventRule. You can make changes in EventRule settings.
@@ -144,7 +152,10 @@ service EventRule {
          }
      */
     rpc change_order (ChangeEventRuleOrderRequest) returns (EventRuleInfo) {
-        option (google.api.http) = { put: "/monitoring/v1/event-rule/{event_rule_id}/order" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/event-rule/change-order",
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific EventRule. You must assign an EventRule resource to delete by specifying `event_rule_id`.
@@ -155,7 +166,10 @@ service EventRule {
          }
      */
     rpc delete (EventRuleRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/monitoring/v1/event-rule/{event_rule_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/event-rule/delete",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific EventRule. Prints detailed information about the EventRule.
@@ -192,7 +206,10 @@ service EventRule {
          }
      */
     rpc get (GetEventRuleRequest) returns (EventRuleInfo) {
-        option (google.api.http) = { get: "/monitoring/v1/event-rule/{event_rule_id}" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/event-rule/get",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all EventRules. You can use a query to get a filtered list of EventRules. For example, you can adjust the scope of the list to a certain Project or Domain.
@@ -259,14 +276,15 @@ service EventRule {
      */
     rpc list (EventRuleQuery) returns (EventRulesInfo) {
         option (google.api.http) = {
-            get: "/monitoring/v1/event-rules"
-            additional_bindings {
-                post: "/monitoring/v1/event-rules/search"
-            }
+            post: "/monitoring/v1/event-rule/list",
+            body: "*"
         };
     }
     rpc stat (EventRuleStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/monitoring/v1/event-rules/stat" };
+        option (google.api.http) = {
+            post: "/monitoring/v1/event-rule/stat",
+            body: "*"
+        };
     }
 }
 
