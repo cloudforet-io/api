@@ -15,30 +15,46 @@ import "spaceone/api/core/v1/query.proto";
 
 service UserConfig {
     rpc create (SetUserConfigRequest) returns (UserConfigInfo) {
-        option (google.api.http) = { post: "/config/v1/user-configs" };
+        option (google.api.http) = {
+            post: "/config/v1/user-config/create"
+            body: "*"
+        };
     }
     rpc update (SetUserConfigRequest) returns (UserConfigInfo) {
-        option (google.api.http) = { put: "/config/v1/user-config/{name}" };
+        option (google.api.http) = {
+            post: "/config/v1/user-config/update"
+            body: "*"
+        };
     }
     rpc set (SetUserConfigRequest) returns (UserConfigInfo) {
-        option (google.api.http) = { post: "/config/v1/user-config/{name}" };
+        option (google.api.http) = {
+            post: "/config/v1/user-config/set"
+            body: "*"
+        };
     }
     rpc delete (UserConfigRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/config/v1/user-config/{name}" };
+        option (google.api.http) = {
+            post: "/config/v1/user-config/delete"
+            body: "*"
+        };
     }
     rpc get (GetUserConfigRequest) returns (UserConfigInfo) {
-        option (google.api.http) = { get: "/config/v1/user-config/{name}" };
+        option (google.api.http) = {
+            post: "/config/v1/user-config/get"
+            body: "*"
+        };
     }
     rpc list (UserConfigQuery) returns (UserConfigsInfo) {
         option (google.api.http) = {
-            get: "/config/v1/user-configs"
-            additional_bindings {
-                post: "/config/v1/user-configs/search"
-            }
+            post: "/config/v1/user-config/list"
+            body: "*"
         };
     }
     rpc stat (UserConfigStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/config/v1/user-configs/stat" };
+        option (google.api.http) = {
+            post: "/config/v1/user-config/stat"
+            body: "*"
+        };
     }
 }
 
