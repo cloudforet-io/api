@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package spaceone.api.cost_analysis.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1";
+
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
@@ -41,17 +43,21 @@ service BudgetUsage {
     */
     rpc list (BudgetUsageQuery) returns (BudgetUsagesInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v1/budget/{budget_id}/usage"
-            additional_bindings {
-                post: "/cost-analysis/v1/budget/{budget_id}/usage/search"
-            }
+            post: "/cost-analysis/v1/budget-usage/list"
+            body: "*"
         };
     }
     rpc analyze (BudgetUsageAnalyzeQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/budget/{budget_id}/usage/analyze" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/budget-usage/analyze"
+            body: "*"
+        };
     }
     rpc stat (BudgetUsageStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/budget/{budget_id}/usage/stat" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/budget-usage/stat"
+            body: "*"
+        };
     }
 }
 

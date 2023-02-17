@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.cost_analysis.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1";
+
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
@@ -40,7 +42,10 @@ service Job {
       }
     */
     rpc cancel (JobRequest) returns (JobInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v1/job/{job_id}/cancel" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/job/cancel"
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Job. Prints detailed information about the Job, including the plugin used, operation time, and `status`.
@@ -70,7 +75,10 @@ service Job {
       }
     */
     rpc get (GetJobRequest) returns (JobInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v1/job/{job_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/job/get"
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.
@@ -125,14 +133,15 @@ service Job {
     */
     rpc list (JobQuery) returns (JobsInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v1/jobs"
-            additional_bindings {
-                post: "/cost-analysis/v1/jobs/search"
-            }
+            post: "/cost-analysis/v1/job/list"
+            body: "*"
         };
     }
     rpc stat (JobStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/jobs/stat" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/job/stat"
+            body: "*"
+        };
     }
 }
 

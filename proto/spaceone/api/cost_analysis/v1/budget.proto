@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.cost_analysis.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -101,7 +103,10 @@ service Budget {
       }
     */
     rpc create (CreateBudgetRequest) returns (BudgetInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v1/budgets" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/budget/create"
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific Budget. You can make changes in the budgeted amount of the time period specified while creating the resource.
@@ -176,7 +181,10 @@ service Budget {
       }
     */
     rpc update (UpdateBudgetRequest) returns (BudgetInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v1/budget/{budget_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/budget/update"
+            body: "*"
+        };
     }
     /*
     desc: Sets a notification on a specific Budget. Sets a threshold on the budget, and if the cost exceeds the threshold, a notification is raised.
@@ -224,7 +232,10 @@ service Budget {
       }
     */
     rpc set_notification (SetBudgetNotificationRequest) returns (BudgetInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v1/budget/{budget_id}/notification" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/budget/set-notification"
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific Budget. You must specify the `budget_id` of the Budget to delete.
@@ -234,7 +245,10 @@ service Budget {
       }
     */
     rpc delete (BudgetRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v1/budget/{budget_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/budget/delete"
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Budget. Prints detailed information about the Budget, including `planned_limits` of the project group or project for the pre-defined period.
@@ -309,7 +323,10 @@ service Budget {
       }
     */
     rpc get (GetBudgetRequest) returns (BudgetInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v1/budget/{budget_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/budget/get"
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Budgets. You can use a query to get a filtered list of Budgets.
@@ -390,14 +407,15 @@ service Budget {
     */
     rpc list (BudgetQuery) returns (BudgetsInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v1/budgets"
-            additional_bindings {
-                post: "/cost-analysis/v1/budgets/search"
-            }
+            post: "/cost-analysis/v1/budget/list"
+            body: "*"
         };
     }
     rpc stat (BudgetStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/budgets/stat" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/budget/stat"
+            body: "*"
+        };
     }
 }
 

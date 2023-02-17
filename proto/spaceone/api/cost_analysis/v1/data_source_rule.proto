@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.cost_analysis.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -50,7 +52,10 @@ service DataSourceRule {
       }
     */
     rpc create (CreateDataSourceRuleRequest) returns (DataSourceRuleInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v1/data_source_rules" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/data-source-rule/create"
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific DataSourceRule. You can make changes in DataSourceRule settings, including filtering conditions. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
@@ -95,7 +100,10 @@ service DataSourceRule {
       }
     */
     rpc update (UpdateDataSourceRuleRequest) returns (DataSourceRuleInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v1/data_source_rule/{data_source_rule_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/data-source-rule/update"
+            body: "*"
+        };
     }
     /*
     desc: Changes the priority order of the DataSourceRules to apply. If there are multiple DataSourceRules applied in a specific service account, the priority order of the resources is requried. This method changes the priority order to apply DataSourceRules.
@@ -129,7 +137,10 @@ service DataSourceRule {
       }
     */
     rpc change_order (ChangeDataSourceRuleOrderRequest) returns (DataSourceRuleInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v1/data_source_rule/{data_source_rule_id}/order" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/data-source-rule/change-order"
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific DataSourceRule. You must specify the `data_source_rule_id` of the DataSourceRule to delete. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
@@ -139,7 +150,10 @@ service DataSourceRule {
       }
     */
     rpc delete (DataSourceRuleRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v1/data_source_rule/{data_source_rule_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/data-source-rule/delete"
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific DataSourceRule. Prints detailed information about the DataSourceRule, including  `conditions_policy` and conditions applied to DataSources.
@@ -169,7 +183,10 @@ service DataSourceRule {
       }
     */
     rpc get (GetDataSourceRuleRequest) returns (DataSourceRuleInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v1/data_source_rule/{data_source_rule_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/data-source-rule/get"
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all DataSourceRules. You can use a query to get a filtered list of DataSourceRules.
@@ -224,14 +241,15 @@ service DataSourceRule {
     */
     rpc list (DataSourceRuleQuery) returns (DataSourceRulesInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v1/data_source_rules"
-            additional_bindings {
-                post: "/cost-analysis/v1/data_source_rules/search"
-            }
+            post: "/cost-analysis/v1/data-source-rule/list"
+            body: "*"
         };
     }
     rpc stat (DataSourceRuleStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/data_source_rules/stat" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/data-source-rule/stat"
+            body: "*"
+        };
     }
 }
 

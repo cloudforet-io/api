@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.cost_analysis.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -59,7 +61,10 @@ service CostQuerySet {
       }
     */
     rpc create (CreateCostQuerySetRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v1/cost-query-sets" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/cost-query-set/create",
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific CostQuerySet. You can make changes in the details of queries.
@@ -111,7 +116,10 @@ service CostQuerySet {
       }
     */
     rpc update (UpdateCostQuerySetRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v1/cost-query-set/{cost_query_set_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/cost-query-set/update",
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific CostQuerySet. You must specify the `cost_query_set_id` of the CostQuerySet to delete.
@@ -121,7 +129,10 @@ service CostQuerySet {
       }
     */
     rpc delete (CostQuerySetRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v1/cost-query-set/{cost_query_set_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/cost-query-set/delete",
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific CostQuerySet. Prints detailed information about the CostQuerySet, including the details of queries.
@@ -154,7 +165,10 @@ service CostQuerySet {
       }
     */
     rpc get (GetCostQuerySetRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v1/cost-query-set/{cost_query_set_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/cost-query-set/get",
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all CostQuerySets. You can use a query to get a filtered list of CostQuerySets.
@@ -215,14 +229,15 @@ service CostQuerySet {
     */
     rpc list (CostQuerySetQuery) returns (CostQuerySetsInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v1/cost-query-sets"
-            additional_bindings {
-                post: "/cost-analysis/v1/cost-query-sets/search"
-            }
+            post: "/cost-analysis/v1/cost-query-sets/list",
+            body: "*"
         };
     }
     rpc stat (CostQuerySetStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/cost-query-sets/stat" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/cost-query-sets/stat",
+            body: "*"
+        };
     }
 }
 

@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.cost_analysis.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -46,7 +48,10 @@ service CustomWidget {
       }
     */
     rpc create (CreateCustomWidgetRequest) returns (CustomWidgetInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v1/custom-widgets" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/custom-widget/create"
+            body: "*"
+        };
     }
     /*
     desc: Updates a specific CustomWidget. You can make changes in CustomWidget settings, including `chart_type` and queries.
@@ -88,7 +93,10 @@ service CustomWidget {
       }
     */
     rpc update (UpdateCustomWidgetRequest) returns (CustomWidgetInfo) {
-        option (google.api.http) = { put: "/cost-analysis/v1/custom-widget/{widget_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/custom-widget/update"
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific CustomWidget. You must specify the `custom_widget_id` of the CustomWidget to delete.
@@ -98,7 +106,10 @@ service CustomWidget {
       }
     */
     rpc delete (CustomWidgetRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v1/custom-widget/{widget_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/custom-widget/delete"
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific CustomWidget. Prints detailed information about the CustomWidget, including `chart_type` and queries.
@@ -126,7 +137,10 @@ service CustomWidget {
       }
     */
     rpc get (GetCustomWidgetRequest) returns (CustomWidgetInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v1/custom-widget/{widget_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/custom-widget/get"
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all CustomWidgets. You can use a query to get a filtered list of CustomWidgets.
@@ -177,14 +191,15 @@ service CustomWidget {
     */
     rpc list (CustomWidgetQuery) returns (CustomWidgetsInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v1/custom-widgets"
-            additional_bindings {
-                post: "/cost-analysis/v1/custom-widgets/search"
-            }
+            post: "/cost-analysis/v1/custom-widget/list"
+            body: "*"
         };
     }
     rpc stat (CustomWidgetStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/custom-widgets/stat" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/custom-widget/stat"
+            body: "*"
+        };
     }
 }
 

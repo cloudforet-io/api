@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.cost_analysis.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -53,7 +55,10 @@ service Cost {
       }
     */
     rpc create (CreateCostRequest) returns (CostInfo) {
-        option (google.api.http) = { post: "/cost-analysis/v1/costs" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/cost/create"
+            body: "*"
+        };
     }
     /*
     desc: Deletes a specific Cost. You must specify the `cost_id` of the Cost to delete.
@@ -63,7 +68,10 @@ service Cost {
       }
     */
     rpc delete (CostRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/cost-analysis/v1/cost/{cost_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/cost/delete"
+            body: "*"
+        };
     }
     /*
     desc: Gets a specific Cost. Prints detailed information about the Cost, including  `region_code` and `account`.
@@ -94,7 +102,10 @@ service Cost {
       }
     */
     rpc get (GetCostRequest) returns (CostInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v1/cost/{cost_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/cost/get"
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all Costs. You can use a query to get a filtered list of Costs.
@@ -150,10 +161,8 @@ service Cost {
     */
     rpc list (CostQuery) returns (CostsInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v1/costs"
-            additional_bindings {
-                post: "/cost-analysis/v1/costs/search"
-            }
+            post: "/cost-analysis/v1/cost/list"
+            body: "*"
         };
     }
     /*
@@ -203,13 +212,22 @@ service Cost {
       }
     */
     rpc analyze (CostAnalyzeQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/costs/analyze" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/cost/analyze"
+            body: "*"
+        };
     }
     rpc analyze_v2 (CostAnalyzeV2Query) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/costs/analyze-v2" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/cost/analyze-v2"
+            body: "*"
+        };
     }
     rpc stat (CostStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/costs/stat" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/cost/stat"
+            body: "*"
+        };
     }
 }
 

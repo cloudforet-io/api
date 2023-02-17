@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package spaceone.api.cost_analysis.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1";
+
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
@@ -36,7 +38,10 @@ service JobTask {
       }
     */
     rpc get (GetJobTaskRequest) returns (JobTaskInfo) {
-        option (google.api.http) = { get: "/cost-analysis/v1/job-task/{job_task_id}" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/job-task/get"
+            body: "*"
+        };
     }
     /*
     desc: Gets a list of all JobTasks. You can use a query to get a filtered list of JobTasks.
@@ -85,14 +90,15 @@ service JobTask {
     */
     rpc list (JobTaskQuery) returns (JobTasksInfo) {
         option (google.api.http) = {
-            get: "/cost-analysis/v1/job-tasks"
-            additional_bindings {
-                post: "/cost-analysis/v1/job-tasks/search"
-            }
+            post: "/cost-analysis/v1/job-task/list"
+            body: "*"
         };
     }
     rpc stat (JobTaskStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/cost-analysis/v1/job-tasks/stat" };
+        option (google.api.http) = {
+            post: "/cost-analysis/v1/job-task/stat"
+            body: "*"
+        };
     }
 }
 
