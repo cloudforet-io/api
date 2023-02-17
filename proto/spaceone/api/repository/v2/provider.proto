@@ -49,13 +49,13 @@ message CreateProviderRequest {
     // is_required: false
     SyncMode sync_mode = 3;
     // is_required: false
-    google.protobuf.Struct sync_options = 4;
+    SyncOptions sync_options = 4;
     // is_required: false
     google.protobuf.Struct description = 5;
     // is_required: false
     google.protobuf.Struct schema = 6;
     // is_required: false
-    google.protobuf.Struct capability = 7;
+    Capability capability = 7;
     // is_required: false
     string color = 8;
     // is_required: false
@@ -78,13 +78,13 @@ message UpdateProviderRequest {
     // is_required: false
     SyncMode sync_mode = 3;
     // is_required: false
-    google.protobuf.Struct sync_options = 4;
+    SyncOptions sync_options = 4;
     // is_required: false
     google.protobuf.Struct description = 5;
     // is_required: false
     google.protobuf.Struct schema = 6;
     // is_required: false
-    google.protobuf.Struct capability = 7;
+    Capability capability = 7;
     // is_required: false
     string color = 8;
     // is_required: false
@@ -132,10 +132,10 @@ message ProviderInfo {
     string provider = 1;
     string name = 2;
     SyncMode sync_mode = 3;
-    google.protobuf.Struct sync_options = 4;
+    SyncOptions sync_options = 4;
     google.protobuf.Struct description = 5;
     google.protobuf.Struct schema = 6;
-    google.protobuf.Struct capability = 7;
+    Capability capability = 7;
     string color = 8;
     string icon = 9;
     google.protobuf.Struct reference = 10;
@@ -148,4 +148,13 @@ message ProviderInfo {
 message ProvidersInfo {
     repeated ProviderInfo results = 1;
     int32 total_count = 2;
+}
+
+message SyncOptions {
+    string source_type = 1;
+    google.protobuf.Struct source = 2;
+}
+
+message Capability {
+    string trusted_service_account = 1;
 }
