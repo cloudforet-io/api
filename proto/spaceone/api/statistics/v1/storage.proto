@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package spaceone.api.statistics.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/statistics/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -11,39 +13,64 @@ import "spaceone/api/statistics/v1/resource.proto";
 
 service Storage {
     rpc register (RegisterStorageRequest) returns (StorageInfo) {
-        option (google.api.http) = { post: "/statistics/v1/storages" };
+        option (google.api.http) = {
+            post: "/statistics/v1/storage/register"
+            body: "*"
+        };
     }
     rpc update (UpdateStorageRequest) returns (StorageInfo) {
-        option (google.api.http) = { put: "/statistics/v1/storage/{storage_id}" };
+        option (google.api.http) = {
+            post: "/statistics/v1/storage/update"
+            body: "*"
+        };
     }
     rpc update_plugin (UpdateStoragePluginRequest) returns (StorageInfo) {
-        option (google.api.http) = { put: "/spot-automation/v1/storage/{storage_id}/plugin" };
+        option (google.api.http) = {
+            post: "/statistics/v1/storage/update-plugin"
+            body: "*"
+        };
     }
     rpc verify_plugin (StorageRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { post: "/spot-automation/v1/storage/{storage_id}/plugin/verify" };
+        option (google.api.http) = {
+            post: "/statistics/v1/storage/verify-plugin"
+            body: "*"
+        };
     }
     rpc enable (StorageRequest) returns (StorageInfo) {
-        option (google.api.http) = { put: "/statistics/v1/storage/{schedule_id}/enable" };
+        option (google.api.http) = {
+            post: "/statistics/v1/storage/enable"
+            body: "*"
+        };
     }
     rpc disable (StorageRequest) returns (StorageInfo) {
-        option (google.api.http) = { put: "/statistics/v1/storage/{schedule_id}/disable" };
+        option (google.api.http) = {
+            post: "/statistics/v1/storage/disable"
+            body: "*"
+        };
     }
     rpc deregister (StorageRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/statistics/v1/storage/{schedule_id}" };
+        option (google.api.http) = {
+            post: "/statistics/v1/storage/deregister"
+            body: "*"
+        };
     }
     rpc get (GetStorageRequest) returns (StorageInfo) {
-        option (google.api.http) = { get: "/statistics/v1/storage/{schedule_id}" };
+        option (google.api.http) = {
+            post: "/statistics/v1/storage/get"
+            body: "*"
+        };
     }
     rpc list (StorageQuery) returns (StoragesInfo) {
         option (google.api.http) = {
-            get: "/statistics/v1/storages"
-            additional_bindings {
-                post: "/statistics/v1/storages/search"
-            }
+            post: "/statistics/v1/storage/list"
+            body: "*"
         };
     }
     rpc stat (StorageStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/statistics/v1/storages/stat" };
+        option (google.api.http) = {
+            post: "/statistics/v1/storage/stat"
+            body: "*"
+        };
     }
 }
 
