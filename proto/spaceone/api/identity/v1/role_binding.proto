@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package spaceone.api.identity.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -13,27 +15,40 @@ import "spaceone/api/identity/v1/role.proto";
 
 service RoleBinding {
     rpc create (CreateRoleBindingRequest) returns (RoleBindingInfo) {
-        option (google.api.http) = { post: "/identity/v1/role-bindings" };
+        option (google.api.http) = {
+            post: "/identity/v1/role-binding/create",
+            body: "*"
+        };
     }
     rpc update (UpdateRoleBindingRequest) returns (RoleBindingInfo) {
-        option (google.api.http) = { put: "/identity/v1/role-bindings/{role_binding_id}" };
+        option (google.api.http) = {
+            post: "/identity/v1/role-binding/update",
+            body: "*"
+        };
     }
     rpc delete (RoleBindingRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/identity/v1/role-bindings/{role_binding_id}" };
+        option (google.api.http) = {
+            post: "/identity/v1/role-binding/delete",
+            body: "*"
+        };
     }
     rpc get (GetRoleBindingRequest) returns (RoleBindingInfo) {
-        option (google.api.http) = { get: "/identity/v1/role-bindings/{role_binding_id}" };
+        option (google.api.http) = {
+            post: "/identity/v1/role-binding/get",
+            body: "*"
+        };
     }
     rpc list (RoleBindingQuery) returns (RoleBindingsInfo) {
         option (google.api.http) = {
-            get: "/identity/v1/role-bindings"
-            additional_bindings {
-                post: "/identity/v1/role-bindings/search"
-            }
+            post: "/identity/v1/role-binding/list",
+            body: "*"
         };
     }
     rpc stat (RoleBindingStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/identity/v1/roles/stat" };
+        option (google.api.http) = {
+            post: "/identity/v1/role-binding/stat",
+            body: "*"
+        };
     }
 }
 

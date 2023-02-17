@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package spaceone.api.identity.v1;
 
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v1";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
@@ -10,27 +12,40 @@ import "spaceone/api/core/v1/query.proto";
 
 service Policy {
     rpc create (CreatePolicyRequest) returns (PolicyInfo) {
-        option (google.api.http) = { post: "/identity/v1/policies" };
+        option (google.api.http) = {
+            post: "/identity/v1/policy/create",
+            body: "*"
+        };
     }
     rpc update (UpdatePolicyRequest) returns (PolicyInfo) {
-        option (google.api.http) = { put: "/identity/v1/policy/{policy_id}" };
+        option (google.api.http) = {
+            put: "/identity/v1/policy/update",
+            body: "*"
+        };
     }
     rpc delete (PolicyRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = { delete: "/identity/v1/policy/{policy_id}" };
+        option (google.api.http) = {
+            post: "/identity/v1/policy/delete",
+            body: "*"
+        };
     }
     rpc get (GetPolicyRequest) returns (PolicyInfo) {
-        option (google.api.http) = { get: "/identity/v1/policy/{policy_id}" };
+        option (google.api.http) = {
+            post: "/identity/v1/policy/get",
+            body: "*"
+        };
     }
     rpc list (PolicyQuery) returns (PoliciesInfo) {
         option (google.api.http) = {
-            get: "/identity/v1/policies"
-            additional_bindings {
-                post: "/identity/v1/policies/search"
-            }
+            post: "/identity/v1/policy/list",
+            body: "*"
         };
     }
     rpc stat (PolicyStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = { post: "/identity/v1/policies/stat" };
+        option (google.api.http) = {
+            post: "/identity/v1/policies/stat",
+            body: "*"
+        };
     }
 }
 
