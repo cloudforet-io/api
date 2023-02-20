@@ -5,6 +5,8 @@ ENV BIN_DIR /opt/bin
 ENV PKG_DIR /tmp/pkg
 ENV GOBIN=/root/go/bin
 ENV PATH=$PATH:$GOBIN
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
 COPY pkg/* ${PKG_DIR}/
 
