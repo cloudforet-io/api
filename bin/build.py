@@ -3,7 +3,6 @@
 import shutil
 import os
 import sys
-import argparse
 import subprocess
 import glob
 import click
@@ -159,7 +158,7 @@ def _make_go_mod(output_dir):
 def _make_build_environment_python(output_dir, code):
     # Copy setup.py
     src = os.path.join(TEMPLATE_DIR, 'python', 'setup.py.tmpl')
-    dst = os.path
+    dst = os.path.join(output_dir, code, 'setup.py')
 
     if not os.path.exists(dst):
         shutil.copyfile(src, dst)
@@ -195,11 +194,16 @@ def _make_build_environment_gateway(output_dir, code):
     _make_go_mod(output_dir)
 
 
+def _make_build_environment_json(output_dir, code):
+    pass
+
+
 def _make_build_environment(output_dir, code):
     _build_function_dict = {
         'python': _make_build_environment_python,
         'go': _make_build_environment_go,
-        'gateway': _make_build_environment_gateway
+        'gateway': _make_build_environment_gateway,
+        'json': _make_build_environment_json
     }
 
     _build_function_dict[code](output_dir, code)
