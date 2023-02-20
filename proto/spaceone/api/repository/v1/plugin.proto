@@ -117,7 +117,7 @@ service Plugin {
      */
     rpc register (CreatePluginRequest) returns (PluginInfo) {
         option (google.api.http) = {
-            post: "repository/v1/plugin/register"
+            post: "/repository/v1/plugin/register"
             body: "*"
         };
     }
@@ -219,7 +219,7 @@ service Plugin {
      */
     rpc update (UpdatePluginRequest) returns (PluginInfo) {
         option (google.api.http) = {
-            post: "repository/v1/plugin/update"
+            post: "/repository/v1/plugin/update"
             body: "*"
         };
     }
@@ -258,7 +258,7 @@ service Plugin {
      */
     rpc deregister (PluginRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "repository/v1/plugin/deregister"
+            post: "/repository/v1/plugin/deregister"
             body: "*"
         };
     }
@@ -297,7 +297,7 @@ service Plugin {
      */
     rpc enable (PluginRequest) returns (PluginInfo) {
         option (google.api.http) = {
-            post: "repository/v1/plugin/enable"
+            post: "/repository/v1/plugin/enable"
             body: "*"
         };
     }
@@ -336,7 +336,7 @@ service Plugin {
      */
     rpc disable (PluginRequest) returns (PluginInfo) {
         option (google.api.http) = {
-            post: "repository/v1/plugin/disable"
+            post: "/repository/v1/plugin/disable"
             body: "*"
         };
     }
@@ -361,7 +361,7 @@ service Plugin {
      */
     rpc get_versions (RepositoryPluginRequest) returns (VersionsInfo) {
         option (google.api.http) = {
-            post: "repository/v1/plugin/get-versions"
+            post: "/repository/v1/plugin/get-versions"
             body: "*"
         };
     }
@@ -400,7 +400,7 @@ service Plugin {
      */
     rpc get (GetRepositoryPluginRequest) returns (PluginInfo) {
         option (google.api.http) = {
-            post: "repository/v1/plugin/get"
+            post: "/repository/v1/plugin/get"
             body: "*"
         };
     }
@@ -466,13 +466,13 @@ service Plugin {
      */
     rpc list (PluginQuery) returns (PluginsInfo) {
         option (google.api.http) = {
-            post: "repository/v1/plugin/list"
+            post: "/repository/v1/plugin/list"
             body: "*"
         };
     }
     rpc stat (PluginStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "repository/v1/plugin/stat"
+            post: "/repository/v1/plugin/stat"
             body: "*"
         };
     }
