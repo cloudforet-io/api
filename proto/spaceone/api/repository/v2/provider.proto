@@ -51,9 +51,9 @@ message CreateProviderRequest {
     // is_required: false
     SyncOptions sync_options = 4;
     // is_required: false
-    google.protobuf.Struct description = 5;
+    repeated Description description = 5;
     // is_required: false
-    google.protobuf.Struct schema = 6;
+    repeated Schema schema = 6;
     // is_required: false
     Capability capability = 7;
     // is_required: false
@@ -61,7 +61,7 @@ message CreateProviderRequest {
     // is_required: false
     string icon = 9;
     // is_required: false
-    google.protobuf.Struct reference = 10;
+    repeated Reference reference = 10;
     // is_required: false
     google.protobuf.ListValue labels = 11;
     // is_required: false
@@ -80,9 +80,9 @@ message UpdateProviderRequest {
     // is_required: false
     SyncOptions sync_options = 4;
     // is_required: false
-    google.protobuf.Struct description = 5;
+    repeated Description description = 5;
     // is_required: false
-    google.protobuf.Struct schema = 6;
+    repeated Schema schema = 6;
     // is_required: false
     Capability capability = 7;
     // is_required: false
@@ -90,7 +90,7 @@ message UpdateProviderRequest {
     // is_required: false
     string icon = 9;
     // is_required: false
-    google.protobuf.Struct reference = 10;
+    repeated Reference reference = 10;
     // is_required: false
     google.protobuf.ListValue labels = 11;
     // is_required: false
@@ -133,12 +133,12 @@ message ProviderInfo {
     string name = 2;
     SyncMode sync_mode = 3;
     SyncOptions sync_options = 4;
-    google.protobuf.Struct description = 5;
-    google.protobuf.Struct schema = 6;
+    repeated Description description = 5;
+    repeated Schema schema = 6;
     Capability capability = 7;
     string color = 8;
     string icon = 9;
-    google.protobuf.Struct reference = 10;
+    repeated Reference reference = 10;
     google.protobuf.ListValue labels = 11;
     google.protobuf.Struct tags = 12;
     string domain_id = 21;
@@ -157,4 +157,20 @@ message SyncOptions {
 
 message Capability {
     string trusted_service_account = 1;
+}
+
+message Schema {
+    string resource_type = 1;
+    string secret_type = 2;
+    string schema_id = 3;
+}
+
+message Description {
+    string resource_type = 1;
+    google.protobuf.Struct body = 2;
+}
+
+message Reference {
+    string resource_type = 1;
+    google.protobuf.Struct link = 2;
 }
