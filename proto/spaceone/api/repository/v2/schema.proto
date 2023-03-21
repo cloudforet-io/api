@@ -17,7 +17,11 @@ service Schema {
         option (google.api.http) = { post: "/repository/v2/schema/update" };
     }
 
-    rpc delete (DeleteSchemaRequest) returns (google.protobuf.Empty) {
+    rpc sync (SchemaRequest) returns (SchemaInfo) {
+        option (google.api.http) = { post: "/repository/v2/schema/sync" };
+    }
+
+    rpc delete (SchemaRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = { post: "/repository/v2/schema/delete" };
     }
 
@@ -79,7 +83,7 @@ message UpdateSchemaRequest {
     string domain_id = 21;
 }
 
-message DeleteSchemaRequest {
+message SchemaRequest {
     // is_required: true
     string schema_id = 1;
     // is_required: true
