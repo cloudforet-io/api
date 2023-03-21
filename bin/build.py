@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import functools
 import shutil
 import os
 import sys
@@ -11,8 +11,7 @@ from shutil import copyfile
 
 
 PROJECT = 'spaceone'
-EXTENSION = ['json', 'markdown']
-OUTPUT_TO_DOC = EXTENSION[0]
+OUTPUT_DOC_FORMAT = 'json'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'template')
 PROTO_DIR = os.path.join(BASE_DIR, 'proto')
@@ -63,49 +62,15 @@ def _get_services_from_target(target):
         _error(f"Target({target}) is not found.")
 
 
-def _get_env():
-    return {
-        'proto_dir': os.environ.get('PROTO_DIR', PROTO_DIR),
-        'output_dir': os.environ.get('OUTPUT_DIR', OUTPUT_DIR),
-        'artifact_dir': os.environ.get('OUTPUT_DIR', ARTIFACT_DIR),
-        'default_third_party_dir': _get_default_third_party_dir(),
-        'default_code': os.environ.get('DEFAULT_CODE', DEFAULT_CODE),
-        'protoc-gen-doc': shutil.which('protoc-gen-doc')
-    }
-
-
-def _get_args(**params):
-    """
-    Args:
-        {
-            'target': 'str',
-            'proto_dir': 'str',
-            'third_party_dir': 'list',
-            'output_dir': 'str',
-            'artifact_dir': 'str',
-            'code': 'str',
-            'debug': 'bool'
-        }
-    """
-    env = _get_env()
-
-    params['target'] = _get_services_from_target(params['target'])
-    params['version'] = _get_api_version()
-    params['proto_path_list'] = [params['proto_dir']]
-    params['proto_path_list'].extend(env['default_third_party_dir'])
-    params['proto_path_list'].extend(params['third_party_dir'])
-    return params
-
-
 def _get_proto_files(proto_path):
     return [proto_file for proto_file in glob.iglob(os.path.join(proto_path, '**', '*.proto'), recursive=True)]
 
 
-def _get_api_version():
-    with open(VERSION, 'r') as f:
-        version = f.read().strip()
-        f.close()
-        return version
+def _get_proto_path_list(proto_dir, third_party_dir):
+    proto_path_list = [proto_dir]
+    proto_path_list.extend(_get_default_third_party_dir())
+    proto_path_list.extend(third_party_dir)
+    return proto_path_list
 
 
 def _make_output_path(output_dir, code):
@@ -199,14 +164,14 @@ def _make_build_environment_json(output_dir, code):
 
 
 def _make_build_environment(output_dir, code):
-    _build_function_dict = {
-        'python': _make_build_environment_python,
-        'go': _make_build_environment_go,
-        'gateway': _make_build_environment_gateway,
-        'json': _make_build_environment_json
-    }
-
-    _build_function_dict[code](output_dir, code)
+    if code == 'python':
+        _make_build_environment_python(output_dir, code)
+    elif code == 'go':
+        _make_build_environment_go(output_dir, code)
+    elif code == 'gateway':
+        _make_build_environment_gateway(output_dir, code)
+    elif code == 'json':
+        _make_build_environment_json(output_dir, code)
 
 
 def _python_compile(proto_file, output_path, proto_path_list, debug):
@@ -274,19 +239,19 @@ def _doc_compile(proto_file, output_path, proto_path_list, debug):
     if not os.environ.get('GOBIN'):
         _error('\'protoc-gen-doc\' does not exist.')
 
-    output_path = _make_package_path(proto_file, output_path)
+    # if migration to cloudforet end this will be changed
+    # output_path = _make_package_path(proto_file, output_path)
+    output_path = os.path.join(output_path, 'cloudforet', '/'.join(proto_file.split('/')[-4:-1]))
+    os.makedirs(output_path, exist_ok=True)
 
     gobin = os.path.join(os.environ.get('GOBIN'), 'protoc-gen-doc')
     cmd = ['protoc', f'--plugin=protoc-gen-doc={gobin}', f'--doc_out={output_path}']
     for proto_path in proto_path_list:
         cmd.append(f'--proto_path={proto_path}')
 
-    # proto name
-    temp = os.path.split(proto_file)
-    temporary_name = temp[1].split('.')
-    cap_name = temporary_name[0].capitalize()
+    opt_file_name = proto_file.split('/')[-1].split('.')[0].capitalize()
 
-    cmd.append(f'--doc_opt={OUTPUT_TO_DOC},{cap_name}.{OUTPUT_TO_DOC}')
+    cmd.append(f'--doc_opt={OUTPUT_DOC_FORMAT},{opt_file_name}.{OUTPUT_DOC_FORMAT}')
     cmd.append(proto_file)
 
     if debug:
@@ -299,14 +264,6 @@ def _doc_compile(proto_file, output_path, proto_path_list, debug):
         _error(f"Failed to compile : {proto_file}")
 
     print(f"[SUCCESS] Document Compile : {proto_file}")
-
-
-def _version_factoring():
-    ver_path = os.path.join(BASE_DIR, 'VERSION')
-    art_path = os.path.join(ARTIFACT_DIR, 'json')
-    art_file = os.path.join(art_path, 'VERSION')
-    if os.path.exists(art_path) and not os.path.isfile(art_file):
-        copyfile(ver_path, art_file)
 
 
 def _compile_code(params, code, proto_file):
@@ -322,7 +279,6 @@ def _compile_code(params, code, proto_file):
         _go_grpc_gateway_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
 
     elif code == 'json':
-        output_path = os.path.join(params['artifact_dir'], code, params['version'])
         _doc_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
 
 
@@ -331,7 +287,6 @@ def _compile_code(params, code, proto_file):
 @click.option('-p', '--proto-dir', type=str, help='Protocol Buffers Directory.', default=PROTO_DIR)
 @click.option('-t', '--third-party-dir', type=str, help='Third Party Protocol Buffers Directory.', multiple=True, default=[])
 @click.option('-o', '--output-dir', type=str, help='Output Directory.', default=OUTPUT_DIR)
-@click.option('-a', '--artifact-dir', type=str, help='Artifact JSON Directory.', default=ARTIFACT_DIR)
 @click.option('-c', '--code', type=click.Choice(AVAILABLE_CODES), help='Generate Code.', multiple=True, default=[DEFAULT_CODE])
 @click.option('-d', '--debug', help='Debug Mode.', is_flag=True)
 def build(**params):
@@ -340,26 +295,17 @@ def build(**params):
     TARGET, 'all or specific service. (core, identity, inventory, etc.)'
     """
 
-    params = _get_args(**params)
+    params['target'] = _get_services_from_target(params['target'])
+    params['proto_path_list'] = _get_proto_path_list(params['proto_dir'], params['third_party_dir'])
 
     for code in _get_generate_codes(params['code']):
-        if code == 'json':
-            _make_output_path(params['artifact_dir'], code)
-        else:
-            _make_output_path(params['output_dir'], code)
+        _make_output_path(params['output_dir'], code)
 
         for _tg in params['target']:
             proto_files = _get_proto_files(os.path.join(params['proto_dir'], PROJECT, 'api', _tg))
-            for proto_file in proto_files:
-                _compile_code(params, code, proto_file)
+            list(map(functools.partial(_compile_code, params, code), proto_files))
 
-        if code == 'json':
-            _make_build_environment(params['artifact_dir'], code)
-        else:
-            _make_build_environment(params['output_dir'], code)
-
-        if params['code'] == 'json':
-            _version_factoring()
+        _make_build_environment(params['output_dir'], code)
 
 
 if __name__ == '__main__':
