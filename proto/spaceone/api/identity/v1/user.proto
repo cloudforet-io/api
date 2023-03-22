@@ -17,7 +17,7 @@ import "spaceone/api/core/v1/query.proto";
 service User {
     rpc create (CreateUserRequest) returns (UserInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/user/create",
+            post: "/identity/v1/user/create"
             body: "*"
         };
     }
@@ -64,61 +64,76 @@ service User {
     */
     rpc update (UpdateUserRequest) returns (UserInfo) {
         option (google.api.http) = {
-            post: "identity/v1/user/update",
+            post: "identity/v1/user/update"
             body: "*"
         };
     }
+
+    rpc verify_email (VerifyEmailRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "identity/v1/user/verify-email"
+            body: "*"
+        };
+    }
+
+    rpc reset_password (ResetPasswordRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "identity/v1/user/reset-password"
+            body: "*"
+        };
+    }
+
     rpc set_required_actions (SetRequiredActionsRequest) returns (UserInfo) {
         option (google.api.http) = {
-            post: "identity/v1/user/set-required-actions",
+            post: "identity/v1/user/set-required-actions"
             body: "*"
         };
     }
     rpc enable (UserRequest) returns (UserInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/user/enable",
+            post: "/identity/v1/user/enable"
             body: "*"
         };
     }
     rpc disable (UserRequest) returns (UserInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/user/disable",
+            post: "/identity/v1/user/disable"
             body: "*"
         };
     }
     rpc delete (UserRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/identity/v1/user/delete",
+            post: "/identity/v1/user/delete"
             body: "*"
         };
     }
     rpc get (GetUserRequest) returns (UserInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/user/get",
+            post: "/identity/v1/user/get"
             body: "*"
         };
     }
     rpc list (UserQuery) returns (UsersInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/user/list",
+            post: "/identity/v1/user/list"
             body: "*"
         };
     }
     rpc stat (UserStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/identity/v1/user/stat",
+            post: "/identity/v1/user/stat"
             body: "*"
         };
     }
     rpc find (FindUserQuery) returns (FindUsersInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/users/find",
+            post: "/identity/v1/users/find"
             body: "*"
         };
     }
     rpc sync (UserRequest) returns (UserInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/user/sync",
+            post: "/identity/v1/user/sync"
             body: "*"
         };
     }
@@ -181,6 +196,22 @@ message UpdateUserRequest {
     google.protobuf.Struct tags = 9;
     // is_required: true
     string domain_id = 10;
+}
+
+message VerifyEmailRequest {
+    // is_required: true
+    string user_id = 1;
+    // is_required: true
+    string verify_token = 2;
+    // is_required: true
+    string domain_id = 3;
+}
+
+message ResetPasswordRequest {
+    // is_required: true
+    string user_id = 1;
+    // is_required: true
+    string domain_id = 2;
 }
 
 message SetRequiredActionsRequest {
