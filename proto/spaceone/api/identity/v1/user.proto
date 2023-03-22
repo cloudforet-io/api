@@ -76,7 +76,7 @@ service User {
         };
     }
 
-    rpc reset_password (ResetPasswordRequest) returns (google.protobuf.Empty) {
+    rpc reset_password (UserRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "identity/v1/user/reset-password"
             body: "*"
@@ -205,13 +205,6 @@ message VerifyEmailRequest {
     string verify_token = 2;
     // is_required: true
     string domain_id = 3;
-}
-
-message ResetPasswordRequest {
-    // is_required: true
-    string user_id = 1;
-    // is_required: true
-    string domain_id = 2;
 }
 
 message SetRequiredActionsRequest {
