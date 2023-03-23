@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package spaceone.api.repository.v2;
+
+import "google/protobuf/struct.proto";
+        
+enum SyncMode {
+    UNDEFINED = 0;
+    NONE = 1;
+    MANUAL = 2;
+    AUTOMATIC = 3;
+}
+
+message SyncOptions {
+    string source_type = 1;
+    google.protobuf.Struct source = 2;
+}
