@@ -69,9 +69,16 @@ service User {
         };
     }
 
-    rpc verify_email (VerifyEmailRequest) returns (google.protobuf.Empty) {
+    rpc verify_email (UserRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "identity/v1/user/verify-email"
+            body: "*"
+        };
+    }
+
+    rpc confirm_email (ConfirmEmailRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "identity/v1/user/confirm-email"
             body: "*"
         };
     }
@@ -177,6 +184,8 @@ message CreateUserRequest {
     google.protobuf.Struct tags = 9;
     // is_required: true
     string domain_id = 10;
+    // is_required: false
+    bool send_email = 11;
 }
 
 message UpdateUserRequest {
@@ -198,7 +207,7 @@ message UpdateUserRequest {
     string domain_id = 10;
 }
 
-message VerifyEmailRequest {
+message ConfirmEmailRequest {
     // is_required: true
     string user_id = 1;
     // is_required: true
