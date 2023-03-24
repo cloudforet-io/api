@@ -69,7 +69,7 @@ service User {
         };
     }
 
-    rpc verify_email (UserRequest) returns (google.protobuf.Empty) {
+    rpc verify_email (UserRequest) returns (UserInfo) {
         option (google.api.http) = {
             post: "identity/v1/user/verify-email"
             body: "*"
@@ -228,8 +228,10 @@ message SetRequiredActionsRequest {
 message UserRequest {
     // is_required: true
     string user_id = 1;
+    // is_required: false
+    string email = 2;
     // is_required: true
-    string domain_id = 2;
+    string domain_id = 3;
 }
 
 message GetUserRequest {
