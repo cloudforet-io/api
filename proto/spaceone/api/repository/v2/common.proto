@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package spaceone.api.repository.v2;
 
-import "google/protobuf/struct.proto";
-        
 enum SyncMode {
     UNDEFINED = 0;
     NONE = 1;
@@ -11,7 +9,22 @@ enum SyncMode {
     AUTOMATIC = 3;
 }
 
+message GitHubOptions {
+    string url = 1;
+}
+
+message GitOptions {
+    string url = 1;
+}
+
+message GitLabOptions {
+    string url = 1;
+}
+
 message SyncOptions {
-    string source_type = 1;
-    google.protobuf.Struct source = 2;
+    oneof SourceOptions {
+        GitHubOptions github = 1;
+        GitOptions git = 2;
+        GitLabOptions gitlab = 3;
+    }
 }
