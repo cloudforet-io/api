@@ -69,14 +69,14 @@ service User {
         };
     }
 
-    rpc verify_email (UserRequest) returns (UserInfo) {
+    rpc verify_email (VerifyEmailRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "identity/v1/user/verify-email"
             body: "*"
         };
     }
 
-    rpc confirm_email (ConfirmEmailRequest) returns (google.protobuf.Empty) {
+    rpc confirm_email (ConfirmEmailRequest) returns (UserInfo) {
         option (google.api.http) = {
             post: "identity/v1/user/confirm-email"
             body: "*"
@@ -207,6 +207,15 @@ message UpdateUserRequest {
     string domain_id = 10;
 }
 
+message VerifyEmailRequest {
+    // is_required: true
+    string user_id = 1;
+    // is_required: false
+    string email = 2;
+    // is_required: true
+    string domain_id = 3;
+}
+
 message ConfirmEmailRequest {
     // is_required: true
     string user_id = 1;
@@ -228,10 +237,8 @@ message SetRequiredActionsRequest {
 message UserRequest {
     // is_required: true
     string user_id = 1;
-    // is_required: false
-    string email = 2;
     // is_required: true
-    string domain_id = 3;
+    string domain_id = 2;
 }
 
 message GetUserRequest {
