@@ -1,11 +1,12 @@
 syntax = "proto3";
 
-package spaceone.api.schema.v2;
+package spaceone.api.repository.v2;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/repository/v2/common.proto";
 
 
 service Schema {
@@ -38,13 +39,6 @@ service Schema {
     }
 }
 
-enum SyncMode {
-    UNDEFINED = 0;
-    NONE = 1;
-    MANUAL = 2;
-    AUTOMATIC = 3;
-}
-
 message CreateSchemaRequest {
     // is_required: true
     string schema_id = 1;
@@ -55,7 +49,7 @@ message CreateSchemaRequest {
     // is_required: false
     SyncOptions sync_options = 4;
     // is_required: true
-    google.protobuf.ListValue schema = 5;
+    google.protobuf.Struct schema = 5;
     // is_required: false
     google.protobuf.ListValue labels = 6;
     // is_required: false
@@ -74,7 +68,7 @@ message UpdateSchemaRequest {
     // is_required: false
     SyncOptions sync_options = 4;
     // is_required: flase
-    google.protobuf.ListValue schema = 5;
+    google.protobuf.Struct schema = 5;
     // is_required: false
     google.protobuf.ListValue labels = 6;
     // is_required: false
@@ -121,20 +115,15 @@ message SchemaStatQuery {
     string domain_id = 21;
 }
 
-message SyncOptions {
-    string source_type = 1;
-    google.protobuf.Struct source = 2;
-}
-
 message SchemaInfo {
     string schema_id = 1;
     string name = 2;
     SyncMode sync_mode = 3;
     SyncOptions sync_options = 4;
-    google.protobuf.ListValue schema = 5;
+    google.protobuf.Struct schema = 5;
     google.protobuf.ListValue labels = 6;
     google.protobuf.Struct tags = 7;
-    string remote_repository_name = 8;
+    google.protobuf.Struct remote_repository = 8;
     string domain_id = 21;
     string created_at = 31;
 }
