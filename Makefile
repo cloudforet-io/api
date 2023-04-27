@@ -1,9 +1,9 @@
-TARGET = sample core identity repository plugin secret inventory monitoring notification statistics config cost_analysis board file_manager dashboard
+TARGET = all
 VERSION = v1
 DOCKER_NAME = spaceone/api_builder
 
 .PHONY: help
-.PHONY: all python json
+.PHONY: all python go gateway json
 .PHONY: clean
 
 define banner
@@ -21,15 +21,15 @@ endef
 define build
 	$(call set_build_env)
 	$(call banner, "Start the build protobuf")
-	@for t in $(TARGET); do \
-		docker run -i --rm -v ${PWD}:/opt ${DOCKER_NAME} python3 build.py $$t -c$(1) ; \
-	done
+	docker run -i --rm -v ${PWD}:/opt ${DOCKER_NAME} python3 build.py ${TARGET} -c$(1)
 endef
 
 help:
 	@echo "Make Options:"
-	@echo " all                 - Generate all : ${TARGET}"
+	@echo " all                 - Generate all
 	@echo " python              - Generate python protobuf"
+	@echo " go                  - Generate go protobuf"
+	@echo " gateway             - Generate gateway protobuf"
 	@echo " json                - Generate API artifact json files"
 	@echo " clean               - Clean up dist directory"
 
@@ -44,6 +44,14 @@ json:
 python:
 	$(call banner, "Generate python protobuf")
 	$(call build, "python")
+
+go:
+	$(call banner, "Generate go protobuf")
+	$(call build, "go")
+
+gateway:
+	$(call banner, "Generate gateway protobuf")
+	$(call build, "gateway")
 
 clean:
 	$(call banner, "Clean up dist directory")
