@@ -69,26 +69,26 @@ service User {
         };
     }
 
-    rpc verify_email (VerifyEmailRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "identity/v1/user/verify-email"
-            body: "*"
-        };
-    }
+//    rpc verify_email (VerifyEmailRequest) returns (google.protobuf.Empty) {
+//        option (google.api.http) = {
+//            post: "identity/v1/user/verify-email"
+//            body: "*"
+//        };
+//    }
 
-    rpc confirm_email (ConfirmEmailRequest) returns (UserInfo) {
-        option (google.api.http) = {
-            post: "identity/v1/user/confirm-email"
-            body: "*"
-        };
-    }
+//    rpc confirm_email (ConfirmEmailRequest) returns (UserInfo) {
+//        option (google.api.http) = {
+//            post: "identity/v1/user/confirm-email"
+//            body: "*"
+//        };
+//    }
 
-    rpc reset_password (UserRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "identity/v1/user/reset-password"
-            body: "*"
-        };
-    }
+//    rpc reset_password (UserRequest) returns (google.protobuf.Empty) {
+//        option (google.api.http) = {
+//            post: "identity/v1/user/reset-password"
+//            body: "*"
+//        };
+//    }
 
     rpc set_required_actions (SetRequiredActionsRequest) returns (UserInfo) {
         option (google.api.http) = {
@@ -185,7 +185,7 @@ message CreateUserRequest {
     // is_required: true
     string domain_id = 10;
     // is_required: false
-    bool reset_password = 11;
+//    bool reset_password = 11;
 }
 
 message UpdateUserRequest {
@@ -206,28 +206,28 @@ message UpdateUserRequest {
     // is_required: true
     string domain_id = 10;
     // is_required: false
-    bool reset_password = 11;
+//    bool reset_password = 11;
 }
 
-message VerifyEmailRequest {
-    // is_required: true
-    string user_id = 1;
-    // is_required: false
-    string email = 2;
-    // is_required: false
-    bool force = 3;
-    // is_required: true
-    string domain_id = 4;
-}
+//message VerifyEmailRequest {
+//    // is_required: true
+//    string user_id = 1;
+//    // is_required: false
+//    string email = 2;
+//    // is_required: false
+//    bool force = 3;
+//    // is_required: true
+//    string domain_id = 4;
+//}
 
-message ConfirmEmailRequest {
-    // is_required: true
-    string user_id = 1;
-    // is_required: true
-    string verify_code = 2;
-    // is_required: true
-    string domain_id = 3;
-}
+//message ConfirmEmailRequest {
+//    // is_required: true
+//    string user_id = 1;
+//    // is_required: true
+//    string verify_code = 2;
+//    // is_required: true
+//    string domain_id = 3;
+//}
 
 message SetRequiredActionsRequest {
     // is_required: true
@@ -294,7 +294,7 @@ message UserInfo {
     string last_accessed_at = 11;
     string created_at = 12;
     string domain_id = 13;
-    bool email_verified = 14;
+//    bool email_verified = 14;
 }
 
 message UsersInfo {
