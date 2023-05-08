@@ -15,6 +15,7 @@ on:
 env:
   BRANCH: ${{ github.event.inputs.branch }}
   VERSION: ${{ github.event.inputs.version }}
+  PACKAGE_VERSION: ${{ github.event.inputs.version }}
   SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
 
 jobs:
@@ -81,7 +82,7 @@ jobs:
           author_name: Github Action Slack
 
   notification:
-    needs: tagging
+    needs: build_and_push
     runs-on: ubuntu-latest
     steps:
       - name: Slack
