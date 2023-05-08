@@ -40,7 +40,7 @@ jobs:
 
       - name: Make all and Packaging
         run: |
-          make all
+          make python
           sudo chmod -R 777 dist
           cd dist/python
           python setup.py sdist bdist_wheel
@@ -54,25 +54,25 @@ jobs:
           packages-dir: dist/python/
 
 
-      - name: Push artifacts to origin master
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          branch: master
-          commit_message: "[CI] api has been built"
-          commit_user_name: cloudforet-admin
-          commit_user_email: admin@cloudforet.io
-          commit_author: cloudforet-admin <admin@cloudforet.io>
-          push_options: '--force'
-          tagging_message: ${{ env.VERSION }}
-
-      - name: Push json to api-doc repository
-        uses: andstor/copycat-action@v3
-        with:
-          personal_token: ${{ secrets.PAT_TOKEN }}
-          src_path: dist/json/.
-          dst_path: dist/json/.
-          dst_owner: cloudforet-io
-          dst_repo_name: api-doc
+#      - name: Push artifacts to origin master
+#        uses: stefanzweifel/git-auto-commit-action@v4
+#        with:
+#          branch: master
+#          commit_message: "[CI] api has been built"
+#          commit_user_name: cloudforet-admin
+#          commit_user_email: admin@cloudforet.io
+#          commit_author: cloudforet-admin <admin@cloudforet.io>
+#          push_options: '--force'
+#          tagging_message: ${{ env.VERSION }}
+#
+#      - name: Push json to api-doc repository 
+#        uses: andstor/copycat-action@v3
+#        with:
+#          personal_token: ${{ secrets.PAT_TOKEN }}
+#          src_path: dist/json/.
+#          dst_path: dist/json/.
+#          dst_owner: cloudforet-io
+#          dst_repo_name: api-doc
 
       - name: Notice when job fails
         if: failure()
