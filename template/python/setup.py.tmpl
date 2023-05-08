@@ -14,19 +14,16 @@
 #   limitations under the License.
 
 
+import os
 from setuptools import setup, find_packages
-
-with open('../../VERSION', 'r') as f: 
-    VERSION = f.read().strip()
-    f.close()
 
 setup(
     name='spaceone-api',
-    version=VERSION,
-    description='SpaceONE API Protobuf',
+    version=os.environ.get('PACKAGE_VERSION'),
+    description='Coreforet API Protobuf',
     long_description='',
-    url='https://www.spaceone.dev/',
-    author='MEGAZONE SpaceONE Team',
+    url='https://cloudforet.io/',
+    author='MEGAZONE Cloud Corp.',
     author_email='admin@spaceone.dev',
     license='Apache Software License',
     packages=find_packages(),
