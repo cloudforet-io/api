@@ -64,28 +64,28 @@ service User {
     */
     rpc update (UpdateUserRequest) returns (UserInfo) {
         option (google.api.http) = {
-            post: "identity/v1/user/update"
+            post: "/identity/v1/user/update"
             body: "*"
         };
     }
 
     rpc verify_email (VerifyEmailRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "identity/v1/user/verify-email"
+            post: "/identity/v1/user/verify-email"
             body: "*"
         };
     }
 
     rpc confirm_email (ConfirmEmailRequest) returns (UserInfo) {
         option (google.api.http) = {
-            post: "identity/v1/user/confirm-email"
+            post: "/identity/v1/user/confirm-email"
             body: "*"
         };
     }
 
     rpc reset_password (UserRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "identity/v1/user/reset-password"
+            post: "/identity/v1/user/reset-password"
             body: "*"
         };
     }
