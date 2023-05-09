@@ -11,76 +11,69 @@ import "google/api/annotations.proto";
 service DomainOwner {
     rpc create (CreateDomainOwner) returns (DomainOwnerInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/domain-owner/create",
+            post: "/identity/v1/domain-owner/create"
             body: "*"
         };
     }
     rpc update (UpdateDomainOwner) returns (DomainOwnerInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/domain-owner/update",
-            body: "*"};
+            post: "/identity/v1/domain-owner/update"
+            body: "*"
+        };
     }
     rpc delete (DomainOwnerRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/identity/v1/domain-owner/delete",
+            post: "/identity/v1/domain-owner/delete"
             body: "*"
         };
     }
     rpc get (GetDomainOwnerRequest) returns (DomainOwnerInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/domain-owner/get",
+            post: "/identity/v1/domain-owner/get"
             body: "*"
         };
     }
 }
 
 message CreateDomainOwner {
-    // is_required: false
+    // +optional
     string owner_id = 1;
-    // is_required: true
     string password = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     string email = 4;
-    // is_required: false
+    // +optional
     string language = 7;
-    // is_required: false
+    // +optional
     string timezone = 8;
-    // is_required: true
     string domain_id = 10;
 }
 
 message UpdateDomainOwner {
-    // is_required: true
     string owner_id = 1;
-    // is_required: false
+    // +optional
     string password = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     string email = 4;
-    // is_required: false
+    // +optional
     string language = 7;
-    // is_required: false
+    // +optional
     string timezone = 8;
-    // is_required: true
     string domain_id = 10;
 }
 
 message DomainOwnerRequest {
-    // is_required: true
     string domain_id = 1;
-    // is_required: true
     string owner_id = 2;
 }
 
 message GetDomainOwnerRequest {
-    // is_required: true
     string domain_id = 1;
-    // is_required: true
     string owner_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 

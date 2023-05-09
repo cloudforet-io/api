@@ -1,7 +1,5 @@
-/*
-desc: User API which allows member management within project, company, and domain
-note: Administrator must register User first.
- */
+// User API which allows member management within project, company, and domain
+// note: Administrator must register User first.
 syntax = "proto3";
 
 package spaceone.api.identity.v1;
@@ -21,47 +19,7 @@ service User {
             body: "*"
         };
     }
-    /*
-    desc: Update user info by given user_id
-    note:
-    request_example: >-
-      {
-      "user_id": "dkang@mz.co.kr",
-        "tags": [{
-          "key": "user1",
-          "value": "Reuters"
-        }, {
-          "key": "user2",
-          "value": "Bloomberg"
-        }],
-        "domain_id": "{{DOMAIN_ID}}"
-      }
-    response_example: >-
-      {
-        "user_id": "dkang@mz.co.kr",
-        "name": "Dong Yoo kang",
-        "state": "ENABLED",
-        "email": "dkang@mz.co.kr",
-        "language": "en",
-        "timezone": "UTC",
-        "tags": [{
-          "key": "user1",
-          "value": "Reuters"
-        }, {
-          "key": "user2",
-          "value": "Bloomberg"
-        }],
-        "last_accessed_at": {
-            "seconds": "1593161630",
-            "nanos": 79000000
-        },
-        "created_at": {
-            "seconds": "1593161630",
-            "nanos": 79000000
-        },
-        "domain_id": "domain-fd6e23a5ae36"
-      }
-    */
+    // Update user info by given user_id
     rpc update (UpdateUserRequest) returns (UserInfo) {
         option (google.api.http) = {
             post: "/identity/v1/user/update"
@@ -164,115 +122,133 @@ enum UserRequiredAction {
 
 
 message CreateUserRequest {
-    // is_required: true
     string user_id = 1;
-    // is_required: false
+    // +optional
     string password = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     string email = 4;
-    // is_required: false
+    // +optional
     UserType user_type = 5;
-    // is_required: true
     UserBackend backend = 6;
-    // is_required: false
+    // +optional
     string language = 7;
-    // is_required: false
+    // +optional
     string timezone = 8;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 9;
-    // is_required: true
     string domain_id = 10;
-    // is_required: false
+    // +optional
     bool reset_password = 11;
 }
 
+//{
+//  "user_id": "dkang@mz.co.kr",
+//    "tags": [{
+//      "key": "user1",
+//      "value": "Reuters"
+//    }, {
+//      "key": "user2",
+//      "value": "Bloomberg"
+//    }],
+//    "domain_id": "{{DOMAIN_ID}}"
+//}
 message UpdateUserRequest {
-    // is_required: true
     string user_id = 1;
-    // is_required: false
+    // +optional
     string password = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     string email = 4;
-    // is_required: false
+    // +optional
     string language = 7;
-    // is_required: false
+    // +optional
     string timezone = 8;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 9;
-    // is_required: true
     string domain_id = 10;
-    // is_required: false
+    // +optional
     bool reset_password = 11;
 }
 
 message VerifyEmailRequest {
-    // is_required: true
     string user_id = 1;
-    // is_required: false
+    // +optional
     string email = 2;
-    // is_required: false
+    // +optional
     bool force = 3;
-    // is_required: true
     string domain_id = 4;
 }
 
 message ConfirmEmailRequest {
-    // is_required: true
     string user_id = 1;
-    // is_required: true
     string verify_code = 2;
-    // is_required: true
     string domain_id = 3;
 }
 
 message SetRequiredActionsRequest {
-    // is_required: true
     string user_id = 1;
-    // is_required: true
     repeated UserRequiredAction actions = 2;
-    // is_required: true
     string domain_id = 3;
 }
 
 message UserRequest {
-    // is_required: true
     string user_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
 message GetUserRequest {
-    // is_required: true
     string user_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
 message UserQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string user_id = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     string state = 4;
-    // is_required: false
+    // +optional
     string email = 5;
-    // is_required: false
+    // +optional
     UserType user_type = 6;
-    // is_required: false
+    // +optional
     UserBackend backend = 7;
-    // is_required: false
+    // +optional
     string domain_id = 11;
 }
 
+//{
+//    "user_id": "dkang@mz.co.kr",
+//    "name": "Dong Yoo kang",
+//    "state": "ENABLED",
+//    "email": "dkang@mz.co.kr",
+//    "language": "en",
+//    "timezone": "UTC",
+//    "tags": [{
+//      "key": "user1",
+//      "value": "Reuters"
+//    }, {
+//      "key": "user2",
+//      "value": "Bloomberg"
+//    }],
+//    "last_accessed_at": {
+//        "seconds": "1593161630",
+//        "nanos": 79000000
+//    },
+//    "created_at": {
+//        "seconds": "1593161630",
+//        "nanos": 79000000
+//    },
+//    "domain_id": "domain-fd6e23a5ae36"
+//}
 message UserInfo {
     enum State {
         NONE = 0;
@@ -303,9 +279,7 @@ message UsersInfo {
 }
 
 message UserStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
@@ -317,9 +291,7 @@ message FindUserSearch {
 }
 
 message FindUserQuery {
-    // is_required: true
     FindUserSearch search = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
