@@ -182,13 +182,12 @@ type CreateFileRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	Tags *_struct.Struct `protobuf:"bytes,2,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: false
+	// +optional
 	Reference *FileReference `protobuf:"bytes,3,opt,name=reference,proto3" json:"reference,omitempty"`
-	// is_required: false
+	// +optional
 	DomainId string `protobuf:"bytes,11,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -257,13 +256,12 @@ type UpdateFileRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	FileId string `protobuf:"bytes,1,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
-	// is_required: false
+	// +optional
 	Tags *_struct.Struct `protobuf:"bytes,2,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: false
+	// +optional
 	Reference *FileReference `protobuf:"bytes,3,opt,name=reference,proto3" json:"reference,omitempty"`
-	// is_required: false
+	// +optional
 	DomainId string `protobuf:"bytes,11,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -332,9 +330,8 @@ type FileRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	FileId string `protobuf:"bytes,1,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
-	// is_required: false
+	// +optional
 	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -389,11 +386,10 @@ type GetFileRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	FileId string `protobuf:"bytes,1,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
-	// is_required: false
+	// +optional
 	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: false
+	// +optional
 	Only []string `protobuf:"bytes,3,rep,name=only,proto3" json:"only,omitempty"`
 }
 
@@ -455,25 +451,25 @@ type FileQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
+	// +optional
 	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: false
+	// +optional
 	FileId string `protobuf:"bytes,2,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
-	// / is_required: false
+	// / +optional
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	State FileState `protobuf:"varint,4,opt,name=state,proto3,enum=spaceone.api.file_manager.v1.FileState" json:"state,omitempty"`
-	// is_required: false
+	// +optional
 	Scope FileScope `protobuf:"varint,5,opt,name=scope,proto3,enum=spaceone.api.file_manager.v1.FileScope" json:"scope,omitempty"`
-	// is_required: false
+	// +optional
 	FileType string `protobuf:"bytes,6,opt,name=file_type,json=fileType,proto3" json:"file_type,omitempty"`
-	// is_required: false
+	// +optional
 	ResourceType string `protobuf:"bytes,7,opt,name=resource_type,json=resourceType,proto3" json:"resource_type,omitempty"`
-	// is_required: false
+	// +optional
 	ResourceId string `protobuf:"bytes,8,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
-	// is_required: false
+	// +optional
 	UserDomainId string `protobuf:"bytes,11,opt,name=user_domain_id,json=userDomainId,proto3" json:"user_domain_id,omitempty"`
-	// is_required: false
+	// +optional
 	DomainId string `protobuf:"bytes,12,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -790,10 +786,8 @@ type FileStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Query    *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	DomainId string              `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *FileStatQuery) Reset() {
