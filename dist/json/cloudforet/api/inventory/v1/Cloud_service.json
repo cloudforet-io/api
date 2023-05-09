@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/inventory/v1/cloud_service.proto",
-      "description": "desc: A CloudService is data of an `instance` of a `resource`. A CloudService follows the pre-created classification system of a CloudServiceType and indicates the property value of the `resource`.",
+      "description": "A CloudService is data of an `instance` of a `resource`. A CloudService follows the pre-created classification system of a CloudServiceType and indicates the property value of the `resource`.",
       "package": "spaceone.api.inventory.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -23,7 +23,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "AnalyzeQuery",
               "longType": "spaceone.api.core.v1.AnalyzeQuery",
@@ -35,7 +35,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -51,7 +51,7 @@
           "name": "CloudServiceInfo",
           "longName": "CloudServiceInfo",
           "fullName": "spaceone.api.inventory.v1.CloudServiceInfo",
-          "description": "",
+          "description": "{\n   \"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n   \"name\": \"cloud_service_test\",\n   \"state\": \"ACTIVE\",\n   \"account\": \"251340636361\",\n   \"cloud_service_type\": \"Key\",\n   \"cloud_service_group\": \"KMS\",\n   \"provider\": \"aws\",\n   \"data\": {\n       \"alias_arn\": null,\n       \"origin\": \"AWS_KMS\",\n       \"cloudwatch\": {\n           \"region_name\": \"ap-northeast-1\",\n           \"namespace\": \"AWS/KMS\",\n           \"dimensions\": [\n               {\n                   \"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n                   \"Name\": \"KeyId\"\n               }\n           ]\n       },\n       \"aws_account_id\": \"251340636361\",\n       \"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n       \"encryption_algorithms\": [\n           \"SYMMETRIC_DEFAULT\"\n       ],\n       \"key_usage\": \"ENCRYPT_DECRYPT\",\n       \"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_type_path\": \"defaultKeys\",\n       \"key_rotated\": false,\n       \"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n       \"key_state\": \"Enabled\",\n       \"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n       \"enabled\": true,\n       \"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_manager\": \"AWS\"\n   },\n   \"metadata\": {\n       \"manual\": {}\n   },\n   \"reference\": {\n       \"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"collection_info\": {\n       \"collectors\": [],\n       \"service_accounts\": [],\n       \"secrets\": []\n   },\n   \"ip_addresses\": [],\n   \"region_code\": \"ap-northeast-1\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T06:38:48.989Z\",\n   \"updated_at\": \"2022-06-22T06:38:48.989Z\",\n   \"launched_at\": \"2020-08-03T15:00:54.000Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -327,7 +327,7 @@
           "name": "CloudServiceQuery",
           "longName": "CloudServiceQuery",
           "fullName": "spaceone.api.inventory.v1.CloudServiceQuery",
-          "description": "",
+          "description": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"cloud_service_type\",\n               \"value\": \"Key\",\n               \"operator\": \"eq\"\n           }\n       ]\n   }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -335,7 +335,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -347,7 +347,7 @@
             },
             {
               "name": "cloud_service_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -359,7 +359,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -371,7 +371,7 @@
             },
             {
               "name": "state",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -383,7 +383,7 @@
             },
             {
               "name": "account",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -395,7 +395,7 @@
             },
             {
               "name": "instance_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -407,7 +407,7 @@
             },
             {
               "name": "cloud_service_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -419,7 +419,7 @@
             },
             {
               "name": "cloud_service_group",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -431,7 +431,7 @@
             },
             {
               "name": "provider",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -443,7 +443,7 @@
             },
             {
               "name": "region_code",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -455,7 +455,7 @@
             },
             {
               "name": "ip_address",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -467,7 +467,7 @@
             },
             {
               "name": "resource_group_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -479,7 +479,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -491,7 +491,7 @@
             },
             {
               "name": "project_group_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -503,7 +503,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -555,7 +555,7 @@
           "name": "CloudServiceRequest",
           "longName": "CloudServiceRequest",
           "fullName": "spaceone.api.inventory.v1.CloudServiceRequest",
-          "description": "",
+          "description": "{\n   \"cloud_service_id\": \"cloud-svc-fea2b0d32141\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -563,7 +563,7 @@
           "fields": [
             {
               "name": "cloud_service_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -575,7 +575,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -599,7 +599,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -611,7 +611,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -627,7 +627,7 @@
           "name": "CloudServicesInfo",
           "longName": "CloudServicesInfo",
           "fullName": "spaceone.api.inventory.v1.CloudServicesInfo",
-          "description": "",
+          "description": "{\n   \"results\": [{\n       \"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n       \"name\": \"cloud_service_test2\",\n       \"state\": \"ACTIVE\",\n       \"account\": \"251340636361\",\n       \"cloud_service_type\": \"Key\",\n       \"cloud_service_group\": \"KMS\",\n       \"provider\": \"aws\",\n       \"data\": {\n           \"alias_arn\": null,\n           \"origin\": \"AWS_KMS\",\n           \"cloudwatch\": {\n               \"region_name\": \"ap-northeast-1\",\n               \"namespace\": \"AWS/KMS\",\n               \"dimensions\": [\n                   {\n                       \"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n                       \"Name\": \"KeyId\"\n                   }\n               ]\n           },\n           \"aws_account_id\": \"251340636361\",\n           \"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n           \"encryption_algorithms\": [\n               \"SYMMETRIC_DEFAULT\"\n           ],\n           \"key_usage\": \"ENCRYPT_DECRYPT\",\n           \"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n           \"key_type_path\": \"defaultKeys\",\n           \"key_rotated\": false,\n           \"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n           \"key_state\": \"Enabled\",\n           \"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n           \"enabled\": true,\n           \"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n           \"key_manager\": \"AWS\"\n       },\n       \"metadata\": {\n           \"manual\": {}\n       },\n       \"reference\": {\n           \"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n           \"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n       },\n       \"tags\": {\n           \"description\": \"spaceone\"\n       },\n       \"collection_info\": {\n           \"collectors\": [],\n           \"service_accounts\": [],\n           \"secrets\": []\n       },\n       \"ip_addresses\": [\n           \"1.1.1.1\",\n           \"2.2.2.2\"\n       ],\n       \"region_code\": \"ap-northeast-1\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-06-22T06:38:48.989Z\",\n       \"updated_at\": \"2022-06-22T06:38:48.989Z\",\n       \"launched_at\": \"2020-08-03T15:00:54.000Z\"\n   }],\n   \"total_count\": 1\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -735,7 +735,7 @@
           "name": "CreateServiceRequest",
           "longName": "CreateServiceRequest",
           "fullName": "spaceone.api.inventory.v1.CreateServiceRequest",
-          "description": "",
+          "description": "{\n   \"cloud_service_type\": \"Key\",\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"KMS\",\n   \"name\": \"cloud_service_test\",\n   \"account\": \"251340636361\",\n   \"launched_at\": \"2020-08-03T15:00:54.000Z\",\n   \"ip_addresses\": [],\n   \"data\": {\n       \"alias_arn\": null,\n       \"origin\": \"AWS_KMS\",\n       \"cloudwatch\": {\n           \"region_name\": \"ap-northeast-1\",\n           \"namespace\": \"AWS/KMS\",\n           \"dimensions\": [\n               {\n                   \"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n                   \"Name\": \"KeyId\"\n               }\n           ]\n       },\n       \"aws_account_id\": \"251340636361\",\n       \"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n       \"encryption_algorithms\": [\n           \"SYMMETRIC_DEFAULT\"\n       ],\n       \"key_usage\": \"ENCRYPT_DECRYPT\",\n       \"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_type_path\": \"defaultKeys\",\n       \"key_rotated\": false,\n       \"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n       \"key_state\": \"Enabled\",\n       \"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n       \"enabled\": true,\n       \"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_manager\": \"AWS\"\n   },\n   \"metadata\": {},\n   \"reference\": {\n       \"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"region_code\": \"ap-northeast-1\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -743,7 +743,7 @@
           "fields": [
             {
               "name": "cloud_service_type",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -755,7 +755,7 @@
             },
             {
               "name": "provider",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -767,7 +767,7 @@
             },
             {
               "name": "cloud_service_group",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -779,7 +779,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -791,7 +791,7 @@
             },
             {
               "name": "account",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -803,7 +803,7 @@
             },
             {
               "name": "instance_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -815,7 +815,7 @@
             },
             {
               "name": "instance_size",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "float",
               "longType": "float",
@@ -827,7 +827,7 @@
             },
             {
               "name": "ip_addresses",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -839,7 +839,7 @@
             },
             {
               "name": "data",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -851,7 +851,7 @@
             },
             {
               "name": "metadata",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -863,7 +863,7 @@
             },
             {
               "name": "reference",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "CloudServiceReference",
               "longType": "CloudServiceReference",
@@ -875,7 +875,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -887,7 +887,7 @@
             },
             {
               "name": "region_code",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -899,7 +899,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -911,7 +911,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -927,7 +927,7 @@
           "name": "GetCloudServiceRequest",
           "longName": "GetCloudServiceRequest",
           "fullName": "spaceone.api.inventory.v1.GetCloudServiceRequest",
-          "description": "",
+          "description": "{\n   \"cloud_service_id\": \"cloud-svc-fea2b0d32141\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -935,7 +935,7 @@
           "fields": [
             {
               "name": "cloud_service_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -947,7 +947,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -959,7 +959,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -983,7 +983,7 @@
           "fields": [
             {
               "name": "cloud_service_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -995,7 +995,7 @@
             },
             {
               "name": "keys",
-              "description": "is_required: true",
+              "description": "",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -1007,7 +1007,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1023,7 +1023,7 @@
           "name": "UpdateCloudServiceRequest",
           "longName": "UpdateCloudServiceRequest",
           "fullName": "spaceone.api.inventory.v1.UpdateCloudServiceRequest",
-          "description": "",
+          "description": "{\n   \"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n   \"name\": \"cloud_service_test2\",\n   \"ip_addresses\": [\n       \"1.1.1.1\",\n       \"2.2.2.2\"\n   ],\n   \"tags\": {\n       \"description\": \"spaceone\"\n   },\n   \"region_code\": \"ap-northeast-2\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1031,7 +1031,7 @@
           "fields": [
             {
               "name": "cloud_service_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1043,7 +1043,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1055,7 +1055,7 @@
             },
             {
               "name": "account",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1067,7 +1067,7 @@
             },
             {
               "name": "instance_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1079,7 +1079,7 @@
             },
             {
               "name": "instance_size",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "float",
               "longType": "float",
@@ -1091,7 +1091,7 @@
             },
             {
               "name": "ip_addresses",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -1103,7 +1103,7 @@
             },
             {
               "name": "data",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -1115,7 +1115,7 @@
             },
             {
               "name": "metadata",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -1127,7 +1127,7 @@
             },
             {
               "name": "reference",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "CloudServiceReference",
               "longType": "CloudServiceReference",
@@ -1139,7 +1139,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -1151,7 +1151,7 @@
             },
             {
               "name": "region_code",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1163,7 +1163,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1175,7 +1175,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1187,7 +1187,7 @@
             },
             {
               "name": "release_project",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1199,7 +1199,7 @@
             },
             {
               "name": "release_region",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1221,7 +1221,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new CloudService. A CloudService instance is created based on data including the `resource`'s attribute values. When creating, the classification information defined by CloudServiceType is also needed. The created CloudService has collection information which is the collection history for the `resource` by plugin.\nrequest_example: \u003e-\n{\n\"cloud_service_type\": \"Key\",\n\"provider\": \"aws\",\n\"cloud_service_group\": \"KMS\",\n\"name\": \"cloud_service_test\",\n\"account\": \"251340636361\",\n\"launched_at\": \"2020-08-03T15:00:54.000Z\",\n\"ip_addresses\": [],\n\"data\": {\n\"alias_arn\": null,\n\"origin\": \"AWS_KMS\",\n\"cloudwatch\": {\n\"region_name\": \"ap-northeast-1\",\n\"namespace\": \"AWS/KMS\",\n\"dimensions\": [\n{\n\"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"Name\": \"KeyId\"\n}\n]\n},\n\"aws_account_id\": \"251340636361\",\n\"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n\"encryption_algorithms\": [\n\"SYMMETRIC_DEFAULT\"\n],\n\"key_usage\": \"ENCRYPT_DECRYPT\",\n\"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"key_type_path\": \"defaultKeys\",\n\"key_rotated\": false,\n\"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n\"key_state\": \"Enabled\",\n\"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n\"enabled\": true,\n\"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"key_manager\": \"AWS\"\n},\n\"metadata\": {},\n\"reference\": {\n\"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n},\n\"tags\": {\n\"a\": \"b\"\n},\n\"region_code\": \"ap-northeast-1\"\n}\nresponse_example: \u003e-\n{\n\"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n\"name\": \"cloud_service_test\",\n\"state\": \"ACTIVE\",\n\"account\": \"251340636361\",\n\"cloud_service_type\": \"Key\",\n\"cloud_service_group\": \"KMS\",\n\"provider\": \"aws\",\n\"data\": {\n\"alias_arn\": null,\n\"origin\": \"AWS_KMS\",\n\"cloudwatch\": {\n\"region_name\": \"ap-northeast-1\",\n\"namespace\": \"AWS/KMS\",\n\"dimensions\": [\n{\n\"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"Name\": \"KeyId\"\n}\n]\n},\n\"aws_account_id\": \"251340636361\",\n\"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n\"encryption_algorithms\": [\n\"SYMMETRIC_DEFAULT\"\n],\n\"key_usage\": \"ENCRYPT_DECRYPT\",\n\"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"key_type_path\": \"defaultKeys\",\n\"key_rotated\": false,\n\"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n\"key_state\": \"Enabled\",\n\"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n\"enabled\": true,\n\"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"key_manager\": \"AWS\"\n},\n\"metadata\": {\n\"manual\": {}\n},\n\"reference\": {\n\"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n},\n\"tags\": {\n\"a\": \"b\"\n},\n\"collection_info\": {\n\"collectors\": [],\n\"service_accounts\": [],\n\"secrets\": []\n},\n\"ip_addresses\": [],\n\"region_code\": \"ap-northeast-1\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-22T06:38:48.989Z\",\n\"updated_at\": \"2022-06-22T06:38:48.989Z\",\n\"launched_at\": \"2020-08-03T15:00:54.000Z\"\n}",
+              "description": "Creates a new CloudService. A CloudService instance is created based on data including the `resource`'s attribute values. When creating, the classification information defined by CloudServiceType is also needed. The created CloudService has collection information which is the collection history for the `resource` by plugin.",
               "requestType": "CreateServiceRequest",
               "requestLongType": "CreateServiceRequest",
               "requestFullType": "spaceone.api.inventory.v1.CreateServiceRequest",
@@ -1244,7 +1244,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific CloudService. You can make changes in CloudService settings, except for the classification system of CloudService and the information about the `resource` attribute value.\nrequest_example: \u003e-\n{\n\"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n\"name\": \"cloud_service_test2\",\n\"ip_addresses\": [\n\"1.1.1.1\",\n\"2.2.2.2\"\n],\n\"tags\": {\n\"description\": \"spaceone\"\n},\n\"region_code\": \"ap-northeast-2\"\n}\nresponse_example: \u003e-\n{\n\"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n\"name\": \"cloud_service_test2\",\n\"state\": \"ACTIVE\",\n\"account\": \"251340636361\",\n\"cloud_service_type\": \"Key\",\n\"cloud_service_group\": \"KMS\",\n\"provider\": \"aws\",\n\"data\": {\n\"alias_arn\": null,\n\"origin\": \"AWS_KMS\",\n\"cloudwatch\": {\n\"region_name\": \"ap-northeast-1\",\n\"namespace\": \"AWS/KMS\",\n\"dimensions\": [\n{\n\"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"Name\": \"KeyId\"\n}\n]\n},\n\"aws_account_id\": \"251340636361\",\n\"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n\"encryption_algorithms\": [\n\"SYMMETRIC_DEFAULT\"\n],\n\"key_usage\": \"ENCRYPT_DECRYPT\",\n\"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"key_type_path\": \"defaultKeys\",\n\"key_rotated\": false,\n\"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n\"key_state\": \"Enabled\",\n\"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n\"enabled\": true,\n\"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"key_manager\": \"AWS\"\n},\n\"metadata\": {\n\"manual\": {}\n},\n\"reference\": {\n\"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n},\n\"tags\": {\n\"description\": \"spaceone\"\n},\n\"collection_info\": {\n\"collectors\": [],\n\"service_accounts\": [],\n\"secrets\": []\n},\n\"ip_addresses\": [\n\"1.1.1.1\",\n\"2.2.2.2\"\n],\n\"region_code\": \"ap-northeast-1\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-22T06:38:48.989Z\",\n\"updated_at\": \"2022-06-22T06:38:48.989Z\",\n\"launched_at\": \"2020-08-03T15:00:54.000Z\"\n}",
+              "description": "Updates a specific CloudService. You can make changes in CloudService settings, except for the classification system of CloudService and the information about the `resource` attribute value.",
               "requestType": "UpdateCloudServiceRequest",
               "requestLongType": "UpdateCloudServiceRequest",
               "requestFullType": "spaceone.api.inventory.v1.UpdateCloudServiceRequest",
@@ -1267,7 +1267,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific CloudService. You must specify the `cloud_service_id` of the CloudService to delete.\nrequest_example: \u003e-\n{\n\"cloud_service_id\": \"cloud-svc-fea2b0d32141\"\n}",
+              "description": "Deletes a specific CloudService. You must specify the `cloud_service_id` of the CloudService to delete.",
               "requestType": "CloudServiceRequest",
               "requestLongType": "CloudServiceRequest",
               "requestFullType": "spaceone.api.inventory.v1.CloudServiceRequest",
@@ -1290,7 +1290,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific CloudService. Prints detailed information about the CloudService, including its state, classification information, and attribute values.\nrequest_example: \u003e-\n{\n\"cloud_service_id\": \"cloud-svc-fea2b0d32141\"\n}\nresponse_example: \u003e-\n{\n\"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n\"name\": \"cloud_service_test2\",\n\"state\": \"ACTIVE\",\n\"account\": \"251340636361\",\n\"cloud_service_type\": \"Key\",\n\"cloud_service_group\": \"KMS\",\n\"provider\": \"aws\",\n\"data\": {\n\"alias_arn\": null,\n\"origin\": \"AWS_KMS\",\n\"cloudwatch\": {\n\"region_name\": \"ap-northeast-1\",\n\"namespace\": \"AWS/KMS\",\n\"dimensions\": [\n{\n\"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"Name\": \"KeyId\"\n}\n]\n},\n\"aws_account_id\": \"251340636361\",\n\"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n\"encryption_algorithms\": [\n\"SYMMETRIC_DEFAULT\"\n],\n\"key_usage\": \"ENCRYPT_DECRYPT\",\n\"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"key_type_path\": \"defaultKeys\",\n\"key_rotated\": false,\n\"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n\"key_state\": \"Enabled\",\n\"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n\"enabled\": true,\n\"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"key_manager\": \"AWS\"\n},\n\"metadata\": {\n\"manual\": {}\n},\n\"reference\": {\n\"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n},\n\"tags\": {\n\"description\": \"spaceone\"\n},\n\"collection_info\": {\n\"collectors\": [],\n\"service_accounts\": [],\n\"secrets\": []\n},\n\"ip_addresses\": [\n\"1.1.1.1\",\n\"2.2.2.2\"\n],\n\"region_code\": \"ap-northeast-1\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-22T06:38:48.989Z\",\n\"updated_at\": \"2022-06-22T06:38:48.989Z\",\n\"launched_at\": \"2020-08-03T15:00:54.000Z\"\n}",
+              "description": "Gets a specific CloudService. Prints detailed information about the CloudService, including its state, classification information, and attribute values.",
               "requestType": "GetCloudServiceRequest",
               "requestLongType": "GetCloudServiceRequest",
               "requestFullType": "spaceone.api.inventory.v1.GetCloudServiceRequest",
@@ -1313,7 +1313,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.\nrequest_example: \u003e-\n{\n\"query\": {\n\"filter\": [\n{\n\"key\": \"cloud_service_type\",\n\"value\": \"Key\",\n\"operator\": \"eq\"\n}\n]\n}\n}\nresponse_example: \u003e-\n{\n\"results\": [{\n\"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n\"name\": \"cloud_service_test2\",\n\"state\": \"ACTIVE\",\n\"account\": \"251340636361\",\n\"cloud_service_type\": \"Key\",\n\"cloud_service_group\": \"KMS\",\n\"provider\": \"aws\",\n\"data\": {\n\"alias_arn\": null,\n\"origin\": \"AWS_KMS\",\n\"cloudwatch\": {\n\"region_name\": \"ap-northeast-1\",\n\"namespace\": \"AWS/KMS\",\n\"dimensions\": [\n{\n\"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"Name\": \"KeyId\"\n}\n]\n},\n\"aws_account_id\": \"251340636361\",\n\"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n\"encryption_algorithms\": [\n\"SYMMETRIC_DEFAULT\"\n],\n\"key_usage\": \"ENCRYPT_DECRYPT\",\n\"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"key_type_path\": \"defaultKeys\",\n\"key_rotated\": false,\n\"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n\"key_state\": \"Enabled\",\n\"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n\"enabled\": true,\n\"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"key_manager\": \"AWS\"\n},\n\"metadata\": {\n\"manual\": {}\n},\n\"reference\": {\n\"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n\"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n},\n\"tags\": {\n\"description\": \"spaceone\"\n},\n\"collection_info\": {\n\"collectors\": [],\n\"service_accounts\": [],\n\"secrets\": []\n},\n\"ip_addresses\": [\n\"1.1.1.1\",\n\"2.2.2.2\"\n],\n\"region_code\": \"ap-northeast-1\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-22T06:38:48.989Z\",\n\"updated_at\": \"2022-06-22T06:38:48.989Z\",\n\"launched_at\": \"2020-08-03T15:00:54.000Z\"\n}],\n\"total_count\": 1\n}",
+              "description": "Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.",
               "requestType": "CloudServiceQuery",
               "requestLongType": "CloudServiceQuery",
               "requestFullType": "spaceone.api.inventory.v1.CloudServiceQuery",

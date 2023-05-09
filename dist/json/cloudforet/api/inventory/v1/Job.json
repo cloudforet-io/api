@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/inventory/v1/job.proto",
-      "description": "desc: A Job is an act of collecting external cloud resources through plugins.",
+      "description": "A Job is an act of collecting external cloud resources through plugins.",
       "package": "spaceone.api.inventory.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -59,7 +59,7 @@
           "name": "GetJobRequest",
           "longName": "GetJobRequest",
           "fullName": "spaceone.api.inventory.v1.GetJobRequest",
-          "description": "",
+          "description": "{\n   \"job_id\": \"job-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -67,7 +67,7 @@
           "fields": [
             {
               "name": "job_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -79,7 +79,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -91,7 +91,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -107,7 +107,7 @@
           "name": "JobRequest",
           "longName": "JobRequest",
           "fullName": "spaceone.api.inventory.v1.JobRequest",
-          "description": "",
+          "description": "{\n   \"job_id\": \"job-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -115,7 +115,7 @@
           "fields": [
             {
               "name": "job_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -127,7 +127,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -151,7 +151,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -163,7 +163,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -179,7 +179,7 @@
           "name": "JobsInfo",
           "longName": "JobsInfo",
           "fullName": "spaceone.api.inventory.v1.JobsInfo",
-          "description": "",
+          "description": "{\n   \"results\": [\n       {\n           \"job_id\": \"job-3b124006c2d2\",\n           \"status\": \"SUCCESS\",\n           \"filter\": {},\n           \"total_tasks\": 2,\n           \"collector_info\": {\n               \"collector_id\": \"collector-accd02663b3d\",\n               \"name\": \"openstack-collector\",\n               \"state\": \"ENABLED\",\n               \"plugin_info\": {\n                   \"plugin_id\": \"plugin-openstack-inven-collector\",\n                   \"version\": \"0.4.2.20220616.134758\"\n               },\n               \"provider\": \"openstack\",\n               \"capability\": {\n                   \"supported_schema\": [\n                       \"openstack_credentials\"\n                   ]\n               },\n               \"is_public\": true\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:01.225Z\",\n           \"updated_at\": \"2022-06-17T08:00:01.225Z\",\n           \"finished_at\": \"2022-06-17T08:00:15.197Z\"\n       },\n       {\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"status\": \"SUCCESS\",\n           \"filter\": {},\n           \"total_tasks\": 3,\n           \"collector_info\": {\n               \"collector_id\": \"collector-2c0847644f39\",\n               \"name\": \"AWS stat-kwon Collector\",\n               \"state\": \"ENABLED\",\n               \"plugin_info\": {\n                   \"plugin_id\": \"plugin-30d21ef75a5d\",\n                   \"version\": \"1.13.13.20220610.143142\"\n               },\n               \"provider\": \"aws\",\n               \"capability\": {\n                   \"supported_schema\": [\n                       \"aws_access_key\"\n                   ]\n               },\n               \"is_public\": true\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.407Z\",\n           \"updated_at\": \"2022-06-17T08:00:00.407Z\",\n           \"finished_at\": \"2022-06-17T08:07:32.023Z\"\n       }\n   ],\n   \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -215,7 +215,7 @@
           "name": "JobsQuery",
           "longName": "JobsQuery",
           "fullName": "spaceone.api.inventory.v1.JobsQuery",
-          "description": "",
+          "description": "{\n   \"query\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -223,7 +223,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -235,7 +235,7 @@
             },
             {
               "name": "job_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -247,7 +247,7 @@
             },
             {
               "name": "status",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "JobStatus",
               "longType": "JobsQuery.JobStatus",
@@ -259,7 +259,7 @@
             },
             {
               "name": "collector_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -271,7 +271,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -283,7 +283,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -305,7 +305,7 @@
           "methods": [
             {
               "name": "delete",
-              "description": "desc: Deletes a specific Job. You must specify the `job_id` of the Job to delete.\nrequest_example: \u003e-\n{\n\"job_id\": \"job-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}",
+              "description": "Deletes a specific Job. You must specify the `job_id` of the Job to delete.",
               "requestType": "JobRequest",
               "requestLongType": "JobRequest",
               "requestFullType": "spaceone.api.inventory.v1.JobRequest",
@@ -328,7 +328,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific Job. Prints detailed information about the Job, including its state, total tasks, and collector info.\nrequest_example: \u003e-\n{\n\"job_id\": \"job-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"job_id\": \"job-123456789012\",\n\"status\": \"ERROR\",\n\"filter\": {},\n\"total_tasks\": 2,\n\"collector_info\": {\n\"collector_id\": \"collector-123456789012\",\n\"name\": \"Jenkins Collector\",\n\"state\": \"ENABLED\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-jenkins-inven-collector\",\n\"version\": \"0.1.1\"\n},\n\"provider\": \"jenkins\",\n\"capability\": {},\n\"is_public\": true\n},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T10:00:01.389Z\",\n\"updated_at\": \"2022-01-01T10:00:01.389Z\",\n\"finished_at\": \"2022-01-01T10:02:11.270Z\"\n}",
+              "description": "Gets a specific Job. Prints detailed information about the Job, including its state, total tasks, and collector info.",
               "requestType": "GetJobRequest",
               "requestLongType": "GetJobRequest",
               "requestFullType": "spaceone.api.inventory.v1.GetJobRequest",
@@ -351,7 +351,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.\nrequest_example: \u003e-\n{\n\"query\": {}\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"job_id\": \"job-3b124006c2d2\",\n\"status\": \"SUCCESS\",\n\"filter\": {},\n\"total_tasks\": 2,\n\"collector_info\": {\n\"collector_id\": \"collector-accd02663b3d\",\n\"name\": \"openstack-collector\",\n\"state\": \"ENABLED\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-openstack-inven-collector\",\n\"version\": \"0.4.2.20220616.134758\"\n},\n\"provider\": \"openstack\",\n\"capability\": {\n\"supported_schema\": [\n\"openstack_credentials\"\n]\n},\n\"is_public\": true\n},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-17T08:00:01.225Z\",\n\"updated_at\": \"2022-06-17T08:00:01.225Z\",\n\"finished_at\": \"2022-06-17T08:00:15.197Z\"\n},\n{\n\"job_id\": \"job-587a3d3b4db3\",\n\"status\": \"SUCCESS\",\n\"filter\": {},\n\"total_tasks\": 3,\n\"collector_info\": {\n\"collector_id\": \"collector-2c0847644f39\",\n\"name\": \"AWS stat-kwon Collector\",\n\"state\": \"ENABLED\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-30d21ef75a5d\",\n\"version\": \"1.13.13.20220610.143142\"\n},\n\"provider\": \"aws\",\n\"capability\": {\n\"supported_schema\": [\n\"aws_access_key\"\n]\n},\n\"is_public\": true\n},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-17T08:00:00.407Z\",\n\"updated_at\": \"2022-06-17T08:00:00.407Z\",\n\"finished_at\": \"2022-06-17T08:07:32.023Z\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.",
               "requestType": "JobsQuery",
               "requestLongType": "JobsQuery",
               "requestFullType": "spaceone.api.inventory.v1.JobsQuery",

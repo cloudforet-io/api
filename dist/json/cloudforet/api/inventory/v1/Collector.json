@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/inventory/v1/collector.proto",
-      "description": "desc: A Collector is a plugin instance collecting cloud resources. A Collector can collect the resource data manually or by a pre-set schedule.",
+      "description": "A Collector is a plugin instance collecting cloud resources. A Collector can collect the resource data manually or by a pre-set schedule.",
       "package": "spaceone.api.inventory.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -159,7 +159,7 @@
           "fields": [
             {
               "name": "collector_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -171,7 +171,7 @@
             },
             {
               "name": "filter",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -183,7 +183,7 @@
             },
             {
               "name": "secret_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -195,7 +195,7 @@
             },
             {
               "name": "collect_mode",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -207,7 +207,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -219,7 +219,7 @@
             },
             {
               "name": "use_cache",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -235,7 +235,7 @@
           "name": "CollectorInfo",
           "longName": "CollectorInfo",
           "fullName": "spaceone.api.inventory.v1.CollectorInfo",
-          "description": "",
+          "description": "{\n   \"collector_id\": \"collector-2c0847644f39\",\n   \"name\": \"AWS Collector\",\n   \"state\": \"ENABLED\",\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-30d21ef75a5d\",\n       \"version\": \"1.13.13\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_schedules\": [\n               \"hours\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.CloudService\",\n               \"inventory.CloudServiceType\",\n               \"inventory.Region\"\n           ],\n           \"filter_format\": [],\n           \"supported_features\": [\n               \"garbage_collection\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"priority\": 1,\n   \"tags\": {\n       \"type\": \"test\"\n   },\n   \"created_at\": \"2022-06-17T06:33:27.195Z\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\"\n       ]\n   },\n   \"is_public\": true\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -403,7 +403,7 @@
           "name": "CollectorQuery",
           "longName": "CollectorQuery",
           "fullName": "spaceone.api.inventory.v1.CollectorQuery",
-          "description": "",
+          "description": "{\n   \"query\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -499,7 +499,7 @@
           "name": "CollectorRequest",
           "longName": "CollectorRequest",
           "fullName": "spaceone.api.inventory.v1.CollectorRequest",
-          "description": "",
+          "description": "{\n   \"collector_id\": \"collector-f2e4e9cc7f21\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -507,7 +507,7 @@
           "fields": [
             {
               "name": "collector_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -519,7 +519,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -543,7 +543,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -555,7 +555,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -571,7 +571,7 @@
           "name": "CollectorsInfo",
           "longName": "CollectorsInfo",
           "fullName": "spaceone.api.inventory.v1.CollectorsInfo",
-          "description": "",
+          "description": "{\n    \"results\": [\n       {\n           \"job_id\": \"job-3b124006c2d2\",\n           \"status\": \"SUCCESS\",\n           \"filter\": {},\n           \"total_tasks\": 2,\n           \"collector_info\": {\n               \"collector_id\": \"collector-accd02663b3d\",\n               \"name\": \"openstack-collector\",\n               \"state\": \"ENABLED\",\n               \"plugin_info\": {\n                   \"plugin_id\": \"plugin-openstack-inven-collector\",\n                   \"version\": \"0.4.2.20220616.134758\"\n               },\n               \"provider\": \"openstack\",\n               \"capability\": {\n                   \"supported_schema\": [\n                       \"openstack_credentials\"\n                   ]\n               },\n               \"is_public\": true\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:01.225Z\",\n           \"updated_at\": \"2022-06-17T08:00:01.225Z\",\n           \"finished_at\": \"2022-06-17T08:00:15.197Z\"\n       },\n       {\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"status\": \"SUCCESS\",\n           \"filter\": {},\n           \"total_tasks\": 3,\n           \"collector_info\": {\n               \"collector_id\": \"collector-2c0847644f39\",\n               \"name\": \"AWS stat-kwon Collector\",\n               \"state\": \"ENABLED\",\n               \"plugin_info\": {\n                   \"plugin_id\": \"plugin-30d21ef75a5d\",\n                   \"version\": \"1.13.13.20220610.143142\"\n               },\n               \"provider\": \"aws\",\n               \"capability\": {\n                   \"supported_schema\": [\n                       \"aws_access_key\"\n                   ]\n               },\n               \"is_public\": true\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.407Z\",\n           \"updated_at\": \"2022-06-17T08:00:00.407Z\",\n           \"finished_at\": \"2022-06-17T08:07:32.023Z\"\n       }\n   ],\n   \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -607,7 +607,7 @@
           "name": "CreateCollectorRequest",
           "longName": "CreateCollectorRequest",
           "fullName": "spaceone.api.inventory.v1.CreateCollectorRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"AWS Collector\",\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-30d21ef75a5d\",\n       \"version\": \"1.13.13\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"filter_format\": [],\n           \"supported_schedules\": [\n               \"hours\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.CloudService\",\n               \"inventory.CloudServiceType\",\n               \"inventory.Region\"\n           ],\n           \"supported_features\": [\n               \"garbage_collection\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"priority\": 1,\n   \"tags\": {\n       \"type\": \"test\"\n   },\n   \"is_public\": true\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -615,7 +615,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -627,7 +627,7 @@
             },
             {
               "name": "plugin_info",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "PluginInfo",
               "longType": "PluginInfo",
@@ -639,7 +639,7 @@
             },
             {
               "name": "priority",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -651,7 +651,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -663,7 +663,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -675,7 +675,7 @@
             },
             {
               "name": "is_public",
-              "description": "is_required: false\ndesc: default is true",
+              "description": "default is true\n+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -687,7 +687,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false\ndesc: if is_public is false, project_id is require\nremained as is_public | True | False",
+              "description": "if is_public is false, project_id is require\nremained as is_public | True | False\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -703,7 +703,7 @@
           "name": "CreateScheduleRequest",
           "longName": "CreateScheduleRequest",
           "fullName": "spaceone.api.inventory.v1.CreateScheduleRequest",
-          "description": "",
+          "description": "{\n   \"collector_id\": \"collector-2c0847644f39\",\n   \"name\": \"regular collection\",\n   \"schedule\": {\n       \"hours\": [16, 18, 20, 22, 0]\n   }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -711,7 +711,7 @@
           "fields": [
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -723,7 +723,7 @@
             },
             {
               "name": "collector_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -735,7 +735,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -747,7 +747,7 @@
             },
             {
               "name": "collect_mode",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -759,7 +759,7 @@
             },
             {
               "name": "schedule",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "Scheduled",
               "longType": "Scheduled",
@@ -771,7 +771,7 @@
             },
             {
               "name": "filter",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -787,7 +787,7 @@
           "name": "DeleteScheduleRequest",
           "longName": "DeleteScheduleRequest",
           "fullName": "spaceone.api.inventory.v1.DeleteScheduleRequest",
-          "description": "",
+          "description": "{\n   \"schedule_id\": \"sched-dfb2f6ef84bc\",\n   \"collector_id\": \"collector-2c0847644f39\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -795,7 +795,7 @@
           "fields": [
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -807,7 +807,7 @@
             },
             {
               "name": "schedule_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -819,7 +819,7 @@
             },
             {
               "name": "collector_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -883,7 +883,7 @@
           "name": "GetCollectorRequest",
           "longName": "GetCollectorRequest",
           "fullName": "spaceone.api.inventory.v1.GetCollectorRequest",
-          "description": "",
+          "description": "{\n   \"collector_id\": \"collector-f2e4e9cc7f21\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -891,7 +891,7 @@
           "fields": [
             {
               "name": "collector_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -903,7 +903,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -915,7 +915,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -931,7 +931,7 @@
           "name": "JobInfo",
           "longName": "JobInfo",
           "fullName": "spaceone.api.inventory.v1.JobInfo",
-          "description": "",
+          "description": "{\n     \"job_id\": \"job-123456789012\",\n     \"status\": \"ERROR\",\n     \"filter\": {},\n     \"total_tasks\": 2,\n     \"collector_info\": {\n         \"collector_id\": \"collector-123456789012\",\n         \"name\": \"Jenkins Collector\",\n         \"state\": \"ENABLED\",\n         \"plugin_info\": {\n             \"plugin_id\": \"plugin-jenkins-inven-collector\",\n             \"version\": \"0.1.1\"\n         },\n         \"provider\": \"jenkins\",\n         \"capability\": {},\n         \"is_public\": true\n     },\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T10:00:01.389Z\",\n     \"updated_at\": \"2022-01-01T10:00:01.389Z\",\n     \"finished_at\": \"2022-01-01T10:02:11.270Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1207,7 +1207,7 @@
           "name": "ScheduleInfo",
           "longName": "ScheduleInfo",
           "fullName": "spaceone.api.inventory.v1.ScheduleInfo",
-          "description": "",
+          "description": "{\n   \"schedule_id\": \"sched-dfb2f6ef84bc\",\n   \"name\": \"regular collection\",\n   \"collect_mode\": \"ALL\",\n   \"schedule\": {\n       \"hours\": [\n           16,\n           18,\n           20,\n           22,\n           0\n       ]\n   },\n   \"created_at\": \"2022-06-17T07:12:07.374Z\",\n   \"collector_info\": {\n       \"collector_id\": \"collector-2c0847644f39\",\n       \"name\": \"AWS stat-kwon Collector\",\n       \"state\": \"ENABLED\",\n       \"plugin_info\": {\n           \"plugin_id\": \"plugin-30d21ef75a5d\",\n           \"version\": \"1.13.13.20220610.143142\",\n           \"options\": {},\n           \"provider\": \"aws\",\n           \"metadata\": {\n               \"supported_resource_type\": [\n                   \"inventory.CloudService\",\n                   \"inventory.CloudServiceType\",\n                   \"inventory.Region\"\n               ],\n               \"supported_features\": [\n                   \"garbage_collection\"\n               ],\n               \"filter_format\": [],\n               \"supported_schedules\": [\n                   \"hours\"\n               ]\n           },\n           \"upgrade_mode\": \"MANUAL\"\n       },\n       \"priority\": 10,\n       \"tags\": {\n           \"a\": \"b\"\n       },\n       \"created_at\": \"2022-06-17T06:33:27.195Z\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"provider\": \"aws\",\n       \"capability\": {\n           \"supported_schema\": [\n               \"aws_access_key\"\n           ]\n       },\n       \"is_public\": true\n   },\n   \"filter\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1327,7 +1327,7 @@
           "name": "ScheduleQuery",
           "longName": "ScheduleQuery",
           "fullName": "spaceone.api.inventory.v1.ScheduleQuery",
-          "description": "",
+          "description": "{\n   \"collector_id\": \"collector-f2e4e9cc7f21\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1335,7 +1335,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -1347,7 +1347,7 @@
             },
             {
               "name": "collector_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1359,7 +1359,7 @@
             },
             {
               "name": "schedule_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1371,7 +1371,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1387,7 +1387,7 @@
           "name": "ScheduleRequest",
           "longName": "ScheduleRequest",
           "fullName": "spaceone.api.inventory.v1.ScheduleRequest",
-          "description": "",
+          "description": "{\n   \"collector_id\": \"collector-2c0847644f39\",\n   \"schedule_id\": \"sched-dfb2f6ef84bc\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1395,7 +1395,7 @@
           "fields": [
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1407,7 +1407,7 @@
             },
             {
               "name": "schedule_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1419,7 +1419,7 @@
             },
             {
               "name": "collector_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1495,7 +1495,7 @@
           "name": "SchedulesInfo",
           "longName": "SchedulesInfo",
           "fullName": "spaceone.api.inventory.v1.SchedulesInfo",
-          "description": "",
+          "description": "{\n   \"results\": [\n           {\n               \"schedule_id\": \"sched-572819cabe90\",\n               \"name\": \"daily\",\n               \"collect_mode\": \"ALL\",\n               \"schedule\": {\n                   \"hours\": [\n                       15,\n                       16,\n                       18,\n                       21,\n                       0,\n                       3,\n                       4,\n                       6,\n                       9,\n                       12\n                   ]\n               },\n               \"created_at\": \"2021-03-13T14:32:46.137Z\",\n               \"collector_info\": {\n                   \"collector_id\": \"collector-f2e4e9cc7f21\",\n                   \"name\": \"AWS Cloud Service Collector\",\n                   \"state\": \"ENABLED\",\n                   \"plugin_info\": {\n                       \"plugin_id\": \"plugin-30d21ef75a5d\",\n                       \"version\": \"1.13.13.20220610.143142\",\n                       \"options\": {},\n                       \"provider\": \"aws\",\n                       \"metadata\": {\n                           \"supported_features\": [\n                               \"garbage_collection\"\n                           ],\n                           \"supported_schedules\": [\n                               \"hours\"\n                           ],\n                           \"filter_format\": [],\n                           \"supported_resource_type\": [\n                               \"inventory.CloudService\",\n                               \"inventory.CloudServiceType\",\n                               \"inventory.Region\"\n                           ]\n                       },\n                       \"upgrade_mode\": \"AUTO\"\n                   },\n                   \"priority\": 10,\n                   \"tags\": {},\n                   \"created_at\": \"2021-03-08T06:49:27.876Z\",\n                   \"last_collected_at\": \"2022-06-17T06:00:07.162Z\",\n                   \"domain_id\": \"domain-58010aa2e451\",\n                   \"provider\": \"aws\",\n                   \"capability\": {\n                       \"supported_schema\": [\n                           \"aws_access_key\"\n                       ]\n                   },\n                   \"is_public\": true\n               },\n               \"filter\": {}\n           }\n   ],\n   \"total_count\": 1\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1531,7 +1531,7 @@
           "name": "UpdateCollectorRequest",
           "longName": "UpdateCollectorRequest",
           "fullName": "spaceone.api.inventory.v1.UpdateCollectorRequest",
-          "description": "",
+          "description": "{\n   \"collector_id\": \"collector-2c0847644f39\",\n   \"name\": \"New AWS Collector\",\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-30d21ef75a5d\",\n       \"version\": \"1.14.0\",\n       \"provider\": \"aws\",\n       \"upgrade_mode\": \"MANUAL\"\n   },\n   \"priority\": 10,\n   \"tags\": {\n       \"a\": \"b\"\n   }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1539,7 +1539,7 @@
           "fields": [
             {
               "name": "collector_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1551,7 +1551,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1563,7 +1563,7 @@
             },
             {
               "name": "plugin_info",
-              "description": "is_required: false\nnote: deprecated, use update_plugin",
+              "description": "+optional\nnote: deprecated, use update_plugin",
               "label": "",
               "type": "PluginInfo",
               "longType": "PluginInfo",
@@ -1575,7 +1575,7 @@
             },
             {
               "name": "priority",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -1587,7 +1587,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -1599,7 +1599,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1623,7 +1623,7 @@
           "fields": [
             {
               "name": "collector_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1635,7 +1635,7 @@
             },
             {
               "name": "version",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1647,7 +1647,7 @@
             },
             {
               "name": "options",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -1659,7 +1659,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1671,7 +1671,7 @@
             },
             {
               "name": "upgrade_mode",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "UpgradeMode",
               "longType": "UpdatePluginRequest.UpgradeMode",
@@ -1687,7 +1687,7 @@
           "name": "UpdateScheduleRequest",
           "longName": "UpdateScheduleRequest",
           "fullName": "spaceone.api.inventory.v1.UpdateScheduleRequest",
-          "description": "",
+          "description": "{\n   \"schedule_id\": \"sched-dfb2f6ef84bc\",\n   \"collector_id\": \"collector-2c0847644f39\",\n   \"name\": \"regular collection\",\n   \"collect_mode\": \"ALL\",\n   \"schedule\": {\n       \"hours\": [2, 4, 6, 8, 0]\n   },\n   \"filter\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1695,7 +1695,7 @@
           "fields": [
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1707,7 +1707,7 @@
             },
             {
               "name": "schedule_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1719,7 +1719,7 @@
             },
             {
               "name": "collector_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1731,7 +1731,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1743,7 +1743,7 @@
             },
             {
               "name": "collect_mode",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1755,7 +1755,7 @@
             },
             {
               "name": "schedule",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Scheduled",
               "longType": "Scheduled",
@@ -1767,7 +1767,7 @@
             },
             {
               "name": "filter",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -1815,7 +1815,7 @@
           "fields": [
             {
               "name": "collector_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1827,7 +1827,7 @@
             },
             {
               "name": "secret_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1839,7 +1839,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1861,7 +1861,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new Collector with information of the plugin to use. Information of the plugin includes `version`, `provider`, and `upgrade_mode`.\nrequest_example: \u003e-\n{\n\"name\": \"AWS Collector\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-30d21ef75a5d\",\n\"version\": \"1.13.13\",\n\"options\": {},\n\"provider\": \"aws\",\n\"metadata\": {\n\"filter_format\": [],\n\"supported_schedules\": [\n\"hours\"\n],\n\"supported_resource_type\": [\n\"inventory.CloudService\",\n\"inventory.CloudServiceType\",\n\"inventory.Region\"\n],\n\"supported_features\": [\n\"garbage_collection\"\n]\n},\n\"upgrade_mode\": \"AUTO\"\n},\n\"priority\": 1,\n\"tags\": {\n\"type\": \"test\"\n},\n\"is_public\": true\n}\nresponse_example: \u003e-\n{\n\"collector_id\": \"collector-2c0847644f39\",\n\"name\": \"AWS Collector\",\n\"state\": \"ENABLED\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-30d21ef75a5d\",\n\"version\": \"1.13.13\",\n\"options\": {},\n\"provider\": \"aws\",\n\"metadata\": {\n\"supported_schedules\": [\n\"hours\"\n],\n\"supported_resource_type\": [\n\"inventory.CloudService\",\n\"inventory.CloudServiceType\",\n\"inventory.Region\"\n],\n\"filter_format\": [],\n\"supported_features\": [\n\"garbage_collection\"\n]\n},\n\"upgrade_mode\": \"AUTO\"\n},\n\"priority\": 1,\n\"tags\": {\n\"type\": \"test\"\n},\n\"created_at\": \"2022-06-17T06:33:27.195Z\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"provider\": \"aws\",\n\"capability\": {\n\"supported_schema\": [\n\"aws_access_key\"\n]\n},\n\"is_public\": true\n}",
+              "description": "Creates a new Collector with information of the plugin to use. Information of the plugin includes `version`, `provider`, and `upgrade_mode`.",
               "requestType": "CreateCollectorRequest",
               "requestLongType": "CreateCollectorRequest",
               "requestFullType": "spaceone.api.inventory.v1.CreateCollectorRequest",
@@ -1884,7 +1884,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific Collector. You can make changes in Collector settings, including `name` and `tags`.\nrequest_example: \u003e-\n{\n\"collector_id\": \"collector-2c0847644f39\",\n\"name\": \"New AWS Collector\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-30d21ef75a5d\",\n\"version\": \"1.14.0\",\n\"provider\": \"aws\",\n\"upgrade_mode\": \"MANUAL\"\n},\n\"priority\": 10,\n\"tags\": {\n\"a\": \"b\"\n}\n}\nresponse_example: \u003e-\n{\n\"collector_id\": \"collector-2c0847644f39\",\n\"name\": \"New AWS Collector\",\n\"state\": \"ENABLED\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-30d21ef75a5d\",\n\"version\": \"1.14.0\",\n\"options\": {},\n\"provider\": \"aws\",\n\"metadata\": {\n\"supported_schedules\": [\n\"hours\"\n],\n\"supported_resource_type\": [\n\"inventory.CloudService\",\n\"inventory.CloudServiceType\",\n\"inventory.Region\"\n],\n\"filter_format\": [],\n\"supported_features\": [\n\"garbage_collection\"\n]\n},\n\"upgrade_mode\": \"MANUAL\"\n},\n\"priority\": 10,\n\"tags\": {\n\"a\": \"b\"\n},\n\"created_at\": \"2022-06-17T06:33:27.195Z\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"provider\": \"aws\",\n\"capability\": {\n\"supported_schema\": [\n\"aws_access_key\"\n]\n},\n\"is_public\": true\n}",
+              "description": "Updates a specific Collector. You can make changes in Collector settings, including `name` and `tags`.",
               "requestType": "UpdateCollectorRequest",
               "requestLongType": "UpdateCollectorRequest",
               "requestFullType": "spaceone.api.inventory.v1.UpdateCollectorRequest",
@@ -1907,7 +1907,7 @@
             },
             {
               "name": "update_plugin",
-              "description": "desc: Updates the plugin of a specific Collector. This method resets the plugin data in the Collector to update the `metadata`.\nrequest_example: \u003e-\n{\n\n}\nresponse_example: \u003e-\n{\n\n}",
+              "description": "Updates the plugin of a specific Collector. This method resets the plugin data in the Collector to update the `metadata`.",
               "requestType": "UpdatePluginRequest",
               "requestLongType": "UpdatePluginRequest",
               "requestFullType": "spaceone.api.inventory.v1.UpdatePluginRequest",
@@ -1930,7 +1930,7 @@
             },
             {
               "name": "verify_plugin",
-              "description": "desc: Verifies the plugin of a specific Collector. This method validates the plugin data, `version` and `endpoint`.\nrequest_example: \u003e-\n{\n\n}\nresponse_example: \u003e-\n{\n\n}",
+              "description": "Verifies the plugin of a specific Collector. This method validates the plugin data, `version` and `endpoint`.",
               "requestType": "VerifyPluginRequest",
               "requestLongType": "VerifyPluginRequest",
               "requestFullType": "spaceone.api.inventory.v1.VerifyPluginRequest",
@@ -1953,7 +1953,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific Collector. You must specify the `collector_id` of the Collector to delete.\nrequest_example: \u003e-\n{\n\n}\nresponse_example: \u003e-\n{\n\n}",
+              "description": "Deletes a specific Collector. You must specify the `collector_id` of the Collector to delete.",
               "requestType": "CollectorRequest",
               "requestLongType": "CollectorRequest",
               "requestFullType": "spaceone.api.inventory.v1.CollectorRequest",
@@ -1976,7 +1976,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific Collector. Prints detailed information about the Collector, including its state, basic information, and the plugin information used for cloud resource collection.\nrequest_example: \u003e-\n{\n\"collector_id\": \"collector-f2e4e9cc7f21\"\n}",
+              "description": "Gets a specific Collector. Prints detailed information about the Collector, including its state, basic information, and the plugin information used for cloud resource collection.",
               "requestType": "GetCollectorRequest",
               "requestLongType": "GetCollectorRequest",
               "requestFullType": "spaceone.api.inventory.v1.GetCollectorRequest",
@@ -1999,7 +1999,7 @@
             },
             {
               "name": "enable",
-              "description": "desc: Enables a specific Collector. By enabling a Collector, you can communicate with a plugin used for collection.\nrequest_example: \u003e-\n{\n\"collector_id\": \"collector-f2e4e9cc7f21\"\n}\nresponse_example: \u003e-\n{\n\"collector_id\": \"collector-f2e4e9cc7f21\",\n\"name\": \"AWS Cloud Service Collector\",\n\"state\": \"ENABLED\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-30d21ef75a5d\",\n\"version\": \"1.14.10\",\n\"options\": {},\n\"provider\": \"aws\",\n\"metadata\": {\n\"supported_schedules\": [\n\"hours\"\n],\n\"filter_format\": [],\n\"supported_resource_type\": [\n\"inventory.CloudService\",\n\"inventory.CloudServiceType\",\n\"inventory.Region\"\n],\n\"supported_features\": [\n\"garbage_collection\"\n]\n},\n\"upgrade_mode\": \"AUTO\"\n},\n\"priority\": 10,\n\"tags\": {},\n\"provider\": \"aws\",\n\"capability\": {\n\"supported_schema\": [\n\"aws_access_key\"\n]\n},\n\"is_public\": true,\n\"created_at\": \"2021-03-08T06:49:27.876Z\",\n\"last_collected_at\": \"2022-06-17T06:00:07.162Z\",\n\"domain_id\": \"domain-58010aa2e451\"\n}",
+              "description": "Enables a specific Collector. By enabling a Collector, you can communicate with a plugin used for collection.",
               "requestType": "CollectorRequest",
               "requestLongType": "CollectorRequest",
               "requestFullType": "spaceone.api.inventory.v1.CollectorRequest",
@@ -2022,7 +2022,7 @@
             },
             {
               "name": "disable",
-              "description": "desc: Disables a specific Collector. By disabling a Collector, you cannot communicate with a plugin used for collection.\nrequest_example: \u003e-\n{\n\"collector_id\": \"collector-f2e4e9cc7f21\"\n}\nresponse_example: \u003e-\n{\n\"collector_id\": \"collector-f2e4e9cc7f21\",\n\"name\": \"AWS Cloud Service Collector\",\n\"state\": \"ENABLED\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-30d21ef75a5d\",\n\"version\": \"1.14.10\",\n\"options\": {},\n\"provider\": \"aws\",\n\"metadata\": {\n\"supported_schedules\": [\n\"hours\"\n],\n\"filter_format\": [],\n\"supported_resource_type\": [\n\"inventory.CloudService\",\n\"inventory.CloudServiceType\",\n\"inventory.Region\"\n],\n\"supported_features\": [\n\"garbage_collection\"\n]\n},\n\"upgrade_mode\": \"AUTO\"\n},\n\"priority\": 10,\n\"tags\": {},\n\"provider\": \"aws\",\n\"capability\": {\n\"supported_schema\": [\n\"aws_access_key\"\n]\n},\n\"is_public\": true,\n\"created_at\": \"2021-03-08T06:49:27.876Z\",\n\"last_collected_at\": \"2022-06-17T06:00:07.162Z\",\n\"domain_id\": \"domain-58010aa2e451\"\n}",
+              "description": "Disables a specific Collector. By disabling a Collector, you cannot communicate with a plugin used for collection.",
               "requestType": "CollectorRequest",
               "requestLongType": "CollectorRequest",
               "requestFullType": "spaceone.api.inventory.v1.CollectorRequest",
@@ -2045,7 +2045,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all Collectors. You can use a query to get a filtered list of Collectors.\nrequest_example: \u003e-\n{\n\"query\": {}\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"job_id\": \"job-3b124006c2d2\",\n\"status\": \"SUCCESS\",\n\"filter\": {},\n\"total_tasks\": 2,\n\"collector_info\": {\n\"collector_id\": \"collector-accd02663b3d\",\n\"name\": \"openstack-collector\",\n\"state\": \"ENABLED\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-openstack-inven-collector\",\n\"version\": \"0.4.2.20220616.134758\"\n},\n\"provider\": \"openstack\",\n\"capability\": {\n\"supported_schema\": [\n\"openstack_credentials\"\n]\n},\n\"is_public\": true\n},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-17T08:00:01.225Z\",\n\"updated_at\": \"2022-06-17T08:00:01.225Z\",\n\"finished_at\": \"2022-06-17T08:00:15.197Z\"\n},\n{\n\"job_id\": \"job-587a3d3b4db3\",\n\"status\": \"SUCCESS\",\n\"filter\": {},\n\"total_tasks\": 3,\n\"collector_info\": {\n\"collector_id\": \"collector-2c0847644f39\",\n\"name\": \"AWS stat-kwon Collector\",\n\"state\": \"ENABLED\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-30d21ef75a5d\",\n\"version\": \"1.13.13.20220610.143142\"\n},\n\"provider\": \"aws\",\n\"capability\": {\n\"supported_schema\": [\n\"aws_access_key\"\n]\n},\n\"is_public\": true\n},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-17T08:00:00.407Z\",\n\"updated_at\": \"2022-06-17T08:00:00.407Z\",\n\"finished_at\": \"2022-06-17T08:07:32.023Z\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all Collectors. You can use a query to get a filtered list of Collectors.",
               "requestType": "CollectorQuery",
               "requestLongType": "CollectorQuery",
               "requestFullType": "spaceone.api.inventory.v1.CollectorQuery",
@@ -2091,7 +2091,7 @@
             },
             {
               "name": "collect",
-              "description": "desc: ''\nrequest_example: \u003e-\n{\n\n}\nresponse_example: \u003e-\n{\n\n}",
+              "description": "",
               "requestType": "CollectRequest",
               "requestLongType": "CollectRequest",
               "requestFullType": "spaceone.api.inventory.v1.CollectRequest",
@@ -2114,7 +2114,7 @@
             },
             {
               "name": "add_schedule",
-              "description": "desc: Adds a schedule to a specific Collector. When specifying the time to collect, the schedule is assigned in units of one hour.\u001cThe specified schedule is applied every day.\nrequest_example: \u003e-\n{\n\"collector_id\": \"collector-2c0847644f39\",\n\"name\": \"regular collection\",\n\"schedule\": {\n\"hours\": [16, 18, 20, 22, 0]\n}\n}\nresponse_example: \u003e-\n{\n\"schedule_id\": \"sched-dfb2f6ef84bc\",\n\"name\": \"regular collection\",\n\"collect_mode\": \"ALL\",\n\"schedule\": {\n\"hours\": [\n16,\n18,\n20,\n22,\n0\n]\n},\n\"created_at\": \"2022-06-17T07:12:07.374Z\",\n\"collector_info\": {\n\"collector_id\": \"collector-2c0847644f39\",\n\"name\": \"AWS stat-kwon Collector\",\n\"state\": \"ENABLED\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-30d21ef75a5d\",\n\"version\": \"1.13.13.20220610.143142\",\n\"options\": {},\n\"provider\": \"aws\",\n\"metadata\": {\n\"supported_resource_type\": [\n\"inventory.CloudService\",\n\"inventory.CloudServiceType\",\n\"inventory.Region\"\n],\n\"supported_features\": [\n\"garbage_collection\"\n],\n\"filter_format\": [],\n\"supported_schedules\": [\n\"hours\"\n]\n},\n\"upgrade_mode\": \"MANUAL\"\n},\n\"priority\": 10,\n\"tags\": {\n\"a\": \"b\"\n},\n\"created_at\": \"2022-06-17T06:33:27.195Z\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"provider\": \"aws\",\n\"capability\": {\n\"supported_schema\": [\n\"aws_access_key\"\n]\n},\n\"is_public\": true\n},\n\"filter\": {}\n}",
+              "description": "Adds a schedule to a specific Collector. When specifying the time to collect, the schedule is assigned in units of one hour.\u001cThe specified schedule is applied every day.",
               "requestType": "CreateScheduleRequest",
               "requestLongType": "CreateScheduleRequest",
               "requestFullType": "spaceone.api.inventory.v1.CreateScheduleRequest",
@@ -2137,7 +2137,7 @@
             },
             {
               "name": "get_schedule",
-              "description": "desc: Gets a specific schedule set in a specific Collector. You must specify the `collector_id` of the Collector and the `schedule_id` of the schedule.\nrequest_example: \u003e-\n{\n\"collector_id\": \"collector-2c0847644f39\",\n\"schedule_id\": \"sched-dfb2f6ef84bc\"\n}\nresponse_example: \u003e-\n{\n\"schedule_id\": \"sched-dfb2f6ef84bc\",\n\"name\": \"regular collection\",\n\"collect_mode\": \"ALL\",\n\"schedule\": {\n\"hours\": [\n16,\n18,\n20,\n22,\n0\n]\n},\n\"created_at\": \"2022-06-17T07:12:07.374Z\",\n\"collector_info\": {\n\"collector_id\": \"collector-2c0847644f39\",\n\"name\": \"AWS stat-kwon Collector\",\n\"state\": \"ENABLED\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-30d21ef75a5d\",\n\"version\": \"1.13.13.20220610.143142\",\n\"options\": {},\n\"provider\": \"aws\",\n\"metadata\": {\n\"supported_features\": [\n\"garbage_collection\"\n],\n\"filter_format\": [],\n\"supported_schedules\": [\n\"hours\"\n],\n\"supported_resource_type\": [\n\"inventory.CloudService\",\n\"inventory.CloudServiceType\",\n\"inventory.Region\"\n]\n},\n\"upgrade_mode\": \"MANUAL\"\n},\n\"priority\": 10,\n\"tags\": {\n\"a\": \"b\"\n},\n\"created_at\": \"2022-06-17T06:33:27.195Z\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"provider\": \"aws\",\n\"capability\": {\n\"supported_schema\": [\n\"aws_access_key\"\n]\n},\n\"is_public\": true\n},\n\"filter\": {}\n}",
+              "description": "Gets a specific schedule set in a specific Collector. You must specify the `collector_id` of the Collector and the `schedule_id` of the schedule.",
               "requestType": "ScheduleRequest",
               "requestLongType": "ScheduleRequest",
               "requestFullType": "spaceone.api.inventory.v1.ScheduleRequest",
@@ -2160,7 +2160,7 @@
             },
             {
               "name": "update_schedule",
-              "description": "desc: Updates a specific schedule of the Collector. You can make changes in schedule settings, including `name` and collection time.\nrequest_example: \u003e-\n{\n\"schedule_id\": \"sched-dfb2f6ef84bc\",\n\"collector_id\": \"collector-2c0847644f39\",\n\"name\": \"regular collection\",\n\"collect_mode\": \"ALL\",\n\"schedule\": {\n\"hours\": [2, 4, 6, 8, 0]\n},\n\"filter\": {}\n}\nresponse_example: \u003e-\n{\n\"schedule_id\": \"sched-dfb2f6ef84bc\",\n\"name\": \"regular collection\",\n\"collect_mode\": \"ALL\",\n\"schedule\": {\n\"hours\": [\n2,\n4,\n6,\n8,\n0\n]\n},\n\"created_at\": \"2022-06-17T07:12:07.374Z\",\n\"collector_info\": {\n\"collector_id\": \"collector-2c0847644f39\",\n\"name\": \"AWS stat-kwon Collector\",\n\"state\": \"ENABLED\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-30d21ef75a5d\",\n\"version\": \"1.13.13.20220610.143142\",\n\"options\": {},\n\"provider\": \"aws\",\n\"metadata\": {\n\"supported_features\": [\n\"garbage_collection\"\n],\n\"supported_schedules\": [\n\"hours\"\n],\n\"supported_resource_type\": [\n\"inventory.CloudService\",\n\"inventory.CloudServiceType\",\n\"inventory.Region\"\n],\n\"filter_format\": []\n},\n\"upgrade_mode\": \"MANUAL\"\n},\n\"priority\": 10,\n\"tags\": {\n\"a\": \"b\"\n},\n\"created_at\": \"2022-06-17T06:33:27.195Z\",\n\"last_collected_at\": \"2022-06-17T08:00:00.793Z\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"provider\": \"aws\",\n\"capability\": {\n\"supported_schema\": [\n\"aws_access_key\"\n]\n},\n\"is_public\": true\n},\n\"filter\": {}\n}",
+              "description": "Updates a specific schedule of the Collector. You can make changes in schedule settings, including `name` and collection time.",
               "requestType": "UpdateScheduleRequest",
               "requestLongType": "UpdateScheduleRequest",
               "requestFullType": "spaceone.api.inventory.v1.UpdateScheduleRequest",
@@ -2183,7 +2183,7 @@
             },
             {
               "name": "delete_schedule",
-              "description": "desc: Deletes a specific schedule of the Collector. You must specify the `schedule_id` of the schedule to delete.\nrequest_example: \u003e-\n{\n\"schedule_id\": \"sched-dfb2f6ef84bc\",\n\"collector_id\": \"collector-2c0847644f39\"\n}",
+              "description": "Deletes a specific schedule of the Collector. You must specify the `schedule_id` of the schedule to delete.",
               "requestType": "DeleteScheduleRequest",
               "requestLongType": "DeleteScheduleRequest",
               "requestFullType": "spaceone.api.inventory.v1.DeleteScheduleRequest",
@@ -2206,7 +2206,7 @@
             },
             {
               "name": "list_schedules",
-              "description": "desc: Gets a list of all schedules set in a specific Collector. You must specify the `collector_id` of the Collector to get the schedule from.\nrequest_example: \u003e-\n{\n\"collector_id\": \"collector-f2e4e9cc7f21\"\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"schedule_id\": \"sched-572819cabe90\",\n\"name\": \"daily\",\n\"collect_mode\": \"ALL\",\n\"schedule\": {\n\"hours\": [\n15,\n16,\n18,\n21,\n0,\n3,\n4,\n6,\n9,\n12\n]\n},\n\"created_at\": \"2021-03-13T14:32:46.137Z\",\n\"collector_info\": {\n\"collector_id\": \"collector-f2e4e9cc7f21\",\n\"name\": \"AWS Cloud Service Collector\",\n\"state\": \"ENABLED\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-30d21ef75a5d\",\n\"version\": \"1.13.13.20220610.143142\",\n\"options\": {},\n\"provider\": \"aws\",\n\"metadata\": {\n\"supported_features\": [\n\"garbage_collection\"\n],\n\"supported_schedules\": [\n\"hours\"\n],\n\"filter_format\": [],\n\"supported_resource_type\": [\n\"inventory.CloudService\",\n\"inventory.CloudServiceType\",\n\"inventory.Region\"\n]\n},\n\"upgrade_mode\": \"AUTO\"\n},\n\"priority\": 10,\n\"tags\": {},\n\"created_at\": \"2021-03-08T06:49:27.876Z\",\n\"last_collected_at\": \"2022-06-17T06:00:07.162Z\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"provider\": \"aws\",\n\"capability\": {\n\"supported_schema\": [\n\"aws_access_key\"\n]\n},\n\"is_public\": true\n},\n\"filter\": {}\n}\n],\n\"total_count\": 1\n}",
+              "description": "Gets a list of all schedules set in a specific Collector. You must specify the `collector_id` of the Collector to get the schedule from.",
               "requestType": "ScheduleQuery",
               "requestLongType": "ScheduleQuery",
               "requestFullType": "spaceone.api.inventory.v1.ScheduleQuery",

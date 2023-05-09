@@ -102,373 +102,63 @@ class CollectorServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """
-        desc: Creates a new Collector with information of the plugin to use. Information of the plugin includes `version`, `provider`, and `upgrade_mode`.
-        request_example: >-
-        {
-        "name": "AWS Collector",
-        "plugin_info": {
-        "plugin_id": "plugin-30d21ef75a5d",
-        "version": "1.13.13",
-        "options": {},
-        "provider": "aws",
-        "metadata": {
-        "filter_format": [],
-        "supported_schedules": [
-        "hours"
-        ],
-        "supported_resource_type": [
-        "inventory.CloudService",
-        "inventory.CloudServiceType",
-        "inventory.Region"
-        ],
-        "supported_features": [
-        "garbage_collection"
-        ]
-        },
-        "upgrade_mode": "AUTO"
-        },
-        "priority": 1,
-        "tags": {
-        "type": "test"
-        },
-        "is_public": true
-        }
-        response_example: >-
-        {
-        "collector_id": "collector-2c0847644f39",
-        "name": "AWS Collector",
-        "state": "ENABLED",
-        "plugin_info": {
-        "plugin_id": "plugin-30d21ef75a5d",
-        "version": "1.13.13",
-        "options": {},
-        "provider": "aws",
-        "metadata": {
-        "supported_schedules": [
-        "hours"
-        ],
-        "supported_resource_type": [
-        "inventory.CloudService",
-        "inventory.CloudServiceType",
-        "inventory.Region"
-        ],
-        "filter_format": [],
-        "supported_features": [
-        "garbage_collection"
-        ]
-        },
-        "upgrade_mode": "AUTO"
-        },
-        "priority": 1,
-        "tags": {
-        "type": "test"
-        },
-        "created_at": "2022-06-17T06:33:27.195Z",
-        "domain_id": "domain-58010aa2e451",
-        "provider": "aws",
-        "capability": {
-        "supported_schema": [
-        "aws_access_key"
-        ]
-        },
-        "is_public": true
-        }
+        """Creates a new Collector with information of the plugin to use. Information of the plugin includes `version`, `provider`, and `upgrade_mode`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Updates a specific Collector. You can make changes in Collector settings, including `name` and `tags`.
-        request_example: >-
-        {
-        "collector_id": "collector-2c0847644f39",
-        "name": "New AWS Collector",
-        "plugin_info": {
-        "plugin_id": "plugin-30d21ef75a5d",
-        "version": "1.14.0",
-        "provider": "aws",
-        "upgrade_mode": "MANUAL"
-        },
-        "priority": 10,
-        "tags": {
-        "a": "b"
-        }
-        }
-        response_example: >-
-        {
-        "collector_id": "collector-2c0847644f39",
-        "name": "New AWS Collector",
-        "state": "ENABLED",
-        "plugin_info": {
-        "plugin_id": "plugin-30d21ef75a5d",
-        "version": "1.14.0",
-        "options": {},
-        "provider": "aws",
-        "metadata": {
-        "supported_schedules": [
-        "hours"
-        ],
-        "supported_resource_type": [
-        "inventory.CloudService",
-        "inventory.CloudServiceType",
-        "inventory.Region"
-        ],
-        "filter_format": [],
-        "supported_features": [
-        "garbage_collection"
-        ]
-        },
-        "upgrade_mode": "MANUAL"
-        },
-        "priority": 10,
-        "tags": {
-        "a": "b"
-        },
-        "created_at": "2022-06-17T06:33:27.195Z",
-        "domain_id": "domain-58010aa2e451",
-        "provider": "aws",
-        "capability": {
-        "supported_schema": [
-        "aws_access_key"
-        ]
-        },
-        "is_public": true
-        }
+        """Updates a specific Collector. You can make changes in Collector settings, including `name` and `tags`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update_plugin(self, request, context):
-        """
-        desc: Updates the plugin of a specific Collector. This method resets the plugin data in the Collector to update the `metadata`.
-        request_example: >-
-        {
-
-        }
-        response_example: >-
-        {
-
-        }
+        """Updates the plugin of a specific Collector. This method resets the plugin data in the Collector to update the `metadata`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def verify_plugin(self, request, context):
-        """
-        desc: Verifies the plugin of a specific Collector. This method validates the plugin data, `version` and `endpoint`.
-        request_example: >-
-        {
-
-        }
-        response_example: >-
-        {
-
-        }
+        """Verifies the plugin of a specific Collector. This method validates the plugin data, `version` and `endpoint`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """
-        desc: Deletes a specific Collector. You must specify the `collector_id` of the Collector to delete.
-        request_example: >-
-        {
-
-        }
-        response_example: >-
-        {
-
-        }
+        """Deletes a specific Collector. You must specify the `collector_id` of the Collector to delete.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific Collector. Prints detailed information about the Collector, including its state, basic information, and the plugin information used for cloud resource collection.
-        request_example: >-
-        {
-        "collector_id": "collector-f2e4e9cc7f21"
-        }
+        """Gets a specific Collector. Prints detailed information about the Collector, including its state, basic information, and the plugin information used for cloud resource collection.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def enable(self, request, context):
-        """
-        desc: Enables a specific Collector. By enabling a Collector, you can communicate with a plugin used for collection.
-        request_example: >-
-        {
-        "collector_id": "collector-f2e4e9cc7f21"
-        }
-        response_example: >-
-        {
-        "collector_id": "collector-f2e4e9cc7f21",
-        "name": "AWS Cloud Service Collector",
-        "state": "ENABLED",
-        "plugin_info": {
-        "plugin_id": "plugin-30d21ef75a5d",
-        "version": "1.14.10",
-        "options": {},
-        "provider": "aws",
-        "metadata": {
-        "supported_schedules": [
-        "hours"
-        ],
-        "filter_format": [],
-        "supported_resource_type": [
-        "inventory.CloudService",
-        "inventory.CloudServiceType",
-        "inventory.Region"
-        ],
-        "supported_features": [
-        "garbage_collection"
-        ]
-        },
-        "upgrade_mode": "AUTO"
-        },
-        "priority": 10,
-        "tags": {},
-        "provider": "aws",
-        "capability": {
-        "supported_schema": [
-        "aws_access_key"
-        ]
-        },
-        "is_public": true,
-        "created_at": "2021-03-08T06:49:27.876Z",
-        "last_collected_at": "2022-06-17T06:00:07.162Z",
-        "domain_id": "domain-58010aa2e451"
-        }
+        """Enables a specific Collector. By enabling a Collector, you can communicate with a plugin used for collection.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def disable(self, request, context):
-        """
-        desc: Disables a specific Collector. By disabling a Collector, you cannot communicate with a plugin used for collection.
-        request_example: >-
-        {
-        "collector_id": "collector-f2e4e9cc7f21"
-        }
-        response_example: >-
-        {
-        "collector_id": "collector-f2e4e9cc7f21",
-        "name": "AWS Cloud Service Collector",
-        "state": "ENABLED",
-        "plugin_info": {
-        "plugin_id": "plugin-30d21ef75a5d",
-        "version": "1.14.10",
-        "options": {},
-        "provider": "aws",
-        "metadata": {
-        "supported_schedules": [
-        "hours"
-        ],
-        "filter_format": [],
-        "supported_resource_type": [
-        "inventory.CloudService",
-        "inventory.CloudServiceType",
-        "inventory.Region"
-        ],
-        "supported_features": [
-        "garbage_collection"
-        ]
-        },
-        "upgrade_mode": "AUTO"
-        },
-        "priority": 10,
-        "tags": {},
-        "provider": "aws",
-        "capability": {
-        "supported_schema": [
-        "aws_access_key"
-        ]
-        },
-        "is_public": true,
-        "created_at": "2021-03-08T06:49:27.876Z",
-        "last_collected_at": "2022-06-17T06:00:07.162Z",
-        "domain_id": "domain-58010aa2e451"
-        }
+        """Disables a specific Collector. By disabling a Collector, you cannot communicate with a plugin used for collection.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all Collectors. You can use a query to get a filtered list of Collectors.
-        request_example: >-
-        {
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "job_id": "job-3b124006c2d2",
-        "status": "SUCCESS",
-        "filter": {},
-        "total_tasks": 2,
-        "collector_info": {
-        "collector_id": "collector-accd02663b3d",
-        "name": "openstack-collector",
-        "state": "ENABLED",
-        "plugin_info": {
-        "plugin_id": "plugin-openstack-inven-collector",
-        "version": "0.4.2.20220616.134758"
-        },
-        "provider": "openstack",
-        "capability": {
-        "supported_schema": [
-        "openstack_credentials"
-        ]
-        },
-        "is_public": true
-        },
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-17T08:00:01.225Z",
-        "updated_at": "2022-06-17T08:00:01.225Z",
-        "finished_at": "2022-06-17T08:00:15.197Z"
-        },
-        {
-        "job_id": "job-587a3d3b4db3",
-        "status": "SUCCESS",
-        "filter": {},
-        "total_tasks": 3,
-        "collector_info": {
-        "collector_id": "collector-2c0847644f39",
-        "name": "AWS stat-kwon Collector",
-        "state": "ENABLED",
-        "plugin_info": {
-        "plugin_id": "plugin-30d21ef75a5d",
-        "version": "1.13.13.20220610.143142"
-        },
-        "provider": "aws",
-        "capability": {
-        "supported_schema": [
-        "aws_access_key"
-        ]
-        },
-        "is_public": true
-        },
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-17T08:00:00.407Z",
-        "updated_at": "2022-06-17T08:00:00.407Z",
-        "finished_at": "2022-06-17T08:07:32.023Z"
-        }
-        ],
-        "total_count": 2
-        }
+        """Gets a list of all Collectors. You can use a query to get a filtered list of Collectors.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -481,323 +171,41 @@ class CollectorServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def collect(self, request, context):
-        """
-        desc: ''
-        request_example: >-
-        {
-
-        }
-        response_example: >-
-        {
-
-        }
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def add_schedule(self, request, context):
-        """
-        desc: Adds a schedule to a specific Collector. When specifying the time to collect, the schedule is assigned in units of one hour.The specified schedule is applied every day.
-        request_example: >-
-        {
-        "collector_id": "collector-2c0847644f39",
-        "name": "regular collection",
-        "schedule": {
-        "hours": [16, 18, 20, 22, 0]
-        }
-        }
-        response_example: >-
-        {
-        "schedule_id": "sched-dfb2f6ef84bc",
-        "name": "regular collection",
-        "collect_mode": "ALL",
-        "schedule": {
-        "hours": [
-        16,
-        18,
-        20,
-        22,
-        0
-        ]
-        },
-        "created_at": "2022-06-17T07:12:07.374Z",
-        "collector_info": {
-        "collector_id": "collector-2c0847644f39",
-        "name": "AWS stat-kwon Collector",
-        "state": "ENABLED",
-        "plugin_info": {
-        "plugin_id": "plugin-30d21ef75a5d",
-        "version": "1.13.13.20220610.143142",
-        "options": {},
-        "provider": "aws",
-        "metadata": {
-        "supported_resource_type": [
-        "inventory.CloudService",
-        "inventory.CloudServiceType",
-        "inventory.Region"
-        ],
-        "supported_features": [
-        "garbage_collection"
-        ],
-        "filter_format": [],
-        "supported_schedules": [
-        "hours"
-        ]
-        },
-        "upgrade_mode": "MANUAL"
-        },
-        "priority": 10,
-        "tags": {
-        "a": "b"
-        },
-        "created_at": "2022-06-17T06:33:27.195Z",
-        "domain_id": "domain-58010aa2e451",
-        "provider": "aws",
-        "capability": {
-        "supported_schema": [
-        "aws_access_key"
-        ]
-        },
-        "is_public": true
-        },
-        "filter": {}
-        }
+        """Adds a schedule to a specific Collector. When specifying the time to collect, the schedule is assigned in units of one hour.The specified schedule is applied every day.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get_schedule(self, request, context):
-        """
-        desc: Gets a specific schedule set in a specific Collector. You must specify the `collector_id` of the Collector and the `schedule_id` of the schedule.
-        request_example: >-
-        {
-        "collector_id": "collector-2c0847644f39",
-        "schedule_id": "sched-dfb2f6ef84bc"
-        }
-        response_example: >-
-        {
-        "schedule_id": "sched-dfb2f6ef84bc",
-        "name": "regular collection",
-        "collect_mode": "ALL",
-        "schedule": {
-        "hours": [
-        16,
-        18,
-        20,
-        22,
-        0
-        ]
-        },
-        "created_at": "2022-06-17T07:12:07.374Z",
-        "collector_info": {
-        "collector_id": "collector-2c0847644f39",
-        "name": "AWS stat-kwon Collector",
-        "state": "ENABLED",
-        "plugin_info": {
-        "plugin_id": "plugin-30d21ef75a5d",
-        "version": "1.13.13.20220610.143142",
-        "options": {},
-        "provider": "aws",
-        "metadata": {
-        "supported_features": [
-        "garbage_collection"
-        ],
-        "filter_format": [],
-        "supported_schedules": [
-        "hours"
-        ],
-        "supported_resource_type": [
-        "inventory.CloudService",
-        "inventory.CloudServiceType",
-        "inventory.Region"
-        ]
-        },
-        "upgrade_mode": "MANUAL"
-        },
-        "priority": 10,
-        "tags": {
-        "a": "b"
-        },
-        "created_at": "2022-06-17T06:33:27.195Z",
-        "domain_id": "domain-58010aa2e451",
-        "provider": "aws",
-        "capability": {
-        "supported_schema": [
-        "aws_access_key"
-        ]
-        },
-        "is_public": true
-        },
-        "filter": {}
-        }
+        """Gets a specific schedule set in a specific Collector. You must specify the `collector_id` of the Collector and the `schedule_id` of the schedule.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update_schedule(self, request, context):
-        """
-        desc: Updates a specific schedule of the Collector. You can make changes in schedule settings, including `name` and collection time.
-        request_example: >-
-        {
-        "schedule_id": "sched-dfb2f6ef84bc",
-        "collector_id": "collector-2c0847644f39",
-        "name": "regular collection",
-        "collect_mode": "ALL",
-        "schedule": {
-        "hours": [2, 4, 6, 8, 0]
-        },
-        "filter": {}
-        }
-        response_example: >-
-        {
-        "schedule_id": "sched-dfb2f6ef84bc",
-        "name": "regular collection",
-        "collect_mode": "ALL",
-        "schedule": {
-        "hours": [
-        2,
-        4,
-        6,
-        8,
-        0
-        ]
-        },
-        "created_at": "2022-06-17T07:12:07.374Z",
-        "collector_info": {
-        "collector_id": "collector-2c0847644f39",
-        "name": "AWS stat-kwon Collector",
-        "state": "ENABLED",
-        "plugin_info": {
-        "plugin_id": "plugin-30d21ef75a5d",
-        "version": "1.13.13.20220610.143142",
-        "options": {},
-        "provider": "aws",
-        "metadata": {
-        "supported_features": [
-        "garbage_collection"
-        ],
-        "supported_schedules": [
-        "hours"
-        ],
-        "supported_resource_type": [
-        "inventory.CloudService",
-        "inventory.CloudServiceType",
-        "inventory.Region"
-        ],
-        "filter_format": []
-        },
-        "upgrade_mode": "MANUAL"
-        },
-        "priority": 10,
-        "tags": {
-        "a": "b"
-        },
-        "created_at": "2022-06-17T06:33:27.195Z",
-        "last_collected_at": "2022-06-17T08:00:00.793Z",
-        "domain_id": "domain-58010aa2e451",
-        "provider": "aws",
-        "capability": {
-        "supported_schema": [
-        "aws_access_key"
-        ]
-        },
-        "is_public": true
-        },
-        "filter": {}
-        }
+        """Updates a specific schedule of the Collector. You can make changes in schedule settings, including `name` and collection time.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete_schedule(self, request, context):
-        """
-        desc: Deletes a specific schedule of the Collector. You must specify the `schedule_id` of the schedule to delete.
-        request_example: >-
-        {
-        "schedule_id": "sched-dfb2f6ef84bc",
-        "collector_id": "collector-2c0847644f39"
-        }
+        """Deletes a specific schedule of the Collector. You must specify the `schedule_id` of the schedule to delete.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list_schedules(self, request, context):
-        """
-        desc: Gets a list of all schedules set in a specific Collector. You must specify the `collector_id` of the Collector to get the schedule from.
-        request_example: >-
-        {
-        "collector_id": "collector-f2e4e9cc7f21"
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "schedule_id": "sched-572819cabe90",
-        "name": "daily",
-        "collect_mode": "ALL",
-        "schedule": {
-        "hours": [
-        15,
-        16,
-        18,
-        21,
-        0,
-        3,
-        4,
-        6,
-        9,
-        12
-        ]
-        },
-        "created_at": "2021-03-13T14:32:46.137Z",
-        "collector_info": {
-        "collector_id": "collector-f2e4e9cc7f21",
-        "name": "AWS Cloud Service Collector",
-        "state": "ENABLED",
-        "plugin_info": {
-        "plugin_id": "plugin-30d21ef75a5d",
-        "version": "1.13.13.20220610.143142",
-        "options": {},
-        "provider": "aws",
-        "metadata": {
-        "supported_features": [
-        "garbage_collection"
-        ],
-        "supported_schedules": [
-        "hours"
-        ],
-        "filter_format": [],
-        "supported_resource_type": [
-        "inventory.CloudService",
-        "inventory.CloudServiceType",
-        "inventory.Region"
-        ]
-        },
-        "upgrade_mode": "AUTO"
-        },
-        "priority": 10,
-        "tags": {},
-        "created_at": "2021-03-08T06:49:27.876Z",
-        "last_collected_at": "2022-06-17T06:00:07.162Z",
-        "domain_id": "domain-58010aa2e451",
-        "provider": "aws",
-        "capability": {
-        "supported_schema": [
-        "aws_access_key"
-        ]
-        },
-        "is_public": true
-        },
-        "filter": {}
-        }
-        ],
-        "total_count": 1
-        }
+        """Gets a list of all schedules set in a specific Collector. You must specify the `collector_id` of the Collector to get the schedule from.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

@@ -33,55 +33,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NoteClient interface {
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	Create(ctx context.Context, in *CreateNoteRequest, opts ...grpc.CallOption) (*NoteInfo, error)
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	Update(ctx context.Context, in *UpdateNoteRequest, opts ...grpc.CallOption) (*NoteInfo, error)
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	Delete(ctx context.Context, in *NoteRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	Get(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*NoteInfo, error)
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	List(ctx context.Context, in *NoteQuery, opts ...grpc.CallOption) (*NotesInfo, error)
 	Stat(ctx context.Context, in *NoteStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -152,55 +107,10 @@ func (c *noteClient) Stat(ctx context.Context, in *NoteStatQuery, opts ...grpc.C
 // All implementations must embed UnimplementedNoteServer
 // for forward compatibility
 type NoteServer interface {
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	Create(context.Context, *CreateNoteRequest) (*NoteInfo, error)
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	Update(context.Context, *UpdateNoteRequest) (*NoteInfo, error)
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	Delete(context.Context, *NoteRequest) (*empty.Empty, error)
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	Get(context.Context, *GetNoteRequest) (*NoteInfo, error)
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	List(context.Context, *NoteQuery) (*NotesInfo, error)
 	Stat(context.Context, *NoteStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedNoteServer()

@@ -176,7 +176,7 @@ type SetBoardCategoriesRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	BoardId string `protobuf:"bytes,1,opt,name=board_id,json=boardId,proto3" json:"board_id,omitempty"`
-	// +optioanl
+	// +optional
 	Categories []string `protobuf:"bytes,2,rep,name=categories,proto3" json:"categories,omitempty"`
 }
 

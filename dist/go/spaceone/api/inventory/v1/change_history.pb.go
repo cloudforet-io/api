@@ -132,22 +132,20 @@ type ChangeHistoryQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
-	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: true
-	CloudServiceId string `protobuf:"bytes,2,opt,name=cloud_service_id,json=cloudServiceId,proto3" json:"cloud_service_id,omitempty"`
-	// is_required: false
+	// +optional
+	Query          *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	CloudServiceId string    `protobuf:"bytes,2,opt,name=cloud_service_id,json=cloudServiceId,proto3" json:"cloud_service_id,omitempty"`
+	// +optional
 	Action ChangeHistoryQuery_RecordAction `protobuf:"varint,3,opt,name=action,proto3,enum=spaceone.api.inventory.v1.ChangeHistoryQuery_RecordAction" json:"action,omitempty"`
-	// is_required: false
+	// +optional
 	UserId string `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	// is_required: false
+	// +optional
 	CollectorId string `protobuf:"bytes,5,opt,name=collector_id,json=collectorId,proto3" json:"collector_id,omitempty"`
-	// is_required: false
+	// +optional
 	JobId string `protobuf:"bytes,6,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	// is_required: false
+	// +optional
 	UpdatedBy string `protobuf:"bytes,7,opt,name=updated_by,json=updatedBy,proto3" json:"updated_by,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,8,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	DomainId  string `protobuf:"bytes,8,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *ChangeHistoryQuery) Reset() {
@@ -426,12 +424,9 @@ type ChangeHistoryStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: true
-	CloudServiceId string `protobuf:"bytes,3,opt,name=cloud_service_id,json=cloudServiceId,proto3" json:"cloud_service_id,omitempty"`
+	Query          *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	DomainId       string              `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	CloudServiceId string              `protobuf:"bytes,3,opt,name=cloud_service_id,json=cloudServiceId,proto3" json:"cloud_service_id,omitempty"`
 }
 
 func (x *ChangeHistoryStatQuery) Reset() {

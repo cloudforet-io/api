@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/inventory/v1/resource_group.proto",
-      "description": "desc: A ResourceGroup is a group of `resource`s from various `provider`s.",
+      "description": "A ResourceGroup is a group of `resource`s from various `provider`s.",
       "package": "spaceone.api.inventory.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -15,7 +15,7 @@
           "name": "CreateResourceGroupRequest",
           "longName": "CreateResourceGroupRequest",
           "fullName": "spaceone.api.inventory.v1.CreateResourceGroupRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"azure-group-1\",\n   \"resources\": [\n       {\n           \"resource_type\": \"inventory.Server?provider=azure\u0026cloud_service_group=Compute\u0026cloud_service_type=VirtualMachine\",\n           \"filter\": [\n               {\"o\": \"eq\", \"k\": \"provider\", \"v\": \"azure\"},\n               {\"o\": \"eq\", \"k\": \"cloud_service_group\", \"v\": \"Compute\"},\n               {\"o\": \"eq\", \"k\": \"cloud_service_type\", \"v\": \"VirtualMachine\"}\n           ]\n       }\n   ],\n   \"options\": {\n       \"raw_filter\": []\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -23,7 +23,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -35,7 +35,7 @@
             },
             {
               "name": "resources",
-              "description": "is_required: true",
+              "description": "",
               "label": "repeated",
               "type": "Resource",
               "longType": "Resource",
@@ -47,7 +47,7 @@
             },
             {
               "name": "options",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -59,7 +59,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -71,7 +71,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -83,7 +83,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -99,7 +99,7 @@
           "name": "GetResourceGroupRequest",
           "longName": "GetResourceGroupRequest",
           "fullName": "spaceone.api.inventory.v1.GetResourceGroupRequest",
-          "description": "",
+          "description": "{\n   \"resource_group_id\": \"rsc-grp-aa3c4ca465b2\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -107,7 +107,7 @@
           "fields": [
             {
               "name": "resource_group_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -119,7 +119,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -131,7 +131,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -155,7 +155,7 @@
           "fields": [
             {
               "name": "resource_type",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -167,7 +167,7 @@
             },
             {
               "name": "filter",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "ListValue",
               "longType": "google.protobuf.ListValue",
@@ -179,7 +179,7 @@
             },
             {
               "name": "keyword",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -195,7 +195,7 @@
           "name": "ResourceGroupInfo",
           "longName": "ResourceGroupInfo",
           "fullName": "spaceone.api.inventory.v1.ResourceGroupInfo",
-          "description": "",
+          "description": "{\n   \"resource_group_id\": \"rsc-grp-7d46a1fc7738\",\n   \"name\": \"azure-group-1\",\n   \"resources\": [\n       {\n           \"resource_type\": \"inventory.Server?provider=azure\u0026cloud_service_group=Compute\u0026cloud_service_type=VirtualMachine\",\n           \"filter\": [\n               {\n                   \"k\": \"provider\",\n                   \"v\": \"azure\",\n                   \"o\": \"eq\"\n               },\n               {\n                   \"k\": \"cloud_service_group\",\n                   \"v\": \"Compute\",\n                   \"o\": \"eq\"\n               },\n               {\n                   \"k\": \"cloud_service_type\",\n                   \"v\": \"VirtualMachine\",\n                   \"o\": \"eq\"\n               }\n           ]\n       }\n   ],\n   \"options\": {\n       \"raw_filter\": []\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-23T01:50:33.152Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -303,7 +303,7 @@
           "name": "ResourceGroupQuery",
           "longName": "ResourceGroupQuery",
           "fullName": "spaceone.api.inventory.v1.ResourceGroupQuery",
-          "description": "",
+          "description": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"name\",\n               \"value\": [\n                   \"azure-vmss-group\",\n                   \"stset\"\n               ],\n               \"operator\": \"in\"\n           }\n       ]\n   }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -311,7 +311,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -323,7 +323,7 @@
             },
             {
               "name": "resource_group_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -335,7 +335,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -347,7 +347,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -359,7 +359,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -375,7 +375,7 @@
           "name": "ResourceGroupRequest",
           "longName": "ResourceGroupRequest",
           "fullName": "spaceone.api.inventory.v1.ResourceGroupRequest",
-          "description": "",
+          "description": "{\n   \"resource_group_id\": \"rsc-grp-aa3c4ca465b2\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -383,7 +383,7 @@
           "fields": [
             {
               "name": "resource_group_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -395,7 +395,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -419,7 +419,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -431,7 +431,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -447,7 +447,7 @@
           "name": "ResourceGroupsInfo",
           "longName": "ResourceGroupsInfo",
           "fullName": "spaceone.api.inventory.v1.ResourceGroupsInfo",
-          "description": "",
+          "description": "{\n   \"results\": [\n       {\n           \"resource_group_id\": \"rsc-grp-4c86e071e0f0\",\n           \"name\": \"azure-vmss-group\",\n           \"resources\": [\n               {\n                  \"resource_type\": \"inventory.CloudService?provider=azure\u0026cloud_service_group=Compute\u0026cloud_service_type=VmScaleSet\",\n                   \"filter\": [\n                       {\n                           \"k\": \"provider\",\n                           \"v\": \"azure\",\n                           \"o\": \"eq\"\n                       },\n                       {\n                           \"v\": \"Compute\",\n                           \"k\": \"cloud_service_group\",\n                           \"o\": \"eq\"\n                       },\n                       {\n                           \"k\": \"cloud_service_type\",\n                           \"v\": \"VmScaleSet\",\n                           \"o\": \"eq\"\n                       }\n                   ]\n               }\n           ],\n           \"options\": {\n               \"raw_filter\": []\n           },\n           \"tags\": {},\n           \"project_id\": \"project-9074eea97d7e\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2021-04-23T03:23:40.037Z\"\n       },\n       {\n           \"resource_group_id\": \"rsc-grp-aa3c4ca465b2\",\n           \"name\": \"stset\",\n           \"resources\": [\n               {\n                   \"resource_type\": \"inventory.Server?provider=aws\u0026cloud_service_group=EC2\u0026cloud_service_type=Instance\",\n                   \"filter\": [\n                       {\n                           \"k\": \"provider\",\n                           \"v\": \"aws\",\n                           \"o\": \"eq\"\n                       },\n                       {\n                           \"v\": \"EC2\",\n                           \"k\": \"cloud_service_group\",\n                           \"o\": \"eq\"\n                       },\n                       {\n                           \"k\": \"cloud_service_type\",\n                           \"v\": \"Instance\",\n                           \"o\": \"eq\"\n                       }\n                   ],\n                   \"keyword\": \"test\"\n               }\n           ],\n           \"options\": {\n               \"raw_filter\": [\n                   [\n                       \"test\"\n                   ]\n               ]\n           },\n           \"tags\": {},\n           \"project_id\": \"project-18655561c535\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2021-06-01T10:23:20.537Z\"\n       }\n   ],\n   \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -483,7 +483,7 @@
           "name": "UpdateResourceGroupRequest",
           "longName": "UpdateResourceGroupRequest",
           "fullName": "spaceone.api.inventory.v1.UpdateResourceGroupRequest",
-          "description": "",
+          "description": "{\n   \"resource_group_id\": \"rsc-grp-7d46a1fc7738\",\n   \"name\": \"azure-grp-test2\",\n   \"resources\": [\n       {\n           \"resource_type\": \"inventory.Server?provider=azure\u0026cloud_service_group=Compute\u0026cloud_service_type=VirtualMachine\",\n           \"filter\": [\n               {\"k\": \"provider\", \"v\": \"azure\", \"o\": \"eq\"},\n               {\"o\": \"eq\", \"k\": \"cloud_service_group\", \"v\": \"Compute\"},\n               {\"v\": \"VirtualMachine\", \"k\": \"cloud_service_type\", \"o\": \"eq\"}\n           ]\n       }\n   ],\n   \"options\": {},\n   \"tags\": {\n       \"b\": \"c\"\n   }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -491,7 +491,7 @@
           "fields": [
             {
               "name": "resource_group_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -503,7 +503,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -515,7 +515,7 @@
             },
             {
               "name": "resources",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "Resource",
               "longType": "Resource",
@@ -527,7 +527,7 @@
             },
             {
               "name": "options",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -539,7 +539,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -551,7 +551,7 @@
             },
             {
               "name": "release_project",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -563,7 +563,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -575,7 +575,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -597,7 +597,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new ResourceGroup. You can integrate `resource`s from different `provider`s by specifying the cloud resources to be grouped in the `resources` parameter.\nrequest_example: \u003e-\n{\n\"name\": \"azure-group-1\",\n\"resources\": [\n{\n\"resource_type\": \"inventory.Server?provider=azure\u0026cloud_service_group=Compute\u0026cloud_service_type=VirtualMachine\",\n\"filter\": [\n{\"o\": \"eq\", \"k\": \"provider\", \"v\": \"azure\"},\n{\"o\": \"eq\", \"k\": \"cloud_service_group\", \"v\": \"Compute\"},\n{\"o\": \"eq\", \"k\": \"cloud_service_type\", \"v\": \"VirtualMachine\"}\n]\n}\n],\n\"options\": {\n\"raw_filter\": []\n},\n\"tags\": {\n\"a\": \"b\"\n}\n}\nresponse_example: \u003e-\n{\n\"resource_group_id\": \"rsc-grp-7d46a1fc7738\",\n\"name\": \"azure-group-1\",\n\"resources\": [\n{\n\"resource_type\": \"inventory.Server?provider=azure\u0026cloud_service_group=Compute\u0026cloud_service_type=VirtualMachine\",\n\"filter\": [\n{\n\"k\": \"provider\",\n\"v\": \"azure\",\n\"o\": \"eq\"\n},\n{\n\"k\": \"cloud_service_group\",\n\"v\": \"Compute\",\n\"o\": \"eq\"\n},\n{\n\"k\": \"cloud_service_type\",\n\"v\": \"VirtualMachine\",\n\"o\": \"eq\"\n}\n]\n}\n],\n\"options\": {\n\"raw_filter\": []\n},\n\"tags\": {\n\"a\": \"b\"\n},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-23T01:50:33.152Z\"\n}",
+              "description": "Creates a new ResourceGroup. You can integrate `resource`s from different `provider`s by specifying the cloud resources to be grouped in the `resources` parameter.",
               "requestType": "CreateResourceGroupRequest",
               "requestLongType": "CreateResourceGroupRequest",
               "requestFullType": "spaceone.api.inventory.v1.CreateResourceGroupRequest",
@@ -620,7 +620,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific ResourceGroup. You can make changes in ResourceGroup settings, including `name`, `tags`, and grouped resources in the ResourceGroup.\nrequest_example: \u003e-\n{\n\"resource_group_id\": \"rsc-grp-7d46a1fc7738\",\n\"name\": \"azure-grp-test2\",\n\"resources\": [\n{\n\"resource_type\": \"inventory.Server?provider=azure\u0026cloud_service_group=Compute\u0026cloud_service_type=VirtualMachine\",\n\"filter\": [\n{\"k\": \"provider\", \"v\": \"azure\", \"o\": \"eq\"},\n{\"o\": \"eq\", \"k\": \"cloud_service_group\", \"v\": \"Compute\"},\n{\"v\": \"VirtualMachine\", \"k\": \"cloud_service_type\", \"o\": \"eq\"}\n]\n}\n],\n\"options\": {},\n\"tags\": {\n\"b\": \"c\"\n}\n}\nresponse_example: \u003e-\n{\n\"resource_group_id\": \"rsc-grp-7d46a1fc7738\",\n\"name\": \"azure-grp-test2\",\n\"resources\": [\n{\n\"resource_type\": \"inventory.Server?provider=azure\u0026cloud_service_group=Compute\u0026cloud_service_type=VirtualMachine\",\n\"filter\": [\n{\n\"k\": \"provider\",\n\"v\": \"azure\",\n\"o\": \"eq\"\n},\n{\n\"k\": \"cloud_service_group\",\n\"v\": \"Compute\",\n\"o\": \"eq\"\n},\n{\n\"k\": \"cloud_service_type\",\n\"v\": \"VirtualMachine\",\n\"o\": \"eq\"\n}\n]\n}\n],\n\"options\": {\n\"raw_filter\": []\n},\n\"tags\": {\n\"a\": \"b\"\n},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-23T01:50:33.152Z\"\n}",
+              "description": "Updates a specific ResourceGroup. You can make changes in ResourceGroup settings, including `name`, `tags`, and grouped resources in the ResourceGroup.",
               "requestType": "UpdateResourceGroupRequest",
               "requestLongType": "UpdateResourceGroupRequest",
               "requestFullType": "spaceone.api.inventory.v1.UpdateResourceGroupRequest",
@@ -643,7 +643,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific ResourceGroup. You must specify the `resource_group_id` of the ResourceGroup to delete.\nrequest_example: \u003e-\n{\n\"resource_group_id\": \"rsc-grp-aa3c4ca465b2\"\n}",
+              "description": "Deletes a specific ResourceGroup. You must specify the `resource_group_id` of the ResourceGroup to delete.",
               "requestType": "ResourceGroupRequest",
               "requestLongType": "ResourceGroupRequest",
               "requestFullType": "spaceone.api.inventory.v1.ResourceGroupRequest",
@@ -666,7 +666,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific ResourceGroup. Prints detailed information about the ResourceGroup, including the information of the grouped cloud resources.\nrequest_example: \u003e-\n{\n\"resource_group_id\": \"rsc-grp-aa3c4ca465b2\"\n}\nresponse_example: \u003e-\n{\n\"resource_group_id\": \"rsc-grp-aa3c4ca465b2\",\n\"name\": \"stset\",\n\"resources\": [\n{\n\"resource_type\": \"inventory.Server?provider=aws\u0026cloud_service_group=EC2\u0026cloud_service_type=Instance\",\n\"filter\": [\n{\n\"k\": \"provider\",\n\"o\": \"eq\",\n\"v\": \"aws\"\n},\n{\n\"v\": \"EC2\",\n\"k\": \"cloud_service_group\",\n\"o\": \"eq\"\n},\n{\n\"o\": \"eq\",\n\"k\": \"cloud_service_type\",\n\"v\": \"Instance\"\n}\n],\n\"keyword\": \"test\"\n}\n],\n\"options\": {\n\"raw_filter\": []\n},\n\"tags\": {},\n\"project_id\": \"project-18655561c535\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2021-06-01T10:23:20.537Z\"\n}",
+              "description": "Gets a specific ResourceGroup. Prints detailed information about the ResourceGroup, including the information of the grouped cloud resources.",
               "requestType": "GetResourceGroupRequest",
               "requestLongType": "GetResourceGroupRequest",
               "requestFullType": "spaceone.api.inventory.v1.GetResourceGroupRequest",
@@ -689,7 +689,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all ResourceGroups. You can use a query to get a filtered list of ResourceGroups.\nrequest_example: \u003e-\n{\n\"query\": {\n\"filter\": [\n{\n\"key\": \"name\",\n\"value\": [\n\"azure-vmss-group\",\n\"stset\"\n],\n\"operator\": \"in\"\n}\n]\n}\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"resource_group_id\": \"rsc-grp-4c86e071e0f0\",\n\"name\": \"azure-vmss-group\",\n\"resources\": [\n{\n\"resource_type\": \"inventory.CloudService?provider=azure\u0026cloud_service_group=Compute\u0026cloud_service_type=VmScaleSet\",\n\"filter\": [\n{\n\"k\": \"provider\",\n\"v\": \"azure\",\n\"o\": \"eq\"\n},\n{\n\"v\": \"Compute\",\n\"k\": \"cloud_service_group\",\n\"o\": \"eq\"\n},\n{\n\"k\": \"cloud_service_type\",\n\"v\": \"VmScaleSet\",\n\"o\": \"eq\"\n}\n]\n}\n],\n\"options\": {\n\"raw_filter\": []\n},\n\"tags\": {},\n\"project_id\": \"project-9074eea97d7e\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2021-04-23T03:23:40.037Z\"\n},\n{\n\"resource_group_id\": \"rsc-grp-aa3c4ca465b2\",\n\"name\": \"stset\",\n\"resources\": [\n{\n\"resource_type\": \"inventory.Server?provider=aws\u0026cloud_service_group=EC2\u0026cloud_service_type=Instance\",\n\"filter\": [\n{\n\"k\": \"provider\",\n\"v\": \"aws\",\n\"o\": \"eq\"\n},\n{\n\"v\": \"EC2\",\n\"k\": \"cloud_service_group\",\n\"o\": \"eq\"\n},\n{\n\"k\": \"cloud_service_type\",\n\"v\": \"Instance\",\n\"o\": \"eq\"\n}\n],\n\"keyword\": \"test\"\n}\n],\n\"options\": {\n\"raw_filter\": [\n[\n\"test\"\n]\n]\n},\n\"tags\": {},\n\"project_id\": \"project-18655561c535\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2021-06-01T10:23:20.537Z\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all ResourceGroups. You can use a query to get a filtered list of ResourceGroups.",
               "requestType": "ResourceGroupQuery",
               "requestLongType": "ResourceGroupQuery",
               "requestFullType": "spaceone.api.inventory.v1.ResourceGroupQuery",

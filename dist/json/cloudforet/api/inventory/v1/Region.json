@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/inventory/v1/region.proto",
-      "description": "desc: A Region is a resource storing regional information from each cloud service provider. Regional data stored by the resource includes the latitude and longitude of the region.",
+      "description": "A Region is a resource storing regional information from each cloud service provider. Regional data stored by the resource includes the latitude and longitude of the region.",
       "package": "spaceone.api.inventory.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -15,7 +15,7 @@
           "name": "CreateRegionRequest",
           "longName": "CreateRegionRequest",
           "fullName": "spaceone.api.inventory.v1.CreateRegionRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"Asia Pacific (Seoul)\",\n   \"region_code\": \"ap-northeast-2\",\n   \"provider\": \"aws\",\n   \"tags\": {\n       \"continent\": \"asis_pacific\",\n       \"longitude\": \"73.013805\",\n       \"latitude\": \"19.147428\"\n   }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -23,7 +23,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -35,7 +35,7 @@
             },
             {
               "name": "region_code",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -47,7 +47,7 @@
             },
             {
               "name": "provider",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -59,7 +59,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -71,7 +71,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -87,7 +87,7 @@
           "name": "GetRegionRequest",
           "longName": "GetRegionRequest",
           "fullName": "spaceone.api.inventory.v1.GetRegionRequest",
-          "description": "",
+          "description": "{\n   \"region_id\": \"region-f803eb00b567\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -95,7 +95,7 @@
           "fields": [
             {
               "name": "region_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -107,7 +107,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -119,7 +119,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -135,7 +135,7 @@
           "name": "RegionInfo",
           "longName": "RegionInfo",
           "fullName": "spaceone.api.inventory.v1.RegionInfo",
-          "description": "",
+          "description": "{\n   \"region_id\": \"region-e41deed3c939\",\n   \"name\": \"Asia Pacific (Seoul)\",\n   \"region_key\": \"aws.ap-northeast-2\",\n   \"region_code\": \"ap-northeast-2\",\n   \"provider\": \"aws\",\n   \"tags\": {\n       \"continent\": \"asia_pacific\",\n       \"longitude\": \"73.013805\",\n       \"latitude\": \"19.147428\"\n   },\n   \"domain_id\": \"domain-x1b3c34v432\",\n   \"created_at\": \"2021-11-18T13:07:31.382Z\",\n   \"updated_at\": \"2022-06-17T00:07:35.469Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -255,7 +255,7 @@
           "name": "RegionQuery",
           "longName": "RegionQuery",
           "fullName": "spaceone.api.inventory.v1.RegionQuery",
-          "description": "",
+          "description": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"name\",\n               \"value\": \"Asia Pacific\",\n               \"operator\": \"contain\"\n           }\n       ]\n   }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -263,7 +263,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -275,7 +275,7 @@
             },
             {
               "name": "region_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -287,7 +287,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -299,7 +299,7 @@
             },
             {
               "name": "region_key",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -311,7 +311,7 @@
             },
             {
               "name": "region_code",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -323,7 +323,7 @@
             },
             {
               "name": "provider",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -335,7 +335,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -351,7 +351,7 @@
           "name": "RegionRequest",
           "longName": "RegionRequest",
           "fullName": "spaceone.api.inventory.v1.RegionRequest",
-          "description": "",
+          "description": "{\n   \"region_id\": \"region-e41deed3c939\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -359,7 +359,7 @@
           "fields": [
             {
               "name": "region_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -371,7 +371,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -395,7 +395,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -407,7 +407,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -423,7 +423,7 @@
           "name": "RegionsInfo",
           "longName": "RegionsInfo",
           "fullName": "spaceone.api.inventory.v1.RegionsInfo",
-          "description": "",
+          "description": "{\n   \"results\": [\n       {\n           \"region_id\": \"region-e41deed3c939\",\n           \"name\": \"Asia Pacific (Mumbai)\",\n           \"region_key\": \"aws.ap-south-1\",\n           \"region_code\": \"ap-south-1\",\n           \"provider\": \"aws\",\n           \"tags\": {\n               \"continent\": \"asia_pacific\",\n               \"longitude\": \"73.013805\",\n               \"latitude\": \"19.147428\"\n           },\n           \"domain_id\": \"domain-x1b3c34v432\",\n           \"created_at\": \"2021-11-18T13:07:31.382Z\",\n           \"updated_at\": \"2022-06-17T00:07:35.469Z\"\n       },\n       {\n           \"region_id\": \"region-f803eb00b567\",\n           \"name\": \"Asia Pacific (Seoul)\",\n           \"region_key\": \"aws.ap-northeast-2\",\n           \"region_code\": \"ap-northeast-2\",\n           \"provider\": \"aws\",\n           \"tags\": {\n               \"latitude\": \"6.34545\",\n               \"continent\": \"asia_pacific\",\n               \"longitude\": \"5.6433213\"\n           },\n           \"domain_id\": \"domain-x1b3c34v432\",\n           \"created_at\": \"2022-03-21T09:08:31.961Z\",\n           \"updated_at\": \"2022-06-17T00:07:35.749Z\"\n       }\n   ],\n   \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -459,7 +459,7 @@
           "name": "UpdateRegionRequest",
           "longName": "UpdateRegionRequest",
           "fullName": "spaceone.api.inventory.v1.UpdateRegionRequest",
-          "description": "",
+          "description": "{\n   \"region_id\": \"region-e41deed3c939\",\n   \"name\": \"Region home\",\n   \"tags\": {\n       \"latitude\": \"6.34545\",\n       \"continent\": \"asia_pacific\",\n       \"longitude\": \"5.6433213\"\n   }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -467,7 +467,7 @@
           "fields": [
             {
               "name": "region_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -479,7 +479,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -491,7 +491,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -503,7 +503,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -525,7 +525,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new Region. As the parameter `region_key`, which is automatically created when a Region is created, is in a form of `{provider}.{region_code}`, it is unique regardless of providers. You can also specify the latitude, longitude, and continent information in `tags`.\nrequest_example: \u003e-\n{\n\"name\": \"Asia Pacific (Seoul)\",\n\"region_code\": \"ap-northeast-2\",\n\"provider\": \"aws\",\n\"tags\": {\n\"continent\": \"asis_pacific\",\n\"longitude\": \"73.013805\",\n\"latitude\": \"19.147428\"\n}\n}\nresponse_example: \u003e-\n{\n\"region_id\": \"region-e41deed3c939\",\n\"name\": \"Asia Pacific (Seoul)\",\n\"region_key\": \"aws.ap-northeast-2\",\n\"region_code\": \"ap-northeast-2\",\n\"provider\": \"aws\",\n\"tags\": {\n\"continent\": \"asia_pacific\",\n\"longitude\": \"73.013805\",\n\"latitude\": \"19.147428\"\n},\n\"domain_id\": \"domain-x1b3c34v432\",\n\"created_at\": \"2021-11-18T13:07:31.382Z\",\n\"updated_at\": \"2022-06-17T00:07:35.469Z\"\n}",
+              "description": "Creates a new Region. As the parameter `region_key`, which is automatically created when a Region is created, is in a form of `{provider}.{region_code}`, it is unique regardless of providers. You can also specify the latitude, longitude, and continent information in `tags`.",
               "requestType": "CreateRegionRequest",
               "requestLongType": "CreateRegionRequest",
               "requestFullType": "spaceone.api.inventory.v1.CreateRegionRequest",
@@ -548,7 +548,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific Region. You can make changes in Region settings, including `name` and `tags`. The `tags` contain the continent, latitude, and longitude.\nrequest_example: \u003e-\n{\n\"region_id\": \"region-e41deed3c939\",\n\"name\": \"Region home\",\n\"tags\": {\n\"latitude\": \"6.34545\",\n\"continent\": \"asia_pacific\",\n\"longitude\": \"5.6433213\"\n}\n}\nresponse_example: \u003e-\n{\n\"region_id\": \"region-e41deed3c939\",\n\"name\": \"Region home\",\n\"region_key\": \"aws.ap-northeast-2\",\n\"region_code\": \"ap-northeast-2\",\n\"provider\": \"aws\",\n\"tags\": {\n\"latitude\": \"6.34545\",\n\"continent\": \"asia_pacific\",\n\"longitude\": \"5.6433213\"\n},\n\"domain_id\": \"domain-x1b3c34v432\",\n\"created_at\": \"2021-11-18T13:07:31.382Z\",\n\"updated_at\": \"2022-06-17T00:07:35.469Z\"\n}",
+              "description": "Updates a specific Region. You can make changes in Region settings, including `name` and `tags`. The `tags` contain the continent, latitude, and longitude.",
               "requestType": "UpdateRegionRequest",
               "requestLongType": "UpdateRegionRequest",
               "requestFullType": "spaceone.api.inventory.v1.UpdateRegionRequest",
@@ -571,7 +571,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific Region. You must specify the `region_id` of the Region to delete.\nrequest_example: \u003e-\n{\n\"region_id\": \"region-e41deed3c939\"\n}",
+              "description": "Deletes a specific Region. You must specify the `region_id` of the Region to delete.",
               "requestType": "RegionRequest",
               "requestLongType": "RegionRequest",
               "requestFullType": "spaceone.api.inventory.v1.RegionRequest",
@@ -594,7 +594,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific Region. Prints detailed information about the Region, including `name`, `region_code`, and a location coordinate.\nrequest_example: \u003e-\n{\n\"region_id\": \"region-f803eb00b567\"\n}\nresponse_example: \u003e-\n{\n\"region_id\": \"region-f803eb00b567\",\n\"name\": \"Asia Pacific (Seoul)\",\n\"region_key\": \"aws.ap-northeast-2\",\n\"region_code\": \"ap-northeast-2\",\n\"provider\": \"aws\",\n\"tags\": {\n\"latitude\": \"6.34545\",\n\"continent\": \"asia_pacific\",\n\"longitude\": \"5.6433213\"\n},\n\"domain_id\": \"domain-x1b3c34v432\",\n\"created_at\": \"2022-03-21T09:08:31.961Z\",\n\"updated_at\": \"2022-06-17T00:07:35.749Z\"\n}",
+              "description": "Gets a specific Region. Prints detailed information about the Region, including `name`, `region_code`, and a location coordinate.",
               "requestType": "GetRegionRequest",
               "requestLongType": "GetRegionRequest",
               "requestFullType": "spaceone.api.inventory.v1.GetRegionRequest",
@@ -617,7 +617,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all Regions. You can use a query to get a filtered list of Regions.\nrequest_example: \u003e-\n{\n\"query\": {\n\"filter\": [\n{\n\"key\": \"name\",\n\"value\": \"Asia Pacific\",\n\"operator\": \"contain\"\n}\n]\n}\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"region_id\": \"region-e41deed3c939\",\n\"name\": \"Asia Pacific (Mumbai)\",\n\"region_key\": \"aws.ap-south-1\",\n\"region_code\": \"ap-south-1\",\n\"provider\": \"aws\",\n\"tags\": {\n\"continent\": \"asia_pacific\",\n\"longitude\": \"73.013805\",\n\"latitude\": \"19.147428\"\n},\n\"domain_id\": \"domain-x1b3c34v432\",\n\"created_at\": \"2021-11-18T13:07:31.382Z\",\n\"updated_at\": \"2022-06-17T00:07:35.469Z\"\n},\n{\n\"region_id\": \"region-f803eb00b567\",\n\"name\": \"Asia Pacific (Seoul)\",\n\"region_key\": \"aws.ap-northeast-2\",\n\"region_code\": \"ap-northeast-2\",\n\"provider\": \"aws\",\n\"tags\": {\n\"latitude\": \"6.34545\",\n\"continent\": \"asia_pacific\",\n\"longitude\": \"5.6433213\"\n},\n\"domain_id\": \"domain-x1b3c34v432\",\n\"created_at\": \"2022-03-21T09:08:31.961Z\",\n\"updated_at\": \"2022-06-17T00:07:35.749Z\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all Regions. You can use a query to get a filtered list of Regions.",
               "requestType": "RegionQuery",
               "requestLongType": "RegionQuery",
               "requestFullType": "spaceone.api.inventory.v1.RegionQuery",

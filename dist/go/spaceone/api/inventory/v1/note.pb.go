@@ -24,6 +24,9 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// {
+//
+// }
 type CreateNoteRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -90,6 +93,9 @@ func (x *CreateNoteRequest) GetDomainId() string {
 	return ""
 }
 
+// {
+//
+// }
 type UpdateNoteRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -156,6 +162,9 @@ func (x *UpdateNoteRequest) GetDomainId() string {
 	return ""
 }
 
+// {
+//
+// }
 type NoteRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -213,6 +222,9 @@ func (x *NoteRequest) GetDomainId() string {
 	return ""
 }
 
+// {
+//
+// }
 type GetNoteRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -279,6 +291,9 @@ func (x *GetNoteRequest) GetOnly() []string {
 	return nil
 }
 
+// {
+//
+// }
 type NoteQuery struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -372,6 +387,9 @@ func (x *NoteQuery) GetDomainId() string {
 	return ""
 }
 
+// {
+//
+// }
 type NoteInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

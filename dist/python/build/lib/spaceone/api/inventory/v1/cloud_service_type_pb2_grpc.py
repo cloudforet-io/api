@@ -52,204 +52,35 @@ class CloudServiceTypeServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """
-        desc: Creates a new CloudServiceType. You must specify the `name`, `provider`, and `group` parameters to create a CloudServiceType. One or several CloudServiceTypes exist in a specific `group`, and each CloudServiceType is identified by the `name` parameter.
-        request_example: >-
-        {
-        "name": "API-TEST",
-        "provider": "aws",
-        "group": "APIGateway",
-        "service_code": "AmazonApiGateway",
-        "is_primary": true,
-        "is_major": true,
-        "resource_type": "inventory.CloudService",
-        "metadata": {},
-        "labels": [
-        "Networking"
-        ],
-        "tags": {
-        "a": "b"
-        }
-        }
-        response_example: >-
-        {
-        "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8",
-        "name": "API-TEST",
-        "provider": "aws",
-        "group": "APIGateway",
-        "cloud_service_type_key": "aws.APIGateway.API-TEST",
-        "service_code": "AmazonApiGateway",
-        "is_primary": true,
-        "is_major": true,
-        "resource_type": "inventory.CloudService",
-        "metadata": {},
-        "tags": {
-        "a": "b"
-        },
-        "labels": [
-        "Networking"
-        ],
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-22T01:38:16.301Z",
-        "updated_at": "2022-06-22T01:38:16.301Z"
-        }
+        """Creates a new CloudServiceType. You must specify the `name`, `provider`, and `group` parameters to create a CloudServiceType. One or several CloudServiceTypes exist in a specific `group`, and each CloudServiceType is identified by the `name` parameter.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Updates a specific CloudServiceType. You can make changes in CloudServiceType settings, except for `name`, `provider` and `group`. In particular, you can set the CloudServiceType's priority in a `group`.
-        request_example: >-
-        {
-        "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8",
-        "service_code": "AmazonApi",
-        "metadata": {},
-        "labels": [
-        "Networking2"
-        ],
-        "tags": {
-        "b": "c"
-        }
-        }
-        response_example: >-
-        {
-        "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8",
-        "name": "API-TEST",
-        "provider": "aws",
-        "group": "APIGateway",
-        "cloud_service_type_key": "aws.APIGateway.API-TEST",
-        "service_code": "AmazonApi",
-        "is_primary": true,
-        "is_major": true,
-        "resource_type": "inventory.CloudService",
-        "metadata": {},
-        "tags": {
-        "b": "c"
-        },
-        "labels": [
-        "Networking2"
-        ],
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-22T01:38:16.301Z",
-        "updated_at": "2022-06-22T02:12:11.184Z"
-        }
+        """Updates a specific CloudServiceType. You can make changes in CloudServiceType settings, except for `name`, `provider` and `group`. In particular, you can set the CloudServiceType's priority in a `group`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """
-        desc: Deletes a specific CloudServiceType. You must specify the `cloud_service_type_id` of the CloudServiceType to delete.
-        request_example: >-
-        {
-        "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8"
-        }
+        """Deletes a specific CloudServiceType. You must specify the `cloud_service_type_id` of the CloudServiceType to delete.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific CloudServiceType. Prints detailed information about the CloudServiceType.
-        request_example: >-
-        {
-        "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8"
-        }
-        response_example: >-
-        {
-        "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8",
-        "name": "API-TEST",
-        "provider": "aws",
-        "group": "APIGateway",
-        "cloud_service_type_key": "aws.APIGateway.API-TEST",
-        "service_code": "AmazonApi",
-        "is_primary": true,
-        "is_major": true,
-        "resource_type": "inventory.CloudService",
-        "metadata": {},
-        "tags": {
-        "b": "c"
-        },
-        "labels": [
-        "Networking2"
-        ],
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-22T01:38:16.301Z",
-        "updated_at": "2022-06-22T02:12:11.184Z"
-        }
+        """Gets a specific CloudServiceType. Prints detailed information about the CloudServiceType.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all CloudServiceTypes. You can use a query to get a filtered list of CloudServiceTypes.
-        request_example: >-
-        {
-        "query": {
-        "filter": [
-        {
-        "key": "provider",
-        "value": "aws",
-        "operator": "eq"
-        }
-        ]
-        }
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "cloud_service_type_id": "cloud-svc-type-7e1c113b39ff",
-        "name": "API",
-        "provider": "aws",
-        "group": "APIGateway",
-        "cloud_service_type_key": "aws.APIGateway.API",
-        "service_code": "AmazonApiGateway",
-        "is_primary": true,
-        "is_major": true,
-        "resource_type": "inventory.CloudService",
-        "metadata": {
-        },
-        "tags": {
-        "spaceone:icon": "https://spaceone.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/aws/Amazon-API-Gateway.svg"
-        },
-        "labels": [
-        "Networking"
-        ],
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2021-06-03T02:29:32.690Z",
-        "updated_at": "2022-06-22T00:04:45.477Z"
-        },
-        {
-        "cloud_service_type_id": "cloud-svc-type-64a0de601371",
-        "name": "Certificate",
-        "provider": "aws",
-        "group": "CertificateManager",
-        "cloud_service_type_key": "aws.CertificateManager.Certificate",
-        "service_code": "AWSCertificateManager",
-        "is_primary": true,
-        "resource_type": "inventory.CloudService",
-        "metadata": {
-        },
-        "tags": {
-        "spaceone:icon": "https://spaceone.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/aws/AWS-Certificate-Manager.svg"
-        },
-        "labels": [
-        "Security"
-        ],
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2021-06-03T02:29:53.052Z",
-        "updated_at": "2022-06-22T00:05:41.252Z"
-        }
-        ],
-        "total_count": 2
-        }
+        """Gets a list of all CloudServiceTypes. You can use a query to get a filtered list of CloudServiceTypes.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
