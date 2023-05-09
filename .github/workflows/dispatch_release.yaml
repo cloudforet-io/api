@@ -1,4 +1,4 @@
-ame: "[Dispatch] Release"
+name: "[Dispatch] Release"
 
 on:
   workflow_dispatch:
@@ -40,6 +40,7 @@ jobs:
 
       - name: Make all and Packaging
         run: |
+          make clean
           make all
           sudo chmod -R 777 dist
           cd dist/python
