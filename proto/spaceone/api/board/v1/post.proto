@@ -1,6 +1,4 @@
-/*
-desc: A Post is a message published on a Board. It also provides notifications to Projects affected by the Post.
- */
+//A Post is a message published on a Board. It also provides notifications to Projects affected by the Post.
 syntax = "proto3";
 
 package spaceone.api.board.v1;
@@ -13,203 +11,55 @@ import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 
 service Post {
-    /*
-    desc: Creates a new Post under a specific Board. You must specify the `board_id`, `title`, and `contents`. The parameter `category` is not required but can be set in the scope of `categories` specified in the parent Board. You can make the new Post pinned or pop up by adjusting the parameters.
-    request_example: >-
-      {
-          "board_id": "board-123456789012",
-          "category": "developer",
-          "title": "title",
-          "contents": "This is contents.",
-          "options": {"is_popup": true},
-          "writer": "user1",
-          "domain_id": "domain-123456789012"
-      }
-    response_example: >-
-      {
-          "board_id": "board-123456789012",
-          "post_id": "post-123456789012",
-          "post_type": "INTERNAL",
-          "category": "developer",
-          "title": "title",
-          "contents": "This is contents.",
-          "options": {
-              "is_pinned": false,
-              "is_popup": true
-          },
-          "view_count": 0,
-          "writer": "user1",
-          "scope": "DOMAIN",
-          "domain_id": "domain-123456789012",
-          "user_id": "user1@email.com",
-          "created_at": "2022-01-01T01:06:23.732Z",
-          "updated_at": "2022-01-01T01:06:23.732Z"
-      }
-     */
+
+    //Creates a new Post under a specific Board. You must specify the `board_id`, `title`, and `contents`. The parameter `category` is not required but can be set in the scope of `categories` specified in the parent Board. You can make the new Post pinned or pop up by adjusting the parameters.
     rpc create (CreatePostRequest) returns (PostInfo) {
         option (google.api.http) = {
             post: "/board/v1/board/create"
             body: "*"
         };
     }
-    /*
-    desc: Updates a specific Post. You can make changes in Post settings, except `board_id`, `post_id`, and `domain_id`.
-    request_example: >-
-      {
-          "board_id": "board-123456789012",
-          "post_id": "post-2118473ce15e",
-          "category": "developer",
-          "title": "title2",
-          "contents": "this is contents2.",
-          "options": {
-              "is_popup": false,
-              "is_pinned": true
-          },
-          "writer": "user1",
-          "domain_id": "domain-123456789012"
-      }
-    response_example: >-
-      {
-          "board_id": "board-123456789012",
-          "post_id": "post-123456789012",
-          "post_type": "INTERNAL",
-          "category": "developer",
-          "title": "title2",
-          "contents": "this is contents2.",
-          "options": {
-              "is_popup": false,
-              "is_pinned": true
-          },
-          "view_count": 1,
-          "writer": "user1",
-          "scope": "DOMAIN",
-          "domain_id": "domain-123456789012",
-          "user_id": "user1@email.com",
-          "created_at": "2022-06-13T01:06:23.732Z",
-          "updated_at": "2022-06-13T01:06:23.732Z"
-      }
-     */
+
+    //Updates a specific Post. You can make changes in Post settings, except `board_id`, `post_id`, and `domain_id`.
     rpc update (UpdatePostRequest) returns (PostInfo) {
         option (google.api.http) = {
             post: "/board/v1/board/update"
             body: "*"
         };
     }
-    /*
-    desc: Not Implemented
-     */
+
+    //Not Implemented
     rpc send_notification (SendNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/board/v1/board/send-notification"
             body: "*"
         };
     }
-    /*
-    desc: Deletes a specific Post. You must specify the `post_id` of the Post to delete, and the `board_id` of the Board where the child Post to delete belongs.
-    request_example: >-
-      {
-        "board_id": "board-b9aa34e65c60",
-        "post_id": "post-2118473ce15e",
-        "domain_id": "domain-123456789012"
-      }
-     */
+
+    // Deletes a specific Post. You must specify the `post_id` of the Post to delete, and the `board_id` of the Board where the child Post to delete belongs.
     rpc delete (PostRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/board/v1/board/delete"
             body: "*"
         };
     }
-    /*
-    desc: Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.
-    request_example: >-
-      {
-          "board_id": "board-b9aa34e65c60",
-          "post_id": "post-2118473ce15e",
-          "domain_id": "domain-58010aa2e451"
-      }
-    response_example: >-
-      {
-          "board_id": "board-b9aa34e65c60",
-          "post_id": "post-2118473ce15e",
-          "post_type": "INTERNAL",
-          "category": "flower",
-          "title": "title",
-          "contents": "this is contents.",
-          "options": {
-              "is_pinned": false,
-              "is_popup": true
-          },
-          "view_count": 2,
-          "writer": "seolmin",
-          "scope": "DOMAIN",
-          "domain_id": "domain-58010aa2e451",
-          "user_id": "supervisor",
-          "created_at": "2022-06-13T01:06:23.732Z",
-          "updated_at": "2022-06-13T01:06:23.732Z"
-      }
-     */
+
+    // Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.
     rpc get (GetPostRequest) returns (PostInfo) {
         option (google.api.http) = {
             post: "/board/v1/board/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all Posts. You can use a query to get a filtered list of Posts.
-    request_example: >-
-      {
-          "board_id": "board-b9aa34e65c60",
-          "query": {}
-      }
-    response_example: >-
-      {
-          "results": [
-              {
-                  "board_id": "board-b9aa34e65c60",
-                  "post_id": "post-2118473ce15e",
-                  "post_type": "INTERNAL",
-                  "category": "spaceone",
-                  "title": "title2",
-                  "contents": "this is contents2.",
-                  "options": {
-                      "is_popup": false,
-                      "is_pinned": true
-                  },
-                  "view_count": 3,
-                  "writer": "seolmin2",
-                  "scope": "DOMAIN",
-                  "domain_id": "domain-58010aa2e451",
-                  "user_id": "user1@email.com",
-                  "created_at": "2022-06-13T01:06:23.732Z",
-                  "updated_at": "2022-06-13T01:06:23.732Z"
-              },
-              {
-                  "board_id": "board-b9aa34e65c60",
-                  "post_id": "post-532ae1191233",
-                  "post_type": "INTERNAL",
-                  "category": "flower",
-                  "title": "작업공지",
-                  "contents": "This is description",
-                  "options": {
-                      "is_pinned": true,
-                      "is_popup": true
-                  },
-                  "writer": "권설민",
-                  "scope": "PUBLIC",
-                  "user_id": "supervisor",
-                  "created_at": "2022-06-10T07:01:44.384Z",
-                  "updated_at": "2022-06-10T07:01:44.384Z"
-              }
-          ],
-          "total_count": 2
-      }
-     */
+
+    // Gets a list of all Posts. You can use a query to get a filtered list of Posts.
     rpc list (PostQuery) returns (PostsInfo) {
         option (google.api.http) = {
             post: "/board/v1/board/list"
             body: "*"
         };
     }
+
     rpc stat (PostStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/board/v1/board/stat"
@@ -218,76 +68,100 @@ service Post {
     }
 }
 
-
+//{
+//    "board_id": "board-123456789012",
+//    "category": "developer",
+//    "title": "title",
+//    "contents": "This is contents.",
+//    "options": {"is_popup": true},
+//    "writer": "user1",
+//    "domain_id": "domain-123456789012"
+//}
 message CreatePostRequest {
-    // is_required: true
     string board_id = 1;
-    // is_required: false
+    // +optional
     string category = 2;
-    // is_required: true
     string title = 3;
-    // is_required: true
     string contents = 4;
-    // is_required: false
+    // +optional
     google.protobuf.Struct options = 5;
-    // is_required: false
+    // +optional
     string writer = 6;
-    // is_required: false
+    // +optional
     repeated string files = 7;
-    // is_required: false
+    // +optional
     string domain_id = 10;
 }
 
+//{
+//      "board_id": "board-123456789012",
+//      "post_id": "post-2118473ce15e",
+//      "category": "developer",
+//      "title": "title2",
+//      "contents": "this is contents2.",
+//      "options": {
+//          "is_popup": false,
+//          "is_pinned": true
+//      },
+//      "writer": "user1",
+//      "domain_id": "domain-123456789012"
+//}
 message UpdatePostRequest {
-    // is_required: true
     string board_id = 1;
-    // is_required: true
     string post_id = 2;
-    // is_required: false
+    // +optional
     string category = 3;
-    // is_required: false
+    // +optional
     string title = 4;
-    // is_required: false
+    // +optional
     string contents = 5;
-    // is_required: false
+    // +optional
     google.protobuf.Struct options = 6;
-    // is_required: false
+    // +optional
     string writer = 7;
-    // is_required: false
+    // +optional
     repeated string files = 8;
-    // is_required: false
+    // +optional
     string domain_id = 10;
 }
 
 message SendNotificationRequest {
-    // is_required: true
     string board_id = 1;
-    // is_required: true
     string post_id = 2;
-    // is_required: false
+    // +optional
     string domain_id = 3;
 }
 
+//{
+//    "board_id": "board-b9aa34e65c60",
+//    "post_id": "post-2118473ce15e",
+//    "domain_id": "domain-123456789012"
+//}
 message PostRequest {
-    // is_required: true
     string board_id = 1;
-    // is_required: true
     string post_id = 2;
-    // is_required: false
+    // +optional
     string domain_id = 3;
 }
 
+//{
+//    "board_id": "board-b9aa34e65c60",
+//    "post_id": "post-2118473ce15e",
+//    "domain_id": "domain-58010aa2e451"
+//}
 message GetPostRequest {
-    // is_required: true
     string board_id = 1;
-    // is_required: true
     string post_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
-    // is_required: false
+    // +optional
     string domain_id = 7;
 }
 
+//{
+//    "board_id": "board-b9aa34e65c60",
+//    "query": {}
+//}
 message PostQuery {
     enum Scope {
         SCOPE_NONE = 0;
@@ -301,35 +175,52 @@ message PostQuery {
         INTERNAL = 2;
     }
 
-    // is_required: true
+
     string board_id = 1;
-    // is_required: false
+    // +optional
     string post_id = 2;
-    // is_required: false
+    // +optional
     PostType post_type = 3;
-    // is_required: false
+    // +optional
     string category = 4;
-    // is_required: false
+    // +optional
     string writer = 5;
-    // is_required: false
+    // +optional
     Scope scope = 6;
-    // is_required: false
+    // +optional
     string user_id = 7;
-    // is_required: false
+    // +optional
     string user_domain_id = 8;
-    // is_required: false
+    // +optional
     string domain_id = 9;
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 10;
 }
 
 message PostStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
+//{
+//          "board_id": "board-123456789012",
+//          "post_id": "post-123456789012",
+//          "post_type": "INTERNAL",
+//          "category": "developer",
+//          "title": "title",
+//          "contents": "This is contents.",
+//          "options": {
+//              "is_pinned": false,
+//              "is_popup": true
+//          },
+//          "view_count": 0,
+//          "writer": "user1",
+//          "scope": "DOMAIN",
+//          "domain_id": "domain-123456789012",
+//          "user_id": "user1@email.com",
+//          "created_at": "2022-01-01T01:06:23.732Z",
+//          "updated_at": "2022-01-01T01:06:23.732Z"
+//}
 message PostInfo {
     enum Scope {
         SCOPE_NONE = 0;
@@ -361,6 +252,47 @@ message PostInfo {
     string updated_at = 32;
 }
 
+//{
+//      "results": [
+//          {
+//              "board_id": "board-b9aa34e65c60",
+//              "post_id": "post-2118473ce15e",
+//              "post_type": "INTERNAL",
+//              "category": "spaceone",
+//              "title": "title2",
+//              "contents": "this is contents2.",
+//              "options": {
+//                  "is_popup": false,
+//                  "is_pinned": true
+//              },
+//              "view_count": 3,
+//              "writer": "seolmin2",
+//              "scope": "DOMAIN",
+//              "domain_id": "domain-58010aa2e451",
+//              "user_id": "user1@email.com",
+//              "created_at": "2022-06-13T01:06:23.732Z",
+//              "updated_at": "2022-06-13T01:06:23.732Z"
+//          },
+//          {
+//              "board_id": "board-b9aa34e65c60",
+//              "post_id": "post-532ae1191233",
+//              "post_type": "INTERNAL",
+//              "category": "flower",
+//              "title": "작업공지",
+//              "contents": "This is description",
+//              "options": {
+//                  "is_pinned": true,
+//                  "is_popup": true
+//              },
+//              "writer": "권설민",
+//              "scope": "PUBLIC",
+//              "user_id": "supervisor",
+//              "created_at": "2022-06-10T07:01:44.384Z",
+//              "updated_at": "2022-06-10T07:01:44.384Z"
+//          }
+//      ],
+//      "total_count": 2
+//}
 message PostsInfo {
     repeated PostInfo results = 1;
     int32 total_count = 2;
