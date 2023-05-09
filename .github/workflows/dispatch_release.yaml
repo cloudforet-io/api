@@ -83,6 +83,18 @@ jobs:
           fields: repo,workflow,job
           author_name: Github Action Slack
 
+  trigger_api_doc_release:
+    needs: build_and_push
+    runs-on: ubuntu-latest
+    steps:
+      - name: task
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          repo: cloudforet-io/api-doc
+          workflow: dispatch_release.yaml
+          inputs: '{"branch": "${{ env.BRANCH }}", "version": "${{ env.VERSION }}"}'
+
   notification:
     needs: build_and_push
     runs-on: ubuntu-latest
