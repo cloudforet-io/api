@@ -31,18 +31,15 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-var (
-	filter_DomainDashboard_Create_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
 func request_DomainDashboard_Create_0(ctx context.Context, marshaler runtime.Marshaler, client DomainDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateDomainDashboardRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_Create_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -55,10 +52,11 @@ func local_request_DomainDashboard_Create_0(ctx context.Context, marshaler runti
 	var protoReq CreateDomainDashboardRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_Create_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -67,35 +65,15 @@ func local_request_DomainDashboard_Create_0(ctx context.Context, marshaler runti
 
 }
 
-var (
-	filter_DomainDashboard_Update_0 = &utilities.DoubleArray{Encoding: map[string]int{"domain_dashboard_id": 0, "domainDashboardId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
-)
-
 func request_DomainDashboard_Update_0(ctx context.Context, marshaler runtime.Marshaler, client DomainDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdateDomainDashboardRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_Update_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -108,27 +86,11 @@ func local_request_DomainDashboard_Update_0(ctx context.Context, marshaler runti
 	var protoReq UpdateDomainDashboardRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_Update_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -137,35 +99,15 @@ func local_request_DomainDashboard_Update_0(ctx context.Context, marshaler runti
 
 }
 
-var (
-	filter_DomainDashboard_Delete_0 = &utilities.DoubleArray{Encoding: map[string]int{"domain_dashboard_id": 0, "domainDashboardId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
-)
-
 func request_DomainDashboard_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client DomainDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DomainDashboardRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_Delete_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -178,27 +120,11 @@ func local_request_DomainDashboard_Delete_0(ctx context.Context, marshaler runti
 	var protoReq DomainDashboardRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_Delete_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -207,35 +133,15 @@ func local_request_DomainDashboard_Delete_0(ctx context.Context, marshaler runti
 
 }
 
-var (
-	filter_DomainDashboard_Get_0 = &utilities.DoubleArray{Encoding: map[string]int{"domain_dashboard_id": 0, "domainDashboardId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
-)
-
 func request_DomainDashboard_Get_0(ctx context.Context, marshaler runtime.Marshaler, client DomainDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetDomainDashboardRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_Get_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -248,27 +154,11 @@ func local_request_DomainDashboard_Get_0(ctx context.Context, marshaler runtime.
 	var protoReq GetDomainDashboardRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_Get_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -277,45 +167,15 @@ func local_request_DomainDashboard_Get_0(ctx context.Context, marshaler runtime.
 
 }
 
-var (
-	filter_DomainDashboard_DeleteVersion_0 = &utilities.DoubleArray{Encoding: map[string]int{"domain_dashboard_id": 0, "domainDashboardId": 1, "version": 2}, Base: []int{1, 1, 2, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 2, 3, 4, 4}}
-)
-
 func request_DomainDashboard_DeleteVersion_0(ctx context.Context, marshaler runtime.Marshaler, client DomainDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DomainDashboardVersionRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	val, ok = pathParams["version"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
-	}
-
-	protoReq.Version, err = runtime.Int32(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_DeleteVersion_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -328,37 +188,11 @@ func local_request_DomainDashboard_DeleteVersion_0(ctx context.Context, marshale
 	var protoReq DomainDashboardVersionRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	val, ok = pathParams["version"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
-	}
-
-	protoReq.Version, err = runtime.Int32(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_DeleteVersion_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -367,45 +201,15 @@ func local_request_DomainDashboard_DeleteVersion_0(ctx context.Context, marshale
 
 }
 
-var (
-	filter_DomainDashboard_RevertVersion_0 = &utilities.DoubleArray{Encoding: map[string]int{"domain_dashboard_id": 0, "domainDashboardId": 1, "version": 2}, Base: []int{1, 1, 2, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 2, 3, 4, 4}}
-)
-
 func request_DomainDashboard_RevertVersion_0(ctx context.Context, marshaler runtime.Marshaler, client DomainDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DomainDashboardVersionRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	val, ok = pathParams["version"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
-	}
-
-	protoReq.Version, err = runtime.Int32(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_RevertVersion_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -418,37 +222,11 @@ func local_request_DomainDashboard_RevertVersion_0(ctx context.Context, marshale
 	var protoReq DomainDashboardVersionRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	val, ok = pathParams["version"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
-	}
-
-	protoReq.Version, err = runtime.Int32(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_RevertVersion_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -457,45 +235,15 @@ func local_request_DomainDashboard_RevertVersion_0(ctx context.Context, marshale
 
 }
 
-var (
-	filter_DomainDashboard_GetVersion_0 = &utilities.DoubleArray{Encoding: map[string]int{"domain_dashboard_id": 0, "domainDashboardId": 1, "version": 2}, Base: []int{1, 1, 2, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 2, 3, 4, 4}}
-)
-
 func request_DomainDashboard_GetVersion_0(ctx context.Context, marshaler runtime.Marshaler, client DomainDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetDomainDashboardVersionRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	val, ok = pathParams["version"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
-	}
-
-	protoReq.Version, err = runtime.Int32(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_GetVersion_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -508,37 +256,11 @@ func local_request_DomainDashboard_GetVersion_0(ctx context.Context, marshaler r
 	var protoReq GetDomainDashboardVersionRequest
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	val, ok = pathParams["version"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
-	}
-
-	protoReq.Version, err = runtime.Int32(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_GetVersion_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -547,35 +269,15 @@ func local_request_DomainDashboard_GetVersion_0(ctx context.Context, marshaler r
 
 }
 
-var (
-	filter_DomainDashboard_ListVersions_0 = &utilities.DoubleArray{Encoding: map[string]int{"domain_dashboard_id": 0, "domainDashboardId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
-)
-
 func request_DomainDashboard_ListVersions_0(ctx context.Context, marshaler runtime.Marshaler, client DomainDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DomainDashboardVersionQuery
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_ListVersions_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -588,27 +290,11 @@ func local_request_DomainDashboard_ListVersions_0(ctx context.Context, marshaler
 	var protoReq DomainDashboardVersionQuery
 	var metadata runtime.ServerMetadata
 
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_ListVersions_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -616,89 +302,16 @@ func local_request_DomainDashboard_ListVersions_0(ctx context.Context, marshaler
 	return msg, metadata, err
 
 }
-
-var (
-	filter_DomainDashboard_ListVersions_1 = &utilities.DoubleArray{Encoding: map[string]int{"domain_dashboard_id": 0, "domainDashboardId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
-)
-
-func request_DomainDashboard_ListVersions_1(ctx context.Context, marshaler runtime.Marshaler, client DomainDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DomainDashboardVersionQuery
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
-	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_ListVersions_1); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.ListVersions(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_DomainDashboard_ListVersions_1(ctx context.Context, marshaler runtime.Marshaler, server DomainDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DomainDashboardVersionQuery
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["domain_dashboard_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "domain_dashboard_id")
-	}
-
-	protoReq.DomainDashboardId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "domain_dashboard_id", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_ListVersions_1); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.ListVersions(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-var (
-	filter_DomainDashboard_List_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
 
 func request_DomainDashboard_List_0(ctx context.Context, marshaler runtime.Marshaler, client DomainDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DomainDashboardQuery
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_List_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -711,46 +324,11 @@ func local_request_DomainDashboard_List_0(ctx context.Context, marshaler runtime
 	var protoReq DomainDashboardQuery
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_List_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.List(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-var (
-	filter_DomainDashboard_List_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
-func request_DomainDashboard_List_1(ctx context.Context, marshaler runtime.Marshaler, client DomainDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DomainDashboardQuery
-	var metadata runtime.ServerMetadata
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_List_1); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.List(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_DomainDashboard_List_1(ctx context.Context, marshaler runtime.Marshaler, server DomainDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DomainDashboardQuery
-	var metadata runtime.ServerMetadata
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_List_1); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -758,19 +336,16 @@ func local_request_DomainDashboard_List_1(ctx context.Context, marshaler runtime
 	return msg, metadata, err
 
 }
-
-var (
-	filter_DomainDashboard_Stat_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
 
 func request_DomainDashboard_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client DomainDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DomainDashboardStatQuery
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_Stat_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -783,10 +358,11 @@ func local_request_DomainDashboard_Stat_0(ctx context.Context, marshaler runtime
 	var protoReq DomainDashboardStatQuery
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DomainDashboard_Stat_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -809,7 +385,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Create", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboards"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Create", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -826,7 +402,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("PUT", pattern_DomainDashboard_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -834,7 +410,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Update", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Update", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -851,7 +427,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("DELETE", pattern_DomainDashboard_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -859,7 +435,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Delete", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Delete", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -876,7 +452,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("GET", pattern_DomainDashboard_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -884,7 +460,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Get", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Get", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -901,7 +477,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("DELETE", pattern_DomainDashboard_DeleteVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_DeleteVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -909,7 +485,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/DeleteVersion", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/DeleteVersion", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/delete-version"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -934,7 +510,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/RevertVersion", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}/revert"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/RevertVersion", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/revert-version"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -951,7 +527,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("GET", pattern_DomainDashboard_GetVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_GetVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -959,7 +535,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/GetVersion", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/GetVersion", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/get-version"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -976,7 +552,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("GET", pattern_DomainDashboard_ListVersions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_ListVersions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -984,7 +560,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/ListVersions", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}/versions"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/ListVersions", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/list-versions"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1001,7 +577,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("POST", pattern_DomainDashboard_ListVersions_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -1009,32 +585,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/ListVersions", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}/versions/search"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_DomainDashboard_ListVersions_1(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_DomainDashboard_ListVersions_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("GET", pattern_DomainDashboard_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/List", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboards"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/List", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1051,31 +602,6 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("POST", pattern_DomainDashboard_List_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/List", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboards/search"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_DomainDashboard_List_1(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_DomainDashboard_List_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	mux.Handle("POST", pattern_DomainDashboard_Stat_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1084,7 +610,7 @@ func RegisterDomainDashboardHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Stat", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboards/stat"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Stat", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/stat"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1148,7 +674,7 @@ func RegisterDomainDashboardHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Create", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboards"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Create", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1164,13 +690,13 @@ func RegisterDomainDashboardHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("PUT", pattern_DomainDashboard_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Update", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Update", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1186,13 +712,13 @@ func RegisterDomainDashboardHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("DELETE", pattern_DomainDashboard_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Delete", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Delete", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1208,13 +734,13 @@ func RegisterDomainDashboardHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("GET", pattern_DomainDashboard_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Get", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Get", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1230,13 +756,13 @@ func RegisterDomainDashboardHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("DELETE", pattern_DomainDashboard_DeleteVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_DeleteVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/DeleteVersion", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/DeleteVersion", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/delete-version"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1258,7 +784,7 @@ func RegisterDomainDashboardHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/RevertVersion", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}/revert"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/RevertVersion", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/revert-version"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1274,13 +800,13 @@ func RegisterDomainDashboardHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("GET", pattern_DomainDashboard_GetVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_GetVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/GetVersion", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/GetVersion", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/get-version"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1296,13 +822,13 @@ func RegisterDomainDashboardHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("GET", pattern_DomainDashboard_ListVersions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_ListVersions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/ListVersions", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}/versions"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/ListVersions", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/list-versions"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1318,35 +844,13 @@ func RegisterDomainDashboardHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("POST", pattern_DomainDashboard_ListVersions_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_DomainDashboard_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/ListVersions", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/{domain_dashboard_id}/versions/search"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_DomainDashboard_ListVersions_1(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_DomainDashboard_ListVersions_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("GET", pattern_DomainDashboard_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/List", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboards"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/List", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1362,35 +866,13 @@ func RegisterDomainDashboardHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("POST", pattern_DomainDashboard_List_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/List", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboards/search"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_DomainDashboard_List_1(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_DomainDashboard_List_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	mux.Handle("POST", pattern_DomainDashboard_Stat_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Stat", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboards/stat"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.DomainDashboard/Stat", runtime.WithHTTPPathPattern("/dashboard/v1/domain-dashboard/stat"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1410,29 +892,25 @@ func RegisterDomainDashboardHandlerClient(ctx context.Context, mux *runtime.Serv
 }
 
 var (
-	pattern_DomainDashboard_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"dashboard", "v1", "domain-dashboards"}, ""))
+	pattern_DomainDashboard_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "domain-dashboard", "create"}, ""))
 
-	pattern_DomainDashboard_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"dashboard", "v1", "domain-dashboard", "domain_dashboard_id"}, ""))
+	pattern_DomainDashboard_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "domain-dashboard", "update"}, ""))
 
-	pattern_DomainDashboard_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"dashboard", "v1", "domain-dashboard", "domain_dashboard_id"}, ""))
+	pattern_DomainDashboard_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "domain-dashboard", "delete"}, ""))
 
-	pattern_DomainDashboard_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"dashboard", "v1", "domain-dashboard", "domain_dashboard_id"}, ""))
+	pattern_DomainDashboard_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "domain-dashboard", "get"}, ""))
 
-	pattern_DomainDashboard_DeleteVersion_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 4}, []string{"dashboard", "v1", "domain-dashboard", "domain_dashboard_id", "version"}, ""))
+	pattern_DomainDashboard_DeleteVersion_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "domain-dashboard", "delete-version"}, ""))
 
-	pattern_DomainDashboard_RevertVersion_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"dashboard", "v1", "domain-dashboard", "domain_dashboard_id", "version", "revert"}, ""))
+	pattern_DomainDashboard_RevertVersion_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "domain-dashboard", "revert-version"}, ""))
 
-	pattern_DomainDashboard_GetVersion_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 4}, []string{"dashboard", "v1", "domain-dashboard", "domain_dashboard_id", "version"}, ""))
+	pattern_DomainDashboard_GetVersion_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "domain-dashboard", "get-version"}, ""))
 
-	pattern_DomainDashboard_ListVersions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"dashboard", "v1", "domain-dashboard", "domain_dashboard_id", "versions"}, ""))
+	pattern_DomainDashboard_ListVersions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "domain-dashboard", "list-versions"}, ""))
 
-	pattern_DomainDashboard_ListVersions_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 2, 5}, []string{"dashboard", "v1", "domain-dashboard", "domain_dashboard_id", "versions", "search"}, ""))
+	pattern_DomainDashboard_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "domain-dashboard", "list"}, ""))
 
-	pattern_DomainDashboard_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"dashboard", "v1", "domain-dashboards"}, ""))
-
-	pattern_DomainDashboard_List_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "domain-dashboards", "search"}, ""))
-
-	pattern_DomainDashboard_Stat_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "domain-dashboards", "stat"}, ""))
+	pattern_DomainDashboard_Stat_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "domain-dashboard", "stat"}, ""))
 )
 
 var (
@@ -1452,11 +930,7 @@ var (
 
 	forward_DomainDashboard_ListVersions_0 = runtime.ForwardResponseMessage
 
-	forward_DomainDashboard_ListVersions_1 = runtime.ForwardResponseMessage
-
 	forward_DomainDashboard_List_0 = runtime.ForwardResponseMessage
-
-	forward_DomainDashboard_List_1 = runtime.ForwardResponseMessage
 
 	forward_DomainDashboard_Stat_0 = runtime.ForwardResponseMessage
 )
