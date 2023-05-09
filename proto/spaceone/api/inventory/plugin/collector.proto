@@ -1,6 +1,4 @@
-/*
-desc: A Collector is a plugin collecting data of external infrastructure resources.
-*/
+// A Collector is a plugin collecting data of external infrastructure resources.
 syntax = "proto3";
 
 package spaceone.api.inventory.plugin;
@@ -11,62 +9,38 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 
 service Collector {
-    /*
-    desc: Initializes a specific Collector. During initialization, the Collector information to be passed to the Collector user is delivered as `metadata`. Collector information includes its name and version.
-    request_example: >-
-      {
-
-      }
-    response_example: >-
-      {
-
-      }
-    */
+    
+    // Initializes a specific Collector. During initialization, the Collector information to be passed to the Collector user is delivered as `metadata`. Collector information includes its name and version.
     rpc init (InitRequest) returns (PluginInfo) {}
-    /*
-    desc: Verifies a specific Collector. You must specify the parameter `secret_data`, encrypted account data of the Collector to validate.
-    request_example: >-
-      {
-
-      }
-    response_example: >-
-      {
-
-      }
-    */
+    
+    // Verifies a specific Collector. You must specify the parameter `secret_data`, encrypted account data of the Collector to validate.
     rpc verify (VerifyRequest) returns (google.protobuf.Empty) {}
-    /*
-    desc: Collects data of external infrastructure resources by a specific Collector.
-    request_example: >-
-      {
-
-      }
-    response_example: >-
-      {
-
-      }
-    */
+    
+    // Collects data of external infrastructure resources by a specific Collector.
     rpc collect (CollectRequest) returns (stream ResourceInfo) {}
 }
 
+//{
+//
+//}
 message InitRequest {
-    // is_required: true
     google.protobuf.Struct options = 1;
 }
 
+//{
+//
+//}
 message VerifyRequest {
-    // is_required: true
     google.protobuf.Struct options = 1;
-    // is_required: true
     google.protobuf.Struct secret_data = 2;
 }
 
+//{
+//
+//}
 message CollectRequest {
-    // is_required: true
     google.protobuf.Struct options = 1;
-    // is_required: true
     google.protobuf.Struct secret_data = 2;
-    // is_required: true
     google.protobuf.Struct filter = 3;
 }
 
@@ -94,6 +68,9 @@ message CollectorVerifyInfo {
     google.protobuf.Struct options = 1;
 }
 
+//{
+//
+//}
 message PluginInfo {
     google.protobuf.Struct metadata = 1;
 }
