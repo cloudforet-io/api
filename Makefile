@@ -56,4 +56,3 @@ gateway:
 clean:
 	$(call banner, "Clean up dist directory")
 	sudo rm -rf dist
-	sudo rm -rf artifact

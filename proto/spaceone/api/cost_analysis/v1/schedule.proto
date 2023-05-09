@@ -69,63 +69,53 @@ message Scheduled {
 }
 
 message CreateScheduleRequest {
-    // is_required: false
+    // +optional
     string name = 1;
-    // is_required: true
     Scheduled schedule = 3;
-    // is_required: false
+    // +optional
     google.protobuf.Struct options = 4;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 6;
-    // is_required: true
     string data_source_id = 11;
-    // is_required: true
     string domain_id = 12;
 }
 
 message UpdateScheduleRequest {
-    // is_required: true
     string schedule_id = 1;
-    // is_required: false
+    // +optional
     string name = 2;
-    // is_required: false
+    // +optional
     Scheduled schedule = 3;
-    // is_required: false
+    // +optional
     google.protobuf.Struct options = 4;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 5;
-    // is_required: true
     string domain_id = 11;
 }
 
 message ScheduleRequest {
-    // is_required: true
     string schedule_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
 message GetScheduleRequest {
-    // is_required: true
     string schedule_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
 message ScheduleQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string schedule_id = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     string state = 4;
-    // is_required: false
+    // +optional
     string data_source_id = 5;
-    // is_required: true
     string domain_id = 11;
 }
 
@@ -154,8 +144,6 @@ message SchedulesInfo {
 }
 
 message ScheduleStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }

@@ -186,8 +186,8 @@ def _python_compile(proto_file, output_path, proto_path_list, debug):
 
     try:
         subprocess.check_output(cmd)
-    except Exception:
-        _error(f"Failed to compile : {proto_file}")
+    except Exception as e:
+        _error(f"[ERROR] Failed to Python compile : {proto_file}\n{e}")
 
     print(f"[SUCCESS] Python Compile : {proto_file}")
 
@@ -207,8 +207,8 @@ def _go_compile(proto_file, output_path, proto_path_list, debug):
 
     try:
         subprocess.check_output(cmd)
-    except Exception:
-        _error(f"Failed to Go compile : {proto_file}")
+    except Exception as e:
+        _error(f"[ERROR] Failed to Go compile : {proto_file}\n{e}")
 
     print(f"[SUCCESS] Go Compile : {proto_file}")
 
@@ -228,8 +228,8 @@ def _go_grpc_gateway_compile(proto_file, output_path, proto_path_list, debug):
 
     try:
         subprocess.check_output(cmd)
-    except Exception:
-        _error(f"Failed to gRPC Gateway Compile : {proto_file}")
+    except Exception as e:
+        _error(f"[ERROR] Failed to gRPC Gateway Compile : {proto_file}\n{e}")
 
     print(f"[SUCCESS] gRPC Gateway Compile : {proto_file}")
 
@@ -260,8 +260,9 @@ def _doc_compile(proto_file, output_path, proto_path_list, debug):
 
     try:
         subprocess.check_output(cmd)
-    except Exception:
-        _error(f"Failed to compile : {proto_file}")
+    except Exception as e:
+
+        _error(f"[ERROR] Failed to Document compile : {proto_file}\n{e}")
 
     print(f"[SUCCESS] Document Compile : {proto_file}")
 

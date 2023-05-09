@@ -1,6 +1,4 @@
-/*
-desc: A Cost is a resource of raw cost data collected by the cost_analysis.DataSource.
-*/
+// A Cost is a resource of raw cost data collected by the cost_analysis.DataSource.
 syntax = "proto3";
 
 package spaceone.api.cost_analysis.v1;
@@ -14,203 +12,40 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service Cost {
-    /*
-    desc: Creates a new Cost. When creating a Cost, if the parameter `provider` is not entered, the default value of the parameter will be the provider information of the DataSource which collected the raw data of the Cost from the provider. The parameter `billed_at` is the data of when the cost is billed. While the DataSource collects the cost data, if the `billed_at` data does not exist, the value will be replaced with the `created_at` data indicating when the Cost is created. If the cost data collected is based on USD, the Cost is created without the currency exchange.
-    request_example: >-
-      {
-        "original_cost": 4.50528e-08,
-        "original_currency": "USD",
-        "usd_cost": 4.50528e-08,
-        "usage_quantity": 4.11e-07,
-        "provider": "aws",
-        "region_code": "ap-northeast-1",
-        "product": "AWSDataTransfer",
-        "account": "722069360300",
-        "usage_type": "data-transfer.out",
-        "additional_info": {
-            "raw_usage_type": "APN1-DataTransfer-Out-Bytes"
-        },
-        "data_source_id": "ds-fcba92ca73b1"
-      }
-    response_example: >-
-      {
-        "cost_id": "cost-c5aae7712ec9",
-        "usd_cost": 4.50528e-08,
-        "original_currency": "USD",
-        "original_cost": 4.50528e-08,
-        "usage_quantity": 4.11e-07,
-        "provider": "aws",
-        "region_code": "ap-northeast-1",
-        "product": "AWSDataTransfer",
-        "account": "722069360300",
-        "usage_type": "data-transfer.out",
-        "tags": {},
-        "additional_info": {
-            "raw_usage_type": "APN1-DataTransfer-Out-Bytes"
-        },
-        "data_source_id": "ds-fcba92ca73b1",
-        "domain_id": "domain-58010aa2e451",
-        "billed_at": "2022-07-19T09:44:27.326Z",
-        "created_at": "2022-07-19T09:44:27.373Z"
-      }
-    */
+    
+    // Creates a new Cost. When creating a Cost, if the parameter `provider` is not entered, the default value of the parameter will be the provider information of the DataSource which collected the raw data of the Cost from the provider. The parameter `billed_at` is the data of when the cost is billed. While the DataSource collects the cost data, if the `billed_at` data does not exist, the value will be replaced with the `created_at` data indicating when the Cost is created. If the cost data collected is based on USD, the Cost is created without the currency exchange.
     rpc create (CreateCostRequest) returns (CostInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/cost/create"
             body: "*"
         };
     }
-    /*
-    desc: Deletes a specific Cost. You must specify the `cost_id` of the Cost to delete.
-    request_example: >-
-      {
-        "cost_id": "cost-2ad052ed03d7"
-      }
-    */
+    
+    // Deletes a specific Cost. You must specify the `cost_id` of the Cost to delete.
     rpc delete (CostRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/cost/delete"
             body: "*"
         };
     }
-    /*
-    desc: Gets a specific Cost. Prints detailed information about the Cost, including  `region_code` and `account`.
-    request_example: >-
-      {
-        "cost_id": "cost-2ad052ed03d7"
-      }
-    response_example: >-
-      {
-        "cost_id": "cost-2ad052ed03d7",
-        "usd_cost": 4.50528e-08,
-        "original_currency": "USD",
-        "original_cost": 4.50528e-08,
-        "usage_quantity": 4.11e-07,
-        "provider": "aws",
-        "region_code": "ap-northeast-1",
-        "product": "AWSDataTransfer",
-        "account": "722069360300",
-        "usage_type": "data-transfer.out",
-        "tags": {},
-        "additional_info": {
-            "raw_usage_type": "APN1-DataTransfer-Out-Bytes"
-        },
-        "data_source_id": "ds-fcba92ca73b1",
-        "domain_id": "domain-58010aa2e451",
-        "billed_at": "2021-01-01T00:00:00.000Z",
-        "created_at": "2022-04-06T13:49:39.669Z"
-      }
-    */
+    
+    // Gets a specific Cost. Prints detailed information about the Cost, including  `region_code` and `account`.
     rpc get (GetCostRequest) returns (CostInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/cost/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all Costs. You can use a query to get a filtered list of Costs.
-    request_example: >-
-      {
-        "query": {}
-      }
-    response_example: >-
-      {
-        "results": [
-            {
-                "cost_id": "cost-2ad052ed03d7",
-                "usd_cost": 4.50528e-08,
-                "original_currency": "USD",
-                "original_cost": 4.50528e-08,
-                "usage_quantity": 4.11e-07,
-                "provider": "aws",
-                "region_code": "ap-northeast-1",
-                "product": "AWSDataTransfer",
-                "account": "722069360300",
-                "usage_type": "data-transfer.out",
-                "tags": {},
-                "additional_info": {
-                    "raw_usage_type": "APN1-DataTransfer-Out-Bytes"
-                },
-                "data_source_id": "ds-fcba92ca73b1",
-                "domain_id": "domain-58010aa2e451",
-                "billed_at": "2021-01-01T00:00:00.000Z",
-                "created_at": "2022-04-06T13:49:39.669Z"
-            },
-            {
-                "cost_id": "cost-1d5e1b0dbf82",
-                "usd_cost": 1.04e-05,
-                "original_currency": "USD",
-                "original_cost": 1.04e-05,
-                "usage_quantity": 26.0,
-                "provider": "aws",
-                "region_code": "ap-northeast-1",
-                "product": "AWSQueueService",
-                "account": "722069360300",
-                "tags": {},
-                "additional_info": {
-                    "raw_usage_type": "APN1-Requests-Tier1"
-                },
-                "data_source_id": "ds-fcba92ca73b1",
-                "domain_id": "domain-58010aa2e451",
-                "billed_at": "2021-01-01T00:00:00.000Z",
-                "created_at": "2022-04-06T13:49:39.675Z"
-            }
-        ],
-        "total_count": 307066
-      }
-    */
+    
+    // Gets a list of all Costs. You can use a query to get a filtered list of Costs.
     rpc list (CostQuery) returns (CostsInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/cost/list"
             body: "*"
         };
     }
-    /*
-    desc: Gets the Cost information of specific `product`s based on the time granularity: `DAILY`, `MONTHLY`, or `ACCUMULATED`. For `DAILY` granularity, this method can get the Cost data of at most 31 days. For `MONTHLY` or `ACCUMULATED` granularity, this method can get the Cost data of at most 12 months.
-    request_example: >-
-      {
-        "granularity": "MONTHLY",
-        "start": "2022-05",
-        "end": "2022-07",
-        "group_by": ["product"],
-        "filter": [],
-        "limit": 15,
-        "include_others": true,
-        "domain_id": "domain-58010aa2e451"
-      }
-    response_example: >-
-      {
-       "results": [
-            {
-                "product": "AmazonEC2",
-                "total_usd_cost": 20962.3114306262,
-                "usd_cost": {
-                    "2022-07": 4644.0801750137,
-                    "2022-05": 7984.6560889987995,
-                    "2022-06": 8333.5751666137
-                }
-            },
-            {
-                "usd_cost": {
-                    "2022-07": 2817.0,
-                    "2022-06": 5439.0,
-                    "2022-05": 5269.0
-                },
-                "total_usd_cost": 13525.0,
-                "product": "AWS Marketplace"
-            },
-            {
-                "product": "AmazonDocDB",
-                "usd_cost": {
-                    "2022-05": 6910.6140347763,
-                    "2022-06": 3238.7851615211,
-                    "2022-07": 812.2452815070001
-                },
-                "total_usd_cost": 10961.6444778044
-            }
-        ]
-      }
-    */
+    
+    // Gets the Cost information of specific `product`s based on the time granularity: `DAILY`, `MONTHLY`, or `ACCUMULATED`. For `DAILY` granularity, this method can get the Cost data of at most 31 days. For `MONTHLY` or `ACCUMULATED` granularity, this method can get the Cost data of at most 12 months.
     rpc analyze (CostAnalyzeQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/cost/analyze"
@@ -231,98 +66,133 @@ service Cost {
     }
 }
 
+//{
+//        "original_cost": 4.50528e-08,
+//        "original_currency": "USD",
+//        "usd_cost": 4.50528e-08,
+//        "usage_quantity": 4.11e-07,
+//        "provider": "aws",
+//        "region_code": "ap-northeast-1",
+//        "product": "AWSDataTransfer",
+//        "account": "722069360300",
+//        "usage_type": "data-transfer.out",
+//        "additional_info": {
+//            "raw_usage_type": "APN1-DataTransfer-Out-Bytes"
+//        },
+//        "data_source_id": "ds-fcba92ca73b1"
+//}
 message CreateCostRequest {
-    // is_required: true
     float original_cost = 1;
-    // is_required: true
     string original_currency = 2;
-    // is_required: false
+    // +optional
     float usd_cost = 3;
-    // is_required: false
+    // +optional
     float usage_quantity = 4;
-    // is_required: false
+    // +optional
     string provider = 5;
-    // is_required: false
+    // +optional
     string region_code = 6;
-    // is_required: false
+    // +optional
     string category = 7;
-    // is_required: false
+    // +optional
     string product = 8;
-    // is_required: false
+    // +optional
     string account = 9;
-    // is_required: false
+    // +optional
     string usage_type = 10;
-    // is_required: false
+    // +optional
     string resource_group = 11;
-    // is_required: false
+    // +optional
     string resource = 12;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 21;
-    // is_required: false
+    // +optional
     google.protobuf.Struct additional_info = 22;
-    // is_required: false
+    // +optional
     string service_account_id = 31;
-    // is_required: false
+    // +optional
     string project_id = 32;
-    // is_required: true
     string data_source_id = 33;
-    // is_required: true
     string domain_id = 34;
-    // is_required: false
+    // +optional
     string billed_at = 41;
 }
 
+//{
+//    "cost_id": "cost-2ad052ed03d7"
+//}
 message CostRequest {
-    // is_required: true
     string cost_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
+//{
+//    "cost_id": "cost-2ad052ed03d7"
+//}
 message GetCostRequest {
-    // is_required: true
     string cost_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
+//{
+//    "query": {}
+//}
 message CostQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string cost_id = 2;
-    // is_required: false
+    // +optional
     string original_currency = 3;
-    // is_required: false
+    // +optional
     string provider = 4;
-    // is_required: false
+    // +optional
     string region_code = 5;
-    // is_required: false
+    // +optional
     string region_key = 6;
-    // is_required: false
+    // +optional
     string category = 7;
-    // is_required: false
+    // +optional
     string product = 8;
-    // is_required: false
+    // +optional
     string account = 9;
-    // is_required: false
+    // +optional
     string usage_type = 10;
-    // is_required: false
+    // +optional
     string resource_group = 11;
-    // is_required: false
+    // +optional
     string resource = 12;
-    // is_required: false
+    // +optional
     string service_account_id = 21;
-    // is_required: false
+    // +optional
     string project_id = 22;
-    // is_required: false
+    // +optional
     string data_source_id = 23;
-    // is_required: true
     string domain_id = 24;
 }
 
+//{
+//        "cost_id": "cost-c5aae7712ec9",
+//        "usd_cost": 4.50528e-08,
+//        "original_currency": "USD",
+//        "original_cost": 4.50528e-08,
+//        "usage_quantity": 4.11e-07,
+//        "provider": "aws",
+//        "region_code": "ap-northeast-1",
+//        "product": "AWSDataTransfer",
+//        "account": "722069360300",
+//        "usage_type": "data-transfer.out",
+//        "tags": {},
+//        "additional_info": {
+//            "raw_usage_type": "APN1-DataTransfer-Out-Bytes"
+//        },
+//        "data_source_id": "ds-fcba92ca73b1",
+//        "domain_id": "domain-58010aa2e451",
+//        "billed_at": "2022-07-19T09:44:27.326Z",
+//        "created_at": "2022-07-19T09:44:27.373Z"
+//}
 message CostInfo {
     string cost_id = 1;
     float usd_cost = 2;
@@ -348,11 +218,65 @@ message CostInfo {
     string created_at = 42;
 }
 
+//{
+//        "results": [
+//            {
+//                "cost_id": "cost-2ad052ed03d7",
+//                "usd_cost": 4.50528e-08,
+//                "original_currency": "USD",
+//                "original_cost": 4.50528e-08,
+//                "usage_quantity": 4.11e-07,
+//                "provider": "aws",
+//                "region_code": "ap-northeast-1",
+//                "product": "AWSDataTransfer",
+//                "account": "722069360300",
+//                "usage_type": "data-transfer.out",
+//                "tags": {},
+//                "additional_info": {
+//                    "raw_usage_type": "APN1-DataTransfer-Out-Bytes"
+//                },
+//                "data_source_id": "ds-fcba92ca73b1",
+//                "domain_id": "domain-58010aa2e451",
+//                "billed_at": "2021-01-01T00:00:00.000Z",
+//                "created_at": "2022-04-06T13:49:39.669Z"
+//            },
+//            {
+//                "cost_id": "cost-1d5e1b0dbf82",
+//                "usd_cost": 1.04e-05,
+//                "original_currency": "USD",
+//                "original_cost": 1.04e-05,
+//                "usage_quantity": 26.0,
+//                "provider": "aws",
+//                "region_code": "ap-northeast-1",
+//                "product": "AWSQueueService",
+//                "account": "722069360300",
+//                "tags": {},
+//                "additional_info": {
+//                    "raw_usage_type": "APN1-Requests-Tier1"
+//                },
+//                "data_source_id": "ds-fcba92ca73b1",
+//                "domain_id": "domain-58010aa2e451",
+//                "billed_at": "2021-01-01T00:00:00.000Z",
+//                "created_at": "2022-04-06T13:49:39.675Z"
+//            }
+//        ],
+//        "total_count": 307066
+//}
 message CostsInfo {
     repeated CostInfo results = 1;
     int32 total_count = 2;
 }
 
+//{
+//    "granularity": "MONTHLY",
+//    "start": "2022-05",
+//    "end": "2022-07",
+//    "group_by": ["product"],
+//    "filter": [],
+//    "limit": 15,
+//    "include_others": true,
+//    "domain_id": "domain-58010aa2e451"
+//}
 message CostAnalyzeQuery {
     enum Granularity {
         UNIT_NONE = 0;
@@ -362,41 +286,33 @@ message CostAnalyzeQuery {
         YEARLY = 4;
     }
 
-    // is_required: true
     Granularity granularity = 1;
-    // is_required: true
     string start = 2;
-    // is_required: true
     string end = 3;
-    // is_required: false
+    // +optional
     repeated string group_by = 4;
-    // is_required: false
+    // +optional
     google.protobuf.ListValue filter = 5;
-    // is_required: false
+    // +optional
     int32 limit = 6;
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Page page = 7;
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Sort sort = 8;
-    // is_required: false
+    // +optional
     bool include_usage_quantity = 9;
-    // is_required: false
+    // +optional
     bool include_others = 10;
-    // is_required: true
     string domain_id = 11;
 
 }
 
 message CostAnalyzeV2Query {
-    // is_required: true
     spaceone.api.core.v1.TimeSeriesAnalyzeQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
 message CostStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }

@@ -1,6 +1,4 @@
-/*
-desc: A JobTask is a task unit subdividing a Job. The division criteria are specified in each DataSource plugin.
-*/
+// A JobTask is a task unit subdividing a Job. The division criteria are specified in each DataSource plugin.
 syntax = "proto3";
 
 package spaceone.api.cost_analysis.v1;
@@ -13,87 +11,23 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service JobTask {
-    /*
-    desc: Gets a specific JobTask. Prints detailed information about the JobTask, including the relevant resources: DataSource and Job. The criteria used for dividing a Job into JobTasks can be found in the DataSource used, but the total count of divided JobTasks can be found by this method.
-    request_example: >-
-      {
-        "job_task_id": "job-task-3622d860a776"
-      }
-    response_example: >-
-      {
-        "job_task_id": "job-task-3622d860a776",
-        "status": "SUCCESS",
-        "options": {
-            "month": "202207",
-            "platform": "gcp"
-        },
-        "created_count": 1,
-        "job_id": "job-85cf2c385252",
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-17T16:00:08.266Z",
-        "started_at": "2022-07-17T16:01:28.243Z",
-        "updated_at": "2022-07-17T16:01:28.939Z",
-        "finished_at": "2022-07-17T16:01:28.939Z"
-      }
-    */
+    
+    // Gets a specific JobTask. Prints detailed information about the JobTask, including the relevant resources: DataSource and Job. The criteria used for dividing a Job into JobTasks can be found in the DataSource used, but the total count of divided JobTasks can be found by this method.
     rpc get (GetJobTaskRequest) returns (JobTaskInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/job-task/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all JobTasks. You can use a query to get a filtered list of JobTasks.
-    request_example: >-
-      {
-        "query": {}
-      }
-    response_example: >-
-      {
-        "results": [
-            {
-                "job_task_id": "job-task-3622d860a776",
-                "status": "SUCCESS",
-                "options": {
-                    "platform": "gcp",
-                    "month": "202207"
-                },
-                "created_count": 1,
-                "job_id": "job-85cf2c385252",
-                "data_source_id": "ds-c96609f5afeb",
-                "domain_id": "domain-58010aa2e451",
-                "created_at": "2022-07-17T16:00:08.266Z",
-                "started_at": "2022-07-17T16:01:28.243Z",
-                "updated_at": "2022-07-17T16:01:28.939Z",
-                "finished_at": "2022-07-17T16:01:28.939Z"
-            },
-            {
-                "job_task_id": "job-task-038c0b076ec5",
-                "status": "SUCCESS",
-                "options": {
-                    "account": "257706363616",
-                    "start": "2022-07-01"
-                },
-                "created_count": 5756,
-                "job_id": "job-6b6765f757a9",
-                "data_source_id": "ds-fcba92ca73b1",
-                "domain_id": "domain-58010aa2e451",
-                "created_at": "2022-07-17T16:00:05.099Z",
-                "started_at": "2022-07-17T16:00:47.356Z",
-                "updated_at": "2022-07-17T16:01:20.856Z",
-                "finished_at": "2022-07-17T16:01:20.856Z"
-            }
-        ],
-        "total_count": 720
-      }
-    */
+    
+    // Gets a list of all JobTasks. You can use a query to get a filtered list of JobTasks.
     rpc list (JobTaskQuery) returns (JobTasksInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/job-task/list"
             body: "*"
         };
     }
+    
     rpc stat (JobTaskStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/job-task/stat"
@@ -103,15 +37,19 @@ service JobTask {
 }
 
 
+//{
+//    "job_task_id": "job-task-3622d860a776"
+//}
 message GetJobTaskRequest {
-    // is_required: true
     string job_task_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
+//{
+//    "query": {}
+//}
 message JobTaskQuery {
     enum Status {
         SCOPE_NONE = 0;
@@ -123,20 +61,35 @@ message JobTaskQuery {
         CANCELED = 6;
     }
 
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string job_task_id = 2;
-    // is_required: false
+    // +optional
     Status status = 3;
-    // is_required: false
+    // +optional
     string job_id = 11;
-    // is_required: false
+    // +optional
     string data_source_id = 12;
-    // is_required: true
     string domain_id = 13;
 }
 
+//{
+//    "job_task_id": "job-task-3622d860a776",
+//    "status": "SUCCESS",
+//    "options": {
+//        "month": "202207",
+//        "platform": "gcp"
+//    },
+//    "created_count": 1,
+//    "job_id": "job-85cf2c385252",
+//    "data_source_id": "ds-c96609f5afeb",
+//    "domain_id": "domain-58010aa2e451",
+//    "created_at": "2022-07-17T16:00:08.266Z",
+//    "started_at": "2022-07-17T16:01:28.243Z",
+//    "updated_at": "2022-07-17T16:01:28.939Z",
+//    "finished_at": "2022-07-17T16:01:28.939Z"
+//}
 message JobTaskInfo {
     enum Status {
         SCOPE_NONE = 0;
@@ -163,14 +116,49 @@ message JobTaskInfo {
     string finished_at = 24;
 }
 
+//{
+//    "results": [
+//        {
+//            "job_task_id": "job-task-3622d860a776",
+//            "status": "SUCCESS",
+//            "options": {
+//                "platform": "gcp",
+//                "month": "202207"
+//            },
+//            "created_count": 1,
+//            "job_id": "job-85cf2c385252",
+//            "data_source_id": "ds-c96609f5afeb",
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2022-07-17T16:00:08.266Z",
+//            "started_at": "2022-07-17T16:01:28.243Z",
+//            "updated_at": "2022-07-17T16:01:28.939Z",
+//            "finished_at": "2022-07-17T16:01:28.939Z"
+//        },
+//        {
+//            "job_task_id": "job-task-038c0b076ec5",
+//            "status": "SUCCESS",
+//            "options": {
+//                "account": "257706363616",
+//                "start": "2022-07-01"
+//            },
+//            "created_count": 5756,
+//            "job_id": "job-6b6765f757a9",
+//            "data_source_id": "ds-fcba92ca73b1",
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2022-07-17T16:00:05.099Z",
+//            "started_at": "2022-07-17T16:00:47.356Z",
+//            "updated_at": "2022-07-17T16:01:20.856Z",
+//            "finished_at": "2022-07-17T16:01:20.856Z"
+//        }
+//    ],
+//    "total_count": 720
+//}
 message JobTasksInfo {
     repeated JobTaskInfo results = 1;
     int32 total_count = 2;
 }
 
 message JobTaskStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }
