@@ -8,30 +8,19 @@ import "google/protobuf/struct.proto";
 
 
 service Cost {
-    /*
-    desc: ''
-    request_example: >-
-      {
-
-      }
-    response_example: >-
-      {
-
-      }
-    */
     rpc get_data (GetDataRequest) returns (stream CostsInfo) {}
 }
 
+//{
+// 
+//}
 message GetDataRequest {
-    // is_required: true
     google.protobuf.Struct options = 1;
-    // is_required: true
     google.protobuf.Struct secret_data = 2;
-    // is_required: false
+    // +optional
     string schema = 3;
-    // is_required: false
+    // +optional
     google.protobuf.Struct task_options = 4;
-    // is_required: true
     string domain_id = 5;
 }
 
@@ -52,6 +41,9 @@ message CostInfo {
     string billed_at = 14;
 }
 
+//{
+//
+//}
 message CostsInfo {
     repeated CostInfo results = 1;
 }

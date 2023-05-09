@@ -1,6 +1,4 @@
-/*
-desc: A DataSourceRule is a resource filtering the raw data from the DataSource. The Cost resource is created after the raw data is filtered by the DataSourceRule.
-*/
+// A DataSourceRule is a resource filtering the raw data from the DataSource. The Cost resource is created after the raw data is filtered by the DataSourceRule.
 syntax = "proto3";
 
 package spaceone.api.cost_analysis.v1;
@@ -14,237 +12,55 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service DataSourceRule {
-    /*
-    desc: Creates a new DataSourceRule. When creating the resource, this method can apply two types of conditions: mapping projects where the cost incurred to the Cost, and mapping cloud service accounts to the Cost. By adjusting the `condition_policy` parameter, the DataSourceRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.
-    request_example: >-
-      {
-        "name": "match_service_account_test",
-        "conditions_policy": "ALWAYS",
-        "actions": {
-            "match_service_account": {"source": "account", "target": "data.project_id"}
-        },
-        "options": {"stop_processing": true},
-        "tags": {"b": "c", "a": "b"},
-        "data_source_id": "ds-c96609f5afeb"
-      }
-    response_example: >-
-      {
-        "data_source_rule_id": "rule-c8055231e212",
-        "name": "match_service_account_test",
-        "order": 2,
-        "conditions_policy": "ALWAYS",
-        "actions": {
-            "match_service_account": {
-                "source": "account",
-                "target": "data.project_id"
-            }
-        },
-        "options": {
-            "stop_processing": true
-        },
-        "tags": {
-            "a": "b",
-            "b": "c"
-        },
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-19T10:13:28.335Z"
-      }
-    */
+    
+    // Creates a new DataSourceRule. When creating the resource, this method can apply two types of conditions: mapping projects where the cost incurred to the Cost, and mapping cloud service accounts to the Cost. By adjusting the `condition_policy` parameter, the DataSourceRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.
     rpc create (CreateDataSourceRuleRequest) returns (DataSourceRuleInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/data-source-rule/create"
             body: "*"
         };
     }
-    /*
-    desc: Updates a specific DataSourceRule. You can make changes in DataSourceRule settings, including filtering conditions. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
-    request_example: >-
-      {
-        "data_source_rule_id": "rule-c8055231e212",
-        "name": "match_service_account_test",
-        "conditions_policy": "ALWAYS",
-        "actions": {
-            "match_service_account": {
-                "source": "account",
-                "target": "data.project_id"
-            }
-        },
-        "options": {
-            "stop_processing": true
-        },
-        "tags": {"b": "c", "a": "b"}
-      }
-    response_example: >-
-      {
-        "data_source_rule_id": "rule-c8055231e212",
-        "name": "match_service_account_test",
-        "order": 2,
-        "conditions_policy": "ALWAYS",
-        "actions": {
-            "match_service_account": {
-                "source": "account",
-                "target": "data.project_id"
-            }
-        },
-        "options": {
-            "stop_processing": true
-        },
-        "tags": {
-            "a": "b",
-            "b": "c"
-        },
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-19T10:13:28.335Z"
-      }
-    */
+    
+    // Updates a specific DataSourceRule. You can make changes in DataSourceRule settings, including filtering conditions. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
     rpc update (UpdateDataSourceRuleRequest) returns (DataSourceRuleInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/data-source-rule/update"
             body: "*"
         };
     }
-    /*
-    desc: Changes the priority order of the DataSourceRules to apply. If there are multiple DataSourceRules applied in a specific service account, the priority order of the resources is requried. This method changes the priority order to apply DataSourceRules.
-    request_example: >-
-      {
-        "data_source_rule_id": "rule-c8055231e212",
-        "order": 2
-      }
-    response_example: >-
-      {
-        "data_source_rule_id": "rule-c8055231e212",
-        "name": "match_service_account_test",
-        "order": 2,
-        "conditions_policy": "ALWAYS",
-        "actions": {
-            "match_service_account": {
-                "source": "account",
-                "target": "data.project_id"
-            }
-        },
-        "options": {
-            "stop_processing": true
-        },
-        "tags": {
-            "a": "b",
-            "b": "c"
-        },
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-19T10:13:28.335Z"
-      }
-    */
+    
+    // Changes the priority order of the DataSourceRules to apply. If there are multiple DataSourceRules applied in a specific service account, the priority order of the resources is requried. This method changes the priority order to apply DataSourceRules.
     rpc change_order (ChangeDataSourceRuleOrderRequest) returns (DataSourceRuleInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/data-source-rule/change-order"
             body: "*"
         };
     }
-    /*
-    desc: Deletes a specific DataSourceRule. You must specify the `data_source_rule_id` of the DataSourceRule to delete. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
-    request_example: >-
-      {
-        "data_source_rule_id": "rule-22fab02f6b51"
-      }
-    */
+    
+    // Deletes a specific DataSourceRule. You must specify the `data_source_rule_id` of the DataSourceRule to delete. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
     rpc delete (DataSourceRuleRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/data-source-rule/delete"
             body: "*"
         };
     }
-    /*
-    desc: Gets a specific DataSourceRule. Prints detailed information about the DataSourceRule, including  `conditions_policy` and conditions applied to DataSources.
-    request_example: >-
-      {
-        "data_source_rule_id": "rule-22fab02f6b51"
-      }
-    response_example: >-
-      {
-        "data_source_rule_id": "rule-22fab02f6b51",
-        "name": "match_service_account",
-        "order": 1,
-        "conditions_policy": "ALWAYS",
-        "actions": {
-            "match_service_account": {
-                "source": "account",
-                "target": "data.project_id"
-            }
-        },
-        "options": {
-            "stop_processing": true
-        },
-        "tags": {},
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-05-25T16:01:51.858Z"
-      }
-    */
+    
+    // Gets a specific DataSourceRule. Prints detailed information about the DataSourceRule, including  `conditions_policy` and conditions applied to DataSources.
     rpc get (GetDataSourceRuleRequest) returns (DataSourceRuleInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/data-source-rule/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all DataSourceRules. You can use a query to get a filtered list of DataSourceRules.
-    request_example: >-
-      {
-        "query": {}
-      }
-    response_example: >-
-      {
-        "results": [
-            {
-                "data_source_rule_id": "rule-22fab02f6b51",
-                "name": "match_service_account",
-                "order": 1,
-                "conditions_policy": "ALWAYS",
-                "actions": {
-                    "match_service_account": {
-                        "source": "account",
-                        "target": "data.project_id"
-                    }
-                },
-                "options": {
-                    "stop_processing": true
-                },
-                "tags": {},
-                "data_source_id": "ds-c96609f5afeb",
-                "domain_id": "domain-58010aa2e451",
-                "created_at": "2022-05-25T16:01:51.858Z"
-            },
-            {
-                "data_source_rule_id": "rule-188d366e9817",
-                "name": "match_service_account",
-                "order": 1,
-                "conditions_policy": "ALWAYS",
-                "actions": {
-                    "match_service_account": {
-                        "source": "account",
-                        "target": "data.account_id"
-                    }
-                },
-                "options": {
-                    "stop_processing": true
-                },
-                "tags": {},
-                "data_source_id": "ds-fcba92ca73b1",
-                "domain_id": "domain-58010aa2e451",
-                "created_at": "2022-06-03T16:00:54.099Z"
-            }
-        ],
-        "total_count": 2
-      }
-    */
+    
+    // Gets a list of all DataSourceRules. You can use a query to get a filtered list of DataSourceRules.
     rpc list (DataSourceRuleQuery) returns (DataSourceRulesInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/data-source-rule/list"
             body: "*"
         };
     }
+
     rpc stat (DataSourceRuleStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/data-source-rule/stat"
@@ -282,82 +98,128 @@ message DataSourceRuleOptions {
     bool stop_processing = 1;
 }
 
+//{
+//    "name": "match_service_account_test",
+//    "conditions_policy": "ALWAYS",
+//    "actions": {
+//        "match_service_account": {"source": "account", "target": "data.project_id"}
+//    },
+//    "options": {"stop_processing": true},
+//    "tags": {"b": "c", "a": "b"},
+//    "data_source_id": "ds-c96609f5afeb"
+//}
 message CreateDataSourceRuleRequest {
-    // is_required: false
+    // +optional
     string name = 1;
-    // is_required: false
+    // +optional
     repeated DataSourceRuleCondition conditions = 2;
-    // is_required: true
     ConditionsPolicy conditions_policy = 3;
-    // is_required: true
     DataSourceRuleActions actions = 4;
-    // is_required: false
+    // +optional
     DataSourceRuleOptions options = 5;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 6;
-    // is_required: true
     string data_source_id = 11;
-    // is_required: true
     string domain_id = 12;
 }
 
+//{
+//    "data_source_rule_id": "rule-c8055231e212",
+//    "name": "match_service_account_test",
+//    "conditions_policy": "ALWAYS",
+//    "actions": {
+//        "match_service_account": {
+//            "source": "account",
+//            "target": "data.project_id"
+//        }
+//    },
+//    "options": {
+//        "stop_processing": true
+//    },
+//    "tags": {"b": "c", "a": "b"}
+//}
 message UpdateDataSourceRuleRequest {
-    // is_required: true
     string data_source_rule_id = 1;
-    // is_required: false
+    // +optional
     string name = 2;
-    // is_required: false
+    // +optional
     repeated DataSourceRuleCondition conditions = 3;
-    // is_required: false
+    // +optional
     ConditionsPolicy conditions_policy = 4;
-    // is_required: false
+    // +optional
     DataSourceRuleActions actions = 5;
-    // is_required: false
+    // +optional
     DataSourceRuleOptions options = 6;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 7;
-    // is_required: true
     string domain_id = 11;
 }
 
+//{
+//    "data_source_rule_id": "rule-c8055231e212",
+//    "order": 2
+//}
 message ChangeDataSourceRuleOrderRequest {
-    // is_required: true
     string data_source_rule_id = 1;
-    // is_required: true
     int32 order = 2;
-    // is_required: true
     string domain_id = 11;
 }
 
+//{
+//    "data_source_rule_id": "rule-22fab02f6b51"
+//}
 message DataSourceRuleRequest {
-    // is_required: true
     string data_source_rule_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
+//{
+//  "data_source_rule_id": "rule-22fab02f6b51"
+//}
 message GetDataSourceRuleRequest {
-    // is_required: true
     string data_source_rule_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
+//{
+//  "query": {}
+//}
 message DataSourceRuleQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string data_source_rule_id = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     string data_source_id = 4;
-    // is_required: true
     string domain_id = 11;
 }
 
+//{
+//    "data_source_rule_id": "rule-c8055231e212",
+//    "name": "match_service_account_test",
+//    "order": 2,
+//    "conditions_policy": "ALWAYS",
+//    "actions": {
+//        "match_service_account": {
+//            "source": "account",
+//            "target": "data.project_id"
+//        }
+//    },
+//    "options": {
+//        "stop_processing": true
+//    },
+//    "tags": {
+//        "a": "b",
+//        "b": "c"
+//    },
+//    "data_source_id": "ds-c96609f5afeb",
+//    "domain_id": "domain-58010aa2e451",
+//    "created_at": "2022-07-19T10:13:28.335Z"
+//}
 message DataSourceRuleInfo {
     string data_source_rule_id = 1;
     string name = 2;
@@ -373,14 +235,55 @@ message DataSourceRuleInfo {
     string created_at = 21;
 }
 
+//{
+//        "results": [
+//            {
+//                "data_source_rule_id": "rule-22fab02f6b51",
+//                "name": "match_service_account",
+//                "order": 1,
+//                "conditions_policy": "ALWAYS",
+//                "actions": {
+//                    "match_service_account": {
+//                        "source": "account",
+//                        "target": "data.project_id"
+//                    }
+//                },
+//                "options": {
+//                    "stop_processing": true
+//                },
+//                "tags": {},
+//                "data_source_id": "ds-c96609f5afeb",
+//                "domain_id": "domain-58010aa2e451",
+//                "created_at": "2022-05-25T16:01:51.858Z"
+//            },
+//            {
+//                "data_source_rule_id": "rule-188d366e9817",
+//                "name": "match_service_account",
+//                "order": 1,
+//                "conditions_policy": "ALWAYS",
+//                "actions": {
+//                    "match_service_account": {
+//                        "source": "account",
+//                        "target": "data.account_id"
+//                    }
+//                },
+//                "options": {
+//                    "stop_processing": true
+//                },
+//                "tags": {},
+//                "data_source_id": "ds-fcba92ca73b1",
+//                "domain_id": "domain-58010aa2e451",
+//                "created_at": "2022-06-03T16:00:54.099Z"
+//            }
+//        ],
+//        "total_count": 2
+//}
 message DataSourceRulesInfo {
     repeated DataSourceRuleInfo results = 1;
     int32 total_count = 2;
 }
 
 message DataSourceRuleStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }
