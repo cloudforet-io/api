@@ -29,35 +29,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BudgetUsageClient interface {
-	// desc: Gets a list of all BudgetUsages. You can use a query to get a filtered list of BudgetUsages.
-	// request_example: >-
-	// {
-	// "query": {}
-	// }
-	// response_example: >-
-	// {
-	// "results": [
-	// {
-	// "budget_id": "budget-abb377eb9e8b",
-	// "name": "Cloudforet-Budget3",
-	// "date": "2022-01",
-	// "usd_cost": 7671.164,
-	// "limit": 10000.0,
-	// "domain_id": "domain-58010aa2e451",
-	// "updated_at": "2022-07-19T04:26:08.099Z"
-	// },
-	// {
-	// "budget_id": "budget-abb377eb9e8b",
-	// "name": "Cloudforet-Budget3",
-	// "date": "2022-02",
-	// "usd_cost": 5931.771,
-	// "limit": 11000.0,
-	// "domain_id": "domain-58010aa2e451",
-	// "updated_at": "2022-07-19T04:26:08.105Z"
-	// }
-	// ],
-	// "total_count": 12
-	// }
+	// Gets a list of all BudgetUsages. You can use a query to get a filtered list of BudgetUsages.
 	List(ctx context.Context, in *BudgetUsageQuery, opts ...grpc.CallOption) (*BudgetUsagesInfo, error)
 	Analyze(ctx context.Context, in *BudgetUsageAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Stat(ctx context.Context, in *BudgetUsageStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -102,35 +74,7 @@ func (c *budgetUsageClient) Stat(ctx context.Context, in *BudgetUsageStatQuery, 
 // All implementations must embed UnimplementedBudgetUsageServer
 // for forward compatibility
 type BudgetUsageServer interface {
-	// desc: Gets a list of all BudgetUsages. You can use a query to get a filtered list of BudgetUsages.
-	// request_example: >-
-	// {
-	// "query": {}
-	// }
-	// response_example: >-
-	// {
-	// "results": [
-	// {
-	// "budget_id": "budget-abb377eb9e8b",
-	// "name": "Cloudforet-Budget3",
-	// "date": "2022-01",
-	// "usd_cost": 7671.164,
-	// "limit": 10000.0,
-	// "domain_id": "domain-58010aa2e451",
-	// "updated_at": "2022-07-19T04:26:08.099Z"
-	// },
-	// {
-	// "budget_id": "budget-abb377eb9e8b",
-	// "name": "Cloudforet-Budget3",
-	// "date": "2022-02",
-	// "usd_cost": 5931.771,
-	// "limit": 11000.0,
-	// "domain_id": "domain-58010aa2e451",
-	// "updated_at": "2022-07-19T04:26:08.105Z"
-	// }
-	// ],
-	// "total_count": 12
-	// }
+	// Gets a list of all BudgetUsages. You can use a query to get a filtered list of BudgetUsages.
 	List(context.Context, *BudgetUsageQuery) (*BudgetUsagesInfo, error)
 	Analyze(context.Context, *BudgetUsageAnalyzeQuery) (*_struct.Struct, error)
 	Stat(context.Context, *BudgetUsageStatQuery) (*_struct.Struct, error)

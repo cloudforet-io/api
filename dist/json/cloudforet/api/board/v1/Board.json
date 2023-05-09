@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/board/v1/board.proto",
-      "description": "desc: A Board is a bulletin-board-type resource for posting notices and announcements in Cloudforet.",
+      "description": "A Board is a bulletin-board-type resource for posting notices and announcements in Cloudforet.",
       "package": "spaceone.api.board.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -15,7 +15,7 @@
           "name": "BoardInfo",
           "longName": "BoardInfo",
           "fullName": "spaceone.api.board.v1.BoardInfo",
-          "description": "",
+          "description": "{\n     \"board_id\": \"board-123456789012\",\n     \"name\": \"notice\",\n     \"categories\": [\n         \"admin\",\n         \"developer\",\n         \"devops\"\n     ],\n     \"tags\": {\n         \"a\": \"b\"\n     },\n     \"created_at\": \"2022-01-01T06:47:27.759Z\"\n }",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -87,7 +87,7 @@
           "name": "BoardQuery",
           "longName": "BoardQuery",
           "fullName": "spaceone.api.board.v1.BoardQuery",
-          "description": "",
+          "description": "{\n   \"query\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -95,7 +95,7 @@
           "fields": [
             {
               "name": "board_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -107,7 +107,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -119,7 +119,7 @@
             },
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -135,7 +135,7 @@
           "name": "BoardRequest",
           "longName": "BoardRequest",
           "fullName": "spaceone.api.board.v1.BoardRequest",
-          "description": "",
+          "description": "{\n   \"board_id\": \"board-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -143,7 +143,7 @@
           "fields": [
             {
               "name": "board_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -167,7 +167,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -183,7 +183,7 @@
           "name": "BoardsInfo",
           "longName": "BoardsInfo",
           "fullName": "spaceone.api.board.v1.BoardsInfo",
-          "description": "",
+          "description": "{\n     \"results\": [\n         {\n             \"board_id\": \"board-123456789012\",\n             \"name\": \"dev-notice\",\n             \"categories\": [\n                 \"flower\",\n                 \"school\",\n                 \"spaceone\"\n             ],\n             \"tags\": {\n                 \"b\": \"c\"\n             },\n             \"created_at\": \"2022-01-01T05:16:08.549Z\"\n         },\n         {\n             \"board_id\": \"board-987654321098\",\n             \"name\": \"notice\",\n             \"tags\": {\n                 \"a\": \"b\"\n             },\n             \"created_at\": \"2022-01-01T05:24:19.758Z\"\n         }\n     ],\n     \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -219,7 +219,7 @@
           "name": "CreateBoardRequest",
           "longName": "CreateBoardRequest",
           "fullName": "spaceone.api.board.v1.CreateBoardRequest",
-          "description": "",
+          "description": "{\n  \"name\": \"notice\",\n  \"categories\": [\"admin\", \"developer\", \"devops\"],\n  \"tags\": {\"a\": \"b\"}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -227,7 +227,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -239,7 +239,7 @@
             },
             {
               "name": "categories",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -251,7 +251,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -267,7 +267,7 @@
           "name": "GetBoardRequest",
           "longName": "GetBoardRequest",
           "fullName": "spaceone.api.board.v1.GetBoardRequest",
-          "description": "",
+          "description": "{\n   \"board_id\": \"board-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -275,7 +275,7 @@
           "fields": [
             {
               "name": "board_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -287,7 +287,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -303,7 +303,7 @@
           "name": "SetBoardCategoriesRequest",
           "longName": "SetBoardCategoriesRequest",
           "fullName": "spaceone.api.board.v1.SetBoardCategoriesRequest",
-          "description": "",
+          "description": "{\n   \"board_id\": \"board-123456789012\",\n   \"categories\": [\"Developer\", \"SRE\", \"Devops\"]\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -311,7 +311,7 @@
           "fields": [
             {
               "name": "board_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -323,7 +323,7 @@
             },
             {
               "name": "categories",
-              "description": "is_required: false",
+              "description": "+optioanl",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -339,7 +339,7 @@
           "name": "UpdateBoardRequest",
           "longName": "UpdateBoardRequest",
           "fullName": "spaceone.api.board.v1.UpdateBoardRequest",
-          "description": "",
+          "description": "{\n   \"board_id\": \"board-123456789012\",\n   \"name\": \"system notice\",\n   \"tags\": {\"b\": \"c\"}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -347,7 +347,7 @@
           "fields": [
             {
               "name": "board_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -359,7 +359,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -371,7 +371,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -393,7 +393,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new Board with SYSTEM permission. The `name` of the board is only required. You can add one or more `categories` representing the Board's attributes.\nrequest_example: \u003e-\n{\n\"name\": \"notice\",\n\"categories\": [\"admin\", \"developer\", \"devops\"],\n\"tags\": {\"a\": \"b\"}\n}\nresponse_example: \u003e-\n{\n\"board_id\": \"board-123456789012\",\n\"name\": \"notice\",\n\"categories\": [\n\"admin\",\n\"developer\",\n\"devops\"\n],\n\"tags\": {\n\"a\": \"b\"\n},\n\"created_at\": \"2022-01-01T06:47:27.759Z\"\n}",
+              "description": "Creates a new Board with SYSTEM permission. The `name` of the board is only required. You can add one or more `categories` representing the Board's attributes.",
               "requestType": "CreateBoardRequest",
               "requestLongType": "CreateBoardRequest",
               "requestFullType": "spaceone.api.board.v1.CreateBoardRequest",
@@ -416,7 +416,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific Board with SYSTEM permission. You can make changes in Board settings, including `name` and `tags`.\nrequest_example: \u003e-\n{\n\"board_id\": \"board-123456789012\",\n\"name\": \"system notice\",\n\"tags\": {\"b\": \"c\"}\n}\nresponse_example: \u003e-\n{\n\"board_id\": \"board-123456789012\",\n\"name\": \"system notice\",\n\"categories\": [\n\"admin\",\n\"developer\",\n\"devops\"\n],\n\"tags\": {\n\"b\": \"c\"\n},\n\"created_at\": \"2022-01-01T06:47:27.759Z\"\n}",
+              "description": "Updates a specific Board with SYSTEM permission. You can make changes in Board settings, including `name` and `tags`.",
               "requestType": "UpdateBoardRequest",
               "requestLongType": "UpdateBoardRequest",
               "requestFullType": "spaceone.api.board.v1.UpdateBoardRequest",
@@ -439,7 +439,7 @@
             },
             {
               "name": "set_categories",
-              "description": "desc: Adds or changes `categories` of a specific Board with SYSTEM permission. A change in `categories` of a Board does not affect the `category` of the child Posts.\nrequest_example: \u003e-\n{\n\"board_id\": \"board-123456789012\",\n\"categories\": [\"Developer\", \"SRE\", \"Devops\"]\n}\nresponse_example: \u003e-\n{\n\"board_id\": \"board-123456789012\",\n\"name\": \"dev-notice\",\n\"categories\": [\n\"Developer\",\n\"SRE\",\n\"Devops\"\n],\n\"tags\": {\n\"b\": \"c\"\n},\n\"created_at\": \"2022-01-01T05:24:19.758Z\"\n}",
+              "description": "Adds or changes `categories` of a specific Board with SYSTEM permission. A change in `categories` of a Board does not affect the `category` of the child Posts.",
               "requestType": "SetBoardCategoriesRequest",
               "requestLongType": "SetBoardCategoriesRequest",
               "requestFullType": "spaceone.api.board.v1.SetBoardCategoriesRequest",
@@ -462,7 +462,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific Board with `SYSTEM` permission. You can delete a Board regardless of the presence of Posts created under the Board.\nrequest_example: \u003e-\n{\n\"board_id\": \"board-123456789012\"\n}",
+              "description": "Deletes a specific Board with `SYSTEM` permission. You can delete a Board regardless of the presence of Posts created under the Board.",
               "requestType": "BoardRequest",
               "requestLongType": "BoardRequest",
               "requestFullType": "spaceone.api.board.v1.BoardRequest",
@@ -485,7 +485,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific Board. You must specify the `board_id` of the Board to get. Prints detailed information about the Board, including `name`, `categories`.\nrequest_example: \u003e-\n{\n\"board_id\": \"board-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"board_id\": \"board-123456789012\",\n\"name\": \"dev-notice\",\n\"categories\": [\n\"Developer\",\n\"SRE\",\n\"Devops\"\n],\n\"tags\": {\n\"b\": \"c\"\n},\n\"created_at\": \"2022-01-01T05:24:19.758Z\"\n}",
+              "description": "Gets a specific Board. You must specify the `board_id` of the Board to get. Prints detailed information about the Board, including `name`, `categories`.",
               "requestType": "GetBoardRequest",
               "requestLongType": "GetBoardRequest",
               "requestFullType": "spaceone.api.board.v1.GetBoardRequest",
@@ -508,7 +508,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all Boards. You can use a query to get a filtered list of Boards.\nrequest_example: \u003e-\n{\n\"query\": {}\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"board_id\": \"board-123456789012\",\n\"name\": \"dev-notice\",\n\"categories\": [\n\"flower\",\n\"school\",\n\"spaceone\"\n],\n\"tags\": {\n\"b\": \"c\"\n},\n\"created_at\": \"2022-01-01T05:16:08.549Z\"\n},\n{\n\"board_id\": \"board-987654321098\",\n\"name\": \"notice\",\n\"tags\": {\n\"a\": \"b\"\n},\n\"created_at\": \"2022-01-01T05:24:19.758Z\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all Boards. You can use a query to get a filtered list of Boards.",
               "requestType": "BoardQuery",
               "requestLongType": "BoardQuery",
               "requestFullType": "spaceone.api.board.v1.BoardQuery",

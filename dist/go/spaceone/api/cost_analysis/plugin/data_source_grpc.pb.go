@@ -28,25 +28,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataSourceClient interface {
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	Init(ctx context.Context, in *InitRequest, opts ...grpc.CallOption) (*PluginInfo, error)
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	Verify(ctx context.Context, in *PluginVerifyRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 }
 
@@ -80,25 +62,7 @@ func (c *dataSourceClient) Verify(ctx context.Context, in *PluginVerifyRequest, 
 // All implementations must embed UnimplementedDataSourceServer
 // for forward compatibility
 type DataSourceServer interface {
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	Init(context.Context, *InitRequest) (*PluginInfo, error)
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	Verify(context.Context, *PluginVerifyRequest) (*empty.Empty, error)
 	mustEmbedUnimplementedDataSourceServer()
 }

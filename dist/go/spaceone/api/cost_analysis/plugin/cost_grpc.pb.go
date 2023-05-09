@@ -26,15 +26,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CostClient interface {
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	GetData(ctx context.Context, in *GetDataRequest, opts ...grpc.CallOption) (Cost_GetDataClient, error)
 }
 
@@ -82,15 +73,6 @@ func (x *costGetDataClient) Recv() (*CostsInfo, error) {
 // All implementations must embed UnimplementedCostServer
 // for forward compatibility
 type CostServer interface {
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	GetData(*GetDataRequest, Cost_GetDataServer) error
 	mustEmbedUnimplementedCostServer()
 }

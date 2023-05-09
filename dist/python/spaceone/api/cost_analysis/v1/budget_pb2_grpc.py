@@ -57,391 +57,42 @@ class BudgetServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """
-        desc: Creates a new Budget. When creating a Budget, it should be set for a specific ProjectGroup or Project. The budgeted amount and date of the `planned_limits` should be specified on a monthly or yearly basis.
-        request_example: >-
-        {
-        "name": "Cloudforet-Budget",
-        "planned_limits": [{"date": "2022-01", "limit": 1000.0},
-        {"date": "2022-02", "limit": 1100.0},
-        {"date": "2022-03", "limit": 1200.0},
-        {"date": "2022-04", "limit": 1300.0},
-        {"date": "2022-05", "limit": 1400.0},
-        {"date": "2022-06", "limit": 1500.0},
-        {"date": "2022-07", "limit": 1600.0},
-        {"date": "2022-08", "limit": 1700.0},
-        {"date": "2022-09", "limit": 1800.0},
-        {"date": "2022-10", "limit": 1900.0},
-        {"date": "2022-11", "limit": 2000.0},
-        {"date": "2022-12", "limit": 2100.0}],
-        "time_unit": "MONTHLY",
-        "start": "2022-01",
-        "end": "2022-12",
-        "project_group_id": "pg-812c90990877"
-        }
-        response_example: >-
-        {
-        "budget_id": "budget-d51b6b6a9910",
-        "name": "Cloudforet-Budget",
-        "limit": 18600.0,
-        "planned_limits": [
-        {
-        "date": "2022-01",
-        "limit": 1000.0
-        },
-        {
-        "date": "2022-02",
-        "limit": 1100.0
-        },
-        {
-        "date": "2022-03",
-        "limit": 1200.0
-        },
-        {
-        "date": "2022-04",
-        "limit": 1300.0
-        },
-        {
-        "date": "2022-05",
-        "limit": 1400.0
-        },
-        {
-        "date": "2022-06",
-        "limit": 1500.0
-        },
-        {
-        "date": "2022-07",
-        "limit": 1600.0
-        },
-        {
-        "date": "2022-08",
-        "limit": 1700.0
-        },
-        {
-        "date": "2022-09",
-        "limit": 1800.0
-        },
-        {
-        "date": "2022-10",
-        "limit": 1900.0
-        },
-        {
-        "date": "2022-11",
-        "limit": 2000.0
-        },
-        {
-        "date": "2022-12",
-        "limit": 2100.0
-        }
-        ],
-        "total_usage_usd_cost": 43412.45,
-        "time_unit": "MONTHLY",
-        "start": "2022-01",
-        "end": "2022-12",
-        "tags": {},
-        "project_group_id": "pg-812c90990877",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-18T09:30:56.901Z",
-        "updated_at": "2022-07-18T09:30:56.901Z"
-        }
+        """Creates a new Budget. When creating a Budget, it should be set for a specific ProjectGroup or Project. The budgeted amount and date of the `planned_limits` should be specified on a monthly or yearly basis.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Updates a specific Budget. You can make changes in the budgeted amount of the time period specified while creating the resource.
-        request_example: >-
-        {
-        "budget_id": "budget-d51b6b6a9910",
-        "name": "Cloudforet-Budget-test", "limit": 15000.0,
-        "planned_limits": [{"date": "2022-01", "limit": 500.0},
-        {"date": "2022-02", "limit": 500.0},
-        {"date": "2022-03", "limit": 500.0},
-        {"date": "2022-04", "limit": 500.0},
-        {"date": "2022-05", "limit": 500.0},
-        {"date": "2022-06", "limit": 500.0},
-        {"date": "2022-07", "limit": 500.0},
-        {"date": "2022-08", "limit": 500.0},
-        {"date": "2022-09", "limit": 500.0}],
-        "end": "2022-12",
-        "tags": {}
-        }
-        response_example: >-
-        {
-        "budget_id": "budget-d51b6b6a9910",
-        "name": "Cloudforet-Budget-test",
-        "limit": 15000.0,
-        "planned_limits": [
-        {
-        "date": "2022-01",
-        "limit": 500.0
-        },
-        {
-        "date": "2022-02",
-        "limit": 500.0
-        },
-        {
-        "date": "2022-03",
-        "limit": 500.0
-        },
-        {
-        "date": "2022-04",
-        "limit": 500.0
-        },
-        {
-        "date": "2022-05",
-        "limit": 500.0
-        },
-        {
-        "date": "2022-06",
-        "limit": 500.0
-        },
-        {
-        "date": "2022-07",
-        "limit": 500.0
-        },
-        {
-        "date": "2022-08",
-        "limit": 500.0
-        },
-        {
-        "date": "2022-09",
-        "limit": 500.0
-        }
-        ],
-        "total_usage_usd_cost": 43642.49,
-        "time_unit": "MONTHLY",
-        "start": "2022-01",
-        "end": "2022-12",
-        "tags": {},
-        "project_group_id": "pg-812c90990877",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-18T09:30:56.901Z",
-        "updated_at": "2022-07-18T09:30:56.901Z"
-        }
+        """Updates a specific Budget. You can make changes in the budgeted amount of the time period specified while creating the resource.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def set_notification(self, request, context):
-        """
-        desc: Sets a notification on a specific Budget. Sets a threshold on the budget, and if the cost exceeds the threshold, a notification is raised.
-        request_example: >-
-        {
-        "budget_id": "budget-4c8606da4521",
-        "notifications": [
-        {
-        "threshold": 20.0,
-        "unit": "PERCENT",
-        "notification_type": "CRITICAL"
-        },
-        {
-        "threshold": 1000.0,
-        "unit": "ACTUAL_COST",
-        "notification_type": "WARNING"
-        }
-        ]
-        }
-        response_example: >-
-        {
-        "budget_id": "budget-4c8606da4521",
-        "name": "Cloudforet-Budget-test2",
-        "limit": 5000.0,
-        "time_unit": "TOTAL",
-        "start": "2022-01",
-        "end": "2022-12",
-        "notifications": [
-        {
-        "threshold": 20.0,
-        "unit": "PERCENT",
-        "notification_type": "CRITICAL"
-        },
-        {
-        "threshold": 1000.0,
-        "unit": "ACTUAL_COST",
-        "notification_type": "WARNING"
-        }
-        ],
-        "tags": {},
-        "project_id": "project-52a423012d5e",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-19T04:31:10.314Z",
-        "updated_at": "2022-07-19T04:31:10.314Z"
-        }
+        """Sets a notification on a specific Budget. Sets a threshold on the budget, and if the cost exceeds the threshold, a notification is raised.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """
-        desc: Deletes a specific Budget. You must specify the `budget_id` of the Budget to delete.
-        request_example: >-
-        {
-        "budget_id": "budget-d51b6b6a9910"
-        }
+        """Deletes a specific Budget. You must specify the `budget_id` of the Budget to delete.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific Budget. Prints detailed information about the Budget, including `planned_limits` of the project group or project for the pre-defined period.
-        request_example: >-
-        {
-        "budget_id": "budget-d51b6b6a9910"
-        }
-        response_example: >-
-        {
-        "budget_id": "budget-d51b6b6a9910",
-        "name": "Cloudforet-Budget",
-        "limit": 18600.0,
-        "planned_limits": [
-        {
-        "date": "2022-01",
-        "limit": 1000.0
-        },
-        {
-        "date": "2022-02",
-        "limit": 1100.0
-        },
-        {
-        "date": "2022-03",
-        "limit": 1200.0
-        },
-        {
-        "date": "2022-04",
-        "limit": 1300.0
-        },
-        {
-        "date": "2022-05",
-        "limit": 1400.0
-        },
-        {
-        "date": "2022-06",
-        "limit": 1500.0
-        },
-        {
-        "date": "2022-07",
-        "limit": 1600.0
-        },
-        {
-        "date": "2022-08",
-        "limit": 1700.0
-        },
-        {
-        "date": "2022-09",
-        "limit": 1800.0
-        },
-        {
-        "date": "2022-10",
-        "limit": 1900.0
-        },
-        {
-        "date": "2022-11",
-        "limit": 2000.0
-        },
-        {
-        "date": "2022-12",
-        "limit": 2100.0
-        }
-        ],
-        "total_usage_usd_cost": 43412.45,
-        "time_unit": "MONTHLY",
-        "start": "2022-01",
-        "end": "2022-12",
-        "tags": {},
-        "project_group_id": "pg-812c90990877",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-18T09:30:56.901Z",
-        "updated_at": "2022-07-18T09:30:56.901Z"
-        }
+        """Gets a specific Budget. Prints detailed information about the Budget, including `planned_limits` of the project group or project for the pre-defined period.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all Budgets. You can use a query to get a filtered list of Budgets.
-        request_example: >-
-        {
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "budget_id": "budget-409e33836ea2",
-        "name": "Budget 2 - Monthly",
-        "limit": 18600.0,
-        "planned_limits": [
-        {
-        "date": "2022-01",
-        "limit": 1000.0
-        },
-        {
-        "date": "2022-02",
-        "limit": 1100.0
-        },
-        {
-        "date": "2022-03",
-        "limit": 1200.0
-        },
-        {
-        "date": "2022-04",
-        "limit": 1300.0
-        },
-        {
-        "date": "2022-05",
-        "limit": 1400.0
-        },
-        {
-        "date": "2022-06",
-        "limit": 1500.0
-        },
-        {
-        "date": "2022-07",
-        "limit": 1600.0
-        },
-        {
-        "date": "2022-08",
-        "limit": 1700.0
-        },
-        {
-        "date": "2022-09",
-        "limit": 1800.0
-        },
-        {
-        "date": "2022-10",
-        "limit": 1900.0
-        },
-        {
-        "date": "2022-11",
-        "limit": 2000.0
-        },
-        {
-        "date": "2022-12",
-        "limit": 2100.0
-        }
-        ],
-        "total_usage_usd_cost": 43412.45,
-        "time_unit": "MONTHLY",
-        "start": "2022-01",
-        "end": "2022-12",
-        "tags": {},
-        "project_group_id": "pg-812c90990877",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-04-12T06:09:56.917Z",
-        "updated_at": "2022-04-12T06:09:56.917Z"
-        }
-        ],
-        "total_count": 6
-        }
+        """Gets a list of all Budgets. You can use a query to get a filtered list of Budgets.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

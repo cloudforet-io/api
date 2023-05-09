@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/cost_analysis/v1/data_source.proto",
-      "description": "desc: A DataSource is a plugin instance collecting external cost data. External cost data consists of `raw data` and the plugin information used for collection.",
+      "description": "A DataSource is a plugin instance collecting external cost data. External cost data consists of `raw data` and the plugin information used for collection.",
       "package": "spaceone.api.cost_analysis.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -154,7 +154,7 @@
           "name": "DataSourceInfo",
           "longName": "DataSourceInfo",
           "fullName": "spaceone.api.cost_analysis.v1.DataSourceInfo",
-          "description": "",
+          "description": "{\n       \"data_source_id\": \"ds-085d1e872789\",\n       \"name\": \"AWS HyperBilling Data Source test\",\n       \"state\": \"ENABLED\",\n       \"data_source_type\": \"EXTERNAL\",\n       \"plugin_info\": {\n           \"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n           \"version\": \"1.0.4\",\n           \"options\": {},\n           \"metadata\": {\n               \"data_source_rules\": [\n                   {\n                       \"options\": {\n                           \"stop_processing\": true\n                       },\n                       \"actions\": {\n                           \"match_service_account\": {\n                               \"source\": \"account\",\n                               \"target\": \"data.account_id\"\n                           }\n                       },\n                       \"domain_id\": \"domain-58010aa2e451\",\n                       \"conditions\": [],\n                       \"name\": \"match_service_account\",\n                       \"tags\": {},\n                       \"data_source_id\": \"ds-085d1e872789\",\n                       \"conditions_policy\": \"ALWAYS\"\n                   }\n               ]\n           },\n           \"secret_id\": \"secret-ca134639483\",\n           \"upgrade_mode\": \"AUTO\"\n       },\n       \"template\": {},\n       \"tags\": {\n           \"a\": \"b\"\n       },\n       \"cost_tag_keys\": [\n           \"Name\",\n           \"Environment\",\n           \"Role\",\n           \"Service\"\n       ],\n       \"cost_additional_info_keys\": [\n           \"raw_usage_type\"\n       ],\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-19T10:58:36.080Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -322,7 +322,7 @@
           "name": "DataSourceQuery",
           "longName": "DataSourceQuery",
           "fullName": "spaceone.api.cost_analysis.v1.DataSourceQuery",
-          "description": "",
+          "description": "{\n   \"query\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -330,7 +330,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -342,7 +342,7 @@
             },
             {
               "name": "data_source_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -354,7 +354,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -366,7 +366,7 @@
             },
             {
               "name": "state",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -378,7 +378,7 @@
             },
             {
               "name": "data_source_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "DataSourceType",
               "longType": "DataSourceQuery.DataSourceType",
@@ -390,7 +390,7 @@
             },
             {
               "name": "provider",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -402,7 +402,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -418,7 +418,7 @@
           "name": "DataSourceRequest",
           "longName": "DataSourceRequest",
           "fullName": "spaceone.api.cost_analysis.v1.DataSourceRequest",
-          "description": "",
+          "description": "{\n   \"data_source_id\": \"ds-085d1e872789\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -438,7 +438,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -462,7 +462,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -474,7 +474,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -490,7 +490,7 @@
           "name": "DataSourcesInfo",
           "longName": "DataSourcesInfo",
           "fullName": "spaceone.api.cost_analysis.v1.DataSourcesInfo",
-          "description": "",
+          "description": "{\n       \"results\": [\n           {\n               \"data_source_id\": \"ds-fcba92ca73b1\",\n               \"name\": \"AWS HyperBilling Data Source\",\n               \"state\": \"ENABLED\",\n               \"data_source_type\": \"EXTERNAL\",\n               \"plugin_info\": {\n                   \"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n                   \"version\": \"1.0.4\",\n                   \"options\": {},\n                   \"metadata\": {\n                       \"data_source_rules\": [\n                           {\n                               \"name\": \"match_service_account\",\n                               \"conditions\": [],\n                               \"actions\": {\n                                   \"match_service_account\": {\n                                       \"source\": \"account\",\n                                       \"target\": \"data.account_id\"\n                                   }\n                               },\n                               \"conditions_policy\": \"ALWAYS\",\n                               \"tags\": {},\n                               \"options\": {\n                                   \"stop_processing\": true\n                               }\n                           }\n                       ]\n                   },\n                   \"secret_id\": \"secret-dca385e85a27\",\n                   \"upgrade_mode\": \"AUTO\"\n               },\n               \"template\": {},\n               \"tags\": {\n                   \"a\": \"b\"\n               },\n               \"cost_tag_keys\": [\n                   \"Name\",\n                   \"Environment\",\n                   \"Role\",\n                   \"Service\"\n               ],\n               \"cost_additional_info_keys\": [\n                   \"raw_usage_type\"\n               ],\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-03-30T02:21:28.756Z\",\n               \"last_synchronized_at\": \"2022-07-17T16:00:05.077Z\"\n           },\n           {\n               \"data_source_id\": \"ds-c96609f5afeb\",\n               \"name\": \"MZC HyperBilling Data Source\",\n               \"state\": \"ENABLED\",\n               \"data_source_type\": \"EXTERNAL\",\n               \"plugin_info\": {\n                   \"plugin_id\": \"plugin-mzc-hyperbilling-cost-datasource\",\n                   \"version\": \"1.0.3\",\n                   \"options\": {},\n                   \"metadata\": {\n                       \"data_source_rules\": [\n                           {\n                               \"conditions\": [],\n                               \"options\": {\n                                   \"stop_processing\": true\n                               },\n                               \"conditions_policy\": \"ALWAYS\",\n                               \"name\": \"match_service_account\",\n                               \"tags\": {},\n                               \"actions\": {\n                                   \"match_service_account\": {\n                                       \"source\": \"account\",\n                                       \"target\": \"data.project_id\"\n                                   }\n                               }\n                           }\n                       ]\n                   },\n                   \"secret_id\": \"secret-354d142229e5\",\n                   \"upgrade_mode\": \"AUTO\"\n               },\n               \"template\": {},\n               \"tags\": {},\n               \"cost_tag_keys\": [],\n               \"cost_additional_info_keys\": [],\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-04-13T05:34:54.223Z\",\n               \"last_synchronized_at\": \"2022-07-17T16:00:08.254Z\"\n           }\n       ],\n       \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -534,7 +534,7 @@
           "fields": [
             {
               "name": "data_source_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -546,7 +546,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -558,7 +558,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -682,7 +682,7 @@
           "name": "RegisterDataSourceRequest",
           "longName": "RegisterDataSourceRequest",
           "fullName": "spaceone.api.cost_analysis.v1.RegisterDataSourceRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"AWS HyperBilling Data Source test\",\n   \"data_source_type\": \"EXTERNAL\",\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n       \"version\": \"1.0.4\",\n       \"options\": {},\n       \"metadata\": {\n           \"data_source_rules\": [\n               {\n                   \"conditions_policy\": \"ALWAYS\",\n                   \"options\": {\n                       \"stop_processing\": true\n                   },\n                   \"actions\": {\n                       \"match_service_account\": {\n                           \"source\": \"account\",\n                           \"target\": \"data.account_id\"\n                       }\n                   },\n                   \"conditions\": [],\n                   \"tags\": {},\n                   \"name\": \"match_service_account\"\n               }\n           ]\n       },\n       \"secret_id\": \"secret-ca134639483\",\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\"a\": \"b\"}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -690,7 +690,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -702,7 +702,7 @@
             },
             {
               "name": "data_source_type",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "DataSourceType",
               "longType": "RegisterDataSourceRequest.DataSourceType",
@@ -714,7 +714,7 @@
             },
             {
               "name": "provider",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -726,7 +726,7 @@
             },
             {
               "name": "template",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -738,7 +738,7 @@
             },
             {
               "name": "plugin_info",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "PluginInfo",
               "longType": "PluginInfo",
@@ -750,7 +750,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -762,7 +762,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -786,7 +786,7 @@
           "fields": [
             {
               "name": "data_source_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -798,7 +798,7 @@
             },
             {
               "name": "start",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -810,7 +810,7 @@
             },
             {
               "name": "no_preload_cache",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -822,7 +822,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -838,7 +838,7 @@
           "name": "UpdateDataSourcePluginRequest",
           "longName": "UpdateDataSourcePluginRequest",
           "fullName": "spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest",
-          "description": "",
+          "description": "{\n   \"data_source_id\": \"ds-085d1e872789\",\n   \"version\": \"1.0.4\",\n   \"options\": {},\n   \"upgrade_mode\": \"AUTO\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -846,7 +846,7 @@
           "fields": [
             {
               "name": "data_source_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -858,7 +858,7 @@
             },
             {
               "name": "version",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -870,7 +870,7 @@
             },
             {
               "name": "options",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -882,7 +882,7 @@
             },
             {
               "name": "upgrade_mode",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "UpgradeMode",
               "longType": "UpdateDataSourcePluginRequest.UpgradeMode",
@@ -894,7 +894,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -910,7 +910,7 @@
           "name": "UpdateDataSourceRequest",
           "longName": "UpdateDataSourceRequest",
           "fullName": "spaceone.api.cost_analysis.v1.UpdateDataSourceRequest",
-          "description": "",
+          "description": "{\n       \"data_source_id\": \"ds-085d1e872789\",\n       \"name\": \"AWS HyperBilling Data Source test2\",\n       \"tags\": {\n           \"type\": \"test\"\n       }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -918,7 +918,7 @@
           "fields": [
             {
               "name": "data_source_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -930,7 +930,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -942,7 +942,7 @@
             },
             {
               "name": "template",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -954,7 +954,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -966,7 +966,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -988,7 +988,7 @@
           "methods": [
             {
               "name": "register",
-              "description": "desc: Registers a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, and `upgrade_mode`.\nrequest_example: \u003e-\n{\n\"name\": \"AWS HyperBilling Data Source test\",\n\"data_source_type\": \"EXTERNAL\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n\"version\": \"1.0.4\",\n\"options\": {},\n\"metadata\": {\n\"data_source_rules\": [\n{\n\"conditions_policy\": \"ALWAYS\",\n\"options\": {\n\"stop_processing\": true\n},\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.account_id\"\n}\n},\n\"conditions\": [],\n\"tags\": {},\n\"name\": \"match_service_account\"\n}\n]\n},\n\"secret_id\": \"secret-ca134639483\",\n\"upgrade_mode\": \"AUTO\"\n},\n\"tags\": {\"a\": \"b\"}\n}\nresponse_example: \u003e-\n{\n\"data_source_id\": \"ds-085d1e872789\",\n\"name\": \"AWS HyperBilling Data Source test\",\n\"state\": \"ENABLED\",\n\"data_source_type\": \"EXTERNAL\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n\"version\": \"1.0.4\",\n\"options\": {},\n\"metadata\": {\n\"data_source_rules\": [\n{\n\"options\": {\n\"stop_processing\": true\n},\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.account_id\"\n}\n},\n\"domain_id\": \"domain-58010aa2e451\",\n\"conditions\": [],\n\"name\": \"match_service_account\",\n\"tags\": {},\n\"data_source_id\": \"ds-085d1e872789\",\n\"conditions_policy\": \"ALWAYS\"\n}\n]\n},\n\"secret_id\": \"secret-ca134639483\",\n\"upgrade_mode\": \"AUTO\"\n},\n\"template\": {},\n\"tags\": {\n\"a\": \"b\"\n},\n\"cost_tag_keys\": [\n\"Name\",\n\"Environment\",\n\"Role\",\n\"Service\"\n],\n\"cost_additional_info_keys\": [\n\"raw_usage_type\"\n],\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-19T10:58:36.080Z\"\n}",
+              "description": "Registers a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, and `upgrade_mode`.",
               "requestType": "RegisterDataSourceRequest",
               "requestLongType": "RegisterDataSourceRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.RegisterDataSourceRequest",
@@ -1011,7 +1011,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific DataSource. You can make changes in DataSource settings, including `name` and `tags`.\nrequest_example: \u003e-\n{\n\"data_source_id\": \"ds-085d1e872789\",\n\"name\": \"AWS HyperBilling Data Source test2\",\n\"tags\": {\n\"type\": \"test\"\n}\n}\nresponse_example: \u003e-\n{\n\"data_source_id\": \"ds-085d1e872789\",\n\"name\": \"AWS HyperBilling Data Source test2\",\n\"state\": \"ENABLED\",\n\"data_source_type\": \"EXTERNAL\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n\"version\": \"1.0.4\",\n\"options\": {},\n\"metadata\": {\n\"data_source_rules\": [\n{\n\"tags\": {},\n\"name\": \"match_service_account\",\n\"conditions_policy\": \"ALWAYS\",\n\"actions\": {\n\"match_service_account\": {\n\"target\": \"data.account_id\",\n\"source\": \"account\"\n}\n},\n\"options\": {\n\"stop_processing\": true\n},\n\"conditions\": []\n}\n]\n},\n\"secret_id\": \"secret-dca385e85a27\",\n\"upgrade_mode\": \"AUTO\"\n},\n\"template\": {},\n\"tags\": {\n\"type\": \"test\"\n},\n\"cost_tag_keys\": [\n\"Name\",\n\"Environment\",\n\"Role\",\n\"Service\"\n],\n\"cost_additional_info_keys\": [\n\"raw_usage_type\"\n],\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-19T10:58:36.080Z\"\n}",
+              "description": "Updates a specific DataSource. You can make changes in DataSource settings, including `name` and `tags`.",
               "requestType": "UpdateDataSourceRequest",
               "requestLongType": "UpdateDataSourceRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.UpdateDataSourceRequest",
@@ -1034,7 +1034,7 @@
             },
             {
               "name": "update_plugin",
-              "description": "desc: Updates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.\nrequest_example: \u003e-\n{\n\"data_source_id\": \"ds-085d1e872789\",\n\"version\": \"1.0.4\",\n\"options\": {},\n\"upgrade_mode\": \"AUTO\"\n}\nresponse_example: \u003e-\n{\n\"data_source_id\": \"ds-085d1e872789\",\n\"name\": \"AWS HyperBilling Data Source test2\",\n\"state\": \"DISABLED\",\n\"data_source_type\": \"EXTERNAL\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n\"version\": \"1.0.4\",\n\"options\": {},\n\"metadata\": {\n\"data_source_rules\": [\n{\n\"tags\": {},\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.account_id\"\n}\n},\n\"options\": {\n\"stop_processing\": true\n},\n\"conditions_policy\": \"ALWAYS\",\n\"name\": \"match_service_account\",\n\"conditions\": []\n}\n]\n},\n\"secret_id\": \"secret-dca385e85a27\",\n\"upgrade_mode\": \"AUTO\"\n},\n\"template\": {},\n\"tags\": {\n\"type\": \"test\"\n},\n\"cost_tag_keys\": [\n\"Name\",\n\"Environment\",\n\"Role\",\n\"Service\"\n],\n\"cost_additional_info_keys\": [\n\"raw_usage_type\"\n],\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-19T10:58:36.080Z\"\n}",
+              "description": "Updates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.",
               "requestType": "UpdateDataSourcePluginRequest",
               "requestLongType": "UpdateDataSourcePluginRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest",
@@ -1057,7 +1057,7 @@
             },
             {
               "name": "verify_plugin",
-              "description": "desc: Verifies the plugin of a specific DataSource. This method validates the plugin data, `version` and `endpoint`.\nrequest_example: \u003e-\n{\n\"data_source_id\": \"ds-085d1e872789\"\n}",
+              "description": "Verifies the plugin of a specific DataSource. This method validates the plugin data, `version` and `endpoint`.",
               "requestType": "DataSourceRequest",
               "requestLongType": "DataSourceRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceRequest",
@@ -1080,7 +1080,7 @@
             },
             {
               "name": "enable",
-              "description": "desc: Enables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.\nrequest_example: \u003e-\n{\n\"data_source_id\": \"ds-085d1e872789\"\n}\nresponse_example: \u003e-\n{\n\"data_source_id\": \"ds-085d1e872789\",\n\"name\": \"AWS HyperBilling Data Source test2\",\n\"state\": \"ENABLED\",\n\"data_source_type\": \"EXTERNAL\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n\"version\": \"1.0.4\",\n\"options\": {},\n\"metadata\": {\n\"data_source_rules\": [\n{\n\"actions\": {\n\"match_service_account\": {\n\"target\": \"data.account_id\",\n\"source\": \"account\"\n}\n},\n\"conditions_policy\": \"ALWAYS\",\n\"conditions\": [],\n\"options\": {\n\"stop_processing\": true\n},\n\"name\": \"match_service_account\",\n\"tags\": {}\n}\n]\n},\n\"secret_id\": \"secret-dca385e85a27\",\n\"upgrade_mode\": \"AUTO\"\n},\n\"template\": {},\n\"tags\": {\n\"type\": \"test\"\n},\n\"cost_tag_keys\": [\n\"Name\",\n\"Environment\",\n\"Role\",\n\"Service\"\n],\n\"cost_additional_info_keys\": [\n\"raw_usage_type\"\n],\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-19T10:58:36.080Z\"\n}",
+              "description": "Enables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.",
               "requestType": "DataSourceRequest",
               "requestLongType": "DataSourceRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceRequest",
@@ -1103,7 +1103,7 @@
             },
             {
               "name": "disable",
-              "description": "desc: Disables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.\nrequest_example: \u003e-\n{\n\"data_source_id\": \"ds-085d1e872789\"\n}\nresponse_example: \u003e-\n{\n\"data_source_id\": \"ds-085d1e872789\",\n\"name\": \"AWS HyperBilling Data Source test2\",\n\"state\": \"DISABLED\",\n\"data_source_type\": \"EXTERNAL\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n\"version\": \"1.0.4\",\n\"options\": {},\n\"metadata\": {\n\"data_source_rules\": [\n{\n\"name\": \"match_service_account\",\n\"options\": {\n\"stop_processing\": true\n},\n\"conditions_policy\": \"ALWAYS\",\n\"conditions\": [],\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.account_id\"\n}\n},\n\"tags\": {}\n}\n]\n},\n\"secret_id\": \"secret-dca385e85a27\",\n\"upgrade_mode\": \"AUTO\"\n},\n\"template\": {},\n\"tags\": {\n\"type\": \"test\"\n},\n\"cost_tag_keys\": [\n\"Name\",\n\"Environment\",\n\"Role\",\n\"Service\"\n],\n\"cost_additional_info_keys\": [\n\"raw_usage_type\"\n],\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-19T10:58:36.080Z\"\n}",
+              "description": "Disables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.",
               "requestType": "DataSourceRequest",
               "requestLongType": "DataSourceRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceRequest",
@@ -1126,7 +1126,7 @@
             },
             {
               "name": "deregister",
-              "description": "desc: Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.\nrequest_example: \u003e-\n{\n\"data_source_id\": \"ds-085d1e872789\"\n}",
+              "description": "Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.",
               "requestType": "DataSourceRequest",
               "requestLongType": "DataSourceRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceRequest",
@@ -1149,7 +1149,7 @@
             },
             {
               "name": "sync",
-              "description": "desc: Manually runs a specific DataSource to collect the cost data. This method is to get up-to-date cost data.\nrequest_example: \u003e-\n{\n\"data_source_id\": \"ds-c96609f5afeb\"\n}\nresponse_example: \u003e-\n{\n\"job_id\": \"job-ba2598167785\",\n\"status\": \"IN_PROGRESS\",\n\"options\": {\n\"no_preload_cache\": false,\n\"start\": null\n},\n\"total_tasks\": 1,\n\"remained_tasks\": 1,\n\"data_source_id\": \"ds-c96609f5afeb\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-19T11:16:59.923Z\",\n\"updated_at\": \"2022-07-19T11:16:59.923Z\",\n\"changed\": [\n{\n\"start\": \"2022-07-01T00:00:00.000Z\"\n}\n]\n}",
+              "description": "Manually runs a specific DataSource to collect the cost data. This method is to get up-to-date cost data.",
               "requestType": "SyncDataSourceRequest",
               "requestLongType": "SyncDataSourceRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.SyncDataSourceRequest",
@@ -1172,7 +1172,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.\nrequest_example: \u003e-\n{\n\"data_source_id\": \"ds-fcba92ca73b1\"\n}\nresponse_example: \u003e-\n{\n\"data_source_id\": \"ds-fcba92ca73b1\",\n\"name\": \"AWS HyperBilling Data Source\",\n\"state\": \"ENABLED\",\n\"data_source_type\": \"EXTERNAL\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n\"version\": \"1.0.4\",\n\"options\": {},\n\"metadata\": {\n\"data_source_rules\": [\n{\n\"conditions_policy\": \"ALWAYS\",\n\"options\": {\n\"stop_processing\": true\n},\n\"tags\": {},\n\"conditions\": [],\n\"name\": \"match_service_account\",\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.account_id\"\n}\n}\n}\n]\n},\n\"secret_id\": \"secret-dca385e85a27\",\n\"upgrade_mode\": \"AUTO\"\n},\n\"template\": {},\n\"tags\": {\n\"a\": \"b\"\n},\n\"cost_tag_keys\": [\n\"Name\",\n\"Environment\",\n\"Role\",\n\"Service\"\n],\n\"cost_additional_info_keys\": [\n\"raw_usage_type\"\n],\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-03-30T02:21:28.756Z\",\n\"last_synchronized_at\": \"2022-07-17T16:00:05.077Z\"\n}",
+              "description": "Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.",
               "requestType": "GetDataSourceRequest",
               "requestLongType": "GetDataSourceRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.GetDataSourceRequest",
@@ -1195,7 +1195,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all DataSources. You can use a query to get a filtered list of DataSources.\nrequest_example: \u003e-\n{\n\"query\": {}\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"data_source_id\": \"ds-fcba92ca73b1\",\n\"name\": \"AWS HyperBilling Data Source\",\n\"state\": \"ENABLED\",\n\"data_source_type\": \"EXTERNAL\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n\"version\": \"1.0.4\",\n\"options\": {},\n\"metadata\": {\n\"data_source_rules\": [\n{\n\"name\": \"match_service_account\",\n\"conditions\": [],\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.account_id\"\n}\n},\n\"conditions_policy\": \"ALWAYS\",\n\"tags\": {},\n\"options\": {\n\"stop_processing\": true\n}\n}\n]\n},\n\"secret_id\": \"secret-dca385e85a27\",\n\"upgrade_mode\": \"AUTO\"\n},\n\"template\": {},\n\"tags\": {\n\"a\": \"b\"\n},\n\"cost_tag_keys\": [\n\"Name\",\n\"Environment\",\n\"Role\",\n\"Service\"\n],\n\"cost_additional_info_keys\": [\n\"raw_usage_type\"\n],\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-03-30T02:21:28.756Z\",\n\"last_synchronized_at\": \"2022-07-17T16:00:05.077Z\"\n},\n{\n\"data_source_id\": \"ds-c96609f5afeb\",\n\"name\": \"MZC HyperBilling Data Source\",\n\"state\": \"ENABLED\",\n\"data_source_type\": \"EXTERNAL\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-mzc-hyperbilling-cost-datasource\",\n\"version\": \"1.0.3\",\n\"options\": {},\n\"metadata\": {\n\"data_source_rules\": [\n{\n\"conditions\": [],\n\"options\": {\n\"stop_processing\": true\n},\n\"conditions_policy\": \"ALWAYS\",\n\"name\": \"match_service_account\",\n\"tags\": {},\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.project_id\"\n}\n}\n}\n]\n},\n\"secret_id\": \"secret-354d142229e5\",\n\"upgrade_mode\": \"AUTO\"\n},\n\"template\": {},\n\"tags\": {},\n\"cost_tag_keys\": [],\n\"cost_additional_info_keys\": [],\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-04-13T05:34:54.223Z\",\n\"last_synchronized_at\": \"2022-07-17T16:00:08.254Z\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all DataSources. You can use a query to get a filtered list of DataSources.",
               "requestType": "DataSourceQuery",
               "requestLongType": "DataSourceQuery",
               "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceQuery",

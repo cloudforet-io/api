@@ -41,121 +41,21 @@ class JobServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def cancel(self, request, context):
-        """
-        desc: Cancels a specific Job. You can manually cease a Job in run with this method.
-        request_example: >-
-        {
-        "job_id": "job-07994c7c9021"
-        }
-        response_example: >-
-        {
-        "job_id": "job-07994c7c9021",
-        "status": "CANCELED",
-        "options": {
-        "no_preload_cache": false,
-        "start": "2021-01-01T00:00:00Z"
-        },
-        "total_tasks": 2,
-        "remained_tasks": 2,
-        "data_source_id": "ds-fcba92ca73b1",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-04-02T09:17:44.031Z",
-        "updated_at": "2022-04-02T09:19:47.715Z",
-        "finished_at": "2022-04-02T09:19:47.715Z",
-        "changed": [
-        {
-        "start": "2021-01-01T00:00:00.000Z"
-        }
-        ]
-        }
+        """Cancels a specific Job. You can manually cease a Job in run with this method.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific Job. Prints detailed information about the Job, including the plugin used, operation time, and `status`.
-        request_example: >-
-        {
-        "job_id": "job-85cf2c385252"
-        }
-        response_example: >-
-        {
-        "job_id": "job-85cf2c385252",
-        "status": "SUCCESS",
-        "options": {
-        "no_preload_cache": false,
-        "start": null
-        },
-        "total_tasks": 1,
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-17T16:00:08.254Z",
-        "updated_at": "2022-07-17T16:01:30.637Z",
-        "finished_at": "2022-07-17T16:01:30.637Z",
-        "changed": [
-        {
-        "start": "2022-07-01T00:00:00.000Z"
-        }
-        ]
-        }
+        """Gets a specific Job. Prints detailed information about the Job, including the plugin used, operation time, and `status`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.
-        request_example: >-
-        {
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "job_id": "job-85cf2c385252",
-        "status": "SUCCESS",
-        "options": {
-        "start": null,
-        "no_preload_cache": false
-        },
-        "total_tasks": 1,
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-17T16:00:08.254Z",
-        "updated_at": "2022-07-17T16:01:30.637Z",
-        "finished_at": "2022-07-17T16:01:30.637Z",
-        "changed": [
-        {
-        "start": "2022-07-01T00:00:00.000Z"
-        }
-        ]
-        },
-        {
-        "job_id": "job-6b6765f757a9",
-        "status": "SUCCESS",
-        "options": {
-        "start": null,
-        "no_preload_cache": false
-        },
-        "total_tasks": 2,
-        "data_source_id": "ds-fcba92ca73b1",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-17T16:00:05.077Z",
-        "updated_at": "2022-07-17T16:01:28.206Z",
-        "finished_at": "2022-07-17T16:01:28.206Z",
-        "changed": [
-        {
-        "start": "2022-07-01T00:00:00.000Z"
-        }
-        ]
-        }
-        ],
-        "total_count": 372
-        }
+        """Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

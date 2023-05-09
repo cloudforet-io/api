@@ -149,18 +149,15 @@ type CreateScheduleRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: true
+	// +optional
+	Name     string     `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Schedule *Scheduled `protobuf:"bytes,3,opt,name=schedule,proto3" json:"schedule,omitempty"`
-	// is_required: false
+	// +optional
 	Options *_struct.Struct `protobuf:"bytes,4,opt,name=options,proto3" json:"options,omitempty"`
-	// is_required: false
-	Tags *_struct.Struct `protobuf:"bytes,6,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: true
-	DataSourceId string `protobuf:"bytes,11,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,12,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	Tags         *_struct.Struct `protobuf:"bytes,6,opt,name=tags,proto3" json:"tags,omitempty"`
+	DataSourceId string          `protobuf:"bytes,11,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
+	DomainId     string          `protobuf:"bytes,12,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *CreateScheduleRequest) Reset() {
@@ -242,18 +239,16 @@ type UpdateScheduleRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	ScheduleId string `protobuf:"bytes,1,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
-	// is_required: false
+	// +optional
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	Schedule *Scheduled `protobuf:"bytes,3,opt,name=schedule,proto3" json:"schedule,omitempty"`
-	// is_required: false
+	// +optional
 	Options *_struct.Struct `protobuf:"bytes,4,opt,name=options,proto3" json:"options,omitempty"`
-	// is_required: false
-	Tags *_struct.Struct `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,11,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	Tags     *_struct.Struct `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
+	DomainId string          `protobuf:"bytes,11,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *UpdateScheduleRequest) Reset() {
@@ -335,10 +330,8 @@ type ScheduleRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	ScheduleId string `protobuf:"bytes,1,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	DomainId   string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *ScheduleRequest) Reset() {
@@ -392,11 +385,9 @@ type GetScheduleRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	ScheduleId string `protobuf:"bytes,1,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: false
+	DomainId   string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
 	Only []string `protobuf:"bytes,3,rep,name=only,proto3" json:"only,omitempty"`
 }
 
@@ -458,18 +449,17 @@ type ScheduleQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
+	// +optional
 	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: false
+	// +optional
 	ScheduleId string `protobuf:"bytes,2,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
-	// is_required: false
+	// +optional
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	State string `protobuf:"bytes,4,opt,name=state,proto3" json:"state,omitempty"`
-	// is_required: false
+	// +optional
 	DataSourceId string `protobuf:"bytes,5,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,11,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	DomainId     string `protobuf:"bytes,11,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *ScheduleQuery) Reset() {
@@ -725,10 +715,8 @@ type ScheduleStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Query    *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	DomainId string              `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *ScheduleStatQuery) Reset() {

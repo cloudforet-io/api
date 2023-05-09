@@ -26,15 +26,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type JobClient interface {
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	GetTasks(ctx context.Context, in *GetTasksRequest, opts ...grpc.CallOption) (*TasksInfo, error)
 }
 
@@ -59,15 +50,6 @@ func (c *jobClient) GetTasks(ctx context.Context, in *GetTasksRequest, opts ...g
 // All implementations must embed UnimplementedJobServer
 // for forward compatibility
 type JobServer interface {
-	// desc: ”
-	// request_example: >-
-	// {
-	//
-	// }
-	// response_example: >-
-	// {
-	//
-	// }
 	GetTasks(context.Context, *GetTasksRequest) (*TasksInfo, error)
 	mustEmbedUnimplementedJobServer()
 }

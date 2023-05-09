@@ -23,20 +23,22 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+//	{
+//	   "query": {}
+//	}
 type BudgetUsageQuery struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
+	// +optional
 	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: false
+	// +optional
 	BudgetId string `protobuf:"bytes,2,opt,name=budget_id,json=budgetId,proto3" json:"budget_id,omitempty"`
-	// is_required: false
+	// +optional
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
-	Date string `protobuf:"bytes,4,opt,name=date,proto3" json:"date,omitempty"`
-	// is_required: true
+	// +optional
+	Date     string `protobuf:"bytes,4,opt,name=date,proto3" json:"date,omitempty"`
 	DomainId string `protobuf:"bytes,11,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -210,6 +212,29 @@ func (x *BudgetUsageInfo) GetUpdatedAt() string {
 	return ""
 }
 
+//	{
+//	       "results": [
+//	           {
+//	               "budget_id": "budget-abb377eb9e8b",
+//	               "name": "Cloudforet-Budget3",
+//	               "date": "2022-01",
+//	               "usd_cost": 7671.164,
+//	               "limit": 10000.0,
+//	               "domain_id": "domain-58010aa2e451",
+//	               "updated_at": "2022-07-19T04:26:08.099Z"
+//	           },
+//	           {
+//	               "budget_id": "budget-abb377eb9e8b",
+//	               "name": "Cloudforet-Budget3",
+//	               "date": "2022-02",
+//	               "usd_cost": 5931.771,
+//	               "limit": 11000.0,
+//	               "domain_id": "domain-58010aa2e451",
+//	               "updated_at": "2022-07-19T04:26:08.105Z"
+//	           }
+//	       ],
+//	       "total_count": 12
+//	}
 type BudgetUsagesInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -270,10 +295,8 @@ type BudgetUsageAnalyzeQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Query *v1.TimeSeriesAnalyzeQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Query    *v1.TimeSeriesAnalyzeQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	DomainId string                     `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *BudgetUsageAnalyzeQuery) Reset() {
@@ -327,10 +350,8 @@ type BudgetUsageStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Query    *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	DomainId string              `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *BudgetUsageStatQuery) Reset() {

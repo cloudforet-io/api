@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/cost_analysis/v1/user_dashboard.proto",
-      "description": "desc: A UserDashboard is a cost data dashboard customized with a combination of widgets a User want.",
+      "description": "A UserDashboard is a cost data dashboard customized with a combination of widgets a User want.",
       "package": "spaceone.api.cost_analysis.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -108,7 +108,7 @@
           "name": "CreateUserDashboardRequest",
           "longName": "CreateUserDashboardRequest",
           "fullName": "spaceone.api.cost_analysis.v1.CreateUserDashboardRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"Untitled Dashboard\",\n   \"custom_layouts\": [\n       [\n           {\n               \"name\": \"AWS Data-Transfer Cost Trend\",\n               \"widget_id\": \"linegraph-lg-02\",\n               \"options\": {\n                   \"layout\": 100.0,\n                   \"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_COST_TREND_DESC\",\n                   \"chart_type\": \"LINE\",\n                   \"chart_img\": \"AWS_Data-Transfer_Cost_Trend\"\n               }\n           }\n       ],\n       [\n           {\n               \"options\": {\n                   \"chart_type\": \"MAP\",\n                   \"chart_img\": \"AWS_Data-Transfer_By_Region\",\n                   \"layout\": 100.0,\n                   \"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_BY_REGION_DESC\"\n               },\n               \"name\": \"AWS Data-Transfer by Region\",\n               \"widget_id\": \"map-lg-02\"\n           }\n       ],\n       [\n           {\n               \"options\": {\n                   \"group_by\": \"project_id\",\n                   \"layout\": 100.0,\n                   \"chart_type\": \"STACKED_COLUMN\",\n                   \"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_CLOUDFRONT_COST_DESC\",\n                   \"chart_img\": \"AWS_CloudFront_Cost\"\n               },\n               \"name\": \"AWS CloudFront Cost by Project\",\n               \"widget_id\": \"stackedcol-lg-03\"\n           }\n       ]\n   ],\n   \"default_filter\": {},\n   \"period_type\": \"AUTO\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -116,7 +116,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -128,7 +128,7 @@
             },
             {
               "name": "default_layout_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -140,7 +140,7 @@
             },
             {
               "name": "custom_layouts",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "ListValue",
               "longType": "google.protobuf.ListValue",
@@ -152,7 +152,7 @@
             },
             {
               "name": "default_filter",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -164,7 +164,7 @@
             },
             {
               "name": "period_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "PeriodType",
               "longType": "CreateUserDashboardRequest.PeriodType",
@@ -176,7 +176,7 @@
             },
             {
               "name": "period",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "UserDashboardPeriod",
               "longType": "UserDashboardPeriod",
@@ -188,7 +188,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -200,7 +200,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -216,7 +216,7 @@
           "name": "GetUserDashboardRequest",
           "longName": "GetUserDashboardRequest",
           "fullName": "spaceone.api.cost_analysis.v1.GetUserDashboardRequest",
-          "description": "",
+          "description": "{\n   \"user_dashboard_id\": \"user-dash-d1bd5d8cb6d7\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -224,7 +224,7 @@
           "fields": [
             {
               "name": "user_dashboard_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -236,7 +236,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -248,7 +248,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -264,7 +264,7 @@
           "name": "UpdateUserDashboardRequest",
           "longName": "UpdateUserDashboardRequest",
           "fullName": "spaceone.api.cost_analysis.v1.UpdateUserDashboardRequest",
-          "description": "",
+          "description": "{\n   \"user_dashboard_id\": \"user-dash-bf3f5f5ffa03\",\n   \"name\": \"Untitled Dashboard2\",\n   \"custom_layouts\": [\n       [{\n           \"options\": {\n               \"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_COST_TREND_DESC\",\n               \"chart_type\": \"LINE\", \"chart_img\": \"AWS_Data-Transfer_Cost_Trend\", \"layout\": 100.0},\n           \"name\": \"AWS Data-Transfer Cost Trend\",\n           \"widget_id\": \"linegraph-lg-02\"}],\n       [{\n           \"name\": \"AWS Data-Transfer by Region\",\n           \"options\": {\n               \"chart_type\": \"MAP\",\n               \"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_BY_REGION_DESC\",\n               \"layout\": 100.0,\n               \"chart_img\": \"AWS_Data-Transfer_By_Region\"},\n           \"widget_id\": \"map-lg-02\"}],\n       [{\n           \"name\": \"AWS CloudFront Cost by Project\",\n           \"widget_id\": \"stackedcol-lg-03\",\n           \"options\": {\n               \"layout\": 100.0,\n               \"chart_img\": \"AWS_CloudFront_Cost\",\n               \"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_CLOUDFRONT_COST_DESC\",\n               \"chart_type\": \"STACKED_COLUMN\",\n               \"group_by\": \"project_id\"}\n       }]\n   ]\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -272,7 +272,7 @@
           "fields": [
             {
               "name": "user_dashboard_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -284,7 +284,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -296,7 +296,7 @@
             },
             {
               "name": "default_layout_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -308,7 +308,7 @@
             },
             {
               "name": "custom_layouts",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "ListValue",
               "longType": "google.protobuf.ListValue",
@@ -320,7 +320,7 @@
             },
             {
               "name": "default_filter",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -332,7 +332,7 @@
             },
             {
               "name": "period_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "PeriodType",
               "longType": "UpdateUserDashboardRequest.PeriodType",
@@ -344,7 +344,7 @@
             },
             {
               "name": "period",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "UserDashboardPeriod",
               "longType": "UserDashboardPeriod",
@@ -356,7 +356,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -368,7 +368,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -384,7 +384,7 @@
           "name": "UserDashboardInfo",
           "longName": "UserDashboardInfo",
           "fullName": "spaceone.api.cost_analysis.v1.UserDashboardInfo",
-          "description": "",
+          "description": "{\n   \"user_dashboard_id\": \"user-dash-bf3f5f5ffa03\",\n   \"name\": \"Untitled Dashboard\",\n   \"custom_layouts\": [\n       [\n           {\n               \"options\": {\n                   \"chart_type\": \"LINE\",\n                   \"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_COST_TREND_DESC\",\n                   \"layout\": 100.0,\n                   \"chart_img\": \"AWS_Data-Transfer_Cost_Trend\"\n               },\n               \"widget_id\": \"linegraph-lg-02\",\n               \"name\": \"AWS Data-Transfer Cost Trend\"\n           }\n       ],\n       [\n           {\n               \"name\": \"AWS Data-Transfer by Region\",\n               \"widget_id\": \"map-lg-02\",\n               \"options\": {\n                   \"chart_img\": \"AWS_Data-Transfer_By_Region\",\n                   \"chart_type\": \"MAP\",\n                   \"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_BY_REGION_DESC\",\n                   \"layout\": 100.0\n               }\n           }\n       ],\n       [\n           {\n               \"widget_id\": \"stackedcol-lg-03\",\n               \"name\": \"AWS CloudFront Cost by Project\",\n               \"options\": {\n                   \"layout\": 100.0,\n                   \"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_CLOUDFRONT_COST_DESC\",\n                   \"chart_img\": \"AWS_CloudFront_Cost\",\n                   \"group_by\": \"project_id\",\n                   \"chart_type\": \"STACKED_COLUMN\"\n               }\n           }\n       ]\n   ],\n   \"default_filter\": {},\n   \"period_type\": \"AUTO\",\n   \"tags\": {},\n   \"user_id\": \"seolmin@mz.co.kr\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T05:58:52.065Z\",\n   \"updated_at\": \"2022-07-19T05:58:52.065Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -584,7 +584,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -596,7 +596,7 @@
             },
             {
               "name": "user_dashboard_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -608,7 +608,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -620,7 +620,7 @@
             },
             {
               "name": "period_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "PeriodType",
               "longType": "UserDashboardQuery.PeriodType",
@@ -632,7 +632,7 @@
             },
             {
               "name": "user_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -644,7 +644,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -660,7 +660,7 @@
           "name": "UserDashboardRequest",
           "longName": "UserDashboardRequest",
           "fullName": "spaceone.api.cost_analysis.v1.UserDashboardRequest",
-          "description": "",
+          "description": "{\n   \"user_dashboard_id\": \"user-dash-d1bd5d8cb6d7\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -668,7 +668,7 @@
           "fields": [
             {
               "name": "user_dashboard_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -680,7 +680,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -704,7 +704,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -716,7 +716,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -732,7 +732,7 @@
           "name": "UserDashboardsInfo",
           "longName": "UserDashboardsInfo",
           "fullName": "spaceone.api.cost_analysis.v1.UserDashboardsInfo",
-          "description": "",
+          "description": "{\n   \"results\": [\n       {\n           \"user_dashboard_id\": \"user-dash-d1bd5d8cb6d7\",\n           \"name\": \"11 Months Public Cloud Cost Summary\",\n           \"custom_layouts\": [\n               [\n                   {\n                       \"options\": {\n                           \"layout\": 100.0,\n                           \"chart_type\": \"CARD\"\n                       },\n                       \"widget_id\": \"card-lg-01\",\n                       \"name\": \"Budget Usage Summary\"\n                   }\n               ],\n               [\n                   {\n                       \"name\": \"Project-wise Budget Usage Summary@@\",\n                       \"options\": {\n                           \"chart_type\": \"TABLE\",\n                           \"layout\": 100.0\n                       },\n                       \"widget_id\": \"table-lg-01\"\n                   }\n               ],\n               [\n                   {\n                       \"widget_id\": \"stackedcol-lg-02\",\n                       \"options\": {\n                           \"layout\": 100.0,\n                           \"group_by\": \"product\",\n                           \"chart_type\": \"STACKED_COLUMN\"\n                       },\n                       \"name\": \"Cost Trend By Product\"\n                   }\n               ]\n           ],\n           \"default_filter\": {\n               \"project_id\": []\n           },\n           \"period_type\": \"FIXED\",\n           \"period\": {\n               \"start\": \"2021-04-01\",\n               \"end\": \"2022-02-28\"\n           },\n           \"tags\": {},\n           \"user_id\": \"wanzargen@mz.co.kr\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-03-03T03:36:35.396Z\",\n           \"updated_at\": \"2022-03-03T03:36:35.396Z\"\n       },\n       {\n           \"user_dashboard_id\": \"user-dash-965b03793d5b\",\n           \"name\": \"AWS CloudFront Cost by Project\",\n           \"custom_layouts\": [\n               [\n                   {\n                       \"name\": \"AWS CloudFront Cost by Project\",\n                       \"widget_id\": \"stackedcol-lg-03\",\n                       \"options\": {\n                           \"chart_type\": \"STACKED_COLUMN\",\n                           \"layout\": 100.0\n                       }\n                   }\n               ],\n               [\n                   {\n                       \"widget_id\": \"stackedcol-lg-03\",\n                       \"options\": {\n                           \"layout\": 100.0,\n                           \"chart_type\": \"STACKED_COLUMN\",\n                           \"group_by\": \"service_account_id\"\n                       },\n                       \"name\": \"AWS CloudFront Cost by Service Account\"\n                   }\n               ],\n               [\n                   {\n                       \"options\": {\n                           \"layout\": 100.0,\n                           \"chart_type\": \"LINE\"\n                       },\n                       \"name\": \"AWS Data-Transfer Cost Trend\",\n                       \"widget_id\": \"linegraph-lg-02\"\n                   }\n               ]\n           ],\n           \"default_filter\": {},\n           \"period_type\": \"FIXED\",\n           \"period\": {\n               \"start\": \"2021-05-01\",\n               \"end\": \"2022-04-30\"\n           },\n           \"tags\": {},\n           \"user_id\": \"wanzargen@mz.co.kr\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-04-07T01:13:28.494Z\",\n           \"updated_at\": \"2022-04-07T01:13:28.494Z\"\n       }\n   ],\n   \"total_count\": 48\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -774,7 +774,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new UserDashboard. Users can use the dashboard in `private`. In addition to the widgets provided by Cloudforet by default, Users can use widgets through the CustomWidget resource to create a UserDashboard that suits their needs.\nrequest_example: \u003e-\n{\n\"name\": \"Untitled Dashboard\",\n\"custom_layouts\": [\n[\n{\n\"name\": \"AWS Data-Transfer Cost Trend\",\n\"widget_id\": \"linegraph-lg-02\",\n\"options\": {\n\"layout\": 100.0,\n\"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_COST_TREND_DESC\",\n\"chart_type\": \"LINE\",\n\"chart_img\": \"AWS_Data-Transfer_Cost_Trend\"\n}\n}\n],\n[\n{\n\"options\": {\n\"chart_type\": \"MAP\",\n\"chart_img\": \"AWS_Data-Transfer_By_Region\",\n\"layout\": 100.0,\n\"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_BY_REGION_DESC\"\n},\n\"name\": \"AWS Data-Transfer by Region\",\n\"widget_id\": \"map-lg-02\"\n}\n],\n[\n{\n\"options\": {\n\"group_by\": \"project_id\",\n\"layout\": 100.0,\n\"chart_type\": \"STACKED_COLUMN\",\n\"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_CLOUDFRONT_COST_DESC\",\n\"chart_img\": \"AWS_CloudFront_Cost\"\n},\n\"name\": \"AWS CloudFront Cost by Project\",\n\"widget_id\": \"stackedcol-lg-03\"\n}\n]\n],\n\"default_filter\": {},\n\"period_type\": \"AUTO\"\n}\nresponse_example: \u003e-\n{\n\"user_dashboard_id\": \"user-dash-bf3f5f5ffa03\",\n\"name\": \"Untitled Dashboard\",\n\"custom_layouts\": [\n[\n{\n\"options\": {\n\"chart_type\": \"LINE\",\n\"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_COST_TREND_DESC\",\n\"layout\": 100.0,\n\"chart_img\": \"AWS_Data-Transfer_Cost_Trend\"\n},\n\"widget_id\": \"linegraph-lg-02\",\n\"name\": \"AWS Data-Transfer Cost Trend\"\n}\n],\n[\n{\n\"name\": \"AWS Data-Transfer by Region\",\n\"widget_id\": \"map-lg-02\",\n\"options\": {\n\"chart_img\": \"AWS_Data-Transfer_By_Region\",\n\"chart_type\": \"MAP\",\n\"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_BY_REGION_DESC\",\n\"layout\": 100.0\n}\n}\n],\n[\n{\n\"widget_id\": \"stackedcol-lg-03\",\n\"name\": \"AWS CloudFront Cost by Project\",\n\"options\": {\n\"layout\": 100.0,\n\"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_CLOUDFRONT_COST_DESC\",\n\"chart_img\": \"AWS_CloudFront_Cost\",\n\"group_by\": \"project_id\",\n\"chart_type\": \"STACKED_COLUMN\"\n}\n}\n]\n],\n\"default_filter\": {},\n\"period_type\": \"AUTO\",\n\"tags\": {},\n\"user_id\": \"seolmin@mz.co.kr\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-19T05:58:52.065Z\",\n\"updated_at\": \"2022-07-19T05:58:52.065Z\"\n}",
+              "description": "Creates a new UserDashboard. Users can use the dashboard in `private`. In addition to the widgets provided by Cloudforet by default, Users can use widgets through the CustomWidget resource to create a UserDashboard that suits their needs.",
               "requestType": "CreateUserDashboardRequest",
               "requestLongType": "CreateUserDashboardRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.CreateUserDashboardRequest",
@@ -797,7 +797,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific UserDashboard. You can make changes in widgets, including default widgets and CustomWidegets.\nrequest_example: \u003e-\n{\n\"user_dashboard_id\": \"user-dash-bf3f5f5ffa03\",\n\"name\": \"Untitled Dashboard2\",\n\"custom_layouts\": [\n[{\n\"options\": {\n\"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_COST_TREND_DESC\",\n\"chart_type\": \"LINE\", \"chart_img\": \"AWS_Data-Transfer_Cost_Trend\", \"layout\": 100.0},\n\"name\": \"AWS Data-Transfer Cost Trend\",\n\"widget_id\": \"linegraph-lg-02\"}],\n[{\n\"name\": \"AWS Data-Transfer by Region\",\n\"options\": {\n\"chart_type\": \"MAP\",\n\"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_BY_REGION_DESC\",\n\"layout\": 100.0,\n\"chart_img\": \"AWS_Data-Transfer_By_Region\"},\n\"widget_id\": \"map-lg-02\"}],\n[{\n\"name\": \"AWS CloudFront Cost by Project\",\n\"widget_id\": \"stackedcol-lg-03\",\n\"options\": {\n\"layout\": 100.0,\n\"chart_img\": \"AWS_CloudFront_Cost\",\n\"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_CLOUDFRONT_COST_DESC\",\n\"chart_type\": \"STACKED_COLUMN\",\n\"group_by\": \"project_id\"}\n}]\n]\n}\nresponse_example: \u003e-\n{\n\"user_dashboard_id\": \"user-dash-bf3f5f5ffa03\",\n\"name\": \"Untitled Dashboard2\",\n\"custom_layouts\": [\n[\n{\n\"options\": {\n\"chart_type\": \"LINE\",\n\"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_COST_TREND_DESC\",\n\"layout\": 100.0,\n\"chart_img\": \"AWS_Data-Transfer_Cost_Trend\"\n},\n\"widget_id\": \"linegraph-lg-02\",\n\"name\": \"AWS Data-Transfer Cost Trend\"\n}\n],\n[\n{\n\"name\": \"AWS Data-Transfer by Region\",\n\"widget_id\": \"map-lg-02\",\n\"options\": {\n\"chart_img\": \"AWS_Data-Transfer_By_Region\",\n\"chart_type\": \"MAP\",\n\"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_DATA_TRANSFER_BY_REGION_DESC\",\n\"layout\": 100.0\n}\n}\n],\n[\n{\n\"widget_id\": \"stackedcol-lg-03\",\n\"name\": \"AWS CloudFront Cost by Project\",\n\"options\": {\n\"layout\": 100.0,\n\"chart_desc_translation_id\": \"BILLING.COST_MANAGEMENT.DASHBOARD.CUSTOMIZE.ADD_WIDGET_MODAL.AWS_CLOUDFRONT_COST_DESC\",\n\"chart_img\": \"AWS_CloudFront_Cost\",\n\"group_by\": \"project_id\",\n\"chart_type\": \"STACKED_COLUMN\"\n}\n}\n]\n],\n\"default_filter\": {},\n\"period_type\": \"AUTO\",\n\"tags\": {},\n\"user_id\": \"seolmin@mz.co.kr\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-19T05:58:52.065Z\",\n\"updated_at\": \"2022-07-19T05:58:52.065Z\"\n}",
+              "description": "Updates a specific UserDashboard. You can make changes in widgets, including default widgets and CustomWidegets.",
               "requestType": "UpdateUserDashboardRequest",
               "requestLongType": "UpdateUserDashboardRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.UpdateUserDashboardRequest",
@@ -820,7 +820,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific UserDashboard. You must specify the `user_dashboard_id` of the UserDashboard to delete.\nrequest_example: \u003e-\n{\n\"user_dashboard_id\": \"user-dash-d1bd5d8cb6d7\"\n}",
+              "description": "Deletes a specific UserDashboard. You must specify the `user_dashboard_id` of the UserDashboard to delete.",
               "requestType": "UserDashboardRequest",
               "requestLongType": "UserDashboardRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.UserDashboardRequest",
@@ -843,7 +843,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific UserDashboard. Prints detailed information about the UserDashboard, including widegts used.\nrequest_example: \u003e-\n{\n\"user_dashboard_id\": \"user-dash-d1bd5d8cb6d7\"\n}\nresponse_example: \u003e-\n{\n\"user_dashboard_id\": \"user-dash-d1bd5d8cb6d7\",\n\"name\": \"11 Months Public Cloud Cost Summary\",\n\"custom_layouts\": [\n[\n{\n\"widget_id\": \"card-lg-01\",\n\"options\": {\n\"chart_type\": \"CARD\",\n\"layout\": 100.0\n},\n\"name\": \"Budget Usage Summary\"\n}\n],\n[\n{\n\"options\": {\n\"layout\": 100.0,\n\"chart_type\": \"TABLE\"\n},\n\"name\": \"Project-wise Budget Usage Summary@@\",\n\"widget_id\": \"table-lg-01\"\n}\n],\n[\n{\n\"name\": \"Cost Trend By Product\",\n\"options\": {\n\"chart_type\": \"STACKED_COLUMN\",\n\"layout\": 100.0,\n\"group_by\": \"product\"\n},\n\"widget_id\": \"stackedcol-lg-02\"\n}\n]\n],\n\"default_filter\": {\n\"project_id\": []\n},\n\"period_type\": \"FIXED\",\n\"period\": {\n\"start\": \"2021-04-01\",\n\"end\": \"2022-02-28\"\n},\n\"tags\": {},\n\"user_id\": \"wanzargen@mz.co.kr\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-03-03T03:36:35.396Z\",\n\"updated_at\": \"2022-03-03T03:36:35.396Z\"\n}",
+              "description": "Gets a specific UserDashboard. Prints detailed information about the UserDashboard, including widegts used.",
               "requestType": "GetUserDashboardRequest",
               "requestLongType": "GetUserDashboardRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.GetUserDashboardRequest",
@@ -866,7 +866,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all UserDashboards. You can use a query to get a filtered list of UserDashboards.\nrequest_example: \u003e-\n{\n\"query\": {}\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"user_dashboard_id\": \"user-dash-d1bd5d8cb6d7\",\n\"name\": \"11 Months Public Cloud Cost Summary\",\n\"custom_layouts\": [\n[\n{\n\"options\": {\n\"layout\": 100.0,\n\"chart_type\": \"CARD\"\n},\n\"widget_id\": \"card-lg-01\",\n\"name\": \"Budget Usage Summary\"\n}\n],\n[\n{\n\"name\": \"Project-wise Budget Usage Summary@@\",\n\"options\": {\n\"chart_type\": \"TABLE\",\n\"layout\": 100.0\n},\n\"widget_id\": \"table-lg-01\"\n}\n],\n[\n{\n\"widget_id\": \"stackedcol-lg-02\",\n\"options\": {\n\"layout\": 100.0,\n\"group_by\": \"product\",\n\"chart_type\": \"STACKED_COLUMN\"\n},\n\"name\": \"Cost Trend By Product\"\n}\n]\n],\n\"default_filter\": {\n\"project_id\": []\n},\n\"period_type\": \"FIXED\",\n\"period\": {\n\"start\": \"2021-04-01\",\n\"end\": \"2022-02-28\"\n},\n\"tags\": {},\n\"user_id\": \"wanzargen@mz.co.kr\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-03-03T03:36:35.396Z\",\n\"updated_at\": \"2022-03-03T03:36:35.396Z\"\n},\n{\n\"user_dashboard_id\": \"user-dash-965b03793d5b\",\n\"name\": \"AWS CloudFront Cost by Project\",\n\"custom_layouts\": [\n[\n{\n\"name\": \"AWS CloudFront Cost by Project\",\n\"widget_id\": \"stackedcol-lg-03\",\n\"options\": {\n\"chart_type\": \"STACKED_COLUMN\",\n\"layout\": 100.0\n}\n}\n],\n[\n{\n\"widget_id\": \"stackedcol-lg-03\",\n\"options\": {\n\"layout\": 100.0,\n\"chart_type\": \"STACKED_COLUMN\",\n\"group_by\": \"service_account_id\"\n},\n\"name\": \"AWS CloudFront Cost by Service Account\"\n}\n],\n[\n{\n\"options\": {\n\"layout\": 100.0,\n\"chart_type\": \"LINE\"\n},\n\"name\": \"AWS Data-Transfer Cost Trend\",\n\"widget_id\": \"linegraph-lg-02\"\n}\n]\n],\n\"default_filter\": {},\n\"period_type\": \"FIXED\",\n\"period\": {\n\"start\": \"2021-05-01\",\n\"end\": \"2022-04-30\"\n},\n\"tags\": {},\n\"user_id\": \"wanzargen@mz.co.kr\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-04-07T01:13:28.494Z\",\n\"updated_at\": \"2022-04-07T01:13:28.494Z\"\n}\n],\n\"total_count\": 48\n}",
+              "description": "Gets a list of all UserDashboards. You can use a query to get a filtered list of UserDashboards.",
               "requestType": "UserDashboardQuery",
               "requestLongType": "UserDashboardQuery",
               "requestFullType": "spaceone.api.cost_analysis.v1.UserDashboardQuery",

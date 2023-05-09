@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/cost_analysis/v1/data_source_rule.proto",
-      "description": "desc: A DataSourceRule is a resource filtering the raw data from the DataSource. The Cost resource is created after the raw data is filtered by the DataSourceRule.",
+      "description": "A DataSourceRule is a resource filtering the raw data from the DataSource. The Cost resource is created after the raw data is filtered by the DataSourceRule.",
       "package": "spaceone.api.cost_analysis.v1",
       "hasEnums": true,
       "hasExtensions": false,
@@ -44,7 +44,7 @@
           "name": "ChangeDataSourceRuleOrderRequest",
           "longName": "ChangeDataSourceRuleOrderRequest",
           "fullName": "spaceone.api.cost_analysis.v1.ChangeDataSourceRuleOrderRequest",
-          "description": "",
+          "description": "{\n   \"data_source_rule_id\": \"rule-c8055231e212\",\n   \"order\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -52,7 +52,7 @@
           "fields": [
             {
               "name": "data_source_rule_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -64,7 +64,7 @@
             },
             {
               "name": "order",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -76,7 +76,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -92,7 +92,7 @@
           "name": "CreateDataSourceRuleRequest",
           "longName": "CreateDataSourceRuleRequest",
           "fullName": "spaceone.api.cost_analysis.v1.CreateDataSourceRuleRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"match_service_account_test\",\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\"source\": \"account\", \"target\": \"data.project_id\"}\n   },\n   \"options\": {\"stop_processing\": true},\n   \"tags\": {\"b\": \"c\", \"a\": \"b\"},\n   \"data_source_id\": \"ds-c96609f5afeb\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -100,7 +100,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -112,7 +112,7 @@
             },
             {
               "name": "conditions",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "DataSourceRuleCondition",
               "longType": "DataSourceRuleCondition",
@@ -124,7 +124,7 @@
             },
             {
               "name": "conditions_policy",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "ConditionsPolicy",
               "longType": "ConditionsPolicy",
@@ -136,7 +136,7 @@
             },
             {
               "name": "actions",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "DataSourceRuleActions",
               "longType": "DataSourceRuleActions",
@@ -148,7 +148,7 @@
             },
             {
               "name": "options",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "DataSourceRuleOptions",
               "longType": "DataSourceRuleOptions",
@@ -160,7 +160,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -172,7 +172,7 @@
             },
             {
               "name": "data_source_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -184,7 +184,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -308,7 +308,7 @@
           "name": "DataSourceRuleInfo",
           "longName": "DataSourceRuleInfo",
           "fullName": "spaceone.api.cost_analysis.v1.DataSourceRuleInfo",
-          "description": "",
+          "description": "{\n   \"data_source_rule_id\": \"rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"order\": 2,\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\n       \"a\": \"b\",\n       \"b\": \"c\"\n   },\n   \"data_source_id\": \"ds-c96609f5afeb\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-19T10:13:28.335Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -488,7 +488,7 @@
           "name": "DataSourceRuleQuery",
           "longName": "DataSourceRuleQuery",
           "fullName": "spaceone.api.cost_analysis.v1.DataSourceRuleQuery",
-          "description": "",
+          "description": "{\n \"query\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -496,7 +496,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -508,7 +508,7 @@
             },
             {
               "name": "data_source_rule_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -520,7 +520,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -532,7 +532,7 @@
             },
             {
               "name": "data_source_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -544,7 +544,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -560,7 +560,7 @@
           "name": "DataSourceRuleRequest",
           "longName": "DataSourceRuleRequest",
           "fullName": "spaceone.api.cost_analysis.v1.DataSourceRuleRequest",
-          "description": "",
+          "description": "{\n   \"data_source_rule_id\": \"rule-22fab02f6b51\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -568,7 +568,7 @@
           "fields": [
             {
               "name": "data_source_rule_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -580,7 +580,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -604,7 +604,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -616,7 +616,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -632,7 +632,7 @@
           "name": "DataSourceRulesInfo",
           "longName": "DataSourceRulesInfo",
           "fullName": "spaceone.api.cost_analysis.v1.DataSourceRulesInfo",
-          "description": "",
+          "description": "{\n       \"results\": [\n           {\n               \"data_source_rule_id\": \"rule-22fab02f6b51\",\n               \"name\": \"match_service_account\",\n               \"order\": 1,\n               \"conditions_policy\": \"ALWAYS\",\n               \"actions\": {\n                   \"match_service_account\": {\n                       \"source\": \"account\",\n                       \"target\": \"data.project_id\"\n                   }\n               },\n               \"options\": {\n                   \"stop_processing\": true\n               },\n               \"tags\": {},\n               \"data_source_id\": \"ds-c96609f5afeb\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-05-25T16:01:51.858Z\"\n           },\n           {\n               \"data_source_rule_id\": \"rule-188d366e9817\",\n               \"name\": \"match_service_account\",\n               \"order\": 1,\n               \"conditions_policy\": \"ALWAYS\",\n               \"actions\": {\n                   \"match_service_account\": {\n                       \"source\": \"account\",\n                       \"target\": \"data.account_id\"\n                   }\n               },\n               \"options\": {\n                   \"stop_processing\": true\n               },\n               \"tags\": {},\n               \"data_source_id\": \"ds-fcba92ca73b1\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-06-03T16:00:54.099Z\"\n           }\n       ],\n       \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -668,7 +668,7 @@
           "name": "GetDataSourceRuleRequest",
           "longName": "GetDataSourceRuleRequest",
           "fullName": "spaceone.api.cost_analysis.v1.GetDataSourceRuleRequest",
-          "description": "",
+          "description": "{\n \"data_source_rule_id\": \"rule-22fab02f6b51\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -676,7 +676,7 @@
           "fields": [
             {
               "name": "data_source_rule_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -688,7 +688,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -700,7 +700,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -752,7 +752,7 @@
           "name": "UpdateDataSourceRuleRequest",
           "longName": "UpdateDataSourceRuleRequest",
           "fullName": "spaceone.api.cost_analysis.v1.UpdateDataSourceRuleRequest",
-          "description": "",
+          "description": "{\n   \"data_source_rule_id\": \"rule-c8055231e212\",\n   \"name\": \"match_service_account_test\",\n   \"conditions_policy\": \"ALWAYS\",\n   \"actions\": {\n       \"match_service_account\": {\n           \"source\": \"account\",\n           \"target\": \"data.project_id\"\n       }\n   },\n   \"options\": {\n       \"stop_processing\": true\n   },\n   \"tags\": {\"b\": \"c\", \"a\": \"b\"}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -760,7 +760,7 @@
           "fields": [
             {
               "name": "data_source_rule_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -772,7 +772,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -784,7 +784,7 @@
             },
             {
               "name": "conditions",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "DataSourceRuleCondition",
               "longType": "DataSourceRuleCondition",
@@ -796,7 +796,7 @@
             },
             {
               "name": "conditions_policy",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "ConditionsPolicy",
               "longType": "ConditionsPolicy",
@@ -808,7 +808,7 @@
             },
             {
               "name": "actions",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "DataSourceRuleActions",
               "longType": "DataSourceRuleActions",
@@ -820,7 +820,7 @@
             },
             {
               "name": "options",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "DataSourceRuleOptions",
               "longType": "DataSourceRuleOptions",
@@ -832,7 +832,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -844,7 +844,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -866,7 +866,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new DataSourceRule. When creating the resource, this method can apply two types of conditions: mapping projects where the cost incurred to the Cost, and mapping cloud service accounts to the Cost. By adjusting the `condition_policy` parameter, the DataSourceRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.\nrequest_example: \u003e-\n{\n\"name\": \"match_service_account_test\",\n\"conditions_policy\": \"ALWAYS\",\n\"actions\": {\n\"match_service_account\": {\"source\": \"account\", \"target\": \"data.project_id\"}\n},\n\"options\": {\"stop_processing\": true},\n\"tags\": {\"b\": \"c\", \"a\": \"b\"},\n\"data_source_id\": \"ds-c96609f5afeb\"\n}\nresponse_example: \u003e-\n{\n\"data_source_rule_id\": \"rule-c8055231e212\",\n\"name\": \"match_service_account_test\",\n\"order\": 2,\n\"conditions_policy\": \"ALWAYS\",\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.project_id\"\n}\n},\n\"options\": {\n\"stop_processing\": true\n},\n\"tags\": {\n\"a\": \"b\",\n\"b\": \"c\"\n},\n\"data_source_id\": \"ds-c96609f5afeb\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-19T10:13:28.335Z\"\n}",
+              "description": "Creates a new DataSourceRule. When creating the resource, this method can apply two types of conditions: mapping projects where the cost incurred to the Cost, and mapping cloud service accounts to the Cost. By adjusting the `condition_policy` parameter, the DataSourceRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.",
               "requestType": "CreateDataSourceRuleRequest",
               "requestLongType": "CreateDataSourceRuleRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.CreateDataSourceRuleRequest",
@@ -889,7 +889,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific DataSourceRule. You can make changes in DataSourceRule settings, including filtering conditions. If the parameter `is_default` is `true`, only `Admin` type User can use this method.\nrequest_example: \u003e-\n{\n\"data_source_rule_id\": \"rule-c8055231e212\",\n\"name\": \"match_service_account_test\",\n\"conditions_policy\": \"ALWAYS\",\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.project_id\"\n}\n},\n\"options\": {\n\"stop_processing\": true\n},\n\"tags\": {\"b\": \"c\", \"a\": \"b\"}\n}\nresponse_example: \u003e-\n{\n\"data_source_rule_id\": \"rule-c8055231e212\",\n\"name\": \"match_service_account_test\",\n\"order\": 2,\n\"conditions_policy\": \"ALWAYS\",\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.project_id\"\n}\n},\n\"options\": {\n\"stop_processing\": true\n},\n\"tags\": {\n\"a\": \"b\",\n\"b\": \"c\"\n},\n\"data_source_id\": \"ds-c96609f5afeb\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-19T10:13:28.335Z\"\n}",
+              "description": "Updates a specific DataSourceRule. You can make changes in DataSourceRule settings, including filtering conditions. If the parameter `is_default` is `true`, only `Admin` type User can use this method.",
               "requestType": "UpdateDataSourceRuleRequest",
               "requestLongType": "UpdateDataSourceRuleRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.UpdateDataSourceRuleRequest",
@@ -912,7 +912,7 @@
             },
             {
               "name": "change_order",
-              "description": "desc: Changes the priority order of the DataSourceRules to apply. If there are multiple DataSourceRules applied in a specific service account, the priority order of the resources is requried. This method changes the priority order to apply DataSourceRules.\nrequest_example: \u003e-\n{\n\"data_source_rule_id\": \"rule-c8055231e212\",\n\"order\": 2\n}\nresponse_example: \u003e-\n{\n\"data_source_rule_id\": \"rule-c8055231e212\",\n\"name\": \"match_service_account_test\",\n\"order\": 2,\n\"conditions_policy\": \"ALWAYS\",\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.project_id\"\n}\n},\n\"options\": {\n\"stop_processing\": true\n},\n\"tags\": {\n\"a\": \"b\",\n\"b\": \"c\"\n},\n\"data_source_id\": \"ds-c96609f5afeb\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-19T10:13:28.335Z\"\n}",
+              "description": "Changes the priority order of the DataSourceRules to apply. If there are multiple DataSourceRules applied in a specific service account, the priority order of the resources is requried. This method changes the priority order to apply DataSourceRules.",
               "requestType": "ChangeDataSourceRuleOrderRequest",
               "requestLongType": "ChangeDataSourceRuleOrderRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.ChangeDataSourceRuleOrderRequest",
@@ -935,7 +935,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific DataSourceRule. You must specify the `data_source_rule_id` of the DataSourceRule to delete. If the parameter `is_default` is `true`, only `Admin` type User can use this method.\nrequest_example: \u003e-\n{\n\"data_source_rule_id\": \"rule-22fab02f6b51\"\n}",
+              "description": "Deletes a specific DataSourceRule. You must specify the `data_source_rule_id` of the DataSourceRule to delete. If the parameter `is_default` is `true`, only `Admin` type User can use this method.",
               "requestType": "DataSourceRuleRequest",
               "requestLongType": "DataSourceRuleRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceRuleRequest",
@@ -958,7 +958,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific DataSourceRule. Prints detailed information about the DataSourceRule, including  `conditions_policy` and conditions applied to DataSources.\nrequest_example: \u003e-\n{\n\"data_source_rule_id\": \"rule-22fab02f6b51\"\n}\nresponse_example: \u003e-\n{\n\"data_source_rule_id\": \"rule-22fab02f6b51\",\n\"name\": \"match_service_account\",\n\"order\": 1,\n\"conditions_policy\": \"ALWAYS\",\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.project_id\"\n}\n},\n\"options\": {\n\"stop_processing\": true\n},\n\"tags\": {},\n\"data_source_id\": \"ds-c96609f5afeb\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-05-25T16:01:51.858Z\"\n}",
+              "description": "Gets a specific DataSourceRule. Prints detailed information about the DataSourceRule, including  `conditions_policy` and conditions applied to DataSources.",
               "requestType": "GetDataSourceRuleRequest",
               "requestLongType": "GetDataSourceRuleRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.GetDataSourceRuleRequest",
@@ -981,7 +981,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all DataSourceRules. You can use a query to get a filtered list of DataSourceRules.\nrequest_example: \u003e-\n{\n\"query\": {}\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"data_source_rule_id\": \"rule-22fab02f6b51\",\n\"name\": \"match_service_account\",\n\"order\": 1,\n\"conditions_policy\": \"ALWAYS\",\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.project_id\"\n}\n},\n\"options\": {\n\"stop_processing\": true\n},\n\"tags\": {},\n\"data_source_id\": \"ds-c96609f5afeb\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-05-25T16:01:51.858Z\"\n},\n{\n\"data_source_rule_id\": \"rule-188d366e9817\",\n\"name\": \"match_service_account\",\n\"order\": 1,\n\"conditions_policy\": \"ALWAYS\",\n\"actions\": {\n\"match_service_account\": {\n\"source\": \"account\",\n\"target\": \"data.account_id\"\n}\n},\n\"options\": {\n\"stop_processing\": true\n},\n\"tags\": {},\n\"data_source_id\": \"ds-fcba92ca73b1\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-03T16:00:54.099Z\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all DataSourceRules. You can use a query to get a filtered list of DataSourceRules.",
               "requestType": "DataSourceRuleQuery",
               "requestLongType": "DataSourceRuleQuery",
               "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceRuleQuery",

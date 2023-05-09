@@ -57,225 +57,42 @@ class DataSourceRuleServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """
-        desc: Creates a new DataSourceRule. When creating the resource, this method can apply two types of conditions: mapping projects where the cost incurred to the Cost, and mapping cloud service accounts to the Cost. By adjusting the `condition_policy` parameter, the DataSourceRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.
-        request_example: >-
-        {
-        "name": "match_service_account_test",
-        "conditions_policy": "ALWAYS",
-        "actions": {
-        "match_service_account": {"source": "account", "target": "data.project_id"}
-        },
-        "options": {"stop_processing": true},
-        "tags": {"b": "c", "a": "b"},
-        "data_source_id": "ds-c96609f5afeb"
-        }
-        response_example: >-
-        {
-        "data_source_rule_id": "rule-c8055231e212",
-        "name": "match_service_account_test",
-        "order": 2,
-        "conditions_policy": "ALWAYS",
-        "actions": {
-        "match_service_account": {
-        "source": "account",
-        "target": "data.project_id"
-        }
-        },
-        "options": {
-        "stop_processing": true
-        },
-        "tags": {
-        "a": "b",
-        "b": "c"
-        },
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-19T10:13:28.335Z"
-        }
+        """Creates a new DataSourceRule. When creating the resource, this method can apply two types of conditions: mapping projects where the cost incurred to the Cost, and mapping cloud service accounts to the Cost. By adjusting the `condition_policy` parameter, the DataSourceRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Updates a specific DataSourceRule. You can make changes in DataSourceRule settings, including filtering conditions. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
-        request_example: >-
-        {
-        "data_source_rule_id": "rule-c8055231e212",
-        "name": "match_service_account_test",
-        "conditions_policy": "ALWAYS",
-        "actions": {
-        "match_service_account": {
-        "source": "account",
-        "target": "data.project_id"
-        }
-        },
-        "options": {
-        "stop_processing": true
-        },
-        "tags": {"b": "c", "a": "b"}
-        }
-        response_example: >-
-        {
-        "data_source_rule_id": "rule-c8055231e212",
-        "name": "match_service_account_test",
-        "order": 2,
-        "conditions_policy": "ALWAYS",
-        "actions": {
-        "match_service_account": {
-        "source": "account",
-        "target": "data.project_id"
-        }
-        },
-        "options": {
-        "stop_processing": true
-        },
-        "tags": {
-        "a": "b",
-        "b": "c"
-        },
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-19T10:13:28.335Z"
-        }
+        """Updates a specific DataSourceRule. You can make changes in DataSourceRule settings, including filtering conditions. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def change_order(self, request, context):
-        """
-        desc: Changes the priority order of the DataSourceRules to apply. If there are multiple DataSourceRules applied in a specific service account, the priority order of the resources is requried. This method changes the priority order to apply DataSourceRules.
-        request_example: >-
-        {
-        "data_source_rule_id": "rule-c8055231e212",
-        "order": 2
-        }
-        response_example: >-
-        {
-        "data_source_rule_id": "rule-c8055231e212",
-        "name": "match_service_account_test",
-        "order": 2,
-        "conditions_policy": "ALWAYS",
-        "actions": {
-        "match_service_account": {
-        "source": "account",
-        "target": "data.project_id"
-        }
-        },
-        "options": {
-        "stop_processing": true
-        },
-        "tags": {
-        "a": "b",
-        "b": "c"
-        },
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-19T10:13:28.335Z"
-        }
+        """Changes the priority order of the DataSourceRules to apply. If there are multiple DataSourceRules applied in a specific service account, the priority order of the resources is requried. This method changes the priority order to apply DataSourceRules.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """
-        desc: Deletes a specific DataSourceRule. You must specify the `data_source_rule_id` of the DataSourceRule to delete. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
-        request_example: >-
-        {
-        "data_source_rule_id": "rule-22fab02f6b51"
-        }
+        """Deletes a specific DataSourceRule. You must specify the `data_source_rule_id` of the DataSourceRule to delete. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific DataSourceRule. Prints detailed information about the DataSourceRule, including  `conditions_policy` and conditions applied to DataSources.
-        request_example: >-
-        {
-        "data_source_rule_id": "rule-22fab02f6b51"
-        }
-        response_example: >-
-        {
-        "data_source_rule_id": "rule-22fab02f6b51",
-        "name": "match_service_account",
-        "order": 1,
-        "conditions_policy": "ALWAYS",
-        "actions": {
-        "match_service_account": {
-        "source": "account",
-        "target": "data.project_id"
-        }
-        },
-        "options": {
-        "stop_processing": true
-        },
-        "tags": {},
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-05-25T16:01:51.858Z"
-        }
+        """Gets a specific DataSourceRule. Prints detailed information about the DataSourceRule, including  `conditions_policy` and conditions applied to DataSources.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all DataSourceRules. You can use a query to get a filtered list of DataSourceRules.
-        request_example: >-
-        {
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "data_source_rule_id": "rule-22fab02f6b51",
-        "name": "match_service_account",
-        "order": 1,
-        "conditions_policy": "ALWAYS",
-        "actions": {
-        "match_service_account": {
-        "source": "account",
-        "target": "data.project_id"
-        }
-        },
-        "options": {
-        "stop_processing": true
-        },
-        "tags": {},
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-05-25T16:01:51.858Z"
-        },
-        {
-        "data_source_rule_id": "rule-188d366e9817",
-        "name": "match_service_account",
-        "order": 1,
-        "conditions_policy": "ALWAYS",
-        "actions": {
-        "match_service_account": {
-        "source": "account",
-        "target": "data.account_id"
-        }
-        },
-        "options": {
-        "stop_processing": true
-        },
-        "tags": {},
-        "data_source_id": "ds-fcba92ca73b1",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-03T16:00:54.099Z"
-        }
-        ],
-        "total_count": 2
-        }
+        """Gets a list of all DataSourceRules. You can use a query to get a filtered list of DataSourceRules.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

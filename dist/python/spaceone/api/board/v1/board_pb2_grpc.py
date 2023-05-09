@@ -57,160 +57,42 @@ class BoardServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """
-        desc: Creates a new Board with SYSTEM permission. The `name` of the board is only required. You can add one or more `categories` representing the Board's attributes.
-        request_example: >-
-        {
-        "name": "notice",
-        "categories": ["admin", "developer", "devops"],
-        "tags": {"a": "b"}
-        }
-        response_example: >-
-        {
-        "board_id": "board-123456789012",
-        "name": "notice",
-        "categories": [
-        "admin",
-        "developer",
-        "devops"
-        ],
-        "tags": {
-        "a": "b"
-        },
-        "created_at": "2022-01-01T06:47:27.759Z"
-        }
+        """Creates a new Board with SYSTEM permission. The `name` of the board is only required. You can add one or more `categories` representing the Board's attributes.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Updates a specific Board with SYSTEM permission. You can make changes in Board settings, including `name` and `tags`.
-        request_example: >-
-        {
-        "board_id": "board-123456789012",
-        "name": "system notice",
-        "tags": {"b": "c"}
-        }
-        response_example: >-
-        {
-        "board_id": "board-123456789012",
-        "name": "system notice",
-        "categories": [
-        "admin",
-        "developer",
-        "devops"
-        ],
-        "tags": {
-        "b": "c"
-        },
-        "created_at": "2022-01-01T06:47:27.759Z"
-        }
+        """Updates a specific Board with SYSTEM permission. You can make changes in Board settings, including `name` and `tags`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def set_categories(self, request, context):
-        """
-        desc: Adds or changes `categories` of a specific Board with SYSTEM permission. A change in `categories` of a Board does not affect the `category` of the child Posts.
-        request_example: >-
-        {
-        "board_id": "board-123456789012",
-        "categories": ["Developer", "SRE", "Devops"]
-        }
-        response_example: >-
-        {
-        "board_id": "board-123456789012",
-        "name": "dev-notice",
-        "categories": [
-        "Developer",
-        "SRE",
-        "Devops"
-        ],
-        "tags": {
-        "b": "c"
-        },
-        "created_at": "2022-01-01T05:24:19.758Z"
-        }
+        """Adds or changes `categories` of a specific Board with SYSTEM permission. A change in `categories` of a Board does not affect the `category` of the child Posts.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """
-        desc: Deletes a specific Board with `SYSTEM` permission. You can delete a Board regardless of the presence of Posts created under the Board.
-        request_example: >-
-        {
-        "board_id": "board-123456789012"
-        }
+        """Deletes a specific Board with `SYSTEM` permission. You can delete a Board regardless of the presence of Posts created under the Board.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific Board. You must specify the `board_id` of the Board to get. Prints detailed information about the Board, including `name`, `categories`.
-        request_example: >-
-        {
-        "board_id": "board-123456789012"
-        }
-        response_example: >-
-        {
-        "board_id": "board-123456789012",
-        "name": "dev-notice",
-        "categories": [
-        "Developer",
-        "SRE",
-        "Devops"
-        ],
-        "tags": {
-        "b": "c"
-        },
-        "created_at": "2022-01-01T05:24:19.758Z"
-        }
+        """Gets a specific Board. You must specify the `board_id` of the Board to get. Prints detailed information about the Board, including `name`, `categories`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all Boards. You can use a query to get a filtered list of Boards.
-        request_example: >-
-        {
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "board_id": "board-123456789012",
-        "name": "dev-notice",
-        "categories": [
-        "flower",
-        "school",
-        "spaceone"
-        ],
-        "tags": {
-        "b": "c"
-        },
-        "created_at": "2022-01-01T05:16:08.549Z"
-        },
-        {
-        "board_id": "board-987654321098",
-        "name": "notice",
-        "tags": {
-        "a": "b"
-        },
-        "created_at": "2022-01-01T05:24:19.758Z"
-        }
-        ],
-        "total_count": 2
-        }
+        """Gets a list of all Boards. You can use a query to get a filtered list of Boards.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

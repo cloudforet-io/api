@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/cost_analysis/v1/exchange_rate.proto",
-      "description": "desc: An ExchangeRate is a resource defining the exchange rate of currencies. This resource can set a custom exchange rate for a specific domain, separately from the exchange rate of the default domain set in `config`.",
+      "description": "An ExchangeRate is a resource defining the exchange rate of currencies. This resource can set a custom exchange rate for a specific domain, separately from the exchange rate of the default domain set in `config`.",
       "package": "spaceone.api.cost_analysis.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -39,7 +39,7 @@
           "name": "ExchangeRateInfo",
           "longName": "ExchangeRateInfo",
           "fullName": "spaceone.api.cost_analysis.v1.ExchangeRateInfo",
-          "description": "",
+          "description": "{\n   \"currency\": \"KRW\",\n   \"rate\": 1300.0,\n   \"state\": \"ENABLED\",\n   \"is_default\": true\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -111,7 +111,7 @@
           "name": "ExchangeRateQuery",
           "longName": "ExchangeRateQuery",
           "fullName": "spaceone.api.cost_analysis.v1.ExchangeRateQuery",
-          "description": "",
+          "description": "{\n\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -119,7 +119,7 @@
           "fields": [
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -135,7 +135,7 @@
           "name": "ExchangeRateRequest",
           "longName": "ExchangeRateRequest",
           "fullName": "spaceone.api.cost_analysis.v1.ExchangeRateRequest",
-          "description": "",
+          "description": "{\n   \"currency\": \"KRW\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -143,7 +143,7 @@
           "fields": [
             {
               "name": "currency",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -155,7 +155,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -171,7 +171,7 @@
           "name": "ExchangeRatesInfo",
           "longName": "ExchangeRatesInfo",
           "fullName": "spaceone.api.cost_analysis.v1.ExchangeRatesInfo",
-          "description": "",
+          "description": "{\n   \"results\": [\n       {\n           \"currency\": \"JPY\",\n           \"rate\": 129.8,\n           \"state\": \"ENABLED\",\n           \"is_default\": true,\n           \"domain_id\": \"domain-58010aa2e451\"\n       },\n       {\n           \"currency\": \"KRW\",\n           \"rate\": 1242.7,\n           \"state\": \"ENABLED\",\n           \"is_default\": true,\n           \"domain_id\": \"domain-58010aa2e451\"\n       }\n   ],\n   \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -207,7 +207,7 @@
           "name": "SetExchangeRateRequest",
           "longName": "SetExchangeRateRequest",
           "fullName": "spaceone.api.cost_analysis.v1.SetExchangeRateRequest",
-          "description": "",
+          "description": "{\n   \"currency\": \"KRW\",\n   \"rate\": 1300\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -215,7 +215,7 @@
           "fields": [
             {
               "name": "currency",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -227,7 +227,7 @@
             },
             {
               "name": "rate",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "float",
               "longType": "float",
@@ -239,7 +239,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -261,7 +261,7 @@
           "methods": [
             {
               "name": "set",
-              "description": "desc: Overrides a value of a specific ExchangeRate. This method is used to change the ExchangeRate in a specific domain. You can set the `currency` and `rate` of the resource.\nrequest_example: \u003e-\n{\n\"currency\": \"KRW\",\n\"rate\": 1300\n}\nresponse_example: \u003e-\n{\n\"currency\": \"KRW\",\n\"rate\": 1300.0,\n\"state\": \"ENABLED\",\n\"is_default\": true\n}",
+              "description": "Overrides a value of a specific ExchangeRate. This method is used to change the ExchangeRate in a specific domain. You can set the `currency` and `rate` of the resource.",
               "requestType": "SetExchangeRateRequest",
               "requestLongType": "SetExchangeRateRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.SetExchangeRateRequest",
@@ -284,7 +284,7 @@
             },
             {
               "name": "reset",
-              "description": "desc: Resets a value of a specific ExchangeRate and changes the ExchangeRate to the ExchangeRate of the `default` domain.\nrequest_example: \u003e-\n{\n\"currency\": \"KRW\"\n}\nresponse_example: \u003e-\n{\n\"currency\": \"KRW\",\n\"rate\": 1242.7,\n\"state\": \"ENABLED\",\n\"is_default\": true,\n\"domain_id\": \"domain-58010aa2e451\"\n}",
+              "description": "Resets a value of a specific ExchangeRate and changes the ExchangeRate to the ExchangeRate of the `default` domain.",
               "requestType": "ExchangeRateRequest",
               "requestLongType": "ExchangeRateRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.ExchangeRateRequest",
@@ -307,7 +307,7 @@
             },
             {
               "name": "enable",
-              "description": "desc: ''\nrequest_example: \u003e-\n{\n}\nresponse_example: \u003e-\n{\n\n}",
+              "description": "",
               "requestType": "ExchangeRateRequest",
               "requestLongType": "ExchangeRateRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.ExchangeRateRequest",
@@ -330,7 +330,7 @@
             },
             {
               "name": "disable",
-              "description": "desc: ''\nrequest_example: \u003e-\n{\n\n}\nresponse_example: \u003e-\n{\n\n}",
+              "description": "",
               "requestType": "ExchangeRateRequest",
               "requestLongType": "ExchangeRateRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.ExchangeRateRequest",
@@ -353,7 +353,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific ExchangeRate. Prints detailed information about the ExchangeRate, including  `currency` and `rate`.\nrequest_example: \u003e-\n{\n\"currency\": \"KRW\"\n}\nresponse_example: \u003e-\n{\n\"currency\": \"KRW\",\n\"rate\": 1242.7,\n\"state\": \"ENABLED\",\n\"is_default\": true,\n\"domain_id\": \"domain-58010aa2e451\"\n}",
+              "description": "Gets a specific ExchangeRate. Prints detailed information about the ExchangeRate, including  `currency` and `rate`.",
               "requestType": "ExchangeRateRequest",
               "requestLongType": "ExchangeRateRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.ExchangeRateRequest",
@@ -376,7 +376,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all ExchangeRates. You can use a query to get a filtered list of ExchangeRates.\nrequest_example: \u003e-\n{\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"currency\": \"JPY\",\n\"rate\": 129.8,\n\"state\": \"ENABLED\",\n\"is_default\": true,\n\"domain_id\": \"domain-58010aa2e451\"\n},\n{\n\"currency\": \"KRW\",\n\"rate\": 1242.7,\n\"state\": \"ENABLED\",\n\"is_default\": true,\n\"domain_id\": \"domain-58010aa2e451\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all ExchangeRates. You can use a query to get a filtered list of ExchangeRates.",
               "requestType": "ExchangeRateQuery",
               "requestLongType": "ExchangeRateQuery",
               "requestFullType": "spaceone.api.cost_analysis.v1.ExchangeRateQuery",

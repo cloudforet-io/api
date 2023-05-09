@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/cost_analysis/v1/cost.proto",
-      "description": "desc: A Cost is a resource of raw cost data collected by the cost_analysis.DataSource.",
+      "description": "A Cost is a resource of raw cost data collected by the cost_analysis.DataSource.",
       "package": "spaceone.api.cost_analysis.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -49,7 +49,7 @@
           "name": "CostAnalyzeQuery",
           "longName": "CostAnalyzeQuery",
           "fullName": "spaceone.api.cost_analysis.v1.CostAnalyzeQuery",
-          "description": "",
+          "description": "{\n   \"granularity\": \"MONTHLY\",\n   \"start\": \"2022-05\",\n   \"end\": \"2022-07\",\n   \"group_by\": [\"product\"],\n   \"filter\": [],\n   \"limit\": 15,\n   \"include_others\": true,\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -57,7 +57,7 @@
           "fields": [
             {
               "name": "granularity",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "Granularity",
               "longType": "CostAnalyzeQuery.Granularity",
@@ -69,7 +69,7 @@
             },
             {
               "name": "start",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -81,7 +81,7 @@
             },
             {
               "name": "end",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -93,7 +93,7 @@
             },
             {
               "name": "group_by",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -105,7 +105,7 @@
             },
             {
               "name": "filter",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "ListValue",
               "longType": "google.protobuf.ListValue",
@@ -117,7 +117,7 @@
             },
             {
               "name": "limit",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -129,7 +129,7 @@
             },
             {
               "name": "page",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Page",
               "longType": "spaceone.api.core.v1.Page",
@@ -141,7 +141,7 @@
             },
             {
               "name": "sort",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Sort",
               "longType": "spaceone.api.core.v1.Sort",
@@ -153,7 +153,7 @@
             },
             {
               "name": "include_usage_quantity",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -165,7 +165,7 @@
             },
             {
               "name": "include_others",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -177,7 +177,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -201,7 +201,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "TimeSeriesAnalyzeQuery",
               "longType": "spaceone.api.core.v1.TimeSeriesAnalyzeQuery",
@@ -213,7 +213,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -229,7 +229,7 @@
           "name": "CostInfo",
           "longName": "CostInfo",
           "fullName": "spaceone.api.cost_analysis.v1.CostInfo",
-          "description": "",
+          "description": "{\n       \"cost_id\": \"cost-c5aae7712ec9\",\n       \"usd_cost\": 4.50528e-08,\n       \"original_currency\": \"USD\",\n       \"original_cost\": 4.50528e-08,\n       \"usage_quantity\": 4.11e-07,\n       \"provider\": \"aws\",\n       \"region_code\": \"ap-northeast-1\",\n       \"product\": \"AWSDataTransfer\",\n       \"account\": \"722069360300\",\n       \"usage_type\": \"data-transfer.out\",\n       \"tags\": {},\n       \"additional_info\": {\n           \"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n       },\n       \"data_source_id\": \"ds-fcba92ca73b1\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"billed_at\": \"2022-07-19T09:44:27.326Z\",\n       \"created_at\": \"2022-07-19T09:44:27.373Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -505,7 +505,7 @@
           "name": "CostQuery",
           "longName": "CostQuery",
           "fullName": "spaceone.api.cost_analysis.v1.CostQuery",
-          "description": "",
+          "description": "{\n   \"query\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -513,7 +513,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -525,7 +525,7 @@
             },
             {
               "name": "cost_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -537,7 +537,7 @@
             },
             {
               "name": "original_currency",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -549,7 +549,7 @@
             },
             {
               "name": "provider",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -561,7 +561,7 @@
             },
             {
               "name": "region_code",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -573,7 +573,7 @@
             },
             {
               "name": "region_key",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -585,7 +585,7 @@
             },
             {
               "name": "category",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -597,7 +597,7 @@
             },
             {
               "name": "product",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -609,7 +609,7 @@
             },
             {
               "name": "account",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -621,7 +621,7 @@
             },
             {
               "name": "usage_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -633,7 +633,7 @@
             },
             {
               "name": "resource_group",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -645,7 +645,7 @@
             },
             {
               "name": "resource",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -657,7 +657,7 @@
             },
             {
               "name": "service_account_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -669,7 +669,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -681,7 +681,7 @@
             },
             {
               "name": "data_source_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -693,7 +693,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -709,7 +709,7 @@
           "name": "CostRequest",
           "longName": "CostRequest",
           "fullName": "spaceone.api.cost_analysis.v1.CostRequest",
-          "description": "",
+          "description": "{\n   \"cost_id\": \"cost-2ad052ed03d7\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -717,7 +717,7 @@
           "fields": [
             {
               "name": "cost_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -729,7 +729,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -753,7 +753,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -765,7 +765,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -781,7 +781,7 @@
           "name": "CostsInfo",
           "longName": "CostsInfo",
           "fullName": "spaceone.api.cost_analysis.v1.CostsInfo",
-          "description": "",
+          "description": "{\n       \"results\": [\n           {\n               \"cost_id\": \"cost-2ad052ed03d7\",\n               \"usd_cost\": 4.50528e-08,\n               \"original_currency\": \"USD\",\n               \"original_cost\": 4.50528e-08,\n               \"usage_quantity\": 4.11e-07,\n               \"provider\": \"aws\",\n               \"region_code\": \"ap-northeast-1\",\n               \"product\": \"AWSDataTransfer\",\n               \"account\": \"722069360300\",\n               \"usage_type\": \"data-transfer.out\",\n               \"tags\": {},\n               \"additional_info\": {\n                   \"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n               },\n               \"data_source_id\": \"ds-fcba92ca73b1\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"billed_at\": \"2021-01-01T00:00:00.000Z\",\n               \"created_at\": \"2022-04-06T13:49:39.669Z\"\n           },\n           {\n               \"cost_id\": \"cost-1d5e1b0dbf82\",\n               \"usd_cost\": 1.04e-05,\n               \"original_currency\": \"USD\",\n               \"original_cost\": 1.04e-05,\n               \"usage_quantity\": 26.0,\n               \"provider\": \"aws\",\n               \"region_code\": \"ap-northeast-1\",\n               \"product\": \"AWSQueueService\",\n               \"account\": \"722069360300\",\n               \"tags\": {},\n               \"additional_info\": {\n                   \"raw_usage_type\": \"APN1-Requests-Tier1\"\n               },\n               \"data_source_id\": \"ds-fcba92ca73b1\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"billed_at\": \"2021-01-01T00:00:00.000Z\",\n               \"created_at\": \"2022-04-06T13:49:39.675Z\"\n           }\n       ],\n       \"total_count\": 307066\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -817,7 +817,7 @@
           "name": "CreateCostRequest",
           "longName": "CreateCostRequest",
           "fullName": "spaceone.api.cost_analysis.v1.CreateCostRequest",
-          "description": "",
+          "description": "{\n       \"original_cost\": 4.50528e-08,\n       \"original_currency\": \"USD\",\n       \"usd_cost\": 4.50528e-08,\n       \"usage_quantity\": 4.11e-07,\n       \"provider\": \"aws\",\n       \"region_code\": \"ap-northeast-1\",\n       \"product\": \"AWSDataTransfer\",\n       \"account\": \"722069360300\",\n       \"usage_type\": \"data-transfer.out\",\n       \"additional_info\": {\n           \"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n       },\n       \"data_source_id\": \"ds-fcba92ca73b1\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -825,7 +825,7 @@
           "fields": [
             {
               "name": "original_cost",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "float",
               "longType": "float",
@@ -837,7 +837,7 @@
             },
             {
               "name": "original_currency",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -849,7 +849,7 @@
             },
             {
               "name": "usd_cost",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "float",
               "longType": "float",
@@ -861,7 +861,7 @@
             },
             {
               "name": "usage_quantity",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "float",
               "longType": "float",
@@ -873,7 +873,7 @@
             },
             {
               "name": "provider",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -885,7 +885,7 @@
             },
             {
               "name": "region_code",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -897,7 +897,7 @@
             },
             {
               "name": "category",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -909,7 +909,7 @@
             },
             {
               "name": "product",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -921,7 +921,7 @@
             },
             {
               "name": "account",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -933,7 +933,7 @@
             },
             {
               "name": "usage_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -945,7 +945,7 @@
             },
             {
               "name": "resource_group",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -957,7 +957,7 @@
             },
             {
               "name": "resource",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -969,7 +969,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -981,7 +981,7 @@
             },
             {
               "name": "additional_info",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -993,7 +993,7 @@
             },
             {
               "name": "service_account_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1005,7 +1005,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1017,7 +1017,7 @@
             },
             {
               "name": "data_source_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1029,7 +1029,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1041,7 +1041,7 @@
             },
             {
               "name": "billed_at",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1057,7 +1057,7 @@
           "name": "GetCostRequest",
           "longName": "GetCostRequest",
           "fullName": "spaceone.api.cost_analysis.v1.GetCostRequest",
-          "description": "",
+          "description": "{\n   \"cost_id\": \"cost-2ad052ed03d7\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1065,7 +1065,7 @@
           "fields": [
             {
               "name": "cost_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1077,7 +1077,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1089,7 +1089,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -1111,7 +1111,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new Cost. When creating a Cost, if the parameter `provider` is not entered, the default value of the parameter will be the provider information of the DataSource which collected the raw data of the Cost from the provider. The parameter `billed_at` is the data of when the cost is billed. While the DataSource collects the cost data, if the `billed_at` data does not exist, the value will be replaced with the `created_at` data indicating when the Cost is created. If the cost data collected is based on USD, the Cost is created without the currency exchange.\nrequest_example: \u003e-\n{\n\"original_cost\": 4.50528e-08,\n\"original_currency\": \"USD\",\n\"usd_cost\": 4.50528e-08,\n\"usage_quantity\": 4.11e-07,\n\"provider\": \"aws\",\n\"region_code\": \"ap-northeast-1\",\n\"product\": \"AWSDataTransfer\",\n\"account\": \"722069360300\",\n\"usage_type\": \"data-transfer.out\",\n\"additional_info\": {\n\"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n},\n\"data_source_id\": \"ds-fcba92ca73b1\"\n}\nresponse_example: \u003e-\n{\n\"cost_id\": \"cost-c5aae7712ec9\",\n\"usd_cost\": 4.50528e-08,\n\"original_currency\": \"USD\",\n\"original_cost\": 4.50528e-08,\n\"usage_quantity\": 4.11e-07,\n\"provider\": \"aws\",\n\"region_code\": \"ap-northeast-1\",\n\"product\": \"AWSDataTransfer\",\n\"account\": \"722069360300\",\n\"usage_type\": \"data-transfer.out\",\n\"tags\": {},\n\"additional_info\": {\n\"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n},\n\"data_source_id\": \"ds-fcba92ca73b1\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"billed_at\": \"2022-07-19T09:44:27.326Z\",\n\"created_at\": \"2022-07-19T09:44:27.373Z\"\n}",
+              "description": "Creates a new Cost. When creating a Cost, if the parameter `provider` is not entered, the default value of the parameter will be the provider information of the DataSource which collected the raw data of the Cost from the provider. The parameter `billed_at` is the data of when the cost is billed. While the DataSource collects the cost data, if the `billed_at` data does not exist, the value will be replaced with the `created_at` data indicating when the Cost is created. If the cost data collected is based on USD, the Cost is created without the currency exchange.",
               "requestType": "CreateCostRequest",
               "requestLongType": "CreateCostRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.CreateCostRequest",
@@ -1134,7 +1134,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific Cost. You must specify the `cost_id` of the Cost to delete.\nrequest_example: \u003e-\n{\n\"cost_id\": \"cost-2ad052ed03d7\"\n}",
+              "description": "Deletes a specific Cost. You must specify the `cost_id` of the Cost to delete.",
               "requestType": "CostRequest",
               "requestLongType": "CostRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.CostRequest",
@@ -1157,7 +1157,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific Cost. Prints detailed information about the Cost, including  `region_code` and `account`.\nrequest_example: \u003e-\n{\n\"cost_id\": \"cost-2ad052ed03d7\"\n}\nresponse_example: \u003e-\n{\n\"cost_id\": \"cost-2ad052ed03d7\",\n\"usd_cost\": 4.50528e-08,\n\"original_currency\": \"USD\",\n\"original_cost\": 4.50528e-08,\n\"usage_quantity\": 4.11e-07,\n\"provider\": \"aws\",\n\"region_code\": \"ap-northeast-1\",\n\"product\": \"AWSDataTransfer\",\n\"account\": \"722069360300\",\n\"usage_type\": \"data-transfer.out\",\n\"tags\": {},\n\"additional_info\": {\n\"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n},\n\"data_source_id\": \"ds-fcba92ca73b1\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"billed_at\": \"2021-01-01T00:00:00.000Z\",\n\"created_at\": \"2022-04-06T13:49:39.669Z\"\n}",
+              "description": "Gets a specific Cost. Prints detailed information about the Cost, including  `region_code` and `account`.",
               "requestType": "GetCostRequest",
               "requestLongType": "GetCostRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.GetCostRequest",
@@ -1180,7 +1180,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all Costs. You can use a query to get a filtered list of Costs.\nrequest_example: \u003e-\n{\n\"query\": {}\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"cost_id\": \"cost-2ad052ed03d7\",\n\"usd_cost\": 4.50528e-08,\n\"original_currency\": \"USD\",\n\"original_cost\": 4.50528e-08,\n\"usage_quantity\": 4.11e-07,\n\"provider\": \"aws\",\n\"region_code\": \"ap-northeast-1\",\n\"product\": \"AWSDataTransfer\",\n\"account\": \"722069360300\",\n\"usage_type\": \"data-transfer.out\",\n\"tags\": {},\n\"additional_info\": {\n\"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n},\n\"data_source_id\": \"ds-fcba92ca73b1\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"billed_at\": \"2021-01-01T00:00:00.000Z\",\n\"created_at\": \"2022-04-06T13:49:39.669Z\"\n},\n{\n\"cost_id\": \"cost-1d5e1b0dbf82\",\n\"usd_cost\": 1.04e-05,\n\"original_currency\": \"USD\",\n\"original_cost\": 1.04e-05,\n\"usage_quantity\": 26.0,\n\"provider\": \"aws\",\n\"region_code\": \"ap-northeast-1\",\n\"product\": \"AWSQueueService\",\n\"account\": \"722069360300\",\n\"tags\": {},\n\"additional_info\": {\n\"raw_usage_type\": \"APN1-Requests-Tier1\"\n},\n\"data_source_id\": \"ds-fcba92ca73b1\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"billed_at\": \"2021-01-01T00:00:00.000Z\",\n\"created_at\": \"2022-04-06T13:49:39.675Z\"\n}\n],\n\"total_count\": 307066\n}",
+              "description": "Gets a list of all Costs. You can use a query to get a filtered list of Costs.",
               "requestType": "CostQuery",
               "requestLongType": "CostQuery",
               "requestFullType": "spaceone.api.cost_analysis.v1.CostQuery",
@@ -1203,7 +1203,7 @@
             },
             {
               "name": "analyze",
-              "description": "desc: Gets the Cost information of specific `product`s based on the time granularity: `DAILY`, `MONTHLY`, or `ACCUMULATED`. For `DAILY` granularity, this method can get the Cost data of at most 31 days. For `MONTHLY` or `ACCUMULATED` granularity, this method can get the Cost data of at most 12 months.\nrequest_example: \u003e-\n{\n\"granularity\": \"MONTHLY\",\n\"start\": \"2022-05\",\n\"end\": \"2022-07\",\n\"group_by\": [\"product\"],\n\"filter\": [],\n\"limit\": 15,\n\"include_others\": true,\n\"domain_id\": \"domain-58010aa2e451\"\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"product\": \"AmazonEC2\",\n\"total_usd_cost\": 20962.3114306262,\n\"usd_cost\": {\n\"2022-07\": 4644.0801750137,\n\"2022-05\": 7984.6560889987995,\n\"2022-06\": 8333.5751666137\n}\n},\n{\n\"usd_cost\": {\n\"2022-07\": 2817.0,\n\"2022-06\": 5439.0,\n\"2022-05\": 5269.0\n},\n\"total_usd_cost\": 13525.0,\n\"product\": \"AWS Marketplace\"\n},\n{\n\"product\": \"AmazonDocDB\",\n\"usd_cost\": {\n\"2022-05\": 6910.6140347763,\n\"2022-06\": 3238.7851615211,\n\"2022-07\": 812.2452815070001\n},\n\"total_usd_cost\": 10961.6444778044\n}\n]\n}",
+              "description": "Gets the Cost information of specific `product`s based on the time granularity: `DAILY`, `MONTHLY`, or `ACCUMULATED`. For `DAILY` granularity, this method can get the Cost data of at most 31 days. For `MONTHLY` or `ACCUMULATED` granularity, this method can get the Cost data of at most 12 months.",
               "requestType": "CostAnalyzeQuery",
               "requestLongType": "CostAnalyzeQuery",
               "requestFullType": "spaceone.api.cost_analysis.v1.CostAnalyzeQuery",

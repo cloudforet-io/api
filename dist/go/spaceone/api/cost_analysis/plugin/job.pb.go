@@ -21,23 +21,23 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// {
+//
+// }
 type GetTasksRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Options *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
-	// is_required: true
+	Options    *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
 	SecretData *_struct.Struct `protobuf:"bytes,2,opt,name=secret_data,json=secretData,proto3" json:"secret_data,omitempty"`
-	// is_required: false
+	// +optional
 	Schema string `protobuf:"bytes,3,opt,name=schema,proto3" json:"schema,omitempty"`
-	// is_required: false
+	// +optional
 	Start string `protobuf:"bytes,4,opt,name=start,proto3" json:"start,omitempty"`
-	// is_required: false
+	// +optional
 	LastSynchronizedAt string `protobuf:"bytes,5,opt,name=last_synchronized_at,json=lastSynchronizedAt,proto3" json:"last_synchronized_at,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	DomainId           string `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *GetTasksRequest) Reset() {
@@ -224,6 +224,9 @@ func (x *ChangedInfo) GetFilter() *_struct.Struct {
 	return nil
 }
 
+// {
+//
+// }
 type TasksInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

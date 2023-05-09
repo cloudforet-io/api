@@ -57,191 +57,42 @@ class PostServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """
-        desc: Creates a new Post under a specific Board. You must specify the `board_id`, `title`, and `contents`. The parameter `category` is not required but can be set in the scope of `categories` specified in the parent Board. You can make the new Post pinned or pop up by adjusting the parameters.
-        request_example: >-
-        {
-        "board_id": "board-123456789012",
-        "category": "developer",
-        "title": "title",
-        "contents": "This is contents.",
-        "options": {"is_popup": true},
-        "writer": "user1",
-        "domain_id": "domain-123456789012"
-        }
-        response_example: >-
-        {
-        "board_id": "board-123456789012",
-        "post_id": "post-123456789012",
-        "post_type": "INTERNAL",
-        "category": "developer",
-        "title": "title",
-        "contents": "This is contents.",
-        "options": {
-        "is_pinned": false,
-        "is_popup": true
-        },
-        "view_count": 0,
-        "writer": "user1",
-        "scope": "DOMAIN",
-        "domain_id": "domain-123456789012",
-        "user_id": "user1@email.com",
-        "created_at": "2022-01-01T01:06:23.732Z",
-        "updated_at": "2022-01-01T01:06:23.732Z"
-        }
+        """Creates a new Post under a specific Board. You must specify the `board_id`, `title`, and `contents`. The parameter `category` is not required but can be set in the scope of `categories` specified in the parent Board. You can make the new Post pinned or pop up by adjusting the parameters.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Updates a specific Post. You can make changes in Post settings, except `board_id`, `post_id`, and `domain_id`.
-        request_example: >-
-        {
-        "board_id": "board-123456789012",
-        "post_id": "post-2118473ce15e",
-        "category": "developer",
-        "title": "title2",
-        "contents": "this is contents2.",
-        "options": {
-        "is_popup": false,
-        "is_pinned": true
-        },
-        "writer": "user1",
-        "domain_id": "domain-123456789012"
-        }
-        response_example: >-
-        {
-        "board_id": "board-123456789012",
-        "post_id": "post-123456789012",
-        "post_type": "INTERNAL",
-        "category": "developer",
-        "title": "title2",
-        "contents": "this is contents2.",
-        "options": {
-        "is_popup": false,
-        "is_pinned": true
-        },
-        "view_count": 1,
-        "writer": "user1",
-        "scope": "DOMAIN",
-        "domain_id": "domain-123456789012",
-        "user_id": "user1@email.com",
-        "created_at": "2022-06-13T01:06:23.732Z",
-        "updated_at": "2022-06-13T01:06:23.732Z"
-        }
+        """Updates a specific Post. You can make changes in Post settings, except `board_id`, `post_id`, and `domain_id`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def send_notification(self, request, context):
-        """
-        desc: Not Implemented
+        """Not Implemented
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """
-        desc: Deletes a specific Post. You must specify the `post_id` of the Post to delete, and the `board_id` of the Board where the child Post to delete belongs.
-        request_example: >-
-        {
-        "board_id": "board-b9aa34e65c60",
-        "post_id": "post-2118473ce15e",
-        "domain_id": "domain-123456789012"
-        }
+        """Deletes a specific Post. You must specify the `post_id` of the Post to delete, and the `board_id` of the Board where the child Post to delete belongs.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.
-        request_example: >-
-        {
-        "board_id": "board-b9aa34e65c60",
-        "post_id": "post-2118473ce15e",
-        "domain_id": "domain-58010aa2e451"
-        }
-        response_example: >-
-        {
-        "board_id": "board-b9aa34e65c60",
-        "post_id": "post-2118473ce15e",
-        "post_type": "INTERNAL",
-        "category": "flower",
-        "title": "title",
-        "contents": "this is contents.",
-        "options": {
-        "is_pinned": false,
-        "is_popup": true
-        },
-        "view_count": 2,
-        "writer": "seolmin",
-        "scope": "DOMAIN",
-        "domain_id": "domain-58010aa2e451",
-        "user_id": "supervisor",
-        "created_at": "2022-06-13T01:06:23.732Z",
-        "updated_at": "2022-06-13T01:06:23.732Z"
-        }
+        """Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all Posts. You can use a query to get a filtered list of Posts.
-        request_example: >-
-        {
-        "board_id": "board-b9aa34e65c60",
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "board_id": "board-b9aa34e65c60",
-        "post_id": "post-2118473ce15e",
-        "post_type": "INTERNAL",
-        "category": "spaceone",
-        "title": "title2",
-        "contents": "this is contents2.",
-        "options": {
-        "is_popup": false,
-        "is_pinned": true
-        },
-        "view_count": 3,
-        "writer": "seolmin2",
-        "scope": "DOMAIN",
-        "domain_id": "domain-58010aa2e451",
-        "user_id": "user1@email.com",
-        "created_at": "2022-06-13T01:06:23.732Z",
-        "updated_at": "2022-06-13T01:06:23.732Z"
-        },
-        {
-        "board_id": "board-b9aa34e65c60",
-        "post_id": "post-532ae1191233",
-        "post_type": "INTERNAL",
-        "category": "flower",
-        "title": "작업공지",
-        "contents": "This is description",
-        "options": {
-        "is_pinned": true,
-        "is_popup": true
-        },
-        "writer": "권설민",
-        "scope": "PUBLIC",
-        "user_id": "supervisor",
-        "created_at": "2022-06-10T07:01:44.384Z",
-        "updated_at": "2022-06-10T07:01:44.384Z"
-        }
-        ],
-        "total_count": 2
-        }
+        """Gets a list of all Posts. You can use a query to get a filtered list of Posts.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

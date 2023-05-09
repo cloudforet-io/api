@@ -36,79 +36,14 @@ class JobTaskServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def get(self, request, context):
-        """
-        desc: Gets a specific JobTask. Prints detailed information about the JobTask, including the relevant resources: DataSource and Job. The criteria used for dividing a Job into JobTasks can be found in the DataSource used, but the total count of divided JobTasks can be found by this method.
-        request_example: >-
-        {
-        "job_task_id": "job-task-3622d860a776"
-        }
-        response_example: >-
-        {
-        "job_task_id": "job-task-3622d860a776",
-        "status": "SUCCESS",
-        "options": {
-        "month": "202207",
-        "platform": "gcp"
-        },
-        "created_count": 1,
-        "job_id": "job-85cf2c385252",
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-17T16:00:08.266Z",
-        "started_at": "2022-07-17T16:01:28.243Z",
-        "updated_at": "2022-07-17T16:01:28.939Z",
-        "finished_at": "2022-07-17T16:01:28.939Z"
-        }
+        """Gets a specific JobTask. Prints detailed information about the JobTask, including the relevant resources: DataSource and Job. The criteria used for dividing a Job into JobTasks can be found in the DataSource used, but the total count of divided JobTasks can be found by this method.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all JobTasks. You can use a query to get a filtered list of JobTasks.
-        request_example: >-
-        {
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "job_task_id": "job-task-3622d860a776",
-        "status": "SUCCESS",
-        "options": {
-        "platform": "gcp",
-        "month": "202207"
-        },
-        "created_count": 1,
-        "job_id": "job-85cf2c385252",
-        "data_source_id": "ds-c96609f5afeb",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-17T16:00:08.266Z",
-        "started_at": "2022-07-17T16:01:28.243Z",
-        "updated_at": "2022-07-17T16:01:28.939Z",
-        "finished_at": "2022-07-17T16:01:28.939Z"
-        },
-        {
-        "job_task_id": "job-task-038c0b076ec5",
-        "status": "SUCCESS",
-        "options": {
-        "account": "257706363616",
-        "start": "2022-07-01"
-        },
-        "created_count": 5756,
-        "job_id": "job-6b6765f757a9",
-        "data_source_id": "ds-fcba92ca73b1",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-17T16:00:05.099Z",
-        "started_at": "2022-07-17T16:00:47.356Z",
-        "updated_at": "2022-07-17T16:01:20.856Z",
-        "finished_at": "2022-07-17T16:01:20.856Z"
-        }
-        ],
-        "total_count": 720
-        }
+        """Gets a list of all JobTasks. You can use a query to get a filtered list of JobTasks.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

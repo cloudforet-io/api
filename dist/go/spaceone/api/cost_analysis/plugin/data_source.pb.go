@@ -22,15 +22,16 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// {
+//
+// }
 type InitRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Options *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Options  *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
+	DomainId string          `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *InitRequest) Reset() {
@@ -84,13 +85,10 @@ type PluginVerifyRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Options *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
-	// is_required: true
+	Options    *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
 	SecretData *_struct.Struct `protobuf:"bytes,2,opt,name=secret_data,json=secretData,proto3" json:"secret_data,omitempty"`
-	// is_required: false
-	Schema string `protobuf:"bytes,3,opt,name=schema,proto3" json:"schema,omitempty"`
-	// is_required: true
+	// +optional
+	Schema   string `protobuf:"bytes,3,opt,name=schema,proto3" json:"schema,omitempty"`
 	DomainId string `protobuf:"bytes,4,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -154,6 +152,9 @@ func (x *PluginVerifyRequest) GetDomainId() string {
 	return ""
 }
 
+// {
+//
+// }
 type PluginInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

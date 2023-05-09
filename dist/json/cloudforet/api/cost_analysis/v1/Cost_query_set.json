@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/cost_analysis/v1/cost_query_set.proto",
-      "description": "desc: A CostQuerySet is a set of saved queries a User frequently uses as a setting.",
+      "description": "A CostQuerySet is a set of saved queries a User frequently uses as a setting.",
       "package": "spaceone.api.cost_analysis.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -15,7 +15,7 @@
           "name": "CostQuerySetInfo",
           "longName": "CostQuerySetInfo",
           "fullName": "spaceone.api.cost_analysis.v1.CostQuerySetInfo",
-          "description": "",
+          "description": "{\n       \"cost_query_set_id\": \"query-76a58ea5d02c\",\n       \"name\": \"project_provider_region\",\n       \"options\": {\n           \"group_by\": [\n               \"project_id\",\n               \"provider\",\n               \"region_code\"\n           ],\n           \"filters\": {},\n           \"primary_group_by\": \"project_id\",\n           \"period\": {\n               \"end\": \"2022-07-31T23:59:59Z\",\n               \"start\": \"2022-07-01T00:00:00Z\"\n           },\n           \"stack\": false,\n           \"granularity\": \"ACCUMULATED\"\n       },\n       \"tags\": {},\n       \"user_id\": \"test@cloudforet.io\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-19T06:11:03.701Z\",\n       \"updated_at\": \"2022-07-19T06:11:03.701Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -123,7 +123,7 @@
           "name": "CostQuerySetQuery",
           "longName": "CostQuerySetQuery",
           "fullName": "spaceone.api.cost_analysis.v1.CostQuerySetQuery",
-          "description": "",
+          "description": "{\n   \"query\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -131,7 +131,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -143,7 +143,7 @@
             },
             {
               "name": "cost_query_set_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -155,7 +155,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -167,7 +167,7 @@
             },
             {
               "name": "user_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -179,7 +179,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -195,7 +195,7 @@
           "name": "CostQuerySetRequest",
           "longName": "CostQuerySetRequest",
           "fullName": "spaceone.api.cost_analysis.v1.CostQuerySetRequest",
-          "description": "",
+          "description": "{\n   \"cost_query_set_id\": \"query-16ae671dc8fb\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -203,7 +203,7 @@
           "fields": [
             {
               "name": "cost_query_set_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -215,7 +215,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -239,7 +239,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -251,7 +251,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -267,7 +267,7 @@
           "name": "CostQuerySetsInfo",
           "longName": "CostQuerySetsInfo",
           "fullName": "spaceone.api.cost_analysis.v1.CostQuerySetsInfo",
-          "description": "",
+          "description": "{\n       \"results\": [\n           {\n               \"cost_query_set_id\": \"query-16ae671dc8fb\",\n               \"name\": \"3 month product pie chart\",\n               \"options\": {\n                   \"primary_group_by\": \"product\",\n                   \"granularity\": \"ACCUMULATED\",\n                   \"stack\": false,\n                   \"filters\": {},\n                   \"period\": {\n                       \"end\": \"2022-03-31\",\n                       \"start\": \"2022-01-01\"\n                   },\n                   \"group_by\": [\n                       \"product\"\n                   ]\n               },\n               \"tags\": {},\n               \"user_id\": \"yuda@mz.co.kr\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-03-08T03:37:31.404Z\",\n               \"updated_at\": \"2022-03-08T03:37:31.404Z\"\n           },\n           {\n               \"cost_query_set_id\": \"query-d90addf25e4b\",\n               \"name\": \"6 month project group\",\n               \"options\": {\n                   \"primary_group_by\": \"project_group_id\",\n                   \"period\": {\n                       \"start\": \"2021-10-01\",\n                       \"end\": \"2022-03-31\"\n                   },\n                   \"stack\": false,\n                   \"group_by\": [\n                       \"project_group_id\"\n                   ],\n                   \"granularity\": \"MONTHLY\",\n                   \"filters\": {}\n               },\n               \"tags\": {},\n               \"user_id\": \"yuda@mz.co.kr\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-03-14T09:29:54.306Z\",\n               \"updated_at\": \"2022-03-14T09:29:54.306Z\"\n           }\n       ],\n       \"total_count\": 34\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -303,7 +303,7 @@
           "name": "CreateCostQuerySetRequest",
           "longName": "CreateCostQuerySetRequest",
           "fullName": "spaceone.api.cost_analysis.v1.CreateCostQuerySetRequest",
-          "description": "",
+          "description": "{\n       \"name\": \"project_provider_region\",\n       \"options\": {\n           \"primary_group_by\": \"project_id\",\n           \"filters\": {},\n           \"period\": {\n               \"end\": \"2022-07-31T23:59:59Z\",\n               \"start\": \"2022-07-01T00:00:00Z\"\n           },\n           \"group_by\": [\n               \"project_id\",\n               \"provider\",\n               \"region_code\"\n           ],\n           \"stack\": false,\n           \"granularity\": \"ACCUMULATED\"}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -311,7 +311,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -323,7 +323,7 @@
             },
             {
               "name": "options",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -335,7 +335,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -347,7 +347,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -363,7 +363,7 @@
           "name": "GetCostQuerySetRequest",
           "longName": "GetCostQuerySetRequest",
           "fullName": "spaceone.api.cost_analysis.v1.GetCostQuerySetRequest",
-          "description": "",
+          "description": "{\n   \"cost_query_set_id\": \"query-16ae671dc8fb\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -371,7 +371,7 @@
           "fields": [
             {
               "name": "cost_query_set_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -383,7 +383,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -395,7 +395,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -411,7 +411,7 @@
           "name": "UpdateCostQuerySetRequest",
           "longName": "UpdateCostQuerySetRequest",
           "fullName": "spaceone.api.cost_analysis.v1.UpdateCostQuerySetRequest",
-          "description": "",
+          "description": "{\n       \"cost_query_set_id\": \"query-76a58ea5d02c\",\n       \"name\": \"project_provider_region\",\n       \"options\": {\n           \"primary_group_by\": \"project_id\",\n           \"stack\": false,\n           \"period\": {\n               \"end\": \"2022-07-31T23:59:59Z\",\n               \"start\": \"2022-07-01T00:00:00Z\"\n           },\n           \"filters\": {},\n           \"granularity\": \"ACCUMULATED\",\n           \"group_by\": [\n               \"project_id\",\n               \"provider\",\n               \"region_code\",\n               \"product\"\n           ]\n       },\n       \"tags\": {},\n       \"user_id\": \"test@cloudforet.io\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-19T06:11:03.701Z\",\n       \"updated_at\": \"2022-07-19T06:11:03.701Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -419,7 +419,7 @@
           "fields": [
             {
               "name": "cost_query_set_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -431,7 +431,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -443,7 +443,7 @@
             },
             {
               "name": "options",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -455,7 +455,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -467,7 +467,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -489,7 +489,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new CostQuerySet. You can make your own custom query that meets your needs, and input it as an `option` parameter of the resource. Queries such as `group_by` and `granularity` are provided by default.\nrequest_example: \u003e-\n{\n\"name\": \"project_provider_region\",\n\"options\": {\n\"primary_group_by\": \"project_id\",\n\"filters\": {},\n\"period\": {\n\"end\": \"2022-07-31T23:59:59Z\",\n\"start\": \"2022-07-01T00:00:00Z\"\n},\n\"group_by\": [\n\"project_id\",\n\"provider\",\n\"region_code\"\n],\n\"stack\": false,\n\"granularity\": \"ACCUMULATED\"}\n}\nresponse_example: \u003e-\n{\n\"cost_query_set_id\": \"query-76a58ea5d02c\",\n\"name\": \"project_provider_region\",\n\"options\": {\n\"group_by\": [\n\"project_id\",\n\"provider\",\n\"region_code\"\n],\n\"filters\": {},\n\"primary_group_by\": \"project_id\",\n\"period\": {\n\"end\": \"2022-07-31T23:59:59Z\",\n\"start\": \"2022-07-01T00:00:00Z\"\n},\n\"stack\": false,\n\"granularity\": \"ACCUMULATED\"\n},\n\"tags\": {},\n\"user_id\": \"test@cloudforet.io\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-19T06:11:03.701Z\",\n\"updated_at\": \"2022-07-19T06:11:03.701Z\"\n}",
+              "description": "Creates a new CostQuerySet. You can make your own custom query that meets your needs, and input it as an `option` parameter of the resource. Queries such as `group_by` and `granularity` are provided by default.",
               "requestType": "CreateCostQuerySetRequest",
               "requestLongType": "CreateCostQuerySetRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.CreateCostQuerySetRequest",
@@ -512,7 +512,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific CostQuerySet. You can make changes in the details of queries.\nrequest_example: \u003e-\n{\n\"cost_query_set_id\": \"query-76a58ea5d02c\",\n\"options\": {\n\"stack\": false,\n\"filters\": {},\n\"period\": {\n\"start\": \"2022-07-01T00:00:00Z\",\n\"end\": \"2022-07-31T23:59:59Z\"\n},\n\"group_by\": [\n\"project_id\",\n\"provider\",\n\"region_code\",\n\"product\"\n],\n\"granularity\": \"ACCUMULATED\",\n\"primary_group_by\": \"project_id\"\n}\n}\nresponse_example: \u003e-\n{\n\"cost_query_set_id\": \"query-76a58ea5d02c\",\n\"name\": \"project_provider_region\",\n\"options\": {\n\"primary_group_by\": \"project_id\",\n\"stack\": false,\n\"period\": {\n\"end\": \"2022-07-31T23:59:59Z\",\n\"start\": \"2022-07-01T00:00:00Z\"\n},\n\"filters\": {},\n\"granularity\": \"ACCUMULATED\",\n\"group_by\": [\n\"project_id\",\n\"provider\",\n\"region_code\",\n\"product\"\n]\n},\n\"tags\": {},\n\"user_id\": \"test@cloudforet.io\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-19T06:11:03.701Z\",\n\"updated_at\": \"2022-07-19T06:11:03.701Z\"\n}",
+              "description": "Updates a specific CostQuerySet. You can make changes in the details of queries.",
               "requestType": "UpdateCostQuerySetRequest",
               "requestLongType": "UpdateCostQuerySetRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.UpdateCostQuerySetRequest",
@@ -535,7 +535,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific CostQuerySet. You must specify the `cost_query_set_id` of the CostQuerySet to delete.\nrequest_example: \u003e-\n{\n\"cost_query_set_id\": \"query-16ae671dc8fb\"\n}",
+              "description": "Deletes a specific CostQuerySet. You must specify the `cost_query_set_id` of the CostQuerySet to delete.",
               "requestType": "CostQuerySetRequest",
               "requestLongType": "CostQuerySetRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.CostQuerySetRequest",
@@ -558,7 +558,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific CostQuerySet. Prints detailed information about the CostQuerySet, including the details of queries.\nrequest_example: \u003e-\n{\n\"cost_query_set_id\": \"query-16ae671dc8fb\"\n}\nresponse_example: \u003e-\n{\n\"cost_query_set_id\": \"query-16ae671dc8fb\",\n\"name\": \"3 month product pie chart\",\n\"options\": {\n\"group_by\": [\n\"product\"\n],\n\"period\": {\n\"start\": \"2022-01-01\",\n\"end\": \"2022-03-31\"\n},\n\"primary_group_by\": \"product\",\n\"stack\": false,\n\"filters\": {},\n\"granularity\": \"ACCUMULATED\"\n},\n\"tags\": {},\n\"user_id\": \"test1@cloudforet.io\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-03-08T03:37:31.404Z\",\n\"updated_at\": \"2022-03-08T03:37:31.404Z\"\n}",
+              "description": "Gets a specific CostQuerySet. Prints detailed information about the CostQuerySet, including the details of queries.",
               "requestType": "GetCostQuerySetRequest",
               "requestLongType": "GetCostQuerySetRequest",
               "requestFullType": "spaceone.api.cost_analysis.v1.GetCostQuerySetRequest",
@@ -581,7 +581,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all CostQuerySets. You can use a query to get a filtered list of CostQuerySets.\nrequest_example: \u003e-\n{\n\"query\": {}\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"cost_query_set_id\": \"query-16ae671dc8fb\",\n\"name\": \"3 month product pie chart\",\n\"options\": {\n\"primary_group_by\": \"product\",\n\"granularity\": \"ACCUMULATED\",\n\"stack\": false,\n\"filters\": {},\n\"period\": {\n\"end\": \"2022-03-31\",\n\"start\": \"2022-01-01\"\n},\n\"group_by\": [\n\"product\"\n]\n},\n\"tags\": {},\n\"user_id\": \"yuda@mz.co.kr\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-03-08T03:37:31.404Z\",\n\"updated_at\": \"2022-03-08T03:37:31.404Z\"\n},\n{\n\"cost_query_set_id\": \"query-d90addf25e4b\",\n\"name\": \"6 month project group\",\n\"options\": {\n\"primary_group_by\": \"project_group_id\",\n\"period\": {\n\"start\": \"2021-10-01\",\n\"end\": \"2022-03-31\"\n},\n\"stack\": false,\n\"group_by\": [\n\"project_group_id\"\n],\n\"granularity\": \"MONTHLY\",\n\"filters\": {}\n},\n\"tags\": {},\n\"user_id\": \"yuda@mz.co.kr\",\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-03-14T09:29:54.306Z\",\n\"updated_at\": \"2022-03-14T09:29:54.306Z\"\n}\n],\n\"total_count\": 34\n}",
+              "description": "Gets a list of all CostQuerySets. You can use a query to get a filtered list of CostQuerySets.",
               "requestType": "CostQuerySetQuery",
               "requestLongType": "CostQuerySetQuery",
               "requestFullType": "spaceone.api.cost_analysis.v1.CostQuerySetQuery",

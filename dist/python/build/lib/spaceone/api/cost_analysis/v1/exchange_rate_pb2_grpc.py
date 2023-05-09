@@ -50,122 +50,40 @@ class ExchangeRateServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def set(self, request, context):
-        """
-        desc: Overrides a value of a specific ExchangeRate. This method is used to change the ExchangeRate in a specific domain. You can set the `currency` and `rate` of the resource.
-        request_example: >-
-        {
-        "currency": "KRW",
-        "rate": 1300
-        }
-        response_example: >-
-        {
-        "currency": "KRW",
-        "rate": 1300.0,
-        "state": "ENABLED",
-        "is_default": true
-        }
+        """Overrides a value of a specific ExchangeRate. This method is used to change the ExchangeRate in a specific domain. You can set the `currency` and `rate` of the resource.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def reset(self, request, context):
-        """
-        desc: Resets a value of a specific ExchangeRate and changes the ExchangeRate to the ExchangeRate of the `default` domain.
-        request_example: >-
-        {
-        "currency": "KRW"
-        }
-        response_example: >-
-        {
-        "currency": "KRW",
-        "rate": 1242.7,
-        "state": "ENABLED",
-        "is_default": true,
-        "domain_id": "domain-58010aa2e451"
-        }
+        """Resets a value of a specific ExchangeRate and changes the ExchangeRate to the ExchangeRate of the `default` domain.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def enable(self, request, context):
-        """
-        desc: ''
-        request_example: >-
-        {
-        }
-        response_example: >-
-        {
-
-        }
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def disable(self, request, context):
-        """
-        desc: ''
-        request_example: >-
-        {
-
-        }
-        response_example: >-
-        {
-
-        }
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific ExchangeRate. Prints detailed information about the ExchangeRate, including  `currency` and `rate`.
-        request_example: >-
-        {
-        "currency": "KRW"
-        }
-        response_example: >-
-        {
-        "currency": "KRW",
-        "rate": 1242.7,
-        "state": "ENABLED",
-        "is_default": true,
-        "domain_id": "domain-58010aa2e451"
-        }
+        """Gets a specific ExchangeRate. Prints detailed information about the ExchangeRate, including  `currency` and `rate`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all ExchangeRates. You can use a query to get a filtered list of ExchangeRates.
-        request_example: >-
-        {
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "currency": "JPY",
-        "rate": 129.8,
-        "state": "ENABLED",
-        "is_default": true,
-        "domain_id": "domain-58010aa2e451"
-        },
-        {
-        "currency": "KRW",
-        "rate": 1242.7,
-        "state": "ENABLED",
-        "is_default": true,
-        "domain_id": "domain-58010aa2e451"
-        }
-        ],
-        "total_count": 2
-        }
+        """Gets a list of all ExchangeRates. You can use a query to get a filtered list of ExchangeRates.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

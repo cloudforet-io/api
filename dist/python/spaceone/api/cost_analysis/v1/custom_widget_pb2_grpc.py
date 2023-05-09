@@ -52,176 +52,35 @@ class CustomWidgetServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """
-        desc: Creates a new CustomWidget. Based on the queries of the CostQuerySet the User made, a widget is created with the default template Cloudforet provides.
-        request_example: >-
-        {
-        "name": "project_provider_region-f59722cf-dc03-4758-ab7f",
-        "options": {
-        "group_by": "project_id",
-        "stack": false,
-        "layout": 100.0,
-        "granularity": "ACCUMULATED",
-        "filters": {},
-        "chart_type": "DONUT"
-        }
-        }
-        response_example: >-
-        {
-        "widget_id": "widget-8b1241aff67d",
-        "name": "project_provider_region-f59722cf-dc03-4758-ab7f",
-        "options": {
-        "filters": {},
-        "group_by": "project_id",
-        "granularity": "ACCUMULATED",
-        "layout": 100.0,
-        "stack": false,
-        "chart_type": "DONUT"
-        },
-        "tags": {},
-        "user_id": "test_user@cloudforet.io",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-19T06:18:55.819Z",
-        "updated_at": "2022-07-19T06:18:55.819Z"
-        }
+        """Creates a new CustomWidget. Based on the queries of the CostQuerySet the User made, a widget is created with the default template Cloudforet provides.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Updates a specific CustomWidget. You can make changes in CustomWidget settings, including `chart_type` and queries.
-        request_example: >-
-        {
-        "widget_id": "widget-8b1241aff67d",
-        "name": "project_provider_region",
-        "options": {
-        "layout": 100.0,
-        "chart_type": "DONUT",
-        "stack": false,
-        "group_by": "project_id",
-        "granularity": "ACCUMULATED",
-        "filters": {}
-        },
-        "tags": {
-        "a": "b"
-        }
-        }
-        response_example: >-
-        {
-        "widget_id": "widget-8b1241aff67d",
-        "name": "project_provider_region",
-        "options": {
-        "filters": {},
-        "chart_type": "DONUT",
-        "stack": false,
-        "layout": 100.0,
-        "granularity": "ACCUMULATED",
-        "group_by": "project_id"
-        },
-        "tags": {
-        "a": "b"
-        },
-        "user_id": "test_user@cloudforet.io",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-07-19T06:18:55.819Z",
-        "updated_at": "2022-07-19T06:18:55.819Z"
-        }
+        """Updates a specific CustomWidget. You can make changes in CustomWidget settings, including `chart_type` and queries.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """
-        desc: Deletes a specific CustomWidget. You must specify the `custom_widget_id` of the CustomWidget to delete.
-        request_example: >-
-        {
-        "widget_id": "widget-205f743a9890"
-        }
+        """Deletes a specific CustomWidget. You must specify the `custom_widget_id` of the CustomWidget to delete.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific CustomWidget. Prints detailed information about the CustomWidget, including `chart_type` and queries.
-        request_example: >-
-        {
-        "widget_id": "widget-205f743a9890"
-        }
-        response_example: >-
-        {
-        "widget_id": "widget-205f743a9890",
-        "name": "3 month product pie chart-a6752241-0a0b-4604-9186",
-        "options": {
-        "chart_type": "DONUT",
-        "layout": 100.0,
-        "filters": {},
-        "stack": false,
-        "group_by": "product",
-        "granularity": "ACCUMULATED"
-        },
-        "tags": {},
-        "user_id": "test@cloudforet.io",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-03-08T03:37:42.967Z",
-        "updated_at": "2022-03-08T03:37:42.967Z"
-        }
+        """Gets a specific CustomWidget. Prints detailed information about the CustomWidget, including `chart_type` and queries.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all CustomWidgets. You can use a query to get a filtered list of CustomWidgets.
-        request_example: >-
-        {
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "widget_id": "widget-205f743a9890",
-        "name": "3 month product pie chart-a6752241-0a0b-4604-9186",
-        "options": {
-        "stack": false,
-        "layout": 100.0,
-        "granularity": "ACCUMULATED",
-        "filters": {},
-        "chart_type": "DONUT",
-        "group_by": "product"
-        },
-        "tags": {},
-        "user_id": "yuda@mz.co.kr",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-03-08T03:37:42.967Z",
-        "updated_at": "2022-03-08T03:37:42.967Z"
-        },
-        {
-        "widget_id": "widget-c672e1501066",
-        "name": "6 month project group-589318f7-ee8d-4018-9d56",
-        "options": {
-        "stack": false,
-        "layout": 100.0,
-        "chart_type": "STACKED_COLUMN",
-        "filters": {},
-        "group_by": "project_group_id",
-        "granularity": "MONTHLY"
-        },
-        "tags": {},
-        "user_id": "yuda@mz.co.kr",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-03-14T09:30:03.115Z",
-        "updated_at": "2022-03-14T09:30:03.115Z"
-        }
-        ],
-        "total_count": 27
-        }
+        """Gets a list of all CustomWidgets. You can use a query to get a filtered list of CustomWidgets.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

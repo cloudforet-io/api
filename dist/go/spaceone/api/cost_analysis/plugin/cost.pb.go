@@ -21,21 +21,21 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// {
+//
+// }
 type GetDataRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Options *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
-	// is_required: true
+	Options    *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
 	SecretData *_struct.Struct `protobuf:"bytes,2,opt,name=secret_data,json=secretData,proto3" json:"secret_data,omitempty"`
-	// is_required: false
+	// +optional
 	Schema string `protobuf:"bytes,3,opt,name=schema,proto3" json:"schema,omitempty"`
-	// is_required: false
+	// +optional
 	TaskOptions *_struct.Struct `protobuf:"bytes,4,opt,name=task_options,json=taskOptions,proto3" json:"task_options,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,5,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	DomainId    string          `protobuf:"bytes,5,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *GetDataRequest) Reset() {
@@ -256,6 +256,9 @@ func (x *CostInfo) GetBilledAt() string {
 	return ""
 }
 
+// {
+//
+// }
 type CostsInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
