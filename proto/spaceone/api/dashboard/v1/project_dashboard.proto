@@ -1,6 +1,4 @@
-/*
-desc: description of dashboard
-*/
+// description of dashboard
 syntax = "proto3";
 
 package spaceone.api.dashboard.v1;
@@ -91,93 +89,75 @@ message CreateProjectDashboardRequest {
         PUBLIC = 1;
         PRIVATE = 2;
     }
-    // is_required: true
     string project_id = 1;
-    // is_required: true
     string name = 2;
-    // is_required: true
     Viewers viewers = 3;
-    // is_required: false
+    // +optional
     google.protobuf.ListValue layouts = 4;
-    // is_required: false
+    // +optional
     google.protobuf.Struct variables = 5;
-    // is_required: false
+    // +optional
     google.protobuf.Struct settings = 6;
-    // is_required: false
+    // +optional
     google.protobuf.Struct variables_schema = 7;
-    // is_required: false
+    // +optional
     google.protobuf.ListValue labels = 10;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 11;
-    // is_required: true
     string domain_id = 21;
 }
 
 message UpdateProjectDashboardRequest {
-    // is_required: true
     string project_dashboard_id = 1;
-    // is_required: false
+    // +optional
     string name = 2;
-    // is_required: false
+    // +optional
     google.protobuf.ListValue layouts = 3;
-    // is_required: false
+    // +optional
     google.protobuf.Struct variables = 5;
-    // is_required: false
+    // +optional
     google.protobuf.Struct settings = 6;
-    // is_required: false
+    // +optional
     google.protobuf.Struct variables_schema = 7;
-    // is_required: false
+    // +optional
     google.protobuf.ListValue labels = 10;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 11;
-    // is_required: true
     string domain_id = 21;
 }
 
 message ProjectDashboardRequest {
-    // is_required: true
     string project_dashboard_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
 message GetProjectDashboardRequest {
-    // is_required: true
     string project_dashboard_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
 message ProjectDashboardVersionRequest {
-    // is_required: true
     string project_dashboard_id = 1;
-    // is_required: true
     int32 version = 2;
-    // is_required: true
     string domain_id = 11;
 }
 
 message GetProjectDashboardVersionRequest {
-    // is_required: true
     string project_dashboard_id = 1;
-    // is_required: true
     int32 version = 2;
-    // is_required: true
     string domain_id = 10;
-    // is_required: false
+    // +optional
     repeated string only = 11;
 }
 
 message ProjectDashboardVersionQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: true
     string project_dashboard_id = 2;
-    // is_required: false
+    // +optional
     int32 version = 3;
-    // is_required: true
     string domain_id = 10;
 }
 
@@ -187,19 +167,18 @@ message ProjectDashboardQuery {
         PUBLIC = 1;
         PRIVATE = 2;
     }
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string project_dashboard_id = 2;
-    // is_required: false
+    // +optional
     string project_id = 3;
-    // is_required: false
+    // +optional
     string name = 4;
-    // is_required: false
+    // +optional
     Viewers viewers = 5;
-    // is_required: false
+    // +optional
     string user_id = 10;
-    // is_required: true
     string domain_id = 11;
 }
 
@@ -232,9 +211,7 @@ message ProjectDashboardsInfo {
 }
 
 message ProjectDashboardStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }
 

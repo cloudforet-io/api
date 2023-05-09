@@ -1,6 +1,4 @@
-/*
-desc: description of dashboard
-*/
+// description of dashboard
 syntax = "proto3";
 
 package spaceone.api.dashboard.v1;
@@ -15,53 +13,73 @@ import "spaceone/api/core/v1/query.proto";
 service DomainDashboard{
 
   rpc create(CreateDomainDashboardRequest) returns (DomainDashboardInfo) {
-    option (google.api.http) = {post: "/dashboard/v1/domain-dashboards"};
+    option (google.api.http) = {
+      post: "/dashboard/v1/domain-dashboard/create"
+      body: "*"
+    };
   }
 
   rpc update (UpdateDomainDashboardRequest) returns (DomainDashboardInfo) {
-    option (google.api.http) = {put: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}"};
+    option (google.api.http) = {
+      post: "/dashboard/v1/domain-dashboard/update"
+      body: "*"
+    };
   }
 
   rpc delete (DomainDashboardRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {delete: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}"};
+    option (google.api.http) = {
+      post: "/dashboard/v1/domain-dashboard/delete"
+      body: "*"
+    };
   }
 
   rpc get (GetDomainDashboardRequest) returns (DomainDashboardInfo) {
-    option (google.api.http) = {get: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}"};
+    option (google.api.http) = {
+      post: "/dashboard/v1/domain-dashboard/get"
+      body: "*"
+    };
   }
 
   rpc delete_version (DomainDashboardVersionRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {delete: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}"};
+    option (google.api.http) = {
+      post: "/dashboard/v1/domain-dashboard/delete-version"
+      body: "*"
+    };
   }
 
   rpc revert_version (DomainDashboardVersionRequest) returns (DomainDashboardInfo) {
-    option (google.api.http) = {post: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}/revert"};
+    option (google.api.http) = {
+      post: "/dashboard/v1/domain-dashboard/revert-version"
+      body: "*"
+    };
   }
 
   rpc get_version (GetDomainDashboardVersionRequest) returns (DomainDashboardVersionInfo) {
-    option (google.api.http) = {get: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}/version/{version}"};
+    option (google.api.http) = {
+      post: "/dashboard/v1/domain-dashboard/get-version"
+      body: "*"
+    };
   }
 
   rpc list_versions (DomainDashboardVersionQuery) returns (DomainDashboardVersionsInfo) {
     option (google.api.http) = {
-      get: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}/versions"
-      additional_bindings {
-        post: "/dashboard/v1/domain-dashboard/{domain_dashboard_id}/versions/search"
-      }
+      post: "/dashboard/v1/domain-dashboard/list-versions"
+      body: "*"
     };
   }
 
   rpc list (DomainDashboardQuery) returns (DomainDashboardsInfo) {
     option (google.api.http) = {
-      get: "/dashboard/v1/domain-dashboards"
-      additional_bindings {
-        post: "/dashboard/v1/domain-dashboards/search"
-      }
+      post: "/dashboard/v1/domain-dashboard/list"
+      body: "*"
     };
   }
 
   rpc stat (DomainDashboardStatQuery) returns (google.protobuf.Struct) {
-    option (google.api.http) = {post: "/dashboard/v1/domain-dashboards/stat"};
+    option (google.api.http) = {
+      post: "/dashboard/v1/domain-dashboard/stat"
+      body: "*"
+    };
   }
 }
 
@@ -71,91 +89,74 @@ message CreateDomainDashboardRequest {
     PUBLIC = 1;
     PRIVATE = 2;
   }
-  // is_required: true
   string name = 1;
-  // is_required: true
   Viewers viewers = 2;
-  // is_required: false
+  // +optional
   google.protobuf.ListValue layouts = 3;
-  // is_required: false
+  // +optional
   google.protobuf.Struct variables = 5;
-  // is_required: false
+  // +optional
   google.protobuf.Struct settings = 6;
-  // is_required: false
+  // +optional
   google.protobuf.Struct variables_schema = 7;
-  // is_required: false
+  // +optional
   google.protobuf.ListValue labels = 10;
-  // is_required: false
+  // +optional
   google.protobuf.Struct tags = 11;
-  // is_required: true
   string domain_id = 21;
 }
 
 message UpdateDomainDashboardRequest {
-  // is_required: true
   string domain_dashboard_id = 1;
-  // is_required: false
+  // +optional
   string name = 2;
-  // is_required: false
+  // +optional
   google.protobuf.ListValue layouts = 3;
-  // is_required: false
+  // +optional
   google.protobuf.Struct variables = 5;
-  // is_required: false
+  // +optional
   google.protobuf.Struct settings = 6;
-  // is_required: false
+  // +optional
   google.protobuf.Struct variables_schema = 7;
-  // is_required: false
+  // +optional
   google.protobuf.ListValue labels = 10;
-  // is_required: false
+  // +optional
   google.protobuf.Struct tags = 11;
-  // is_required: true
   string domain_id = 21;
 }
 
 message DomainDashboardRequest {
-  // is_required: true
   string domain_dashboard_id = 1;
-  // is_required: true
   string domain_id = 2;
 }
 
 message GetDomainDashboardRequest {
-  // is_required: true
   string domain_dashboard_id = 1;
-  // is_required: true
   string domain_id = 2;
-  // is_required: false
+  // +optional
   repeated string only = 3;
 }
 
 message DomainDashboardVersionRequest {
-  // is_required: true
   string domain_dashboard_id = 1;
-  // is_required: true
   int32 version = 4;
-  // is_required: true
   string domain_id = 21;
 }
 
 message GetDomainDashboardVersionRequest {
-  // is_required: true
   string domain_dashboard_id = 1;
-  // is_required: true
   int32 version = 2;
-  // is_required: true
   string domain_id = 10;
-  // is_required: false
+  // +optional
   repeated string only = 11;
 }
 
 message DomainDashboardVersionQuery {
-  // is_required: false
+  // +optional
   spaceone.api.core.v1.Query query = 1;
-  // is_required: true
   string domain_dashboard_id = 2;
-  // is_required: false
+  // +optional
   int32 version = 3;
-  // is_required: true
   string domain_id = 10;
 }
 
@@ -165,17 +166,16 @@ message DomainDashboardQuery {
     PUBLIC = 1;
     PRIVATE = 2;
   }
-  // is_required: false
+  // +optional
   spaceone.api.core.v1.Query query = 1;
-  // is_required: false
+  // +optional
   string domain_dashboard_id = 2;
-  // is_required: false
+  // +optional
   string name = 3;
-  // is_required: false
+  // +optional
   Viewers viewers = 4;
-  // is_required: false
+  // +optional
   string user_id = 10;
-  // is_required: true
   string domain_id = 11;
 }
 
@@ -207,9 +207,7 @@ message DomainDashboardsInfo {
 }
 
 message DomainDashboardStatQuery {
-  // is_required: true
   spaceone.api.core.v1.StatisticsQuery query = 1;
-  // is_required: true
   string domain_id = 2;
 }
 
