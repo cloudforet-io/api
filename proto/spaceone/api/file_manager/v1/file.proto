@@ -73,63 +73,59 @@ message FileReference {
 }
 
 message CreateFileRequest {
-    // is_required: true
     string name = 1;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 2;
-    // is_required: false
+    // +optional
     FileReference reference = 3;
-    // is_required: false
+    // +optional
     string domain_id = 11;
 }
 
 message UpdateFileRequest {
-    // is_required: true
     string file_id = 1;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 2;
-    // is_required: false
+    // +optional
     FileReference reference = 3;
-    // is_required: false
+    // +optional
     string domain_id = 11;
 }
 
 message FileRequest {
-    // is_required: true
     string file_id = 1;
-    // is_required: false
+    // +optional
     string domain_id = 2;
 }
 
 message GetFileRequest {
-    // is_required: true
     string file_id = 1;
-    // is_required: false
+    // +optional
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
 message FileQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string file_id = 2;
-    /// is_required: false
+    /// +optional
     string name = 3;
-    // is_required: false
+    // +optional
     FileState state = 4;
-    // is_required: false
+    // +optional
     FileScope scope = 5;
-    // is_required: false
+    // +optional
     string file_type = 6;
-    // is_required: false
+    // +optional
     string resource_type = 7;
-    // is_required: false
+    // +optional
     string resource_id = 8;
-    // is_required: false
+    // +optional
     string user_domain_id = 11;
-    // is_required: false
+    // +optional
     string domain_id = 12;
 }
 
@@ -156,8 +152,6 @@ message FilesInfo {
 }
 
 message FileStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }
