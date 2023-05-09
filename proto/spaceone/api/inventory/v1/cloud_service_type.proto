@@ -1,6 +1,4 @@
-/*
-desc: A CloudServiceType is a classification with hierarchical information of `CloudService`. A CloudServiceType provides information about which `group` a specific `Resource` belongs to and which `Services` are in it.
-*/
+// A CloudServiceType is a classification with hierarchical information of `CloudService`. A CloudServiceType provides information about which `group` a specific `Resource` belongs to and which `Services` are in it.
 syntax = "proto3";
 
 package spaceone.api.inventory.v1;
@@ -14,310 +12,197 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service CloudServiceType {
-    /*
-    desc: Creates a new CloudServiceType. You must specify the `name`, `provider`, and `group` parameters to create a CloudServiceType. One or several CloudServiceTypes exist in a specific `group`, and each CloudServiceType is identified by the `name` parameter.
-    request_example: >-
-      {
-        "name": "API-TEST",
-        "provider": "aws",
-        "group": "APIGateway",
-        "service_code": "AmazonApiGateway",
-        "is_primary": true,
-        "is_major": true,
-        "resource_type": "inventory.CloudService",
-        "metadata": {},
-        "labels": [
-            "Networking"
-        ],
-        "tags": {
-            "a": "b"
-        }
-      }
-    response_example: >-
-      {
-        "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8",
-        "name": "API-TEST",
-        "provider": "aws",
-        "group": "APIGateway",
-        "cloud_service_type_key": "aws.APIGateway.API-TEST",
-        "service_code": "AmazonApiGateway",
-        "is_primary": true,
-        "is_major": true,
-        "resource_type": "inventory.CloudService",
-        "metadata": {},
-        "tags": {
-            "a": "b"
-        },
-        "labels": [
-            "Networking"
-        ],
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-22T01:38:16.301Z",
-        "updated_at": "2022-06-22T01:38:16.301Z"
-      }
-    */
+    
+    // Creates a new CloudServiceType. You must specify the `name`, `provider`, and `group` parameters to create a CloudServiceType. One or several CloudServiceTypes exist in a specific `group`, and each CloudServiceType is identified by the `name` parameter.
     rpc create (CreateCloudServiceTypeRequest) returns (CloudServiceTypeInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/cloud-service-type/create"
             body: "*"
         };
     }
-    /*
-    desc: Updates a specific CloudServiceType. You can make changes in CloudServiceType settings, except for `name`, `provider` and `group`. In particular, you can set the CloudServiceType's priority in a `group`.
-    request_example: >-
-      {
-        "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8",
-        "service_code": "AmazonApi",
-        "metadata": {},
-        "labels": [
-            "Networking2"
-        ],
-        "tags": {
-            "b": "c"
-        }
-      }
-    response_example: >-
-      {
-        "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8",
-        "name": "API-TEST",
-        "provider": "aws",
-        "group": "APIGateway",
-        "cloud_service_type_key": "aws.APIGateway.API-TEST",
-        "service_code": "AmazonApi",
-        "is_primary": true,
-        "is_major": true,
-        "resource_type": "inventory.CloudService",
-        "metadata": {},
-        "tags": {
-            "b": "c"
-        },
-        "labels": [
-            "Networking2"
-        ],
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-22T01:38:16.301Z",
-        "updated_at": "2022-06-22T02:12:11.184Z"
-      }
-    */
+    
+    // Updates a specific CloudServiceType. You can make changes in CloudServiceType settings, except for `name`, `provider` and `group`. In particular, you can set the CloudServiceType's priority in a `group`.
     rpc update (UpdateCloudServiceTypeRequest) returns (CloudServiceTypeInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service-type/update",
+            post: "/inventory/v1/cloud-service-type/update"
             body: "*"
         };
     }
-    /*
-    desc: Deletes a specific CloudServiceType. You must specify the `cloud_service_type_id` of the CloudServiceType to delete.
-    request_example: >-
-      {
-        "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8"
-      }
-    */
+    
+    // Deletes a specific CloudServiceType. You must specify the `cloud_service_type_id` of the CloudServiceType to delete.
     rpc delete (CloudServiceTypeRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service-type/delete",
+            post: "/inventory/v1/cloud-service-type/delete"
             body: "*"
         };
     }
-    /*
-    desc: Gets a specific CloudServiceType. Prints detailed information about the CloudServiceType.
-    request_example: >-
-      {
-        "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8"
-      }
-    response_example: >-
-      {
-        "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8",
-        "name": "API-TEST",
-        "provider": "aws",
-        "group": "APIGateway",
-        "cloud_service_type_key": "aws.APIGateway.API-TEST",
-        "service_code": "AmazonApi",
-        "is_primary": true,
-        "is_major": true,
-        "resource_type": "inventory.CloudService",
-        "metadata": {},
-        "tags": {
-            "b": "c"
-        },
-        "labels": [
-            "Networking2"
-        ],
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-22T01:38:16.301Z",
-        "updated_at": "2022-06-22T02:12:11.184Z"
-      }
-    */
+    
+    // Gets a specific CloudServiceType. Prints detailed information about the CloudServiceType.
     rpc get (GetCloudServiceTypeRequest) returns (CloudServiceTypeInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service-type/get",
+            post: "/inventory/v1/cloud-service-type/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all CloudServiceTypes. You can use a query to get a filtered list of CloudServiceTypes.
-    request_example: >-
-      {
-        "query": {
-            "filter": [
-                {
-                    "key": "provider",
-                    "value": "aws",
-                    "operator": "eq"
-                }
-            ]
-        }
-      }
-    response_example: >-
-      {
-        "results": [
-            {
-                "cloud_service_type_id": "cloud-svc-type-7e1c113b39ff",
-                "name": "API",
-                "provider": "aws",
-                "group": "APIGateway",
-                "cloud_service_type_key": "aws.APIGateway.API",
-                "service_code": "AmazonApiGateway",
-                "is_primary": true,
-                "is_major": true,
-                "resource_type": "inventory.CloudService",
-                "metadata": {
-                },
-                "tags": {
-                    "spaceone:icon": "https://spaceone.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/aws/Amazon-API-Gateway.svg"
-                },
-                "labels": [
-                    "Networking"
-                ],
-                "domain_id": "domain-58010aa2e451",
-                "created_at": "2021-06-03T02:29:32.690Z",
-                "updated_at": "2022-06-22T00:04:45.477Z"
-            },
-            {
-                "cloud_service_type_id": "cloud-svc-type-64a0de601371",
-                "name": "Certificate",
-                "provider": "aws",
-                "group": "CertificateManager",
-                "cloud_service_type_key": "aws.CertificateManager.Certificate",
-                "service_code": "AWSCertificateManager",
-                "is_primary": true,
-                "resource_type": "inventory.CloudService",
-                "metadata": {
-                },
-                "tags": {
-                    "spaceone:icon": "https://spaceone.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/aws/AWS-Certificate-Manager.svg"
-                },
-                "labels": [
-                    "Security"
-                ],
-                "domain_id": "domain-58010aa2e451",
-                "created_at": "2021-06-03T02:29:53.052Z",
-                "updated_at": "2022-06-22T00:05:41.252Z"
-            }
-        ],
-        "total_count": 2
-      }
-    */
+    
+    // Gets a list of all CloudServiceTypes. You can use a query to get a filtered list of CloudServiceTypes.
     rpc list (CloudServiceTypeQuery) returns (CloudServiceTypesInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service-type/list",
+            post: "/inventory/v1/cloud-service-type/list"
             body: "*"
         };
     }
+    
     rpc stat (CloudServiceTypeStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service-type/stat",
+            post: "/inventory/v1/cloud-service-type/stat"
             body: "*"
         };
     }
 }
 
+//{
+//    "name": "API-TEST",
+//    "provider": "aws",
+//    "group": "APIGateway",
+//    "service_code": "AmazonApiGateway",
+//    "is_primary": true,
+//    "is_major": true,
+//    "resource_type": "inventory.CloudService",
+//    "metadata": {},
+//    "labels": [
+//        "Networking"
+//    ],
+//    "tags": {
+//        "a": "b"
+//    }
+//}
 message CreateCloudServiceTypeRequest {
-    // is_required: true
     string name = 1;
-    // is_required: true
     string provider = 2;
-    // is_required: true
     string group = 3;
-    // is_required: false
+    // +optional
     string service_code = 4;
-    // is_required: false
+    // +optional
     bool is_primary = 5;
-    // is_required: false
+    // +optional
     bool is_major = 6;
-    // is_required: false
+    // +optional
     string resource_type = 7;
-    // is_required: false
+    // +optional
     google.protobuf.Struct metadata = 11;
-    // is_required: false
+    // +optional
     google.protobuf.ListValue labels = 12;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 13;
-    // is_required: true
+    
     string domain_id = 21;
 }
 
+//{
+//    "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8",
+//    "service_code": "AmazonApi",
+//    "metadata": {},
+//    "labels": [
+//        "Networking2"
+//    ],
+//    "tags": {
+//        "b": "c"
+//    }
+//}
 message UpdateCloudServiceTypeRequest {
-    // is_required: true
     string cloud_service_type_id = 1;
-    // is_required: false
+    // +optional
     string service_code = 2;
-    // is_required: false
+    // +optional
     bool is_primary = 3;
-    // is_required: false
+    // +optional
     bool is_major = 4;
-    // is_required: false
+    // +optional
     string resource_type = 5;
-    // is_required: false
+    // +optional
     google.protobuf.Struct metadata = 11;
-    // is_required: false
+    // +optional
     google.protobuf.ListValue labels = 12;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 13;
-    // is_required: true
     string domain_id = 21;
 }
 
+//{
+//    "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8"
+//}
 message CloudServiceTypeRequest {
-    // is_required: true
     string cloud_service_type_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
+//{
+//    "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8"
+//}
 message GetCloudServiceTypeRequest {
-    // is_required: true
     string cloud_service_type_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
+//{
+//    "query": {
+//        "filter": [
+//            {
+//                "key": "provider",
+//                "value": "aws",
+//                "operator": "eq"
+//            }
+//        ]
+//    }
+//}
 message CloudServiceTypeQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string cloud_service_type_id = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     string provider = 4;
-    // is_required: false
+    // +optional
     string group = 5;
-    // is_required: false
+    // +optional
     string cloud_service_type_key = 6;
-    // is_required: false
+    // +optional
     string service_code = 7;
-    // is_required: false
+    // +optional
     bool is_primary = 8;
-    // is_required: false
+    // +optional
     bool is_major = 9;
-    // is_required: false
+    // +optional
     string resource_type = 10;
-    // is_required: true
     string domain_id = 11;
 }
 
+//{
+//    "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8",
+//    "name": "API-TEST",
+//    "provider": "aws",
+//    "group": "APIGateway",
+//    "cloud_service_type_key": "aws.APIGateway.API-TEST",
+//    "service_code": "AmazonApiGateway",
+//    "is_primary": true,
+//    "is_major": true,
+//    "resource_type": "inventory.CloudService",
+//    "metadata": {},
+//    "tags": {
+//        "a": "b"
+//    },
+//    "labels": [
+//        "Networking"
+//    ],
+//    "domain_id": "domain-58010aa2e451",
+//    "created_at": "2022-06-22T01:38:16.301Z",
+//    "updated_at": "2022-06-22T01:38:16.301Z"
+//}
 message CloudServiceTypeInfo {
     string cloud_service_type_id = 1;
     string name = 2;
@@ -339,14 +224,60 @@ message CloudServiceTypeInfo {
     string updated_at = 32;
 }
 
+//{
+//    "results": [
+//        {
+//            "cloud_service_type_id": "cloud-svc-type-7e1c113b39ff",
+//            "name": "API",
+//            "provider": "aws",
+//            "group": "APIGateway",
+//            "cloud_service_type_key": "aws.APIGateway.API",
+//            "service_code": "AmazonApiGateway",
+//            "is_primary": true,
+//            "is_major": true,
+//            "resource_type": "inventory.CloudService",
+//            "metadata": {
+//            },
+//            "tags": {
+//                "spaceone:icon": "https://spaceone.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/aws/Amazon-API-Gateway.svg"
+//            },
+//            "labels": [
+//                "Networking"
+//            ],
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2021-06-03T02:29:32.690Z",
+//            "updated_at": "2022-06-22T00:04:45.477Z"
+//        },
+//        {
+//            "cloud_service_type_id": "cloud-svc-type-64a0de601371",
+//            "name": "Certificate",
+//            "provider": "aws",
+//            "group": "CertificateManager",
+//            "cloud_service_type_key": "aws.CertificateManager.Certificate",
+//            "service_code": "AWSCertificateManager",
+//            "is_primary": true,
+//            "resource_type": "inventory.CloudService",
+//            "metadata": {
+//            },
+//            "tags": {
+//                "spaceone:icon": "https://spaceone.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/aws/AWS-Certificate-Manager.svg"
+//            },
+//            "labels": [
+//                "Security"
+//            ],
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2021-06-03T02:29:53.052Z",
+//            "updated_at": "2022-06-22T00:05:41.252Z"
+//        }
+//    ],
+//    "total_count": 2
+//}
 message CloudServiceTypesInfo {
     repeated CloudServiceTypeInfo results = 1;
     int32 total_count = 2;
 }
 
 message CloudServiceTypeStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }

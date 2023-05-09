@@ -11,13 +11,13 @@ import "spaceone/api/core/v1/query.proto";
 service ChangeHistory {
     rpc list (ChangeHistoryQuery) returns (ChangeHistoryInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/change-history/list",
+            post: "/inventory/v1/change-history/list"
             body: "*"
         };
     }
     rpc stat (ChangeHistoryStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/inventory/v1/change-history/stat",
+            post: "/inventory/v1/change-history/stat"
             body: "*"
         };
     }
@@ -32,21 +32,19 @@ message ChangeHistoryQuery {
         DELETE = 3;
     }
 
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: true
     string cloud_service_id = 2;
-    // is_required: false
+    // +optional
     RecordAction action = 3;
-    // is_required: false
+    // +optional
     string user_id = 4;
-    // is_required: false
+    // +optional
     string collector_id = 5;
-    // is_required: false
+    // +optional
     string job_id = 6;
-    // is_required: false
+    // +optional
     string updated_by = 7;
-    // is_required: true
     string domain_id = 8;
 }
 
@@ -92,10 +90,7 @@ message ChangeHistoryInfo {
 }
 
 message ChangeHistoryStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: true
     string cloud_service_id = 3;
 }

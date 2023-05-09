@@ -1,6 +1,4 @@
-/*
-desc: A ResourceGroup is a group of `resource`s from various `provider`s.
-*/
+// A ResourceGroup is a group of `resource`s from various `provider`s.
 syntax = "proto3";
 
 package spaceone.api.inventory.v1;
@@ -14,377 +12,206 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service ResourceGroup {
-    /*
-    desc: Creates a new ResourceGroup. You can integrate `resource`s from different `provider`s by specifying the cloud resources to be grouped in the `resources` parameter.
-    request_example: >-
-      {
-        "name": "azure-group-1",
-        "resources": [
-            {
-                "resource_type": "inventory.Server?provider=azure&cloud_service_group=Compute&cloud_service_type=VirtualMachine",
-                "filter": [
-                    {"o": "eq", "k": "provider", "v": "azure"},
-                    {"o": "eq", "k": "cloud_service_group", "v": "Compute"},
-                    {"o": "eq", "k": "cloud_service_type", "v": "VirtualMachine"}
-                ]
-            }
-        ],
-        "options": {
-            "raw_filter": []
-        },
-        "tags": {
-            "a": "b"
-        }
-      }
-    response_example: >-
-      {
-        "resource_group_id": "rsc-grp-7d46a1fc7738",
-        "name": "azure-group-1",
-        "resources": [
-            {
-                "resource_type": "inventory.Server?provider=azure&cloud_service_group=Compute&cloud_service_type=VirtualMachine",
-                "filter": [
-                    {
-                        "k": "provider",
-                        "v": "azure",
-                        "o": "eq"
-                    },
-                    {
-                        "k": "cloud_service_group",
-                        "v": "Compute",
-                        "o": "eq"
-                    },
-                    {
-                        "k": "cloud_service_type",
-                        "v": "VirtualMachine",
-                        "o": "eq"
-                    }
-                ]
-            }
-        ],
-        "options": {
-            "raw_filter": []
-        },
-        "tags": {
-            "a": "b"
-        },
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-23T01:50:33.152Z"
-      }
-    */
+    
+    // Creates a new ResourceGroup. You can integrate `resource`s from different `provider`s by specifying the cloud resources to be grouped in the `resources` parameter.
     rpc create (CreateResourceGroupRequest) returns (ResourceGroupInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/resource-group/create",
+            post: "/inventory/v1/resource-group/create"
             body: "*"
         };
     }
-    /*
-    desc: Updates a specific ResourceGroup. You can make changes in ResourceGroup settings, including `name`, `tags`, and grouped resources in the ResourceGroup.
-    request_example: >-
-      {
-        "resource_group_id": "rsc-grp-7d46a1fc7738",
-        "name": "azure-grp-test2",
-        "resources": [
-            {
-                "resource_type": "inventory.Server?provider=azure&cloud_service_group=Compute&cloud_service_type=VirtualMachine",
-                "filter": [
-                    {"k": "provider", "v": "azure", "o": "eq"},
-                    {"o": "eq", "k": "cloud_service_group", "v": "Compute"},
-                    {"v": "VirtualMachine", "k": "cloud_service_type", "o": "eq"}
-                ]
-            }
-        ],
-        "options": {},
-        "tags": {
-            "b": "c"
-        }
-      }
-    response_example: >-
-      {
-        "resource_group_id": "rsc-grp-7d46a1fc7738",
-        "name": "azure-grp-test2",
-        "resources": [
-            {
-                "resource_type": "inventory.Server?provider=azure&cloud_service_group=Compute&cloud_service_type=VirtualMachine",
-                "filter": [
-                    {
-                        "k": "provider",
-                        "v": "azure",
-                        "o": "eq"
-                    },
-                    {
-                        "k": "cloud_service_group",
-                        "v": "Compute",
-                        "o": "eq"
-                    },
-                    {
-                        "k": "cloud_service_type",
-                        "v": "VirtualMachine",
-                        "o": "eq"
-                    }
-                ]
-            }
-        ],
-        "options": {
-            "raw_filter": []
-        },
-        "tags": {
-            "a": "b"
-        },
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-23T01:50:33.152Z"
-      }
-    */
+    
+    // Updates a specific ResourceGroup. You can make changes in ResourceGroup settings, including `name`, `tags`, and grouped resources in the ResourceGroup.
     rpc update (UpdateResourceGroupRequest) returns (ResourceGroupInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/resource-group/update",
+            post: "/inventory/v1/resource-group/update"
             body: "*"
         };
     }
-    /*
-    desc: Deletes a specific ResourceGroup. You must specify the `resource_group_id` of the ResourceGroup to delete.
-    request_example: >-
-      {
-        "resource_group_id": "rsc-grp-aa3c4ca465b2"
-      }
-    */
+    
+    // Deletes a specific ResourceGroup. You must specify the `resource_group_id` of the ResourceGroup to delete.
     rpc delete (ResourceGroupRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/inventory/v1/resource-group/delete",
+            post: "/inventory/v1/resource-group/delete"
             body: "*"
         };
     }
-    /*
-    desc: Gets a specific ResourceGroup. Prints detailed information about the ResourceGroup, including the information of the grouped cloud resources.
-    request_example: >-
-      {
-        "resource_group_id": "rsc-grp-aa3c4ca465b2"
-      }
-    response_example: >-
-      {
-        "resource_group_id": "rsc-grp-aa3c4ca465b2",
-        "name": "stset",
-        "resources": [
-            {
-                "resource_type": "inventory.Server?provider=aws&cloud_service_group=EC2&cloud_service_type=Instance",
-                "filter": [
-                    {
-                        "k": "provider",
-                        "o": "eq",
-                        "v": "aws"
-                    },
-                    {
-                        "v": "EC2",
-                        "k": "cloud_service_group",
-                        "o": "eq"
-                    },
-                    {
-                        "o": "eq",
-                        "k": "cloud_service_type",
-                        "v": "Instance"
-                    }
-                ],
-                "keyword": "test"
-            }
-        ],
-        "options": {
-            "raw_filter": []
-        },
-        "tags": {},
-        "project_id": "project-18655561c535",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2021-06-01T10:23:20.537Z"
-      }
-    */
+    
+    // Gets a specific ResourceGroup. Prints detailed information about the ResourceGroup, including the information of the grouped cloud resources.
     rpc get (GetResourceGroupRequest) returns (ResourceGroupInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/resource-group/get",
+            post: "/inventory/v1/resource-group/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all ResourceGroups. You can use a query to get a filtered list of ResourceGroups.
-    request_example: >-
-      {
-        "query": {
-            "filter": [
-                {
-                    "key": "name",
-                    "value": [
-                        "azure-vmss-group",
-                        "stset"
-                    ],
-                    "operator": "in"
-                }
-            ]
-        }
-      }
-    response_example: >-
-      {
-        "results": [
-            {
-                "resource_group_id": "rsc-grp-4c86e071e0f0",
-                "name": "azure-vmss-group",
-                "resources": [
-                    {
-                       "resource_type": "inventory.CloudService?provider=azure&cloud_service_group=Compute&cloud_service_type=VmScaleSet",
-                        "filter": [
-                            {
-                                "k": "provider",
-                                "v": "azure",
-                                "o": "eq"
-                            },
-                            {
-                                "v": "Compute",
-                                "k": "cloud_service_group",
-                                "o": "eq"
-                            },
-                            {
-                                "k": "cloud_service_type",
-                                "v": "VmScaleSet",
-                                "o": "eq"
-                            }
-                        ]
-                    }
-                ],
-                "options": {
-                    "raw_filter": []
-                },
-                "tags": {},
-                "project_id": "project-9074eea97d7e",
-                "domain_id": "domain-58010aa2e451",
-                "created_at": "2021-04-23T03:23:40.037Z"
-            },
-            {
-                "resource_group_id": "rsc-grp-aa3c4ca465b2",
-                "name": "stset",
-                "resources": [
-                    {
-                        "resource_type": "inventory.Server?provider=aws&cloud_service_group=EC2&cloud_service_type=Instance",
-                        "filter": [
-                            {
-                                "k": "provider",
-                                "v": "aws",
-                                "o": "eq"
-                            },
-                            {
-                                "v": "EC2",
-                                "k": "cloud_service_group",
-                                "o": "eq"
-                            },
-                            {
-                                "k": "cloud_service_type",
-                                "v": "Instance",
-                                "o": "eq"
-                            }
-                        ],
-                        "keyword": "test"
-                    }
-                ],
-                "options": {
-                    "raw_filter": [
-                        [
-                            "test"
-                        ]
-                    ]
-                },
-                "tags": {},
-                "project_id": "project-18655561c535",
-                "domain_id": "domain-58010aa2e451",
-                "created_at": "2021-06-01T10:23:20.537Z"
-            }
-        ],
-        "total_count": 2
-      }
-    */
+    
+    // Gets a list of all ResourceGroups. You can use a query to get a filtered list of ResourceGroups.
     rpc list (ResourceGroupQuery) returns (ResourceGroupsInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/resource-group/list",
+            post: "/inventory/v1/resource-group/list"
             body: "*"
         };
     }
+    
     rpc stat (ResourceGroupStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/inventory/v1/resource-group/stat",
+            post: "/inventory/v1/resource-group/stat"
             body: "*"
         };
     }
 }
 
 message Resource {
-    // is_required: true
     string resource_type = 1;
-    // is_required: false
+    // +optional
     google.protobuf.ListValue filter = 2;
-    // is_required: false
+    // +optional
     string keyword = 3;
 }
 
+//{
+//    "name": "azure-group-1",
+//    "resources": [
+//        {
+//            "resource_type": "inventory.Server?provider=azure&cloud_service_group=Compute&cloud_service_type=VirtualMachine",
+//            "filter": [
+//                {"o": "eq", "k": "provider", "v": "azure"},
+//                {"o": "eq", "k": "cloud_service_group", "v": "Compute"},
+//                {"o": "eq", "k": "cloud_service_type", "v": "VirtualMachine"}
+//            ]
+//        }
+//    ],
+//    "options": {
+//        "raw_filter": []
+//    },
+//    "tags": {
+//        "a": "b"
+//    }
+//}
 message CreateResourceGroupRequest {
-    // is_required: true
     string name = 1;
-    // is_required: true
     repeated Resource resources = 2;
-    // is_required: false
+    // +optional
     google.protobuf.Struct options = 3;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 4;
-
-    // is_required: true
     string project_id = 11;
-    // is_required: true
     string domain_id = 12;
 }
 
+//{
+//    "resource_group_id": "rsc-grp-7d46a1fc7738",
+//    "name": "azure-grp-test2",
+//    "resources": [
+//        {
+//            "resource_type": "inventory.Server?provider=azure&cloud_service_group=Compute&cloud_service_type=VirtualMachine",
+//            "filter": [
+//                {"k": "provider", "v": "azure", "o": "eq"},
+//                {"o": "eq", "k": "cloud_service_group", "v": "Compute"},
+//                {"v": "VirtualMachine", "k": "cloud_service_type", "o": "eq"}
+//            ]
+//        }
+//    ],
+//    "options": {},
+//    "tags": {
+//        "b": "c"
+//    }
+//}
 message UpdateResourceGroupRequest {
-    // is_required: true
     string resource_group_id = 1;
-    // is_required: false
+    // +optional
     string name = 2;
-    // is_required: false
+    // +optional
     repeated Resource resources = 3;
-    // is_required: false
+    // +optional
     google.protobuf.Struct options = 4;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 5;
-
-    // is_required: false
+    // +optional
     bool release_project = 11;
-    // is_required: false
+    // +optional
     string project_id = 12;
-    // is_required: true
     string domain_id = 13;
 }
 
+//{
+//    "resource_group_id": "rsc-grp-aa3c4ca465b2"
+//}
 message ResourceGroupRequest {
-    // is_required: true
     string resource_group_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
+//{
+//    "resource_group_id": "rsc-grp-aa3c4ca465b2"
+//}
 message GetResourceGroupRequest {
-    // is_required: true
     string resource_group_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
+//{
+//    "query": {
+//        "filter": [
+//            {
+//                "key": "name",
+//                "value": [
+//                    "azure-vmss-group",
+//                    "stset"
+//                ],
+//                "operator": "in"
+//            }
+//        ]
+//    }
+//}
 message ResourceGroupQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string resource_group_id = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     string project_id = 4;
-    // is_required: true
     string domain_id = 5;
 }
 
+//{
+//    "resource_group_id": "rsc-grp-7d46a1fc7738",
+//    "name": "azure-group-1",
+//    "resources": [
+//        {
+//            "resource_type": "inventory.Server?provider=azure&cloud_service_group=Compute&cloud_service_type=VirtualMachine",
+//            "filter": [
+//                {
+//                    "k": "provider",
+//                    "v": "azure",
+//                    "o": "eq"
+//                },
+//                {
+//                    "k": "cloud_service_group",
+//                    "v": "Compute",
+//                    "o": "eq"
+//                },
+//                {
+//                    "k": "cloud_service_type",
+//                    "v": "VirtualMachine",
+//                    "o": "eq"
+//                }
+//            ]
+//        }
+//    ],
+//    "options": {
+//        "raw_filter": []
+//    },
+//    "tags": {
+//        "a": "b"
+//    },
+//    "domain_id": "domain-58010aa2e451",
+//    "created_at": "2022-06-23T01:50:33.152Z"
+//}
 message ResourceGroupInfo {
     string resource_group_id = 1;
     string name = 2;
@@ -396,14 +223,88 @@ message ResourceGroupInfo {
     string created_at = 8;
 }
 
+//{
+//    "results": [
+//        {
+//            "resource_group_id": "rsc-grp-4c86e071e0f0",
+//            "name": "azure-vmss-group",
+//            "resources": [
+//                {
+//                   "resource_type": "inventory.CloudService?provider=azure&cloud_service_group=Compute&cloud_service_type=VmScaleSet",
+//                    "filter": [
+//                        {
+//                            "k": "provider",
+//                            "v": "azure",
+//                            "o": "eq"
+//                        },
+//                        {
+//                            "v": "Compute",
+//                            "k": "cloud_service_group",
+//                            "o": "eq"
+//                        },
+//                        {
+//                            "k": "cloud_service_type",
+//                            "v": "VmScaleSet",
+//                            "o": "eq"
+//                        }
+//                    ]
+//                }
+//            ],
+//            "options": {
+//                "raw_filter": []
+//            },
+//            "tags": {},
+//            "project_id": "project-9074eea97d7e",
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2021-04-23T03:23:40.037Z"
+//        },
+//        {
+//            "resource_group_id": "rsc-grp-aa3c4ca465b2",
+//            "name": "stset",
+//            "resources": [
+//                {
+//                    "resource_type": "inventory.Server?provider=aws&cloud_service_group=EC2&cloud_service_type=Instance",
+//                    "filter": [
+//                        {
+//                            "k": "provider",
+//                            "v": "aws",
+//                            "o": "eq"
+//                        },
+//                        {
+//                            "v": "EC2",
+//                            "k": "cloud_service_group",
+//                            "o": "eq"
+//                        },
+//                        {
+//                            "k": "cloud_service_type",
+//                            "v": "Instance",
+//                            "o": "eq"
+//                        }
+//                    ],
+//                    "keyword": "test"
+//                }
+//            ],
+//            "options": {
+//                "raw_filter": [
+//                    [
+//                        "test"
+//                    ]
+//                ]
+//            },
+//            "tags": {},
+//            "project_id": "project-18655561c535",
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2021-06-01T10:23:20.537Z"
+//        }
+//    ],
+//    "total_count": 2
+//}
 message ResourceGroupsInfo {
     repeated ResourceGroupInfo results = 1;
     int32 total_count = 2;
 }
 
 message ResourceGroupStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }

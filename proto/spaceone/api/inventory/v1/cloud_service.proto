@@ -1,6 +1,4 @@
-/*
-desc: A CloudService is data of an `instance` of a `resource`. A CloudService follows the pre-created classification system of a CloudServiceType and indicates the property value of the `resource`.
-*/
+// A CloudService is data of an `instance` of a `resource`. A CloudService follows the pre-created classification system of a CloudServiceType and indicates the property value of the `resource`.
 syntax = "proto3";
 
 package spaceone.api.inventory.v1;
@@ -14,393 +12,56 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service CloudService {
-    /*
-    desc: Creates a new CloudService. A CloudService instance is created based on data including the `resource`'s attribute values. When creating, the classification information defined by CloudServiceType is also needed. The created CloudService has collection information which is the collection history for the `resource` by plugin.
-    request_example: >-
-      {
-        "cloud_service_type": "Key",
-        "provider": "aws",
-        "cloud_service_group": "KMS",
-        "name": "cloud_service_test",
-        "account": "251340636361",
-        "launched_at": "2020-08-03T15:00:54.000Z",
-        "ip_addresses": [],
-        "data": {
-            "alias_arn": null,
-            "origin": "AWS_KMS",
-            "cloudwatch": {
-                "region_name": "ap-northeast-1",
-                "namespace": "AWS/KMS",
-                "dimensions": [
-                    {
-                        "Value": "0drda5e1-c40f-45d7-a647-xxxxxxx",
-                        "Name": "KeyId"
-                    }
-                ]
-            },
-            "aws_account_id": "251340636361",
-            "creation_date": "2020-07-09T09:39:03.097000+0000",
-            "encryption_algorithms": [
-                "SYMMETRIC_DEFAULT"
-            ],
-            "key_usage": "ENCRYPT_DECRYPT",
-            "key_id": "0drda5e1-c40f-45d7-a647-xxxxxxx",
-            "key_type_path": "defaultKeys",
-            "key_rotated": false,
-            "description": "Default master key that protects my Secrets Manager data when no other key is defined",
-            "key_state": "Enabled",
-            "customer_master_key_spec": "SYMMETRIC_DEFAULT",
-            "enabled": true,
-            "arn": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
-            "key_manager": "AWS"
-        },
-        "metadata": {},
-        "reference": {
-            "resource_id": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
-            "external_link": "https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/"
-        },
-        "tags": {
-            "a": "b"
-        },
-        "region_code": "ap-northeast-1"
-      }
-    response_example: >-
-      {
-        "cloud_service_id": "cloud-svc-c00f38a173e1",
-        "name": "cloud_service_test",
-        "state": "ACTIVE",
-        "account": "251340636361",
-        "cloud_service_type": "Key",
-        "cloud_service_group": "KMS",
-        "provider": "aws",
-        "data": {
-            "alias_arn": null,
-            "origin": "AWS_KMS",
-            "cloudwatch": {
-                "region_name": "ap-northeast-1",
-                "namespace": "AWS/KMS",
-                "dimensions": [
-                    {
-                        "Value": "0drda5e1-c40f-45d7-a647-xxxxxxx",
-                        "Name": "KeyId"
-                    }
-                ]
-            },
-            "aws_account_id": "251340636361",
-            "creation_date": "2020-07-09T09:39:03.097000+0000",
-            "encryption_algorithms": [
-                "SYMMETRIC_DEFAULT"
-            ],
-            "key_usage": "ENCRYPT_DECRYPT",
-            "key_id": "0drda5e1-c40f-45d7-a647-xxxxxxx",
-            "key_type_path": "defaultKeys",
-            "key_rotated": false,
-            "description": "Default master key that protects my Secrets Manager data when no other key is defined",
-            "key_state": "Enabled",
-            "customer_master_key_spec": "SYMMETRIC_DEFAULT",
-            "enabled": true,
-            "arn": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
-            "key_manager": "AWS"
-        },
-        "metadata": {
-            "manual": {}
-        },
-        "reference": {
-            "resource_id": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
-            "external_link": "https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/"
-        },
-        "tags": {
-            "a": "b"
-        },
-        "collection_info": {
-            "collectors": [],
-            "service_accounts": [],
-            "secrets": []
-        },
-        "ip_addresses": [],
-        "region_code": "ap-northeast-1",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-22T06:38:48.989Z",
-        "updated_at": "2022-06-22T06:38:48.989Z",
-        "launched_at": "2020-08-03T15:00:54.000Z"
-      }
-    */
+    
+    // Creates a new CloudService. A CloudService instance is created based on data including the `resource`'s attribute values. When creating, the classification information defined by CloudServiceType is also needed. The created CloudService has collection information which is the collection history for the `resource` by plugin.
     rpc create (CreateServiceRequest) returns (CloudServiceInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/create",
+            post: "/inventory/v1/cloud-service/create"
             body: "*"
         };
     }
-    /*
-    desc: Updates a specific CloudService. You can make changes in CloudService settings, except for the classification system of CloudService and the information about the `resource` attribute value.
-    request_example: >-
-      {
-        "cloud_service_id": "cloud-svc-c00f38a173e1",
-        "name": "cloud_service_test2",
-        "ip_addresses": [
-            "1.1.1.1",
-            "2.2.2.2"
-        ],
-        "tags": {
-            "description": "spaceone"
-        },
-        "region_code": "ap-northeast-2"
-      }
-    response_example: >-
-      {
-        "cloud_service_id": "cloud-svc-c00f38a173e1",
-        "name": "cloud_service_test2",
-        "state": "ACTIVE",
-        "account": "251340636361",
-        "cloud_service_type": "Key",
-        "cloud_service_group": "KMS",
-        "provider": "aws",
-        "data": {
-            "alias_arn": null,
-            "origin": "AWS_KMS",
-            "cloudwatch": {
-                "region_name": "ap-northeast-1",
-                "namespace": "AWS/KMS",
-                "dimensions": [
-                    {
-                        "Value": "0drda5e1-c40f-45d7-a647-xxxxxxx",
-                        "Name": "KeyId"
-                    }
-                ]
-            },
-            "aws_account_id": "251340636361",
-            "creation_date": "2020-07-09T09:39:03.097000+0000",
-            "encryption_algorithms": [
-                "SYMMETRIC_DEFAULT"
-            ],
-            "key_usage": "ENCRYPT_DECRYPT",
-            "key_id": "0drda5e1-c40f-45d7-a647-xxxxxxx",
-            "key_type_path": "defaultKeys",
-            "key_rotated": false,
-            "description": "Default master key that protects my Secrets Manager data when no other key is defined",
-            "key_state": "Enabled",
-            "customer_master_key_spec": "SYMMETRIC_DEFAULT",
-            "enabled": true,
-            "arn": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
-            "key_manager": "AWS"
-        },
-        "metadata": {
-            "manual": {}
-        },
-        "reference": {
-            "resource_id": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
-            "external_link": "https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/"
-        },
-        "tags": {
-            "description": "spaceone"
-        },
-        "collection_info": {
-            "collectors": [],
-            "service_accounts": [],
-            "secrets": []
-        },
-        "ip_addresses": [
-            "1.1.1.1",
-            "2.2.2.2"
-        ],
-        "region_code": "ap-northeast-1",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-22T06:38:48.989Z",
-        "updated_at": "2022-06-22T06:38:48.989Z",
-        "launched_at": "2020-08-03T15:00:54.000Z"
-      }
-    */
+    
+    // Updates a specific CloudService. You can make changes in CloudService settings, except for the classification system of CloudService and the information about the `resource` attribute value.
     rpc update (UpdateCloudServiceRequest) returns (CloudServiceInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/update",
+            post: "/inventory/v1/cloud-service/update"
             body: "*"
         };
     }
-    /*
-    desc: Deletes a specific CloudService. You must specify the `cloud_service_id` of the CloudService to delete.
-    request_example: >-
-      {
-        "cloud_service_id": "cloud-svc-fea2b0d32141"
-      }
-    */
+    
+    // Deletes a specific CloudService. You must specify the `cloud_service_id` of the CloudService to delete.
     rpc delete (CloudServiceRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/delete",
+            post: "/inventory/v1/cloud-service/delete"
             body: "*"
         };
     }
-    /*
-    desc: Gets a specific CloudService. Prints detailed information about the CloudService, including its state, classification information, and attribute values.
-    request_example: >-
-      {
-        "cloud_service_id": "cloud-svc-fea2b0d32141"
-      }
-    response_example: >-
-      {
-        "cloud_service_id": "cloud-svc-c00f38a173e1",
-        "name": "cloud_service_test2",
-        "state": "ACTIVE",
-        "account": "251340636361",
-        "cloud_service_type": "Key",
-        "cloud_service_group": "KMS",
-        "provider": "aws",
-        "data": {
-            "alias_arn": null,
-            "origin": "AWS_KMS",
-            "cloudwatch": {
-                "region_name": "ap-northeast-1",
-                "namespace": "AWS/KMS",
-                "dimensions": [
-                    {
-                        "Value": "0drda5e1-c40f-45d7-a647-xxxxxxx",
-                        "Name": "KeyId"
-                    }
-                ]
-            },
-            "aws_account_id": "251340636361",
-            "creation_date": "2020-07-09T09:39:03.097000+0000",
-            "encryption_algorithms": [
-                "SYMMETRIC_DEFAULT"
-            ],
-            "key_usage": "ENCRYPT_DECRYPT",
-            "key_id": "0drda5e1-c40f-45d7-a647-xxxxxxx",
-            "key_type_path": "defaultKeys",
-            "key_rotated": false,
-            "description": "Default master key that protects my Secrets Manager data when no other key is defined",
-            "key_state": "Enabled",
-            "customer_master_key_spec": "SYMMETRIC_DEFAULT",
-            "enabled": true,
-            "arn": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
-            "key_manager": "AWS"
-        },
-        "metadata": {
-            "manual": {}
-        },
-        "reference": {
-            "resource_id": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
-            "external_link": "https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/"
-        },
-        "tags": {
-            "description": "spaceone"
-        },
-        "collection_info": {
-            "collectors": [],
-            "service_accounts": [],
-            "secrets": []
-        },
-        "ip_addresses": [
-            "1.1.1.1",
-            "2.2.2.2"
-        ],
-        "region_code": "ap-northeast-1",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-22T06:38:48.989Z",
-        "updated_at": "2022-06-22T06:38:48.989Z",
-        "launched_at": "2020-08-03T15:00:54.000Z"
-      }
-    */
+    
+    // Gets a specific CloudService. Prints detailed information about the CloudService, including its state, classification information, and attribute values.
     rpc get (GetCloudServiceRequest) returns (CloudServiceInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/get",
+            post: "/inventory/v1/cloud-service/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.
-    request_example: >-
-      {
-        "query": {
-            "filter": [
-                {
-                    "key": "cloud_service_type",
-                    "value": "Key",
-                    "operator": "eq"
-                }
-            ]
-        }
-      }
-    response_example: >-
-      {
-        "results": [{
-            "cloud_service_id": "cloud-svc-c00f38a173e1",
-            "name": "cloud_service_test2",
-            "state": "ACTIVE",
-            "account": "251340636361",
-            "cloud_service_type": "Key",
-            "cloud_service_group": "KMS",
-            "provider": "aws",
-            "data": {
-                "alias_arn": null,
-                "origin": "AWS_KMS",
-                "cloudwatch": {
-                    "region_name": "ap-northeast-1",
-                    "namespace": "AWS/KMS",
-                    "dimensions": [
-                        {
-                            "Value": "0drda5e1-c40f-45d7-a647-xxxxxxx",
-                            "Name": "KeyId"
-                        }
-                    ]
-                },
-                "aws_account_id": "251340636361",
-                "creation_date": "2020-07-09T09:39:03.097000+0000",
-                "encryption_algorithms": [
-                    "SYMMETRIC_DEFAULT"
-                ],
-                "key_usage": "ENCRYPT_DECRYPT",
-                "key_id": "0drda5e1-c40f-45d7-a647-xxxxxxx",
-                "key_type_path": "defaultKeys",
-                "key_rotated": false,
-                "description": "Default master key that protects my Secrets Manager data when no other key is defined",
-                "key_state": "Enabled",
-                "customer_master_key_spec": "SYMMETRIC_DEFAULT",
-                "enabled": true,
-                "arn": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
-                "key_manager": "AWS"
-            },
-            "metadata": {
-                "manual": {}
-            },
-            "reference": {
-                "resource_id": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
-                "external_link": "https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/"
-            },
-            "tags": {
-                "description": "spaceone"
-            },
-            "collection_info": {
-                "collectors": [],
-                "service_accounts": [],
-                "secrets": []
-            },
-            "ip_addresses": [
-                "1.1.1.1",
-                "2.2.2.2"
-            ],
-            "region_code": "ap-northeast-1",
-            "domain_id": "domain-58010aa2e451",
-            "created_at": "2022-06-22T06:38:48.989Z",
-            "updated_at": "2022-06-22T06:38:48.989Z",
-            "launched_at": "2020-08-03T15:00:54.000Z"
-        }],
-        "total_count": 1
-      }
-    */
+    
+    // Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.
     rpc list (CloudServiceQuery) returns (CloudServicesInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/list",
+            post: "/inventory/v1/cloud-service/list"
             body: "*"
         };
     }
+    
     rpc analyze (CloudServiceAnalyzeQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/analyze",
+            post: "/inventory/v1/cloud-service/analyze"
             body: "*"
         };
     }
     rpc stat (CloudServiceStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/stat",
+            post: "/inventory/v1/cloud-service/stat"
             body: "*"
         };
     }
@@ -420,132 +81,250 @@ message CollectionInfo {
     string last_collected_at = 5;
 }
 
+//{
+//    "cloud_service_type": "Key",
+//    "provider": "aws",
+//    "cloud_service_group": "KMS",
+//    "name": "cloud_service_test",
+//    "account": "251340636361",
+//    "launched_at": "2020-08-03T15:00:54.000Z",
+//    "ip_addresses": [],
+//    "data": {
+//        "alias_arn": null,
+//        "origin": "AWS_KMS",
+//        "cloudwatch": {
+//            "region_name": "ap-northeast-1",
+//            "namespace": "AWS/KMS",
+//            "dimensions": [
+//                {
+//                    "Value": "0drda5e1-c40f-45d7-a647-xxxxxxx",
+//                    "Name": "KeyId"
+//                }
+//            ]
+//        },
+//        "aws_account_id": "251340636361",
+//        "creation_date": "2020-07-09T09:39:03.097000+0000",
+//        "encryption_algorithms": [
+//            "SYMMETRIC_DEFAULT"
+//        ],
+//        "key_usage": "ENCRYPT_DECRYPT",
+//        "key_id": "0drda5e1-c40f-45d7-a647-xxxxxxx",
+//        "key_type_path": "defaultKeys",
+//        "key_rotated": false,
+//        "description": "Default master key that protects my Secrets Manager data when no other key is defined",
+//        "key_state": "Enabled",
+//        "customer_master_key_spec": "SYMMETRIC_DEFAULT",
+//        "enabled": true,
+//        "arn": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
+//        "key_manager": "AWS"
+//    },
+//    "metadata": {},
+//    "reference": {
+//        "resource_id": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
+//        "external_link": "https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/"
+//    },
+//    "tags": {
+//        "a": "b"
+//    },
+//    "region_code": "ap-northeast-1"
+//}
 message CreateServiceRequest {
-    // is_required: true
     string cloud_service_type = 1;
-    // is_required: true
     string provider = 2;
-    // is_required: true
     string cloud_service_group = 3;
-    // is_required: false
+    // +optional
     string name = 4;
-    // is_required: false
+    // +optional
     string account = 5;
-    // is_required: false
+    // +optional
     string instance_type = 6;
-    // is_required: false
+    // +optional
     float instance_size = 7;
-    // is_required: false
+    // +optional
     repeated string ip_addresses = 10;
-    // is_required: true
     google.protobuf.Struct data = 11;
-    // is_required: false
+    // +optional
     google.protobuf.Struct metadata = 12;
-    // is_required: false
+    // +optional
     CloudServiceReference reference = 13;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 14;
-
-    // is_required: false
+    // +optional
     string region_code = 21;
-    // is_required: false
+    // +optional
     string project_id = 22;
-    // is_required: true
     string domain_id = 23;
 }
 
+//{
+//    "cloud_service_id": "cloud-svc-c00f38a173e1",
+//    "name": "cloud_service_test2",
+//    "ip_addresses": [
+//        "1.1.1.1",
+//        "2.2.2.2"
+//    ],
+//    "tags": {
+//        "description": "spaceone"
+//    },
+//    "region_code": "ap-northeast-2"
+//}
 message UpdateCloudServiceRequest {
-    // is_required: true
     string cloud_service_id = 1;
-    // is_required: false
+    // +optional
     string name = 2;
-    // is_required: false
+    // +optional
     string account = 3;
-    // is_required: false
+    // +optional
     string instance_type = 4;
-    // is_required: false
+    // +optional
     float instance_size = 5;
-    // is_required: false
+    // +optional
     repeated string ip_addresses = 6;
-    // is_required: false
+    // +optional
     google.protobuf.Struct data = 11;
-    // is_required: false
+    // +optional
     google.protobuf.Struct metadata = 12;
-    // is_required: false
+    // +optional
     CloudServiceReference reference = 13;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 14;
-
-    // is_required: false
+    // +optional
     string region_code = 20;
-    // is_required: false
+    // +optional
     string project_id = 21;
-    // is_required: true
     string domain_id = 22;
-    // is_required: false
+    // +optional
     bool release_project = 30;
-    // is_required: false
+    // +optional
     bool release_region = 31;
 }
 
 message PinCloudServiceDataRequest {
-    // is_required: true
     string cloud_service_id = 1;
-    // is_required: true
     repeated string keys = 2;
-    // is_required: true
     string domain_id = 3;
 }
 
+//{
+//    "cloud_service_id": "cloud-svc-fea2b0d32141"
+//}
 message CloudServiceRequest {
-    // is_required: true
     string cloud_service_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
+//{
+//    "cloud_service_id": "cloud-svc-fea2b0d32141"
+//}
 message GetCloudServiceRequest {
-    // is_required: true
     string cloud_service_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
+//{
+//    "query": {
+//        "filter": [
+//            {
+//                "key": "cloud_service_type",
+//                "value": "Key",
+//                "operator": "eq"
+//            }
+//        ]
+//    }
+//}
 message CloudServiceQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string cloud_service_id = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     string state = 4;
-    // is_required: false
+    // +optional
     string account = 5;
-    // is_required: false
+    // +optional
     string instance_type = 6;
-    // is_required: false
+    // +optional
     string cloud_service_type = 7;
-    // is_required: false
+    // +optional
     string cloud_service_group = 8;
-    // is_required: false
+    // +optional
     string provider = 9;
-    // is_required: false
+    // +optional
     string region_code = 10;
-    // is_required: false
+    // +optional
     string ip_address = 11;
-    // is_required: false
+    // +optional
     string resource_group_id = 21;
-    // is_required: false
+    // +optional
     string project_id = 22;
-    // is_required: false
+    // +optional
     string project_group_id = 23;
-    // is_required: true
     string domain_id = 24;
 }
 
+//{
+//    "cloud_service_id": "cloud-svc-c00f38a173e1",
+//    "name": "cloud_service_test",
+//    "state": "ACTIVE",
+//    "account": "251340636361",
+//    "cloud_service_type": "Key",
+//    "cloud_service_group": "KMS",
+//    "provider": "aws",
+//    "data": {
+//        "alias_arn": null,
+//        "origin": "AWS_KMS",
+//        "cloudwatch": {
+//            "region_name": "ap-northeast-1",
+//            "namespace": "AWS/KMS",
+//            "dimensions": [
+//                {
+//                    "Value": "0drda5e1-c40f-45d7-a647-xxxxxxx",
+//                    "Name": "KeyId"
+//                }
+//            ]
+//        },
+//        "aws_account_id": "251340636361",
+//        "creation_date": "2020-07-09T09:39:03.097000+0000",
+//        "encryption_algorithms": [
+//            "SYMMETRIC_DEFAULT"
+//        ],
+//        "key_usage": "ENCRYPT_DECRYPT",
+//        "key_id": "0drda5e1-c40f-45d7-a647-xxxxxxx",
+//        "key_type_path": "defaultKeys",
+//        "key_rotated": false,
+//        "description": "Default master key that protects my Secrets Manager data when no other key is defined",
+//        "key_state": "Enabled",
+//        "customer_master_key_spec": "SYMMETRIC_DEFAULT",
+//        "enabled": true,
+//        "arn": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
+//        "key_manager": "AWS"
+//    },
+//    "metadata": {
+//        "manual": {}
+//    },
+//    "reference": {
+//        "resource_id": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
+//        "external_link": "https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/"
+//    },
+//    "tags": {
+//        "a": "b"
+//    },
+//    "collection_info": {
+//        "collectors": [],
+//        "service_accounts": [],
+//        "secrets": []
+//    },
+//    "ip_addresses": [],
+//    "region_code": "ap-northeast-1",
+//    "domain_id": "domain-58010aa2e451",
+//    "created_at": "2022-06-22T06:38:48.989Z",
+//    "updated_at": "2022-06-22T06:38:48.989Z",
+//    "launched_at": "2020-08-03T15:00:54.000Z"
+//}
 message CloudServiceInfo {
     string cloud_service_id = 1;
     string name = 2;
@@ -574,21 +353,82 @@ message CloudServiceInfo {
     string deleted_at = 33;
 }
 
+//{
+//    "results": [{
+//        "cloud_service_id": "cloud-svc-c00f38a173e1",
+//        "name": "cloud_service_test2",
+//        "state": "ACTIVE",
+//        "account": "251340636361",
+//        "cloud_service_type": "Key",
+//        "cloud_service_group": "KMS",
+//        "provider": "aws",
+//        "data": {
+//            "alias_arn": null,
+//            "origin": "AWS_KMS",
+//            "cloudwatch": {
+//                "region_name": "ap-northeast-1",
+//                "namespace": "AWS/KMS",
+//                "dimensions": [
+//                    {
+//                        "Value": "0drda5e1-c40f-45d7-a647-xxxxxxx",
+//                        "Name": "KeyId"
+//                    }
+//                ]
+//            },
+//            "aws_account_id": "251340636361",
+//            "creation_date": "2020-07-09T09:39:03.097000+0000",
+//            "encryption_algorithms": [
+//                "SYMMETRIC_DEFAULT"
+//            ],
+//            "key_usage": "ENCRYPT_DECRYPT",
+//            "key_id": "0drda5e1-c40f-45d7-a647-xxxxxxx",
+//            "key_type_path": "defaultKeys",
+//            "key_rotated": false,
+//            "description": "Default master key that protects my Secrets Manager data when no other key is defined",
+//            "key_state": "Enabled",
+//            "customer_master_key_spec": "SYMMETRIC_DEFAULT",
+//            "enabled": true,
+//            "arn": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
+//            "key_manager": "AWS"
+//        },
+//        "metadata": {
+//            "manual": {}
+//        },
+//        "reference": {
+//            "resource_id": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
+//            "external_link": "https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/"
+//        },
+//        "tags": {
+//            "description": "spaceone"
+//        },
+//        "collection_info": {
+//            "collectors": [],
+//            "service_accounts": [],
+//            "secrets": []
+//        },
+//        "ip_addresses": [
+//            "1.1.1.1",
+//            "2.2.2.2"
+//        ],
+//        "region_code": "ap-northeast-1",
+//        "domain_id": "domain-58010aa2e451",
+//        "created_at": "2022-06-22T06:38:48.989Z",
+//        "updated_at": "2022-06-22T06:38:48.989Z",
+//        "launched_at": "2020-08-03T15:00:54.000Z"
+//    }],
+//    "total_count": 1
+//}
 message CloudServicesInfo {
     repeated CloudServiceInfo results = 1;
     int32 total_count = 2;
 }
 
 message CloudServiceAnalyzeQuery {
-    // is_required: true
     spaceone.api.core.v1.AnalyzeQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
 message CloudServiceStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }

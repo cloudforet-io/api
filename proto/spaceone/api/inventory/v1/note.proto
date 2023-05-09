@@ -10,99 +10,52 @@ import "spaceone/api/core/v1/query.proto";
 option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1";
 
 service Note {
-    /*
-    desc: ''
-    request_example: >-
-      {
-
-      }
-    response_example: >-
-      {
-
-      }
-    */
     rpc create (CreateNoteRequest) returns (NoteInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/note/create",
+            post: "/inventory/v1/note/create"
             body: "*"
         };
     }
-    /*
-    desc: ''
-    request_example: >-
-      {
 
-      }
-    response_example: >-
-      {
-
-      }
-    */
     rpc update (UpdateNoteRequest) returns (NoteInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/note/update",
+            post: "/inventory/v1/note/update"
             body: "*"
         };
     }
-    /*
-    desc: ''
-    request_example: >-
-      {
 
-      }
-    response_example: >-
-      {
-
-      }
-    */
     rpc delete (NoteRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/inventory/v1/note/delete",
+            post: "/inventory/v1/note/delete"
             body: "*"
         };
     }
-    /*
-    desc: ''
-    request_example: >-
-      {
 
-      }
-    response_example: >-
-      {
-
-      }
-    */
     rpc get (GetNoteRequest) returns (NoteInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/note/get",
+            post: "/inventory/v1/note/get"
             body: "*"
         };
     }
-    /*
-    desc: ''
-    request_example: >-
-      {
 
-      }
-    response_example: >-
-      {
-
-      }
-    */
     rpc list (NoteQuery) returns (NotesInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/note/list",
+            post: "/inventory/v1/note/list"
             body: "*"
         };
     }
+
     rpc stat (NoteStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/inventory/v1/note/stat",
+            post: "/inventory/v1/note/stat"
             body: "*"
         };
     }
 }
 
+//{
+//
+//}
 message CreateNoteRequest {
     // is_required: true
     string record_id = 1;
@@ -112,6 +65,9 @@ message CreateNoteRequest {
     string domain_id = 11;
 }
 
+//{
+//
+//}
 message UpdateNoteRequest {
     // is_required: true
     string note_id = 1;
@@ -121,6 +77,9 @@ message UpdateNoteRequest {
     string domain_id = 11;
 }
 
+//{
+//
+//}
 message NoteRequest {
     // is_required: true
     string note_id = 1;
@@ -128,6 +87,9 @@ message NoteRequest {
     string domain_id = 2;
 }
 
+//{
+//
+//}
 message GetNoteRequest {
     // is_required: true
     string note_id = 1;
@@ -137,6 +99,9 @@ message GetNoteRequest {
     repeated string only = 3;
 }
 
+//{
+//
+//}
 message NoteQuery {
     // is_required: false
     spaceone.api.core.v1.Query query = 1;
@@ -152,6 +117,9 @@ message NoteQuery {
     string domain_id = 6;
 }
 
+//{
+//
+//}
 message NoteInfo {
     string note_id = 1;
     string record_id = 2;
