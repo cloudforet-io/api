@@ -1,6 +1,4 @@
-/*
-desc: UserConfig API which configure environments for user
- */
+// UserConfig API which configure environments for user
 syntax = "proto3";
 
 package spaceone.api.config.v1;
@@ -59,40 +57,32 @@ service UserConfig {
 }
 
 message SetUserConfigRequest {
-    // is_required: true
     string name = 1;
-    // is_required: true
     google.protobuf.Struct data = 2;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 3;
-    // is_required: true
     string domain_id = 4;
 }
 
 message UserConfigRequest {
-    // is_required: true
     string name = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
 message GetUserConfigRequest {
-    // is_required: true
     string name = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
 message UserConfigQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string name = 2;
-    // is_required: false
+    // +optional
     string user_id = 3;
-    // is_required: true
     string domain_id = 4;
 }
 
@@ -112,8 +102,6 @@ message UserConfigsInfo {
 }
 
 message UserConfigStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }
