@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/monitoring/v1/metric.proto",
-      "description": "desc: A Metric is a monitoring metric of a specific cloud service delivered from a DataSource.",
+      "description": "A Metric is a monitoring metric of a specific cloud service delivered from a DataSource.",
       "package": "spaceone.api.monitoring.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -15,7 +15,7 @@
           "name": "MetricDataInfo",
           "longName": "MetricDataInfo",
           "fullName": "spaceone.api.monitoring.v1.MetricDataInfo",
-          "description": "",
+          "description": "{\n   \"labels\": [\n       \"2022-06-21T03:13:00.000Z\",\n       \"2022-06-21T03:18:00.000Z\",\n       \"2022-06-21T03:23:00.000Z\",\n       \"2022-06-21T03:28:00.000Z\",\n       \"2022-06-21T03:33:00.000Z\",\n       \"2022-06-21T03:38:00.000Z\",\n       \"2022-06-21T03:43:00.000Z\",\n       \"2022-06-21T03:48:00.000Z\",\n       \"2022-06-21T03:53:00.000Z\",\n       \"2022-06-21T03:58:00.000Z\",\n       \"2022-06-21T04:03:00.000Z\",\n       \"2022-06-21T04:08:00.000Z\"\n   ],\n   \"resource_values\": {\n       \"cloud-svc-cd0105d255da\": [\n           0.099999999999999,\n           0.10001852366397981,\n           0.10001852366397981,\n           0.1328230362675432,\n           0.099472075576548,\n           0.06507936507936621,\n           0.166703713994628,\n           0.1338983050847476,\n           0.1327868852458988,\n           0.1339168287487284,\n           0.1328610417160508,\n           0.10056497175141618\n       ]\n   },\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -63,7 +63,7 @@
           "name": "MetricDataRequest",
           "longName": "MetricDataRequest",
           "fullName": "spaceone.api.monitoring.v1.MetricDataRequest",
-          "description": "",
+          "description": "{\n   \"data_source_id\": \"ds-31190a65a42a\",\n   \"metric_query\": {\n       \"cloud-svc-cd0105d255da\": {\n           \"Dimensions\": [\n               {\n                   \"Name\": \"InstanceId\",\n                   \"Value\": \"i-0400cdd39f1a4d5e9\"\n               }\n           ],\n           \"MetricName\": \"CPUUtilization\",\n           \"Namespace\": \"AWS/EC2\"\n       }\n   },\n   \"metric\": \"CPUUtilization\",\n   \"start\": \"2022-06-21T03:11:29.438Z\",\n   \"end\": \"2022-06-21T04:11:29.438Z\",\n   \"stat\": \"AVERAGE\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -71,7 +71,7 @@
           "fields": [
             {
               "name": "data_source_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -83,7 +83,7 @@
             },
             {
               "name": "metric_query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -95,7 +95,7 @@
             },
             {
               "name": "metric",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -107,7 +107,7 @@
             },
             {
               "name": "start",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -119,7 +119,7 @@
             },
             {
               "name": "end",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -131,7 +131,7 @@
             },
             {
               "name": "period",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -143,7 +143,7 @@
             },
             {
               "name": "stat",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -155,7 +155,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -243,7 +243,7 @@
           "name": "MetricRequest",
           "longName": "MetricRequest",
           "fullName": "spaceone.api.monitoring.v1.MetricRequest",
-          "description": "",
+          "description": "{\n   \"data_source_id\": \"ds-31190a65a42a\",\n   \"resources\": [\"cloud-svc-cd0105d255da\"],\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -251,7 +251,7 @@
           "fields": [
             {
               "name": "data_source_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -263,7 +263,7 @@
             },
             {
               "name": "resources",
-              "description": "is_required: true",
+              "description": "",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -275,7 +275,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -291,7 +291,7 @@
           "name": "MetricsInfo",
           "longName": "MetricsInfo",
           "fullName": "spaceone.api.monitoring.v1.MetricsInfo",
-          "description": "",
+          "description": "{\n   \"metrics\": [\n       {\n           \"key\": \"CPUUtilization\",\n           \"group\": \"AWS/EC2\",\n           \"name\": \"CPUUtilization\",\n           \"unit\": {\n               \"y\": \"Percent\",\n               \"x\": \"Timestamp\"\n           },\n           \"metric_query\": {\n               \"cloud-svc-cd0105d255da\": {\n                   \"Dimensions\": [\n                       {\n                           \"Name\": \"InstanceId\",\n                           \"Value\": \"i-0400cdd39f1a4d5e9\"\n                       }\n                   ],\n                   \"MetricName\": \"CPUUtilization\",\n                   \"Namespace\": \"AWS/EC2\"\n               }\n           }\n       },\n       {\n           \"key\": \"NetworkIn\",\n           \"group\": \"AWS/EC2\",\n           \"name\": \"NetworkIn\",\n           \"unit\": {\n               \"y\": \"Bytes\",\n               \"x\": \"Timestamp\"\n           },\n           \"metric_query\": {\n               \"cloud-svc-cd0105d255da\": {\n                   \"Dimensions\": [\n                       {\n                           \"Name\": \"InstanceId\",\n                           \"Value\": \"i-0400cdd39f1a4d5e9\"\n                       }\n                   ],\n                   \"MetricName\": \"NetworkIn\",\n                   \"Namespace\": \"AWS/EC2\"\n               }\n           }\n       }\n   ],\n   \"available_resources\": {\n       \"cloud-svc-cd0105d255da\": true\n   },\n   \"domain_id\": \"domain-31190a65a42a\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -345,7 +345,7 @@
           "methods": [
             {
               "name": "list",
-              "description": "desc: Gets a list of all Metrics of one or more specified Resources. The parameter `resources` is a list of Resources from which to get a list of Metrics collected.\nrequest_example: \u003e-\n{\n\"data_source_id\": \"ds-31190a65a42a\",\n\"resources\": [\"cloud-svc-cd0105d255da\"],\n\"domain_id\": \"domain-58010aa2e451\"\n}\nresponse_example: \u003e-\n{\n\"metrics\": [\n{\n\"key\": \"CPUUtilization\",\n\"group\": \"AWS/EC2\",\n\"name\": \"CPUUtilization\",\n\"unit\": {\n\"y\": \"Percent\",\n\"x\": \"Timestamp\"\n},\n\"metric_query\": {\n\"cloud-svc-cd0105d255da\": {\n\"Dimensions\": [\n{\n\"Name\": \"InstanceId\",\n\"Value\": \"i-0400cdd39f1a4d5e9\"\n}\n],\n\"MetricName\": \"CPUUtilization\",\n\"Namespace\": \"AWS/EC2\"\n}\n}\n},\n{\n\"key\": \"NetworkIn\",\n\"group\": \"AWS/EC2\",\n\"name\": \"NetworkIn\",\n\"unit\": {\n\"y\": \"Bytes\",\n\"x\": \"Timestamp\"\n},\n\"metric_query\": {\n\"cloud-svc-cd0105d255da\": {\n\"Dimensions\": [\n{\n\"Name\": \"InstanceId\",\n\"Value\": \"i-0400cdd39f1a4d5e9\"\n}\n],\n\"MetricName\": \"NetworkIn\",\n\"Namespace\": \"AWS/EC2\"\n}\n}\n}\n],\n\"available_resources\": {\n\"cloud-svc-cd0105d255da\": true\n},\n\"domain_id\": \"domain-31190a65a42a\"\n}",
+              "description": "Gets a list of all Metrics of one or more specified Resources. The parameter `resources` is a list of Resources from which to get a list of Metrics collected.",
               "requestType": "MetricRequest",
               "requestLongType": "MetricRequest",
               "requestFullType": "spaceone.api.monitoring.v1.MetricRequest",
@@ -368,7 +368,7 @@
             },
             {
               "name": "get_data",
-              "description": "desc: Gets data of a single Metric. You must specify the parameter `metric` to get data of. You can specify the `period` to get data for.\nrequest_example: \u003e-\n{\n\"data_source_id\": \"ds-31190a65a42a\",\n\"metric_query\": {\n\"cloud-svc-cd0105d255da\": {\n\"Dimensions\": [\n{\n\"Name\": \"InstanceId\",\n\"Value\": \"i-0400cdd39f1a4d5e9\"\n}\n],\n\"MetricName\": \"CPUUtilization\",\n\"Namespace\": \"AWS/EC2\"\n}\n},\n\"metric\": \"CPUUtilization\",\n\"start\": \"2022-06-21T03:11:29.438Z\",\n\"end\": \"2022-06-21T04:11:29.438Z\",\n\"stat\": \"AVERAGE\",\n\"domain_id\": \"domain-58010aa2e451\"\n}\nresponse_example: \u003e-\n{\n\"labels\": [\n\"2022-06-21T03:13:00.000Z\",\n\"2022-06-21T03:18:00.000Z\",\n\"2022-06-21T03:23:00.000Z\",\n\"2022-06-21T03:28:00.000Z\",\n\"2022-06-21T03:33:00.000Z\",\n\"2022-06-21T03:38:00.000Z\",\n\"2022-06-21T03:43:00.000Z\",\n\"2022-06-21T03:48:00.000Z\",\n\"2022-06-21T03:53:00.000Z\",\n\"2022-06-21T03:58:00.000Z\",\n\"2022-06-21T04:03:00.000Z\",\n\"2022-06-21T04:08:00.000Z\"\n],\n\"resource_values\": {\n\"cloud-svc-cd0105d255da\": [\n0.099999999999999,\n0.10001852366397981,\n0.10001852366397981,\n0.1328230362675432,\n0.099472075576548,\n0.06507936507936621,\n0.166703713994628,\n0.1338983050847476,\n0.1327868852458988,\n0.1339168287487284,\n0.1328610417160508,\n0.10056497175141618\n]\n},\n\"domain_id\": \"domain-58010aa2e451\"\n}",
+              "description": "Gets data of a single Metric. You must specify the parameter `metric` to get data of. You can specify the `period` to get data for.",
               "requestType": "MetricDataRequest",
               "requestLongType": "MetricDataRequest",
               "requestFullType": "spaceone.api.monitoring.v1.MetricDataRequest",

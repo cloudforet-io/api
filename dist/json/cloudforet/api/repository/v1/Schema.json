@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/repository/v1/schema.proto",
-      "description": "desc: A Schema is a data structure used in all domains. For example, data forms of Google OAuth2 credentials or AWS access keys can be a Schema resource.",
+      "description": "A Schema is a data structure used in all domains. For example, data forms of Google OAuth2 credentials or AWS access keys can be a Schema resource.",
       "package": "spaceone.api.repository.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -39,7 +39,7 @@
           "name": "CreateSchemaRequest",
           "longName": "CreateSchemaRequest",
           "fullName": "spaceone.api.repository.v1.CreateSchemaRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"slack_webhook\",\n   \"service_type\": \"secret.credentials\",\n   \"schema\": {},\n   \"labels\": [],\n   \"tags\": {\n       \"description\": \"Slack Webhook\"\n   },\n   \"domain_id\": \"domain-987654321098\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -47,7 +47,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -59,7 +59,7 @@
             },
             {
               "name": "service_type",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -71,7 +71,7 @@
             },
             {
               "name": "schema_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -83,7 +83,7 @@
             },
             {
               "name": "schema",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -95,7 +95,7 @@
             },
             {
               "name": "labels",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "ListValue",
               "longType": "google.protobuf.ListValue",
@@ -107,7 +107,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -119,7 +119,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -131,7 +131,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -147,7 +147,7 @@
           "name": "GetRepositorySchemaRequest",
           "longName": "GetRepositorySchemaRequest",
           "fullName": "spaceone.api.repository.v1.GetRepositorySchemaRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"slack_webhook\",\n   \"repository_id\": \"repo-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -155,7 +155,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -167,7 +167,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -179,7 +179,7 @@
             },
             {
               "name": "repository_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -191,7 +191,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -203,7 +203,7 @@
             },
             {
               "name": "schema_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -219,7 +219,7 @@
           "name": "SchemaInfo",
           "longName": "SchemaInfo",
           "fullName": "spaceone.api.repository.v1.SchemaInfo",
-          "description": "",
+          "description": "{\n   \"name\": \"slack_webhook\",\n   \"service_type\": \"secret.credentials\",\n   \"schema\": {},\n   \"labels\": [],\n   \"tags\": {\n       \"description\": \"Slack Webhook\"\n   },\n   \"repository_info\": {\n       \"repository_id\": \"repo-123456789012\",\n       \"name\": \"Local\",\n       \"repository_type\": \"local\"\n   },\n   \"domain_id\": \"domain-987654321098\",\n   \"created_at\": \"2022-01-01T05:46:49.929Z\",\n   \"updated_at\": \"2022-01-01T05:46:49.929Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -363,7 +363,7 @@
           "name": "SchemaQuery",
           "longName": "SchemaQuery",
           "fullName": "spaceone.api.repository.v1.SchemaQuery",
-          "description": "",
+          "description": "{\n   \"query\": {},\n   \"name\": \"slack_webhook\",\n   \"service_type\": \"secret.credentials\",\n   \"repository_id\": \"repo-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -371,7 +371,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -383,7 +383,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -395,7 +395,7 @@
             },
             {
               "name": "service_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -407,7 +407,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -419,7 +419,7 @@
             },
             {
               "name": "repository_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -431,7 +431,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -443,7 +443,7 @@
             },
             {
               "name": "schema_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -455,7 +455,7 @@
             },
             {
               "name": "state",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "State",
               "longType": "SchemaQuery.State",
@@ -471,7 +471,7 @@
           "name": "SchemaRequest",
           "longName": "SchemaRequest",
           "fullName": "spaceone.api.repository.v1.SchemaRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"slack_webhook\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -479,7 +479,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -491,7 +491,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -503,7 +503,7 @@
             },
             {
               "name": "schema_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -527,7 +527,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -539,7 +539,7 @@
             },
             {
               "name": "repository_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -551,7 +551,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -567,7 +567,7 @@
           "name": "SchemasInfo",
           "longName": "SchemasInfo",
           "fullName": "spaceone.api.repository.v1.SchemasInfo",
-          "description": "",
+          "description": "{\n   \"results\": [\n       {\n           \"name\": \"slack_webhook\",\n           \"service_type\": \"secret.credentials\",\n           \"schema\": {},\n           \"labels\": [],\n           \"tags\": {\n               \"description\": \"Slack Webhook\"\n           },\n           \"repository_info\": {\n               \"repository_id\": \"repo-123456789012\",\n               \"name\": \"Local\",\n               \"repository_type\": \"local\"\n           },\n           \"domain_id\": \"domain-987654321098\",\n           \"created_at\": \"2022-01-01T10:20:09.064Z\",\n           \"updated_at\": \"2022-01-01T10:20:09.064Z\"\n       }\n   ],\n   \"total_count\": 1\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -603,7 +603,7 @@
           "name": "UpdateSchemaRequest",
           "longName": "UpdateSchemaRequest",
           "fullName": "spaceone.api.repository.v1.UpdateSchemaRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"slack_webhook_test\",\n   \"schema\": {},\n   \"labels\": [],\n   \"tags\": {},\n   \"domain_id\": \"domain-987654321098\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -611,7 +611,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -623,7 +623,7 @@
             },
             {
               "name": "schema",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -635,7 +635,7 @@
             },
             {
               "name": "labels",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "ListValue",
               "longType": "google.protobuf.ListValue",
@@ -647,7 +647,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -659,7 +659,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -681,7 +681,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new Schema. You must specify the parameters: `service_type`, `name`, and `schema`(data structure). With the parameter `domain_id`, you can choose whether you will create a Schema in `Local` or externally. The Schema created includes `repository_info`, information about where the resource is managed.\nrequest_example: \u003e-\n{\n\"name\": \"slack_webhook\",\n\"service_type\": \"secret.credentials\",\n\"schema\": {},\n\"labels\": [],\n\"tags\": {\n\"description\": \"Slack Webhook\"\n},\n\"domain_id\": \"domain-987654321098\"\n}\nresponse_example: \u003e-\n{\n\"name\": \"slack_webhook\",\n\"service_type\": \"secret.credentials\",\n\"schema\": {},\n\"labels\": [],\n\"tags\": {\n\"description\": \"Slack Webhook\"\n},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local\",\n\"repository_type\": \"local\"\n},\n\"domain_id\": \"domain-987654321098\",\n\"created_at\": \"2022-01-01T05:46:49.929Z\",\n\"updated_at\": \"2022-01-01T05:46:49.929Z\"\n}",
+              "description": "Creates a new Schema. You must specify the parameters: `service_type`, `name`, and `schema`(data structure). With the parameter `domain_id`, you can choose whether you will create a Schema in `Local` or externally. The Schema created includes `repository_info`, information about where the resource is managed.",
               "requestType": "CreateSchemaRequest",
               "requestLongType": "CreateSchemaRequest",
               "requestFullType": "spaceone.api.repository.v1.CreateSchemaRequest",
@@ -704,7 +704,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific Schema. You can make changes in Schema settings, including `name`, `schema`, `labels`, and `tags`.\nrequest_example: \u003e-\n{\n\"name\": \"slack_webhook_test\",\n\"schema\": {},\n\"labels\": [],\n\"tags\": {},\n\"domain_id\": \"domain-987654321098\"\n}\nresponse_example: \u003e-\n{\n\"name\": \"slack_webhook_test\",\n\"service_type\": \"secret.credentials\",\n\"schema\": {},\n\"labels\": [],\n\"tags\": {\n\"description\": \"Slack Webhook\"\n},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local\",\n\"repository_type\": \"local\"\n},\n\"domain_id\": \"domain-987654321098\",\n\"created_at\": \"2022-01-01T05:46:49.929Z\",\n\"updated_at\": \"2022-01-01T05:46:49.929Z\"\n}",
+              "description": "Updates a specific Schema. You can make changes in Schema settings, including `name`, `schema`, `labels`, and `tags`.",
               "requestType": "UpdateSchemaRequest",
               "requestLongType": "UpdateSchemaRequest",
               "requestFullType": "spaceone.api.repository.v1.UpdateSchemaRequest",
@@ -727,7 +727,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific Schema. You must specify the `name` of the Schema to delete, as the `name` is an identifier of Schema resources.\nrequest_example: \u003e-\n{\n\"name\": \"slack_webhook\"\n}",
+              "description": "Deletes a specific Schema. You must specify the `name` of the Schema to delete, as the `name` is an identifier of Schema resources.",
               "requestType": "SchemaRequest",
               "requestLongType": "SchemaRequest",
               "requestFullType": "spaceone.api.repository.v1.SchemaRequest",
@@ -750,7 +750,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific Schema. You must specify the `name` of the Schema to get, as the `name` is an identifier of Schema resources. You can use the parameter `repository_id` to limit the scope of the method to a specific Repository.\nrequest_example: \u003e-\n{\n\"name\": \"slack_webhook\",\n\"repository_id\": \"repo-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"name\": \"slack_webhook\",\n\"service_type\": \"secret.credentials\",\n\"schema\": {},\n\"labels\": [],\n\"tags\": {\n\"description\": \"Slack Webhook\"\n},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local\",\n\"repository_type\": \"local\"\n},\n\"domain_id\": \"domain-987654321098\",\n\"created_at\": \"2022-01-01T10:20:09.064Z\",\n\"updated_at\": \"2022-01-01T10:20:09.064Z\"\n}",
+              "description": "Gets a specific Schema. You must specify the `name` of the Schema to get, as the `name` is an identifier of Schema resources. You can use the parameter `repository_id` to limit the scope of the method to a specific Repository.",
               "requestType": "GetRepositorySchemaRequest",
               "requestLongType": "GetRepositorySchemaRequest",
               "requestFullType": "spaceone.api.repository.v1.GetRepositorySchemaRequest",
@@ -773,7 +773,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all Schemas in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Schemas. You can use a query to get a filtered list of Schemas.\nrequest_example: \u003e-\n{\n\"query\": {},\n\"name\": \"slack_webhook\",\n\"service_type\": \"secret.credentials\",\n\"repository_id\": \"repo-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"name\": \"slack_webhook\",\n\"service_type\": \"secret.credentials\",\n\"schema\": {},\n\"labels\": [],\n\"tags\": {\n\"description\": \"Slack Webhook\"\n},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local\",\n\"repository_type\": \"local\"\n},\n\"domain_id\": \"domain-987654321098\",\n\"created_at\": \"2022-01-01T10:20:09.064Z\",\n\"updated_at\": \"2022-01-01T10:20:09.064Z\"\n}\n],\n\"total_count\": 1\n}",
+              "description": "Gets a list of all Schemas in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Schemas. You can use a query to get a filtered list of Schemas.",
               "requestType": "SchemaQuery",
               "requestLongType": "SchemaQuery",
               "requestFullType": "spaceone.api.repository.v1.SchemaQuery",

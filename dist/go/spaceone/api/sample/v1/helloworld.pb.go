@@ -20,13 +20,12 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// desc: The request message containing the user's name.
+// The request message containing the user's name.
 type HelloRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 }
 
@@ -69,7 +68,7 @@ func (x *HelloRequest) GetName() string {
 	return ""
 }
 
-// desc: The response message containing the greetings
+// The response message containing the greetings
 type HelloReply struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

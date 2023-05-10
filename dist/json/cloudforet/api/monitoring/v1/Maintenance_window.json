@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/monitoring/v1/maintenance_window.proto",
-      "description": "desc: A MaintenanceWindow is a resource snoozing Alerts during maintenance time.",
+      "description": "A MaintenanceWindow is a resource snoozing Alerts during maintenance time.",
       "package": "spaceone.api.monitoring.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -62,7 +62,7 @@
           "name": "CreateMaintenanceWindowRequest",
           "longName": "CreateMaintenanceWindowRequest",
           "fullName": "spaceone.api.monitoring.v1.CreateMaintenanceWindowRequest",
-          "description": "",
+          "description": "{\n   \"title\": \"The dev server is under regular maintenance.\",\n   \"projects\": [\"project-123456789012\"],\n   \"start_time\": \"2022-01-01T09:45:00.000Z\",\n   \"end_time\": \"2022-01-01T10:45:00.000Z\",\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -70,7 +70,7 @@
           "fields": [
             {
               "name": "title",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -82,7 +82,7 @@
             },
             {
               "name": "projects",
-              "description": "is_required: true",
+              "description": "",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -94,7 +94,7 @@
             },
             {
               "name": "start_time",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -106,7 +106,7 @@
             },
             {
               "name": "end_time",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -118,7 +118,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -130,7 +130,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -146,7 +146,7 @@
           "name": "GetMaintenanceWindowRequest",
           "longName": "GetMaintenanceWindowRequest",
           "fullName": "spaceone.api.monitoring.v1.GetMaintenanceWindowRequest",
-          "description": "",
+          "description": "{\n   \"maintenance_window_id\": \"mw-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -154,7 +154,7 @@
           "fields": [
             {
               "name": "maintenance_window_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -166,7 +166,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -178,7 +178,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -194,7 +194,7 @@
           "name": "MaintenanceWindowInfo",
           "longName": "MaintenanceWindowInfo",
           "fullName": "spaceone.api.monitoring.v1.MaintenanceWindowInfo",
-          "description": "",
+          "description": "{\n     \"maintenance_window_id\": \"mw-123456789012\",\n     \"title\": \"The dev server is under regular maintenance.\",\n     \"state\": \"OPEN\",\n     \"start_time\": \"2022-01-01T09:45:00.000Z\",\n     \"end_time\": \"2022-01-01T10:45:00.000Z\",\n     \"tags\": {},\n     \"projects\": [\n     \"project-123456789012\"\n     ],\n     \"domain_id\": \"domain-123456789012\",\n     \"created_by\": \"user1@email.com\",\n     \"created_at\": \"2022-06-02T09:46:49.196Z\",\n     \"updated_at\": \"2022-06-02T09:46:49.196Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -350,7 +350,7 @@
           "name": "MaintenanceWindowQuery",
           "longName": "MaintenanceWindowQuery",
           "fullName": "spaceone.api.monitoring.v1.MaintenanceWindowQuery",
-          "description": "",
+          "description": "{\n   \"query\": {},\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -358,7 +358,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -370,7 +370,7 @@
             },
             {
               "name": "maintenance_window_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -382,7 +382,7 @@
             },
             {
               "name": "title",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -394,7 +394,7 @@
             },
             {
               "name": "state",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "MaintenanceWindowState",
               "longType": "MaintenanceWindowQuery.MaintenanceWindowState",
@@ -406,7 +406,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -418,7 +418,7 @@
             },
             {
               "name": "created_by",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -430,7 +430,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -446,7 +446,7 @@
           "name": "MaintenanceWindowRequest",
           "longName": "MaintenanceWindowRequest",
           "fullName": "spaceone.api.monitoring.v1.MaintenanceWindowRequest",
-          "description": "",
+          "description": "{\n   \"maintenance_window_id\": \"mw-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -454,7 +454,7 @@
           "fields": [
             {
               "name": "maintenance_window_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -466,7 +466,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -490,7 +490,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -502,7 +502,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -518,7 +518,7 @@
           "name": "MaintenanceWindowsInfo",
           "longName": "MaintenanceWindowsInfo",
           "fullName": "spaceone.api.monitoring.v1.MaintenanceWindowsInfo",
-          "description": "",
+          "description": "{\n     \"results\": [\n     {\n     \"maintenance_window_id\": \"mw-123456789012\",\n     \"title\": \"The dev server is under regular maintenance.\",\n     \"state\": \"OPEN\",\n     \"start_time\": \"2022-06-03T00:00:00.000Z\",\n     \"end_time\": \"2022-06-03T01:00:00.000Z\",\n     \"tags\": {},\n     \"projects\": [\n     \"project-123456789012\"\n     ],\n     \"domain_id\": \"domain-123456789012\",\n     \"created_by\": \"user1@email.com\",\n     \"created_at\": \"2022-01-01T09:59:01.966Z\",\n     \"updated_at\": \"2022-01-01T09:59:01.966Z\"\n     },\n     {\n     \"maintenance_window_id\": \"mw-987654321098\",\n     \"title\": \"The prd server is under regular maintenance.\",\n     \"state\": \"OPEN\",\n     \"start_time\": \"2022-06-03T00:00:00.000Z\",\n     \"end_time\": \"2022-06-03T01:00:00.000Z\",\n     \"tags\": {},\n     \"projects\": [\n     \"project-123456789012\"\n     ],\n     \"domain_id\": \"domain-123456789012\",\n     \"created_by\": \"user2@email.com\",\n     \"created_at\": \"2022-01-02T09:57:28.999Z\",\n     \"updated_at\": \"2022-01-02T09:57:28.999Z\"\n     }\n     ],\n     \"total_count\": 50\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -554,7 +554,7 @@
           "name": "UpdateMaintenanceWindowRequest",
           "longName": "UpdateMaintenanceWindowRequest",
           "fullName": "spaceone.api.monitoring.v1.UpdateMaintenanceWindowRequest",
-          "description": "",
+          "description": "{\n   \"maintenance_window_id\": \"mw-123456789012\",\n   \"title\": \"The dev server is under regular maintenance.\",\n   \"projects\": [\"project-123456789012\"],\n   \"start_time\": \"2022-01-03T00:00:00.000Z\",\n   \"end_time\": \"2022-01-03T01:00:00.000Z\",\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -562,7 +562,7 @@
           "fields": [
             {
               "name": "maintenance_window_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -574,7 +574,7 @@
             },
             {
               "name": "title",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -586,7 +586,7 @@
             },
             {
               "name": "projects",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -598,7 +598,7 @@
             },
             {
               "name": "start_time",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -610,7 +610,7 @@
             },
             {
               "name": "end_time",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -622,7 +622,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -634,7 +634,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -656,7 +656,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new MaintenanceWindow. When creating a MaintenanceWindow, you can set the title and maintenance schedule of the MaintenanceWindow. From the `start_time` to the `end_time` specified by the schedule set in this method, alerts in the Projects linked with the MaintenanceWindow are ceased.\nrequest_example: \u003e-\n{\n\"title\": \"The dev server is under regular maintenance.\",\n\"projects\": [\"project-123456789012\"],\n\"start_time\": \"2022-01-01T09:45:00.000Z\",\n\"end_time\": \"2022-01-01T10:45:00.000Z\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"maintenance_window_id\": \"mw-123456789012\",\n\"title\": \"The dev server is under regular maintenance.\",\n\"state\": \"OPEN\",\n\"start_time\": \"2022-01-01T09:45:00.000Z\",\n\"end_time\": \"2022-01-01T10:45:00.000Z\",\n\"tags\": {},\n\"projects\": [\n\"project-123456789012\"\n],\n\"domain_id\": \"domain-123456789012\",\n\"created_by\": \"user1@email.com\",\n\"created_at\": \"2022-06-02T09:46:49.196Z\",\n\"updated_at\": \"2022-06-02T09:46:49.196Z\"\n}",
+              "description": "Creates a new MaintenanceWindow. When creating a MaintenanceWindow, you can set the title and maintenance schedule of the MaintenanceWindow. From the `start_time` to the `end_time` specified by the schedule set in this method, alerts in the Projects linked with the MaintenanceWindow are ceased.",
               "requestType": "CreateMaintenanceWindowRequest",
               "requestLongType": "CreateMaintenanceWindowRequest",
               "requestFullType": "spaceone.api.monitoring.v1.CreateMaintenanceWindowRequest",
@@ -679,7 +679,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific MaintenanceWindow. You can make changes in MaintenanceWindow settings including, the `title` and the schedule.\nrequest_example: \u003e-\n{\n\"maintenance_window_id\": \"mw-123456789012\",\n\"title\": \"The dev server is under regular maintenance.\",\n\"projects\": [\"project-123456789012\"],\n\"start_time\": \"2022-01-03T00:00:00.000Z\",\n\"end_time\": \"2022-01-03T01:00:00.000Z\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"maintenance_window_id\": \"mw-123456789012\",\n\"title\": \"The dev server is under regular maintenance.\",\n\"state\": \"OPEN\",\n\"start_time\": \"2022-06-03T00:00:00.000Z\",\n\"end_time\": \"2022-06-03T01:00:00.000Z\",\n\"tags\": {},\n\"projects\": [\n\"project-123456789012\"\n],\n\"domain_id\": \"domain-123456789012\",\n\"created_by\": \"user1@email.com\",\n\"created_at\": \"2022-01-02T09:46:49.196Z\",\n\"updated_at\": \"2022-01-02T09:46:49.196Z\"\n}",
+              "description": "Updates a specific MaintenanceWindow. You can make changes in MaintenanceWindow settings including, the `title` and the schedule.",
               "requestType": "UpdateMaintenanceWindowRequest",
               "requestLongType": "UpdateMaintenanceWindowRequest",
               "requestFullType": "spaceone.api.monitoring.v1.UpdateMaintenanceWindowRequest",
@@ -702,7 +702,7 @@
             },
             {
               "name": "close",
-              "description": "desc: Closes a MaintenanceWindow by changing the state of the MaintenanceWindow to `CLOSED` when the maintenance is completed. As the MaintenanceWindow is not deleted but closed, the maintenance history remains undeleted.\nrequest_example: \u003e-\n{\n\"maintenance_window_id\": \"mw-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"maintenance_window_id\": \"mw-123456789012\",\n\"title\": \"The dev server is under regular maintenance.\",\n\"state\": \"CLOSED\",\n\"start_time\": \"2022-06-03T00:00:00.000Z\",\n\"end_time\": \"2022-06-03T01:00:00.000Z\",\n\"tags\": {},\n\"projects\": [\n\"project-123456789012\"\n],\n\"domain_id\": \"domain-123456789012\",\n\"created_by\": \"user1@email.com\",\n\"created_at\": \"2022-01-02T09:46:49.196Z\",\n\"updated_at\": \"2022-01-02T09:46:49.196Z\"\n}",
+              "description": "Closes a MaintenanceWindow by changing the state of the MaintenanceWindow to `CLOSED` when the maintenance is completed. As the MaintenanceWindow is not deleted but closed, the maintenance history remains undeleted.",
               "requestType": "MaintenanceWindowRequest",
               "requestLongType": "MaintenanceWindowRequest",
               "requestFullType": "spaceone.api.monitoring.v1.MaintenanceWindowRequest",
@@ -725,7 +725,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific MaintenanceWindow. Prints detailed information about the MaintenanceWindow, including the title and the schedule.\nrequest_example: \u003e-\n{\n\"maintenance_window_id\": \"mw-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"maintenance_window_id\": \"mw-123456789012\",\n\"title\": \"The dev server is under regular maintenance.\",\n\"state\": \"OPEN\",\n\"start_time\": \"2022-06-03T00:00:00.000Z\",\n\"end_time\": \"2022-06-03T01:00:00.000Z\",\n\"tags\": {},\n\"projects\": [\n\"project-123456789012\"\n],\n\"domain_id\": \"domain-123456789012\",\n\"created_by\": \"user1@email.com\",\n\"created_at\": \"2022-01-02T09:46:49.196Z\",\n\"updated_at\": \"2022-01-02T09:46:49.196Z\"\n}",
+              "description": "Gets a specific MaintenanceWindow. Prints detailed information about the MaintenanceWindow, including the title and the schedule.",
               "requestType": "GetMaintenanceWindowRequest",
               "requestLongType": "GetMaintenanceWindowRequest",
               "requestFullType": "spaceone.api.monitoring.v1.GetMaintenanceWindowRequest",
@@ -748,7 +748,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all MaintenanceWindows. You can use a query to get a filtered list of MaintenanceWindows.\nrequest_example: \u003e-\n{\n\"query\": {},\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"maintenance_window_id\": \"mw-123456789012\",\n\"title\": \"The dev server is under regular maintenance.\",\n\"state\": \"OPEN\",\n\"start_time\": \"2022-06-03T00:00:00.000Z\",\n\"end_time\": \"2022-06-03T01:00:00.000Z\",\n\"tags\": {},\n\"projects\": [\n\"project-123456789012\"\n],\n\"domain_id\": \"domain-123456789012\",\n\"created_by\": \"user1@email.com\",\n\"created_at\": \"2022-01-01T09:59:01.966Z\",\n\"updated_at\": \"2022-01-01T09:59:01.966Z\"\n},\n{\n\"maintenance_window_id\": \"mw-987654321098\",\n\"title\": \"The prd server is under regular maintenance.\",\n\"state\": \"OPEN\",\n\"start_time\": \"2022-06-03T00:00:00.000Z\",\n\"end_time\": \"2022-06-03T01:00:00.000Z\",\n\"tags\": {},\n\"projects\": [\n\"project-123456789012\"\n],\n\"domain_id\": \"domain-123456789012\",\n\"created_by\": \"user2@email.com\",\n\"created_at\": \"2022-01-02T09:57:28.999Z\",\n\"updated_at\": \"2022-01-02T09:57:28.999Z\"\n}\n],\n\"total_count\": 50\n}",
+              "description": "Gets a list of all MaintenanceWindows. You can use a query to get a filtered list of MaintenanceWindows.",
               "requestType": "MaintenanceWindowQuery",
               "requestLongType": "MaintenanceWindowQuery",
               "requestFullType": "spaceone.api.monitoring.v1.MaintenanceWindowQuery",

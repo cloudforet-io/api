@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/notification/plugin/notification.proto",
-      "description": "desc: A Notification is a resource delivering data from a Protocol plugin instance to a nofitication tool of an external user.",
+      "description": "A Notification is a resource delivering data from a Protocol plugin instance to a nofitication tool of an external user.",
       "package": "spaceone.api.notification.plugin",
       "hasEnums": false,
       "hasExtensions": false,
@@ -49,7 +49,7 @@
           "name": "PluginDispatchRequest",
           "longName": "PluginDispatchRequest",
           "fullName": "spaceone.api.notification.plugin.PluginDispatchRequest",
-          "description": "",
+          "description": "{\n   \"options\": {},\n   \"message\": {\n   \"tags\": [\n       {\n           \"key\": \"Alert Number\",\n           \"options\": {\"short\": true},\n           \"value\": \"#108664\"\n       },\n       {\n           \"options\": {\"short\": true},\n           \"key\": \"State\",\n           \"value\": \"TRIGGERED\"\n       },\n       {\n           \"value\": \"LOW\",\n           \"options\": {\"short\": true},\n           \"key\": \"Urgency\"\n       },\n       {\n           \"value\": \"kubectl-webhook\",\n           \"key\": \"Triggered by\",\n           \"options\": {\"short\": true}\n       },\n       {\n           \"value\": \"SpaceONE \u003e Project1\",\n           \"key\": \"Project\"\n       },\n       {\n           \"value\": \"spaceone-api\",\n           \"key\": \"Resource\"\n       }\n   ],\n   \"occurred_at\": \"2022-06-27T09:22:57.967Z\",\n   \"callbacks\": [{\n       \"url\": \"https://monitoring-webhook.dev.spaceone.dev/monitoring/v1/alert/alert-x1v2c3v456/8f2ede36213dqw4d7d5awe07ds32d883/ACKNOWLEDGED\",\n       \"label\": \"Acknowledge Alerts\"}],\n   \"link\": \"https://spaceone.console.dev.spaceone.dev/alert-manager/alert/alert-x1v2c3v456\",\n   \"title\": \"[Alerting] Notification of access to the SpaceONE\",\n   \"description\": \"SSH Access to spaceone-api from admin\"},\n   \"notification_type\": \"INFO\",\n   \"secret_data\": \"********\",\n   \"channel_data\": {\"email\": \"test5@test.com\"}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -57,7 +57,7 @@
           "fields": [
             {
               "name": "options",
-              "description": "is_required: true\ndesc: Option value required for notification delivery.",
+              "description": "Option value required for notification delivery.",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -69,7 +69,7 @@
             },
             {
               "name": "message",
-              "description": "is_required: true\ndesc: Message containing notification information",
+              "description": "Message containing notification information",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -81,7 +81,7 @@
             },
             {
               "name": "notification_type",
-              "description": "is_required: true\ndesc: The type of Notification",
+              "description": "The type of Notification",
               "label": "",
               "type": "NotificationType",
               "longType": "PluginDispatchRequest.NotificationType",
@@ -93,7 +93,7 @@
             },
             {
               "name": "secret_data",
-              "description": "is_required: true\ndesc: Secret value required for notification delivery.\nThe secret data usually includes the credential information required for the plugin to access the external system.",
+              "description": "Secret value required for notification delivery.\nThe secret data usually includes the credential information required for the plugin to access the external system.",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -105,7 +105,7 @@
             },
             {
               "name": "channel_data",
-              "description": "is_required: true\ndesc: Channel data required for notification delivery.",
+              "description": "Channel data required for notification delivery.",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -127,7 +127,7 @@
           "methods": [
             {
               "name": "dispatch",
-              "description": "desc: Dispatches data from Cloudforet to a specific notification Protocol. When dispatching data, data input by a User is included in the `options` parameter, and `notification` information to be delivered is included in the `message` parameter. Also, data dispatched includes basic information such as `notification_type` and `secret_data`.\nrequest_example: \u003e-\n{\n\"options\": {},\n\"message\": {\n\"tags\": [\n{\n\"key\": \"Alert Number\",\n\"options\": {\"short\": true},\n\"value\": \"#108664\"\n},\n{\n\"options\": {\"short\": true},\n\"key\": \"State\",\n\"value\": \"TRIGGERED\"\n},\n{\n\"value\": \"LOW\",\n\"options\": {\"short\": true},\n\"key\": \"Urgency\"\n},\n{\n\"value\": \"kubectl-webhook\",\n\"key\": \"Triggered by\",\n\"options\": {\"short\": true}\n},\n{\n\"value\": \"SpaceONE \u003e Project1\",\n\"key\": \"Project\"\n},\n{\n\"value\": \"spaceone-api\",\n\"key\": \"Resource\"\n}\n],\n\"occurred_at\": \"2022-06-27T09:22:57.967Z\",\n\"callbacks\": [{\n\"url\": \"https://monitoring-webhook.dev.spaceone.dev/monitoring/v1/alert/alert-x1v2c3v456/8f2ede36213dqw4d7d5awe07ds32d883/ACKNOWLEDGED\",\n\"label\": \"Acknowledge Alerts\"}],\n\"link\": \"https://spaceone.console.dev.spaceone.dev/alert-manager/alert/alert-x1v2c3v456\",\n\"title\": \"[Alerting] Notification of access to the SpaceONE\",\n\"description\": \"SSH Access to spaceone-api from admin\"},\n\"notification_type\": \"INFO\",\n\"secret_data\": \"********\",\n\"channel_data\": {\"email\": \"test5@test.com\"}\n}",
+              "description": "Dispatches data from Cloudforet to a specific notification Protocol. When dispatching data, data input by a User is included in the `options` parameter, and `notification` information to be delivered is included in the `message` parameter. Also, data dispatched includes basic information such as `notification_type` and `secret_data`.",
               "requestType": "PluginDispatchRequest",
               "requestLongType": "PluginDispatchRequest",
               "requestFullType": "spaceone.api.notification.plugin.PluginDispatchRequest",

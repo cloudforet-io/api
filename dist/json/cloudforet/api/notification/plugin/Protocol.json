@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/notification/plugin/protocol.proto",
-      "description": "desc: A Protocol is a plugin instance defining how a User receives data from Cloudforet.",
+      "description": "A Protocol is a plugin instance defining how a User receives data from Cloudforet.",
       "package": "spaceone.api.notification.plugin",
       "hasEnums": false,
       "hasExtensions": false,
@@ -15,7 +15,7 @@
           "name": "InitRequest",
           "longName": "InitRequest",
           "fullName": "spaceone.api.notification.plugin.InitRequest",
-          "description": "",
+          "description": "{\n   \"options\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -23,7 +23,7 @@
           "fields": [
             {
               "name": "options",
-              "description": "is_required: true\ndesc: Option value used when initializing the plugin.",
+              "description": "Option value used when initializing the plugin.",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -39,7 +39,7 @@
           "name": "PluginInfo",
           "longName": "PluginInfo",
           "fullName": "spaceone.api.notification.plugin.PluginInfo",
-          "description": "",
+          "description": "{   \n   \"metadata\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -47,7 +47,7 @@
           "fields": [
             {
               "name": "metadata",
-              "description": "desc: Metadata value required to input various values required for plugin to work.\nMetadata value required to input various values required for plugin to work.\nIn the case of protocol plugins, when creating a channel, the plugin contains the definition of additional data (channel data) required for channel transmission.",
+              "description": "Metadata value required to input various values required for plugin to work.\nIn the case of protocol plugins, when creating a channel, the plugin contains the definition of additional data (channel data) required for channel transmission.",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -63,7 +63,7 @@
           "name": "PluginVerifyRequest",
           "longName": "PluginVerifyRequest",
           "fullName": "spaceone.api.notification.plugin.PluginVerifyRequest",
-          "description": "",
+          "description": "{\n   \"options\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -71,7 +71,7 @@
           "fields": [
             {
               "name": "options",
-              "description": "is_required: true\ndesc: Option values required for the plugin to work.",
+              "description": "Option values required for the plugin to work.",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -83,7 +83,7 @@
             },
             {
               "name": "secret_data",
-              "description": "is_required: true\ndesc: The secret value required for the plugin to work.\nThe secret data usually includes the credential information required for the plugin to access the external system.",
+              "description": "The secret value required for the plugin to work.\nThe secret data usually includes the credential information required for the plugin to access the external system.",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -105,7 +105,7 @@
           "methods": [
             {
               "name": "init",
-              "description": "desc: Initializes a specific Protocol. During initialization, the Protocol information to be passed to the Protocol user is delivered as `metadata`. Protocol information includes its name and version.\nrequest_example: \u003e-\n{\n\"options\": {}\n}\nresponse_example: \u003e-\n{\n\"metadata\": {}\n}",
+              "description": "Initializes a specific Protocol. During initialization, the Protocol information to be passed to the Protocol user is delivered as `metadata`. Protocol information includes its name and version.",
               "requestType": "InitRequest",
               "requestLongType": "InitRequest",
               "requestFullType": "spaceone.api.notification.plugin.InitRequest",
@@ -117,7 +117,7 @@
             },
             {
               "name": "verify",
-              "description": "desc: Verifies if a specific Protocol is a valid plugin instance.\nrequest_example: \u003e-\n{\n\"options\": {}\n}",
+              "description": "Verifies if a specific Protocol is a valid plugin instance.",
               "requestType": "PluginVerifyRequest",
               "requestLongType": "PluginVerifyRequest",
               "requestFullType": "spaceone.api.notification.plugin.PluginVerifyRequest",

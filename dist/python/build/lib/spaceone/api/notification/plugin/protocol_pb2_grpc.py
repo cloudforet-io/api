@@ -31,28 +31,14 @@ class ProtocolServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def init(self, request, context):
-        """
-        desc: Initializes a specific Protocol. During initialization, the Protocol information to be passed to the Protocol user is delivered as `metadata`. Protocol information includes its name and version.
-        request_example: >-
-        {
-        "options": {}
-        }
-        response_example: >-
-        {
-        "metadata": {}
-        }
+        """Initializes a specific Protocol. During initialization, the Protocol information to be passed to the Protocol user is delivered as `metadata`. Protocol information includes its name and version.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def verify(self, request, context):
-        """
-        desc: Verifies if a specific Protocol is a valid plugin instance.
-        request_example: >-
-        {
-        "options": {}
-        }
+        """Verifies if a specific Protocol is a valid plugin instance.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

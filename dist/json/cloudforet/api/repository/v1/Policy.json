@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/repository/v1/policy.proto",
-      "description": "desc: A Policy is a resource managing page access permissions. This resource can be used in all domains if it is defined in the `repository` microservice.",
+      "description": "A Policy is a resource managing page access permissions. This resource can be used in all domains if it is defined in the `repository` microservice.",
       "package": "spaceone.api.repository.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -62,7 +62,7 @@
           "name": "CreatePolicyRequest",
           "longName": "CreatePolicyRequest",
           "fullName": "spaceone.api.repository.v1.CreatePolicyRequest",
-          "description": "",
+          "description": "{\n   \"policy_id\": \"policy-custom-full-acess\",\n   \"name\": \"Full Access\",\n   \"permissions\": [\"*\"],\n   \"labels\": [],\n   \"tags\": {},\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -70,7 +70,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -82,7 +82,7 @@
             },
             {
               "name": "permissions",
-              "description": "is_required: true",
+              "description": "",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -94,7 +94,7 @@
             },
             {
               "name": "policy_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -106,7 +106,7 @@
             },
             {
               "name": "labels",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "ListValue",
               "longType": "google.protobuf.ListValue",
@@ -118,7 +118,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -130,7 +130,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -142,7 +142,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -158,7 +158,7 @@
           "name": "GetRepositoryPolicyRequest",
           "longName": "GetRepositoryPolicyRequest",
           "fullName": "spaceone.api.repository.v1.GetRepositoryPolicyRequest",
-          "description": "",
+          "description": "{\n   \"policy_id\": \"policy-123456789012\",\n   \"repository_id\": \"repo-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -166,7 +166,7 @@
           "fields": [
             {
               "name": "policy_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -178,7 +178,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -190,7 +190,7 @@
             },
             {
               "name": "repository_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -202,7 +202,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -218,7 +218,7 @@
           "name": "PoliciesInfo",
           "longName": "PoliciesInfo",
           "fullName": "spaceone.api.repository.v1.PoliciesInfo",
-          "description": "",
+          "description": "{\n   \"results\": [\n       {\n           \"policy_id\": \"policy-123456789012\",\n           \"name\": \"Full Access\",\n           \"state\": \"ENABLED\",\n           \"permissions\": [\n               \"*\"\n           ],\n           \"labels\": [],\n           \"tags\": {},\n           \"repository_info\": {\n               \"repository_id\": \"repo-123456789012\",\n               \"name\": \"Local\",\n               \"repository_type\": \"local\"\n           },\n           \"domain_id\": \"domain-123456789012\",\n           \"created_at\": \"2022-01-01T15:42:50.943Z\",\n           \"updated_at\": \"2022-01-01T15:42:50.943Z\"\n       },\n       {\n           \"policy_id\": \"policy-987654321098\",\n           \"name\": \"Identity Admin\",\n           \"state\": \"ENABLED\",\n           \"permissions\": [\n               \"identity.*\"\n           ],\n           \"labels\": [],\n           \"tags\": {},\n           \"repository_info\": {\n               \"repository_id\": \"repo-123456789012\",\n               \"name\": \"Local\",\n               \"repository_type\": \"local\"\n           },\n           \"domain_id\": \"domain-123456789012\",\n           \"created_at\": \"2022-01-01T08:08:14.756Z\",\n           \"updated_at\": \"2022-01-01T08:08:14.756Z\"\n       }\n   ],\n   \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -226,7 +226,7 @@
           "fields": [
             {
               "name": "results",
-              "description": "desc: list of PolicyInfo",
+              "description": "list of PolicyInfo",
               "label": "repeated",
               "type": "PolicyInfo",
               "longType": "PolicyInfo",
@@ -254,7 +254,7 @@
           "name": "PolicyInfo",
           "longName": "PolicyInfo",
           "fullName": "spaceone.api.repository.v1.PolicyInfo",
-          "description": "",
+          "description": "{\n   \"policy_id\": \"policy-custom-full-acess\",\n   \"name\": \"Full Access\",\n   \"state\": \"ENABLED\",\n   \"permissions\": [\n       \"*\"\n   ],\n   \"labels\": [],\n   \"tags\": {},\n   \"repository_info\": {\n       \"repository_id\": \"repo-123456789012\",\n       \"name\": \"Local\",\n       \"repository_type\": \"local\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-01-01T06:45:04.582Z\",\n   \"updated_at\": \"2022-01-01T06:45:04.582Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -298,7 +298,7 @@
             },
             {
               "name": "permissions",
-              "description": "desc: list of permissions",
+              "description": "list of permissions",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -310,7 +310,7 @@
             },
             {
               "name": "labels",
-              "description": "desc: list of labels",
+              "description": "list of labels",
               "label": "",
               "type": "ListValue",
               "longType": "google.protobuf.ListValue",
@@ -398,7 +398,7 @@
           "name": "PolicyQuery",
           "longName": "PolicyQuery",
           "fullName": "spaceone.api.repository.v1.PolicyQuery",
-          "description": "",
+          "description": "{\n   \"query\": {},\n   \"repository_id\": \"repo-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -406,7 +406,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -418,7 +418,7 @@
             },
             {
               "name": "policy_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -430,7 +430,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -442,7 +442,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -454,7 +454,7 @@
             },
             {
               "name": "repository_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -466,7 +466,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -478,7 +478,7 @@
             },
             {
               "name": "state",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "State",
               "longType": "PolicyQuery.State",
@@ -494,7 +494,7 @@
           "name": "PolicyRequest",
           "longName": "PolicyRequest",
           "fullName": "spaceone.api.repository.v1.PolicyRequest",
-          "description": "",
+          "description": "{\n   \"policy_id\": \"policy-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -502,7 +502,7 @@
           "fields": [
             {
               "name": "policy_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -514,7 +514,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -538,7 +538,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -550,7 +550,7 @@
             },
             {
               "name": "repository_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -562,7 +562,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -578,7 +578,7 @@
           "name": "UpdatePolicyRequest",
           "longName": "UpdatePolicyRequest",
           "fullName": "spaceone.api.repository.v1.UpdatePolicyRequest",
-          "description": "",
+          "description": "{\n   \"policy_id\": \"policy-custom-full-acess\",\n   \"name\": \"Full Access\",\n   \"permissions\": [\"*\"],\n   \"labels\": [],\n   \"tags\": {},\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -586,7 +586,7 @@
           "fields": [
             {
               "name": "policy_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -598,7 +598,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -610,7 +610,7 @@
             },
             {
               "name": "permissions",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -622,7 +622,7 @@
             },
             {
               "name": "labels",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "ListValue",
               "longType": "google.protobuf.ListValue",
@@ -634,7 +634,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -646,7 +646,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -668,7 +668,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new Policy. The parameter `policy_id`, an identifier of Policy resources, can only include lowercase alphabets, numbers, and hyphens(-). The parameter `permissions` is a list type data describing page access permissions.\nrequest_example: \u003e-\n{\n\"policy_id\": \"policy-custom-full-acess\",\n\"name\": \"Full Access\",\n\"permissions\": [\"*\"],\n\"labels\": [],\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"policy_id\": \"policy-custom-full-acess\",\n\"name\": \"Full Access\",\n\"state\": \"ENABLED\",\n\"permissions\": [\n\"*\"\n],\n\"labels\": [],\n\"tags\": {},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local\",\n\"repository_type\": \"local\"\n},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T06:45:04.582Z\",\n\"updated_at\": \"2022-01-01T06:45:04.582Z\"\n}",
+              "description": "Creates a new Policy. The parameter `policy_id`, an identifier of Policy resources, can only include lowercase alphabets, numbers, and hyphens(-). The parameter `permissions` is a list type data describing page access permissions.",
               "requestType": "CreatePolicyRequest",
               "requestLongType": "CreatePolicyRequest",
               "requestFullType": "spaceone.api.repository.v1.CreatePolicyRequest",
@@ -691,7 +691,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific Policy. You can make changes in Policy settings, including `name`, `labels`, `tags`, and `permissions`. The parameter `policy_id` cannot be updated.\nrequest_example: \u003e-\n{\n\"policy_id\": \"policy-custom-full-acess\",\n\"name\": \"Full Access\",\n\"permissions\": [\"*\"],\n\"labels\": [],\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"policy_id\": \"policy-custom-full-acess\",\n\"name\": \"Full Access\",\n\"state\": \"ENABLED\",\n\"permissions\": [\n\"*\"\n],\n\"labels\": [],\n\"tags\": {},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local\",\n\"repository_type\": \"local\"\n},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T06:45:04.582Z\",\n\"updated_at\": \"2022-01-01T06:45:04.582Z\"\n}",
+              "description": "Updates a specific Policy. You can make changes in Policy settings, including `name`, `labels`, `tags`, and `permissions`. The parameter `policy_id` cannot be updated.",
               "requestType": "UpdatePolicyRequest",
               "requestLongType": "UpdatePolicyRequest",
               "requestFullType": "spaceone.api.repository.v1.UpdatePolicyRequest",
@@ -714,7 +714,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific Policy. You must specify the `policy_id` of the Policy to delete, as the `policy_id` is an identifier of Policy resources.\nrequest_example: \u003e-\n{\n\"policy_id\": \"policy-123456789012\"\n}",
+              "description": "Deletes a specific Policy. You must specify the `policy_id` of the Policy to delete, as the `policy_id` is an identifier of Policy resources.",
               "requestType": "PolicyRequest",
               "requestLongType": "PolicyRequest",
               "requestFullType": "spaceone.api.repository.v1.PolicyRequest",
@@ -737,7 +737,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific Policy. You must specify the `policy_id` of the Policy to get, as the `policy_id` is an identifier of Policy resources. You can use the parameter `repository_id` to limit the scope of the method to a specific Repository.\nrequest_example: \u003e-\n{\n\"policy_id\": \"policy-123456789012\",\n\"repository_id\": \"repo-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"policy_id\": \"policy-123456789012\",\n\"name\": \"Full Access\",\n\"state\": \"ENABLED\",\n\"permissions\": [\n\"*\"\n],\n\"labels\": [],\n\"tags\": {},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local\",\n\"repository_type\": \"local\"\n},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T15:42:50.943Z\",\n\"updated_at\": \"2022-01-01T15:42:50.943Z\"\n}",
+              "description": "Gets a specific Policy. You must specify the `policy_id` of the Policy to get, as the `policy_id` is an identifier of Policy resources. You can use the parameter `repository_id` to limit the scope of the method to a specific Repository.",
               "requestType": "GetRepositoryPolicyRequest",
               "requestLongType": "GetRepositoryPolicyRequest",
               "requestFullType": "spaceone.api.repository.v1.GetRepositoryPolicyRequest",
@@ -760,7 +760,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all Policies in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Policies. You can use a query to get a filtered list of Policies.\nrequest_example: \u003e-\n{\n\"query\": {},\n\"repository_id\": \"repo-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"policy_id\": \"policy-123456789012\",\n\"name\": \"Full Access\",\n\"state\": \"ENABLED\",\n\"permissions\": [\n\"*\"\n],\n\"labels\": [],\n\"tags\": {},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local\",\n\"repository_type\": \"local\"\n},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T15:42:50.943Z\",\n\"updated_at\": \"2022-01-01T15:42:50.943Z\"\n},\n{\n\"policy_id\": \"policy-987654321098\",\n\"name\": \"Identity Admin\",\n\"state\": \"ENABLED\",\n\"permissions\": [\n\"identity.*\"\n],\n\"labels\": [],\n\"tags\": {},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local\",\n\"repository_type\": \"local\"\n},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T08:08:14.756Z\",\n\"updated_at\": \"2022-01-01T08:08:14.756Z\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all Policies in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Policies. You can use a query to get a filtered list of Policies.",
               "requestType": "PolicyQuery",
               "requestLongType": "PolicyQuery",
               "requestFullType": "spaceone.api.repository.v1.PolicyQuery",

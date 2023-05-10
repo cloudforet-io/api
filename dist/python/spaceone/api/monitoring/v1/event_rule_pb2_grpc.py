@@ -57,260 +57,42 @@ class EventRuleServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """
-        desc: Creates a new EventRule. You can filter the Events to apply the EventRule by setting the input parameter `Conditions`. The method can change the Events' assignee or Project.
-        request_example: >-
-        {
-        "conditions": [{"key": "description", "value": "API", "operator": "contain"}],
-        "conditions_policy": "ALL",
-        "actions": {"change_assignee": "user1@email.com",
-        "change_urgency": "LOW",
-        "change_project": "project-123456789012",
-        "add_additional_info": {"type": "personal rule"},
-        "no_notification": true},
-        "options": {},
-        "project_id": "project-123456789012",
-        "domain_id": "domain-123456789012"
-        }
-        response_example: >-
-        {
-        "event_rule_id": "er-123456789012",
-        "order": 1,
-        "conditions": [
-        {
-        "key": "description",
-        "value": "API",
-        "operator": "contain"
-        }
-        ],
-        "conditions_policy": "ALL",
-        "actions": {
-        "change_assignee": "user1@email.com",
-        "change_urgency": "LOW",
-        "change_project": "project-123456789012",
-        "add_additional_info": {
-        "type": "personal rule"
-        },
-        "no_notification": true
-        },
-        "options": {},
-        "scope": "PROJECT",
-        "project_id": "project-123456789012",
-        "tags": {},
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-02T06:02:31.517Z"
-        }
+        """Creates a new EventRule. You can filter the Events to apply the EventRule by setting the input parameter `Conditions`. The method can change the Events' assignee or Project.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Changes a priority order between EventRules to apply. EventRules are filtered by the order configured.
-        request_example: >-
-        {
-        "event_rule_id": "er-123456789012",
-        "conditions": [{"key": "description", "value": "ELB", "operator": "contain"}],
-        "conditions_policy": "ALL",
-        "actions": {"change_assignee": "user2@email.com",
-        "change_urgency": "HIGH",
-        "change_project": "project-123456789012",
-        "add_additional_info": {"type": "personal rule"},
-        "no_notification": true},
-        "options": {},
-        "domain_id": "domain-123456789012"
-        }
-        response_example: >-
-        {
-        "event_rule_id": "er-123456789012",
-        "order": 2,
-        "conditions": [
-        {
-        "key": "description",
-        "value": "ELB",
-        "operator": "contain"
-        }
-        ],
-        "conditions_policy": "ALL",
-        "actions": {
-        "change_assignee": "user2@email.com",
-        "change_urgency": "HIGH",
-        "change_project": "project-123456789012",
-        "add_additional_info": {
-        "type": "personal rule"
-        },
-        "no_notification": true
-        },
-        "options": {},
-        "scope": "PROJECT",
-        "project_id": "project-123456789012",
-        "tags": {},
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-01T06:02:31.517Z"
-        }
+        """Changes a priority order between EventRules to apply. EventRules are filtered by the order configured.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def change_order(self, request, context):
-        """
-        desc: Updates a specific EventRule. You can make changes in EventRule settings.
-        request_example: >-
-        {
-        "event_rule_id": "er-123456789012",
-        "order": 2,
-        "domain_id": "domain-123456789012"
-        }
-        response_example: >-
-        {
-        "event_rule_id": "er-123456789012",
-        "order": 2,
-        "conditions": [
-        {
-        "key": "description",
-        "value": "API",
-        "operator": "contain"
-        }
-        ],
-        "conditions_policy": "ALL",
-        "actions": {
-        "change_assignee": "user1@email.com",
-        "change_urgency": "LOW",
-        "change_project": "project-123456789012",
-        "add_additional_info": {
-        "type": "personal rule"
-        },
-        "no_notification": true
-        },
-        "options": {},
-        "scope": "PROJECT",
-        "project_id": "project-123456789012",
-        "tags": {},
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-02T06:02:31.517Z"
-        }
+        """Updates a specific EventRule. You can make changes in EventRule settings.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """
-        desc: Deletes a specific EventRule. You must assign an EventRule resource to delete by specifying `event_rule_id`.
-        request_example: >-
-        {
-        "event_rule_id": "er-123456789012",
-        "domain_id": "domain-123456789012"
-        }
+        """Deletes a specific EventRule. You must assign an EventRule resource to delete by specifying `event_rule_id`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific EventRule. Prints detailed information about the EventRule.
-        request_example: >-
-        {
-        "event_rule_id": "er-123456789012",
-        "domain_id": "domain-123456789012"
-        }
-        response_example: >-
-        {
-        "event_rule_id": "er-123456789012",
-        "order": 2,
-        "conditions": [
-        {
-        "key": "title",
-        "value": "ELB",
-        "operator": "contain"
-        }
-        ],
-        "conditions_policy": "ALL",
-        "actions": {
-        "change_assignee": "user1@email.com",
-        "change_urgency": "LOW",
-        "change_project": "project-123456789012",
-        "add_additional_info": {},
-        "no_notification": true
-        },
-        "options": {},
-        "scope": "PROJECT",
-        "project_id": "project-123456789012",
-        "tags": {},
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-01T06:12:30.226Z"
-        }
+        """Gets a specific EventRule. Prints detailed information about the EventRule.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all EventRules. You can use a query to get a filtered list of EventRules. For example, you can adjust the scope of the list to a certain Project or Domain.
-        request_example: >-
-        {
-        "project_id": "project-123456789012",
-        "domain_id": "domain-123456789012"
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "event_rule_id": "er-123456789012",
-        "order": 1,
-        "conditions": [
-        {
-        "key": "title",
-        "value": "AWS",
-        "operator": "contain"
-        }
-        ],
-        "conditions_policy": "ALL",
-        "actions": {
-        "change_assignee": "user2@email.com",
-        "change_urgency": "HIGH",
-        "add_additional_info": {},
-        "no_notification": true
-        },
-        "options": {},
-        "scope": "PROJECT",
-        "project_id": "project-123456789012",
-        "tags": {},
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-01T06:33:58.388Z"
-        },
-        {
-        "event_rule_id": "er-123456789012",
-        "order": 2,
-        "conditions": [
-        {
-        "key": "title",
-        "value": "ELB",
-        "operator": "contain"
-        }
-        ],
-        "conditions_policy": "ALL",
-        "actions": {
-        "change_assignee": "user1@email.com",
-        "change_urgency": "LOW",
-        "change_project": "project-123456789012",
-        "add_additional_info": {},
-        "no_notification": true
-        },
-        "options": {},
-        "scope": "PROJECT",
-        "project_id": "project-123456789012",
-        "tags": {},
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-01T06:12:30.226Z"
-        }
-        ],
-        "total_count": 2
-        }
+        """Gets a list of all EventRules. You can use a query to get a filtered list of EventRules. For example, you can adjust the scope of the list to a certain Project or Domain.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

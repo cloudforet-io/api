@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/monitoring/v1/alert.proto",
-      "description": "desc: An Alert, a set of Events, is the smallest unit to manage incidents.",
+      "description": "An Alert, a set of Events, is the smallest unit to manage incidents.",
       "package": "spaceone.api.monitoring.v1",
       "hasEnums": true,
       "hasExtensions": false,
@@ -72,7 +72,7 @@
           "name": "AlertInfo",
           "longName": "AlertInfo",
           "fullName": "spaceone.api.monitoring.v1.AlertInfo",
-          "description": "",
+          "description": "{\n     \"alert_number\": 104053,\n     \"alert_id\": \"alert-123456789012\",\n     \"title\": \"sample test\",\n     \"state\": \"TRIGGERED\",\n     \"description\": \"This is a description of sample.\",\n     \"urgency\": \"HIGH\",\n     \"severity\": \"NONE\",\n     \"escalation_step\": 1,\n     \"additional_info\": {},\n     \"triggered_by\": \"user1@email.com\",\n     \"escalation_policy_id\": \"ep-123456789012\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T01:43:08.566Z\",\n     \"updated_at\": \"2022-01-01T01:43:08.566Z\",\n     \"escalated_at\": \"2022-01-01T01:43:54.464Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -464,7 +464,7 @@
           "fields": [
             {
               "name": "alert_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -476,7 +476,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -488,7 +488,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -504,7 +504,7 @@
           "name": "AlertQuery",
           "longName": "AlertQuery",
           "fullName": "spaceone.api.monitoring.v1.AlertQuery",
-          "description": "",
+          "description": "{\n   \"query\": {}, \n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -512,7 +512,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -524,7 +524,7 @@
             },
             {
               "name": "alert_number",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -536,7 +536,7 @@
             },
             {
               "name": "alert_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -548,7 +548,7 @@
             },
             {
               "name": "title",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -560,7 +560,7 @@
             },
             {
               "name": "state",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "AlertState",
               "longType": "AlertState",
@@ -572,7 +572,7 @@
             },
             {
               "name": "assignee",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -584,7 +584,7 @@
             },
             {
               "name": "urgency",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "AlertUrgency",
               "longType": "AlertUrgency",
@@ -596,7 +596,7 @@
             },
             {
               "name": "severity",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -608,7 +608,7 @@
             },
             {
               "name": "is_snoozed",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -620,7 +620,7 @@
             },
             {
               "name": "resource_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -632,7 +632,7 @@
             },
             {
               "name": "provider",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -644,7 +644,7 @@
             },
             {
               "name": "account",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -656,7 +656,7 @@
             },
             {
               "name": "triggered_by",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -668,7 +668,7 @@
             },
             {
               "name": "webhook_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -680,7 +680,7 @@
             },
             {
               "name": "escalation_policy_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -692,7 +692,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -704,7 +704,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -720,7 +720,7 @@
           "name": "AlertRequest",
           "longName": "AlertRequest",
           "fullName": "spaceone.api.monitoring.v1.AlertRequest",
-          "description": "",
+          "description": "{\n     \"alert_id\": \"alert-123456789012\",\n     \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -728,7 +728,7 @@
           "fields": [
             {
               "name": "alert_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -740,7 +740,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -840,7 +840,7 @@
           "name": "AlertResponderRequest",
           "longName": "AlertResponderRequest",
           "fullName": "spaceone.api.monitoring.v1.AlertResponderRequest",
-          "description": "",
+          "description": "{\n     \"alert_id\": \"alert-123456789012\",\n     \"resource_type\": \"identity.User\",\n     \"resource_id\": \"user2@email.com\",\n     \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -848,7 +848,7 @@
           "fields": [
             {
               "name": "alert_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -860,7 +860,7 @@
             },
             {
               "name": "resource_type",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -872,7 +872,7 @@
             },
             {
               "name": "resource_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -884,7 +884,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -908,7 +908,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -920,7 +920,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -936,7 +936,7 @@
           "name": "AlertsInfo",
           "longName": "AlertsInfo",
           "fullName": "spaceone.api.monitoring.v1.AlertsInfo",
-          "description": "",
+          "description": "{\n     \"results\": [\n     {\n     \"alert_number\": 104057,\n     \"alert_id\": \"alert-987654321098\",\n     \"title\": \"Notification of access to the bastion Host\",\n     \"state\": \"TRIGGERED\",\n     \"description\": \"SSH Access to stargate-dev from adm\",\n     \"urgency\": \"LOW\",\n     \"severity\": \"INFO\",\n     \"resource\": {\n     \"resource_id\": \"server-123456789012\",\n     \"resource_type\": \"inventory.Server\",\n     \"name\": \"stargate-dev\"\n     },\n     \"escalation_step\": 1,\n     \"escalation_ttl\": 1,\n     \"additional_info\": {\n     \"host\": \"[]\",\n     \"user\": \"user1\"\n     },\n     \"triggered_by\": \"webhook-123456789012\",\n     \"webhook_id\": \"webhook-123456789012\",\n     \"escalation_policy_id\": \"ep-123456789012\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T02:46:35.934Z\",\n     \"updated_at\": \"2022-01-01T02:46:35.934Z\",\n     \"escalated_at\": \"2022-01-01T02:46:35.979Z\"\n     },\n     {\n     \"alert_number\": 104056,\n     \"alert_id\": \"alert-123456789999\",\n     \"title\": \"Notification of access to the bastion Host\",\n     \"state\": \"TRIGGERED\",\n     \"description\": \"SSH Access to stargate-dev from user3@email.com\",\n     \"urgency\": \"LOW\",\n     \"severity\": \"INFO\",\n     \"resource\": {\n     \"resource_id\": \"server-123456789012\",\n     \"resource_type\": \"inventory.Server\",\n     \"name\": \"stargate-dev\"\n     },\n     \"escalation_step\": 1,\n     \"escalation_ttl\": 1,\n     \"additional_info\": {\n     \"user\": \"user3@email.com\",\n     \"host\": \"['111.111.111.11']\"\n     },\n     \"triggered_by\": \"webhook-123456789012\",\n     \"webhook_id\": \"webhook-123456789012\",\n     \"escalation_policy_id\": \"ep-123456789012\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T02:46:31.391Z\",\n     \"updated_at\": \"2022-01-01T02:46:31.391Z\",\n     \"escalated_at\": \"2022-01-01T02:46:31.553Z\"\n     }\n     ],\n     \"total_count\": 21283\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -972,7 +972,7 @@
           "name": "CreateAlertRequest",
           "longName": "CreateAlertRequest",
           "fullName": "spaceone.api.monitoring.v1.CreateAlertRequest",
-          "description": "",
+          "description": "{\n     \"title\": \"sample test\",\n     \"description\": \"This is a description of sample.\",\n     \"urgency\": \"HIGH\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -980,7 +980,7 @@
           "fields": [
             {
               "name": "title",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -992,7 +992,7 @@
             },
             {
               "name": "description",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1004,7 +1004,7 @@
             },
             {
               "name": "assignee",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1016,7 +1016,7 @@
             },
             {
               "name": "urgency",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "AlertUrgency",
               "longType": "AlertUrgency",
@@ -1028,7 +1028,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1040,7 +1040,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1064,7 +1064,7 @@
           "fields": [
             {
               "name": "alert_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1076,7 +1076,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1088,7 +1088,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -1112,7 +1112,7 @@
           "fields": [
             {
               "name": "alerts",
-              "description": "is_required: true",
+              "description": "",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -1124,7 +1124,7 @@
             },
             {
               "name": "merge_to",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1136,7 +1136,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1160,7 +1160,7 @@
           "fields": [
             {
               "name": "alert_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1172,7 +1172,7 @@
             },
             {
               "name": "end_time",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1184,7 +1184,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1200,7 +1200,7 @@
           "name": "UpdateAlertRequest",
           "longName": "UpdateAlertRequest",
           "fullName": "spaceone.api.monitoring.v1.UpdateAlertRequest",
-          "description": "",
+          "description": "{\n     \"alert_id\": \"alert-123456789012\",\n     \"state\": \"ACKNOWLEDGED\",\n     \"urgency\": \"LOW\",\n     \"description\": \"[updating]This is a description of sample.\",\n     \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1208,7 +1208,7 @@
           "fields": [
             {
               "name": "alert_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1220,7 +1220,7 @@
             },
             {
               "name": "title",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1232,7 +1232,7 @@
             },
             {
               "name": "state",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1244,7 +1244,7 @@
             },
             {
               "name": "status_message",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1256,7 +1256,7 @@
             },
             {
               "name": "description",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1268,7 +1268,7 @@
             },
             {
               "name": "assignee",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1280,7 +1280,7 @@
             },
             {
               "name": "urgency",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "AlertUrgency",
               "longType": "AlertUrgency",
@@ -1292,7 +1292,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1304,7 +1304,7 @@
             },
             {
               "name": "reset_status_message",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1316,7 +1316,7 @@
             },
             {
               "name": "reset_description",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1328,7 +1328,7 @@
             },
             {
               "name": "reset_assignee",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1340,7 +1340,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1356,7 +1356,7 @@
           "name": "UpdateAlertStateRequest",
           "longName": "UpdateAlertStateRequest",
           "fullName": "spaceone.api.monitoring.v1.UpdateAlertStateRequest",
-          "description": "",
+          "description": "{\n     \"alert_id\": \"alert-123456789012\",\n     \"access_key\": \"1q2w3e4r5t6y7u8i9o0p\",\n     \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1364,7 +1364,7 @@
           "fields": [
             {
               "name": "alert_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1376,7 +1376,7 @@
             },
             {
               "name": "access_key",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1388,7 +1388,7 @@
             },
             {
               "name": "state",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1410,7 +1410,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new Alert. Alerts generated with `create` method are made in a manual way. Manually made Alerts can be used for Notifications.\nrequest_example: \u003e-\n{\n\"title\": \"sample test\",\n\"description\": \"This is a description of sample.\",\n\"urgency\": \"HIGH\",\n\"project_id\": \"project-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"alert_number\": 104053,\n\"alert_id\": \"alert-123456789012\",\n\"title\": \"sample test\",\n\"state\": \"TRIGGERED\",\n\"description\": \"This is a description of sample.\",\n\"urgency\": \"HIGH\",\n\"severity\": \"NONE\",\n\"escalation_step\": 1,\n\"additional_info\": {},\n\"triggered_by\": \"user1@email.com\",\n\"escalation_policy_id\": \"ep-123456789012\",\n\"project_id\": \"project-123456789012\",\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T01:43:08.566Z\",\n\"updated_at\": \"2022-01-01T01:43:08.566Z\",\n\"escalated_at\": \"2022-01-01T01:43:54.464Z\"\n}",
+              "description": "Creates a new Alert. Alerts generated with `create` method are made in a manual way. Manually made Alerts can be used for Notifications.",
               "requestType": "CreateAlertRequest",
               "requestLongType": "CreateAlertRequest",
               "requestFullType": "spaceone.api.monitoring.v1.CreateAlertRequest",
@@ -1433,7 +1433,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific Alert. You can make changes in Alert settings, including the `title`, `description`, `responder`, `state`, and `urgency`. The `responder` of the Alert is a User who is assigned to respond to the Alert.\nrequest_example: \u003e-\n{\n\"alert_id\": \"alert-123456789012\",\n\"state\": \"ACKNOWLEDGED\",\n\"urgency\": \"LOW\",\n\"description\": \"[updating]This is a description of sample.\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"alert_number\": 104053,\n\"alert_id\": \"alert-123456789012\",\n\"title\": \"sample test\",\n\"state\": \"ACKNOWLEDGED\",\n\"description\": \"[updating]This is a description of sample. \",\n\"urgency\": \"LOW\",\n\"severity\": \"NONE\",\n\"escalation_step\": 1,\n\"additional_info\": {},\n\"triggered_by\": \"user1@email.com\",\n\"escalation_policy_id\": \"ep-123456789012\",\n\"project_id\": \"project-123456789012\",\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T01:43:08.566Z\",\n\"updated_at\": \"2022-01-01T01:43:08.566Z\",\n\"acknowledged_at\": \"2022-01-01T01:48:52.799Z\",\n\"escalated_at\": \"2022-01-01T01:43:54.464Z\"\n}",
+              "description": "Updates a specific Alert. You can make changes in Alert settings, including the `title`, `description`, `responder`, `state`, and `urgency`. The `responder` of the Alert is a User who is assigned to respond to the Alert.",
               "requestType": "UpdateAlertRequest",
               "requestLongType": "UpdateAlertRequest",
               "requestFullType": "spaceone.api.monitoring.v1.UpdateAlertRequest",
@@ -1456,7 +1456,7 @@
             },
             {
               "name": "update_state",
-              "description": "desc: Updates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.\nrequest_example: \u003e-\n{\n\"alert_id\": \"alert-123456789012\",\n\"access_key\": \"1q2w3e4r5t6y7u8i9o0p\",\n\"domain_id\": \"domain-123456789012\"\n}",
+              "description": "Updates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.",
               "requestType": "UpdateAlertStateRequest",
               "requestLongType": "UpdateAlertStateRequest",
               "requestFullType": "spaceone.api.monitoring.v1.UpdateAlertStateRequest",
@@ -1525,7 +1525,7 @@
             },
             {
               "name": "add_responder",
-              "description": "desc: Adds a responder who receives a Notification about an Alert.\nrequest_example: \u003e-\n{\n\"alert_id\": \"alert-123456789012\",\n\"resource_type\": \"identity.User\",\n\"resource_id\": \"user2@email.com\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"alert_number\": 104053,\n\"alert_id\": \"alert-123456789012\",\n\"title\": \"sample test\",\n\"state\": \"ACKNOWLEDGED\",\n\"description\": \"[updating]This is a description of sample. \",\n\"urgency\": \"LOW\",\n\"severity\": \"NONE\",\n\"escalation_step\": 1,\n\"responders\": [\n{\n\"resource_type\": \"identity.User\",\n\"resource_id\": \"user2@email.com\"\n}\n],\n\"additional_info\": {},\n\"triggered_by\": \"user1@email.com\",\n\"escalation_policy_id\": \"ep-123456789012\",\n\"project_id\": \"project-123456789012\",\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T01:43:08.566Z\",\n\"updated_at\": \"2022-01-01T01:43:08.566Z\",\n\"acknowledged_at\": \"2022-01-01T02:24:12.051Z\",\n\"escalated_at\": \"2022-01-01T01:43:54.464Z\"\n}",
+              "description": "Adds a responder who receives a Notification about an Alert.",
               "requestType": "AlertResponderRequest",
               "requestLongType": "AlertResponderRequest",
               "requestFullType": "spaceone.api.monitoring.v1.AlertResponderRequest",
@@ -1548,7 +1548,7 @@
             },
             {
               "name": "remove_responder",
-              "description": "desc: Deletes a responder who receives a Notification about an Alert.\nrequest_example: \u003e-\n{\n\"alert_id\": \"alert-123456789012\",\n\"resource_type\": \"identity.User\",\n\"resource_id\": \"user2@email.com\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"alert_number\": 104053,\n\"alert_id\": \"alert-123456789012\",\n\"title\": \"sample test\",\n\"state\": \"ACKNOWLEDGED\",\n\"description\": \"[updating]This is a description of sample. \",\n\"urgency\": \"LOW\",\n\"severity\": \"NONE\",\n\"escalation_step\": 1,\n\"additional_info\": {},\n\"triggered_by\": \"user1@email.com\",\n\"escalation_policy_id\": \"ep-123456789012\",\n\"project_id\": \"project-123456789012\",\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T01:43:08.566Z\",\n\"updated_at\": \"2022-01-01T01:43:08.566Z\",\n\"acknowledged_at\": \"2022-01-01T01:48:52.799Z\",\n\"escalated_at\": \"2022-01-01T01:43:54.464Z\"\n}",
+              "description": "Deletes a responder who receives a Notification about an Alert.",
               "requestType": "AlertResponderRequest",
               "requestLongType": "AlertResponderRequest",
               "requestFullType": "spaceone.api.monitoring.v1.AlertResponderRequest",
@@ -1617,7 +1617,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific Alert and remove it from the list of Alerts. You must specify the `alert_id` of the Alert to delete.\nrequest_example: \u003e-\n{\n\"alert_id\": \"alert-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}",
+              "description": "Deletes a specific Alert and remove it from the list of Alerts. You must specify the `alert_id` of the Alert to delete.",
               "requestType": "AlertRequest",
               "requestLongType": "AlertRequest",
               "requestFullType": "spaceone.api.monitoring.v1.AlertRequest",
@@ -1640,7 +1640,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific Alert. Prints detailed information about the Alert.\nrequest_example: \u003e-\n{\n\"alert_id\": \"alert-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"alert_number\": 104053,\n\"alert_id\": \"alert-123456789012\",\n\"title\": \"sample test\",\n\"state\": \"ACKNOWLEDGED\",\n\"description\": \"[updating]This is a description of sample. \",\n\"urgency\": \"LOW\",\n\"severity\": \"NONE\",\n\"escalation_step\": 1,\n\"additional_info\": {},\n\"triggered_by\": \"user1@email.com\",\n\"escalation_policy_id\": \"ep-123456789012\",\n\"project_id\": \"project-123456789012\",\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T01:43:08.566Z\",\n\"updated_at\": \"2022-01-01T01:43:08.566Z\",\n\"acknowledged_at\": \"2022-01-01T01:48:52.799Z\",\n\"escalated_at\": \"2022-01-01T01:43:54.464Z\"\n}",
+              "description": "Gets a specific Alert. Prints detailed information about the Alert.",
               "requestType": "GetAlertRequest",
               "requestLongType": "GetAlertRequest",
               "requestFullType": "spaceone.api.monitoring.v1.GetAlertRequest",
@@ -1663,7 +1663,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all Alerts. You can use a query to get a filtered list of Alerts.\nrequest_example: \u003e-\n{\n\"query\": {},\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"alert_number\": 104057,\n\"alert_id\": \"alert-987654321098\",\n\"title\": \"Notification of access to the bastion Host\",\n\"state\": \"TRIGGERED\",\n\"description\": \"SSH Access to stargate-dev from adm\",\n\"urgency\": \"LOW\",\n\"severity\": \"INFO\",\n\"resource\": {\n\"resource_id\": \"server-123456789012\",\n\"resource_type\": \"inventory.Server\",\n\"name\": \"stargate-dev\"\n},\n\"escalation_step\": 1,\n\"escalation_ttl\": 1,\n\"additional_info\": {\n\"host\": \"[]\",\n\"user\": \"user1\"\n},\n\"triggered_by\": \"webhook-123456789012\",\n\"webhook_id\": \"webhook-123456789012\",\n\"escalation_policy_id\": \"ep-123456789012\",\n\"project_id\": \"project-123456789012\",\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T02:46:35.934Z\",\n\"updated_at\": \"2022-01-01T02:46:35.934Z\",\n\"escalated_at\": \"2022-01-01T02:46:35.979Z\"\n},\n{\n\"alert_number\": 104056,\n\"alert_id\": \"alert-123456789999\",\n\"title\": \"Notification of access to the bastion Host\",\n\"state\": \"TRIGGERED\",\n\"description\": \"SSH Access to stargate-dev from user3@email.com\",\n\"urgency\": \"LOW\",\n\"severity\": \"INFO\",\n\"resource\": {\n\"resource_id\": \"server-123456789012\",\n\"resource_type\": \"inventory.Server\",\n\"name\": \"stargate-dev\"\n},\n\"escalation_step\": 1,\n\"escalation_ttl\": 1,\n\"additional_info\": {\n\"user\": \"user3@email.com\",\n\"host\": \"['111.111.111.11']\"\n},\n\"triggered_by\": \"webhook-123456789012\",\n\"webhook_id\": \"webhook-123456789012\",\n\"escalation_policy_id\": \"ep-123456789012\",\n\"project_id\": \"project-123456789012\",\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T02:46:31.391Z\",\n\"updated_at\": \"2022-01-01T02:46:31.391Z\",\n\"escalated_at\": \"2022-01-01T02:46:31.553Z\"\n}\n],\n\"total_count\": 21283\n}",
+              "description": "Gets a list of all Alerts. You can use a query to get a filtered list of Alerts.",
               "requestType": "AlertQuery",
               "requestLongType": "AlertQuery",
               "requestFullType": "spaceone.api.monitoring.v1.AlertQuery",

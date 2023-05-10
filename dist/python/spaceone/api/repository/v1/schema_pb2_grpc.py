@@ -52,152 +52,35 @@ class SchemaServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """
-        desc: Creates a new Schema. You must specify the parameters: `service_type`, `name`, and `schema`(data structure). With the parameter `domain_id`, you can choose whether you will create a Schema in `Local` or externally. The Schema created includes `repository_info`, information about where the resource is managed.
-        request_example: >-
-        {
-        "name": "slack_webhook",
-        "service_type": "secret.credentials",
-        "schema": {},
-        "labels": [],
-        "tags": {
-        "description": "Slack Webhook"
-        },
-        "domain_id": "domain-987654321098"
-        }
-        response_example: >-
-        {
-        "name": "slack_webhook",
-        "service_type": "secret.credentials",
-        "schema": {},
-        "labels": [],
-        "tags": {
-        "description": "Slack Webhook"
-        },
-        "repository_info": {
-        "repository_id": "repo-123456789012",
-        "name": "Local",
-        "repository_type": "local"
-        },
-        "domain_id": "domain-987654321098",
-        "created_at": "2022-01-01T05:46:49.929Z",
-        "updated_at": "2022-01-01T05:46:49.929Z"
-        }
+        """Creates a new Schema. You must specify the parameters: `service_type`, `name`, and `schema`(data structure). With the parameter `domain_id`, you can choose whether you will create a Schema in `Local` or externally. The Schema created includes `repository_info`, information about where the resource is managed.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Updates a specific Schema. You can make changes in Schema settings, including `name`, `schema`, `labels`, and `tags`.
-        request_example: >-
-        {
-        "name": "slack_webhook_test",
-        "schema": {},
-        "labels": [],
-        "tags": {},
-        "domain_id": "domain-987654321098"
-        }
-        response_example: >-
-        {
-        "name": "slack_webhook_test",
-        "service_type": "secret.credentials",
-        "schema": {},
-        "labels": [],
-        "tags": {
-        "description": "Slack Webhook"
-        },
-        "repository_info": {
-        "repository_id": "repo-123456789012",
-        "name": "Local",
-        "repository_type": "local"
-        },
-        "domain_id": "domain-987654321098",
-        "created_at": "2022-01-01T05:46:49.929Z",
-        "updated_at": "2022-01-01T05:46:49.929Z"
-        }
+        """Updates a specific Schema. You can make changes in Schema settings, including `name`, `schema`, `labels`, and `tags`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """
-        desc: Deletes a specific Schema. You must specify the `name` of the Schema to delete, as the `name` is an identifier of Schema resources.
-        request_example: >-
-        {
-        "name": "slack_webhook"
-        }
+        """Deletes a specific Schema. You must specify the `name` of the Schema to delete, as the `name` is an identifier of Schema resources.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific Schema. You must specify the `name` of the Schema to get, as the `name` is an identifier of Schema resources. You can use the parameter `repository_id` to limit the scope of the method to a specific Repository.
-        request_example: >-
-        {
-        "name": "slack_webhook",
-        "repository_id": "repo-123456789012"
-        }
-        response_example: >-
-        {
-        "name": "slack_webhook",
-        "service_type": "secret.credentials",
-        "schema": {},
-        "labels": [],
-        "tags": {
-        "description": "Slack Webhook"
-        },
-        "repository_info": {
-        "repository_id": "repo-123456789012",
-        "name": "Local",
-        "repository_type": "local"
-        },
-        "domain_id": "domain-987654321098",
-        "created_at": "2022-01-01T10:20:09.064Z",
-        "updated_at": "2022-01-01T10:20:09.064Z"
-        }
+        """Gets a specific Schema. You must specify the `name` of the Schema to get, as the `name` is an identifier of Schema resources. You can use the parameter `repository_id` to limit the scope of the method to a specific Repository.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all Schemas in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Schemas. You can use a query to get a filtered list of Schemas.
-        request_example: >-
-        {
-        "query": {},
-        "name": "slack_webhook",
-        "service_type": "secret.credentials",
-        "repository_id": "repo-123456789012"
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "name": "slack_webhook",
-        "service_type": "secret.credentials",
-        "schema": {},
-        "labels": [],
-        "tags": {
-        "description": "Slack Webhook"
-        },
-        "repository_info": {
-        "repository_id": "repo-123456789012",
-        "name": "Local",
-        "repository_type": "local"
-        },
-        "domain_id": "domain-987654321098",
-        "created_at": "2022-01-01T10:20:09.064Z",
-        "updated_at": "2022-01-01T10:20:09.064Z"
-        }
-        ],
-        "total_count": 1
-        }
+        """Gets a list of all Schemas in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Schemas. You can use a query to get a filtered list of Schemas.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

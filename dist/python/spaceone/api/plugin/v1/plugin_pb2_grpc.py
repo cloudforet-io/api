@@ -31,17 +31,7 @@ class PluginServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def get_plugin_endpoint(self, request, context):
-        """
-        desc: Gets the `endpoint` of a specific plugin instance. A Plugin returns only a single `endpoint` by determining `labels` and `priority`. If the requested plugin instance is already deployed, the `endpoint` is returned. If not, the `endpoint` is returned after deploying the plugin instance.
-        request_example: >-
-        {
-        "plugin_id": "plugin-aws-sns-mon-webhook",
-        "version": "1.2.2"
-        }
-        response_example: >-
-        {
-        "endpoint": "grpc://endpoint-url:50051"
-        }
+        """Gets the `endpoint` of a specific plugin instance. A Plugin returns only a single `endpoint` by determining `labels` and `priority`. If the requested plugin instance is already deployed, the `endpoint` is returned. If not, the `endpoint` is returned after deploying the plugin instance.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

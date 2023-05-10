@@ -31,16 +31,14 @@ class DataSourceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def init(self, request, context):
-        """
-        desc: Initializes a specific DataSource. During initialization, the DataSource information to be passed to the DataSource user is delivered as `metadata`. DataSource information includes its name and version.
+        """Initializes a specific DataSource. During initialization, the DataSource information to be passed to the DataSource user is delivered as `metadata`. DataSource information includes its name and version.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def verify(self, request, context):
-        """
-        desc: Verifies a specific DataSource. You must specify the parameter `secret_data`, encrypted account data of the DataSource to validate.
+        """Verifies a specific DataSource. You must specify the parameter `secret_data`, encrypted account data of the DataSource to validate.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

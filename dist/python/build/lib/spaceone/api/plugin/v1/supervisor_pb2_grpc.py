@@ -77,170 +77,49 @@ class SupervisorServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def publish(self, request, context):
-        """
-        desc: Creates a new Supervisor. Only Users with the `MANAGED` permission can set the Supervisor `public`. The Supervisor manages the lifecycle of plugin instances by the Supervisor's state. When a Supervisor is created, the state of the resource is `PENDING`. If the state remains the same for 5 minutes, the state is changed to `DISCONNECTED`.
-        note: ''
-        request_example: >-
-        {
-        "name": "test",
-        "hostname": "dev-test2",
-        "secret_key": "xxxxx",
-        "tags": {
-        "a": "b"
-        }
-        }
-        response_example: >-
-        {
-        "supervisor_id": "supervisor-525982f2ae9a",
-        "name": "test",
-        "hostname": "dev-test2",
-        "state": "ENABLED",
-        "domain_id": "domain-1c5a6b8181ad",
-        "tags": {
-        "a": "b"
-        },
-        "labels": {},
-        "created_at": "2022-01-15T05:42:02.999Z"
-        }
+        """Creates a new Supervisor. Only Users with the `MANAGED` permission can set the Supervisor `public`. The Supervisor manages the lifecycle of plugin instances by the Supervisor's state. When a Supervisor is created, the state of the resource is `PENDING`. If the state remains the same for 5 minutes, the state is changed to `DISCONNECTED`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def register(self, request, context):
-        """
-        desc: Registers a specific Supervisor. You must specify the `supervisor_id` of the Supervisor to register. The `state` of the Supervisor changes from `PENDING` to `ENABLED`.
-        note: ''
-        request_example: >-
-        {
-
-        }
-        response_example: >-
-        {
-
-        }
+        """Registers a specific Supervisor. You must specify the `supervisor_id` of the Supervisor to register. The `state` of the Supervisor changes from `PENDING` to `ENABLED`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Updates a specific Supervisor. You can make changes in Supervisor settings, including `labels`, `tags`, and the `bool` type parameter `is_public`.
-        note: ''
-        request_example: >-
-        {
-        "supervisor_id": "supervisor-525982f2ae9a",
-        "is_public": true,
-        "priority": 10,
-        "labels": {
-        "a": "b"
-        },
-        "tags": {
-        "c": "d"
-        },
-        "domain_id": "domain-1c5a6b8181ad"
-        }
-        response_example: >-
-        {
-        "supervisor_id": "supervisor-525982f2ae9a",
-        "name": "test",
-        "hostname": "dev-test2",
-        "state": "ENABLED",
-        "is_public": true,
-        "domain_id": "domain-1c5a6b8181ad",
-        "tags": {
-        "a": "b"
-        },
-        "labels": {
-        "c": "d"
-        },
-        "created_at": "2022-06-15T05:42:02.999Z"
-        }
+        """Updates a specific Supervisor. You can make changes in Supervisor settings, including `labels`, `tags`, and the `bool` type parameter `is_public`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def deregister(self, request, context):
-        """
-        desc: Deregisters and deletes a specific Supervisor. You must specify the `supervisor_id` of the Supervisor to deregister.
-        note: ''
-        request_example: >-
-        {
-        "supervisor_id": "supervisor-d73011256d55"
-        }
+        """Deregisters and deletes a specific Supervisor. You must specify the `supervisor_id` of the Supervisor to deregister.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def enable(self, request, context):
-        """
-        desc: Enables a specific Supervisor. By changing the `state` parameter to `ENABLED`, the Supervisor can deploy or delete the `pod` of the plugin instance.
-        note: ''
-        request_example: >-
-        {
-        "supervisor_id": "supervisor-d73011256d55"
-        }
-        response_example: >-
-        {
-        "supervisor_id": "supervisor-d73011256d55",
-        "name": "test-in-plugins",
-        "hostname": "dev-test3",
-        "state": "ENABLED",
-        "domain_id": "domain-1c5a6b8181ad",
-        "tags": {
-        "a": "b"
-        },
-        "labels": {},
-        "created_at": "2022-06-15T06:27:51.904Z"
-        }
+        """Enables a specific Supervisor. By changing the `state` parameter to `ENABLED`, the Supervisor can deploy or delete the `pod` of the plugin instance.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def disable(self, request, context):
-        """
-        desc: Disables a specific Supervisor. By changing the `state` parameter to `DISABLED`, the Supervisor cannot deploy or delete the `pod` of the plugin instance.
-        note: ''
-        request_example: >-
-        {
-        "supervisor_id": "supervisor-d73011256d55"
-        }
-        response_example: >-
-        {
-        "supervisor_id": "supervisor-d73011256d55",
-        "name": "test-in-plugins",
-        "hostname": "dev-test3",
-        "state": "DISABLED",
-        "domain_id": "domain-1c5a6b8181ad",
-        "tags": {
-        "a": "b"
-        },
-        "labels": {},
-        "created_at": "2022-06-15T06:27:51.904Z"
-        }
+        """Disables a specific Supervisor. By changing the `state` parameter to `DISABLED`, the Supervisor cannot deploy or delete the `pod` of the plugin instance.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def recover_plugin(self, request, context):
-        """
-        desc: Recovers a specific plugin instance in a specific Supervisor. Changes the `state` of the Supervisor to `RE-PROVISIONING`.
-        note: ''
-        request_example: >-
-        {
-        "supervisor_id": "supervisor-a4c287cba676",
-        "plugin_id": "plugin-api-direct-mon-webhook",
-        "version": "1.1.0"
-        }
-        response_example: >-
-        {
-
-        }
+        """Recovers a specific plugin instance in a specific Supervisor. Changes the `state` of the Supervisor to `RE-PROVISIONING`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -253,41 +132,7 @@ class SupervisorServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all Supervisors. You can use a query to get a filtered list of Supervisors.
-        note: ''
-        request_example: >-
-        {
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "supervisor_id": "supervisor-3a091f899539",
-        "name": "root",
-        "hostname": "dev-supervisor.svc.cluster.local",
-        "state": "ENABLED",
-        "is_public": true,
-        "domain_id": "domain-1c5a6b8181ad",
-        "labels": {},
-        "created_at": "2020-05-12T00:24:48.250Z"
-        },
-        {
-        "supervisor_id": "supervisor-a4c287cba676",
-        "name": "test",
-        "hostname": "dev-test",
-        "state": "ENABLED",
-        "domain_id": "domain-1c5a6b8181ad",
-        "tags": {
-        "a": "b"
-        },
-        "labels": {},
-        "created_at": "2022-06-15T05:39:15.886Z"
-        }
-        ],
-        "total_count": 2
-        }
+        """Gets a list of all Supervisors. You can use a query to get a filtered list of Supervisors.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -300,43 +145,7 @@ class SupervisorServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def list_plugins(self, request, context):
-        """
-        desc: Gets a list of all plugin instances regardless of Supervisors. Prints detailed information about the plugin instances, including `version`, `state`, and the relevant Supervisor.
-        note: ''
-        request_example: >-
-        {
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "plugin_id": "plugin-openstack-inven-collector",
-        "version": "0.4.1.20220609.122832",
-        "state": "ACTIVE",
-        "endpoint": "grpc://plugin-openstack-inven-collector-vbnnsoszfjsneiqz.dev-supervisor.svc.cluster.local:50051",
-        "supervisor_id": "supervisor-3a091f899539",
-        "supervisor_name": "root",
-        "managed": true,
-        "endpoints": [
-        "grpc://172.16.16.234:50051"
-        ]
-        },
-        {
-        "plugin_id": "plugin-zabbix-mon-webhook",
-        "version": "1.0",
-        "state": "ACTIVE",
-        "endpoint": "grpc://plugin-zabbix-mon-webhook-dgqqfqsqidieeuk.dev-supervisor.svc.cluster.local:50051",
-        "supervisor_id": "supervisor-3a091f899539",
-        "supervisor_name": "root",
-        "managed": true,
-        "endpoints": [
-        "grpc://172.16.16.130:50051"
-        ]
-        }
-        ],
-        "total_count": 2
-        }
+        """Gets a list of all plugin instances regardless of Supervisors. Prints detailed information about the plugin instances, including `version`, `state`, and the relevant Supervisor.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

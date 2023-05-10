@@ -52,101 +52,35 @@ class RepositoryServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def register(self, request, context):
-        """
-        desc: Registers a Repository. The parameter `name` can only include alphabets, numbers, and hyphens(-). The parameter `repository_type` can be either `local` or `remote`. The parameter `endpoint` is needed if the `repository_type` is `remote`.
-        request_example: >-
-        {
-        "name": "Local",
-        "repository_type": "local",
-        "endpoint": "grpc+ssl://local-url:443"
-        }
-        response_example: >-
-        {
-        "repository_id": "repo-123456789012",
-        "name": "Local",
-        "repository_type": "local",
-        "endpoint": "grpc+ssl://local-url:443",
-        "created_at": "2022-01-01T02:27:02.924Z"
-        }
+        """Registers a Repository. The parameter `name` can only include alphabets, numbers, and hyphens(-). The parameter `repository_type` can be either `local` or `remote`. The parameter `endpoint` is needed if the `repository_type` is `remote`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Updates a specific Repository registered. You must specify the `repository_id` of the Repository to update. You can make changes in Repository settings, including `name`.
-        request_example: >-
-        {
-        "repository_id": "repo-123456789012",
-        "name": "Local-repo"
-        }
-        response_example: >-
-        {
-        "repository_id": "repo-123456789012",
-        "name": "Local-repo",
-        "repository_type": "local",
-        "endpoint": "grpc+ssl://local-url:443",
-        "created_at": "2022-01-01T02:27:02.924Z"
-        }
+        """Updates a specific Repository registered. You must specify the `repository_id` of the Repository to update. You can make changes in Repository settings, including `name`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def deregister(self, request, context):
-        """
-        desc: Deregisters and deletes a specific Repository. You must specify the `repository_id` of the Repository to deregister.
-        request_example: >-
-        {
-        "repository_id": "repo-123456789012"
-        }
+        """Deregisters and deletes a specific Repository. You must specify the `repository_id` of the Repository to deregister.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific Repository. Prints detailed information about the Repository, including  `name`, `repository_type`, and `endpoint`.
-        request_example: >-
-        {
-        "repository_id": "repo-123456789012"
-        }
-        response_example: >-
-        {
-        "repository_id": "repo-123456789012",
-        "name": "Local-repo",
-        "repository_type": "local",
-        "endpoint": "grpc+ssl://local-url:443",
-        "created_at": "2022-01-01T02:26:29.081Z"
-        }
+        """Gets a specific Repository. Prints detailed information about the Repository, including  `name`, `repository_type`, and `endpoint`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all Repositories regardless of `domain`. You can use a query to get a filtered list of Repositories.
-        request_example: >-
-        {
-        "query": {},
-        "repository_id": "repo-123456789012"
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "repository_id": "repo-123456789012",
-        "name": "Local-repo",
-        "repository_type": "local",
-        "endpoint": "grpc+ssl://local-url:443",
-        "created_at": "2022-01-01T02:26:29.081Z"
-        }
-        ],
-        "total_count": 1
-        }
+        """Gets a list of all Repositories regardless of `domain`. You can use a query to get a filtered list of Repositories.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

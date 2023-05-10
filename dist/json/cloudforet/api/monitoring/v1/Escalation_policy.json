@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/monitoring/v1/escalation_policy.proto",
-      "description": "desc: An EscalationPolicy is a set of rules to deliver an alert to assigned members.",
+      "description": "An EscalationPolicy is a set of rules to deliver an alert to assigned members.",
       "package": "spaceone.api.monitoring.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -197,7 +197,7 @@
           "name": "CreateEscalationPolicyRequest",
           "longName": "CreateEscalationPolicyRequest",
           "fullName": "spaceone.api.monitoring.v1.CreateEscalationPolicyRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"es-test\",\n   \"rules\": [{\"notification_level\": \"LV1\", \"escalate_minutes\": 30},\n             {\"notification_level\": \"LV2\", \"escalate_minutes\": 30}],\n   \"repeat_count\": 2,\n   \"finish_condition\": \"ACKNOWLEDGED\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -205,7 +205,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -217,7 +217,7 @@
             },
             {
               "name": "rules",
-              "description": "is_required: true",
+              "description": "",
               "label": "repeated",
               "type": "EscalationPolicyRule",
               "longType": "EscalationPolicyRule",
@@ -229,7 +229,7 @@
             },
             {
               "name": "repeat_count",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -241,7 +241,7 @@
             },
             {
               "name": "finish_condition",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "EscalationFinishCondition",
               "longType": "CreateEscalationPolicyRequest.EscalationFinishCondition",
@@ -253,7 +253,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -265,7 +265,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -277,7 +277,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -293,7 +293,7 @@
           "name": "EscalationPoliciesInfo",
           "longName": "EscalationPoliciesInfo",
           "fullName": "spaceone.api.monitoring.v1.EscalationPoliciesInfo",
-          "description": "",
+          "description": "{\n   \"results\": [\n       {\n           \"escalation_policy_id\": \"ep-7c9745003372\",\n           \"name\": \"0525-ms-test-1\",\n           \"rules\": [\n               {\n                   \"notification_level\": \"LV1\"\n               }\n           ],\n           \"finish_condition\": \"ACKNOWLEDGED\",\n           \"scope\": \"DOMAIN\",\n           \"tags\": {},\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-05-25T09:31:15.150Z\"\n       },\n       {\n           \"escalation_policy_id\": \"ep-d75670166af4\",\n           \"name\": \"0525-ms-test-2\",\n           \"rules\": [\n               {\n                   \"notification_level\": \"LV2\",\n                   \"escalate_minutes\": 30\n               },\n               {\n                   \"notification_level\": \"LV2\"\n               }\n           ],\n           \"finish_condition\": \"ACKNOWLEDGED\",\n           \"scope\": \"DOMAIN\",\n           \"tags\": {},\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-05-25T09:31:38.573Z\"\n       }\n   ],\n   \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -329,7 +329,7 @@
           "name": "EscalationPolicyInfo",
           "longName": "EscalationPolicyInfo",
           "fullName": "spaceone.api.monitoring.v1.EscalationPolicyInfo",
-          "description": "",
+          "description": "{\n       \"escalation_policy_id\": \"ep-526e536fdca9\",\n       \"name\": \"es-test\",\n       \"rules\": [\n           {\n               \"notification_level\": \"LV1\",\n               \"escalate_minutes\": 30\n           },\n           {\n               \"notification_level\": \"LV2\",\n               \"escalate_minutes\": 30\n           }\n       ],\n       \"repeat_count\": 2,\n       \"finish_condition\": \"ACKNOWLEDGED\",\n       \"scope\": \"DOMAIN\",\n       \"tags\": {},\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-06-21T09:22:45.340Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -473,7 +473,7 @@
           "name": "EscalationPolicyQuery",
           "longName": "EscalationPolicyQuery",
           "fullName": "spaceone.api.monitoring.v1.EscalationPolicyQuery",
-          "description": "",
+          "description": "{\n   \"query\": {},\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -481,7 +481,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -493,7 +493,7 @@
             },
             {
               "name": "escalation_policy_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -505,7 +505,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -517,7 +517,7 @@
             },
             {
               "name": "is_default",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -529,7 +529,7 @@
             },
             {
               "name": "finish_condition",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "EscalationFinishCondition",
               "longType": "EscalationPolicyQuery.EscalationFinishCondition",
@@ -541,7 +541,7 @@
             },
             {
               "name": "scope",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "EscalationPolicyScope",
               "longType": "EscalationPolicyQuery.EscalationPolicyScope",
@@ -553,7 +553,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -565,7 +565,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -581,7 +581,7 @@
           "name": "EscalationPolicyRequest",
           "longName": "EscalationPolicyRequest",
           "fullName": "spaceone.api.monitoring.v1.EscalationPolicyRequest",
-          "description": "",
+          "description": "{\n   \"escalation_policy_id\": \"ep-526e536fdca9\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -589,7 +589,7 @@
           "fields": [
             {
               "name": "escalation_policy_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -601,7 +601,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -661,7 +661,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -673,7 +673,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -689,7 +689,7 @@
           "name": "GetEscalationPolicyRequest",
           "longName": "GetEscalationPolicyRequest",
           "fullName": "spaceone.api.monitoring.v1.GetEscalationPolicyRequest",
-          "description": "",
+          "description": "{\n   \"escalation_policy_id\": \"ep-d75670166af4\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -697,7 +697,7 @@
           "fields": [
             {
               "name": "escalation_policy_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -709,7 +709,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -721,7 +721,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -737,7 +737,7 @@
           "name": "UpdateEscalationPolicyRequest",
           "longName": "UpdateEscalationPolicyRequest",
           "fullName": "spaceone.api.monitoring.v1.UpdateEscalationPolicyRequest",
-          "description": "",
+          "description": "{\n   \"escalation_policy_id\": \"ep-526e536fdca9\",\n   \"name\": \"es-test2\",\n   \"rules\": [{\"notification_level\": \"LV1\", \"escalate_minutes\": 15},\n             {\"notification_level\": \"LV2\", \"escalate_minutes\": 15},\n             {\"notification_level\": \"LV3\", \"escalate_minutes\": 15}],\n   \"repeat_count\": 1,\n   \"finish_condition\": \"RESOLVED\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -745,7 +745,7 @@
           "fields": [
             {
               "name": "escalation_policy_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -757,7 +757,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -769,7 +769,7 @@
             },
             {
               "name": "rules",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "EscalationPolicyRule",
               "longType": "EscalationPolicyRule",
@@ -781,7 +781,7 @@
             },
             {
               "name": "repeat_count",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -793,7 +793,7 @@
             },
             {
               "name": "finish_condition",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "EscalationFinishCondition",
               "longType": "UpdateEscalationPolicyRequest.EscalationFinishCondition",
@@ -805,7 +805,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -817,7 +817,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -839,7 +839,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new EscalationPolicy. When creating an EscalationPolicy, if the project_id is assigned, the EscalationPolicy is applied to the Project with the same project_id. If an EscalationPolicy is set as a global policy, all Projects in the same domain can apply the policy.\nrequest_example: \u003e-\n{\n\"name\": \"es-test\",\n\"rules\": [{\"notification_level\": \"LV1\", \"escalate_minutes\": 30},\n{\"notification_level\": \"LV2\", \"escalate_minutes\": 30}],\n\"repeat_count\": 2,\n\"finish_condition\": \"ACKNOWLEDGED\",\n\"domain_id\": \"domain-58010aa2e451\"\n}\nresponse_example: \u003e-\n{\n\"escalation_policy_id\": \"ep-526e536fdca9\",\n\"name\": \"es-test\",\n\"rules\": [\n{\n\"notification_level\": \"LV1\",\n\"escalate_minutes\": 30\n},\n{\n\"notification_level\": \"LV2\",\n\"escalate_minutes\": 30\n}\n],\n\"repeat_count\": 2,\n\"finish_condition\": \"ACKNOWLEDGED\",\n\"scope\": \"DOMAIN\",\n\"tags\": {},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-21T09:22:45.340Z\"\n}",
+              "description": "Creates a new EscalationPolicy. When creating an EscalationPolicy, if the project_id is assigned, the EscalationPolicy is applied to the Project with the same project_id. If an EscalationPolicy is set as a global policy, all Projects in the same domain can apply the policy.",
               "requestType": "CreateEscalationPolicyRequest",
               "requestLongType": "CreateEscalationPolicyRequest",
               "requestFullType": "spaceone.api.monitoring.v1.CreateEscalationPolicyRequest",
@@ -862,7 +862,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific EscalationPolicy. You can make changes in EscalationPolicy settings, including the name, the escalation process, and the number of iterations.\nrequest_example: \u003e-\n{\n\"escalation_policy_id\": \"ep-526e536fdca9\",\n\"name\": \"es-test2\",\n\"rules\": [{\"notification_level\": \"LV1\", \"escalate_minutes\": 15},\n{\"notification_level\": \"LV2\", \"escalate_minutes\": 15},\n{\"notification_level\": \"LV3\", \"escalate_minutes\": 15}],\n\"repeat_count\": 1,\n\"finish_condition\": \"RESOLVED\",\n\"domain_id\": \"domain-58010aa2e451\"\n}\nresponse_example: \u003e-\n{\n\"escalation_policy_id\": \"ep-526e536fdca9\",\n\"name\": \"es-test2\",\n\"rules\": [\n{\n\"notification_level\": \"LV1\",\n\"escalate_minutes\": 15\n},\n{\n\"notification_level\": \"LV2\",\n\"escalate_minutes\": 15\n},\n{\n\"notification_level\": \"LV3\",\n\"escalate_minutes\": 15\n}\n],\n\"repeat_count\": 1,\n\"finish_condition\": \"RESOLVED\",\n\"scope\": \"DOMAIN\",\n\"tags\": {},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-21T09:22:45.340Z\"\n}",
+              "description": "Updates a specific EscalationPolicy. You can make changes in EscalationPolicy settings, including the name, the escalation process, and the number of iterations.",
               "requestType": "UpdateEscalationPolicyRequest",
               "requestLongType": "UpdateEscalationPolicyRequest",
               "requestFullType": "spaceone.api.monitoring.v1.UpdateEscalationPolicyRequest",
@@ -885,7 +885,7 @@
             },
             {
               "name": "set_default",
-              "description": "desc: Sets a specific EscalationPolicy as default. Only policies configured as global can be set as default. When a Project is created, even if you did not configure any policy to the Project, the default policy set by this api method is applied.\nrequest_example: \u003e-\n{\n\"escalation_policy_id\": \"ep-526e536fdca9\",\n\"domain_id\": \"domain-58010aa2e451\"\n}\nresponse_example: \u003e-\n{\n\"escalation_policy_id\": \"ep-526e536fdca9\",\n\"name\": \"es-test2\",\n\"is_default\": true,\n\"rules\": [\n{\n\"notification_level\": \"LV1\",\n\"escalate_minutes\": 15\n},\n{\n\"notification_level\": \"LV2\",\n\"escalate_minutes\": 15\n},\n{\n\"notification_level\": \"LV3\",\n\"escalate_minutes\": 15\n}\n],\n\"repeat_count\": 1,\n\"finish_condition\": \"RESOLVED\",\n\"scope\": \"DOMAIN\",\n\"tags\": {},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-06-21T09:22:45.340Z\"\n}",
+              "description": "Sets a specific EscalationPolicy as default. Only policies configured as global can be set as default. When a Project is created, even if you did not configure any policy to the Project, the default policy set by this api method is applied.",
               "requestType": "EscalationPolicyRequest",
               "requestLongType": "EscalationPolicyRequest",
               "requestFullType": "spaceone.api.monitoring.v1.EscalationPolicyRequest",
@@ -908,7 +908,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific EscalationPolicy. Deletes the EscalationPolicy with the escalation_policy_id from the deletion request.\nrequest_example: \u003e-\n{\n\"escalation_policy_id\": \"ep-d75670166af4\",\n\"domain_id\": \"domain-58010aa2e451\"\n}",
+              "description": "Deletes a specific EscalationPolicy. Deletes the EscalationPolicy with the escalation_policy_id from the deletion request.",
               "requestType": "EscalationPolicyRequest",
               "requestLongType": "EscalationPolicyRequest",
               "requestFullType": "spaceone.api.monitoring.v1.EscalationPolicyRequest",
@@ -931,7 +931,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific EscalationPolicy. Prints detailed information about the EscalationPolicy, including the name, rules, and termination conditions.\nrequest_example: \u003e-\n{\n\"escalation_policy_id\": \"ep-d75670166af4\",\n\"domain_id\": \"domain-58010aa2e451\"\n}\nresponse_example: \u003e-\n{\n\"escalation_policy_id\": \"ep-d75670166af4\",\n\"name\": \"0525-ms-test-2\",\n\"rules\": [\n{\n\"notification_level\": \"LV2\",\n\"escalate_minutes\": 30\n},\n{\n\"notification_level\": \"LV2\"\n}\n],\n\"finish_condition\": \"ACKNOWLEDGED\",\n\"scope\": \"DOMAIN\",\n\"tags\": {},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-05-25T09:31:38.573Z\"\n}",
+              "description": "Gets a specific EscalationPolicy. Prints detailed information about the EscalationPolicy, including the name, rules, and termination conditions.",
               "requestType": "GetEscalationPolicyRequest",
               "requestLongType": "GetEscalationPolicyRequest",
               "requestFullType": "spaceone.api.monitoring.v1.GetEscalationPolicyRequest",
@@ -954,7 +954,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all EscalationPolicies. You can use a query to get a filtered list of EscalationPolicies.\nrequest_example: \u003e-\n{\n\"query\": {},\n\"domain_id\": \"domain-58010aa2e451\"\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"escalation_policy_id\": \"ep-7c9745003372\",\n\"name\": \"0525-ms-test-1\",\n\"rules\": [\n{\n\"notification_level\": \"LV1\"\n}\n],\n\"finish_condition\": \"ACKNOWLEDGED\",\n\"scope\": \"DOMAIN\",\n\"tags\": {},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-05-25T09:31:15.150Z\"\n},\n{\n\"escalation_policy_id\": \"ep-d75670166af4\",\n\"name\": \"0525-ms-test-2\",\n\"rules\": [\n{\n\"notification_level\": \"LV2\",\n\"escalate_minutes\": 30\n},\n{\n\"notification_level\": \"LV2\"\n}\n],\n\"finish_condition\": \"ACKNOWLEDGED\",\n\"scope\": \"DOMAIN\",\n\"tags\": {},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-05-25T09:31:38.573Z\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all EscalationPolicies. You can use a query to get a filtered list of EscalationPolicies.",
               "requestType": "EscalationPolicyQuery",
               "requestLongType": "EscalationPolicyQuery",
               "requestFullType": "spaceone.api.monitoring.v1.EscalationPolicyQuery",

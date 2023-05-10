@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/statistics/v1/history.proto",
-      "description": "desc: A History is a record of data collection based on a Schedule.",
+      "description": "A History is a record of data collection based on a Schedule.",
       "package": "spaceone.api.statistics.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -15,7 +15,7 @@
           "name": "CreateHistoryRequest",
           "longName": "CreateHistoryRequest",
           "fullName": "spaceone.api.statistics.v1.CreateHistoryRequest",
-          "description": "",
+          "description": "{\n   \"schedule_id\": \"sch-b1d8be347bed\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -23,7 +23,7 @@
           "fields": [
             {
               "name": "schedule_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -35,7 +35,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -51,7 +51,7 @@
           "name": "HistoryInfo",
           "longName": "HistoryInfo",
           "fullName": "spaceone.api.statistics.v1.HistoryInfo",
-          "description": "",
+          "description": "{\n   \"results\": [\n       {\n           \"topic\": \"daily_cloud_service_summary\",\n           \"values\": {\n               \"label\": \"Storage\",\n               \"project_id\": \"project-f7111a9aa0c6\",\n               \"provider\": \"azure\",\n               \"value\": 32213303296.0,\n               \"cloud_service_group\": \"Compute\",\n               \"cloud_service_type\": \"Disk\"\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-07-18T01:01:57.579Z\"\n       },\n       {\n           \"topic\": \"daily_cloud_service_summary\",\n           \"values\": {\n               \"cloud_service_type\": \"Bucket\",\n               \"cloud_service_group\": \"CloudStorage\",\n               \"label\": \"Storage\",\n               \"provider\": \"google_cloud\",\n               \"project_id\": \"project-4cd006b4993b\",\n               \"value\": 401399880.0\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-07-18T01:01:57.579Z\"\n       }\n   ],\n   \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -95,7 +95,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -107,7 +107,7 @@
             },
             {
               "name": "topic",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -119,7 +119,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -195,7 +195,7 @@
           "name": "QueryHistoryRequest",
           "longName": "QueryHistoryRequest",
           "fullName": "spaceone.api.statistics.v1.QueryHistoryRequest",
-          "description": "",
+          "description": "{\n   \"query\": {},\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -203,7 +203,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -215,7 +215,7 @@
             },
             {
               "name": "topic",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -227,7 +227,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -249,7 +249,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new History. Gets a Schedule as an input and creates a History as an output. You can use this method to manually run a specific Schedule.\nrequest_example: \u003e-\n{\n\"schedule_id\": \"sch-b1d8be347bed\",\n\"domain_id\": \"domain-58010aa2e451\"\n}",
+              "description": "Creates a new History. Gets a Schedule as an input and creates a History as an output. You can use this method to manually run a specific Schedule.",
               "requestType": "CreateHistoryRequest",
               "requestLongType": "CreateHistoryRequest",
               "requestFullType": "spaceone.api.statistics.v1.CreateHistoryRequest",
@@ -272,7 +272,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all Histories. You can use a query to get a filtered list of Histories.\nrequest_example: \u003e-\n{\n\"query\": {},\n\"domain_id\": \"domain-58010aa2e451\"\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"topic\": \"daily_cloud_service_summary\",\n\"values\": {\n\"label\": \"Storage\",\n\"project_id\": \"project-f7111a9aa0c6\",\n\"provider\": \"azure\",\n\"value\": 32213303296.0,\n\"cloud_service_group\": \"Compute\",\n\"cloud_service_type\": \"Disk\"\n},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-18T01:01:57.579Z\"\n},\n{\n\"topic\": \"daily_cloud_service_summary\",\n\"values\": {\n\"cloud_service_type\": \"Bucket\",\n\"cloud_service_group\": \"CloudStorage\",\n\"label\": \"Storage\",\n\"provider\": \"google_cloud\",\n\"project_id\": \"project-4cd006b4993b\",\n\"value\": 401399880.0\n},\n\"domain_id\": \"domain-58010aa2e451\",\n\"created_at\": \"2022-07-18T01:01:57.579Z\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all Histories. You can use a query to get a filtered list of Histories.",
               "requestType": "QueryHistoryRequest",
               "requestLongType": "QueryHistoryRequest",
               "requestFullType": "spaceone.api.statistics.v1.QueryHistoryRequest",

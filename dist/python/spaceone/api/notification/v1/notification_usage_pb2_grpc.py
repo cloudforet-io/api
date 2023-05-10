@@ -31,32 +31,7 @@ class NotificationUsageServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all NotificationUsages. You can use a query to get a filtered list of Notification Usages.
-        request_example: >-
-        {
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "protocol_id": "protocol-123456789012",
-        "usage_date": "08",
-        "usage_month": "2022-05",
-        "count": 2,
-        "domain_id": "domain-123456789012"
-        },
-        {
-        "protocol_id": "protocol-123456789012",
-        "usage_date": "18",
-        "usage_month": "2022-05",
-        "count": 7,
-        "domain_id": "domain-123456789012"
-        }
-        ],
-        "total_count": 2
-        }
+        """Gets a list of all NotificationUsages. You can use a query to get a filtered list of Notification Usages.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

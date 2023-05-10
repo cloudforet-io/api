@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/notification/v1/protocol.proto",
-      "description": "desc: A Protocol defines the method to use when dispatching Notifications via a channel.",
+      "description": "A Protocol defines the method to use when dispatching Notifications via a channel.",
       "package": "spaceone.api.notification.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -154,7 +154,7 @@
           "name": "CreateProtocolRequest",
           "longName": "CreateProtocolRequest",
           "fullName": "spaceone.api.notification.v1.CreateProtocolRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"Email\",\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -162,7 +162,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true\ndesc: The name of Protocol. It can have a maximum of 255 characters.",
+              "description": "The name of Protocol. It can have a maximum of 255 characters.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -174,7 +174,7 @@
             },
             {
               "name": "plugin_info",
-              "description": "is_required: true\ndesc: Describe a Plugin information for protocol that include was used plugin, specific version, schema etc.",
+              "description": "Describe a Plugin information for protocol that include was used plugin, specific version, schema etc.",
               "label": "",
               "type": "PluginRequest",
               "longType": "PluginRequest",
@@ -186,7 +186,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false\ndesc: The tags for protocol.",
+              "description": "The tags for protocol.\n+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -198,7 +198,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs.",
+              "description": "The ID of domain to which the Protocol belongs.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -214,7 +214,7 @@
           "name": "GetProtocolRequest",
           "longName": "GetProtocolRequest",
           "fullName": "spaceone.api.notification.v1.GetProtocolRequest",
-          "description": "",
+          "description": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -222,7 +222,7 @@
           "fields": [
             {
               "name": "protocol_id",
-              "description": "is_required: true\ndesc: The ID of Protocol.",
+              "description": "The ID of Protocol.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -234,7 +234,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs.",
+              "description": "The ID of domain to which the Protocol belongs.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -246,7 +246,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false\ndesc: The list of the Protocol information column you want to be returned. It must be specified in the ProtocolInfo.",
+              "description": "The list of the Protocol information column you want to be returned. It must be specified in the ProtocolInfo.\n+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -270,7 +270,7 @@
           "fields": [
             {
               "name": "plugin_id",
-              "description": "desc: The ID of plugin set in the Protocol.",
+              "description": "The ID of plugin set in the Protocol.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -282,7 +282,7 @@
             },
             {
               "name": "version",
-              "description": "desc: The version of plugin.",
+              "description": "The version of plugin.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -294,7 +294,7 @@
             },
             {
               "name": "options",
-              "description": "desc: The Options that contains information about using plugin.",
+              "description": "The Options that contains information about using plugin.",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -306,7 +306,7 @@
             },
             {
               "name": "secret_id",
-              "description": "desc: The ID of the Secret containing encrypted data to be used in the plugin.",
+              "description": "The ID of the Secret containing encrypted data to be used in the plugin.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -318,7 +318,7 @@
             },
             {
               "name": "metadata",
-              "description": "desc: The metadata of plugin. It includes schema for the data that must be set for the Channel when creating the Channel using a Protocol.\nThe schema follows the JSON Schema format.",
+              "description": "The metadata of plugin. It includes schema for the data that must be set for the Channel when creating the Channel using a Protocol.\nThe schema follows the JSON Schema format.",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -330,7 +330,7 @@
             },
             {
               "name": "upgrade_mode",
-              "description": "desc: Auto upgrade for plugin.\nIf the upgrade_mode is AUTO, check the latest plugin version when running the plugin, and if a new version is existed, replace the plugin and then run it.",
+              "description": "Auto upgrade for plugin.\nIf the upgrade_mode is AUTO, check the latest plugin version when running the plugin, and if a new version is existed, replace the plugin and then run it.",
               "label": "",
               "type": "UpgradeMode",
               "longType": "PluginInfo.UpgradeMode",
@@ -354,7 +354,7 @@
           "fields": [
             {
               "name": "plugin_id",
-              "description": "is_required: true\ndesc: The ID of plugin.",
+              "description": "The ID of plugin.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -366,7 +366,7 @@
             },
             {
               "name": "version",
-              "description": "is_required: true\ndesc: The version of plugin.",
+              "description": "The version of plugin.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -378,7 +378,7 @@
             },
             {
               "name": "options",
-              "description": "is_required: false\ndesc: The Options that contains information about using plugin.",
+              "description": "The Options that contains information about using plugin.\n+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -390,7 +390,7 @@
             },
             {
               "name": "secret_data",
-              "description": "is_required: false\ndesc: The data for using plugin if necessary. This data is encrypted and stored in the Secret service.",
+              "description": "The data for using plugin if necessary. This data is encrypted and stored in the Secret service.\n+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -402,7 +402,7 @@
             },
             {
               "name": "schema",
-              "description": "is_required: false\ndesc: The name of schema.\nWhen the secret_data is stored in the Secret service, it can be set with schema if the schema is existed.\nThe schema is provided through the Repository service.",
+              "description": "The name of schema.\nWhen the secret_data is stored in the Secret service, it can be set with schema if the schema is existed.\nThe schema is provided through the Repository service.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -414,7 +414,7 @@
             },
             {
               "name": "upgrade_mode",
-              "description": "is_required: false\ndesc: Auto upgrade feature for plugin.\nIf the upgrade mode is AUTO, check the latest plugin version when running the plugin, and if a new version is existed, replace the plugin and then run it.",
+              "description": "Auto upgrade feature for plugin.\nIf the upgrade mode is AUTO, check the latest plugin version when running the plugin, and if a new version is existed, replace the plugin and then run it.\n+optional",
               "label": "",
               "type": "UpgradeMode",
               "longType": "PluginRequest.UpgradeMode",
@@ -430,7 +430,7 @@
           "name": "ProtocolInfo",
           "longName": "ProtocolInfo",
           "fullName": "spaceone.api.notification.v1.ProtocolInfo",
-          "description": "",
+          "description": "{\n   \"protocol_id\": \"protocol-123546789012\",\n   \"name\": \"Email\",\n   \"state\": \"ENABLED\",\n   \"protocol_type\": \"EXTERNAL\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"email_smtp\"\n       ]\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {},\n   \"domain_id\": \"domain-123546789012\",\n   \"created_at\": \"2022-01-01T07:55:57.043Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -438,7 +438,7 @@
           "fields": [
             {
               "name": "protocol_id",
-              "description": "desc: The ID of Protocol.",
+              "description": "The ID of Protocol.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -450,7 +450,7 @@
             },
             {
               "name": "name",
-              "description": "desc: The name of Protocol.",
+              "description": "The name of Protocol.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -462,7 +462,7 @@
             },
             {
               "name": "state",
-              "description": "desc: The state of Protocol.\nENABLED or DISABLED only.",
+              "description": "The state of Protocol.\nENABLED or DISABLED only.",
               "label": "",
               "type": "ProtocolState",
               "longType": "ProtocolInfo.ProtocolState",
@@ -510,7 +510,7 @@
             },
             {
               "name": "plugin_info",
-              "description": "desc: the plugin information set in Protocol.",
+              "description": "the plugin information set in Protocol.",
               "label": "",
               "type": "PluginInfo",
               "longType": "PluginInfo",
@@ -522,7 +522,7 @@
             },
             {
               "name": "tags",
-              "description": "desc: The tags for protocol.",
+              "description": "The tags for protocol.",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -534,7 +534,7 @@
             },
             {
               "name": "domain_id",
-              "description": "desc: The ID of domain to which the Protocol belongs.",
+              "description": "The ID of domain to which the Protocol belongs.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -546,7 +546,7 @@
             },
             {
               "name": "created_at",
-              "description": "desc: Protocol creation time.",
+              "description": "Protocol creation time.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -562,7 +562,7 @@
           "name": "ProtocolQuery",
           "longName": "ProtocolQuery",
           "fullName": "spaceone.api.notification.v1.ProtocolQuery",
-          "description": "",
+          "description": "{\n   \"query\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -570,7 +570,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false\ndesc: Query format provided by SpaceONE. Please check the link for more information.",
+              "description": "Query format provided by SpaceONE. Please check the link for more information.\n+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -582,7 +582,7 @@
             },
             {
               "name": "protocol_id",
-              "description": "is_required: false\ndesc: The ID of Protocol.",
+              "description": "The ID of Protocol.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -594,7 +594,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false\ndesc: The name of Protocol.",
+              "description": "The name of Protocol.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -606,7 +606,7 @@
             },
             {
               "name": "state",
-              "description": "is_required: false\ndesc: The state of Protocol. ENABLED or DISABLED only.",
+              "description": "The state of Protocol. ENABLED or DISABLED only.\n+optional",
               "label": "",
               "type": "ProtocolState",
               "longType": "ProtocolQuery.ProtocolState",
@@ -618,7 +618,7 @@
             },
             {
               "name": "protocol_type",
-              "description": "is_required: false\ndesc: The type of Protocol. INTERNAL or EXTERNAL only.",
+              "description": "The type of Protocol. INTERNAL or EXTERNAL only.\n+optional",
               "label": "",
               "type": "ProtocolType",
               "longType": "ProtocolQuery.ProtocolType",
@@ -630,7 +630,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs.",
+              "description": "The ID of domain to which the Protocol belongs.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -646,7 +646,7 @@
           "name": "ProtocolRequest",
           "longName": "ProtocolRequest",
           "fullName": "spaceone.api.notification.v1.ProtocolRequest",
-          "description": "",
+          "description": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -654,7 +654,7 @@
           "fields": [
             {
               "name": "protocol_id",
-              "description": "is_required: true\ndesc: The ID of Protocol.",
+              "description": "The ID of Protocol.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -666,7 +666,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs.",
+              "description": "The ID of domain to which the Protocol belongs.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -690,7 +690,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true\ndesc: Statistics Query format provided by SpaceONE. Please check the link for more information.",
+              "description": "Statistics Query format provided by SpaceONE. Please check the link for more information.",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -702,7 +702,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs.",
+              "description": "The ID of domain to which the Protocol belongs.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -718,7 +718,7 @@
           "name": "ProtocolsInfo",
           "longName": "ProtocolsInfo",
           "fullName": "spaceone.api.notification.v1.ProtocolsInfo",
-          "description": "",
+          "description": "{\n      \"results\":[\n         {\n            \"protocol_id\":\"protocol-123456789012\",\n            \"name\":\"Email\",\n            \"state\":\"ENABLED\",\n            \"protocol_type\":\"EXTERNAL\",\n            \"capability\":{\n               \"supported_schema\":[\n                  \"email_smtp\"\n               ]\n            },\n            \"plugin_info\":{\n               \"plugin_id\":\"plugin-email-noti-protocol\",\n               \"version\":\"1.0.1\",\n               \"options\":{\n\n               },\n               \"secret_id\":\"secret-123456789012\",\n               \"metadata\":{\n                  \"data_type\":\"PLAIN_TEXT\",\n                  \"data\":{\n                     \"schema\":{\n                        \"properties\":{\n                           \"email\":{\n                              \"pattern\":\"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                              \"examples\":[\n                                 \"user1@test.com, user2@test.com\"\n                              ],\n                              \"minLength\":10.0,\n                              \"description\":\"Email address to receive notifications\",\n                              \"type\":\"string\",\n                              \"title\":\"Email Address\"\n                           }\n                        },\n                        \"required\":[\n                           \"email\"\n                        ],\n                        \"type\":\"object\"\n                     }\n                  }\n               },\n               \"upgrade_mode\":\"AUTO\"\n            },\n            \"tags\":{\n\n            },\n            \"domain_id\":\"domain-123456789012\",\n            \"created_at\":\"2022-01-01T07:55:57.043Z\"\n         }\n      ],\n      \"total_count\":1\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -726,7 +726,7 @@
           "fields": [
             {
               "name": "results",
-              "description": "desc: List of queried protocols.",
+              "description": "List of queried protocols.",
               "label": "repeated",
               "type": "ProtocolInfo",
               "longType": "ProtocolInfo",
@@ -738,7 +738,7 @@
             },
             {
               "name": "total_count",
-              "description": "desc: Total counts of queried Protocols.",
+              "description": "Total counts of queried Protocols.",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -754,7 +754,7 @@
           "name": "UpdateProtocolPluginRequest",
           "longName": "UpdateProtocolPluginRequest",
           "fullName": "spaceone.api.notification.v1.UpdateProtocolPluginRequest",
-          "description": "",
+          "description": "{\n   \"protocol_id\": \"protocol-123456789012\",\n   \"version\": \"1.0.2\",\n   \"options\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -762,7 +762,7 @@
           "fields": [
             {
               "name": "protocol_id",
-              "description": "is_required: true\ndesc: The ID of Protocol.",
+              "description": "The ID of Protocol.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -774,7 +774,7 @@
             },
             {
               "name": "version",
-              "description": "is_required: false\ndesc: The version of plugin you want to update. Version means the tags of plugin container image in repository that specific market place.",
+              "description": "The version of plugin you want to update. Version means the tags of plugin container image in repository that specific market place.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -786,7 +786,7 @@
             },
             {
               "name": "options",
-              "description": "is_required: false\ndesc: The Options that contains information about using plugin.",
+              "description": "The Options that contains information about using plugin.\n+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -798,7 +798,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs.",
+              "description": "The ID of domain to which the Protocol belongs.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -814,7 +814,7 @@
           "name": "UpdateProtocolRequest",
           "longName": "UpdateProtocolRequest",
           "fullName": "spaceone.api.notification.v1.UpdateProtocolRequest",
-          "description": "",
+          "description": "{\n   \"protocol_id\": \"protocol-123456789012\",\n   \"name\": \"Email-test\",\n   \"tags\": {\n       \"type\": \"test\"\n   }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -822,7 +822,7 @@
           "fields": [
             {
               "name": "protocol_id",
-              "description": "is_required: true\ndesc: The ID of Protocol.",
+              "description": "The ID of Protocol.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -834,7 +834,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false\ndesc: The Name of Protocol. It can have a maximum of 255 characters.",
+              "description": "The Name of Protocol. It can have a maximum of 255 characters.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -846,7 +846,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false\ndesc: The tags for protocol. When updating, existing tag information is deleted all and will be updated with new.",
+              "description": "The tags for protocol. When updating, existing tag information is deleted all and will be updated with new.\n+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -858,7 +858,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true\ndesc: The ID of domain to which the Protocol belongs.",
+              "description": "The ID of domain to which the Protocol belongs.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -880,7 +880,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new Protocol. When creating a protocol, you must specify the plugins provided from the repository, and you must also set the credentials to be set in the plugin if necessary.\nrequest_example: \u003e-\n{\n\"name\": \"Email\",\n\"plugin_info\": {\n\"plugin_id\": \"plugin-email-noti-protocol\",\n\"version\": \"1.0.1\",\n\"options\": {},\n\"secret_id\": \"secret-123546789012\",\n\"metadata\": {\n\"data\": {\n\"schema\": {\n\"properties\": {\n\"email\": {\n\"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n\"examples\": [\n\"user1@test.com, user2@test.com\"\n],\n\"minLength\": 10.0,\n\"description\": \"Email address to receive notifications\",\n\"type\": \"string\",\n\"title\": \"Email Address\"\n}\n},\n\"required\": [\n\"email\"\n],\n\"type\": \"object\"\n}\n},\n\"data_type\": \"PLAIN_TEXT\"\n},\n\"upgrade_mode\": \"AUTO\"\n},\n\"tags\": {}\n}\nresponse_example: \u003e-\n{\n\"protocol_id\": \"protocol-123546789012\",\n\"name\": \"Email\",\n\"state\": \"ENABLED\",\n\"protocol_type\": \"EXTERNAL\",\n\"capability\": {\n\"supported_schema\": [\n\"email_smtp\"\n]\n},\n\"plugin_info\": {\n\"plugin_id\": \"plugin-email-noti-protocol\",\n\"version\": \"1.0.1\",\n\"options\": {},\n\"secret_id\": \"secret-123546789012\",\n\"metadata\": {\n\"data\": {\n\"schema\": {\n\"properties\": {\n\"email\": {\n\"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n\"examples\": [\n\"user1@test.com, user2@test.com\"\n],\n\"minLength\": 10.0,\n\"description\": \"Email address to receive notifications\",\n\"type\": \"string\",\n\"title\": \"Email Address\"\n}\n},\n\"required\": [\n\"email\"\n],\n\"type\": \"object\"\n}\n},\n\"data_type\": \"PLAIN_TEXT\"\n},\n\"upgrade_mode\": \"AUTO\"\n},\n\"tags\": {},\n\"domain_id\": \"domain-123546789012\",\n\"created_at\": \"2022-01-01T07:55:57.043Z\"\n}",
+              "description": "Creates a new Protocol. When creating a protocol, you must specify the plugins provided from the repository, and you must also set the credentials to be set in the plugin if necessary.",
               "requestType": "CreateProtocolRequest",
               "requestLongType": "CreateProtocolRequest",
               "requestFullType": "spaceone.api.notification.v1.CreateProtocolRequest",
@@ -903,7 +903,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific Protocol. The method `update` can update the name and tags only. If you want to update the plugin version or options, you can use `update_plugin` method.\nrequest_example: \u003e-\n{\n\"protocol_id\": \"protocol-123456789012\",\n\"name\": \"Email-test\",\n\"tags\": {\n\"type\": \"test\"\n}\n}\nresponse_example: \u003e-\n{\n\"protocol_id\": \"protocol-123546789012\",\n\"name\": \"Email-test\",\n\"state\": \"ENABLED\",\n\"protocol_type\": \"EXTERNAL\",\n\"capability\": {\n\"supported_schema\": [\n\"email_smtp\"\n]\n},\n\"plugin_info\": {\n\"plugin_id\": \"plugin-email-noti-protocol\",\n\"version\": \"1.0.1\",\n\"options\": {},\n\"secret_id\": \"secret-123546789012\",\n\"metadata\": {\n\"data\": {\n\"schema\": {\n\"properties\": {\n\"email\": {\n\"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n\"examples\": [\n\"user1@test.com, user2@test.com\"\n],\n\"minLength\": 10.0,\n\"description\": \"Email address to receive notifications\",\n\"type\": \"string\",\n\"title\": \"Email Address\"\n}\n},\n\"required\": [\n\"email\"\n],\n\"type\": \"object\"\n}\n},\n\"data_type\": \"PLAIN_TEXT\"\n},\n\"upgrade_mode\": \"AUTO\"\n},\n\"tags\": {\n\"type\": \"test\"\n},\n\"domain_id\": \"domain-123546789012\",\n\"created_at\": \"2022-01-01T07:55:57.043Z\"\n}",
+              "description": "Updates a specific Protocol. The method `update` can update the name and tags only. If you want to update the plugin version or options, you can use `update_plugin` method.",
               "requestType": "UpdateProtocolRequest",
               "requestLongType": "UpdateProtocolRequest",
               "requestFullType": "spaceone.api.notification.v1.UpdateProtocolRequest",
@@ -926,7 +926,7 @@
             },
             {
               "name": "update_plugin",
-              "description": "desc: Updates a plugin for a Protocol. It is usually used when redeploying a plugin to a new version.\nrequest_example: \u003e-\n{\n\"protocol_id\": \"protocol-123456789012\",\n\"version\": \"1.0.2\",\n\"options\": {}\n}\nresponse_example: \u003e-\n{\n\"protocol_id\": \"protocol-123546789012\",\n\"name\": \"Email-test\",\n\"state\": \"ENABLED\",\n\"protocol_type\": \"EXTERNAL\",\n\"capability\": {\n\"supported_schema\": [\n\"email_smtp\"\n]\n},\n\"plugin_info\": {\n\"plugin_id\": \"plugin-email-noti-protocol\",\n\"version\": \"1.0.2\",\n\"options\": {},\n\"secret_id\": \"secret-123546789012\",\n\"metadata\": {\n\"data\": {\n\"schema\": {\n\"properties\": {\n\"email\": {\n\"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n\"examples\": [\n\"user1@test.com, user2@test.com\"\n],\n\"minLength\": 10.0,\n\"description\": \"Email address to receive notifications\",\n\"type\": \"string\",\n\"title\": \"Email Address\"\n}\n},\n\"required\": [\n\"email\"\n],\n\"type\": \"object\"\n}\n},\n\"data_type\": \"PLAIN_TEXT\"\n},\n\"upgrade_mode\": \"AUTO\"\n},\n\"tags\": {\n\"type\": \"test\"\n},\n\"domain_id\": \"domain-123546789012\",\n\"created_at\": \"2022-01-01T07:55:57.043Z\"\n}",
+              "description": "Updates a plugin for a Protocol. It is usually used when redeploying a plugin to a new version.",
               "requestType": "UpdateProtocolPluginRequest",
               "requestLongType": "UpdateProtocolPluginRequest",
               "requestFullType": "spaceone.api.notification.v1.UpdateProtocolPluginRequest",
@@ -949,7 +949,7 @@
             },
             {
               "name": "enable",
-              "description": "desc: Enables a specific Protocol. If the Protocol is enabled, the Protocol can be used and the Notification can be dispatched.\nrequest_example: \u003e-\n{\n\"protocol_id\": \"protocol-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"protocol_id\": \"protocol-123546789012\",\n\"name\": \"Email-test\",\n\"state\": \"ENABLED\",\n\"protocol_type\": \"EXTERNAL\",\n\"capability\": {\n\"supported_schema\": [\n\"email_smtp\"\n]\n},\n\"plugin_info\": {\n\"plugin_id\": \"plugin-email-noti-protocol\",\n\"version\": \"1.0.2\",\n\"options\": {},\n\"secret_id\": \"secret-123546789012\",\n\"metadata\": {\n\"data\": {\n\"schema\": {\n\"properties\": {\n\"email\": {\n\"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n\"examples\": [\n\"user1@test.com, user2@test.com\"\n],\n\"minLength\": 10.0,\n\"description\": \"Email address to receive notifications\",\n\"type\": \"string\",\n\"title\": \"Email Address\"\n}\n},\n\"required\": [\n\"email\"\n],\n\"type\": \"object\"\n}\n},\n\"data_type\": \"PLAIN_TEXT\"\n},\n\"upgrade_mode\": \"AUTO\"\n},\n\"tags\": {\n\"type\": \"test\"\n},\n\"domain_id\": \"domain-123546789012\",\n\"created_at\": \"2022-01-01T07:55:57.043Z\"\n}",
+              "description": "Enables a specific Protocol. If the Protocol is enabled, the Protocol can be used and the Notification can be dispatched.",
               "requestType": "ProtocolRequest",
               "requestLongType": "ProtocolRequest",
               "requestFullType": "spaceone.api.notification.v1.ProtocolRequest",
@@ -972,7 +972,7 @@
             },
             {
               "name": "disable",
-              "description": "desc: Disables a specific Protocol. If a Protocol is disabled, the Notification will not be dispatched, even if it is created.\nrequest_example: \u003e-\n{\n\"protocol_id\": \"protocol-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"protocol_id\": \"protocol-123546789012\",\n\"name\": \"Email-test\",\n\"state\": \"DISABLED\",\n\"protocol_type\": \"EXTERNAL\",\n\"capability\": {\n\"supported_schema\": [\n\"email_smtp\"\n]\n},\n\"plugin_info\": {\n\"plugin_id\": \"plugin-email-noti-protocol\",\n\"version\": \"1.0.2\",\n\"options\": {},\n\"secret_id\": \"secret-123546789012\",\n\"metadata\": {\n\"data\": {\n\"schema\": {\n\"properties\": {\n\"email\": {\n\"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n\"examples\": [\n\"user1@test.com, user2@test.com\"\n],\n\"minLength\": 10.0,\n\"description\": \"Email address to receive notifications\",\n\"type\": \"string\",\n\"title\": \"Email Address\"\n}\n},\n\"required\": [\n\"email\"\n],\n\"type\": \"object\"\n}\n},\n\"data_type\": \"PLAIN_TEXT\"\n},\n\"upgrade_mode\": \"AUTO\"\n},\n\"tags\": {\n\"type\": \"test\"\n},\n\"domain_id\": \"domain-123546789012\",\n\"created_at\": \"2022-01-01T07:55:57.043Z\"\n}",
+              "description": "Disables a specific Protocol. If a Protocol is disabled, the Notification will not be dispatched, even if it is created.",
               "requestType": "ProtocolRequest",
               "requestLongType": "ProtocolRequest",
               "requestFullType": "spaceone.api.notification.v1.ProtocolRequest",
@@ -995,7 +995,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific Protocol. If there exists a channel using the Protocol, it cannot be deleted.\nrequest_example: \u003e-\n{\n\"protocol_id\": \"protocol-123456789012\"\n}",
+              "description": "Deletes a specific Protocol. If there exists a channel using the Protocol, it cannot be deleted.",
               "requestType": "ProtocolRequest",
               "requestLongType": "ProtocolRequest",
               "requestFullType": "spaceone.api.notification.v1.ProtocolRequest",
@@ -1018,7 +1018,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific Protocol. Prints detailed information about the Protocol.\nrequest_example: \u003e-\n{\n\"protocol_id\": \"protocol-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"protocol_id\": \"protocol-123546789012\",\n\"name\": \"Email-test\",\n\"state\": \"DISABLED\",\n\"protocol_type\": \"EXTERNAL\",\n\"capability\": {\n\"supported_schema\": [\n\"email_smtp\"\n]\n},\n\"plugin_info\": {\n\"plugin_id\": \"plugin-email-noti-protocol\",\n\"version\": \"1.0.2\",\n\"options\": {},\n\"secret_id\": \"secret-123546789012\",\n\"metadata\": {\n\"data\": {\n\"schema\": {\n\"properties\": {\n\"email\": {\n\"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n\"examples\": [\n\"user1@test.com, user2@test.com\"\n],\n\"minLength\": 10.0,\n\"description\": \"Email address to receive notifications\",\n\"type\": \"string\",\n\"title\": \"Email Address\"\n}\n},\n\"required\": [\n\"email\"\n],\n\"type\": \"object\"\n}\n},\n\"data_type\": \"PLAIN_TEXT\"\n},\n\"upgrade_mode\": \"AUTO\"\n},\n\"tags\": {\n\"type\": \"test\"\n},\n\"domain_id\": \"domain-123546789012\",\n\"created_at\": \"2022-01-01T07:55:57.043Z\"\n}",
+              "description": "Gets a specific Protocol. Prints detailed information about the Protocol.",
               "requestType": "GetProtocolRequest",
               "requestLongType": "GetProtocolRequest",
               "requestFullType": "spaceone.api.notification.v1.GetProtocolRequest",
@@ -1041,7 +1041,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of Protocols. You can use a query to get a filtered list of Protocols.\nrequest_example: \u003e-\n{\n\"query\": {}\n}\nresponse_example: \u003e-\n{\n\"results\":[\n{\n\"protocol_id\":\"protocol-123456789012\",\n\"name\":\"Email\",\n\"state\":\"ENABLED\",\n\"protocol_type\":\"EXTERNAL\",\n\"capability\":{\n\"supported_schema\":[\n\"email_smtp\"\n]\n},\n\"plugin_info\":{\n\"plugin_id\":\"plugin-email-noti-protocol\",\n\"version\":\"1.0.1\",\n\"options\":{\n\n},\n\"secret_id\":\"secret-123456789012\",\n\"metadata\":{\n\"data_type\":\"PLAIN_TEXT\",\n\"data\":{\n\"schema\":{\n\"properties\":{\n\"email\":{\n\"pattern\":\"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n\"examples\":[\n\"user1@test.com, user2@test.com\"\n],\n\"minLength\":10.0,\n\"description\":\"Email address to receive notifications\",\n\"type\":\"string\",\n\"title\":\"Email Address\"\n}\n},\n\"required\":[\n\"email\"\n],\n\"type\":\"object\"\n}\n}\n},\n\"upgrade_mode\":\"AUTO\"\n},\n\"tags\":{\n\n},\n\"domain_id\":\"domain-123456789012\",\n\"created_at\":\"2022-01-01T07:55:57.043Z\"\n}\n],\n\"total_count\":1\n}",
+              "description": "Gets a list of Protocols. You can use a query to get a filtered list of Protocols.",
               "requestType": "ProtocolQuery",
               "requestLongType": "ProtocolQuery",
               "requestFullType": "spaceone.api.notification.v1.ProtocolQuery",

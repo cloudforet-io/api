@@ -27,21 +27,18 @@ type LogRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	DataSourceId string `protobuf:"bytes,1,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
-	// is_required: true
-	ResourceId string `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
-	// is_required: false
+	ResourceId   string `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
+	// +optional
 	Keyword string `protobuf:"bytes,3,opt,name=keyword,proto3" json:"keyword,omitempty"`
-	// is_required: false
+	// +optional
 	Start string `protobuf:"bytes,10,opt,name=start,proto3" json:"start,omitempty"`
-	// is_required: false
+	// +optional
 	End string `protobuf:"bytes,11,opt,name=end,proto3" json:"end,omitempty"`
-	// is_required: false
+	// +optional
 	Sort *_struct.Struct `protobuf:"bytes,15,opt,name=sort,proto3" json:"sort,omitempty"`
-	// is_required: false
-	Limit int32 `protobuf:"varint,16,opt,name=limit,proto3" json:"limit,omitempty"`
-	// is_required: true
+	// +optional
+	Limit    int32  `protobuf:"varint,16,opt,name=limit,proto3" json:"limit,omitempty"`
 	DomainId string `protobuf:"bytes,20,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 

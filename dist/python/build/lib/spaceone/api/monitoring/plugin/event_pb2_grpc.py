@@ -25,8 +25,7 @@ class EventServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def parse(self, request, context):
-        """
-        desc: Parses a specific Event resource and transforms the resource from external data collected to data available in Cloudforet internally. The `parse` method standardizes all different data from external monitoring systems.
+        """Parses a specific Event resource and transforms the resource from external data collected to data available in Cloudforet internally. The `parse` method standardizes all different data from external monitoring systems.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

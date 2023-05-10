@@ -81,23 +81,18 @@ type LogRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Options *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
-	// is_required: true
+	Options    *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
 	SecretData *_struct.Struct `protobuf:"bytes,2,opt,name=secret_data,json=secretData,proto3" json:"secret_data,omitempty"`
-	// is_required: false
-	Schema string `protobuf:"bytes,3,opt,name=schema,proto3" json:"schema,omitempty"`
-	// is_required: true
-	Query *_struct.Struct `protobuf:"bytes,4,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: false
+	// +optional
+	Schema string          `protobuf:"bytes,3,opt,name=schema,proto3" json:"schema,omitempty"`
+	Query  *_struct.Struct `protobuf:"bytes,4,opt,name=query,proto3" json:"query,omitempty"`
+	// +optional
 	Keyword string `protobuf:"bytes,5,opt,name=keyword,proto3" json:"keyword,omitempty"`
-	// is_required: true
-	Start string `protobuf:"bytes,10,opt,name=start,proto3" json:"start,omitempty"`
-	// is_required: true
-	End string `protobuf:"bytes,11,opt,name=end,proto3" json:"end,omitempty"`
-	// is_required: false
+	Start   string `protobuf:"bytes,10,opt,name=start,proto3" json:"start,omitempty"`
+	End     string `protobuf:"bytes,11,opt,name=end,proto3" json:"end,omitempty"`
+	// +optional
 	Sort *Sort `protobuf:"bytes,12,opt,name=sort,proto3" json:"sort,omitempty"`
-	// is_required: false
+	// +optional
 	Limit int32 `protobuf:"varint,13,opt,name=limit,proto3" json:"limit,omitempty"`
 }
 

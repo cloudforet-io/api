@@ -72,300 +72,63 @@ class UserChannelServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """
-        desc: Creates a new UserChannel. A UserChannel is a channel that delivers a Notification to users when the Notification is created. When creating a UserChannel, one Protocol must be selected, and an Notification is dispatched via the selected Protocol.
-        request_example: >-
-        {
-        "protocol_id": "protocol-123456789012",
-        "name": "Email",
-        "data": {
-        "email": "user1@email.com"
-        },
-        "user_id": "user1@email.com",
-        "domain_id": "domain-123456789012"
-        }
-        response_example: >-
-        {
-        "user_channel_id": "user-ch-123456789012",
-        "name": "Email",
-        "state": "ENABLED",
-        "data": {
-        "email": "user1@email.com"
-        },
-        "protocol_id": "protocol-123456789012",
-        "user_id": "user1@email.com",
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-01T08:28:49.108Z"
-        }
+        """Creates a new UserChannel. A UserChannel is a channel that delivers a Notification to users when the Notification is created. When creating a UserChannel, one Protocol must be selected, and an Notification is dispatched via the selected Protocol.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Updates a specific UserChannel. A UserChannel that has already been configured cannot be changed. Instead, the data required for dispatching Notifications to a UserChannel can be updated.
-        request_example: >-
-        {
-        "user_channel_id": "user-ch-123456789012",
-        "name": "Email2",
-        "data": {
-        "email": "user1@gmail.com"
-        },
-        "tags": {
-        "type": "test"
-        }
-        }
-        response_example: >-
-        {
-        "user_channel_id": "user-ch-123456789012",
-        "name": "Email2",
-        "state": "ENABLED",
-        "data": {
-        "email": "user1@gmail.com"
-        },
-        "protocol_id": "protocol-123456789012",
-        "user_id": "user1@email.com",
-        "tags": {
-        "type": "test"
-        },
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-01T08:28:49.108Z"
-        }
+        """Updates a specific UserChannel. A UserChannel that has already been configured cannot be changed. Instead, the data required for dispatching Notifications to a UserChannel can be updated.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def set_schedule(self, request, context):
-        """
-        desc: Sets a schedule for a UserChannel. A schedule defines the time to receive a Notification. When a Notification is created, you can set the day of the week and time you want to receive it. When you set the day of the week, you can receive a notification only on the day of the week you set. If you also set the start time and end time with the day of the week, you can receive a Notification only at the scheduled time on the day of the week you set. If there is no schedule set in a UserChannel, Notifications will be dispatched at all times via the UserChannel.
-        request_example: >-
-        {
-        "user_channel_id": "user-ch-28097e8d5d59",
-        "is_scheduled": true,
-        "schedule": {
-        "day_of_week": [
-        "MON",
-        "TUE",
-        "WED",
-        "THU",
-        "FRI"
-        ],
-        "end_hour": 9
-        },
-        "domain_id": "domain-58010aa2e451"
-        }
-        response_example: >-
-        {
-        "user_channel_id": "user-ch-28097e8d5d59",
-        "name": "my-email",
-        "state": "ENABLED",
-        "data": {
-        "email": "seolmin@mz.co.kr"
-        },
-        "is_scheduled": true,
-        "schedule": {
-        "day_of_week": [
-        "MON",
-        "TUE",
-        "WED",
-        "THU",
-        "FRI"
-        ],
-        "end_hour": 9
-        },
-        "protocol_id": "protocol-e000a677ebdb",
-        "user_id": "user1@cloudforet.io",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-03T08:28:49.108Z"
-        }
+        """Sets a schedule for a UserChannel. A schedule defines the time to receive a Notification. When a Notification is created, you can set the day of the week and time you want to receive it. When you set the day of the week, you can receive a notification only on the day of the week you set. If you also set the start time and end time with the day of the week, you can receive a Notification only at the scheduled time on the day of the week you set. If there is no schedule set in a UserChannel, Notifications will be dispatched at all times via the UserChannel.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def set_subscription(self, request, context):
-        """
-        desc: Sets a subscription for a UserChannel. A subscription is a topic for channels to subscribe to and get notified about. If a UserChannel has subscriptions, a Notification is dispatched only if the topic of the Notification is the same as the one set in the subscriptions. If there is no subscription in a UserChannel, all Notifications will be dispatched.
-        request_example: >-
-        {
-        "user_channel_id": "user-ch-28097e8d5d59",
-        "is_subscribe": true,
-        "subscriptions": [
-        "monitoring.Alert"
-        ],
-        "domain_id": "domain-58010aa2e451"
-        }
-        response_example: >-
-        {
-        "user_channel_id": "user-ch-28097e8d5d59",
-        "name": "my-email",
-        "state": "ENABLED",
-        "data": {
-        "email": "user1@cloudforet.io"
-        },
-        "is_subscribe": true,
-        "subscriptions": [
-        "monitoring.Alert"
-        ],
-        "is_scheduled": true,
-        "schedule": {
-        "day_of_week": [
-        "MON",
-        "TUE",
-        "WED",
-        "THU",
-        "FRI"
-        ],
-        "end_hour": 9
-        },
-        "protocol_id": "protocol-e000a677ebdb",
-        "user_id": "user1@cloudforet.io",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2022-06-03T08:28:49.108Z"
-        }
+        """Sets a subscription for a UserChannel. A subscription is a topic for channels to subscribe to and get notified about. If a UserChannel has subscriptions, a Notification is dispatched only if the topic of the Notification is the same as the one set in the subscriptions. If there is no subscription in a UserChannel, all Notifications will be dispatched.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def enable(self, request, context):
-        """
-        desc: Enables a specific UserChannel. If a UserChannel is enabled, the UserChannel can be used and the Notification can be dispatched. Even if a UserChannel is enabled, if the Protocol used in the UserChannel is disabled, the Notification is not dispatched.
-        request_example: >-
-        {
-        "user_channel_id": "user-ch-123456789012"
-        }
-        response_example: >-
-        {
-        "user_channel_id": "user-ch-123456789012",
-        "name": "Email",
-        "state": "ENABLED",
-        "data": {
-        "email": "user1@email.com"
-        },
-        "protocol_id": "protocol-123456789012",
-        "user_id": "user1@email.com",
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-01T08:28:49.108Z"
-        }
+        """Enables a specific UserChannel. If a UserChannel is enabled, the UserChannel can be used and the Notification can be dispatched. Even if a UserChannel is enabled, if the Protocol used in the UserChannel is disabled, the Notification is not dispatched.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def disable(self, request, context):
-        """
-        desc: Disables a specific UserChannel. If a UserChannel is disabled, the Notification is not dispatched, even if it is created.
-        request_example: >-
-        {
-        "user_channel_id": "user-ch-123456789012"
-        }
-        response_example: >-
-        {
-        "user_channel_id": "user-ch-123456789012",
-        "name": "Email",
-        "state": "DISABLED",
-        "data": {
-        "email": "user1@email.com"
-        },
-        "protocol_id": "protocol-123456789012",
-        "user_id": "user1@email.com",
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-01T08:28:49.108Z"
-        }
+        """Disables a specific UserChannel. If a UserChannel is disabled, the Notification is not dispatched, even if it is created.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """
-        desc: Deletes a specific UserChannel. You must specify the `user_channel_id` of the UserChannel to delete.
-        request_example: >-
-        {
-        "user_channel_id": "user-ch-123456789012"
-        }
+        """Deletes a specific UserChannel. You must specify the `user_channel_id` of the UserChannel to delete.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific UserChannel. Prints detailed information about the UserChannel, including the Protocol configured and the Notification settings.
-        request_example: >-
-        {
-        "user_channel_id": "user-ch-123456789012"
-        }
-        response_example: >-
-        {
-        "user_channel_id": "user-ch-123456789012",
-        "name": "Email",
-        "state": "ENABLED",
-        "data": {
-        "email": "user1@email.com"
-        },
-        "protocol_id": "protocol-123456789012",
-        "user_id": "user1@email.com",
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-01T08:28:49.108Z"
-        }
+        """Gets a specific UserChannel. Prints detailed information about the UserChannel, including the Protocol configured and the Notification settings.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all UserChannels. You can use a query to get a filtered list of UserChannels.
-        request_example: >-
-        {
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "user_channel_id": "user-ch-123456789012",
-        "name": "Email",
-        "state": "ENABLED",
-        "data": {
-        "email": "user1@email.com"
-        },
-        "protocol_id": "protocol-123456789012",
-        "user_id": "user1@email.com",
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-01T08:28:49.108Z"
-        },
-        {
-        "user_channel_id": "user-ch-98765432109",
-        "name": "Email",
-        "state": "ENABLED",
-        "data": {
-        "email": "user2@email.com"
-        },
-        "is_scheduled": true,
-        "schedule": {
-        "day_of_week": [
-        "MON",
-        "TUE",
-        "WED",
-        "THU",
-        "FRI"
-        ],
-        "start_hour": 3,
-        "end_hour": 23
-        },
-        "protocol_id": "protocol-123456789012",
-        "user_id": "user2@email.com",
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-01T06:45:57.260Z"
-        }
-        ],
-        "total_count": 2
-        }
+        """Gets a list of all UserChannels. You can use a query to get a filtered list of UserChannels.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

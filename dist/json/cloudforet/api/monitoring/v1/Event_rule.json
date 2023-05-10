@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/monitoring/v1/event_rule.proto",
-      "description": "desc: An EventRule is a rule to transform the request data when an Event is generated.",
+      "description": "An EventRule is a rule to transform the request data when an Event is generated.",
       "package": "spaceone.api.monitoring.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -146,7 +146,7 @@
           "name": "ChangeEventRuleOrderRequest",
           "longName": "ChangeEventRuleOrderRequest",
           "fullName": "spaceone.api.monitoring.v1.ChangeEventRuleOrderRequest",
-          "description": "",
+          "description": "{\n   \"event_rule_id\": \"er-123456789012\", \n   \"order\": 2,\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -154,7 +154,7 @@
           "fields": [
             {
               "name": "event_rule_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -166,7 +166,7 @@
             },
             {
               "name": "order",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -178,7 +178,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -194,7 +194,7 @@
           "name": "CreateEventRuleRequest",
           "longName": "CreateEventRuleRequest",
           "fullName": "spaceone.api.monitoring.v1.CreateEventRuleRequest",
-          "description": "",
+          "description": "{\n     \"conditions\": [{\"key\": \"description\", \"value\": \"API\", \"operator\": \"contain\"}],\n     \"conditions_policy\": \"ALL\",\n     \"actions\": {\"change_assignee\": \"user1@email.com\",\n     \"change_urgency\": \"LOW\",\n     \"change_project\": \"project-123456789012\",\n     \"add_additional_info\": {\"type\": \"personal rule\"},\n     \"no_notification\": true},\n     \"options\": {},\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -202,7 +202,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -214,7 +214,7 @@
             },
             {
               "name": "conditions",
-              "description": "is_required: true",
+              "description": "",
               "label": "repeated",
               "type": "EventRuleCondition",
               "longType": "EventRuleCondition",
@@ -226,7 +226,7 @@
             },
             {
               "name": "conditions_policy",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "ConditionsPolicy",
               "longType": "CreateEventRuleRequest.ConditionsPolicy",
@@ -238,7 +238,7 @@
             },
             {
               "name": "actions",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "EventRuleActions",
               "longType": "EventRuleActions",
@@ -250,7 +250,7 @@
             },
             {
               "name": "options",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "EventRuleOptions",
               "longType": "EventRuleOptions",
@@ -262,7 +262,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -274,7 +274,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -286,7 +286,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -494,7 +494,7 @@
           "name": "EventRuleInfo",
           "longName": "EventRuleInfo",
           "fullName": "spaceone.api.monitoring.v1.EventRuleInfo",
-          "description": "",
+          "description": "{\n     \"event_rule_id\": \"er-123456789012\",\n     \"order\": 1,\n     \"conditions\": [\n     {\n     \"key\": \"description\",\n     \"value\": \"API\",\n     \"operator\": \"contain\"\n     }\n     ],\n     \"conditions_policy\": \"ALL\",\n     \"actions\": {\n     \"change_assignee\": \"user1@email.com\",\n     \"change_urgency\": \"LOW\",\n     \"change_project\": \"project-123456789012\",\n     \"add_additional_info\": {\n     \"type\": \"personal rule\"\n     },\n     \"no_notification\": true\n     },\n     \"options\": {},\n     \"scope\": \"PROJECT\",\n     \"project_id\": \"project-123456789012\",\n     \"tags\": {},\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-02T06:02:31.517Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -674,7 +674,7 @@
           "name": "EventRuleQuery",
           "longName": "EventRuleQuery",
           "fullName": "spaceone.api.monitoring.v1.EventRuleQuery",
-          "description": "",
+          "description": "{\n   \"project_id\": \"project-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -682,7 +682,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -694,7 +694,7 @@
             },
             {
               "name": "event_rule_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -706,7 +706,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -718,7 +718,7 @@
             },
             {
               "name": "scope",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "EventRuleScope",
               "longType": "EventRuleQuery.EventRuleScope",
@@ -730,7 +730,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -742,7 +742,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -758,7 +758,7 @@
           "name": "EventRuleRequest",
           "longName": "EventRuleRequest",
           "fullName": "spaceone.api.monitoring.v1.EventRuleRequest",
-          "description": "",
+          "description": "{\n   \"event_rule_id\": \"er-123456789012\",\n   \"order\": 2,\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -766,7 +766,7 @@
           "fields": [
             {
               "name": "event_rule_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -778,7 +778,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -802,7 +802,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -814,7 +814,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -830,7 +830,7 @@
           "name": "EventRulesInfo",
           "longName": "EventRulesInfo",
           "fullName": "spaceone.api.monitoring.v1.EventRulesInfo",
-          "description": "",
+          "description": "{\n     \"results\": [\n     {\n     \"event_rule_id\": \"er-123456789012\",\n     \"order\": 1,\n     \"conditions\": [\n     {\n     \"key\": \"title\",\n     \"value\": \"AWS\",\n     \"operator\": \"contain\"\n     }\n     ],\n     \"conditions_policy\": \"ALL\",\n     \"actions\": {\n     \"change_assignee\": \"user2@email.com\",\n     \"change_urgency\": \"HIGH\",\n     \"add_additional_info\": {},\n     \"no_notification\": true\n     },\n     \"options\": {},\n     \"scope\": \"PROJECT\",\n     \"project_id\": \"project-123456789012\",\n     \"tags\": {},\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T06:33:58.388Z\"\n     },\n     {\n     \"event_rule_id\": \"er-123456789012\",\n     \"order\": 2,\n     \"conditions\": [\n     {\n     \"key\": \"title\",\n     \"value\": \"ELB\",\n     \"operator\": \"contain\"\n     }\n     ],\n     \"conditions_policy\": \"ALL\",\n     \"actions\": {\n     \"change_assignee\": \"user1@email.com\",\n     \"change_urgency\": \"LOW\",\n     \"change_project\": \"project-123456789012\",\n     \"add_additional_info\": {},\n     \"no_notification\": true\n     },\n     \"options\": {},\n     \"scope\": \"PROJECT\",\n     \"project_id\": \"project-123456789012\",\n     \"tags\": {},\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T06:12:30.226Z\"\n     }\n     ],\n     \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -866,7 +866,7 @@
           "name": "GetEventRuleRequest",
           "longName": "GetEventRuleRequest",
           "fullName": "spaceone.api.monitoring.v1.GetEventRuleRequest",
-          "description": "",
+          "description": "{\n   \"event_rule_id\": \"er-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -874,7 +874,7 @@
           "fields": [
             {
               "name": "event_rule_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -886,7 +886,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -898,7 +898,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -950,7 +950,7 @@
           "name": "UpdateEventRuleRequest",
           "longName": "UpdateEventRuleRequest",
           "fullName": "spaceone.api.monitoring.v1.UpdateEventRuleRequest",
-          "description": "",
+          "description": "{\n     \"event_rule_id\": \"er-123456789012\",\n     \"conditions\": [{\"key\": \"description\", \"value\": \"ELB\", \"operator\": \"contain\"}],\n     \"conditions_policy\": \"ALL\",\n     \"actions\": {\"change_assignee\": \"user2@email.com\",\n     \"change_urgency\": \"HIGH\",\n     \"change_project\": \"project-123456789012\",\n     \"add_additional_info\": {\"type\": \"personal rule\"},\n     \"no_notification\": true},\n     \"options\": {},\n     \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -958,7 +958,7 @@
           "fields": [
             {
               "name": "event_rule_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -970,7 +970,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -982,7 +982,7 @@
             },
             {
               "name": "conditions",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "EventRuleCondition",
               "longType": "EventRuleCondition",
@@ -994,7 +994,7 @@
             },
             {
               "name": "conditions_policy",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "ConditionsPolicy",
               "longType": "UpdateEventRuleRequest.ConditionsPolicy",
@@ -1006,7 +1006,7 @@
             },
             {
               "name": "actions",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "EventRuleActions",
               "longType": "EventRuleActions",
@@ -1018,7 +1018,7 @@
             },
             {
               "name": "options",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "EventRuleOptions",
               "longType": "EventRuleOptions",
@@ -1030,7 +1030,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -1042,7 +1042,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1064,7 +1064,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "desc: Creates a new EventRule. You can filter the Events to apply the EventRule by setting the input parameter `Conditions`. The method can change the Events' assignee or Project.\nrequest_example: \u003e-\n{\n\"conditions\": [{\"key\": \"description\", \"value\": \"API\", \"operator\": \"contain\"}],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\"change_assignee\": \"user1@email.com\",\n\"change_urgency\": \"LOW\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {\"type\": \"personal rule\"},\n\"no_notification\": true},\n\"options\": {},\n\"project_id\": \"project-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 1,\n\"conditions\": [\n{\n\"key\": \"description\",\n\"value\": \"API\",\n\"operator\": \"contain\"\n}\n],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\n\"change_assignee\": \"user1@email.com\",\n\"change_urgency\": \"LOW\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {\n\"type\": \"personal rule\"\n},\n\"no_notification\": true\n},\n\"options\": {},\n\"scope\": \"PROJECT\",\n\"project_id\": \"project-123456789012\",\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-02T06:02:31.517Z\"\n}",
+              "description": "Creates a new EventRule. You can filter the Events to apply the EventRule by setting the input parameter `Conditions`. The method can change the Events' assignee or Project.",
               "requestType": "CreateEventRuleRequest",
               "requestLongType": "CreateEventRuleRequest",
               "requestFullType": "spaceone.api.monitoring.v1.CreateEventRuleRequest",
@@ -1087,7 +1087,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Changes a priority order between EventRules to apply. EventRules are filtered by the order configured.\nrequest_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"conditions\": [{\"key\": \"description\", \"value\": \"ELB\", \"operator\": \"contain\"}],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\"change_assignee\": \"user2@email.com\",\n\"change_urgency\": \"HIGH\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {\"type\": \"personal rule\"},\n\"no_notification\": true},\n\"options\": {},\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 2,\n\"conditions\": [\n{\n\"key\": \"description\",\n\"value\": \"ELB\",\n\"operator\": \"contain\"\n}\n],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\n\"change_assignee\": \"user2@email.com\",\n\"change_urgency\": \"HIGH\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {\n\"type\": \"personal rule\"\n},\n\"no_notification\": true\n},\n\"options\": {},\n\"scope\": \"PROJECT\",\n\"project_id\": \"project-123456789012\",\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T06:02:31.517Z\"\n}",
+              "description": "Changes a priority order between EventRules to apply. EventRules are filtered by the order configured.",
               "requestType": "UpdateEventRuleRequest",
               "requestLongType": "UpdateEventRuleRequest",
               "requestFullType": "spaceone.api.monitoring.v1.UpdateEventRuleRequest",
@@ -1110,7 +1110,7 @@
             },
             {
               "name": "change_order",
-              "description": "desc: Updates a specific EventRule. You can make changes in EventRule settings.\nrequest_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 2,\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 2,\n\"conditions\": [\n{\n\"key\": \"description\",\n\"value\": \"API\",\n\"operator\": \"contain\"\n}\n],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\n\"change_assignee\": \"user1@email.com\",\n\"change_urgency\": \"LOW\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {\n\"type\": \"personal rule\"\n},\n\"no_notification\": true\n},\n\"options\": {},\n\"scope\": \"PROJECT\",\n\"project_id\": \"project-123456789012\",\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-02T06:02:31.517Z\"\n}",
+              "description": "Updates a specific EventRule. You can make changes in EventRule settings.",
               "requestType": "ChangeEventRuleOrderRequest",
               "requestLongType": "ChangeEventRuleOrderRequest",
               "requestFullType": "spaceone.api.monitoring.v1.ChangeEventRuleOrderRequest",
@@ -1133,7 +1133,7 @@
             },
             {
               "name": "delete",
-              "description": "desc: Deletes a specific EventRule. You must assign an EventRule resource to delete by specifying `event_rule_id`.\nrequest_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}",
+              "description": "Deletes a specific EventRule. You must assign an EventRule resource to delete by specifying `event_rule_id`.",
               "requestType": "EventRuleRequest",
               "requestLongType": "EventRuleRequest",
               "requestFullType": "spaceone.api.monitoring.v1.EventRuleRequest",
@@ -1156,7 +1156,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific EventRule. Prints detailed information about the EventRule.\nrequest_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 2,\n\"conditions\": [\n{\n\"key\": \"title\",\n\"value\": \"ELB\",\n\"operator\": \"contain\"\n}\n],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\n\"change_assignee\": \"user1@email.com\",\n\"change_urgency\": \"LOW\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {},\n\"no_notification\": true\n},\n\"options\": {},\n\"scope\": \"PROJECT\",\n\"project_id\": \"project-123456789012\",\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T06:12:30.226Z\"\n}",
+              "description": "Gets a specific EventRule. Prints detailed information about the EventRule.",
               "requestType": "GetEventRuleRequest",
               "requestLongType": "GetEventRuleRequest",
               "requestFullType": "spaceone.api.monitoring.v1.GetEventRuleRequest",
@@ -1179,7 +1179,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all EventRules. You can use a query to get a filtered list of EventRules. For example, you can adjust the scope of the list to a certain Project or Domain.\nrequest_example: \u003e-\n{\n\"project_id\": \"project-123456789012\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 1,\n\"conditions\": [\n{\n\"key\": \"title\",\n\"value\": \"AWS\",\n\"operator\": \"contain\"\n}\n],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\n\"change_assignee\": \"user2@email.com\",\n\"change_urgency\": \"HIGH\",\n\"add_additional_info\": {},\n\"no_notification\": true\n},\n\"options\": {},\n\"scope\": \"PROJECT\",\n\"project_id\": \"project-123456789012\",\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T06:33:58.388Z\"\n},\n{\n\"event_rule_id\": \"er-123456789012\",\n\"order\": 2,\n\"conditions\": [\n{\n\"key\": \"title\",\n\"value\": \"ELB\",\n\"operator\": \"contain\"\n}\n],\n\"conditions_policy\": \"ALL\",\n\"actions\": {\n\"change_assignee\": \"user1@email.com\",\n\"change_urgency\": \"LOW\",\n\"change_project\": \"project-123456789012\",\n\"add_additional_info\": {},\n\"no_notification\": true\n},\n\"options\": {},\n\"scope\": \"PROJECT\",\n\"project_id\": \"project-123456789012\",\n\"tags\": {},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T06:12:30.226Z\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all EventRules. You can use a query to get a filtered list of EventRules. For example, you can adjust the scope of the list to a certain Project or Domain.",
               "requestType": "EventRuleQuery",
               "requestLongType": "EventRuleQuery",
               "requestFullType": "spaceone.api.monitoring.v1.EventRuleQuery",

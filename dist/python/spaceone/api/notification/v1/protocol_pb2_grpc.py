@@ -67,467 +67,56 @@ class ProtocolServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """
-        desc: Creates a new Protocol. When creating a protocol, you must specify the plugins provided from the repository, and you must also set the credentials to be set in the plugin if necessary.
-        request_example: >-
-        {
-        "name": "Email",
-        "plugin_info": {
-        "plugin_id": "plugin-email-noti-protocol",
-        "version": "1.0.1",
-        "options": {},
-        "secret_id": "secret-123546789012",
-        "metadata": {
-        "data": {
-        "schema": {
-        "properties": {
-        "email": {
-        "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-        "examples": [
-        "user1@test.com, user2@test.com"
-        ],
-        "minLength": 10.0,
-        "description": "Email address to receive notifications",
-        "type": "string",
-        "title": "Email Address"
-        }
-        },
-        "required": [
-        "email"
-        ],
-        "type": "object"
-        }
-        },
-        "data_type": "PLAIN_TEXT"
-        },
-        "upgrade_mode": "AUTO"
-        },
-        "tags": {}
-        }
-        response_example: >-
-        {
-        "protocol_id": "protocol-123546789012",
-        "name": "Email",
-        "state": "ENABLED",
-        "protocol_type": "EXTERNAL",
-        "capability": {
-        "supported_schema": [
-        "email_smtp"
-        ]
-        },
-        "plugin_info": {
-        "plugin_id": "plugin-email-noti-protocol",
-        "version": "1.0.1",
-        "options": {},
-        "secret_id": "secret-123546789012",
-        "metadata": {
-        "data": {
-        "schema": {
-        "properties": {
-        "email": {
-        "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-        "examples": [
-        "user1@test.com, user2@test.com"
-        ],
-        "minLength": 10.0,
-        "description": "Email address to receive notifications",
-        "type": "string",
-        "title": "Email Address"
-        }
-        },
-        "required": [
-        "email"
-        ],
-        "type": "object"
-        }
-        },
-        "data_type": "PLAIN_TEXT"
-        },
-        "upgrade_mode": "AUTO"
-        },
-        "tags": {},
-        "domain_id": "domain-123546789012",
-        "created_at": "2022-01-01T07:55:57.043Z"
-        }
+        """Creates a new Protocol. When creating a protocol, you must specify the plugins provided from the repository, and you must also set the credentials to be set in the plugin if necessary.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Updates a specific Protocol. The method `update` can update the name and tags only. If you want to update the plugin version or options, you can use `update_plugin` method.
-        request_example: >-
-        {
-        "protocol_id": "protocol-123456789012",
-        "name": "Email-test",
-        "tags": {
-        "type": "test"
-        }
-        }
-        response_example: >-
-        {
-        "protocol_id": "protocol-123546789012",
-        "name": "Email-test",
-        "state": "ENABLED",
-        "protocol_type": "EXTERNAL",
-        "capability": {
-        "supported_schema": [
-        "email_smtp"
-        ]
-        },
-        "plugin_info": {
-        "plugin_id": "plugin-email-noti-protocol",
-        "version": "1.0.1",
-        "options": {},
-        "secret_id": "secret-123546789012",
-        "metadata": {
-        "data": {
-        "schema": {
-        "properties": {
-        "email": {
-        "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-        "examples": [
-        "user1@test.com, user2@test.com"
-        ],
-        "minLength": 10.0,
-        "description": "Email address to receive notifications",
-        "type": "string",
-        "title": "Email Address"
-        }
-        },
-        "required": [
-        "email"
-        ],
-        "type": "object"
-        }
-        },
-        "data_type": "PLAIN_TEXT"
-        },
-        "upgrade_mode": "AUTO"
-        },
-        "tags": {
-        "type": "test"
-        },
-        "domain_id": "domain-123546789012",
-        "created_at": "2022-01-01T07:55:57.043Z"
-        }
+        """Updates a specific Protocol. The method `update` can update the name and tags only. If you want to update the plugin version or options, you can use `update_plugin` method.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update_plugin(self, request, context):
-        """
-        desc: Updates a plugin for a Protocol. It is usually used when redeploying a plugin to a new version.
-        request_example: >-
-        {
-        "protocol_id": "protocol-123456789012",
-        "version": "1.0.2",
-        "options": {}
-        }
-        response_example: >-
-        {
-        "protocol_id": "protocol-123546789012",
-        "name": "Email-test",
-        "state": "ENABLED",
-        "protocol_type": "EXTERNAL",
-        "capability": {
-        "supported_schema": [
-        "email_smtp"
-        ]
-        },
-        "plugin_info": {
-        "plugin_id": "plugin-email-noti-protocol",
-        "version": "1.0.2",
-        "options": {},
-        "secret_id": "secret-123546789012",
-        "metadata": {
-        "data": {
-        "schema": {
-        "properties": {
-        "email": {
-        "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-        "examples": [
-        "user1@test.com, user2@test.com"
-        ],
-        "minLength": 10.0,
-        "description": "Email address to receive notifications",
-        "type": "string",
-        "title": "Email Address"
-        }
-        },
-        "required": [
-        "email"
-        ],
-        "type": "object"
-        }
-        },
-        "data_type": "PLAIN_TEXT"
-        },
-        "upgrade_mode": "AUTO"
-        },
-        "tags": {
-        "type": "test"
-        },
-        "domain_id": "domain-123546789012",
-        "created_at": "2022-01-01T07:55:57.043Z"
-        }
+        """Updates a plugin for a Protocol. It is usually used when redeploying a plugin to a new version.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def enable(self, request, context):
-        """
-        desc: Enables a specific Protocol. If the Protocol is enabled, the Protocol can be used and the Notification can be dispatched.
-        request_example: >-
-        {
-        "protocol_id": "protocol-123456789012"
-        }
-        response_example: >-
-        {
-        "protocol_id": "protocol-123546789012",
-        "name": "Email-test",
-        "state": "ENABLED",
-        "protocol_type": "EXTERNAL",
-        "capability": {
-        "supported_schema": [
-        "email_smtp"
-        ]
-        },
-        "plugin_info": {
-        "plugin_id": "plugin-email-noti-protocol",
-        "version": "1.0.2",
-        "options": {},
-        "secret_id": "secret-123546789012",
-        "metadata": {
-        "data": {
-        "schema": {
-        "properties": {
-        "email": {
-        "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-        "examples": [
-        "user1@test.com, user2@test.com"
-        ],
-        "minLength": 10.0,
-        "description": "Email address to receive notifications",
-        "type": "string",
-        "title": "Email Address"
-        }
-        },
-        "required": [
-        "email"
-        ],
-        "type": "object"
-        }
-        },
-        "data_type": "PLAIN_TEXT"
-        },
-        "upgrade_mode": "AUTO"
-        },
-        "tags": {
-        "type": "test"
-        },
-        "domain_id": "domain-123546789012",
-        "created_at": "2022-01-01T07:55:57.043Z"
-        }
+        """Enables a specific Protocol. If the Protocol is enabled, the Protocol can be used and the Notification can be dispatched.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def disable(self, request, context):
-        """
-        desc: Disables a specific Protocol. If a Protocol is disabled, the Notification will not be dispatched, even if it is created.
-        request_example: >-
-        {
-        "protocol_id": "protocol-123456789012"
-        }
-        response_example: >-
-        {
-        "protocol_id": "protocol-123546789012",
-        "name": "Email-test",
-        "state": "DISABLED",
-        "protocol_type": "EXTERNAL",
-        "capability": {
-        "supported_schema": [
-        "email_smtp"
-        ]
-        },
-        "plugin_info": {
-        "plugin_id": "plugin-email-noti-protocol",
-        "version": "1.0.2",
-        "options": {},
-        "secret_id": "secret-123546789012",
-        "metadata": {
-        "data": {
-        "schema": {
-        "properties": {
-        "email": {
-        "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-        "examples": [
-        "user1@test.com, user2@test.com"
-        ],
-        "minLength": 10.0,
-        "description": "Email address to receive notifications",
-        "type": "string",
-        "title": "Email Address"
-        }
-        },
-        "required": [
-        "email"
-        ],
-        "type": "object"
-        }
-        },
-        "data_type": "PLAIN_TEXT"
-        },
-        "upgrade_mode": "AUTO"
-        },
-        "tags": {
-        "type": "test"
-        },
-        "domain_id": "domain-123546789012",
-        "created_at": "2022-01-01T07:55:57.043Z"
-        }
+        """Disables a specific Protocol. If a Protocol is disabled, the Notification will not be dispatched, even if it is created.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """
-        desc: Deletes a specific Protocol. If there exists a channel using the Protocol, it cannot be deleted.
-        request_example: >-
-        {
-        "protocol_id": "protocol-123456789012"
-        }
+        """Deletes a specific Protocol. If there exists a channel using the Protocol, it cannot be deleted.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific Protocol. Prints detailed information about the Protocol.
-        request_example: >-
-        {
-        "protocol_id": "protocol-123456789012"
-        }
-        response_example: >-
-        {
-        "protocol_id": "protocol-123546789012",
-        "name": "Email-test",
-        "state": "DISABLED",
-        "protocol_type": "EXTERNAL",
-        "capability": {
-        "supported_schema": [
-        "email_smtp"
-        ]
-        },
-        "plugin_info": {
-        "plugin_id": "plugin-email-noti-protocol",
-        "version": "1.0.2",
-        "options": {},
-        "secret_id": "secret-123546789012",
-        "metadata": {
-        "data": {
-        "schema": {
-        "properties": {
-        "email": {
-        "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-        "examples": [
-        "user1@test.com, user2@test.com"
-        ],
-        "minLength": 10.0,
-        "description": "Email address to receive notifications",
-        "type": "string",
-        "title": "Email Address"
-        }
-        },
-        "required": [
-        "email"
-        ],
-        "type": "object"
-        }
-        },
-        "data_type": "PLAIN_TEXT"
-        },
-        "upgrade_mode": "AUTO"
-        },
-        "tags": {
-        "type": "test"
-        },
-        "domain_id": "domain-123546789012",
-        "created_at": "2022-01-01T07:55:57.043Z"
-        }
+        """Gets a specific Protocol. Prints detailed information about the Protocol.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of Protocols. You can use a query to get a filtered list of Protocols.
-        request_example: >-
-        {
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results":[
-        {
-        "protocol_id":"protocol-123456789012",
-        "name":"Email",
-        "state":"ENABLED",
-        "protocol_type":"EXTERNAL",
-        "capability":{
-        "supported_schema":[
-        "email_smtp"
-        ]
-        },
-        "plugin_info":{
-        "plugin_id":"plugin-email-noti-protocol",
-        "version":"1.0.1",
-        "options":{
-
-        },
-        "secret_id":"secret-123456789012",
-        "metadata":{
-        "data_type":"PLAIN_TEXT",
-        "data":{
-        "schema":{
-        "properties":{
-        "email":{
-        "pattern":"^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-        "examples":[
-        "user1@test.com, user2@test.com"
-        ],
-        "minLength":10.0,
-        "description":"Email address to receive notifications",
-        "type":"string",
-        "title":"Email Address"
-        }
-        },
-        "required":[
-        "email"
-        ],
-        "type":"object"
-        }
-        }
-        },
-        "upgrade_mode":"AUTO"
-        },
-        "tags":{
-
-        },
-        "domain_id":"domain-123456789012",
-        "created_at":"2022-01-01T07:55:57.043Z"
-        }
-        ],
-        "total_count":1
-        }
+        """Gets a list of Protocols. You can use a query to get a filtered list of Protocols.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

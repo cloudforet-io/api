@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/statistics/v1/resource.proto",
-      "description": "desc: A Resource is a resource used for analysis on all microservices used in Cloudforet.",
+      "description": "A Resource is a resource used for analysis on all microservices used in Cloudforet.",
       "package": "spaceone.api.statistics.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -44,7 +44,7 @@
           "name": "ResourceStatRequest",
           "longName": "ResourceStatRequest",
           "fullName": "spaceone.api.statistics.v1.ResourceStatRequest",
-          "description": "",
+          "description": "{\n   \"aggregate\": [\n       {\"query\": {\"resource_type\": \"inventory.CloudServiceType\",\n                  \"query\": {\n                      \"filter\": [{\"k\": \"labels\", \"v\": [\"Server\"], \"o\": \"in\"},\n                                 {\"k\": \"is_primary\", \"v\": true, \"o\": \"eq\"}], \"aggregate\": [{\n                          \"group\": {\n                              \"keys\": [\n                                  {\n                                      \"key\": \"cloud_service_type_id\",\n                                      \"name\": \"cloud_service_type_id\"},\n                                  {\n                                      \"key\": \"name\",\n                                      \"name\": \"cloud_service_type\"},\n                                  {\n                                      \"key\": \"group\",\n                                      \"name\": \"cloud_service_group\"},\n                                  {\n                                      \"key\": \"provider\",\n                                      \"name\": \"provider\"},\n                                  {\n                                      \"key\": \"cloud_service_type_id\",\n                                      \"name\": \"cloud_service_type_id\"}],\n                              \"fields\": [\n                                  {\n                                      \"key\": \"tags\",\n                                      \"name\": \"tags\",\n                                      \"operator\": \"first\"},\n                                  {\n                                      \"key\": \"labels\",\n                                      \"name\": \"labels\",\n                                      \"operator\": \"first\"}]}}]}}},\n       {\"join\": {\"resource_type\": \"inventory.CloudService\", \"query\": {\"filter\": [\n           {\"k\": \"ref_cloud_service_type.cloud_service_type_id\",\n            \"v\": [\"cloud-svc-type-58c926b19aca\", \"cloud-svc-type-c7e5bc38d911\",\n                  \"cloud-svc-type-8dd4d7a13b95\", \"cloud-svc-type-719e705cb529\",\n                  \"cloud-svc-type-50bd62cf6e0e\"], \"o\": \"in\"}], \"aggregate\": [{\"group\": {\n           \"keys\": [{\"key\": \"cloud_service_type\", \"name\": \"cloud_service_type\"},\n                    {\"key\": \"cloud_service_group\", \"name\": \"cloud_service_group\"},\n                    {\"key\": \"provider\", \"name\": \"provider\"}],\n           \"fields\": [{\"name\": \"count\", \"operator\": \"count\"}]}}]},\n                 \"keys\": [\"cloud_service_type\", \"cloud_service_group\", \"provider\"]}},\n       {\"fill_na\": {\"data\": {\"count\": 0.0}}}, {\"formula\": {\"query\": \"count \u003e 0\"}},\n       {\"sort\": {\"key\": \"count\", \"desc\": true}}],\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -52,7 +52,7 @@
           "fields": [
             {
               "name": "aggregate",
-              "description": "is_required: true",
+              "description": "",
               "label": "repeated",
               "type": "StatAggregate",
               "longType": "StatAggregate",
@@ -64,7 +64,7 @@
             },
             {
               "name": "page",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "StatPage",
               "longType": "StatPage",
@@ -76,7 +76,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -220,7 +220,7 @@
           "fields": [
             {
               "name": "resource_type",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -232,7 +232,7 @@
             },
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -244,7 +244,7 @@
             },
             {
               "name": "extend_data",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -268,7 +268,7 @@
           "fields": [
             {
               "name": "data",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -328,7 +328,7 @@
           "fields": [
             {
               "name": "resource_type",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -340,7 +340,7 @@
             },
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -352,7 +352,7 @@
             },
             {
               "name": "extend_data",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -364,7 +364,7 @@
             },
             {
               "name": "type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "JoinType",
               "longType": "StatAggregateJoin.JoinType",
@@ -376,7 +376,7 @@
             },
             {
               "name": "keys",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -400,7 +400,7 @@
           "fields": [
             {
               "name": "resource_type",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -412,7 +412,7 @@
             },
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -424,7 +424,7 @@
             },
             {
               "name": "extend_data",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -448,7 +448,7 @@
           "fields": [
             {
               "name": "key",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -460,7 +460,7 @@
             },
             {
               "name": "desc",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -472,7 +472,7 @@
             },
             {
               "name": "keys",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "SortKey",
               "longType": "SortKey",
@@ -496,7 +496,7 @@
           "fields": [
             {
               "name": "start",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -508,7 +508,7 @@
             },
             {
               "name": "limit",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -530,7 +530,7 @@
           "methods": [
             {
               "name": "stat",
-              "description": "desc: Enables data preprocessing of different services. Although limited, it is possible to create not only basic queries but also data suitable for users' needs, such as joins between two tables created by the query, handling missing values, and sorting.\nrequest_example: \u003e-\n{\n\"aggregate\": [\n{\"query\": {\"resource_type\": \"inventory.CloudServiceType\",\n\"query\": {\n\"filter\": [{\"k\": \"labels\", \"v\": [\"Server\"], \"o\": \"in\"},\n{\"k\": \"is_primary\", \"v\": true, \"o\": \"eq\"}], \"aggregate\": [{\n\"group\": {\n\"keys\": [\n{\n\"key\": \"cloud_service_type_id\",\n\"name\": \"cloud_service_type_id\"},\n{\n\"key\": \"name\",\n\"name\": \"cloud_service_type\"},\n{\n\"key\": \"group\",\n\"name\": \"cloud_service_group\"},\n{\n\"key\": \"provider\",\n\"name\": \"provider\"},\n{\n\"key\": \"cloud_service_type_id\",\n\"name\": \"cloud_service_type_id\"}],\n\"fields\": [\n{\n\"key\": \"tags\",\n\"name\": \"tags\",\n\"operator\": \"first\"},\n{\n\"key\": \"labels\",\n\"name\": \"labels\",\n\"operator\": \"first\"}]}}]}}},\n{\"join\": {\"resource_type\": \"inventory.CloudService\", \"query\": {\"filter\": [\n{\"k\": \"ref_cloud_service_type.cloud_service_type_id\",\n\"v\": [\"cloud-svc-type-58c926b19aca\", \"cloud-svc-type-c7e5bc38d911\",\n\"cloud-svc-type-8dd4d7a13b95\", \"cloud-svc-type-719e705cb529\",\n\"cloud-svc-type-50bd62cf6e0e\"], \"o\": \"in\"}], \"aggregate\": [{\"group\": {\n\"keys\": [{\"key\": \"cloud_service_type\", \"name\": \"cloud_service_type\"},\n{\"key\": \"cloud_service_group\", \"name\": \"cloud_service_group\"},\n{\"key\": \"provider\", \"name\": \"provider\"}],\n\"fields\": [{\"name\": \"count\", \"operator\": \"count\"}]}}]},\n\"keys\": [\"cloud_service_type\", \"cloud_service_group\", \"provider\"]}},\n{\"fill_na\": {\"data\": {\"count\": 0.0}}}, {\"formula\": {\"query\": \"count \u003e 0\"}},\n{\"sort\": {\"key\": \"count\", \"desc\": true}}],\n\"domain_id\": \"domain-58010aa2e451\"\n}\nresponse_example: \u003e-\n{\n\"total_count\": 5.0,\n\"results\": [\n{\n\"labels\": [\n\"Compute\",\n\"Server\"\n],\n\"cloud_service_type_id\": \"cloud-svc-type-58c926b19aca\",\n\"cloud_service_type\": \"Instance\",\n\"count\": 44.0,\n\"tags\": [\n{\n\"key\": \"spaceone:icon\",\n\"value\": \"https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/aws-ec2.svg\"\n}\n],\n\"provider\": \"aws\",\n\"cloud_service_group\": \"EC2\"\n},\n{\n\"tags\": [\n{\n\"key\": \"spaceone:icon\",\n\"value\": \"https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/openstack/openstack_compute.svg\"\n},\n{\n\"key\": \"spaceone:display_name\",\n\"value\": \"Instance\"\n}\n],\n\"cloud_service_group\": \"Compute\",\n\"cloud_service_type\": \"Instance\",\n\"provider\": \"openstack\",\n\"count\": 12.0,\n\"labels\": [\n\"Compute\",\n\"Server\"\n],\n\"cloud_service_type_id\": \"cloud-svc-type-50bd62cf6e0e\"\n},\n{\n\"cloud_service_type\": \"Node\",\n\"count\": 8.0,\n\"provider\": \"kubernetes\",\n\"cloud_service_type_id\": \"cloud-svc-type-719e705cb529\",\n\"cloud_service_group\": \"Cluster\",\n\"tags\": [\n{\n\"value\": \"https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/kubernetes/node.svg\",\n\"key\": \"spaceone:icon\"\n}\n],\n\"labels\": [\n\"Compute\",\n\"Server\",\n\"Container\"\n]\n},\n{\n\"cloud_service_type_id\": \"cloud-svc-type-8dd4d7a13b95\",\n\"cloud_service_type\": \"Instance\",\n\"cloud_service_group\": \"ComputeEngine\",\n\"labels\": [\n\"Compute\",\n\"Server\"\n],\n\"tags\": [\n{\n\"key\": \"spaceone:icon\",\n\"value\": \"https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/google_cloud/Compute_Engine.svg\"\n}\n],\n\"count\": 5.0,\n\"provider\": \"google_cloud\"\n},\n{\n\"tags\": [\n{\n\"value\": \"https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/azure-vm.svg\",\n\"key\": \"spaceone:icon\"\n}\n],\n\"cloud_service_type\": \"VirtualMachine\",\n\"cloud_service_group\": \"Compute\",\n\"count\": 2.0,\n\"provider\": \"azure\",\n\"cloud_service_type_id\": \"cloud-svc-type-c7e5bc38d911\",\n\"labels\": [\n\"Compute\",\n\"Server\"\n]\n}\n]\n}",
+              "description": "Enables data preprocessing of different services. Although limited, it is possible to create not only basic queries but also data suitable for users' needs, such as joins between two tables created by the query, handling missing values, and sorting.",
               "requestType": "ResourceStatRequest",
               "requestLongType": "ResourceStatRequest",
               "requestFullType": "spaceone.api.statistics.v1.ResourceStatRequest",

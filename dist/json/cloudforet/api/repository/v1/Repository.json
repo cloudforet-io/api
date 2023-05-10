@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/repository/v1/repository.proto",
-      "description": "desc: A Repository is a repository storing data of deployable plugins.",
+      "description": "A Repository is a repository storing data of deployable plugins.",
       "package": "spaceone.api.repository.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -15,7 +15,7 @@
           "name": "CreateRepositoryRequest",
           "longName": "CreateRepositoryRequest",
           "fullName": "spaceone.api.repository.v1.CreateRepositoryRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"Local\",\n   \"repository_type\": \"local\",\n   \"endpoint\": \"grpc+ssl://local-url:443\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -23,7 +23,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -35,7 +35,7 @@
             },
             {
               "name": "repository_type",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -47,7 +47,7 @@
             },
             {
               "name": "endpoint",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -59,7 +59,7 @@
             },
             {
               "name": "version",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -71,7 +71,7 @@
             },
             {
               "name": "secret_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -83,7 +83,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -99,7 +99,7 @@
           "name": "GetRepositoryRequest",
           "longName": "GetRepositoryRequest",
           "fullName": "spaceone.api.repository.v1.GetRepositoryRequest",
-          "description": "",
+          "description": "{\n   \"repository_id\": \"repo-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -107,7 +107,7 @@
           "fields": [
             {
               "name": "repository_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -119,7 +119,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -131,7 +131,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -147,7 +147,7 @@
           "name": "RepositoriesInfo",
           "longName": "RepositoriesInfo",
           "fullName": "spaceone.api.repository.v1.RepositoriesInfo",
-          "description": "",
+          "description": "{\n   \"results\": [\n       {\n           \"repository_id\": \"repo-123456789012\",\n           \"name\": \"Local-repo\",\n           \"repository_type\": \"local\",\n           \"endpoint\": \"grpc+ssl://local-url:443\",\n           \"created_at\": \"2022-01-01T02:26:29.081Z\"\n       }\n   ],\n   \"total_count\": 1\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -183,7 +183,7 @@
           "name": "RepositoryInfo",
           "longName": "RepositoryInfo",
           "fullName": "spaceone.api.repository.v1.RepositoryInfo",
-          "description": "",
+          "description": "{\n   \"repository_id\": \"repo-123456789012\",\n   \"name\": \"Local\",\n   \"repository_type\": \"local\",\n   \"endpoint\": \"grpc+ssl://local-url:443\",\n   \"created_at\": \"2022-01-01T02:27:02.924Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -279,7 +279,7 @@
           "name": "RepositoryQuery",
           "longName": "RepositoryQuery",
           "fullName": "spaceone.api.repository.v1.RepositoryQuery",
-          "description": "",
+          "description": "{\n   \"query\": {},\n   \"repository_id\": \"repo-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -287,7 +287,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -299,7 +299,7 @@
             },
             {
               "name": "repository_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -311,7 +311,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -323,7 +323,7 @@
             },
             {
               "name": "repository_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -335,7 +335,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -351,7 +351,7 @@
           "name": "RepositoryRequest",
           "longName": "RepositoryRequest",
           "fullName": "spaceone.api.repository.v1.RepositoryRequest",
-          "description": "",
+          "description": "{\n   \"repository_id\": \"repo-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -359,7 +359,7 @@
           "fields": [
             {
               "name": "repository_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -371,7 +371,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -395,7 +395,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -407,7 +407,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -423,7 +423,7 @@
           "name": "UpdateRepositoryRequest",
           "longName": "UpdateRepositoryRequest",
           "fullName": "spaceone.api.repository.v1.UpdateRepositoryRequest",
-          "description": "",
+          "description": "{\n   \"repository_id\": \"repo-123456789012\",\n   \"name\": \"Local-repo\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -431,7 +431,7 @@
           "fields": [
             {
               "name": "repository_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -443,7 +443,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -455,7 +455,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -477,7 +477,7 @@
           "methods": [
             {
               "name": "register",
-              "description": "desc: Registers a Repository. The parameter `name` can only include alphabets, numbers, and hyphens(-). The parameter `repository_type` can be either `local` or `remote`. The parameter `endpoint` is needed if the `repository_type` is `remote`.\nrequest_example: \u003e-\n{\n\"name\": \"Local\",\n\"repository_type\": \"local\",\n\"endpoint\": \"grpc+ssl://local-url:443\"\n}\nresponse_example: \u003e-\n{\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local\",\n\"repository_type\": \"local\",\n\"endpoint\": \"grpc+ssl://local-url:443\",\n\"created_at\": \"2022-01-01T02:27:02.924Z\"\n}",
+              "description": "Registers a Repository. The parameter `name` can only include alphabets, numbers, and hyphens(-). The parameter `repository_type` can be either `local` or `remote`. The parameter `endpoint` is needed if the `repository_type` is `remote`.",
               "requestType": "CreateRepositoryRequest",
               "requestLongType": "CreateRepositoryRequest",
               "requestFullType": "spaceone.api.repository.v1.CreateRepositoryRequest",
@@ -500,7 +500,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific Repository registered. You must specify the `repository_id` of the Repository to update. You can make changes in Repository settings, including `name`.\nrequest_example: \u003e-\n{\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local-repo\"\n}\nresponse_example: \u003e-\n{\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local-repo\",\n\"repository_type\": \"local\",\n\"endpoint\": \"grpc+ssl://local-url:443\",\n\"created_at\": \"2022-01-01T02:27:02.924Z\"\n}",
+              "description": "Updates a specific Repository registered. You must specify the `repository_id` of the Repository to update. You can make changes in Repository settings, including `name`.",
               "requestType": "UpdateRepositoryRequest",
               "requestLongType": "UpdateRepositoryRequest",
               "requestFullType": "spaceone.api.repository.v1.UpdateRepositoryRequest",
@@ -523,7 +523,7 @@
             },
             {
               "name": "deregister",
-              "description": "desc: Deregisters and deletes a specific Repository. You must specify the `repository_id` of the Repository to deregister.\nrequest_example: \u003e-\n{\n\"repository_id\": \"repo-123456789012\"\n}",
+              "description": "Deregisters and deletes a specific Repository. You must specify the `repository_id` of the Repository to deregister.",
               "requestType": "RepositoryRequest",
               "requestLongType": "RepositoryRequest",
               "requestFullType": "spaceone.api.repository.v1.RepositoryRequest",
@@ -546,7 +546,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific Repository. Prints detailed information about the Repository, including  `name`, `repository_type`, and `endpoint`.\nrequest_example: \u003e-\n{\n\"repository_id\": \"repo-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local-repo\",\n\"repository_type\": \"local\",\n\"endpoint\": \"grpc+ssl://local-url:443\",\n\"created_at\": \"2022-01-01T02:26:29.081Z\"\n}",
+              "description": "Gets a specific Repository. Prints detailed information about the Repository, including  `name`, `repository_type`, and `endpoint`.",
               "requestType": "GetRepositoryRequest",
               "requestLongType": "GetRepositoryRequest",
               "requestFullType": "spaceone.api.repository.v1.GetRepositoryRequest",
@@ -569,7 +569,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all Repositories regardless of `domain`. You can use a query to get a filtered list of Repositories.\nrequest_example: \u003e-\n{\n\"query\": {},\n\"repository_id\": \"repo-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Local-repo\",\n\"repository_type\": \"local\",\n\"endpoint\": \"grpc+ssl://local-url:443\",\n\"created_at\": \"2022-01-01T02:26:29.081Z\"\n}\n],\n\"total_count\": 1\n}",
+              "description": "Gets a list of all Repositories regardless of `domain`. You can use a query to get a filtered list of Repositories.",
               "requestType": "RepositoryQuery",
               "requestLongType": "RepositoryQuery",
               "requestFullType": "spaceone.api.repository.v1.RepositoryQuery",

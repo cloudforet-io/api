@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/notification/v1/notification_usage.proto",
-      "description": "desc: A NotificationUsage is a resource indicating daily Protocol usage. The limit set by the resource Quota is applied based on the NotificationUsage.",
+      "description": "A NotificationUsage is a resource indicating daily Protocol usage. The limit set by the resource Quota is applied based on the NotificationUsage.",
       "package": "spaceone.api.notification.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -23,7 +23,7 @@
           "fields": [
             {
               "name": "protocol_id",
-              "description": "desc: The ID of Protocol.",
+              "description": "The ID of Protocol.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -35,7 +35,7 @@
             },
             {
               "name": "usage_date",
-              "description": "desc: Usage Date.",
+              "description": "Usage Date.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -47,7 +47,7 @@
             },
             {
               "name": "usage_month",
-              "description": "desc: Usage Month.",
+              "description": "Usage Month.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -59,7 +59,7 @@
             },
             {
               "name": "count",
-              "description": "desc: Usage count using actual notifications.",
+              "description": "Usage count using actual notifications.",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -71,7 +71,7 @@
             },
             {
               "name": "fail_count",
-              "description": "desc: Fail count when dispatching notifications.",
+              "description": "Fail count when dispatching notifications.",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -83,7 +83,7 @@
             },
             {
               "name": "domain_id",
-              "description": "desc: The ID of domain",
+              "description": "The ID of domain",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -99,7 +99,7 @@
           "name": "NotificationUsageQuery",
           "longName": "NotificationUsageQuery",
           "fullName": "spaceone.api.notification.v1.NotificationUsageQuery",
-          "description": "",
+          "description": "{\n   \"query\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -107,7 +107,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false\ndesc: Query format provided by SpaceONE. Please check the link for more information.",
+              "description": "Query format provided by SpaceONE. Please check the link for more information.\n+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -119,7 +119,7 @@
             },
             {
               "name": "protocol_id",
-              "description": "is_required: false\ndesc: The ID of Protocol.",
+              "description": "The ID of Protocol.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -131,7 +131,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true\ndesc: The ID of domain.",
+              "description": "The ID of domain.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -155,7 +155,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true\ndesc: Statistics Query format provided by SpaceONE. Please check the link for more information.",
+              "description": "Statistics Query format provided by SpaceONE. Please check the link for more information.",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -167,7 +167,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true\ndesc: The ID of domain.",
+              "description": "The ID of domain.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -183,7 +183,7 @@
           "name": "NotificationUsagesInfo",
           "longName": "NotificationUsagesInfo",
           "fullName": "spaceone.api.notification.v1.NotificationUsagesInfo",
-          "description": "",
+          "description": "{\n   \"results\": [\n       {\n           \"protocol_id\": \"protocol-123456789012\",\n           \"usage_date\": \"08\",\n           \"usage_month\": \"2022-05\",\n           \"count\": 2,\n           \"domain_id\": \"domain-123456789012\"\n       },\n       {\n           \"protocol_id\": \"protocol-123456789012\",\n           \"usage_date\": \"18\",\n           \"usage_month\": \"2022-05\",\n           \"count\": 7,\n           \"domain_id\": \"domain-123456789012\"\n       }\n   ],\n   \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -191,7 +191,7 @@
           "fields": [
             {
               "name": "results",
-              "description": "desc: List of queried Notification Usage.",
+              "description": "List of queried Notification Usage.",
               "label": "repeated",
               "type": "NotificationUsageInfo",
               "longType": "NotificationUsageInfo",
@@ -203,7 +203,7 @@
             },
             {
               "name": "total_count",
-              "description": "desc: Total counts of queried Notification Usage.",
+              "description": "Total counts of queried Notification Usage.",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -225,7 +225,7 @@
           "methods": [
             {
               "name": "list",
-              "description": "desc: Gets a list of all NotificationUsages. You can use a query to get a filtered list of Notification Usages.\nrequest_example: \u003e-\n{\n\"query\": {}\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"protocol_id\": \"protocol-123456789012\",\n\"usage_date\": \"08\",\n\"usage_month\": \"2022-05\",\n\"count\": 2,\n\"domain_id\": \"domain-123456789012\"\n},\n{\n\"protocol_id\": \"protocol-123456789012\",\n\"usage_date\": \"18\",\n\"usage_month\": \"2022-05\",\n\"count\": 7,\n\"domain_id\": \"domain-123456789012\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all NotificationUsages. You can use a query to get a filtered list of Notification Usages.",
               "requestType": "NotificationUsageQuery",
               "requestLongType": "NotificationUsageQuery",
               "requestFullType": "spaceone.api.notification.v1.NotificationUsageQuery",

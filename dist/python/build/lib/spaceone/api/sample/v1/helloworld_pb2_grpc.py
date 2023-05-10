@@ -6,7 +6,7 @@ from spaceone.api.sample.v1 import helloworld_pb2 as spaceone_dot_api_dot_sample
 
 
 class HelloWorldStub(object):
-    """desc: The greeting service definition.
+    """The greeting service definition.
     """
 
     def __init__(self, channel):
@@ -23,11 +23,11 @@ class HelloWorldStub(object):
 
 
 class HelloWorldServicer(object):
-    """desc: The greeting service definition.
+    """The greeting service definition.
     """
 
     def say_hello(self, request, context):
-        """desc: Sends a greeting
+        """Sends a greeting
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -49,7 +49,7 @@ def add_HelloWorldServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class HelloWorld(object):
-    """desc: The greeting service definition.
+    """The greeting service definition.
     """
 
     @staticmethod

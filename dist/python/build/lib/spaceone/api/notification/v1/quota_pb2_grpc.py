@@ -52,122 +52,35 @@ class QuotaServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """
-        desc: Creates a new Quota limiting the use of a selected Protocol for a day or a month. If the parameter `limit` has no value, it will be deemed unlimited. If a Protocol has not set a Quota, the default Quota set in the Config will be applied.
-        request_example: >-
-        {
-        "protocol_id": "protocol-123456789012",
-        "limit": {
-        "day": 5.0,
-        "month": 7.0
-        }
-        }
-        response_example: >-
-        {
-        "quota_id": "quota-123456789012",
-        "protocol_id": "protocol-123456789012",
-        "limit": {
-        "day": 5.0,
-        "month": 7.0
-        },
-        "domain_id": "domain-123456789012"
-        }
+        """Creates a new Quota limiting the use of a selected Protocol for a day or a month. If the parameter `limit` has no value, it will be deemed unlimited. If a Protocol has not set a Quota, the default Quota set in the Config will be applied.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Updates a specific Quota. You can make changes in Quota `limit`, managing the use of the Protocol.
-        request_example: >-
-        {
-        "quota_id": "quota-123456789012",
-        "limit": {
-        "day": 10.0,
-        "month": 15.0
-        }
-        }
-        response_example: >-
-        {
-        "quota_id": "quota-123456789012",
-        "protocol_id": "protocol-123456789012",
-        "limit": {
-        "day": 10.0,
-        "month": 15.0
-        },
-        "domain_id": "domain-123456789012"
-        }
+        """Updates a specific Quota. You can make changes in Quota `limit`, managing the use of the Protocol.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """
-        desc: Deletes a specific Quota. The default Quota set in the Config will be applied to the Protocol you deleted the Quota of.
-        request_example: >-
-        {
-        "quota_id": "quota-123456789012"
-        }
+        """Deletes a specific Quota. The default Quota set in the Config will be applied to the Protocol you deleted the Quota of.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """
-        desc: Gets a specific Quota. Prints detailed information about the Quota, including the `limit` and the Protocol limited by the Quota.
-        request_example: >-
-        {
-        "quota_id": "quota-123456789012"
-        }
-        response_example: >-
-        {
-        "quota_id": "quota-123456789012",
-        "protocol_id": "protocol-123456789012",
-        "limit": {
-        "day": 10.0,
-        "month": 15.0
-        },
-        "domain_id": "domain-123456789012"
-        }
+        """Gets a specific Quota. Prints detailed information about the Quota, including the `limit` and the Protocol limited by the Quota.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """
-        desc: Gets a list of all Quotas. You can use a query to get a filtered list of Quotas.
-        request_example: >-
-        {
-        "query": {}
-        }
-        response_example: >-
-        {
-        "results": [
-        {
-        "quota_id": "quota-123456789012",
-        "protocol_id": "protocol-123456789012",
-        "limit": {
-        "day": 10.0,
-        "month": 15.0
-        },
-        "domain_id": "domain-123456789012"
-        },
-        {
-        "quota_id": "quota-987654321098",
-        "protocol_id": "protocol-987654321098",
-        "limit": {
-        "day": 5.0,
-        "month": 7.0
-        },
-        "domain_id": "domain-123456789012"
-        }
-        ],
-        "total_count": 2
-        }
+        """Gets a list of all Quotas. You can use a query to get a filtered list of Quotas.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

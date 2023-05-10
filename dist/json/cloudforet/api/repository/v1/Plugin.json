@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/repository/v1/plugin.proto",
-      "description": "desc: A Plugin is a resource containing data of deployable plugins such as container image and registry URL.",
+      "description": "A Plugin is a resource containing data of deployable plugins such as container image and registry URL.",
       "package": "spaceone.api.repository.v1",
       "hasEnums": true,
       "hasExtensions": false,
@@ -90,7 +90,7 @@
           "name": "CreatePluginRequest",
           "longName": "CreatePluginRequest",
           "fullName": "spaceone.api.repository.v1.CreatePluginRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"JIRA Issue notification\",\n   \"service_type\": \"notification.Procotol\",\n   \"image\": \"pyengine/plugin-jira-noti-protocol\",\n   \"registry_type\": \"DOCKER_HUB\",\n   \"registry_config\": {},\n   \"provider\": \"atlassian\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"atlassian_jira\"\n       ]\n   },\n   \"template\": {\n       \"options\": {\n           \"schema\": {\n               \"type\": \"object\",\n               \"required\": [],\n               \"properties\": {\n                   \"project_id\": {\n                       \"type\": \"string\",\n                       \"title\": \"Project ID\",\n                       \"minLength\": 4.0\n                   },\n                   \"sa_name\": {\n                       \"title\": \"Service Account\",\n                       \"type\": \"string\",\n                       \"minLength\": 4.0\n                   }\n               }\n           }\n       }\n   },\n   \"labels\": [\n       \"jira\",\n       \"atlassian\",\n       \"notification\"\n   ],\n   \"tags\": {\n       \"description\": \"Atlassian JIRA Issue notification\",\n       \"icon\": \"https://icon-path/jira-icon.png\"\n   }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -98,7 +98,7 @@
           "fields": [
             {
               "name": "name",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -110,7 +110,7 @@
             },
             {
               "name": "service_type",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -122,7 +122,7 @@
             },
             {
               "name": "image",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -134,7 +134,7 @@
             },
             {
               "name": "provider",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -146,7 +146,7 @@
             },
             {
               "name": "registry_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "PublicRegistryType",
               "longType": "PublicRegistryType",
@@ -158,7 +158,7 @@
             },
             {
               "name": "registry_config",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -170,7 +170,7 @@
             },
             {
               "name": "capability",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -182,7 +182,7 @@
             },
             {
               "name": "template",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -194,7 +194,7 @@
             },
             {
               "name": "labels",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "ListValue",
               "longType": "google.protobuf.ListValue",
@@ -206,7 +206,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -218,7 +218,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -230,7 +230,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -246,7 +246,7 @@
           "name": "GetRepositoryPluginRequest",
           "longName": "GetRepositoryPluginRequest",
           "fullName": "spaceone.api.repository.v1.GetRepositoryPluginRequest",
-          "description": "",
+          "description": "{\n   \"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -254,7 +254,7 @@
           "fields": [
             {
               "name": "plugin_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -266,7 +266,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -278,7 +278,7 @@
             },
             {
               "name": "repository_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -290,7 +290,7 @@
             },
             {
               "name": "only",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -306,7 +306,7 @@
           "name": "PluginInfo",
           "longName": "PluginInfo",
           "fullName": "spaceone.api.repository.v1.PluginInfo",
-          "description": "",
+          "description": "{\n   \"plugin_id\": \"plugin-jira-noti-protocol\",\n   \"name\": \"JIRA Issue notification\",\n   \"image\": \"pyengine/plugin-jira-noti-protocol\",\n   \"registry_url\": \"registry.hub.docker.com\",\n   \"state\": \"ENABLED\",\n   \"service_type\": \"notification.Procotol\",\n   \"provider\": \"atlassian\",\n   \"registry_type\": \"DOCKER_HUB\",\n   \"registry_config\": {},\n   \"capability\": {\n       \"supported_schema\": [\n           \"atlassian_jira\"\n       ]\n   },\n   \"template\": {\n       \"options\": {\n           \"schema\": {\n               \"type\": \"object\",\n               \"required\": [],\n               \"properties\": {\n                   \"project_id\": {\n                       \"type\": \"string\",\n                       \"title\": \"Project ID\",\n                       \"minLength\": 4.0\n                   },\n                   \"sa_name\": {\n                       \"title\": \"Service Account\",\n                       \"type\": \"string\",\n                       \"minLength\": 4.0\n                   }\n               }\n           }\n       }\n   },\n   \"labels\": [\n       \"jira\",\n       \"atlassian\",\n       \"notification\"\n   ],\n   \"tags\": {\n       \"description\": \"Atlassian JIRA Issue notification\",\n       \"icon\": \"https://icon-path/jira-icon.png\"\n   },\n   \"repository_info\": {\n       \"repository_id\": \"repo-123456789012\",\n       \"name\": \"Marketplace\",\n       \"repository_type\": \"remote\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-01-01T08:02:38.094Z\",\n   \"updated_at\": \"2022-01-01T08:02:38.094Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -534,7 +534,7 @@
           "name": "PluginQuery",
           "longName": "PluginQuery",
           "fullName": "spaceone.api.repository.v1.PluginQuery",
-          "description": "",
+          "description": "{\n   \"query\": {},\n   \"repository_id\": \"repo-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -542,7 +542,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -554,7 +554,7 @@
             },
             {
               "name": "plugin_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -566,7 +566,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -578,7 +578,7 @@
             },
             {
               "name": "state",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "State",
               "longType": "PluginQuery.State",
@@ -590,7 +590,7 @@
             },
             {
               "name": "service_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -602,7 +602,7 @@
             },
             {
               "name": "provider",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -614,7 +614,7 @@
             },
             {
               "name": "repository_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -626,7 +626,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -638,7 +638,7 @@
             },
             {
               "name": "registry_type",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "PublicRegistryType",
               "longType": "PublicRegistryType",
@@ -654,7 +654,7 @@
           "name": "PluginRequest",
           "longName": "PluginRequest",
           "fullName": "spaceone.api.repository.v1.PluginRequest",
-          "description": "",
+          "description": "{\n   \"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -662,7 +662,7 @@
           "fields": [
             {
               "name": "plugin_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -674,7 +674,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -698,7 +698,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
@@ -710,7 +710,7 @@
             },
             {
               "name": "repository_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -722,7 +722,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -738,7 +738,7 @@
           "name": "PluginsInfo",
           "longName": "PluginsInfo",
           "fullName": "spaceone.api.repository.v1.PluginsInfo",
-          "description": "",
+          "description": "{\n   \"results\": [\n       {\n           \"plugin_id\": \"plugin-api-direct-mon-webhook\",\n           \"name\": \"API Direct Webhook\",\n           \"image\": \"pyengine/plugin-api-direct-mon-webhook\",\n           \"registry_url\": \"registry.hub.docker.com\",\n           \"state\": \"ENABLED\",\n           \"service_type\": \"monitoring.Webhook\",\n           \"registry_type\": \"DOCKER_HUB\",\n           \"registry_config\": {},\n           \"capability\": {},\n           \"template\": {},\n           \"labels\": [],\n           \"tags\": {\n               \"icon\": \"https://icon-url/icon.svg\"\n           },\n           \"repository_info\": {\n               \"repository_id\": \"repo-123456789012\",\n               \"name\": \"Marketplace\",\n               \"repository_type\": \"remote\"\n           },\n           \"domain_id\": \"domain-987654321098\",\n           \"created_at\": \"2022-01-01T03:25:10.408Z\",\n           \"updated_at\": \"2022-01-01T03:25:10.408Z\"\n       },\n       {\n           \"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n           \"name\": \"AWS HyperBilling Cost Analysis Data Source\",\n           \"image\": \"pyengine/plugin-aws-hyperbilling-cost-datasource\",\n           \"registry_url\": \"registry.hub.docker.com\",\n           \"state\": \"ENABLED\",\n           \"service_type\": \"cost_analysis.DataSoruce\",\n           \"registry_type\": \"DOCKER_HUB\",\n           \"registry_config\": {},\n           \"capability\": {},\n           \"template\": {},\n           \"labels\": [],\n           \"tags\": {},\n           \"repository_info\": {\n               \"repository_id\": \"repo-123456789012\",\n               \"name\": \"Marketplace\",\n               \"repository_type\": \"remote\"\n           },\n           \"domain_id\": \"domain-987654321098\",\n           \"created_at\": \"2022-01-01T04:56:55.082Z\",\n           \"updated_at\": \"2022-01-01T04:56:55.082Z\"\n       }\n   ],\n   \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -774,7 +774,7 @@
           "name": "RepositoryPluginRequest",
           "longName": "RepositoryPluginRequest",
           "fullName": "spaceone.api.repository.v1.RepositoryPluginRequest",
-          "description": "",
+          "description": "{\n   \"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -782,7 +782,7 @@
           "fields": [
             {
               "name": "plugin_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -794,7 +794,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -806,7 +806,7 @@
             },
             {
               "name": "repository_id",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -822,7 +822,7 @@
           "name": "UpdatePluginRequest",
           "longName": "UpdatePluginRequest",
           "fullName": "spaceone.api.repository.v1.UpdatePluginRequest",
-          "description": "",
+          "description": "{\n   \"name\": \"JIRA Issue notification\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"atlassian_jira\"\n       ]\n   },\n   \"template\": {\n       \"options\": {\n           \"schema\": {\n               \"type\": \"object\",\n               \"required\": [],\n               \"properties\": {\n                   \"project_id\": {\n                       \"type\": \"string\",\n                       \"title\": \"Project ID\",\n                       \"minLength\": 4.0\n                   },\n                   \"sa_name\": {\n                       \"title\": \"Service Account\",\n                       \"type\": \"string\",\n                       \"minLength\": 4.0\n                   }\n               }\n           }\n       }\n   },\n   \"labels\": [\n       \"jira\",\n       \"atlassian\",\n       \"notification\"\n   ],\n   \"tags\": {\n       \"description\": \"Atlassian JIRA Issue notification\",\n       \"icon\": \"https://icon-path/jira-icon.png\"\n   }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -830,7 +830,7 @@
           "fields": [
             {
               "name": "plugin_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -842,7 +842,7 @@
             },
             {
               "name": "name",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -854,7 +854,7 @@
             },
             {
               "name": "capability",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -866,7 +866,7 @@
             },
             {
               "name": "template",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -878,7 +878,7 @@
             },
             {
               "name": "labels",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "ListValue",
               "longType": "google.protobuf.ListValue",
@@ -890,7 +890,7 @@
             },
             {
               "name": "tags",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -902,7 +902,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -918,7 +918,7 @@
           "name": "VersionsInfo",
           "longName": "VersionsInfo",
           "fullName": "spaceone.api.repository.v1.VersionsInfo",
-          "description": "",
+          "description": "{\n   \"total_count\": 1,\n   \"results\": [\n       \"1.2.2\",\n       \"1.2.1.20220429.104002\",\n       \"1.2.1.20220422.161421\",\n       \"1.2.1.20220411.113807\",\n       \"1.2.1\"\n   ]\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -926,7 +926,7 @@
           "fields": [
             {
               "name": "version",
-              "description": "desc: deprecated field",
+              "description": "deprecated field",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -972,7 +972,7 @@
           "methods": [
             {
               "name": "register",
-              "description": "desc: Registers a Plugin. The parameter `registry_type`, meaning container registry type, can be either `DOCKER_HUB` or `AWS_PUBLIC_ECR`. The default value of the `registry_type` is `DOCKER_HUB`. The parameter `registry_url` is required if the `registry_type` is not `DOCKER_HUB`. The parameter `image` is limited to 40 characters.\nrequest_example: \u003e-\n{\n\"name\": \"JIRA Issue notification\",\n\"service_type\": \"notification.Procotol\",\n\"image\": \"pyengine/plugin-jira-noti-protocol\",\n\"registry_type\": \"DOCKER_HUB\",\n\"registry_config\": {},\n\"provider\": \"atlassian\",\n\"capability\": {\n\"supported_schema\": [\n\"atlassian_jira\"\n]\n},\n\"template\": {\n\"options\": {\n\"schema\": {\n\"type\": \"object\",\n\"required\": [],\n\"properties\": {\n\"project_id\": {\n\"type\": \"string\",\n\"title\": \"Project ID\",\n\"minLength\": 4.0\n},\n\"sa_name\": {\n\"title\": \"Service Account\",\n\"type\": \"string\",\n\"minLength\": 4.0\n}\n}\n}\n}\n},\n\"labels\": [\n\"jira\",\n\"atlassian\",\n\"notification\"\n],\n\"tags\": {\n\"description\": \"Atlassian JIRA Issue notification\",\n\"icon\": \"https://icon-path/jira-icon.png\"\n}\n}\nresponse_example: \u003e-\n{\n\"plugin_id\": \"plugin-jira-noti-protocol\",\n\"name\": \"JIRA Issue notification\",\n\"image\": \"pyengine/plugin-jira-noti-protocol\",\n\"registry_url\": \"registry.hub.docker.com\",\n\"state\": \"ENABLED\",\n\"service_type\": \"notification.Procotol\",\n\"provider\": \"atlassian\",\n\"registry_type\": \"DOCKER_HUB\",\n\"registry_config\": {},\n\"capability\": {\n\"supported_schema\": [\n\"atlassian_jira\"\n]\n},\n\"template\": {\n\"options\": {\n\"schema\": {\n\"type\": \"object\",\n\"required\": [],\n\"properties\": {\n\"project_id\": {\n\"type\": \"string\",\n\"title\": \"Project ID\",\n\"minLength\": 4.0\n},\n\"sa_name\": {\n\"title\": \"Service Account\",\n\"type\": \"string\",\n\"minLength\": 4.0\n}\n}\n}\n}\n},\n\"labels\": [\n\"jira\",\n\"atlassian\",\n\"notification\"\n],\n\"tags\": {\n\"description\": \"Atlassian JIRA Issue notification\",\n\"icon\": \"https://icon-path/jira-icon.png\"\n},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Marketplace\",\n\"repository_type\": \"remote\"\n},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T08:02:38.094Z\",\n\"updated_at\": \"2022-01-01T08:02:38.094Z\"\n}",
+              "description": "Registers a Plugin. The parameter `registry_type`, meaning container registry type, can be either `DOCKER_HUB` or `AWS_PUBLIC_ECR`. The default value of the `registry_type` is `DOCKER_HUB`. The parameter `registry_url` is required if the `registry_type` is not `DOCKER_HUB`. The parameter `image` is limited to 40 characters.",
               "requestType": "CreatePluginRequest",
               "requestLongType": "CreatePluginRequest",
               "requestFullType": "spaceone.api.repository.v1.CreatePluginRequest",
@@ -995,7 +995,7 @@
             },
             {
               "name": "update",
-              "description": "desc: Updates a specific Plugin registered. A Plugin can be updated only if its Repository's `repository_type` is `local`. You can make changes in Plugin settings, including `template` and its options, `schema`.\nrequest_example: \u003e-\n{\n\"name\": \"JIRA Issue notification\",\n\"capability\": {\n\"supported_schema\": [\n\"atlassian_jira\"\n]\n},\n\"template\": {\n\"options\": {\n\"schema\": {\n\"type\": \"object\",\n\"required\": [],\n\"properties\": {\n\"project_id\": {\n\"type\": \"string\",\n\"title\": \"Project ID\",\n\"minLength\": 4.0\n},\n\"sa_name\": {\n\"title\": \"Service Account\",\n\"type\": \"string\",\n\"minLength\": 4.0\n}\n}\n}\n}\n},\n\"labels\": [\n\"jira\",\n\"atlassian\",\n\"notification\"\n],\n\"tags\": {\n\"description\": \"Atlassian JIRA Issue notification\",\n\"icon\": \"https://icon-path/jira-icon.png\"\n}\n}\nresponse_example: \u003e-\n{\n\"plugin_id\": \"plugin-jira-noti-protocol\",\n\"name\": \"JIRA Issue notification\",\n\"image\": \"pyengine/plugin-jira-noti-protocol\",\n\"registry_url\": \"registry.hub.docker.com\",\n\"state\": \"ENABLED\",\n\"service_type\": \"notification.Procotol\",\n\"provider\": \"atlassian\",\n\"registry_type\": \"DOCKER_HUB\",\n\"registry_config\": {},\n\"capability\": {\n\"supported_schema\": [\n\"atlassian_jira\"\n]\n},\n\"template\": {\n\"options\": {\n\"schema\": {\n\"type\": \"object\",\n\"required\": [],\n\"properties\": {\n\"project_id\": {\n\"type\": \"string\",\n\"title\": \"Project ID\",\n\"minLength\": 4.0\n},\n\"sa_name\": {\n\"title\": \"Service Account\",\n\"type\": \"string\",\n\"minLength\": 4.0\n}\n}\n}\n}\n},\n\"labels\": [\n\"jira\",\n\"atlassian\",\n\"notification\"\n],\n\"tags\": {\n\"description\": \"Atlassian JIRA Issue notification\",\n\"spaceone:plugin_name\": \"plugin-jira-noti-protocol\",\n\"icon\": \"https://icon-path/jira-icon.png\"\n},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Marketplace\",\n\"repository_type\": \"remote\"\n},\n\"domain_id\": \"domain-123456789012\",\n\"created_at\": \"2022-01-01T08:02:38.094Z\",\n\"updated_at\": \"2022-01-01T08:02:38.094Z\"\n}",
+              "description": "Updates a specific Plugin registered. A Plugin can be updated only if its Repository's `repository_type` is `local`. You can make changes in Plugin settings, including `template` and its options, `schema`.",
               "requestType": "UpdatePluginRequest",
               "requestLongType": "UpdatePluginRequest",
               "requestFullType": "spaceone.api.repository.v1.UpdatePluginRequest",
@@ -1018,7 +1018,7 @@
             },
             {
               "name": "deregister",
-              "description": "desc: Deregisters and deletes a specific Plugin. You must specify the `plugin_id` of the Plugin to deregister.\nrequest_example: \u003e-\n{\n\"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n\"name\": \"AWS SNS Webhook\",\n\"image\": \"pyengine/plugin-aws-sns-mon-webhook\",\n\"registry_url\": \"registry.hub.docker.com\",\n\"state\": \"ENABLED\",\n\"service_type\": \"monitoring.Webhook\",\n\"registry_type\": \"DOCKER_HUB\",\n\"registry_config\": {},\n\"capability\": {},\n\"template\": {},\n\"labels\": [],\n\"tags\": {\n\"icon\": \"https://icon-path/Amazon-SNS.svg\"\n},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Marketplace\",\n\"repository_type\": \"remote\"\n},\n\"domain_id\": \"domain-987654321098\",\n\"created_at\": \"2022-01-01T08:14:23.175Z\",\n\"updated_at\": \"2022-01-01T08:14:23.175Z\"\n}",
+              "description": "Deregisters and deletes a specific Plugin. You must specify the `plugin_id` of the Plugin to deregister.",
               "requestType": "PluginRequest",
               "requestLongType": "PluginRequest",
               "requestFullType": "spaceone.api.repository.v1.PluginRequest",
@@ -1041,7 +1041,7 @@
             },
             {
               "name": "enable",
-              "description": "desc: Enables a specific Plugin. If the Plugin is enabled, the Plugin can be used as its parameter `state` becomes `ENABLED`.\nrequest_example: \u003e-\n{\n\"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n\"name\": \"AWS SNS Webhook\",\n\"image\": \"pyengine/plugin-aws-sns-mon-webhook\",\n\"registry_url\": \"registry.hub.docker.com\",\n\"state\": \"ENABLED\",\n\"service_type\": \"monitoring.Webhook\",\n\"registry_type\": \"DOCKER_HUB\",\n\"registry_config\": {},\n\"capability\": {},\n\"template\": {},\n\"labels\": [],\n\"tags\": {\n\"icon\": \"https://icon-path/Amazon-SNS.svg\"\n},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Marketplace\",\n\"repository_type\": \"remote\"\n},\n\"domain_id\": \"domain-987654321098\",\n\"created_at\": \"2022-01-01T08:14:23.175Z\",\n\"updated_at\": \"2022-01-01T08:14:23.175Z\"\n}",
+              "description": "Enables a specific Plugin. If the Plugin is enabled, the Plugin can be used as its parameter `state` becomes `ENABLED`.",
               "requestType": "PluginRequest",
               "requestLongType": "PluginRequest",
               "requestFullType": "spaceone.api.repository.v1.PluginRequest",
@@ -1064,7 +1064,7 @@
             },
             {
               "name": "disable",
-              "description": "desc: Disables a specific Plugin. If the Plugin is disabled, the Plugin cannot be used as its parameter `state` becomes `DISABLED`.\nrequest_example: \u003e-\n{\n\"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n\"name\": \"AWS SNS Webhook\",\n\"image\": \"pyengine/plugin-aws-sns-mon-webhook\",\n\"registry_url\": \"registry.hub.docker.com\",\n\"state\": \"ENABLED\",\n\"service_type\": \"monitoring.Webhook\",\n\"registry_type\": \"DOCKER_HUB\",\n\"registry_config\": {},\n\"capability\": {},\n\"template\": {},\n\"labels\": [],\n\"tags\": {\n\"icon\": \"https://icon-path/Amazon-SNS.svg\"\n},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Marketplace\",\n\"repository_type\": \"remote\"\n},\n\"domain_id\": \"domain-987654321098\",\n\"created_at\": \"2022-01-01T08:14:23.175Z\",\n\"updated_at\": \"2022-01-01T08:14:23.175Z\"\n}",
+              "description": "Disables a specific Plugin. If the Plugin is disabled, the Plugin cannot be used as its parameter `state` becomes `DISABLED`.",
               "requestType": "PluginRequest",
               "requestLongType": "PluginRequest",
               "requestFullType": "spaceone.api.repository.v1.PluginRequest",
@@ -1087,7 +1087,7 @@
             },
             {
               "name": "get_versions",
-              "description": "desc: Gets all version data of a specific Plugin from its Repository. The parameter `plugin_id` is used as an identifier of a Plugin to get version data.\nrequest_example: \u003e-\n{\n\"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"total_count\": 1,\n\"results\": [\n\"1.2.2\",\n\"1.2.1.20220429.104002\",\n\"1.2.1.20220422.161421\",\n\"1.2.1.20220411.113807\",\n\"1.2.1\"\n]\n}",
+              "description": "Gets all version data of a specific Plugin from its Repository. The parameter `plugin_id` is used as an identifier of a Plugin to get version data.",
               "requestType": "RepositoryPluginRequest",
               "requestLongType": "RepositoryPluginRequest",
               "requestFullType": "spaceone.api.repository.v1.RepositoryPluginRequest",
@@ -1110,7 +1110,7 @@
             },
             {
               "name": "get",
-              "description": "desc: Gets a specific Plugin. Prints detailed information about the Plugin, including  `image`, `registry_url`, and `state`.\nrequest_example: \u003e-\n{\n\"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n\"domain_id\": \"domain-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n\"name\": \"AWS SNS Webhook\",\n\"image\": \"pyengine/plugin-aws-sns-mon-webhook\",\n\"registry_url\": \"registry.hub.docker.com\",\n\"state\": \"ENABLED\",\n\"service_type\": \"monitoring.Webhook\",\n\"registry_type\": \"DOCKER_HUB\",\n\"registry_config\": {},\n\"capability\": {},\n\"template\": {},\n\"labels\": [],\n\"tags\": {\n\"icon\": \"https://icon-url/Amazon-SNS.svg\"\n},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Marketplace\",\n\"repository_type\": \"remote\"\n},\n\"domain_id\": \"domain-987654321098\",\n\"created_at\": \"2021-06-14T08:14:23.175Z\",\n\"updated_at\": \"2021-06-14T08:14:23.175Z\"\n}",
+              "description": "Gets a specific Plugin. Prints detailed information about the Plugin, including  `image`, `registry_url`, and `state`.",
               "requestType": "GetRepositoryPluginRequest",
               "requestLongType": "GetRepositoryPluginRequest",
               "requestFullType": "spaceone.api.repository.v1.GetRepositoryPluginRequest",
@@ -1133,7 +1133,7 @@
             },
             {
               "name": "list",
-              "description": "desc: Gets a list of all Plugins registered in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Plugins. You can use a query to get a filtered list of Plugins.\nrequest_example: \u003e-\n{\n\"query\": {},\n\"repository_id\": \"repo-123456789012\"\n}\nresponse_example: \u003e-\n{\n\"results\": [\n{\n\"plugin_id\": \"plugin-api-direct-mon-webhook\",\n\"name\": \"API Direct Webhook\",\n\"image\": \"pyengine/plugin-api-direct-mon-webhook\",\n\"registry_url\": \"registry.hub.docker.com\",\n\"state\": \"ENABLED\",\n\"service_type\": \"monitoring.Webhook\",\n\"registry_type\": \"DOCKER_HUB\",\n\"registry_config\": {},\n\"capability\": {},\n\"template\": {},\n\"labels\": [],\n\"tags\": {\n\"icon\": \"https://icon-url/icon.svg\"\n},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Marketplace\",\n\"repository_type\": \"remote\"\n},\n\"domain_id\": \"domain-987654321098\",\n\"created_at\": \"2022-01-01T03:25:10.408Z\",\n\"updated_at\": \"2022-01-01T03:25:10.408Z\"\n},\n{\n\"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n\"name\": \"AWS HyperBilling Cost Analysis Data Source\",\n\"image\": \"pyengine/plugin-aws-hyperbilling-cost-datasource\",\n\"registry_url\": \"registry.hub.docker.com\",\n\"state\": \"ENABLED\",\n\"service_type\": \"cost_analysis.DataSoruce\",\n\"registry_type\": \"DOCKER_HUB\",\n\"registry_config\": {},\n\"capability\": {},\n\"template\": {},\n\"labels\": [],\n\"tags\": {},\n\"repository_info\": {\n\"repository_id\": \"repo-123456789012\",\n\"name\": \"Marketplace\",\n\"repository_type\": \"remote\"\n},\n\"domain_id\": \"domain-987654321098\",\n\"created_at\": \"2022-01-01T04:56:55.082Z\",\n\"updated_at\": \"2022-01-01T04:56:55.082Z\"\n}\n],\n\"total_count\": 2\n}",
+              "description": "Gets a list of all Plugins registered in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Plugins. You can use a query to get a filtered list of Plugins.",
               "requestType": "PluginQuery",
               "requestLongType": "PluginQuery",
               "requestFullType": "spaceone.api.repository.v1.PluginQuery",

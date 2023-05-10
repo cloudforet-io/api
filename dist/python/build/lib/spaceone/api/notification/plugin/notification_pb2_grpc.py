@@ -26,53 +26,7 @@ class NotificationServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def dispatch(self, request, context):
-        """
-        desc: Dispatches data from Cloudforet to a specific notification Protocol. When dispatching data, data input by a User is included in the `options` parameter, and `notification` information to be delivered is included in the `message` parameter. Also, data dispatched includes basic information such as `notification_type` and `secret_data`.
-        request_example: >-
-        {
-        "options": {},
-        "message": {
-        "tags": [
-        {
-        "key": "Alert Number",
-        "options": {"short": true},
-        "value": "#108664"
-        },
-        {
-        "options": {"short": true},
-        "key": "State",
-        "value": "TRIGGERED"
-        },
-        {
-        "value": "LOW",
-        "options": {"short": true},
-        "key": "Urgency"
-        },
-        {
-        "value": "kubectl-webhook",
-        "key": "Triggered by",
-        "options": {"short": true}
-        },
-        {
-        "value": "SpaceONE > Project1",
-        "key": "Project"
-        },
-        {
-        "value": "spaceone-api",
-        "key": "Resource"
-        }
-        ],
-        "occurred_at": "2022-06-27T09:22:57.967Z",
-        "callbacks": [{
-        "url": "https://monitoring-webhook.dev.spaceone.dev/monitoring/v1/alert/alert-x1v2c3v456/8f2ede36213dqw4d7d5awe07ds32d883/ACKNOWLEDGED",
-        "label": "Acknowledge Alerts"}],
-        "link": "https://spaceone.console.dev.spaceone.dev/alert-manager/alert/alert-x1v2c3v456",
-        "title": "[Alerting] Notification of access to the SpaceONE",
-        "description": "SSH Access to spaceone-api from admin"},
-        "notification_type": "INFO",
-        "secret_data": "********",
-        "channel_data": {"email": "test5@test.com"}
-        }
+        """Dispatches data from Cloudforet to a specific notification Protocol. When dispatching data, data input by a User is included in the `options` parameter, and `notification` information to be delivered is included in the `message` parameter. Also, data dispatched includes basic information such as `notification_type` and `secret_data`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

@@ -2,7 +2,7 @@
   "files": [
     {
       "name": "spaceone/api/plugin/v1/plugin.proto",
-      "description": "desc: A Plugin is a resource managing endpoints of the plugin instances deployed. If there is a plugin instance that does not work properly, the Plugin requests the Supervisor to redeploy the instance.",
+      "description": "A Plugin is a resource managing endpoints of the plugin instances deployed. If there is a plugin instance that does not work properly, the Plugin requests the Supervisor to redeploy the instance.",
       "package": "spaceone.api.plugin.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -34,7 +34,7 @@
           "name": "PluginEndpoint",
           "longName": "PluginEndpoint",
           "fullName": "spaceone.api.plugin.v1.PluginEndpoint",
-          "description": "",
+          "description": "{\n   \"endpoint\": \"grpc://endpoint-url:50051\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -82,7 +82,7 @@
           "name": "PluginEndpointRequest",
           "longName": "PluginEndpointRequest",
           "fullName": "spaceone.api.plugin.v1.PluginEndpointRequest",
-          "description": "",
+          "description": "{\n   \"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n   \"version\": \"1.2.2\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -90,7 +90,7 @@
           "fields": [
             {
               "name": "plugin_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -102,7 +102,7 @@
             },
             {
               "name": "version",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -114,7 +114,7 @@
             },
             {
               "name": "labels",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -126,7 +126,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -138,7 +138,7 @@
             },
             {
               "name": "upgrade_mode",
-              "description": "is_required: false",
+              "description": "+optional",
               "label": "",
               "type": "UpgradeMode",
               "longType": "PluginEndpointRequest.UpgradeMode",
@@ -162,7 +162,7 @@
           "fields": [
             {
               "name": "supervisor_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -174,7 +174,7 @@
             },
             {
               "name": "plugin_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -186,7 +186,7 @@
             },
             {
               "name": "version",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -198,7 +198,7 @@
             },
             {
               "name": "domain_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -220,7 +220,7 @@
           "methods": [
             {
               "name": "get_plugin_endpoint",
-              "description": "desc: Gets the `endpoint` of a specific plugin instance. A Plugin returns only a single `endpoint` by determining `labels` and `priority`. If the requested plugin instance is already deployed, the `endpoint` is returned. If not, the `endpoint` is returned after deploying the plugin instance.\nrequest_example: \u003e-\n{\n\"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n\"version\": \"1.2.2\"\n}\nresponse_example: \u003e-\n{\n\"endpoint\": \"grpc://endpoint-url:50051\"\n}",
+              "description": "Gets the `endpoint` of a specific plugin instance. A Plugin returns only a single `endpoint` by determining `labels` and `priority`. If the requested plugin instance is already deployed, the `endpoint` is returned. If not, the `endpoint` is returned after deploying the plugin instance.",
               "requestType": "PluginEndpointRequest",
               "requestLongType": "PluginEndpointRequest",
               "requestFullType": "spaceone.api.plugin.v1.PluginEndpointRequest",
