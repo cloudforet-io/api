@@ -1,6 +1,4 @@
-/*
-desc: A History is a record of data collection based on a Schedule.
- */
+// A History is a record of data collection based on a Schedule.
 syntax = "proto3";
 
 package spaceone.api.statistics.v1;
@@ -14,66 +12,23 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service History {
-    /*
-    desc: Creates a new History. Gets a Schedule as an input and creates a History as an output. You can use this method to manually run a specific Schedule.
-    request_example: >-
-        {
-            "schedule_id": "sch-b1d8be347bed",
-            "domain_id": "domain-58010aa2e451"
-        }
-     */
+    
+    // Creates a new History. Gets a Schedule as an input and creates a History as an output. You can use this method to manually run a specific Schedule.
     rpc create (CreateHistoryRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/statistics/v1/history/create"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all Histories. You can use a query to get a filtered list of Histories.
-    request_example: >-
-        {
-            "query": {},
-            "domain_id": "domain-58010aa2e451"
-        }
-    response_example: >-
-        {
-            "results": [
-                {
-                    "topic": "daily_cloud_service_summary",
-                    "values": {
-                        "label": "Storage",
-                        "project_id": "project-f7111a9aa0c6",
-                        "provider": "azure",
-                        "value": 32213303296.0,
-                        "cloud_service_group": "Compute",
-                        "cloud_service_type": "Disk"
-                    },
-                    "domain_id": "domain-58010aa2e451",
-                    "created_at": "2022-07-18T01:01:57.579Z"
-                },
-                {
-                    "topic": "daily_cloud_service_summary",
-                    "values": {
-                        "cloud_service_type": "Bucket",
-                        "cloud_service_group": "CloudStorage",
-                        "label": "Storage",
-                        "provider": "google_cloud",
-                        "project_id": "project-4cd006b4993b",
-                        "value": 401399880.0
-                    },
-                    "domain_id": "domain-58010aa2e451",
-                    "created_at": "2022-07-18T01:01:57.579Z"
-                }
-            ],
-            "total_count": 2
-        }
-     */
+    
+    // Gets a list of all Histories. You can use a query to get a filtered list of Histories.
     rpc list (QueryHistoryRequest) returns (HistoryInfo) {
         option (google.api.http) = {
             post: "/statistics/v1/history/list"
             body: "*"
         };
     }
+    
     rpc stat (HistoryStatRequest) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/statistics/v1/history/stat"
@@ -82,19 +37,24 @@ service History {
     }
 }
 
+//{
+//    "schedule_id": "sch-b1d8be347bed",
+//    "domain_id": "domain-58010aa2e451"
+//}
 message CreateHistoryRequest {
-    // is_required: true
     string schedule_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
+//{
+//    "query": {},
+//    "domain_id": "domain-58010aa2e451"
+//}
 message QueryHistoryRequest {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string topic = 2;
-    // is_required: true
     string domain_id = 3;
 }
 
@@ -105,16 +65,45 @@ message HistoryValueInfo {
     string created_at = 4;
 }
 
+//{
+//    "results": [
+//        {
+//            "topic": "daily_cloud_service_summary",
+//            "values": {
+//                "label": "Storage",
+//                "project_id": "project-f7111a9aa0c6",
+//                "provider": "azure",
+//                "value": 32213303296.0,
+//                "cloud_service_group": "Compute",
+//                "cloud_service_type": "Disk"
+//            },
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2022-07-18T01:01:57.579Z"
+//        },
+//        {
+//            "topic": "daily_cloud_service_summary",
+//            "values": {
+//                "cloud_service_type": "Bucket",
+//                "cloud_service_group": "CloudStorage",
+//                "label": "Storage",
+//                "provider": "google_cloud",
+//                "project_id": "project-4cd006b4993b",
+//                "value": 401399880.0
+//            },
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2022-07-18T01:01:57.579Z"
+//        }
+//    ],
+//    "total_count": 2
+//}
 message HistoryInfo {
     repeated HistoryValueInfo results = 1;
     int32 total_count = 2;
 }
 
 message HistoryStatRequest {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: false
+    // +optional
     string topic = 2;
-    // is_required: true
     string domain_id = 3;
 }

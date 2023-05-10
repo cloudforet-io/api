@@ -1,6 +1,4 @@
-/*
-desc: A Protocol defines the method to use when dispatching Notifications via a channel.
-*/
+// A Protocol defines the method to use when dispatching Notifications via a channel.
 syntax = "proto3";
 
 package spaceone.api.notification.v1;
@@ -14,484 +12,73 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service Protocol {
-    /*
-    desc: Creates a new Protocol. When creating a protocol, you must specify the plugins provided from the repository, and you must also set the credentials to be set in the plugin if necessary.
-    request_example: >-
-      {
-        "name": "Email",
-        "plugin_info": {
-            "plugin_id": "plugin-email-noti-protocol",
-            "version": "1.0.1",
-            "options": {},
-            "secret_id": "secret-123546789012",
-            "metadata": {
-                "data": {
-                    "schema": {
-                        "properties": {
-                            "email": {
-                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-                                "examples": [
-                                    "user1@test.com, user2@test.com"
-                                ],
-                                "minLength": 10.0,
-                                "description": "Email address to receive notifications",
-                                "type": "string",
-                                "title": "Email Address"
-                            }
-                        },
-                        "required": [
-                            "email"
-                        ],
-                        "type": "object"
-                    }
-                },
-                "data_type": "PLAIN_TEXT"
-            },
-            "upgrade_mode": "AUTO"
-        },
-        "tags": {}
-      }
-    response_example: >-
-      {
-        "protocol_id": "protocol-123546789012",
-        "name": "Email",
-        "state": "ENABLED",
-        "protocol_type": "EXTERNAL",
-        "capability": {
-            "supported_schema": [
-                "email_smtp"
-            ]
-        },
-        "plugin_info": {
-            "plugin_id": "plugin-email-noti-protocol",
-            "version": "1.0.1",
-            "options": {},
-            "secret_id": "secret-123546789012",
-            "metadata": {
-                "data": {
-                    "schema": {
-                        "properties": {
-                            "email": {
-                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-                                "examples": [
-                                    "user1@test.com, user2@test.com"
-                                ],
-                                "minLength": 10.0,
-                                "description": "Email address to receive notifications",
-                                "type": "string",
-                                "title": "Email Address"
-                            }
-                        },
-                        "required": [
-                            "email"
-                        ],
-                        "type": "object"
-                    }
-                },
-                "data_type": "PLAIN_TEXT"
-            },
-            "upgrade_mode": "AUTO"
-        },
-        "tags": {},
-        "domain_id": "domain-123546789012",
-        "created_at": "2022-01-01T07:55:57.043Z"
-      }
-    */
+    // Creates a new Protocol. When creating a protocol, you must specify the plugins provided from the repository, and you must also set the credentials to be set in the plugin if necessary.
     rpc create (CreateProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = {
-            post: "/notification/v1/protocol/create",
+            post: "/notification/v1/protocol/create"
             body: "*"
         };
     }
-    /*
-    desc: Updates a specific Protocol. The method `update` can update the name and tags only. If you want to update the plugin version or options, you can use `update_plugin` method.
-    request_example: >-
-      {
-        "protocol_id": "protocol-123456789012",
-        "name": "Email-test",
-        "tags": {
-            "type": "test"
-        }
-      }
-    response_example: >-
-      {
-        "protocol_id": "protocol-123546789012",
-        "name": "Email-test",
-        "state": "ENABLED",
-        "protocol_type": "EXTERNAL",
-        "capability": {
-            "supported_schema": [
-                "email_smtp"
-            ]
-        },
-        "plugin_info": {
-            "plugin_id": "plugin-email-noti-protocol",
-            "version": "1.0.1",
-            "options": {},
-            "secret_id": "secret-123546789012",
-            "metadata": {
-                "data": {
-                    "schema": {
-                        "properties": {
-                            "email": {
-                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-                                "examples": [
-                                    "user1@test.com, user2@test.com"
-                                ],
-                                "minLength": 10.0,
-                                "description": "Email address to receive notifications",
-                                "type": "string",
-                                "title": "Email Address"
-                            }
-                        },
-                        "required": [
-                            "email"
-                        ],
-                        "type": "object"
-                    }
-                },
-                "data_type": "PLAIN_TEXT"
-            },
-            "upgrade_mode": "AUTO"
-        },
-        "tags": {
-            "type": "test"
-        },
-        "domain_id": "domain-123546789012",
-        "created_at": "2022-01-01T07:55:57.043Z"
-      }
-    */
+    
+    // Updates a specific Protocol. The method `update` can update the name and tags only. If you want to update the plugin version or options, you can use `update_plugin` method.
     rpc update (UpdateProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = {
-            post: "/notification/v1/protocol/update",
+            post: "/notification/v1/protocol/update"
             body: "*"
         };
     }
-    /*
-    desc: Updates a plugin for a Protocol. It is usually used when redeploying a plugin to a new version.
-    request_example: >-
-      {
-        "protocol_id": "protocol-123456789012",
-        "version": "1.0.2",
-        "options": {}
-      }
-    response_example: >-
-      {
-        "protocol_id": "protocol-123546789012",
-        "name": "Email-test",
-        "state": "ENABLED",
-        "protocol_type": "EXTERNAL",
-        "capability": {
-            "supported_schema": [
-                "email_smtp"
-            ]
-        },
-        "plugin_info": {
-            "plugin_id": "plugin-email-noti-protocol",
-            "version": "1.0.2",
-            "options": {},
-            "secret_id": "secret-123546789012",
-            "metadata": {
-                "data": {
-                    "schema": {
-                        "properties": {
-                            "email": {
-                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-                                "examples": [
-                                    "user1@test.com, user2@test.com"
-                                ],
-                                "minLength": 10.0,
-                                "description": "Email address to receive notifications",
-                                "type": "string",
-                                "title": "Email Address"
-                            }
-                        },
-                        "required": [
-                            "email"
-                        ],
-                        "type": "object"
-                    }
-                },
-                "data_type": "PLAIN_TEXT"
-            },
-            "upgrade_mode": "AUTO"
-        },
-        "tags": {
-            "type": "test"
-        },
-        "domain_id": "domain-123546789012",
-        "created_at": "2022-01-01T07:55:57.043Z"
-      }
-    */
+    
+    // Updates a plugin for a Protocol. It is usually used when redeploying a plugin to a new version.
     rpc update_plugin (UpdateProtocolPluginRequest) returns (ProtocolInfo) {
         option (google.api.http) = {
-            post: "/notification/v1/protocol/update-plugin",
+            post: "/notification/v1/protocol/update-plugin"
             body: "*"
         };
     }
-    /*
-    desc: Enables a specific Protocol. If the Protocol is enabled, the Protocol can be used and the Notification can be dispatched.
-    request_example: >-
-      {
-        "protocol_id": "protocol-123456789012"
-      }
-    response_example: >-
-      {
-        "protocol_id": "protocol-123546789012",
-        "name": "Email-test",
-        "state": "ENABLED",
-        "protocol_type": "EXTERNAL",
-        "capability": {
-            "supported_schema": [
-                "email_smtp"
-            ]
-        },
-        "plugin_info": {
-            "plugin_id": "plugin-email-noti-protocol",
-            "version": "1.0.2",
-            "options": {},
-            "secret_id": "secret-123546789012",
-            "metadata": {
-                "data": {
-                    "schema": {
-                        "properties": {
-                            "email": {
-                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-                                "examples": [
-                                    "user1@test.com, user2@test.com"
-                                ],
-                                "minLength": 10.0,
-                                "description": "Email address to receive notifications",
-                                "type": "string",
-                                "title": "Email Address"
-                            }
-                        },
-                        "required": [
-                            "email"
-                        ],
-                        "type": "object"
-                    }
-                },
-                "data_type": "PLAIN_TEXT"
-            },
-            "upgrade_mode": "AUTO"
-        },
-        "tags": {
-            "type": "test"
-        },
-        "domain_id": "domain-123546789012",
-        "created_at": "2022-01-01T07:55:57.043Z"
-      }
-    */
+    
+    // Enables a specific Protocol. If the Protocol is enabled, the Protocol can be used and the Notification can be dispatched.
     rpc enable (ProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = {
-            post: "/notification/v1/protocol/enable",
+            post: "/notification/v1/protocol/enable"
             body: "*"
         };
     }
-    /*
-    desc: Disables a specific Protocol. If a Protocol is disabled, the Notification will not be dispatched, even if it is created.
-    request_example: >-
-      {
-        "protocol_id": "protocol-123456789012"
-      }
-    response_example: >-
-      {
-        "protocol_id": "protocol-123546789012",
-        "name": "Email-test",
-        "state": "DISABLED",
-        "protocol_type": "EXTERNAL",
-        "capability": {
-            "supported_schema": [
-                "email_smtp"
-            ]
-        },
-        "plugin_info": {
-            "plugin_id": "plugin-email-noti-protocol",
-            "version": "1.0.2",
-            "options": {},
-            "secret_id": "secret-123546789012",
-            "metadata": {
-                "data": {
-                    "schema": {
-                        "properties": {
-                            "email": {
-                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-                                "examples": [
-                                    "user1@test.com, user2@test.com"
-                                ],
-                                "minLength": 10.0,
-                                "description": "Email address to receive notifications",
-                                "type": "string",
-                                "title": "Email Address"
-                            }
-                        },
-                        "required": [
-                            "email"
-                        ],
-                        "type": "object"
-                    }
-                },
-                "data_type": "PLAIN_TEXT"
-            },
-            "upgrade_mode": "AUTO"
-        },
-        "tags": {
-            "type": "test"
-        },
-        "domain_id": "domain-123546789012",
-        "created_at": "2022-01-01T07:55:57.043Z"
-      }
-    */
+    
+    // Disables a specific Protocol. If a Protocol is disabled, the Notification will not be dispatched, even if it is created.
     rpc disable (ProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = {
-            post: "/notification/v1/protocol/disable",
+            post: "/notification/v1/protocol/disable"
             body: "*"
         };
     }
-    /*
-    desc: Deletes a specific Protocol. If there exists a channel using the Protocol, it cannot be deleted.
-    request_example: >-
-      {
-        "protocol_id": "protocol-123456789012"
-      }
-    */
+    
+    // Deletes a specific Protocol. If there exists a channel using the Protocol, it cannot be deleted.
     rpc delete (ProtocolRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/notification/v1/protocol/delete",
+            post: "/notification/v1/protocol/delete"
             body: "*"
         };
     }
-    /*
-    desc: Gets a specific Protocol. Prints detailed information about the Protocol.
-    request_example: >-
-      {
-        "protocol_id": "protocol-123456789012"
-      }
-    response_example: >-
-      {
-        "protocol_id": "protocol-123546789012",
-        "name": "Email-test",
-        "state": "DISABLED",
-        "protocol_type": "EXTERNAL",
-        "capability": {
-            "supported_schema": [
-                "email_smtp"
-            ]
-        },
-        "plugin_info": {
-            "plugin_id": "plugin-email-noti-protocol",
-            "version": "1.0.2",
-            "options": {},
-            "secret_id": "secret-123546789012",
-            "metadata": {
-                "data": {
-                    "schema": {
-                        "properties": {
-                            "email": {
-                                "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-                                "examples": [
-                                    "user1@test.com, user2@test.com"
-                                ],
-                                "minLength": 10.0,
-                                "description": "Email address to receive notifications",
-                                "type": "string",
-                                "title": "Email Address"
-                            }
-                        },
-                        "required": [
-                            "email"
-                        ],
-                        "type": "object"
-                    }
-                },
-                "data_type": "PLAIN_TEXT"
-            },
-            "upgrade_mode": "AUTO"
-        },
-        "tags": {
-            "type": "test"
-        },
-        "domain_id": "domain-123546789012",
-        "created_at": "2022-01-01T07:55:57.043Z"
-      }
-    */
+    
+    // Gets a specific Protocol. Prints detailed information about the Protocol.
     rpc get (GetProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = {
-            post: "/notification/v1/protocol/get",
+            post: "/notification/v1/protocol/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of Protocols. You can use a query to get a filtered list of Protocols.
-    request_example: >-
-      {
-        "query": {}
-      }
-    response_example: >-
-        {
-           "results":[
-              {
-                 "protocol_id":"protocol-123456789012",
-                 "name":"Email",
-                 "state":"ENABLED",
-                 "protocol_type":"EXTERNAL",
-                 "capability":{
-                    "supported_schema":[
-                       "email_smtp"
-                    ]
-                 },
-                 "plugin_info":{
-                    "plugin_id":"plugin-email-noti-protocol",
-                    "version":"1.0.1",
-                    "options":{
-
-                    },
-                    "secret_id":"secret-123456789012",
-                    "metadata":{
-                       "data_type":"PLAIN_TEXT",
-                       "data":{
-                          "schema":{
-                             "properties":{
-                                "email":{
-                                   "pattern":"^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
-                                   "examples":[
-                                      "user1@test.com, user2@test.com"
-                                   ],
-                                   "minLength":10.0,
-                                   "description":"Email address to receive notifications",
-                                   "type":"string",
-                                   "title":"Email Address"
-                                }
-                             },
-                             "required":[
-                                "email"
-                             ],
-                             "type":"object"
-                          }
-                       }
-                    },
-                    "upgrade_mode":"AUTO"
-                 },
-                 "tags":{
-
-                 },
-                 "domain_id":"domain-123456789012",
-                 "created_at":"2022-01-01T07:55:57.043Z"
-              }
-           ],
-           "total_count":1
-        }
-    */
+    
+    // Gets a list of Protocols. You can use a query to get a filtered list of Protocols.
     rpc list (ProtocolQuery) returns (ProtocolsInfo) {
         option (google.api.http) = {
-            post: "/notification/v1/protocol/list",
+            post: "/notification/v1/protocol/list"
             body: "*"
         };
     }
+    
     rpc stat (ProtocolStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/notification/v1/protocol/stat",
+            post: "/notification/v1/protocol/stat"
             body: "*"
         };
     }
@@ -503,27 +90,25 @@ message PluginRequest{
         AUTO = 1;
         MANUAL = 2;
     }
-
-    // is_required: true
-    // desc: The ID of plugin.
+    
+    // The ID of plugin.
     string plugin_id = 1;
-    // is_required: true
-    // desc: The version of plugin.
+    // The version of plugin.
     string version = 2;
-    // is_required: false
-    // desc: The Options that contains information about using plugin.
+    // The Options that contains information about using plugin.
+    // +optional
     google.protobuf.Struct options = 3;
-    // is_required: false
-    // desc: The data for using plugin if necessary. This data is encrypted and stored in the Secret service.
+    // The data for using plugin if necessary. This data is encrypted and stored in the Secret service.
+    // +optional
     google.protobuf.Struct secret_data = 4;
-    // is_required: false
-    // desc: The name of schema.
+    // The name of schema.
     // When the secret_data is stored in the Secret service, it can be set with schema if the schema is existed.
     // The schema is provided through the Repository service.
+    // +optional
     string schema = 5;
-    // is_required: false
-    // desc: Auto upgrade feature for plugin.
+    // Auto upgrade feature for plugin.
     // If the upgrade mode is AUTO, check the latest plugin version when running the plugin, and if a new version is existed, replace the plugin and then run it.
+    // +optional
     UpgradeMode upgrade_mode = 6;
 }
 
@@ -534,88 +119,132 @@ message PluginInfo{
         MANUAL = 2;
     }
 
-    // desc: The ID of plugin set in the Protocol.
+    // The ID of plugin set in the Protocol.
     string plugin_id = 1;
-    // desc: The version of plugin.
+    // The version of plugin.
     string version = 2;
-    // desc: The Options that contains information about using plugin.
+    // The Options that contains information about using plugin.
     google.protobuf.Struct options = 3;
-    // desc: The ID of the Secret containing encrypted data to be used in the plugin.
+    // The ID of the Secret containing encrypted data to be used in the plugin.
     string secret_id = 4;
-    // desc: The metadata of plugin. It includes schema for the data that must be set for the Channel when creating the Channel using a Protocol.
+    // The metadata of plugin. It includes schema for the data that must be set for the Channel when creating the Channel using a Protocol.
     // The schema follows the JSON Schema format.
     google.protobuf.Struct metadata = 6;
-    // desc: Auto upgrade for plugin.
+    // Auto upgrade for plugin.
     // If the upgrade_mode is AUTO, check the latest plugin version when running the plugin, and if a new version is existed, replace the plugin and then run it.
     UpgradeMode upgrade_mode = 7;
 }
 
+//{
+//    "name": "Email",
+//    "plugin_info": {
+//        "plugin_id": "plugin-email-noti-protocol",
+//        "version": "1.0.1",
+//        "options": {},
+//        "secret_id": "secret-123546789012",
+//        "metadata": {
+//            "data": {
+//                "schema": {
+//                    "properties": {
+//                        "email": {
+//                            "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
+//                            "examples": [
+//                                "user1@test.com, user2@test.com"
+//                            ],
+//                            "minLength": 10.0,
+//                            "description": "Email address to receive notifications",
+//                            "type": "string",
+//                            "title": "Email Address"
+//                        }
+//                    },
+//                    "required": [
+//                        "email"
+//                    ],
+//                    "type": "object"
+//                }
+//            },
+//            "data_type": "PLAIN_TEXT"
+//        },
+//        "upgrade_mode": "AUTO"
+//    },
+//    "tags": {}
+//}
 message CreateProtocolRequest {
-    // is_required: true
-    // desc: The name of Protocol. It can have a maximum of 255 characters.
+    // The name of Protocol. It can have a maximum of 255 characters.
     string name = 1;
-    // is_required: true
-    // desc: Describe a Plugin information for protocol that include was used plugin, specific version, schema etc.
+    // Describe a Plugin information for protocol that include was used plugin, specific version, schema etc.
     PluginRequest plugin_info = 2;
-    // is_required: false
-    // desc: The tags for protocol.
+    // The tags for protocol.
+    // +optional
     google.protobuf.Struct tags = 3;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
+    // The ID of domain to which the Protocol belongs.
     string domain_id = 12;
 }
 
+//{
+//    "protocol_id": "protocol-123456789012",
+//    "name": "Email-test",
+//    "tags": {
+//        "type": "test"
+//    }
+//}
 message UpdateProtocolRequest {
-    // is_required: true
-    // desc: The ID of Protocol.
+    // The ID of Protocol.
     string protocol_id = 1;
-    // is_required: false
-    // desc: The Name of Protocol. It can have a maximum of 255 characters.
+    // The Name of Protocol. It can have a maximum of 255 characters.
+    // +optional
     string name = 2;
-    // is_required: false
-    // desc: The tags for protocol. When updating, existing tag information is deleted all and will be updated with new.
+    // The tags for protocol. When updating, existing tag information is deleted all and will be updated with new.
+    // +optional
     google.protobuf.Struct tags = 3;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
+    // The ID of domain to which the Protocol belongs.
     string domain_id = 11;
 }
 
+//{
+//    "protocol_id": "protocol-123456789012",
+//    "version": "1.0.2",
+//    "options": {}
+//}
 message UpdateProtocolPluginRequest {
-    // is_required: true
-    // desc: The ID of Protocol.
+    // The ID of Protocol.
     string protocol_id = 1;
-    // is_required: false
-    // desc: The version of plugin you want to update. Version means the tags of plugin container image in repository that specific market place.
+    // The version of plugin you want to update. Version means the tags of plugin container image in repository that specific market place.
+    // +optional
     string version = 2;
-    // is_required: false
-    // desc: The Options that contains information about using plugin.
+    // The Options that contains information about using plugin.
+    // +optional
     google.protobuf.Struct options = 3;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
+    // The ID of domain to which the Protocol belongs.
     string domain_id = 11;
 }
 
+//{
+//    "protocol_id": "protocol-123456789012"
+//}
 message ProtocolRequest {
-    // is_required: true
-    // desc: The ID of Protocol.
+    // The ID of Protocol.
     string protocol_id = 1;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
+    // The ID of domain to which the Protocol belongs.
     string domain_id = 2;
 }
 
+//{
+//    "protocol_id": "protocol-123456789012"
+//}
 message GetProtocolRequest {
-    // is_required: true
-    // desc: The ID of Protocol.
+    // The ID of Protocol.
     string protocol_id = 1;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
+    // The ID of domain to which the Protocol belongs.
     string domain_id = 2;
-    // is_required: false
-    // desc: The list of the Protocol information column you want to be returned. It must be specified in the ProtocolInfo.
+    // The list of the Protocol information column you want to be returned. It must be specified in the ProtocolInfo.
+    // +optional
     repeated string only = 3;
 }
 
+//{
+//    "query": {}
+//}
 message ProtocolQuery {
     enum ProtocolState {
         NONE = 0;
@@ -629,26 +258,69 @@ message ProtocolQuery {
         EXTERNAL = 2;
     }
 
-    // is_required: false
-    // desc: Query format provided by SpaceONE. Please check the link for more information.
+    // Query format provided by SpaceONE. Please check the link for more information.
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
-    // desc: The ID of Protocol.
+    // The ID of Protocol.
+    // +optional
     string protocol_id = 2;
-    // is_required: false
-    // desc: The name of Protocol.
+    // The name of Protocol.
+    // +optional
     string name = 3;
-    // is_required: false
-    // desc: The state of Protocol. ENABLED or DISABLED only.
+    // The state of Protocol. ENABLED or DISABLED only.
+    // +optional
     ProtocolState state = 4;
-    // is_required: false
-    // desc: The type of Protocol. INTERNAL or EXTERNAL only.
+    // The type of Protocol. INTERNAL or EXTERNAL only.
+    // +optional
     ProtocolType protocol_type = 5;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
+    // The ID of domain to which the Protocol belongs.
     string domain_id = 11;
 }
 
+//{
+//    "protocol_id": "protocol-123546789012",
+//    "name": "Email",
+//    "state": "ENABLED",
+//    "protocol_type": "EXTERNAL",
+//    "capability": {
+//        "supported_schema": [
+//            "email_smtp"
+//        ]
+//    },
+//    "plugin_info": {
+//        "plugin_id": "plugin-email-noti-protocol",
+//        "version": "1.0.1",
+//        "options": {},
+//        "secret_id": "secret-123546789012",
+//        "metadata": {
+//            "data": {
+//                "schema": {
+//                    "properties": {
+//                        "email": {
+//                            "pattern": "^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
+//                            "examples": [
+//                                "user1@test.com, user2@test.com"
+//                            ],
+//                            "minLength": 10.0,
+//                            "description": "Email address to receive notifications",
+//                            "type": "string",
+//                            "title": "Email Address"
+//                        }
+//                    },
+//                    "required": [
+//                        "email"
+//                    ],
+//                    "type": "object"
+//                }
+//            },
+//            "data_type": "PLAIN_TEXT"
+//        },
+//        "upgrade_mode": "AUTO"
+//    },
+//    "tags": {},
+//    "domain_id": "domain-123546789012",
+//    "created_at": "2022-01-01T07:55:57.043Z"
+//}
 message ProtocolInfo {
     enum ProtocolState {
         NONE = 0;
@@ -662,11 +334,11 @@ message ProtocolInfo {
         EXTERNAL = 2;
     }
 
-    // desc: The ID of Protocol.
+    // The ID of Protocol.
     string protocol_id = 1;
-    // desc: The name of Protocol.
+    // The name of Protocol.
     string name = 2;
-    // desc: The state of Protocol.
+    // The state of Protocol.
     // ENABLED or DISABLED only.
     ProtocolState state = 3;
     // desc : The type of Protocol.
@@ -676,28 +348,79 @@ message ProtocolInfo {
     string resource_type = 5;
     // desc : The capability information for the Protocol. It included supported schema for the Protocol.
     google.protobuf.Struct capability = 6;
-    // desc: the plugin information set in Protocol.
+    // the plugin information set in Protocol.
     PluginInfo plugin_info = 7;
-    // desc: The tags for protocol.
+    // The tags for protocol.
     google.protobuf.Struct tags = 8;
-    // desc: The ID of domain to which the Protocol belongs.
+    // The ID of domain to which the Protocol belongs.
     string domain_id = 11;
-    // desc: Protocol creation time.
+    // Protocol creation time.
     string created_at = 21;
 }
 
+//{
+//       "results":[
+//          {
+//             "protocol_id":"protocol-123456789012",
+//             "name":"Email",
+//             "state":"ENABLED",
+//             "protocol_type":"EXTERNAL",
+//             "capability":{
+//                "supported_schema":[
+//                   "email_smtp"
+//                ]
+//             },
+//             "plugin_info":{
+//                "plugin_id":"plugin-email-noti-protocol",
+//                "version":"1.0.1",
+//                "options":{
+//
+//                },
+//                "secret_id":"secret-123456789012",
+//                "metadata":{
+//                   "data_type":"PLAIN_TEXT",
+//                   "data":{
+//                      "schema":{
+//                         "properties":{
+//                            "email":{
+//                               "pattern":"^[\\W]*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4}[\\W]*,{1}[\\W]*)*([\\w+\\-.%]+@[\\w\\-.]+\\.[A-Za-z]{2,4})[\\W]*$",
+//                               "examples":[
+//                                  "user1@test.com, user2@test.com"
+//                               ],
+//                               "minLength":10.0,
+//                               "description":"Email address to receive notifications",
+//                               "type":"string",
+//                               "title":"Email Address"
+//                            }
+//                         },
+//                         "required":[
+//                            "email"
+//                         ],
+//                         "type":"object"
+//                      }
+//                   }
+//                },
+//                "upgrade_mode":"AUTO"
+//             },
+//             "tags":{
+//
+//             },
+//             "domain_id":"domain-123456789012",
+//             "created_at":"2022-01-01T07:55:57.043Z"
+//          }
+//       ],
+//       "total_count":1
+//}
 message ProtocolsInfo {
-    // desc: List of queried protocols.
+    // List of queried protocols.
     repeated ProtocolInfo results = 1;
-    // desc: Total counts of queried Protocols.
+    // Total counts of queried Protocols.
     int32 total_count = 2;
 }
 
 message ProtocolStatQuery {
-    // is_required: true
-    // desc: Statistics Query format provided by SpaceONE. Please check the link for more information.
+    // Statistics Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
-    // desc: The ID of domain to which the Protocol belongs.
+    // The ID of domain to which the Protocol belongs.
     string domain_id = 2;
 }
