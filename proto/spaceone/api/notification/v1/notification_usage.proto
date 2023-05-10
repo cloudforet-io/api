@@ -1,6 +1,4 @@
-/*
-desc: A NotificationUsage is a resource indicating daily Protocol usage. The limit set by the resource Quota is applied based on the NotificationUsage.
-*/
+// A NotificationUsage is a resource indicating daily Protocol usage. The limit set by the resource Quota is applied based on the NotificationUsage.
 syntax = "proto3";
 
 package spaceone.api.notification.v1;
@@ -13,86 +11,80 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service NotificationUsage {
-    /*
-    desc: Gets a list of all NotificationUsages. You can use a query to get a filtered list of Notification Usages.
-    request_example: >-
-      {
-        "query": {}
-      }
-    response_example: >-
-      {
-        "results": [
-            {
-                "protocol_id": "protocol-123456789012",
-                "usage_date": "08",
-                "usage_month": "2022-05",
-                "count": 2,
-                "domain_id": "domain-123456789012"
-            },
-            {
-                "protocol_id": "protocol-123456789012",
-                "usage_date": "18",
-                "usage_month": "2022-05",
-                "count": 7,
-                "domain_id": "domain-123456789012"
-            }
-        ],
-        "total_count": 2
-      }
-    */
+    // Gets a list of all NotificationUsages. You can use a query to get a filtered list of Notification Usages.
     rpc list (NotificationUsageQuery) returns (NotificationUsagesInfo) {
         option (google.api.http) = {
-            post: "/notification/v1/notification-usage/list",
+            post: "/notification/v1/notification-usage/list"
             body: "*"
         };
     }
+    
     rpc stat (NotificationUsageStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/notification/v1/notification-usage/stat",
+            post: "/notification/v1/notification-usage/stat"
             body: "*"
         };
     }
 }
 
+//{
+//    "query": {}
+//}
 message NotificationUsageQuery {
-    // is_required: false
-    // desc: Query format provided by SpaceONE. Please check the link for more information.
+    // Query format provided by SpaceONE. Please check the link for more information.
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
-    // desc: The ID of Protocol.
+    // The ID of Protocol.
+    // +optional
     string protocol_id = 2;
-    // is_required: true
-    // desc: The ID of domain.
+    // The ID of domain.
     string domain_id = 11;
 }
 
 message NotificationUsageInfo {
-    // desc: The ID of Protocol.
+    // The ID of Protocol.
     string protocol_id = 1;
-    // desc: Usage Date.
+    // Usage Date.
     string usage_date = 2;
-    // desc: Usage Month.
+    // Usage Month.
     string usage_month = 3;
-    // desc: Usage count using actual notifications.
+    // Usage count using actual notifications.
     int32 count = 4;
-    // desc: Fail count when dispatching notifications.
+    // Fail count when dispatching notifications.
     int32 fail_count = 5;
-    // desc: The ID of domain
+    // The ID of domain
     string domain_id = 11;
 }
 
+//{
+//    "results": [
+//        {
+//            "protocol_id": "protocol-123456789012",
+//            "usage_date": "08",
+//            "usage_month": "2022-05",
+//            "count": 2,
+//            "domain_id": "domain-123456789012"
+//        },
+//        {
+//            "protocol_id": "protocol-123456789012",
+//            "usage_date": "18",
+//            "usage_month": "2022-05",
+//            "count": 7,
+//            "domain_id": "domain-123456789012"
+//        }
+//    ],
+//    "total_count": 2
+//}
 message NotificationUsagesInfo {
-    // desc: List of queried Notification Usage.
+    // List of queried Notification Usage.
     repeated NotificationUsageInfo results = 1;
-    // desc: Total counts of queried Notification Usage.
+    // Total counts of queried Notification Usage.
     int32 total_count = 2;
 }
 
 message NotificationUsageStatQuery {
-    // is_required: true
-    // desc: Statistics Query format provided by SpaceONE. Please check the link for more information.
+    // Statistics Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
-    // desc: The ID of domain.
+    // The ID of domain.
     string domain_id = 2;
 }

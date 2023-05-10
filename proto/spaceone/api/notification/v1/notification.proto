@@ -1,6 +1,4 @@
-/*
-desc: A Notification is a service that delivers event data generated in Cloudforet to a Project or User.
- */
+// A Notification is a service that delivers event data generated in Cloudforet to a Project or User.
 syntax = "proto3";
 
 package spaceone.api.notification.v1;
@@ -14,244 +12,82 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service Notification {
-    /*
-    desc: Creates a new Notification. When a Notification is created, it is delivered to a UserChannel or a ProjectChannel depending on the parameter `resource_type`. If a Notification is delivered to a UserChannel, the `resource_type` is `identity.User`, and if a Notification is delivered to a ProjectChannel, the `resource_type` is `identity.Project`.
-    request_example: >-
-      {
-        "resource_type": "identity.Project",
-        "resource_id": "resource-123456789012",
-        "topic": "monitoring.Alert",
-        "message": {
-            "title": "[Alerting] Not Running Pods 0:OK alert",
-            "description": "[spaceone-dev] Not Running Pods 0 is OK\n\nFailure level : WorkerNode\nPanel ... ",
-            "tags": {
-                "urgency": "LOW",
-                "resource_id": "pod",
-                "assignee": "user1@email.com",
-                "created_at": "2022-01-01T17:12:45.990Z",
-                "state": "ACKNOWLEDGED",
-                "project_id": "project-123456789012"
-            }
-        },
-        "notification_type": "INFO",
-        "notification_level": "LV2"
-      }
-    response_example: >-
-      {
-        "notification_id": "notification-123456789012",
-        "topic": "monitoring.Alert",
-        "message": {
-            "title": "[Alerting] Not Running Pods 0:OK alert",
-            "description": "[spaceone-dev] Not Running Pods 0 is OK\n\nFailure level : WorkerNode\nPanel ... ",
-            "tags": {
-                "urgency": "LOW",
-                "resource_id": "pod",
-                "assignee": "user1@email.com",
-                "created_at": "2022-01-01T17:12:45.990Z",
-                "state": "ACKNOWLEDGED",
-                "project_id": "project-123456789012"
-            }
-        },
-        "notification_type": "INFO",
-        "notification_level": "LV2",
-        "is_read": true,
-        "user_id": "Cloudforet@mz.co.kr",
-        "domain_id": "domain-123456789012",
-        "created_at": "2022-01-01T17:12:40.990Z"
-      }
-    */
+    
+    // Creates a new Notification. When a Notification is created, it is delivered to a UserChannel or a ProjectChannel depending on the parameter `resource_type`. If a Notification is delivered to a UserChannel, the `resource_type` is `identity.User`, and if a Notification is delivered to a ProjectChannel, the `resource_type` is `identity.Project`.
     rpc create (CreateNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/notification/v1/notification/create",
+            post: "/notification/v1/notification/create"
             body: "*"
         };
     }
-    /*
-    desc: Manually raises a Notification. A Notification is raised with a message to be sent using a valid specific Protocol, and data used for a specific Protocol such as a phone number.
-    request_example: >-
-      {
-        "protocol_id": "protocol-fb30cb6c28d6",
-        "data": {
-            "phone_number": "01012345678"
-        },
-        "message": {
-            "tags": [
-                {
-                    "key": "project_id",
-                    "value": "project-xxxx"
-                },
-                {
-                    "key": "project_name",
-                    "value": "Test Project"
-                },
-                {
-                    "key": "resource_id",
-                    "value": "server-yyyyy"
-                },
-                {
-                    "key": "resource_name",
-                    "value": "web-server-001"
-                }
-            ],
-            "description": "This is Sample Message",
-            "title": "Sample"
-        }
-      }
-    */
+    
+    // Manually raises a Notification. A Notification is raised with a message to be sent using a valid specific Protocol, and data used for a specific Protocol such as a phone number.
     rpc push (PushNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/notification/v1/notification/push",
+            post: "/notification/v1/notification/push"
             body: "*"
         };
     }
-    /*
-    desc: Deletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.
-    request_example: >-
-      {
-        "notifications": [
-            "notification-4025c1b61225",
-            "notification-13hk3fh32534",
-            "notification-4kth40jth5jy"
-        ]
-      }
-    */
+    
+    // Deletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.
     rpc delete (NotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/notification/v1/notification/delete",
+            post: "/notification/v1/notification/delete"
             body: "*"
         };
     }
-    /*
-    desc: Marks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.
-    request_example: >-
-      {
-        "notifications": [
-            "notification-6c548a37ee77",
-            "notification-4j3jt9384fnf"
-        ]
-      }
-    */
+    
+    // Marks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.
     rpc set_read (SetReadNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/notification/v1/notification/set-read",
+            post: "/notification/v1/notification/set-read"
             body: "*"
         };
     }
-    /*
-    desc: Gets a specific Notification. Prints detailed information about the Notification, including not only the message contents(`title`, `description`) but also related data such as created time and urgency.
-    request_example: >-
-      {
-        "notification_id": "notification-4025c1b61225"
-      }
-    response_example: >-
-      {
-        "notification_id": "notification-4025c1b61225",
-        "topic": "monitoring.Alert",
-        "message": {
-            "tags": {
-                "project_id": "project-18655561c535",
-                "created_at": null,
-                "urgency": "LOW",
-                "state": "TRIGGERED",
-                "resource_id": "AWS/NetworkELB",
-                "resource_name": "[Asia Pacific (Seoul)]:[AWS/NetworkELB]: net/af83f347171a044af46453ebb34c8225/743a23562a96c595"
-            },
-            "title": "[Asia Pacific (Seoul)]: NLB-TCP_Target_Reset_Count-Alert",
-            "description": "Threshold Crossed: 1 out of the last 1 datapoints [200.0 (25/06/21 06:38:00)] was not greater than the threshold (200.0)"
-        },
-        "notification_type": "INFO",
-        "notification_level": "ALL",
-        "is_read": true,
-        "user_id": "user1@spaceone.dev",
-        "domain_id": "domain-58010aa2e451",
-        "created_at": "2021-06-25T06:42:05.867Z"
-      }
-    */
+    
+    //Gets a specific Notification. Prints detailed information about the Notification, including not only the message contents(`title`, `description`) but also related data such as created time and urgency.
     rpc get (GetNotificationRequest) returns (NotificationInfo) {
         option (google.api.http) = {
-            post: "/notification/v1/notification/get",
+            post: "/notification/v1/notification/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all Notifications. You can use a query to get a filtered list of Notifications.
-    request_example: >-
-      {
-        "query": {
-            "filter": [
-                {
-                    "key": "notification_type",
-                    "value": "INFO",
-                    "operator": "eq"
-                }
-            ]
-        }
-      }
-    response_example: >-
-      {
-        "results": [
-            {
-                "notification_id": "notification-9f1476af11b7",
-                "topic": "monitoring.Alert",
-                "message": {
-                    "tags": {
-                        "state": "ACKNOWLEDGED",
-                        "resource_id": "pod",
-                        "project_id": "project-18655561c535",
-                        "urgency": "LOW",
-                        "created_at": null,
-                        "assignee": "yuda@test.co"
-                    },
-                    "title": "[Alerting] Not Running Pods 0:OK alert",
-                    "description": "[cloudone-dev-v1-eks-cluster] Not Running Pods 0 is OK"
-                },
-                "notification_type": "INFO",
-                "notification_level": "LV2",
-                "is_read": true,
-                "user_id": "user33@spaceone.dev",
-                "domain_id": "domain-58010aa2e451",
-                "created_at": "2021-06-21T17:13:39.570Z"
-            },
-            {
-                "notification_id": "notification-4025c1b61225",
-                "topic": "monitoring.Alert",
-                "message": {
-                    "title": "[Asia Pacific (Seoul)]: NLB-TCP_Target_Reset_Count-Alert",
-                    "description": "Threshold Crossed: 1 out of the last 1 datapoints [200.0 (25/06/21 06:38:00)] was not greater than the threshold (200.0)",
-                    "tags": {
-                        "resource_id": "AWS/NetworkELB",
-                        "resource_name": "[Asia Pacific (Seoul)]:[AWS/NetworkELB]: net/dfsbvs/advdr32rwqdsvzc",
-                        "created_at": null,
-                        "state": "TRIGGERED",
-                        "project_id": "project-18655561c535",
-                        "urgency": "LOW"
-                    }
-                },
-                "notification_type": "INFO",
-                "notification_level": "ALL",
-                "is_read": true,
-                "user_id": "user1@cloudforet.io",
-                "domain_id": "domain-58010aa2e451",
-                "created_at": "2021-06-25T06:42:05.867Z"
-            }
-        ],
-        "total_count": 2
-      }
-    */
+    
+    //Gets a list of all Notifications. You can use a query to get a filtered list of Notifications.
     rpc list (NotificationQuery) returns (NotificationsInfo) {
         option (google.api.http) = {
-            post: "/notification/v1/notification/list",
+            post: "/notification/v1/notification/list"
             body: "*"
         };
     }
+
     rpc stat (NotificationStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/notification/v1/notification/stat",
+            post: "/notification/v1/notification/stat"
             body: "*"
         };
     }
 }
 
+//{
+//    "resource_type": "identity.Project",
+//    "resource_id": "resource-123456789012",
+//    "topic": "monitoring.Alert",
+//    "message": {
+//        "title": "[Alerting] Not Running Pods 0:OK alert",
+//        "description": "[spaceone-dev] Not Running Pods 0 is OK\n\nFailure level : WorkerNode\nPanel ... ",
+//        "tags": {
+//            "urgency": "LOW",
+//            "resource_id": "pod",
+//            "assignee": "user1@email.com",
+//            "created_at": "2022-01-01T17:12:45.990Z",
+//            "state": "ACKNOWLEDGED",
+//            "project_id": "project-123456789012"
+//        }
+//    },
+//    "notification_type": "INFO",
+//    "notification_level": "LV2"
+//}
 message CreateNotificationRequest {
     enum NotificationType {
         NOTIFICATION_TYPE_NONE = 0;
@@ -270,34 +106,62 @@ message CreateNotificationRequest {
         LV5 = 6;
     }
     // is_required: true
-    // desc: The type of resource to which the notification is dispatched.
+    // The type of resource to which the notification is dispatched.
     // Currently, only "identity.Project" or "identity.User" can be set.
     string resource_type = 1;
     // is_required: true
-    // desc: The ID of the resource to which notifications are dispatched.
+    // The ID of the resource to which notifications are dispatched.
     // If resource_type is "identity.Project", then resource_id requires a project ID values.
     // If resource_type is "identity.User", then resource_id requires a user ID value.
     string resource_id = 2;
     // is_required: true
-    // desc: The topic of notification.
+    // The topic of notification.
     string topic = 3;
     // is_required: true
-    // desc: This message is used for each protocol.
+    // This message is used for each protocol.
     google.protobuf.Struct message = 4;
     // is_required: false
-    // desc: The type of notification.
+    // The type of notification.
     NotificationType notification_type = 5;
     // is_required: false
-    // desc: The level of notification.
+    // The level of notification.
     NotificationLEVEL notification_level = 7;
     // is_required: true
-    // desc: The ID of domain.
+    // The ID of domain.
     string domain_id = 11;
 }
 
+//{
+//    "protocol_id": "protocol-fb30cb6c28d6",
+//    "data": {
+//        "phone_number": "01012345678"
+//    },
+//    "message": {
+//        "tags": [
+//            {
+//                "key": "project_id",
+//                "value": "project-xxxx"
+//            },
+//            {
+//                "key": "project_name",
+//                "value": "Test Project"
+//            },
+//            {
+//                "key": "resource_id",
+//                "value": "server-yyyyy"
+//            },
+//            {
+//                "key": "resource_name",
+//                "value": "web-server-001"
+//            }
+//        ],
+//        "description": "This is Sample Message",
+//        "title": "Sample"
+//    }
+//}
 message PushNotificationRequest {
     // is_required: true
-    // desc: The ID of Protocol.
+    // The ID of Protocol.
     string protocol_id = 1;
     // is_required: true
     google.protobuf.Struct data = 2;
@@ -311,36 +175,63 @@ message PushNotificationRequest {
     string domain_id = 11;
 }
 
+//{
+//    "notifications": [
+//        "notification-4025c1b61225",
+//        "notification-13hk3fh32534",
+//        "notification-4kth40jth5jy"
+//    ]
+//}
 message NotificationRequest {
     // is_required: true
-    // desc: ID list of Notifications.
+    // ID list of Notifications.
     repeated string notifications = 1;
     // is_required: true
-    // desc: The ID of domain.
+    // The ID of domain.
     string domain_id = 2;
 }
 
+//{
+//    "notifications": [
+//        "notification-6c548a37ee77",
+//        "notification-4j3jt9384fnf"
+//    ]
+//}
 message SetReadNotificationRequest {
     // is_required: true
-    // desc: The ID list of notification that want to change read status.
+    // The ID list of notification that want to change read status.
     repeated string notifications = 1;
     // is_required: true
-    // desc: The ID of domain.
+    // The ID of domain.
     string domain_id = 2;
 }
 
+//{
+//    "notification_id": "notification-4025c1b61225"
+//}
 message GetNotificationRequest {
     // is_required: true
-    // desc: The ID of Notification.
+    // The ID of Notification.
     string notification_id = 1;
     // is_required: true
-    // desc: The ID of domain.
+    // The ID of domain.
     string domain_id = 2;
     // is_required: false
-    // desc: The list of the notification information column you want to be returned. It must be specified in the NotificationInfo.
+    // The list of the notification information column you want to be returned. It must be specified in the NotificationInfo.
     repeated string only = 3;
 }
 
+//{
+//    "query": {
+//        "filter": [
+//            {
+//                "key": "notification_type",
+//                "value": "INFO",
+//                "operator": "eq"
+//            }
+//        ]
+//    }
+//}
 message NotificationQuery {
     enum NotificationType {
         NOTIFICATION_TYPE_NONE = 0;
@@ -359,38 +250,60 @@ message NotificationQuery {
         LV5 = 6;
     }
     // is_required: false
-    // desc: Query format provided by SpaceONE. Please check the link for more information.
+    // Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
-    // desc: The ID of notification.
+    // The ID of notification.
     string notification_id = 2;
     // is_required: false
-    // desc: The topic of notification.
+    // The topic of notification.
     string topic = 3;
     // is_required: false
-    // desc: The type of notification.
+    // The type of notification.
     NotificationType notification_type = 4;
     // is_required: false
-    // desc: The level of notification.
+    // The level of notification.
     NotificationLEVEL notification_level = 5;
     // is_required: false
-    // desc: Whether or not to check the notification.
+    // Whether or not to check the notification.
     // If is_read is False, the user has not checked the notification yet.
     bool is_read = 6;
     // is_required: false
-    // desc: The ID of parent notification. Not used yet.
+    // The ID of parent notification. Not used yet.
     string parent_notification_id = 7;
     // is_required: false
-    // desc: The project ID to which the notification will be dispatched.
+    // The project ID to which the notification will be dispatched.
     string project_id = 8;
     // is_required: false
-    // desc: The ID of user.
+    // The ID of user.
     string user_id = 9;
     // is_required: true
-    // desc: The ID of domain.
+    // The ID of domain.
     string domain_id = 11;
 }
 
+//{
+//    "notification_id": "notification-4025c1b61225",
+//    "topic": "monitoring.Alert",
+//    "message": {
+//        "tags": {
+//            "project_id": "project-18655561c535",
+//            "created_at": null,
+//            "urgency": "LOW",
+//            "state": "TRIGGERED",
+//            "resource_id": "AWS/NetworkELB",
+//            "resource_name": "[Asia Pacific (Seoul)]:[AWS/NetworkELB]: net/af83f347171a044af46453ebb34c8225/743a23562a96c595"
+//        },
+//        "title": "[Asia Pacific (Seoul)]: NLB-TCP_Target_Reset_Count-Alert",
+//        "description": "Threshold Crossed: 1 out of the last 1 datapoints [200.0 (25/06/21 06:38:00)] was not greater than the threshold (200.0)"
+//    },
+//    "notification_type": "INFO",
+//    "notification_level": "ALL",
+//    "is_read": true,
+//    "user_id": "user1@spaceone.dev",
+//    "domain_id": "domain-58010aa2e451",
+//    "created_at": "2021-06-25T06:42:05.867Z"
+//}
 message NotificationInfo {
     enum NotificationType {
         NOTIFICATION_TYPE_NONE = 0;
@@ -409,40 +322,89 @@ message NotificationInfo {
         LV5 = 6;
     }
 
-    // desc: The ID of notification.
+    // The ID of notification.
     string notification_id = 1;
-    // desc: The topic of notification.
+    // The topic of notification.
     string topic = 2;
-    // desc: The contents of notification.
+    // The contents of notification.
     // This message is used for each protocol.
     google.protobuf.Struct message = 3;
-    // desc: The type of notification.
+    // The type of notification.
     NotificationType notification_type = 4;
-    // desc: The level of notification.
+    // The level of notification.
     NotificationLEVEL notification_level = 5;
-    // desc: Whether or not to check the notification.
+    // Whether or not to check the notification.
     // If notification has been returned at least once through the Get or List method, is_read is changed to True.
     bool is_read = 6;
-    // desc: The ID of user to whom the notification was dispatched.
+    // The ID of user to whom the notification was dispatched.
     string user_id = 11;
-    // desc: The ID of domain
+    // The ID of domain
     string domain_id = 12;
-    // desc: Notification creation time.
+    // Notification creation time.
     string created_at = 21;
 }
 
+//{
+//    "results": [
+//        {
+//            "notification_id": "notification-9f1476af11b7",
+//            "topic": "monitoring.Alert",
+//            "message": {
+//                "tags": {
+//                    "state": "ACKNOWLEDGED",
+//                    "resource_id": "pod",
+//                    "project_id": "project-18655561c535",
+//                    "urgency": "LOW",
+//                    "created_at": null,
+//                    "assignee": "yuda@test.co"
+//                },
+//                "title": "[Alerting] Not Running Pods 0:OK alert",
+//                "description": "[cloudone-dev-v1-eks-cluster] Not Running Pods 0 is OK"
+//            },
+//            "notification_type": "INFO",
+//            "notification_level": "LV2",
+//            "is_read": true,
+//            "user_id": "user33@spaceone.dev",
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2021-06-21T17:13:39.570Z"
+//        },
+//        {
+//            "notification_id": "notification-4025c1b61225",
+//            "topic": "monitoring.Alert",
+//            "message": {
+//                "title": "[Asia Pacific (Seoul)]: NLB-TCP_Target_Reset_Count-Alert",
+//                "description": "Threshold Crossed: 1 out of the last 1 datapoints [200.0 (25/06/21 06:38:00)] was not greater than the threshold (200.0)",
+//                "tags": {
+//                    "resource_id": "AWS/NetworkELB",
+//                    "resource_name": "[Asia Pacific (Seoul)]:[AWS/NetworkELB]: net/dfsbvs/advdr32rwqdsvzc",
+//                    "created_at": null,
+//                    "state": "TRIGGERED",
+//                    "project_id": "project-18655561c535",
+//                    "urgency": "LOW"
+//                }
+//            },
+//            "notification_type": "INFO",
+//            "notification_level": "ALL",
+//            "is_read": true,
+//            "user_id": "user1@cloudforet.io",
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2021-06-25T06:42:05.867Z"
+//        }
+//    ],
+//    "total_count": 2
+//}
 message NotificationsInfo {
-    // desc: List of queried notifications.
+    // List of queried notifications.
     repeated NotificationInfo results = 1;
-    // desc: Total counts of queried notifications.
+    // Total counts of queried notifications.
     int32 total_count = 2;
 }
 
 message NotificationStatQuery {
     // is_required: true
-    // desc: Statistics Query format provided by SpaceONE. Please check the link for more information.
+    // Statistics Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // is_required: true
-    // desc: The ID of domain.
+    // The ID of domain.
     string domain_id = 2;
 }

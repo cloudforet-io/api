@@ -1,6 +1,4 @@
-/*
-desc: A Protocol is a plugin instance defining how a User receives data from Cloudforet.
-*/
+// A Protocol is a plugin instance defining how a User receives data from Cloudforet.
 syntax = "proto3";
 
 package spaceone.api.notification.plugin;
@@ -12,46 +10,36 @@ import "google/protobuf/struct.proto";
 
 
 service Protocol {
-    /*
-    desc: Initializes a specific Protocol. During initialization, the Protocol information to be passed to the Protocol user is delivered as `metadata`. Protocol information includes its name and version.
-    request_example: >-
-      {
-        "options": {}
-      }
-    response_example: >-
-      {
-        "metadata": {}
-      }
-    */
+    // Initializes a specific Protocol. During initialization, the Protocol information to be passed to the Protocol user is delivered as `metadata`. Protocol information includes its name and version.
     rpc init (InitRequest) returns (PluginInfo) {}
-    /*
-    desc: Verifies if a specific Protocol is a valid plugin instance.
-    request_example: >-
-      {
-        "options": {}
-      }
-    */
+    
+    // Verifies if a specific Protocol is a valid plugin instance.
     rpc verify (PluginVerifyRequest) returns (google.protobuf.Empty) {}
 }
 
+//{
+//    "options": {}
+//}
 message InitRequest {
-    // is_required: true
-    // desc: Option value used when initializing the plugin.
+    // Option value used when initializing the plugin.
     google.protobuf.Struct options = 1;
 }
 
+//{
+//    "options": {}
+//}
 message PluginVerifyRequest {
-    // is_required: true
-    // desc: Option values required for the plugin to work.
+    // Option values required for the plugin to work.
     google.protobuf.Struct options = 1;
-    // is_required: true
-    // desc: The secret value required for the plugin to work.
+    // The secret value required for the plugin to work.
     // The secret data usually includes the credential information required for the plugin to access the external system.
     google.protobuf.Struct secret_data = 2;
 }
 
+//{   
+//    "metadata": {}
+//}
 message PluginInfo {
-    // desc: Metadata value required to input various values required for plugin to work.
     // Metadata value required to input various values required for plugin to work.
     // In the case of protocol plugins, when creating a channel, the plugin contains the definition of additional data (channel data) required for channel transmission.
     google.protobuf.Struct metadata = 1;
