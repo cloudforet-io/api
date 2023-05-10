@@ -29,14 +29,12 @@ type CreateProjectGroupRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	ParentProjectGroupId string `protobuf:"bytes,2,opt,name=parent_project_group_id,json=parentProjectGroupId,proto3" json:"parent_project_group_id,omitempty"`
-	// is_required: false
-	Tags *_struct.Struct `protobuf:"bytes,3,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,4,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	Tags     *_struct.Struct `protobuf:"bytes,3,opt,name=tags,proto3" json:"tags,omitempty"`
+	DomainId string          `protobuf:"bytes,4,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *CreateProjectGroupRequest) Reset() {
@@ -104,18 +102,16 @@ type UpdateProjectGroupRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	ProjectGroupId string `protobuf:"bytes,1,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
-	// is_required: false
+	// +optional
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	ParentProjectGroupId string `protobuf:"bytes,3,opt,name=parent_project_group_id,json=parentProjectGroupId,proto3" json:"parent_project_group_id,omitempty"`
-	// is_required: false
+	// +optional
 	ReleaseParentProjectGroup bool `protobuf:"varint,4,opt,name=release_parent_project_group,json=releaseParentProjectGroup,proto3" json:"release_parent_project_group,omitempty"`
-	// is_required: false
-	Tags *_struct.Struct `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	Tags     *_struct.Struct `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
+	DomainId string          `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *UpdateProjectGroupRequest) Reset() {
@@ -197,10 +193,8 @@ type ProjectGroupRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	ProjectGroupId string `protobuf:"bytes,1,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	DomainId       string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *ProjectGroupRequest) Reset() {
@@ -254,11 +248,9 @@ type GetProjectGroupRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	ProjectGroupId string `protobuf:"bytes,1,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: false
+	DomainId       string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
 	Only []string `protobuf:"bytes,3,rep,name=only,proto3" json:"only,omitempty"`
 }
 
@@ -320,18 +312,17 @@ type ProjectGroupQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
+	// +optional
 	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: false
+	// +optional
 	ProjectGroupId string `protobuf:"bytes,2,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
-	// is_required: false
+	// +optional
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	ParentProjectGroupId string `protobuf:"bytes,4,opt,name=parent_project_group_id,json=parentProjectGroupId,proto3" json:"parent_project_group_id,omitempty"`
-	// is_required: false
-	AuthorWithin bool `protobuf:"varint,5,opt,name=author_within,json=authorWithin,proto3" json:"author_within,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	AuthorWithin bool   `protobuf:"varint,5,opt,name=author_within,json=authorWithin,proto3" json:"author_within,omitempty"`
+	DomainId     string `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *ProjectGroupQuery) Reset() {
@@ -563,19 +554,16 @@ type AddProjectGroupMemberRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	ProjectGroupId string `protobuf:"bytes,1,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
-	// is_required: true
-	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	// is_required: false
+	UserId         string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	// +optional
 	RoleId string `protobuf:"bytes,3,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	// is_required: false
+	// +optional
 	Labels *_struct.ListValue `protobuf:"bytes,4,opt,name=labels,proto3" json:"labels,omitempty"`
-	// is_required: false
-	Tags *_struct.Struct `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: false
+	// +optional
+	Tags     *_struct.Struct `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
+	DomainId string          `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
 	IsExternalUser bool `protobuf:"varint,7,opt,name=is_external_user,json=isExternalUser,proto3" json:"is_external_user,omitempty"`
 }
 
@@ -665,16 +653,13 @@ type ModifyProjectGroupMemberRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	ProjectGroupId string `protobuf:"bytes,1,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
-	// is_required: true
-	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	// is_required: false
+	UserId         string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	// +optional
 	Labels *_struct.ListValue `protobuf:"bytes,3,opt,name=labels,proto3" json:"labels,omitempty"`
-	// is_required: false
-	Tags *_struct.Struct `protobuf:"bytes,4,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,5,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	Tags     *_struct.Struct `protobuf:"bytes,4,opt,name=tags,proto3" json:"tags,omitempty"`
+	DomainId string          `protobuf:"bytes,5,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *ModifyProjectGroupMemberRequest) Reset() {
@@ -749,12 +734,9 @@ type RemoveProjectGroupMemberRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	ProjectGroupId string `protobuf:"bytes,1,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
-	// is_required: true
-	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,3,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	UserId         string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	DomainId       string `protobuf:"bytes,3,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *RemoveProjectGroupMemberRequest) Reset() {
@@ -815,18 +797,16 @@ type ProjectGroupMemberQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
-	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: true
-	ProjectGroupId string `protobuf:"bytes,2,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
-	// is_required: false
+	// +optional
+	Query          *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	ProjectGroupId string    `protobuf:"bytes,2,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
+	// +optional
 	UserId string `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	// is_required: false
+	// +optional
 	RoleId string `protobuf:"bytes,4,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	// is_required: false
-	IncludeParentMember bool `protobuf:"varint,5,opt,name=include_parent_member,json=includeParentMember,proto3" json:"include_parent_member,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	IncludeParentMember bool   `protobuf:"varint,5,opt,name=include_parent_member,json=includeParentMember,proto3" json:"include_parent_member,omitempty"`
+	DomainId            string `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *ProjectGroupMemberQuery) Reset() {
@@ -1074,14 +1054,12 @@ type ProjectGroupProjectQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
-	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: true
-	ProjectGroupId string `protobuf:"bytes,2,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
-	// is_required: false
-	Recursive bool `protobuf:"varint,3,opt,name=recursive,proto3" json:"recursive,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,4,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	Query          *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	ProjectGroupId string    `protobuf:"bytes,2,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
+	// +optional
+	Recursive bool   `protobuf:"varint,3,opt,name=recursive,proto3" json:"recursive,omitempty"`
+	DomainId  string `protobuf:"bytes,4,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *ProjectGroupProjectQuery) Reset() {
@@ -1299,10 +1277,8 @@ type ProjectGroupStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Query    *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	DomainId string              `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *ProjectGroupStatQuery) Reset() {

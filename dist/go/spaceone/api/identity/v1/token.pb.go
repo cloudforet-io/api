@@ -28,17 +28,15 @@ type IssueTokenRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
-	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	// is_required: true
+	// +optional
+	UserId      string          `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Credentials *_struct.Struct `protobuf:"bytes,2,opt,name=credentials,proto3" json:"credentials,omitempty"`
-	// is_required: false
+	// +optional
 	UserType string `protobuf:"bytes,3,opt,name=user_type,json=userType,proto3" json:"user_type,omitempty"`
-	// is_required: true
 	DomainId string `protobuf:"bytes,4,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: false
+	// +optional
 	Timeout int32 `protobuf:"varint,5,opt,name=timeout,proto3" json:"timeout,omitempty"`
-	// is_required: false
+	// +optional
 	RefreshCount int32 `protobuf:"varint,6,opt,name=refresh_count,json=refreshCount,proto3" json:"refresh_count,omitempty"`
 }
 

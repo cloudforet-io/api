@@ -98,46 +98,7 @@ class UserServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """
-        desc: Update user info by given user_id
-        note:
-        request_example: >-
-        {
-        "user_id": "dkang@mz.co.kr",
-        "tags": [{
-        "key": "user1",
-        "value": "Reuters"
-        }, {
-        "key": "user2",
-        "value": "Bloomberg"
-        }],
-        "domain_id": "{{DOMAIN_ID}}"
-        }
-        response_example: >-
-        {
-        "user_id": "dkang@mz.co.kr",
-        "name": "Dong Yoo kang",
-        "state": "ENABLED",
-        "email": "dkang@mz.co.kr",
-        "language": "en",
-        "timezone": "UTC",
-        "tags": [{
-        "key": "user1",
-        "value": "Reuters"
-        }, {
-        "key": "user2",
-        "value": "Bloomberg"
-        }],
-        "last_accessed_at": {
-        "seconds": "1593161630",
-        "nanos": 79000000
-        },
-        "created_at": {
-        "seconds": "1593161630",
-        "nanos": 79000000
-        },
-        "domain_id": "domain-fd6e23a5ae36"
-        }
+        """Update user info by given user_id
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

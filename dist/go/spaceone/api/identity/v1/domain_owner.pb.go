@@ -27,19 +27,17 @@ type CreateDomainOwner struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
-	OwnerId string `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	// is_required: true
+	// +optional
+	OwnerId  string `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	// is_required: false
+	// +optional
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
-	// is_required: false
+	// +optional
 	Language string `protobuf:"bytes,7,opt,name=language,proto3" json:"language,omitempty"`
-	// is_required: false
+	// +optional
 	Timezone string `protobuf:"bytes,8,opt,name=timezone,proto3" json:"timezone,omitempty"`
-	// is_required: true
 	DomainId string `protobuf:"bytes,10,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -129,19 +127,17 @@ type UpdateDomainOwner struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	OwnerId string `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	// is_required: false
+	// +optional
 	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	// is_required: false
+	// +optional
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
-	// is_required: false
+	// +optional
 	Language string `protobuf:"bytes,7,opt,name=language,proto3" json:"language,omitempty"`
-	// is_required: false
+	// +optional
 	Timezone string `protobuf:"bytes,8,opt,name=timezone,proto3" json:"timezone,omitempty"`
-	// is_required: true
 	DomainId string `protobuf:"bytes,10,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -231,10 +227,8 @@ type DomainOwnerRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	DomainId string `protobuf:"bytes,1,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: true
-	OwnerId string `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	OwnerId  string `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 }
 
 func (x *DomainOwnerRequest) Reset() {
@@ -288,11 +282,9 @@ type GetDomainOwnerRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	DomainId string `protobuf:"bytes,1,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: true
-	OwnerId string `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	// is_required: false
+	OwnerId  string `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	// +optional
 	Only []string `protobuf:"bytes,3,rep,name=only,proto3" json:"only,omitempty"`
 }
 

@@ -155,15 +155,14 @@ type EndpointQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
+	// +optional
 	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: false
+	// +optional
 	Service string `protobuf:"bytes,2,opt,name=service,proto3" json:"service,omitempty"`
-	// is_required: false
 	// example: public | internal
+	// +optional
 	EndpointType string `protobuf:"bytes,3,opt,name=endpoint_type,json=endpointType,proto3" json:"endpoint_type,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	DomainId     string `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *EndpointQuery) Reset() {

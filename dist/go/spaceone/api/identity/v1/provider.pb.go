@@ -29,20 +29,17 @@ type CreateProviderRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	Provider string `protobuf:"bytes,1,opt,name=provider,proto3" json:"provider,omitempty"`
-	// is_required: true
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	Name     string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// +optional
 	Template *_struct.Struct `protobuf:"bytes,3,opt,name=template,proto3" json:"template,omitempty"`
-	// is_required: false
+	// +optional
 	Metadata *_struct.Struct `protobuf:"bytes,4,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	// is_required: false
+	// +optional
 	Capability *_struct.Struct `protobuf:"bytes,5,opt,name=capability,proto3" json:"capability,omitempty"`
-	// is_required: false
-	Tags *_struct.Struct `protobuf:"bytes,6,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,7,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	Tags     *_struct.Struct `protobuf:"bytes,6,opt,name=tags,proto3" json:"tags,omitempty"`
+	DomainId string          `protobuf:"bytes,7,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *CreateProviderRequest) Reset() {
@@ -131,20 +128,18 @@ type UpdateProviderRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	Provider string `protobuf:"bytes,1,opt,name=provider,proto3" json:"provider,omitempty"`
-	// is_required: false
+	// +optional
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	Template *_struct.Struct `protobuf:"bytes,3,opt,name=template,proto3" json:"template,omitempty"`
-	// is_required: false
+	// +optional
 	Metadata *_struct.Struct `protobuf:"bytes,4,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	// is_required: false
+	// +optional
 	Capability *_struct.Struct `protobuf:"bytes,5,opt,name=capability,proto3" json:"capability,omitempty"`
-	// is_required: false
-	Tags *_struct.Struct `protobuf:"bytes,6,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,7,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	Tags     *_struct.Struct `protobuf:"bytes,6,opt,name=tags,proto3" json:"tags,omitempty"`
+	DomainId string          `protobuf:"bytes,7,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *UpdateProviderRequest) Reset() {
@@ -233,9 +228,7 @@ type ProviderRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	Provider string `protobuf:"bytes,1,opt,name=provider,proto3" json:"provider,omitempty"`
-	// is_required: true
 	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -290,12 +283,10 @@ type GetProviderRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	Provider string `protobuf:"bytes,1,opt,name=provider,proto3" json:"provider,omitempty"`
-	// is_required: false
-	Only []string `protobuf:"bytes,2,rep,name=only,proto3" json:"only,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,3,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	Only     []string `protobuf:"bytes,2,rep,name=only,proto3" json:"only,omitempty"`
+	DomainId string   `protobuf:"bytes,3,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *GetProviderRequest) Reset() {
@@ -356,13 +347,12 @@ type ProviderQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
+	// +optional
 	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: false
+	// +optional
 	Provider string `protobuf:"bytes,2,opt,name=provider,proto3" json:"provider,omitempty"`
-	// is_required: false
-	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: true
+	// +optional
+	Name     string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	DomainId string `protobuf:"bytes,4,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -581,10 +571,8 @@ type ProviderStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Query    *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	DomainId string              `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *ProviderStatQuery) Reset() {

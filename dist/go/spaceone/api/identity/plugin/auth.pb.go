@@ -79,7 +79,6 @@ type InitRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	Options *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
 }
 
@@ -127,11 +126,9 @@ type VerifyRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Options *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
-	// is_required: true
+	Options    *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
 	SecretData *_struct.Struct `protobuf:"bytes,2,opt,name=secret_data,json=secretData,proto3" json:"secret_data,omitempty"`
-	// is_required: false
+	// +optional
 	Schema string `protobuf:"bytes,3,opt,name=schema,proto3" json:"schema,omitempty"`
 }
 
@@ -193,15 +190,13 @@ type FindRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Options *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
-	// is_required: true
+	Options    *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
 	SecretData *_struct.Struct `protobuf:"bytes,2,opt,name=secret_data,json=secretData,proto3" json:"secret_data,omitempty"`
-	// is_required: false
+	// +optional
 	UserId string `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	// is_required: false
+	// +optional
 	Keyword string `protobuf:"bytes,4,opt,name=keyword,proto3" json:"keyword,omitempty"`
-	// is_required: false
+	// +optional
 	Schema string `protobuf:"bytes,5,opt,name=schema,proto3" json:"schema,omitempty"`
 }
 
@@ -277,13 +272,10 @@ type LoginRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Options *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
-	// is_required: true
-	SecretData *_struct.Struct `protobuf:"bytes,2,opt,name=secret_data,json=secretData,proto3" json:"secret_data,omitempty"`
-	// is_required: true
+	Options         *_struct.Struct `protobuf:"bytes,1,opt,name=options,proto3" json:"options,omitempty"`
+	SecretData      *_struct.Struct `protobuf:"bytes,2,opt,name=secret_data,json=secretData,proto3" json:"secret_data,omitempty"`
 	UserCredentials *_struct.Struct `protobuf:"bytes,3,opt,name=user_credentials,json=userCredentials,proto3" json:"user_credentials,omitempty"`
-	// is_required: false
+	// +optional
 	Schema string `protobuf:"bytes,4,opt,name=schema,proto3" json:"schema,omitempty"`
 }
 

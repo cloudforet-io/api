@@ -289,18 +289,14 @@ type CreateRoleRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: true
-	RoleType RoleType `protobuf:"varint,2,opt,name=role_type,json=roleType,proto3,enum=spaceone.api.identity.v1.RoleType" json:"role_type,omitempty"`
-	// is_required: true
+	Name     string        `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	RoleType RoleType      `protobuf:"varint,2,opt,name=role_type,json=roleType,proto3,enum=spaceone.api.identity.v1.RoleType" json:"role_type,omitempty"`
 	Policies []*RolePolicy `protobuf:"bytes,3,rep,name=policies,proto3" json:"policies,omitempty"`
-	// is_required: false
+	// +optional
 	PagePermissions []*PagePermission `protobuf:"bytes,4,rep,name=page_permissions,json=pagePermissions,proto3" json:"page_permissions,omitempty"`
-	// is_required: false
-	Tags *_struct.Struct `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	Tags     *_struct.Struct `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
+	DomainId string          `protobuf:"bytes,6,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *CreateRoleRequest) Reset() {
@@ -382,20 +378,18 @@ type UpdateRoleRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	RoleId string `protobuf:"bytes,1,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	// is_required: false
+	// +optional
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	Policies []*RolePolicy `protobuf:"bytes,3,rep,name=policies,proto3" json:"policies,omitempty"`
-	// is_required: false
+	// +optional
 	PagePermissions []*PagePermission `protobuf:"bytes,4,rep,name=page_permissions,json=pagePermissions,proto3" json:"page_permissions,omitempty"`
-	// is_required: false
+	// +optional
 	Tags *_struct.Struct `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: false
-	ReleasePagePermissions bool `protobuf:"varint,6,opt,name=release_page_permissions,json=releasePagePermissions,proto3" json:"release_page_permissions,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,7,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	ReleasePagePermissions bool   `protobuf:"varint,6,opt,name=release_page_permissions,json=releasePagePermissions,proto3" json:"release_page_permissions,omitempty"`
+	DomainId               string `protobuf:"bytes,7,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *UpdateRoleRequest) Reset() {
@@ -484,9 +478,7 @@ type RoleRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	RoleId string `protobuf:"bytes,1,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	// is_required: true
+	RoleId   string `protobuf:"bytes,1,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
 	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -541,11 +533,9 @@ type GetRoleRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	RoleId string `protobuf:"bytes,1,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	// is_required: true
+	RoleId   string `protobuf:"bytes,1,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
 	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: false
+	// +optional
 	Only []string `protobuf:"bytes,3,rep,name=only,proto3" json:"only,omitempty"`
 }
 
@@ -718,17 +708,16 @@ type RoleQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
+	// +optional
 	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: false
+	// +optional
 	RoleId string `protobuf:"bytes,2,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	// is_required: false
+	// +optional
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	RoleType RoleType `protobuf:"varint,5,opt,name=role_type,json=roleType,proto3,enum=spaceone.api.identity.v1.RoleType" json:"role_type,omitempty"`
-	// is_required: false
+	// +optional
 	PolicyId string `protobuf:"bytes,6,opt,name=policy_id,json=policyId,proto3" json:"policy_id,omitempty"`
-	// is_required: true
 	DomainId string `protobuf:"bytes,7,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -866,10 +855,8 @@ type RoleStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Query    *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	DomainId string              `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *RoleStatQuery) Reset() {

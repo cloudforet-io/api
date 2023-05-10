@@ -225,13 +225,12 @@ type CreateDomainRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	PluginInfo *PluginInfo `protobuf:"bytes,2,opt,name=plugin_info,json=pluginInfo,proto3" json:"plugin_info,omitempty"`
-	// is_required: false
+	// +optional
 	Config *_struct.Struct `protobuf:"bytes,3,opt,name=config,proto3" json:"config,omitempty"`
-	// is_required: false
+	// +optional
 	Tags *_struct.Struct `protobuf:"bytes,4,opt,name=tags,proto3" json:"tags,omitempty"`
 }
 
@@ -300,13 +299,12 @@ type UpdateDomainRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	DomainId string `protobuf:"bytes,1,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: false
+	// +optional
 	PluginInfo *PluginInfo `protobuf:"bytes,2,opt,name=plugin_info,json=pluginInfo,proto3" json:"plugin_info,omitempty"`
-	// is_required: false
+	// +optional
 	Config *_struct.Struct `protobuf:"bytes,3,opt,name=config,proto3" json:"config,omitempty"`
-	// is_required: false
+	// +optional
 	Tags *_struct.Struct `protobuf:"bytes,4,opt,name=tags,proto3" json:"tags,omitempty"`
 }
 
@@ -375,11 +373,10 @@ type ChangeAuthRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	DomainId string `protobuf:"bytes,1,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: false
+	// +optional
 	PluginInfo *PluginInfo `protobuf:"bytes,2,opt,name=plugin_info,json=pluginInfo,proto3" json:"plugin_info,omitempty"`
-	// is_required: false
+	// +optional
 	ReleaseAuthPlugin bool `protobuf:"varint,3,opt,name=release_auth_plugin,json=releaseAuthPlugin,proto3" json:"release_auth_plugin,omitempty"`
 }
 
@@ -441,13 +438,12 @@ type UpdatePluginRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	DomainId string `protobuf:"bytes,1,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: false
+	// +optional
 	Version string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
-	// is_required: false
+	// +optional
 	Options *_struct.Struct `protobuf:"bytes,3,opt,name=options,proto3" json:"options,omitempty"`
-	// is_required: false
+	// +optional
 	UpgradeMode UpdatePluginRequest_UpgradeMode `protobuf:"varint,4,opt,name=upgrade_mode,json=upgradeMode,proto3,enum=spaceone.api.identity.v1.UpdatePluginRequest_UpgradeMode" json:"upgrade_mode,omitempty"`
 }
 
@@ -516,7 +512,6 @@ type DomainRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	DomainId string `protobuf:"bytes,1,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -564,9 +559,8 @@ type GetDomainRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	DomainId string `protobuf:"bytes,1,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: false
+	// +optional
 	Only []string `protobuf:"bytes,2,rep,name=only,proto3" json:"only,omitempty"`
 }
 
@@ -621,13 +615,13 @@ type DomainQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
+	// +optional
 	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: false
+	// +optional
 	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: false
+	// +optional
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	State DomainQuery_State `protobuf:"varint,4,opt,name=state,proto3,enum=spaceone.api.identity.v1.DomainQuery_State" json:"state,omitempty"`
 }
 
@@ -854,7 +848,6 @@ type DomainStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 }
 

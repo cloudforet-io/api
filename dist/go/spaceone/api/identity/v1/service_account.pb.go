@@ -29,22 +29,17 @@ type CreateServiceAccountRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: true
-	Data *_struct.Struct `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
-	// is_required: true
-	Provider string `protobuf:"bytes,3,opt,name=provider,proto3" json:"provider,omitempty"`
-	// is_required: false
+	Name     string          `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Data     *_struct.Struct `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	Provider string          `protobuf:"bytes,3,opt,name=provider,proto3" json:"provider,omitempty"`
+	// +optional
 	ProjectId string `protobuf:"bytes,4,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	// is_required: false
-	Tags *_struct.Struct `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: true
-	ServiceAccountType string `protobuf:"bytes,11,opt,name=service_account_type,json=serviceAccountType,proto3" json:"service_account_type,omitempty"`
-	// is_required: false
+	// +optional
+	Tags               *_struct.Struct `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
+	ServiceAccountType string          `protobuf:"bytes,11,opt,name=service_account_type,json=serviceAccountType,proto3" json:"service_account_type,omitempty"`
+	// +optional
 	TrustedServiceAccountId string `protobuf:"bytes,12,opt,name=trusted_service_account_id,json=trustedServiceAccountId,proto3" json:"trusted_service_account_id,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	DomainId                string `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *CreateServiceAccountRequest) Reset() {
@@ -140,22 +135,20 @@ type UpdateServiceAccountRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	ServiceAccountId string `protobuf:"bytes,1,opt,name=service_account_id,json=serviceAccountId,proto3" json:"service_account_id,omitempty"`
-	// is_required: false
+	// +optional
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	Data *_struct.Struct `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
-	// is_required: false
+	// +optional
 	ProjectId string `protobuf:"bytes,4,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	// is_required: false
+	// +optional
 	Tags *_struct.Struct `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: false
+	// +optional
 	TrustedServiceAccountId string `protobuf:"bytes,6,opt,name=trusted_service_account_id,json=trustedServiceAccountId,proto3" json:"trusted_service_account_id,omitempty"`
-	// is_required: false
-	ReleaseTrustedServiceAccount bool `protobuf:"varint,7,opt,name=release_trusted_service_account,json=releaseTrustedServiceAccount,proto3" json:"release_trusted_service_account,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,11,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	ReleaseTrustedServiceAccount bool   `protobuf:"varint,7,opt,name=release_trusted_service_account,json=releaseTrustedServiceAccount,proto3" json:"release_trusted_service_account,omitempty"`
+	DomainId                     string `protobuf:"bytes,11,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *UpdateServiceAccountRequest) Reset() {
@@ -251,10 +244,8 @@ type ServiceAccountRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	ServiceAccountId string `protobuf:"bytes,1,opt,name=service_account_id,json=serviceAccountId,proto3" json:"service_account_id,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	DomainId         string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *ServiceAccountRequest) Reset() {
@@ -308,11 +299,9 @@ type GetServiceAccountRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	ServiceAccountId string `protobuf:"bytes,1,opt,name=service_account_id,json=serviceAccountId,proto3" json:"service_account_id,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: false
+	DomainId         string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
 	Only []string `protobuf:"bytes,3,rep,name=only,proto3" json:"only,omitempty"`
 }
 
@@ -374,23 +363,23 @@ type ServiceAccountQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
+	// +optional
 	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: false
+	// +optional
 	ServiceAccountId string `protobuf:"bytes,2,opt,name=service_account_id,json=serviceAccountId,proto3" json:"service_account_id,omitempty"`
-	// is_required: false
+	// +optional
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// is_required: false
+	// +optional
 	ServiceAccountType string `protobuf:"bytes,4,opt,name=service_account_type,json=serviceAccountType,proto3" json:"service_account_type,omitempty"`
-	// is_required: false
+	// +optional
 	Provider string `protobuf:"bytes,5,opt,name=provider,proto3" json:"provider,omitempty"`
-	// is_required: false
+	// +optional
 	TrustedServiceAccountId string `protobuf:"bytes,6,opt,name=trusted_service_account_id,json=trustedServiceAccountId,proto3" json:"trusted_service_account_id,omitempty"`
-	// is_required: false
+	// +optional
 	ProjectId string `protobuf:"bytes,7,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	// is_required: false
+	// +optional
 	Scope string `protobuf:"bytes,8,opt,name=scope,proto3" json:"scope,omitempty"`
-	// is_required: false
+	// +optional
 	DomainId string `protobuf:"bytes,11,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
@@ -676,10 +665,8 @@ type ServiceAccountStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Query    *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	DomainId string              `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *ServiceAccountStatQuery) Reset() {

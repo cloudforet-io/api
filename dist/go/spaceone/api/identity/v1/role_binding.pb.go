@@ -29,22 +29,18 @@ type CreateRoleBindingRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	ResourceType string `protobuf:"bytes,1,opt,name=resource_type,json=resourceType,proto3" json:"resource_type,omitempty"`
-	// is_required: true
-	ResourceId string `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
-	// is_required: true
-	RoleId string `protobuf:"bytes,3,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	// is_required: false
+	ResourceId   string `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
+	RoleId       string `protobuf:"bytes,3,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
+	// +optional
 	ProjectId string `protobuf:"bytes,4,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	// is_required: false
+	// +optional
 	ProjectGroupId string `protobuf:"bytes,5,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
-	// is_required: false
+	// +optional
 	Labels *_struct.ListValue `protobuf:"bytes,6,opt,name=labels,proto3" json:"labels,omitempty"`
-	// is_required: false
-	Tags *_struct.Struct `protobuf:"bytes,7,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,8,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	Tags     *_struct.Struct `protobuf:"bytes,7,opt,name=tags,proto3" json:"tags,omitempty"`
+	DomainId string          `protobuf:"bytes,8,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *CreateRoleBindingRequest) Reset() {
@@ -140,14 +136,12 @@ type UpdateRoleBindingRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	RoleBindingId string `protobuf:"bytes,1,opt,name=role_binding_id,json=roleBindingId,proto3" json:"role_binding_id,omitempty"`
-	// is_required: false
+	// +optional
 	Labels *_struct.ListValue `protobuf:"bytes,2,opt,name=labels,proto3" json:"labels,omitempty"`
-	// is_required: false
-	Tags *_struct.Struct `protobuf:"bytes,3,opt,name=tags,proto3" json:"tags,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,4,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
+	Tags     *_struct.Struct `protobuf:"bytes,3,opt,name=tags,proto3" json:"tags,omitempty"`
+	DomainId string          `protobuf:"bytes,4,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *UpdateRoleBindingRequest) Reset() {
@@ -215,10 +209,8 @@ type RoleBindingRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	RoleBindingId string `protobuf:"bytes,1,opt,name=role_binding_id,json=roleBindingId,proto3" json:"role_binding_id,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	DomainId      string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *RoleBindingRequest) Reset() {
@@ -272,11 +264,9 @@ type GetRoleBindingRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
 	RoleBindingId string `protobuf:"bytes,1,opt,name=role_binding_id,json=roleBindingId,proto3" json:"role_binding_id,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	// is_required: false
+	DomainId      string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// +optional
 	Only []string `protobuf:"bytes,3,rep,name=only,proto3" json:"only,omitempty"`
 }
 
@@ -457,24 +447,23 @@ type RoleBindingQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: false
+	// +optional
 	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: false
+	// +optional
 	RoleBindingId string `protobuf:"bytes,2,opt,name=role_binding_id,json=roleBindingId,proto3" json:"role_binding_id,omitempty"`
-	// is_required: false
+	// +optional
 	ResourceType string `protobuf:"bytes,3,opt,name=resource_type,json=resourceType,proto3" json:"resource_type,omitempty"`
-	// is_required: false
+	// +optional
 	ResourceId string `protobuf:"bytes,4,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
-	// is_required: false
+	// +optional
 	RoleId string `protobuf:"bytes,5,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
-	// is_required: false
+	// +optional
 	RoleType string `protobuf:"bytes,6,opt,name=role_type,json=roleType,proto3" json:"role_type,omitempty"`
-	// is_required: false
+	// +optional
 	ProjectId string `protobuf:"bytes,7,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	// is_required: false
+	// +optional
 	ProjectGroupId string `protobuf:"bytes,8,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,9,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	DomainId       string `protobuf:"bytes,9,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *RoleBindingQuery) Reset() {
@@ -632,10 +621,8 @@ type RoleBindingStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// is_required: true
-	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// is_required: true
-	DomainId string `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Query    *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	DomainId string              `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *RoleBindingStatQuery) Reset() {
