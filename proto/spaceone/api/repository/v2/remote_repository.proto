@@ -9,23 +9,28 @@ import "google/api/annotations.proto";
 
 service RemoteRepository {
     rpc get (GetRemoteRepository) returns (RemoteRepositoryInfo) {
-        option (google.api.http) = { post: "/repository/v2/remote-repository/get" };
+        option (google.api.http) = { 
+            post: "/repository/v2/remote-repository/get"
+            body: "*"
+        };
     }
 
     rpc list (RemoteRepositoryQuery) returns (RemoteRepositoriesInfo) {
-        option (google.api.http) = { post: "/repository/v2/remote-repository/list" };
+        option (google.api.http) = { 
+            post: "/repository/v2/remote-repository/list"
+            body: "*"
+        };
     }
 }
 
 message GetRemoteRepository {
-    // is_required: true
     string name = 1;
 }
 
 message RemoteRepositoryQuery {
-    // is_required: false
+    // +optional
     string name = 1;
-    // is_required: false
+    // +optional
     string version = 2;
 }
 

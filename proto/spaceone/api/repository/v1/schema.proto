@@ -1,6 +1,4 @@
-/*
-desc: A Schema is a data structure used in all domains. For example, data forms of Google OAuth2 credentials or AWS access keys can be a Schema resource.
- */
+// A Schema is a data structure used in all domains. For example, data forms of Google OAuth2 credentials or AWS access keys can be a Schema resource.
 syntax = "proto3";
 
 package spaceone.api.repository.v1;
@@ -15,163 +13,47 @@ import "spaceone/api/repository/v1/repository.proto";
 
 
 service Schema {
-    /*
-    desc: Creates a new Schema. You must specify the parameters: `service_type`, `name`, and `schema`(data structure). With the parameter `domain_id`, you can choose whether you will create a Schema in `Local` or externally. The Schema created includes `repository_info`, information about where the resource is managed.
-    request_example: >-
-        {
-            "name": "slack_webhook",
-            "service_type": "secret.credentials",
-            "schema": {},
-            "labels": [],
-            "tags": {
-                "description": "Slack Webhook"
-            },
-            "domain_id": "domain-987654321098"
-        }
-    response_example: >-
-        {
-            "name": "slack_webhook",
-            "service_type": "secret.credentials",
-            "schema": {},
-            "labels": [],
-            "tags": {
-                "description": "Slack Webhook"
-            },
-            "repository_info": {
-                "repository_id": "repo-123456789012",
-                "name": "Local",
-                "repository_type": "local"
-            },
-            "domain_id": "domain-987654321098",
-            "created_at": "2022-01-01T05:46:49.929Z",
-            "updated_at": "2022-01-01T05:46:49.929Z"
-        }
-     */
+    
+    // Creates a new Schema. You must specify the parameters: `service_type`, `name`, and `schema`(data structure). With the parameter `domain_id`, you can choose whether you will create a Schema in `Local` or externally. The Schema created includes `repository_info`, information about where the resource is managed.
     rpc create (CreateSchemaRequest) returns (SchemaInfo) {
         option (google.api.http) = {
             post: "/repository/v1/schema/create"
             body: "*"
         };
     }
-    /*
-    desc: Updates a specific Schema. You can make changes in Schema settings, including `name`, `schema`, `labels`, and `tags`.
-    request_example: >-
-        {
-            "name": "slack_webhook_test",
-            "schema": {},
-            "labels": [],
-            "tags": {},
-            "domain_id": "domain-987654321098"
-        }
-    response_example: >-
-        {
-            "name": "slack_webhook_test",
-            "service_type": "secret.credentials",
-            "schema": {},
-            "labels": [],
-            "tags": {
-                "description": "Slack Webhook"
-            },
-            "repository_info": {
-                "repository_id": "repo-123456789012",
-                "name": "Local",
-                "repository_type": "local"
-            },
-            "domain_id": "domain-987654321098",
-            "created_at": "2022-01-01T05:46:49.929Z",
-            "updated_at": "2022-01-01T05:46:49.929Z"
-        }
-     */
+    
+    // Updates a specific Schema. You can make changes in Schema settings, including `name`, `schema`, `labels`, and `tags`.
     rpc update (UpdateSchemaRequest) returns (SchemaInfo) {
         option (google.api.http) = {
             post: "/repository/v1/schema/update"
             body: "*"
         };
     }
-    /*
-    desc: Deletes a specific Schema. You must specify the `name` of the Schema to delete, as the `name` is an identifier of Schema resources.
-    request_example: >-
-        {
-            "name": "slack_webhook"
-        }
-     */
+    
+    // Deletes a specific Schema. You must specify the `name` of the Schema to delete, as the `name` is an identifier of Schema resources.
     rpc delete (SchemaRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/repository/v1/schema/delete"
             body: "*"
         };
     }
-    /*
-    desc: Gets a specific Schema. You must specify the `name` of the Schema to get, as the `name` is an identifier of Schema resources. You can use the parameter `repository_id` to limit the scope of the method to a specific Repository.
-    request_example: >-
-        {
-            "name": "slack_webhook",
-            "repository_id": "repo-123456789012"
-        }
-    response_example: >-
-        {
-            "name": "slack_webhook",
-            "service_type": "secret.credentials",
-            "schema": {},
-            "labels": [],
-            "tags": {
-                "description": "Slack Webhook"
-            },
-            "repository_info": {
-                "repository_id": "repo-123456789012",
-                "name": "Local",
-                "repository_type": "local"
-            },
-            "domain_id": "domain-987654321098",
-            "created_at": "2022-01-01T10:20:09.064Z",
-            "updated_at": "2022-01-01T10:20:09.064Z"
-        }
-     */
+    
+    // Gets a specific Schema. You must specify the `name` of the Schema to get, as the `name` is an identifier of Schema resources. You can use the parameter `repository_id` to limit the scope of the method to a specific Repository.
     rpc get (GetRepositorySchemaRequest) returns (SchemaInfo) {
         option (google.api.http) = {
             post: "/repository/v1/schema/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all Schemas in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Schemas. You can use a query to get a filtered list of Schemas.
-    request_example: >-
-        {
-            "query": {},
-            "name": "slack_webhook",
-            "service_type": "secret.credentials",
-            "repository_id": "repo-123456789012"
-        }
-    response_example: >-
-        {
-            "results": [
-                {
-                    "name": "slack_webhook",
-                    "service_type": "secret.credentials",
-                    "schema": {},
-                    "labels": [],
-                    "tags": {
-                        "description": "Slack Webhook"
-                    },
-                    "repository_info": {
-                        "repository_id": "repo-123456789012",
-                        "name": "Local",
-                        "repository_type": "local"
-                    },
-                    "domain_id": "domain-987654321098",
-                    "created_at": "2022-01-01T10:20:09.064Z",
-                    "updated_at": "2022-01-01T10:20:09.064Z"
-                }
-            ],
-            "total_count": 1
-        }
-     */
+    
+    // Gets a list of all Schemas in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Schemas. You can use a query to get a filtered list of Schemas.
     rpc list (SchemaQuery) returns (SchemasInfo) {
         option (google.api.http) = {
             post: "/repository/v1/schema/list"
             body: "*"
         };
     }
+    
     rpc stat (SchemaStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/repository/v1/schema/stat"
@@ -180,84 +62,117 @@ service Schema {
     }
 }
 
+//{
+//    "name": "slack_webhook",
+//    "service_type": "secret.credentials",
+//    "schema": {},
+//    "labels": [],
+//    "tags": {
+//        "description": "Slack Webhook"
+//    },
+//    "domain_id": "domain-987654321098"
+//}
 message CreateSchemaRequest {
-    // is_required: true
     string name = 1;
-    // is_required: true
     string service_type = 2;
-    // is_required: true
     string schema_id = 3;
-    // is_required: true
     google.protobuf.Struct schema = 11;
-    // is_required: false
+    // +optional
     google.protobuf.ListValue labels = 12;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 13;
-    // is_required: false
+    // +optional
     string project_id = 21;
-    // is_required: true
     string domain_id = 22;
 }
 
+//{
+//    "name": "slack_webhook_test",
+//    "schema": {},
+//    "labels": [],
+//    "tags": {},
+//    "domain_id": "domain-987654321098"
+//}
 message UpdateSchemaRequest {
-    // is_required: true
     string name = 1;
-    // is_required: false
+    // +optional
     google.protobuf.Struct schema = 11;
-    // is_required: false
+    // +optional
     google.protobuf.ListValue labels = 12;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 13;
-    // is_required: true
     string domain_id = 21;
 }
 
+//{
+//    "name": "slack_webhook"
+//}
 message SchemaRequest {
-    // is_required: true
     string name = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     string schema_id = 3;
 }
 
+//{
+//    "name": "slack_webhook",
+//    "repository_id": "repo-123456789012"
+//}
 message GetRepositorySchemaRequest {
-    // is_required: true
     string name = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     string repository_id = 3;
-    // is_required: false
+    // +optional
     repeated string only = 4;
-    // is_required: false
+    // +optional
     string schema_id = 5;
 }
 
+//{
+//    "query": {},
+//    "name": "slack_webhook",
+//    "service_type": "secret.credentials",
+//    "repository_id": "repo-123456789012"
+//}
 message SchemaQuery {
     enum State {
         NONE = 0;
         ENABLED = 1;
         DISABLED = 2;
     }
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string name = 2;
-    // is_required: false
+    // +optional
     string service_type = 3;
-    // is_required: true
     string project_id = 4;
-    // is_required: true
     string repository_id = 5;
-    // is_required: true
     string domain_id = 6;
-    // is_required: false
+    // +optional
     string schema_id = 7;
-    // is_required: false
+    // +optional
     State state = 8;
 }
 
+//{
+//    "name": "slack_webhook",
+//    "service_type": "secret.credentials",
+//    "schema": {},
+//    "labels": [],
+//    "tags": {
+//        "description": "Slack Webhook"
+//    },
+//    "repository_info": {
+//        "repository_id": "repo-123456789012",
+//        "name": "Local",
+//        "repository_type": "local"
+//    },
+//    "domain_id": "domain-987654321098",
+//    "created_at": "2022-01-01T05:46:49.929Z",
+//    "updated_at": "2022-01-01T05:46:49.929Z"
+//}
 message SchemaInfo {
     string name = 1;
     string service_type = 2;
@@ -275,16 +190,35 @@ message SchemaInfo {
     string updated_at = 32;
 }
 
+//{
+//    "results": [
+//        {
+//            "name": "slack_webhook",
+//            "service_type": "secret.credentials",
+//            "schema": {},
+//            "labels": [],
+//            "tags": {
+//                "description": "Slack Webhook"
+//            },
+//            "repository_info": {
+//                "repository_id": "repo-123456789012",
+//                "name": "Local",
+//                "repository_type": "local"
+//            },
+//            "domain_id": "domain-987654321098",
+//            "created_at": "2022-01-01T10:20:09.064Z",
+//            "updated_at": "2022-01-01T10:20:09.064Z"
+//        }
+//    ],
+//    "total_count": 1
+//}
 message SchemasInfo {
     repeated SchemaInfo results = 1;
     int32 total_count = 2;
 }
 
 message SchemaStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string repository_id = 2;
-    // is_required: true
     string domain_id = 3;
 }

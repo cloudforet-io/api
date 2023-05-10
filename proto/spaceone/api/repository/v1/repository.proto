@@ -1,6 +1,4 @@
-/*
-desc: A Repository is a repository storing data of deployable plugins.
- */
+// A Repository is a repository storing data of deployable plugins.
 syntax = "proto3";
 
 package spaceone.api.repository.v1;
@@ -13,112 +11,46 @@ import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 
 service Repository {
-    /*
-    desc: Registers a Repository. The parameter `name` can only include alphabets, numbers, and hyphens(-). The parameter `repository_type` can be either `local` or `remote`. The parameter `endpoint` is needed if the `repository_type` is `remote`.
-    request_example: >-
-        {
-            "name": "Local",
-            "repository_type": "local",
-            "endpoint": "grpc+ssl://local-url:443"
-        }
-    response_example: >-
-        {
-            "repository_id": "repo-123456789012",
-            "name": "Local",
-            "repository_type": "local",
-            "endpoint": "grpc+ssl://local-url:443",
-            "created_at": "2022-01-01T02:27:02.924Z"
-        }
-     */
+    // Registers a Repository. The parameter `name` can only include alphabets, numbers, and hyphens(-). The parameter `repository_type` can be either `local` or `remote`. The parameter `endpoint` is needed if the `repository_type` is `remote`.
     rpc register (CreateRepositoryRequest) returns (RepositoryInfo) {
         option (google.api.http) = {
             post: "/repository/v1/repository/register"
             body: "*"
         };
     }
-    /*
-    desc: Updates a specific Repository registered. You must specify the `repository_id` of the Repository to update. You can make changes in Repository settings, including `name`.
-    request_example: >-
-        {
-            "repository_id": "repo-123456789012",
-            "name": "Local-repo"
-        }
-    response_example: >-
-        {
-            "repository_id": "repo-123456789012",
-            "name": "Local-repo",
-            "repository_type": "local",
-            "endpoint": "grpc+ssl://local-url:443",
-            "created_at": "2022-01-01T02:27:02.924Z"
-        }
-     */
+    
+    // Updates a specific Repository registered. You must specify the `repository_id` of the Repository to update. You can make changes in Repository settings, including `name`.
     rpc update (UpdateRepositoryRequest) returns (RepositoryInfo) {
         option (google.api.http) = {
             post: "/repository/v1/repository/update"
             body: "*"
         };
     }
-    /*
-    desc: Deregisters and deletes a specific Repository. You must specify the `repository_id` of the Repository to deregister.
-    request_example: >-
-        {
-            "repository_id": "repo-123456789012"
-        }
-     */
+    
+    // Deregisters and deletes a specific Repository. You must specify the `repository_id` of the Repository to deregister.
     rpc deregister (RepositoryRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/repository/v1/repository/deregister"
             body: "*"
         };
     }
-    /*
-    desc: Gets a specific Repository. Prints detailed information about the Repository, including  `name`, `repository_type`, and `endpoint`.
-    request_example: >-
-        {
-            "repository_id": "repo-123456789012"
-        }
-    response_example: >-
-        {
-            "repository_id": "repo-123456789012",
-            "name": "Local-repo",
-            "repository_type": "local",
-            "endpoint": "grpc+ssl://local-url:443",
-            "created_at": "2022-01-01T02:26:29.081Z"
-        }
-     */
+    
+    // Gets a specific Repository. Prints detailed information about the Repository, including  `name`, `repository_type`, and `endpoint`.
     rpc get (GetRepositoryRequest) returns (RepositoryInfo) {
         option (google.api.http) = {
             post: "/repository/v1/repository/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all Repositories regardless of `domain`. You can use a query to get a filtered list of Repositories.
-    request_example: >-
-        {
-            "query": {},
-            "repository_id": "repo-123456789012"
-        }
-    response_example: >-
-        {
-            "results": [
-                {
-                    "repository_id": "repo-123456789012",
-                    "name": "Local-repo",
-                    "repository_type": "local",
-                    "endpoint": "grpc+ssl://local-url:443",
-                    "created_at": "2022-01-01T02:26:29.081Z"
-                }
-            ],
-            "total_count": 1
-        }
-     */
+    
+    // Gets a list of all Repositories regardless of `domain`. You can use a query to get a filtered list of Repositories.
     rpc list (RepositoryQuery) returns (RepositoriesInfo) {
         option (google.api.http) = {
             post: "/repository/v1/repository/list"
             body: "*"
         };
     }
+    
     rpc stat (RepositoryStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/repository/v1/repository/stat"
@@ -127,59 +59,75 @@ service Repository {
     }
 }
 
+//{
+//    "name": "Local",
+//    "repository_type": "local",
+//    "endpoint": "grpc+ssl://local-url:443"
+//}
 message CreateRepositoryRequest {
-    // is_required: true
     string name = 1;
-    // is_required: true
     string repository_type = 2;
-    // is_required: false
+    // +optional
     string endpoint = 10;
-    // is_required: false
+    // +optional
     string version = 11;
-    // is_required: false
+    // +optional
     string secret_id = 12;
-    // is_required: true
     string domain_id = 13;
 }
 
+//{
+//    "repository_id": "repo-123456789012",
+//    "name": "Local-repo"
+//}
 message UpdateRepositoryRequest {
-    // is_required: true
     string repository_id = 1;
-    // is_required: false
+    // +optional
     string name = 2;
-    // is_required: true
     string domain_id = 3;
 }
 
+//{
+//    "repository_id": "repo-123456789012"
+//}
 message RepositoryRequest {
-    // is_required: true
     string repository_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
+//{
+//    "repository_id": "repo-123456789012"
+//}
 message GetRepositoryRequest {
-    // is_required: true
     string repository_id = 1;
-    // is_required: false
+    // +optional
     repeated string only = 2;
-    // is_required: true
     string domain_id = 3;
 }
 
+//{
+//    "query": {},
+//    "repository_id": "repo-123456789012"
+//}
 message RepositoryQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string repository_id = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     string repository_type = 4;
-    // is_required: true
     string domain_id = 5;
 }
 
+//{
+//    "repository_id": "repo-123456789012",
+//    "name": "Local",
+//    "repository_type": "local",
+//    "endpoint": "grpc+ssl://local-url:443",
+//    "created_at": "2022-01-01T02:27:02.924Z"
+//}
 message RepositoryInfo {
     string repository_id = 1;
     string name = 2;
@@ -190,14 +138,24 @@ message RepositoryInfo {
     string created_at = 20;
 }
 
+//{
+//    "results": [
+//        {
+//            "repository_id": "repo-123456789012",
+//            "name": "Local-repo",
+//            "repository_type": "local",
+//            "endpoint": "grpc+ssl://local-url:443",
+//            "created_at": "2022-01-01T02:26:29.081Z"
+//        }
+//    ],
+//    "total_count": 1
+//}
 message RepositoriesInfo {
     repeated RepositoryInfo results = 1;
     int32 total_count = 2;
 }
 
 message RepositoryStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }

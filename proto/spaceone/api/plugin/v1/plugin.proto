@@ -1,6 +1,4 @@
-/*
-desc: A Plugin is a resource managing endpoints of the plugin instances deployed. If there is a plugin instance that does not work properly, the Plugin requests the Supervisor to redeploy the instance.
-*/
+// A Plugin is a resource managing endpoints of the plugin instances deployed. If there is a plugin instance that does not work properly, the Plugin requests the Supervisor to redeploy the instance.
 syntax = "proto3";
 
 package spaceone.api.plugin.v1;
@@ -12,24 +10,14 @@ import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 
 service Plugin {
-    /*
-    desc: Gets the `endpoint` of a specific plugin instance. A Plugin returns only a single `endpoint` by determining `labels` and `priority`. If the requested plugin instance is already deployed, the `endpoint` is returned. If not, the `endpoint` is returned after deploying the plugin instance.
-    request_example: >-
-      {
-        "plugin_id": "plugin-aws-sns-mon-webhook",
-        "version": "1.2.2"
-      }
-    response_example: >-
-      {
-        "endpoint": "grpc://endpoint-url:50051"
-      }
-    */
+    // Gets the `endpoint` of a specific plugin instance. A Plugin returns only a single `endpoint` by determining `labels` and `priority`. If the requested plugin instance is already deployed, the `endpoint` is returned. If not, the `endpoint` is returned after deploying the plugin instance.
     rpc get_plugin_endpoint (PluginEndpointRequest) returns (PluginEndpoint) {
         option (google.api.http) = {
             post: "/plugin/v1/plugin/get-plugin-endpoint"
             body: "*"
         };
     }
+    
     rpc notify_failure (PluginFailureRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/plugin/v1/plugin/notify-failure"
@@ -38,35 +26,36 @@ service Plugin {
     }
 }
 
+//{
+//    "plugin_id": "plugin-aws-sns-mon-webhook",
+//    "version": "1.2.2"
+//}
 message PluginEndpointRequest {
     enum UpgradeMode {
         MANUAL = 0;
         AUTO = 1;
     }
-
-    // is_required: true
+    
     string plugin_id = 1;
-    // is_required: false
+    // +optional
     string version = 2;
-    // is_required: false
+    // +optional
     google.protobuf.Struct labels = 3;
-    // is_required: true
     string domain_id = 4;
-    // is_required: false
+    // +optional
     UpgradeMode upgrade_mode = 5;
 }
 
 message PluginFailureRequest {
-    // is_required: true
     string supervisor_id = 1;
-    // is_required: true
     string plugin_id = 2;
-    // is_required: true
     string version = 3;
-    // is_required: true
     string domain_id = 4;
 }
 
+//{
+//    "endpoint": "grpc://endpoint-url:50051"
+//}
 message PluginEndpoint {
     string endpoint = 1;
     string access_token = 2;
