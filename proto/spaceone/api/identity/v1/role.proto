@@ -13,37 +13,37 @@ import "spaceone/api/core/v1/query.proto";
 service Role {
     rpc create (CreateRoleRequest) returns (RoleInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/role/create",
+            post: "/identity/v1/role/create"
             body: "*"
         };
     }
     rpc update (UpdateRoleRequest) returns (RoleInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/role/update",
+            post: "/identity/v1/role/update"
             body: "*"
         };
     }
     rpc delete (RoleRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/identity/v1/role/delete",
+            post: "/identity/v1/role/delete"
             body: "*"
         };
     }
     rpc get (GetRoleRequest) returns (RoleInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/role/get",
+            post: "/identity/v1/role/get"
             body: "*"
         };
     }
     rpc list (RoleQuery) returns (RolesInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/role/list",
+            post: "/identity/v1/role/list"
             body: "*"
         };
     }
     rpc stat (RoleStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/identity/v1/role/stat",
+            post: "/identity/v1/role/stat"
             body: "*"
         };
     }
@@ -79,50 +79,40 @@ message PagePermission {
 }
 
 message CreateRoleRequest {
-    // is_required: true
     string name = 1;
-    // is_required: true
     RoleType role_type = 2;
-    // is_required: true
     repeated RolePolicy policies = 3;
-    // is_required: false
+    // +optional
     repeated PagePermission page_permissions = 4;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 5;
-    // is_required: true
     string domain_id = 6;
 }
 
 message UpdateRoleRequest {
-    // is_required: true
     string role_id = 1;
-    // is_required: false
+    // +optional
     string name = 2;
-    // is_required: false
+    // +optional
     repeated RolePolicy policies = 3;
-    // is_required: false
+    // +optional
     repeated PagePermission page_permissions = 4;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 5;
-    // is_required: false
+    // +optional
     bool release_page_permissions = 6;
-    // is_required: true
     string domain_id = 7;
 }
 
 message RoleRequest {
-    // is_required: true
     string role_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
 message GetRoleRequest {
-    // is_required: true
     string role_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
@@ -139,17 +129,16 @@ message RoleInfo {
 }
 
 message RoleQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string role_id = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     RoleType role_type = 5;
-    // is_required: false
+    // +optional
     string policy_id = 6;
-    // is_required: true
     string domain_id = 7;
 
 }
@@ -160,8 +149,6 @@ message RolesInfo {
 }
 
 message RoleStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }

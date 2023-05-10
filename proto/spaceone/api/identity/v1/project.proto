@@ -15,118 +15,108 @@ import "spaceone/api/identity/v1/project_group.proto";
 service Project {
     rpc create (CreateProjectRequest) returns (ProjectInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/project/create",
+            post: "/identity/v1/project/create"
             body: "*"
         };
     }
     rpc update (UpdateProjectRequest) returns (ProjectInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/project/update",
+            post: "/identity/v1/project/update"
             body: "*"
         };
     }
     rpc delete (ProjectRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/identity/v1/project/delete",
+            post: "/identity/v1/project/delete"
             body: "*"
         };
     }
     rpc get (GetProjectRequest) returns (ProjectInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/project/get",
+            post: "/identity/v1/project/get"
             body: "*"
         };
     }
     rpc list (ProjectQuery) returns (ProjectsInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/project/list",
+            post: "/identity/v1/project/list"
             body: "*"
         };
     }
     rpc stat (ProjectStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/identity/v1/project/stat",
+            post: "/identity/v1/project/stat"
             body: "*"
         };
     }
     rpc add_member (AddProjectMemberRequest) returns (ProjectRoleBindingInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/project/add-member",
+            post: "/identity/v1/project/add-member"
             body: "*"
         };
     }
     rpc modify_member (ModifyProjectMemberRequest) returns (ProjectRoleBindingInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/project/modify-member",
+            post: "/identity/v1/project/modify-member"
             body: "*"
         };
     }
     rpc remove_member (RemoveProjectMemberRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/identity/v1/project/remove-member",
+            post: "/identity/v1/project/remove-member"
             body: "*"
         };
     }
     rpc list_members (ProjectMemberQuery) returns (ProjectRoleBindingsInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/project/list-members",
+            post: "/identity/v1/project/list-members"
             body: "*"
         };
     }
 }
 
 message CreateProjectRequest {
-    // is_required: true
     string name = 1;
-    // is_required: true
     string project_group_id = 2;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 3;
-    // is_required: true
     string domain_id = 4;
 }
 
 message UpdateProjectRequest {
-    // is_required: true
     string project_id = 1;
-    // is_required: false
+    // +optional
     string project_group_id = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 4;
-    // is_required: true
     string domain_id = 5;
 }
 
 message ProjectRequest {
-    // is_required: true
     string project_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
 message GetProjectRequest {
-    // is_required: true
     string project_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
 message ProjectQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string project_id = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     string project_group_id = 4;
-    // is_required: false
+    // +optional
     string user_id = 5;
-    // is_required: true
     string domain_id = 6;
 }
 
@@ -146,56 +136,45 @@ message ProjectsInfo {
 }
 
 message AddProjectMemberRequest {
-    // is_required: true
     string project_id = 1;
-    // is_required: true
     string user_id = 2;
-    // is_required: false
+    // +optional
     string role_id = 3;
-    // is_required: false
+    // +optional
     google.protobuf.ListValue labels = 4;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 5;
-    // is_required: true
     string domain_id = 6;
-    // is_required: false
+    // +optional
     bool is_external_user = 7;
 }
 
 message ModifyProjectMemberRequest {
-    // is_required: true
     string project_id = 1;
-    // is_required: true
     string user_id = 2;
-    // is_required: false
+    // +optional
     google.protobuf.ListValue labels = 3;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 4;
-    // is_required: true
     string domain_id = 5;
 }
 
 message RemoveProjectMemberRequest {
-    // is_required: true
     string project_id = 1;
-    // is_required: true
     string user_id = 2;
-    // is_required: true
     string domain_id = 3;
 }
 
 message ProjectMemberQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: true
     string project_id = 2;
-    // is_required: false
+    // +optional
     string user_id = 3;
-    // is_required: false
+    // +optional
     string role_id = 4;
-    // is_required: false
+    // +optional
     bool include_parent_member = 5;
-    // is_required: true
     string domain_id = 6;
 }
 
@@ -218,8 +197,6 @@ message ProjectRoleBindingsInfo {
 }
 
 message ProjectStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }

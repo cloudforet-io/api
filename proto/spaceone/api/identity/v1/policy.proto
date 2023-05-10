@@ -13,90 +13,81 @@ import "spaceone/api/core/v1/query.proto";
 service Policy {
     rpc create (CreatePolicyRequest) returns (PolicyInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/policy/create",
+            post: "/identity/v1/policy/create"
             body: "*"
         };
     }
     rpc update (UpdatePolicyRequest) returns (PolicyInfo) {
         option (google.api.http) = {
-            put: "/identity/v1/policy/update",
+            put: "/identity/v1/policy/update"
             body: "*"
         };
     }
     rpc delete (PolicyRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/identity/v1/policy/delete",
+            post: "/identity/v1/policy/delete"
             body: "*"
         };
     }
     rpc get (GetPolicyRequest) returns (PolicyInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/policy/get",
+            post: "/identity/v1/policy/get"
             body: "*"
         };
     }
     rpc list (PolicyQuery) returns (PoliciesInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/policy/list",
+            post: "/identity/v1/policy/list"
             body: "*"
         };
     }
     rpc stat (PolicyStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/identity/v1/policies/stat",
+            post: "/identity/v1/policies/stat"
             body: "*"
         };
     }
 }
 
 message CreatePolicyRequest {
-    // is_required: true
     string name = 1;
-    // is_required: true
     repeated string permissions = 2;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 3;
-    // is_required: true
     string domain_id = 4;
 }
 
 message UpdatePolicyRequest {
-    // is_required: true
     string policy_id = 1;
-    // is_required: false
+    // +optional
     string name = 2;
-    // is_required: false
+    // +optional
     repeated string permissions = 3;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 4;
-    // is_required: true
     string domain_id = 5;
 }
 
 message PolicyRequest {
-    // is_required: true
     string policy_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
 message GetPolicyRequest {
-    // is_required: true
     string policy_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
 message PolicyQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string policy_id = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     string domain_id = 4;
 }
 
@@ -115,8 +106,6 @@ message PoliciesInfo {
 }
 
 message PolicyStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }

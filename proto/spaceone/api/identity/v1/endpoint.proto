@@ -11,7 +11,7 @@ import "spaceone/api/core/v1/query.proto";
 service Endpoint {
     rpc list (EndpointQuery) returns (EndpointsInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/endpoint/list",
+            post: "/identity/v1/endpoint/list"
             body: "*"
         };
     }
@@ -32,14 +32,13 @@ message EndpointInfo {
 }
 
 message EndpointQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string service = 2;
-    // is_required: false
     // example: public | internal
+    // +optional
     string endpoint_type = 3;
-    // is_required: true
     string domain_id = 6;
 
 }

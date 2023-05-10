@@ -11,30 +11,28 @@ import "google/protobuf/struct.proto";
 service Token {
     rpc issue (IssueTokenRequest) returns (TokenInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/token/issue",
+            post: "/identity/v1/token/issue"
             body: "*"
         };
     }
     rpc refresh (google.protobuf.Empty) returns (TokenInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/token/refresh",
+            post: "/identity/v1/token/refresh"
             body: "*"
         };
     }
 }
 
 message IssueTokenRequest {
-    // is_required: false
+    // +optional
     string user_id = 1;
-    // is_required: true
     google.protobuf.Struct credentials = 2;
-    // is_required: false
+    // +optional
     string user_type = 3;
-    // is_required: true
     string domain_id = 4;
-    // is_required: false
+    // +optional
     int32 timeout = 5;
-    // is_required: false
+    // +optional
     int32 refresh_count = 6;
 }
 

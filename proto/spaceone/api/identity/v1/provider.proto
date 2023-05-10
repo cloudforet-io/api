@@ -12,100 +12,90 @@ import "spaceone/api/core/v1/query.proto";
 service Provider {
     rpc create (CreateProviderRequest) returns (ProviderInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/provider/create",
+            post: "/identity/v1/provider/create"
             body: "*"
         };
     }
     rpc update (UpdateProviderRequest) returns (ProviderInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/provider/update",
+            post: "/identity/v1/provider/update"
             body: "*"
         };
     }
     rpc delete (ProviderRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/identity/v1/provider/delete",
+            post: "/identity/v1/provider/delete"
             body: "*"
         };
     }
     rpc get (GetProviderRequest) returns (ProviderInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/provider/get",
+            post: "/identity/v1/provider/get"
             body: "*"
         };
     }
     rpc list (ProviderQuery) returns (ProvidersInfo) {
         option (google.api.http) = {
-            post: "/identity/v1/provider/list",
+            post: "/identity/v1/provider/list"
             body: "*"
         };
     }
     rpc stat (ProviderStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/identity/v1/provider/stat",
+            post: "/identity/v1/provider/stat"
             body: "*"
         };
     }
 }
 
 message CreateProviderRequest {
-    // is_required: true
     string provider = 1;
-    // is_required: true
     string name = 2;
-    // is_required: false
+    // +optional
     google.protobuf.Struct template = 3;
-    // is_required: false
+    // +optional
     google.protobuf.Struct metadata = 4;
-    // is_required: false
+    // +optional
     google.protobuf.Struct capability = 5;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 6;
-    // is_required: true
     string domain_id = 7;
 }
 
 message UpdateProviderRequest {
-    // is_required: true
     string provider = 1;
-    // is_required: false
+    // +optional
     string name = 2;
-    // is_required: false
+    // +optional
     google.protobuf.Struct template = 3;
-    // is_required: false
+    // +optional
     google.protobuf.Struct metadata = 4;
-    // is_required: false
+    // +optional
     google.protobuf.Struct capability = 5;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 6;
-    // is_required: true
     string domain_id = 7;
 }
 
 message ProviderRequest {
-    // is_required: true
     string provider = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
 message GetProviderRequest {
-    // is_required: true
     string provider = 1;
-    // is_required: false
+    // +optional
     repeated string only = 2;
-    // is_required: true
     string domain_id = 3;
 }
 
 message ProviderQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string provider = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: true
     string domain_id = 4;
 }
 
@@ -125,8 +115,6 @@ message ProvidersInfo {
 }
 
 message ProviderStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }
