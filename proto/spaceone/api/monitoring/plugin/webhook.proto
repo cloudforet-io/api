@@ -1,6 +1,4 @@
-/*
-desc: A Webhook is a plugin receiving data from external monitoring systems.
- */
+// A Webhook is a plugin receiving data from external monitoring systems. 
 syntax = "proto3";
 
 option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/plugin";
@@ -11,23 +9,18 @@ import "google/protobuf/struct.proto";
 
 
 service Webhook {
-    /*
-    desc: Verifies a specific Webhook. You must specify the parameter `secret_data`, encrypted account data of the Webhook to validate.
-     */
+    // Verifies a specific Webhook. You must specify the parameter `secret_data`, encrypted account data of the Webhook to validate.
     rpc init (WebhookInitRequest) returns (WebhookPluginInfo) {}
-    /*
-    desc: Initializes a specific Webhook. During initialization, the Webhook information to be passed to the Webhook user is delivered as `metadata`. Webhook information includes its name and version.
-     */
+    
+    // Initializes a specific Webhook. During initialization, the Webhook information to be passed to the Webhook user is delivered as `metadata`. Webhook information includes its name and version.
     rpc verify (WebhookPluginVerifyRequest) returns (google.protobuf.Empty) {}
 }
 
 message WebhookInitRequest {
-    // is_required: true
     google.protobuf.Struct options = 1;
 }
 
 message WebhookPluginVerifyRequest {
-    // is_required: true
     google.protobuf.Struct options = 1;
 }
 

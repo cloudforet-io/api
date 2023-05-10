@@ -11,28 +11,25 @@ import "google/api/annotations.proto";
 service Log {
     rpc list (LogRequest) returns (LogDataInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/log/list",
+            post: "/monitoring/v1/log/list"
             body: "*"
         };
     }
 }
 
 message LogRequest {
-    // is_required: true
     string data_source_id = 1;
-    // is_required: true
     string resource_id = 2;
-    // is_required: false
+    // +optional
     string keyword = 3;
-    // is_required: false
+    // +optional
     string start = 10;
-    // is_required: false
+    // +optional
     string end = 11;
-    // is_required: false
+    // +optional
     google.protobuf.Struct sort = 15;
-    // is_required: false
+    // +optional
     int32 limit = 16;
-    // is_required: true
     string domain_id = 20;
 }
 

@@ -1,6 +1,6 @@
-/*
-desc: A DataSource is a plugin instance receiving Metric and Log data from cloud services.
- */
+
+// A DataSource is a plugin instance receiving Metric and Log data from cloud services.
+ 
 syntax = "proto3";
 
 option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/plugin";
@@ -11,27 +11,22 @@ import "google/protobuf/struct.proto";
 
 
 service DataSource {
-    /*
-    desc: Initializes a specific DataSource. During initialization, the DataSource information to be passed to the DataSource user is delivered as `metadata`. DataSource information includes its name and version.
-     */
+    
+    // Initializes a specific DataSource. During initialization, the DataSource information to be passed to the DataSource user is delivered as `metadata`. DataSource information includes its name and version.
     rpc init (InitRequest) returns (PluginInfo) {}
-    /*
-    desc: Verifies a specific DataSource. You must specify the parameter `secret_data`, encrypted account data of the DataSource to validate.
-     */
+    
+    // Verifies a specific DataSource. You must specify the parameter `secret_data`, encrypted account data of the DataSource to validate.
     rpc verify (PluginVerifyRequest) returns (google.protobuf.Empty) {}
 }
 
 message InitRequest {
-    // is_required: true
     google.protobuf.Struct options = 1;
 }
 
 message PluginVerifyRequest {
-    // is_required: true
     google.protobuf.Struct options = 1;
-    // is_required: true
     google.protobuf.Struct secret_data = 2;
-    // is_required: false
+    // +optional
     string schema = 3;
 }
 

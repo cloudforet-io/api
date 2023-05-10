@@ -1,6 +1,4 @@
-/*
-desc: An Event is data created by an external monitoring system and collected by a Webhook plugin.
- */
+// An Event is data created by an external monitoring system and collected by a Webhook plugin.
 syntax = "proto3";
 
 option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/plugin";
@@ -11,17 +9,13 @@ import "google/protobuf/struct.proto";
 
 
 service Event {
-    /*
-    desc: Parses a specific Event resource and transforms the resource from external data collected to data available in Cloudforet internally. The `parse` method standardizes all different data from external monitoring systems.
-     */
+    // Parses a specific Event resource and transforms the resource from external data collected to data available in Cloudforet internally. The `parse` method standardizes all different data from external monitoring systems.
     rpc parse (ParseRequest) returns (EventsInfo) {}
 }
 
 message ParseRequest {
-    // is_required: true
     google.protobuf.Struct options = 1;
-    // is_required: true
-    // desc: Unpredictable data format that comes from Webhook
+    // // Unpredictable data format that comes from Webhook
     google.protobuf.Struct data = 2;
 }
 
