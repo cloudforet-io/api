@@ -1,11 +1,9 @@
-/*
-desc: An Alert, a set of Events, is the smallest unit to manage incidents.
- */
+// An Alert, a set of Events, is the smallest unit to manage incidents.
 syntax = "proto3";
 
-option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1";
-
 package spaceone.api.monitoring.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
@@ -14,323 +12,101 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service Alert {
-    /*
-    desc: Creates a new Alert. Alerts generated with `create` method are made in a manual way. Manually made Alerts can be used for Notifications.
-    request_example: >-
-        {
-          "title": "sample test",
-          "description": "This is a description of sample.",
-          "urgency": "HIGH",
-          "project_id": "project-123456789012",
-          "domain_id": "domain-123456789012"
-        }
-    response_example: >-
-        {
-          "alert_number": 104053,
-          "alert_id": "alert-123456789012",
-          "title": "sample test",
-          "state": "TRIGGERED",
-          "description": "This is a description of sample.",
-          "urgency": "HIGH",
-          "severity": "NONE",
-          "escalation_step": 1,
-          "additional_info": {},
-          "triggered_by": "user1@email.com",
-          "escalation_policy_id": "ep-123456789012",
-          "project_id": "project-123456789012",
-          "domain_id": "domain-123456789012",
-          "created_at": "2022-01-01T01:43:08.566Z",
-          "updated_at": "2022-01-01T01:43:08.566Z",
-          "escalated_at": "2022-01-01T01:43:54.464Z"
-        }
-     */
+    
+    // Creates a new Alert. Alerts generated with `create` method are made in a manual way. Manually made Alerts can be used for Notifications.
     rpc create (CreateAlertRequest) returns (AlertInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/create",
+            post: "/monitoring/v1/alert/create"
             body: "*"
         };
     }
-    /*
-    desc: Updates a specific Alert. You can make changes in Alert settings, including the `title`, `description`, `responder`, `state`, and `urgency`. The `responder` of the Alert is a User who is assigned to respond to the Alert.
-    request_example: >-
-        {
-          "alert_id": "alert-123456789012",
-          "state": "ACKNOWLEDGED",
-          "urgency": "LOW",
-          "description": "[updating]This is a description of sample.",
-          "domain_id": "domain-123456789012"
-        }
-    response_example: >-
-        {
-          "alert_number": 104053,
-          "alert_id": "alert-123456789012",
-          "title": "sample test",
-          "state": "ACKNOWLEDGED",
-          "description": "[updating]This is a description of sample. ",
-          "urgency": "LOW",
-          "severity": "NONE",
-          "escalation_step": 1,
-          "additional_info": {},
-          "triggered_by": "user1@email.com",
-          "escalation_policy_id": "ep-123456789012",
-          "project_id": "project-123456789012",
-          "domain_id": "domain-123456789012",
-          "created_at": "2022-01-01T01:43:08.566Z",
-          "updated_at": "2022-01-01T01:43:08.566Z",
-          "acknowledged_at": "2022-01-01T01:48:52.799Z",
-          "escalated_at": "2022-01-01T01:43:54.464Z"
-        }
-     */
+    
+    // Updates a specific Alert. You can make changes in Alert settings, including the `title`, `description`, `responder`, `state`, and `urgency`. The `responder` of the Alert is a User who is assigned to respond to the Alert.
     rpc update (UpdateAlertRequest) returns (AlertInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/update",
+            post: "/monitoring/v1/alert/update"
             body: "*"
         };
     }
-    /*
-    desc: Updates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.
-    request_example: >-
-        {
-          "alert_id": "alert-123456789012",
-          "access_key": "1q2w3e4r5t6y7u8i9o0p",
-          "domain_id": "domain-123456789012"
-        }
-     */
+    
+    // Updates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.
     rpc update_state (UpdateAlertStateRequest) returns (AlertInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/update-state",
+            post: "/monitoring/v1/alert/update-state"
             body: "*"
         };
     }
+    
     rpc merge (MergeAlertRequest) returns (AlertInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/merge",
+            post: "/monitoring/v1/alert/merge"
             body: "*"
         };
     }
+    
     rpc snooze (SnoozeAlertRequest) returns (AlertInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/snooze",
+            post: "/monitoring/v1/alert/snooze"
             body: "*"
         };
     }
-    /*
-    desc: Adds a responder who receives a Notification about an Alert.
-    request_example: >-
-        {
-          "alert_id": "alert-123456789012",
-          "resource_type": "identity.User",
-          "resource_id": "user2@email.com",
-          "domain_id": "domain-123456789012"
-         }
-    response_example: >-
-        {
-          "alert_number": 104053,
-          "alert_id": "alert-123456789012",
-          "title": "sample test",
-          "state": "ACKNOWLEDGED",
-          "description": "[updating]This is a description of sample. ",
-          "urgency": "LOW",
-          "severity": "NONE",
-          "escalation_step": 1,
-          "responders": [
-          {
-          "resource_type": "identity.User",
-          "resource_id": "user2@email.com"
-          }
-          ],
-          "additional_info": {},
-          "triggered_by": "user1@email.com",
-          "escalation_policy_id": "ep-123456789012",
-          "project_id": "project-123456789012",
-          "domain_id": "domain-123456789012",
-          "created_at": "2022-01-01T01:43:08.566Z",
-          "updated_at": "2022-01-01T01:43:08.566Z",
-          "acknowledged_at": "2022-01-01T02:24:12.051Z",
-          "escalated_at": "2022-01-01T01:43:54.464Z"
-         }
-     */
+    
+    // Adds a responder who receives a Notification about an Alert.
     rpc add_responder (AlertResponderRequest) returns (AlertInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/add-responder",
+            post: "/monitoring/v1/alert/add-responder"
             body: "*"
         };
     }
-    /*
-    desc: Deletes a responder who receives a Notification about an Alert.
-    request_example: >-
-        {
-          "alert_id": "alert-123456789012",
-          "resource_type": "identity.User",
-          "resource_id": "user2@email.com",
-          "domain_id": "domain-123456789012"
-        }
-    response_example: >-
-        {
-          "alert_number": 104053,
-          "alert_id": "alert-123456789012",
-          "title": "sample test",
-          "state": "ACKNOWLEDGED",
-          "description": "[updating]This is a description of sample. ",
-          "urgency": "LOW",
-          "severity": "NONE",
-          "escalation_step": 1,
-          "additional_info": {},
-          "triggered_by": "user1@email.com",
-          "escalation_policy_id": "ep-123456789012",
-          "project_id": "project-123456789012",
-          "domain_id": "domain-123456789012",
-          "created_at": "2022-01-01T01:43:08.566Z",
-          "updated_at": "2022-01-01T01:43:08.566Z",
-          "acknowledged_at": "2022-01-01T01:48:52.799Z",
-          "escalated_at": "2022-01-01T01:43:54.464Z"
-        }
-     */
+    
+    // Deletes a responder who receives a Notification about an Alert.
     rpc remove_responder (AlertResponderRequest) returns (AlertInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/remove-responder",
+            post: "/monitoring/v1/alert/remove-responder"
             body: "*"
         };
     }
+    
     rpc add_project_dependency (AlertProjectDependencyRequest) returns (AlertInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/add-project-dependency",
+            post: "/monitoring/v1/alert/add-project-dependency"
             body: "*"
         };
     }
     rpc remove_project_dependency (AlertProjectDependencyRequest) returns (AlertInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/remove-project-dependency",
+            post: "/monitoring/v1/alert/remove-project-dependency"
             body: "*"
         };
     }
-    /*
-    desc: Deletes a specific Alert and remove it from the list of Alerts. You must specify the `alert_id` of the Alert to delete.
-    request_example: >-
-        {
-          "alert_id": "alert-123456789012",
-          "domain_id": "domain-123456789012"
-         }
-     */
+    
+    // Deletes a specific Alert and remove it from the list of Alerts. You must specify the `alert_id` of the Alert to delete.
     rpc delete (AlertRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/delete",
+            post: "/monitoring/v1/alert/delete"
             body: "*"
         };
     }
-    /*
-    desc: Gets a specific Alert. Prints detailed information about the Alert.
-    request_example: >-
-        {
-          "alert_id": "alert-123456789012",
-          "domain_id": "domain-123456789012"
-        }
-    response_example: >-
-        {
-          "alert_number": 104053,
-          "alert_id": "alert-123456789012",
-          "title": "sample test",
-          "state": "ACKNOWLEDGED",
-          "description": "[updating]This is a description of sample. ",
-          "urgency": "LOW",
-          "severity": "NONE",
-          "escalation_step": 1,
-          "additional_info": {},
-          "triggered_by": "user1@email.com",
-          "escalation_policy_id": "ep-123456789012",
-          "project_id": "project-123456789012",
-          "domain_id": "domain-123456789012",
-          "created_at": "2022-01-01T01:43:08.566Z",
-          "updated_at": "2022-01-01T01:43:08.566Z",
-          "acknowledged_at": "2022-01-01T01:48:52.799Z",
-          "escalated_at": "2022-01-01T01:43:54.464Z"
-        }
-     */
+    
+    // Gets a specific Alert. Prints detailed information about the Alert.
     rpc get (GetAlertRequest) returns (AlertInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/get",
+            post: "/monitoring/v1/alert/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all Alerts. You can use a query to get a filtered list of Alerts.
-    request_example: >-
-        {
-          "query": {},
-          "domain_id": "domain-123456789012"
-        }
-    response_example: >-
-        {
-          "results": [
-          {
-          "alert_number": 104057,
-          "alert_id": "alert-987654321098",
-          "title": "Notification of access to the bastion Host",
-          "state": "TRIGGERED",
-          "description": "SSH Access to stargate-dev from adm",
-          "urgency": "LOW",
-          "severity": "INFO",
-          "resource": {
-          "resource_id": "server-123456789012",
-          "resource_type": "inventory.Server",
-          "name": "stargate-dev"
-          },
-          "escalation_step": 1,
-          "escalation_ttl": 1,
-          "additional_info": {
-          "host": "[]",
-          "user": "user1"
-          },
-          "triggered_by": "webhook-123456789012",
-          "webhook_id": "webhook-123456789012",
-          "escalation_policy_id": "ep-123456789012",
-          "project_id": "project-123456789012",
-          "domain_id": "domain-123456789012",
-          "created_at": "2022-01-01T02:46:35.934Z",
-          "updated_at": "2022-01-01T02:46:35.934Z",
-          "escalated_at": "2022-01-01T02:46:35.979Z"
-          },
-          {
-          "alert_number": 104056,
-          "alert_id": "alert-123456789999",
-          "title": "Notification of access to the bastion Host",
-          "state": "TRIGGERED",
-          "description": "SSH Access to stargate-dev from user3@email.com",
-          "urgency": "LOW",
-          "severity": "INFO",
-          "resource": {
-          "resource_id": "server-123456789012",
-          "resource_type": "inventory.Server",
-          "name": "stargate-dev"
-          },
-          "escalation_step": 1,
-          "escalation_ttl": 1,
-          "additional_info": {
-          "user": "user3@email.com",
-          "host": "['111.111.111.11']"
-          },
-          "triggered_by": "webhook-123456789012",
-          "webhook_id": "webhook-123456789012",
-          "escalation_policy_id": "ep-123456789012",
-          "project_id": "project-123456789012",
-          "domain_id": "domain-123456789012",
-          "created_at": "2022-01-01T02:46:31.391Z",
-          "updated_at": "2022-01-01T02:46:31.391Z",
-          "escalated_at": "2022-01-01T02:46:31.553Z"
-          }
-          ],
-          "total_count": 21283
-         }
-     */
+    
+    // Gets a list of all Alerts. You can use a query to get a filtered list of Alerts.
     rpc list (AlertQuery) returns (AlertsInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/list",
+            post: "/monitoring/v1/alert/list"
             body: "*"
         };
     }
+    
     rpc stat (AlertStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/stat",
+            post: "/monitoring/v1/alert/stat"
             body: "*"
         };
     }
@@ -361,148 +137,175 @@ message AlertResponder {
     string resource_id = 2;
 }
 
+//{
+//      "title": "sample test",
+//      "description": "This is a description of sample.",
+//      "urgency": "HIGH",
+//      "project_id": "project-123456789012",
+//      "domain_id": "domain-123456789012"
+//}
 message CreateAlertRequest {
-    // is_required: true
     string title = 1;
-    // is_required: false
+    // +optional
     string description = 2;
-    // is_required: false
+    // +optional
     string assignee = 3;
-    // is_required: false
+    // +optional
     AlertUrgency urgency = 4;
-    // is_required: true
     string project_id = 5;
-    // is_required: true
     string domain_id = 11;
 }
 
+//{
+//      "alert_id": "alert-123456789012",
+//      "state": "ACKNOWLEDGED",
+//      "urgency": "LOW",
+//      "description": "[updating]This is a description of sample.",
+//      "domain_id": "domain-123456789012"
+//}
 message UpdateAlertRequest {
-    // is_required: true
     string alert_id = 1;
-    // is_required: false
+    // +optional
     string title = 2;
-    // is_required: false
+    // +optional
     string state = 3;
-    // is_required: false
+    // +optional
     string status_message = 4;
-    // is_required: false
+    // +optional
     string description = 5;
-    // is_required: false
+    // +optional
     string assignee = 6;
-    // is_required: false
+    // +optional
     AlertUrgency urgency = 7;
-    // is_required: false
+    // +optional
     string project_id = 8;
-    // is_required: false
+    // +optional
     bool reset_status_message = 11;
-    // is_required: false
+    // +optional
     bool reset_description = 12;
-    // is_required: false
+    // +optional
     bool reset_assignee = 13;
-    // is_required: true
     string domain_id = 21;
 }
 
+//{
+//      "alert_id": "alert-123456789012",
+//      "access_key": "1q2w3e4r5t6y7u8i9o0p",
+//      "domain_id": "domain-123456789012"
+//}
 message UpdateAlertStateRequest {
-    // is_required: true
     string alert_id = 1;
-    // is_required: true
     string access_key = 2;
-    // is_required: false
+    // +optional
     string state = 3;
 }
 
 message MergeAlertRequest {
-    // is_required: true
     repeated string alerts = 1;
-    // is_required: true
     string merge_to = 2;
-    // is_required: true
     string domain_id = 3;
 }
 
 message SnoozeAlertRequest {
-    // is_required: true
     string alert_id = 1;
-    // is_required: true
     string end_time = 2;
-    // is_required: true
     string domain_id = 3;
 }
 
+
+//{
+//      "alert_id": "alert-123456789012",
+//      "resource_type": "identity.User",
+//      "resource_id": "user2@email.com",
+//      "domain_id": "domain-123456789012"
+//}
 message AlertResponderRequest {
-    // is_required: true
     string alert_id = 1;
-    // is_required: true
     string resource_type = 2;
-    // is_required: true
     string resource_id = 3;
-    // is_required: true
     string domain_id = 4;
 }
 
 message AlertProjectDependencyRequest {
-    // is_required: true
     string alert_id = 1;
-    // is_required: true
     string project_id = 2;
-    // is_required: true
     string domain_id = 3;
 }
 
+//{
+//      "alert_id": "alert-123456789012",
+//      "domain_id": "domain-123456789012"
+//}
 message AlertRequest {
-    // is_required: true
     string alert_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
 message GetAlertRequest {
-    // is_required: true
     string alert_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
+//{
+//    "query": {}, 
+//    "domain_id": "domain-123456789012"
+//}
 message AlertQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     int32 alert_number = 2;
-    // is_required: false
+    // +optional
     string alert_id = 3;
-    // is_required: false
+    // +optional
     string title = 4;
-    // is_required: false
+    // +optional
     AlertState state = 5;
-    // is_required: false
+    // +optional
     string assignee = 6;
-    // is_required: false
+    // +optional
     AlertUrgency urgency = 7;
-    // is_required: false
+    // +optional
     string severity = 8;
-    // is_required: false
+    // +optional
     string is_snoozed = 9;
-    // is_required: false
+    // +optional
     string resource_id = 10;
-    // is_required: false
+    // +optional
     string provider = 11;
-    // is_required: false
+    // +optional
     string account = 12;
-    // is_required: false
+    // +optional
     string triggered_by = 13;
-    // is_required: false
+    // +optional
     string webhook_id = 21;
-    // is_required: false
+    // +optional
     string escalation_policy_id = 22;
-    // is_required: false
+    // +optional
     string project_id = 23;
-    // is_required: true
     string domain_id = 24;
 }
 
+//{
+//      "alert_number": 104053,
+//      "alert_id": "alert-123456789012",
+//      "title": "sample test",
+//      "state": "TRIGGERED",
+//      "description": "This is a description of sample.",
+//      "urgency": "HIGH",
+//      "severity": "NONE",
+//      "escalation_step": 1,
+//      "additional_info": {},
+//      "triggered_by": "user1@email.com",
+//      "escalation_policy_id": "ep-123456789012",
+//      "project_id": "project-123456789012",
+//      "domain_id": "domain-123456789012",
+//      "created_at": "2022-01-01T01:43:08.566Z",
+//      "updated_at": "2022-01-01T01:43:08.566Z",
+//      "escalated_at": "2022-01-01T01:43:54.464Z"
+//}
 message AlertInfo {
     int32 alert_number = 1;
     string alert_id = 2;
@@ -537,14 +340,73 @@ message AlertInfo {
     string escalated_at = 45;
 }
 
+//{
+//      "results": [
+//      {
+//      "alert_number": 104057,
+//      "alert_id": "alert-987654321098",
+//      "title": "Notification of access to the bastion Host",
+//      "state": "TRIGGERED",
+//      "description": "SSH Access to stargate-dev from adm",
+//      "urgency": "LOW",
+//      "severity": "INFO",
+//      "resource": {
+//      "resource_id": "server-123456789012",
+//      "resource_type": "inventory.Server",
+//      "name": "stargate-dev"
+//      },
+//      "escalation_step": 1,
+//      "escalation_ttl": 1,
+//      "additional_info": {
+//      "host": "[]",
+//      "user": "user1"
+//      },
+//      "triggered_by": "webhook-123456789012",
+//      "webhook_id": "webhook-123456789012",
+//      "escalation_policy_id": "ep-123456789012",
+//      "project_id": "project-123456789012",
+//      "domain_id": "domain-123456789012",
+//      "created_at": "2022-01-01T02:46:35.934Z",
+//      "updated_at": "2022-01-01T02:46:35.934Z",
+//      "escalated_at": "2022-01-01T02:46:35.979Z"
+//      },
+//      {
+//      "alert_number": 104056,
+//      "alert_id": "alert-123456789999",
+//      "title": "Notification of access to the bastion Host",
+//      "state": "TRIGGERED",
+//      "description": "SSH Access to stargate-dev from user3@email.com",
+//      "urgency": "LOW",
+//      "severity": "INFO",
+//      "resource": {
+//      "resource_id": "server-123456789012",
+//      "resource_type": "inventory.Server",
+//      "name": "stargate-dev"
+//      },
+//      "escalation_step": 1,
+//      "escalation_ttl": 1,
+//      "additional_info": {
+//      "user": "user3@email.com",
+//      "host": "['111.111.111.11']"
+//      },
+//      "triggered_by": "webhook-123456789012",
+//      "webhook_id": "webhook-123456789012",
+//      "escalation_policy_id": "ep-123456789012",
+//      "project_id": "project-123456789012",
+//      "domain_id": "domain-123456789012",
+//      "created_at": "2022-01-01T02:46:31.391Z",
+//      "updated_at": "2022-01-01T02:46:31.391Z",
+//      "escalated_at": "2022-01-01T02:46:31.553Z"
+//      }
+//      ],
+//      "total_count": 21283
+// }
 message AlertsInfo {
     repeated AlertInfo results = 1;
     int32 total_count = 2;
 }
 
 message AlertStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }

@@ -1,6 +1,4 @@
-/*
-desc: A Note is a comment on an Event, and is used for incident management.
- */
+// A Note is a comment on an Event, and is used for incident management. 
 syntax = "proto3";
 
 package spaceone.api.monitoring.v1;
@@ -14,189 +12,125 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service Note {
-    /*
-    desc: Creates a new Note. You can create Notes for each Alert to record the information needed to manage the Alerts.
-    request_example: >-
-        {
-            "alert_id": "alert-160ce04f6908",
-            "note": "This is a description",
-            "domain_id": "domain-58010aa2e451"
-        }
-    response_example: >-
-        {
-            "note_id": "note-df107d31bf20",
-            "alert_id": "alert-160ce04f6908",
-            "note": "This is a description",
-            "created_by": "seolmin@mz.co.kr",
-            "project_id": "project-52a423012d5e",
-            "domain_id": "domain-58010aa2e451",
-            "created_at": "2022-06-29T08:26:14.418Z"
-        }
-     */
+    // Creates a new Note. You can create Notes for each Alert to record the information needed to manage the Alerts.
     rpc create (CreateNoteRequest) returns (NoteInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/note/create",
+            post: "/monitoring/v1/note/create"
             body: "*"
         };
     }
-    /*
-    desc: Updates a specific Note. You must specify the `note_id` for Note validation check. If the Note exists, it is updated.
-    request_example: >-
-        {
-            "note_id": "note-df107d31bf20",
-            "note": "This is a test",
-            "domain_id": "domain-58010aa2e451"
-        }
-    response_example: >-
-        {
-            "note_id": "note-df107d31bf20",
-            "alert_id": "alert-160ce04f6908",
-            "note": "This is a test",
-            "created_by": "seolmin@mz.co.kr",
-            "project_id": "project-52a423012d5e",
-            "domain_id": "domain-58010aa2e451",
-            "created_at": "2022-06-29T08:26:14.418Z"
-        }
-     */
+    
+    // Updates a specific Note. You must specify the `note_id` for Note validation check. If the Note exists, it is updated.
     rpc update (UpdateNoteRequest) returns (NoteInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/note/update",
+            post: "/monitoring/v1/note/update"
             body: "*"
         };
     }
-    /*
-    desc: Deletes a specific Note. You must specify the `note_id` of the Note to delete.
-    request_example: >-
-        {
-            "note_id": "note-0bfac585bf5a",
-            "domain_id": "domain-58010aa2e451"
-        }
-     */
+    
+    // Deletes a specific Note. You must specify the `note_id` of the Note to delete.
     rpc delete (NoteRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/monitoring/v1/note/delete",
+            post: "/monitoring/v1/note/delete"
             body: "*"
         };
     }
-    /*
-    desc: Gets a specific Note. You must specify the `note_id` and `domain_id`.
-    request_example: >-
-        {
-            "note_id": "note-0bfac585bf5a",
-            "domain_id": "domain-58010aa2e451"
-        }
-    response_example: >-
-        {
-            "note_id": "note-0bfac585bf5a",
-            "alert_id": "alert-fbfd78e43df8",
-            "note": "test",
-            "created_by": "hykang@mz.co.kr",
-            "project_id": "project-52a423012d5e",
-            "domain_id": "domain-58010aa2e451",
-            "created_at": "2022-06-23T09:52:42.251Z"
-        }
-     */
+    
+    // Gets a specific Note. You must specify the `note_id` and `domain_id`.
     rpc get (GetNoteRequest) returns (NoteInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/note/get",
+            post: "/monitoring/v1/note/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all Notes. You can use a query to get a filtered list of Notes.
-    request_example: >-
-        {
-            "query": {},
-            "domain_id": "domain-58010aa2e451"
-        }
-    response_example: >-
-        {
-            "results": [
-                {
-                    "note_id": "note-0597bd748be0",
-                    "alert_id": "alert-fbfd78e43df8",
-                    "note": "http://spaceone.org",
-                    "created_by": "hykang@mz.co.kr",
-                    "project_id": "project-52a423012d5e",
-                    "domain_id": "domain-58010aa2e451",
-                    "created_at": "2022-06-23T09:58:23.838Z"
-                },
-                {
-                    "note_id": "note-0bfac585bf5a",
-                    "alert_id": "alert-fbfd78e43df8",
-                    "note": "test",
-                    "created_by": "hykang@mz.co.kr",
-                    "project_id": "project-52a423012d5e",
-                    "domain_id": "domain-58010aa2e451",
-                    "created_at": "2022-06-23T09:52:42.251Z"
-                }
-            ],
-            "total_count": 2
-        }
-     */
+    
+    // Gets a list of all Notes. You can use a query to get a filtered list of Notes.
     rpc list (NoteQuery) returns (NotesInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/note/list",
+            post: "/monitoring/v1/note/list"
             body: "*"
         };
     }
+    
     rpc stat (NoteStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/monitoring/v1/note/stat",
+            post: "/monitoring/v1/note/stat"
             body: "*"
         };
     }
 }
 
+//{
+//    "alert_id": "alert-160ce04f6908",
+//    "note": "This is a description",
+//    "domain_id": "domain-58010aa2e451"
+//}
 message CreateNoteRequest {
-    // is_required: true
     string alert_id = 1;
-    // is_required: true
     string note = 2;
-    // is_required: true
     string domain_id = 11;
 }
 
+//{
+//    "note_id": "note-df107d31bf20",
+//    "note": "This is a test",
+//    "domain_id": "domain-58010aa2e451"
+//}
 message UpdateNoteRequest {
-    // is_required: true
     string note_id = 1;
-    // is_required: false
+    // +optional
     string note = 2;
-    // is_required: true
     string domain_id = 11;
 }
 
+//{
+//    "note_id": "note-0bfac585bf5a",
+//    "domain_id": "domain-58010aa2e451"
+//}
 message NoteRequest {
-    // is_required: true
     string note_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
+//{
+//    "note_id": "note-0bfac585bf5a",
+//    "domain_id": "domain-58010aa2e451"
+//}
 message GetNoteRequest {
-    // is_required: true
     string note_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
+//{
+//    "query": {},
+//    "domain_id": "domain-58010aa2e451"
+//}
 message NoteQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string note_id = 2;
-    // is_required: false
+    // +optional
     string alert_id = 3;
-    // is_required: false
+    // +optional
     string created_by = 4;
-    // is_required: false
+    // +optional
     string project_id = 5;
-    // is_required: false
+    // +optional
     string domain_id = 6;
 }
 
+//{
+//    "note_id": "note-df107d31bf20",
+//    "alert_id": "alert-160ce04f6908",
+//    "note": "This is a description",
+//    "created_by": "seolmin@mz.co.kr",
+//    "project_id": "project-52a423012d5e",
+//    "domain_id": "domain-58010aa2e451",
+//    "created_at": "2022-06-29T08:26:14.418Z"
+//}
 message NoteInfo {
     string note_id = 1;
     string alert_id = 2;
@@ -207,14 +141,35 @@ message NoteInfo {
     string created_at = 21;
 }
 
+//{
+//    "results": [
+//        {
+//            "note_id": "note-0597bd748be0",
+//            "alert_id": "alert-fbfd78e43df8",
+//            "note": "http://spaceone.org",
+//            "created_by": "hykang@mz.co.kr",
+//            "project_id": "project-52a423012d5e",
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2022-06-23T09:58:23.838Z"
+//        },
+//        {
+//            "note_id": "note-0bfac585bf5a",
+//            "alert_id": "alert-fbfd78e43df8",
+//            "note": "test",
+//            "created_by": "hykang@mz.co.kr",
+//            "project_id": "project-52a423012d5e",
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2022-06-23T09:52:42.251Z"
+//        }
+//    ],
+//    "total_count": 2
+//}
 message NotesInfo {
     repeated NoteInfo results = 1;
     int32 total_count = 2;
 }
 
 message NoteStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }

@@ -1,6 +1,4 @@
-/*
-desc: An EventRule is a rule to transform the request data when an Event is generated.
- */
+// An EventRule is a rule to transform the request data when an Event is generated.
 syntax = "proto3";
 
 package spaceone.api.monitoring.v1;
@@ -14,275 +12,57 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service EventRule {
-    /*
-    desc: Creates a new EventRule. You can filter the Events to apply the EventRule by setting the input parameter `Conditions`. The method can change the Events' assignee or Project.
-    request_example: >-
-        {
-          "conditions": [{"key": "description", "value": "API", "operator": "contain"}],
-          "conditions_policy": "ALL",
-          "actions": {"change_assignee": "user1@email.com",
-          "change_urgency": "LOW",
-          "change_project": "project-123456789012",
-          "add_additional_info": {"type": "personal rule"},
-          "no_notification": true},
-          "options": {},
-          "project_id": "project-123456789012",
-          "domain_id": "domain-123456789012"
-         }
-    response_example: >-
-        {
-          "event_rule_id": "er-123456789012",
-          "order": 1,
-          "conditions": [
-          {
-          "key": "description",
-          "value": "API",
-          "operator": "contain"
-          }
-          ],
-          "conditions_policy": "ALL",
-          "actions": {
-          "change_assignee": "user1@email.com",
-          "change_urgency": "LOW",
-          "change_project": "project-123456789012",
-          "add_additional_info": {
-          "type": "personal rule"
-          },
-          "no_notification": true
-          },
-          "options": {},
-          "scope": "PROJECT",
-          "project_id": "project-123456789012",
-          "tags": {},
-          "domain_id": "domain-123456789012",
-          "created_at": "2022-01-02T06:02:31.517Z"
-         }
-     */
+    // Creates a new EventRule. You can filter the Events to apply the EventRule by setting the input parameter `Conditions`. The method can change the Events' assignee or Project.
     rpc create (CreateEventRuleRequest) returns (EventRuleInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/event-rule/create",
+            post: "/monitoring/v1/event-rule/create"
             body: "*"
         };
     }
-    /*
-    desc: Changes a priority order between EventRules to apply. EventRules are filtered by the order configured.
-    request_example: >-
-        {
-          "event_rule_id": "er-123456789012",
-          "conditions": [{"key": "description", "value": "ELB", "operator": "contain"}],
-          "conditions_policy": "ALL",
-          "actions": {"change_assignee": "user2@email.com",
-          "change_urgency": "HIGH",
-          "change_project": "project-123456789012",
-          "add_additional_info": {"type": "personal rule"},
-          "no_notification": true},
-          "options": {},
-          "domain_id": "domain-123456789012"
-         }
-    response_example: >-
-        {
-          "event_rule_id": "er-123456789012",
-          "order": 2,
-          "conditions": [
-          {
-          "key": "description",
-          "value": "ELB",
-          "operator": "contain"
-          }
-          ],
-          "conditions_policy": "ALL",
-          "actions": {
-          "change_assignee": "user2@email.com",
-          "change_urgency": "HIGH",
-          "change_project": "project-123456789012",
-          "add_additional_info": {
-          "type": "personal rule"
-          },
-          "no_notification": true
-          },
-          "options": {},
-          "scope": "PROJECT",
-          "project_id": "project-123456789012",
-          "tags": {},
-          "domain_id": "domain-123456789012",
-          "created_at": "2022-01-01T06:02:31.517Z"
-         }
-     */
+    
+    // Changes a priority order between EventRules to apply. EventRules are filtered by the order configured.
     rpc update (UpdateEventRuleRequest) returns (EventRuleInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/event-rule/update",
+            post: "/monitoring/v1/event-rule/update"
             body: "*"
         };
     }
-    /*
-    desc: Updates a specific EventRule. You can make changes in EventRule settings.
-    request_example: >-
-        {
-          "event_rule_id": "er-123456789012",
-          "order": 2,
-          "domain_id": "domain-123456789012"
-         }
-    response_example: >-
-        {
-          "event_rule_id": "er-123456789012",
-          "order": 2,
-          "conditions": [
-          {
-          "key": "description",
-          "value": "API",
-          "operator": "contain"
-          }
-          ],
-          "conditions_policy": "ALL",
-          "actions": {
-          "change_assignee": "user1@email.com",
-          "change_urgency": "LOW",
-          "change_project": "project-123456789012",
-          "add_additional_info": {
-          "type": "personal rule"
-          },
-          "no_notification": true
-          },
-          "options": {},
-          "scope": "PROJECT",
-          "project_id": "project-123456789012",
-          "tags": {},
-          "domain_id": "domain-123456789012",
-          "created_at": "2022-01-02T06:02:31.517Z"
-         }
-     */
+    
+    // Updates a specific EventRule. You can make changes in EventRule settings.
     rpc change_order (ChangeEventRuleOrderRequest) returns (EventRuleInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/event-rule/change-order",
+            post: "/monitoring/v1/event-rule/change-order"
             body: "*"
         };
     }
-    /*
-    desc: Deletes a specific EventRule. You must assign an EventRule resource to delete by specifying `event_rule_id`.
-    request_example: >-
-        {
-          "event_rule_id": "er-123456789012",
-          "domain_id": "domain-123456789012"
-         }
-     */
+    
+    // Deletes a specific EventRule. You must assign an EventRule resource to delete by specifying `event_rule_id`.
     rpc delete (EventRuleRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/monitoring/v1/event-rule/delete",
+            post: "/monitoring/v1/event-rule/delete"
             body: "*"
         };
     }
-    /*
-    desc: Gets a specific EventRule. Prints detailed information about the EventRule.
-    request_example: >-
-        {
-          "event_rule_id": "er-123456789012",
-          "domain_id": "domain-123456789012"
-         }
-    response_example: >-
-        {
-          "event_rule_id": "er-123456789012",
-          "order": 2,
-          "conditions": [
-          {
-          "key": "title",
-          "value": "ELB",
-          "operator": "contain"
-          }
-          ],
-          "conditions_policy": "ALL",
-          "actions": {
-          "change_assignee": "user1@email.com",
-          "change_urgency": "LOW",
-          "change_project": "project-123456789012",
-          "add_additional_info": {},
-          "no_notification": true
-          },
-          "options": {},
-          "scope": "PROJECT",
-          "project_id": "project-123456789012",
-          "tags": {},
-          "domain_id": "domain-123456789012",
-          "created_at": "2022-01-01T06:12:30.226Z"
-         }
-     */
+    
+    // Gets a specific EventRule. Prints detailed information about the EventRule.
     rpc get (GetEventRuleRequest) returns (EventRuleInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/event-rule/get",
+            post: "/monitoring/v1/event-rule/get"
             body: "*"
         };
     }
-    /*
-    desc: Gets a list of all EventRules. You can use a query to get a filtered list of EventRules. For example, you can adjust the scope of the list to a certain Project or Domain.
-    request_example: >-
-        {
-          "project_id": "project-123456789012",
-          "domain_id": "domain-123456789012"
-         }
-    response_example: >-
-        {
-          "results": [
-          {
-          "event_rule_id": "er-123456789012",
-          "order": 1,
-          "conditions": [
-          {
-          "key": "title",
-          "value": "AWS",
-          "operator": "contain"
-          }
-          ],
-          "conditions_policy": "ALL",
-          "actions": {
-          "change_assignee": "user2@email.com",
-          "change_urgency": "HIGH",
-          "add_additional_info": {},
-          "no_notification": true
-          },
-          "options": {},
-          "scope": "PROJECT",
-          "project_id": "project-123456789012",
-          "tags": {},
-          "domain_id": "domain-123456789012",
-          "created_at": "2022-01-01T06:33:58.388Z"
-          },
-          {
-          "event_rule_id": "er-123456789012",
-          "order": 2,
-          "conditions": [
-          {
-          "key": "title",
-          "value": "ELB",
-          "operator": "contain"
-          }
-          ],
-          "conditions_policy": "ALL",
-          "actions": {
-          "change_assignee": "user1@email.com",
-          "change_urgency": "LOW",
-          "change_project": "project-123456789012",
-          "add_additional_info": {},
-          "no_notification": true
-          },
-          "options": {},
-          "scope": "PROJECT",
-          "project_id": "project-123456789012",
-          "tags": {},
-          "domain_id": "domain-123456789012",
-          "created_at": "2022-01-01T06:12:30.226Z"
-          }
-          ],
-          "total_count": 2
-         }
-     */
+    
+    // Gets a list of all EventRules. You can use a query to get a filtered list of EventRules. For example, you can adjust the scope of the list to a certain Project or Domain.
     rpc list (EventRuleQuery) returns (EventRulesInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/event-rule/list",
+            post: "/monitoring/v1/event-rule/list"
             body: "*"
         };
     }
+    
     rpc stat (EventRuleStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/monitoring/v1/event-rule/stat",
+            post: "/monitoring/v1/event-rule/stat"
             body: "*"
         };
     }
@@ -319,6 +99,18 @@ message EventRuleOptions {
     bool stop_processing = 1;
 }
 
+//{
+//      "conditions": [{"key": "description", "value": "API", "operator": "contain"}],
+//      "conditions_policy": "ALL",
+//      "actions": {"change_assignee": "user1@email.com",
+//      "change_urgency": "LOW",
+//      "change_project": "project-123456789012",
+//      "add_additional_info": {"type": "personal rule"},
+//      "no_notification": true},
+//      "options": {},
+//      "project_id": "project-123456789012",
+//      "domain_id": "domain-123456789012"
+//}
 message CreateEventRuleRequest {
     enum ConditionsPolicy {
         NONE = 0;
@@ -326,25 +118,32 @@ message CreateEventRuleRequest {
         ANY = 2;
         ALWAYS = 3;
     }
-
-    // is_required: true
+    
     string name = 1;
-    // is_required: true
     repeated EventRuleCondition conditions = 2;
-    // is_required: true
     ConditionsPolicy conditions_policy = 3;
-    // is_required: true
     EventRuleActions actions = 4;
-    // is_required: false
+    // +optional
     EventRuleOptions options = 5;
-    // is_required: false
+    // +optional
     string project_id = 6;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 7;
-    // is_required: true
     string domain_id = 11;
 }
 
+//{
+//      "event_rule_id": "er-123456789012",
+//      "conditions": [{"key": "description", "value": "ELB", "operator": "contain"}],
+//      "conditions_policy": "ALL",
+//      "actions": {"change_assignee": "user2@email.com",
+//      "change_urgency": "HIGH",
+//      "change_project": "project-123456789012",
+//      "add_additional_info": {"type": "personal rule"},
+//      "no_notification": true},
+//      "options": {},
+//      "domain_id": "domain-123456789012"
+//}
 message UpdateEventRuleRequest {
     enum ConditionsPolicy {
         NONE = 0;
@@ -353,49 +152,58 @@ message UpdateEventRuleRequest {
         ALWAYS = 3;
     }
 
-    // is_required: true
     string event_rule_id = 1;
-    // is_required: false
+    // +optional
     string name = 2;
-    // is_required: false
+    // +optional
     repeated EventRuleCondition conditions = 3;
-    // is_required: false
+    // +optional
     ConditionsPolicy conditions_policy = 4;
-    // is_required: false
+    // +optional
     EventRuleActions actions = 5;
-    // is_required: false
+    // +optional
     EventRuleOptions options = 6;
-    // is_required: false
+    // +optional
     google.protobuf.Struct tags = 7;
-    // is_required: true
     string domain_id = 11;
 }
 
+//{
+//    "event_rule_id": "er-123456789012", 
+//    "order": 2,
+//    "domain_id": "domain-123456789012"
+//}
 message ChangeEventRuleOrderRequest {
-    // is_required: true
     string event_rule_id = 1;
-    // is_required: true
     int32 order = 2;
-    // is_required: true
     string domain_id = 11;
 }
 
+//{
+//    "event_rule_id": "er-123456789012",
+//    "order": 2,
+//    "domain_id": "domain-123456789012"
+//}
 message EventRuleRequest {
-    // is_required: true
     string event_rule_id = 1;
-    // is_required: true
     string domain_id = 2;
 }
 
+//{
+//    "event_rule_id": "er-123456789012",
+//    "domain_id": "domain-123456789012"
+//}
 message GetEventRuleRequest {
-    // is_required: true
     string event_rule_id = 1;
-    // is_required: true
     string domain_id = 2;
-    // is_required: false
+    // +optional
     repeated string only = 3;
 }
 
+//{
+//    "project_id": "project-123456789012",
+//    "domain_id": "domain-123456789012"
+//}
 message EventRuleQuery {
     enum EventRuleScope {
         SCOPE_NONE = 0;
@@ -403,20 +211,46 @@ message EventRuleQuery {
         PROJECT = 2;
     }
 
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string event_rule_id = 2;
-    // is_required: false
+    // +optional
     string name = 3;
-    // is_required: false
+    // +optional
     EventRuleScope scope = 4;
-    // is_required: false
+    // +optional
     string project_id = 5;
-    // is_required: true
     string domain_id = 11;
 }
 
+//{
+//      "event_rule_id": "er-123456789012",
+//      "order": 1,
+//      "conditions": [
+//      {
+//      "key": "description",
+//      "value": "API",
+//      "operator": "contain"
+//      }
+//      ],
+//      "conditions_policy": "ALL",
+//      "actions": {
+//      "change_assignee": "user1@email.com",
+//      "change_urgency": "LOW",
+//      "change_project": "project-123456789012",
+//      "add_additional_info": {
+//      "type": "personal rule"
+//      },
+//      "no_notification": true
+//      },
+//      "options": {},
+//      "scope": "PROJECT",
+//      "project_id": "project-123456789012",
+//      "tags": {},
+//      "domain_id": "domain-123456789012",
+//      "created_at": "2022-01-02T06:02:31.517Z"
+//}
 message EventRuleInfo {
     enum EventRuleScope {
         SCOPE_NONE = 0;
@@ -445,14 +279,66 @@ message EventRuleInfo {
     string created_at = 21;
 }
 
+//{
+//      "results": [
+//      {
+//      "event_rule_id": "er-123456789012",
+//      "order": 1,
+//      "conditions": [
+//      {
+//      "key": "title",
+//      "value": "AWS",
+//      "operator": "contain"
+//      }
+//      ],
+//      "conditions_policy": "ALL",
+//      "actions": {
+//      "change_assignee": "user2@email.com",
+//      "change_urgency": "HIGH",
+//      "add_additional_info": {},
+//      "no_notification": true
+//      },
+//      "options": {},
+//      "scope": "PROJECT",
+//      "project_id": "project-123456789012",
+//      "tags": {},
+//      "domain_id": "domain-123456789012",
+//      "created_at": "2022-01-01T06:33:58.388Z"
+//      },
+//      {
+//      "event_rule_id": "er-123456789012",
+//      "order": 2,
+//      "conditions": [
+//      {
+//      "key": "title",
+//      "value": "ELB",
+//      "operator": "contain"
+//      }
+//      ],
+//      "conditions_policy": "ALL",
+//      "actions": {
+//      "change_assignee": "user1@email.com",
+//      "change_urgency": "LOW",
+//      "change_project": "project-123456789012",
+//      "add_additional_info": {},
+//      "no_notification": true
+//      },
+//      "options": {},
+//      "scope": "PROJECT",
+//      "project_id": "project-123456789012",
+//      "tags": {},
+//      "domain_id": "domain-123456789012",
+//      "created_at": "2022-01-01T06:12:30.226Z"
+//      }
+//      ],
+//      "total_count": 2
+//}
 message EventRulesInfo {
     repeated EventRuleInfo results = 1;
     int32 total_count = 2;
 }
 
 message EventRuleStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
     string domain_id = 2;
 }

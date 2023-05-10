@@ -1,6 +1,4 @@
-/*
-desc: A Metric is a monitoring metric data delivered from an external cloud service via a DataSource.
- */
+// A Metric is a monitoring metric data delivered from an external cloud service via a DataSource.
 syntax = "proto3";
 
 option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/plugin";
@@ -10,46 +8,35 @@ package spaceone.api.monitoring.plugin;
 import "google/protobuf/struct.proto";
 
 service Metric {
-    /*
-    desc: Gets a list of all Metrics from a specific cloud service. You can use the method to list up the Metrics to collect before using the `get_data` method to collect the Metrics.
-     */
+    
+    // Gets a list of all Metrics from a specific cloud service. You can use the method to list up the Metrics to collect before using the `get_data` method to collect the Metrics.
     rpc list (MetricRequest) returns (MetricsInfo) {}
-    /*
-    desc: Gets a Metric from a specific cloud service resource `instance`. By specifying the time period to collect the Metric, the Metric data value of the `instance` during the period is returned.
-     */
+    
+    // Gets a Metric from a specific cloud service resource `instance`. By specifying the time period to collect the Metric, the Metric data value of the `instance` during the period is returned.
     rpc get_data (MetricDataRequest) returns (MetricDataInfo) {}
 }
 
 message MetricRequest {
-    // is_required: true
     google.protobuf.Struct options = 1;
-    // is_required: true
     google.protobuf.Struct secret_data = 2;
-    // is_required: true
     google.protobuf.Struct query = 3;
-    // is_required: false
+    // +optional
     string schema = 4;
 }
 
 message MetricDataRequest {
-    // is_required: true
     google.protobuf.Struct options = 1;
-    // is_required: true
     google.protobuf.Struct secret_data = 2;
-    // is_required: true
     google.protobuf.Struct metric_query = 3;
-    // is_required: true
-    // desc: metric identifier in case of requested metric info is not a single.
+    // metric identifier in case of requested metric info is not a single.
     string metric = 4;
-    // is_required: true
     string start = 5;
-    // is_required: true
     string end = 6;
-    // is_required: false
+    // +optional
     int32 period = 7;
-    // is_required: false
+    // +optional
     string stat = 8;
-    // is_required: false
+    // +optional
     string schema = 9;
 }
 
