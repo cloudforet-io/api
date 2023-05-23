@@ -156,6 +156,14 @@ message PluginInfo {
     string service_account_id = 7;
     google.protobuf.Struct metadata = 10;
     UpgradeMode upgrade_mode = 11;
+    google.protobuf.Struct secret_filter = 12;
+}
+
+message Scheduled {
+    string cron = 1;
+    int32 interval = 2;
+    repeated int32 minutes = 3;
+    repeated int32 hours = 4;
 }
 
 //{
@@ -191,18 +199,10 @@ message CreateCollectorRequest {
     string name = 1;
     PluginInfo plugin_info = 2;
     // +optional
-    int32  priority = 3;
+    Scheduled schedule = 3;
     // +optional
     google.protobuf.Struct tags = 5;
     string domain_id = 6;
-    // default is true
-    // +optional
-    bool is_public = 10;
-    // if is_public is false, project_id is require
-    // remained as is_public | True | False
-    // +optional
-    string project_id = 11;
-
 }
 
 //{
@@ -332,19 +332,24 @@ message VerifyPluginRequest {
 //        },
 //        "upgrade_mode": "AUTO"
 //    },
-//    "priority": 1,
 //    "tags": {
 //        "type": "test"
 //    },
 //    "created_at": "2022-06-17T06:33:27.195Z",
 //    "domain_id": "domain-58010aa2e451",
-//    "provider": "aws",
+//    "providers": ["aws"],
 //    "capability": {
 //        "supported_schema": [
 //            "aws_access_key"
 //        ]
 //    },
-//    "is_public": true
+//    "schedule": {
+//        "hours": {
+//            "cron": "0 * * * *",
+//            "timezone": "UTC"
+//        }
+//    },
+//    "last_collected_at": "2022-06-17T06:33:27.195Z"
 //}
 message CollectorInfo {
     enum State {
@@ -357,15 +362,13 @@ message CollectorInfo {
     string name = 2;
     State state = 3;
     PluginInfo plugin_info = 4;
-    int32  priority = 5;
-    google.protobuf.Struct tags = 7;
-    string created_at = 8;
-    string last_collected_at = 9;
-    string domain_id = 10;
-    string provider = 11;
-    google.protobuf.Struct capability = 12;
-    bool is_public = 20;
-    string project_id = 21;
+    google.protobuf.Struct tags = 5;
+    repeated string provider = 6;
+    google.protobuf.Struct capability = 7;
+    Scheduled schedule = 8;
+    string created_at = 11;
+    string last_collected_at = 12;
+    string domain_id = 21;
 }
 
 //{
@@ -492,13 +495,6 @@ message JobInfo {
     string created_at = 21;
     string updated_at = 22;
     string finished_at = 23;
-}
-
-message Scheduled {
-    string cron = 1;
-    int32 interval = 2;
-    repeated int32 minutes = 3;
-    repeated int32 hours = 4;
 }
 
 //{
