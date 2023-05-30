@@ -17,7 +17,14 @@ service Plugin {
             body: "*"
         };
     }
-    
+
+    rpc get_plugin_metadata (PluginMetadataRequest) returns (PluginMetadata) {
+        option (google.api.http) = {
+            post: "/plugin/v1/plugin/get-metadata
+            body: "*"
+        };
+    }
+
     rpc notify_failure (PluginFailureRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/plugin/v1/plugin/notify-failure"
@@ -46,6 +53,15 @@ message PluginEndpointRequest {
     UpgradeMode upgrade_mode = 5;
 }
 
+message PluginMetadataRequest {
+    string plugin_id = 1;
+    // +optional
+    string version = 2;
+    // +optional
+    google.protobuf.Struct options = 3;
+    string domain_id = 4;
+}
+
 message PluginFailureRequest {
     string supervisor_id = 1;
     string plugin_id = 2;
@@ -60,4 +76,8 @@ message PluginEndpoint {
     string endpoint = 1;
     string access_token = 2;
     string updated_version = 3;
+}
+
+message PluginMetadata {
+    google.protobuf.Struct metadata = 1;
 }
