@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	Plugin_GetPluginEndpoint_FullMethodName = "/spaceone.api.plugin.v1.Plugin/get_plugin_endpoint"
+	Plugin_GetPluginMetadata_FullMethodName = "/spaceone.api.plugin.v1.Plugin/get_plugin_metadata"
 	Plugin_NotifyFailure_FullMethodName     = "/spaceone.api.plugin.v1.Plugin/notify_failure"
 )
 
@@ -32,6 +33,7 @@ const (
 type PluginClient interface {
 	// Gets the `endpoint` of a specific plugin instance. A Plugin returns only a single `endpoint` by determining `labels` and `priority`. If the requested plugin instance is already deployed, the `endpoint` is returned. If not, the `endpoint` is returned after deploying the plugin instance.
 	GetPluginEndpoint(ctx context.Context, in *PluginEndpointRequest, opts ...grpc.CallOption) (*PluginEndpoint, error)
+	GetPluginMetadata(ctx context.Context, in *PluginMetadataRequest, opts ...grpc.CallOption) (*PluginMetadata, error)
 	NotifyFailure(ctx context.Context, in *PluginFailureRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 }
 
@@ -46,6 +48,15 @@ func NewPluginClient(cc grpc.ClientConnInterface) PluginClient {
 func (c *pluginClient) GetPluginEndpoint(ctx context.Context, in *PluginEndpointRequest, opts ...grpc.CallOption) (*PluginEndpoint, error) {
 	out := new(PluginEndpoint)
 	err := c.cc.Invoke(ctx, Plugin_GetPluginEndpoint_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pluginClient) GetPluginMetadata(ctx context.Context, in *PluginMetadataRequest, opts ...grpc.CallOption) (*PluginMetadata, error) {
+	out := new(PluginMetadata)
+	err := c.cc.Invoke(ctx, Plugin_GetPluginMetadata_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,6 +78,7 @@ func (c *pluginClient) NotifyFailure(ctx context.Context, in *PluginFailureReque
 type PluginServer interface {
 	// Gets the `endpoint` of a specific plugin instance. A Plugin returns only a single `endpoint` by determining `labels` and `priority`. If the requested plugin instance is already deployed, the `endpoint` is returned. If not, the `endpoint` is returned after deploying the plugin instance.
 	GetPluginEndpoint(context.Context, *PluginEndpointRequest) (*PluginEndpoint, error)
+	GetPluginMetadata(context.Context, *PluginMetadataRequest) (*PluginMetadata, error)
 	NotifyFailure(context.Context, *PluginFailureRequest) (*empty.Empty, error)
 	mustEmbedUnimplementedPluginServer()
 }
@@ -77,6 +89,9 @@ type UnimplementedPluginServer struct {
 
 func (UnimplementedPluginServer) GetPluginEndpoint(context.Context, *PluginEndpointRequest) (*PluginEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPluginEndpoint not implemented")
+}
+func (UnimplementedPluginServer) GetPluginMetadata(context.Context, *PluginMetadataRequest) (*PluginMetadata, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPluginMetadata not implemented")
 }
 func (UnimplementedPluginServer) NotifyFailure(context.Context, *PluginFailureRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NotifyFailure not implemented")
@@ -112,6 +127,24 @@ func _Plugin_GetPluginEndpoint_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Plugin_GetPluginMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PluginMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PluginServer).GetPluginMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Plugin_GetPluginMetadata_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PluginServer).GetPluginMetadata(ctx, req.(*PluginMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Plugin_NotifyFailure_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PluginFailureRequest)
 	if err := dec(in); err != nil {
@@ -140,6 +173,10 @@ var Plugin_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "get_plugin_endpoint",
 			Handler:    _Plugin_GetPluginEndpoint_Handler,
+		},
+		{
+			MethodName: "get_plugin_metadata",
+			Handler:    _Plugin_GetPluginMetadata_Handler,
 		},
 		{
 			MethodName: "notify_failure",

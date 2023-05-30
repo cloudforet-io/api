@@ -20,6 +20,11 @@ class PluginStub(object):
                 request_serializer=spaceone_dot_api_dot_plugin_dot_v1_dot_plugin__pb2.PluginEndpointRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_plugin_dot_v1_dot_plugin__pb2.PluginEndpoint.FromString,
                 )
+        self.get_plugin_metadata = channel.unary_unary(
+                '/spaceone.api.plugin.v1.Plugin/get_plugin_metadata',
+                request_serializer=spaceone_dot_api_dot_plugin_dot_v1_dot_plugin__pb2.PluginMetadataRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_plugin_dot_v1_dot_plugin__pb2.PluginMetadata.FromString,
+                )
         self.notify_failure = channel.unary_unary(
                 '/spaceone.api.plugin.v1.Plugin/notify_failure',
                 request_serializer=spaceone_dot_api_dot_plugin_dot_v1_dot_plugin__pb2.PluginFailureRequest.SerializeToString,
@@ -37,6 +42,12 @@ class PluginServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def get_plugin_metadata(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def notify_failure(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -50,6 +61,11 @@ def add_PluginServicer_to_server(servicer, server):
                     servicer.get_plugin_endpoint,
                     request_deserializer=spaceone_dot_api_dot_plugin_dot_v1_dot_plugin__pb2.PluginEndpointRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_plugin_dot_v1_dot_plugin__pb2.PluginEndpoint.SerializeToString,
+            ),
+            'get_plugin_metadata': grpc.unary_unary_rpc_method_handler(
+                    servicer.get_plugin_metadata,
+                    request_deserializer=spaceone_dot_api_dot_plugin_dot_v1_dot_plugin__pb2.PluginMetadataRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_plugin_dot_v1_dot_plugin__pb2.PluginMetadata.SerializeToString,
             ),
             'notify_failure': grpc.unary_unary_rpc_method_handler(
                     servicer.notify_failure,
@@ -80,6 +96,23 @@ class Plugin(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.plugin.v1.Plugin/get_plugin_endpoint',
             spaceone_dot_api_dot_plugin_dot_v1_dot_plugin__pb2.PluginEndpointRequest.SerializeToString,
             spaceone_dot_api_dot_plugin_dot_v1_dot_plugin__pb2.PluginEndpoint.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def get_plugin_metadata(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.plugin.v1.Plugin/get_plugin_metadata',
+            spaceone_dot_api_dot_plugin_dot_v1_dot_plugin__pb2.PluginMetadataRequest.SerializeToString,
+            spaceone_dot_api_dot_plugin_dot_v1_dot_plugin__pb2.PluginMetadata.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

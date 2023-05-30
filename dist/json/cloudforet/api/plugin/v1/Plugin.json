@@ -209,6 +209,90 @@
               "defaultValue": ""
             }
           ]
+        },
+        {
+          "name": "PluginMetadata",
+          "longName": "PluginMetadata",
+          "fullName": "spaceone.api.plugin.v1.PluginMetadata",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "metadata",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PluginMetadataRequest",
+          "longName": "PluginMetadataRequest",
+          "fullName": "spaceone.api.plugin.v1.PluginMetadataRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "plugin_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
         }
       ],
       "services": [
@@ -235,6 +319,29 @@
                     {
                       "method": "POST",
                       "pattern": "/plugin/v1/plugin/get-plugin-endpoint",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get_plugin_metadata",
+              "description": "",
+              "requestType": "PluginMetadataRequest",
+              "requestLongType": "PluginMetadataRequest",
+              "requestFullType": "spaceone.api.plugin.v1.PluginMetadataRequest",
+              "requestStreaming": false,
+              "responseType": "PluginMetadata",
+              "responseLongType": "PluginMetadata",
+              "responseFullType": "spaceone.api.plugin.v1.PluginMetadata",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/plugin/v1/plugin/get-metadata",
                       "body": "*"
                     }
                   ]
