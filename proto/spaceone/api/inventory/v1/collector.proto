@@ -140,6 +140,13 @@ service Collector {
     }
 }
 
+message Scheduled {
+    string cron = 1;
+    int32 interval = 2;
+    repeated int32 minutes = 3;
+    repeated int32 hours = 4;
+}
+
 message PluginInfo {
     enum UpgradeMode {
         NONE = 0;
@@ -150,21 +157,11 @@ message PluginInfo {
     string plugin_id = 1;
     string version = 2;
     google.protobuf.Struct options = 3;
-    string secret_id = 4;
-    string secret_group_id = 5;
-    string provider = 6;
-    string service_account_id = 7;
     google.protobuf.Struct metadata = 10;
     UpgradeMode upgrade_mode = 11;
     google.protobuf.Struct secret_filter = 12;
 }
 
-message Scheduled {
-    string cron = 1;
-    int32 interval = 2;
-    repeated int32 minutes = 3;
-    repeated int32 hours = 4;
-}
 
 //{
 //    "name": "AWS Collector",
@@ -172,7 +169,7 @@ message Scheduled {
 //        "plugin_id": "plugin-30d21ef75a5d",
 //        "version": "1.13.13",
 //        "options": {},
-//        "provider": "aws",
+//        "provider": ["aws"],
 //        "metadata": {
 //            "filter_format": [],
 //            "supported_schedules": [
@@ -189,17 +186,17 @@ message Scheduled {
 //        },
 //        "upgrade_mode": "AUTO"
 //    },
-//    "priority": 1,
 //    "tags": {
 //        "type": "test"
 //    },
-//    "is_public": true
 //}
 message CreateCollectorRequest {
     string name = 1;
     PluginInfo plugin_info = 2;
     // +optional
     Scheduled schedule = 3;
+    // +optional
+    string provider = 4;
     // +optional
     google.protobuf.Struct tags = 5;
     string domain_id = 6;
@@ -214,7 +211,6 @@ message CreateCollectorRequest {
 //        "provider": "aws",
 //        "upgrade_mode": "MANUAL"
 //    },
-//    "priority": 10,
 //    "tags": {
 //        "a": "b"
 //    }
@@ -224,10 +220,7 @@ message UpdateCollectorRequest {
     // +optional
     string name = 2;
     // +optional
-    // note: deprecated, use update_plugin
-    PluginInfo plugin_info = 3;
-    // +optional
-    int32  priority = 4;
+    Scheduled schedule = 5;
     // +optional
     google.protobuf.Struct tags = 6;
     string domain_id = 7;
@@ -363,7 +356,7 @@ message CollectorInfo {
     State state = 3;
     PluginInfo plugin_info = 4;
     google.protobuf.Struct tags = 5;
-    repeated string provider = 6;
+    string provider = 6;
     google.protobuf.Struct capability = 7;
     Scheduled schedule = 8;
     string created_at = 11;
