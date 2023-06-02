@@ -3,17 +3,12 @@ name: "[Dispatch] Release"
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        description: 'enter branch (only master and release-x.y.z are allowed)'
-        required: true
-        default: 'master'
       version:
         description: 'enter version(x.y.z)'
         required: true
         default: '1.0.0'
 
 env:
-  BRANCH: ${{ github.event.inputs.branch }}
   VERSION: ${{ github.event.inputs.version }}
   PACKAGE_VERSION: ${{ github.event.inputs.version }}
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -25,7 +20,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: ${{ env.BRANCH }}
           token: ${{ secrets.PAT_TOKEN }}
 
       - name: Set python
@@ -93,7 +87,8 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
           repo: cloudforet-io/api-doc
           workflow: dispatch_release.yaml
-          inputs: '{"branch": "${{ env.BRANCH }}", "version": "${{ env.VERSION }}"}'
+          ref: master
+          inputs: '{"version": "${{ env.VERSION }}"}'
 
   notification:
     needs: build_and_push
