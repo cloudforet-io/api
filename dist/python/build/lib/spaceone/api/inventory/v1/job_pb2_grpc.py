@@ -32,6 +32,11 @@ class JobStub(object):
                 request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobsQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobsInfo.FromString,
                 )
+        self.analyze = channel.unary_unary(
+                '/spaceone.api.inventory.v1.Job/analyze',
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobAnalyzeQuery.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
+                )
         self.stat = channel.unary_unary(
                 '/spaceone.api.inventory.v1.Job/stat',
                 request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobStatQuery.SerializeToString,
@@ -63,6 +68,12 @@ class JobServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def analyze(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def stat(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -86,6 +97,11 @@ def add_JobServicer_to_server(servicer, server):
                     servicer.list,
                     request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobsQuery.FromString,
                     response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobsInfo.SerializeToString,
+            ),
+            'analyze': grpc.unary_unary_rpc_method_handler(
+                    servicer.analyze,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobAnalyzeQuery.FromString,
+                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
@@ -150,6 +166,23 @@ class Job(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Job/list',
             spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobsQuery.SerializeToString,
             spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobsInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def analyze(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Job/analyze',
+            spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobAnalyzeQuery.SerializeToString,
+            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

@@ -23,10 +23,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Job_Delete_FullMethodName = "/spaceone.api.inventory.v1.Job/delete"
-	Job_Get_FullMethodName    = "/spaceone.api.inventory.v1.Job/get"
-	Job_List_FullMethodName   = "/spaceone.api.inventory.v1.Job/list"
-	Job_Stat_FullMethodName   = "/spaceone.api.inventory.v1.Job/stat"
+	Job_Delete_FullMethodName  = "/spaceone.api.inventory.v1.Job/delete"
+	Job_Get_FullMethodName     = "/spaceone.api.inventory.v1.Job/get"
+	Job_List_FullMethodName    = "/spaceone.api.inventory.v1.Job/list"
+	Job_Analyze_FullMethodName = "/spaceone.api.inventory.v1.Job/analyze"
+	Job_Stat_FullMethodName    = "/spaceone.api.inventory.v1.Job/stat"
 )
 
 // JobClient is the client API for Job service.
@@ -39,6 +40,7 @@ type JobClient interface {
 	Get(ctx context.Context, in *GetJobRequest, opts ...grpc.CallOption) (*JobInfo, error)
 	// Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.
 	List(ctx context.Context, in *JobsQuery, opts ...grpc.CallOption) (*JobsInfo, error)
+	Analyze(ctx context.Context, in *JobAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Stat(ctx context.Context, in *JobStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
@@ -77,6 +79,15 @@ func (c *jobClient) List(ctx context.Context, in *JobsQuery, opts ...grpc.CallOp
 	return out, nil
 }
 
+func (c *jobClient) Analyze(ctx context.Context, in *JobAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
+	out := new(_struct.Struct)
+	err := c.cc.Invoke(ctx, Job_Analyze_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *jobClient) Stat(ctx context.Context, in *JobStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	out := new(_struct.Struct)
 	err := c.cc.Invoke(ctx, Job_Stat_FullMethodName, in, out, opts...)
@@ -96,6 +107,7 @@ type JobServer interface {
 	Get(context.Context, *GetJobRequest) (*JobInfo, error)
 	// Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.
 	List(context.Context, *JobsQuery) (*JobsInfo, error)
+	Analyze(context.Context, *JobAnalyzeQuery) (*_struct.Struct, error)
 	Stat(context.Context, *JobStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedJobServer()
 }
@@ -112,6 +124,9 @@ func (UnimplementedJobServer) Get(context.Context, *GetJobRequest) (*JobInfo, er
 }
 func (UnimplementedJobServer) List(context.Context, *JobsQuery) (*JobsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedJobServer) Analyze(context.Context, *JobAnalyzeQuery) (*_struct.Struct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Analyze not implemented")
 }
 func (UnimplementedJobServer) Stat(context.Context, *JobStatQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
@@ -183,6 +198,24 @@ func _Job_List_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Job_Analyze_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JobAnalyzeQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobServer).Analyze(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Job_Analyze_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobServer).Analyze(ctx, req.(*JobAnalyzeQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Job_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(JobStatQuery)
 	if err := dec(in); err != nil {
@@ -219,6 +252,10 @@ var Job_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "list",
 			Handler:    _Job_List_Handler,
+		},
+		{
+			MethodName: "analyze",
+			Handler:    _Job_Analyze_Handler,
 		},
 		{
 			MethodName: "stat",

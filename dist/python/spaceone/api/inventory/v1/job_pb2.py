@@ -19,7 +19,7 @@ from spaceone.api.core.v1 import query_pb2 as spaceone_dot_api_dot_core_dot_v1_d
 from spaceone.api.inventory.v1 import collector_pb2 as spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n#spaceone/api/inventory/v1/job.proto\x12\x19spaceone.api.inventory.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v1/query.proto\x1a)spaceone/api/inventory/v1/collector.proto\"/\n\nJobRequest\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x11\n\tdomain_id\x18\x02 \x01(\t\"@\n\rGetJobRequest\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x11\n\tdomain_id\x18\x02 \x01(\t\x12\x0c\n\x04only\x18\x03 \x03(\t\"\xb6\x02\n\tJobsQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v1.Query\x12\x0e\n\x06job_id\x18\x02 \x01(\t\x12>\n\x06status\x18\x03 \x01(\x0e\x32..spaceone.api.inventory.v1.JobsQuery.JobStatus\x12\x14\n\x0c\x63ollector_id\x18\x04 \x01(\t\x12\x12\n\nproject_id\x18\x05 \x01(\t\x12\x11\n\tdomain_id\x18\x06 \x01(\t\"p\n\tJobStatus\x12\x12\n\x0eJOB_STATE_NONE\x10\x00\x12\x0b\n\x07\x43REATED\x10\x01\x12\x0c\n\x08\x43\x41NCELED\x10\x02\x12\x0f\n\x0bIN_PROGRESS\x10\x03\x12\x0b\n\x07SUCCESS\x10\x04\x12\t\n\x05\x45RROR\x10\x05\x12\x0b\n\x07TIMEOUT\x10\x06\"T\n\x08JobsInfo\x12\x33\n\x07results\x18\x01 \x03(\x0b\x32\".spaceone.api.inventory.v1.JobInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"W\n\x0cJobStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v1.StatisticsQuery\x12\x11\n\tdomain_id\x18\x02 \x01(\t2\xcd\x03\n\x03Job\x12l\n\x06\x64\x65lete\x12%.spaceone.api.inventory.v1.JobRequest\x1a\x16.google.protobuf.Empty\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/inventory/v1/job/delete:\x01*\x12u\n\x03get\x12(.spaceone.api.inventory.v1.GetJobRequest\x1a\".spaceone.api.inventory.v1.JobInfo\" \x82\xd3\xe4\x93\x02\x1a\"\x15/inventory/v1/job/get:\x01*\x12t\n\x04list\x12$.spaceone.api.inventory.v1.JobsQuery\x1a#.spaceone.api.inventory.v1.JobsInfo\"!\x82\xd3\xe4\x93\x02\x1b\"\x16/inventory/v1/job/list:\x01*\x12k\n\x04stat\x12\'.spaceone.api.inventory.v1.JobStatQuery\x1a\x17.google.protobuf.Struct\"!\x82\xd3\xe4\x93\x02\x1b\"\x16/inventory/v1/job/stat:\x01*B@Z>github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n#spaceone/api/inventory/v1/job.proto\x12\x19spaceone.api.inventory.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v1/query.proto\x1a)spaceone/api/inventory/v1/collector.proto\"/\n\nJobRequest\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x11\n\tdomain_id\x18\x02 \x01(\t\"@\n\rGetJobRequest\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x11\n\tdomain_id\x18\x02 \x01(\t\x12\x0c\n\x04only\x18\x03 \x03(\t\"\xb6\x02\n\tJobsQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v1.Query\x12\x0e\n\x06job_id\x18\x02 \x01(\t\x12>\n\x06status\x18\x03 \x01(\x0e\x32..spaceone.api.inventory.v1.JobsQuery.JobStatus\x12\x14\n\x0c\x63ollector_id\x18\x04 \x01(\t\x12\x12\n\nproject_id\x18\x05 \x01(\t\x12\x11\n\tdomain_id\x18\x06 \x01(\t\"p\n\tJobStatus\x12\x12\n\x0eJOB_STATE_NONE\x10\x00\x12\x0b\n\x07\x43REATED\x10\x01\x12\x0c\n\x08\x43\x41NCELED\x10\x02\x12\x0f\n\x0bIN_PROGRESS\x10\x03\x12\x0b\n\x07SUCCESS\x10\x04\x12\t\n\x05\x45RROR\x10\x05\x12\x0b\n\x07TIMEOUT\x10\x06\"T\n\x08JobsInfo\x12\x33\n\x07results\x18\x01 \x03(\x0b\x32\".spaceone.api.inventory.v1.JobInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"W\n\x0fJobAnalyzeQuery\x12\x31\n\x05query\x18\x01 \x01(\x0b\x32\".spaceone.api.core.v1.AnalyzeQuery\x12\x11\n\tdomain_id\x18\x02 \x01(\t\"W\n\x0cJobStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v1.StatisticsQuery\x12\x11\n\tdomain_id\x18\x02 \x01(\t2\xc3\x04\n\x03Job\x12l\n\x06\x64\x65lete\x12%.spaceone.api.inventory.v1.JobRequest\x1a\x16.google.protobuf.Empty\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/inventory/v1/job/delete:\x01*\x12u\n\x03get\x12(.spaceone.api.inventory.v1.GetJobRequest\x1a\".spaceone.api.inventory.v1.JobInfo\" \x82\xd3\xe4\x93\x02\x1a\"\x15/inventory/v1/job/get:\x01*\x12t\n\x04list\x12$.spaceone.api.inventory.v1.JobsQuery\x1a#.spaceone.api.inventory.v1.JobsInfo\"!\x82\xd3\xe4\x93\x02\x1b\"\x16/inventory/v1/job/list:\x01*\x12t\n\x07\x61nalyze\x12*.spaceone.api.inventory.v1.JobAnalyzeQuery\x1a\x17.google.protobuf.Struct\"$\x82\xd3\xe4\x93\x02\x1e\"\x19/inventory/v1/job/analyze:\x01*\x12k\n\x04stat\x12\'.spaceone.api.inventory.v1.JobStatQuery\x1a\x17.google.protobuf.Struct\"!\x82\xd3\xe4\x93\x02\x1b\"\x16/inventory/v1/job/stat:\x01*B@Z>github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1b\x06proto3')
 
 
 
@@ -27,6 +27,7 @@ _JOBREQUEST = DESCRIPTOR.message_types_by_name['JobRequest']
 _GETJOBREQUEST = DESCRIPTOR.message_types_by_name['GetJobRequest']
 _JOBSQUERY = DESCRIPTOR.message_types_by_name['JobsQuery']
 _JOBSINFO = DESCRIPTOR.message_types_by_name['JobsInfo']
+_JOBANALYZEQUERY = DESCRIPTOR.message_types_by_name['JobAnalyzeQuery']
 _JOBSTATQUERY = DESCRIPTOR.message_types_by_name['JobStatQuery']
 _JOBSQUERY_JOBSTATUS = _JOBSQUERY.enum_types_by_name['JobStatus']
 JobRequest = _reflection.GeneratedProtocolMessageType('JobRequest', (_message.Message,), {
@@ -57,6 +58,13 @@ JobsInfo = _reflection.GeneratedProtocolMessageType('JobsInfo', (_message.Messag
   })
 _sym_db.RegisterMessage(JobsInfo)
 
+JobAnalyzeQuery = _reflection.GeneratedProtocolMessageType('JobAnalyzeQuery', (_message.Message,), {
+  'DESCRIPTOR' : _JOBANALYZEQUERY,
+  '__module__' : 'spaceone.api.inventory.v1.job_pb2'
+  # @@protoc_insertion_point(class_scope:spaceone.api.inventory.v1.JobAnalyzeQuery)
+  })
+_sym_db.RegisterMessage(JobAnalyzeQuery)
+
 JobStatQuery = _reflection.GeneratedProtocolMessageType('JobStatQuery', (_message.Message,), {
   'DESCRIPTOR' : _JOBSTATQUERY,
   '__module__' : 'spaceone.api.inventory.v1.job_pb2'
@@ -75,6 +83,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _JOB.methods_by_name['get']._serialized_options = b'\202\323\344\223\002\032\"\025/inventory/v1/job/get:\001*'
   _JOB.methods_by_name['list']._options = None
   _JOB.methods_by_name['list']._serialized_options = b'\202\323\344\223\002\033\"\026/inventory/v1/job/list:\001*'
+  _JOB.methods_by_name['analyze']._options = None
+  _JOB.methods_by_name['analyze']._serialized_options = b'\202\323\344\223\002\036\"\031/inventory/v1/job/analyze:\001*'
   _JOB.methods_by_name['stat']._options = None
   _JOB.methods_by_name['stat']._serialized_options = b'\202\323\344\223\002\033\"\026/inventory/v1/job/stat:\001*'
   _JOBREQUEST._serialized_start=232
@@ -87,8 +97,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _JOBSQUERY_JOBSTATUS._serialized_end=658
   _JOBSINFO._serialized_start=660
   _JOBSINFO._serialized_end=744
-  _JOBSTATQUERY._serialized_start=746
-  _JOBSTATQUERY._serialized_end=833
-  _JOB._serialized_start=836
-  _JOB._serialized_end=1297
+  _JOBANALYZEQUERY._serialized_start=746
+  _JOBANALYZEQUERY._serialized_end=833
+  _JOBSTATQUERY._serialized_start=835
+  _JOBSTATQUERY._serialized_end=922
+  _JOB._serialized_start=925
+  _JOB._serialized_end=1504
 # @@protoc_insertion_point(module_scope)
