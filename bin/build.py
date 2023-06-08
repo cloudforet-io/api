@@ -277,7 +277,8 @@ def _compile_code(params, code, proto_file):
         _go_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
 
     elif code == 'gateway':
-        _go_grpc_gateway_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
+        pass
+        # _go_grpc_gateway_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
 
     elif code == 'json':
         _doc_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
