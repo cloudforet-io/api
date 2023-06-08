@@ -1,0 +1,266 @@
+// A CloudServiceQuerySet is query set for storing statistics data of CloudService.
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service CloudServiceQuerySet {
+
+    // Create a new query set. Periodic statistics data is created based on the query set.
+    // `query` parameters refer to AnalyzeQuery.
+    rpc create (CreateCloudServiceQuerySetRequest) returns (CloudServiceQuerySetInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v1/cloud-service-query-set/create"
+            body: "*"
+        };
+    }
+    
+    // Update a specific query set. You can only update the query set of custom type.
+    rpc update (UpdateCloudServiceQuerySetRequest) returns (CloudServiceQuerySetInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v1/cloud-service-query-set/update"
+            body: "*"
+        };
+    }
+    
+    // Delete a specific query set.
+    rpc delete (CloudServiceQuerySetRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/inventory/v1/cloud-service-query-set/delete"
+            body: "*"
+        };
+    }
+
+    // Run a specific query set and store the result in the statistics data.
+    rpc run (CloudServiceQuerySetRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/inventory/v1/cloud-service-query-set/delete"
+            body: "*"
+        };
+    }
+
+    // Enable a specific query set.
+    rpc enable (CloudServiceQuerySetRequest) returns (CloudServiceQuerySetInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v1/cloud-service-query-set/get"
+            body: "*"
+        };
+    }
+
+    // Disable a specific query set. query set is not executed when disabled.
+    rpc disable (CloudServiceQuerySetRequest) returns (CloudServiceQuerySetInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v1/cloud-service-query-set/get"
+            body: "*"
+        };
+    }
+
+    // Get a specific query set.
+    rpc get (GetCloudServiceQuerySetRequest) returns (CloudServiceQuerySetInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v1/cloud-service-query-set/get"
+            body: "*"
+        };
+    }
+
+    // Gets a list of all query sets.
+    // You can use a query to get a filtered list of query sets.
+    rpc list (CloudServiceQuerySetQuery) returns (CloudServiceQuerySetsInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v1/cloud-service-query-set/list"
+            body: "*"
+        };
+    }
+    
+    rpc stat (CloudServiceQuerySetStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/inventory/v1/cloud-service-query-set/stat"
+            body: "*"
+        };
+    }
+}
+
+//{
+//    "name": "EC2 Count by Instance Type",
+//    "query": "<AnalyzeQuery>",
+//    "unit": "Count",
+//    "tags": {
+//        "foo": "bar"
+//    }
+//}
+message CreateCloudServiceQuerySetRequest {
+    string name = 1;
+    spaceone.api.core.v1.AnalyzeQuery query = 2;
+    // +optional
+    string unit = 3;
+    // +optional
+    google.protobuf.Struct tags = 11;
+    
+    string domain_id = 21;
+}
+
+//{
+//    "query_set_id": "query-set-abcd1234",
+//    "name": "Changed Name",
+//    "query": "<AnalyzeQuery>",
+//    "unit": "Size (GB)",
+//    "tags": {
+//        "changed_key": "changed_value"
+//    }
+//}
+message UpdateCloudServiceQuerySetRequest {
+    string query_set_id = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    spaceone.api.core.v1.AnalyzeQuery query = 3;
+    // +optional
+    string unit = 4;
+    // +optional
+    google.protobuf.Struct tags = 11;
+    // +optional
+    string domain_id = 21;
+}
+
+//{
+//    "query_set_id": "query-set-abcd1234"
+//}
+message CloudServiceQuerySetRequest {
+    string query_set_id = 1;
+    string domain_id = 2;
+}
+
+//{
+//    "query_set_id": "query-set-abcd1234"
+//}
+message GetCloudServiceQuerySetRequest {
+    string query_set_id = 1;
+    string domain_id = 2;
+    // +optional
+    repeated string only = 3;
+}
+
+//{
+//    "query": <SearchQuery>,
+//    "query_set_id": "query-set-abcd1234",
+//    "name": "EC2 Count by Instance Type",
+//    "state": "ENABLED",
+//    "query_type": "MANAGED",
+//    "provider": "aws",
+//    "cloud_service_group": "EC2",
+//    "cloud_service_type": "Instance",
+//}
+message CloudServiceQuerySetQuery {
+    enum State {
+        NONE_STATE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    enum QueryType {
+        NONE_QUERY_TYPE = 0;
+        MANAGED = 1;
+        CUSTOM = 2;
+    }
+
+    // +optional
+    spaceone.api.core.v1.Query query = 1;
+    // +optional
+    string query_set_id = 2;
+    // +optional
+    string name = 3;
+    // +optional
+    State state = 4;
+    // +optional
+    QueryType query_type = 5;
+    // +optional
+    string provider = 6;
+    // +optional
+    string cloud_service_group = 7;
+    // +optional
+    string cloud_service_type = 8;
+    string domain_id = 11;
+}
+
+//{
+//    "query_set_id": "query-set-abcd1234",
+//    "name": "EC2 Count by Instance Type",
+//    "state": "ENABLED",
+//    "query_type": "MANAGED",
+//    "unit": "Count",
+//    "provider": "aws",
+//    "cloud_service_group": "EC2",
+//    "cloud_service_type": "Instance",
+//    "tags": {
+//        "foo": "bar"
+//    },
+//    "domain_id": "domain-58010aa2e451",
+//    "created_at": "2022-06-22T01:38:16.301Z"
+//}
+message CloudServiceQuerySetInfo {
+    enum State {
+        NONE_STATE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    enum QueryType {
+        NONE_QUERY_TYPE = 0;
+        MANAGED = 1;
+        CUSTOM = 2;
+    }
+
+    string query_set_id = 1;
+    string name = 2;
+    State state = 3;
+    spaceone.api.core.v1.AnalyzeQuery query = 4;
+    QueryType query_type = 5;
+    string unit = 6;
+    string provider = 7;
+    string cloud_service_group = 8;
+    string cloud_service_type = 9;
+
+    google.protobuf.Struct tags = 11;
+
+    string domain_id = 21;
+
+    string created_at = 31;
+}
+
+//{
+//    "results": [
+//    {
+//        "query_set_id": "query-set-abcd1234",
+//        "name": "EC2 Count by Instance Type",
+//        "state": "ENABLED",
+//        "query_type": "MANAGED",
+//        "unit": "Count",
+//        "provider": "aws",
+//        "cloud_service_group": "EC2",
+//        "cloud_service_type": "Instance",
+//        "tags": {
+//            "foo": "bar"
+//        },
+//        "domain_id": "domain-58010aa2e451",
+//        "created_at": "2022-06-22T01:38:16.301Z"
+//    },
+//    {...}
+//    ],
+//    "total_count": 2
+//}
+message CloudServiceQuerySetsInfo {
+    repeated CloudServiceQuerySetInfo results = 1;
+    int32 total_count = 2;
+}
+
+message CloudServiceQuerySetStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    string domain_id = 2;
+}

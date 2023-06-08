@@ -36,6 +36,14 @@ service Job {
             body: "*"
         };
     }
+
+    rpc analyze (JobAnalyzeQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/inventory/v1/job/analyze"
+            body: "*"
+        };
+    }
+
     rpc stat (JobStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/inventory/v1/job/stat"
@@ -151,6 +159,11 @@ message JobsQuery {
 message JobsInfo {
     repeated JobInfo results = 1;
     int32 total_count = 2;
+}
+
+message JobAnalyzeQuery {
+    spaceone.api.core.v1.AnalyzeQuery query = 1;
+    string domain_id = 2;
 }
 
 message JobStatQuery {
