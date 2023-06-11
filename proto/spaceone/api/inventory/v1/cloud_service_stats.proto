@@ -39,6 +39,7 @@ service CloudServiceStats {
 //{
 //    "query": <SearchQuery>,
 //    "query_set_id": "query-set-abcd1234",
+//    "key": "Disk Size
 //    "provider": "aws",
 //    "cloud_service_group": "EC2",
 //    "cloud_service_type": "Instance",
@@ -52,47 +53,51 @@ message CloudServiceStatsQuery {
     // +optional
     string query_set_id = 2;
     // +optional
-    string provider = 3;
+    string key = 3;
     // +optional
-    string cloud_service_group = 4;
+    string provider = 4;
     // +optional
-    string cloud_service_type = 5;
+    string cloud_service_group = 5;
     // +optional
-    string region_code = 6;
+    string cloud_service_type = 6;
     // +optional
-    string account = 7;
+    string region_code = 7;
     // +optional
-    string project_id = 8;
-    string domain_id = 11;
+    string account = 8;
+    // +optional
+    string project_id = 11;
+    string domain_id = 12;
 }
 
 //{
 //    "query_set_id": "query-set-abcd1234",
-//    "name": "EC2 Count by Instance Type",
-//    "state": "ENABLED",
-//    "query_type": "MANAGED",
-//    "unit": "Count",
+//    "key": "Disk Size",
+//    "value": "1040",
+//    "unit": "GB",
 //    "provider": "aws",
 //    "cloud_service_group": "EC2",
 //    "cloud_service_type": "Instance",
-//    "tags": {
-//        "foo": "bar"
+//    "region_code": "us-east-1",
+//    "account": "aws-account-id",
+//    "additional_info": {
+//        "instance_type": "t2.micro"
 //    },
+//    "project_id": "project-abcd1234",
 //    "domain_id": "domain-58010aa2e451",
 //    "created_at": "2022-06-22T01:38:16.301Z"
 //}
 message CloudServiceStatInfo {
     string query_set_id = 1;
-    float value = 2;
-    string unit = 3;
-    string provider = 4;
-    string cloud_service_group = 5;
-    string cloud_service_type = 6;
-    string region_code = 7;
-    string account = 8;
+    string key = 2;
+    float value = 3;
+    string unit = 4;
+    string provider = 5;
+    string cloud_service_group = 6;
+    string cloud_service_type = 7;
+    string region_code = 8;
+    string account = 9;
 
     google.protobuf.Struct additional_info = 11;
-    google.protobuf.Struct tags = 12;
 
     string project_id = 21;
     string domain_id = 22;
@@ -102,22 +107,24 @@ message CloudServiceStatInfo {
 
 //{
 //    "results": [
-//    {
-//        "query_set_id": "query-set-abcd1234",
-//        "name": "EC2 Count by Instance Type",
-//        "state": "ENABLED",
-//        "query_type": "MANAGED",
-//        "unit": "Count",
-//        "provider": "aws",
-//        "cloud_service_group": "EC2",
-//        "cloud_service_type": "Instance",
-//        "tags": {
-//            "foo": "bar"
+//        {
+//            "query_set_id": "query-set-abcd1234",
+//            "key": "Disk Size",
+//            "value": "1040",
+//            "unit": "GB",
+//            "provider": "aws",
+//            "cloud_service_group": "EC2",
+//            "cloud_service_type": "Instance",
+//            "region_code": "us-east-1",
+//            "account": "aws-account-id",
+//            "additional_info": {
+//                "instance_type": "t2.micro"
+//            },
+//            "project_id": "project-abcd1234",
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2022-06-22T01:38:16.301Z"
 //        },
-//        "domain_id": "domain-58010aa2e451",
-//        "created_at": "2022-06-22T01:38:16.301Z"
-//    },
-//    {...}
+//        {...}
 //    ],
 //    "total_count": 2
 //}
