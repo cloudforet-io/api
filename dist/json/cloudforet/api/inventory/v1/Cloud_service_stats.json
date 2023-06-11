@@ -15,7 +15,7 @@
           "name": "CloudServiceStatInfo",
           "longName": "CloudServiceStatInfo",
           "fullName": "spaceone.api.inventory.v1.CloudServiceStatInfo",
-          "description": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_type\": \"MANAGED\",\n   \"unit\": \"Count\",\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   },\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T01:38:16.301Z\"\n}",
+          "description": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"key\": \"Disk Size\",\n   \"value\": \"1040\",\n   \"unit\": \"GB\",\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"region_code\": \"us-east-1\",\n   \"account\": \"aws-account-id\",\n   \"additional_info\": {\n       \"instance_type\": \"t2.micro\"\n   },\n   \"project_id\": \"project-abcd1234\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T01:38:16.301Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -23,6 +23,18 @@
           "fields": [
             {
               "name": "query_set_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "key",
               "description": "",
               "label": "",
               "type": "string",
@@ -130,18 +142,6 @@
               "defaultValue": ""
             },
             {
-              "name": "tags",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "project_id",
               "description": "",
               "label": "",
@@ -219,7 +219,7 @@
           "name": "CloudServiceStatsInfo",
           "longName": "CloudServiceStatsInfo",
           "fullName": "spaceone.api.inventory.v1.CloudServiceStatsInfo",
-          "description": "{\n   \"results\": [\n   {\n       \"query_set_id\": \"query-set-abcd1234\",\n       \"name\": \"EC2 Count by Instance Type\",\n       \"state\": \"ENABLED\",\n       \"query_type\": \"MANAGED\",\n       \"unit\": \"Count\",\n       \"provider\": \"aws\",\n       \"cloud_service_group\": \"EC2\",\n       \"cloud_service_type\": \"Instance\",\n       \"tags\": {\n           \"foo\": \"bar\"\n       },\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-06-22T01:38:16.301Z\"\n   },\n   {...}\n   ],\n   \"total_count\": 2\n}",
+          "description": "{\n   \"results\": [\n       {\n           \"query_set_id\": \"query-set-abcd1234\",\n           \"key\": \"Disk Size\",\n           \"value\": \"1040\",\n           \"unit\": \"GB\",\n           \"provider\": \"aws\",\n           \"cloud_service_group\": \"EC2\",\n           \"cloud_service_type\": \"Instance\",\n           \"region_code\": \"us-east-1\",\n           \"account\": \"aws-account-id\",\n           \"additional_info\": {\n               \"instance_type\": \"t2.micro\"\n           },\n           \"project_id\": \"project-abcd1234\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-22T01:38:16.301Z\"\n       },\n       {...}\n   ],\n   \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -255,7 +255,7 @@
           "name": "CloudServiceStatsQuery",
           "longName": "CloudServiceStatsQuery",
           "fullName": "spaceone.api.inventory.v1.CloudServiceStatsQuery",
-          "description": "{\n   \"query\": \u003cSearchQuery\u003e,\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"region_code\": \"us-east-1\",\n   \"account\": \"aws-account-id\",\n   \"project_id\": \"project-abcd1234\"\n}",
+          "description": "{\n   \"query\": \u003cSearchQuery\u003e,\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"key\": \"Disk Size\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"region_code\": \"us-east-1\",\n   \"account\": \"aws-account-id\",\n   \"project_id\": \"project-abcd1234\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -275,6 +275,18 @@
             },
             {
               "name": "query_set_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "key",
               "description": "+optional",
               "label": "",
               "type": "string",
