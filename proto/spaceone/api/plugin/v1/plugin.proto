@@ -54,12 +54,19 @@ message PluginEndpointRequest {
 }
 
 message PluginMetadataRequest {
+    enum UpgradeMode {
+        MANUAL = 0;
+        AUTO = 1;
+    }
+
     string plugin_id = 1;
     // +optional
     string version = 2;
     // +optional
     google.protobuf.Struct options = 3;
     string domain_id = 4;
+    // +optional
+    UpgradeMode upgrade_mode = 5;
 }
 
 message PluginFailureRequest {
