@@ -89,17 +89,27 @@ service CloudServiceQuerySet {
 
 //{
 //    "name": "EC2 Count by Instance Type",
-//    "query": "<AnalyzeQuery>",
-//    "unit": "Count",
+//    "query_options": "<AnalyzeQuery>",
+//    "unit": {
+//        "Disk Size": "GB",
+//        "Memory": "GB",
+//        "CPU": "Core"
+//    },
+//    "provider": "aws",
+//    "cloud_service_group": "EC2",
+//    "cloud_service_type": "Instance",
 //    "tags": {
 //        "foo": "bar"
 //    }
 //}
 message CreateCloudServiceQuerySetRequest {
     string name = 1;
-    spaceone.api.core.v1.AnalyzeQuery query = 2;
+    spaceone.api.core.v1.AnalyzeQuery query_options = 2;
     // +optional
-    string unit = 3;
+    google.protobuf.Struct unit = 3;
+    string provider = 4;
+    string cloud_service_group = 5;
+    string cloud_service_type = 6;
     // +optional
     google.protobuf.Struct tags = 11;
     
@@ -109,8 +119,12 @@ message CreateCloudServiceQuerySetRequest {
 //{
 //    "query_set_id": "query-set-abcd1234",
 //    "name": "Changed Name",
-//    "query": "<AnalyzeQuery>",
-//    "unit": "Size (GB)",
+//    "query_options": "<AnalyzeQuery>",
+//    "unit": {
+//        "Disk Size": "GB",
+//        "Memory": "GB",
+//        "CPU": "Core"
+//    },
 //    "tags": {
 //        "changed_key": "changed_value"
 //    }
@@ -120,9 +134,9 @@ message UpdateCloudServiceQuerySetRequest {
     // +optional
     string name = 2;
     // +optional
-    spaceone.api.core.v1.AnalyzeQuery query = 3;
+    spaceone.api.core.v1.AnalyzeQuery query_options = 3;
     // +optional
-    string unit = 4;
+    google.protobuf.Struct unit = 4;
     // +optional
     google.protobuf.Struct tags = 11;
     // +optional
@@ -193,7 +207,13 @@ message CloudServiceQuerySetQuery {
 //    "query_set_id": "query-set-abcd1234",
 //    "name": "EC2 Count by Instance Type",
 //    "state": "ENABLED",
+//    "query_options": "<AnalyzeQuery>",
 //    "query_type": "MANAGED",
+//    "unit": {
+//        "Disk Size": "GB",
+//        "Memory": "GB",
+//        "CPU": "Core"
+//    },
 //    "unit": "Count",
 //    "provider": "aws",
 //    "cloud_service_group": "EC2",
@@ -203,6 +223,7 @@ message CloudServiceQuerySetQuery {
 //    },
 //    "domain_id": "domain-58010aa2e451",
 //    "created_at": "2022-06-22T01:38:16.301Z"
+//    "updated_at": "2023-03-16T06:00:00.000Z"
 //}
 message CloudServiceQuerySetInfo {
     enum State {
@@ -220,9 +241,9 @@ message CloudServiceQuerySetInfo {
     string query_set_id = 1;
     string name = 2;
     State state = 3;
-    spaceone.api.core.v1.AnalyzeQuery query = 4;
+    spaceone.api.core.v1.AnalyzeQuery query_options = 4;
     QueryType query_type = 5;
-    string unit = 6;
+    google.protobuf.Struct unit = 6;
     string provider = 7;
     string cloud_service_group = 8;
     string cloud_service_type = 9;
@@ -232,26 +253,33 @@ message CloudServiceQuerySetInfo {
     string domain_id = 21;
 
     string created_at = 31;
+    string updated_at = 32;
 }
 
 //{
 //    "results": [
-//    {
-//        "query_set_id": "query-set-abcd1234",
-//        "name": "EC2 Count by Instance Type",
-//        "state": "ENABLED",
-//        "query_type": "MANAGED",
-//        "unit": "Count",
-//        "provider": "aws",
-//        "cloud_service_group": "EC2",
-//        "cloud_service_type": "Instance",
-//        "tags": {
-//            "foo": "bar"
+//        {
+//            "query_set_id": "query-set-abcd1234",
+//            "name": "EC2 Count by Instance Type",
+//            "state": "ENABLED",
+//            "query_type": "MANAGED",
+//            "query_options": "<AnalyzeQuery>",
+//            "unit": {
+//                "Disk Size": "GB",
+//                "Memory": "GB",
+//                "CPU": "Core"
+//            },
+//            "provider": "aws",
+//            "cloud_service_group": "EC2",
+//            "cloud_service_type": "Instance",
+//            "tags": {
+//                "foo": "bar"
+//            },
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2022-06-22T01:38:16.301Z",
+//            "updated_at": "2023-03-16T06:00:00.000Z"
 //        },
-//        "domain_id": "domain-58010aa2e451",
-//        "created_at": "2022-06-22T01:38:16.301Z"
-//    },
-//    {...}
+//        {...}
 //    ],
 //    "total_count": 2
 //}
