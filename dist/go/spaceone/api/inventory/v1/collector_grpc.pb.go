@@ -23,22 +23,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Collector_Create_FullMethodName         = "/spaceone.api.inventory.v1.Collector/create"
-	Collector_Update_FullMethodName         = "/spaceone.api.inventory.v1.Collector/update"
-	Collector_UpdatePlugin_FullMethodName   = "/spaceone.api.inventory.v1.Collector/update_plugin"
-	Collector_VerifyPlugin_FullMethodName   = "/spaceone.api.inventory.v1.Collector/verify_plugin"
-	Collector_Delete_FullMethodName         = "/spaceone.api.inventory.v1.Collector/delete"
-	Collector_Get_FullMethodName            = "/spaceone.api.inventory.v1.Collector/get"
-	Collector_Enable_FullMethodName         = "/spaceone.api.inventory.v1.Collector/enable"
-	Collector_Disable_FullMethodName        = "/spaceone.api.inventory.v1.Collector/disable"
-	Collector_List_FullMethodName           = "/spaceone.api.inventory.v1.Collector/list"
-	Collector_Stat_FullMethodName           = "/spaceone.api.inventory.v1.Collector/stat"
-	Collector_Collect_FullMethodName        = "/spaceone.api.inventory.v1.Collector/collect"
-	Collector_AddSchedule_FullMethodName    = "/spaceone.api.inventory.v1.Collector/add_schedule"
-	Collector_GetSchedule_FullMethodName    = "/spaceone.api.inventory.v1.Collector/get_schedule"
-	Collector_UpdateSchedule_FullMethodName = "/spaceone.api.inventory.v1.Collector/update_schedule"
-	Collector_DeleteSchedule_FullMethodName = "/spaceone.api.inventory.v1.Collector/delete_schedule"
-	Collector_ListSchedules_FullMethodName  = "/spaceone.api.inventory.v1.Collector/list_schedules"
+	Collector_Create_FullMethodName       = "/spaceone.api.inventory.v1.Collector/create"
+	Collector_Update_FullMethodName       = "/spaceone.api.inventory.v1.Collector/update"
+	Collector_UpdatePlugin_FullMethodName = "/spaceone.api.inventory.v1.Collector/update_plugin"
+	Collector_VerifyPlugin_FullMethodName = "/spaceone.api.inventory.v1.Collector/verify_plugin"
+	Collector_Delete_FullMethodName       = "/spaceone.api.inventory.v1.Collector/delete"
+	Collector_Get_FullMethodName          = "/spaceone.api.inventory.v1.Collector/get"
+	Collector_List_FullMethodName         = "/spaceone.api.inventory.v1.Collector/list"
+	Collector_Stat_FullMethodName         = "/spaceone.api.inventory.v1.Collector/stat"
+	Collector_Collect_FullMethodName      = "/spaceone.api.inventory.v1.Collector/collect"
 )
 
 // CollectorClient is the client API for Collector service.
@@ -57,24 +50,10 @@ type CollectorClient interface {
 	Delete(ctx context.Context, in *CollectorRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Collector. Prints detailed information about the Collector, including its state, basic information, and the plugin information used for cloud resource collection.
 	Get(ctx context.Context, in *GetCollectorRequest, opts ...grpc.CallOption) (*CollectorInfo, error)
-	// Enables a specific Collector. By enabling a Collector, you can communicate with a plugin used for collection.
-	Enable(ctx context.Context, in *CollectorRequest, opts ...grpc.CallOption) (*CollectorInfo, error)
-	// Disables a specific Collector. By disabling a Collector, you cannot communicate with a plugin used for collection.
-	Disable(ctx context.Context, in *CollectorRequest, opts ...grpc.CallOption) (*CollectorInfo, error)
 	// Gets a list of all Collectors. You can use a query to get a filtered list of Collectors.
 	List(ctx context.Context, in *CollectorQuery, opts ...grpc.CallOption) (*CollectorsInfo, error)
 	Stat(ctx context.Context, in *CollectorStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Collect(ctx context.Context, in *CollectRequest, opts ...grpc.CallOption) (*JobInfo, error)
-	// Adds a schedule to a specific Collector. When specifying the time to collect, the schedule is assigned in units of one hour.The specified schedule is applied every day.
-	AddSchedule(ctx context.Context, in *CreateScheduleRequest, opts ...grpc.CallOption) (*ScheduleInfo, error)
-	// Gets a specific schedule set in a specific Collector. You must specify the `collector_id` of the Collector and the `schedule_id` of the schedule.
-	GetSchedule(ctx context.Context, in *ScheduleRequest, opts ...grpc.CallOption) (*ScheduleInfo, error)
-	// Updates a specific schedule of the Collector. You can make changes in schedule settings, including `name` and collection time.
-	UpdateSchedule(ctx context.Context, in *UpdateScheduleRequest, opts ...grpc.CallOption) (*ScheduleInfo, error)
-	// Deletes a specific schedule of the Collector. You must specify the `schedule_id` of the schedule to delete.
-	DeleteSchedule(ctx context.Context, in *DeleteScheduleRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	// Gets a list of all schedules set in a specific Collector. You must specify the `collector_id` of the Collector to get the schedule from.
-	ListSchedules(ctx context.Context, in *ScheduleQuery, opts ...grpc.CallOption) (*SchedulesInfo, error)
 }
 
 type collectorClient struct {
@@ -139,24 +118,6 @@ func (c *collectorClient) Get(ctx context.Context, in *GetCollectorRequest, opts
 	return out, nil
 }
 
-func (c *collectorClient) Enable(ctx context.Context, in *CollectorRequest, opts ...grpc.CallOption) (*CollectorInfo, error) {
-	out := new(CollectorInfo)
-	err := c.cc.Invoke(ctx, Collector_Enable_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *collectorClient) Disable(ctx context.Context, in *CollectorRequest, opts ...grpc.CallOption) (*CollectorInfo, error) {
-	out := new(CollectorInfo)
-	err := c.cc.Invoke(ctx, Collector_Disable_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *collectorClient) List(ctx context.Context, in *CollectorQuery, opts ...grpc.CallOption) (*CollectorsInfo, error) {
 	out := new(CollectorsInfo)
 	err := c.cc.Invoke(ctx, Collector_List_FullMethodName, in, out, opts...)
@@ -184,51 +145,6 @@ func (c *collectorClient) Collect(ctx context.Context, in *CollectRequest, opts 
 	return out, nil
 }
 
-func (c *collectorClient) AddSchedule(ctx context.Context, in *CreateScheduleRequest, opts ...grpc.CallOption) (*ScheduleInfo, error) {
-	out := new(ScheduleInfo)
-	err := c.cc.Invoke(ctx, Collector_AddSchedule_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *collectorClient) GetSchedule(ctx context.Context, in *ScheduleRequest, opts ...grpc.CallOption) (*ScheduleInfo, error) {
-	out := new(ScheduleInfo)
-	err := c.cc.Invoke(ctx, Collector_GetSchedule_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *collectorClient) UpdateSchedule(ctx context.Context, in *UpdateScheduleRequest, opts ...grpc.CallOption) (*ScheduleInfo, error) {
-	out := new(ScheduleInfo)
-	err := c.cc.Invoke(ctx, Collector_UpdateSchedule_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *collectorClient) DeleteSchedule(ctx context.Context, in *DeleteScheduleRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, Collector_DeleteSchedule_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *collectorClient) ListSchedules(ctx context.Context, in *ScheduleQuery, opts ...grpc.CallOption) (*SchedulesInfo, error) {
-	out := new(SchedulesInfo)
-	err := c.cc.Invoke(ctx, Collector_ListSchedules_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // CollectorServer is the server API for Collector service.
 // All implementations must embed UnimplementedCollectorServer
 // for forward compatibility
@@ -245,24 +161,10 @@ type CollectorServer interface {
 	Delete(context.Context, *CollectorRequest) (*empty.Empty, error)
 	// Gets a specific Collector. Prints detailed information about the Collector, including its state, basic information, and the plugin information used for cloud resource collection.
 	Get(context.Context, *GetCollectorRequest) (*CollectorInfo, error)
-	// Enables a specific Collector. By enabling a Collector, you can communicate with a plugin used for collection.
-	Enable(context.Context, *CollectorRequest) (*CollectorInfo, error)
-	// Disables a specific Collector. By disabling a Collector, you cannot communicate with a plugin used for collection.
-	Disable(context.Context, *CollectorRequest) (*CollectorInfo, error)
 	// Gets a list of all Collectors. You can use a query to get a filtered list of Collectors.
 	List(context.Context, *CollectorQuery) (*CollectorsInfo, error)
 	Stat(context.Context, *CollectorStatQuery) (*_struct.Struct, error)
 	Collect(context.Context, *CollectRequest) (*JobInfo, error)
-	// Adds a schedule to a specific Collector. When specifying the time to collect, the schedule is assigned in units of one hour.The specified schedule is applied every day.
-	AddSchedule(context.Context, *CreateScheduleRequest) (*ScheduleInfo, error)
-	// Gets a specific schedule set in a specific Collector. You must specify the `collector_id` of the Collector and the `schedule_id` of the schedule.
-	GetSchedule(context.Context, *ScheduleRequest) (*ScheduleInfo, error)
-	// Updates a specific schedule of the Collector. You can make changes in schedule settings, including `name` and collection time.
-	UpdateSchedule(context.Context, *UpdateScheduleRequest) (*ScheduleInfo, error)
-	// Deletes a specific schedule of the Collector. You must specify the `schedule_id` of the schedule to delete.
-	DeleteSchedule(context.Context, *DeleteScheduleRequest) (*empty.Empty, error)
-	// Gets a list of all schedules set in a specific Collector. You must specify the `collector_id` of the Collector to get the schedule from.
-	ListSchedules(context.Context, *ScheduleQuery) (*SchedulesInfo, error)
 	mustEmbedUnimplementedCollectorServer()
 }
 
@@ -288,12 +190,6 @@ func (UnimplementedCollectorServer) Delete(context.Context, *CollectorRequest) (
 func (UnimplementedCollectorServer) Get(context.Context, *GetCollectorRequest) (*CollectorInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedCollectorServer) Enable(context.Context, *CollectorRequest) (*CollectorInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
-}
-func (UnimplementedCollectorServer) Disable(context.Context, *CollectorRequest) (*CollectorInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
-}
 func (UnimplementedCollectorServer) List(context.Context, *CollectorQuery) (*CollectorsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
@@ -302,21 +198,6 @@ func (UnimplementedCollectorServer) Stat(context.Context, *CollectorStatQuery) (
 }
 func (UnimplementedCollectorServer) Collect(context.Context, *CollectRequest) (*JobInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Collect not implemented")
-}
-func (UnimplementedCollectorServer) AddSchedule(context.Context, *CreateScheduleRequest) (*ScheduleInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddSchedule not implemented")
-}
-func (UnimplementedCollectorServer) GetSchedule(context.Context, *ScheduleRequest) (*ScheduleInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSchedule not implemented")
-}
-func (UnimplementedCollectorServer) UpdateSchedule(context.Context, *UpdateScheduleRequest) (*ScheduleInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateSchedule not implemented")
-}
-func (UnimplementedCollectorServer) DeleteSchedule(context.Context, *DeleteScheduleRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteSchedule not implemented")
-}
-func (UnimplementedCollectorServer) ListSchedules(context.Context, *ScheduleQuery) (*SchedulesInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListSchedules not implemented")
 }
 func (UnimplementedCollectorServer) mustEmbedUnimplementedCollectorServer() {}
 
@@ -439,42 +320,6 @@ func _Collector_Get_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Collector_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CollectorRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CollectorServer).Enable(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Collector_Enable_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CollectorServer).Enable(ctx, req.(*CollectorRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Collector_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CollectorRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CollectorServer).Disable(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Collector_Disable_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CollectorServer).Disable(ctx, req.(*CollectorRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Collector_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CollectorQuery)
 	if err := dec(in); err != nil {
@@ -529,96 +374,6 @@ func _Collector_Collect_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Collector_AddSchedule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateScheduleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CollectorServer).AddSchedule(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Collector_AddSchedule_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CollectorServer).AddSchedule(ctx, req.(*CreateScheduleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Collector_GetSchedule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ScheduleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CollectorServer).GetSchedule(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Collector_GetSchedule_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CollectorServer).GetSchedule(ctx, req.(*ScheduleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Collector_UpdateSchedule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateScheduleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CollectorServer).UpdateSchedule(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Collector_UpdateSchedule_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CollectorServer).UpdateSchedule(ctx, req.(*UpdateScheduleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Collector_DeleteSchedule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteScheduleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CollectorServer).DeleteSchedule(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Collector_DeleteSchedule_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CollectorServer).DeleteSchedule(ctx, req.(*DeleteScheduleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Collector_ListSchedules_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ScheduleQuery)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CollectorServer).ListSchedules(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Collector_ListSchedules_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CollectorServer).ListSchedules(ctx, req.(*ScheduleQuery))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Collector_ServiceDesc is the grpc.ServiceDesc for Collector service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -651,14 +406,6 @@ var Collector_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Collector_Get_Handler,
 		},
 		{
-			MethodName: "enable",
-			Handler:    _Collector_Enable_Handler,
-		},
-		{
-			MethodName: "disable",
-			Handler:    _Collector_Disable_Handler,
-		},
-		{
 			MethodName: "list",
 			Handler:    _Collector_List_Handler,
 		},
@@ -669,26 +416,6 @@ var Collector_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "collect",
 			Handler:    _Collector_Collect_Handler,
-		},
-		{
-			MethodName: "add_schedule",
-			Handler:    _Collector_AddSchedule_Handler,
-		},
-		{
-			MethodName: "get_schedule",
-			Handler:    _Collector_GetSchedule_Handler,
-		},
-		{
-			MethodName: "update_schedule",
-			Handler:    _Collector_UpdateSchedule_Handler,
-		},
-		{
-			MethodName: "delete_schedule",
-			Handler:    _Collector_DeleteSchedule_Handler,
-		},
-		{
-			MethodName: "list_schedules",
-			Handler:    _Collector_ListSchedules_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

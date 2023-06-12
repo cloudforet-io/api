@@ -46,16 +46,6 @@ class CollectorStub(object):
                 request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.GetCollectorRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorInfo.FromString,
                 )
-        self.enable = channel.unary_unary(
-                '/spaceone.api.inventory.v1.Collector/enable',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorInfo.FromString,
-                )
-        self.disable = channel.unary_unary(
-                '/spaceone.api.inventory.v1.Collector/disable',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorInfo.FromString,
-                )
         self.list = channel.unary_unary(
                 '/spaceone.api.inventory.v1.Collector/list',
                 request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorQuery.SerializeToString,
@@ -70,31 +60,6 @@ class CollectorStub(object):
                 '/spaceone.api.inventory.v1.Collector/collect',
                 request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.JobInfo.FromString,
-                )
-        self.add_schedule = channel.unary_unary(
-                '/spaceone.api.inventory.v1.Collector/add_schedule',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CreateScheduleRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleInfo.FromString,
-                )
-        self.get_schedule = channel.unary_unary(
-                '/spaceone.api.inventory.v1.Collector/get_schedule',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleInfo.FromString,
-                )
-        self.update_schedule = channel.unary_unary(
-                '/spaceone.api.inventory.v1.Collector/update_schedule',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.UpdateScheduleRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleInfo.FromString,
-                )
-        self.delete_schedule = channel.unary_unary(
-                '/spaceone.api.inventory.v1.Collector/delete_schedule',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.DeleteScheduleRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                )
-        self.list_schedules = channel.unary_unary(
-                '/spaceone.api.inventory.v1.Collector/list_schedules',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.SchedulesInfo.FromString,
                 )
 
 
@@ -143,20 +108,6 @@ class CollectorServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def enable(self, request, context):
-        """Enables a specific Collector. By enabling a Collector, you can communicate with a plugin used for collection.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def disable(self, request, context):
-        """Disables a specific Collector. By disabling a Collector, you cannot communicate with a plugin used for collection.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def list(self, request, context):
         """Gets a list of all Collectors. You can use a query to get a filtered list of Collectors.
         """
@@ -172,41 +123,6 @@ class CollectorServicer(object):
 
     def collect(self, request, context):
         """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def add_schedule(self, request, context):
-        """Adds a schedule to a specific Collector. When specifying the time to collect, the schedule is assigned in units of one hour.The specified schedule is applied every day.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def get_schedule(self, request, context):
-        """Gets a specific schedule set in a specific Collector. You must specify the `collector_id` of the Collector and the `schedule_id` of the schedule.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def update_schedule(self, request, context):
-        """Updates a specific schedule of the Collector. You can make changes in schedule settings, including `name` and collection time.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def delete_schedule(self, request, context):
-        """Deletes a specific schedule of the Collector. You must specify the `schedule_id` of the schedule to delete.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def list_schedules(self, request, context):
-        """Gets a list of all schedules set in a specific Collector. You must specify the `collector_id` of the Collector to get the schedule from.
-        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -244,16 +160,6 @@ def add_CollectorServicer_to_server(servicer, server):
                     request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.GetCollectorRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorInfo.SerializeToString,
             ),
-            'enable': grpc.unary_unary_rpc_method_handler(
-                    servicer.enable,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorInfo.SerializeToString,
-            ),
-            'disable': grpc.unary_unary_rpc_method_handler(
-                    servicer.disable,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorInfo.SerializeToString,
-            ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
                     request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorQuery.FromString,
@@ -268,31 +174,6 @@ def add_CollectorServicer_to_server(servicer, server):
                     servicer.collect,
                     request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.JobInfo.SerializeToString,
-            ),
-            'add_schedule': grpc.unary_unary_rpc_method_handler(
-                    servicer.add_schedule,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CreateScheduleRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleInfo.SerializeToString,
-            ),
-            'get_schedule': grpc.unary_unary_rpc_method_handler(
-                    servicer.get_schedule,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleInfo.SerializeToString,
-            ),
-            'update_schedule': grpc.unary_unary_rpc_method_handler(
-                    servicer.update_schedule,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.UpdateScheduleRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleInfo.SerializeToString,
-            ),
-            'delete_schedule': grpc.unary_unary_rpc_method_handler(
-                    servicer.delete_schedule,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.DeleteScheduleRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'list_schedules': grpc.unary_unary_rpc_method_handler(
-                    servicer.list_schedules,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.SchedulesInfo.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -407,40 +288,6 @@ class Collector(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def enable(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Collector/enable',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorRequest.SerializeToString,
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def disable(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Collector/disable',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorRequest.SerializeToString,
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
     def list(request,
             target,
             options=(),
@@ -488,90 +335,5 @@ class Collector(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Collector/collect',
             spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectRequest.SerializeToString,
             spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.JobInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def add_schedule(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Collector/add_schedule',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CreateScheduleRequest.SerializeToString,
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def get_schedule(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Collector/get_schedule',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleRequest.SerializeToString,
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def update_schedule(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Collector/update_schedule',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.UpdateScheduleRequest.SerializeToString,
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def delete_schedule(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Collector/delete_schedule',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.DeleteScheduleRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def list_schedules(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Collector/list_schedules',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.ScheduleQuery.SerializeToString,
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.SchedulesInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
