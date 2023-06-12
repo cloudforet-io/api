@@ -61,22 +61,6 @@ service Collector {
         };
     }
     
-    // Enables a specific Collector. By enabling a Collector, you can communicate with a plugin used for collection.
-    rpc enable (CollectorRequest) returns (CollectorInfo) {
-        option (google.api.http) = {
-            post: "/inventory/v1/collector/enable"
-            body: "*"
-        };
-    }
-    
-    // Disables a specific Collector. By disabling a Collector, you cannot communicate with a plugin used for collection.
-    rpc disable (CollectorRequest) returns (CollectorInfo) {
-        option (google.api.http) = {
-            post: "/inventory/v1/collector/disable"
-            body: "*"
-        };
-    }
-    
     // Gets a list of all Collectors. You can use a query to get a filtered list of Collectors.
     rpc list (CollectorQuery) returns (CollectorsInfo) {
         option (google.api.http) = {
@@ -98,53 +82,30 @@ service Collector {
             body: "*"
         };
     }
-    
-    // Adds a schedule to a specific Collector. When specifying the time to collect, the schedule is assigned in units of one hour.The specified schedule is applied every day.
-    rpc add_schedule (CreateScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = {
-            post: "/inventory/v1/collector/add_schedule"
-            body: "*"
-        };
-    }
-    
-    // Gets a specific schedule set in a specific Collector. You must specify the `collector_id` of the Collector and the `schedule_id` of the schedule.
-    rpc get_schedule (ScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = {
-            post: "/inventory/v1/collector/get-schedule"
-            body: "*"
-        };
-    }
-    
-    // Updates a specific schedule of the Collector. You can make changes in schedule settings, including `name` and collection time.
-    rpc update_schedule (UpdateScheduleRequest) returns (ScheduleInfo) {
-        option (google.api.http) = {
-            post: "/inventory/v1/collector/update-schedule"
-            body: "*"
-        };
-    }
-    
-    // Deletes a specific schedule of the Collector. You must specify the `schedule_id` of the schedule to delete.
-    rpc delete_schedule (DeleteScheduleRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/inventory/v1/collector/delete-schedule"
-            body: "*"
-        };
-    }
-    
-    // Gets a list of all schedules set in a specific Collector. You must specify the `collector_id` of the Collector to get the schedule from.
-    rpc list_schedules (ScheduleQuery) returns (SchedulesInfo) {
-        option (google.api.http) = {
-            post: "/inventory/v1/collector/list_schedules"
-            body: "*"
-        };
-    }
 }
 
 message Scheduled {
-    string cron = 1;
-    int32 interval = 2;
-    repeated int32 minutes = 3;
-    repeated int32 hours = 4;
+    enum ScheduledState {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    ScheduledState state = 1;
+    repeated int32 hours = 2;
+}
+
+message SecretFilter {
+    enum SecretFilterState {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    SecretFilterState state = 1;
+    repeated string secrets = 2;
+    repeated string service_accounts = 3;
+    repeated string schemas = 4;
 }
 
 message PluginInfo {
@@ -159,9 +120,7 @@ message PluginInfo {
     google.protobuf.Struct options = 3;
     google.protobuf.Struct metadata = 10;
     UpgradeMode upgrade_mode = 11;
-    google.protobuf.Struct secret_filter = 12;
 }
-
 
 //{
 //    "name": "AWS Collector",
@@ -169,7 +128,6 @@ message PluginInfo {
 //        "plugin_id": "plugin-30d21ef75a5d",
 //        "version": "1.13.13",
 //        "options": {},
-//        "provider": ["aws"],
 //        "metadata": {
 //            "filter_format": [],
 //            "supported_schedules": [
@@ -186,6 +144,16 @@ message PluginInfo {
 //        },
 //        "upgrade_mode": "AUTO"
 //    },
+//    "schedule": {
+//        "state": "ENABLED",
+//        "hours": [0, 6, 12, 18]
+//    },
+//    "secret_filter": {
+//        "state": "ENABLED",
+//        "secrets": ["secret-xxx", "secret-yyy"],
+//        "service_accounts": ["sa-xxx", "sa-yyy"],
+//        "schemas": ["schema-xxx", "schema-yyy"]
+//    },
 //    "tags": {
 //        "type": "test"
 //    },
@@ -199,7 +167,9 @@ message CreateCollectorRequest {
     string provider = 4;
     // +optional
     google.protobuf.Struct tags = 5;
-    string domain_id = 6;
+    // +optional
+    SecretFilter secret_filter = 6;
+    string domain_id = 11;
 }
 
 //{
@@ -210,6 +180,16 @@ message CreateCollectorRequest {
 //        "version": "1.14.0",
 //        "provider": "aws",
 //        "upgrade_mode": "MANUAL"
+//    },
+//    "schedule": {
+//        "state": "ENABLED",
+//        "hours": [0, 6, 12, 18]
+//    },
+//    "secret_filter": {
+//        "state": "ENABLED",
+//        "secrets": ["secret-xxx", "secret-yyy"],
+//        "service_accounts": ["sa-xxx", "sa-yyy"],
+//        "schemas": ["schema-xxx", "schema-yyy"]
 //    },
 //    "tags": {
 //        "a": "b"
@@ -222,8 +202,10 @@ message UpdateCollectorRequest {
     // +optional
     Scheduled schedule = 5;
     // +optional
-    google.protobuf.Struct tags = 6;
-    string domain_id = 7;
+    SecretFilter secret_filter = 6;
+    // +optional
+    google.protobuf.Struct tags = 7;
+    string domain_id = 21;
 }
 
 message UpdatePluginRequest {
@@ -303,12 +285,10 @@ message VerifyPluginRequest {
 //{
 //    "collector_id": "collector-2c0847644f39",
 //    "name": "AWS Collector",
-//    "state": "ENABLED",
 //    "plugin_info": {
 //        "plugin_id": "plugin-30d21ef75a5d",
 //        "version": "1.13.13",
 //        "options": {},
-//        "provider": "aws",
 //        "metadata": {
 //            "supported_schedules": [
 //                "hours"
@@ -330,17 +310,21 @@ message VerifyPluginRequest {
 //    },
 //    "created_at": "2022-06-17T06:33:27.195Z",
 //    "domain_id": "domain-58010aa2e451",
-//    "providers": ["aws"],
+//    "provider": "aws",
 //    "capability": {
 //        "supported_schema": [
 //            "aws_access_key"
 //        ]
 //    },
 //    "schedule": {
-//        "hours": {
-//            "cron": "0 * * * *",
-//            "timezone": "UTC"
-//        }
+//        "state": "ENABLED",
+//        "hours": [0, 6, 12, 18]
+//    },
+//    "secret_filter": {
+//        "state": "ENABLED",
+//        "secrets": ["secret-xxx", "secret-yyy"],
+//        "service_accounts": ["sa-xxx", "sa-yyy"],
+//        "schemas": ["schema-xxx", "schema-yyy"]
 //    },
 //    "last_collected_at": "2022-06-17T06:33:27.195Z"
 //}
@@ -353,7 +337,6 @@ message CollectorInfo {
 
     string collector_id = 1;
     string name = 2;
-    State state = 3;
     PluginInfo plugin_info = 4;
     google.protobuf.Struct tags = 5;
     string provider = 6;
@@ -367,57 +350,97 @@ message CollectorInfo {
 //{
 //     "results": [
 //        {
-//            "job_id": "job-3b124006c2d2",
-//            "status": "SUCCESS",
-//            "filter": {},
-//            "total_tasks": 2,
-//            "collector_info": {
-//                "collector_id": "collector-accd02663b3d",
-//                "name": "openstack-collector",
-//                "state": "ENABLED",
-//                "plugin_info": {
-//                    "plugin_id": "plugin-openstack-inven-collector",
-//                    "version": "0.4.2.20220616.134758"
-//                },
-//                "provider": "openstack",
-//                "capability": {
-//                    "supported_schema": [
-//                        "openstack_credentials"
-//                    ]
-//                },
-//                "is_public": true
-//            },
-//            "domain_id": "domain-58010aa2e451",
-//            "created_at": "2022-06-17T08:00:01.225Z",
-//            "updated_at": "2022-06-17T08:00:01.225Z",
-//            "finished_at": "2022-06-17T08:00:15.197Z"
-//        },
-//        {
-//            "job_id": "job-587a3d3b4db3",
-//            "status": "SUCCESS",
-//            "filter": {},
-//            "total_tasks": 3,
-//            "collector_info": {
-//                "collector_id": "collector-2c0847644f39",
-//                "name": "AWS stat-kwon Collector",
-//                "state": "ENABLED",
-//                "plugin_info": {
-//                    "plugin_id": "plugin-30d21ef75a5d",
-//                    "version": "1.13.13.20220610.143142"
-//                },
-//                "provider": "aws",
-//                "capability": {
-//                    "supported_schema": [
-//                        "aws_access_key"
-//                    ]
-//                },
-//                "is_public": true
-//            },
-//            "domain_id": "domain-58010aa2e451",
-//            "created_at": "2022-06-17T08:00:00.407Z",
-//            "updated_at": "2022-06-17T08:00:00.407Z",
-//            "finished_at": "2022-06-17T08:07:32.023Z"
-//        }
+//          "collector_id": "collector-2c0847644f39",
+//          "name": "AWS Collector",
+//          "plugin_info": {
+//              "plugin_id": "plugin-30d21ef75a5d",
+//              "version": "1.13.13",
+//              "options": {},
+//              "metadata": {
+//                  "supported_schedules": [
+//                      "hours"
+//                  ],
+//              "supported_resource_type": [
+//                "inventory.CloudService",
+//                "inventory.CloudServiceType",
+//                "inventory.Region"
+//              ],
+//              "filter_format": [],
+//              "supported_features": [
+//                "garbage_collection"
+//              ]
+//          },
+//          "upgrade_mode": "AUTO"
+//      },
+//      "tags": {
+//          "type": "test"
+//      },
+//      "created_at": "2022-06-17T06:33:27.195Z",
+//      "domain_id": "domain-58010aa2e451",
+//      "provider": "aws",
+//      "capability": {
+//          "supported_schema": [
+//              "aws_access_key"
+//          ]
+//      },
+//      "schedule": {
+//          "state": "ENABLED",
+//          "hours": [0, 6, 12, 18]
+//      },
+//      "secret_filter": {
+//          "state": "ENABLED",
+//          "secrets": ["secret-xxx", "secret-yyy"],
+//          "service_accounts": ["sa-xxx", "sa-yyy"],
+//          "schemas": ["schema-xxx", "schema-yyy"]
+//      },
+//      "last_collected_at": "2022-06-17T06:33:27.195Z"
+//    },
+//    {
+//      "collector_id": "collector-2c0847644f39",
+//      "name": "AWS Collector",
+//      "plugin_info": {
+//          "plugin_id": "plugin-30d21ef75a5d",
+//          "version": "1.13.13",
+//          "options": {},
+//          "metadata": {
+//              "supported_schedules": [
+//                  "hours"
+//              ],
+//              "supported_resource_type": [
+//                  "inventory.CloudService",
+//                  "inventory.CloudServiceType",
+//                  "inventory.Region"
+//              ],
+//              "filter_format": [],
+//              "supported_features": [
+//                "garbage_collection"
+//              ]
+//          },
+//          "upgrade_mode": "AUTO"
+//      },
+//      "tags": {
+//          "type": "test"
+//      },
+//      "created_at": "2022-06-17T06:33:27.195Z",
+//      "domain_id": "domain-58010aa2e451",
+//      "provider": "aws",
+//      "capability": {
+//          "supported_schema": [
+//              "aws_access_key"
+//          ]
+//      },
+//      "schedule": {
+//          "state": "ENABLED",
+//          "hours": [0, 6, 12, 18]
+//      },
+//      "secret_filter": {
+//          "state": "ENABLED",
+//          "secrets": ["secret-xxx", "secret-yyy"],
+//          "service_accounts": ["sa-xxx", "sa-yyy"],
+//          "schemas": ["schema-xxx", "schema-yyy"]
+//      },
+//      "last_collected_at": "2022-06-17T06:33:27.195Z"
+//    }
 //    ],
 //    "total_count": 2
 //}
