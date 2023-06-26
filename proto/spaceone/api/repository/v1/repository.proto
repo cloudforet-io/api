@@ -60,25 +60,21 @@ service Repository {
 }
 
 //{
-//    "name": "Local",
-//    "repository_type": "local",
-//    "endpoint": "grpc+ssl://local-url:443"
+//    "name": "Open Source Marketplace",
+//    "repository_type": "remote",
+//    "endpoint": "grpc+ssl://repository.portal.spaceone.megazone.io:443"
 //}
 message CreateRepositoryRequest {
     string name = 1;
     string repository_type = 2;
     // +optional
     string endpoint = 10;
-    // +optional
-    string version = 11;
-    // +optional
-    string secret_id = 12;
     string domain_id = 13;
 }
 
 //{
 //    "repository_id": "repo-123456789012",
-//    "name": "Local-repo"
+//    "name": "Changed Name"
 //}
 message UpdateRepositoryRequest {
     string repository_id = 1;
@@ -123,9 +119,9 @@ message RepositoryQuery {
 
 //{
 //    "repository_id": "repo-123456789012",
-//    "name": "Local",
-//    "repository_type": "local",
-//    "endpoint": "grpc+ssl://local-url:443",
+//    "name": "Open Source Marketplace",
+//    "repository_type": "remote",
+//    "endpoint": "grpc+ssl://repository.portal.spaceone.megazone.io:443",
 //    "created_at": "2022-01-01T02:27:02.924Z"
 //}
 message RepositoryInfo {
@@ -142,9 +138,9 @@ message RepositoryInfo {
 //    "results": [
 //        {
 //            "repository_id": "repo-123456789012",
-//            "name": "Local-repo",
-//            "repository_type": "local",
-//            "endpoint": "grpc+ssl://local-url:443",
+//            "name": "Open Source Marketplace",
+//            "repository_type": "remote",
+//            "endpoint": "grpc+ssl://repository.portal.spaceone.megazone.io:443",
 //            "created_at": "2022-01-01T02:26:29.081Z"
 //        }
 //    ],
