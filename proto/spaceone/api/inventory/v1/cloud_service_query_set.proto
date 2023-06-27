@@ -41,7 +41,7 @@ service CloudServiceQuerySet {
     // Run a specific query set and store the result in the statistics data.
     rpc run (CloudServiceQuerySetRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service-query-set/delete"
+            post: "/inventory/v1/cloud-service-query-set/run"
             body: "*"
         };
     }
@@ -49,7 +49,7 @@ service CloudServiceQuerySet {
     // Enable a specific query set.
     rpc enable (CloudServiceQuerySetRequest) returns (CloudServiceQuerySetInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service-query-set/get"
+            post: "/inventory/v1/cloud-service-query-set/enable"
             body: "*"
         };
     }
@@ -57,7 +57,7 @@ service CloudServiceQuerySet {
     // Disable a specific query set. query set is not executed when disabled.
     rpc disable (CloudServiceQuerySetRequest) returns (CloudServiceQuerySetInfo) {
         option (google.api.http) = {
-            post: "/inventory/v1/cloud-service-query-set/get"
+            post: "/inventory/v1/cloud-service-query-set/disable"
             body: "*"
         };
     }
