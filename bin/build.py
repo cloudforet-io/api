@@ -176,6 +176,7 @@ def _make_build_environment(output_dir, code):
 
 def _python_compile(proto_file, output_path, proto_path_list, debug):
     cmd = ['python3', '-m', 'grpc_tools.protoc', f'--python_out={output_path}', f'--grpc_python_out={output_path}']
+
     for proto_path in proto_path_list:
         cmd.append(f'--proto_path={proto_path}')
     cmd.append(proto_file)
@@ -215,7 +216,8 @@ def _go_compile(proto_file, output_path, proto_path_list, debug):
 
 def _go_grpc_gateway_compile(proto_file, output_path, proto_path_list, debug):
     cmd = ['protoc', '--grpc-gateway_opt=logtostderr=true', '--grpc-gateway_opt=generate_unbound_methods=true',
-           f'--grpc-gateway_opt=module={GO_PREFIX_IMPORT_PATH}', f'--grpc-gateway_out={output_path}']
+           '--grpc-gateway_opt=standalone=true', f'--grpc-gateway_opt=module={GO_PREFIX_IMPORT_PATH}',
+           f'--grpc-gateway_out={output_path}']
 
     for proto_path in proto_path_list:
         cmd.append(f'--proto_path={proto_path}')
@@ -277,8 +279,7 @@ def _compile_code(params, code, proto_file):
         _go_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
 
     elif code == 'gateway':
-        pass
-        # _go_grpc_gateway_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
+        _go_grpc_gateway_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
 
     elif code == 'json':
         _doc_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
