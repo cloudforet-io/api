@@ -33,6 +33,29 @@
           ]
         },
         {
+          "name": "SecretType",
+          "longName": "DataSourceInfo.SecretType",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceInfo.SecretType",
+          "description": "",
+          "values": [
+            {
+              "name": "SECRET_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "USE_SERVICE_ACCOUNT_SECRET",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "State",
           "longName": "DataSourceInfo.State",
           "fullName": "spaceone.api.cost_analysis.v1.DataSourceInfo.State",
@@ -119,6 +142,52 @@
             },
             {
               "name": "EXTERNAL",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "SecretType",
+          "longName": "RegisterDataSourceRequest.SecretType",
+          "fullName": "spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.SecretType",
+          "description": "",
+          "values": [
+            {
+              "name": "SECRET_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "USE_SERVICE_ACCOUNT_SECRET",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "SecretFilterState",
+          "longName": "SecretFilter.SecretFilterState",
+          "fullName": "spaceone.api.cost_analysis.v1.SecretFilter.SecretFilterState",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
               "number": "2",
               "description": ""
             }
@@ -287,6 +356,30 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_type",
+              "description": "",
+              "label": "",
+              "type": "SecretType",
+              "longType": "DataSourceInfo.SecretType",
+              "fullType": "spaceone.api.cost_analysis.v1.DataSourceInfo.SecretType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_filter",
+              "description": "",
+              "label": "",
+              "type": "SecretFilter",
+              "longType": "SecretFilter",
+              "fullType": "spaceone.api.cost_analysis.v1.SecretFilter",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -809,9 +902,93 @@
               "defaultValue": ""
             },
             {
+              "name": "secret_type",
+              "description": "+optional",
+              "label": "",
+              "type": "SecretType",
+              "longType": "RegisterDataSourceRequest.SecretType",
+              "fullType": "spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.SecretType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_filter",
+              "description": "+optional",
+              "label": "",
+              "type": "SecretFilter",
+              "longType": "SecretFilter",
+              "fullType": "spaceone.api.cost_analysis.v1.SecretFilter",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "domain_id",
               "description": "",
               "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SecretFilter",
+          "longName": "SecretFilter",
+          "fullName": "spaceone.api.cost_analysis.v1.SecretFilter",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "SecretFilterState",
+              "longType": "SecretFilter.SecretFilterState",
+              "fullType": "spaceone.api.cost_analysis.v1.SecretFilter.SecretFilterState",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secrets",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "service_accounts",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schemas",
+              "description": "",
+              "label": "repeated",
               "type": "string",
               "longType": "string",
               "fullType": "string",
