@@ -49,7 +49,7 @@ class DataSourceStub(object):
                 )
         self.deregister = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.DataSource/deregister',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DeregisterDataSourceRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.sync = channel.unary_unary(
@@ -188,7 +188,7 @@ def add_DataSourceServicer_to_server(servicer, server):
             ),
             'deregister': grpc.unary_unary_rpc_method_handler(
                     servicer.deregister,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DeregisterDataSourceRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'sync': grpc.unary_unary_rpc_method_handler(
@@ -335,7 +335,7 @@ class DataSource(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.DataSource/deregister',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DeregisterDataSourceRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -426,7 +426,7 @@
           "fields": [
             {
               "name": "data_source_id",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -515,6 +515,54 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DeregisterDataSourceRequest",
+          "longName": "DeregisterDataSourceRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.DeregisterDataSourceRequest",
+          "description": "{\n   \"data_source_id\": \"ds-085d1e872789\",\n   \"cascade_delete_cost\": true,\n   \"domain_id\": \"domain-085d1e872789\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_source_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cascade_delete_cost",
+              "description": "Default value is true. If true delete all cost data related to data_source_id\n+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1127,9 +1175,9 @@
             {
               "name": "deregister",
               "description": "Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.",
-              "requestType": "DataSourceRequest",
-              "requestLongType": "DataSourceRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceRequest",
+              "requestType": "DeregisterDataSourceRequest",
+              "requestLongType": "DeregisterDataSourceRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.DeregisterDataSourceRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",

@@ -53,7 +53,7 @@ type DataSourceClient interface {
 	// Disables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.
 	Disable(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
 	// Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.
-	Deregister(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Deregister(ctx context.Context, in *DeregisterDataSourceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Manually runs a specific DataSource to collect the cost data. This method is to get up-to-date cost data.
 	Sync(ctx context.Context, in *SyncDataSourceRequest, opts ...grpc.CallOption) (*JobInfo, error)
 	// Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.
@@ -125,7 +125,7 @@ func (c *dataSourceClient) Disable(ctx context.Context, in *DataSourceRequest, o
 	return out, nil
 }
 
-func (c *dataSourceClient) Deregister(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *dataSourceClient) Deregister(ctx context.Context, in *DeregisterDataSourceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, DataSource_Deregister_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -187,7 +187,7 @@ type DataSourceServer interface {
 	// Disables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.
 	Disable(context.Context, *DataSourceRequest) (*DataSourceInfo, error)
 	// Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.
-	Deregister(context.Context, *DataSourceRequest) (*empty.Empty, error)
+	Deregister(context.Context, *DeregisterDataSourceRequest) (*empty.Empty, error)
 	// Manually runs a specific DataSource to collect the cost data. This method is to get up-to-date cost data.
 	Sync(context.Context, *SyncDataSourceRequest) (*JobInfo, error)
 	// Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.
@@ -220,7 +220,7 @@ func (UnimplementedDataSourceServer) Enable(context.Context, *DataSourceRequest)
 func (UnimplementedDataSourceServer) Disable(context.Context, *DataSourceRequest) (*DataSourceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
 }
-func (UnimplementedDataSourceServer) Deregister(context.Context, *DataSourceRequest) (*empty.Empty, error) {
+func (UnimplementedDataSourceServer) Deregister(context.Context, *DeregisterDataSourceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Deregister not implemented")
 }
 func (UnimplementedDataSourceServer) Sync(context.Context, *SyncDataSourceRequest) (*JobInfo, error) {
@@ -357,7 +357,7 @@ func _DataSource_Disable_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _DataSource_Deregister_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DataSourceRequest)
+	in := new(DeregisterDataSourceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -369,7 +369,7 @@ func _DataSource_Deregister_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: DataSource_Deregister_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataSourceServer).Deregister(ctx, req.(*DataSourceRequest))
+		return srv.(DataSourceServer).Deregister(ctx, req.(*DeregisterDataSourceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
