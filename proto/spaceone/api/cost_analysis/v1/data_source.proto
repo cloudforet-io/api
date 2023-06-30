@@ -62,7 +62,7 @@ service DataSource {
     }
 
     // Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.
-    rpc deregister (DataSourceRequest) returns (google.protobuf.Empty) {
+    rpc deregister (DeregisterDataSourceRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/data-source/deregister"
             body: "*"
@@ -210,6 +210,19 @@ message UpdateDataSourcePluginRequest {
     string domain_id = 11;
 }
 
+//{
+//    "data_source_id": "ds-085d1e872789",
+//    "cascade_delete_cost": true,
+//    "domain_id": "domain-085d1e872789"
+//}
+message DeregisterDataSourceRequest {
+    string data_source_id = 1;
+    // Default value is true. If true delete all cost data related to data_source_id
+    // +optional
+    bool cascade_delete_cost = 2;
+    string domain_id = 3;
+}
+
 message SyncDataSourceRequest {
     string data_source_id = 1;
     // +optional
@@ -223,7 +236,6 @@ message SyncDataSourceRequest {
 //    "data_source_id": "ds-085d1e872789"
 //}
 message DataSourceRequest {
-    // is_required: true
     string data_source_id = 1;
     string domain_id = 2;
 }
