@@ -101,6 +101,19 @@ service DataSource {
     }
 }
 
+message SecretFilter {
+    enum SecretFilterState {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    SecretFilterState state = 1;
+    repeated string secrets = 2;
+    repeated string service_accounts = 3;
+    repeated string schemas = 4;
+}
+
 message PluginInfo {
     enum UpgradeMode {
         NONE = 0;
@@ -156,6 +169,12 @@ message RegisterDataSourceRequest {
         EXTERNAL = 2;
     }
 
+    enum SecretType {
+        SECRET_TYPE_NONE = 0;
+        MANUAL = 1;
+        USE_SERVICE_ACCOUNT_SECRET = 2;
+    }
+
     string name = 1;
     DataSourceType data_source_type = 2;
     // +optional
@@ -166,6 +185,10 @@ message RegisterDataSourceRequest {
     PluginInfo plugin_info = 5;
     // +optional
     google.protobuf.Struct tags = 6;
+    // +optional
+    SecretType secret_type = 7;
+    // +optional
+    SecretFilter secret_filter = 8;
     string domain_id = 11;
 }
 
@@ -334,6 +357,12 @@ message DataSourceInfo {
         EXTERNAL = 2;
     }
 
+    enum SecretType {
+        SECRET_TYPE_NONE = 0;
+        MANUAL = 1;
+        USE_SERVICE_ACCOUNT_SECRET = 2;
+    }
+
     string data_source_id = 1;
     string name = 2;
     State state = 3;
@@ -345,6 +374,8 @@ message DataSourceInfo {
     repeated string cost_tag_keys = 9;
     repeated string cost_additional_info_keys = 10;
     string domain_id = 11;
+    SecretType secret_type = 12;
+    SecretFilter secret_filter = 13;
     string created_at = 21;
     string last_synchronized_at = 22;
 }
