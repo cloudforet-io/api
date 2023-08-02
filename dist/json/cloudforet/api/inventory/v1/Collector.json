@@ -67,7 +67,7 @@
               "description": ""
             },
             {
-              "name": "CREATED",
+              "name": "FAILURE",
               "number": "1",
               "description": ""
             },
@@ -84,16 +84,6 @@
             {
               "name": "SUCCESS",
               "number": "4",
-              "description": ""
-            },
-            {
-              "name": "ERROR",
-              "number": "5",
-              "description": ""
-            },
-            {
-              "name": "TIMEOUT",
-              "number": "6",
               "description": ""
             }
           ]
@@ -984,18 +974,6 @@
               "defaultValue": ""
             },
             {
-              "name": "filter",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "total_tasks",
               "description": "",
               "label": "",
@@ -1020,31 +998,43 @@
               "defaultValue": ""
             },
             {
-              "name": "errors",
-              "description": "",
-              "label": "repeated",
-              "type": "ErrorInfo",
-              "longType": "ErrorInfo",
-              "fullType": "spaceone.api.inventory.v1.ErrorInfo",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collector_info",
+              "name": "success_tasks",
               "description": "",
               "label": "",
-              "type": "CollectorInfo",
-              "longType": "CollectorInfo",
-              "fullType": "spaceone.api.inventory.v1.CollectorInfo",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "project_id",
+              "name": "failure_tasks",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "collector_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -1057,6 +1047,18 @@
             },
             {
               "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -1525,6 +1527,42 @@
             },
             {
               "name": "schemas",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "exclude_secrets",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "exclude_service_accounts",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "exclude_schemas",
               "description": "",
               "label": "repeated",
               "type": "string",
