@@ -106,6 +106,9 @@ message SecretFilter {
     repeated string secrets = 2;
     repeated string service_accounts = 3;
     repeated string schemas = 4;
+    repeated string exclude_secrets = 5;
+    repeated string exclude_service_accounts = 6;
+    repeated string exclude_schemas = 7;
 }
 
 message PluginInfo {
@@ -490,24 +493,23 @@ message ErrorInfo {
 message JobInfo {
     enum Status {
         NONE = 0;
-        CREATED = 1;
+        FAILURE = 1;
         CANCELED = 2;
         IN_PROGRESS = 3;
         SUCCESS = 4;
-        ERROR = 5;
-        TIMEOUT = 6;
     }
 
     string job_id = 1;
     Status status = 2;
-    google.protobuf.Struct filter = 3;
     int32 total_tasks = 4;
     int32 remained_tasks = 5;
-    repeated ErrorInfo errors = 6;
+    int32 success_tasks = 6;
+    int32 failure_tasks = 7;
 
-    CollectorInfo collector_info = 11;
-    string project_id = 12;
+    string collector_id = 11;
+    string secret_id = 12;
     string domain_id = 13;
+    string plugin_id = 15;
 
     string created_at = 21;
     string updated_at = 22;
