@@ -16,7 +16,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n-spaceone/api/inventory/plugin/collector.proto\x12\x1dspaceone.api.inventory.plugin\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\"7\n\x0bInitRequest\x12(\n\x07options\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\"g\n\rVerifyRequest\x12(\n\x07options\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\x12,\n\x0bsecret_data\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\"\x91\x01\n\x0e\x43ollectRequest\x12(\n\x07options\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\x12,\n\x0bsecret_data\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\'\n\x06\x66ilter\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\"\xe9\x02\n\x0cResourceInfo\x12@\n\x05state\x18\x01 \x01(\x0e\x32\x31.spaceone.api.inventory.plugin.ResourceInfo.State\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x15\n\rresource_type\x18\x03 \x01(\t\x12,\n\x0bmatch_rules\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\x12)\n\x08resource\x18\x06 \x01(\x0b\x32\x17.google.protobuf.Struct\x12(\n\x07options\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\"l\n\x05State\x12\x08\n\x04NONE\x10\x00\x12\x0b\n\x07\x43REATED\x10\x01\x12\x0b\n\x07PENDING\x10\x02\x12\x0e\n\nINPROGRESS\x10\x03\x12\x0b\n\x07SUCCESS\x10\x04\x12\x0b\n\x07\x46\x41ILURE\x10\x05\x12\x0b\n\x07TIMEOUT\x10\x06\x12\x08\n\x04IDLE\x10\x07\"?\n\x13\x43ollectorVerifyInfo\x12(\n\x07options\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\"7\n\nPluginInfo\x12)\n\x08metadata\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct2\xa9\x02\n\tCollector\x12_\n\x04init\x12*.spaceone.api.inventory.plugin.InitRequest\x1a).spaceone.api.inventory.plugin.PluginInfo\"\x00\x12P\n\x06verify\x12,.spaceone.api.inventory.plugin.VerifyRequest\x1a\x16.google.protobuf.Empty\"\x00\x12i\n\x07\x63ollect\x12-.spaceone.api.inventory.plugin.CollectRequest\x1a+.spaceone.api.inventory.plugin.ResourceInfo\"\x00\x30\x01\x42\x44ZBgithub.com/cloudforet-io/api/dist/go/spaceone/api/inventory/pluginb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n-spaceone/api/inventory/plugin/collector.proto\x12\x1dspaceone.api.inventory.plugin\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\"7\n\x0bInitRequest\x12(\n\x07options\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\"g\n\rVerifyRequest\x12(\n\x07options\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\x12,\n\x0bsecret_data\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\"\xc0\x01\n\x0e\x43ollectRequest\x12(\n\x07options\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\x12,\n\x0bsecret_data\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\'\n\x06\x66ilter\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\x12-\n\x0ctask_options\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\"\xe9\x02\n\x0cResourceInfo\x12@\n\x05state\x18\x01 \x01(\x0e\x32\x31.spaceone.api.inventory.plugin.ResourceInfo.State\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x15\n\rresource_type\x18\x03 \x01(\t\x12,\n\x0bmatch_rules\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\x12)\n\x08resource\x18\x06 \x01(\x0b\x32\x17.google.protobuf.Struct\x12(\n\x07options\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\"l\n\x05State\x12\x08\n\x04NONE\x10\x00\x12\x0b\n\x07\x43REATED\x10\x01\x12\x0b\n\x07PENDING\x10\x02\x12\x0e\n\nINPROGRESS\x10\x03\x12\x0b\n\x07SUCCESS\x10\x04\x12\x0b\n\x07\x46\x41ILURE\x10\x05\x12\x0b\n\x07TIMEOUT\x10\x06\x12\x08\n\x04IDLE\x10\x07\"?\n\x13\x43ollectorVerifyInfo\x12(\n\x07options\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\"7\n\nPluginInfo\x12)\n\x08metadata\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct2\xa9\x02\n\tCollector\x12_\n\x04init\x12*.spaceone.api.inventory.plugin.InitRequest\x1a).spaceone.api.inventory.plugin.PluginInfo\"\x00\x12P\n\x06verify\x12,.spaceone.api.inventory.plugin.VerifyRequest\x1a\x16.google.protobuf.Empty\"\x00\x12i\n\x07\x63ollect\x12-.spaceone.api.inventory.plugin.CollectRequest\x1a+.spaceone.api.inventory.plugin.ResourceInfo\"\x00\x30\x01\x42\x44ZBgithub.com/cloudforet-io/api/dist/go/spaceone/api/inventory/pluginb\x06proto3')
 
 
 
@@ -79,15 +79,15 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _VERIFYREQUEST._serialized_start=196
   _VERIFYREQUEST._serialized_end=299
   _COLLECTREQUEST._serialized_start=302
-  _COLLECTREQUEST._serialized_end=447
-  _RESOURCEINFO._serialized_start=450
-  _RESOURCEINFO._serialized_end=811
-  _RESOURCEINFO_STATE._serialized_start=703
-  _RESOURCEINFO_STATE._serialized_end=811
-  _COLLECTORVERIFYINFO._serialized_start=813
-  _COLLECTORVERIFYINFO._serialized_end=876
-  _PLUGININFO._serialized_start=878
-  _PLUGININFO._serialized_end=933
-  _COLLECTOR._serialized_start=936
-  _COLLECTOR._serialized_end=1233
+  _COLLECTREQUEST._serialized_end=494
+  _RESOURCEINFO._serialized_start=497
+  _RESOURCEINFO._serialized_end=858
+  _RESOURCEINFO_STATE._serialized_start=750
+  _RESOURCEINFO_STATE._serialized_end=858
+  _COLLECTORVERIFYINFO._serialized_start=860
+  _COLLECTORVERIFYINFO._serialized_end=923
+  _PLUGININFO._serialized_start=925
+  _PLUGININFO._serialized_end=980
+  _COLLECTOR._serialized_start=983
+  _COLLECTOR._serialized_end=1280
 # @@protoc_insertion_point(module_scope)
