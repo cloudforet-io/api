@@ -23,13 +23,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Cost_Create_FullMethodName    = "/spaceone.api.cost_analysis.v1.Cost/create"
-	Cost_Delete_FullMethodName    = "/spaceone.api.cost_analysis.v1.Cost/delete"
-	Cost_Get_FullMethodName       = "/spaceone.api.cost_analysis.v1.Cost/get"
-	Cost_List_FullMethodName      = "/spaceone.api.cost_analysis.v1.Cost/list"
-	Cost_Analyze_FullMethodName   = "/spaceone.api.cost_analysis.v1.Cost/analyze"
-	Cost_AnalyzeV2_FullMethodName = "/spaceone.api.cost_analysis.v1.Cost/analyze_v2"
-	Cost_Stat_FullMethodName      = "/spaceone.api.cost_analysis.v1.Cost/stat"
+	Cost_Create_FullMethodName  = "/spaceone.api.cost_analysis.v1.Cost/create"
+	Cost_Delete_FullMethodName  = "/spaceone.api.cost_analysis.v1.Cost/delete"
+	Cost_Get_FullMethodName     = "/spaceone.api.cost_analysis.v1.Cost/get"
+	Cost_List_FullMethodName    = "/spaceone.api.cost_analysis.v1.Cost/list"
+	Cost_Analyze_FullMethodName = "/spaceone.api.cost_analysis.v1.Cost/analyze"
+	Cost_Stat_FullMethodName    = "/spaceone.api.cost_analysis.v1.Cost/stat"
 )
 
 // CostClient is the client API for Cost service.
@@ -46,7 +45,6 @@ type CostClient interface {
 	List(ctx context.Context, in *CostQuery, opts ...grpc.CallOption) (*CostsInfo, error)
 	// Gets the Cost information of specific `product`s based on the time granularity: `DAILY`, `MONTHLY`, or `ACCUMULATED`. For `DAILY` granularity, this method can get the Cost data of at most 31 days. For `MONTHLY` or `ACCUMULATED` granularity, this method can get the Cost data of at most 12 months.
 	Analyze(ctx context.Context, in *CostAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
-	AnalyzeV2(ctx context.Context, in *CostAnalyzeV2Query, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Stat(ctx context.Context, in *CostStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
@@ -103,15 +101,6 @@ func (c *costClient) Analyze(ctx context.Context, in *CostAnalyzeQuery, opts ...
 	return out, nil
 }
 
-func (c *costClient) AnalyzeV2(ctx context.Context, in *CostAnalyzeV2Query, opts ...grpc.CallOption) (*_struct.Struct, error) {
-	out := new(_struct.Struct)
-	err := c.cc.Invoke(ctx, Cost_AnalyzeV2_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *costClient) Stat(ctx context.Context, in *CostStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	out := new(_struct.Struct)
 	err := c.cc.Invoke(ctx, Cost_Stat_FullMethodName, in, out, opts...)
@@ -135,7 +124,6 @@ type CostServer interface {
 	List(context.Context, *CostQuery) (*CostsInfo, error)
 	// Gets the Cost information of specific `product`s based on the time granularity: `DAILY`, `MONTHLY`, or `ACCUMULATED`. For `DAILY` granularity, this method can get the Cost data of at most 31 days. For `MONTHLY` or `ACCUMULATED` granularity, this method can get the Cost data of at most 12 months.
 	Analyze(context.Context, *CostAnalyzeQuery) (*_struct.Struct, error)
-	AnalyzeV2(context.Context, *CostAnalyzeV2Query) (*_struct.Struct, error)
 	Stat(context.Context, *CostStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedCostServer()
 }
@@ -158,9 +146,6 @@ func (UnimplementedCostServer) List(context.Context, *CostQuery) (*CostsInfo, er
 }
 func (UnimplementedCostServer) Analyze(context.Context, *CostAnalyzeQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Analyze not implemented")
-}
-func (UnimplementedCostServer) AnalyzeV2(context.Context, *CostAnalyzeV2Query) (*_struct.Struct, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AnalyzeV2 not implemented")
 }
 func (UnimplementedCostServer) Stat(context.Context, *CostStatQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
@@ -268,24 +253,6 @@ func _Cost_Analyze_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Cost_AnalyzeV2_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CostAnalyzeV2Query)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CostServer).AnalyzeV2(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Cost_AnalyzeV2_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CostServer).AnalyzeV2(ctx, req.(*CostAnalyzeV2Query))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Cost_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CostStatQuery)
 	if err := dec(in); err != nil {
@@ -330,10 +297,6 @@ var Cost_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "analyze",
 			Handler:    _Cost_Analyze_Handler,
-		},
-		{
-			MethodName: "analyze_v2",
-			Handler:    _Cost_AnalyzeV2_Handler,
 		},
 		{
 			MethodName: "stat",

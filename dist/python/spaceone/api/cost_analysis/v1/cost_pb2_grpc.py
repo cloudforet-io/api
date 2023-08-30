@@ -41,11 +41,6 @@ class CostStub(object):
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.CostAnalyzeQuery.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 )
-        self.analyze_v2 = channel.unary_unary(
-                '/spaceone.api.cost_analysis.v1.Cost/analyze_v2',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.CostAnalyzeV2Query.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
-                )
         self.stat = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.Cost/stat',
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.CostStatQuery.SerializeToString,
@@ -91,12 +86,6 @@ class CostServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def analyze_v2(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def stat(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -129,11 +118,6 @@ def add_CostServicer_to_server(servicer, server):
             'analyze': grpc.unary_unary_rpc_method_handler(
                     servicer.analyze,
                     request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.CostAnalyzeQuery.FromString,
-                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
-            ),
-            'analyze_v2': grpc.unary_unary_rpc_method_handler(
-                    servicer.analyze_v2,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.CostAnalyzeV2Query.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
@@ -232,23 +216,6 @@ class Cost(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.Cost/analyze',
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.CostAnalyzeQuery.SerializeToString,
-            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def analyze_v2(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.Cost/analyze_v2',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.CostAnalyzeV2Query.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

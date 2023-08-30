@@ -28,20 +28,7 @@ const (
 
 //	{
 //	       "name": "project_provider_region",
-//	       "options": {
-//	           "primary_group_by": "project_id",
-//	           "filters": {},
-//	           "period": {
-//	               "end": "2022-07-31T23:59:59Z",
-//	               "start": "2022-07-01T00:00:00Z"
-//	           },
-//	           "group_by": [
-//	               "project_id",
-//	               "provider",
-//	               "region_code"
-//	           ],
-//	           "stack": false,
-//	           "granularity": "ACCUMULATED"}
+//	       "options": {}
 //	}
 type CreateCostQuerySetRequest struct {
 	state         protoimpl.MessageState
@@ -118,22 +105,7 @@ func (x *CreateCostQuerySetRequest) GetDomainId() string {
 //	{
 //	       "cost_query_set_id": "query-76a58ea5d02c",
 //	       "name": "project_provider_region",
-//	       "options": {
-//	           "primary_group_by": "project_id",
-//	           "stack": false,
-//	           "period": {
-//	               "end": "2022-07-31T23:59:59Z",
-//	               "start": "2022-07-01T00:00:00Z"
-//	           },
-//	           "filters": {},
-//	           "granularity": "ACCUMULATED",
-//	           "group_by": [
-//	               "project_id",
-//	               "provider",
-//	               "region_code",
-//	               "product"
-//	           ]
-//	       },
+//	       "options": {},
 //	       "tags": {},
 //	       "user_id": "test@cloudforet.io",
 //	       "domain_id": "domain-58010aa2e451",
@@ -223,7 +195,8 @@ func (x *UpdateCostQuerySetRequest) GetDomainId() string {
 }
 
 //	{
-//	   "cost_query_set_id": "query-16ae671dc8fb"
+//	   "cost_query_set_id": "query-16ae671dc8fb",
+//	    "domain_id": "domain-58010aa2e451"
 //	}
 type CostQuerySetRequest struct {
 	state         protoimpl.MessageState
@@ -281,7 +254,8 @@ func (x *CostQuerySetRequest) GetDomainId() string {
 }
 
 //	{
-//	   "cost_query_set_id": "query-16ae671dc8fb"
+//	   "cost_query_set_id": "query-16ae671dc8fb",
+//	   "domain_id": "domain-58010aa2e451"
 //	}
 type GetCostQuerySetRequest struct {
 	state         protoimpl.MessageState
@@ -436,21 +410,7 @@ func (x *CostQuerySetQuery) GetDomainId() string {
 //	{
 //	       "cost_query_set_id": "query-76a58ea5d02c",
 //	       "name": "project_provider_region",
-//	       "options": {
-//	           "group_by": [
-//	               "project_id",
-//	               "provider",
-//	               "region_code"
-//	           ],
-//	           "filters": {},
-//	           "primary_group_by": "project_id",
-//	           "period": {
-//	               "end": "2022-07-31T23:59:59Z",
-//	               "start": "2022-07-01T00:00:00Z"
-//	           },
-//	           "stack": false,
-//	           "granularity": "ACCUMULATED"
-//	       },
+//	       "options": {},
 //	       "tags": {},
 //	       "user_id": "test@cloudforet.io",
 //	       "domain_id": "domain-58010aa2e451",
@@ -565,19 +525,7 @@ func (x *CostQuerySetInfo) GetUpdatedAt() string {
 //	           {
 //	               "cost_query_set_id": "query-16ae671dc8fb",
 //	               "name": "3 month product pie chart",
-//	               "options": {
-//	                   "primary_group_by": "product",
-//	                   "granularity": "ACCUMULATED",
-//	                   "stack": false,
-//	                   "filters": {},
-//	                   "period": {
-//	                       "end": "2022-03-31",
-//	                       "start": "2022-01-01"
-//	                   },
-//	                   "group_by": [
-//	                       "product"
-//	                   ]
-//	               },
+//	               "options": {},
 //	               "tags": {},
 //	               "user_id": "yuda@mz.co.kr",
 //	               "domain_id": "domain-58010aa2e451",
@@ -587,19 +535,7 @@ func (x *CostQuerySetInfo) GetUpdatedAt() string {
 //	           {
 //	               "cost_query_set_id": "query-d90addf25e4b",
 //	               "name": "6 month project group",
-//	               "options": {
-//	                   "primary_group_by": "project_group_id",
-//	                   "period": {
-//	                       "start": "2021-10-01",
-//	                       "end": "2022-03-31"
-//	                   },
-//	                   "stack": false,
-//	                   "group_by": [
-//	                       "project_group_id"
-//	                   ],
-//	                   "granularity": "MONTHLY",
-//	                   "filters": {}
-//	               },
+//	               "options": {},
 //	               "tags": {},
 //	               "user_id": "yuda@mz.co.kr",
 //	               "domain_id": "domain-58010aa2e451",
