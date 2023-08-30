@@ -52,12 +52,6 @@ service Cost {
             body: "*"
         };
     }
-    rpc analyze_v2 (CostAnalyzeV2Query) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/cost/analyze-v2"
-            body: "*"
-        };
-    }
     rpc stat (CostStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/cost/stat"
@@ -67,10 +61,9 @@ service Cost {
 }
 
 //{
-//        "original_cost": 4.50528e-08,
-//        "original_currency": "USD",
-//        "usd_cost": 4.50528e-08,
-//        "usage_quantity": 4.11e-07,
+//        "cost": 142,
+//        "usage_quantity": 84532,
+//        "usage_unit": "GB",
 //        "provider": "aws",
 //        "region_code": "ap-northeast-1",
 //        "product": "AWSDataTransfer",
@@ -79,31 +72,27 @@ service Cost {
 //        "additional_info": {
 //            "raw_usage_type": "APN1-DataTransfer-Out-Bytes"
 //        },
+//        "tags": {
+//            "Environment": "Dev"
+//        },
 //        "data_source_id": "ds-fcba92ca73b1"
 //}
 message CreateCostRequest {
-    float original_cost = 1;
-    string original_currency = 2;
+    float cost = 1;
     // +optional
-    float usd_cost = 3;
+    float usage_quantity = 2;
     // +optional
-    float usage_quantity = 4;
+    float usage_unit = 3;
     // +optional
-    string provider = 5;
+    string provider = 4;
     // +optional
-    string region_code = 6;
+    string region_code = 5;
     // +optional
-    string category = 7;
+    string product = 6;
     // +optional
-    string product = 8;
+    string usage_type = 7;
     // +optional
-    string account = 9;
-    // +optional
-    string usage_type = 10;
-    // +optional
-    string resource_group = 11;
-    // +optional
-    string resource = 12;
+    string resource = 8;
     // +optional
     google.protobuf.Struct tags = 21;
     // +optional
@@ -145,70 +134,58 @@ message CostQuery {
     // +optional
     string cost_id = 2;
     // +optional
-    string original_currency = 3;
+    string provider = 3;
     // +optional
-    string provider = 4;
+    string region_code = 4;
     // +optional
-    string region_code = 5;
+    string region_key = 5;
     // +optional
-    string region_key = 6;
+    string product = 6;
     // +optional
-    string category = 7;
+    string usage_type = 7;
     // +optional
-    string product = 8;
+    string resource = 8;
     // +optional
-    string account = 9;
+    string service_account_id = 11;
     // +optional
-    string usage_type = 10;
+    string project_id = 12;
     // +optional
-    string resource_group = 11;
-    // +optional
-    string resource = 12;
-    // +optional
-    string service_account_id = 21;
-    // +optional
-    string project_id = 22;
-    // +optional
-    string data_source_id = 23;
-    string domain_id = 24;
+    string data_source_id = 13;
+    string domain_id = 14;
 }
+
 
 //{
 //        "cost_id": "cost-c5aae7712ec9",
-//        "usd_cost": 4.50528e-08,
-//        "original_currency": "USD",
-//        "original_cost": 4.50528e-08,
-//        "usage_quantity": 4.11e-07,
+//        "cost": 142,
+//        "usage_quantity": 84532,
+//        "usage_unit": "GB",
 //        "provider": "aws",
 //        "region_code": "ap-northeast-1",
 //        "product": "AWSDataTransfer",
-//        "account": "722069360300",
 //        "usage_type": "data-transfer.out",
-//        "tags": {},
 //        "additional_info": {
 //            "raw_usage_type": "APN1-DataTransfer-Out-Bytes"
 //        },
-//        "data_source_id": "ds-fcba92ca73b1",
+//        "tags": {
+//            "Environment": "Dev"
+//        },
+//        "data_source_id": "ds-fcba92ca73b1"
 //        "domain_id": "domain-58010aa2e451",
 //        "billed_at": "2022-07-19T09:44:27.326Z",
 //        "created_at": "2022-07-19T09:44:27.373Z"
 //}
 message CostInfo {
     string cost_id = 1;
-    float usd_cost = 2;
-    string original_currency = 3;
-    float original_cost = 4;
-    float usage_quantity = 5;
-    string provider = 6;
-    string region_code = 7;
-    string region_key = 8;
-    string category = 9;
-    string product = 10;
-    string account = 11;
-    string usage_type = 12;
-    string usage_unit = 13;
-    string resource = 14;
-    string resource_group = 15;
+    float cost = 2;
+    float usage_quantity = 3;
+    string usage_unit = 4;
+    string provider = 5;
+    string region_code = 6;
+    string region_key = 7;
+    string product = 8;
+    string usage_type = 9;
+    string resource = 10;
     google.protobuf.Struct tags = 21;
     google.protobuf.Struct additional_info = 22;
     string service_account_id = 31;
@@ -222,39 +199,37 @@ message CostInfo {
 //{
 //        "results": [
 //            {
-//                "cost_id": "cost-2ad052ed03d7",
-//                "usd_cost": 4.50528e-08,
-//                "original_currency": "USD",
-//                "original_cost": 4.50528e-08,
-//                "usage_quantity": 4.11e-07,
+//                "cost_id": "cost-c5aae7712ec9",
+//                "cost": 142,
+//                "usage_quantity": 84532,
+//                "usage_unit": "GB",
 //                "provider": "aws",
 //                "region_code": "ap-northeast-1",
 //                "product": "AWSDataTransfer",
-//                "account": "722069360300",
 //                "usage_type": "data-transfer.out",
-//                "tags": {},
 //                "additional_info": {
-//                    "raw_usage_type": "APN1-DataTransfer-Out-Bytes"
+//                "raw_usage_type": "APN1-DataTransfer-Out-Bytes"
 //                },
-//                "data_source_id": "ds-fcba92ca73b1",
+//                "tags": {
+//                "Environment": "Dev"
+//                },
+//                "data_source_id": "ds-fcba92ca73b1"
 //                "domain_id": "domain-58010aa2e451",
-//                "billed_at": "2021-01-01T00:00:00.000Z",
-//                "created_at": "2022-04-06T13:49:39.669Z"
+//                "billed_at": "2022-07-19T09:44:27.326Z",
+//                "created_at": "2022-07-19T09:44:27.373Z"
 //            },
 //            {
 //                "cost_id": "cost-1d5e1b0dbf82",
-//                "usd_cost": 1.04e-05,
-//                "original_currency": "USD",
-//                "original_cost": 1.04e-05,
-//                "usage_quantity": 26.0,
+//                "cost": 78,
+//                "usage_quantity": 34523,
+//                "usage_unit": "Count",
 //                "provider": "aws",
 //                "region_code": "ap-northeast-1",
-//                "product": "AWSQueueService",
-//                "account": "722069360300",
-//                "tags": {},
+//                "product": "AWSQueueService"
 //                "additional_info": {
 //                    "raw_usage_type": "APN1-Requests-Tier1"
 //                },
+//                "tags": {},
 //                "data_source_id": "ds-fcba92ca73b1",
 //                "domain_id": "domain-58010aa2e451",
 //                "billed_at": "2021-01-01T00:00:00.000Z",
@@ -268,52 +243,14 @@ message CostsInfo {
     int32 total_count = 2;
 }
 
-//{
-//    "granularity": "MONTHLY",
-//    "start": "2022-05",
-//    "end": "2022-07",
-//    "group_by": ["product"],
-//    "filter": [],
-//    "limit": 15,
-//    "include_others": true,
-//    "domain_id": "domain-58010aa2e451"
-//}
 message CostAnalyzeQuery {
-    enum Granularity {
-        UNIT_NONE = 0;
-        ACCUMULATED = 1;
-        DAILY = 2;
-        MONTHLY = 3;
-        YEARLY = 4;
-    }
-
-    Granularity granularity = 1;
-    string start = 2;
-    string end = 3;
-    // +optional
-    repeated string group_by = 4;
-    // +optional
-    google.protobuf.ListValue filter = 5;
-    // +optional
-    int32 limit = 6;
-    // +optional
-    spaceone.api.core.v1.Page page = 7;
-    // +optional
-    spaceone.api.core.v1.Sort sort = 8;
-    // +optional
-    bool include_usage_quantity = 9;
-    // +optional
-    bool include_others = 10;
-    string domain_id = 11;
-
-}
-
-message CostAnalyzeV2Query {
     spaceone.api.core.v1.TimeSeriesAnalyzeQuery query = 1;
-    string domain_id = 2;
+    string data_source_id = 2;
+    string domain_id = 3;
 }
 
 message CostStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
+    string data_source_id = 2;
+    string domain_id = 3;
 }

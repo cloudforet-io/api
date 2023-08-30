@@ -99,28 +99,28 @@ message DataSourceRuleOptions {
 }
 
 //{
+//    "data_source_id": "ds-c96609f5afeb",
 //    "name": "match_service_account_test",
 //    "conditions_policy": "ALWAYS",
 //    "actions": {
 //        "match_service_account": {"source": "account", "target": "data.project_id"}
 //    },
 //    "options": {"stop_processing": true},
-//    "tags": {"b": "c", "a": "b"},
-//    "data_source_id": "ds-c96609f5afeb"
+//    "tags": {"b": "c", "a": "b"}
 //}
 message CreateDataSourceRuleRequest {
+    string data_source_id = 1;
     // +optional
-    string name = 1;
+    string name = 2;
     // +optional
-    repeated DataSourceRuleCondition conditions = 2;
-    ConditionsPolicy conditions_policy = 3;
-    DataSourceRuleActions actions = 4;
+    repeated DataSourceRuleCondition conditions = 3;
+    ConditionsPolicy conditions_policy = 4;
+    DataSourceRuleActions actions = 5;
     // +optional
-    DataSourceRuleOptions options = 5;
+    DataSourceRuleOptions options = 6;
     // +optional
-    google.protobuf.Struct tags = 6;
-    string data_source_id = 11;
-    string domain_id = 12;
+    google.protobuf.Struct tags = 7;
+    string domain_id = 11;
 }
 
 //{
@@ -194,7 +194,9 @@ message DataSourceRuleQuery {
     // +optional
     string name = 3;
     // +optional
-    string data_source_id = 4;
+    string rule_type = 4;
+    // +optional
+    string data_source_id = 5;
     string domain_id = 11;
 }
 
