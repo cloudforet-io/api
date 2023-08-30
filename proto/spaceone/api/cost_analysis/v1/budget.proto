@@ -109,7 +109,8 @@ message BudgetNotification {
 //    "time_unit": "MONTHLY",
 //    "start": "2022-01",
 //    "end": "2022-12",
-//    "project_group_id": "pg-812c90990877"
+//    "project_group_id": "pg-812c90990877",
+//    "data_source_id": "ds-fcba92ca73b1"
 //}
 message CreateBudgetRequest {
     enum TimeUnit {
@@ -138,7 +139,8 @@ message CreateBudgetRequest {
     string project_id = 11;
     // +optional
     string project_group_id = 12;
-    string domain_id = 13;
+    string data_source_id = 13;
+    string domain_id = 14;
 }
 
 //{
@@ -230,6 +232,8 @@ message BudgetQuery {
     string project_group_id = 5;
     // +optional
     TimeUnit time_unit = 6;
+    // +optional
+    string data_source_id = 7;
     string domain_id = 11;
 }
 
@@ -287,12 +291,13 @@ message BudgetQuery {
 //                "limit": 2100.0
 //            }
 //        ],
-//        "total_usage_usd_cost": 43412.45,
+//        "currency": "USD",
 //        "time_unit": "MONTHLY",
 //        "start": "2022-01",
 //        "end": "2022-12",
 //        "tags": {},
 //        "project_group_id": "pg-812c90990877",
+//        "data_source_id": "ds-fcba92ca73b1",
 //        "domain_id": "domain-58010aa2e451",
 //        "created_at": "2022-07-18T09:30:56.901Z",
 //        "updated_at": "2022-07-18T09:30:56.901Z"
@@ -309,7 +314,7 @@ message BudgetInfo {
     string name = 2;
     float limit = 3;
     repeated PlannedLimit planned_limits = 4;
-    float total_usage_usd_cost = 5;
+    string currency = 5;
     google.protobuf.Struct cost_types = 6;
     TimeUnit time_unit = 7;
     string start = 8;
@@ -318,7 +323,8 @@ message BudgetInfo {
     google.protobuf.Struct tags = 21;
     string project_id = 31;
     string project_group_id = 32;
-    string domain_id = 33;
+    string data_source_id = 33;
+    string domain_id = 34;
     string created_at = 41;
     string updated_at = 42;
 }
@@ -379,12 +385,13 @@ message BudgetInfo {
 //                        "limit": 2100.0
 //                    }
 //                ],
-//                "total_usage_usd_cost": 43412.45,
+//                "currency": "USD",
 //                "time_unit": "MONTHLY",
 //                "start": "2022-01",
 //                "end": "2022-12",
 //                "tags": {},
 //                "project_group_id": "pg-812c90990877",
+//                "data_source_id": "ds-fcba92ca73b1",
 //                "domain_id": "domain-58010aa2e451",
 //                "created_at": "2022-04-12T06:09:56.917Z",
 //                "updated_at": "2022-04-12T06:09:56.917Z"

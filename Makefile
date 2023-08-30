@@ -26,7 +26,7 @@ endef
 
 help:
 	@echo "Make Options:"
-	@echo " all                 - Generate all
+	@echo " all                 - Generate all"
 	@echo " python              - Generate python protobuf"
 	@echo " go                  - Generate go protobuf"
 	@echo " gateway             - Generate gateway protobuf"
