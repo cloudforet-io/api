@@ -92,6 +92,17 @@ message BudgetNotification {
     NotificationType notification_type = 3;
 }
 
+message ProviderFilter {
+    enum State {
+        STATE_NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    State state = 1;
+    repeated string providers = 2;
+}
+
 //{
 //    "name": "Cloudforet-Budget",
 //    "planned_limits": [{"date": "2022-01", "limit": 1000.0},
@@ -127,7 +138,7 @@ message CreateBudgetRequest {
     // +optional
     repeated PlannedLimit planned_limits = 3;
     // +optional
-    google.protobuf.Struct cost_types = 4;
+    ProviderFilter provider_filter = 4;
     TimeUnit time_unit = 5;
     string start = 6;
     string end = 7;
@@ -167,7 +178,7 @@ message UpdateBudgetRequest {
     // +optional
     repeated PlannedLimit planned_limits = 4;
     // +optional
-    string end = 5;
+    ProviderFilter provider_filter = 5;
     // +optional
     google.protobuf.Struct tags = 6;
     string domain_id = 11;
@@ -315,7 +326,7 @@ message BudgetInfo {
     float limit = 3;
     repeated PlannedLimit planned_limits = 4;
     string currency = 5;
-    google.protobuf.Struct cost_types = 6;
+    ProviderFilter provider_filter = 6;
     TimeUnit time_unit = 7;
     string start = 8;
     string end = 9;
