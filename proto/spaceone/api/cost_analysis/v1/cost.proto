@@ -103,8 +103,7 @@ message CreateCostRequest {
     string project_id = 32;
     string data_source_id = 33;
     string domain_id = 34;
-    // +optional
-    string billed_at = 41;
+    string billed_date = 41;
 }
 
 //{
@@ -152,6 +151,12 @@ message CostQuery {
     // +optional
     string data_source_id = 13;
     string domain_id = 14;
+    // +optional
+    string billed_year = 21;
+    // +optional
+    string billed_month = 22;
+    // +optional
+    string billed_date = 23;
 }
 
 
@@ -172,8 +177,9 @@ message CostQuery {
 //        },
 //        "data_source_id": "ds-fcba92ca73b1"
 //        "domain_id": "domain-58010aa2e451",
-//        "billed_at": "2022-07-19T09:44:27.326Z",
-//        "created_at": "2022-07-19T09:44:27.373Z"
+//        "billed_year": "2022",
+//        "billed_month": "2022-07",
+//        "billed_date": "2022-07-19"
 //}
 message CostInfo {
     string cost_id = 1;
@@ -192,8 +198,9 @@ message CostInfo {
     string project_id = 32;
     string data_source_id = 33;
     string domain_id = 34;
-    string billed_at = 41;
-    string created_at = 42;
+    string billed_year = 41;
+    string billed_month = 42;
+    string billed_date = 43;
 }
 
 //{
@@ -215,8 +222,9 @@ message CostInfo {
 //                },
 //                "data_source_id": "ds-fcba92ca73b1"
 //                "domain_id": "domain-58010aa2e451",
-//                "billed_at": "2022-07-19T09:44:27.326Z",
-//                "created_at": "2022-07-19T09:44:27.373Z"
+//                "billed_year": "2022",
+//                "billed_month": "2022-07",
+//                "billed_date": "2022-07-19"
 //            },
 //            {
 //                "cost_id": "cost-1d5e1b0dbf82",
@@ -232,8 +240,9 @@ message CostInfo {
 //                "tags": {},
 //                "data_source_id": "ds-fcba92ca73b1",
 //                "domain_id": "domain-58010aa2e451",
-//                "billed_at": "2021-01-01T00:00:00.000Z",
-//                "created_at": "2022-04-06T13:49:39.675Z"
+//                "billed_year": "2022",
+//                "billed_month": "2022-07",
+//                "billed_date": "2022-07-20"
 //            }
 //        ],
 //        "total_count": 307066

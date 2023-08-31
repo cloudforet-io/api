@@ -11,9 +11,6 @@ service Cost {
     rpc get_data (GetDataRequest) returns (stream CostsInfo) {}
 }
 
-//{
-// 
-//}
 message GetDataRequest {
     google.protobuf.Struct options = 1;
     google.protobuf.Struct secret_data = 2;
@@ -26,26 +23,18 @@ message GetDataRequest {
 
 message CostInfo {
     float cost = 1;
-    string currency = 2;
-    float usage_quantity = 3;
+    float usage_quantity = 2;
+    string usage_unit = 3;
     string provider = 4;
     string region_code = 5;
-    string category = 6;
-    string product = 7;
-    string account = 8;
-    string usage_type = 9;
-    string resource_group = 10;
-    string resource = 11;
+    string product = 6;
+    string usage_type = 7;
+    string resource = 8;
     google.protobuf.Struct tags = 12;
     google.protobuf.Struct additional_info = 13;
-    string billed_at = 14;
-    float usd_cost = 15;
-    string usage_unit = 16;
+    string billed_date = 21;
 }
 
-//{
-//
-//}
 message CostsInfo {
     repeated CostInfo results = 1;
 }
