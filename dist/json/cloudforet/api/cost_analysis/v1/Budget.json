@@ -138,6 +138,29 @@
               "description": ""
             }
           ]
+        },
+        {
+          "name": "State",
+          "longName": "ProviderFilter.State",
+          "fullName": "spaceone.api.cost_analysis.v1.ProviderFilter.State",
+          "description": "",
+          "values": [
+            {
+              "name": "STATE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
         }
       ],
       "extensions": [],
@@ -213,12 +236,12 @@
               "defaultValue": ""
             },
             {
-              "name": "cost_types",
+              "name": "provider_filter",
               "description": "",
               "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "type": "ProviderFilter",
+              "longType": "ProviderFilter",
+              "fullType": "spaceone.api.cost_analysis.v1.ProviderFilter",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -669,12 +692,12 @@
               "defaultValue": ""
             },
             {
-              "name": "cost_types",
+              "name": "provider_filter",
               "description": "+optional",
               "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "type": "ProviderFilter",
+              "longType": "ProviderFilter",
+              "fullType": "spaceone.api.cost_analysis.v1.ProviderFilter",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -875,6 +898,42 @@
           ]
         },
         {
+          "name": "ProviderFilter",
+          "longName": "ProviderFilter",
+          "fullName": "spaceone.api.cost_analysis.v1.ProviderFilter",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "State",
+              "longType": "ProviderFilter.State",
+              "fullType": "spaceone.api.cost_analysis.v1.ProviderFilter.State",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "providers",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "SetBudgetNotificationRequest",
           "longName": "SetBudgetNotificationRequest",
           "fullName": "spaceone.api.cost_analysis.v1.SetBudgetNotificationRequest",
@@ -981,12 +1040,12 @@
               "defaultValue": ""
             },
             {
-              "name": "end",
+              "name": "provider_filter",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "ProviderFilter",
+              "longType": "ProviderFilter",
+              "fullType": "spaceone.api.cost_analysis.v1.ProviderFilter",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
