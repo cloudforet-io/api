@@ -6,11 +6,13 @@ import sys
 import subprocess
 import glob
 import click
-import json
 import re
 import yaml
+
 from pathlib import Path
-from jinja2 import Environment, FileSystemLoader
+
+import openapi
+
 
 PROJECT = 'spaceone'
 OUTPUT_DOC_FORMAT = 'json'
@@ -38,6 +40,21 @@ YAML_LOADER.add_implicit_resolver(
     |[-+]?\\.(?:inf|Inf|INF)
     |\\.(?:nan|NaN|NAN))$''', re.X),
     list(u'-+0123456789.'))
+
+
+def load_yaml(yaml_str: str) -> dict:
+    try:
+        return yaml.load(yaml_str, Loader=YAML_LOADER)
+    except Exception:
+        raise ValueError(f'YAML Load Error: {yaml_str}')
+
+
+def load_yaml_from_file(yaml_file: str):
+    try:
+        with open(yaml_file, 'r') as f:
+            return load_yaml(f.read())
+    except Exception:
+        raise Exception(f'YAML Load Error: {yaml_file}')
 
 
 def _error(msg):
@@ -134,192 +151,6 @@ def _make_go_mod(output_dir):
     _execute_command(['go', 'mod', 'tidy'], cwd=output_dir)
 
 
-def _get_json_files_path(dist_json_dir):
-    return [json_file for json_file in glob.iglob(os.path.join(dist_json_dir, '**', '*.json'), recursive=True)
-            if f'{dist_json_dir}/plugin' not in json_file]
-
-
-def _set_required_or_optional(fields):
-    for field in fields:
-        field_description = field['description']
-        if field_description.split('\n')[-1].lower().strip() == '+optional':
-            field['required'] = ''
-        else:
-            field['required'] = 'True'
-    return fields
-
-
-def _set_auth_required_or_not(method):
-    method_description = method['description']
-    if method_description.split('\n')[-1].lower().strip() == '+noauth':
-        method['description'] = method_description.replace('+noauth', '')
-        method['auth_required'] = 'False'
-    else:
-        method['auth_required'] = 'True'
-    return method
-
-
-def _make_table_description(fields):
-    _label_type_mapper = {
-        'repeated': 'array',
-        'Struct': 'object',
-        'ListValue': 'array'
-    }
-
-    _table_header = "\n" \
-                    "| Key               | Description                                                   | Type      | Required|\n" \
-                    "|-------------------|---------------------------------------------------------------|-----------|-------|\n"
-    _table_body_format = " |{key}|{description}|{type}|{required}|\n"
-    _table_body = ""
-
-    for filed in fields:
-        _description = filed['description'].replace('"', "'")
-        _description = _description.replace('+optional', '')
-        _type = _label_type_mapper.get(filed.get('label'), filed.get('type'))
-        _table_body += _table_body_format.format(key=filed['name'], description=_description, type=_type,
-                                                 required=filed['required'])
-
-    table_description = _table_header + _table_body
-    return table_description
-
-
-def _get_tag_from_url(url):
-    _split_url = url.split('/')
-    tag = _split_url[1] + ' > ' + _split_url[3]
-    return tag
-
-
-def _get_scalar_value_types_dict(scalar_value_types):
-    scalar_value_type_dict = {}
-    for scalar_value_type in scalar_value_types:
-        scalar_value_type_dict[(scalar_value_type['protoType'])] = scalar_value_type['pythonType']
-    return scalar_value_type_dict
-
-
-def _get_enums_dict(enums):
-    enums_dict = {}
-    for enum in enums:
-        enums_dict[enum['name']] = enum
-    return enums_dict
-
-
-def _modify_message_field_type_proto_to_python(message, scalar_value_types_dict):
-    fields = message.get('fields')
-    for field in fields:
-        if field['type'] in scalar_value_types_dict:
-            if scalar_value_types_dict[field['type']] == 'str/unicode':
-                field['type'] = 'string'
-            else:
-                field['type'] = scalar_value_types_dict[field['type']]
-    return message
-
-
-def _modify_message_field_type_python_to_openapi(message):
-    fields = message.get('fields')
-    for field in fields:
-        if field['type'] == 'ListValue':
-            field['type'] = 'array'
-    return message
-
-
-def _sort_fields_by_required(fields):
-    return sorted(fields, key=lambda x: x['required'], reverse=True)
-
-
-def _set_enum_field_as_string(fields, enums_dict):
-    for field in fields:
-        if field.get('type') in enums_dict:
-            field['description'] = ', '.join([value.get('name') for value in enums_dict[field.get('type')]['values'] \
-                                              if value.get('number') != '0']) + ' ' + field['description']
-            field['type'] = 'string'
-    return fields
-
-
-def _get_core_messages_dict(output_dir):
-    core_messages_list = []
-    output_dir_with_service = os.path.join(output_dir, 'json', 'cloudforet', 'api', 'core')
-    json_files_path = _get_json_files_path(output_dir_with_service)
-
-    for json_file_path in json_files_path:
-        with open(json_file_path, 'r') as f:
-            json_data = json.load(f)
-            messages = json_data.get('files')[0].get('messages')
-            core_messages_list.extend(messages)
-
-    return core_messages_list
-
-
-def load_yaml(yaml_str: str) -> dict:
-    try:
-        return yaml.load(yaml_str, Loader=YAML_LOADER)
-    except Exception:
-        raise ValueError(f'YAML Load Error: {yaml_str}')
-
-
-def load_yaml_from_file(yaml_file: str):
-    try:
-        with open(yaml_file, 'r') as f:
-            return load_yaml(f.read())
-    except Exception:
-        raise Exception(f'YAML Load Error: {yaml_file}')
-
-
-def _make_openapi_json(output_dir, code, service_name, core_messages_list):
-    file_name = f'{service_name}_openapi.json'
-
-    metadata_path = os.path.join(PROTO_DIR, PROJECT, 'api', service_name, 'metadata.yaml')
-    output_dir_with_service = os.path.join(output_dir, 'json', 'cloudforet', 'api', service_name)
-    template_dir = os.path.join(TEMPLATE_DIR, code)
-    json_files_path = _get_json_files_path(output_dir_with_service)
-
-    filtered_method = []
-    filtered_messages = {}
-    for json_file_path in json_files_path:
-        with open(json_file_path, 'r') as f:
-            json_data = json.load(f)
-            services = json_data.get('files')[0].get('services')
-            messages = json_data.get('files')[0].get('messages')
-            scalar_value_types_dict = _get_scalar_value_types_dict(json_data.get('scalarValueTypes'))
-            if enums := json_data.get('files')[0].get('enums'):
-                enums_dict = _get_enums_dict(enums)
-
-            messages.extend(core_messages_list)
-
-            for message in messages:
-                message = _modify_message_field_type_proto_to_python(message, scalar_value_types_dict)
-                message = _modify_message_field_type_python_to_openapi(message)
-                message['fields'] = _set_required_or_optional(message['fields'])
-                if enums_dict:
-                    message['fields'] = _set_enum_field_as_string(message['fields'], enums_dict)
-                message['fields'] = _sort_fields_by_required(message['fields'])
-                message['table_description'] = _make_table_description(message.get('fields'))
-                filtered_messages.update({message.get('name'): message})
-
-            for service in services:
-                methods = service.get('methods')
-                for method in methods:
-                    if method.get('options') is not None:
-                        url = method.get('options').get('google.api.http').get('rules')[0].get('pattern')
-                        method['tag'] = _get_tag_from_url(url)
-                        method['summary'] = method.get('name').replace('_', ' ').title()
-                        if method.get('description') is not None:
-                            method = _set_auth_required_or_not(method)
-                        method['description'] = "### Description \n" + method['description']
-                        filtered_method.append(method)
-
-    if filtered_method:
-        metadata_dict = {}
-        if os.path.exists(metadata_path):
-            metadata_dict = load_yaml_from_file(metadata_path)
-        jinja_env = Environment(autoescape=False, loader=FileSystemLoader(template_dir), trim_blocks=True)
-        template = jinja_env.get_template('openapi.json.tmpl')
-        content = template.render(methods=filtered_method, messages=filtered_messages,
-                                  scalar_value_types=scalar_value_types_dict, metadata=metadata_dict or {})
-
-        with open(os.path.join(BASE_DIR, output_dir, code, file_name), 'w') as f:
-            f.write(content)
-
-
 def _make_build_environment_python(output_dir, code):
     # Copy setup.py
     src = os.path.join(TEMPLATE_DIR, 'python', 'setup.py.tmpl')
@@ -363,10 +194,6 @@ def _make_build_environment_json(output_dir, code):
     pass
 
 
-def _make_build_environment_openapi(output_dir, code):
-    pass
-
-
 def _make_build_environment(output_dir, code):
     if code == 'python':
         _make_build_environment_python(output_dir, code)
@@ -377,7 +204,7 @@ def _make_build_environment(output_dir, code):
     elif code == 'json':
         _make_build_environment_json(output_dir, code)
     elif code == 'openapi':
-        _make_build_environment_openapi(output_dir, code)
+        openapi.make_build_environment_openapi(output_dir, code)
 
 
 def _python_compile(proto_file, output_path, proto_path_list, debug):
@@ -475,22 +302,6 @@ def _doc_compile(proto_file, output_path, proto_path_list, debug):
     print(f"[SUCCESS] Document Compile : {proto_file}")
 
 
-def _openapi_compile(output_dir, code, service, debug):
-    json_file_path = os.path.join(output_dir, 'json', service)
-    try:
-        core_messages_list = _get_core_messages_dict(output_dir)
-        _make_openapi_json(output_dir, code, service, core_messages_list)
-
-        if debug:
-            print()
-            print(f'{json_file_path}')
-
-    except Exception as e:
-        _error(f"Failed to OpenAPI Compile : {json_file_path}")
-
-    print(f"[SUCCESS] OpenAPI Compile : {json_file_path}")
-
-
 def _compile_code(params, code, proto_file=None, service=None):
     output_path = os.path.join(params['output_dir'], code)
 
@@ -507,7 +318,7 @@ def _compile_code(params, code, proto_file=None, service=None):
         _doc_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
 
     elif code == 'openapi':
-        _openapi_compile(params['output_dir'], code, service, debug=params['debug'])
+        openapi.openapi_compile(params['output_dir'], code, service, debug=params['debug'])
 
 
 @click.command()
