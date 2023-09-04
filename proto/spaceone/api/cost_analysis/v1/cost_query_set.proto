@@ -62,11 +62,13 @@ service CostQuerySet {
 }
 
 //{
+//        "data_source_id": "ds-085d1e872789",
 //        "name": "project_provider_region",
 //        "options": {}
 //}
 message CreateCostQuerySetRequest {
-    string name = 1;
+    string data_source_id = 1;
+    string name = 2;
     google.protobuf.Struct options = 3;
     // +optional
     google.protobuf.Struct tags = 4;
@@ -122,12 +124,13 @@ message GetCostQuerySetRequest {
 message CostQuerySetQuery {
     // +optional
     spaceone.api.core.v1.Query query = 1;
+    string data_source_id = 2;
     // +optional
-    string cost_query_set_id = 2;
+    string cost_query_set_id = 3;
     // +optional
-    string name = 3;
+    string name = 4;
     // +optional
-    string user_id = 4;
+    string user_id = 5;
     string domain_id = 11;
 }
 
@@ -137,6 +140,7 @@ message CostQuerySetQuery {
 //        "options": {},
 //        "tags": {},
 //        "user_id": "test@cloudforet.io",
+//        "data_source_id": "ds-085d1e872789",
 //        "domain_id": "domain-58010aa2e451",
 //        "created_at": "2022-07-19T06:11:03.701Z",
 //        "updated_at": "2022-07-19T06:11:03.701Z"
@@ -160,6 +164,7 @@ message CostQuerySetInfo {
 //                "options": {},
 //                "tags": {},
 //                "user_id": "yuda@mz.co.kr",
+//                "data_source_id": "ds-085d1e872789",
 //                "domain_id": "domain-58010aa2e451",
 //                "created_at": "2022-03-08T03:37:31.404Z",
 //                "updated_at": "2022-03-08T03:37:31.404Z"
@@ -170,6 +175,7 @@ message CostQuerySetInfo {
 //                "options": {},
 //                "tags": {},
 //                "user_id": "yuda@mz.co.kr",
+//                "data_source_id": "ds-085d1e872789",
 //                "domain_id": "domain-58010aa2e451",
 //                "created_at": "2022-03-14T09:29:54.306Z",
 //                "updated_at": "2022-03-14T09:29:54.306Z"
@@ -184,5 +190,6 @@ message CostQuerySetsInfo {
 
 message CostQuerySetStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
+    string data_source_id = 2;
+    string domain_id = 3;
 }
