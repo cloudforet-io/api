@@ -1,12 +1,12 @@
 {
    "openapi": "3.1.0",
-   {% if metadata -%}
-   "info": {
-     "title": "{{ metadata.get('name') }} API",
-     "summary": "{{ metadata.get('description') }}",
-     "description": "**Go Back to** [Home](/docs)<br><br> **Source Code** : [Github]({{ metadata.get('repository')}})"
+   "externalDocs":{
+       "description": "Home",
+       "url": "/docs"
    },
-   {% endif -%}
+   "info": {
+     "title": "{{ service_name.title() | replace('_',' ') }} API"
+   },
    "paths":{
    {%- for method in methods -%}
       {%- set _method = method.get('options').get('google.api.http').get('rules')[0] -%}

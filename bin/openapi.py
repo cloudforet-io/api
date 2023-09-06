@@ -5,8 +5,8 @@ import sys
 
 from jinja2 import Environment, FileSystemLoader
 
-from build import load_yaml_from_file
-from build import BASE_DIR, PROTO_DIR, TEMPLATE_DIR, PROJECT
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'template')
 
 
 def _error(msg):
@@ -123,13 +123,12 @@ def _transform_to_filtered_method(method):
         return method
 
 
-def _make_openapi_json(output_dir, code, service_name, core_message_list):
+def _make_openapi_json(output_dir, service_name, core_message_list):
     openapi_file_name = f'{service_name}_openapi.json'
-    output_path = os.path.join(BASE_DIR, output_dir, code, openapi_file_name)
+    output_path = os.path.join(output_dir, 'openapi', openapi_file_name)
 
-    metadata_path = os.path.join(PROTO_DIR, PROJECT, 'api', service_name, 'metadata.yaml')
     output_dir_with_service_name = os.path.join(output_dir, 'json', 'cloudforet', 'api', service_name)
-    template_dir = os.path.join(TEMPLATE_DIR, code)
+    template_dir = os.path.join(TEMPLATE_DIR, 'openapi')
     json_file_path_list = _get_json_file_paths(output_dir_with_service_name)
 
     filtered_method_list = []
@@ -151,8 +150,8 @@ def _make_openapi_json(output_dir, code, service_name, core_message_list):
                 _modify_message_field_type_proto_to_python(field_list, scalar_value_types)
                 message = _modify_message_field_type_python_to_openapi(message)
                 message['fields'] = _set_required_or_optional(field_list)
-                message['fields'] = _sort_fields_by_required(field_list)
                 message['fields'] = _set_enum_field_as_string(field_list, enums)
+                message['fields'] = _sort_fields_by_required(field_list)
                 message['table_description'] = _make_table_description(field_list)
                 filtered_messages.update({message.get('name'): message})
 
@@ -163,11 +162,10 @@ def _make_openapi_json(output_dir, code, service_name, core_message_list):
                         filtered_method_list.append(filtered_method)
 
     if filtered_method_list:
-        metadata = load_yaml_from_file(metadata_path) if os.path.exists(metadata_path) else {}
         jinja_env = Environment(autoescape=False, loader=FileSystemLoader(template_dir), trim_blocks=True)
         template = jinja_env.get_template('openapi.json.tmpl')
-        content = template.render(methods=filtered_method_list, messages=filtered_messages,
-                                  scalar_value_types=scalar_value_types, metadata=metadata)
+        content = template.render(methods=filtered_method_list, messages=filtered_messages, service_name=service_name,
+                                  scalar_value_types=scalar_value_types)
 
         with open(output_path, 'w') as f:
             f.write(content)
@@ -192,11 +190,11 @@ def _get_core_messages(output_dir) -> list:
     return core_message_list
 
 
-def openapi_compile(output_dir, code, service, debug):
+def build_openapi_json(output_dir, service, debug=False):
     json_file_path = os.path.join(output_dir, 'json', service)
     try:
         core_message_list = _get_core_messages(output_dir)
-        _make_openapi_json(output_dir, code, service, core_message_list)
+        _make_openapi_json(output_dir, service, core_message_list)
 
         if debug:
             print()
@@ -208,5 +206,12 @@ def openapi_compile(output_dir, code, service, debug):
     print(f"[SUCCESS] OpenAPI Compile : {json_file_path}")
 
 
-def make_build_environment_openapi(output_dir, code):
-    pass
+if __name__ == '__main__':
+    if len(sys.argv) < 3:
+        _error("Usage: python openapi.py {output_dir:str} {service:srt} {debug: bool(optional)}")
+
+    output_dir = sys.argv[1]
+    service = sys.argv[2]
+    debug = False if len(sys.argv) == 4 else sys.argv[3]
+
+    build_openapi_json(output_dir=output_dir, service=service, debug=debug)
