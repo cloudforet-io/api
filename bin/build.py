@@ -6,13 +6,10 @@ import sys
 import subprocess
 import glob
 import click
-import re
-import yaml
 
 from pathlib import Path
 
-import openapi
-
+from openapi import build_openapi_json
 
 PROJECT = 'spaceone'
 OUTPUT_DOC_FORMAT = 'json'
@@ -29,32 +26,7 @@ REPOSITORY_URL = 'github.com/cloudforet-io/api'
 GO_MODULE_PATH = f'{REPOSITORY_URL}/dist'
 GO_PREFIX_IMPORT_PATH = f'{GO_MODULE_PATH}/go'
 
-YAML_LOADER = yaml.Loader
-YAML_LOADER.add_implicit_resolver(
-    u'tag:yaml.org,2002:float',
-    re.compile(u'''^(?:
-     [-+]?(?:[0-9][0-9_]*)\\.[0-9_]*(?:[eE][-+]?[0-9]+)?
-    |[-+]?(?:[0-9][0-9_]*)(?:[eE][-+]?[0-9]+)
-    |\\.[0-9_]+(?:[eE][-+][0-9]+)?
-    |[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+\\.[0-9_]*
-    |[-+]?\\.(?:inf|Inf|INF)
-    |\\.(?:nan|NaN|NAN))$''', re.X),
-    list(u'-+0123456789.'))
 
-
-def load_yaml(yaml_str: str) -> dict:
-    try:
-        return yaml.load(yaml_str, Loader=YAML_LOADER)
-    except Exception:
-        raise ValueError(f'YAML Load Error: {yaml_str}')
-
-
-def load_yaml_from_file(yaml_file: str):
-    try:
-        with open(yaml_file, 'r') as f:
-            return load_yaml(f.read())
-    except Exception:
-        raise Exception(f'YAML Load Error: {yaml_file}')
 
 
 def _error(msg):
@@ -203,8 +175,6 @@ def _make_build_environment(output_dir, code):
         _make_build_environment_gateway(output_dir, code)
     elif code == 'json':
         _make_build_environment_json(output_dir, code)
-    elif code == 'openapi':
-        openapi.make_build_environment_openapi(output_dir, code)
 
 
 def _python_compile(proto_file, output_path, proto_path_list, debug):
@@ -317,9 +287,6 @@ def _compile_code(params, code, proto_file=None, service=None):
     elif code == 'json':
         _doc_compile(proto_file, output_path, params['proto_path_list'], debug=params['debug'])
 
-    elif code == 'openapi':
-        openapi.openapi_compile(params['output_dir'], code, service, debug=params['debug'])
-
 
 @click.command()
 @click.argument('target', default='all')
@@ -336,16 +303,21 @@ def build(**params):
 
     params['target'] = _get_services_from_target(params['target'])
     params['proto_path_list'] = _get_proto_path_list(params['proto_dir'], params['third_party_dir'])
+    params['code'] = _get_generate_codes(params['code'])
 
-    for code in _get_generate_codes(params['code']):
+    if 'openapi' in params['code'] and 'json' not in params['code']:
+        params['code'].insert(0, 'json')
+
+    for code in params['code']:
         _make_output_path(params['output_dir'], code)
 
-        for _tg in params['target']:
+        for target in params['target']:
+            proto_files = _get_proto_files(os.path.join(params['proto_dir'], PROJECT, 'api', target))
+            list(map(functools.partial(_compile_code, params, code), proto_files))
+
             if code == 'openapi':
-                _compile_code(params, code, service=_tg)
-            else:
-                proto_files = _get_proto_files(os.path.join(params['proto_dir'], PROJECT, 'api', _tg))
-                list(map(functools.partial(_compile_code, params, code), proto_files))
+                openapi_output_dir = os.path.join(BASE_DIR, params['output_dir'])
+                build_openapi_json(output_dir=openapi_output_dir, service=target, debug=params['debug'])
 
         _make_build_environment(params['output_dir'], code)
 
