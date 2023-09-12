@@ -8,7 +8,31 @@
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
-      "enums": [],
+      "enums": [
+        {
+          "name": "State",
+          "longName": "BudgetUsageProviderFilter.State",
+          "fullName": "spaceone.api.cost_analysis.v1.BudgetUsageProviderFilter.State",
+          "description": "",
+          "values": [
+            {
+              "name": "STATE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        }
+      ],
       "extensions": [],
       "messages": [
         {
@@ -75,7 +99,7 @@
           "name": "BudgetUsageInfo",
           "longName": "BudgetUsageInfo",
           "fullName": "spaceone.api.cost_analysis.v1.BudgetUsageInfo",
-          "description": "",
+          "description": "{\n   \"budget_id\": \"budget-abb377eb9e8b\",\n   \"name\": \"Cloudforet-Budget3\",\n   \"date\": \"2022-01\",\n   \"cost\": 7671.164,\n   \"limit\": 10000.0,\n   \"currency\": \"USD\",\n   \"provider_filter\": {\n       \"state\": \"ENABLED\",\n       \"providers\": [\n           \"aws\",\n           \"google_cloud\"\n       ]\n   },\n   \"project_id\": \"project-1b2b3b4b5b6b\",\n   \"data_source_id\": \"data-source-1b2b3b4b5b6b\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"updated_at\": \"2022-07-19T04:26:08.099Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -154,6 +178,18 @@
               "defaultValue": ""
             },
             {
+              "name": "provider_filter",
+              "description": "",
+              "label": "",
+              "type": "BudgetUsageProviderFilter",
+              "longType": "BudgetUsageProviderFilter",
+              "fullType": "spaceone.api.cost_analysis.v1.BudgetUsageProviderFilter",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "project_id",
               "description": "",
               "label": "",
@@ -205,6 +241,42 @@
               "name": "updated_at",
               "description": "",
               "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "BudgetUsageProviderFilter",
+          "longName": "BudgetUsageProviderFilter",
+          "fullName": "spaceone.api.cost_analysis.v1.BudgetUsageProviderFilter",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "State",
+              "longType": "BudgetUsageProviderFilter.State",
+              "fullType": "spaceone.api.cost_analysis.v1.BudgetUsageProviderFilter.State",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "providers",
+              "description": "",
+              "label": "repeated",
               "type": "string",
               "longType": "string",
               "fullType": "string",
@@ -363,7 +435,7 @@
           "name": "BudgetUsagesInfo",
           "longName": "BudgetUsagesInfo",
           "fullName": "spaceone.api.cost_analysis.v1.BudgetUsagesInfo",
-          "description": "{\n       \"results\": [\n           {\n               \"budget_id\": \"budget-abb377eb9e8b\",\n               \"name\": \"Cloudforet-Budget3\",\n               \"date\": \"2022-01\",\n               \"cost\": 7671.164,\n               \"limit\": 10000.0,\n               \"currency\": \"USD\",\n               \"project_id\": \"project-1b2b3b4b5b6b\",\n               \"data_source_id\": \"data-source-1b2b3b4b5b6b\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"updated_at\": \"2022-07-19T04:26:08.099Z\"\n           },\n           {\n               \"budget_id\": \"budget-abb377eb9e8b\",\n               \"name\": \"Cloudforet-Budget3\",\n               \"date\": \"2022-02\",\n               \"cost\": 5931.771,\n               \"limit\": 11000.0,\n               \"currency\": \"USD\",\n               \"project_id\": \"project-1b2b3b4b5b6b\",\n               \"data_source_id\": \"data-source-1b2b3b4b5b6b\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"updated_at\": \"2022-07-19T04:26:08.105Z\"\n           }\n       ],\n       \"total_count\": 12\n}",
+          "description": "{\n       \"results\": [\n           {\n               \"budget_id\": \"budget-abb377eb9e8b\",\n               \"name\": \"Cloudforet-Budget3\",\n               \"date\": \"2022-01\",\n               \"cost\": 7671.164,\n               \"limit\": 10000.0,\n               \"currency\": \"USD\",\n               \"provider_filter\": {\n                   \"state\": \"ENABLED\",\n                   \"providers\": [\n                       \"aws\",\n                       \"google_cloud\"\n                   ]\n               },\n               \"project_id\": \"project-1b2b3b4b5b6b\",\n               \"data_source_id\": \"data-source-1b2b3b4b5b6b\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"updated_at\": \"2022-07-19T04:26:08.099Z\"\n           },\n           {\n               \"budget_id\": \"budget-abb377eb9e8b\",\n               \"name\": \"Cloudforet-Budget3\",\n               \"date\": \"2022-02\",\n               \"cost\": 5931.771,\n               \"limit\": 11000.0,\n               \"currency\": \"USD\",\n               \"provider_filter\": {\n                   \"state\": \"DISABLED\",\n                   \"providers\": []\n               },\n               \"project_id\": \"project-1b2b3b4b5b6b\",\n               \"data_source_id\": \"data-source-1b2b3b4b5b6b\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"updated_at\": \"2022-07-19T04:26:08.105Z\"\n           }\n       ],\n       \"total_count\": 12\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,

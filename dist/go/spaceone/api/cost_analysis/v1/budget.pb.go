@@ -1138,6 +1138,13 @@ func (x *BudgetQuery) GetDomainId() string {
 //	           }
 //	       ],
 //	       "currency": "USD",
+//	       "provider_filter": {
+//	           "state": "ENABLED",
+//	           "providers": [
+//	               "aws",
+//	               "google_cloud"
+//	           ]
+//	       },
 //	       "time_unit": "MONTHLY",
 //	       "start": "2022-01",
 //	       "end": "2022-12",
@@ -1380,6 +1387,13 @@ func (x *BudgetInfo) GetUpdatedAt() string {
 //	                   }
 //	               ],
 //	               "currency": "USD",
+//	               "provider_filter": {
+//	                   "state": "ENABLED",
+//	                   "providers": [
+//	                       "aws",
+//	                       "google_cloud"
+//	                   ]
+//	               },
 //	               "time_unit": "MONTHLY",
 //	               "start": "2022-01",
 //	               "end": "2022-12",
