@@ -34,6 +34,17 @@ service BudgetUsage {
     }
 }
 
+message BudgetUsageProviderFilter {
+    enum State {
+        STATE_NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    State state = 1;
+    repeated string providers = 2;
+}
+
 //{
 //    "query": {}
 //}
@@ -51,6 +62,25 @@ message BudgetUsageQuery {
     string domain_id = 11;
 }
 
+//{
+//    "budget_id": "budget-abb377eb9e8b",
+//    "name": "Cloudforet-Budget3",
+//    "date": "2022-01",
+//    "cost": 7671.164,
+//    "limit": 10000.0,
+//    "currency": "USD",
+//    "provider_filter": {
+//        "state": "ENABLED",
+//        "providers": [
+//            "aws",
+//            "google_cloud"
+//        ]
+//    },
+//    "project_id": "project-1b2b3b4b5b6b",
+//    "data_source_id": "data-source-1b2b3b4b5b6b",
+//    "domain_id": "domain-58010aa2e451",
+//    "updated_at": "2022-07-19T04:26:08.099Z"
+//}
 message BudgetUsageInfo {
     string budget_id = 1;
     string name = 2;
@@ -58,6 +88,7 @@ message BudgetUsageInfo {
     float cost = 5;
     float limit = 6;
     string currency = 7;
+    BudgetUsageProviderFilter provider_filter = 8;
     string project_id = 11;
     string project_group_id = 12;
     string data_source_id = 13;
@@ -74,6 +105,13 @@ message BudgetUsageInfo {
 //                "cost": 7671.164,
 //                "limit": 10000.0,
 //                "currency": "USD",
+//                "provider_filter": {
+//                    "state": "ENABLED",
+//                    "providers": [
+//                        "aws",
+//                        "google_cloud"
+//                    ]
+//                },
 //                "project_id": "project-1b2b3b4b5b6b",
 //                "data_source_id": "data-source-1b2b3b4b5b6b",
 //                "domain_id": "domain-58010aa2e451",
@@ -86,6 +124,10 @@ message BudgetUsageInfo {
 //                "cost": 5931.771,
 //                "limit": 11000.0,
 //                "currency": "USD",
+//                "provider_filter": {
+//                    "state": "DISABLED",
+//                    "providers": []
+//                },
 //                "project_id": "project-1b2b3b4b5b6b",
 //                "data_source_id": "data-source-1b2b3b4b5b6b",
 //                "domain_id": "domain-58010aa2e451",
