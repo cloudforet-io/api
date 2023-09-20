@@ -339,8 +339,9 @@ type CostQuerySetQuery struct {
 	unknownFields protoimpl.UnknownFields
 
 	// +optional
-	Query        *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	DataSourceId string    `protobuf:"bytes,2,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
+	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	// +optional
+	DataSourceId string `protobuf:"bytes,2,opt,name=data_source_id,json=dataSourceId,proto3" json:"data_source_id,omitempty"`
 	// +optional
 	CostQuerySetId string `protobuf:"bytes,3,opt,name=cost_query_set_id,json=costQuerySetId,proto3" json:"cost_query_set_id,omitempty"`
 	// +optional
