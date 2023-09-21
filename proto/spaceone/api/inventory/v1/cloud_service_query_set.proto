@@ -46,6 +46,14 @@ service CloudServiceQuerySet {
         };
     }
 
+    // Run a specific query set and store the result in the statistics data.
+    rpc test (CloudServiceQuerySetRequest) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/inventory/v1/cloud-service-query-set/test"
+            body: "*"
+        };
+    }
+
     // Enable a specific query set.
     rpc enable (CloudServiceQuerySetRequest) returns (CloudServiceQuerySetInfo) {
         option (google.api.http) = {
