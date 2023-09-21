@@ -36,6 +36,11 @@ class CloudServiceQuerySetStub(object):
                 request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.CloudServiceQuerySetRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
+        self.test = channel.unary_unary(
+                '/spaceone.api.inventory.v1.CloudServiceQuerySet/test',
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.CloudServiceQuerySetRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
+                )
         self.enable = channel.unary_unary(
                 '/spaceone.api.inventory.v1.CloudServiceQuerySet/enable',
                 request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.CloudServiceQuerySetRequest.SerializeToString,
@@ -89,6 +94,13 @@ class CloudServiceQuerySetServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def run(self, request, context):
+        """Run a specific query set and store the result in the statistics data.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def test(self, request, context):
         """Run a specific query set and store the result in the statistics data.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -152,6 +164,11 @@ def add_CloudServiceQuerySetServicer_to_server(servicer, server):
                     servicer.run,
                     request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.CloudServiceQuerySetRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'test': grpc.unary_unary_rpc_method_handler(
+                    servicer.test,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.CloudServiceQuerySetRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'enable': grpc.unary_unary_rpc_method_handler(
                     servicer.enable,
@@ -253,6 +270,23 @@ class CloudServiceQuerySet(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.CloudServiceQuerySet/run',
             spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.CloudServiceQuerySetRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def test(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.CloudServiceQuerySet/test',
+            spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.CloudServiceQuerySetRequest.SerializeToString,
+            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

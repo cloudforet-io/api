@@ -27,6 +27,7 @@ const (
 	CloudServiceQuerySet_Update_FullMethodName  = "/spaceone.api.inventory.v1.CloudServiceQuerySet/update"
 	CloudServiceQuerySet_Delete_FullMethodName  = "/spaceone.api.inventory.v1.CloudServiceQuerySet/delete"
 	CloudServiceQuerySet_Run_FullMethodName     = "/spaceone.api.inventory.v1.CloudServiceQuerySet/run"
+	CloudServiceQuerySet_Test_FullMethodName    = "/spaceone.api.inventory.v1.CloudServiceQuerySet/test"
 	CloudServiceQuerySet_Enable_FullMethodName  = "/spaceone.api.inventory.v1.CloudServiceQuerySet/enable"
 	CloudServiceQuerySet_Disable_FullMethodName = "/spaceone.api.inventory.v1.CloudServiceQuerySet/disable"
 	CloudServiceQuerySet_Get_FullMethodName     = "/spaceone.api.inventory.v1.CloudServiceQuerySet/get"
@@ -47,6 +48,8 @@ type CloudServiceQuerySetClient interface {
 	Delete(ctx context.Context, in *CloudServiceQuerySetRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Run a specific query set and store the result in the statistics data.
 	Run(ctx context.Context, in *CloudServiceQuerySetRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Run a specific query set and store the result in the statistics data.
+	Test(ctx context.Context, in *CloudServiceQuerySetRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
 	// Enable a specific query set.
 	Enable(ctx context.Context, in *CloudServiceQuerySetRequest, opts ...grpc.CallOption) (*CloudServiceQuerySetInfo, error)
 	// Disable a specific query set. query set is not executed when disabled.
@@ -97,6 +100,15 @@ func (c *cloudServiceQuerySetClient) Delete(ctx context.Context, in *CloudServic
 func (c *cloudServiceQuerySetClient) Run(ctx context.Context, in *CloudServiceQuerySetRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, CloudServiceQuerySet_Run_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cloudServiceQuerySetClient) Test(ctx context.Context, in *CloudServiceQuerySetRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
+	out := new(_struct.Struct)
+	err := c.cc.Invoke(ctx, CloudServiceQuerySet_Test_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -161,6 +173,8 @@ type CloudServiceQuerySetServer interface {
 	Delete(context.Context, *CloudServiceQuerySetRequest) (*empty.Empty, error)
 	// Run a specific query set and store the result in the statistics data.
 	Run(context.Context, *CloudServiceQuerySetRequest) (*empty.Empty, error)
+	// Run a specific query set and store the result in the statistics data.
+	Test(context.Context, *CloudServiceQuerySetRequest) (*_struct.Struct, error)
 	// Enable a specific query set.
 	Enable(context.Context, *CloudServiceQuerySetRequest) (*CloudServiceQuerySetInfo, error)
 	// Disable a specific query set. query set is not executed when disabled.
@@ -189,6 +203,9 @@ func (UnimplementedCloudServiceQuerySetServer) Delete(context.Context, *CloudSer
 }
 func (UnimplementedCloudServiceQuerySetServer) Run(context.Context, *CloudServiceQuerySetRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Run not implemented")
+}
+func (UnimplementedCloudServiceQuerySetServer) Test(context.Context, *CloudServiceQuerySetRequest) (*_struct.Struct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Test not implemented")
 }
 func (UnimplementedCloudServiceQuerySetServer) Enable(context.Context, *CloudServiceQuerySetRequest) (*CloudServiceQuerySetInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
@@ -286,6 +303,24 @@ func _CloudServiceQuerySet_Run_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CloudServiceQuerySetServer).Run(ctx, req.(*CloudServiceQuerySetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CloudServiceQuerySet_Test_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloudServiceQuerySetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudServiceQuerySetServer).Test(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudServiceQuerySet_Test_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudServiceQuerySetServer).Test(ctx, req.(*CloudServiceQuerySetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -402,6 +437,10 @@ var CloudServiceQuerySet_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "run",
 			Handler:    _CloudServiceQuerySet_Run_Handler,
+		},
+		{
+			MethodName: "test",
+			Handler:    _CloudServiceQuerySet_Test_Handler,
 		},
 		{
 			MethodName: "enable",
