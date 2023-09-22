@@ -272,7 +272,7 @@ def _doc_compile(proto_file, output_path, proto_path_list, debug):
     print(f"[SUCCESS] Document Compile : {proto_file}")
 
 
-def _compile_code(params, code, proto_file=None, service=None):
+def _compile_code(params, code, proto_file):
     output_path = os.path.join(params['output_dir'], code)
 
     if code == 'python':
@@ -308,18 +308,19 @@ def build(**params):
     if 'openapi' in params['code'] and 'json' not in params['code']:
         params['code'].insert(0, 'json')
 
+    # Compile Protocol Buffers
     for code in params['code']:
         _make_output_path(params['output_dir'], code)
 
         for target in params['target']:
             proto_files = _get_proto_files(os.path.join(params['proto_dir'], PROJECT, 'api', target))
             list(map(functools.partial(_compile_code, params, code), proto_files))
+            _make_build_environment(params['output_dir'], code)
 
-            if code == 'openapi':
-                openapi_output_dir = os.path.join(BASE_DIR, params['output_dir'])
-                build_openapi_json(output_dir=openapi_output_dir, service=target, debug=params['debug'])
-
-        _make_build_environment(params['output_dir'], code)
+    # Build OpenAPI JSON File using artifact from Protocol Buffers
+    if 'openapi' in params['code']:
+        for target in params['target']:
+            build_openapi_json(target=target, debug=params['debug'])
 
 
 if __name__ == '__main__':
