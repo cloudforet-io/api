@@ -222,7 +222,14 @@ message CloudServiceQuerySetQuery {
 //        "Memory": "GB",
 //        "CPU": "Core"
 //    },
-//    "unit": "Count",
+//    "keys": [
+//        "Disk Size",
+//        "Memory",
+//        "CPU
+//    ],
+//    "additional_info_keys": [
+//        "instance_type"
+//    ],
 //    "provider": "aws",
 //    "cloud_service_group": "EC2",
 //    "cloud_service_type": "Instance",
@@ -252,16 +259,18 @@ message CloudServiceQuerySetInfo {
     spaceone.api.core.v1.AnalyzeQuery query_options = 4;
     QueryType query_type = 5;
     google.protobuf.Struct unit = 6;
-    string provider = 7;
-    string cloud_service_group = 8;
-    string cloud_service_type = 9;
+    repeated string keys = 7;
+    repeated string additional_info_keys = 8;
+    string provider = 9;
+    string cloud_service_group = 10;
+    string cloud_service_type = 11;
 
-    google.protobuf.Struct tags = 11;
+    google.protobuf.Struct tags = 21;
 
-    string domain_id = 21;
+    string domain_id = 31;
 
-    string created_at = 31;
-    string updated_at = 32;
+    string created_at = 41;
+    string updated_at = 42;
 }
 
 //{
@@ -277,6 +286,14 @@ message CloudServiceQuerySetInfo {
 //                "Memory": "GB",
 //                "CPU": "Core"
 //            },
+//           "keys": [
+//               "Disk Size",
+//               "Memory",
+//               "CPU
+//            ],
+//            "additional_info_keys": [
+//                "instance_type"
+//            ],
 //            "provider": "aws",
 //            "cloud_service_group": "EC2",
 //            "cloud_service_type": "Instance",
