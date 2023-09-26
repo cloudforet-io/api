@@ -99,7 +99,7 @@
            {%- endfor -%}
          },
          "type": "object",
-         "required": [{%- for field in message['fields'] -%}
+         "required": [{%- for field in message['fields'] | sort(attribute='required', reverse= True) -%}
                       {%- if field.required == 'True' -%}
                         {% if not loop.first %},{% endif %}"{{field.get('name') }}"
                       {%- endif -%}
