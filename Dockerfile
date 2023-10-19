@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV DEFAULT_CODE all
 ENV BIN_DIR /opt/bin
