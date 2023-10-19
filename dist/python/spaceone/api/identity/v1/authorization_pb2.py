@@ -15,7 +15,7 @@ from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from spaceone.api.core.v1 import handler_pb2 as spaceone_dot_api_dot_core_dot_v1_dot_handler__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n,spaceone/api/identity/v1/authorization.proto\x12\x18spaceone.api.identity.v1\x1a\x1cgoogle/api/annotations.proto\x1a\"spaceone/api/core/v1/handler.proto2\xa1\x01\n\rAuthorization\x12\x8f\x01\n\x06verify\x12*.spaceone.api.core.v1.AuthorizationRequest\x1a+.spaceone.api.core.v1.AuthorizationResponse\",\x82\xd3\xe4\x93\x02&\"!/identity/v1/authorization/verify:\x01*B?Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n,spaceone/api/identity/v1/authorization.proto\x12\x18spaceone.api.identity.v1\x1a\x1cgoogle/api/annotations.proto\x1a\"spaceone/api/core/v1/handler.proto2t\n\rAuthorization\x12\x63\n\x06verify\x12*.spaceone.api.core.v1.AuthorizationRequest\x1a+.spaceone.api.core.v1.AuthorizationResponse\"\x00\x42?Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -23,8 +23,6 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'spaceone.api.identity.v1.au
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v1'
-  _AUTHORIZATION.methods_by_name['verify']._options = None
-  _AUTHORIZATION.methods_by_name['verify']._serialized_options = b'\202\323\344\223\002&\"!/identity/v1/authorization/verify:\001*'
-  _globals['_AUTHORIZATION']._serialized_start=141
-  _globals['_AUTHORIZATION']._serialized_end=302
+  _globals['_AUTHORIZATION']._serialized_start=140
+  _globals['_AUTHORIZATION']._serialized_end=256
 # @@protoc_insertion_point(module_scope)

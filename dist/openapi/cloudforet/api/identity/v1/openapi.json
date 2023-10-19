@@ -994,9 +994,9 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/users/find": {
+     },"/identity/user/find": {
        "post": {
-         "tags": ["identity > users"],
+         "tags": ["identity > user"],
          "summary": "Find",
          "operationId" : "",
          "description": "### Description \n",
@@ -1084,7 +1084,7 @@
          }
           ,"security": [{"HTTPBearer": []}]        }
      },"/identity/policy/update": {
-       "put": {
+       "post": {
          "tags": ["identity > policy"],
          "summary": "Update",
          "operationId" : "",
@@ -1193,9 +1193,9 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/policies/stat": {
+     },"/identity/policy/stat": {
        "post": {
-         "tags": ["identity > policies"],
+         "tags": ["identity > policy"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -1390,35 +1390,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/domain-owner/create": {
-       "post": {
-         "tags": ["identity > domain-owner"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |password||string|True|\n |domain_id||string|True|\n |owner_id||string||\n |name||string||\n |email||string||\n |language||string||\n |timezone||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"owner_id" : {"type": "string","title": "OWNER_ID" },"password" : {"type": "string","title": "PASSWORD" },"name" : {"type": "string","title": "NAME" },"email" : {"type": "string","title": "EMAIL" },"language" : {"type": "string","title": "LANGUAGE" },"timezone" : {"type": "string","title": "TIMEZONE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainOwnerInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainOwnerInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/domain-owner/update": {
        "post": {
          "tags": ["identity > domain-owner"],
@@ -1446,29 +1417,6 @@
                    "Schema": {"$ref": "#/components/schemas/DomainOwnerInfo"}}
                }
              }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/domain-owner/delete": {
-       "post": {
-         "tags": ["identity > domain-owner"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |owner_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"domain_id" : {"type": "string","title": "DOMAIN_ID" },"owner_id" : {"type": "string","title": "OWNER_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
      },"/identity/domain-owner/get": {
@@ -1610,9 +1558,9 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/service-accounts/list": {
+     },"/identity/service-account/list": {
        "post": {
-         "tags": ["identity > service-accounts"],
+         "tags": ["identity > service-account"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
@@ -1639,9 +1587,9 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/service-accounts/stat": {
+     },"/identity/service-account/stat": {
        "post": {
-         "tags": ["identity > service-accounts"],
+         "tags": ["identity > service-account"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -1664,64 +1612,6 @@
                  "schema": {"type": "object"},
                  "examples": {
                    "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/authorization/verify": {
-       "post": {
-         "tags": ["identity > authorization"],
-         "summary": "Verify",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service||string|True|\n |resource||string|True|\n |verb||string|True|\n |scope||Scope|True|\n |domain_id||string|True|\n |project_id||string|True|\n |project_group_id||string|True|\n |user_id||string|True|\n |require_project_id||boolean|True|\n |require_project_group_id||boolean|True|\n |require_user_id||boolean|True|\n |require_domain_id||boolean|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service" : {"type": "string","title": "SERVICE" },"resource" : {"type": "string","title": "RESOURCE" },"verb" : {"type": "string","title": "VERB" },"scope" : {"type": "Scope","title": "SCOPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID" },"user_id" : {"type": "string","title": "USER_ID" },"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID" },"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID" },"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID" },"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/AuthorizationResponse"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/AuthorizationResponse"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/domain/create": {
-       "post": {
-         "tags": ["identity > domain"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |plugin_info||PluginInfo||\n |config||Struct||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO" },"config" : {"type": "object","title": "CONFIG" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainInfo"}}
                }
              }}
          }
@@ -1836,87 +1726,6 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/domain/delete": {
-       "post": {
-         "tags": ["identity > domain"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/domain/enable": {
-       "post": {
-         "tags": ["identity > domain"],
-         "summary": "Enable",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/domain/disable": {
-       "post": {
-         "tags": ["identity > domain"],
-         "summary": "Disable",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/domain/get": {
        "post": {
          "tags": ["identity > domain"],
@@ -1942,93 +1751,6 @@
                  "schema": {"$ref": "#/components/schemas/DomainInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/DomainInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/domain/list": {
-       "post": {
-         "tags": ["identity > domain"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |domain_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/domain/stat": {
-       "post": {
-         "tags": ["identity > domain"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/domain/get-public-key": {
-       "post": {
-         "tags": ["identity > domain"],
-         "summary": "Get Public Key",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/AuthenticationResponse"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/AuthenticationResponse"}}
                }
              }}
          }
@@ -2318,7 +2040,7 @@
          }
           ,"security": [{"HTTPBearer": []}]        }
      },"/identity/project-group/update": {
-       "put": {
+       "post": {
          "tags": ["identity > project-group"],
          "summary": "Update",
          "operationId" : "",

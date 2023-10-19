@@ -81,7 +81,7 @@ func RegisterAuthorizationHandlerServer(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v1.Authorization/Verify", runtime.WithHTTPPathPattern("/identity/v1/authorization/verify"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v1.Authorization/Verify", runtime.WithHTTPPathPattern("/spaceone.api.identity.v1.Authorization/verify"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -145,7 +145,7 @@ func RegisterAuthorizationHandlerClient(ctx context.Context, mux *runtime.ServeM
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v1.Authorization/Verify", runtime.WithHTTPPathPattern("/identity/v1/authorization/verify"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v1.Authorization/Verify", runtime.WithHTTPPathPattern("/spaceone.api.identity.v1.Authorization/verify"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -165,7 +165,7 @@ func RegisterAuthorizationHandlerClient(ctx context.Context, mux *runtime.ServeM
 }
 
 var (
-	pattern_Authorization_Verify_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v1", "authorization", "verify"}, ""))
+	pattern_Authorization_Verify_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.identity.v1.Authorization", "verify"}, ""))
 )
 
 var (

@@ -39,7 +39,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataSourceClient interface {
-	// Registers a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, `upgrade_mode`.\
+	// Registers a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, `upgrade_mode`.
 	Register(ctx context.Context, in *RegisterDataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
 	// Updates a specific DataSource. You can make changes in DataSource settings, including `name` and `tags`.
 	Update(ctx context.Context, in *UpdateDataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
@@ -162,7 +162,7 @@ func (c *dataSourceClient) Stat(ctx context.Context, in *DataSourceStatQuery, op
 // All implementations must embed UnimplementedDataSourceServer
 // for forward compatibility
 type DataSourceServer interface {
-	// Registers a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, `upgrade_mode`.\
+	// Registers a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, `upgrade_mode`.
 	Register(context.Context, *RegisterDataSourceRequest) (*DataSourceInfo, error)
 	// Updates a specific DataSource. You can make changes in DataSource settings, including `name` and `tags`.
 	Update(context.Context, *UpdateDataSourceRequest) (*DataSourceInfo, error)

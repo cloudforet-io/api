@@ -72,7 +72,7 @@ class DataSourceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def register(self, request, context):
-        """Registers a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, `upgrade_mode`.\
+        """Registers a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, `upgrade_mode`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

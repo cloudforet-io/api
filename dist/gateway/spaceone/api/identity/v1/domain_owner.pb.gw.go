@@ -182,7 +182,7 @@ func RegisterDomainOwnerHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v1.DomainOwner/Create", runtime.WithHTTPPathPattern("/identity/v1/domain-owner/create"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v1.DomainOwner/Create", runtime.WithHTTPPathPattern("/spaceone.api.identity.v1.DomainOwner/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -232,7 +232,7 @@ func RegisterDomainOwnerHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v1.DomainOwner/Delete", runtime.WithHTTPPathPattern("/identity/v1/domain-owner/delete"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v1.DomainOwner/Delete", runtime.WithHTTPPathPattern("/spaceone.api.identity.v1.DomainOwner/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -321,7 +321,7 @@ func RegisterDomainOwnerHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v1.DomainOwner/Create", runtime.WithHTTPPathPattern("/identity/v1/domain-owner/create"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v1.DomainOwner/Create", runtime.WithHTTPPathPattern("/spaceone.api.identity.v1.DomainOwner/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -365,7 +365,7 @@ func RegisterDomainOwnerHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v1.DomainOwner/Delete", runtime.WithHTTPPathPattern("/identity/v1/domain-owner/delete"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v1.DomainOwner/Delete", runtime.WithHTTPPathPattern("/spaceone.api.identity.v1.DomainOwner/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -407,11 +407,11 @@ func RegisterDomainOwnerHandlerClient(ctx context.Context, mux *runtime.ServeMux
 }
 
 var (
-	pattern_DomainOwner_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v1", "domain-owner", "create"}, ""))
+	pattern_DomainOwner_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.identity.v1.DomainOwner", "create"}, ""))
 
 	pattern_DomainOwner_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v1", "domain-owner", "update"}, ""))
 
-	pattern_DomainOwner_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v1", "domain-owner", "delete"}, ""))
+	pattern_DomainOwner_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.identity.v1.DomainOwner", "delete"}, ""))
 
 	pattern_DomainOwner_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v1", "domain-owner", "get"}, ""))
 )
