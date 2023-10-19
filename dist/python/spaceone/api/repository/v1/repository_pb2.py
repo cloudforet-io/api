@@ -4,9 +4,8 @@
 """Generated protocol buffer code."""
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
-from google.protobuf import message as _message
-from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
+from google.protobuf.internal import builder as _builder
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
@@ -20,75 +19,10 @@ from spaceone.api.core.v1 import query_pb2 as spaceone_dot_api_dot_core_dot_v1_d
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n+spaceone/api/repository/v1/repository.proto\x12\x1aspaceone.api.repository.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v1/query.proto\"e\n\x17\x43reateRepositoryRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x17\n\x0frepository_type\x18\x02 \x01(\t\x12\x10\n\x08\x65ndpoint\x18\n \x01(\t\x12\x11\n\tdomain_id\x18\r \x01(\t\"Q\n\x17UpdateRepositoryRequest\x12\x15\n\rrepository_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tdomain_id\x18\x03 \x01(\t\"=\n\x11RepositoryRequest\x12\x15\n\rrepository_id\x18\x01 \x01(\t\x12\x11\n\tdomain_id\x18\x02 \x01(\t\"N\n\x14GetRepositoryRequest\x12\x15\n\rrepository_id\x18\x01 \x01(\t\x12\x0c\n\x04only\x18\x02 \x03(\t\x12\x11\n\tdomain_id\x18\x03 \x01(\t\"\x8e\x01\n\x0fRepositoryQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v1.Query\x12\x15\n\rrepository_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x17\n\x0frepository_type\x18\x04 \x01(\t\x12\x11\n\tdomain_id\x18\x05 \x01(\t\"t\n\x0eRepositoryInfo\x12\x15\n\rrepository_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x17\n\x0frepository_type\x18\x03 \x01(\t\x12\x10\n\x08\x65ndpoint\x18\n \x01(\t\x12\x12\n\ncreated_at\x18\x14 \x01(\t\"d\n\x10RepositoriesInfo\x12;\n\x07results\x18\x01 \x03(\x0b\x32*.spaceone.api.repository.v1.RepositoryInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"^\n\x13RepositoryStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v1.StatisticsQuery\x12\x11\n\tdomain_id\x18\x02 \x01(\t2\xe5\x06\n\nRepository\x12\x9a\x01\n\x08register\x12\x33.spaceone.api.repository.v1.CreateRepositoryRequest\x1a*.spaceone.api.repository.v1.RepositoryInfo\"-\x82\xd3\xe4\x93\x02\'\"\"/repository/v1/repository/register:\x01*\x12\x96\x01\n\x06update\x12\x33.spaceone.api.repository.v1.UpdateRepositoryRequest\x1a*.spaceone.api.repository.v1.RepositoryInfo\"+\x82\xd3\xe4\x93\x02%\" /repository/v1/repository/update:\x01*\x12\x84\x01\n\nderegister\x12-.spaceone.api.repository.v1.RepositoryRequest\x1a\x16.google.protobuf.Empty\"/\x82\xd3\xe4\x93\x02)\"$/repository/v1/repository/deregister:\x01*\x12\x8d\x01\n\x03get\x12\x30.spaceone.api.repository.v1.GetRepositoryRequest\x1a*.spaceone.api.repository.v1.RepositoryInfo\"(\x82\xd3\xe4\x93\x02\"\"\x1d/repository/v1/repository/get:\x01*\x12\x8c\x01\n\x04list\x12+.spaceone.api.repository.v1.RepositoryQuery\x1a,.spaceone.api.repository.v1.RepositoriesInfo\")\x82\xd3\xe4\x93\x02#\"\x1e/repository/v1/repository/list:\x01*\x12{\n\x04stat\x12/.spaceone.api.repository.v1.RepositoryStatQuery\x1a\x17.google.protobuf.Struct\")\x82\xd3\xe4\x93\x02#\"\x1e/repository/v1/repository/stat:\x01*BAZ?github.com/cloudforet-io/api/dist/go/spaceone/api/repository/v1b\x06proto3')
 
-
-
-_CREATEREPOSITORYREQUEST = DESCRIPTOR.message_types_by_name['CreateRepositoryRequest']
-_UPDATEREPOSITORYREQUEST = DESCRIPTOR.message_types_by_name['UpdateRepositoryRequest']
-_REPOSITORYREQUEST = DESCRIPTOR.message_types_by_name['RepositoryRequest']
-_GETREPOSITORYREQUEST = DESCRIPTOR.message_types_by_name['GetRepositoryRequest']
-_REPOSITORYQUERY = DESCRIPTOR.message_types_by_name['RepositoryQuery']
-_REPOSITORYINFO = DESCRIPTOR.message_types_by_name['RepositoryInfo']
-_REPOSITORIESINFO = DESCRIPTOR.message_types_by_name['RepositoriesInfo']
-_REPOSITORYSTATQUERY = DESCRIPTOR.message_types_by_name['RepositoryStatQuery']
-CreateRepositoryRequest = _reflection.GeneratedProtocolMessageType('CreateRepositoryRequest', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEREPOSITORYREQUEST,
-  '__module__' : 'spaceone.api.repository.v1.repository_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v1.CreateRepositoryRequest)
-  })
-_sym_db.RegisterMessage(CreateRepositoryRequest)
-
-UpdateRepositoryRequest = _reflection.GeneratedProtocolMessageType('UpdateRepositoryRequest', (_message.Message,), {
-  'DESCRIPTOR' : _UPDATEREPOSITORYREQUEST,
-  '__module__' : 'spaceone.api.repository.v1.repository_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v1.UpdateRepositoryRequest)
-  })
-_sym_db.RegisterMessage(UpdateRepositoryRequest)
-
-RepositoryRequest = _reflection.GeneratedProtocolMessageType('RepositoryRequest', (_message.Message,), {
-  'DESCRIPTOR' : _REPOSITORYREQUEST,
-  '__module__' : 'spaceone.api.repository.v1.repository_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v1.RepositoryRequest)
-  })
-_sym_db.RegisterMessage(RepositoryRequest)
-
-GetRepositoryRequest = _reflection.GeneratedProtocolMessageType('GetRepositoryRequest', (_message.Message,), {
-  'DESCRIPTOR' : _GETREPOSITORYREQUEST,
-  '__module__' : 'spaceone.api.repository.v1.repository_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v1.GetRepositoryRequest)
-  })
-_sym_db.RegisterMessage(GetRepositoryRequest)
-
-RepositoryQuery = _reflection.GeneratedProtocolMessageType('RepositoryQuery', (_message.Message,), {
-  'DESCRIPTOR' : _REPOSITORYQUERY,
-  '__module__' : 'spaceone.api.repository.v1.repository_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v1.RepositoryQuery)
-  })
-_sym_db.RegisterMessage(RepositoryQuery)
-
-RepositoryInfo = _reflection.GeneratedProtocolMessageType('RepositoryInfo', (_message.Message,), {
-  'DESCRIPTOR' : _REPOSITORYINFO,
-  '__module__' : 'spaceone.api.repository.v1.repository_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v1.RepositoryInfo)
-  })
-_sym_db.RegisterMessage(RepositoryInfo)
-
-RepositoriesInfo = _reflection.GeneratedProtocolMessageType('RepositoriesInfo', (_message.Message,), {
-  'DESCRIPTOR' : _REPOSITORIESINFO,
-  '__module__' : 'spaceone.api.repository.v1.repository_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v1.RepositoriesInfo)
-  })
-_sym_db.RegisterMessage(RepositoriesInfo)
-
-RepositoryStatQuery = _reflection.GeneratedProtocolMessageType('RepositoryStatQuery', (_message.Message,), {
-  'DESCRIPTOR' : _REPOSITORYSTATQUERY,
-  '__module__' : 'spaceone.api.repository.v1.repository_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v1.RepositoryStatQuery)
-  })
-_sym_db.RegisterMessage(RepositoryStatQuery)
-
-_REPOSITORY = DESCRIPTOR.services_by_name['Repository']
+_globals = globals()
+_builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
+_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'spaceone.api.repository.v1.repository_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
-
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z?github.com/cloudforet-io/api/dist/go/spaceone/api/repository/v1'
   _REPOSITORY.methods_by_name['register']._options = None
@@ -103,22 +37,22 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _REPOSITORY.methods_by_name['list']._serialized_options = b'\202\323\344\223\002#\"\036/repository/v1/repository/list:\001*'
   _REPOSITORY.methods_by_name['stat']._options = None
   _REPOSITORY.methods_by_name['stat']._serialized_options = b'\202\323\344\223\002#\"\036/repository/v1/repository/stat:\001*'
-  _CREATEREPOSITORYREQUEST._serialized_start=198
-  _CREATEREPOSITORYREQUEST._serialized_end=299
-  _UPDATEREPOSITORYREQUEST._serialized_start=301
-  _UPDATEREPOSITORYREQUEST._serialized_end=382
-  _REPOSITORYREQUEST._serialized_start=384
-  _REPOSITORYREQUEST._serialized_end=445
-  _GETREPOSITORYREQUEST._serialized_start=447
-  _GETREPOSITORYREQUEST._serialized_end=525
-  _REPOSITORYQUERY._serialized_start=528
-  _REPOSITORYQUERY._serialized_end=670
-  _REPOSITORYINFO._serialized_start=672
-  _REPOSITORYINFO._serialized_end=788
-  _REPOSITORIESINFO._serialized_start=790
-  _REPOSITORIESINFO._serialized_end=890
-  _REPOSITORYSTATQUERY._serialized_start=892
-  _REPOSITORYSTATQUERY._serialized_end=986
-  _REPOSITORY._serialized_start=989
-  _REPOSITORY._serialized_end=1858
+  _globals['_CREATEREPOSITORYREQUEST']._serialized_start=198
+  _globals['_CREATEREPOSITORYREQUEST']._serialized_end=299
+  _globals['_UPDATEREPOSITORYREQUEST']._serialized_start=301
+  _globals['_UPDATEREPOSITORYREQUEST']._serialized_end=382
+  _globals['_REPOSITORYREQUEST']._serialized_start=384
+  _globals['_REPOSITORYREQUEST']._serialized_end=445
+  _globals['_GETREPOSITORYREQUEST']._serialized_start=447
+  _globals['_GETREPOSITORYREQUEST']._serialized_end=525
+  _globals['_REPOSITORYQUERY']._serialized_start=528
+  _globals['_REPOSITORYQUERY']._serialized_end=670
+  _globals['_REPOSITORYINFO']._serialized_start=672
+  _globals['_REPOSITORYINFO']._serialized_end=788
+  _globals['_REPOSITORIESINFO']._serialized_start=790
+  _globals['_REPOSITORIESINFO']._serialized_end=890
+  _globals['_REPOSITORYSTATQUERY']._serialized_start=892
+  _globals['_REPOSITORYSTATQUERY']._serialized_end=986
+  _globals['_REPOSITORY']._serialized_start=989
+  _globals['_REPOSITORY']._serialized_end=1858
 # @@protoc_insertion_point(module_scope)

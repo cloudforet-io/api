@@ -4,9 +4,8 @@
 """Generated protocol buffer code."""
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
-from google.protobuf import message as _message
-from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
+from google.protobuf.internal import builder as _builder
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
@@ -21,75 +20,10 @@ from spaceone.api.repository.v2 import common_pb2 as spaceone_dot_api_dot_reposi
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'spaceone/api/repository/v2/schema.proto\x12\x1aspaceone.api.repository.v2\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v1/query.proto\x1a\'spaceone/api/repository/v2/common.proto\"\xbd\x02\n\x13\x43reateSchemaRequest\x12\x11\n\tschema_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x37\n\tsync_mode\x18\x03 \x01(\x0e\x32$.spaceone.api.repository.v2.SyncMode\x12=\n\x0csync_options\x18\x04 \x01(\x0b\x32\'.spaceone.api.repository.v2.SyncOptions\x12\'\n\x06schema\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\x12*\n\x06labels\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.ListValue\x12%\n\x04tags\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"\xbd\x02\n\x13UpdateSchemaRequest\x12\x11\n\tschema_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x37\n\tsync_mode\x18\x03 \x01(\x0e\x32$.spaceone.api.repository.v2.SyncMode\x12=\n\x0csync_options\x18\x04 \x01(\x0b\x32\'.spaceone.api.repository.v2.SyncOptions\x12\'\n\x06schema\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\x12*\n\x06labels\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.ListValue\x12%\n\x04tags\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"5\n\rSchemaRequest\x12\x11\n\tschema_id\x18\x01 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"F\n\x10GetSchemaRequest\x12\x11\n\tschema_id\x18\x01 \x01(\t\x12\x0c\n\x04only\x18\x02 \x03(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"\xc6\x01\n\x0bSchemaQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v1.Query\x12\x11\n\tschema_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x37\n\tsync_mode\x18\x04 \x01(\x0e\x32$.spaceone.api.repository.v2.SyncMode\x12\x1e\n\x16remote_repository_name\x18\x05 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"Z\n\x0fSchemaStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v1.StatisticsQuery\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"\xfc\x02\n\nSchemaInfo\x12\x11\n\tschema_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x37\n\tsync_mode\x18\x03 \x01(\x0e\x32$.spaceone.api.repository.v2.SyncMode\x12=\n\x0csync_options\x18\x04 \x01(\x0b\x32\'.spaceone.api.repository.v2.SyncOptions\x12\'\n\x06schema\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\x12*\n\x06labels\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.ListValue\x12%\n\x04tags\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x32\n\x11remote_repository\x18\x08 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\"[\n\x0bSchemasInfo\x12\x37\n\x07results\x18\x01 \x03(\x0b\x32&.spaceone.api.repository.v2.SchemaInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\x32\x95\x07\n\x06Schema\x12\x8a\x01\n\x06\x63reate\x12/.spaceone.api.repository.v2.CreateSchemaRequest\x1a&.spaceone.api.repository.v2.SchemaInfo\"\'\x82\xd3\xe4\x93\x02!\"\x1c/repository/v2/schema/create:\x01*\x12\x8a\x01\n\x06update\x12/.spaceone.api.repository.v2.UpdateSchemaRequest\x1a&.spaceone.api.repository.v2.SchemaInfo\"\'\x82\xd3\xe4\x93\x02!\"\x1c/repository/v2/schema/update:\x01*\x12\x80\x01\n\x04sync\x12).spaceone.api.repository.v2.SchemaRequest\x1a&.spaceone.api.repository.v2.SchemaInfo\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/repository/v2/schema/sync:\x01*\x12t\n\x06\x64\x65lete\x12).spaceone.api.repository.v2.SchemaRequest\x1a\x16.google.protobuf.Empty\"\'\x82\xd3\xe4\x93\x02!\"\x1c/repository/v2/schema/delete:\x01*\x12\x81\x01\n\x03get\x12,.spaceone.api.repository.v2.GetSchemaRequest\x1a&.spaceone.api.repository.v2.SchemaInfo\"$\x82\xd3\xe4\x93\x02\x1e\"\x19/repository/v2/schema/get:\x01*\x12\x7f\n\x04list\x12\'.spaceone.api.repository.v2.SchemaQuery\x1a\'.spaceone.api.repository.v2.SchemasInfo\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/repository/v2/schema/list:\x01*\x12s\n\x04stat\x12+.spaceone.api.repository.v2.SchemaStatQuery\x1a\x17.google.protobuf.Struct\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/repository/v2/schema/stat:\x01*BAZ?github.com/cloudforet-io/api/dist/go/spaceone/api/repository/v2b\x06proto3')
 
-
-
-_CREATESCHEMAREQUEST = DESCRIPTOR.message_types_by_name['CreateSchemaRequest']
-_UPDATESCHEMAREQUEST = DESCRIPTOR.message_types_by_name['UpdateSchemaRequest']
-_SCHEMAREQUEST = DESCRIPTOR.message_types_by_name['SchemaRequest']
-_GETSCHEMAREQUEST = DESCRIPTOR.message_types_by_name['GetSchemaRequest']
-_SCHEMAQUERY = DESCRIPTOR.message_types_by_name['SchemaQuery']
-_SCHEMASTATQUERY = DESCRIPTOR.message_types_by_name['SchemaStatQuery']
-_SCHEMAINFO = DESCRIPTOR.message_types_by_name['SchemaInfo']
-_SCHEMASINFO = DESCRIPTOR.message_types_by_name['SchemasInfo']
-CreateSchemaRequest = _reflection.GeneratedProtocolMessageType('CreateSchemaRequest', (_message.Message,), {
-  'DESCRIPTOR' : _CREATESCHEMAREQUEST,
-  '__module__' : 'spaceone.api.repository.v2.schema_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v2.CreateSchemaRequest)
-  })
-_sym_db.RegisterMessage(CreateSchemaRequest)
-
-UpdateSchemaRequest = _reflection.GeneratedProtocolMessageType('UpdateSchemaRequest', (_message.Message,), {
-  'DESCRIPTOR' : _UPDATESCHEMAREQUEST,
-  '__module__' : 'spaceone.api.repository.v2.schema_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v2.UpdateSchemaRequest)
-  })
-_sym_db.RegisterMessage(UpdateSchemaRequest)
-
-SchemaRequest = _reflection.GeneratedProtocolMessageType('SchemaRequest', (_message.Message,), {
-  'DESCRIPTOR' : _SCHEMAREQUEST,
-  '__module__' : 'spaceone.api.repository.v2.schema_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v2.SchemaRequest)
-  })
-_sym_db.RegisterMessage(SchemaRequest)
-
-GetSchemaRequest = _reflection.GeneratedProtocolMessageType('GetSchemaRequest', (_message.Message,), {
-  'DESCRIPTOR' : _GETSCHEMAREQUEST,
-  '__module__' : 'spaceone.api.repository.v2.schema_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v2.GetSchemaRequest)
-  })
-_sym_db.RegisterMessage(GetSchemaRequest)
-
-SchemaQuery = _reflection.GeneratedProtocolMessageType('SchemaQuery', (_message.Message,), {
-  'DESCRIPTOR' : _SCHEMAQUERY,
-  '__module__' : 'spaceone.api.repository.v2.schema_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v2.SchemaQuery)
-  })
-_sym_db.RegisterMessage(SchemaQuery)
-
-SchemaStatQuery = _reflection.GeneratedProtocolMessageType('SchemaStatQuery', (_message.Message,), {
-  'DESCRIPTOR' : _SCHEMASTATQUERY,
-  '__module__' : 'spaceone.api.repository.v2.schema_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v2.SchemaStatQuery)
-  })
-_sym_db.RegisterMessage(SchemaStatQuery)
-
-SchemaInfo = _reflection.GeneratedProtocolMessageType('SchemaInfo', (_message.Message,), {
-  'DESCRIPTOR' : _SCHEMAINFO,
-  '__module__' : 'spaceone.api.repository.v2.schema_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v2.SchemaInfo)
-  })
-_sym_db.RegisterMessage(SchemaInfo)
-
-SchemasInfo = _reflection.GeneratedProtocolMessageType('SchemasInfo', (_message.Message,), {
-  'DESCRIPTOR' : _SCHEMASINFO,
-  '__module__' : 'spaceone.api.repository.v2.schema_pb2'
-  # @@protoc_insertion_point(class_scope:spaceone.api.repository.v2.SchemasInfo)
-  })
-_sym_db.RegisterMessage(SchemasInfo)
-
-_SCHEMA = DESCRIPTOR.services_by_name['Schema']
+_globals = globals()
+_builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
+_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'spaceone.api.repository.v2.schema_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
-
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z?github.com/cloudforet-io/api/dist/go/spaceone/api/repository/v2'
   _SCHEMA.methods_by_name['create']._options = None
@@ -106,22 +40,22 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _SCHEMA.methods_by_name['list']._serialized_options = b'\202\323\344\223\002\037\"\032/repository/v2/schema/list:\001*'
   _SCHEMA.methods_by_name['stat']._options = None
   _SCHEMA.methods_by_name['stat']._serialized_options = b'\202\323\344\223\002\037\"\032/repository/v2/schema/stat:\001*'
-  _CREATESCHEMAREQUEST._serialized_start=236
-  _CREATESCHEMAREQUEST._serialized_end=553
-  _UPDATESCHEMAREQUEST._serialized_start=556
-  _UPDATESCHEMAREQUEST._serialized_end=873
-  _SCHEMAREQUEST._serialized_start=875
-  _SCHEMAREQUEST._serialized_end=928
-  _GETSCHEMAREQUEST._serialized_start=930
-  _GETSCHEMAREQUEST._serialized_end=1000
-  _SCHEMAQUERY._serialized_start=1003
-  _SCHEMAQUERY._serialized_end=1201
-  _SCHEMASTATQUERY._serialized_start=1203
-  _SCHEMASTATQUERY._serialized_end=1293
-  _SCHEMAINFO._serialized_start=1296
-  _SCHEMAINFO._serialized_end=1676
-  _SCHEMASINFO._serialized_start=1678
-  _SCHEMASINFO._serialized_end=1769
-  _SCHEMA._serialized_start=1772
-  _SCHEMA._serialized_end=2689
+  _globals['_CREATESCHEMAREQUEST']._serialized_start=236
+  _globals['_CREATESCHEMAREQUEST']._serialized_end=553
+  _globals['_UPDATESCHEMAREQUEST']._serialized_start=556
+  _globals['_UPDATESCHEMAREQUEST']._serialized_end=873
+  _globals['_SCHEMAREQUEST']._serialized_start=875
+  _globals['_SCHEMAREQUEST']._serialized_end=928
+  _globals['_GETSCHEMAREQUEST']._serialized_start=930
+  _globals['_GETSCHEMAREQUEST']._serialized_end=1000
+  _globals['_SCHEMAQUERY']._serialized_start=1003
+  _globals['_SCHEMAQUERY']._serialized_end=1201
+  _globals['_SCHEMASTATQUERY']._serialized_start=1203
+  _globals['_SCHEMASTATQUERY']._serialized_end=1293
+  _globals['_SCHEMAINFO']._serialized_start=1296
+  _globals['_SCHEMAINFO']._serialized_end=1676
+  _globals['_SCHEMASINFO']._serialized_start=1678
+  _globals['_SCHEMASINFO']._serialized_end=1769
+  _globals['_SCHEMA']._serialized_start=1772
+  _globals['_SCHEMA']._serialized_end=2689
 # @@protoc_insertion_point(module_scope)
