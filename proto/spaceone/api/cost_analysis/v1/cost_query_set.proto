@@ -48,14 +48,14 @@ service CostQuerySet {
     // Gets a list of all CostQuerySets. You can use a query to get a filtered list of CostQuerySets.
     rpc list (CostQuerySetQuery) returns (CostQuerySetsInfo) {
         option (google.api.http) = {
-            post: "/cost-analysis/v1/cost-query-sets/list",
+            post: "/cost-analysis/v1/cost-query-set/list",
             body: "*"
         };
     }
 
     rpc stat (CostQuerySetStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/cost-analysis/v1/cost-query-sets/stat",
+            post: "/cost-analysis/v1/cost-query-set/stat",
             body: "*"
         };
     }

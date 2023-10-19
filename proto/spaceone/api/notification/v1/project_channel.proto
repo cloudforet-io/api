@@ -23,7 +23,7 @@ service ProjectChannel {
     // Updates a specific ProjectChannel. A ProjectChannel that has already been configured cannot be changed. Instead, the data required for dispatching Notifications to a ProjectChannel can be updated.
     rpc update (UpdateProjectChannelRequest) returns (ProjectChannelInfo) {
         option (google.api.http) = {
-            put: "/notification/v1/project-channel/update"
+            post: "/notification/v1/project-channel/update"
             body: "*"
         };
     }
