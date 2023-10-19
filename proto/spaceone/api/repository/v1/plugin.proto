@@ -13,7 +13,7 @@ import "spaceone/api/repository/v1/repository.proto";
 
 
 service Plugin {
-    // Registers a Plugin. The parameter `registry_type`, meaning container registry type, can be either `DOCKER_HUB` or `AWS_PUBLIC_ECR`. The default value of the `registry_type` is `DOCKER_HUB`. The parameter `registry_url` is required if the `registry_type` is not `DOCKER_HUB`. The parameter `image` is limited to 40 characters.
+    // Registers a Plugin. The parameter `registry_type`, meaning container registry type, can be either `DOCKER_HUB` or `AWS_PRIVATE_ECR`. The default value of the `registry_type` is `DOCKER_HUB`. The parameter `registry_url` is required if the `registry_type` is not `DOCKER_HUB`. The parameter `image` is limited to 40 characters.
     rpc register (CreatePluginRequest) returns (PluginInfo) {
         option (google.api.http) = {
             post: "/repository/v1/plugin/register"
@@ -88,7 +88,7 @@ service Plugin {
 enum PublicRegistryType {
     NONE_REGISTRY_TYPE = 0;
     DOCKER_HUB = 1;
-    AWS_PUBLIC_ECR = 2;
+    AWS_PRIVATE_ECR = 2;
     HARBOR = 3;
 }
 
