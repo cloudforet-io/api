@@ -1,0 +1,146 @@
+{
+   "openapi": "3.1.0",
+   "externalDocs":{
+       "description": "Home",
+       "url": "/docs"
+   },
+   "info": {
+     "title": "{{ service_name.title() | replace('_',' ') }} API"
+   },
+   "paths":{
+   {%- for method in methods -%}
+      {%- set _method = method.get('options').get('google.api.http').get('rules')[0] -%}
+      {%- set _request_message = messages.get(method.get('requestType')) -%}
+      {%- set _response_message = messages.get(method.get('responseType')) -%}
+     "{{ _method.get('pattern') | replace('/v1', '') | replace('/v2','')}}": {
+       "{{ _method.get('method').lower() }}": {
+         "tags": ["{{ method.get('tag')}}"],
+         "summary": "{{ method.get('summary') }}",
+         "operationId" : "",
+         {% if method.description -%}
+         "description": "{{ method.description | replace('\n', '\\n') }}",
+         {% endif -%}
+         "requestBody": {
+           "description": "{{ _request_message.table_description | replace('\n', '\\n') }}<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {
+                 {%- for field in _request_message['fields'] -%}
+                   "{{ field.get('name') }}" : {
+                    {%- if field.get('label') == 'repeated' -%}
+                      "items": { {%- if field.get('type') in messages.keys() -%} "$ref": "#/components/schemas/{{ field.get('type') }}" {%- endif -%}}, "type": "array",
+                    {%- elif field.get('type') in messages -%}
+                      "$ref": "#/components/schemas/{{ field.get('type') }}",
+                    {%- else -%}
+                      "type": "{{ field.get('type') | replace('int', 'integer')  | replace('Struct', 'object') }}",
+                    {%- endif -%}
+                    "title": "{{ field.get('name').upper() }}" }{%- if not loop.last -%},{%- endif -%}
+                 {% endfor %}
+                 }
+               },
+               "examples":{
+               {%- if _request_message['description'] -%} "Default Example":{"value": {{ _request_message['description'] | tojson }}}, {%- endif -%}
+                 "Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"
+             {%- if method.get('responseType') != 'Empty' -%}
+             ,"content":{
+               "application/json": {
+                 "schema": {
+                   {%- if method.get('responseType') == 'Struct' -%} "type": "object" {%- else -%}  "$ref": "#/components/schemas/{{ method.get('responseType') }}"{%- endif -%}
+                 },
+                 "examples": {
+                   "Schema": {
+                     {%- if method.get('responseType') == 'Struct' -%} "type": "object" {%- else -%}  "$ref": "#/components/schemas/{{ method.get('responseType') }}"{%- endif -%}
+                   }
+                   {%- if _response_message['description'] -%}
+                   ,"Default Example":{
+                     "value": {{ _response_message['description'] | tojson }}
+                   }
+                 {%- endif -%}
+                 }
+               }
+             }
+             {%- endif -%}
+           }
+         }
+         {% if method.get('auth_required') == 'True' %} ,"security": [{"HTTPBearer": []}] {% endif %}
+       }
+     },
+     {%- endfor -%}
+     "securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
+   },
+   "components":{
+     "schemas": {
+     {% for message in messages.values() -%}
+       "{{ message.get('name') }}": {
+         "properties" : {
+           {%- for field in message.get('fields') -%}
+           "{{ field.get('name') }}" : {
+             {%- if field.get('label') == 'repeated' -%}
+               "items": {
+                 {%- if messages.get(field.get('type')) -%} "$ref": "#/components/schemas/{{ field.get('type') }}"
+                 {%- else -%} "type": "{{ field.get('type') | replace('int', 'integer')  | replace('Struct', 'object') }}"
+                 {%- endif -%}
+               },
+               "type": "array",
+             {%- if messages.get(field.get('type')) -%} "$ref": "#/components/schemas/{{ field.get('type') }}", {%- endif -%}
+             {%- elif messages.get(field.get('type')) -%}
+               "$ref": "#/components/schemas/{{ field.get('type') }}",
+             {%- else -%}"type": "{{ field.get('type') | replace('int', 'integer')  | replace('Struct', 'object') }}",
+             {%- endif -%}
+               "title": "{{ field.get('name').upper() }}"}{%- if not loop.last -%},{%- endif -%}
+           {%- endfor -%}
+         },
+         "type": "object",
+         "required": [{%- for field in message['fields'] | sort(attribute='required', reverse= True) -%}
+                      {%- if field.required == 'True' -%}
+                        {% if not loop.first %},{% endif %}"{{field.get('name') }}"
+                      {%- endif -%}
+                      {%-endfor -%}
+         ],
+                "title": "{{ message.get('name') }}"
+           }
+           {% if not loop.last %},{% endif %}
+        {% endfor -%}
+      },
+      "Struct": {"properties": {"type": "object","title": "Struct"}},
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+       },
+       "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [{"type": "string"}, {"type": "integer"}]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {"type": "string","title": "Message"},
+          "type": {"type": "string","title": "Error Type"}
+        },
+        "type": "object",
+        "required": ["loc","msg","type"],
+        "title": "ValidationError"
+      },
+      "securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer"}
+      }
+   }
+}

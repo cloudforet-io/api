@@ -6,9 +6,10 @@ import sys
 import subprocess
 import glob
 import click
-from pathlib import Path
-from shutil import copyfile
 
+from pathlib import Path
+
+from openapi import build_openapi_json
 
 PROJECT = 'spaceone'
 OUTPUT_DOC_FORMAT = 'json'
@@ -18,12 +19,14 @@ PROTO_DIR = os.path.join(BASE_DIR, 'proto')
 OUTPUT_DIR = os.path.join(BASE_DIR, 'dist')
 ARTIFACT_DIR = os.path.join(BASE_DIR, 'artifact')
 VERSION = os.path.join(BASE_DIR, 'VERSION')
-AVAILABLE_CODES = ['all', 'python', 'go', 'gateway', 'json']
+AVAILABLE_CODES = ['all', 'python', 'go', 'gateway', 'json', 'openapi']
 DEFAULT_THIRD_PARTY_DIR = 'third_party/googleapis:third_party/protobuf/src'
 DEFAULT_CODE = 'all'
 REPOSITORY_URL = 'github.com/cloudforet-io/api'
 GO_MODULE_PATH = f'{REPOSITORY_URL}/dist'
 GO_PREFIX_IMPORT_PATH = f'{GO_MODULE_PATH}/go'
+
+
 
 
 def _error(msg):
@@ -231,7 +234,7 @@ def _go_grpc_gateway_compile(proto_file, output_path, proto_path_list, debug):
     try:
         subprocess.check_output(cmd)
     except Exception as e:
-        _error(f"[ERROR] Failed to gRPC Gateway Compile : {proto_file}\n{e}")
+        _error(f"Failed to gRPC Gateway Compile : {proto_file}\n{e}")
 
     print(f"[SUCCESS] gRPC Gateway Compile : {proto_file}")
 
@@ -264,7 +267,7 @@ def _doc_compile(proto_file, output_path, proto_path_list, debug):
         subprocess.check_output(cmd)
     except Exception as e:
 
-        _error(f"[ERROR] Failed to Document compile : {proto_file}\n{e}")
+        _error(f" Failed to Document Compile : {proto_file}\n{e}")
 
     print(f"[SUCCESS] Document Compile : {proto_file}")
 
@@ -300,19 +303,25 @@ def build(**params):
 
     params['target'] = _get_services_from_target(params['target'])
     params['proto_path_list'] = _get_proto_path_list(params['proto_dir'], params['third_party_dir'])
+    params['code'] = _get_generate_codes(params['code'])
 
-    for code in _get_generate_codes(params['code']):
+    if 'openapi' in params['code'] and 'json' not in params['code']:
+        params['code'].insert(0, 'json')
+
+    # Compile Protocol Buffers
+    for code in params['code']:
         _make_output_path(params['output_dir'], code)
 
-        for _tg in params['target']:
-            proto_files = _get_proto_files(os.path.join(params['proto_dir'], PROJECT, 'api', _tg))
+        for target in params['target']:
+            proto_files = _get_proto_files(os.path.join(params['proto_dir'], PROJECT, 'api', target))
             list(map(functools.partial(_compile_code, params, code), proto_files))
+            _make_build_environment(params['output_dir'], code)
 
-        _make_build_environment(params['output_dir'], code)
+    # Build OpenAPI JSON File using artifact from Protocol Buffers
+    if 'openapi' in params['code']:
+        for target in params['target']:
+            build_openapi_json(target=target, debug=params['debug'])
 
 
 if __name__ == '__main__':
     build()
-
-
-
