@@ -19,7 +19,7 @@ service Policy {
     }
     rpc update (UpdatePolicyRequest) returns (PolicyInfo) {
         option (google.api.http) = {
-            put: "/identity/v1/policy/update"
+            post: "/identity/v1/policy/update"
             body: "*"
         };
     }
@@ -43,7 +43,7 @@ service Policy {
     }
     rpc stat (PolicyStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/identity/v1/policies/stat"
+            post: "/identity/v1/policy/stat"
             body: "*"
         };
     }

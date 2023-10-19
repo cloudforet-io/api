@@ -9,24 +9,14 @@ import "google/api/annotations.proto";
 
 
 service DomainOwner {
-    rpc create (CreateDomainOwner) returns (DomainOwnerInfo) {
-        option (google.api.http) = {
-            post: "/identity/v1/domain-owner/create"
-            body: "*"
-        };
-    }
+    rpc create (CreateDomainOwner) returns (DomainOwnerInfo) {}
     rpc update (UpdateDomainOwner) returns (DomainOwnerInfo) {
         option (google.api.http) = {
             post: "/identity/v1/domain-owner/update"
             body: "*"
         };
     }
-    rpc delete (DomainOwnerRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v1/domain-owner/delete"
-            body: "*"
-        };
-    }
+    rpc delete (DomainOwnerRequest) returns (google.protobuf.Empty) {}
     rpc get (GetDomainOwnerRequest) returns (DomainOwnerInfo) {
         option (google.api.http) = {
             post: "/identity/v1/domain-owner/get"
