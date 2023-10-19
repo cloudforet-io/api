@@ -12,12 +12,7 @@ import "spaceone/api/core/v1/handler.proto";
 
 
 service Domain {
-    rpc create (CreateDomainRequest) returns (DomainInfo) {
-        option (google.api.http) = {
-            post: "/identity/v1/domain/create"
-            body: "*"
-        };
-    }
+    rpc create (CreateDomainRequest) returns (DomainInfo) {}
     rpc update (UpdateDomainRequest) returns (DomainInfo) {
         option (google.api.http) = {
             post: "/identity/v1/domain/update"
@@ -42,50 +37,19 @@ service Domain {
             body: "*"
         };
     }
-    rpc delete (DomainRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v1/domain/delete"
-            body: "*"
-        };
-    }
-    rpc enable (DomainRequest) returns (DomainInfo) {
-        option (google.api.http) = {
-            post: "/identity/v1/domain/enable"
-            body: "*"
-        };
-    }
-    rpc disable (DomainRequest) returns (DomainInfo) {
-        option (google.api.http) = {
-            post: "/identity/v1/domain/disable"
-            body: "*"
-        };
-    }
+    rpc delete (DomainRequest) returns (google.protobuf.Empty) {}
+    rpc enable (DomainRequest) returns (DomainInfo) {}
+    rpc disable (DomainRequest) returns (DomainInfo) {}
     rpc get (GetDomainRequest) returns (DomainInfo) {
         option (google.api.http) = {
             post: "/identity/v1/domain/get"
             body: "*"
         };
     }
-    rpc list (DomainQuery) returns (DomainsInfo) {
-        option (google.api.http) = {
-            post: "/identity/v1/domain/list"
-            body: "*"
-        };
-    }
-    rpc stat (DomainStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/identity/v1/domain/stat"
-            body: "*"
-        };
-    }
-
+    rpc list (DomainQuery) returns (DomainsInfo) {}
+    rpc stat (DomainStatQuery) returns (google.protobuf.Struct) {}
     rpc get_public_key (spaceone.api.core.v1.AuthenticationRequest)
-    returns (spaceone.api.core.v1.AuthenticationResponse) {
-        option (google.api.http) = {
-            post: "/identity/v1/domain/get-public-key"
-            body: "*"
-        };
-    }
+        returns (spaceone.api.core.v1.AuthenticationResponse) {}
 }
 
 message CreateDomainRequest {
