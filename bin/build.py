@@ -315,7 +315,7 @@ def build(**params):
         for target in params['target']:
             proto_files = _get_proto_files(os.path.join(params['proto_dir'], PROJECT, 'api', target))
             list(map(functools.partial(_compile_code, params, code), proto_files))
-            _make_build_environment(params['output_dir'], code)
+        _make_build_environment(params['output_dir'], code)
 
     # Build OpenAPI JSON File using artifact from Protocol Buffers
     if 'openapi' in params['code']:
