@@ -11,12 +11,7 @@ import "google/api/annotations.proto";
 
 service Plugin {
     // Gets the `endpoint` of a specific plugin instance. A Plugin returns only a single `endpoint` by determining `labels` and `priority`. If the requested plugin instance is already deployed, the `endpoint` is returned. If not, the `endpoint` is returned after deploying the plugin instance.
-    rpc get_plugin_endpoint (PluginEndpointRequest) returns (PluginEndpoint) {
-        option (google.api.http) = {
-            post: "/plugin/v1/plugin/get-plugin-endpoint"
-            body: "*"
-        };
-    }
+    rpc get_plugin_endpoint (PluginEndpointRequest) returns (PluginEndpoint){}
 
     rpc get_plugin_metadata (PluginMetadataRequest) returns (PluginMetadata) {
         option (google.api.http) = {
@@ -25,12 +20,7 @@ service Plugin {
         };
     }
 
-    rpc notify_failure (PluginFailureRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/plugin/v1/plugin/notify-failure"
-            body: "*"
-        };
-    }
+    rpc notify_failure (PluginFailureRequest) returns (google.protobuf.Empty) {}
 }
 
 //{

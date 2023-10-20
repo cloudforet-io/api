@@ -12,28 +12,13 @@ import "spaceone/api/core/v1/query.proto";
 
 service Repository {
     // Registers a Repository. The parameter `name` can only include alphabets, numbers, and hyphens(-). The parameter `repository_type` can be either `local` or `remote`. The parameter `endpoint` is needed if the `repository_type` is `remote`.
-    rpc register (CreateRepositoryRequest) returns (RepositoryInfo) {
-        option (google.api.http) = {
-            post: "/repository/v1/repository/register"
-            body: "*"
-        };
-    }
+    rpc register (CreateRepositoryRequest) returns (RepositoryInfo) {}
     
     // Updates a specific Repository registered. You must specify the `repository_id` of the Repository to update. You can make changes in Repository settings, including `name`.
-    rpc update (UpdateRepositoryRequest) returns (RepositoryInfo) {
-        option (google.api.http) = {
-            post: "/repository/v1/repository/update"
-            body: "*"
-        };
-    }
+    rpc update (UpdateRepositoryRequest) returns (RepositoryInfo) {}
     
     // Deregisters and deletes a specific Repository. You must specify the `repository_id` of the Repository to deregister.
-    rpc deregister (RepositoryRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/repository/v1/repository/deregister"
-            body: "*"
-        };
-    }
+    rpc deregister (RepositoryRequest) returns (google.protobuf.Empty) {}
     
     // Gets a specific Repository. Prints detailed information about the Repository, including  `name`, `repository_type`, and `endpoint`.
     rpc get (GetRepositoryRequest) returns (RepositoryInfo) {
