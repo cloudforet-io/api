@@ -4,7 +4,6 @@ import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.core.v1 import query_pb2 as spaceone_dot_api_dot_core_dot_v1_dot_query__pb2
 from spaceone.api.inventory.v1 import cloud_service_pb2 as spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2
 
 
@@ -45,7 +44,7 @@ class CloudServiceStub(object):
         self.export = channel.unary_unary(
                 '/spaceone.api.inventory.v1.CloudService/export',
                 request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceExportRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_core_dot_v1_dot_query__pb2.ExportInfo.FromString,
+                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 )
         self.analyze = channel.unary_unary(
                 '/spaceone.api.inventory.v1.CloudService/analyze',
@@ -146,7 +145,7 @@ def add_CloudServiceServicer_to_server(servicer, server):
             'export': grpc.unary_unary_rpc_method_handler(
                     servicer.export,
                     request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceExportRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_core_dot_v1_dot_query__pb2.ExportInfo.SerializeToString,
+                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'analyze': grpc.unary_unary_rpc_method_handler(
                     servicer.analyze,
@@ -266,7 +265,7 @@ class CloudService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.CloudService/export',
             spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceExportRequest.SerializeToString,
-            spaceone_dot_api_dot_core_dot_v1_dot_query__pb2.ExportInfo.FromString,
+            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

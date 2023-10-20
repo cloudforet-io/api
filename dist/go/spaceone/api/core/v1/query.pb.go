@@ -2350,53 +2350,6 @@ func (*ExportOptions_SearchQuery) isExportOptions_ExportQuery() {}
 
 func (*ExportOptions_AnalyzeQuery) isExportOptions_ExportQuery() {}
 
-type ExportInfo struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	DownloadUrl string `protobuf:"bytes,1,opt,name=download_url,json=downloadUrl,proto3" json:"download_url,omitempty"`
-}
-
-func (x *ExportInfo) Reset() {
-	*x = ExportInfo{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_spaceone_api_core_v1_query_proto_msgTypes[22]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ExportInfo) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ExportInfo) ProtoMessage() {}
-
-func (x *ExportInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_core_v1_query_proto_msgTypes[22]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ExportInfo.ProtoReflect.Descriptor instead.
-func (*ExportInfo) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_core_v1_query_proto_rawDescGZIP(), []int{22}
-}
-
-func (x *ExportInfo) GetDownloadUrl() string {
-	if x != nil {
-		return x.DownloadUrl
-	}
-	return ""
-}
-
 var File_spaceone_api_core_v1_query_proto protoreflect.FileDescriptor
 
 var file_spaceone_api_core_v1_query_proto_rawDesc = []byte{
@@ -2715,14 +2668,11 @@ var file_spaceone_api_core_v1_query_proto_rawDesc = []byte{
 	0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x4e, 0x4f, 0x4e, 0x45, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06,
 	0x53, 0x45, 0x41, 0x52, 0x43, 0x48, 0x10, 0x01, 0x12, 0x0b, 0x0a, 0x07, 0x41, 0x4e, 0x41, 0x4c,
 	0x59, 0x5a, 0x45, 0x10, 0x02, 0x42, 0x0e, 0x0a, 0x0c, 0x65, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x5f,
-	0x71, 0x75, 0x65, 0x72, 0x79, 0x22, 0x2f, 0x0a, 0x0a, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x49,
-	0x6e, 0x66, 0x6f, 0x12, 0x21, 0x0a, 0x0c, 0x64, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x5f,
-	0x75, 0x72, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x6f, 0x77, 0x6e, 0x6c,
-	0x6f, 0x61, 0x64, 0x55, 0x72, 0x6c, 0x42, 0x3b, 0x5a, 0x39, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
-	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x66, 0x6f, 0x72, 0x65, 0x74, 0x2d,
-	0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x64, 0x69, 0x73, 0x74, 0x2f, 0x67, 0x6f, 0x2f, 0x73,
-	0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x72, 0x65,
-	0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x71, 0x75, 0x65, 0x72, 0x79, 0x42, 0x3b, 0x5a, 0x39, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
+	0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x66, 0x6f, 0x72, 0x65, 0x74, 0x2d, 0x69,
+	0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x64, 0x69, 0x73, 0x74, 0x2f, 0x67, 0x6f, 0x2f, 0x73, 0x70,
+	0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2f,
+	0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2738,7 +2688,7 @@ func file_spaceone_api_core_v1_query_proto_rawDescGZIP() []byte {
 }
 
 var file_spaceone_api_core_v1_query_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_spaceone_api_core_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_spaceone_api_core_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
 var file_spaceone_api_core_v1_query_proto_goTypes = []interface{}{
 	(TimeSeriesAnalyzeQuery_Granularity)(0), // 0: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.Granularity
 	(ExportOptions_QueryType)(0),            // 1: spaceone.api.core.v1.ExportOptions.QueryType
@@ -2764,21 +2714,20 @@ var file_spaceone_api_core_v1_query_proto_goTypes = []interface{}{
 	(*ExportSearchQuery)(nil),               // 21: spaceone.api.core.v1.ExportSearchQuery
 	(*ExportAnalyzeQuery)(nil),              // 22: spaceone.api.core.v1.ExportAnalyzeQuery
 	(*ExportOptions)(nil),                   // 23: spaceone.api.core.v1.ExportOptions
-	(*ExportInfo)(nil),                      // 24: spaceone.api.core.v1.ExportInfo
-	(*_struct.Value)(nil),                   // 25: google.protobuf.Value
-	(*_struct.Struct)(nil),                  // 26: google.protobuf.Struct
-	(*_struct.ListValue)(nil),               // 27: google.protobuf.ListValue
+	(*_struct.Value)(nil),                   // 24: google.protobuf.Value
+	(*_struct.Struct)(nil),                  // 25: google.protobuf.Struct
+	(*_struct.ListValue)(nil),               // 26: google.protobuf.ListValue
 }
 var file_spaceone_api_core_v1_query_proto_depIdxs = []int32{
-	25, // 0: spaceone.api.core.v1.Filter.value:type_name -> google.protobuf.Value
-	25, // 1: spaceone.api.core.v1.Filter.v:type_name -> google.protobuf.Value
+	24, // 0: spaceone.api.core.v1.Filter.value:type_name -> google.protobuf.Value
+	24, // 1: spaceone.api.core.v1.Filter.v:type_name -> google.protobuf.Value
 	3,  // 2: spaceone.api.core.v1.Sort.keys:type_name -> spaceone.api.core.v1.SortKey
 	2,  // 3: spaceone.api.core.v1.Query.filter:type_name -> spaceone.api.core.v1.Filter
 	2,  // 4: spaceone.api.core.v1.Query.filter_or:type_name -> spaceone.api.core.v1.Filter
 	4,  // 5: spaceone.api.core.v1.Query.sort:type_name -> spaceone.api.core.v1.Sort
 	5,  // 6: spaceone.api.core.v1.Query.page:type_name -> spaceone.api.core.v1.Page
-	25, // 7: spaceone.api.core.v1.AggregateSubCondition.value:type_name -> google.protobuf.Value
-	25, // 8: spaceone.api.core.v1.AggregateSubCondition.v:type_name -> google.protobuf.Value
+	24, // 7: spaceone.api.core.v1.AggregateSubCondition.value:type_name -> google.protobuf.Value
+	24, // 8: spaceone.api.core.v1.AggregateSubCondition.v:type_name -> google.protobuf.Value
 	8,  // 9: spaceone.api.core.v1.AggregateGroupField.fields:type_name -> spaceone.api.core.v1.AggregateGroupSubField
 	9,  // 10: spaceone.api.core.v1.AggregateGroupField.conditions:type_name -> spaceone.api.core.v1.AggregateSubCondition
 	7,  // 11: spaceone.api.core.v1.AggregateGroup.keys:type_name -> spaceone.api.core.v1.AggregateGroupKey
@@ -2799,23 +2748,23 @@ var file_spaceone_api_core_v1_query_proto_depIdxs = []int32{
 	2,  // 26: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.filter_or:type_name -> spaceone.api.core.v1.Filter
 	5,  // 27: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.page:type_name -> spaceone.api.core.v1.Page
 	3,  // 28: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.sort:type_name -> spaceone.api.core.v1.SortKey
-	26, // 29: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.fields:type_name -> google.protobuf.Struct
-	26, // 30: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.select:type_name -> google.protobuf.Struct
+	25, // 29: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.fields:type_name -> google.protobuf.Struct
+	25, // 30: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.select:type_name -> google.protobuf.Struct
 	2,  // 31: spaceone.api.core.v1.AnalyzeQuery.filter:type_name -> spaceone.api.core.v1.Filter
 	2,  // 32: spaceone.api.core.v1.AnalyzeQuery.filter_or:type_name -> spaceone.api.core.v1.Filter
 	5,  // 33: spaceone.api.core.v1.AnalyzeQuery.page:type_name -> spaceone.api.core.v1.Page
 	3,  // 34: spaceone.api.core.v1.AnalyzeQuery.sort:type_name -> spaceone.api.core.v1.SortKey
-	26, // 35: spaceone.api.core.v1.AnalyzeQuery.fields:type_name -> google.protobuf.Struct
-	26, // 36: spaceone.api.core.v1.AnalyzeQuery.select:type_name -> google.protobuf.Struct
+	25, // 35: spaceone.api.core.v1.AnalyzeQuery.fields:type_name -> google.protobuf.Struct
+	25, // 36: spaceone.api.core.v1.AnalyzeQuery.select:type_name -> google.protobuf.Struct
 	2,  // 37: spaceone.api.core.v1.ExportSearchQuery.filter:type_name -> spaceone.api.core.v1.Filter
 	2,  // 38: spaceone.api.core.v1.ExportSearchQuery.filter_or:type_name -> spaceone.api.core.v1.Filter
 	3,  // 39: spaceone.api.core.v1.ExportSearchQuery.sort:type_name -> spaceone.api.core.v1.SortKey
-	27, // 40: spaceone.api.core.v1.ExportSearchQuery.fields:type_name -> google.protobuf.ListValue
+	26, // 40: spaceone.api.core.v1.ExportSearchQuery.fields:type_name -> google.protobuf.ListValue
 	2,  // 41: spaceone.api.core.v1.ExportAnalyzeQuery.filter:type_name -> spaceone.api.core.v1.Filter
 	2,  // 42: spaceone.api.core.v1.ExportAnalyzeQuery.filter_or:type_name -> spaceone.api.core.v1.Filter
 	3,  // 43: spaceone.api.core.v1.ExportAnalyzeQuery.sort:type_name -> spaceone.api.core.v1.SortKey
-	26, // 44: spaceone.api.core.v1.ExportAnalyzeQuery.fields:type_name -> google.protobuf.Struct
-	26, // 45: spaceone.api.core.v1.ExportAnalyzeQuery.select:type_name -> google.protobuf.Struct
+	25, // 44: spaceone.api.core.v1.ExportAnalyzeQuery.fields:type_name -> google.protobuf.Struct
+	25, // 45: spaceone.api.core.v1.ExportAnalyzeQuery.select:type_name -> google.protobuf.Struct
 	1,  // 46: spaceone.api.core.v1.ExportOptions.query_type:type_name -> spaceone.api.core.v1.ExportOptions.QueryType
 	21, // 47: spaceone.api.core.v1.ExportOptions.search_query:type_name -> spaceone.api.core.v1.ExportSearchQuery
 	22, // 48: spaceone.api.core.v1.ExportOptions.analyze_query:type_name -> spaceone.api.core.v1.ExportAnalyzeQuery
@@ -3096,18 +3045,6 @@ func file_spaceone_api_core_v1_query_proto_init() {
 				return nil
 			}
 		}
-		file_spaceone_api_core_v1_query_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ExportInfo); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
 	}
 	file_spaceone_api_core_v1_query_proto_msgTypes[0].OneofWrappers = []interface{}{
 		(*Filter_Key)(nil),
@@ -3172,7 +3109,7 @@ func file_spaceone_api_core_v1_query_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_spaceone_api_core_v1_query_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   23,
+			NumMessages:   22,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

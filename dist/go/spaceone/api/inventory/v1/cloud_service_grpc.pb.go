@@ -10,7 +10,6 @@ package v1
 
 import (
 	context "context"
-	v1 "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v1"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
@@ -48,7 +47,7 @@ type CloudServiceClient interface {
 	Get(ctx context.Context, in *GetCloudServiceRequest, opts ...grpc.CallOption) (*CloudServiceInfo, error)
 	// Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.
 	List(ctx context.Context, in *CloudServiceQuery, opts ...grpc.CallOption) (*CloudServicesInfo, error)
-	Export(ctx context.Context, in *CloudServiceExportRequest, opts ...grpc.CallOption) (*v1.ExportInfo, error)
+	Export(ctx context.Context, in *CloudServiceExportRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Analyze(ctx context.Context, in *CloudServiceAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Stat(ctx context.Context, in *CloudServiceStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -106,8 +105,8 @@ func (c *cloudServiceClient) List(ctx context.Context, in *CloudServiceQuery, op
 	return out, nil
 }
 
-func (c *cloudServiceClient) Export(ctx context.Context, in *CloudServiceExportRequest, opts ...grpc.CallOption) (*v1.ExportInfo, error) {
-	out := new(v1.ExportInfo)
+func (c *cloudServiceClient) Export(ctx context.Context, in *CloudServiceExportRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
+	out := new(_struct.Struct)
 	err := c.cc.Invoke(ctx, CloudService_Export_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -147,7 +146,7 @@ type CloudServiceServer interface {
 	Get(context.Context, *GetCloudServiceRequest) (*CloudServiceInfo, error)
 	// Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.
 	List(context.Context, *CloudServiceQuery) (*CloudServicesInfo, error)
-	Export(context.Context, *CloudServiceExportRequest) (*v1.ExportInfo, error)
+	Export(context.Context, *CloudServiceExportRequest) (*_struct.Struct, error)
 	Analyze(context.Context, *CloudServiceAnalyzeQuery) (*_struct.Struct, error)
 	Stat(context.Context, *CloudServiceStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedCloudServiceServer()
@@ -172,7 +171,7 @@ func (UnimplementedCloudServiceServer) Get(context.Context, *GetCloudServiceRequ
 func (UnimplementedCloudServiceServer) List(context.Context, *CloudServiceQuery) (*CloudServicesInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedCloudServiceServer) Export(context.Context, *CloudServiceExportRequest) (*v1.ExportInfo, error) {
+func (UnimplementedCloudServiceServer) Export(context.Context, *CloudServiceExportRequest) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Export not implemented")
 }
 func (UnimplementedCloudServiceServer) Analyze(context.Context, *CloudServiceAnalyzeQuery) (*_struct.Struct, error) {
