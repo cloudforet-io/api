@@ -73,6 +73,55 @@ func (TimeSeriesAnalyzeQuery_Granularity) EnumDescriptor() ([]byte, []int) {
 	return file_spaceone_api_core_v1_query_proto_rawDescGZIP(), []int{17, 0}
 }
 
+type ExportOptions_QueryType int32
+
+const (
+	ExportOptions_QUERY_TYPE_NONE ExportOptions_QueryType = 0
+	ExportOptions_SEARCH          ExportOptions_QueryType = 1
+	ExportOptions_ANALYZE         ExportOptions_QueryType = 2
+)
+
+// Enum value maps for ExportOptions_QueryType.
+var (
+	ExportOptions_QueryType_name = map[int32]string{
+		0: "QUERY_TYPE_NONE",
+		1: "SEARCH",
+		2: "ANALYZE",
+	}
+	ExportOptions_QueryType_value = map[string]int32{
+		"QUERY_TYPE_NONE": 0,
+		"SEARCH":          1,
+		"ANALYZE":         2,
+	}
+)
+
+func (x ExportOptions_QueryType) Enum() *ExportOptions_QueryType {
+	p := new(ExportOptions_QueryType)
+	*p = x
+	return p
+}
+
+func (x ExportOptions_QueryType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ExportOptions_QueryType) Descriptor() protoreflect.EnumDescriptor {
+	return file_spaceone_api_core_v1_query_proto_enumTypes[1].Descriptor()
+}
+
+func (ExportOptions_QueryType) Type() protoreflect.EnumType {
+	return &file_spaceone_api_core_v1_query_proto_enumTypes[1]
+}
+
+func (x ExportOptions_QueryType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ExportOptions_QueryType.Descriptor instead.
+func (ExportOptions_QueryType) EnumDescriptor() ([]byte, []int) {
+	return file_spaceone_api_core_v1_query_proto_rawDescGZIP(), []int{21, 0}
+}
+
 type Filter struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2030,6 +2079,324 @@ func (x *AnalyzeQuery) GetKeyword() string {
 	return ""
 }
 
+type ExportSearchQuery struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Filter   []*Filter          `protobuf:"bytes,1,rep,name=filter,proto3" json:"filter,omitempty"`
+	FilterOr []*Filter          `protobuf:"bytes,2,rep,name=filter_or,json=filterOr,proto3" json:"filter_or,omitempty"`
+	Keyword  string             `protobuf:"bytes,3,opt,name=keyword,proto3" json:"keyword,omitempty"`
+	Sort     []*SortKey         `protobuf:"bytes,4,rep,name=sort,proto3" json:"sort,omitempty"`
+	Fields   *_struct.ListValue `protobuf:"bytes,5,opt,name=fields,proto3" json:"fields,omitempty"`
+}
+
+func (x *ExportSearchQuery) Reset() {
+	*x = ExportSearchQuery{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_spaceone_api_core_v1_query_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ExportSearchQuery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExportSearchQuery) ProtoMessage() {}
+
+func (x *ExportSearchQuery) ProtoReflect() protoreflect.Message {
+	mi := &file_spaceone_api_core_v1_query_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExportSearchQuery.ProtoReflect.Descriptor instead.
+func (*ExportSearchQuery) Descriptor() ([]byte, []int) {
+	return file_spaceone_api_core_v1_query_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *ExportSearchQuery) GetFilter() []*Filter {
+	if x != nil {
+		return x.Filter
+	}
+	return nil
+}
+
+func (x *ExportSearchQuery) GetFilterOr() []*Filter {
+	if x != nil {
+		return x.FilterOr
+	}
+	return nil
+}
+
+func (x *ExportSearchQuery) GetKeyword() string {
+	if x != nil {
+		return x.Keyword
+	}
+	return ""
+}
+
+func (x *ExportSearchQuery) GetSort() []*SortKey {
+	if x != nil {
+		return x.Sort
+	}
+	return nil
+}
+
+func (x *ExportSearchQuery) GetFields() *_struct.ListValue {
+	if x != nil {
+		return x.Fields
+	}
+	return nil
+}
+
+type ExportAnalyzeQuery struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Filter   []*Filter       `protobuf:"bytes,1,rep,name=filter,proto3" json:"filter,omitempty"`
+	FilterOr []*Filter       `protobuf:"bytes,2,rep,name=filter_or,json=filterOr,proto3" json:"filter_or,omitempty"`
+	Keyword  string          `protobuf:"bytes,3,opt,name=keyword,proto3" json:"keyword,omitempty"`
+	Sort     []*SortKey      `protobuf:"bytes,4,rep,name=sort,proto3" json:"sort,omitempty"`
+	GroupBy  []string        `protobuf:"bytes,5,rep,name=group_by,json=groupBy,proto3" json:"group_by,omitempty"`
+	Fields   *_struct.Struct `protobuf:"bytes,6,opt,name=fields,proto3" json:"fields,omitempty"`
+	Select   *_struct.Struct `protobuf:"bytes,7,opt,name=select,proto3" json:"select,omitempty"`
+}
+
+func (x *ExportAnalyzeQuery) Reset() {
+	*x = ExportAnalyzeQuery{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_spaceone_api_core_v1_query_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ExportAnalyzeQuery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExportAnalyzeQuery) ProtoMessage() {}
+
+func (x *ExportAnalyzeQuery) ProtoReflect() protoreflect.Message {
+	mi := &file_spaceone_api_core_v1_query_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExportAnalyzeQuery.ProtoReflect.Descriptor instead.
+func (*ExportAnalyzeQuery) Descriptor() ([]byte, []int) {
+	return file_spaceone_api_core_v1_query_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *ExportAnalyzeQuery) GetFilter() []*Filter {
+	if x != nil {
+		return x.Filter
+	}
+	return nil
+}
+
+func (x *ExportAnalyzeQuery) GetFilterOr() []*Filter {
+	if x != nil {
+		return x.FilterOr
+	}
+	return nil
+}
+
+func (x *ExportAnalyzeQuery) GetKeyword() string {
+	if x != nil {
+		return x.Keyword
+	}
+	return ""
+}
+
+func (x *ExportAnalyzeQuery) GetSort() []*SortKey {
+	if x != nil {
+		return x.Sort
+	}
+	return nil
+}
+
+func (x *ExportAnalyzeQuery) GetGroupBy() []string {
+	if x != nil {
+		return x.GroupBy
+	}
+	return nil
+}
+
+func (x *ExportAnalyzeQuery) GetFields() *_struct.Struct {
+	if x != nil {
+		return x.Fields
+	}
+	return nil
+}
+
+func (x *ExportAnalyzeQuery) GetSelect() *_struct.Struct {
+	if x != nil {
+		return x.Select
+	}
+	return nil
+}
+
+type ExportOptions struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name      string                  `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	QueryType ExportOptions_QueryType `protobuf:"varint,2,opt,name=query_type,json=queryType,proto3,enum=spaceone.api.core.v1.ExportOptions_QueryType" json:"query_type,omitempty"`
+	// Types that are assignable to ExportQuery:
+	//
+	//	*ExportOptions_SearchQuery
+	//	*ExportOptions_AnalyzeQuery
+	ExportQuery isExportOptions_ExportQuery `protobuf_oneof:"export_query"`
+}
+
+func (x *ExportOptions) Reset() {
+	*x = ExportOptions{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_spaceone_api_core_v1_query_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ExportOptions) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExportOptions) ProtoMessage() {}
+
+func (x *ExportOptions) ProtoReflect() protoreflect.Message {
+	mi := &file_spaceone_api_core_v1_query_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExportOptions.ProtoReflect.Descriptor instead.
+func (*ExportOptions) Descriptor() ([]byte, []int) {
+	return file_spaceone_api_core_v1_query_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *ExportOptions) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ExportOptions) GetQueryType() ExportOptions_QueryType {
+	if x != nil {
+		return x.QueryType
+	}
+	return ExportOptions_QUERY_TYPE_NONE
+}
+
+func (m *ExportOptions) GetExportQuery() isExportOptions_ExportQuery {
+	if m != nil {
+		return m.ExportQuery
+	}
+	return nil
+}
+
+func (x *ExportOptions) GetSearchQuery() *ExportSearchQuery {
+	if x, ok := x.GetExportQuery().(*ExportOptions_SearchQuery); ok {
+		return x.SearchQuery
+	}
+	return nil
+}
+
+func (x *ExportOptions) GetAnalyzeQuery() *ExportAnalyzeQuery {
+	if x, ok := x.GetExportQuery().(*ExportOptions_AnalyzeQuery); ok {
+		return x.AnalyzeQuery
+	}
+	return nil
+}
+
+type isExportOptions_ExportQuery interface {
+	isExportOptions_ExportQuery()
+}
+
+type ExportOptions_SearchQuery struct {
+	SearchQuery *ExportSearchQuery `protobuf:"bytes,3,opt,name=search_query,json=searchQuery,proto3,oneof"`
+}
+
+type ExportOptions_AnalyzeQuery struct {
+	AnalyzeQuery *ExportAnalyzeQuery `protobuf:"bytes,4,opt,name=analyze_query,json=analyzeQuery,proto3,oneof"`
+}
+
+func (*ExportOptions_SearchQuery) isExportOptions_ExportQuery() {}
+
+func (*ExportOptions_AnalyzeQuery) isExportOptions_ExportQuery() {}
+
+type ExportInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DownloadUrl string `protobuf:"bytes,1,opt,name=download_url,json=downloadUrl,proto3" json:"download_url,omitempty"`
+}
+
+func (x *ExportInfo) Reset() {
+	*x = ExportInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_spaceone_api_core_v1_query_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ExportInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExportInfo) ProtoMessage() {}
+
+func (x *ExportInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_spaceone_api_core_v1_query_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExportInfo.ProtoReflect.Descriptor instead.
+func (*ExportInfo) Descriptor() ([]byte, []int) {
+	return file_spaceone_api_core_v1_query_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *ExportInfo) GetDownloadUrl() string {
+	if x != nil {
+		return x.DownloadUrl
+	}
+	return ""
+}
+
 var File_spaceone_api_core_v1_query_proto protoreflect.FileDescriptor
 
 var file_spaceone_api_core_v1_query_proto_rawDesc = []byte{
@@ -2288,12 +2655,74 @@ var file_spaceone_api_core_v1_query_proto_rawDesc = []byte{
 	0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x06, 0x73, 0x65, 0x6c,
 	0x65, 0x63, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x09,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x42, 0x3b, 0x5a,
-	0x39, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6c, 0x6f, 0x75,
-	0x64, 0x66, 0x6f, 0x72, 0x65, 0x74, 0x2d, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x64, 0x69,
-	0x73, 0x74, 0x2f, 0x67, 0x6f, 0x2f, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2f, 0x61,
-	0x70, 0x69, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x85, 0x02,
+	0x0a, 0x11, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x12, 0x34, 0x0a, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61,
+	0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6c, 0x74, 0x65,
+	0x72, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x12, 0x39, 0x0a, 0x09, 0x66, 0x69, 0x6c,
+	0x74, 0x65, 0x72, 0x5f, 0x6f, 0x72, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x73,
+	0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x08, 0x66, 0x69, 0x6c, 0x74,
+	0x65, 0x72, 0x4f, 0x72, 0x12, 0x18, 0x0a, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x31,
+	0x0a, 0x04, 0x73, 0x6f, 0x72, 0x74, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x73,
+	0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x53, 0x6f, 0x72, 0x74, 0x4b, 0x65, 0x79, 0x52, 0x04, 0x73, 0x6f, 0x72,
+	0x74, 0x12, 0x32, 0x0a, 0x06, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x06, 0x66,
+	0x69, 0x65, 0x6c, 0x64, 0x73, 0x22, 0xcf, 0x02, 0x0a, 0x12, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74,
+	0x41, 0x6e, 0x61, 0x6c, 0x79, 0x7a, 0x65, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x34, 0x0a, 0x06,
+	0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x73,
+	0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74,
+	0x65, 0x72, 0x12, 0x39, 0x0a, 0x09, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x5f, 0x6f, 0x72, 0x18,
+	0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65,
+	0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6c,
+	0x74, 0x65, 0x72, 0x52, 0x08, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x4f, 0x72, 0x12, 0x18, 0x0a,
+	0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
+	0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x31, 0x0a, 0x04, 0x73, 0x6f, 0x72, 0x74, 0x18,
+	0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65,
+	0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x6f, 0x72,
+	0x74, 0x4b, 0x65, 0x79, 0x52, 0x04, 0x73, 0x6f, 0x72, 0x74, 0x12, 0x19, 0x0a, 0x08, 0x67, 0x72,
+	0x6f, 0x75, 0x70, 0x5f, 0x62, 0x79, 0x18, 0x05, 0x20, 0x03, 0x28, 0x09, 0x52, 0x07, 0x67, 0x72,
+	0x6f, 0x75, 0x70, 0x42, 0x79, 0x12, 0x2f, 0x0a, 0x06, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x18,
+	0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x06,
+	0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x12, 0x2f, 0x0a, 0x06, 0x73, 0x65, 0x6c, 0x65, 0x63, 0x74,
+	0x18, 0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52,
+	0x06, 0x73, 0x65, 0x6c, 0x65, 0x63, 0x74, 0x22, 0xdb, 0x02, 0x0a, 0x0d, 0x45, 0x78, 0x70, 0x6f,
+	0x72, 0x74, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x4c, 0x0a,
+	0x0a, 0x71, 0x75, 0x65, 0x72, 0x79, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x0e, 0x32, 0x2d, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69,
+	0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x4f,
+	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x54, 0x79, 0x70, 0x65,
+	0x52, 0x09, 0x71, 0x75, 0x65, 0x72, 0x79, 0x54, 0x79, 0x70, 0x65, 0x12, 0x4c, 0x0a, 0x0c, 0x73,
+	0x65, 0x61, 0x72, 0x63, 0x68, 0x5f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x27, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69,
+	0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x53,
+	0x65, 0x61, 0x72, 0x63, 0x68, 0x51, 0x75, 0x65, 0x72, 0x79, 0x48, 0x00, 0x52, 0x0b, 0x73, 0x65,
+	0x61, 0x72, 0x63, 0x68, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x4f, 0x0a, 0x0d, 0x61, 0x6e, 0x61,
+	0x6c, 0x79, 0x7a, 0x65, 0x5f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x28, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e,
+	0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x41, 0x6e,
+	0x61, 0x6c, 0x79, 0x7a, 0x65, 0x51, 0x75, 0x65, 0x72, 0x79, 0x48, 0x00, 0x52, 0x0c, 0x61, 0x6e,
+	0x61, 0x6c, 0x79, 0x7a, 0x65, 0x51, 0x75, 0x65, 0x72, 0x79, 0x22, 0x39, 0x0a, 0x09, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x54, 0x79, 0x70, 0x65, 0x12, 0x13, 0x0a, 0x0f, 0x51, 0x55, 0x45, 0x52, 0x59,
+	0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x4e, 0x4f, 0x4e, 0x45, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06,
+	0x53, 0x45, 0x41, 0x52, 0x43, 0x48, 0x10, 0x01, 0x12, 0x0b, 0x0a, 0x07, 0x41, 0x4e, 0x41, 0x4c,
+	0x59, 0x5a, 0x45, 0x10, 0x02, 0x42, 0x0e, 0x0a, 0x0c, 0x65, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x5f,
+	0x71, 0x75, 0x65, 0x72, 0x79, 0x22, 0x2f, 0x0a, 0x0a, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x49,
+	0x6e, 0x66, 0x6f, 0x12, 0x21, 0x0a, 0x0c, 0x64, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x5f,
+	0x75, 0x72, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x6f, 0x77, 0x6e, 0x6c,
+	0x6f, 0x61, 0x64, 0x55, 0x72, 0x6c, 0x42, 0x3b, 0x5a, 0x39, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x66, 0x6f, 0x72, 0x65, 0x74, 0x2d,
+	0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x64, 0x69, 0x73, 0x74, 0x2f, 0x67, 0x6f, 0x2f, 0x73,
+	0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x72, 0x65,
+	0x2f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2308,75 +2737,93 @@ func file_spaceone_api_core_v1_query_proto_rawDescGZIP() []byte {
 	return file_spaceone_api_core_v1_query_proto_rawDescData
 }
 
-var file_spaceone_api_core_v1_query_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_spaceone_api_core_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_spaceone_api_core_v1_query_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_spaceone_api_core_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_spaceone_api_core_v1_query_proto_goTypes = []interface{}{
 	(TimeSeriesAnalyzeQuery_Granularity)(0), // 0: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.Granularity
-	(*Filter)(nil),                          // 1: spaceone.api.core.v1.Filter
-	(*SortKey)(nil),                         // 2: spaceone.api.core.v1.SortKey
-	(*Sort)(nil),                            // 3: spaceone.api.core.v1.Sort
-	(*Page)(nil),                            // 4: spaceone.api.core.v1.Page
-	(*Query)(nil),                           // 5: spaceone.api.core.v1.Query
-	(*AggregateGroupKey)(nil),               // 6: spaceone.api.core.v1.AggregateGroupKey
-	(*AggregateGroupSubField)(nil),          // 7: spaceone.api.core.v1.AggregateGroupSubField
-	(*AggregateSubCondition)(nil),           // 8: spaceone.api.core.v1.AggregateSubCondition
-	(*AggregateGroupField)(nil),             // 9: spaceone.api.core.v1.AggregateGroupField
-	(*AggregateGroup)(nil),                  // 10: spaceone.api.core.v1.AggregateGroup
-	(*AggregateProjectField)(nil),           // 11: spaceone.api.core.v1.AggregateProjectField
-	(*AggregateProject)(nil),                // 12: spaceone.api.core.v1.AggregateProject
-	(*AggregateUnwind)(nil),                 // 13: spaceone.api.core.v1.AggregateUnwind
-	(*AggregateCount)(nil),                  // 14: spaceone.api.core.v1.AggregateCount
-	(*AggregateSort)(nil),                   // 15: spaceone.api.core.v1.AggregateSort
-	(*StatisticsAggregate)(nil),             // 16: spaceone.api.core.v1.StatisticsAggregate
-	(*StatisticsQuery)(nil),                 // 17: spaceone.api.core.v1.StatisticsQuery
-	(*TimeSeriesAnalyzeQuery)(nil),          // 18: spaceone.api.core.v1.TimeSeriesAnalyzeQuery
-	(*AnalyzeQuery)(nil),                    // 19: spaceone.api.core.v1.AnalyzeQuery
-	(*_struct.Value)(nil),                   // 20: google.protobuf.Value
-	(*_struct.Struct)(nil),                  // 21: google.protobuf.Struct
+	(ExportOptions_QueryType)(0),            // 1: spaceone.api.core.v1.ExportOptions.QueryType
+	(*Filter)(nil),                          // 2: spaceone.api.core.v1.Filter
+	(*SortKey)(nil),                         // 3: spaceone.api.core.v1.SortKey
+	(*Sort)(nil),                            // 4: spaceone.api.core.v1.Sort
+	(*Page)(nil),                            // 5: spaceone.api.core.v1.Page
+	(*Query)(nil),                           // 6: spaceone.api.core.v1.Query
+	(*AggregateGroupKey)(nil),               // 7: spaceone.api.core.v1.AggregateGroupKey
+	(*AggregateGroupSubField)(nil),          // 8: spaceone.api.core.v1.AggregateGroupSubField
+	(*AggregateSubCondition)(nil),           // 9: spaceone.api.core.v1.AggregateSubCondition
+	(*AggregateGroupField)(nil),             // 10: spaceone.api.core.v1.AggregateGroupField
+	(*AggregateGroup)(nil),                  // 11: spaceone.api.core.v1.AggregateGroup
+	(*AggregateProjectField)(nil),           // 12: spaceone.api.core.v1.AggregateProjectField
+	(*AggregateProject)(nil),                // 13: spaceone.api.core.v1.AggregateProject
+	(*AggregateUnwind)(nil),                 // 14: spaceone.api.core.v1.AggregateUnwind
+	(*AggregateCount)(nil),                  // 15: spaceone.api.core.v1.AggregateCount
+	(*AggregateSort)(nil),                   // 16: spaceone.api.core.v1.AggregateSort
+	(*StatisticsAggregate)(nil),             // 17: spaceone.api.core.v1.StatisticsAggregate
+	(*StatisticsQuery)(nil),                 // 18: spaceone.api.core.v1.StatisticsQuery
+	(*TimeSeriesAnalyzeQuery)(nil),          // 19: spaceone.api.core.v1.TimeSeriesAnalyzeQuery
+	(*AnalyzeQuery)(nil),                    // 20: spaceone.api.core.v1.AnalyzeQuery
+	(*ExportSearchQuery)(nil),               // 21: spaceone.api.core.v1.ExportSearchQuery
+	(*ExportAnalyzeQuery)(nil),              // 22: spaceone.api.core.v1.ExportAnalyzeQuery
+	(*ExportOptions)(nil),                   // 23: spaceone.api.core.v1.ExportOptions
+	(*ExportInfo)(nil),                      // 24: spaceone.api.core.v1.ExportInfo
+	(*_struct.Value)(nil),                   // 25: google.protobuf.Value
+	(*_struct.Struct)(nil),                  // 26: google.protobuf.Struct
+	(*_struct.ListValue)(nil),               // 27: google.protobuf.ListValue
 }
 var file_spaceone_api_core_v1_query_proto_depIdxs = []int32{
-	20, // 0: spaceone.api.core.v1.Filter.value:type_name -> google.protobuf.Value
-	20, // 1: spaceone.api.core.v1.Filter.v:type_name -> google.protobuf.Value
-	2,  // 2: spaceone.api.core.v1.Sort.keys:type_name -> spaceone.api.core.v1.SortKey
-	1,  // 3: spaceone.api.core.v1.Query.filter:type_name -> spaceone.api.core.v1.Filter
-	1,  // 4: spaceone.api.core.v1.Query.filter_or:type_name -> spaceone.api.core.v1.Filter
-	3,  // 5: spaceone.api.core.v1.Query.sort:type_name -> spaceone.api.core.v1.Sort
-	4,  // 6: spaceone.api.core.v1.Query.page:type_name -> spaceone.api.core.v1.Page
-	20, // 7: spaceone.api.core.v1.AggregateSubCondition.value:type_name -> google.protobuf.Value
-	20, // 8: spaceone.api.core.v1.AggregateSubCondition.v:type_name -> google.protobuf.Value
-	7,  // 9: spaceone.api.core.v1.AggregateGroupField.fields:type_name -> spaceone.api.core.v1.AggregateGroupSubField
-	8,  // 10: spaceone.api.core.v1.AggregateGroupField.conditions:type_name -> spaceone.api.core.v1.AggregateSubCondition
-	6,  // 11: spaceone.api.core.v1.AggregateGroup.keys:type_name -> spaceone.api.core.v1.AggregateGroupKey
-	9,  // 12: spaceone.api.core.v1.AggregateGroup.fields:type_name -> spaceone.api.core.v1.AggregateGroupField
-	11, // 13: spaceone.api.core.v1.AggregateProject.fields:type_name -> spaceone.api.core.v1.AggregateProjectField
-	2,  // 14: spaceone.api.core.v1.AggregateSort.keys:type_name -> spaceone.api.core.v1.SortKey
-	13, // 15: spaceone.api.core.v1.StatisticsAggregate.unwind:type_name -> spaceone.api.core.v1.AggregateUnwind
-	10, // 16: spaceone.api.core.v1.StatisticsAggregate.group:type_name -> spaceone.api.core.v1.AggregateGroup
-	14, // 17: spaceone.api.core.v1.StatisticsAggregate.count:type_name -> spaceone.api.core.v1.AggregateCount
-	15, // 18: spaceone.api.core.v1.StatisticsAggregate.sort:type_name -> spaceone.api.core.v1.AggregateSort
-	12, // 19: spaceone.api.core.v1.StatisticsAggregate.project:type_name -> spaceone.api.core.v1.AggregateProject
-	1,  // 20: spaceone.api.core.v1.StatisticsQuery.filter:type_name -> spaceone.api.core.v1.Filter
-	1,  // 21: spaceone.api.core.v1.StatisticsQuery.filter_or:type_name -> spaceone.api.core.v1.Filter
-	16, // 22: spaceone.api.core.v1.StatisticsQuery.aggregate:type_name -> spaceone.api.core.v1.StatisticsAggregate
-	4,  // 23: spaceone.api.core.v1.StatisticsQuery.page:type_name -> spaceone.api.core.v1.Page
+	25, // 0: spaceone.api.core.v1.Filter.value:type_name -> google.protobuf.Value
+	25, // 1: spaceone.api.core.v1.Filter.v:type_name -> google.protobuf.Value
+	3,  // 2: spaceone.api.core.v1.Sort.keys:type_name -> spaceone.api.core.v1.SortKey
+	2,  // 3: spaceone.api.core.v1.Query.filter:type_name -> spaceone.api.core.v1.Filter
+	2,  // 4: spaceone.api.core.v1.Query.filter_or:type_name -> spaceone.api.core.v1.Filter
+	4,  // 5: spaceone.api.core.v1.Query.sort:type_name -> spaceone.api.core.v1.Sort
+	5,  // 6: spaceone.api.core.v1.Query.page:type_name -> spaceone.api.core.v1.Page
+	25, // 7: spaceone.api.core.v1.AggregateSubCondition.value:type_name -> google.protobuf.Value
+	25, // 8: spaceone.api.core.v1.AggregateSubCondition.v:type_name -> google.protobuf.Value
+	8,  // 9: spaceone.api.core.v1.AggregateGroupField.fields:type_name -> spaceone.api.core.v1.AggregateGroupSubField
+	9,  // 10: spaceone.api.core.v1.AggregateGroupField.conditions:type_name -> spaceone.api.core.v1.AggregateSubCondition
+	7,  // 11: spaceone.api.core.v1.AggregateGroup.keys:type_name -> spaceone.api.core.v1.AggregateGroupKey
+	10, // 12: spaceone.api.core.v1.AggregateGroup.fields:type_name -> spaceone.api.core.v1.AggregateGroupField
+	12, // 13: spaceone.api.core.v1.AggregateProject.fields:type_name -> spaceone.api.core.v1.AggregateProjectField
+	3,  // 14: spaceone.api.core.v1.AggregateSort.keys:type_name -> spaceone.api.core.v1.SortKey
+	14, // 15: spaceone.api.core.v1.StatisticsAggregate.unwind:type_name -> spaceone.api.core.v1.AggregateUnwind
+	11, // 16: spaceone.api.core.v1.StatisticsAggregate.group:type_name -> spaceone.api.core.v1.AggregateGroup
+	15, // 17: spaceone.api.core.v1.StatisticsAggregate.count:type_name -> spaceone.api.core.v1.AggregateCount
+	16, // 18: spaceone.api.core.v1.StatisticsAggregate.sort:type_name -> spaceone.api.core.v1.AggregateSort
+	13, // 19: spaceone.api.core.v1.StatisticsAggregate.project:type_name -> spaceone.api.core.v1.AggregateProject
+	2,  // 20: spaceone.api.core.v1.StatisticsQuery.filter:type_name -> spaceone.api.core.v1.Filter
+	2,  // 21: spaceone.api.core.v1.StatisticsQuery.filter_or:type_name -> spaceone.api.core.v1.Filter
+	17, // 22: spaceone.api.core.v1.StatisticsQuery.aggregate:type_name -> spaceone.api.core.v1.StatisticsAggregate
+	5,  // 23: spaceone.api.core.v1.StatisticsQuery.page:type_name -> spaceone.api.core.v1.Page
 	0,  // 24: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.granularity:type_name -> spaceone.api.core.v1.TimeSeriesAnalyzeQuery.Granularity
-	1,  // 25: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.filter:type_name -> spaceone.api.core.v1.Filter
-	1,  // 26: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.filter_or:type_name -> spaceone.api.core.v1.Filter
-	4,  // 27: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.page:type_name -> spaceone.api.core.v1.Page
-	2,  // 28: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.sort:type_name -> spaceone.api.core.v1.SortKey
-	21, // 29: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.fields:type_name -> google.protobuf.Struct
-	21, // 30: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.select:type_name -> google.protobuf.Struct
-	1,  // 31: spaceone.api.core.v1.AnalyzeQuery.filter:type_name -> spaceone.api.core.v1.Filter
-	1,  // 32: spaceone.api.core.v1.AnalyzeQuery.filter_or:type_name -> spaceone.api.core.v1.Filter
-	4,  // 33: spaceone.api.core.v1.AnalyzeQuery.page:type_name -> spaceone.api.core.v1.Page
-	2,  // 34: spaceone.api.core.v1.AnalyzeQuery.sort:type_name -> spaceone.api.core.v1.SortKey
-	21, // 35: spaceone.api.core.v1.AnalyzeQuery.fields:type_name -> google.protobuf.Struct
-	21, // 36: spaceone.api.core.v1.AnalyzeQuery.select:type_name -> google.protobuf.Struct
-	37, // [37:37] is the sub-list for method output_type
-	37, // [37:37] is the sub-list for method input_type
-	37, // [37:37] is the sub-list for extension type_name
-	37, // [37:37] is the sub-list for extension extendee
-	0,  // [0:37] is the sub-list for field type_name
+	2,  // 25: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.filter:type_name -> spaceone.api.core.v1.Filter
+	2,  // 26: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.filter_or:type_name -> spaceone.api.core.v1.Filter
+	5,  // 27: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.page:type_name -> spaceone.api.core.v1.Page
+	3,  // 28: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.sort:type_name -> spaceone.api.core.v1.SortKey
+	26, // 29: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.fields:type_name -> google.protobuf.Struct
+	26, // 30: spaceone.api.core.v1.TimeSeriesAnalyzeQuery.select:type_name -> google.protobuf.Struct
+	2,  // 31: spaceone.api.core.v1.AnalyzeQuery.filter:type_name -> spaceone.api.core.v1.Filter
+	2,  // 32: spaceone.api.core.v1.AnalyzeQuery.filter_or:type_name -> spaceone.api.core.v1.Filter
+	5,  // 33: spaceone.api.core.v1.AnalyzeQuery.page:type_name -> spaceone.api.core.v1.Page
+	3,  // 34: spaceone.api.core.v1.AnalyzeQuery.sort:type_name -> spaceone.api.core.v1.SortKey
+	26, // 35: spaceone.api.core.v1.AnalyzeQuery.fields:type_name -> google.protobuf.Struct
+	26, // 36: spaceone.api.core.v1.AnalyzeQuery.select:type_name -> google.protobuf.Struct
+	2,  // 37: spaceone.api.core.v1.ExportSearchQuery.filter:type_name -> spaceone.api.core.v1.Filter
+	2,  // 38: spaceone.api.core.v1.ExportSearchQuery.filter_or:type_name -> spaceone.api.core.v1.Filter
+	3,  // 39: spaceone.api.core.v1.ExportSearchQuery.sort:type_name -> spaceone.api.core.v1.SortKey
+	27, // 40: spaceone.api.core.v1.ExportSearchQuery.fields:type_name -> google.protobuf.ListValue
+	2,  // 41: spaceone.api.core.v1.ExportAnalyzeQuery.filter:type_name -> spaceone.api.core.v1.Filter
+	2,  // 42: spaceone.api.core.v1.ExportAnalyzeQuery.filter_or:type_name -> spaceone.api.core.v1.Filter
+	3,  // 43: spaceone.api.core.v1.ExportAnalyzeQuery.sort:type_name -> spaceone.api.core.v1.SortKey
+	26, // 44: spaceone.api.core.v1.ExportAnalyzeQuery.fields:type_name -> google.protobuf.Struct
+	26, // 45: spaceone.api.core.v1.ExportAnalyzeQuery.select:type_name -> google.protobuf.Struct
+	1,  // 46: spaceone.api.core.v1.ExportOptions.query_type:type_name -> spaceone.api.core.v1.ExportOptions.QueryType
+	21, // 47: spaceone.api.core.v1.ExportOptions.search_query:type_name -> spaceone.api.core.v1.ExportSearchQuery
+	22, // 48: spaceone.api.core.v1.ExportOptions.analyze_query:type_name -> spaceone.api.core.v1.ExportAnalyzeQuery
+	49, // [49:49] is the sub-list for method output_type
+	49, // [49:49] is the sub-list for method input_type
+	49, // [49:49] is the sub-list for extension type_name
+	49, // [49:49] is the sub-list for extension extendee
+	0,  // [0:49] is the sub-list for field type_name
 }
 
 func init() { file_spaceone_api_core_v1_query_proto_init() }
@@ -2613,6 +3060,54 @@ func file_spaceone_api_core_v1_query_proto_init() {
 				return nil
 			}
 		}
+		file_spaceone_api_core_v1_query_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ExportSearchQuery); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_spaceone_api_core_v1_query_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ExportAnalyzeQuery); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_spaceone_api_core_v1_query_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ExportOptions); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_spaceone_api_core_v1_query_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ExportInfo); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_spaceone_api_core_v1_query_proto_msgTypes[0].OneofWrappers = []interface{}{
 		(*Filter_Key)(nil),
@@ -2667,13 +3162,17 @@ func file_spaceone_api_core_v1_query_proto_init() {
 		(*StatisticsAggregate_Limit)(nil),
 		(*StatisticsAggregate_Skip)(nil),
 	}
+	file_spaceone_api_core_v1_query_proto_msgTypes[21].OneofWrappers = []interface{}{
+		(*ExportOptions_SearchQuery)(nil),
+		(*ExportOptions_AnalyzeQuery)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_spaceone_api_core_v1_query_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   19,
+			NumEnums:      2,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

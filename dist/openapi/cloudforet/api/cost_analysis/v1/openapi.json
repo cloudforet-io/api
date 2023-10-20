@@ -1703,6 +1703,37 @@
          "required": ["group_by","field_group","filter","filter_or","page","sort","fields","select","keyword"],
                 "title": "AnalyzeQuery"
            }
+           ,        "ExportAnalyzeQuery": {
+         "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"keyword" : {"type": "string","title": "KEYWORD"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"group_by" : {"items": {"type": "string"},
+               "type": "array","title": "GROUP_BY"},"fields" : {"type": "object","title": "FIELDS"},"select" : {"type": "object","title": "SELECT"}},
+         "type": "object",
+         "required": ["filter","filter_or","keyword","sort","group_by","fields","select"],
+                "title": "ExportAnalyzeQuery"
+           }
+           ,        "ExportInfo": {
+         "properties" : {"download_url" : {"type": "string","title": "DOWNLOAD_URL"}},
+         "type": "object",
+         "required": ["download_url"],
+                "title": "ExportInfo"
+           }
+           ,        "ExportOptions": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"query_type" : {"type": "QueryType","title": "QUERY_TYPE"},"search_query" : {"$ref": "#/components/schemas/ExportSearchQuery","title": "SEARCH_QUERY"},"analyze_query" : {"$ref": "#/components/schemas/ExportAnalyzeQuery","title": "ANALYZE_QUERY"}},
+         "type": "object",
+         "required": ["name","query_type","search_query","analyze_query"],
+                "title": "ExportOptions"
+           }
+           ,        "ExportSearchQuery": {
+         "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"keyword" : {"type": "string","title": "KEYWORD"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "array","title": "FIELDS"}},
+         "type": "object",
+         "required": ["filter","filter_or","keyword","sort","fields"],
+                "title": "ExportSearchQuery"
+           }
            ,        "Filter": {
          "properties" : {"key" : {"type": "string","title": "KEY"},"k" : {"type": "string","title": "K"},"value" : {"type": "Value","title": "VALUE"},"v" : {"type": "Value","title": "V"},"operator" : {"type": "string","title": "OPERATOR"},"o" : {"type": "string","title": "O"}},
          "type": "object",

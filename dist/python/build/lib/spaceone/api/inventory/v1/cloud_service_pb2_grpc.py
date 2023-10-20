@@ -4,6 +4,7 @@ import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
+from spaceone.api.core.v1 import query_pb2 as spaceone_dot_api_dot_core_dot_v1_dot_query__pb2
 from spaceone.api.inventory.v1 import cloud_service_pb2 as spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2
 
 
@@ -40,6 +41,11 @@ class CloudServiceStub(object):
                 '/spaceone.api.inventory.v1.CloudService/list',
                 request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServicesInfo.FromString,
+                )
+        self.export = channel.unary_unary(
+                '/spaceone.api.inventory.v1.CloudService/export',
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceExportRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_core_dot_v1_dot_query__pb2.ExportInfo.FromString,
                 )
         self.analyze = channel.unary_unary(
                 '/spaceone.api.inventory.v1.CloudService/analyze',
@@ -91,6 +97,12 @@ class CloudServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def export(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def analyze(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -130,6 +142,11 @@ def add_CloudServiceServicer_to_server(servicer, server):
                     servicer.list,
                     request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceQuery.FromString,
                     response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServicesInfo.SerializeToString,
+            ),
+            'export': grpc.unary_unary_rpc_method_handler(
+                    servicer.export,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceExportRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_core_dot_v1_dot_query__pb2.ExportInfo.SerializeToString,
             ),
             'analyze': grpc.unary_unary_rpc_method_handler(
                     servicer.analyze,
@@ -233,6 +250,23 @@ class CloudService(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.CloudService/list',
             spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceQuery.SerializeToString,
             spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServicesInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def export(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.CloudService/export',
+            spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceExportRequest.SerializeToString,
+            spaceone_dot_api_dot_core_dot_v1_dot_query__pb2.ExportInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
