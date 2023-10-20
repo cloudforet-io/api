@@ -52,7 +52,14 @@ service CloudService {
             body: "*"
         };
     }
-    
+
+    rpc export (CloudServiceExportRequest) returns (spaceone.api.core.v1.ExportInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v1/cloud-service/export"
+            body: "*"
+        };
+    }
+
     rpc analyze (CloudServiceAnalyzeQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/inventory/v1/cloud-service/analyze"
@@ -420,6 +427,11 @@ message CloudServiceInfo {
 message CloudServicesInfo {
     repeated CloudServiceInfo results = 1;
     int32 total_count = 2;
+}
+
+message CloudServiceExportRequest {
+    repeated spaceone.api.core.v1.ExportOptions options = 1;
+    string domain_id = 2;
 }
 
 message CloudServiceAnalyzeQuery {

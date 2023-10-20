@@ -208,3 +208,40 @@ message AnalyzeQuery {
     google.protobuf.Struct select = 8;
     string keyword = 9;
 }
+
+message ExportSearchQuery {
+    repeated Filter filter = 1;
+    repeated Filter filter_or = 2;
+    string keyword = 3;
+    repeated SortKey sort = 4;
+    google.protobuf.ListValue fields = 5;
+}
+
+message ExportAnalyzeQuery {
+    repeated Filter filter = 1;
+    repeated Filter filter_or = 2;
+    string keyword = 3;
+    repeated SortKey sort = 4;
+    repeated string group_by = 5;
+    google.protobuf.Struct fields = 6;
+    google.protobuf.Struct select = 7;
+}
+
+message ExportOptions {
+    enum QueryType{
+        QUERY_TYPE_NONE = 0;
+        SEARCH = 1;
+        ANALYZE = 2;
+    }
+
+    string name = 1;
+    QueryType query_type = 2;
+    oneof export_query {
+        ExportSearchQuery search_query = 3;
+        ExportAnalyzeQuery analyze_query = 4;
+    }
+}
+
+message ExportInfo {
+    string download_url = 1;
+}
