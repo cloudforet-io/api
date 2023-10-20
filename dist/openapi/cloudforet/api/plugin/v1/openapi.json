@@ -336,37 +336,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/plugin/plugin/get-plugin-endpoint": {
-       "post": {
-         "tags": ["plugin > plugin"],
-         "summary": "Get Plugin Endpoint",
-         "operationId" : "",
-         "description": "### Description \nGets the `endpoint` of a specific plugin instance. A Plugin returns only a single `endpoint` by determining `labels` and `priority`. If the requested plugin instance is already deployed, the `endpoint` is returned. If not, the `endpoint` is returned after deploying the plugin instance.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |plugin_id||string|True|\n |domain_id||string|True|\n |version||string||\n |labels||Struct||\n |upgrade_mode|AUTO |string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"plugin_id" : {"type": "string","title": "PLUGIN_ID" },"version" : {"type": "string","title": "VERSION" },"labels" : {"type": "object","title": "LABELS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n   \"version\": \"1.2.2\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PluginEndpoint"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PluginEndpoint"},"Default Example":{
-                     "value": "{\n   \"endpoint\": \"grpc://endpoint-url:50051\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/plugin/plugin/get-plugin-metadata": {
        "post": {
          "tags": ["plugin > plugin"],
@@ -394,29 +363,6 @@
                    "Schema": {"$ref": "#/components/schemas/PluginMetadata"}}
                }
              }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/plugin/plugin/notify-failure": {
-       "post": {
-         "tags": ["plugin > plugin"],
-         "summary": "Notify Failure",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |supervisor_id||string|True|\n |plugin_id||string|True|\n |version||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID" },"plugin_id" : {"type": "string","title": "PLUGIN_ID" },"version" : {"type": "string","title": "VERSION" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
