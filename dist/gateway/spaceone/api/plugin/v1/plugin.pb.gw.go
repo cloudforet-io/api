@@ -173,7 +173,7 @@ func RegisterPluginHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Plugin/GetPluginMetadata", runtime.WithHTTPPathPattern("/plugin/v1/plugin/get-metadata"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Plugin/GetPluginMetadata", runtime.WithHTTPPathPattern("/plugin/v1/plugin/get-plugin-metadata"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -284,7 +284,7 @@ func RegisterPluginHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Plugin/GetPluginMetadata", runtime.WithHTTPPathPattern("/plugin/v1/plugin/get-metadata"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Plugin/GetPluginMetadata", runtime.WithHTTPPathPattern("/plugin/v1/plugin/get-plugin-metadata"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -328,7 +328,7 @@ func RegisterPluginHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 var (
 	pattern_Plugin_GetPluginEndpoint_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"plugin", "v1", "get-plugin-endpoint"}, ""))
 
-	pattern_Plugin_GetPluginMetadata_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"plugin", "v1", "get-metadata"}, ""))
+	pattern_Plugin_GetPluginMetadata_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"plugin", "v1", "get-plugin-metadata"}, ""))
 
 	pattern_Plugin_NotifyFailure_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"plugin", "v1", "notify-failure"}, ""))
 )
