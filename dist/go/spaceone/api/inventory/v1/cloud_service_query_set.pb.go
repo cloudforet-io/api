@@ -368,9 +368,8 @@ type UpdateCloudServiceQuerySetRequest struct {
 	// +optional
 	Unit *_struct.Struct `protobuf:"bytes,4,opt,name=unit,proto3" json:"unit,omitempty"`
 	// +optional
-	Tags *_struct.Struct `protobuf:"bytes,11,opt,name=tags,proto3" json:"tags,omitempty"`
-	// +optional
-	DomainId string `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Tags     *_struct.Struct `protobuf:"bytes,11,opt,name=tags,proto3" json:"tags,omitempty"`
+	DomainId string          `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 }
 
 func (x *UpdateCloudServiceQuerySetRequest) Reset() {

@@ -1,8 +1,8 @@
 {
   "files": [
     {
-      "name": "spaceone/api/inventory/v1/cloud_service_query_set.proto",
-      "description": "A CloudServiceQuerySet is query set for storing statistics data of CloudService.",
+      "name": "spaceone/api/inventory/v1/cloud_service_report.proto",
+      "description": "",
       "package": "spaceone.api.inventory.v1",
       "hasEnums": false,
       "hasExtensions": false,
@@ -10,36 +10,107 @@
       "hasServices": true,
       "enums": [
         {
-          "name": "QueryType",
-          "longName": "CloudServiceQuerySetInfo.QueryType",
-          "fullName": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo.QueryType",
+          "name": "FileFormat",
+          "longName": "CloudServiceReportInfo.FileFormat",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceReportInfo.FileFormat",
           "description": "",
           "values": [
             {
-              "name": "NONE_QUERY_TYPE",
+              "name": "NONE_FILE_FORMAT",
               "number": "0",
               "description": ""
             },
             {
-              "name": "MANAGED",
+              "name": "EXCEL",
               "number": "1",
               "description": ""
             },
             {
-              "name": "CUSTOM",
+              "name": "CSV",
               "number": "2",
               "description": ""
             }
           ]
         },
         {
-          "name": "State",
-          "longName": "CloudServiceQuerySetInfo.State",
-          "fullName": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo.State",
+          "name": "FileFormat",
+          "longName": "CreateCloudServiceReportRequest.FileFormat",
+          "fullName": "spaceone.api.inventory.v1.CreateCloudServiceReportRequest.FileFormat",
           "description": "",
           "values": [
             {
-              "name": "NONE_STATE",
+              "name": "NONE_FILE_FORMAT",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "EXCEL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "CSV",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "DayOfWeek",
+          "longName": "ReportSchedule.DayOfWeek",
+          "fullName": "spaceone.api.inventory.v1.ReportSchedule.DayOfWeek",
+          "description": "",
+          "values": [
+            {
+              "name": "DAY_OF_WEEK_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MON",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "TUE",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "WED",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "THU",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "FRI",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "SAT",
+              "number": "6",
+              "description": ""
+            },
+            {
+              "name": "SUN",
+              "number": "7",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ScheduleState",
+          "longName": "ReportSchedule.ScheduleState",
+          "fullName": "spaceone.api.inventory.v1.ReportSchedule.ScheduleState",
+          "description": "",
+          "values": [
+            {
+              "name": "SCHEDULE_STATE_NONE",
               "number": "0",
               "description": ""
             },
@@ -56,46 +127,23 @@
           ]
         },
         {
-          "name": "QueryType",
-          "longName": "CloudServiceQuerySetQuery.QueryType",
-          "fullName": "spaceone.api.inventory.v1.CloudServiceQuerySetQuery.QueryType",
+          "name": "FileFormat",
+          "longName": "UpdateCloudServiceReportRequest.FileFormat",
+          "fullName": "spaceone.api.inventory.v1.UpdateCloudServiceReportRequest.FileFormat",
           "description": "",
           "values": [
             {
-              "name": "NONE_QUERY_TYPE",
+              "name": "NONE_FILE_FORMAT",
               "number": "0",
               "description": ""
             },
             {
-              "name": "MANAGED",
+              "name": "EXCEL",
               "number": "1",
               "description": ""
             },
             {
-              "name": "CUSTOM",
-              "number": "2",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "State",
-          "longName": "CloudServiceQuerySetQuery.State",
-          "fullName": "spaceone.api.inventory.v1.CloudServiceQuerySetQuery.State",
-          "description": "",
-          "values": [
-            {
-              "name": "NONE_STATE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "ENABLED",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "DISABLED",
+              "name": "CSV",
               "number": "2",
               "description": ""
             }
@@ -105,17 +153,17 @@
       "extensions": [],
       "messages": [
         {
-          "name": "CloudServiceQuerySetInfo",
-          "longName": "CloudServiceQuerySetInfo",
-          "fullName": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo",
-          "description": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"query_type\": \"MANAGED\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"keys\": [\n       \"Disk Size\",\n       \"Memory\",\n       \"CPU\n   ],\n   \"additional_info_keys\": [\n       \"instance_type\"\n   ],\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   },\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T01:38:16.301Z\"\n   \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n}",
+          "name": "CloudServiceReportInfo",
+          "longName": "CloudServiceReportInfo",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceReportInfo",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "query_set_id",
+              "name": "report_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -139,108 +187,48 @@
               "defaultValue": ""
             },
             {
-              "name": "state",
+              "name": "options",
               "description": "",
-              "label": "",
-              "type": "State",
-              "longType": "CloudServiceQuerySetInfo.State",
-              "fullType": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo.State",
+              "label": "repeated",
+              "type": "ExportOption",
+              "longType": "spaceone.api.core.v1.ExportOption",
+              "fullType": "spaceone.api.core.v1.ExportOption",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "query_options",
+              "name": "file_format",
               "description": "",
               "label": "",
-              "type": "AnalyzeQuery",
-              "longType": "spaceone.api.core.v1.AnalyzeQuery",
-              "fullType": "spaceone.api.core.v1.AnalyzeQuery",
+              "type": "FileFormat",
+              "longType": "CloudServiceReportInfo.FileFormat",
+              "fullType": "spaceone.api.inventory.v1.CloudServiceReportInfo.FileFormat",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "query_type",
+              "name": "schedule",
               "description": "",
               "label": "",
-              "type": "QueryType",
-              "longType": "CloudServiceQuerySetInfo.QueryType",
-              "fullType": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo.QueryType",
+              "type": "ReportSchedule",
+              "longType": "ReportSchedule",
+              "fullType": "spaceone.api.inventory.v1.ReportSchedule",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "unit",
+              "name": "target",
               "description": "",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "keys",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "additional_info_keys",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "provider",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "cloud_service_group",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "cloud_service_type",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -297,10 +285,10 @@
           ]
         },
         {
-          "name": "CloudServiceQuerySetQuery",
-          "longName": "CloudServiceQuerySetQuery",
-          "fullName": "spaceone.api.inventory.v1.CloudServiceQuerySetQuery",
-          "description": "{\n   \"query\": \u003cSearchQuery\u003e,\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_type\": \"MANAGED\",\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n}",
+          "name": "CloudServiceReportQuery",
+          "longName": "CloudServiceReportQuery",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceReportQuery",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -319,7 +307,7 @@
               "defaultValue": ""
             },
             {
-              "name": "query_set_id",
+              "name": "report_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -343,66 +331,6 @@
               "defaultValue": ""
             },
             {
-              "name": "state",
-              "description": "+optional",
-              "label": "",
-              "type": "State",
-              "longType": "CloudServiceQuerySetQuery.State",
-              "fullType": "spaceone.api.inventory.v1.CloudServiceQuerySetQuery.State",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "query_type",
-              "description": "+optional",
-              "label": "",
-              "type": "QueryType",
-              "longType": "CloudServiceQuerySetQuery.QueryType",
-              "fullType": "spaceone.api.inventory.v1.CloudServiceQuerySetQuery.QueryType",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "provider",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "cloud_service_group",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "cloud_service_type",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "domain_id",
               "description": "",
               "label": "",
@@ -417,17 +345,17 @@
           ]
         },
         {
-          "name": "CloudServiceQuerySetRequest",
-          "longName": "CloudServiceQuerySetRequest",
-          "fullName": "spaceone.api.inventory.v1.CloudServiceQuerySetRequest",
-          "description": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}",
+          "name": "CloudServiceReportRequest",
+          "longName": "CloudServiceReportRequest",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceReportRequest",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "query_set_id",
+              "name": "report_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -453,9 +381,9 @@
           ]
         },
         {
-          "name": "CloudServiceQuerySetStatQuery",
-          "longName": "CloudServiceQuerySetStatQuery",
-          "fullName": "spaceone.api.inventory.v1.CloudServiceQuerySetStatQuery",
+          "name": "CloudServiceReportStatQuery",
+          "longName": "CloudServiceReportStatQuery",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceReportStatQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -489,10 +417,10 @@
           ]
         },
         {
-          "name": "CloudServiceQuerySetsInfo",
-          "longName": "CloudServiceQuerySetsInfo",
-          "fullName": "spaceone.api.inventory.v1.CloudServiceQuerySetsInfo",
-          "description": "{\n   \"results\": [\n       {\n           \"query_set_id\": \"query-set-abcd1234\",\n           \"name\": \"EC2 Count by Instance Type\",\n           \"state\": \"ENABLED\",\n           \"query_type\": \"MANAGED\",\n           \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n           \"unit\": {\n               \"Disk Size\": \"GB\",\n               \"Memory\": \"GB\",\n               \"CPU\": \"Core\"\n           },\n          \"keys\": [\n              \"Disk Size\",\n              \"Memory\",\n              \"CPU\n           ],\n           \"additional_info_keys\": [\n               \"instance_type\"\n           ],\n           \"provider\": \"aws\",\n           \"cloud_service_group\": \"EC2\",\n           \"cloud_service_type\": \"Instance\",\n           \"tags\": {\n               \"foo\": \"bar\"\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-22T01:38:16.301Z\",\n           \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n       },\n       {...}\n   ],\n   \"total_count\": 2\n}",
+          "name": "CloudServiceReportsInfo",
+          "longName": "CloudServiceReportsInfo",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceReportsInfo",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -502,9 +430,9 @@
               "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "CloudServiceQuerySetInfo",
-              "longType": "CloudServiceQuerySetInfo",
-              "fullType": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo",
+              "type": "CloudServiceReportInfo",
+              "longType": "CloudServiceReportInfo",
+              "fullType": "spaceone.api.inventory.v1.CloudServiceReportInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -525,10 +453,10 @@
           ]
         },
         {
-          "name": "CreateCloudServiceQuerySetRequest",
-          "longName": "CreateCloudServiceQuerySetRequest",
-          "fullName": "spaceone.api.inventory.v1.CreateCloudServiceQuerySetRequest",
-          "description": "{\n   \"name\": \"EC2 Count by Instance Type\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   }\n}",
+          "name": "CreateCloudServiceReportRequest",
+          "longName": "CreateCloudServiceReportRequest",
+          "fullName": "spaceone.api.inventory.v1.CreateCloudServiceReportRequest",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -547,60 +475,48 @@
               "defaultValue": ""
             },
             {
-              "name": "query_options",
+              "name": "options",
               "description": "",
-              "label": "",
-              "type": "AnalyzeQuery",
-              "longType": "spaceone.api.core.v1.AnalyzeQuery",
-              "fullType": "spaceone.api.core.v1.AnalyzeQuery",
+              "label": "repeated",
+              "type": "ExportOption",
+              "longType": "spaceone.api.core.v1.ExportOption",
+              "fullType": "spaceone.api.core.v1.ExportOption",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "unit",
+              "name": "file_format",
               "description": "+optional",
+              "label": "",
+              "type": "FileFormat",
+              "longType": "CreateCloudServiceReportRequest.FileFormat",
+              "fullType": "spaceone.api.inventory.v1.CreateCloudServiceReportRequest.FileFormat",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schedule",
+              "description": "",
+              "label": "",
+              "type": "ReportSchedule",
+              "longType": "ReportSchedule",
+              "fullType": "spaceone.api.inventory.v1.ReportSchedule",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "target",
+              "description": "",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "provider",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "cloud_service_group",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "cloud_service_type",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -633,17 +549,17 @@
           ]
         },
         {
-          "name": "GetCloudServiceQuerySetRequest",
-          "longName": "GetCloudServiceQuerySetRequest",
-          "fullName": "spaceone.api.inventory.v1.GetCloudServiceQuerySetRequest",
-          "description": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}",
+          "name": "GetCloudServiceReportRequest",
+          "longName": "GetCloudServiceReportRequest",
+          "fullName": "spaceone.api.inventory.v1.GetCloudServiceReportRequest",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "query_set_id",
+              "name": "report_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -681,17 +597,65 @@
           ]
         },
         {
-          "name": "UpdateCloudServiceQuerySetRequest",
-          "longName": "UpdateCloudServiceQuerySetRequest",
-          "fullName": "spaceone.api.inventory.v1.UpdateCloudServiceQuerySetRequest",
-          "description": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"Changed Name\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"tags\": {\n       \"changed_key\": \"changed_value\"\n   }\n}",
+          "name": "ReportSchedule",
+          "longName": "ReportSchedule",
+          "fullName": "spaceone.api.inventory.v1.ReportSchedule",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "query_set_id",
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "ScheduleState",
+              "longType": "ReportSchedule.ScheduleState",
+              "fullType": "spaceone.api.inventory.v1.ReportSchedule.ScheduleState",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "hours",
+              "description": "",
+              "label": "repeated",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "days_of_week",
+              "description": "",
+              "label": "repeated",
+              "type": "DayOfWeek",
+              "longType": "ReportSchedule.DayOfWeek",
+              "fullType": "spaceone.api.inventory.v1.ReportSchedule.DayOfWeek",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateCloudServiceReportRequest",
+          "longName": "UpdateCloudServiceReportRequest",
+          "fullName": "spaceone.api.inventory.v1.UpdateCloudServiceReportRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "report_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -715,19 +679,43 @@
               "defaultValue": ""
             },
             {
-              "name": "query_options",
+              "name": "options",
               "description": "+optional",
-              "label": "",
-              "type": "AnalyzeQuery",
-              "longType": "spaceone.api.core.v1.AnalyzeQuery",
-              "fullType": "spaceone.api.core.v1.AnalyzeQuery",
+              "label": "repeated",
+              "type": "ExportOption",
+              "longType": "spaceone.api.core.v1.ExportOption",
+              "fullType": "spaceone.api.core.v1.ExportOption",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "unit",
+              "name": "file_format",
+              "description": "+optional",
+              "label": "",
+              "type": "FileFormat",
+              "longType": "UpdateCloudServiceReportRequest.FileFormat",
+              "fullType": "spaceone.api.inventory.v1.UpdateCloudServiceReportRequest.FileFormat",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schedule",
+              "description": "+optional",
+              "label": "",
+              "type": "ReportSchedule",
+              "longType": "ReportSchedule",
+              "fullType": "spaceone.api.inventory.v1.ReportSchedule",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "target",
               "description": "+optional",
               "label": "",
               "type": "Struct",
@@ -767,28 +755,28 @@
       ],
       "services": [
         {
-          "name": "CloudServiceQuerySet",
-          "longName": "CloudServiceQuerySet",
-          "fullName": "spaceone.api.inventory.v1.CloudServiceQuerySet",
+          "name": "CloudServiceReport",
+          "longName": "CloudServiceReport",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceReport",
           "description": "",
           "methods": [
             {
               "name": "create",
-              "description": "Create a new query set. Periodic statistics data is created based on the query set.\n`query` parameters refer to AnalyzeQuery.",
-              "requestType": "CreateCloudServiceQuerySetRequest",
-              "requestLongType": "CreateCloudServiceQuerySetRequest",
-              "requestFullType": "spaceone.api.inventory.v1.CreateCloudServiceQuerySetRequest",
+              "description": "",
+              "requestType": "CreateCloudServiceReportRequest",
+              "requestLongType": "CreateCloudServiceReportRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CreateCloudServiceReportRequest",
               "requestStreaming": false,
-              "responseType": "CloudServiceQuerySetInfo",
-              "responseLongType": "CloudServiceQuerySetInfo",
-              "responseFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo",
+              "responseType": "CloudServiceReportInfo",
+              "responseLongType": "CloudServiceReportInfo",
+              "responseFullType": "spaceone.api.inventory.v1.CloudServiceReportInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v1/cloud-service-query-set/create",
+                      "pattern": "/inventory/v1/cloud-service-report/create",
                       "body": "*"
                     }
                   ]
@@ -797,21 +785,21 @@
             },
             {
               "name": "update",
-              "description": "Update a specific query set. You can only update the query set of custom type.",
-              "requestType": "UpdateCloudServiceQuerySetRequest",
-              "requestLongType": "UpdateCloudServiceQuerySetRequest",
-              "requestFullType": "spaceone.api.inventory.v1.UpdateCloudServiceQuerySetRequest",
+              "description": "",
+              "requestType": "UpdateCloudServiceReportRequest",
+              "requestLongType": "UpdateCloudServiceReportRequest",
+              "requestFullType": "spaceone.api.inventory.v1.UpdateCloudServiceReportRequest",
               "requestStreaming": false,
-              "responseType": "CloudServiceQuerySetInfo",
-              "responseLongType": "CloudServiceQuerySetInfo",
-              "responseFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo",
+              "responseType": "CloudServiceReportInfo",
+              "responseLongType": "CloudServiceReportInfo",
+              "responseFullType": "spaceone.api.inventory.v1.CloudServiceReportInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v1/cloud-service-query-set/update",
+                      "pattern": "/inventory/v1/cloud-service-report/update",
                       "body": "*"
                     }
                   ]
@@ -820,10 +808,10 @@
             },
             {
               "name": "delete",
-              "description": "Delete a specific query set.",
-              "requestType": "CloudServiceQuerySetRequest",
-              "requestLongType": "CloudServiceQuerySetRequest",
-              "requestFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetRequest",
+              "description": "",
+              "requestType": "CloudServiceReportRequest",
+              "requestLongType": "CloudServiceReportRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CloudServiceReportRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -834,7 +822,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v1/cloud-service-query-set/delete",
+                      "pattern": "/inventory/v1/cloud-service-report/delete",
                       "body": "*"
                     }
                   ]
@@ -842,11 +830,11 @@
               }
             },
             {
-              "name": "run",
-              "description": "Run a specific query set and store the result in the statistics data.",
-              "requestType": "CloudServiceQuerySetRequest",
-              "requestLongType": "CloudServiceQuerySetRequest",
-              "requestFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetRequest",
+              "name": "send",
+              "description": "",
+              "requestType": "CloudServiceReportRequest",
+              "requestLongType": "CloudServiceReportRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CloudServiceReportRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -857,76 +845,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v1/cloud-service-query-set/run",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "test",
-              "description": "Run a specific query set and store the result in the statistics data.",
-              "requestType": "CloudServiceQuerySetRequest",
-              "requestLongType": "CloudServiceQuerySetRequest",
-              "requestFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetRequest",
-              "requestStreaming": false,
-              "responseType": "Struct",
-              "responseLongType": ".google.protobuf.Struct",
-              "responseFullType": "google.protobuf.Struct",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/inventory/v1/cloud-service-query-set/test",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "enable",
-              "description": "Enable a specific query set.",
-              "requestType": "CloudServiceQuerySetRequest",
-              "requestLongType": "CloudServiceQuerySetRequest",
-              "requestFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetRequest",
-              "requestStreaming": false,
-              "responseType": "CloudServiceQuerySetInfo",
-              "responseLongType": "CloudServiceQuerySetInfo",
-              "responseFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/inventory/v1/cloud-service-query-set/enable",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "disable",
-              "description": "Disable a specific query set. query set is not executed when disabled.",
-              "requestType": "CloudServiceQuerySetRequest",
-              "requestLongType": "CloudServiceQuerySetRequest",
-              "requestFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetRequest",
-              "requestStreaming": false,
-              "responseType": "CloudServiceQuerySetInfo",
-              "responseLongType": "CloudServiceQuerySetInfo",
-              "responseFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/inventory/v1/cloud-service-query-set/disable",
+                      "pattern": "/inventory/v1/cloud-service-report/send",
                       "body": "*"
                     }
                   ]
@@ -935,21 +854,21 @@
             },
             {
               "name": "get",
-              "description": "Get a specific query set.",
-              "requestType": "GetCloudServiceQuerySetRequest",
-              "requestLongType": "GetCloudServiceQuerySetRequest",
-              "requestFullType": "spaceone.api.inventory.v1.GetCloudServiceQuerySetRequest",
+              "description": "",
+              "requestType": "GetCloudServiceReportRequest",
+              "requestLongType": "GetCloudServiceReportRequest",
+              "requestFullType": "spaceone.api.inventory.v1.GetCloudServiceReportRequest",
               "requestStreaming": false,
-              "responseType": "CloudServiceQuerySetInfo",
-              "responseLongType": "CloudServiceQuerySetInfo",
-              "responseFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo",
+              "responseType": "CloudServiceReportInfo",
+              "responseLongType": "CloudServiceReportInfo",
+              "responseFullType": "spaceone.api.inventory.v1.CloudServiceReportInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v1/cloud-service-query-set/get",
+                      "pattern": "/inventory/v1/cloud-service-report/get",
                       "body": "*"
                     }
                   ]
@@ -958,21 +877,21 @@
             },
             {
               "name": "list",
-              "description": "Gets a list of all query sets.\nYou can use a query to get a filtered list of query sets.",
-              "requestType": "CloudServiceQuerySetQuery",
-              "requestLongType": "CloudServiceQuerySetQuery",
-              "requestFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetQuery",
+              "description": "",
+              "requestType": "CloudServiceReportQuery",
+              "requestLongType": "CloudServiceReportQuery",
+              "requestFullType": "spaceone.api.inventory.v1.CloudServiceReportQuery",
               "requestStreaming": false,
-              "responseType": "CloudServiceQuerySetsInfo",
-              "responseLongType": "CloudServiceQuerySetsInfo",
-              "responseFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetsInfo",
+              "responseType": "CloudServiceReportsInfo",
+              "responseLongType": "CloudServiceReportsInfo",
+              "responseFullType": "spaceone.api.inventory.v1.CloudServiceReportsInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v1/cloud-service-query-set/list",
+                      "pattern": "/inventory/v1/cloud-service-report/list",
                       "body": "*"
                     }
                   ]
@@ -982,9 +901,9 @@
             {
               "name": "stat",
               "description": "",
-              "requestType": "CloudServiceQuerySetStatQuery",
-              "requestLongType": "CloudServiceQuerySetStatQuery",
-              "requestFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetStatQuery",
+              "requestType": "CloudServiceReportStatQuery",
+              "requestLongType": "CloudServiceReportStatQuery",
+              "requestFullType": "spaceone.api.inventory.v1.CloudServiceReportStatQuery",
               "requestStreaming": false,
               "responseType": "Struct",
               "responseLongType": ".google.protobuf.Struct",
@@ -995,7 +914,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v1/cloud-service-query-set/stat",
+                      "pattern": "/inventory/v1/cloud-service-report/stat",
                       "body": "*"
                     }
                   ]

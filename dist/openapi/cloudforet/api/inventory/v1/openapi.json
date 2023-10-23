@@ -480,11 +480,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |options||array|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |options||array|True|\n |file_format|EXCEL, CSV |string|True|\n |domain_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"options" : {"items": {"$ref": "#/components/schemas/ExportOptions"}, "type": "array","title": "OPTIONS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1167,6 +1167,197 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/create": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |options||array|True|\n |schedule||ReportSchedule|True|\n |target||Struct|True|\n |domain_id||string|True|\n |file_format|EXCEL, CSV |string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE" },"target" : {"type": "object","title": "TARGET" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/update": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n |name||string||\n |options||array||\n |file_format|EXCEL, CSV |string||\n |schedule||ReportSchedule||\n |target||Struct||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE" },"target" : {"type": "object","title": "TARGET" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/delete": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/send": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "Send",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/get": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/list": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |report_id||string||\n |name||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"report_id" : {"type": "string","title": "REPORT_ID" },"name" : {"type": "string","title": "NAME" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceReportsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceReportsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/stat": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/inventory/collector-rule/create": {
        "post": {
          "tags": ["inventory > collector-rule"],
@@ -1588,7 +1779,7 @@
          "operationId" : "",
          "description": "### Description \nUpdate a specific query set. You can only update the query set of custom type.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |name||string||\n |query_options||AnalyzeQuery||\n |unit||Struct||\n |tags||Struct||\n |domain_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n |name||string||\n |query_options||AnalyzeQuery||\n |unit||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -2221,11 +2412,11 @@
          "required": ["filter","filter_or","keyword","sort","group_by","fields","select"],
                 "title": "ExportAnalyzeQuery"
            }
-           ,        "ExportOptions": {
+           ,        "ExportOption": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"query_type" : {"type": "string","title": "QUERY_TYPE"},"search_query" : {"$ref": "#/components/schemas/ExportSearchQuery","title": "SEARCH_QUERY"},"analyze_query" : {"$ref": "#/components/schemas/ExportAnalyzeQuery","title": "ANALYZE_QUERY"}},
          "type": "object",
          "required": ["name","query_type","search_query","analyze_query"],
-                "title": "ExportOptions"
+                "title": "ExportOption"
            }
            ,        "ExportSearchQuery": {
          "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
@@ -2495,10 +2686,10 @@
                 "title": "CloudServiceAnalyzeQuery"
            }
            ,        "CloudServiceExportRequest": {
-         "properties" : {"options" : {"items": {"$ref": "#/components/schemas/ExportOptions"},
-               "type": "array","$ref": "#/components/schemas/ExportOptions","title": "OPTIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["options","domain_id"],
+         "required": ["options","file_format","domain_id"],
                 "title": "CloudServiceExportRequest"
            }
            ,        "CloudServiceInfo": {
@@ -2751,6 +2942,67 @@
          "required": ["results","total_count"],
                 "title": "JobTasksInfo"
            }
+           ,        "CloudServiceReportInfo": {
+         "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["report_id","name","options","file_format","schedule","target","tags","domain_id","created_at","updated_at"],
+                "title": "CloudServiceReportInfo"
+           }
+           ,        "CloudServiceReportQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"report_id" : {"type": "string","title": "REPORT_ID"},"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["domain_id"],
+                "title": "CloudServiceReportQuery"
+           }
+           ,        "CloudServiceReportRequest": {
+         "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["report_id","domain_id"],
+                "title": "CloudServiceReportRequest"
+           }
+           ,        "CloudServiceReportStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["query","domain_id"],
+                "title": "CloudServiceReportStatQuery"
+           }
+           ,        "CloudServiceReportsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CloudServiceReportInfo"},
+               "type": "array","$ref": "#/components/schemas/CloudServiceReportInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "CloudServiceReportsInfo"
+           }
+           ,        "CreateCloudServiceReportRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["name","options","schedule","target","domain_id"],
+                "title": "CreateCloudServiceReportRequest"
+           }
+           ,        "GetCloudServiceReportRequest": {
+         "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"}},
+         "type": "object",
+         "required": ["report_id","domain_id"],
+                "title": "GetCloudServiceReportRequest"
+           }
+           ,        "ReportSchedule": {
+         "properties" : {"state" : {"type": "string","title": "STATE"},"hours" : {"items": {"type": "integer"},
+               "type": "array","title": "HOURS"},"days_of_week" : {"items": {"type": "string"},
+               "type": "array","title": "DAYS_OF_WEEK"}},
+         "type": "object",
+         "required": ["state","hours","days_of_week"],
+                "title": "ReportSchedule"
+           }
+           ,        "UpdateCloudServiceReportRequest": {
+         "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["report_id","domain_id"],
+                "title": "UpdateCloudServiceReportRequest"
+           }
            ,        "ChangeCollectorRuleOrderRequest": {
          "properties" : {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID"},"order" : {"type": "integer","title": "ORDER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
@@ -2942,7 +3194,7 @@
            ,        "UpdateCloudServiceQuerySetRequest": {
          "properties" : {"query_set_id" : {"type": "string","title": "QUERY_SET_ID"},"name" : {"type": "string","title": "NAME"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"unit" : {"type": "object","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["query_set_id"],
+         "required": ["query_set_id","domain_id"],
                 "title": "UpdateCloudServiceQuerySetRequest"
            }
            ,        "CloudServiceStatInfo": {
