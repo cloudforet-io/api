@@ -430,8 +430,15 @@ message CloudServicesInfo {
 }
 
 message CloudServiceExportRequest {
-    repeated spaceone.api.core.v1.ExportOptions options = 1;
-    string domain_id = 2;
+    enum FileFormat {
+        NONE_FILE_FORMAT = 0;
+        EXCEL = 1;
+        CSV = 2;
+    }
+
+    repeated spaceone.api.core.v1.ExportOption options = 1;
+    FileFormat file_format = 2;
+    string domain_id = 3;
 }
 
 message CloudServiceAnalyzeQuery {
