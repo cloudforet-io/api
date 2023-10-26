@@ -285,20 +285,74 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/resource/stat": {
+     },"/statistics/history/create": {
        "post": {
-         "tags": ["statistics > resource"],
-         "summary": "Stat",
+         "tags": ["statistics > history"],
+         "summary": "Create",
          "operationId" : "",
-         "description": "### Description \nEnables data preprocessing of different services. Although limited, it is possible to create not only basic queries but also data suitable for users' needs, such as joins between two tables created by the query, handling missing values, and sorting.",
+         "description": "### Description \nCreates a new History. Gets a Schedule as an input and creates a History as an output. You can use this method to manually run a specific Schedule.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |aggregate||array|True|\n |domain_id||string|True|\n |page||StatPage||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schedule_id||string|True|\n |domain_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"}, "type": "array","title": "AGGREGATE" },"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"schedule_id" : {"type": "string","title": "SCHEDULE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"aggregate\": [\n       {\"query\": {\"resource_type\": \"inventory.CloudServiceType\",\n                  \"query\": {\n                      \"filter\": [{\"k\": \"labels\", \"v\": [\"Server\"], \"o\": \"in\"},\n                                 {\"k\": \"is_primary\", \"v\": true, \"o\": \"eq\"}], \"aggregate\": [{\n                          \"group\": {\n                              \"keys\": [\n                                  {\n                                      \"key\": \"cloud_service_type_id\",\n                                      \"name\": \"cloud_service_type_id\"},\n                                  {\n                                      \"key\": \"name\",\n                                      \"name\": \"cloud_service_type\"},\n                                  {\n                                      \"key\": \"group\",\n                                      \"name\": \"cloud_service_group\"},\n                                  {\n                                      \"key\": \"provider\",\n                                      \"name\": \"provider\"},\n                                  {\n                                      \"key\": \"cloud_service_type_id\",\n                                      \"name\": \"cloud_service_type_id\"}],\n                              \"fields\": [\n                                  {\n                                      \"key\": \"tags\",\n                                      \"name\": \"tags\",\n                                      \"operator\": \"first\"},\n                                  {\n                                      \"key\": \"labels\",\n                                      \"name\": \"labels\",\n                                      \"operator\": \"first\"}]}}]}}},\n       {\"join\": {\"resource_type\": \"inventory.CloudService\", \"query\": {\"filter\": [\n           {\"k\": \"ref_cloud_service_type.cloud_service_type_id\",\n            \"v\": [\"cloud-svc-type-58c926b19aca\", \"cloud-svc-type-c7e5bc38d911\",\n                  \"cloud-svc-type-8dd4d7a13b95\", \"cloud-svc-type-719e705cb529\",\n                  \"cloud-svc-type-50bd62cf6e0e\"], \"o\": \"in\"}], \"aggregate\": [{\"group\": {\n           \"keys\": [{\"key\": \"cloud_service_type\", \"name\": \"cloud_service_type\"},\n                    {\"key\": \"cloud_service_group\", \"name\": \"cloud_service_group\"},\n                    {\"key\": \"provider\", \"name\": \"provider\"}],\n           \"fields\": [{\"name\": \"count\", \"operator\": \"count\"}]}}]},\n                 \"keys\": [\"cloud_service_type\", \"cloud_service_group\", \"provider\"]}},\n       {\"fill_na\": {\"data\": {\"count\": 0.0}}}, {\"formula\": {\"query\": \"count \u003e 0\"}},\n       {\"sort\": {\"key\": \"count\", \"desc\": true}}],\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"schedule_id\": \"sch-b1d8be347bed\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/statistics/history/list": {
+       "post": {
+         "tags": ["statistics > history"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Histories. You can use a query to get a filtered list of Histories.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |topic||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/HistoryInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/HistoryInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"topic\": \"daily_cloud_service_summary\",\n           \"values\": {\n               \"label\": \"Storage\",\n               \"project_id\": \"project-f7111a9aa0c6\",\n               \"provider\": \"azure\",\n               \"value\": 32213303296.0,\n               \"cloud_service_group\": \"Compute\",\n               \"cloud_service_type\": \"Disk\"\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-07-18T01:01:57.579Z\"\n       },\n       {\n           \"topic\": \"daily_cloud_service_summary\",\n           \"values\": {\n               \"cloud_service_type\": \"Bucket\",\n               \"cloud_service_group\": \"CloudStorage\",\n               \"label\": \"Storage\",\n               \"provider\": \"google_cloud\",\n               \"project_id\": \"project-4cd006b4993b\",\n               \"value\": 401399880.0\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-07-18T01:01:57.579Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/statistics/history/stat": {
+       "post": {
+         "tags": ["statistics > history"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n |topic||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
                }
              }
            },"required": true
@@ -552,74 +606,20 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/history/create": {
+     },"/statistics/resource/stat": {
        "post": {
-         "tags": ["statistics > history"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new History. Gets a Schedule as an input and creates a History as an output. You can use this method to manually run a specific Schedule.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schedule_id||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"schedule_id" : {"type": "string","title": "SCHEDULE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"schedule_id\": \"sch-b1d8be347bed\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/history/list": {
-       "post": {
-         "tags": ["statistics > history"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all Histories. You can use a query to get a filtered list of Histories.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |topic||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/HistoryInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/HistoryInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"topic\": \"daily_cloud_service_summary\",\n           \"values\": {\n               \"label\": \"Storage\",\n               \"project_id\": \"project-f7111a9aa0c6\",\n               \"provider\": \"azure\",\n               \"value\": 32213303296.0,\n               \"cloud_service_group\": \"Compute\",\n               \"cloud_service_type\": \"Disk\"\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-07-18T01:01:57.579Z\"\n       },\n       {\n           \"topic\": \"daily_cloud_service_summary\",\n           \"values\": {\n               \"cloud_service_type\": \"Bucket\",\n               \"cloud_service_group\": \"CloudStorage\",\n               \"label\": \"Storage\",\n               \"provider\": \"google_cloud\",\n               \"project_id\": \"project-4cd006b4993b\",\n               \"value\": 401399880.0\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-07-18T01:01:57.579Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/history/stat": {
-       "post": {
-         "tags": ["statistics > history"],
+         "tags": ["statistics > resource"],
          "summary": "Stat",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nEnables data preprocessing of different services. Although limited, it is possible to create not only basic queries but also data suitable for users' needs, such as joins between two tables created by the query, handling missing values, and sorting.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n |topic||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |aggregate||array|True|\n |domain_id||string|True|\n |page||StatPage||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"}, "type": "array","title": "AGGREGATE" },"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"aggregate\": [\n       {\"query\": {\"resource_type\": \"inventory.CloudServiceType\",\n                  \"query\": {\n                      \"filter\": [{\"k\": \"labels\", \"v\": [\"Server\"], \"o\": \"in\"},\n                                 {\"k\": \"is_primary\", \"v\": true, \"o\": \"eq\"}], \"aggregate\": [{\n                          \"group\": {\n                              \"keys\": [\n                                  {\n                                      \"key\": \"cloud_service_type_id\",\n                                      \"name\": \"cloud_service_type_id\"},\n                                  {\n                                      \"key\": \"name\",\n                                      \"name\": \"cloud_service_type\"},\n                                  {\n                                      \"key\": \"group\",\n                                      \"name\": \"cloud_service_group\"},\n                                  {\n                                      \"key\": \"provider\",\n                                      \"name\": \"provider\"},\n                                  {\n                                      \"key\": \"cloud_service_type_id\",\n                                      \"name\": \"cloud_service_type_id\"}],\n                              \"fields\": [\n                                  {\n                                      \"key\": \"tags\",\n                                      \"name\": \"tags\",\n                                      \"operator\": \"first\"},\n                                  {\n                                      \"key\": \"labels\",\n                                      \"name\": \"labels\",\n                                      \"operator\": \"first\"}]}}]}}},\n       {\"join\": {\"resource_type\": \"inventory.CloudService\", \"query\": {\"filter\": [\n           {\"k\": \"ref_cloud_service_type.cloud_service_type_id\",\n            \"v\": [\"cloud-svc-type-58c926b19aca\", \"cloud-svc-type-c7e5bc38d911\",\n                  \"cloud-svc-type-8dd4d7a13b95\", \"cloud-svc-type-719e705cb529\",\n                  \"cloud-svc-type-50bd62cf6e0e\"], \"o\": \"in\"}], \"aggregate\": [{\"group\": {\n           \"keys\": [{\"key\": \"cloud_service_type\", \"name\": \"cloud_service_type\"},\n                    {\"key\": \"cloud_service_group\", \"name\": \"cloud_service_group\"},\n                    {\"key\": \"provider\", \"name\": \"provider\"}],\n           \"fields\": [{\"name\": \"count\", \"operator\": \"count\"}]}}]},\n                 \"keys\": [\"cloud_service_type\", \"cloud_service_group\", \"provider\"]}},\n       {\"fill_na\": {\"data\": {\"count\": 0.0}}}, {\"formula\": {\"query\": \"count \u003e 0\"}},\n       {\"sort\": {\"key\": \"count\", \"desc\": true}}],\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -706,6 +706,12 @@
          "type": "object",
          "required": ["storage_id","domain_id"],
                 "title": "UpdateStorageRequest"
+           }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -901,68 +907,36 @@
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+           ,        "CreateHistoryRequest": {
+         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
+         "required": ["schedule_id","domain_id"],
+                "title": "CreateHistoryRequest"
            }
-           ,        "ResourceStatRequest": {
-         "properties" : {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"},
-               "type": "array","$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "HistoryInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/HistoryValueInfo"},
+               "type": "array","$ref": "#/components/schemas/HistoryValueInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
-         "required": ["aggregate","domain_id"],
-                "title": "ResourceStatRequest"
+         "required": ["results","total_count"],
+                "title": "HistoryInfo"
            }
-           ,        "StatAggregate": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatAggregateQuery","title": "QUERY"},"join" : {"$ref": "#/components/schemas/StatAggregateJoin","title": "JOIN"},"concat" : {"$ref": "#/components/schemas/StatAggregateConcat","title": "CONCAT"},"sort" : {"$ref": "#/components/schemas/StatAggregateSort","title": "SORT"},"formula" : {"$ref": "#/components/schemas/StatAggregateFormula","title": "FORMULA"},"fill_na" : {"$ref": "#/components/schemas/StatAggregateFillNA","title": "FILL_NA"}},
+           ,        "HistoryStatRequest": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["query","join","concat","sort","formula","fill_na"],
-                "title": "StatAggregate"
+         "required": ["query","domain_id"],
+                "title": "HistoryStatRequest"
            }
-           ,        "StatAggregateConcat": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"}},
+           ,        "HistoryValueInfo": {
+         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"values" : {"type": "object","title": "VALUES"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["resource_type","query"],
-                "title": "StatAggregateConcat"
+         "required": ["topic","values","domain_id","created_at"],
+                "title": "HistoryValueInfo"
            }
-           ,        "StatAggregateFillNA": {
-         "properties" : {"data" : {"type": "object","title": "DATA"}},
+           ,        "QueryHistoryRequest": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["data"],
-                "title": "StatAggregateFillNA"
-           }
-           ,        "StatAggregateFormula": {
-         "properties" : {"eval" : {"type": "string","title": "EVAL"},"query" : {"type": "string","title": "QUERY"}},
-         "type": "object",
-         "required": ["eval","query"],
-                "title": "StatAggregateFormula"
-           }
-           ,        "StatAggregateJoin": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"},"type" : {"type": "string","title": "TYPE"},"keys" : {"items": {"type": "string"},
-               "type": "array","title": "KEYS"}},
-         "type": "object",
-         "required": ["resource_type","query"],
-                "title": "StatAggregateJoin"
-           }
-           ,        "StatAggregateQuery": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"}},
-         "type": "object",
-         "required": ["resource_type","query"],
-                "title": "StatAggregateQuery"
-           }
-           ,        "StatAggregateSort": {
-         "properties" : {"key" : {"type": "string","title": "KEY"},"desc" : {"type": "boolean","title": "DESC"},"keys" : {"items": {"$ref": "#/components/schemas/SortKey"},
-               "type": "array","$ref": "#/components/schemas/SortKey","title": "KEYS"}},
-         "type": "object",
-         "required": [],
-                "title": "StatAggregateSort"
-           }
-           ,        "StatPage": {
-         "properties" : {"start" : {"type": "integer/long","title": "START"},"limit" : {"type": "integer/long","title": "LIMIT"}},
-         "type": "object",
-         "required": ["limit"],
-                "title": "StatPage"
+         "required": ["domain_id"],
+                "title": "QueryHistoryRequest"
            }
            ,        "AddScheduleRequest": {
          "properties" : {"topic" : {"type": "string","title": "TOPIC"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
@@ -1028,36 +1002,62 @@
          "required": ["schedule_id","storage_id","domain_id"],
                 "title": "UpdateScheduleRequest"
            }
-           ,        "CreateHistoryRequest": {
-         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "ResourceStatRequest": {
+         "properties" : {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"},
+               "type": "array","$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["schedule_id","domain_id"],
-                "title": "CreateHistoryRequest"
+         "required": ["aggregate","domain_id"],
+                "title": "ResourceStatRequest"
            }
-           ,        "HistoryInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/HistoryValueInfo"},
-               "type": "array","$ref": "#/components/schemas/HistoryValueInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "StatAggregate": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatAggregateQuery","title": "QUERY"},"join" : {"$ref": "#/components/schemas/StatAggregateJoin","title": "JOIN"},"concat" : {"$ref": "#/components/schemas/StatAggregateConcat","title": "CONCAT"},"sort" : {"$ref": "#/components/schemas/StatAggregateSort","title": "SORT"},"formula" : {"$ref": "#/components/schemas/StatAggregateFormula","title": "FORMULA"},"fill_na" : {"$ref": "#/components/schemas/StatAggregateFillNA","title": "FILL_NA"}},
          "type": "object",
-         "required": ["results","total_count"],
-                "title": "HistoryInfo"
+         "required": ["query","join","concat","sort","formula","fill_na"],
+                "title": "StatAggregate"
            }
-           ,        "HistoryStatRequest": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "StatAggregateConcat": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"}},
          "type": "object",
-         "required": ["query","domain_id"],
-                "title": "HistoryStatRequest"
+         "required": ["resource_type","query"],
+                "title": "StatAggregateConcat"
            }
-           ,        "HistoryValueInfo": {
-         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"values" : {"type": "object","title": "VALUES"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+           ,        "StatAggregateFillNA": {
+         "properties" : {"data" : {"type": "object","title": "DATA"}},
          "type": "object",
-         "required": ["topic","values","domain_id","created_at"],
-                "title": "HistoryValueInfo"
+         "required": ["data"],
+                "title": "StatAggregateFillNA"
            }
-           ,        "QueryHistoryRequest": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "StatAggregateFormula": {
+         "properties" : {"eval" : {"type": "string","title": "EVAL"},"query" : {"type": "string","title": "QUERY"}},
          "type": "object",
-         "required": ["domain_id"],
-                "title": "QueryHistoryRequest"
+         "required": ["eval","query"],
+                "title": "StatAggregateFormula"
+           }
+           ,        "StatAggregateJoin": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"},"type" : {"type": "string","title": "TYPE"},"keys" : {"items": {"type": "string"},
+               "type": "array","title": "KEYS"}},
+         "type": "object",
+         "required": ["resource_type","query"],
+                "title": "StatAggregateJoin"
+           }
+           ,        "StatAggregateQuery": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"}},
+         "type": "object",
+         "required": ["resource_type","query"],
+                "title": "StatAggregateQuery"
+           }
+           ,        "StatAggregateSort": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"desc" : {"type": "boolean","title": "DESC"},"keys" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "KEYS"}},
+         "type": "object",
+         "required": [],
+                "title": "StatAggregateSort"
+           }
+           ,        "StatPage": {
+         "properties" : {"start" : {"type": "integer/long","title": "START"},"limit" : {"type": "integer/long","title": "LIMIT"}},
+         "type": "object",
+         "required": ["limit"],
+                "title": "StatPage"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},

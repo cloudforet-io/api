@@ -7,65 +7,7 @@
    "info": {
      "title": "Inventory API"
    },
-   "paths":{"/inventory/change-history/list": {
-       "post": {
-         "tags": ["inventory > change-history"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cloud_service_id||string|True|\n |domain_id||string|True|\n |query||Query||\n |action|CREATE, UPDATE, DELETE |string||\n |user_id||string||\n |collector_id||string||\n |job_id||string||\n |updated_by||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID" },"action" : {"type": "string","title": "ACTION" },"user_id" : {"type": "string","title": "USER_ID" },"collector_id" : {"type": "string","title": "COLLECTOR_ID" },"job_id" : {"type": "string","title": "JOB_ID" },"updated_by" : {"type": "string","title": "UPDATED_BY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ChangeHistoryInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ChangeHistoryInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/change-history/stat": {
-       "post": {
-         "tags": ["inventory > change-history"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n |cloud_service_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/collector/create": {
+   "paths":{"/inventory/collector/create": {
        "post": {
          "tags": ["inventory > collector"],
          "summary": "Create",
@@ -326,6 +268,719 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/change-history/list": {
+       "post": {
+         "tags": ["inventory > change-history"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cloud_service_id||string|True|\n |domain_id||string|True|\n |query||Query||\n |action|CREATE, UPDATE, DELETE |string||\n |user_id||string||\n |collector_id||string||\n |job_id||string||\n |updated_by||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID" },"action" : {"type": "string","title": "ACTION" },"user_id" : {"type": "string","title": "USER_ID" },"collector_id" : {"type": "string","title": "COLLECTOR_ID" },"job_id" : {"type": "string","title": "JOB_ID" },"updated_by" : {"type": "string","title": "UPDATED_BY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ChangeHistoryInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ChangeHistoryInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/change-history/stat": {
+       "post": {
+         "tags": ["inventory > change-history"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n |cloud_service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/note/create": {
+       "post": {
+         "tags": ["inventory > note"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |record_id|is_required: true|string|True|\n |note|is_required: true|string|True|\n |domain_id|is_required: true|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"record_id" : {"type": "string","title": "RECORD_ID" },"note" : {"type": "string","title": "NOTE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NoteInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/note/update": {
+       "post": {
+         "tags": ["inventory > note"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id|is_required: true|string|True|\n |note|is_required: false|string|True|\n |domain_id|is_required: true|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" },"note" : {"type": "string","title": "NOTE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NoteInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/note/delete": {
+       "post": {
+         "tags": ["inventory > note"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id|is_required: true|string|True|\n |domain_id|is_required: true|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/note/get": {
+       "post": {
+         "tags": ["inventory > note"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id|is_required: true|string|True|\n |domain_id|is_required: true|string|True|\n |only|is_required: false|array|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NoteInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/note/list": {
+       "post": {
+         "tags": ["inventory > note"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|is_required: false|Query|True|\n |note_id|is_required: false|string|True|\n |record_id|is_required: false|string|True|\n |cloud_service_id|is_required: false|string|True|\n |created_by|is_required: false|string|True|\n |domain_id|is_required: false|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"note_id" : {"type": "string","title": "NOTE_ID" },"record_id" : {"type": "string","title": "RECORD_ID" },"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID" },"created_by" : {"type": "string","title": "CREATED_BY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NotesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NotesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/note/stat": {
+       "post": {
+         "tags": ["inventory > note"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|is_required: true|StatisticsQuery|True|\n |domain_id|is_required: true|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-query-set/create": {
+       "post": {
+         "tags": ["inventory > cloud-service-query-set"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \nCreate a new query set. Periodic statistics data is created based on the query set.\n`query` parameters refer to AnalyzeQuery.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |query_options||AnalyzeQuery|True|\n |provider||string|True|\n |cloud_service_group||string|True|\n |cloud_service_type||string|True|\n |domain_id||string|True|\n |unit||Struct||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"unit" : {"type": "object","title": "UNIT" },"provider" : {"type": "string","title": "PROVIDER" },"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP" },"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"name\": \"EC2 Count by Instance Type\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   }\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},"Default Example":{
+                     "value": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"query_type\": \"MANAGED\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"keys\": [\n       \"Disk Size\",\n       \"Memory\",\n       \"CPU\n   ],\n   \"additional_info_keys\": [\n       \"instance_type\"\n   ],\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   },\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T01:38:16.301Z\"\n   \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-query-set/update": {
+       "post": {
+         "tags": ["inventory > cloud-service-query-set"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \nUpdate a specific query set. You can only update the query set of custom type.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n |name||string||\n |query_options||AnalyzeQuery||\n |unit||Struct||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"name" : {"type": "string","title": "NAME" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"unit" : {"type": "object","title": "UNIT" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"Changed Name\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"tags\": {\n       \"changed_key\": \"changed_value\"\n   }\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},"Default Example":{
+                     "value": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"query_type\": \"MANAGED\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"keys\": [\n       \"Disk Size\",\n       \"Memory\",\n       \"CPU\n   ],\n   \"additional_info_keys\": [\n       \"instance_type\"\n   ],\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   },\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T01:38:16.301Z\"\n   \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-query-set/delete": {
+       "post": {
+         "tags": ["inventory > cloud-service-query-set"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDelete a specific query set.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-query-set/run": {
+       "post": {
+         "tags": ["inventory > cloud-service-query-set"],
+         "summary": "Run",
+         "operationId" : "",
+         "description": "### Description \nRun a specific query set and store the result in the statistics data.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-query-set/test": {
+       "post": {
+         "tags": ["inventory > cloud-service-query-set"],
+         "summary": "Test",
+         "operationId" : "",
+         "description": "### Description \nRun a specific query set and store the result in the statistics data.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-query-set/enable": {
+       "post": {
+         "tags": ["inventory > cloud-service-query-set"],
+         "summary": "Enable",
+         "operationId" : "",
+         "description": "### Description \nEnable a specific query set.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},"Default Example":{
+                     "value": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"query_type\": \"MANAGED\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"keys\": [\n       \"Disk Size\",\n       \"Memory\",\n       \"CPU\n   ],\n   \"additional_info_keys\": [\n       \"instance_type\"\n   ],\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   },\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T01:38:16.301Z\"\n   \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-query-set/disable": {
+       "post": {
+         "tags": ["inventory > cloud-service-query-set"],
+         "summary": "Disable",
+         "operationId" : "",
+         "description": "### Description \nDisable a specific query set. query set is not executed when disabled.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},"Default Example":{
+                     "value": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"query_type\": \"MANAGED\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"keys\": [\n       \"Disk Size\",\n       \"Memory\",\n       \"CPU\n   ],\n   \"additional_info_keys\": [\n       \"instance_type\"\n   ],\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   },\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T01:38:16.301Z\"\n   \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-query-set/get": {
+       "post": {
+         "tags": ["inventory > cloud-service-query-set"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGet a specific query set.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},"Default Example":{
+                     "value": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"query_type\": \"MANAGED\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"keys\": [\n       \"Disk Size\",\n       \"Memory\",\n       \"CPU\n   ],\n   \"additional_info_keys\": [\n       \"instance_type\"\n   ],\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   },\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T01:38:16.301Z\"\n   \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-query-set/list": {
+       "post": {
+         "tags": ["inventory > cloud-service-query-set"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all query sets.\nYou can use a query to get a filtered list of query sets.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |query_set_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |query_type|MANAGED, CUSTOM |string||\n |provider||string||\n |cloud_service_group||string||\n |cloud_service_type||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"query_type" : {"type": "string","title": "QUERY_TYPE" },"provider" : {"type": "string","title": "PROVIDER" },"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP" },"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": \u003cSearchQuery\u003e,\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_type\": \"MANAGED\",\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceQuerySetsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceQuerySetsInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"query_set_id\": \"query-set-abcd1234\",\n           \"name\": \"EC2 Count by Instance Type\",\n           \"state\": \"ENABLED\",\n           \"query_type\": \"MANAGED\",\n           \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n           \"unit\": {\n               \"Disk Size\": \"GB\",\n               \"Memory\": \"GB\",\n               \"CPU\": \"Core\"\n           },\n          \"keys\": [\n              \"Disk Size\",\n              \"Memory\",\n              \"CPU\n           ],\n           \"additional_info_keys\": [\n               \"instance_type\"\n           ],\n           \"provider\": \"aws\",\n           \"cloud_service_group\": \"EC2\",\n           \"cloud_service_type\": \"Instance\",\n           \"tags\": {\n               \"foo\": \"bar\"\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-22T01:38:16.301Z\",\n           \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n       },\n       {...}\n   ],\n   \"total_count\": 2\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-query-set/stat": {
+       "post": {
+         "tags": ["inventory > cloud-service-query-set"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/create": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |options||array|True|\n |schedule||ReportSchedule|True|\n |target||Struct|True|\n |domain_id||string|True|\n |file_format|EXCEL, CSV |string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE" },"target" : {"type": "object","title": "TARGET" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/update": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n |name||string||\n |options||array||\n |file_format|EXCEL, CSV |string||\n |schedule||ReportSchedule||\n |target||Struct||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE" },"target" : {"type": "object","title": "TARGET" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/delete": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/send": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "Send",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/get": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/list": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |report_id||string||\n |name||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"report_id" : {"type": "string","title": "REPORT_ID" },"name" : {"type": "string","title": "NAME" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CloudServiceReportsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CloudServiceReportsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/cloud-service-report/stat": {
+       "post": {
+         "tags": ["inventory > cloud-service-report"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/inventory/cloud-service/create": {
        "post": {
          "tags": ["inventory > cloud-service"],
@@ -560,20 +1215,20 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/job/delete": {
+     },"/inventory/job-task/delete": {
        "post": {
-         "tags": ["inventory > job"],
+         "tags": ["inventory > job-task"],
          "summary": "Delete",
          "operationId" : "",
-         "description": "### Description \nDeletes a specific Job. You must specify the `job_id` of the Job to delete.",
+         "description": "### Description \nDeletes a specific JobTask. You must specify the `job_task_id` of the JobTask to delete.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_id||string|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_task_id||string|True|\n |domain_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"job_id" : {"type": "string","title": "JOB_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"job_id\": \"job-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -583,20 +1238,20 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/job/get": {
+     },"/inventory/job-task/get": {
        "post": {
-         "tags": ["inventory > job"],
+         "tags": ["inventory > job-task"],
          "summary": "Get",
          "operationId" : "",
-         "description": "### Description \nGets a specific Job. Prints detailed information about the Job, including its state, total tasks, and collector info.",
+         "description": "### Description \nGets a specific JobTask. Prints detailed information about the JobTask, including its state, updated or failure counts, and error log.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_task_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"job_id" : {"type": "string","title": "JOB_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+                 "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"job_id\": \"job-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -605,27 +1260,27 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/JobInfo"},
+                 "schema": {"$ref": "#/components/schemas/JobTaskInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/JobInfo"},"Default Example":{
-                     "value": "{\n     \"job_id\": \"job-123456789012\",\n     \"status\": \"ERROR\",\n     \"filter\": {},\n     \"total_tasks\": 2,\n     \"collector_info\": {\n         \"collector_id\": \"collector-123456789012\",\n         \"name\": \"Jenkins Collector\",\n         \"state\": \"ENABLED\",\n         \"plugin_info\": {\n             \"plugin_id\": \"plugin-jenkins-inven-collector\",\n             \"version\": \"0.1.1\"\n         },\n         \"provider\": \"jenkins\",\n         \"capability\": {},\n         \"is_public\": true\n     },\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T10:00:01.389Z\",\n     \"updated_at\": \"2022-01-01T10:00:01.389Z\",\n     \"finished_at\": \"2022-01-01T10:02:11.270Z\"\n}"
+                   "Schema": {"$ref": "#/components/schemas/JobTaskInfo"},"Default Example":{
+                     "value": "{\n     \"job_task_id\": \"job-task-123456789012\",\n     \"status\": \"FAILURE\",\n     \"updated_count\": 199,\n     \"failure_count\": 1,\n     \"errors\": [\n         {\n             \"error_code\": \"ERROR_PLUGIN\",\n             \"message\": \"{\\\"tags\\\": [\\\"Could not interpret the value as a list\\\"]}\",\n             \"additional\": {\n                 \"domain_id\": \"domain-123456789012\",\n                 \"resource_id\": \"eventarc-us-central1-function\",\n                 \"resource_type\": \"inventory.CloudService\",\n                 \"cloud_service_group\": \"Pub/Sub\",\n                 \"cloud_service_type\": \"Subscription\",\n                 \"provider\": \"google_cloud\"\n             }\n         }\n     ],\n     \"job_id\": \"job-123456789012\",\n     \"secret_id\": \"secret-123456789012\",\n     \"provider\": \"google_cloud\",\n     \"service_account_id\": \"sa-123456789012\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T11:00:02.588Z\",\n     \"started_at\": \"2022-01-01T11:00:02.819Z\",\n     \"finished_at\": \"2022-01-01T11:00:34.398Z\"\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/job/list": {
+     },"/inventory/job-task/list": {
        "post": {
-         "tags": ["inventory > job"],
+         "tags": ["inventory > job-task"],
          "summary": "List",
          "operationId" : "",
-         "description": "### Description \nGets a list of all Jobs. You can use a query to get a filtered list of Jobs.",
+         "description": "### Description \nGets a list of all JobTasks in a specific Job. You can use a query to get a filtered list of JobTasks.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |job_id||string||\n |status|CANCELED, IN_PROGRESS, SUCCESS, FAILURE, TIMEOUT |string||\n |collector_id||string||\n |secret_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |job_task_id||string||\n |status|PENDING, CANCELED, IN_PROGRESS, SUCCESS, FAILURE |string||\n |job_id||string||\n |secret_id||string||\n |provider||string||\n |service_account_id||string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"job_id" : {"type": "string","title": "JOB_ID" },"status" : {"type": "string","title": "STATUS" },"collector_id" : {"type": "string","title": "COLLECTOR_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"job_task_id" : {"type": "string","title": "JOB_TASK_ID" },"status" : {"type": "string","title": "STATUS" },"job_id" : {"type": "string","title": "JOB_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" },"provider" : {"type": "string","title": "PROVIDER" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
                }
@@ -636,47 +1291,18 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/JobsInfo"},
+                 "schema": {"$ref": "#/components/schemas/JobTasksInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/JobsInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"job_id\": \"job-3b124006c2d2\",\n           \"status\": \"SUCCESS\",\n           \"filter\": {},\n           \"total_tasks\": 2,\n           \"collector_info\": {\n               \"collector_id\": \"collector-accd02663b3d\",\n               \"name\": \"openstack-collector\",\n               \"state\": \"ENABLED\",\n               \"plugin_info\": {\n                   \"plugin_id\": \"plugin-openstack-inven-collector\",\n                   \"version\": \"0.4.2.20220616.134758\"\n               },\n               \"provider\": \"openstack\",\n               \"capability\": {\n                   \"supported_schema\": [\n                       \"openstack_credentials\"\n                   ]\n               },\n               \"is_public\": true\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:01.225Z\",\n           \"updated_at\": \"2022-06-17T08:00:01.225Z\",\n           \"finished_at\": \"2022-06-17T08:00:15.197Z\"\n       },\n       {\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"status\": \"SUCCESS\",\n           \"filter\": {},\n           \"total_tasks\": 3,\n           \"collector_info\": {\n               \"collector_id\": \"collector-2c0847644f39\",\n               \"name\": \"AWS stat-kwon Collector\",\n               \"state\": \"ENABLED\",\n               \"plugin_info\": {\n                   \"plugin_id\": \"plugin-30d21ef75a5d\",\n                   \"version\": \"1.13.13.20220610.143142\"\n               },\n               \"provider\": \"aws\",\n               \"capability\": {\n                   \"supported_schema\": [\n                       \"aws_access_key\"\n                   ]\n               },\n               \"is_public\": true\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.407Z\",\n           \"updated_at\": \"2022-06-17T08:00:00.407Z\",\n           \"finished_at\": \"2022-06-17T08:07:32.023Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
+                   "Schema": {"$ref": "#/components/schemas/JobTasksInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"job_task_id\": \"job_task-69b301d0fbfc\",\n           \"status\": \"SUCCESS\",\n           \"updated_count\": 55,\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"secret_id\": \"secret-957e407bfc15\",\n           \"provider\": \"aws\",\n           \"service_account_id\": \"sa-a41ff4765671\",\n           \"project_id\": \"project-77dffd3f7cd3\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.680Z\",\n           \"started_at\": \"2022-06-17T08:00:00.914Z\",\n           \"finished_at\": \"2022-06-17T08:05:48.933Z\"\n       },\n       {\n           \"job_task_id\": \"job_task-c5077338cf23\",\n           \"status\": \"SUCCESS\",\n           \"updated_count\": 1921,\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"secret_id\": \"secret-1cd7417c1889\",\n           \"provider\": \"aws\",\n           \"service_account_id\": \"sa-5e186fcc7c91\",\n           \"project_id\": \"project-18655561c535\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.582Z\",\n           \"started_at\": \"2022-06-17T08:00:00.814Z\",\n           \"finished_at\": \"2022-06-17T08:07:31.995Z\"\n       }\n   ],\n   \"total_count\": 4839\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/job/analyze": {
+     },"/inventory/job-task/stat": {
        "post": {
-         "tags": ["inventory > job"],
-         "summary": "Analyze",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||AnalyzeQuery|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/job/stat": {
-       "post": {
-         "tags": ["inventory > job"],
+         "tags": ["inventory > job-task"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -853,485 +1479,6 @@
      },"/inventory/region/stat": {
        "post": {
          "tags": ["inventory > region"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/note/create": {
-       "post": {
-         "tags": ["inventory > note"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |record_id|is_required: true|string|True|\n |note|is_required: true|string|True|\n |domain_id|is_required: true|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"record_id" : {"type": "string","title": "RECORD_ID" },"note" : {"type": "string","title": "NOTE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NoteInfo"},"Default Example":{
-                     "value": "{\n\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/note/update": {
-       "post": {
-         "tags": ["inventory > note"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id|is_required: true|string|True|\n |note|is_required: false|string|True|\n |domain_id|is_required: true|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" },"note" : {"type": "string","title": "NOTE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NoteInfo"},"Default Example":{
-                     "value": "{\n\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/note/delete": {
-       "post": {
-         "tags": ["inventory > note"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id|is_required: true|string|True|\n |domain_id|is_required: true|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/note/get": {
-       "post": {
-         "tags": ["inventory > note"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id|is_required: true|string|True|\n |domain_id|is_required: true|string|True|\n |only|is_required: false|array|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NoteInfo"},"Default Example":{
-                     "value": "{\n\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/note/list": {
-       "post": {
-         "tags": ["inventory > note"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|is_required: false|Query|True|\n |note_id|is_required: false|string|True|\n |record_id|is_required: false|string|True|\n |cloud_service_id|is_required: false|string|True|\n |created_by|is_required: false|string|True|\n |domain_id|is_required: false|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"note_id" : {"type": "string","title": "NOTE_ID" },"record_id" : {"type": "string","title": "RECORD_ID" },"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID" },"created_by" : {"type": "string","title": "CREATED_BY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NotesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NotesInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/note/stat": {
-       "post": {
-         "tags": ["inventory > note"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|is_required: true|StatisticsQuery|True|\n |domain_id|is_required: true|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/job-task/delete": {
-       "post": {
-         "tags": ["inventory > job-task"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \nDeletes a specific JobTask. You must specify the `job_task_id` of the JobTask to delete.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_task_id||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/job-task/get": {
-       "post": {
-         "tags": ["inventory > job-task"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \nGets a specific JobTask. Prints detailed information about the JobTask, including its state, updated or failure counts, and error log.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_task_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/JobTaskInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/JobTaskInfo"},"Default Example":{
-                     "value": "{\n     \"job_task_id\": \"job-task-123456789012\",\n     \"status\": \"FAILURE\",\n     \"updated_count\": 199,\n     \"failure_count\": 1,\n     \"errors\": [\n         {\n             \"error_code\": \"ERROR_PLUGIN\",\n             \"message\": \"{\\\"tags\\\": [\\\"Could not interpret the value as a list\\\"]}\",\n             \"additional\": {\n                 \"domain_id\": \"domain-123456789012\",\n                 \"resource_id\": \"eventarc-us-central1-function\",\n                 \"resource_type\": \"inventory.CloudService\",\n                 \"cloud_service_group\": \"Pub/Sub\",\n                 \"cloud_service_type\": \"Subscription\",\n                 \"provider\": \"google_cloud\"\n             }\n         }\n     ],\n     \"job_id\": \"job-123456789012\",\n     \"secret_id\": \"secret-123456789012\",\n     \"provider\": \"google_cloud\",\n     \"service_account_id\": \"sa-123456789012\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T11:00:02.588Z\",\n     \"started_at\": \"2022-01-01T11:00:02.819Z\",\n     \"finished_at\": \"2022-01-01T11:00:34.398Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/job-task/list": {
-       "post": {
-         "tags": ["inventory > job-task"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all JobTasks in a specific Job. You can use a query to get a filtered list of JobTasks.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |job_task_id||string||\n |status|PENDING, CANCELED, IN_PROGRESS, SUCCESS, FAILURE |string||\n |job_id||string||\n |secret_id||string||\n |provider||string||\n |service_account_id||string||\n |project_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"job_task_id" : {"type": "string","title": "JOB_TASK_ID" },"status" : {"type": "string","title": "STATUS" },"job_id" : {"type": "string","title": "JOB_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" },"provider" : {"type": "string","title": "PROVIDER" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/JobTasksInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/JobTasksInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"job_task_id\": \"job_task-69b301d0fbfc\",\n           \"status\": \"SUCCESS\",\n           \"updated_count\": 55,\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"secret_id\": \"secret-957e407bfc15\",\n           \"provider\": \"aws\",\n           \"service_account_id\": \"sa-a41ff4765671\",\n           \"project_id\": \"project-77dffd3f7cd3\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.680Z\",\n           \"started_at\": \"2022-06-17T08:00:00.914Z\",\n           \"finished_at\": \"2022-06-17T08:05:48.933Z\"\n       },\n       {\n           \"job_task_id\": \"job_task-c5077338cf23\",\n           \"status\": \"SUCCESS\",\n           \"updated_count\": 1921,\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"secret_id\": \"secret-1cd7417c1889\",\n           \"provider\": \"aws\",\n           \"service_account_id\": \"sa-5e186fcc7c91\",\n           \"project_id\": \"project-18655561c535\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.582Z\",\n           \"started_at\": \"2022-06-17T08:00:00.814Z\",\n           \"finished_at\": \"2022-06-17T08:07:31.995Z\"\n       }\n   ],\n   \"total_count\": 4839\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/job-task/stat": {
-       "post": {
-         "tags": ["inventory > job-task"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-report/create": {
-       "post": {
-         "tags": ["inventory > cloud-service-report"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |options||array|True|\n |schedule||ReportSchedule|True|\n |target||Struct|True|\n |domain_id||string|True|\n |file_format|EXCEL, CSV |string||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE" },"target" : {"type": "object","title": "TARGET" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-report/update": {
-       "post": {
-         "tags": ["inventory > cloud-service-report"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n |name||string||\n |options||array||\n |file_format|EXCEL, CSV |string||\n |schedule||ReportSchedule||\n |target||Struct||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE" },"target" : {"type": "object","title": "TARGET" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-report/delete": {
-       "post": {
-         "tags": ["inventory > cloud-service-report"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-report/send": {
-       "post": {
-         "tags": ["inventory > cloud-service-report"],
-         "summary": "Send",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-report/get": {
-       "post": {
-         "tags": ["inventory > cloud-service-report"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CloudServiceReportInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-report/list": {
-       "post": {
-         "tags": ["inventory > cloud-service-report"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |report_id||string||\n |name||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"report_id" : {"type": "string","title": "REPORT_ID" },"name" : {"type": "string","title": "NAME" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CloudServiceReportsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CloudServiceReportsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-report/stat": {
-       "post": {
-         "tags": ["inventory > cloud-service-report"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -1741,82 +1888,20 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-query-set/create": {
+     },"/inventory/job/delete": {
        "post": {
-         "tags": ["inventory > cloud-service-query-set"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreate a new query set. Periodic statistics data is created based on the query set.\n`query` parameters refer to AnalyzeQuery.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |query_options||AnalyzeQuery|True|\n |provider||string|True|\n |cloud_service_group||string|True|\n |cloud_service_type||string|True|\n |domain_id||string|True|\n |unit||Struct||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"unit" : {"type": "object","title": "UNIT" },"provider" : {"type": "string","title": "PROVIDER" },"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP" },"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"name\": \"EC2 Count by Instance Type\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   }\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},"Default Example":{
-                     "value": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"query_type\": \"MANAGED\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"keys\": [\n       \"Disk Size\",\n       \"Memory\",\n       \"CPU\n   ],\n   \"additional_info_keys\": [\n       \"instance_type\"\n   ],\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   },\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T01:38:16.301Z\"\n   \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-query-set/update": {
-       "post": {
-         "tags": ["inventory > cloud-service-query-set"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \nUpdate a specific query set. You can only update the query set of custom type.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n |name||string||\n |query_options||AnalyzeQuery||\n |unit||Struct||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"name" : {"type": "string","title": "NAME" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"unit" : {"type": "object","title": "UNIT" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"Changed Name\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"tags\": {\n       \"changed_key\": \"changed_value\"\n   }\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},"Default Example":{
-                     "value": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"query_type\": \"MANAGED\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"keys\": [\n       \"Disk Size\",\n       \"Memory\",\n       \"CPU\n   ],\n   \"additional_info_keys\": [\n       \"instance_type\"\n   ],\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   },\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T01:38:16.301Z\"\n   \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-query-set/delete": {
-       "post": {
-         "tags": ["inventory > cloud-service-query-set"],
+         "tags": ["inventory > job"],
          "summary": "Delete",
          "operationId" : "",
-         "description": "### Description \nDelete a specific query set.",
+         "description": "### Description \nDeletes a specific Job. You must specify the `job_id` of the Job to delete.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_id||string|True|\n |domain_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"job_id" : {"type": "string","title": "JOB_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"job_id\": \"job-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1826,43 +1911,82 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-query-set/run": {
+     },"/inventory/job/get": {
        "post": {
-         "tags": ["inventory > cloud-service-query-set"],
-         "summary": "Run",
+         "tags": ["inventory > job"],
+         "summary": "Get",
          "operationId" : "",
-         "description": "### Description \nRun a specific query set and store the result in the statistics data.",
+         "description": "### Description \nGets a specific Job. Prints detailed information about the Job, including its state, total tasks, and collector info.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"job_id" : {"type": "string","title": "JOB_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"job_id\": \"job-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
              }
            },"required": true
          },
          "responses": {
            "200": {
-             "description": "Successfull Response"}
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/JobInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/JobInfo"},"Default Example":{
+                     "value": "{\n     \"job_id\": \"job-123456789012\",\n     \"status\": \"ERROR\",\n     \"filter\": {},\n     \"total_tasks\": 2,\n     \"collector_info\": {\n         \"collector_id\": \"collector-123456789012\",\n         \"name\": \"Jenkins Collector\",\n         \"state\": \"ENABLED\",\n         \"plugin_info\": {\n             \"plugin_id\": \"plugin-jenkins-inven-collector\",\n             \"version\": \"0.1.1\"\n         },\n         \"provider\": \"jenkins\",\n         \"capability\": {},\n         \"is_public\": true\n     },\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T10:00:01.389Z\",\n     \"updated_at\": \"2022-01-01T10:00:01.389Z\",\n     \"finished_at\": \"2022-01-01T10:02:11.270Z\"\n}"
+                   }}
+               }
+             }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-query-set/test": {
+     },"/inventory/job/list": {
        "post": {
-         "tags": ["inventory > cloud-service-query-set"],
-         "summary": "Test",
+         "tags": ["inventory > job"],
+         "summary": "List",
          "operationId" : "",
-         "description": "### Description \nRun a specific query set and store the result in the statistics data.",
+         "description": "### Description \nGets a list of all Jobs. You can use a query to get a filtered list of Jobs.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |job_id||string||\n |status|CANCELED, IN_PROGRESS, SUCCESS, FAILURE, TIMEOUT |string||\n |collector_id||string||\n |secret_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"job_id" : {"type": "string","title": "JOB_ID" },"status" : {"type": "string","title": "STATUS" },"collector_id" : {"type": "string","title": "COLLECTOR_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/JobsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/JobsInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"job_id\": \"job-3b124006c2d2\",\n           \"status\": \"SUCCESS\",\n           \"filter\": {},\n           \"total_tasks\": 2,\n           \"collector_info\": {\n               \"collector_id\": \"collector-accd02663b3d\",\n               \"name\": \"openstack-collector\",\n               \"state\": \"ENABLED\",\n               \"plugin_info\": {\n                   \"plugin_id\": \"plugin-openstack-inven-collector\",\n                   \"version\": \"0.4.2.20220616.134758\"\n               },\n               \"provider\": \"openstack\",\n               \"capability\": {\n                   \"supported_schema\": [\n                       \"openstack_credentials\"\n                   ]\n               },\n               \"is_public\": true\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:01.225Z\",\n           \"updated_at\": \"2022-06-17T08:00:01.225Z\",\n           \"finished_at\": \"2022-06-17T08:00:15.197Z\"\n       },\n       {\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"status\": \"SUCCESS\",\n           \"filter\": {},\n           \"total_tasks\": 3,\n           \"collector_info\": {\n               \"collector_id\": \"collector-2c0847644f39\",\n               \"name\": \"AWS stat-kwon Collector\",\n               \"state\": \"ENABLED\",\n               \"plugin_info\": {\n                   \"plugin_id\": \"plugin-30d21ef75a5d\",\n                   \"version\": \"1.13.13.20220610.143142\"\n               },\n               \"provider\": \"aws\",\n               \"capability\": {\n                   \"supported_schema\": [\n                       \"aws_access_key\"\n                   ]\n               },\n               \"is_public\": true\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.407Z\",\n           \"updated_at\": \"2022-06-17T08:00:00.407Z\",\n           \"finished_at\": \"2022-06-17T08:07:32.023Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/job/analyze": {
+       "post": {
+         "tags": ["inventory > job"],
+         "summary": "Analyze",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||AnalyzeQuery|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
                }
              }
            },"required": true
@@ -1878,133 +2002,9 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-query-set/enable": {
+     },"/inventory/job/stat": {
        "post": {
-         "tags": ["inventory > cloud-service-query-set"],
-         "summary": "Enable",
-         "operationId" : "",
-         "description": "### Description \nEnable a specific query set.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},"Default Example":{
-                     "value": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"query_type\": \"MANAGED\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"keys\": [\n       \"Disk Size\",\n       \"Memory\",\n       \"CPU\n   ],\n   \"additional_info_keys\": [\n       \"instance_type\"\n   ],\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   },\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T01:38:16.301Z\"\n   \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-query-set/disable": {
-       "post": {
-         "tags": ["inventory > cloud-service-query-set"],
-         "summary": "Disable",
-         "operationId" : "",
-         "description": "### Description \nDisable a specific query set. query set is not executed when disabled.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},"Default Example":{
-                     "value": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"query_type\": \"MANAGED\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"keys\": [\n       \"Disk Size\",\n       \"Memory\",\n       \"CPU\n   ],\n   \"additional_info_keys\": [\n       \"instance_type\"\n   ],\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   },\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T01:38:16.301Z\"\n   \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-query-set/get": {
-       "post": {
-         "tags": ["inventory > cloud-service-query-set"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \nGet a specific query set.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query_set_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},"Default Example":{
-                     "value": "{\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"query_type\": \"MANAGED\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"keys\": [\n       \"Disk Size\",\n       \"Memory\",\n       \"CPU\n   ],\n   \"additional_info_keys\": [\n       \"instance_type\"\n   ],\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   },\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T01:38:16.301Z\"\n   \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-query-set/list": {
-       "post": {
-         "tags": ["inventory > cloud-service-query-set"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all query sets.\nYou can use a query to get a filtered list of query sets.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |query_set_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |query_type|MANAGED, CUSTOM |string||\n |provider||string||\n |cloud_service_group||string||\n |cloud_service_type||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"query_set_id" : {"type": "string","title": "QUERY_SET_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"query_type" : {"type": "string","title": "QUERY_TYPE" },"provider" : {"type": "string","title": "PROVIDER" },"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP" },"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": \u003cSearchQuery\u003e,\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_type\": \"MANAGED\",\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CloudServiceQuerySetsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CloudServiceQuerySetsInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"query_set_id\": \"query-set-abcd1234\",\n           \"name\": \"EC2 Count by Instance Type\",\n           \"state\": \"ENABLED\",\n           \"query_type\": \"MANAGED\",\n           \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n           \"unit\": {\n               \"Disk Size\": \"GB\",\n               \"Memory\": \"GB\",\n               \"CPU\": \"Core\"\n           },\n          \"keys\": [\n              \"Disk Size\",\n              \"Memory\",\n              \"CPU\n           ],\n           \"additional_info_keys\": [\n               \"instance_type\"\n           ],\n           \"provider\": \"aws\",\n           \"cloud_service_group\": \"EC2\",\n           \"cloud_service_type\": \"Instance\",\n           \"tags\": {\n               \"foo\": \"bar\"\n           },\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-22T01:38:16.301Z\",\n           \"updated_at\": \"2023-03-16T06:00:00.000Z\"\n       },\n       {...}\n   ],\n   \"total_count\": 2\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/inventory/cloud-service-query-set/stat": {
-       "post": {
-         "tags": ["inventory > cloud-service-query-set"],
+         "tags": ["inventory > job"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -2300,30 +2300,165 @@
    },
    "components":{
      "schemas": {
-     "ChangeHistoryInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/RecordInfo"},
-               "type": "array","$ref": "#/components/schemas/RecordInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+     "CollectRequest": {
+         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"filter" : {"type": "object","title": "FILTER"},"secret_id" : {"type": "string","title": "SECRET_ID"},"collect_mode" : {"type": "string","title": "COLLECT_MODE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"use_cache" : {"type": "boolean","title": "USE_CACHE"}},
+         "type": "object",
+         "required": ["collector_id","domain_id"],
+                "title": "CollectRequest"
+           }
+           ,        "CollectorInfo": {
+         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"provider" : {"type": "string","title": "PROVIDER"},"capability" : {"type": "object","title": "CAPABILITY"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"secret_filter" : {"$ref": "#/components/schemas/SecretFilter","title": "SECRET_FILTER"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_collected_at" : {"type": "string","title": "LAST_COLLECTED_AT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["collector_id","name","plugin_info","tags","provider","capability","schedule","secret_filter","created_at","last_collected_at","domain_id"],
+                "title": "CollectorInfo"
+           }
+           ,        "CollectorQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"priority" : {"type": "integer","title": "PRIORITY"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["query","collector_id","name","state","priority","plugin_id","domain_id"],
+                "title": "CollectorQuery"
+           }
+           ,        "CollectorRequest": {
+         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["collector_id","domain_id"],
+                "title": "CollectorRequest"
+           }
+           ,        "CollectorStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["query","domain_id"],
+                "title": "CollectorStatQuery"
+           }
+           ,        "CollectorsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CollectorInfo"},
+               "type": "array","$ref": "#/components/schemas/CollectorInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "ChangeHistoryInfo"
+                "title": "CollectorsInfo"
            }
-           ,        "ChangeHistoryQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID"},"action" : {"type": "string","title": "ACTION"},"user_id" : {"type": "string","title": "USER_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"job_id" : {"type": "string","title": "JOB_ID"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "CreateCollectorRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"secret_filter" : {"$ref": "#/components/schemas/SecretFilter","title": "SECRET_FILTER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["cloud_service_id","domain_id"],
-                "title": "ChangeHistoryQuery"
+         "required": ["name","plugin_info","domain_id"],
+                "title": "CreateCollectorRequest"
            }
-           ,        "ChangeHistoryStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID"}},
+           ,        "CreateScheduleRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"name" : {"type": "string","title": "NAME"},"collect_mode" : {"type": "string","title": "COLLECT_MODE"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"filter" : {"type": "object","title": "FILTER"}},
          "type": "object",
-         "required": ["query","domain_id","cloud_service_id"],
-                "title": "ChangeHistoryStatQuery"
+         "required": ["domain_id","collector_id","schedule"],
+                "title": "CreateScheduleRequest"
            }
-           ,        "RecordInfo": {
-         "properties" : {"record_id" : {"type": "string","title": "RECORD_ID"},"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID"},"action" : {"type": "string","title": "ACTION"},"diff" : {"type": "array","title": "DIFF"},"diff_count" : {"type": "integer","title": "DIFF_COUNT"},"user_id" : {"type": "string","title": "USER_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"job_id" : {"type": "string","title": "JOB_ID"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+           ,        "DeleteScheduleRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"}},
          "type": "object",
-         "required": ["record_id","cloud_service_id","action","diff","diff_count","user_id","collector_id","job_id","updated_by","domain_id","created_at"],
-                "title": "RecordInfo"
+         "required": ["domain_id","schedule_id","collector_id"],
+                "title": "DeleteScheduleRequest"
+           }
+           ,        "ErrorInfo": {
+         "properties" : {"error_code" : {"type": "string","title": "ERROR_CODE"},"message" : {"type": "string","title": "MESSAGE"},"additional" : {"type": "object","title": "ADDITIONAL"}},
+         "type": "object",
+         "required": ["error_code","message","additional"],
+                "title": "ErrorInfo"
+           }
+           ,        "GetCollectorRequest": {
+         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"}},
+         "type": "object",
+         "required": ["collector_id","domain_id"],
+                "title": "GetCollectorRequest"
+           }
+           ,        "JobInfo": {
+         "properties" : {"job_id" : {"type": "string","title": "JOB_ID"},"status" : {"type": "string","title": "STATUS"},"total_tasks" : {"type": "integer","title": "TOTAL_TASKS"},"remained_tasks" : {"type": "integer","title": "REMAINED_TASKS"},"success_tasks" : {"type": "integer","title": "SUCCESS_TASKS"},"failure_tasks" : {"type": "integer","title": "FAILURE_TASKS"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"finished_at" : {"type": "string","title": "FINISHED_AT"}},
+         "type": "object",
+         "required": ["job_id","status","total_tasks","remained_tasks","success_tasks","failure_tasks","collector_id","secret_id","domain_id","plugin_id","created_at","updated_at","finished_at"],
+                "title": "JobInfo"
+           }
+           ,        "PluginInfo": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"metadata" : {"type": "object","title": "METADATA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+         "type": "object",
+         "required": ["plugin_id","version","options","metadata","upgrade_mode"],
+                "title": "PluginInfo"
+           }
+           ,        "ScheduleInfo": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"name" : {"type": "string","title": "NAME"},"collect_mode" : {"type": "string","title": "COLLECT_MODE"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_scheduled_at" : {"type": "string","title": "LAST_SCHEDULED_AT"},"collector_info" : {"$ref": "#/components/schemas/CollectorInfo","title": "COLLECTOR_INFO"},"filter" : {"type": "object","title": "FILTER"}},
+         "type": "object",
+         "required": ["domain_id","schedule_id","name","collect_mode","schedule","created_at","last_scheduled_at","collector_info","filter"],
+                "title": "ScheduleInfo"
+           }
+           ,        "ScheduleQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["collector_id","domain_id"],
+                "title": "ScheduleQuery"
+           }
+           ,        "ScheduleRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"}},
+         "type": "object",
+         "required": ["domain_id","schedule_id","collector_id"],
+                "title": "ScheduleRequest"
+           }
+           ,        "Scheduled": {
+         "properties" : {"state" : {"type": "string","title": "STATE"},"hours" : {"items": {"type": "integer"},
+               "type": "array","title": "HOURS"}},
+         "type": "object",
+         "required": ["state","hours"],
+                "title": "Scheduled"
+           }
+           ,        "SchedulesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ScheduleInfo"},
+               "type": "array","$ref": "#/components/schemas/ScheduleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "SchedulesInfo"
+           }
+           ,        "SecretFilter": {
+         "properties" : {"state" : {"type": "string","title": "STATE"},"secrets" : {"items": {"type": "string"},
+               "type": "array","title": "SECRETS"},"service_accounts" : {"items": {"type": "string"},
+               "type": "array","title": "SERVICE_ACCOUNTS"},"schemas" : {"items": {"type": "string"},
+               "type": "array","title": "SCHEMAS"},"exclude_secrets" : {"items": {"type": "string"},
+               "type": "array","title": "EXCLUDE_SECRETS"},"exclude_service_accounts" : {"items": {"type": "string"},
+               "type": "array","title": "EXCLUDE_SERVICE_ACCOUNTS"},"exclude_schemas" : {"items": {"type": "string"},
+               "type": "array","title": "EXCLUDE_SCHEMAS"}},
+         "type": "object",
+         "required": ["state","secrets","service_accounts","schemas","exclude_secrets","exclude_service_accounts","exclude_schemas"],
+                "title": "SecretFilter"
+           }
+           ,        "UpdateCollectorRequest": {
+         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"name" : {"type": "string","title": "NAME"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"secret_filter" : {"$ref": "#/components/schemas/SecretFilter","title": "SECRET_FILTER"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["collector_id","domain_id"],
+                "title": "UpdateCollectorRequest"
+           }
+           ,        "UpdatePluginRequest": {
+         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+         "type": "object",
+         "required": ["collector_id","domain_id"],
+                "title": "UpdatePluginRequest"
+           }
+           ,        "UpdateScheduleRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"name" : {"type": "string","title": "NAME"},"collect_mode" : {"type": "string","title": "COLLECT_MODE"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"filter" : {"type": "object","title": "FILTER"}},
+         "type": "object",
+         "required": ["domain_id","schedule_id","collector_id"],
+                "title": "UpdateScheduleRequest"
+           }
+           ,        "VerifyInfo": {
+         "properties" : {"status" : {"type": "boolean","title": "STATUS"}},
+         "type": "object",
+         "required": ["status"],
+                "title": "VerifyInfo"
+           }
+           ,        "VerifyPluginRequest": {
+         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["collector_id","domain_id"],
+                "title": "VerifyPluginRequest"
+           }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -2519,165 +2654,193 @@
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+           ,        "ChangeHistoryInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/RecordInfo"},
+               "type": "array","$ref": "#/components/schemas/RecordInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
+         "required": ["results","total_count"],
+                "title": "ChangeHistoryInfo"
            }
-           ,        "CollectRequest": {
-         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"filter" : {"type": "object","title": "FILTER"},"secret_id" : {"type": "string","title": "SECRET_ID"},"collect_mode" : {"type": "string","title": "COLLECT_MODE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"use_cache" : {"type": "boolean","title": "USE_CACHE"}},
+           ,        "ChangeHistoryQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID"},"action" : {"type": "string","title": "ACTION"},"user_id" : {"type": "string","title": "USER_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"job_id" : {"type": "string","title": "JOB_ID"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["collector_id","domain_id"],
-                "title": "CollectRequest"
+         "required": ["cloud_service_id","domain_id"],
+                "title": "ChangeHistoryQuery"
            }
-           ,        "CollectorInfo": {
-         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"provider" : {"type": "string","title": "PROVIDER"},"capability" : {"type": "object","title": "CAPABILITY"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"secret_filter" : {"$ref": "#/components/schemas/SecretFilter","title": "SECRET_FILTER"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_collected_at" : {"type": "string","title": "LAST_COLLECTED_AT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "ChangeHistoryStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID"}},
          "type": "object",
-         "required": ["collector_id","name","plugin_info","tags","provider","capability","schedule","secret_filter","created_at","last_collected_at","domain_id"],
-                "title": "CollectorInfo"
+         "required": ["query","domain_id","cloud_service_id"],
+                "title": "ChangeHistoryStatQuery"
            }
-           ,        "CollectorQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"priority" : {"type": "integer","title": "PRIORITY"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "RecordInfo": {
+         "properties" : {"record_id" : {"type": "string","title": "RECORD_ID"},"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID"},"action" : {"type": "string","title": "ACTION"},"diff" : {"type": "array","title": "DIFF"},"diff_count" : {"type": "integer","title": "DIFF_COUNT"},"user_id" : {"type": "string","title": "USER_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"job_id" : {"type": "string","title": "JOB_ID"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["query","collector_id","name","state","priority","plugin_id","domain_id"],
-                "title": "CollectorQuery"
+         "required": ["record_id","cloud_service_id","action","diff","diff_count","user_id","collector_id","job_id","updated_by","domain_id","created_at"],
+                "title": "RecordInfo"
            }
-           ,        "CollectorRequest": {
-         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "CreateNoteRequest": {
+         "properties" : {"record_id" : {"type": "string","title": "RECORD_ID"},"note" : {"type": "string","title": "NOTE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["collector_id","domain_id"],
-                "title": "CollectorRequest"
+         "required": ["record_id","note","domain_id"],
+                "title": "CreateNoteRequest"
            }
-           ,        "CollectorStatQuery": {
+           ,        "GetNoteRequest": {
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"}},
+         "type": "object",
+         "required": ["note_id","domain_id","only"],
+                "title": "GetNoteRequest"
+           }
+           ,        "NoteInfo": {
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"record_id" : {"type": "string","title": "RECORD_ID"},"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID"},"note" : {"type": "string","title": "NOTE"},"created_by" : {"type": "string","title": "CREATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["note_id","record_id","cloud_service_id","note","created_by","domain_id","created_at"],
+                "title": "NoteInfo"
+           }
+           ,        "NoteQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"note_id" : {"type": "string","title": "NOTE_ID"},"record_id" : {"type": "string","title": "RECORD_ID"},"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID"},"created_by" : {"type": "string","title": "CREATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["query","note_id","record_id","cloud_service_id","created_by","domain_id"],
+                "title": "NoteQuery"
+           }
+           ,        "NoteRequest": {
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["note_id","domain_id"],
+                "title": "NoteRequest"
+           }
+           ,        "NoteStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["query","domain_id"],
-                "title": "CollectorStatQuery"
+                "title": "NoteStatQuery"
            }
-           ,        "CollectorsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CollectorInfo"},
-               "type": "array","$ref": "#/components/schemas/CollectorInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "NotesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NoteInfo"},
+               "type": "array","$ref": "#/components/schemas/NoteInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "CollectorsInfo"
+                "title": "NotesInfo"
            }
-           ,        "CreateCollectorRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"secret_filter" : {"$ref": "#/components/schemas/SecretFilter","title": "SECRET_FILTER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "UpdateNoteRequest": {
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"note" : {"type": "string","title": "NOTE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["name","plugin_info","domain_id"],
-                "title": "CreateCollectorRequest"
+         "required": ["note_id","note","domain_id"],
+                "title": "UpdateNoteRequest"
            }
-           ,        "CreateScheduleRequest": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"name" : {"type": "string","title": "NAME"},"collect_mode" : {"type": "string","title": "COLLECT_MODE"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"filter" : {"type": "object","title": "FILTER"}},
+           ,        "CloudServiceQuerySetInfo": {
+         "properties" : {"query_set_id" : {"type": "string","title": "QUERY_SET_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"query_type" : {"type": "string","title": "QUERY_TYPE"},"unit" : {"type": "object","title": "UNIT"},"keys" : {"items": {"type": "string"},
+               "type": "array","title": "KEYS"},"additional_info_keys" : {"items": {"type": "string"},
+               "type": "array","title": "ADDITIONAL_INFO_KEYS"},"provider" : {"type": "string","title": "PROVIDER"},"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP"},"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["domain_id","collector_id","schedule"],
-                "title": "CreateScheduleRequest"
+         "required": ["query_set_id","name","state","query_options","query_type","unit","keys","additional_info_keys","provider","cloud_service_group","cloud_service_type","tags","domain_id","created_at","updated_at"],
+                "title": "CloudServiceQuerySetInfo"
            }
-           ,        "DeleteScheduleRequest": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"}},
+           ,        "CloudServiceQuerySetQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"query_set_id" : {"type": "string","title": "QUERY_SET_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"query_type" : {"type": "string","title": "QUERY_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP"},"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["domain_id","schedule_id","collector_id"],
-                "title": "DeleteScheduleRequest"
+         "required": ["domain_id"],
+                "title": "CloudServiceQuerySetQuery"
            }
-           ,        "ErrorInfo": {
-         "properties" : {"error_code" : {"type": "string","title": "ERROR_CODE"},"message" : {"type": "string","title": "MESSAGE"},"additional" : {"type": "object","title": "ADDITIONAL"}},
+           ,        "CloudServiceQuerySetRequest": {
+         "properties" : {"query_set_id" : {"type": "string","title": "QUERY_SET_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["error_code","message","additional"],
-                "title": "ErrorInfo"
+         "required": ["query_set_id","domain_id"],
+                "title": "CloudServiceQuerySetRequest"
            }
-           ,        "GetCollectorRequest": {
-         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
+           ,        "CloudServiceQuerySetStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["query","domain_id"],
+                "title": "CloudServiceQuerySetStatQuery"
+           }
+           ,        "CloudServiceQuerySetsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},
+               "type": "array","$ref": "#/components/schemas/CloudServiceQuerySetInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "CloudServiceQuerySetsInfo"
+           }
+           ,        "CreateCloudServiceQuerySetRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"unit" : {"type": "object","title": "UNIT"},"provider" : {"type": "string","title": "PROVIDER"},"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP"},"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["name","query_options","provider","cloud_service_group","cloud_service_type","domain_id"],
+                "title": "CreateCloudServiceQuerySetRequest"
+           }
+           ,        "GetCloudServiceQuerySetRequest": {
+         "properties" : {"query_set_id" : {"type": "string","title": "QUERY_SET_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
                "type": "array","title": "ONLY"}},
          "type": "object",
-         "required": ["collector_id","domain_id"],
-                "title": "GetCollectorRequest"
+         "required": ["query_set_id","domain_id"],
+                "title": "GetCloudServiceQuerySetRequest"
            }
-           ,        "JobInfo": {
-         "properties" : {"job_id" : {"type": "string","title": "JOB_ID"},"status" : {"type": "string","title": "STATUS"},"total_tasks" : {"type": "integer","title": "TOTAL_TASKS"},"remained_tasks" : {"type": "integer","title": "REMAINED_TASKS"},"success_tasks" : {"type": "integer","title": "SUCCESS_TASKS"},"failure_tasks" : {"type": "integer","title": "FAILURE_TASKS"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"finished_at" : {"type": "string","title": "FINISHED_AT"}},
+           ,        "UpdateCloudServiceQuerySetRequest": {
+         "properties" : {"query_set_id" : {"type": "string","title": "QUERY_SET_ID"},"name" : {"type": "string","title": "NAME"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"unit" : {"type": "object","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["job_id","status","total_tasks","remained_tasks","success_tasks","failure_tasks","collector_id","secret_id","domain_id","plugin_id","created_at","updated_at","finished_at"],
-                "title": "JobInfo"
+         "required": ["query_set_id","domain_id"],
+                "title": "UpdateCloudServiceQuerySetRequest"
            }
-           ,        "PluginInfo": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"metadata" : {"type": "object","title": "METADATA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+           ,        "CloudServiceReportInfo": {
+         "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_sent_at" : {"type": "string","title": "LAST_SENT_AT"}},
          "type": "object",
-         "required": ["plugin_id","version","options","metadata","upgrade_mode"],
-                "title": "PluginInfo"
+         "required": ["report_id","name","options","file_format","schedule","target","tags","domain_id","created_at","last_sent_at"],
+                "title": "CloudServiceReportInfo"
            }
-           ,        "ScheduleInfo": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"name" : {"type": "string","title": "NAME"},"collect_mode" : {"type": "string","title": "COLLECT_MODE"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_scheduled_at" : {"type": "string","title": "LAST_SCHEDULED_AT"},"collector_info" : {"$ref": "#/components/schemas/CollectorInfo","title": "COLLECTOR_INFO"},"filter" : {"type": "object","title": "FILTER"}},
+           ,        "CloudServiceReportQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"report_id" : {"type": "string","title": "REPORT_ID"},"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["domain_id","schedule_id","name","collect_mode","schedule","created_at","last_scheduled_at","collector_info","filter"],
-                "title": "ScheduleInfo"
+         "required": ["domain_id"],
+                "title": "CloudServiceReportQuery"
            }
-           ,        "ScheduleQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "CloudServiceReportRequest": {
+         "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["collector_id","domain_id"],
-                "title": "ScheduleQuery"
+         "required": ["report_id","domain_id"],
+                "title": "CloudServiceReportRequest"
            }
-           ,        "ScheduleRequest": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"}},
+           ,        "CloudServiceReportStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["domain_id","schedule_id","collector_id"],
-                "title": "ScheduleRequest"
+         "required": ["query","domain_id"],
+                "title": "CloudServiceReportStatQuery"
            }
-           ,        "Scheduled": {
-         "properties" : {"state" : {"type": "string","title": "STATE"},"hours" : {"items": {"type": "integer"},
-               "type": "array","title": "HOURS"}},
-         "type": "object",
-         "required": ["state","hours"],
-                "title": "Scheduled"
-           }
-           ,        "SchedulesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ScheduleInfo"},
-               "type": "array","$ref": "#/components/schemas/ScheduleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "CloudServiceReportsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CloudServiceReportInfo"},
+               "type": "array","$ref": "#/components/schemas/CloudServiceReportInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "SchedulesInfo"
+                "title": "CloudServiceReportsInfo"
            }
-           ,        "SecretFilter": {
-         "properties" : {"state" : {"type": "string","title": "STATE"},"secrets" : {"items": {"type": "string"},
-               "type": "array","title": "SECRETS"},"service_accounts" : {"items": {"type": "string"},
-               "type": "array","title": "SERVICE_ACCOUNTS"},"schemas" : {"items": {"type": "string"},
-               "type": "array","title": "SCHEMAS"},"exclude_secrets" : {"items": {"type": "string"},
-               "type": "array","title": "EXCLUDE_SECRETS"},"exclude_service_accounts" : {"items": {"type": "string"},
-               "type": "array","title": "EXCLUDE_SERVICE_ACCOUNTS"},"exclude_schemas" : {"items": {"type": "string"},
-               "type": "array","title": "EXCLUDE_SCHEMAS"}},
+           ,        "CreateCloudServiceReportRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["state","secrets","service_accounts","schemas","exclude_secrets","exclude_service_accounts","exclude_schemas"],
-                "title": "SecretFilter"
+         "required": ["name","options","schedule","target","domain_id"],
+                "title": "CreateCloudServiceReportRequest"
            }
-           ,        "UpdateCollectorRequest": {
-         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"name" : {"type": "string","title": "NAME"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"secret_filter" : {"$ref": "#/components/schemas/SecretFilter","title": "SECRET_FILTER"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "GetCloudServiceReportRequest": {
+         "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"}},
          "type": "object",
-         "required": ["collector_id","domain_id"],
-                "title": "UpdateCollectorRequest"
+         "required": ["report_id","domain_id"],
+                "title": "GetCloudServiceReportRequest"
            }
-           ,        "UpdatePluginRequest": {
-         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+           ,        "ReportSchedule": {
+         "properties" : {"state" : {"type": "string","title": "STATE"},"hours" : {"items": {"type": "integer"},
+               "type": "array","title": "HOURS"},"days_of_week" : {"items": {"type": "string"},
+               "type": "array","title": "DAYS_OF_WEEK"}},
          "type": "object",
-         "required": ["collector_id","domain_id"],
-                "title": "UpdatePluginRequest"
+         "required": ["state","hours","days_of_week"],
+                "title": "ReportSchedule"
            }
-           ,        "UpdateScheduleRequest": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"name" : {"type": "string","title": "NAME"},"collect_mode" : {"type": "string","title": "COLLECT_MODE"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"filter" : {"type": "object","title": "FILTER"}},
+           ,        "UpdateCloudServiceReportRequest": {
+         "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["domain_id","schedule_id","collector_id"],
-                "title": "UpdateScheduleRequest"
-           }
-           ,        "VerifyInfo": {
-         "properties" : {"status" : {"type": "boolean","title": "STATUS"}},
-         "type": "object",
-         "required": ["status"],
-                "title": "VerifyInfo"
-           }
-           ,        "VerifyPluginRequest": {
-         "properties" : {"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["collector_id","domain_id"],
-                "title": "VerifyPluginRequest"
+         "required": ["report_id","domain_id"],
+                "title": "UpdateCloudServiceReportRequest"
            }
            ,        "CloudServiceAnalyzeQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
@@ -2765,43 +2928,44 @@
          "required": ["cloud_service_id","domain_id"],
                 "title": "UpdateCloudServiceRequest"
            }
-           ,        "GetJobRequest": {
-         "properties" : {"job_id" : {"type": "string","title": "JOB_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
+           ,        "GetJobTaskRequest": {
+         "properties" : {"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
                "type": "array","title": "ONLY"}},
          "type": "object",
-         "required": ["job_id","domain_id"],
-                "title": "GetJobRequest"
+         "required": ["job_task_id","domain_id"],
+                "title": "GetJobTaskRequest"
            }
-           ,        "JobAnalyzeQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "JobTaskInfo": {
+         "properties" : {"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"status" : {"type": "string","title": "STATUS"},"created_count" : {"type": "integer","title": "CREATED_COUNT"},"updated_count" : {"type": "integer","title": "UPDATED_COUNT"},"failure_count" : {"type": "integer","title": "FAILURE_COUNT"},"deleted_count" : {"type": "integer","title": "DELETED_COUNT"},"disconnected_count" : {"type": "integer","title": "DISCONNECTED_COUNT"},"errors" : {"items": {"$ref": "#/components/schemas/ErrorInfo"},
+               "type": "array","$ref": "#/components/schemas/ErrorInfo","title": "ERRORS"},"job_id" : {"type": "string","title": "JOB_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"provider" : {"type": "string","title": "PROVIDER"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"started_at" : {"type": "string","title": "STARTED_AT"},"finished_at" : {"type": "string","title": "FINISHED_AT"}},
          "type": "object",
-         "required": ["query","domain_id"],
-                "title": "JobAnalyzeQuery"
+         "required": ["job_task_id","status","created_count","updated_count","failure_count","deleted_count","disconnected_count","errors","job_id","secret_id","provider","service_account_id","project_id","domain_id","created_at","started_at","finished_at"],
+                "title": "JobTaskInfo"
            }
-           ,        "JobRequest": {
-         "properties" : {"job_id" : {"type": "string","title": "JOB_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "JobTaskQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"status" : {"type": "string","title": "STATUS"},"job_id" : {"type": "string","title": "JOB_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"provider" : {"type": "string","title": "PROVIDER"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["job_id","domain_id"],
-                "title": "JobRequest"
+         "required": ["domain_id"],
+                "title": "JobTaskQuery"
            }
-           ,        "JobStatQuery": {
+           ,        "JobTaskRequest": {
+         "properties" : {"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["job_task_id","domain_id"],
+                "title": "JobTaskRequest"
+           }
+           ,        "JobTaskStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["query","domain_id"],
-                "title": "JobStatQuery"
+                "title": "JobTaskStatQuery"
            }
-           ,        "JobsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/JobInfo"},
-               "type": "array","$ref": "#/components/schemas/JobInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "JobTasksInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/JobTaskInfo"},
+               "type": "array","$ref": "#/components/schemas/JobTaskInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "JobsInfo"
-           }
-           ,        "JobsQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"job_id" : {"type": "string","title": "JOB_ID"},"status" : {"type": "string","title": "STATUS"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "JobsQuery"
+                "title": "JobTasksInfo"
            }
            ,        "CreateRegionRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"region_code" : {"type": "string","title": "REGION_CODE"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
@@ -2852,156 +3016,6 @@
          "type": "object",
          "required": ["region_id","domain_id"],
                 "title": "UpdateRegionRequest"
-           }
-           ,        "CreateNoteRequest": {
-         "properties" : {"record_id" : {"type": "string","title": "RECORD_ID"},"note" : {"type": "string","title": "NOTE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["record_id","note","domain_id"],
-                "title": "CreateNoteRequest"
-           }
-           ,        "GetNoteRequest": {
-         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
-         "type": "object",
-         "required": ["note_id","domain_id","only"],
-                "title": "GetNoteRequest"
-           }
-           ,        "NoteInfo": {
-         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"record_id" : {"type": "string","title": "RECORD_ID"},"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID"},"note" : {"type": "string","title": "NOTE"},"created_by" : {"type": "string","title": "CREATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["note_id","record_id","cloud_service_id","note","created_by","domain_id","created_at"],
-                "title": "NoteInfo"
-           }
-           ,        "NoteQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"note_id" : {"type": "string","title": "NOTE_ID"},"record_id" : {"type": "string","title": "RECORD_ID"},"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID"},"created_by" : {"type": "string","title": "CREATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["query","note_id","record_id","cloud_service_id","created_by","domain_id"],
-                "title": "NoteQuery"
-           }
-           ,        "NoteRequest": {
-         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["note_id","domain_id"],
-                "title": "NoteRequest"
-           }
-           ,        "NoteStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["query","domain_id"],
-                "title": "NoteStatQuery"
-           }
-           ,        "NotesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NoteInfo"},
-               "type": "array","$ref": "#/components/schemas/NoteInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "NotesInfo"
-           }
-           ,        "UpdateNoteRequest": {
-         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"note" : {"type": "string","title": "NOTE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["note_id","note","domain_id"],
-                "title": "UpdateNoteRequest"
-           }
-           ,        "GetJobTaskRequest": {
-         "properties" : {"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
-         "type": "object",
-         "required": ["job_task_id","domain_id"],
-                "title": "GetJobTaskRequest"
-           }
-           ,        "JobTaskInfo": {
-         "properties" : {"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"status" : {"type": "string","title": "STATUS"},"created_count" : {"type": "integer","title": "CREATED_COUNT"},"updated_count" : {"type": "integer","title": "UPDATED_COUNT"},"failure_count" : {"type": "integer","title": "FAILURE_COUNT"},"deleted_count" : {"type": "integer","title": "DELETED_COUNT"},"disconnected_count" : {"type": "integer","title": "DISCONNECTED_COUNT"},"errors" : {"items": {"$ref": "#/components/schemas/ErrorInfo"},
-               "type": "array","$ref": "#/components/schemas/ErrorInfo","title": "ERRORS"},"job_id" : {"type": "string","title": "JOB_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"provider" : {"type": "string","title": "PROVIDER"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"started_at" : {"type": "string","title": "STARTED_AT"},"finished_at" : {"type": "string","title": "FINISHED_AT"}},
-         "type": "object",
-         "required": ["job_task_id","status","created_count","updated_count","failure_count","deleted_count","disconnected_count","errors","job_id","secret_id","provider","service_account_id","project_id","domain_id","created_at","started_at","finished_at"],
-                "title": "JobTaskInfo"
-           }
-           ,        "JobTaskQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"status" : {"type": "string","title": "STATUS"},"job_id" : {"type": "string","title": "JOB_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"provider" : {"type": "string","title": "PROVIDER"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "JobTaskQuery"
-           }
-           ,        "JobTaskRequest": {
-         "properties" : {"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["job_task_id","domain_id"],
-                "title": "JobTaskRequest"
-           }
-           ,        "JobTaskStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["query","domain_id"],
-                "title": "JobTaskStatQuery"
-           }
-           ,        "JobTasksInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/JobTaskInfo"},
-               "type": "array","$ref": "#/components/schemas/JobTaskInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "JobTasksInfo"
-           }
-           ,        "CloudServiceReportInfo": {
-         "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
-               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_sent_at" : {"type": "string","title": "LAST_SENT_AT"}},
-         "type": "object",
-         "required": ["report_id","name","options","file_format","schedule","target","tags","domain_id","created_at","last_sent_at"],
-                "title": "CloudServiceReportInfo"
-           }
-           ,        "CloudServiceReportQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"report_id" : {"type": "string","title": "REPORT_ID"},"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "CloudServiceReportQuery"
-           }
-           ,        "CloudServiceReportRequest": {
-         "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["report_id","domain_id"],
-                "title": "CloudServiceReportRequest"
-           }
-           ,        "CloudServiceReportStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["query","domain_id"],
-                "title": "CloudServiceReportStatQuery"
-           }
-           ,        "CloudServiceReportsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CloudServiceReportInfo"},
-               "type": "array","$ref": "#/components/schemas/CloudServiceReportInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "CloudServiceReportsInfo"
-           }
-           ,        "CreateCloudServiceReportRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
-               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["name","options","schedule","target","domain_id"],
-                "title": "CreateCloudServiceReportRequest"
-           }
-           ,        "GetCloudServiceReportRequest": {
-         "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
-         "type": "object",
-         "required": ["report_id","domain_id"],
-                "title": "GetCloudServiceReportRequest"
-           }
-           ,        "ReportSchedule": {
-         "properties" : {"state" : {"type": "string","title": "STATE"},"hours" : {"items": {"type": "integer"},
-               "type": "array","title": "HOURS"},"days_of_week" : {"items": {"type": "string"},
-               "type": "array","title": "DAYS_OF_WEEK"}},
-         "type": "object",
-         "required": ["state","hours","days_of_week"],
-                "title": "ReportSchedule"
-           }
-           ,        "UpdateCloudServiceReportRequest": {
-         "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
-               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["report_id","domain_id"],
-                "title": "UpdateCloudServiceReportRequest"
            }
            ,        "ChangeCollectorRuleOrderRequest": {
          "properties" : {"collector_rule_id" : {"type": "string","title": "COLLECTOR_RULE_ID"},"order" : {"type": "integer","title": "ORDER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
@@ -3145,57 +3159,43 @@
          "required": ["resource_group_id","domain_id"],
                 "title": "UpdateResourceGroupRequest"
            }
-           ,        "CloudServiceQuerySetInfo": {
-         "properties" : {"query_set_id" : {"type": "string","title": "QUERY_SET_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"query_type" : {"type": "string","title": "QUERY_TYPE"},"unit" : {"type": "object","title": "UNIT"},"keys" : {"items": {"type": "string"},
-               "type": "array","title": "KEYS"},"additional_info_keys" : {"items": {"type": "string"},
-               "type": "array","title": "ADDITIONAL_INFO_KEYS"},"provider" : {"type": "string","title": "PROVIDER"},"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP"},"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "GetJobRequest": {
+         "properties" : {"job_id" : {"type": "string","title": "JOB_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"}},
          "type": "object",
-         "required": ["query_set_id","name","state","query_options","query_type","unit","keys","additional_info_keys","provider","cloud_service_group","cloud_service_type","tags","domain_id","created_at","updated_at"],
-                "title": "CloudServiceQuerySetInfo"
+         "required": ["job_id","domain_id"],
+                "title": "GetJobRequest"
            }
-           ,        "CloudServiceQuerySetQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"query_set_id" : {"type": "string","title": "QUERY_SET_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"query_type" : {"type": "string","title": "QUERY_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP"},"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "JobAnalyzeQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["domain_id"],
-                "title": "CloudServiceQuerySetQuery"
+         "required": ["query","domain_id"],
+                "title": "JobAnalyzeQuery"
            }
-           ,        "CloudServiceQuerySetRequest": {
-         "properties" : {"query_set_id" : {"type": "string","title": "QUERY_SET_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "JobRequest": {
+         "properties" : {"job_id" : {"type": "string","title": "JOB_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["query_set_id","domain_id"],
-                "title": "CloudServiceQuerySetRequest"
+         "required": ["job_id","domain_id"],
+                "title": "JobRequest"
            }
-           ,        "CloudServiceQuerySetStatQuery": {
+           ,        "JobStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["query","domain_id"],
-                "title": "CloudServiceQuerySetStatQuery"
+                "title": "JobStatQuery"
            }
-           ,        "CloudServiceQuerySetsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CloudServiceQuerySetInfo"},
-               "type": "array","$ref": "#/components/schemas/CloudServiceQuerySetInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "JobsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/JobInfo"},
+               "type": "array","$ref": "#/components/schemas/JobInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "CloudServiceQuerySetsInfo"
+                "title": "JobsInfo"
            }
-           ,        "CreateCloudServiceQuerySetRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"unit" : {"type": "object","title": "UNIT"},"provider" : {"type": "string","title": "PROVIDER"},"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP"},"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "JobsQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"job_id" : {"type": "string","title": "JOB_ID"},"status" : {"type": "string","title": "STATUS"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["name","query_options","provider","cloud_service_group","cloud_service_type","domain_id"],
-                "title": "CreateCloudServiceQuerySetRequest"
-           }
-           ,        "GetCloudServiceQuerySetRequest": {
-         "properties" : {"query_set_id" : {"type": "string","title": "QUERY_SET_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
-         "type": "object",
-         "required": ["query_set_id","domain_id"],
-                "title": "GetCloudServiceQuerySetRequest"
-           }
-           ,        "UpdateCloudServiceQuerySetRequest": {
-         "properties" : {"query_set_id" : {"type": "string","title": "QUERY_SET_ID"},"name" : {"type": "string","title": "NAME"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"unit" : {"type": "object","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["query_set_id","domain_id"],
-                "title": "UpdateCloudServiceQuerySetRequest"
+         "required": ["domain_id"],
+                "title": "JobsQuery"
            }
            ,        "CloudServiceStatInfo": {
          "properties" : {"query_set_id" : {"type": "string","title": "QUERY_SET_ID"},"values" : {"type": "object","title": "VALUES"},"unit" : {"type": "object","title": "UNIT"},"provider" : {"type": "string","title": "PROVIDER"},"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP"},"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE"},"region_code" : {"type": "string","title": "REGION_CODE"},"account" : {"type": "string","title": "ACCOUNT"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"project_id" : {"type": "string","title": "PROJECT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_date" : {"type": "string","title": "CREATED_DATE"}},

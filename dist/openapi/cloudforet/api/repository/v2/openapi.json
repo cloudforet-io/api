@@ -7,7 +7,233 @@
    "info": {
      "title": "Repository API"
    },
-   "paths":{"/repository/schema/create": {
+   "paths":{"/repository/provider/create": {
+       "post": {
+         "tags": ["repository > provider"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |name||string|True|\n |sync_mode||SyncMode||\n |sync_options||SyncOptions||\n |description||array||\n |schema||array||\n |capability||Capability||\n |color||string||\n |icon||string||\n |reference||array||\n |labels||array||\n |tags||Struct||\n |domain_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"name" : {"type": "string","title": "NAME" },"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE" },"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS" },"description" : {"items": {"$ref": "#/components/schemas/Description"}, "type": "array","title": "DESCRIPTION" },"schema" : {"items": {"$ref": "#/components/schemas/ProviderSchema"}, "type": "array","title": "SCHEMA" },"capability" : {"$ref": "#/components/schemas/Capability","title": "CAPABILITY" },"color" : {"type": "string","title": "COLOR" },"icon" : {"type": "string","title": "ICON" },"reference" : {"items": {"$ref": "#/components/schemas/Reference"}, "type": "array","title": "REFERENCE" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProviderInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProviderInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/provider/update": {
+       "post": {
+         "tags": ["repository > provider"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |name||string||\n |sync_mode||SyncMode||\n |sync_options||SyncOptions||\n |description||array||\n |schema||array||\n |capability||Capability||\n |color||string||\n |icon||string||\n |reference||array||\n |labels||array||\n |tags||Struct||\n |domain_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"name" : {"type": "string","title": "NAME" },"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE" },"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS" },"description" : {"items": {"$ref": "#/components/schemas/Description"}, "type": "array","title": "DESCRIPTION" },"schema" : {"items": {"$ref": "#/components/schemas/ProviderSchema"}, "type": "array","title": "SCHEMA" },"capability" : {"$ref": "#/components/schemas/Capability","title": "CAPABILITY" },"color" : {"type": "string","title": "COLOR" },"icon" : {"type": "string","title": "ICON" },"reference" : {"items": {"$ref": "#/components/schemas/Reference"}, "type": "array","title": "REFERENCE" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProviderInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProviderInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/provider/sync": {
+       "post": {
+         "tags": ["repository > provider"],
+         "summary": "Sync",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |domain_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProviderInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProviderInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/provider/delete": {
+       "post": {
+         "tags": ["repository > provider"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |domain_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/provider/get": {
+       "post": {
+         "tags": ["repository > provider"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |only||array||\n |domain_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"only" : {"items": {}, "type": "array","title": "ONLY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProviderInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProviderInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/providers/list": {
+       "post": {
+         "tags": ["repository > providers"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |provider||string||\n |name||string||\n |sync_mode||SyncMode||\n |remote_repository_name||string||\n |domain_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"provider" : {"type": "string","title": "PROVIDER" },"name" : {"type": "string","title": "NAME" },"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE" },"remote_repository_name" : {"type": "string","title": "REMOTE_REPOSITORY_NAME" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProvidersInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProvidersInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/remote-repository/get": {
+       "post": {
+         "tags": ["repository > remote-repository"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/RemoteRepositoryInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/RemoteRepositoryInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/remote-repository/list": {
+       "post": {
+         "tags": ["repository > remote-repository"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string||\n |version||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"version" : {"type": "string","title": "VERSION" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/RemoteRepositoriesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/RemoteRepositoriesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/schema/create": {
        "post": {
          "tags": ["repository > schema"],
          "summary": "Create",
@@ -204,285 +430,92 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/remote-repository/get": {
-       "post": {
-         "tags": ["repository > remote-repository"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/RemoteRepositoryInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/RemoteRepositoryInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/remote-repository/list": {
-       "post": {
-         "tags": ["repository > remote-repository"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string||\n |version||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"version" : {"type": "string","title": "VERSION" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/RemoteRepositoriesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/RemoteRepositoriesInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/provider/create": {
-       "post": {
-         "tags": ["repository > provider"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |name||string|True|\n |sync_mode||SyncMode||\n |sync_options||SyncOptions||\n |description||array||\n |schema||array||\n |capability||Capability||\n |color||string||\n |icon||string||\n |reference||array||\n |labels||array||\n |tags||Struct||\n |domain_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"name" : {"type": "string","title": "NAME" },"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE" },"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS" },"description" : {"items": {"$ref": "#/components/schemas/Description"}, "type": "array","title": "DESCRIPTION" },"schema" : {"items": {"$ref": "#/components/schemas/ProviderSchema"}, "type": "array","title": "SCHEMA" },"capability" : {"$ref": "#/components/schemas/Capability","title": "CAPABILITY" },"color" : {"type": "string","title": "COLOR" },"icon" : {"type": "string","title": "ICON" },"reference" : {"items": {"$ref": "#/components/schemas/Reference"}, "type": "array","title": "REFERENCE" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProviderInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProviderInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/provider/update": {
-       "post": {
-         "tags": ["repository > provider"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |name||string||\n |sync_mode||SyncMode||\n |sync_options||SyncOptions||\n |description||array||\n |schema||array||\n |capability||Capability||\n |color||string||\n |icon||string||\n |reference||array||\n |labels||array||\n |tags||Struct||\n |domain_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"name" : {"type": "string","title": "NAME" },"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE" },"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS" },"description" : {"items": {"$ref": "#/components/schemas/Description"}, "type": "array","title": "DESCRIPTION" },"schema" : {"items": {"$ref": "#/components/schemas/ProviderSchema"}, "type": "array","title": "SCHEMA" },"capability" : {"$ref": "#/components/schemas/Capability","title": "CAPABILITY" },"color" : {"type": "string","title": "COLOR" },"icon" : {"type": "string","title": "ICON" },"reference" : {"items": {"$ref": "#/components/schemas/Reference"}, "type": "array","title": "REFERENCE" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProviderInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProviderInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/provider/sync": {
-       "post": {
-         "tags": ["repository > provider"],
-         "summary": "Sync",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |domain_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProviderInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProviderInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/provider/delete": {
-       "post": {
-         "tags": ["repository > provider"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |domain_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/provider/get": {
-       "post": {
-         "tags": ["repository > provider"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |only||array||\n |domain_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"only" : {"items": {}, "type": "array","title": "ONLY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProviderInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProviderInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/providers/list": {
-       "post": {
-         "tags": ["repository > providers"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |provider||string||\n |name||string||\n |sync_mode||SyncMode||\n |remote_repository_name||string||\n |domain_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"provider" : {"type": "string","title": "PROVIDER" },"name" : {"type": "string","title": "NAME" },"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE" },"remote_repository_name" : {"type": "string","title": "REMOTE_REPOSITORY_NAME" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ProvidersInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ProvidersInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
      "schemas": {
-     "CreateSchemaRequest": {
-         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS"},"schema" : {"type": "object","title": "SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+     "Capability": {
+         "properties" : {"trusted_service_account" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT"}},
          "type": "object",
-         "required": ["schema_id","name","schema","domain_id"],
-                "title": "CreateSchemaRequest"
+         "required": ["trusted_service_account"],
+                "title": "Capability"
            }
-           ,        "GetSchemaRequest": {
-         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"only" : {"items": {"type": "string"},
+           ,        "CreateProviderRequest": {
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS"},"description" : {"items": {"$ref": "#/components/schemas/Description"},
+               "type": "array","$ref": "#/components/schemas/Description","title": "DESCRIPTION"},"schema" : {"items": {"$ref": "#/components/schemas/ProviderSchema"},
+               "type": "array","$ref": "#/components/schemas/ProviderSchema","title": "SCHEMA"},"capability" : {"$ref": "#/components/schemas/Capability","title": "CAPABILITY"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"reference" : {"items": {"$ref": "#/components/schemas/Reference"},
+               "type": "array","$ref": "#/components/schemas/Reference","title": "REFERENCE"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["provider","name"],
+                "title": "CreateProviderRequest"
+           }
+           ,        "Description": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"body" : {"type": "object","title": "BODY"}},
+         "type": "object",
+         "required": ["resource_type","body"],
+                "title": "Description"
+           }
+           ,        "GetProviderRequest": {
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"only" : {"items": {"type": "string"},
                "type": "array","title": "ONLY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["schema_id","domain_id"],
-                "title": "GetSchemaRequest"
+         "required": ["provider"],
+                "title": "GetProviderRequest"
            }
-           ,        "SchemaInfo": {
-         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS"},"schema" : {"type": "object","title": "SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"remote_repository" : {"type": "object","title": "REMOTE_REPOSITORY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+           ,        "ProviderInfo": {
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS"},"description" : {"items": {"$ref": "#/components/schemas/Description"},
+               "type": "array","$ref": "#/components/schemas/Description","title": "DESCRIPTION"},"schema" : {"items": {"$ref": "#/components/schemas/ProviderSchema"},
+               "type": "array","$ref": "#/components/schemas/ProviderSchema","title": "SCHEMA"},"capability" : {"$ref": "#/components/schemas/Capability","title": "CAPABILITY"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"reference" : {"items": {"$ref": "#/components/schemas/Reference"},
+               "type": "array","$ref": "#/components/schemas/Reference","title": "REFERENCE"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"remote_repository" : {"type": "object","title": "REMOTE_REPOSITORY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["schema_id","name","sync_mode","sync_options","schema","labels","tags","remote_repository","domain_id","created_at"],
-                "title": "SchemaInfo"
+         "required": ["provider","name","sync_mode","sync_options","description","schema","capability","color","icon","reference","labels","tags","remote_repository","domain_id","created_at"],
+                "title": "ProviderInfo"
            }
-           ,        "SchemaQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"remote_repository_name" : {"type": "string","title": "REMOTE_REPOSITORY_NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "ProviderQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"remote_repository_name" : {"type": "string","title": "REMOTE_REPOSITORY_NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["domain_id"],
-                "title": "SchemaQuery"
+         "required": [],
+                "title": "ProviderQuery"
            }
-           ,        "SchemaRequest": {
-         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "ProviderRequest": {
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["schema_id","domain_id"],
-                "title": "SchemaRequest"
+         "required": ["provider"],
+                "title": "ProviderRequest"
            }
-           ,        "SchemaStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "ProviderSchema": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"secret_type" : {"type": "string","title": "SECRET_TYPE"},"schema_id" : {"type": "string","title": "SCHEMA_ID"}},
          "type": "object",
-         "required": ["query","domain_id"],
-                "title": "SchemaStatQuery"
+         "required": ["resource_type","secret_type","schema_id"],
+                "title": "ProviderSchema"
            }
-           ,        "SchemasInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/SchemaInfo"},
-               "type": "array","$ref": "#/components/schemas/SchemaInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "ProvidersInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ProviderInfo"},
+               "type": "array","$ref": "#/components/schemas/ProviderInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "SchemasInfo"
+                "title": "ProvidersInfo"
            }
-           ,        "UpdateSchemaRequest": {
-         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS"},"schema" : {"type": "object","title": "SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "Reference": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"link" : {"type": "object","title": "LINK"}},
          "type": "object",
-         "required": ["schema_id","schema","domain_id"],
-                "title": "UpdateSchemaRequest"
+         "required": ["resource_type","link"],
+                "title": "Reference"
+           }
+           ,        "UpdateProviderRequest": {
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS"},"description" : {"items": {"$ref": "#/components/schemas/Description"},
+               "type": "array","$ref": "#/components/schemas/Description","title": "DESCRIPTION"},"schema" : {"items": {"$ref": "#/components/schemas/ProviderSchema"},
+               "type": "array","$ref": "#/components/schemas/ProviderSchema","title": "SCHEMA"},"capability" : {"$ref": "#/components/schemas/Capability","title": "CAPABILITY"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"reference" : {"items": {"$ref": "#/components/schemas/Reference"},
+               "type": "array","$ref": "#/components/schemas/Reference","title": "REFERENCE"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["provider"],
+                "title": "UpdateProviderRequest"
+           }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -678,12 +711,6 @@
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
-         "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
-           }
            ,        "GitHubOptions": {
          "properties" : {"url" : {"type": "string","title": "URL"}},
          "type": "object",
@@ -733,82 +760,55 @@
          "required": [],
                 "title": "RemoteRepositoryQuery"
            }
-           ,        "Capability": {
-         "properties" : {"trusted_service_account" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT"}},
+           ,        "CreateSchemaRequest": {
+         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS"},"schema" : {"type": "object","title": "SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["trusted_service_account"],
-                "title": "Capability"
+         "required": ["schema_id","name","schema","domain_id"],
+                "title": "CreateSchemaRequest"
            }
-           ,        "CreateProviderRequest": {
-         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS"},"description" : {"items": {"$ref": "#/components/schemas/Description"},
-               "type": "array","$ref": "#/components/schemas/Description","title": "DESCRIPTION"},"schema" : {"items": {"$ref": "#/components/schemas/ProviderSchema"},
-               "type": "array","$ref": "#/components/schemas/ProviderSchema","title": "SCHEMA"},"capability" : {"$ref": "#/components/schemas/Capability","title": "CAPABILITY"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"reference" : {"items": {"$ref": "#/components/schemas/Reference"},
-               "type": "array","$ref": "#/components/schemas/Reference","title": "REFERENCE"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["provider","name"],
-                "title": "CreateProviderRequest"
-           }
-           ,        "Description": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"body" : {"type": "object","title": "BODY"}},
-         "type": "object",
-         "required": ["resource_type","body"],
-                "title": "Description"
-           }
-           ,        "GetProviderRequest": {
-         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"only" : {"items": {"type": "string"},
+           ,        "GetSchemaRequest": {
+         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"only" : {"items": {"type": "string"},
                "type": "array","title": "ONLY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["provider"],
-                "title": "GetProviderRequest"
+         "required": ["schema_id","domain_id"],
+                "title": "GetSchemaRequest"
            }
-           ,        "ProviderInfo": {
-         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS"},"description" : {"items": {"$ref": "#/components/schemas/Description"},
-               "type": "array","$ref": "#/components/schemas/Description","title": "DESCRIPTION"},"schema" : {"items": {"$ref": "#/components/schemas/ProviderSchema"},
-               "type": "array","$ref": "#/components/schemas/ProviderSchema","title": "SCHEMA"},"capability" : {"$ref": "#/components/schemas/Capability","title": "CAPABILITY"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"reference" : {"items": {"$ref": "#/components/schemas/Reference"},
-               "type": "array","$ref": "#/components/schemas/Reference","title": "REFERENCE"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"remote_repository" : {"type": "object","title": "REMOTE_REPOSITORY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+           ,        "SchemaInfo": {
+         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS"},"schema" : {"type": "object","title": "SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"remote_repository" : {"type": "object","title": "REMOTE_REPOSITORY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["provider","name","sync_mode","sync_options","description","schema","capability","color","icon","reference","labels","tags","remote_repository","domain_id","created_at"],
-                "title": "ProviderInfo"
+         "required": ["schema_id","name","sync_mode","sync_options","schema","labels","tags","remote_repository","domain_id","created_at"],
+                "title": "SchemaInfo"
            }
-           ,        "ProviderQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"remote_repository_name" : {"type": "string","title": "REMOTE_REPOSITORY_NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "SchemaQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"remote_repository_name" : {"type": "string","title": "REMOTE_REPOSITORY_NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": [],
-                "title": "ProviderQuery"
+         "required": ["domain_id"],
+                "title": "SchemaQuery"
            }
-           ,        "ProviderRequest": {
-         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "SchemaRequest": {
+         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["provider"],
-                "title": "ProviderRequest"
+         "required": ["schema_id","domain_id"],
+                "title": "SchemaRequest"
            }
-           ,        "ProviderSchema": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"secret_type" : {"type": "string","title": "SECRET_TYPE"},"schema_id" : {"type": "string","title": "SCHEMA_ID"}},
+           ,        "SchemaStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["resource_type","secret_type","schema_id"],
-                "title": "ProviderSchema"
+         "required": ["query","domain_id"],
+                "title": "SchemaStatQuery"
            }
-           ,        "ProvidersInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ProviderInfo"},
-               "type": "array","$ref": "#/components/schemas/ProviderInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "SchemasInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/SchemaInfo"},
+               "type": "array","$ref": "#/components/schemas/SchemaInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "ProvidersInfo"
+                "title": "SchemasInfo"
            }
-           ,        "Reference": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"link" : {"type": "object","title": "LINK"}},
+           ,        "UpdateSchemaRequest": {
+         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS"},"schema" : {"type": "object","title": "SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["resource_type","link"],
-                "title": "Reference"
-           }
-           ,        "UpdateProviderRequest": {
-         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"sync_mode" : {"type": "SyncMode","title": "SYNC_MODE"},"sync_options" : {"$ref": "#/components/schemas/SyncOptions","title": "SYNC_OPTIONS"},"description" : {"items": {"$ref": "#/components/schemas/Description"},
-               "type": "array","$ref": "#/components/schemas/Description","title": "DESCRIPTION"},"schema" : {"items": {"$ref": "#/components/schemas/ProviderSchema"},
-               "type": "array","$ref": "#/components/schemas/ProviderSchema","title": "SCHEMA"},"capability" : {"$ref": "#/components/schemas/Capability","title": "CAPABILITY"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"reference" : {"items": {"$ref": "#/components/schemas/Reference"},
-               "type": "array","$ref": "#/components/schemas/Reference","title": "REFERENCE"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["provider"],
-                "title": "UpdateProviderRequest"
+         "required": ["schema_id","schema","domain_id"],
+                "title": "UpdateSchemaRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
