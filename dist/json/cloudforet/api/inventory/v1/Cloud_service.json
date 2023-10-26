@@ -48,6 +48,42 @@
           ]
         },
         {
+          "name": "CloudServiceExportRequest",
+          "longName": "CloudServiceExportRequest",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceExportRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "options",
+              "description": "",
+              "label": "repeated",
+              "type": "ExportOptions",
+              "longType": "spaceone.api.core.v1.ExportOptions",
+              "fullType": "spaceone.api.core.v1.ExportOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "CloudServiceInfo",
           "longName": "CloudServiceInfo",
           "fullName": "spaceone.api.inventory.v1.CloudServiceInfo",
@@ -1316,6 +1352,29 @@
                     {
                       "method": "POST",
                       "pattern": "/inventory/v1/cloud-service/list",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "export",
+              "description": "",
+              "requestType": "CloudServiceExportRequest",
+              "requestLongType": "CloudServiceExportRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CloudServiceExportRequest",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/cloud-service/export",
                       "body": "*"
                     }
                   ]

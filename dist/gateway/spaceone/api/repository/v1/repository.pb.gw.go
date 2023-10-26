@@ -250,7 +250,7 @@ func RegisterRepositoryHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.repository.v1.Repository/Register", runtime.WithHTTPPathPattern("/repository/v1/repository/register"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.repository.v1.Repository/Register", runtime.WithHTTPPathPattern("/spaceone.api.repository.v1.Repository/register"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -275,7 +275,7 @@ func RegisterRepositoryHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.repository.v1.Repository/Update", runtime.WithHTTPPathPattern("/repository/v1/repository/update"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.repository.v1.Repository/Update", runtime.WithHTTPPathPattern("/spaceone.api.repository.v1.Repository/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -300,7 +300,7 @@ func RegisterRepositoryHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.repository.v1.Repository/Deregister", runtime.WithHTTPPathPattern("/repository/v1/repository/deregister"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.repository.v1.Repository/Deregister", runtime.WithHTTPPathPattern("/spaceone.api.repository.v1.Repository/deregister"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -439,7 +439,7 @@ func RegisterRepositoryHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.repository.v1.Repository/Register", runtime.WithHTTPPathPattern("/repository/v1/repository/register"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.repository.v1.Repository/Register", runtime.WithHTTPPathPattern("/spaceone.api.repository.v1.Repository/register"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -461,7 +461,7 @@ func RegisterRepositoryHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.repository.v1.Repository/Update", runtime.WithHTTPPathPattern("/repository/v1/repository/update"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.repository.v1.Repository/Update", runtime.WithHTTPPathPattern("/spaceone.api.repository.v1.Repository/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -483,7 +483,7 @@ func RegisterRepositoryHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.repository.v1.Repository/Deregister", runtime.WithHTTPPathPattern("/repository/v1/repository/deregister"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.repository.v1.Repository/Deregister", runtime.WithHTTPPathPattern("/spaceone.api.repository.v1.Repository/deregister"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -569,11 +569,11 @@ func RegisterRepositoryHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 }
 
 var (
-	pattern_Repository_Register_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"repository", "v1", "register"}, ""))
+	pattern_Repository_Register_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.repository.v1.Repository", "register"}, ""))
 
-	pattern_Repository_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"repository", "v1", "update"}, ""))
+	pattern_Repository_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.repository.v1.Repository", "update"}, ""))
 
-	pattern_Repository_Deregister_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"repository", "v1", "deregister"}, ""))
+	pattern_Repository_Deregister_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.repository.v1.Repository", "deregister"}, ""))
 
 	pattern_Repository_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"repository", "v1", "get"}, ""))
 

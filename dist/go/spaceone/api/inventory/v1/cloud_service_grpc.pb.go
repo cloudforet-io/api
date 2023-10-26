@@ -28,6 +28,7 @@ const (
 	CloudService_Delete_FullMethodName  = "/spaceone.api.inventory.v1.CloudService/delete"
 	CloudService_Get_FullMethodName     = "/spaceone.api.inventory.v1.CloudService/get"
 	CloudService_List_FullMethodName    = "/spaceone.api.inventory.v1.CloudService/list"
+	CloudService_Export_FullMethodName  = "/spaceone.api.inventory.v1.CloudService/export"
 	CloudService_Analyze_FullMethodName = "/spaceone.api.inventory.v1.CloudService/analyze"
 	CloudService_Stat_FullMethodName    = "/spaceone.api.inventory.v1.CloudService/stat"
 )
@@ -46,6 +47,7 @@ type CloudServiceClient interface {
 	Get(ctx context.Context, in *GetCloudServiceRequest, opts ...grpc.CallOption) (*CloudServiceInfo, error)
 	// Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.
 	List(ctx context.Context, in *CloudServiceQuery, opts ...grpc.CallOption) (*CloudServicesInfo, error)
+	Export(ctx context.Context, in *CloudServiceExportRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Analyze(ctx context.Context, in *CloudServiceAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Stat(ctx context.Context, in *CloudServiceStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -103,6 +105,15 @@ func (c *cloudServiceClient) List(ctx context.Context, in *CloudServiceQuery, op
 	return out, nil
 }
 
+func (c *cloudServiceClient) Export(ctx context.Context, in *CloudServiceExportRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
+	out := new(_struct.Struct)
+	err := c.cc.Invoke(ctx, CloudService_Export_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *cloudServiceClient) Analyze(ctx context.Context, in *CloudServiceAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	out := new(_struct.Struct)
 	err := c.cc.Invoke(ctx, CloudService_Analyze_FullMethodName, in, out, opts...)
@@ -135,6 +146,7 @@ type CloudServiceServer interface {
 	Get(context.Context, *GetCloudServiceRequest) (*CloudServiceInfo, error)
 	// Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.
 	List(context.Context, *CloudServiceQuery) (*CloudServicesInfo, error)
+	Export(context.Context, *CloudServiceExportRequest) (*_struct.Struct, error)
 	Analyze(context.Context, *CloudServiceAnalyzeQuery) (*_struct.Struct, error)
 	Stat(context.Context, *CloudServiceStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedCloudServiceServer()
@@ -158,6 +170,9 @@ func (UnimplementedCloudServiceServer) Get(context.Context, *GetCloudServiceRequ
 }
 func (UnimplementedCloudServiceServer) List(context.Context, *CloudServiceQuery) (*CloudServicesInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedCloudServiceServer) Export(context.Context, *CloudServiceExportRequest) (*_struct.Struct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Export not implemented")
 }
 func (UnimplementedCloudServiceServer) Analyze(context.Context, *CloudServiceAnalyzeQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Analyze not implemented")
@@ -268,6 +283,24 @@ func _CloudService_List_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CloudService_Export_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloudServiceExportRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudServiceServer).Export(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudService_Export_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudServiceServer).Export(ctx, req.(*CloudServiceExportRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CloudService_Analyze_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CloudServiceAnalyzeQuery)
 	if err := dec(in); err != nil {
@@ -330,6 +363,10 @@ var CloudService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "list",
 			Handler:    _CloudService_List_Handler,
+		},
+		{
+			MethodName: "export",
+			Handler:    _CloudService_Export_Handler,
 		},
 		{
 			MethodName: "analyze",

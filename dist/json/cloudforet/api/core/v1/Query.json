@@ -10,6 +10,29 @@
       "hasServices": false,
       "enums": [
         {
+          "name": "QueryType",
+          "longName": "ExportOptions.QueryType",
+          "fullName": "spaceone.api.core.v1.ExportOptions.QueryType",
+          "description": "",
+          "values": [
+            {
+              "name": "QUERY_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "SEARCH",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "ANALYZE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "Granularity",
           "longName": "TimeSeriesAnalyzeQuery.Granularity",
           "fullName": "spaceone.api.core.v1.TimeSeriesAnalyzeQuery.Granularity",
@@ -729,6 +752,234 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ExportAnalyzeQuery",
+          "longName": "ExportAnalyzeQuery",
+          "fullName": "spaceone.api.core.v1.ExportAnalyzeQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "filter",
+              "description": "",
+              "label": "repeated",
+              "type": "Filter",
+              "longType": "Filter",
+              "fullType": "spaceone.api.core.v1.Filter",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "filter_or",
+              "description": "",
+              "label": "repeated",
+              "type": "Filter",
+              "longType": "Filter",
+              "fullType": "spaceone.api.core.v1.Filter",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "keyword",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sort",
+              "description": "",
+              "label": "repeated",
+              "type": "SortKey",
+              "longType": "SortKey",
+              "fullType": "spaceone.api.core.v1.SortKey",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "group_by",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "fields",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "select",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ExportOptions",
+          "longName": "ExportOptions",
+          "fullName": "spaceone.api.core.v1.ExportOptions",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "query_type",
+              "description": "",
+              "label": "",
+              "type": "QueryType",
+              "longType": "ExportOptions.QueryType",
+              "fullType": "spaceone.api.core.v1.ExportOptions.QueryType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "search_query",
+              "description": "",
+              "label": "",
+              "type": "ExportSearchQuery",
+              "longType": "ExportSearchQuery",
+              "fullType": "spaceone.api.core.v1.ExportSearchQuery",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "export_query",
+              "defaultValue": ""
+            },
+            {
+              "name": "analyze_query",
+              "description": "",
+              "label": "",
+              "type": "ExportAnalyzeQuery",
+              "longType": "ExportAnalyzeQuery",
+              "fullType": "spaceone.api.core.v1.ExportAnalyzeQuery",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "export_query",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ExportSearchQuery",
+          "longName": "ExportSearchQuery",
+          "fullName": "spaceone.api.core.v1.ExportSearchQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "filter",
+              "description": "",
+              "label": "repeated",
+              "type": "Filter",
+              "longType": "Filter",
+              "fullType": "spaceone.api.core.v1.Filter",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "filter_or",
+              "description": "",
+              "label": "repeated",
+              "type": "Filter",
+              "longType": "Filter",
+              "fullType": "spaceone.api.core.v1.Filter",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "keyword",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sort",
+              "description": "",
+              "label": "repeated",
+              "type": "SortKey",
+              "longType": "SortKey",
+              "fullType": "spaceone.api.core.v1.SortKey",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "fields",
+              "description": "",
+              "label": "",
+              "type": "ListValue",
+              "longType": "google.protobuf.ListValue",
+              "fullType": "google.protobuf.ListValue",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
