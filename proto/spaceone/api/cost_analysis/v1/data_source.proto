@@ -341,8 +341,13 @@ message DataSourceQuery {
 //            "Service"
 //        ],
 //        "cost_additional_info_keys": [
-//            "raw_usage_type"
+//            "Instance Type",
+//            "Usage Type Details"
 //        ],
+//        "cost_data_keys": [
+//            "AmortizedCost",
+//            "BlendedCost",
+//        ]
 //        "domain_id": "domain-58010aa2e451",
 //        "created_at": "2022-07-19T10:58:36.080Z"
 //}
@@ -371,22 +376,23 @@ message DataSourceInfo {
     DataSourceType data_source_type = 4;
     string provider = 5;
     PluginInfo plugin_info = 6;
-    google.protobuf.Struct template = 7;
-    google.protobuf.Struct tags = 8;
-    repeated string cost_tag_keys = 9;
-    repeated string cost_additional_info_keys = 10;
-    string domain_id = 11;
-    SecretType secret_type = 12;
-    SecretFilter secret_filter = 13;
-    string created_at = 21;
-    string last_synchronized_at = 22;
+    SecretType secret_type = 7;
+    SecretFilter secret_filter = 8;
+    google.protobuf.Struct template = 9;
+    google.protobuf.Struct tags = 10;
+    repeated string cost_tag_keys = 11;
+    repeated string cost_additional_info_keys = 12;
+    repeated string cost_data_keys = 13;
+    string domain_id = 21;
+    string created_at = 31;
+    string last_synchronized_at = 32;
 }
 
 //{
 //        "results": [
 //            {
-//                "data_source_id": "ds-fcba92ca73b1",
-//                "name": "AWS HyperBilling Data Source",
+//                "data_source_id": "ds-085d1e872789",
+//                "name": "AWS HyperBilling Data Source test",
 //                "state": "ENABLED",
 //                "data_source_type": "EXTERNAL",
 //                "plugin_info": {
@@ -396,23 +402,25 @@ message DataSourceInfo {
 //                    "metadata": {
 //                        "data_source_rules": [
 //                            {
-//                                "name": "match_service_account",
-//                                "conditions": [],
+//                                "options": {
+//                                    "stop_processing": true
+//                                },
 //                                "actions": {
 //                                    "match_service_account": {
 //                                        "source": "account",
 //                                        "target": "data.account_id"
 //                                    }
 //                                },
-//                                "conditions_policy": "ALWAYS",
+//                                "domain_id": "domain-58010aa2e451",
+//                                "conditions": [],
+//                                "name": "match_service_account",
 //                                "tags": {},
-//                                "options": {
-//                                    "stop_processing": true
-//                                }
+//                                "data_source_id": "ds-085d1e872789",
+//                                "conditions_policy": "ALWAYS"
 //                            }
 //                        ]
 //                    },
-//                    "secret_id": "secret-dca385e85a27",
+//                    "secret_id": "secret-ca134639483",
 //                    "upgrade_mode": "AUTO"
 //                },
 //                "template": {},
@@ -426,50 +434,15 @@ message DataSourceInfo {
 //                    "Service"
 //                ],
 //                "cost_additional_info_keys": [
-//                    "raw_usage_type"
+//                    "Instance Type",
+//                    "Usage Type Details"
 //                ],
+//                "cost_data_keys": [
+//                    "AmortizedCost",
+//                    "BlendedCost",
+//                ]
 //                "domain_id": "domain-58010aa2e451",
-//                "created_at": "2022-03-30T02:21:28.756Z",
-//                "last_synchronized_at": "2022-07-17T16:00:05.077Z"
-//            },
-//            {
-//                "data_source_id": "ds-c96609f5afeb",
-//                "name": "MZC HyperBilling Data Source",
-//                "state": "ENABLED",
-//                "data_source_type": "EXTERNAL",
-//                "plugin_info": {
-//                    "plugin_id": "plugin-mzc-hyperbilling-cost-datasource",
-//                    "version": "1.0.3",
-//                    "options": {},
-//                    "metadata": {
-//                        "data_source_rules": [
-//                            {
-//                                "conditions": [],
-//                                "options": {
-//                                    "stop_processing": true
-//                                },
-//                                "conditions_policy": "ALWAYS",
-//                                "name": "match_service_account",
-//                                "tags": {},
-//                                "actions": {
-//                                    "match_service_account": {
-//                                        "source": "account",
-//                                        "target": "data.project_id"
-//                                    }
-//                                }
-//                            }
-//                        ]
-//                    },
-//                    "secret_id": "secret-354d142229e5",
-//                    "upgrade_mode": "AUTO"
-//                },
-//                "template": {},
-//                "tags": {},
-//                "cost_tag_keys": [],
-//                "cost_additional_info_keys": [],
-//                "domain_id": "domain-58010aa2e451",
-//                "created_at": "2022-04-13T05:34:54.223Z",
-//                "last_synchronized_at": "2022-07-17T16:00:08.254Z"
+//                "created_at": "2022-07-19T10:58:36.080Z"
 //            }
 //        ],
 //        "total_count": 2
