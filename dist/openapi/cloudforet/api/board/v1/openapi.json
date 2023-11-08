@@ -442,9 +442,9 @@
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"keyword" : {"type": "string","title": "KEYWORD"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
                "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"group_by" : {"items": {"type": "string"},
-               "type": "array","title": "GROUP_BY"},"fields" : {"type": "object","title": "FIELDS"},"select" : {"type": "object","title": "SELECT"}},
+               "type": "array","title": "GROUP_BY"},"fields" : {"type": "object","title": "FIELDS"},"select" : {"type": "object","title": "SELECT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
          "type": "object",
-         "required": ["filter","filter_or","keyword","sort","group_by","fields","select"],
+         "required": ["filter","filter_or","keyword","sort","group_by","fields","select","page"],
                 "title": "ExportAnalyzeQuery"
            }
            ,        "ExportOption": {
@@ -457,9 +457,9 @@
          "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"keyword" : {"type": "string","title": "KEYWORD"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
-               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "array","title": "FIELDS"}},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "array","title": "FIELDS"},"unwind" : {"type": "string","title": "UNWIND"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
          "type": "object",
-         "required": ["filter","filter_or","keyword","sort","fields"],
+         "required": ["filter","filter_or","keyword","sort","fields","unwind","page"],
                 "title": "ExportSearchQuery"
            }
            ,        "Filter": {
@@ -478,9 +478,9 @@
          "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"sort" : {"$ref": "#/components/schemas/Sort","title": "SORT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"minimal" : {"type": "boolean","title": "MINIMAL"},"count_only" : {"type": "boolean","title": "COUNT_ONLY"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"},"keyword" : {"type": "string","title": "KEYWORD"}},
+               "type": "array","title": "ONLY"},"keyword" : {"type": "string","title": "KEYWORD"},"unwind" : {"type": "string","title": "UNWIND"}},
          "type": "object",
-         "required": ["filter","filter_or","sort","page","minimal","count_only","only","keyword"],
+         "required": ["filter","filter_or","sort","page","minimal","count_only","only","keyword","unwind"],
                 "title": "Query"
            }
            ,        "Sort": {
