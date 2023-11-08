@@ -48,6 +48,7 @@ message Query {
     bool count_only = 6;
     repeated string only = 7;
     string keyword = 8;
+    string unwind = 9;
 }
 
 message AggregateGroupKey {
@@ -215,6 +216,8 @@ message ExportSearchQuery {
     string keyword = 3;
     repeated SortKey sort = 4;
     google.protobuf.ListValue fields = 5;
+    string unwind = 6;
+    Page page = 7;
 }
 
 message ExportAnalyzeQuery {
@@ -225,6 +228,7 @@ message ExportAnalyzeQuery {
     repeated string group_by = 5;
     google.protobuf.Struct fields = 6;
     google.protobuf.Struct select = 7;
+    Page page = 8;
 }
 
 message ExportOption {
