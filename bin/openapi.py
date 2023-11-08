@@ -95,6 +95,7 @@ def _make_table_description(field_list) -> str:
     for filed in field_list:
         _description = filed['description'].replace('"', "'")
         _description = _description.replace('+optional', '')
+        _description = _description.replace('\n', ' ')
         _type = _label_type_mapper.get(filed.get('label'), filed.get('type'))
         _table_body += _table_body_format.format(key=filed['name'], description=_description, type=_type,
                                                  required=filed['required'])
