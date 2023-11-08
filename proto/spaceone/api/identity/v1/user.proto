@@ -13,6 +13,7 @@ import "spaceone/api/core/v1/query.proto";
 
 
 service User {
+    // You can create user.
     rpc create (CreateUserRequest) returns (UserInfo) {
         option (google.api.http) = {
             post: "/identity/v1/user/create"
@@ -54,6 +55,31 @@ service User {
             body: "*"
         };
     }
+
+    // Enable MFA for user. If this api is called, send email to user.
+    rpc enable_mfa (EnableMFARequest) returns (UserInfo){
+        option (google.api.http) = {
+            post: "/identity/v1/user/enable-mfa"
+            body: "*"
+        };
+    }
+
+    // Disable MFA for user. If this api is called, send email to user.
+    rpc disable_mfa (DisableMFARequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v1/user/disable-mfa"
+            body: "*"
+        };
+    }
+
+    // Confirm MFA for user by given verify_code which is sent by your authentication method.
+    rpc confirm_mfa (ConfirmMFARequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v1/user/confirm-mfa"
+            body: "*"
+        };
+    }
+
     rpc enable (UserRequest) returns (UserInfo) {
         option (google.api.http) = {
             post: "/identity/v1/user/enable"
@@ -120,9 +146,10 @@ enum UserRequiredAction {
     UPDATE_PASSWORD = 0;
 }
 
-
+//{}
 message CreateUserRequest {
     string user_id = 1;
+    // When backend is LOCAL, password is required.
     // +optional
     string password = 2;
     // +optional
@@ -139,6 +166,7 @@ message CreateUserRequest {
     // +optional
     google.protobuf.Struct tags = 9;
     string domain_id = 10;
+    // If reset_password is true, send email
     // +optional
     bool reset_password = 11;
 }
@@ -191,6 +219,45 @@ message ConfirmEmailRequest {
 message SetRequiredActionsRequest {
     string user_id = 1;
     repeated UserRequiredAction actions = 2;
+    string domain_id = 3;
+}
+
+//{
+//  "user_id": "example@cloudforet.com",
+//  "mfa_type": "EMAIL",
+//  "options": {"email": "wonny@cloudforet.com"},
+//  "domain_id": "domain-xxxxxxxxxxxx"
+//}
+message EnableMFARequest {
+    string user_id = 1;
+    // EMAIL
+    string mfa_type = 2;
+    // If mfa_type is EMAIL, email is required in options.
+    google.protobuf.Struct options = 3;
+    string domain_id = 4;
+}
+
+//{
+//  "user_id": "example@cloudforet",
+//  "force": false,
+//  "domain_id": "domain-xxxxxxxxxxxx"
+//}
+message DisableMFARequest {
+    string user_id = 1;
+    //If this value true, disable MFA without verification for user.
+    //+optional
+    bool force = 2;
+    string domain_id = 3;
+}
+
+//{
+//  "user_id": "example@cloudforet",
+//  "verify_code": "123456",
+//  "domain_id": "domain-xxxxxxxxxxxx"
+//}
+message ConfirmMFARequest {
+    string user_id = 1;
+    string verify_code = 2;
     string domain_id = 3;
 }
 
@@ -271,6 +338,7 @@ message UserInfo {
     string created_at = 12;
     string domain_id = 13;
     bool email_verified = 14;
+    google.protobuf.Struct mfa = 15;
 }
 
 message UsersInfo {
