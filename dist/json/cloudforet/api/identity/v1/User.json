@@ -148,10 +148,58 @@
           ]
         },
         {
+          "name": "ConfirmMFARequest",
+          "longName": "ConfirmMFARequest",
+          "fullName": "spaceone.api.identity.v1.ConfirmMFARequest",
+          "description": "{\n \"user_id\": \"example@cloudforet\",\n \"verify_code\": \"123456\",\n \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "user_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "verify_code",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "CreateUserRequest",
           "longName": "CreateUserRequest",
           "fullName": "spaceone.api.identity.v1.CreateUserRequest",
-          "description": "",
+          "description": "{}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -171,7 +219,7 @@
             },
             {
               "name": "password",
-              "description": "+optional",
+              "description": "When backend is LOCAL, password is required.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -279,11 +327,119 @@
             },
             {
               "name": "reset_password",
-              "description": "+optional",
+              "description": "If reset_password is true, send email\n+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DisableMFARequest",
+          "longName": "DisableMFARequest",
+          "fullName": "spaceone.api.identity.v1.DisableMFARequest",
+          "description": "{\n \"user_id\": \"example@cloudforet\",\n \"force\": false,\n \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "user_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "force",
+              "description": "If this value true, disable MFA without verification for user.\n+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EnableMFARequest",
+          "longName": "EnableMFARequest",
+          "fullName": "spaceone.api.identity.v1.EnableMFARequest",
+          "description": "{\n \"user_id\": \"example@cloudforet.com\",\n \"mfa_type\": \"EMAIL\",\n \"options\": {\"email\": \"wonny@cloudforet.com\"},\n \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "user_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "mfa_type",
+              "description": "EMAIL",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "If mfa_type is EMAIL, email is required in options.",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -852,6 +1008,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "mfa",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -1141,7 +1309,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "",
+              "description": "You can create user.",
               "requestType": "CreateUserRequest",
               "requestLongType": "CreateUserRequest",
               "requestFullType": "spaceone.api.identity.v1.CreateUserRequest",
@@ -1271,6 +1439,75 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v1/user/set-required-actions",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "enable_mfa",
+              "description": "Enable MFA for user. If this api is called, send email to user.",
+              "requestType": "EnableMFARequest",
+              "requestLongType": "EnableMFARequest",
+              "requestFullType": "spaceone.api.identity.v1.EnableMFARequest",
+              "requestStreaming": false,
+              "responseType": "UserInfo",
+              "responseLongType": "UserInfo",
+              "responseFullType": "spaceone.api.identity.v1.UserInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v1/user/enable-mfa",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "disable_mfa",
+              "description": "Disable MFA for user. If this api is called, send email to user.",
+              "requestType": "DisableMFARequest",
+              "requestLongType": "DisableMFARequest",
+              "requestFullType": "spaceone.api.identity.v1.DisableMFARequest",
+              "requestStreaming": false,
+              "responseType": "UserInfo",
+              "responseLongType": "UserInfo",
+              "responseFullType": "spaceone.api.identity.v1.UserInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v1/user/disable-mfa",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "confirm_mfa",
+              "description": "Confirm MFA for user by given verify_code which is sent by your authentication method.",
+              "requestType": "ConfirmMFARequest",
+              "requestLongType": "ConfirmMFARequest",
+              "requestFullType": "spaceone.api.identity.v1.ConfirmMFARequest",
+              "requestStreaming": false,
+              "responseType": "UserInfo",
+              "responseLongType": "UserInfo",
+              "responseFullType": "spaceone.api.identity.v1.UserInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v1/user/confirm-mfa",
                       "body": "*"
                     }
                   ]

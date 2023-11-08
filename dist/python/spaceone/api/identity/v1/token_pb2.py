@@ -16,7 +16,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$spaceone/api/identity/v1/token.proto\x12\x18spaceone.api.identity.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xa0\x01\n\x11IssueTokenRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12,\n\x0b\x63redentials\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tuser_type\x18\x03 \x01(\t\x12\x11\n\tdomain_id\x18\x04 \x01(\t\x12\x0f\n\x07timeout\x18\x05 \x01(\x05\x12\x15\n\rrefresh_count\x18\x06 \x01(\x05\"8\n\tTokenInfo\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x15\n\rrefresh_token\x18\x02 \x01(\t2\xf6\x01\n\x05Token\x12~\n\x05issue\x12+.spaceone.api.identity.v1.IssueTokenRequest\x1a#.spaceone.api.identity.v1.TokenInfo\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/identity/v1/token/issue:\x01*\x12m\n\x07refresh\x12\x16.google.protobuf.Empty\x1a#.spaceone.api.identity.v1.TokenInfo\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/identity/v1/token/refresh:\x01*B?Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$spaceone/api/identity/v1/token.proto\x12\x18spaceone.api.identity.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xb5\x01\n\x11IssueTokenRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12,\n\x0b\x63redentials\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tuser_type\x18\x03 \x01(\t\x12\x11\n\tdomain_id\x18\x04 \x01(\t\x12\x0f\n\x07timeout\x18\x05 \x01(\x05\x12\x15\n\rrefresh_count\x18\x06 \x01(\x05\x12\x13\n\x0bverify_code\x18\x07 \x01(\t\"8\n\tTokenInfo\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x15\n\rrefresh_token\x18\x02 \x01(\t2\xf6\x01\n\x05Token\x12~\n\x05issue\x12+.spaceone.api.identity.v1.IssueTokenRequest\x1a#.spaceone.api.identity.v1.TokenInfo\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/identity/v1/token/issue:\x01*\x12m\n\x07refresh\x12\x16.google.protobuf.Empty\x1a#.spaceone.api.identity.v1.TokenInfo\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/identity/v1/token/refresh:\x01*B?Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -29,9 +29,9 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _TOKEN.methods_by_name['refresh']._options = None
   _TOKEN.methods_by_name['refresh']._serialized_options = b'\202\323\344\223\002\037\"\032/identity/v1/token/refresh:\001*'
   _globals['_ISSUETOKENREQUEST']._serialized_start=156
-  _globals['_ISSUETOKENREQUEST']._serialized_end=316
-  _globals['_TOKENINFO']._serialized_start=318
-  _globals['_TOKENINFO']._serialized_end=374
-  _globals['_TOKEN']._serialized_start=377
-  _globals['_TOKEN']._serialized_end=623
+  _globals['_ISSUETOKENREQUEST']._serialized_end=337
+  _globals['_TOKENINFO']._serialized_start=339
+  _globals['_TOKENINFO']._serialized_end=395
+  _globals['_TOKEN']._serialized_start=398
+  _globals['_TOKEN']._serialized_end=644
 # @@protoc_insertion_point(module_scope)

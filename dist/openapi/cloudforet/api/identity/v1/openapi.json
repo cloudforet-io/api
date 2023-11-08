@@ -14,11 +14,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |credentials||Struct|True|\n |domain_id||string|True|\n |user_id||string||\n |user_type||string||\n |timeout||int||\n |refresh_count||int||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |credentials||Struct|True|\n |domain_id||string|True|\n |user_id||string||\n |user_type|LOCAL, EXTERNAL |string||\n |timeout||int||\n |refresh_count||int||\n |verify_code|if MFA is enabled, verify_code is required |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"credentials" : {"type": "object","title": "CREDENTIALS" },"user_type" : {"type": "string","title": "USER_TYPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"timeout" : {"type": "integer","title": "TIMEOUT" },"refresh_count" : {"type": "integer","title": "REFRESH_COUNT" }                 }
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"credentials" : {"type": "object","title": "CREDENTIALS" },"user_type" : {"type": "string","title": "USER_TYPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"timeout" : {"type": "integer","title": "TIMEOUT" },"refresh_count" : {"type": "integer","title": "REFRESH_COUNT" },"verify_code" : {"type": "string","title": "VERIFY_CODE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -408,7 +408,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |service||string||\n |endpoint_type|example: public | internal\n|string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |service||string||\n |endpoint_type|example: public | internal |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -713,15 +713,15 @@
          "tags": ["identity > user"],
          "summary": "Create",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nYou can create user.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |backend|LOCAL, EXTERNAL |string|True|\n |domain_id||string|True|\n |password||string||\n |name||string||\n |email||string||\n |user_type|USER, API_USER |string||\n |language||string||\n |timezone||string||\n |tags||Struct||\n |reset_password||boolean||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |backend|LOCAL, EXTERNAL |string|True|\n |domain_id||string|True|\n |password|When backend is LOCAL, password is required. |string||\n |name||string||\n |email||string||\n |user_type|USER, API_USER |string||\n |language||string||\n |timezone||string||\n |tags||Struct||\n |reset_password|If reset_password is true, send email |boolean||\n<br>",
            "content": {
              "application/json": {
                "schema": {
                  "properties": {"user_id" : {"type": "string","title": "USER_ID" },"password" : {"type": "string","title": "PASSWORD" },"name" : {"type": "string","title": "NAME" },"email" : {"type": "string","title": "EMAIL" },"user_type" : {"type": "string","title": "USER_TYPE" },"backend" : {"type": "string","title": "BACKEND" },"language" : {"type": "string","title": "LANGUAGE" },"timezone" : {"type": "string","title": "TIMEZONE" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"reset_password" : {"type": "boolean","title": "RESET_PASSWORD" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{}"},"Schema":{}
                }
              }
            },"required": true
@@ -861,6 +861,99 @@
                  "properties": {"user_id" : {"type": "string","title": "USER_ID" },"actions" : {"items": {}, "type": "array","title": "ACTIONS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UserInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
+                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/user/enable-mfa": {
+       "post": {
+         "tags": ["identity > user"],
+         "summary": "Enable Mfa",
+         "operationId" : "",
+         "description": "### Description \nEnable MFA for user. If this api is called, send email to user.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |mfa_type|EMAIL|string|True|\n |options|If mfa_type is EMAIL, email is required in options.|Struct|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"mfa_type" : {"type": "string","title": "MFA_TYPE" },"options" : {"type": "object","title": "OPTIONS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n \"user_id\": \"example@cloudforet.com\",\n \"mfa_type\": \"EMAIL\",\n \"options\": {\"email\": \"wonny@cloudforet.com\"},\n \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UserInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
+                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/user/disable-mfa": {
+       "post": {
+         "tags": ["identity > user"],
+         "summary": "Disable Mfa",
+         "operationId" : "",
+         "description": "### Description \nDisable MFA for user. If this api is called, send email to user.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |domain_id||string|True|\n |force|If this value true, disable MFA without verification for user. |boolean||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"force" : {"type": "boolean","title": "FORCE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n \"user_id\": \"example@cloudforet\",\n \"force\": false,\n \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UserInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
+                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/user/confirm-mfa": {
+       "post": {
+         "tags": ["identity > user"],
+         "summary": "Confirm Mfa",
+         "operationId" : "",
+         "description": "### Description \nConfirm MFA for user by given verify_code which is sent by your authentication method.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |verify_code||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"verify_code" : {"type": "string","title": "VERIFY_CODE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n \"user_id\": \"example@cloudforet\",\n \"verify_code\": \"123456\",\n \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -2322,7 +2415,7 @@
    "components":{
      "schemas": {
      "IssueTokenRequest": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"credentials" : {"type": "object","title": "CREDENTIALS"},"user_type" : {"type": "string","title": "USER_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"timeout" : {"type": "integer","title": "TIMEOUT"},"refresh_count" : {"type": "integer","title": "REFRESH_COUNT"}},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"credentials" : {"type": "object","title": "CREDENTIALS"},"user_type" : {"type": "string","title": "USER_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"timeout" : {"type": "integer","title": "TIMEOUT"},"refresh_count" : {"type": "integer","title": "REFRESH_COUNT"},"verify_code" : {"type": "string","title": "VERIFY_CODE"}},
          "type": "object",
          "required": ["credentials","domain_id"],
                 "title": "IssueTokenRequest"
@@ -2748,11 +2841,29 @@
          "required": ["user_id","verify_code","domain_id"],
                 "title": "ConfirmEmailRequest"
            }
+           ,        "ConfirmMFARequest": {
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"verify_code" : {"type": "string","title": "VERIFY_CODE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["user_id","verify_code","domain_id"],
+                "title": "ConfirmMFARequest"
+           }
            ,        "CreateUserRequest": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"user_type" : {"type": "string","title": "USER_TYPE"},"backend" : {"type": "string","title": "BACKEND"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"reset_password" : {"type": "boolean","title": "RESET_PASSWORD"}},
          "type": "object",
          "required": ["user_id","backend","domain_id"],
                 "title": "CreateUserRequest"
+           }
+           ,        "DisableMFARequest": {
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"force" : {"type": "boolean","title": "FORCE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["user_id","domain_id"],
+                "title": "DisableMFARequest"
+           }
+           ,        "EnableMFARequest": {
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"mfa_type" : {"type": "string","title": "MFA_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["user_id","mfa_type","options","domain_id"],
+                "title": "EnableMFARequest"
            }
            ,        "FindUserInfo": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"tags" : {"type": "object","title": "TAGS"}},
@@ -2801,9 +2912,9 @@
            }
            ,        "UserInfo": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"user_type" : {"type": "string","title": "USER_TYPE"},"backend" : {"type": "string","title": "BACKEND"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"required_actions" : {"items": {"type": "string"},
-               "type": "array","title": "REQUIRED_ACTIONS"},"tags" : {"type": "object","title": "TAGS"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"},"created_at" : {"type": "string","title": "CREATED_AT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"email_verified" : {"type": "boolean","title": "EMAIL_VERIFIED"}},
+               "type": "array","title": "REQUIRED_ACTIONS"},"tags" : {"type": "object","title": "TAGS"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"},"created_at" : {"type": "string","title": "CREATED_AT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"email_verified" : {"type": "boolean","title": "EMAIL_VERIFIED"},"mfa" : {"type": "object","title": "MFA"}},
          "type": "object",
-         "required": ["user_id","name","state","email","user_type","backend","language","timezone","required_actions","tags","last_accessed_at","created_at","domain_id","email_verified"],
+         "required": ["user_id","name","state","email","user_type","backend","language","timezone","required_actions","tags","last_accessed_at","created_at","domain_id","email_verified","mfa"],
                 "title": "UserInfo"
            }
            ,        "UserQuery": {
