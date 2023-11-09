@@ -9,12 +9,14 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 
 service Token {
+    // +noauth
     rpc issue (IssueTokenRequest) returns (TokenInfo) {
         option (google.api.http) = {
             post: "/identity/v1/token/issue"
             body: "*"
         };
     }
+    // +noauth
     rpc refresh (google.protobuf.Empty) returns (TokenInfo) {
         option (google.api.http) = {
             post: "/identity/v1/token/refresh"

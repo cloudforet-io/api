@@ -42,6 +42,7 @@ service User {
         };
     }
 
+    // +noauth
     rpc reset_password (UserRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/identity/v1/user/reset-password"
@@ -297,6 +298,14 @@ message UserQuery {
 //    "name": "Dong Yoo kang",
 //    "state": "ENABLED",
 //    "email": "dkang@mz.co.kr",
+//    "email_verified" : true,
+//    "mfa": {
+//       "mfa_type": "EMAIL",
+//       "state" : "ENABLED",
+//       "options": {
+//          "email": "example@cloudforet.com"
+//       }
+//    },
 //    "language": "en",
 //    "timezone": "UTC",
 //    "tags": [{
