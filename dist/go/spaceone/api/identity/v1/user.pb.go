@@ -1138,6 +1138,14 @@ func (x *UserQuery) GetDomainId() string {
 //	   "name": "Dong Yoo kang",
 //	   "state": "ENABLED",
 //	   "email": "dkang@mz.co.kr",
+//	   "email_verified" : true,
+//	   "mfa": {
+//	      "mfa_type": "EMAIL",
+//	      "state" : "ENABLED",
+//	      "options": {
+//	         "email": "example@cloudforet.com"
+//	      }
+//	   },
 //	   "language": "en",
 //	   "timezone": "UTC",
 //	   "tags": [{

@@ -133,7 +133,8 @@ class UserServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def reset_password(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """+noauth
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')

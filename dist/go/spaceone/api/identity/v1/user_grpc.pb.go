@@ -53,6 +53,7 @@ type UserClient interface {
 	Update(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	ConfirmEmail(ctx context.Context, in *ConfirmEmailRequest, opts ...grpc.CallOption) (*UserInfo, error)
+	// +noauth
 	ResetPassword(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	SetRequiredActions(ctx context.Context, in *SetRequiredActionsRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	// Enable MFA for user. If this api is called, send email to user.
@@ -242,6 +243,7 @@ type UserServer interface {
 	Update(context.Context, *UpdateUserRequest) (*UserInfo, error)
 	VerifyEmail(context.Context, *VerifyEmailRequest) (*empty.Empty, error)
 	ConfirmEmail(context.Context, *ConfirmEmailRequest) (*UserInfo, error)
+	// +noauth
 	ResetPassword(context.Context, *UserRequest) (*empty.Empty, error)
 	SetRequiredActions(context.Context, *SetRequiredActionsRequest) (*UserInfo, error)
 	// Enable MFA for user. If this api is called, send email to user.

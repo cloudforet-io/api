@@ -28,7 +28,9 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TokenClient interface {
+	// +noauth
 	Issue(ctx context.Context, in *IssueTokenRequest, opts ...grpc.CallOption) (*TokenInfo, error)
+	// +noauth
 	Refresh(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*TokenInfo, error)
 }
 
@@ -62,7 +64,9 @@ func (c *tokenClient) Refresh(ctx context.Context, in *empty.Empty, opts ...grpc
 // All implementations must embed UnimplementedTokenServer
 // for forward compatibility
 type TokenServer interface {
+	// +noauth
 	Issue(context.Context, *IssueTokenRequest) (*TokenInfo, error)
+	// +noauth
 	Refresh(context.Context, *empty.Empty) (*TokenInfo, error)
 	mustEmbedUnimplementedTokenServer()
 }
