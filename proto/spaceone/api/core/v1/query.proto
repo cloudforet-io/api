@@ -39,6 +39,11 @@ message Page {
     uint32 limit = 2;
 }
 
+message Unwind {
+    string path = 1;
+    repeated Filter filter = 2;
+}
+
 message Query {
     repeated Filter filter = 1;
     repeated Filter filter_or = 2;
@@ -48,7 +53,7 @@ message Query {
     bool count_only = 6;
     repeated string only = 7;
     string keyword = 8;
-    string unwind = 9;
+    Unwind unwind = 9;
 }
 
 message AggregateGroupKey {
@@ -216,7 +221,7 @@ message ExportSearchQuery {
     string keyword = 3;
     repeated SortKey sort = 4;
     google.protobuf.ListValue fields = 5;
-    string unwind = 6;
+    Unwind unwind = 6;
     Page page = 7;
 }
 
