@@ -1468,7 +1468,7 @@
          "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"keyword" : {"type": "string","title": "KEYWORD"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
-               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "array","title": "FIELDS"},"unwind" : {"type": "string","title": "UNWIND"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "array","title": "FIELDS"},"unwind" : {"$ref": "#/components/schemas/Unwind","title": "UNWIND"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
          "type": "object",
          "required": ["filter","filter_or","keyword","sort","fields","unwind","page"],
                 "title": "ExportSearchQuery"
@@ -1489,7 +1489,7 @@
          "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"sort" : {"$ref": "#/components/schemas/Sort","title": "SORT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"minimal" : {"type": "boolean","title": "MINIMAL"},"count_only" : {"type": "boolean","title": "COUNT_ONLY"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"},"keyword" : {"type": "string","title": "KEYWORD"},"unwind" : {"type": "string","title": "UNWIND"}},
+               "type": "array","title": "ONLY"},"keyword" : {"type": "string","title": "KEYWORD"},"unwind" : {"$ref": "#/components/schemas/Unwind","title": "UNWIND"}},
          "type": "object",
          "required": ["filter","filter_or","sort","page","minimal","count_only","only","keyword","unwind"],
                 "title": "Query"
@@ -1532,6 +1532,13 @@
          "type": "object",
          "required": ["granularity","start","end","group_by","field_group","filter","filter_or","page","sort","fields","select","keyword"],
                 "title": "TimeSeriesAnalyzeQuery"
+           }
+           ,        "Unwind": {
+         "properties" : {"path" : {"type": "string","title": "PATH"},"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"}},
+         "type": "object",
+         "required": ["path","filter"],
+                "title": "Unwind"
            }
            ,        "VersionInfo": {
          "properties" : {"version" : {"type": "string","title": "VERSION"}},
