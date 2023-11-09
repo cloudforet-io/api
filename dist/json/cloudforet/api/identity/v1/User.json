@@ -10,6 +10,29 @@
       "hasServices": true,
       "enums": [
         {
+          "name": "MFAState",
+          "longName": "MFAState",
+          "fullName": "spaceone.api.identity.v1.MFAState",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE_MFA_STATE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "UserBackend",
           "longName": "UserBackend",
           "fullName": "spaceone.api.identity.v1.UserBackend",
@@ -199,7 +222,7 @@
           "name": "CreateUserRequest",
           "longName": "CreateUserRequest",
           "fullName": "spaceone.api.identity.v1.CreateUserRequest",
-          "description": "{}",
+          "description": "{\n \"user_id\": \"example@cloudforet.com\",\n \"password\": \"password\",\n \"name\": \"Wonny\",\n \"email\": \"example@cloudforet.com\",\n \"user_type\": \"USER\",\n \"backend\": \"LOCAL\",\n \"language\": \"en\",\n \"timezone\": \"UTC\",\n \"tags\": {\n   \"Department\": \"Development\"\n }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -279,7 +302,7 @@
             },
             {
               "name": "language",
-              "description": "+optional",
+              "description": "en,ko\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -291,7 +314,7 @@
             },
             {
               "name": "timezone",
-              "description": "+optional",
+              "description": "UTC, Asia/Seoul\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -343,7 +366,7 @@
           "name": "DisableMFARequest",
           "longName": "DisableMFARequest",
           "fullName": "spaceone.api.identity.v1.DisableMFARequest",
-          "description": "{\n \"user_id\": \"example@cloudforet\",\n \"force\": false,\n \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}",
+          "description": "{\n \"user_id\": \"example@cloudforet.com\",\n \"force\": false,\n \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -423,7 +446,7 @@
             },
             {
               "name": "options",
-              "description": "If mfa_type is EMAIL, email is required in options.",
+              "description": "If mfa_type is EMAIL, email is required in options. options will be saved in mfa's options field.",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -664,6 +687,54 @@
           ]
         },
         {
+          "name": "MFA",
+          "longName": "MFA",
+          "fullName": "spaceone.api.identity.v1.MFA",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "MFAState",
+              "longType": "MFAState",
+              "fullType": "spaceone.api.identity.v1.MFAState",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "mfa_type",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "SetRequiredActionsRequest",
           "longName": "SetRequiredActionsRequest",
           "fullName": "spaceone.api.identity.v1.SetRequiredActionsRequest",
@@ -715,7 +786,7 @@
           "name": "UpdateUserRequest",
           "longName": "UpdateUserRequest",
           "fullName": "spaceone.api.identity.v1.UpdateUserRequest",
-          "description": "{\n \"user_id\": \"dkang@mz.co.kr\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"domain_id\": \"{{DOMAIN_ID}}\"\n}",
+          "description": "{\n \"user_id\": \"example@cloudforet.com\",\n \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -835,7 +906,7 @@
           "name": "UserInfo",
           "longName": "UserInfo",
           "fullName": "spaceone.api.identity.v1.UserInfo",
-          "description": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}",
+          "description": "{\n   \"user_id\": \"example@cloudforet.com\",\n   \"name\": \"Wonny\",\n   \"state\": \"ENABLED\",\n   \"email\": \"Wonny@cloudforet.com\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"last_accessed_at\": \"2023-01-01T07:12:41.890Z\"\n   \"created_at\": \"2023-01-01T15:23:31.705Z\"\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1013,9 +1084,9 @@
               "name": "mfa",
               "description": "",
               "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "type": "MFA",
+              "longType": "MFA",
+              "fullType": "spaceone.api.identity.v1.MFA",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1309,7 +1380,7 @@
           "methods": [
             {
               "name": "create",
-              "description": "You can create user.",
+              "description": "You can create user. after create user you have to binding role to user.\nSee role-binding create api.\nExternal type user do not need password.",
               "requestType": "CreateUserRequest",
               "requestLongType": "CreateUserRequest",
               "requestFullType": "spaceone.api.identity.v1.CreateUserRequest",

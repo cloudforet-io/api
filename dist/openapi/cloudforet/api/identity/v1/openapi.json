@@ -713,15 +713,15 @@
          "tags": ["identity > user"],
          "summary": "Create",
          "operationId" : "",
-         "description": "### Description \nYou can create user.",
+         "description": "### Description \nYou can create user. after create user you have to binding role to user.\nSee role-binding create api.\nExternal type user do not need password.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |backend|LOCAL, EXTERNAL |string|True|\n |domain_id||string|True|\n |password|When backend is LOCAL, password is required. |string||\n |name||string||\n |email||string||\n |user_type|USER, API_USER |string||\n |language||string||\n |timezone||string||\n |tags||Struct||\n |reset_password|If reset_password is true, send email |boolean||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |backend|LOCAL, EXTERNAL |string|True|\n |domain_id||string|True|\n |password|When backend is LOCAL, password is required. |string||\n |name||string||\n |email||string||\n |user_type|USER, API_USER |string||\n |language|en,ko |string||\n |timezone|UTC, Asia/Seoul |string||\n |tags||Struct||\n |reset_password|If reset_password is true, send email |boolean||\n<br>",
            "content": {
              "application/json": {
                "schema": {
                  "properties": {"user_id" : {"type": "string","title": "USER_ID" },"password" : {"type": "string","title": "PASSWORD" },"name" : {"type": "string","title": "NAME" },"email" : {"type": "string","title": "EMAIL" },"user_type" : {"type": "string","title": "USER_TYPE" },"backend" : {"type": "string","title": "BACKEND" },"language" : {"type": "string","title": "LANGUAGE" },"timezone" : {"type": "string","title": "TIMEZONE" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"reset_password" : {"type": "boolean","title": "RESET_PASSWORD" }                 }
                },
-               "examples":{"Default Example":{"value": "{}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"user_id\": \"example@cloudforet.com\",\n \"password\": \"password\",\n \"name\": \"Wonny\",\n \"email\": \"example@cloudforet.com\",\n \"user_type\": \"USER\",\n \"backend\": \"LOCAL\",\n \"language\": \"en\",\n \"timezone\": \"UTC\",\n \"tags\": {\n   \"Department\": \"Development\"\n }\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -733,7 +733,7 @@
                  "schema": {"$ref": "#/components/schemas/UserInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
-                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                     "value": "{\n   \"user_id\": \"example@cloudforet.com\",\n   \"name\": \"Wonny\",\n   \"state\": \"ENABLED\",\n   \"email\": \"Wonny@cloudforet.com\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"last_accessed_at\": \"2023-01-01T07:12:41.890Z\"\n   \"created_at\": \"2023-01-01T15:23:31.705Z\"\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"
                    }}
                }
              }}
@@ -752,7 +752,7 @@
                "schema": {
                  "properties": {"user_id" : {"type": "string","title": "USER_ID" },"password" : {"type": "string","title": "PASSWORD" },"name" : {"type": "string","title": "NAME" },"email" : {"type": "string","title": "EMAIL" },"language" : {"type": "string","title": "LANGUAGE" },"timezone" : {"type": "string","title": "TIMEZONE" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"reset_password" : {"type": "boolean","title": "RESET_PASSWORD" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n \"user_id\": \"dkang@mz.co.kr\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"domain_id\": \"{{DOMAIN_ID}}\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"user_id\": \"example@cloudforet.com\",\n \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -764,7 +764,7 @@
                  "schema": {"$ref": "#/components/schemas/UserInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
-                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                     "value": "{\n   \"user_id\": \"example@cloudforet.com\",\n   \"name\": \"Wonny\",\n   \"state\": \"ENABLED\",\n   \"email\": \"Wonny@cloudforet.com\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"last_accessed_at\": \"2023-01-01T07:12:41.890Z\"\n   \"created_at\": \"2023-01-01T15:23:31.705Z\"\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"
                    }}
                }
              }}
@@ -818,7 +818,7 @@
                  "schema": {"$ref": "#/components/schemas/UserInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
-                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                     "value": "{\n   \"user_id\": \"example@cloudforet.com\",\n   \"name\": \"Wonny\",\n   \"state\": \"ENABLED\",\n   \"email\": \"Wonny@cloudforet.com\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"last_accessed_at\": \"2023-01-01T07:12:41.890Z\"\n   \"created_at\": \"2023-01-01T15:23:31.705Z\"\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"
                    }}
                }
              }}
@@ -872,7 +872,7 @@
                  "schema": {"$ref": "#/components/schemas/UserInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
-                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                     "value": "{\n   \"user_id\": \"example@cloudforet.com\",\n   \"name\": \"Wonny\",\n   \"state\": \"ENABLED\",\n   \"email\": \"Wonny@cloudforet.com\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"last_accessed_at\": \"2023-01-01T07:12:41.890Z\"\n   \"created_at\": \"2023-01-01T15:23:31.705Z\"\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"
                    }}
                }
              }}
@@ -885,7 +885,7 @@
          "operationId" : "",
          "description": "### Description \nEnable MFA for user. If this api is called, send email to user.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |mfa_type|EMAIL|string|True|\n |options|If mfa_type is EMAIL, email is required in options.|Struct|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |mfa_type|EMAIL|string|True|\n |options|If mfa_type is EMAIL, email is required in options. options will be saved in mfa's options field.|Struct|True|\n |domain_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -903,7 +903,7 @@
                  "schema": {"$ref": "#/components/schemas/UserInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
-                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                     "value": "{\n   \"user_id\": \"example@cloudforet.com\",\n   \"name\": \"Wonny\",\n   \"state\": \"ENABLED\",\n   \"email\": \"Wonny@cloudforet.com\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"last_accessed_at\": \"2023-01-01T07:12:41.890Z\"\n   \"created_at\": \"2023-01-01T15:23:31.705Z\"\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"
                    }}
                }
              }}
@@ -922,7 +922,7 @@
                "schema": {
                  "properties": {"user_id" : {"type": "string","title": "USER_ID" },"force" : {"type": "boolean","title": "FORCE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n \"user_id\": \"example@cloudforet\",\n \"force\": false,\n \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"user_id\": \"example@cloudforet.com\",\n \"force\": false,\n \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -934,7 +934,7 @@
                  "schema": {"$ref": "#/components/schemas/UserInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
-                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                     "value": "{\n   \"user_id\": \"example@cloudforet.com\",\n   \"name\": \"Wonny\",\n   \"state\": \"ENABLED\",\n   \"email\": \"Wonny@cloudforet.com\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"last_accessed_at\": \"2023-01-01T07:12:41.890Z\"\n   \"created_at\": \"2023-01-01T15:23:31.705Z\"\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"
                    }}
                }
              }}
@@ -965,7 +965,7 @@
                  "schema": {"$ref": "#/components/schemas/UserInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
-                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                     "value": "{\n   \"user_id\": \"example@cloudforet.com\",\n   \"name\": \"Wonny\",\n   \"state\": \"ENABLED\",\n   \"email\": \"Wonny@cloudforet.com\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"last_accessed_at\": \"2023-01-01T07:12:41.890Z\"\n   \"created_at\": \"2023-01-01T15:23:31.705Z\"\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"
                    }}
                }
              }}
@@ -996,7 +996,7 @@
                  "schema": {"$ref": "#/components/schemas/UserInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
-                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                     "value": "{\n   \"user_id\": \"example@cloudforet.com\",\n   \"name\": \"Wonny\",\n   \"state\": \"ENABLED\",\n   \"email\": \"Wonny@cloudforet.com\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"last_accessed_at\": \"2023-01-01T07:12:41.890Z\"\n   \"created_at\": \"2023-01-01T15:23:31.705Z\"\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"
                    }}
                }
              }}
@@ -1027,7 +1027,7 @@
                  "schema": {"$ref": "#/components/schemas/UserInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
-                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                     "value": "{\n   \"user_id\": \"example@cloudforet.com\",\n   \"name\": \"Wonny\",\n   \"state\": \"ENABLED\",\n   \"email\": \"Wonny@cloudforet.com\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"last_accessed_at\": \"2023-01-01T07:12:41.890Z\"\n   \"created_at\": \"2023-01-01T15:23:31.705Z\"\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"
                    }}
                }
              }}
@@ -1081,7 +1081,7 @@
                  "schema": {"$ref": "#/components/schemas/UserInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
-                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                     "value": "{\n   \"user_id\": \"example@cloudforet.com\",\n   \"name\": \"Wonny\",\n   \"state\": \"ENABLED\",\n   \"email\": \"Wonny@cloudforet.com\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"last_accessed_at\": \"2023-01-01T07:12:41.890Z\"\n   \"created_at\": \"2023-01-01T15:23:31.705Z\"\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"
                    }}
                }
              }}
@@ -1199,7 +1199,7 @@
                  "schema": {"$ref": "#/components/schemas/UserInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UserInfo"},"Default Example":{
-                     "value": "{\n   \"user_id\": \"dkang@mz.co.kr\",\n   \"name\": \"Dong Yoo kang\",\n   \"state\": \"ENABLED\",\n   \"email\": \"dkang@mz.co.kr\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": [{\n     \"key\": \"user1\",\n     \"value\": \"Reuters\"\n   }, {\n     \"key\": \"user2\",\n     \"value\": \"Bloomberg\"\n   }],\n   \"last_accessed_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"created_at\": {\n       \"seconds\": \"1593161630\",\n       \"nanos\": 79000000\n   },\n   \"domain_id\": \"domain-fd6e23a5ae36\"\n}"
+                     "value": "{\n   \"user_id\": \"example@cloudforet.com\",\n   \"name\": \"Wonny\",\n   \"state\": \"ENABLED\",\n   \"email\": \"Wonny@cloudforet.com\",\n   \"email_verified\" : true,\n   \"mfa\": {\n      \"mfa_type\": \"EMAIL\",\n      \"state\" : \"ENABLED\",\n      \"options\": {\n         \"email\": \"example@cloudforet.com\"\n      }\n   },\n   \"language\": \"en\",\n   \"timezone\": \"UTC\",\n   \"tags\": {\n     \"Department\": \"Development\",\n     \"Role\"\n   },\n   \"last_accessed_at\": \"2023-01-01T07:12:41.890Z\"\n   \"created_at\": \"2023-01-01T15:23:31.705Z\"\n   \"domain_id\": \"domain-xxxxxxxxxxxx\"\n}"
                    }}
                }
              }}
@@ -2897,6 +2897,12 @@
          "required": ["user_id","domain_id"],
                 "title": "GetUserRequest"
            }
+           ,        "MFA": {
+         "properties" : {"state" : {"type": "string","title": "STATE"},"mfa_type" : {"type": "string","title": "MFA_TYPE"},"options" : {"type": "object","title": "OPTIONS"}},
+         "type": "object",
+         "required": ["state","mfa_type","options"],
+                "title": "MFA"
+           }
            ,        "SetRequiredActionsRequest": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"actions" : {"items": {"type": "string"},
                "type": "array","title": "ACTIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
@@ -2912,7 +2918,7 @@
            }
            ,        "UserInfo": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"user_type" : {"type": "string","title": "USER_TYPE"},"backend" : {"type": "string","title": "BACKEND"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"required_actions" : {"items": {"type": "string"},
-               "type": "array","title": "REQUIRED_ACTIONS"},"tags" : {"type": "object","title": "TAGS"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"},"created_at" : {"type": "string","title": "CREATED_AT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"email_verified" : {"type": "boolean","title": "EMAIL_VERIFIED"},"mfa" : {"type": "object","title": "MFA"}},
+               "type": "array","title": "REQUIRED_ACTIONS"},"tags" : {"type": "object","title": "TAGS"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"},"created_at" : {"type": "string","title": "CREATED_AT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"email_verified" : {"type": "boolean","title": "EMAIL_VERIFIED"},"mfa" : {"$ref": "#/components/schemas/MFA","title": "MFA"}},
          "type": "object",
          "required": ["user_id","name","state","email","user_type","backend","language","timezone","required_actions","tags","last_accessed_at","created_at","domain_id","email_verified","mfa"],
                 "title": "UserInfo"

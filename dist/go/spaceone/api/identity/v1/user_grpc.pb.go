@@ -47,7 +47,9 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserClient interface {
-	// You can create user.
+	// You can create user. after create user you have to binding role to user.
+	// See role-binding create api.
+	// External type user do not need password.
 	Create(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	// Update user info by given user_id
 	Update(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UserInfo, error)
@@ -237,7 +239,9 @@ func (c *userClient) Sync(ctx context.Context, in *UserRequest, opts ...grpc.Cal
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility
 type UserServer interface {
-	// You can create user.
+	// You can create user. after create user you have to binding role to user.
+	// See role-binding create api.
+	// External type user do not need password.
 	Create(context.Context, *CreateUserRequest) (*UserInfo, error)
 	// Update user info by given user_id
 	Update(context.Context, *UpdateUserRequest) (*UserInfo, error)

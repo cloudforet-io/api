@@ -107,7 +107,9 @@ class UserServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """You can create user.
+        """You can create user. after create user you have to binding role to user.
+        See role-binding create api.
+        External type user do not need password.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
