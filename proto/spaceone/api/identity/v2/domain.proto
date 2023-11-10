@@ -1,0 +1,132 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v2;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v1/handler.proto";
+
+
+service Domain {
+    rpc create (CreateDomainRequest) returns (DomainInfo) {}
+    rpc update (UpdateDomainRequest) returns (DomainInfo) {}
+    rpc delete (DomainRequest) returns (google.protobuf.Empty) {}
+    rpc enable (DomainRequest) returns (DomainInfo) {}
+    rpc disable (DomainRequest) returns (DomainInfo) {}
+    rpc get (GetDomainRequest) returns (DomainInfo) {}
+    rpc get_meta_data (GetMetadataRequest) returns (DomainMetadataInfo) {}
+    rpc get_public_key (spaceone.api.core.v1.AuthenticationRequest)
+    returns (spaceone.api.core.v1.AuthenticationResponse) {}
+    rpc list (DomainQuery) returns (DomainsInfo) {}
+    rpc stat (DomainStatQuery) returns (google.protobuf.Struct) {}
+}
+
+message Admin {
+    string user_id = 1;
+    string name = 2;
+    string password = 3;
+    // +optional
+    string email = 4;
+    // +optional
+    string language = 5;
+    // +optional
+    string timezone = 6;
+    // +optional
+    google.protobuf.Struct tags = 7;
+}
+
+message CreateDomainRequest {
+    string name = 1;
+    Admin admin = 2;
+    // +optional
+    google.protobuf.Struct tags = 3;
+}
+
+message UpdateDomainRequest {
+    string domain_id = 1;
+    // +optional
+    google.protobuf.Struct tags = 2;
+    // +optional
+    google.protobuf.Struct config = 3;
+}
+
+message UpdatePluginRequest {
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
+    string domain_id = 1;
+    // +optional
+    string version = 2;
+    // +optional
+    google.protobuf.Struct options = 3;
+    // +optional
+    UpgradeMode upgrade_mode = 4;
+}
+
+message DomainRequest {
+    string domain_id = 1;
+}
+
+message GetDomainRequest {
+    string domain_id = 1;
+    // +optional
+    repeated string only = 2;
+}
+
+message GetMetadataRequest{
+    string name = 1;
+}
+message DomainQuery {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+    // +optional
+    string name = 1;
+    // +optional
+    spaceone.api.core.v1.Query query = 2;
+    // +optional
+    State state = 3;
+    // +optional
+    string domain_id = 11;
+}
+
+message DomainMetadataInfo {
+    string name = 1;
+    google.protobuf.Struct metadata = 2;
+    string domain_id = 11;
+}
+
+message DomainInfo {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    string domain_id = 1;
+    string name = 2;
+    State state = 3;
+    google.protobuf.Struct config = 5;
+    google.protobuf.Struct tags = 6;
+    string created_at = 7;
+    string deleted_at = 8;
+}
+
+message DomainsInfo {
+    repeated DomainInfo results = 1;
+    int32 total_count = 2;
+}
+
+message DomainStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+}
+

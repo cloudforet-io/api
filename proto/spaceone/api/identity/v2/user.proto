@@ -1,0 +1,372 @@
+// User API which allows member management within project, company, and domain
+// note: Administrator must register User first.
+syntax = "proto3";
+
+package spaceone.api.identity.v2;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service User {
+    // You can create user. after create user you have to binding role to user.
+    // See role-binding create api.
+    // External type user do not need password.
+    rpc create (CreateUserRequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/create"
+            body: "*"
+        };
+    }
+    // Update user info by given user_id
+    rpc update (UpdateUserRequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/update"
+            body: "*"
+        };
+    }
+
+    rpc verify_email (VerifyEmailRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/verify-email"
+            body: "*"
+        };
+    }
+
+    rpc confirm_email (ConfirmEmailRequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/confirm-email"
+            body: "*"
+        };
+    }
+
+    // +noauth
+    rpc reset_password (UserRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/reset-password"
+            body: "*"
+        };
+    }
+
+    rpc set_required_actions (SetRequiredActionsRequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/set-required-actions"
+            body: "*"
+        };
+    }
+
+    // Enable MFA for user. If this api is called, send email to user.
+    rpc enable_mfa (EnableMFARequest) returns (UserInfo){
+        option (google.api.http) = {
+            post: "/identity/v2/user/enable-mfa"
+            body: "*"
+        };
+    }
+
+    // Disable MFA for user. If this api is called, send email to user.
+    rpc disable_mfa (DisableMFARequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/disable-mfa"
+            body: "*"
+        };
+    }
+
+    // Confirm MFA for user by given verify_code which is sent by your authentication method.
+    rpc confirm_mfa (ConfirmMFARequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/confirm-mfa"
+            body: "*"
+        };
+    }
+
+    rpc enable (UserRequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/enable"
+            body: "*"
+        };
+    }
+    rpc disable (UserRequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/disable"
+            body: "*"
+        };
+    }
+    rpc delete (UserRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/delete"
+            body: "*"
+        };
+    }
+
+    rpc get (GetUserRequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/get"
+            body: "*"
+        };
+    }
+
+    rpc list (UserQuery) returns (UsersInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/list"
+            body: "*"
+        };
+    }
+    rpc stat (UserStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/identity/v1/user/stat"
+            body: "*"
+        };
+    }
+}
+
+enum UserBackend {
+    NONE_BACKEND = 0;
+    LOCAL = 1;
+    EXTERNAL = 2;
+}
+
+enum UserType {
+    NONE_USER_TYPE = 0;
+    USER = 1;
+    API_USER = 2;
+}
+
+enum UserRequiredAction {
+    UPDATE_PASSWORD = 0;
+}
+
+enum MFAState {
+    NONE_MFA_STATE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+}
+
+message MFA {
+    MFAState state = 1;
+    string mfa_type = 2;
+    google.protobuf.Struct options = 3;
+
+}
+
+//{
+//  "user_id": "example@cloudforet.com",
+//  "password": "password",
+//  "name": "Wonny",
+//  "email": "example@cloudforet.com",
+//  "user_type": "USER",
+//  "backend": "LOCAL",
+//  "language": "en",
+//  "timezone": "UTC",
+//  "tags": {
+//    "Department": "Development"
+//  }
+//}
+message CreateUserRequest {
+    // When backend is LOCAL, password is required.
+    // +optional
+    string password = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    string email = 3;
+    // +optional
+    UserType user_type = 4;
+    UserBackend backend = 5;
+    // en,ko
+    // +optional
+    string language = 6;
+    // UTC, Asia/Seoul
+    // +optional
+    string timezone = 7;
+    // +optional
+    google.protobuf.Struct tags = 8;
+    // If reset_password is true, send email
+    bool reset_password = 9;
+    // +optional
+    google.protobuf.Struct role_binding = 10;
+    string domain_id = 11;
+    string user_id = 12;
+}
+
+//{
+//  "user_id": "example@cloudforet.com",
+//  "tags": {
+//      "Department": "Development",
+//      "Role"
+//    },
+//    "domain_id": "domain-xxxxxxxxxxxx"
+//}
+message UpdateUserRequest {
+    // +optional
+    string password = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    string email = 3;
+    // +optional
+    bool reset_password = 4;
+    // +optional
+    string language = 5;
+    // +optional
+    string timezone = 6;
+    // +optional
+    google.protobuf.Struct tags = 7;
+    string domain_id = 11;
+    string user_id = 12;
+}
+
+message VerifyEmailRequest {
+    // +optional
+    string email = 1;
+    // +optional
+    bool force = 2;
+    string domain_id = 11;
+    string user_id = 12;
+}
+
+message ConfirmEmailRequest {
+    string verify_code = 1;
+    string domain_id = 11;
+    string user_id = 12;
+}
+
+message SetRequiredActionsRequest {
+    repeated UserRequiredAction actions = 1;
+    string domain_id = 11;
+    string user_id = 12;
+}
+
+//{
+//  "user_id": "example@cloudforet.com",
+//  "mfa_type": "EMAIL",
+//  "options": {"email": "wonny@cloudforet.com"},
+//  "domain_id": "domain-xxxxxxxxxxxx"
+//}
+message EnableMFARequest {
+    // EMAIL
+    string mfa_type = 1;
+    // If mfa_type is EMAIL, email is required in options. options will be saved in mfa's options field.
+    google.protobuf.Struct options = 2;
+    string domain_id = 11;
+    string user_id = 12;
+}
+
+//{
+//  "user_id": "example@cloudforet.com",
+//  "force": false,
+//  "domain_id": "domain-xxxxxxxxxxxx"
+//}
+message DisableMFARequest {
+    //If this value true, disable MFA without verification for user.
+    //+optional
+    bool force = 1;
+    string domain_id = 11;
+    string user_id = 12;
+}
+
+//{
+//  "user_id": "example@cloudforet",
+//  "verify_code": "123456",
+//  "domain_id": "domain-xxxxxxxxxxxx"
+//}
+message ConfirmMFARequest {
+    string verify_code = 1;
+    string domain_id = 11;
+    string user_id = 12;
+}
+
+message UserRequest {
+    string domain_id = 1;
+    string user_id = 2;
+}
+
+message GetUserRequest {
+    // +optional
+    repeated string only = 1;
+    // +optional
+    string workspace_id = 2;
+    string domain_id = 11;
+    string user_id = 12;
+}
+
+message UserQuery {
+    // +optional
+    string name = 1;
+    // +optional
+    string state = 2;
+    // +optional
+    string email = 3;
+    // +optional
+    UserType user_type = 4;
+    // +optional
+    UserBackend backend = 5;
+    // +optional
+    spaceone.api.core.v1.Query query = 6;
+    string domain_id = 11;
+    string workspace_id = 12;
+    string user_id = 13;
+}
+
+//{
+//    "user_id": "example@cloudforet.com",
+//    "name": "Wonny",
+//    "state": "ENABLED",
+//    "email": "Wonny@cloudforet.com",
+//    "email_verified" : true,
+//    "mfa": {
+//       "mfa_type": "EMAIL",
+//       "state" : "ENABLED",
+//       "options": {
+//          "email": "example@cloudforet.com"
+//       }
+//    },
+//    "language": "en",
+//    "timezone": "UTC",
+//    "tags": {
+//      "Department": "Development",
+//      "Role"
+//    },
+//    "last_accessed_at": "2023-01-01T07:12:41.890Z"
+//    "created_at": "2023-01-01T15:23:31.705Z"
+//    "domain_id": "domain-xxxxxxxxxxxx"
+//}
+message UserInfo {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+        PENDING = 3;
+    }
+
+    string user_id = 1;
+    string name = 2;
+    State state = 3;
+    string email = 4;
+    UserType user_type = 5;
+    UserBackend backend = 6;
+    string language = 7;
+    string timezone = 8;
+    repeated UserRequiredAction required_actions = 9;
+    google.protobuf.Struct tags = 10;
+    string last_accessed_at = 11;
+    string created_at = 12;
+    string domain_id = 13;
+    bool email_verified = 14;
+    MFA mfa = 15;
+}
+
+message UsersInfo {
+    repeated UserInfo results = 1;
+    int32 total_count = 2;
+}
+
+message UserStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    string domain_id = 11;
+    string workspace_id = 12;
+}
+
