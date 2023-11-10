@@ -31,13 +31,15 @@ class TokenServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def issue(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """+noauth
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def refresh(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """+noauth
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')

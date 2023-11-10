@@ -817,12 +817,6 @@
          "required": ["domain_dashboard_id","domain_id"],
                 "title": "UpdateDomainDashboardRequest"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
-         "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
-           }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
          "type": "object",
@@ -905,9 +899,9 @@
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"keyword" : {"type": "string","title": "KEYWORD"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
                "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"group_by" : {"items": {"type": "string"},
-               "type": "array","title": "GROUP_BY"},"fields" : {"type": "object","title": "FIELDS"},"select" : {"type": "object","title": "SELECT"}},
+               "type": "array","title": "GROUP_BY"},"fields" : {"type": "object","title": "FIELDS"},"select" : {"type": "object","title": "SELECT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
          "type": "object",
-         "required": ["filter","filter_or","keyword","sort","group_by","fields","select"],
+         "required": ["filter","filter_or","keyword","sort","group_by","fields","select","page"],
                 "title": "ExportAnalyzeQuery"
            }
            ,        "ExportOption": {
@@ -920,9 +914,9 @@
          "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"keyword" : {"type": "string","title": "KEYWORD"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
-               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "array","title": "FIELDS"}},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "array","title": "FIELDS"},"unwind" : {"$ref": "#/components/schemas/Unwind","title": "UNWIND"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
          "type": "object",
-         "required": ["filter","filter_or","keyword","sort","fields"],
+         "required": ["filter","filter_or","keyword","sort","fields","unwind","page"],
                 "title": "ExportSearchQuery"
            }
            ,        "Filter": {
@@ -941,9 +935,9 @@
          "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"sort" : {"$ref": "#/components/schemas/Sort","title": "SORT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"minimal" : {"type": "boolean","title": "MINIMAL"},"count_only" : {"type": "boolean","title": "COUNT_ONLY"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"},"keyword" : {"type": "string","title": "KEYWORD"}},
+               "type": "array","title": "ONLY"},"keyword" : {"type": "string","title": "KEYWORD"},"unwind" : {"$ref": "#/components/schemas/Unwind","title": "UNWIND"}},
          "type": "object",
-         "required": ["filter","filter_or","sort","page","minimal","count_only","only","keyword"],
+         "required": ["filter","filter_or","sort","page","minimal","count_only","only","keyword","unwind"],
                 "title": "Query"
            }
            ,        "Sort": {
@@ -984,6 +978,19 @@
          "type": "object",
          "required": ["granularity","start","end","group_by","field_group","filter","filter_or","page","sort","fields","select","keyword"],
                 "title": "TimeSeriesAnalyzeQuery"
+           }
+           ,        "Unwind": {
+         "properties" : {"path" : {"type": "string","title": "PATH"},"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"}},
+         "type": "object",
+         "required": ["path","filter"],
+                "title": "Unwind"
+           }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "AuthenticationRequest": {
          "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},

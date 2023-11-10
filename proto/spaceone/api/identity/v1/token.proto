@@ -9,12 +9,14 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 
 service Token {
+    // +noauth
     rpc issue (IssueTokenRequest) returns (TokenInfo) {
         option (google.api.http) = {
             post: "/identity/v1/token/issue"
             body: "*"
         };
     }
+    // +noauth
     rpc refresh (google.protobuf.Empty) returns (TokenInfo) {
         option (google.api.http) = {
             post: "/identity/v1/token/refresh"
@@ -27,6 +29,7 @@ message IssueTokenRequest {
     // +optional
     string user_id = 1;
     google.protobuf.Struct credentials = 2;
+    // LOCAL, EXTERNAL
     // +optional
     string user_type = 3;
     string domain_id = 4;
@@ -34,6 +37,9 @@ message IssueTokenRequest {
     int32 timeout = 5;
     // +optional
     int32 refresh_count = 6;
+    // if MFA is enabled, verify_code is required
+    // +optional
+    string verify_code = 7;
 }
 
 message TokenInfo {

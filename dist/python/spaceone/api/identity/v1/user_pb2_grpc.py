@@ -46,6 +46,21 @@ class UserStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.SetRequiredActionsRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.UserInfo.FromString,
                 )
+        self.enable_mfa = channel.unary_unary(
+                '/spaceone.api.identity.v1.User/enable_mfa',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.EnableMFARequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.UserInfo.FromString,
+                )
+        self.disable_mfa = channel.unary_unary(
+                '/spaceone.api.identity.v1.User/disable_mfa',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.DisableMFARequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.UserInfo.FromString,
+                )
+        self.confirm_mfa = channel.unary_unary(
+                '/spaceone.api.identity.v1.User/confirm_mfa',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.ConfirmMFARequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.UserInfo.FromString,
+                )
         self.enable = channel.unary_unary(
                 '/spaceone.api.identity.v1.User/enable',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.UserRequest.SerializeToString,
@@ -92,7 +107,10 @@ class UserServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """You can create user. after create user you have to binding role to user.
+        See role-binding create api.
+        External type user do not need password.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -117,13 +135,35 @@ class UserServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def reset_password(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """+noauth
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def set_required_actions(self, request, context):
         """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def enable_mfa(self, request, context):
+        """Enable MFA for user. If this api is called, send email to user.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def disable_mfa(self, request, context):
+        """Disable MFA for user. If this api is called, send email to user.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def confirm_mfa(self, request, context):
+        """Confirm MFA for user by given verify_code which is sent by your authentication method.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -207,6 +247,21 @@ def add_UserServicer_to_server(servicer, server):
             'set_required_actions': grpc.unary_unary_rpc_method_handler(
                     servicer.set_required_actions,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.SetRequiredActionsRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.UserInfo.SerializeToString,
+            ),
+            'enable_mfa': grpc.unary_unary_rpc_method_handler(
+                    servicer.enable_mfa,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.EnableMFARequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.UserInfo.SerializeToString,
+            ),
+            'disable_mfa': grpc.unary_unary_rpc_method_handler(
+                    servicer.disable_mfa,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.DisableMFARequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.UserInfo.SerializeToString,
+            ),
+            'confirm_mfa': grpc.unary_unary_rpc_method_handler(
+                    servicer.confirm_mfa,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.ConfirmMFARequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.UserInfo.SerializeToString,
             ),
             'enable': grpc.unary_unary_rpc_method_handler(
@@ -357,6 +412,57 @@ class User(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v1.User/set_required_actions',
             spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.SetRequiredActionsRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.UserInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def enable_mfa(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v1.User/enable_mfa',
+            spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.EnableMFARequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.UserInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def disable_mfa(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v1.User/disable_mfa',
+            spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.DisableMFARequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.UserInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def confirm_mfa(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v1.User/confirm_mfa',
+            spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.ConfirmMFARequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v1_dot_user__pb2.UserInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

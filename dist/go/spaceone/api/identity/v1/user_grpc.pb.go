@@ -30,6 +30,9 @@ const (
 	User_ConfirmEmail_FullMethodName       = "/spaceone.api.identity.v1.User/confirm_email"
 	User_ResetPassword_FullMethodName      = "/spaceone.api.identity.v1.User/reset_password"
 	User_SetRequiredActions_FullMethodName = "/spaceone.api.identity.v1.User/set_required_actions"
+	User_EnableMfa_FullMethodName          = "/spaceone.api.identity.v1.User/enable_mfa"
+	User_DisableMfa_FullMethodName         = "/spaceone.api.identity.v1.User/disable_mfa"
+	User_ConfirmMfa_FullMethodName         = "/spaceone.api.identity.v1.User/confirm_mfa"
 	User_Enable_FullMethodName             = "/spaceone.api.identity.v1.User/enable"
 	User_Disable_FullMethodName            = "/spaceone.api.identity.v1.User/disable"
 	User_Delete_FullMethodName             = "/spaceone.api.identity.v1.User/delete"
@@ -44,13 +47,23 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserClient interface {
+	// You can create user. after create user you have to binding role to user.
+	// See role-binding create api.
+	// External type user do not need password.
 	Create(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	// Update user info by given user_id
 	Update(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	ConfirmEmail(ctx context.Context, in *ConfirmEmailRequest, opts ...grpc.CallOption) (*UserInfo, error)
+	// +noauth
 	ResetPassword(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	SetRequiredActions(ctx context.Context, in *SetRequiredActionsRequest, opts ...grpc.CallOption) (*UserInfo, error)
+	// Enable MFA for user. If this api is called, send email to user.
+	EnableMfa(ctx context.Context, in *EnableMFARequest, opts ...grpc.CallOption) (*UserInfo, error)
+	// Disable MFA for user. If this api is called, send email to user.
+	DisableMfa(ctx context.Context, in *DisableMFARequest, opts ...grpc.CallOption) (*UserInfo, error)
+	// Confirm MFA for user by given verify_code which is sent by your authentication method.
+	ConfirmMfa(ctx context.Context, in *ConfirmMFARequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Enable(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Disable(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Delete(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -117,6 +130,33 @@ func (c *userClient) ResetPassword(ctx context.Context, in *UserRequest, opts ..
 func (c *userClient) SetRequiredActions(ctx context.Context, in *SetRequiredActionsRequest, opts ...grpc.CallOption) (*UserInfo, error) {
 	out := new(UserInfo)
 	err := c.cc.Invoke(ctx, User_SetRequiredActions_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) EnableMfa(ctx context.Context, in *EnableMFARequest, opts ...grpc.CallOption) (*UserInfo, error) {
+	out := new(UserInfo)
+	err := c.cc.Invoke(ctx, User_EnableMfa_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) DisableMfa(ctx context.Context, in *DisableMFARequest, opts ...grpc.CallOption) (*UserInfo, error) {
+	out := new(UserInfo)
+	err := c.cc.Invoke(ctx, User_DisableMfa_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) ConfirmMfa(ctx context.Context, in *ConfirmMFARequest, opts ...grpc.CallOption) (*UserInfo, error) {
+	out := new(UserInfo)
+	err := c.cc.Invoke(ctx, User_ConfirmMfa_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -199,13 +239,23 @@ func (c *userClient) Sync(ctx context.Context, in *UserRequest, opts ...grpc.Cal
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility
 type UserServer interface {
+	// You can create user. after create user you have to binding role to user.
+	// See role-binding create api.
+	// External type user do not need password.
 	Create(context.Context, *CreateUserRequest) (*UserInfo, error)
 	// Update user info by given user_id
 	Update(context.Context, *UpdateUserRequest) (*UserInfo, error)
 	VerifyEmail(context.Context, *VerifyEmailRequest) (*empty.Empty, error)
 	ConfirmEmail(context.Context, *ConfirmEmailRequest) (*UserInfo, error)
+	// +noauth
 	ResetPassword(context.Context, *UserRequest) (*empty.Empty, error)
 	SetRequiredActions(context.Context, *SetRequiredActionsRequest) (*UserInfo, error)
+	// Enable MFA for user. If this api is called, send email to user.
+	EnableMfa(context.Context, *EnableMFARequest) (*UserInfo, error)
+	// Disable MFA for user. If this api is called, send email to user.
+	DisableMfa(context.Context, *DisableMFARequest) (*UserInfo, error)
+	// Confirm MFA for user by given verify_code which is sent by your authentication method.
+	ConfirmMfa(context.Context, *ConfirmMFARequest) (*UserInfo, error)
 	Enable(context.Context, *UserRequest) (*UserInfo, error)
 	Disable(context.Context, *UserRequest) (*UserInfo, error)
 	Delete(context.Context, *UserRequest) (*empty.Empty, error)
@@ -238,6 +288,15 @@ func (UnimplementedUserServer) ResetPassword(context.Context, *UserRequest) (*em
 }
 func (UnimplementedUserServer) SetRequiredActions(context.Context, *SetRequiredActionsRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetRequiredActions not implemented")
+}
+func (UnimplementedUserServer) EnableMfa(context.Context, *EnableMFARequest) (*UserInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnableMfa not implemented")
+}
+func (UnimplementedUserServer) DisableMfa(context.Context, *DisableMFARequest) (*UserInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DisableMfa not implemented")
+}
+func (UnimplementedUserServer) ConfirmMfa(context.Context, *ConfirmMFARequest) (*UserInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfirmMfa not implemented")
 }
 func (UnimplementedUserServer) Enable(context.Context, *UserRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
@@ -380,6 +439,60 @@ func _User_SetRequiredActions_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).SetRequiredActions(ctx, req.(*SetRequiredActionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_EnableMfa_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EnableMFARequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).EnableMfa(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_EnableMfa_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).EnableMfa(ctx, req.(*EnableMFARequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_DisableMfa_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DisableMFARequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).DisableMfa(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_DisableMfa_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).DisableMfa(ctx, req.(*DisableMFARequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_ConfirmMfa_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConfirmMFARequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).ConfirmMfa(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_ConfirmMfa_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).ConfirmMfa(ctx, req.(*ConfirmMFARequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -558,6 +671,18 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "set_required_actions",
 			Handler:    _User_SetRequiredActions_Handler,
+		},
+		{
+			MethodName: "enable_mfa",
+			Handler:    _User_EnableMfa_Handler,
+		},
+		{
+			MethodName: "disable_mfa",
+			Handler:    _User_DisableMfa_Handler,
+		},
+		{
+			MethodName: "confirm_mfa",
+			Handler:    _User_ConfirmMfa_Handler,
 		},
 		{
 			MethodName: "enable",

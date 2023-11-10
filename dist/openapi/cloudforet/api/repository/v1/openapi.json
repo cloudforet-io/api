@@ -276,97 +276,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/repository/get": {
-       "post": {
-         "tags": ["repository > repository"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \nGets a specific Repository. Prints detailed information about the Repository, including  `name`, `repository_type`, and `endpoint`.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |repository_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"repository_id\": \"repo-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/RepositoryInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/RepositoryInfo"},"Default Example":{
-                     "value": "{\n   \"repository_id\": \"repo-123456789012\",\n   \"name\": \"Open Source Marketplace\",\n   \"repository_type\": \"remote\",\n   \"endpoint\": \"grpc+ssl://repository.portal.spaceone.megazone.io:443\",\n   \"created_at\": \"2022-01-01T02:27:02.924Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/repository/list": {
-       "post": {
-         "tags": ["repository > repository"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all Repositories regardless of `domain`. You can use a query to get a filtered list of Repositories.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |repository_id||string||\n |name||string||\n |repository_type||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"name" : {"type": "string","title": "NAME" },"repository_type" : {"type": "string","title": "REPOSITORY_TYPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"repository_id\": \"repo-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/RepositoriesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/RepositoriesInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"repository_id\": \"repo-123456789012\",\n           \"name\": \"Open Source Marketplace\",\n           \"repository_type\": \"remote\",\n           \"endpoint\": \"grpc+ssl://repository.portal.spaceone.megazone.io:443\",\n           \"created_at\": \"2022-01-01T02:26:29.081Z\"\n       }\n   ],\n   \"total_count\": 1\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/repository/stat": {
-       "post": {
-         "tags": ["repository > repository"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/repository/policy/create": {
        "post": {
          "tags": ["repository > policy"],
@@ -719,6 +628,97 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/repository/get": {
+       "post": {
+         "tags": ["repository > repository"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific Repository. Prints detailed information about the Repository, including  `name`, `repository_type`, and `endpoint`.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |repository_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"repository_id\": \"repo-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/RepositoryInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/RepositoryInfo"},"Default Example":{
+                     "value": "{\n   \"repository_id\": \"repo-123456789012\",\n   \"name\": \"Open Source Marketplace\",\n   \"repository_type\": \"remote\",\n   \"endpoint\": \"grpc+ssl://repository.portal.spaceone.megazone.io:443\",\n   \"created_at\": \"2022-01-01T02:27:02.924Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/repository/list": {
+       "post": {
+         "tags": ["repository > repository"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Repositories regardless of `domain`. You can use a query to get a filtered list of Repositories.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |repository_id||string||\n |name||string||\n |repository_type||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"name" : {"type": "string","title": "NAME" },"repository_type" : {"type": "string","title": "REPOSITORY_TYPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"repository_id\": \"repo-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/RepositoriesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/RepositoriesInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"repository_id\": \"repo-123456789012\",\n           \"name\": \"Open Source Marketplace\",\n           \"repository_type\": \"remote\",\n           \"endpoint\": \"grpc+ssl://repository.portal.spaceone.megazone.io:443\",\n           \"created_at\": \"2022-01-01T02:26:29.081Z\"\n       }\n   ],\n   \"total_count\": 1\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/repository/stat": {
+       "post": {
+         "tags": ["repository > repository"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
@@ -786,12 +786,6 @@
          "type": "object",
          "required": ["version","total_count","results"],
                 "title": "VersionsInfo"
-           }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
-         "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -875,9 +869,9 @@
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"keyword" : {"type": "string","title": "KEYWORD"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
                "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"group_by" : {"items": {"type": "string"},
-               "type": "array","title": "GROUP_BY"},"fields" : {"type": "object","title": "FIELDS"},"select" : {"type": "object","title": "SELECT"}},
+               "type": "array","title": "GROUP_BY"},"fields" : {"type": "object","title": "FIELDS"},"select" : {"type": "object","title": "SELECT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
          "type": "object",
-         "required": ["filter","filter_or","keyword","sort","group_by","fields","select"],
+         "required": ["filter","filter_or","keyword","sort","group_by","fields","select","page"],
                 "title": "ExportAnalyzeQuery"
            }
            ,        "ExportOption": {
@@ -890,9 +884,9 @@
          "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"keyword" : {"type": "string","title": "KEYWORD"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
-               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "array","title": "FIELDS"}},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "array","title": "FIELDS"},"unwind" : {"$ref": "#/components/schemas/Unwind","title": "UNWIND"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
          "type": "object",
-         "required": ["filter","filter_or","keyword","sort","fields"],
+         "required": ["filter","filter_or","keyword","sort","fields","unwind","page"],
                 "title": "ExportSearchQuery"
            }
            ,        "Filter": {
@@ -911,9 +905,9 @@
          "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"sort" : {"$ref": "#/components/schemas/Sort","title": "SORT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"minimal" : {"type": "boolean","title": "MINIMAL"},"count_only" : {"type": "boolean","title": "COUNT_ONLY"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"},"keyword" : {"type": "string","title": "KEYWORD"}},
+               "type": "array","title": "ONLY"},"keyword" : {"type": "string","title": "KEYWORD"},"unwind" : {"$ref": "#/components/schemas/Unwind","title": "UNWIND"}},
          "type": "object",
-         "required": ["filter","filter_or","sort","page","minimal","count_only","only","keyword"],
+         "required": ["filter","filter_or","sort","page","minimal","count_only","only","keyword","unwind"],
                 "title": "Query"
            }
            ,        "Sort": {
@@ -955,6 +949,19 @@
          "required": ["granularity","start","end","group_by","field_group","filter","filter_or","page","sort","fields","select","keyword"],
                 "title": "TimeSeriesAnalyzeQuery"
            }
+           ,        "Unwind": {
+         "properties" : {"path" : {"type": "string","title": "PATH"},"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"}},
+         "type": "object",
+         "required": ["path","filter"],
+                "title": "Unwind"
+           }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
+           }
            ,        "AuthenticationRequest": {
          "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
@@ -986,56 +993,6 @@
          "type": "object",
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
-           }
-           ,        "CreateRepositoryRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["name","repository_type","domain_id"],
-                "title": "CreateRepositoryRequest"
-           }
-           ,        "GetRepositoryRequest": {
-         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["repository_id","domain_id"],
-                "title": "GetRepositoryRequest"
-           }
-           ,        "RepositoriesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/RepositoryInfo"},
-               "type": "array","$ref": "#/components/schemas/RepositoryInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "RepositoriesInfo"
-           }
-           ,        "RepositoryInfo": {
-         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["repository_id","name","repository_type","endpoint","created_at"],
-                "title": "RepositoryInfo"
-           }
-           ,        "RepositoryQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "RepositoryQuery"
-           }
-           ,        "RepositoryRequest": {
-         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["repository_id","domain_id"],
-                "title": "RepositoryRequest"
-           }
-           ,        "RepositoryStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["query","domain_id"],
-                "title": "RepositoryStatQuery"
-           }
-           ,        "UpdateRepositoryRequest": {
-         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["repository_id","domain_id"],
-                "title": "UpdateRepositoryRequest"
            }
            ,        "CreatePolicyRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"permissions" : {"items": {"type": "string"},
@@ -1139,6 +1096,56 @@
          "type": "object",
          "required": ["name","domain_id"],
                 "title": "UpdateSchemaRequest"
+           }
+           ,        "CreateRepositoryRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["name","repository_type","domain_id"],
+                "title": "CreateRepositoryRequest"
+           }
+           ,        "GetRepositoryRequest": {
+         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["repository_id","domain_id"],
+                "title": "GetRepositoryRequest"
+           }
+           ,        "RepositoriesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/RepositoryInfo"},
+               "type": "array","$ref": "#/components/schemas/RepositoryInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "RepositoriesInfo"
+           }
+           ,        "RepositoryInfo": {
+         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["repository_id","name","repository_type","endpoint","created_at"],
+                "title": "RepositoryInfo"
+           }
+           ,        "RepositoryQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["domain_id"],
+                "title": "RepositoryQuery"
+           }
+           ,        "RepositoryRequest": {
+         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["repository_id","domain_id"],
+                "title": "RepositoryRequest"
+           }
+           ,        "RepositoryStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["query","domain_id"],
+                "title": "RepositoryStatQuery"
+           }
+           ,        "UpdateRepositoryRequest": {
+         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["repository_id","domain_id"],
+                "title": "UpdateRepositoryRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
