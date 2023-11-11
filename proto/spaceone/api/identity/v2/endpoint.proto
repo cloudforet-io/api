@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v2;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2";
+
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Endpoint {
+  // +noauth
+  rpc list (EndpointSearchQuery) returns (EndpointsInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/endpoint/list"
+            body: "*"
+        };
+    }
+}
+
+message EndpointInfo {
+    enum EndpointState {
+        NONE = 0;
+        ACTIVE = 1;
+        INACTIVE = 2;
+    }
+
+    string name = 1;
+    string service = 2;
+    string endpoint = 3;
+    EndpointState state = 4;
+    string version = 5;
+}
+
+message EndpointSearchQuery {
+    // +optional
+    spaceone.api.core.v1.Query query = 1;
+    // +optional
+    string service = 2;
+}
+
+message EndpointsInfo {
+    repeated EndpointInfo results = 1;
+    int32 total_count = 2;
+}

@@ -1,0 +1,139 @@
+// User API which allows member management within project, company, and domain
+// note: Administrator must register User first.
+syntax = "proto3";
+
+package spaceone.api.identity.v2;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service UserGroup {
+
+    rpc create (CreateUserGroupRequest) returns (UserGroupInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-group/create"
+            body: "*"
+        };
+    }
+
+    rpc update (UpdateUserGroupRequest) returns (UserGroupInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-group/update"
+            body: "*"
+        };
+    }
+
+    rpc delete (UserGroupRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-group/delete"
+            body: "*"
+        };
+    }
+
+    rpc add_users (UsersUserGroupRequest) returns (UserGroupInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-group/add-users"
+            body: "*"
+        };
+    }
+
+    rpc remove_users (UsersUserGroupRequest) returns (UserGroupInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-group/remove-users"
+            body: "*"
+        };
+    }
+
+    rpc get (UserGroupRequest) returns (UserGroupInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-group/get"
+            body: "*"
+        };
+    }
+
+    rpc list (UserSearchQuery) returns (UserGroupsInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-group/list"
+            body: "*"
+        };
+    }
+    rpc stat (UserGroupStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/identity/v1/user-group/stat"
+            body: "*"
+        };
+    }
+}
+
+
+message CreateUserGroupRequest {
+    string name = 1;
+    // +optional
+    google.protobuf.Struct tags = 2;
+    string domain_id = 21;
+    string workspace_id = 22;
+}
+
+message UpdateUserGroupRequest {
+    string user_group_id = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    google.protobuf.Struct tags = 3;
+    string domain_id = 21;
+    string workspace_id = 22;
+}
+
+message UserGroupRequest {
+    string user_group_id = 1;
+    string domain_id = 21;
+    string workspace_id = 22;
+}
+
+message UsersUserGroupRequest {
+    string user_group_id = 1;
+    repeated string users = 2;
+    string domain_id = 21;
+    string workspace_id = 22;
+}
+
+message UserSearchQuery {
+    spaceone.api.core.v1.Query query = 1;
+    // +optional
+    string user_group_id = 2;
+    // +optional
+    string name = 3;
+    string domain_id = 21;
+    // +optional
+    string workspace_id = 22;
+    // +optional
+    string user_id = 23;
+}
+
+message UserGroupInfo {
+    string user_group_id = 1;
+    string name = 2;
+    repeated string users = 3;
+    google.protobuf.Struct tags = 4;
+    string domain_id = 21;
+    string workspace_id = 22;
+    string created_at = 31;
+}
+
+message UserGroupsInfo {
+    repeated UserGroupInfo results = 1;
+    int32 total_count = 2;
+}
+
+message UserGroupStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    string domain_id = 21;
+    // +optional
+    string workspace_id = 22;
+}
+

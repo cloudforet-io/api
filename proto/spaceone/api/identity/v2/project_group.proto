@@ -1,0 +1,130 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v2;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/identity/v1/role.proto";
+
+
+service ProjectGroup {
+    rpc create (CreateProjectGroupRequest) returns (ProjectGroupInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/project-group/create"
+            body: "*"
+        };
+    }
+    rpc update (UpdateProjectGroupRequest) returns (ProjectGroupInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/project-group/update"
+            body: "*"
+        };
+    }
+
+    rpc change_parent_group (ChangeParentGroupRequest) returns (ProjectGroupInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/project-group/change-parent-group"
+            body: "*"
+        };
+    }
+
+    rpc delete (ProjectGroupRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/identity/v2/project-group/delete"
+            body: "*"
+        };
+    }
+    rpc get (ProjectGroupRequest) returns (ProjectGroupInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/project-group/get"
+            body: "*"
+        };
+    }
+    rpc list (ProjectGroupSearchQuery) returns (ProjectGroupsInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/project-group/list"
+            body: "*"
+        };
+    }
+    rpc stat (ProjectGroupStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/identity/v2/project-group/stat"
+            body: "*"
+        };
+    }
+}
+
+message CreateProjectGroupRequest {
+    string name = 1;
+    // +optional
+    google.protobuf.Struct tags = 2;
+    // +optional
+    string parent_group_id = 3;
+    string domain_id = 21;
+    string workspace_id = 22;
+}
+
+message UpdateProjectGroupRequest {
+    string project_group_id = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    google.protobuf.Struct tags = 3;
+    string domain_id = 21;
+    string workspace_id = 22;
+}
+
+message ChangeParentGroupRequest {
+    string project_group_id = 1;
+    string parent_group_id = 2;
+    string domain_id = 21;
+    string workspace_id = 22;
+}
+
+message ProjectGroupRequest {
+    string project_group_id = 1;
+    string domain_id = 21;
+    string workspace_id = 22;
+}
+
+message ProjectGroupSearchQuery {
+    // +optional
+    spaceone.api.core.v1.Query query = 1;
+    // +optional
+    string project_group_id = 2;
+    // +optional
+    string name = 3;
+    // +optional
+    string domain_id = 21;
+    // +optional
+    string workspace_id = 22;
+    // +optional
+    string parent_group_id = 23;
+}
+
+
+message ProjectGroupInfo {
+    string project_group_id = 1;
+    string name = 2;
+    google.protobuf.Struct tags = 3;
+    string domain_id = 21;
+    string workspace_id = 22;
+    string parent_group_id = 23;
+    string created_at = 31;
+}
+
+message ProjectGroupsInfo {
+    repeated ProjectGroupInfo results = 1;
+    int32 total_count = 2;
+}
+
+
+message ProjectGroupStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    string domain_id = 21;
+    string workspace_id = 22;
+}

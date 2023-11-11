@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v2;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+
+service Token {
+    // +noauth
+    rpc issue (IssueTokenRequest) returns (TokenInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/token/issue"
+            body: "*"
+        };
+    }
+    // +noauth
+    rpc refresh (google.protobuf.Empty) returns (TokenInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/token/refresh"
+            body: "*"
+        };
+    }
+}
+
+message IssueTokenRequest {
+    enum AuthType {
+        NONE = 0;
+        LOCAL = 1;
+        EXTERNAL = 2;
+    }
+
+    google.protobuf.Struct credentials = 1;
+    // LOCAL, EXTERNAL
+    // +optional
+    AuthType auth_type = 2;
+    // +optional
+    int32 timeout = 3;
+    // +optional
+    int32 refresh_count = 4;
+    // if MFA is enabled, verify_code is required
+    // +optional
+    string verify_code = 5;
+    string domain_id = 21;
+}
+
+message TokenInfo {
+    string access_token = 1;
+    string refresh_token = 2;
+}
