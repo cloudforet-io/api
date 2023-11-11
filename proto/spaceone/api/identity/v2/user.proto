@@ -48,7 +48,7 @@ service User {
     rpc reset_password (UserRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/identity/v2/user/reset-password"
-            body: "*"
+            body: "*",
         };
     }
 
@@ -109,7 +109,7 @@ service User {
         };
     }
 
-    rpc list (UserQuery) returns (UsersInfo) {
+    rpc list (UserSearchQuery) returns (UsersInfo) {
         option (google.api.http) = {
             post: "/identity/v2/user/list"
             body: "*"
@@ -139,224 +139,213 @@ enum UserRequiredAction {
     UPDATE_PASSWORD = 0;
 }
 
-enum MFAState {
-    NONE_MFA_STATE = 0;
-    ENABLED = 1;
-    DISABLED = 2;
-}
 
 message MFA {
-    MFAState state = 1;
+    enum State
+    {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
+    State state = 1;
     string mfa_type = 2;
     google.protobuf.Struct options = 3;
 
 }
 
-//{
-//  "user_id": "example@cloudforet.com",
-//  "password": "password",
-//  "name": "Wonny",
-//  "email": "example@cloudforet.com",
-//  "user_type": "USER",
-//  "backend": "LOCAL",
-//  "language": "en",
-//  "timezone": "UTC",
-//  "tags": {
-//    "Department": "Development"
-//  }
-//}
-message CreateUserRequest {
-    // When backend is LOCAL, password is required.
+
+message UserRoleBinding {
+    enum Scope {
+        NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
+    string user_id = 1;
+    string role_id = 2;
+    bool is_managed_role = 3;
+    Scope scope = 4;
     // +optional
-    string password = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    string email = 3;
-    // +optional
-    UserType user_type = 4;
-    UserBackend backend = 5;
-    // en,ko
-    // +optional
-    string language = 6;
-    // UTC, Asia/Seoul
-    // +optional
-    string timezone = 7;
-    // +optional
-    google.protobuf.Struct tags = 8;
-    // If reset_password is true, send email
-    bool reset_password = 9;
-    // +optional
-    google.protobuf.Struct role_binding = 10;
-    string domain_id = 11;
-    string user_id = 12;
+    string workspace_id = 22;
 }
 
-//{
-//  "user_id": "example@cloudforet.com",
-//  "tags": {
-//      "Department": "Development",
-//      "Role"
-//    },
-//    "domain_id": "domain-xxxxxxxxxxxx"
-//}
+message CreateUserRequest {
+    string user_id = 1;
+    // When backend is LOCAL, password is required.
+    // +optional
+    string password = 2;
+    // +optional
+    string name = 3;
+    // +optional
+    string email = 4;
+    // +optional
+    UserType user_type = 5;
+    UserBackend backend = 6;
+    // en,ko
+    // +optional
+    string language = 7;
+    // UTC, Asia/Seoul
+    // +optional
+    string timezone = 8;
+    // +optional
+    google.protobuf.Struct tags = 9;
+    // If reset_password is true, send email
+    bool reset_password = 10;
+    // +optional
+    UserRoleBinding role_binding = 11;
+    string domain_id = 21;
+}
+
 message UpdateUserRequest {
+    string user_id = 1;
     // +optional
-    string password = 1;
+    string password = 2;
     // +optional
-    string name = 2;
+    string name = 3;
     // +optional
-    string email = 3;
+    string email = 4;
     // +optional
-    bool reset_password = 4;
     // +optional
     string language = 5;
     // +optional
     string timezone = 6;
     // +optional
     google.protobuf.Struct tags = 7;
-    string domain_id = 11;
-    string user_id = 12;
+    // +optional
+    bool reset_password = 8;
+    string domain_id = 21;
 }
 
 message VerifyEmailRequest {
+    string user_id = 1;
     // +optional
-    string email = 1;
+    string email = 2;
     // +optional
-    bool force = 2;
-    string domain_id = 11;
-    string user_id = 12;
+    bool force = 3;
+    string domain_id = 21;
 }
 
 message ConfirmEmailRequest {
-    string verify_code = 1;
-    string domain_id = 11;
-    string user_id = 12;
+    string user_id = 1;
+    string verify_code = 2;
+    string domain_id = 21;
 }
 
 message SetRequiredActionsRequest {
-    repeated UserRequiredAction actions = 1;
-    string domain_id = 11;
-    string user_id = 12;
+    string user_id = 1;
+    repeated UserRequiredAction actions = 2;
+    string domain_id = 21;
 }
 
 //{
 //  "user_id": "example@cloudforet.com",
 //  "mfa_type": "EMAIL",
 //  "options": {"email": "wonny@cloudforet.com"},
-//  "domain_id": "domain-xxxxxxxxxxxx"
+//  "domain_id": "domain-a1b2c3d4e5f6"
 //}
 message EnableMFARequest {
+    string user_id = 1;
     // EMAIL
-    string mfa_type = 1;
+    string mfa_type = 2;
     // If mfa_type is EMAIL, email is required in options. options will be saved in mfa's options field.
-    google.protobuf.Struct options = 2;
-    string domain_id = 11;
-    string user_id = 12;
+    google.protobuf.Struct options = 3;
+    string domain_id = 21;
 }
 
 //{
 //  "user_id": "example@cloudforet.com",
 //  "force": false,
-//  "domain_id": "domain-xxxxxxxxxxxx"
+//  "domain_id": "domain-a1b2c3d4e5f6"
 //}
 message DisableMFARequest {
+    string user_id = 1;
     //If this value true, disable MFA without verification for user.
     //+optional
-    bool force = 1;
-    string domain_id = 11;
-    string user_id = 12;
+    bool force = 2;
+    string domain_id = 21;
 }
 
 //{
 //  "user_id": "example@cloudforet",
 //  "verify_code": "123456",
-//  "domain_id": "domain-xxxxxxxxxxxx"
+//  "domain_id": "domain-a1b2c3d4e5f6"
 //}
 message ConfirmMFARequest {
-    string verify_code = 1;
-    string domain_id = 11;
-    string user_id = 12;
+    string user_id = 1;
+    string verify_code = 2;
+    string domain_id = 21;
 }
 
 message UserRequest {
-    string domain_id = 1;
-    string user_id = 2;
+    string user_id = 1;
+    string domain_id = 21;
 }
 
 message GetUserRequest {
+    string user_id = 11;
+    string domain_id = 21;
     // +optional
-    repeated string only = 1;
-    // +optional
-    string workspace_id = 2;
-    string domain_id = 11;
-    string user_id = 12;
+    string workspace_id = 22;
 }
 
-message UserQuery {
-    // +optional
-    string name = 1;
-    // +optional
-    string state = 2;
-    // +optional
-    string email = 3;
-    // +optional
-    UserType user_type = 4;
-    // +optional
-    UserBackend backend = 5;
-    // +optional
-    spaceone.api.core.v1.Query query = 6;
-    string domain_id = 11;
-    string workspace_id = 12;
-    string user_id = 13;
-}
-
-//{
-//    "user_id": "example@cloudforet.com",
-//    "name": "Wonny",
-//    "state": "ENABLED",
-//    "email": "Wonny@cloudforet.com",
-//    "email_verified" : true,
-//    "mfa": {
-//       "mfa_type": "EMAIL",
-//       "state" : "ENABLED",
-//       "options": {
-//          "email": "example@cloudforet.com"
-//       }
-//    },
-//    "language": "en",
-//    "timezone": "UTC",
-//    "tags": {
-//      "Department": "Development",
-//      "Role"
-//    },
-//    "last_accessed_at": "2023-01-01T07:12:41.890Z"
-//    "created_at": "2023-01-01T15:23:31.705Z"
-//    "domain_id": "domain-xxxxxxxxxxxx"
-//}
-message UserInfo {
+message UserSearchQuery {
     enum State {
         NONE = 0;
         ENABLED = 1;
         DISABLED = 2;
         PENDING = 3;
     }
+    spaceone.api.core.v1.Query query = 1;
+    string user_id = 2;
+    // +optional
+    string name = 3;
+    // +optional
+    State state = 4;
+    // +optional
+    string email = 5;
+    // +optional
+    UserType user_type = 6;
+    // +optional
+    UserBackend backend = 7;
+    // +optional
+    string domain_id = 21;
+    string workspace_id = 22;
+}
+
+message UserInfo {
+    enum State {
+        STATE_NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+        PENDING = 3;
+    }
+
+    enum RoleType {
+        ROLE_TYPE_NONE = 0;
+        SYSTEM_ADMIN = 1;
+        DOMAIN_ADMIN = 2;
+        WORKPLACE_OWNER = 3;
+        WORKPLACE_MEMBER = 4;
+        NO_ROLE = 5;
+    }
 
     string user_id = 1;
     string name = 2;
     State state = 3;
     string email = 4;
-    UserType user_type = 5;
-    UserBackend backend = 6;
-    string language = 7;
-    string timezone = 8;
-    repeated UserRequiredAction required_actions = 9;
-    google.protobuf.Struct tags = 10;
-    string last_accessed_at = 11;
-    string created_at = 12;
-    string domain_id = 13;
-    bool email_verified = 14;
-    MFA mfa = 15;
+    bool email_verified = 5;
+    UserType user_type = 6;
+    UserBackend backend = 7;
+    RoleType role_type = 8;
+    MFA mfa = 9;
+    string language = 10;
+    string timezone = 11;
+    repeated UserRequiredAction required_actions = 12;
+    google.protobuf.Struct tags = 13;
+    string domain_id = 21;
+    string created_at = 31;
+    string last_accessed_at = 32;
 }
 
 message UsersInfo {
@@ -366,7 +355,8 @@ message UsersInfo {
 
 message UserStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 11;
-    string workspace_id = 12;
+    string domain_id = 21;
+    // +optional
+    string workspace_id = 22;
 }
 

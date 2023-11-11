@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package spaceone.api.core.v2;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v2";
+
+import "google/protobuf/struct.proto";
+
+
+
+message PluginRequest {
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
+    string plugin_id = 1;
+    string version = 2;
+    UpgradeMode upgrade_mode = 3;
+    google.protobuf.Struct options = 4;
+    string schema = 5;
+    google.protobuf.Struct secret_data = 6;
+}
+
+message PluginInfo {
+      enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
+    string plugin_id = 1;
+    string version = 2;
+    UpgradeMode upgrade_mode = 3;
+    google.protobuf.Struct options = 4;
+    google.protobuf.Struct metadata = 5;
+    string schema = 6;
+    string secret_id = 7;
+}
+
+
+

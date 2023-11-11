@@ -17,11 +17,11 @@ service Domain {
     rpc delete (DomainRequest) returns (google.protobuf.Empty) {}
     rpc enable (DomainRequest) returns (DomainInfo) {}
     rpc disable (DomainRequest) returns (DomainInfo) {}
-    rpc get (GetDomainRequest) returns (DomainInfo) {}
-    rpc get_meta_data (GetMetadataRequest) returns (DomainMetadataInfo) {}
+    rpc get (DomainRequest) returns (DomainInfo) {}
+    rpc get_meta_data (GetDomainMetadataRequest) returns (DomainMetadataInfo) {}
     rpc get_public_key (spaceone.api.core.v1.AuthenticationRequest)
     returns (spaceone.api.core.v1.AuthenticationResponse) {}
-    rpc list (DomainQuery) returns (DomainsInfo) {}
+    rpc list (DomainSearchQuery) returns (DomainsInfo) {}  // list는 SearchQuery
     rpc stat (DomainStatQuery) returns (google.protobuf.Struct) {}
 }
 
@@ -50,59 +50,36 @@ message UpdateDomainRequest {
     string domain_id = 1;
     // +optional
     google.protobuf.Struct tags = 2;
-    // +optional
-    google.protobuf.Struct config = 3;
 }
 
-message UpdatePluginRequest {
-    enum UpgradeMode {
-        NONE = 0;
-        MANUAL = 1;
-        AUTO = 2;
-    }
-
-    string domain_id = 1;
-    // +optional
-    string version = 2;
-    // +optional
-    google.protobuf.Struct options = 3;
-    // +optional
-    UpgradeMode upgrade_mode = 4;
-}
 
 message DomainRequest {
     string domain_id = 1;
 }
 
-message GetDomainRequest {
-    string domain_id = 1;
-    // +optional
-    repeated string only = 2;
-}
-
-message GetMetadataRequest{
+message GetDomainMetadataRequest{
     string name = 1;
 }
-message DomainQuery {
+message DomainSearchQuery {
     enum State {
         NONE = 0;
         ENABLED = 1;
         DISABLED = 2;
     }
     // +optional
-    string name = 1;
+    spaceone.api.core.v1.Query query = 1;
     // +optional
-    spaceone.api.core.v1.Query query = 2;
+    string domain_id = 2;
     // +optional
-    State state = 3;
+    string name = 3;
     // +optional
-    string domain_id = 11;
+    State state = 4;
 }
 
 message DomainMetadataInfo {
-    string name = 1;
-    google.protobuf.Struct metadata = 2;
-    string domain_id = 11;
+    string domain_id = 1;
+    string name = 2;
+    google.protobuf.Struct metadata = 3;
 }
 
 message DomainInfo {
@@ -115,10 +92,9 @@ message DomainInfo {
     string domain_id = 1;
     string name = 2;
     State state = 3;
-    google.protobuf.Struct config = 5;
-    google.protobuf.Struct tags = 6;
-    string created_at = 7;
-    string deleted_at = 8;
+    google.protobuf.Struct tags = 4;
+    string created_at = 31;
+    string deleted_at = 32;
 }
 
 message DomainsInfo {

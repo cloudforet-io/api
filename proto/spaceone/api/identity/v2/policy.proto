@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v2;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service Policy {
+    rpc create (CreatePolicyRequest) returns (PolicyInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/policy/create"
+            body: "*"
+        };
+    }
+    rpc update (UpdatePolicyRequest) returns (PolicyInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/policy/update"
+            body: "*"
+        };
+    }
+    rpc delete (PolicyRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/identity/v2/policy/delete"
+            body: "*"
+        };
+    }
+    rpc get (PolicyRequest) returns (PolicyInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/policy/get"
+            body: "*"
+        };
+    }
+    rpc list (PolicySearchQuery) returns (PoliciesInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/policy/list"
+            body: "*"
+        };
+    }
+    rpc stat (PolicyStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/identity/v2/policy/stat"
+            body: "*"
+        };
+    }
+}
+
+message CreatePolicyRequest {
+    string name = 1;
+    repeated string permissions = 2;
+    // +optional
+    google.protobuf.Struct tags = 3;
+    string domain_id = 21;
+}
+
+message UpdatePolicyRequest {
+    string policy_id = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    repeated string permissions = 3;
+    // +optional
+    google.protobuf.Struct tags = 4;
+    string domain_id = 21;
+}
+
+message PolicyRequest {
+    string policy_id = 1;
+    string domain_id = 21;
+}
+
+message PolicySearchQuery {
+    // +optional
+    spaceone.api.core.v1.Query query = 1;
+    // +optional
+    string policy_id = 2;
+    // +optional
+    string name = 3;
+    string domain_id = 21;
+}
+
+message PolicyInfo {
+    string policy_id = 1;
+    string name = 2;
+    repeated string permissions = 3;
+    google.protobuf.Struct tags = 4;
+    string domain_id = 21;
+    string created_at = 31;
+}
+
+message PoliciesInfo {
+    repeated PolicyInfo results = 1;
+    int32 total_count = 2;
+}
+
+message PolicyStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    string domain_id = 21;
+}
