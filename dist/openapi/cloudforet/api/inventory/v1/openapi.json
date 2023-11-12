@@ -1849,11 +1849,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |options||array|True|\n |file_format|EXCEL, CSV |string|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |options||array|True|\n |file_format|EXCEL, CSV |string|True|\n |timezone||string|True|\n |domain_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"timezone" : {"type": "string","title": "TIMEZONE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1936,11 +1936,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |options||array|True|\n |schedule||ReportSchedule|True|\n |target||Struct|True|\n |domain_id||string|True|\n |file_format|EXCEL, CSV |string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |options||array|True|\n |schedule||ReportSchedule|True|\n |target||Struct|True|\n |domain_id||string|True|\n |file_format|EXCEL, CSV |string||\n |timezone||string||\n |language||string||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE" },"target" : {"type": "object","title": "TARGET" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE" },"target" : {"type": "object","title": "TARGET" },"timezone" : {"type": "string","title": "TIMEZONE" },"language" : {"type": "string","title": "LANGUAGE" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1965,11 +1965,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n |name||string||\n |options||array||\n |file_format|EXCEL, CSV |string||\n |schedule||ReportSchedule||\n |target||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |report_id||string|True|\n |domain_id||string|True|\n |name||string||\n |options||array||\n |file_format|EXCEL, CSV |string||\n |schedule||ReportSchedule||\n |target||Struct||\n |timezone||string||\n |language||string||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE" },"target" : {"type": "object","title": "TARGET" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"report_id" : {"type": "string","title": "REPORT_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE" },"target" : {"type": "object","title": "TARGET" },"timezone" : {"type": "string","title": "TIMEZONE" },"language" : {"type": "string","title": "LANGUAGE" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -3087,9 +3087,9 @@
            }
            ,        "CloudServiceExportRequest": {
          "properties" : {"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
-               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"timezone" : {"type": "string","title": "TIMEZONE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["options","file_format","domain_id"],
+         "required": ["options","file_format","timezone","domain_id"],
                 "title": "CloudServiceExportRequest"
            }
            ,        "CloudServiceInfo": {
@@ -3199,7 +3199,7 @@
            }
            ,        "CreateCloudServiceReportRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
-               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"timezone" : {"type": "string","title": "TIMEZONE"},"language" : {"type": "string","title": "LANGUAGE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["name","options","schedule","target","domain_id"],
                 "title": "CreateCloudServiceReportRequest"
@@ -3221,7 +3221,7 @@
            }
            ,        "UpdateCloudServiceReportRequest": {
          "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
-               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"timezone" : {"type": "string","title": "TIMEZONE"},"language" : {"type": "string","title": "LANGUAGE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["report_id","domain_id"],
                 "title": "UpdateCloudServiceReportRequest"
