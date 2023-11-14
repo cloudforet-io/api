@@ -1849,11 +1849,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |options||array|True|\n |file_format|EXCEL, CSV |string|True|\n |timezone||string|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |options||array|True|\n |domain_id||string|True|\n |file_format|EXCEL, CSV |string||\n |file_name||string||\n |timezone||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"timezone" : {"type": "string","title": "TIMEZONE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"file_name" : {"type": "string","title": "FILE_NAME" },"timezone" : {"type": "string","title": "TIMEZONE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2419,9 +2419,9 @@
                 "title": "ExportAnalyzeQuery"
            }
            ,        "ExportOption": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"query_type" : {"type": "string","title": "QUERY_TYPE"},"search_query" : {"$ref": "#/components/schemas/ExportSearchQuery","title": "SEARCH_QUERY"},"analyze_query" : {"$ref": "#/components/schemas/ExportAnalyzeQuery","title": "ANALYZE_QUERY"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"title" : {"type": "string","title": "TITLE"},"query_type" : {"type": "string","title": "QUERY_TYPE"},"search_query" : {"$ref": "#/components/schemas/ExportSearchQuery","title": "SEARCH_QUERY"},"analyze_query" : {"$ref": "#/components/schemas/ExportAnalyzeQuery","title": "ANALYZE_QUERY"}},
          "type": "object",
-         "required": ["name","query_type","search_query","analyze_query"],
+         "required": ["name","title","query_type","search_query","analyze_query"],
                 "title": "ExportOption"
            }
            ,        "ExportSearchQuery": {
@@ -3087,9 +3087,9 @@
            }
            ,        "CloudServiceExportRequest": {
          "properties" : {"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
-               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"timezone" : {"type": "string","title": "TIMEZONE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"file_name" : {"type": "string","title": "FILE_NAME"},"timezone" : {"type": "string","title": "TIMEZONE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["options","file_format","timezone","domain_id"],
+         "required": ["options","domain_id"],
                 "title": "CloudServiceExportRequest"
            }
            ,        "CloudServiceInfo": {
