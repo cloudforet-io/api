@@ -102,7 +102,7 @@ service User {
         };
     }
 
-    rpc get (GetUserRequest) returns (UserInfo) {
+    rpc get (UserRequest) returns (UserInfo) {
         option (google.api.http) = {
             post: "/identity/v2/user/get"
             body: "*"
@@ -123,7 +123,7 @@ service User {
     }
 }
 
-enum UserBackend {
+enum AuthType {
     NONE_BACKEND = 0;
     LOCAL = 1;
     EXTERNAL = 2;
@@ -181,7 +181,7 @@ message CreateUserRequest {
     string email = 4;
     // +optional
     UserType user_type = 5;
-    UserBackend backend = 6;
+    AuthType auth_type = 6;
     // en,ko
     // +optional
     string language = 7;
@@ -282,13 +282,6 @@ message UserRequest {
     string domain_id = 21;
 }
 
-message GetUserRequest {
-    string user_id = 11;
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
-}
-
 message UserSearchQuery {
     enum State {
         NONE = 0;
@@ -307,7 +300,7 @@ message UserSearchQuery {
     // +optional
     UserType user_type = 6;
     // +optional
-    UserBackend backend = 7;
+    AuthType auth_type = 7;
     // +optional
     string domain_id = 21;
     string workspace_id = 22;
@@ -336,7 +329,7 @@ message UserInfo {
     string email = 4;
     bool email_verified = 5;
     UserType user_type = 6;
-    UserBackend backend = 7;
+    AuthType auth_type = 7;
     RoleType role_type = 8;
     MFA mfa = 9;
     string language = 10;
