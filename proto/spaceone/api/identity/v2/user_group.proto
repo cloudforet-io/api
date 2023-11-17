@@ -56,7 +56,7 @@ service UserGroup {
         };
     }
 
-    rpc list (UserSearchQuery) returns (UserGroupsInfo) {
+    rpc list (UserGroupSearchQuery) returns (UserGroupsInfo) {
         option (google.api.http) = {
             post: "/identity/v2/user-group/list"
             body: "*"
@@ -102,7 +102,7 @@ message UsersUserGroupRequest {
     string workspace_id = 22;
 }
 
-message UserSearchQuery {
+message UserGroupSearchQuery {
     spaceone.api.core.v1.Query query = 1;
     // +optional
     string user_group_id = 2;
