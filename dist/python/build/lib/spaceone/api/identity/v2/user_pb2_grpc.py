@@ -78,7 +78,7 @@ class UserStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.identity.v2.User/get',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.GetUserRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -259,7 +259,7 @@ def add_UserServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.GetUserRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -498,7 +498,7 @@ class User(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/get',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.GetUserRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -441,7 +441,7 @@ func local_request_User_Delete_0(ctx context.Context, marshaler runtime.Marshale
 }
 
 func request_User_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.GetUserRequest
+	var protoReq extV2.UserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -458,7 +458,7 @@ func request_User_Get_0(ctx context.Context, marshaler runtime.Marshaler, client
 }
 
 func local_request_User_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.GetUserRequest
+	var protoReq extV2.UserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

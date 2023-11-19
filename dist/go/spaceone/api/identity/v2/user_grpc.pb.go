@@ -65,7 +65,7 @@ type UserClient interface {
 	Enable(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Disable(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Delete(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Get(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*UserInfo, error)
+	Get(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	List(ctx context.Context, in *UserSearchQuery, opts ...grpc.CallOption) (*UsersInfo, error)
 	Stat(ctx context.Context, in *UserStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -186,7 +186,7 @@ func (c *userClient) Delete(ctx context.Context, in *UserRequest, opts ...grpc.C
 	return out, nil
 }
 
-func (c *userClient) Get(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*UserInfo, error) {
+func (c *userClient) Get(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserInfo, error) {
 	out := new(UserInfo)
 	err := c.cc.Invoke(ctx, User_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -237,7 +237,7 @@ type UserServer interface {
 	Enable(context.Context, *UserRequest) (*UserInfo, error)
 	Disable(context.Context, *UserRequest) (*UserInfo, error)
 	Delete(context.Context, *UserRequest) (*empty.Empty, error)
-	Get(context.Context, *GetUserRequest) (*UserInfo, error)
+	Get(context.Context, *UserRequest) (*UserInfo, error)
 	List(context.Context, *UserSearchQuery) (*UsersInfo, error)
 	Stat(context.Context, *UserStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedUserServer()
@@ -283,7 +283,7 @@ func (UnimplementedUserServer) Disable(context.Context, *UserRequest) (*UserInfo
 func (UnimplementedUserServer) Delete(context.Context, *UserRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedUserServer) Get(context.Context, *GetUserRequest) (*UserInfo, error) {
+func (UnimplementedUserServer) Get(context.Context, *UserRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedUserServer) List(context.Context, *UserSearchQuery) (*UsersInfo, error) {
@@ -522,7 +522,7 @@ func _User_Delete_Handler(srv interface{}, ctx context.Context, dec func(interfa
 }
 
 func _User_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserRequest)
+	in := new(UserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -534,7 +534,7 @@ func _User_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 		FullMethod: User_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).Get(ctx, req.(*GetUserRequest))
+		return srv.(UserServer).Get(ctx, req.(*UserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

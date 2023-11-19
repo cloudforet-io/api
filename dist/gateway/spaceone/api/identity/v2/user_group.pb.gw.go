@@ -237,7 +237,7 @@ func local_request_UserGroup_Get_0(ctx context.Context, marshaler runtime.Marsha
 }
 
 func request_UserGroup_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserSearchQuery
+	var protoReq extV2.UserGroupSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -254,7 +254,7 @@ func request_UserGroup_List_0(ctx context.Context, marshaler runtime.Marshaler, 
 }
 
 func local_request_UserGroup_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserSearchQuery
+	var protoReq extV2.UserGroupSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

@@ -10,6 +10,29 @@
       "hasServices": true,
       "enums": [
         {
+          "name": "AuthType",
+          "longName": "AuthType",
+          "fullName": "spaceone.api.identity.v2.AuthType",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE_BACKEND",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "LOCAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "EXTERNAL",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "State",
           "longName": "MFA.State",
           "fullName": "spaceone.api.identity.v2.MFA.State",
@@ -27,29 +50,6 @@
             },
             {
               "name": "DISABLED",
-              "number": "2",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "UserBackend",
-          "longName": "UserBackend",
-          "fullName": "spaceone.api.identity.v2.UserBackend",
-          "description": "",
-          "values": [
-            {
-              "name": "NONE_BACKEND",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "LOCAL",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "EXTERNAL",
               "number": "2",
               "description": ""
             }
@@ -378,12 +378,12 @@
               "defaultValue": ""
             },
             {
-              "name": "backend",
+              "name": "auth_type",
               "description": "",
               "label": "",
-              "type": "UserBackend",
-              "longType": "UserBackend",
-              "fullType": "spaceone.api.identity.v2.UserBackend",
+              "type": "AuthType",
+              "longType": "AuthType",
+              "fullType": "spaceone.api.identity.v2.AuthType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -560,54 +560,6 @@
             {
               "name": "domain_id",
               "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "GetUserRequest",
-          "longName": "GetUserRequest",
-          "fullName": "spaceone.api.identity.v2.GetUserRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "user_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -918,12 +870,12 @@
               "defaultValue": ""
             },
             {
-              "name": "backend",
+              "name": "auth_type",
               "description": "",
               "label": "",
-              "type": "UserBackend",
-              "longType": "UserBackend",
-              "fullType": "spaceone.api.identity.v2.UserBackend",
+              "type": "AuthType",
+              "longType": "AuthType",
+              "fullType": "spaceone.api.identity.v2.AuthType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1230,12 +1182,12 @@
               "defaultValue": ""
             },
             {
-              "name": "backend",
+              "name": "auth_type",
               "description": "+optional",
               "label": "",
-              "type": "UserBackend",
-              "longType": "UserBackend",
-              "fullType": "spaceone.api.identity.v2.UserBackend",
+              "type": "AuthType",
+              "longType": "AuthType",
+              "fullType": "spaceone.api.identity.v2.AuthType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1698,9 +1650,9 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "GetUserRequest",
-              "requestLongType": "GetUserRequest",
-              "requestFullType": "spaceone.api.identity.v2.GetUserRequest",
+              "requestType": "UserRequest",
+              "requestLongType": "UserRequest",
+              "requestFullType": "spaceone.api.identity.v2.UserRequest",
               "requestStreaming": false,
               "responseType": "UserInfo",
               "responseLongType": "UserInfo",

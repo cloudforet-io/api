@@ -48,7 +48,7 @@ class UserGroupStub(object):
                 )
         self.list = channel.unary_unary(
                 '/spaceone.api.identity.v2.UserGroup/list',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__group__pb2.UserSearchQuery.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__group__pb2.UserGroupSearchQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__group__pb2.UserGroupsInfo.FromString,
                 )
         self.stat = channel.unary_unary(
@@ -144,7 +144,7 @@ def add_UserGroupServicer_to_server(servicer, server):
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__group__pb2.UserSearchQuery.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__group__pb2.UserGroupSearchQuery.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__group__pb2.UserGroupsInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
@@ -276,7 +276,7 @@ class UserGroup(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.UserGroup/list',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__group__pb2.UserSearchQuery.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__group__pb2.UserGroupSearchQuery.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_user__group__pb2.UserGroupsInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

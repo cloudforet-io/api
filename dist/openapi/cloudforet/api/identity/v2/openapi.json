@@ -65,6 +65,174 @@
              }}
          }
                 }
+     },"/identity/trusted-account/create": {
+       "post": {
+         "tags": ["identity > trusted-account"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |provider||string|True|\n |scope|DOMAIN, WORKSPACE |string|True|\n |domain_id||string|True|\n |tags||Struct||\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"provider" : {"type": "string","title": "PROVIDER" },"tags" : {"type": "object","title": "TAGS" },"scope" : {"type": "string","title": "SCOPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/trusted-account/update": {
+       "post": {
+         "tags": ["identity > trusted-account"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |trusted_service_account_id||string|True|\n |domain_id||string|True|\n |name||string||\n |data||Struct||\n |tags||Struct||\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/trusted-account/delete": {
+       "post": {
+         "tags": ["identity > trusted-account"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |trusted_service_account_id||string|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/trusted-account/get": {
+       "post": {
+         "tags": ["identity > trusted-account"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |trusted_service_account_id||string|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/trusted-account/list": {
+       "post": {
+         "tags": ["identity > trusted-account"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |trusted_service_account_id||string||\n |name||string||\n |provider||string||\n |scope|DOMAIN, WORKSPACE |string||\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID" },"name" : {"type": "string","title": "NAME" },"provider" : {"type": "string","title": "PROVIDER" },"scope" : {"type": "string","title": "SCOPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TrustedServiceAccountsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TrustedServiceAccountsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/trusted-account/stat": {
+       "post": {
+         "tags": ["identity > trusted-account"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/role-binding/create": {
        "post": {
          "tags": ["identity > role-binding"],
@@ -408,11 +576,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query|True|\n |user_id||string|True|\n |workspace_id||string|True|\n |name||string||\n |state|ENABLED, DISABLED, PENDING |string||\n |email||string||\n |user_type|USER, API_USER |string||\n |backend|LOCAL, EXTERNAL |string||\n |domain_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query|True|\n |domain_id||string|True|\n |user_group_id||string||\n |name||string||\n |workspace_id||string||\n |user_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"user_id" : {"type": "string","title": "USER_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"email" : {"type": "string","title": "EMAIL" },"user_type" : {"type": "string","title": "USER_TYPE" },"backend" : {"type": "string","title": "BACKEND" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"user_group_id" : {"type": "string","title": "USER_GROUP_ID" },"name" : {"type": "string","title": "NAME" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"user_id" : {"type": "string","title": "USER_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1005,11 +1173,11 @@
          "operationId" : "",
          "description": "### Description \nYou can create user. after create user you have to binding role to user.\nSee role-binding create api.\nExternal type user do not need password.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |backend|LOCAL, EXTERNAL |string|True|\n |reset_password|If reset_password is true, send email|boolean|True|\n |domain_id||string|True|\n |password|When backend is LOCAL, password is required. |string||\n |name||string||\n |email||string||\n |user_type|USER, API_USER |string||\n |language|en,ko |string||\n |timezone|UTC, Asia/Seoul |string||\n |tags||Struct||\n |role_binding||UserRoleBinding||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |auth_type|LOCAL, EXTERNAL |string|True|\n |reset_password|If reset_password is true, send email|boolean|True|\n |domain_id||string|True|\n |password|When backend is LOCAL, password is required. |string||\n |name||string||\n |email||string||\n |user_type|USER, API_USER |string||\n |language|en,ko |string||\n |timezone|UTC, Asia/Seoul |string||\n |tags||Struct||\n |role_binding||UserRoleBinding||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"password" : {"type": "string","title": "PASSWORD" },"name" : {"type": "string","title": "NAME" },"email" : {"type": "string","title": "EMAIL" },"user_type" : {"type": "string","title": "USER_TYPE" },"backend" : {"type": "string","title": "BACKEND" },"language" : {"type": "string","title": "LANGUAGE" },"timezone" : {"type": "string","title": "TIMEZONE" },"tags" : {"type": "object","title": "TAGS" },"reset_password" : {"type": "boolean","title": "RESET_PASSWORD" },"role_binding" : {"$ref": "#/components/schemas/UserRoleBinding","title": "ROLE_BINDING" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"password" : {"type": "string","title": "PASSWORD" },"name" : {"type": "string","title": "NAME" },"email" : {"type": "string","title": "EMAIL" },"user_type" : {"type": "string","title": "USER_TYPE" },"auth_type" : {"type": "string","title": "AUTH_TYPE" },"language" : {"type": "string","title": "LANGUAGE" },"timezone" : {"type": "string","title": "TIMEZONE" },"tags" : {"type": "object","title": "TAGS" },"reset_password" : {"type": "boolean","title": "RESET_PASSWORD" },"role_binding" : {"$ref": "#/components/schemas/UserRoleBinding","title": "ROLE_BINDING" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1335,11 +1503,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |domain_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1364,11 +1532,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query|True|\n |user_id||string|True|\n |workspace_id||string|True|\n |name||string||\n |state|ENABLED, DISABLED, PENDING |string||\n |email||string||\n |user_type|USER, API_USER |string||\n |backend|LOCAL, EXTERNAL |string||\n |domain_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query|True|\n |user_id||string|True|\n |workspace_id||string|True|\n |name||string||\n |state|ENABLED, DISABLED, PENDING |string||\n |email||string||\n |user_type|USER, API_USER |string||\n |auth_type|LOCAL, EXTERNAL |string||\n |domain_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"user_id" : {"type": "string","title": "USER_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"email" : {"type": "string","title": "EMAIL" },"user_type" : {"type": "string","title": "USER_TYPE" },"backend" : {"type": "string","title": "BACKEND" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"user_id" : {"type": "string","title": "USER_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"email" : {"type": "string","title": "EMAIL" },"user_type" : {"type": "string","title": "USER_TYPE" },"auth_type" : {"type": "string","title": "AUTH_TYPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2626,174 +2794,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/trusted-account/create": {
-       "post": {
-         "tags": ["identity > trusted-account"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |provider||string|True|\n |scope|DOMAIN, WORKSPACE |string|True|\n |domain_id||string|True|\n |tags||Struct||\n |workspace_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"provider" : {"type": "string","title": "PROVIDER" },"tags" : {"type": "object","title": "TAGS" },"scope" : {"type": "string","title": "SCOPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/trusted-account/update": {
-       "post": {
-         "tags": ["identity > trusted-account"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |trusted_service_account_id||string|True|\n |domain_id||string|True|\n |name||string||\n |data||Struct||\n |tags||Struct||\n |workspace_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/trusted-account/delete": {
-       "post": {
-         "tags": ["identity > trusted-account"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |trusted_service_account_id||string|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/trusted-account/get": {
-       "post": {
-         "tags": ["identity > trusted-account"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |trusted_service_account_id||string|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/trusted-account/list": {
-       "post": {
-         "tags": ["identity > trusted-account"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |trusted_service_account_id||string||\n |name||string||\n |provider||string||\n |scope|DOMAIN, WORKSPACE |string||\n |workspace_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID" },"name" : {"type": "string","title": "NAME" },"provider" : {"type": "string","title": "PROVIDER" },"scope" : {"type": "string","title": "SCOPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/TrustedServiceAccountsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/TrustedServiceAccountsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/trusted-account/stat": {
-       "post": {
-         "tags": ["identity > trusted-account"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
@@ -3017,6 +3017,49 @@
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
            }
+           ,        "CreateTrustedServiceAccountRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": ["name","data","provider","scope","domain_id"],
+                "title": "CreateTrustedServiceAccountRequest"
+           }
+           ,        "TrustedServiceAccountInfo": {
+         "properties" : {"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["trusted_service_account_id","name","data","provider","tags","scope","domain_id","workspace_id","created_at"],
+                "title": "TrustedServiceAccountInfo"
+           }
+           ,        "TrustedServiceAccountRequest": {
+         "properties" : {"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": ["trusted_service_account_id","domain_id"],
+                "title": "TrustedServiceAccountRequest"
+           }
+           ,        "TrustedServiceAccountSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"provider" : {"type": "string","title": "PROVIDER"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": ["domain_id"],
+                "title": "TrustedServiceAccountSearchQuery"
+           }
+           ,        "TrustedServiceAccountStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": ["query","domain_id"],
+                "title": "TrustedServiceAccountStatQuery"
+           }
+           ,        "TrustedServiceAccountsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"},
+               "type": "array","$ref": "#/components/schemas/TrustedServiceAccountInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "TrustedServiceAccountsInfo"
+           }
+           ,        "UpdateTrustedServiceAccountRequest": {
+         "properties" : {"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": ["trusted_service_account_id","domain_id"],
+                "title": "UpdateTrustedServiceAccountRequest"
+           }
            ,        "CreateRoleBindingRequest": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"is_managed_role" : {"type": "boolean","title": "IS_MANAGED_ROLE"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
@@ -3085,6 +3128,12 @@
          "required": ["user_group_id","domain_id","workspace_id"],
                 "title": "UserGroupRequest"
            }
+           ,        "UserGroupSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"user_group_id" : {"type": "string","title": "USER_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_id" : {"type": "string","title": "USER_ID"}},
+         "type": "object",
+         "required": ["query","domain_id"],
+                "title": "UserGroupSearchQuery"
+           }
            ,        "UserGroupStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
@@ -3097,12 +3146,6 @@
          "type": "object",
          "required": ["results","total_count"],
                 "title": "UserGroupsInfo"
-           }
-           ,        "UserSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"user_type" : {"type": "string","title": "USER_TYPE"},"backend" : {"type": "string","title": "BACKEND"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
-         "type": "object",
-         "required": ["query","user_id","workspace_id"],
-                "title": "UserSearchQuery"
            }
            ,        "UsersUserGroupRequest": {
          "properties" : {"user_group_id" : {"type": "string","title": "USER_GROUP_ID"},"users" : {"items": {"type": "string"},
@@ -3260,9 +3303,9 @@
                 "title": "ConfirmMFARequest"
            }
            ,        "CreateUserRequest": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"user_type" : {"type": "string","title": "USER_TYPE"},"backend" : {"type": "string","title": "BACKEND"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"},"reset_password" : {"type": "boolean","title": "RESET_PASSWORD"},"role_binding" : {"$ref": "#/components/schemas/UserRoleBinding","title": "ROLE_BINDING"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"user_type" : {"type": "string","title": "USER_TYPE"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"},"reset_password" : {"type": "boolean","title": "RESET_PASSWORD"},"role_binding" : {"$ref": "#/components/schemas/UserRoleBinding","title": "ROLE_BINDING"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["user_id","backend","reset_password","domain_id"],
+         "required": ["user_id","auth_type","reset_password","domain_id"],
                 "title": "CreateUserRequest"
            }
            ,        "DisableMFARequest": {
@@ -3276,12 +3319,6 @@
          "type": "object",
          "required": ["user_id","mfa_type","options","domain_id"],
                 "title": "EnableMFARequest"
-           }
-           ,        "GetUserRequest": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
-         "type": "object",
-         "required": ["user_id","domain_id"],
-                "title": "GetUserRequest"
            }
            ,        "MFA": {
          "properties" : {"state" : {"type": "string","title": "STATE"},"mfa_type" : {"type": "string","title": "MFA_TYPE"},"options" : {"type": "object","title": "OPTIONS"}},
@@ -3303,10 +3340,10 @@
                 "title": "UpdateUserRequest"
            }
            ,        "UserInfo": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"email_verified" : {"type": "boolean","title": "EMAIL_VERIFIED"},"user_type" : {"type": "string","title": "USER_TYPE"},"backend" : {"type": "string","title": "BACKEND"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"mfa" : {"$ref": "#/components/schemas/MFA","title": "MFA"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"required_actions" : {"items": {"type": "string"},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"email_verified" : {"type": "boolean","title": "EMAIL_VERIFIED"},"user_type" : {"type": "string","title": "USER_TYPE"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"mfa" : {"$ref": "#/components/schemas/MFA","title": "MFA"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"required_actions" : {"items": {"type": "string"},
                "type": "array","title": "REQUIRED_ACTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
          "type": "object",
-         "required": ["user_id","name","state","email","email_verified","user_type","backend","role_type","mfa","language","timezone","required_actions","tags","domain_id","created_at","last_accessed_at"],
+         "required": ["user_id","name","state","email","email_verified","user_type","auth_type","role_type","mfa","language","timezone","required_actions","tags","domain_id","created_at","last_accessed_at"],
                 "title": "UserInfo"
            }
            ,        "UserRequest": {
@@ -3320,6 +3357,12 @@
          "type": "object",
          "required": ["user_id","role_id","is_managed_role","scope"],
                 "title": "UserRoleBinding"
+           }
+           ,        "UserSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"user_type" : {"type": "string","title": "USER_TYPE"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": ["query","user_id","workspace_id"],
+                "title": "UserSearchQuery"
            }
            ,        "UserStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
@@ -3645,9 +3688,9 @@
                 "title": "DomainInfo"
            }
            ,        "DomainMetadataInfo": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"name" : {"type": "string","title": "NAME"},"metadata" : {"type": "object","title": "METADATA"}},
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"name" : {"type": "string","title": "NAME"},"external_auth_state" : {"type": "string","title": "EXTERNAL_AUTH_STATE"},"metadata" : {"type": "object","title": "METADATA"}},
          "type": "object",
-         "required": ["domain_id","name","metadata"],
+         "required": ["domain_id","name","external_auth_state","metadata"],
                 "title": "DomainMetadataInfo"
            }
            ,        "DomainRequest": {
@@ -3704,49 +3747,6 @@
          "type": "object",
          "required": ["domain_id","plugin_info"],
                 "title": "SetExternalAuthRequest"
-           }
-           ,        "CreateTrustedServiceAccountRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
-         "type": "object",
-         "required": ["name","data","provider","scope","domain_id"],
-                "title": "CreateTrustedServiceAccountRequest"
-           }
-           ,        "TrustedServiceAccountInfo": {
-         "properties" : {"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["trusted_service_account_id","name","data","provider","tags","scope","domain_id","workspace_id","created_at"],
-                "title": "TrustedServiceAccountInfo"
-           }
-           ,        "TrustedServiceAccountRequest": {
-         "properties" : {"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
-         "type": "object",
-         "required": ["trusted_service_account_id","domain_id"],
-                "title": "TrustedServiceAccountRequest"
-           }
-           ,        "TrustedServiceAccountSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"provider" : {"type": "string","title": "PROVIDER"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "TrustedServiceAccountSearchQuery"
-           }
-           ,        "TrustedServiceAccountStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
-         "type": "object",
-         "required": ["query","domain_id"],
-                "title": "TrustedServiceAccountStatQuery"
-           }
-           ,        "TrustedServiceAccountsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/TrustedServiceAccountInfo"},
-               "type": "array","$ref": "#/components/schemas/TrustedServiceAccountInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "TrustedServiceAccountsInfo"
-           }
-           ,        "UpdateTrustedServiceAccountRequest": {
-         "properties" : {"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
-         "type": "object",
-         "required": ["trusted_service_account_id","domain_id"],
-                "title": "UpdateTrustedServiceAccountRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},

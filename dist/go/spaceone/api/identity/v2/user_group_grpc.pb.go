@@ -44,7 +44,7 @@ type UserGroupClient interface {
 	AddUsers(ctx context.Context, in *UsersUserGroupRequest, opts ...grpc.CallOption) (*UserGroupInfo, error)
 	RemoveUsers(ctx context.Context, in *UsersUserGroupRequest, opts ...grpc.CallOption) (*UserGroupInfo, error)
 	Get(ctx context.Context, in *UserGroupRequest, opts ...grpc.CallOption) (*UserGroupInfo, error)
-	List(ctx context.Context, in *UserSearchQuery, opts ...grpc.CallOption) (*UserGroupsInfo, error)
+	List(ctx context.Context, in *UserGroupSearchQuery, opts ...grpc.CallOption) (*UserGroupsInfo, error)
 	Stat(ctx context.Context, in *UserGroupStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
@@ -110,7 +110,7 @@ func (c *userGroupClient) Get(ctx context.Context, in *UserGroupRequest, opts ..
 	return out, nil
 }
 
-func (c *userGroupClient) List(ctx context.Context, in *UserSearchQuery, opts ...grpc.CallOption) (*UserGroupsInfo, error) {
+func (c *userGroupClient) List(ctx context.Context, in *UserGroupSearchQuery, opts ...grpc.CallOption) (*UserGroupsInfo, error) {
 	out := new(UserGroupsInfo)
 	err := c.cc.Invoke(ctx, UserGroup_List_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -138,7 +138,7 @@ type UserGroupServer interface {
 	AddUsers(context.Context, *UsersUserGroupRequest) (*UserGroupInfo, error)
 	RemoveUsers(context.Context, *UsersUserGroupRequest) (*UserGroupInfo, error)
 	Get(context.Context, *UserGroupRequest) (*UserGroupInfo, error)
-	List(context.Context, *UserSearchQuery) (*UserGroupsInfo, error)
+	List(context.Context, *UserGroupSearchQuery) (*UserGroupsInfo, error)
 	Stat(context.Context, *UserGroupStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedUserGroupServer()
 }
@@ -165,7 +165,7 @@ func (UnimplementedUserGroupServer) RemoveUsers(context.Context, *UsersUserGroup
 func (UnimplementedUserGroupServer) Get(context.Context, *UserGroupRequest) (*UserGroupInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedUserGroupServer) List(context.Context, *UserSearchQuery) (*UserGroupsInfo, error) {
+func (UnimplementedUserGroupServer) List(context.Context, *UserGroupSearchQuery) (*UserGroupsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 func (UnimplementedUserGroupServer) Stat(context.Context, *UserGroupStatQuery) (*_struct.Struct, error) {
@@ -293,7 +293,7 @@ func _UserGroup_Get_Handler(srv interface{}, ctx context.Context, dec func(inter
 }
 
 func _UserGroup_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserSearchQuery)
+	in := new(UserGroupSearchQuery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -305,7 +305,7 @@ func _UserGroup_List_Handler(srv interface{}, ctx context.Context, dec func(inte
 		FullMethod: UserGroup_List_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserGroupServer).List(ctx, req.(*UserSearchQuery))
+		return srv.(UserGroupServer).List(ctx, req.(*UserGroupSearchQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }

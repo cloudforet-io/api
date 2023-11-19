@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v3.6.1
-// source: spaceone/api/identity/v2/trusted_account.proto
+// source: spaceone/api/identity/v2/trusted_service_account.proto
 
 package v2
 
@@ -292,5 +292,5 @@ var TrustedServiceAccount_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "spaceone/api/identity/v2/trusted_account.proto",
+	Metadata: "spaceone/api/identity/v2/trusted_service_account.proto",
 }

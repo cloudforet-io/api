@@ -4,7 +4,7 @@ import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.identity.v2 import trusted_account_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2
+from spaceone.api.identity.v2 import trusted_service_account_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2
 
 
 class TrustedServiceAccountStub(object):
@@ -18,32 +18,32 @@ class TrustedServiceAccountStub(object):
         """
         self.create = channel.unary_unary(
                 '/spaceone.api.identity.v2.TrustedServiceAccount/create',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.CreateTrustedServiceAccountRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountInfo.FromString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.CreateTrustedServiceAccountRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.FromString,
                 )
         self.update = channel.unary_unary(
                 '/spaceone.api.identity.v2.TrustedServiceAccount/update',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.UpdateTrustedServiceAccountRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountInfo.FromString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.UpdateTrustedServiceAccountRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.FromString,
                 )
         self.delete = channel.unary_unary(
                 '/spaceone.api.identity.v2.TrustedServiceAccount/delete',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.identity.v2.TrustedServiceAccount/get',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountInfo.FromString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.FromString,
                 )
         self.list = channel.unary_unary(
                 '/spaceone.api.identity.v2.TrustedServiceAccount/list',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountSearchQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountsInfo.FromString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountSearchQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountsInfo.FromString,
                 )
         self.stat = channel.unary_unary(
                 '/spaceone.api.identity.v2.TrustedServiceAccount/stat',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountStatQuery.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountStatQuery.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 )
 
@@ -92,32 +92,32 @@ def add_TrustedServiceAccountServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'create': grpc.unary_unary_rpc_method_handler(
                     servicer.create,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.CreateTrustedServiceAccountRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.CreateTrustedServiceAccountRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.UpdateTrustedServiceAccountRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.UpdateTrustedServiceAccountRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountSearchQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountsInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountSearchQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountsInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountStatQuery.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountStatQuery.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
@@ -142,8 +142,8 @@ class TrustedServiceAccount(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedServiceAccount/create',
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.CreateTrustedServiceAccountRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountInfo.FromString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.CreateTrustedServiceAccountRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -159,8 +159,8 @@ class TrustedServiceAccount(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedServiceAccount/update',
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.UpdateTrustedServiceAccountRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountInfo.FromString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.UpdateTrustedServiceAccountRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -176,7 +176,7 @@ class TrustedServiceAccount(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedServiceAccount/delete',
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -193,8 +193,8 @@ class TrustedServiceAccount(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedServiceAccount/get',
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountInfo.FromString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -210,8 +210,8 @@ class TrustedServiceAccount(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedServiceAccount/list',
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountSearchQuery.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountsInfo.FromString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountSearchQuery.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountsInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -227,7 +227,7 @@ class TrustedServiceAccount(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedServiceAccount/stat',
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedServiceAccountStatQuery.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountStatQuery.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
