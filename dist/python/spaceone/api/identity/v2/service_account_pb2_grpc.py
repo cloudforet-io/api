@@ -31,11 +31,6 @@ class ServiceAccountStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ChangeTrustedAccountRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.FromString,
                 )
-        self.change_project = channel.unary_unary(
-                '/spaceone.api.identity.v2.ServiceAccount/change_project',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ChangeProjectRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.FromString,
-                )
         self.delete = channel.unary_unary(
                 '/spaceone.api.identity.v2.ServiceAccount/delete',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.SerializeToString,
@@ -74,12 +69,6 @@ class ServiceAccountServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def change_trusted_service_account(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def change_project(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -125,11 +114,6 @@ def add_ServiceAccountServicer_to_server(servicer, server):
             'change_trusted_service_account': grpc.unary_unary_rpc_method_handler(
                     servicer.change_trusted_service_account,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ChangeTrustedAccountRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.SerializeToString,
-            ),
-            'change_project': grpc.unary_unary_rpc_method_handler(
-                    servicer.change_project,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ChangeProjectRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
@@ -209,23 +193,6 @@ class ServiceAccount(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ServiceAccount/change_trusted_service_account',
             spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ChangeTrustedAccountRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def change_project(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ServiceAccount/change_project',
-            spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ChangeProjectRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

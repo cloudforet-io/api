@@ -1619,11 +1619,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n |domain_id||string|True|\n |workspace_id||string|True|\n |name||string||\n |data||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n |domain_id||string|True|\n |workspace_id||string|True|\n |name||string||\n |data||Struct||\n |tags||Struct||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1653,35 +1653,6 @@
              "application/json": {
                "schema": {
                  "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceAccountInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceAccountInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/service-account/change-project": {
-       "post": {
-         "tags": ["identity > service-account"],
-         "summary": "Change Project",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n |project_id||string|True|\n |domain_id||string|True|\n |workspace_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -3383,12 +3354,6 @@
          "required": ["user_id","domain_id"],
                 "title": "VerifyEmailRequest"
            }
-           ,        "ChangeProjectRequest": {
-         "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
-         "type": "object",
-         "required": ["service_account_id","project_id","domain_id","workspace_id"],
-                "title": "ChangeProjectRequest"
-           }
            ,        "ChangeTrustedAccountRequest": {
          "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"trusted_service_account_id" : {"type": "string","title": "TRUSTED_SERVICE_ACCOUNT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
@@ -3433,7 +3398,7 @@
                 "title": "ServiceAccountsInfo"
            }
            ,        "UpdateServiceAccountRequest": {
-         "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": ["service_account_id","domain_id","workspace_id"],
                 "title": "UpdateServiceAccountRequest"
