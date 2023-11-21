@@ -7,453 +7,7 @@
    "info": {
      "title": "Dashboard API"
    },
-   "paths":{"/dashboard/domain-dashboard/create": {
-       "post": {
-         "tags": ["dashboard > domain-dashboard"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |viewers|PUBLIC, PRIVATE |string|True|\n |domain_id||string|True|\n |layouts||array||\n |variables||Struct||\n |settings||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"viewers" : {"type": "string","title": "VIEWERS" },"layouts" : {"type": "array","title": "LAYOUTS" },"variables" : {"type": "object","title": "VARIABLES" },"settings" : {"type": "object","title": "SETTINGS" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainDashboardInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainDashboardInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/domain-dashboard/update": {
-       "post": {
-         "tags": ["dashboard > domain-dashboard"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |domain_id||string|True|\n |name||string||\n |layouts||array||\n |variables||Struct||\n |settings||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"layouts" : {"type": "array","title": "LAYOUTS" },"variables" : {"type": "object","title": "VARIABLES" },"settings" : {"type": "object","title": "SETTINGS" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainDashboardInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainDashboardInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/domain-dashboard/delete": {
-       "post": {
-         "tags": ["dashboard > domain-dashboard"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/domain-dashboard/get": {
-       "post": {
-         "tags": ["dashboard > domain-dashboard"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainDashboardInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainDashboardInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/domain-dashboard/delete-version": {
-       "post": {
-         "tags": ["dashboard > domain-dashboard"],
-         "summary": "Delete Version",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |version||int|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/domain-dashboard/revert-version": {
-       "post": {
-         "tags": ["dashboard > domain-dashboard"],
-         "summary": "Revert Version",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |version||int|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainDashboardInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainDashboardInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/domain-dashboard/get-version": {
-       "post": {
-         "tags": ["dashboard > domain-dashboard"],
-         "summary": "Get Version",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |version||int|True|\n |domain_id||string|True|\n |only||array||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainDashboardVersionInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainDashboardVersionInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/domain-dashboard/list-versions": {
-       "post": {
-         "tags": ["dashboard > domain-dashboard"],
-         "summary": "List Versions",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |domain_id||string|True|\n |query||Query||\n |version||int||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainDashboardVersionsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainDashboardVersionsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/domain-dashboard/list": {
-       "post": {
-         "tags": ["dashboard > domain-dashboard"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |domain_dashboard_id||string||\n |name||string||\n |viewers|PUBLIC, PRIVATE |string||\n |user_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"viewers" : {"type": "string","title": "VIEWERS" },"user_id" : {"type": "string","title": "USER_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainDashboardsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainDashboardsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/domain-dashboard/stat": {
-       "post": {
-         "tags": ["dashboard > domain-dashboard"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/custom-widget/create": {
-       "post": {
-         "tags": ["dashboard > custom-widget"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_name||string|True|\n |title||string|True|\n |options||Struct|True|\n |domain_id||string|True|\n |settings||Struct||\n |inherit_options||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"widget_name" : {"type": "string","title": "WIDGET_NAME" },"title" : {"type": "string","title": "TITLE" },"options" : {"type": "object","title": "OPTIONS" },"settings" : {"type": "object","title": "SETTINGS" },"inherit_options" : {"type": "object","title": "INHERIT_OPTIONS" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CustomWidgetInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CustomWidgetInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/custom-widget/update": {
-       "post": {
-         "tags": ["dashboard > custom-widget"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |custom_widget_id||string|True|\n |domain_id||string|True|\n |title||string||\n |options||Struct||\n |settings||Struct||\n |inherit_options||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"custom_widget_id" : {"type": "string","title": "CUSTOM_WIDGET_ID" },"title" : {"type": "string","title": "TITLE" },"options" : {"type": "object","title": "OPTIONS" },"settings" : {"type": "object","title": "SETTINGS" },"inherit_options" : {"type": "object","title": "INHERIT_OPTIONS" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CustomWidgetInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CustomWidgetInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/custom-widget/delete": {
-       "post": {
-         "tags": ["dashboard > custom-widget"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |custom_widget_id||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"custom_widget_id" : {"type": "string","title": "CUSTOM_WIDGET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/custom-widget/get": {
-       "post": {
-         "tags": ["dashboard > custom-widget"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |custom_widget_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"custom_widget_id" : {"type": "string","title": "CUSTOM_WIDGET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CustomWidgetInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CustomWidgetInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/custom-widget/list": {
-       "post": {
-         "tags": ["dashboard > custom-widget"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |custom_widget_id||string||\n |widget_name||string||\n |title||string||\n |user_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"custom_widget_id" : {"type": "string","title": "CUSTOM_WIDGET_ID" },"widget_name" : {"type": "string","title": "WIDGET_NAME" },"title" : {"type": "string","title": "TITLE" },"user_id" : {"type": "string","title": "USER_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CustomWidgetsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CustomWidgetsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/custom-widget/stat": {
-       "post": {
-         "tags": ["dashboard > custom-widget"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/project-dashboard/create": {
+   "paths":{"/dashboard/project-dashboard/create": {
        "post": {
          "tags": ["dashboard > project-dashboard"],
          "summary": "Create",
@@ -731,91 +285,537 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/custom-widget/create": {
+       "post": {
+         "tags": ["dashboard > custom-widget"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_name||string|True|\n |title||string|True|\n |options||Struct|True|\n |domain_id||string|True|\n |settings||Struct||\n |inherit_options||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"widget_name" : {"type": "string","title": "WIDGET_NAME" },"title" : {"type": "string","title": "TITLE" },"options" : {"type": "object","title": "OPTIONS" },"settings" : {"type": "object","title": "SETTINGS" },"inherit_options" : {"type": "object","title": "INHERIT_OPTIONS" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CustomWidgetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CustomWidgetInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/custom-widget/update": {
+       "post": {
+         "tags": ["dashboard > custom-widget"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |custom_widget_id||string|True|\n |domain_id||string|True|\n |title||string||\n |options||Struct||\n |settings||Struct||\n |inherit_options||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"custom_widget_id" : {"type": "string","title": "CUSTOM_WIDGET_ID" },"title" : {"type": "string","title": "TITLE" },"options" : {"type": "object","title": "OPTIONS" },"settings" : {"type": "object","title": "SETTINGS" },"inherit_options" : {"type": "object","title": "INHERIT_OPTIONS" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CustomWidgetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CustomWidgetInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/custom-widget/delete": {
+       "post": {
+         "tags": ["dashboard > custom-widget"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |custom_widget_id||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"custom_widget_id" : {"type": "string","title": "CUSTOM_WIDGET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/custom-widget/get": {
+       "post": {
+         "tags": ["dashboard > custom-widget"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |custom_widget_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"custom_widget_id" : {"type": "string","title": "CUSTOM_WIDGET_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CustomWidgetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CustomWidgetInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/custom-widget/list": {
+       "post": {
+         "tags": ["dashboard > custom-widget"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |custom_widget_id||string||\n |widget_name||string||\n |title||string||\n |user_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"custom_widget_id" : {"type": "string","title": "CUSTOM_WIDGET_ID" },"widget_name" : {"type": "string","title": "WIDGET_NAME" },"title" : {"type": "string","title": "TITLE" },"user_id" : {"type": "string","title": "USER_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CustomWidgetsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CustomWidgetsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/custom-widget/stat": {
+       "post": {
+         "tags": ["dashboard > custom-widget"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/domain-dashboard/create": {
+       "post": {
+         "tags": ["dashboard > domain-dashboard"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |viewers|PUBLIC, PRIVATE |string|True|\n |domain_id||string|True|\n |layouts||array||\n |variables||Struct||\n |settings||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"viewers" : {"type": "string","title": "VIEWERS" },"layouts" : {"type": "array","title": "LAYOUTS" },"variables" : {"type": "object","title": "VARIABLES" },"settings" : {"type": "object","title": "SETTINGS" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DomainDashboardInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DomainDashboardInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/domain-dashboard/update": {
+       "post": {
+         "tags": ["dashboard > domain-dashboard"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |domain_id||string|True|\n |name||string||\n |layouts||array||\n |variables||Struct||\n |settings||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"layouts" : {"type": "array","title": "LAYOUTS" },"variables" : {"type": "object","title": "VARIABLES" },"settings" : {"type": "object","title": "SETTINGS" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DomainDashboardInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DomainDashboardInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/domain-dashboard/delete": {
+       "post": {
+         "tags": ["dashboard > domain-dashboard"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/domain-dashboard/get": {
+       "post": {
+         "tags": ["dashboard > domain-dashboard"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DomainDashboardInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DomainDashboardInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/domain-dashboard/delete-version": {
+       "post": {
+         "tags": ["dashboard > domain-dashboard"],
+         "summary": "Delete Version",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |version||int|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/domain-dashboard/revert-version": {
+       "post": {
+         "tags": ["dashboard > domain-dashboard"],
+         "summary": "Revert Version",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |version||int|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DomainDashboardInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DomainDashboardInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/domain-dashboard/get-version": {
+       "post": {
+         "tags": ["dashboard > domain-dashboard"],
+         "summary": "Get Version",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |version||int|True|\n |domain_id||string|True|\n |only||array||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DomainDashboardVersionInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DomainDashboardVersionInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/domain-dashboard/list-versions": {
+       "post": {
+         "tags": ["dashboard > domain-dashboard"],
+         "summary": "List Versions",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_dashboard_id||string|True|\n |domain_id||string|True|\n |query||Query||\n |version||int||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DomainDashboardVersionsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DomainDashboardVersionsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/domain-dashboard/list": {
+       "post": {
+         "tags": ["dashboard > domain-dashboard"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |domain_dashboard_id||string||\n |name||string||\n |viewers|PUBLIC, PRIVATE |string||\n |user_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"viewers" : {"type": "string","title": "VIEWERS" },"user_id" : {"type": "string","title": "USER_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DomainDashboardsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DomainDashboardsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/domain-dashboard/stat": {
+       "post": {
+         "tags": ["dashboard > domain-dashboard"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
      "schemas": {
-     "CreateDomainDashboardRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"viewers" : {"type": "string","title": "VIEWERS"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+     "CreateProjectDashboardRequest": {
+         "properties" : {"project_id" : {"type": "string","title": "PROJECT_ID"},"name" : {"type": "string","title": "NAME"},"viewers" : {"type": "string","title": "VIEWERS"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["name","viewers","domain_id"],
-                "title": "CreateDomainDashboardRequest"
+         "required": ["project_id","name","viewers","domain_id"],
+                "title": "CreateProjectDashboardRequest"
            }
-           ,        "DomainDashboardInfo": {
-         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"viewers" : {"type": "string","title": "VIEWERS"},"version" : {"type": "integer","title": "VERSION"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "GetProjectDashboardRequest": {
+         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"}},
          "type": "object",
-         "required": ["domain_dashboard_id","name","viewers","version","layouts","variables","settings","variables_schema","labels","tags","user_id","domain_id","created_at","updated_at"],
-                "title": "DomainDashboardInfo"
+         "required": ["project_dashboard_id","domain_id"],
+                "title": "GetProjectDashboardRequest"
            }
-           ,        "DomainDashboardQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"viewers" : {"type": "string","title": "VIEWERS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "GetProjectDashboardVersionRequest": {
+         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"}},
+         "type": "object",
+         "required": ["project_dashboard_id","version","domain_id"],
+                "title": "GetProjectDashboardVersionRequest"
+           }
+           ,        "ProjectDashboardInfo": {
+         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"name" : {"type": "string","title": "NAME"},"viewers" : {"type": "string","title": "VIEWERS"},"version" : {"type": "integer","title": "VERSION"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["project_dashboard_id","project_id","name","viewers","version","layouts","variables","settings","variables_schema","labels","tags","user_id","domain_id","created_at","updated_at"],
+                "title": "ProjectDashboardInfo"
+           }
+           ,        "ProjectDashboardQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"name" : {"type": "string","title": "NAME"},"viewers" : {"type": "string","title": "VIEWERS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["domain_id"],
-                "title": "DomainDashboardQuery"
+                "title": "ProjectDashboardQuery"
            }
-           ,        "DomainDashboardRequest": {
-         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "ProjectDashboardRequest": {
+         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["domain_dashboard_id","domain_id"],
-                "title": "DomainDashboardRequest"
+         "required": ["project_dashboard_id","domain_id"],
+                "title": "ProjectDashboardRequest"
            }
-           ,        "DomainDashboardStatQuery": {
+           ,        "ProjectDashboardStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["query","domain_id"],
-                "title": "DomainDashboardStatQuery"
+                "title": "ProjectDashboardStatQuery"
            }
-           ,        "DomainDashboardVersionInfo": {
-         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"latest" : {"type": "boolean","title": "LATEST"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+           ,        "ProjectDashboardVersionInfo": {
+         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"latest" : {"type": "boolean","title": "LATEST"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["domain_dashboard_id","version","latest","layouts","variables","settings","variables_schema","domain_id","created_at"],
-                "title": "DomainDashboardVersionInfo"
+         "required": ["project_dashboard_id","version","latest","layouts","variables","settings","variables_schema","domain_id","created_at"],
+                "title": "ProjectDashboardVersionInfo"
            }
-           ,        "DomainDashboardVersionQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "ProjectDashboardVersionQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["domain_dashboard_id","domain_id"],
-                "title": "DomainDashboardVersionQuery"
+         "required": ["project_dashboard_id","domain_id"],
+                "title": "ProjectDashboardVersionQuery"
            }
-           ,        "DomainDashboardVersionRequest": {
-         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "ProjectDashboardVersionRequest": {
+         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["domain_dashboard_id","version","domain_id"],
-                "title": "DomainDashboardVersionRequest"
+         "required": ["project_dashboard_id","version","domain_id"],
+                "title": "ProjectDashboardVersionRequest"
            }
-           ,        "DomainDashboardVersionsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/DomainDashboardVersionInfo"},
-               "type": "array","$ref": "#/components/schemas/DomainDashboardVersionInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "DomainDashboardVersionsInfo"
-           }
-           ,        "DomainDashboardsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/DomainDashboardInfo"},
-               "type": "array","$ref": "#/components/schemas/DomainDashboardInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "ProjectDashboardVersionsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ProjectDashboardVersionInfo"},
+               "type": "array","$ref": "#/components/schemas/ProjectDashboardVersionInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "DomainDashboardsInfo"
+                "title": "ProjectDashboardVersionsInfo"
            }
-           ,        "GetDomainDashboardRequest": {
-         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
+           ,        "ProjectDashboardsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ProjectDashboardInfo"},
+               "type": "array","$ref": "#/components/schemas/ProjectDashboardInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
-         "required": ["domain_dashboard_id","domain_id"],
-                "title": "GetDomainDashboardRequest"
+         "required": ["results","total_count"],
+                "title": "ProjectDashboardsInfo"
            }
-           ,        "GetDomainDashboardVersionRequest": {
-         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
+           ,        "UpdateProjectDashboardRequest": {
+         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["domain_dashboard_id","version","domain_id"],
-                "title": "GetDomainDashboardVersionRequest"
-           }
-           ,        "UpdateDomainDashboardRequest": {
-         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_dashboard_id","domain_id"],
-                "title": "UpdateDomainDashboardRequest"
+         "required": ["project_dashboard_id","domain_id"],
+                "title": "UpdateProjectDashboardRequest"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -986,12 +986,6 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
-         "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
-           }
            ,        "AuthenticationRequest": {
          "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
@@ -1023,6 +1017,12 @@
          "type": "object",
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
+           }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "CreateCustomWidgetRequest": {
          "properties" : {"widget_name" : {"type": "string","title": "WIDGET_NAME"},"title" : {"type": "string","title": "TITLE"},"options" : {"type": "object","title": "OPTIONS"},"settings" : {"type": "object","title": "SETTINGS"},"inherit_options" : {"type": "object","title": "INHERIT_OPTIONS"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
@@ -1074,87 +1074,87 @@
          "required": ["custom_widget_id","domain_id"],
                 "title": "UpdateCustomWidgetRequest"
            }
-           ,        "CreateProjectDashboardRequest": {
-         "properties" : {"project_id" : {"type": "string","title": "PROJECT_ID"},"name" : {"type": "string","title": "NAME"},"viewers" : {"type": "string","title": "VIEWERS"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "CreateDomainDashboardRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"viewers" : {"type": "string","title": "VIEWERS"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["project_id","name","viewers","domain_id"],
-                "title": "CreateProjectDashboardRequest"
+         "required": ["name","viewers","domain_id"],
+                "title": "CreateDomainDashboardRequest"
            }
-           ,        "GetProjectDashboardRequest": {
-         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
+           ,        "DomainDashboardInfo": {
+         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"viewers" : {"type": "string","title": "VIEWERS"},"version" : {"type": "integer","title": "VERSION"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["project_dashboard_id","domain_id"],
-                "title": "GetProjectDashboardRequest"
+         "required": ["domain_dashboard_id","name","viewers","version","layouts","variables","settings","variables_schema","labels","tags","user_id","domain_id","created_at","updated_at"],
+                "title": "DomainDashboardInfo"
            }
-           ,        "GetProjectDashboardVersionRequest": {
-         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
-         "type": "object",
-         "required": ["project_dashboard_id","version","domain_id"],
-                "title": "GetProjectDashboardVersionRequest"
-           }
-           ,        "ProjectDashboardInfo": {
-         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"name" : {"type": "string","title": "NAME"},"viewers" : {"type": "string","title": "VIEWERS"},"version" : {"type": "integer","title": "VERSION"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
-         "type": "object",
-         "required": ["project_dashboard_id","project_id","name","viewers","version","layouts","variables","settings","variables_schema","labels","tags","user_id","domain_id","created_at","updated_at"],
-                "title": "ProjectDashboardInfo"
-           }
-           ,        "ProjectDashboardQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"name" : {"type": "string","title": "NAME"},"viewers" : {"type": "string","title": "VIEWERS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "DomainDashboardQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"viewers" : {"type": "string","title": "VIEWERS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["domain_id"],
-                "title": "ProjectDashboardQuery"
+                "title": "DomainDashboardQuery"
            }
-           ,        "ProjectDashboardRequest": {
-         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "DomainDashboardRequest": {
+         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["project_dashboard_id","domain_id"],
-                "title": "ProjectDashboardRequest"
+         "required": ["domain_dashboard_id","domain_id"],
+                "title": "DomainDashboardRequest"
            }
-           ,        "ProjectDashboardStatQuery": {
+           ,        "DomainDashboardStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["query","domain_id"],
-                "title": "ProjectDashboardStatQuery"
+                "title": "DomainDashboardStatQuery"
            }
-           ,        "ProjectDashboardVersionInfo": {
-         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"latest" : {"type": "boolean","title": "LATEST"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+           ,        "DomainDashboardVersionInfo": {
+         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"latest" : {"type": "boolean","title": "LATEST"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["project_dashboard_id","version","latest","layouts","variables","settings","variables_schema","domain_id","created_at"],
-                "title": "ProjectDashboardVersionInfo"
+         "required": ["domain_dashboard_id","version","latest","layouts","variables","settings","variables_schema","domain_id","created_at"],
+                "title": "DomainDashboardVersionInfo"
            }
-           ,        "ProjectDashboardVersionQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "DomainDashboardVersionQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["project_dashboard_id","domain_id"],
-                "title": "ProjectDashboardVersionQuery"
+         "required": ["domain_dashboard_id","domain_id"],
+                "title": "DomainDashboardVersionQuery"
            }
-           ,        "ProjectDashboardVersionRequest": {
-         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "DomainDashboardVersionRequest": {
+         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["project_dashboard_id","version","domain_id"],
-                "title": "ProjectDashboardVersionRequest"
+         "required": ["domain_dashboard_id","version","domain_id"],
+                "title": "DomainDashboardVersionRequest"
            }
-           ,        "ProjectDashboardVersionsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ProjectDashboardVersionInfo"},
-               "type": "array","$ref": "#/components/schemas/ProjectDashboardVersionInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "ProjectDashboardVersionsInfo"
-           }
-           ,        "ProjectDashboardsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ProjectDashboardInfo"},
-               "type": "array","$ref": "#/components/schemas/ProjectDashboardInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "DomainDashboardVersionsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/DomainDashboardVersionInfo"},
+               "type": "array","$ref": "#/components/schemas/DomainDashboardVersionInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "ProjectDashboardsInfo"
+                "title": "DomainDashboardVersionsInfo"
            }
-           ,        "UpdateProjectDashboardRequest": {
-         "properties" : {"project_dashboard_id" : {"type": "string","title": "PROJECT_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "DomainDashboardsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/DomainDashboardInfo"},
+               "type": "array","$ref": "#/components/schemas/DomainDashboardInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
-         "required": ["project_dashboard_id","domain_id"],
-                "title": "UpdateProjectDashboardRequest"
+         "required": ["results","total_count"],
+                "title": "DomainDashboardsInfo"
+           }
+           ,        "GetDomainDashboardRequest": {
+         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"}},
+         "type": "object",
+         "required": ["domain_dashboard_id","domain_id"],
+                "title": "GetDomainDashboardRequest"
+           }
+           ,        "GetDomainDashboardVersionRequest": {
+         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"}},
+         "type": "object",
+         "required": ["domain_dashboard_id","version","domain_id"],
+                "title": "GetDomainDashboardVersionRequest"
+           }
+           ,        "UpdateDomainDashboardRequest": {
+         "properties" : {"domain_dashboard_id" : {"type": "string","title": "DOMAIN_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["domain_dashboard_id","domain_id"],
+                "title": "UpdateDomainDashboardRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},

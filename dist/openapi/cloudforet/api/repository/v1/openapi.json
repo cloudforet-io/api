@@ -276,105 +276,20 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/policy/create": {
+     },"/repository/repository/get": {
        "post": {
-         "tags": ["repository > policy"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new Policy. The parameter `policy_id`, an identifier of Policy resources, can only include lowercase alphabets, numbers, and hyphens(-). The parameter `permissions` is a list type data describing page access permissions.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |permissions||array|True|\n |policy_id||string|True|\n |domain_id||string|True|\n |labels||array||\n |tags||Struct||\n |project_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"permissions" : {"items": {}, "type": "array","title": "PERMISSIONS" },"policy_id" : {"type": "string","title": "POLICY_ID" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"project_id" : {"type": "string","title": "PROJECT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"policy_id\": \"policy-custom-full-acess\",\n   \"name\": \"Full Access\",\n   \"permissions\": [\"*\"],\n   \"labels\": [],\n   \"tags\": {},\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PolicyInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PolicyInfo"},"Default Example":{
-                     "value": "{\n   \"policy_id\": \"policy-custom-full-acess\",\n   \"name\": \"Full Access\",\n   \"state\": \"ENABLED\",\n   \"permissions\": [\n       \"*\"\n   ],\n   \"labels\": [],\n   \"tags\": {},\n   \"repository_info\": {\n       \"repository_id\": \"repo-123456789012\",\n       \"name\": \"Local\",\n       \"repository_type\": \"local\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-01-01T06:45:04.582Z\",\n   \"updated_at\": \"2022-01-01T06:45:04.582Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/policy/update": {
-       "post": {
-         "tags": ["repository > policy"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \nUpdates a specific Policy. You can make changes in Policy settings, including `name`, `labels`, `tags`, and `permissions`. The parameter `policy_id` cannot be updated.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |policy_id||string|True|\n |domain_id||string|True|\n |name||string||\n |permissions||array||\n |labels||array||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"policy_id" : {"type": "string","title": "POLICY_ID" },"name" : {"type": "string","title": "NAME" },"permissions" : {"items": {}, "type": "array","title": "PERMISSIONS" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"policy_id\": \"policy-custom-full-acess\",\n   \"name\": \"Full Access\",\n   \"permissions\": [\"*\"],\n   \"labels\": [],\n   \"tags\": {},\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PolicyInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PolicyInfo"},"Default Example":{
-                     "value": "{\n   \"policy_id\": \"policy-custom-full-acess\",\n   \"name\": \"Full Access\",\n   \"state\": \"ENABLED\",\n   \"permissions\": [\n       \"*\"\n   ],\n   \"labels\": [],\n   \"tags\": {},\n   \"repository_info\": {\n       \"repository_id\": \"repo-123456789012\",\n       \"name\": \"Local\",\n       \"repository_type\": \"local\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-01-01T06:45:04.582Z\",\n   \"updated_at\": \"2022-01-01T06:45:04.582Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/policy/delete": {
-       "post": {
-         "tags": ["repository > policy"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \nDeletes a specific Policy. You must specify the `policy_id` of the Policy to delete, as the `policy_id` is an identifier of Policy resources.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |policy_id||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"policy_id" : {"type": "string","title": "POLICY_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"policy_id\": \"policy-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/policy/get": {
-       "post": {
-         "tags": ["repository > policy"],
+         "tags": ["repository > repository"],
          "summary": "Get",
          "operationId" : "",
-         "description": "### Description \nGets a specific Policy. You must specify the `policy_id` of the Policy to get, as the `policy_id` is an identifier of Policy resources. You can use the parameter `repository_id` to limit the scope of the method to a specific Repository.",
+         "description": "### Description \nGets a specific Repository. Prints detailed information about the Repository, including  `name`, `repository_type`, and `endpoint`.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |policy_id||string|True|\n |domain_id||string|True|\n |repository_id||string||\n |only||array||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |repository_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"policy_id" : {"type": "string","title": "POLICY_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+                 "properties": {"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"policy_id\": \"policy-123456789012\",\n   \"repository_id\": \"repo-123456789012\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"repository_id\": \"repo-123456789012\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -383,27 +298,27 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PolicyInfo"},
+                 "schema": {"$ref": "#/components/schemas/RepositoryInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PolicyInfo"},"Default Example":{
-                     "value": "{\n   \"policy_id\": \"policy-custom-full-acess\",\n   \"name\": \"Full Access\",\n   \"state\": \"ENABLED\",\n   \"permissions\": [\n       \"*\"\n   ],\n   \"labels\": [],\n   \"tags\": {},\n   \"repository_info\": {\n       \"repository_id\": \"repo-123456789012\",\n       \"name\": \"Local\",\n       \"repository_type\": \"local\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-01-01T06:45:04.582Z\",\n   \"updated_at\": \"2022-01-01T06:45:04.582Z\"\n}"
+                   "Schema": {"$ref": "#/components/schemas/RepositoryInfo"},"Default Example":{
+                     "value": "{\n   \"repository_id\": \"repo-123456789012\",\n   \"name\": \"Open Source Marketplace\",\n   \"repository_type\": \"remote\",\n   \"endpoint\": \"grpc+ssl://repository.portal.spaceone.megazone.io:443\",\n   \"created_at\": \"2022-01-01T02:27:02.924Z\"\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/policy/list": {
+     },"/repository/repository/list": {
        "post": {
-         "tags": ["repository > policy"],
+         "tags": ["repository > repository"],
          "summary": "List",
          "operationId" : "",
-         "description": "### Description \nGets a list of all Policies in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Policies. You can use a query to get a filtered list of Policies.",
+         "description": "### Description \nGets a list of all Repositories regardless of `domain`. You can use a query to get a filtered list of Repositories.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |repository_id||string|True|\n |domain_id||string|True|\n |query||Query||\n |policy_id||string||\n |name||string||\n |project_id||string||\n |state|ENABLED, DISABLED |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |repository_id||string||\n |name||string||\n |repository_type||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"policy_id" : {"type": "string","title": "POLICY_ID" },"name" : {"type": "string","title": "NAME" },"project_id" : {"type": "string","title": "PROJECT_ID" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"state" : {"type": "string","title": "STATE" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"name" : {"type": "string","title": "NAME" },"repository_type" : {"type": "string","title": "REPOSITORY_TYPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"repository_id\": \"repo-123456789012\"\n}"},"Schema":{}
                }
@@ -414,27 +329,27 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PoliciesInfo"},
+                 "schema": {"$ref": "#/components/schemas/RepositoriesInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PoliciesInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"policy_id\": \"policy-123456789012\",\n           \"name\": \"Full Access\",\n           \"state\": \"ENABLED\",\n           \"permissions\": [\n               \"*\"\n           ],\n           \"labels\": [],\n           \"tags\": {},\n           \"repository_info\": {\n               \"repository_id\": \"repo-123456789012\",\n               \"name\": \"Local\",\n               \"repository_type\": \"local\"\n           },\n           \"domain_id\": \"domain-123456789012\",\n           \"created_at\": \"2022-01-01T15:42:50.943Z\",\n           \"updated_at\": \"2022-01-01T15:42:50.943Z\"\n       },\n       {\n           \"policy_id\": \"policy-987654321098\",\n           \"name\": \"Identity Admin\",\n           \"state\": \"ENABLED\",\n           \"permissions\": [\n               \"identity.*\"\n           ],\n           \"labels\": [],\n           \"tags\": {},\n           \"repository_info\": {\n               \"repository_id\": \"repo-123456789012\",\n               \"name\": \"Local\",\n               \"repository_type\": \"local\"\n           },\n           \"domain_id\": \"domain-123456789012\",\n           \"created_at\": \"2022-01-01T08:08:14.756Z\",\n           \"updated_at\": \"2022-01-01T08:08:14.756Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
+                   "Schema": {"$ref": "#/components/schemas/RepositoriesInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"repository_id\": \"repo-123456789012\",\n           \"name\": \"Open Source Marketplace\",\n           \"repository_type\": \"remote\",\n           \"endpoint\": \"grpc+ssl://repository.portal.spaceone.megazone.io:443\",\n           \"created_at\": \"2022-01-01T02:26:29.081Z\"\n       }\n   ],\n   \"total_count\": 1\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/policy/stat": {
+     },"/repository/repository/stat": {
        "post": {
-         "tags": ["repository > policy"],
+         "tags": ["repository > repository"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |repository_id||string|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -628,20 +543,20 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/repository/get": {
+     },"/repository/policy/create": {
        "post": {
-         "tags": ["repository > repository"],
-         "summary": "Get",
+         "tags": ["repository > policy"],
+         "summary": "Create",
          "operationId" : "",
-         "description": "### Description \nGets a specific Repository. Prints detailed information about the Repository, including  `name`, `repository_type`, and `endpoint`.",
+         "description": "### Description \nCreates a new Policy. The parameter `policy_id`, an identifier of Policy resources, can only include lowercase alphabets, numbers, and hyphens(-). The parameter `permissions` is a list type data describing page access permissions.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |repository_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |permissions||array|True|\n |policy_id||string|True|\n |domain_id||string|True|\n |labels||array||\n |tags||Struct||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"permissions" : {"items": {}, "type": "array","title": "PERMISSIONS" },"policy_id" : {"type": "string","title": "POLICY_ID" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"project_id" : {"type": "string","title": "PROJECT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"repository_id\": \"repo-123456789012\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"policy_id\": \"policy-custom-full-acess\",\n   \"name\": \"Full Access\",\n   \"permissions\": [\"*\"],\n   \"labels\": [],\n   \"tags\": {},\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -650,27 +565,112 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/RepositoryInfo"},
+                 "schema": {"$ref": "#/components/schemas/PolicyInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/RepositoryInfo"},"Default Example":{
-                     "value": "{\n   \"repository_id\": \"repo-123456789012\",\n   \"name\": \"Open Source Marketplace\",\n   \"repository_type\": \"remote\",\n   \"endpoint\": \"grpc+ssl://repository.portal.spaceone.megazone.io:443\",\n   \"created_at\": \"2022-01-01T02:27:02.924Z\"\n}"
+                   "Schema": {"$ref": "#/components/schemas/PolicyInfo"},"Default Example":{
+                     "value": "{\n   \"policy_id\": \"policy-custom-full-acess\",\n   \"name\": \"Full Access\",\n   \"state\": \"ENABLED\",\n   \"permissions\": [\n       \"*\"\n   ],\n   \"labels\": [],\n   \"tags\": {},\n   \"repository_info\": {\n       \"repository_id\": \"repo-123456789012\",\n       \"name\": \"Local\",\n       \"repository_type\": \"local\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-01-01T06:45:04.582Z\",\n   \"updated_at\": \"2022-01-01T06:45:04.582Z\"\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/repository/list": {
+     },"/repository/policy/update": {
        "post": {
-         "tags": ["repository > repository"],
-         "summary": "List",
+         "tags": ["repository > policy"],
+         "summary": "Update",
          "operationId" : "",
-         "description": "### Description \nGets a list of all Repositories regardless of `domain`. You can use a query to get a filtered list of Repositories.",
+         "description": "### Description \nUpdates a specific Policy. You can make changes in Policy settings, including `name`, `labels`, `tags`, and `permissions`. The parameter `policy_id` cannot be updated.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |repository_id||string||\n |name||string||\n |repository_type||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |policy_id||string|True|\n |domain_id||string|True|\n |name||string||\n |permissions||array||\n |labels||array||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"name" : {"type": "string","title": "NAME" },"repository_type" : {"type": "string","title": "REPOSITORY_TYPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"policy_id" : {"type": "string","title": "POLICY_ID" },"name" : {"type": "string","title": "NAME" },"permissions" : {"items": {}, "type": "array","title": "PERMISSIONS" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"policy_id\": \"policy-custom-full-acess\",\n   \"name\": \"Full Access\",\n   \"permissions\": [\"*\"],\n   \"labels\": [],\n   \"tags\": {},\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PolicyInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PolicyInfo"},"Default Example":{
+                     "value": "{\n   \"policy_id\": \"policy-custom-full-acess\",\n   \"name\": \"Full Access\",\n   \"state\": \"ENABLED\",\n   \"permissions\": [\n       \"*\"\n   ],\n   \"labels\": [],\n   \"tags\": {},\n   \"repository_info\": {\n       \"repository_id\": \"repo-123456789012\",\n       \"name\": \"Local\",\n       \"repository_type\": \"local\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-01-01T06:45:04.582Z\",\n   \"updated_at\": \"2022-01-01T06:45:04.582Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/policy/delete": {
+       "post": {
+         "tags": ["repository > policy"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific Policy. You must specify the `policy_id` of the Policy to delete, as the `policy_id` is an identifier of Policy resources.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |policy_id||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"policy_id" : {"type": "string","title": "POLICY_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"policy_id\": \"policy-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/policy/get": {
+       "post": {
+         "tags": ["repository > policy"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific Policy. You must specify the `policy_id` of the Policy to get, as the `policy_id` is an identifier of Policy resources. You can use the parameter `repository_id` to limit the scope of the method to a specific Repository.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |policy_id||string|True|\n |domain_id||string|True|\n |repository_id||string||\n |only||array||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"policy_id" : {"type": "string","title": "POLICY_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"policy_id\": \"policy-123456789012\",\n   \"repository_id\": \"repo-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PolicyInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PolicyInfo"},"Default Example":{
+                     "value": "{\n   \"policy_id\": \"policy-custom-full-acess\",\n   \"name\": \"Full Access\",\n   \"state\": \"ENABLED\",\n   \"permissions\": [\n       \"*\"\n   ],\n   \"labels\": [],\n   \"tags\": {},\n   \"repository_info\": {\n       \"repository_id\": \"repo-123456789012\",\n       \"name\": \"Local\",\n       \"repository_type\": \"local\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-01-01T06:45:04.582Z\",\n   \"updated_at\": \"2022-01-01T06:45:04.582Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/policy/list": {
+       "post": {
+         "tags": ["repository > policy"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Policies in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Policies. You can use a query to get a filtered list of Policies.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |repository_id||string|True|\n |domain_id||string|True|\n |query||Query||\n |policy_id||string||\n |name||string||\n |project_id||string||\n |state|ENABLED, DISABLED |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"policy_id" : {"type": "string","title": "POLICY_ID" },"name" : {"type": "string","title": "NAME" },"project_id" : {"type": "string","title": "PROJECT_ID" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"state" : {"type": "string","title": "STATE" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"repository_id\": \"repo-123456789012\"\n}"},"Schema":{}
                }
@@ -681,27 +681,27 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/RepositoriesInfo"},
+                 "schema": {"$ref": "#/components/schemas/PoliciesInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/RepositoriesInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"repository_id\": \"repo-123456789012\",\n           \"name\": \"Open Source Marketplace\",\n           \"repository_type\": \"remote\",\n           \"endpoint\": \"grpc+ssl://repository.portal.spaceone.megazone.io:443\",\n           \"created_at\": \"2022-01-01T02:26:29.081Z\"\n       }\n   ],\n   \"total_count\": 1\n}"
+                   "Schema": {"$ref": "#/components/schemas/PoliciesInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"policy_id\": \"policy-123456789012\",\n           \"name\": \"Full Access\",\n           \"state\": \"ENABLED\",\n           \"permissions\": [\n               \"*\"\n           ],\n           \"labels\": [],\n           \"tags\": {},\n           \"repository_info\": {\n               \"repository_id\": \"repo-123456789012\",\n               \"name\": \"Local\",\n               \"repository_type\": \"local\"\n           },\n           \"domain_id\": \"domain-123456789012\",\n           \"created_at\": \"2022-01-01T15:42:50.943Z\",\n           \"updated_at\": \"2022-01-01T15:42:50.943Z\"\n       },\n       {\n           \"policy_id\": \"policy-987654321098\",\n           \"name\": \"Identity Admin\",\n           \"state\": \"ENABLED\",\n           \"permissions\": [\n               \"identity.*\"\n           ],\n           \"labels\": [],\n           \"tags\": {},\n           \"repository_info\": {\n               \"repository_id\": \"repo-123456789012\",\n               \"name\": \"Local\",\n               \"repository_type\": \"local\"\n           },\n           \"domain_id\": \"domain-123456789012\",\n           \"created_at\": \"2022-01-01T08:08:14.756Z\",\n           \"updated_at\": \"2022-01-01T08:08:14.756Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/repository/stat": {
+     },"/repository/policy/stat": {
        "post": {
-         "tags": ["repository > repository"],
+         "tags": ["repository > policy"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |repository_id||string|True|\n |domain_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -956,12 +956,6 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
-         "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
-           }
            ,        "AuthenticationRequest": {
          "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
@@ -993,6 +987,112 @@
          "type": "object",
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
+           }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
+           }
+           ,        "CreateRepositoryRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["name","repository_type","domain_id"],
+                "title": "CreateRepositoryRequest"
+           }
+           ,        "GetRepositoryRequest": {
+         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["repository_id","domain_id"],
+                "title": "GetRepositoryRequest"
+           }
+           ,        "RepositoriesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/RepositoryInfo"},
+               "type": "array","$ref": "#/components/schemas/RepositoryInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "RepositoriesInfo"
+           }
+           ,        "RepositoryInfo": {
+         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["repository_id","name","repository_type","endpoint","created_at"],
+                "title": "RepositoryInfo"
+           }
+           ,        "RepositoryQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["domain_id"],
+                "title": "RepositoryQuery"
+           }
+           ,        "RepositoryRequest": {
+         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["repository_id","domain_id"],
+                "title": "RepositoryRequest"
+           }
+           ,        "RepositoryStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["query","domain_id"],
+                "title": "RepositoryStatQuery"
+           }
+           ,        "UpdateRepositoryRequest": {
+         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["repository_id","domain_id"],
+                "title": "UpdateRepositoryRequest"
+           }
+           ,        "CreateSchemaRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"service_type" : {"type": "string","title": "SERVICE_TYPE"},"schema_id" : {"type": "string","title": "SCHEMA_ID"},"schema" : {"type": "object","title": "SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"project_id" : {"type": "string","title": "PROJECT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["name","service_type","schema_id","schema","domain_id"],
+                "title": "CreateSchemaRequest"
+           }
+           ,        "GetRepositorySchemaRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"},"schema_id" : {"type": "string","title": "SCHEMA_ID"}},
+         "type": "object",
+         "required": ["name","domain_id"],
+                "title": "GetRepositorySchemaRequest"
+           }
+           ,        "SchemaInfo": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"service_type" : {"type": "string","title": "SERVICE_TYPE"},"schema_id" : {"type": "string","title": "SCHEMA_ID"},"schema" : {"type": "object","title": "SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"repository_info" : {"$ref": "#/components/schemas/RepositoryInfo","title": "REPOSITORY_INFO"},"project_id" : {"type": "string","title": "PROJECT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["name","service_type","schema_id","schema","labels","tags","repository_info","project_id","domain_id","created_at","updated_at"],
+                "title": "SchemaInfo"
+           }
+           ,        "SchemaQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"},"service_type" : {"type": "string","title": "SERVICE_TYPE"},"project_id" : {"type": "string","title": "PROJECT_ID"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"schema_id" : {"type": "string","title": "SCHEMA_ID"},"state" : {"type": "string","title": "STATE"}},
+         "type": "object",
+         "required": ["project_id","repository_id","domain_id"],
+                "title": "SchemaQuery"
+           }
+           ,        "SchemaRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"schema_id" : {"type": "string","title": "SCHEMA_ID"}},
+         "type": "object",
+         "required": ["name","domain_id"],
+                "title": "SchemaRequest"
+           }
+           ,        "SchemaStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["query","repository_id","domain_id"],
+                "title": "SchemaStatQuery"
+           }
+           ,        "SchemasInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/SchemaInfo"},
+               "type": "array","$ref": "#/components/schemas/SchemaInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "SchemasInfo"
+           }
+           ,        "UpdateSchemaRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"schema" : {"type": "object","title": "SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["name","domain_id"],
+                "title": "UpdateSchemaRequest"
            }
            ,        "CreatePolicyRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"permissions" : {"items": {"type": "string"},
@@ -1046,106 +1146,6 @@
          "type": "object",
          "required": ["policy_id","domain_id"],
                 "title": "UpdatePolicyRequest"
-           }
-           ,        "CreateSchemaRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"service_type" : {"type": "string","title": "SERVICE_TYPE"},"schema_id" : {"type": "string","title": "SCHEMA_ID"},"schema" : {"type": "object","title": "SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"project_id" : {"type": "string","title": "PROJECT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["name","service_type","schema_id","schema","domain_id"],
-                "title": "CreateSchemaRequest"
-           }
-           ,        "GetRepositorySchemaRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"},"schema_id" : {"type": "string","title": "SCHEMA_ID"}},
-         "type": "object",
-         "required": ["name","domain_id"],
-                "title": "GetRepositorySchemaRequest"
-           }
-           ,        "SchemaInfo": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"service_type" : {"type": "string","title": "SERVICE_TYPE"},"schema_id" : {"type": "string","title": "SCHEMA_ID"},"schema" : {"type": "object","title": "SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"repository_info" : {"$ref": "#/components/schemas/RepositoryInfo","title": "REPOSITORY_INFO"},"project_id" : {"type": "string","title": "PROJECT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
-         "type": "object",
-         "required": ["name","service_type","schema_id","schema","labels","tags","repository_info","project_id","domain_id","created_at","updated_at"],
-                "title": "SchemaInfo"
-           }
-           ,        "SchemaQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"},"service_type" : {"type": "string","title": "SERVICE_TYPE"},"project_id" : {"type": "string","title": "PROJECT_ID"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"schema_id" : {"type": "string","title": "SCHEMA_ID"},"state" : {"type": "string","title": "STATE"}},
-         "type": "object",
-         "required": ["project_id","repository_id","domain_id"],
-                "title": "SchemaQuery"
-           }
-           ,        "SchemaRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"schema_id" : {"type": "string","title": "SCHEMA_ID"}},
-         "type": "object",
-         "required": ["name","domain_id"],
-                "title": "SchemaRequest"
-           }
-           ,        "SchemaStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["query","repository_id","domain_id"],
-                "title": "SchemaStatQuery"
-           }
-           ,        "SchemasInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/SchemaInfo"},
-               "type": "array","$ref": "#/components/schemas/SchemaInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "SchemasInfo"
-           }
-           ,        "UpdateSchemaRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"schema" : {"type": "object","title": "SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["name","domain_id"],
-                "title": "UpdateSchemaRequest"
-           }
-           ,        "CreateRepositoryRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["name","repository_type","domain_id"],
-                "title": "CreateRepositoryRequest"
-           }
-           ,        "GetRepositoryRequest": {
-         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["repository_id","domain_id"],
-                "title": "GetRepositoryRequest"
-           }
-           ,        "RepositoriesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/RepositoryInfo"},
-               "type": "array","$ref": "#/components/schemas/RepositoryInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "RepositoriesInfo"
-           }
-           ,        "RepositoryInfo": {
-         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["repository_id","name","repository_type","endpoint","created_at"],
-                "title": "RepositoryInfo"
-           }
-           ,        "RepositoryQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"repository_type" : {"type": "string","title": "REPOSITORY_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "RepositoryQuery"
-           }
-           ,        "RepositoryRequest": {
-         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["repository_id","domain_id"],
-                "title": "RepositoryRequest"
-           }
-           ,        "RepositoryStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["query","domain_id"],
-                "title": "RepositoryStatQuery"
-           }
-           ,        "UpdateRepositoryRequest": {
-         "properties" : {"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["repository_id","domain_id"],
-                "title": "UpdateRepositoryRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
