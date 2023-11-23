@@ -692,11 +692,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |role_id||string|True|\n |is_managed_role||boolean|True|\n |scope|DOMAIN, WORKSPACE |string|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |role_id||string|True|\n |scope|DOMAIN, WORKSPACE |string|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"role_id" : {"type": "string","title": "ROLE_ID" },"is_managed_role" : {"type": "boolean","title": "IS_MANAGED_ROLE" },"scope" : {"type": "string","title": "SCOPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"role_id" : {"type": "string","title": "ROLE_ID" },"scope" : {"type": "string","title": "SCOPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -721,11 +721,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |role_binding_id||string|True|\n |role_id||string|True|\n |is_managed_role||boolean|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |role_binding_id||string|True|\n |role_id||string|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"role_binding_id" : {"type": "string","title": "ROLE_BINDING_ID" },"role_id" : {"type": "string","title": "ROLE_ID" },"is_managed_role" : {"type": "boolean","title": "IS_MANAGED_ROLE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"role_binding_id" : {"type": "string","title": "ROLE_BINDING_ID" },"role_id" : {"type": "string","title": "ROLE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -802,11 +802,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |role_binding_id||string||\n |scope|DOMAIN, WORKSPACE |string||\n |domain_id||string||\n |workspace_id||string||\n |role_id||string||\n |user_id||string||\n |repository_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |role_binding_id||string||\n |scope|DOMAIN, WORKSPACE |string||\n |domain_id||string||\n |workspace_id||string||\n |role_id||string||\n |user_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"role_binding_id" : {"type": "string","title": "ROLE_BINDING_ID" },"scope" : {"type": "string","title": "SCOPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"role_id" : {"type": "string","title": "ROLE_ID" },"user_id" : {"type": "string","title": "USER_ID" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"role_binding_id" : {"type": "string","title": "ROLE_BINDING_ID" },"scope" : {"type": "string","title": "SCOPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"role_id" : {"type": "string","title": "ROLE_ID" },"user_id" : {"type": "string","title": "USER_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -3143,15 +3143,15 @@
                 "title": "WorkspacesInfo"
            }
            ,        "CreateRoleBindingRequest": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"is_managed_role" : {"type": "boolean","title": "IS_MANAGED_ROLE"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": ["user_id","role_id","is_managed_role","scope","domain_id"],
+         "required": ["user_id","role_id","scope","domain_id"],
                 "title": "CreateRoleBindingRequest"
            }
            ,        "RoleBindingInfo": {
-         "properties" : {"role_binding_id" : {"type": "string","title": "ROLE_BINDING_ID"},"is_managed_role" : {"type": "boolean","title": "IS_MANAGED_ROLE"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"user_id" : {"type": "string","title": "USER_ID"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"role_binding_id" : {"type": "string","title": "ROLE_BINDING_ID"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["role_binding_id","is_managed_role","scope","domain_id","workspace_id","role_id","user_id","repository_id","created_at"],
+         "required": ["role_binding_id","scope","domain_id","workspace_id","role_id","user_id","created_at"],
                 "title": "RoleBindingInfo"
            }
            ,        "RoleBindingRequest": {
@@ -3161,7 +3161,7 @@
                 "title": "RoleBindingRequest"
            }
            ,        "RoleBindingSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"role_binding_id" : {"type": "string","title": "ROLE_BINDING_ID"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"user_id" : {"type": "string","title": "USER_ID"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"role_binding_id" : {"type": "string","title": "ROLE_BINDING_ID"},"scope" : {"type": "string","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"user_id" : {"type": "string","title": "USER_ID"}},
          "type": "object",
          "required": [],
                 "title": "RoleBindingSearchQuery"
@@ -3180,9 +3180,9 @@
                 "title": "RoleBindingsInfo"
            }
            ,        "UpdateRoleBindingRequest": {
-         "properties" : {"role_binding_id" : {"type": "string","title": "ROLE_BINDING_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"is_managed_role" : {"type": "boolean","title": "IS_MANAGED_ROLE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"role_binding_id" : {"type": "string","title": "ROLE_BINDING_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": ["role_binding_id","role_id","is_managed_role","domain_id"],
+         "required": ["role_binding_id","role_id","domain_id"],
                 "title": "UpdateRoleBindingRequest"
            }
            ,        "CreateUserGroupRequest": {
