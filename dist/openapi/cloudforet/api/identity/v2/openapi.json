@@ -1503,11 +1503,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |role_type|SYSTEM_ADMIN, DOMAIN_ADMIN, WORKPLACE_OWNER, WORKPLACE_MEMBER |string|True|\n |policy_id||string|True|\n |domain_id||string|True|\n |page_permissions||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |role_type|SYSTEM_ADMIN, DOMAIN_ADMIN, WORKPLACE_OWNER, WORKPLACE_MEMBER |string|True|\n |policies||array|True|\n |domain_id||string|True|\n |page_permissions||array||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"role_type" : {"type": "string","title": "ROLE_TYPE" },"policy_id" : {"type": "string","title": "POLICY_ID" },"page_permissions" : {"items": {"$ref": "#/components/schemas/PagePermission"}, "type": "array","title": "PAGE_PERMISSIONS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"role_type" : {"type": "string","title": "ROLE_TYPE" },"policies" : {"items": {}, "type": "array","title": "POLICIES" },"page_permissions" : {"items": {"$ref": "#/components/schemas/PagePermission"}, "type": "array","title": "PAGE_PERMISSIONS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1532,11 +1532,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |role_id||string|True|\n |domain_id||string|True|\n |name||string||\n |page_permissions||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |role_id||string|True|\n |domain_id||string|True|\n |name||string||\n |policies||array||\n |page_permissions||array||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"role_id" : {"type": "string","title": "ROLE_ID" },"name" : {"type": "string","title": "NAME" },"page_permissions" : {"items": {"$ref": "#/components/schemas/PagePermission"}, "type": "array","title": "PAGE_PERMISSIONS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"role_id" : {"type": "string","title": "ROLE_ID" },"name" : {"type": "string","title": "NAME" },"policies" : {"items": {}, "type": "array","title": "POLICIES" },"page_permissions" : {"items": {"$ref": "#/components/schemas/PagePermission"}, "type": "array","title": "PAGE_PERMISSIONS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -3330,10 +3330,11 @@
                 "title": "VerifyEmailRequest"
            }
            ,        "CreateRoleRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"policy_id" : {"type": "string","title": "POLICY_ID"},"page_permissions" : {"items": {"$ref": "#/components/schemas/PagePermission"},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"policies" : {"items": {"type": "string"},
+               "type": "array","title": "POLICIES"},"page_permissions" : {"items": {"$ref": "#/components/schemas/PagePermission"},
                "type": "array","$ref": "#/components/schemas/PagePermission","title": "PAGE_PERMISSIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["name","role_type","policy_id","domain_id"],
+         "required": ["name","role_type","policies","domain_id"],
                 "title": "CreateRoleRequest"
            }
            ,        "PagePermission": {
@@ -3344,10 +3345,11 @@
                 "title": "PagePermission"
            }
            ,        "RoleInfo": {
-         "properties" : {"role_id" : {"type": "string","title": "ROLE_ID"},"name" : {"type": "string","title": "NAME"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"page_permissions" : {"items": {"$ref": "#/components/schemas/PagePermission"},
-               "type": "array","$ref": "#/components/schemas/PagePermission","title": "PAGE_PERMISSIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"role_id" : {"type": "string","title": "ROLE_ID"},"name" : {"type": "string","title": "NAME"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"policies" : {"items": {"type": "string"},
+               "type": "array","title": "POLICIES"},"page_permissions" : {"items": {"$ref": "#/components/schemas/PagePermission"},
+               "type": "array","$ref": "#/components/schemas/PagePermission","title": "PAGE_PERMISSIONS"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["role_id","name","role_type","page_permissions","tags","domain_id","created_at"],
+         "required": ["role_id","name","role_type","policies","page_permissions","tags","is_managed","domain_id","created_at"],
                 "title": "RoleInfo"
            }
            ,        "RoleRequest": {
@@ -3376,7 +3378,8 @@
                 "title": "RolesInfo"
            }
            ,        "UpdateRoleRequest": {
-         "properties" : {"role_id" : {"type": "string","title": "ROLE_ID"},"name" : {"type": "string","title": "NAME"},"page_permissions" : {"items": {"$ref": "#/components/schemas/PagePermission"},
+         "properties" : {"role_id" : {"type": "string","title": "ROLE_ID"},"name" : {"type": "string","title": "NAME"},"policies" : {"items": {"type": "string"},
+               "type": "array","title": "POLICIES"},"page_permissions" : {"items": {"$ref": "#/components/schemas/PagePermission"},
                "type": "array","$ref": "#/components/schemas/PagePermission","title": "PAGE_PERMISSIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["role_id","domain_id"],
@@ -3612,9 +3615,9 @@
            }
            ,        "PolicyInfo": {
          "properties" : {"policy_id" : {"type": "string","title": "POLICY_ID"},"name" : {"type": "string","title": "NAME"},"permissions" : {"items": {"type": "string"},
-               "type": "array","title": "PERMISSIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+               "type": "array","title": "PERMISSIONS"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["policy_id","name","permissions","tags","domain_id","created_at"],
+         "required": ["policy_id","name","permissions","tags","is_managed","domain_id","created_at"],
                 "title": "PolicyInfo"
            }
            ,        "PolicyRequest": {
