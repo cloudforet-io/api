@@ -71,7 +71,7 @@ message PagePermission {
 message CreateRoleRequest {
     string name = 1;
     RoleType role_type = 2;
-    string policy_id = 3;
+    repeated string policies = 3;
     // +optional
     repeated PagePermission page_permissions = 4;
     // +optional
@@ -84,9 +84,11 @@ message UpdateRoleRequest {
     // +optional
     string name = 2;
     // +optional
-    repeated PagePermission page_permissions = 3;
+    repeated string policies = 3;
     // +optional
-    google.protobuf.Struct tags = 4;
+    repeated PagePermission page_permissions = 4;
+    // +optional
+    google.protobuf.Struct tags = 5;
     string domain_id = 21;
 }
 
@@ -99,8 +101,10 @@ message RoleInfo {
     string role_id = 1;
     string name = 2;
     RoleType role_type = 3;
-    repeated PagePermission page_permissions = 4;
-    google.protobuf.Struct tags = 5;
+    repeated string policies = 4;
+    repeated PagePermission page_permissions = 5;
+    google.protobuf.Struct tags = 6;
+    bool is_managed = 7;
     string domain_id = 21;
     string created_at = 31;
 }
