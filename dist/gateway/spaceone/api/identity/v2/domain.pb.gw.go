@@ -13,8 +13,8 @@ import (
 	"io"
 	"net/http"
 
-	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v1"
-	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
+	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v2"
+	v2_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -33,8 +33,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Domain_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateDomainRequest
+func request_Domain_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateDomainRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -50,8 +50,8 @@ func request_Domain_Create_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Domain_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateDomainRequest
+func local_request_Domain_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateDomainRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -67,8 +67,8 @@ func local_request_Domain_Create_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Domain_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateDomainRequest
+func request_Domain_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateDomainRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,8 +84,8 @@ func request_Domain_Update_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Domain_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateDomainRequest
+func local_request_Domain_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateDomainRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -101,8 +101,8 @@ func local_request_Domain_Update_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Domain_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DomainRequest
+func request_Domain_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DomainRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -118,8 +118,8 @@ func request_Domain_Delete_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Domain_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DomainRequest
+func local_request_Domain_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DomainRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -135,8 +135,8 @@ func local_request_Domain_Delete_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Domain_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DomainRequest
+func request_Domain_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DomainRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -152,8 +152,8 @@ func request_Domain_Enable_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Domain_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DomainRequest
+func local_request_Domain_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DomainRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -169,8 +169,8 @@ func local_request_Domain_Enable_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Domain_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DomainRequest
+func request_Domain_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DomainRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -186,8 +186,8 @@ func request_Domain_Disable_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Domain_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DomainRequest
+func local_request_Domain_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DomainRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -203,8 +203,8 @@ func local_request_Domain_Disable_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Domain_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DomainRequest
+func request_Domain_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DomainRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -220,8 +220,8 @@ func request_Domain_Get_0(ctx context.Context, marshaler runtime.Marshaler, clie
 
 }
 
-func local_request_Domain_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DomainRequest
+func local_request_Domain_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DomainRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -237,8 +237,8 @@ func local_request_Domain_Get_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func request_Domain_GetMetaData_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.GetDomainMetadataRequest
+func request_Domain_GetMetadata_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.GetDomainMetadataRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -249,13 +249,13 @@ func request_Domain_GetMetaData_0(ctx context.Context, marshaler runtime.Marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetMetaData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetMetadata(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_Domain_GetMetaData_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.GetDomainMetadataRequest
+func local_request_Domain_GetMetadata_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.GetDomainMetadataRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -266,13 +266,13 @@ func local_request_Domain_GetMetaData_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetMetaData(ctx, &protoReq)
+	msg, err := server.GetMetadata(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_Domain_GetPublicKey_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.AuthenticationRequest
+func request_Domain_GetPublicKey_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV2.AuthenticationRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -288,8 +288,8 @@ func request_Domain_GetPublicKey_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_Domain_GetPublicKey_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.AuthenticationRequest
+func local_request_Domain_GetPublicKey_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV2.AuthenticationRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -305,8 +305,8 @@ func local_request_Domain_GetPublicKey_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_Domain_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DomainSearchQuery
+func request_Domain_List_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DomainSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -322,8 +322,8 @@ func request_Domain_List_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Domain_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DomainSearchQuery
+func local_request_Domain_List_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DomainSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -339,8 +339,8 @@ func local_request_Domain_List_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Domain_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DomainStatQuery
+func request_Domain_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.DomainClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DomainStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -356,8 +356,8 @@ func request_Domain_Stat_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Domain_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DomainStatQuery
+func local_request_Domain_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.DomainServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DomainStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -377,7 +377,7 @@ func local_request_Domain_Stat_0(ctx context.Context, marshaler runtime.Marshale
 // UnaryRPC     :call DomainServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterDomainHandlerFromEndpoint instead.
-func RegisterDomainHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV2.DomainServer) error {
+func RegisterDomainHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.DomainServer) error {
 
 	mux.Handle("POST", pattern_Domain_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -529,7 +529,7 @@ func RegisterDomainHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 
 	})
 
-	mux.Handle("POST", pattern_Domain_GetMetaData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Domain_GetMetadata_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -537,12 +537,12 @@ func RegisterDomainHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.Domain/GetMetaData", runtime.WithHTTPPathPattern("/spaceone.api.identity.v2.Domain/get_meta_data"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.Domain/GetMetadata", runtime.WithHTTPPathPattern("/identity/v2/domain/get-metadata"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Domain_GetMetaData_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Domain_GetMetadata_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -550,7 +550,7 @@ func RegisterDomainHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 			return
 		}
 
-		forward_Domain_GetMetaData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Domain_GetMetadata_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -660,15 +660,15 @@ func RegisterDomainHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMu
 // RegisterDomainHandler registers the http handlers for service Domain to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterDomainHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterDomainHandlerClient(ctx, mux, extV2.NewDomainClient(conn))
+	return RegisterDomainHandlerClient(ctx, mux, v2_0.NewDomainClient(conn))
 }
 
 // RegisterDomainHandlerClient registers the http handlers for service Domain
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV2.DomainClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV2.DomainClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.DomainClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.DomainClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV2.DomainClient" to call the correct interceptors.
-func RegisterDomainHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV2.DomainClient) error {
+// "v2_0.DomainClient" to call the correct interceptors.
+func RegisterDomainHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.DomainClient) error {
 
 	mux.Handle("POST", pattern_Domain_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -802,25 +802,25 @@ func RegisterDomainHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 
 	})
 
-	mux.Handle("POST", pattern_Domain_GetMetaData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Domain_GetMetadata_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.Domain/GetMetaData", runtime.WithHTTPPathPattern("/spaceone.api.identity.v2.Domain/get_meta_data"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.Domain/GetMetadata", runtime.WithHTTPPathPattern("/identity/v2/domain/get-metadata"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Domain_GetMetaData_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Domain_GetMetadata_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Domain_GetMetaData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Domain_GetMetadata_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -906,7 +906,7 @@ var (
 
 	pattern_Domain_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.identity.v2.Domain", "get"}, ""))
 
-	pattern_Domain_GetMetaData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.identity.v2.Domain", "get_meta_data"}, ""))
+	pattern_Domain_GetMetadata_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "domain", "get-metadata"}, ""))
 
 	pattern_Domain_GetPublicKey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.identity.v2.Domain", "get_public_key"}, ""))
 
@@ -928,7 +928,7 @@ var (
 
 	forward_Domain_Get_0 = runtime.ForwardResponseMessage
 
-	forward_Domain_GetMetaData_0 = runtime.ForwardResponseMessage
+	forward_Domain_GetMetadata_0 = runtime.ForwardResponseMessage
 
 	forward_Domain_GetPublicKey_0 = runtime.ForwardResponseMessage
 

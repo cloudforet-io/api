@@ -654,7 +654,7 @@
               "responseStreaming": false
             },
             {
-              "name": "get_meta_data",
+              "name": "get_metadata",
               "description": "",
               "requestType": "GetDomainMetadataRequest",
               "requestLongType": "GetDomainMetadataRequest",
@@ -663,18 +663,29 @@
               "responseType": "DomainMetadataInfo",
               "responseLongType": "DomainMetadataInfo",
               "responseFullType": "spaceone.api.identity.v2.DomainMetadataInfo",
-              "responseStreaming": false
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/domain/get-metadata",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
             },
             {
               "name": "get_public_key",
               "description": "",
               "requestType": "AuthenticationRequest",
-              "requestLongType": ".spaceone.api.core.v1.AuthenticationRequest",
-              "requestFullType": "spaceone.api.core.v1.AuthenticationRequest",
+              "requestLongType": ".spaceone.api.core.v2.AuthenticationRequest",
+              "requestFullType": "spaceone.api.core.v2.AuthenticationRequest",
               "requestStreaming": false,
               "responseType": "AuthenticationResponse",
-              "responseLongType": ".spaceone.api.core.v1.AuthenticationResponse",
-              "responseFullType": "spaceone.api.core.v1.AuthenticationResponse",
+              "responseLongType": ".spaceone.api.core.v2.AuthenticationResponse",
+              "responseFullType": "spaceone.api.core.v2.AuthenticationResponse",
               "responseStreaming": false
             },
             {

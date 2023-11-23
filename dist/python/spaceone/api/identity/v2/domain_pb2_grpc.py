@@ -4,7 +4,7 @@ import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.core.v1 import handler_pb2 as spaceone_dot_api_dot_core_dot_v1_dot_handler__pb2
+from spaceone.api.core.v2 import handler_pb2 as spaceone_dot_api_dot_core_dot_v2_dot_handler__pb2
 from spaceone.api.identity.v2 import domain_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_domain__pb2
 
 
@@ -47,15 +47,15 @@ class DomainStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_domain__pb2.DomainRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_domain__pb2.DomainInfo.FromString,
                 )
-        self.get_meta_data = channel.unary_unary(
-                '/spaceone.api.identity.v2.Domain/get_meta_data',
+        self.get_metadata = channel.unary_unary(
+                '/spaceone.api.identity.v2.Domain/get_metadata',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_domain__pb2.GetDomainMetadataRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_domain__pb2.DomainMetadataInfo.FromString,
                 )
         self.get_public_key = channel.unary_unary(
                 '/spaceone.api.identity.v2.Domain/get_public_key',
-                request_serializer=spaceone_dot_api_dot_core_dot_v1_dot_handler__pb2.AuthenticationRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_core_dot_v1_dot_handler__pb2.AuthenticationResponse.FromString,
+                request_serializer=spaceone_dot_api_dot_core_dot_v2_dot_handler__pb2.AuthenticationRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_core_dot_v2_dot_handler__pb2.AuthenticationResponse.FromString,
                 )
         self.list = channel.unary_unary(
                 '/spaceone.api.identity.v2.Domain/list',
@@ -108,7 +108,7 @@ class DomainServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def get_meta_data(self, request, context):
+    def get_metadata(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -165,15 +165,15 @@ def add_DomainServicer_to_server(servicer, server):
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_domain__pb2.DomainRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_domain__pb2.DomainInfo.SerializeToString,
             ),
-            'get_meta_data': grpc.unary_unary_rpc_method_handler(
-                    servicer.get_meta_data,
+            'get_metadata': grpc.unary_unary_rpc_method_handler(
+                    servicer.get_metadata,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_domain__pb2.GetDomainMetadataRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_domain__pb2.DomainMetadataInfo.SerializeToString,
             ),
             'get_public_key': grpc.unary_unary_rpc_method_handler(
                     servicer.get_public_key,
-                    request_deserializer=spaceone_dot_api_dot_core_dot_v1_dot_handler__pb2.AuthenticationRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_core_dot_v1_dot_handler__pb2.AuthenticationResponse.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_core_dot_v2_dot_handler__pb2.AuthenticationRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_core_dot_v2_dot_handler__pb2.AuthenticationResponse.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
@@ -298,7 +298,7 @@ class Domain(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def get_meta_data(request,
+    def get_metadata(request,
             target,
             options=(),
             channel_credentials=None,
@@ -308,7 +308,7 @@ class Domain(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Domain/get_meta_data',
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Domain/get_metadata',
             spaceone_dot_api_dot_identity_dot_v2_dot_domain__pb2.GetDomainMetadataRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_domain__pb2.DomainMetadataInfo.FromString,
             options, channel_credentials,
@@ -326,8 +326,8 @@ class Domain(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Domain/get_public_key',
-            spaceone_dot_api_dot_core_dot_v1_dot_handler__pb2.AuthenticationRequest.SerializeToString,
-            spaceone_dot_api_dot_core_dot_v1_dot_handler__pb2.AuthenticationResponse.FromString,
+            spaceone_dot_api_dot_core_dot_v2_dot_handler__pb2.AuthenticationRequest.SerializeToString,
+            spaceone_dot_api_dot_core_dot_v2_dot_handler__pb2.AuthenticationResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

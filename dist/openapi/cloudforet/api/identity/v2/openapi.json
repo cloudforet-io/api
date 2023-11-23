@@ -1890,6 +1890,35 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/domain/get-metadata": {
+       "post": {
+         "tags": ["identity > domain"],
+         "summary": "Get Metadata",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DomainMetadataInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DomainMetadataInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/project-group/create": {
        "post": {
          "tags": ["identity > project-group"],
@@ -2488,11 +2517,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_id||string|True|\n |project|PRIVATE, PUBLIC |string|True|\n |domain_id||string|True|\n |workspace_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_id||string|True|\n |project_type|PRIVATE, PUBLIC |string|True|\n |domain_id||string|True|\n |workspace_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"project_id" : {"type": "string","title": "PROJECT_ID" },"project" : {"type": "string","title": "PROJECT" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"project_id" : {"type": "string","title": "PROJECT_ID" },"project_type" : {"type": "string","title": "PROJECT_TYPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -3697,9 +3726,9 @@
                 "title": "UpdateProjectRequest"
            }
            ,        "UpdateProjectTypeRequest": {
-         "properties" : {"project_id" : {"type": "string","title": "PROJECT_ID"},"project" : {"type": "string","title": "PROJECT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"project_id" : {"type": "string","title": "PROJECT_ID"},"project_type" : {"type": "string","title": "PROJECT_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": ["project_id","project","domain_id","workspace_id"],
+         "required": ["project_id","project_type","domain_id","workspace_id"],
                 "title": "UpdateProjectTypeRequest"
            }
            ,        "UserGroupsProjectRequest": {
