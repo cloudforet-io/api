@@ -8,7 +8,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
-import "spaceone/api/core/v1/handler.proto";
+import "spaceone/api/core/v2/handler.proto";
 
 
 service Domain {
@@ -18,9 +18,14 @@ service Domain {
     rpc enable (DomainRequest) returns (DomainInfo) {}
     rpc disable (DomainRequest) returns (DomainInfo) {}
     rpc get (DomainRequest) returns (DomainInfo) {}
-    rpc get_meta_data (GetDomainMetadataRequest) returns (DomainMetadataInfo) {}
-    rpc get_public_key (spaceone.api.core.v1.AuthenticationRequest)
-    returns (spaceone.api.core.v1.AuthenticationResponse) {}
+    rpc get_metadata (GetDomainMetadataRequest) returns (DomainMetadataInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/domain/get-metadata"
+            body: "*"
+        };
+    }
+    rpc get_public_key (spaceone.api.core.v2.AuthenticationRequest)
+    returns (spaceone.api.core.v2.AuthenticationResponse) {}
     rpc list (DomainSearchQuery) returns (DomainsInfo) {}
     rpc stat (DomainStatQuery) returns (google.protobuf.Struct) {}
 }
