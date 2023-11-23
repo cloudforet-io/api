@@ -61,8 +61,7 @@ message CreateRoleBindingRequest {
 
     string user_id = 1;
     string role_id = 2;
-    bool is_managed_role = 3;
-    Scope scope = 4;
+    Scope scope = 3;
     string domain_id = 21;
     // +optional
     string workspace_id = 22;
@@ -71,8 +70,9 @@ message CreateRoleBindingRequest {
 message UpdateRoleBindingRequest {
     string role_binding_id = 1;
     string role_id = 2;
-    bool is_managed_role = 3;
     string domain_id = 21;
+    // +optional
+    string workspace_id = 22;
 }
 
 message RoleBindingRequest {
@@ -90,13 +90,11 @@ message RoleBindingInfo {
     }
 
     string role_binding_id = 1;
-    bool is_managed_role = 2;
     Scope scope = 3;
     string domain_id = 21;
     string workspace_id = 22;
     string role_id = 23;
     string user_id = 24;
-    string repository_id = 25;
     string created_at = 31;
 }
 
@@ -121,8 +119,6 @@ message RoleBindingSearchQuery {
     string role_id = 23;
     // +optional
     string user_id = 24;
-    // +optional
-    string repository_id = 25;
 }
 
 message RoleBindingsInfo {
