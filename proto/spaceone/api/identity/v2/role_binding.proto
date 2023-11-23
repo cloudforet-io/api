@@ -84,13 +84,21 @@ message RoleBindingRequest {
 
 message RoleBindingInfo {
     enum Scope {
-        NONE = 0;
+        SCOPE_NONE = 0;
         DOMAIN = 1;
         WORKSPACE = 2;
     }
+    enum RoleType {
+        ROLE_TYPE_NONE = 0;
+        SYSTEM_ADMIN = 1;
+        DOMAIN_ADMIN = 2;
+        WORKPLACE_OWNER = 3;
+        WORKPLACE_MEMBER = 4;
+    }
 
     string role_binding_id = 1;
-    Scope scope = 3;
+    Scope scope = 2;
+    RoleType role_type = 3;
     string domain_id = 21;
     string workspace_id = 22;
     string role_id = 23;
@@ -100,9 +108,16 @@ message RoleBindingInfo {
 
 message RoleBindingSearchQuery {
     enum Scope {
-        NONE = 0;
+        SCOPE_NONE = 0;
         DOMAIN = 1;
         WORKSPACE = 2;
+    }
+    enum RoleType {
+        ROLE_TYPE_NONE = 0;
+        SYSTEM_ADMIN = 1;
+        DOMAIN_ADMIN = 2;
+        WORKPLACE_OWNER = 3;
+        WORKPLACE_MEMBER = 4;
     }
 
     // +optional
@@ -111,6 +126,8 @@ message RoleBindingSearchQuery {
     string role_binding_id = 2;
     // +optional
     Scope scope = 3;
+    // +optional
+    RoleType role_type = 4;
     // +optional
     string domain_id = 21;
     // +optional
