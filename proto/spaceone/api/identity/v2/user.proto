@@ -129,12 +129,6 @@ enum AuthType {
     EXTERNAL = 2;
 }
 
-enum UserType {
-    NONE_USER_TYPE = 0;
-    USER = 1;
-    API_USER = 2;
-}
-
 enum UserRequiredAction {
     UPDATE_PASSWORD = 0;
 }
@@ -179,21 +173,19 @@ message CreateUserRequest {
     string name = 3;
     // +optional
     string email = 4;
-    // +optional
-    UserType user_type = 5;
-    AuthType auth_type = 6;
+    AuthType auth_type = 5;
     // en,ko
     // +optional
-    string language = 7;
+    string language = 6;
     // UTC, Asia/Seoul
     // +optional
-    string timezone = 8;
+    string timezone = 7;
     // +optional
-    google.protobuf.Struct tags = 9;
+    google.protobuf.Struct tags = 8;
     // If reset_password is true, send email
-    bool reset_password = 10;
+    bool reset_password = 9;
     // +optional
-    UserRoleBinding role_binding = 11;
+    UserRoleBinding role_binding = 10;
     string domain_id = 21;
 }
 
@@ -298,9 +290,7 @@ message UserSearchQuery {
     // +optional
     string email = 5;
     // +optional
-    UserType user_type = 6;
-    // +optional
-    AuthType auth_type = 7;
+    AuthType auth_type = 6;
     // +optional
     string domain_id = 21;
     string workspace_id = 22;
@@ -328,10 +318,9 @@ message UserInfo {
     State state = 3;
     string email = 4;
     bool email_verified = 5;
-    UserType user_type = 6;
-    AuthType auth_type = 7;
-    RoleType role_type = 8;
-    MFA mfa = 9;
+    AuthType auth_type = 6;
+    RoleType role_type = 7;
+    MFA mfa = 8;
     string language = 10;
     string timezone = 11;
     repeated UserRequiredAction required_actions = 12;
