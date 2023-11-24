@@ -25,13 +25,6 @@ service APIKey {
         };
     }
 
-    rpc generate_api_key (GenerateAPIKeyRequest) returns (APIKeyInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/api-key/generate-api-key"
-            body: "*"
-        };
-    }
-
     rpc enable (APIKeyRequest) returns (APIKeyInfo) {
         option (google.api.http) = {
             post: "/identity/v2/api-key/enable"
@@ -49,6 +42,13 @@ service APIKey {
     rpc delete (APIKeyRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/identity/v2/api-key/delete"
+            body: "*"
+        };
+    }
+
+    rpc verify (VerifyAPIKeyRequest) returns (APIKeyInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/api-key/verify"
             body: "*"
         };
     }
@@ -80,6 +80,7 @@ message CreateAPIKeyRequest {
     // +optional
     string name = 2;
     string domain_id = 21;
+    string expired_at = 22;
 }
 
 message UpdateAPIKeyRequest {
@@ -89,11 +90,17 @@ message UpdateAPIKeyRequest {
     string domain_id = 21;
 }
 
-message GenerateAPIKeyRequest {
+message VerifyAPIKeyRequest {
+    enum API_KEY_TYPE {
+        NONE_API_KEY_TYPE = 0;
+        ACCESS_KEY = 1;
+        SECRET_KEY = 2;
+    }
     string api_key_id = 1;
-    // +optional
-    string name = 2;
+    API_KEY_TYPE api_key_type = 2;
     string domain_id = 21;
+    string app_id = 22;
+    string user_id = 23;
 }
 message APIKeyRequest {
     string api_key_id = 1;
@@ -114,6 +121,7 @@ message APIKeyInfo {
     string user_id = 22;
     string created_at = 31;
     string last_accessed_at = 32;
+    string expired_at = 33;
 }
 
 message APIKeySearchQuery {

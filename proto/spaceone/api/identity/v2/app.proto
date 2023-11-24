@@ -82,6 +82,7 @@ message CreateAppRequest {
     google.protobuf.Struct tags = 4;
     string domain_id = 21;
     string workspace_id = 22;
+    string expired_at = 31;
 }
 
 message UpdateAppRequest {
@@ -109,13 +110,16 @@ message AppInfo {
         DISABLED = 2;
     }
 
-    string api_key_id = 1;
+    string app_id = 1;
     string api_key = 2;
     State state = 3;
     string domain_id = 21;
     string user_id = 22;
+    string role_id = 23;
+    string api_key_id = 24;
     string created_at = 31;
     string last_accessed_at = 32;
+    string expired_at = 33;
 }
 
 message AppSearchQuery {
@@ -158,7 +162,21 @@ message AppsInfo {
 }
 
 message AppStatQuery {
+    enum State {
+        NONE_STATE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
     spaceone.api.core.v1.StatisticsQuery query = 1;
+    string app_key = 2;
+    string name = 3;
+    State state = 4;
+    string scope = 5;
+    string role_type = 6;
     string domain_id = 21;
     string workspace_id = 22;
+    string app_id = 23;
+    string role_id = 24;
+
 }
