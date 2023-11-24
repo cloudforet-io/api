@@ -25,6 +25,13 @@ service APIKey {
         };
     }
 
+    rpc generate_api_key (GenerateAPIKeyRequest) returns (APIKeyInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/api-key/generate-api-key"
+            body: "*"
+        };
+    }
+
     rpc enable (APIKeyRequest) returns (APIKeyInfo) {
         option (google.api.http) = {
             post: "/identity/v2/api-key/enable"
@@ -82,6 +89,12 @@ message UpdateAPIKeyRequest {
     string domain_id = 21;
 }
 
+message GenerateAPIKeyRequest {
+    string api_key_id = 1;
+    // +optional
+    string name = 2;
+    string domain_id = 21;
+}
 message APIKeyRequest {
     string api_key_id = 1;
     string domain_id = 21;
