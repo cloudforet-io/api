@@ -76,13 +76,22 @@ service App {
 }
 
 message CreateAppRequest {
+    enum Scope {
+        NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string name = 1;
     string role_id = 2;
-    string scope = 3;
+    Scope scope = 3;
+    // +optional
     google.protobuf.Struct tags = 4;
+    // +optional
+    string expired_at = 5;
     string domain_id = 21;
+    // +optional
     string workspace_id = 22;
-    string expired_at = 31;
 }
 
 message UpdateAppRequest {
@@ -112,7 +121,8 @@ message AppInfo {
 
     string app_id = 1;
     string api_key = 2;
-    State state = 3;
+    string name = 3;
+    State state = 4;
     string domain_id = 21;
     string user_id = 22;
     string role_id = 23;
@@ -168,11 +178,17 @@ message AppStatQuery {
         DISABLED = 2;
     }
 
+    enum Scope {
+        NONE_SCOPE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     spaceone.api.core.v1.StatisticsQuery query = 1;
     string app_key = 2;
     string name = 3;
     State state = 4;
-    string scope = 5;
+    Scope scope = 5;
     string role_type = 6;
     string domain_id = 21;
     string workspace_id = 22;
