@@ -54,6 +54,29 @@
               "description": ""
             }
           ]
+        },
+        {
+          "name": "API_KEY_TYPE",
+          "longName": "VerifyAPIKeyRequest.API_KEY_TYPE",
+          "fullName": "spaceone.api.identity.v2.VerifyAPIKeyRequest.API_KEY_TYPE",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE_API_KEY_TYPE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ACCESS_KEY",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "SECRET_KEY",
+              "number": "2",
+              "description": ""
+            }
+          ]
         }
       ],
       "extensions": [],
@@ -82,6 +105,18 @@
             },
             {
               "name": "api_key",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
               "description": "",
               "label": "",
               "type": "string",
@@ -142,6 +177,18 @@
             },
             {
               "name": "last_accessed_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "expired_at",
               "description": "",
               "label": "",
               "type": "string",
@@ -369,6 +416,18 @@
               "defaultValue": ""
             },
             {
+              "name": "expired_at",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "domain_id",
               "description": "",
               "label": "",
@@ -418,6 +477,78 @@
             },
             {
               "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "VerifyAPIKeyRequest",
+          "longName": "VerifyAPIKeyRequest",
+          "fullName": "spaceone.api.identity.v2.VerifyAPIKeyRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "api_key_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "api_key_type",
+              "description": "",
+              "label": "",
+              "type": "API_KEY_TYPE",
+              "longType": "VerifyAPIKeyRequest.API_KEY_TYPE",
+              "fullType": "spaceone.api.identity.v2.VerifyAPIKeyRequest.API_KEY_TYPE",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "app_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "user_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -547,6 +678,29 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/api-key/delete",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "verify",
+              "description": "",
+              "requestType": "VerifyAPIKeyRequest",
+              "requestLongType": "VerifyAPIKeyRequest",
+              "requestFullType": "spaceone.api.identity.v2.VerifyAPIKeyRequest",
+              "requestStreaming": false,
+              "responseType": "APIKeyInfo",
+              "responseLongType": "APIKeyInfo",
+              "responseFullType": "spaceone.api.identity.v2.APIKeyInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/api-key/verify",
                       "body": "*"
                     }
                   ]

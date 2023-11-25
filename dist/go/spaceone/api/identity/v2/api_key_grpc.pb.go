@@ -26,6 +26,7 @@ const (
 	APIKey_Enable_FullMethodName  = "/spaceone.api.identity.v2.APIKey/enable"
 	APIKey_Disable_FullMethodName = "/spaceone.api.identity.v2.APIKey/disable"
 	APIKey_Delete_FullMethodName  = "/spaceone.api.identity.v2.APIKey/delete"
+	APIKey_Verify_FullMethodName  = "/spaceone.api.identity.v2.APIKey/verify"
 	APIKey_Get_FullMethodName     = "/spaceone.api.identity.v2.APIKey/get"
 	APIKey_List_FullMethodName    = "/spaceone.api.identity.v2.APIKey/list"
 	APIKey_Stat_FullMethodName    = "/spaceone.api.identity.v2.APIKey/stat"
@@ -40,6 +41,7 @@ type APIKeyClient interface {
 	Enable(ctx context.Context, in *APIKeyRequest, opts ...grpc.CallOption) (*APIKeyInfo, error)
 	Disable(ctx context.Context, in *APIKeyRequest, opts ...grpc.CallOption) (*APIKeyInfo, error)
 	Delete(ctx context.Context, in *APIKeyRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Verify(ctx context.Context, in *VerifyAPIKeyRequest, opts ...grpc.CallOption) (*APIKeyInfo, error)
 	Get(ctx context.Context, in *APIKeyRequest, opts ...grpc.CallOption) (*APIKeyInfo, error)
 	List(ctx context.Context, in *APIKeySearchQuery, opts ...grpc.CallOption) (*APIKeysInfo, error)
 	Stat(ctx context.Context, in *APIKeyStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -98,6 +100,15 @@ func (c *aPIKeyClient) Delete(ctx context.Context, in *APIKeyRequest, opts ...gr
 	return out, nil
 }
 
+func (c *aPIKeyClient) Verify(ctx context.Context, in *VerifyAPIKeyRequest, opts ...grpc.CallOption) (*APIKeyInfo, error) {
+	out := new(APIKeyInfo)
+	err := c.cc.Invoke(ctx, APIKey_Verify_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *aPIKeyClient) Get(ctx context.Context, in *APIKeyRequest, opts ...grpc.CallOption) (*APIKeyInfo, error) {
 	out := new(APIKeyInfo)
 	err := c.cc.Invoke(ctx, APIKey_Get_FullMethodName, in, out, opts...)
@@ -134,6 +145,7 @@ type APIKeyServer interface {
 	Enable(context.Context, *APIKeyRequest) (*APIKeyInfo, error)
 	Disable(context.Context, *APIKeyRequest) (*APIKeyInfo, error)
 	Delete(context.Context, *APIKeyRequest) (*empty.Empty, error)
+	Verify(context.Context, *VerifyAPIKeyRequest) (*APIKeyInfo, error)
 	Get(context.Context, *APIKeyRequest) (*APIKeyInfo, error)
 	List(context.Context, *APIKeySearchQuery) (*APIKeysInfo, error)
 	Stat(context.Context, *APIKeyStatQuery) (*_struct.Struct, error)
@@ -158,6 +170,9 @@ func (UnimplementedAPIKeyServer) Disable(context.Context, *APIKeyRequest) (*APIK
 }
 func (UnimplementedAPIKeyServer) Delete(context.Context, *APIKeyRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedAPIKeyServer) Verify(context.Context, *VerifyAPIKeyRequest) (*APIKeyInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Verify not implemented")
 }
 func (UnimplementedAPIKeyServer) Get(context.Context, *APIKeyRequest) (*APIKeyInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -271,6 +286,24 @@ func _APIKey_Delete_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _APIKey_Verify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyAPIKeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(APIKeyServer).Verify(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: APIKey_Verify_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(APIKeyServer).Verify(ctx, req.(*VerifyAPIKeyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _APIKey_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(APIKeyRequest)
 	if err := dec(in); err != nil {
@@ -351,6 +384,10 @@ var APIKey_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "delete",
 			Handler:    _APIKey_Delete_Handler,
+		},
+		{
+			MethodName: "verify",
+			Handler:    _APIKey_Verify_Handler,
 		},
 		{
 			MethodName: "get",

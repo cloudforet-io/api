@@ -4,10 +4,10 @@ import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.identity.v2 import api_key_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2
+from spaceone.api.identity.v2 import app_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2
 
 
-class APIKeyStub(object):
+class AppStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -17,53 +17,53 @@ class APIKeyStub(object):
             channel: A grpc.Channel.
         """
         self.create = channel.unary_unary(
-                '/spaceone.api.identity.v2.APIKey/create',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.CreateAPIKeyRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
+                '/spaceone.api.identity.v2.App/create',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.CreateAppRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
                 )
         self.update = channel.unary_unary(
-                '/spaceone.api.identity.v2.APIKey/update',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.UpdateAPIKeyRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
+                '/spaceone.api.identity.v2.App/update',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.UpdateAppRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
+                )
+        self.generate_api_key = channel.unary_unary(
+                '/spaceone.api.identity.v2.App/generate_api_key',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
                 )
         self.enable = channel.unary_unary(
-                '/spaceone.api.identity.v2.APIKey/enable',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
+                '/spaceone.api.identity.v2.App/enable',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
                 )
         self.disable = channel.unary_unary(
-                '/spaceone.api.identity.v2.APIKey/disable',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
+                '/spaceone.api.identity.v2.App/disable',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
                 )
         self.delete = channel.unary_unary(
-                '/spaceone.api.identity.v2.APIKey/delete',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.SerializeToString,
+                '/spaceone.api.identity.v2.App/delete',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
-        self.verify = channel.unary_unary(
-                '/spaceone.api.identity.v2.APIKey/verify',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.VerifyAPIKeyRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
-                )
         self.get = channel.unary_unary(
-                '/spaceone.api.identity.v2.APIKey/get',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
+                '/spaceone.api.identity.v2.App/get',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
                 )
         self.list = channel.unary_unary(
-                '/spaceone.api.identity.v2.APIKey/list',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeySearchQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeysInfo.FromString,
+                '/spaceone.api.identity.v2.App/list',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppSearchQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppsInfo.FromString,
                 )
         self.stat = channel.unary_unary(
-                '/spaceone.api.identity.v2.APIKey/stat',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyStatQuery.SerializeToString,
+                '/spaceone.api.identity.v2.App/stat',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppStatQuery.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 )
 
 
-class APIKeyServicer(object):
+class AppServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
@@ -73,6 +73,12 @@ class APIKeyServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def generate_api_key(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -91,12 +97,6 @@ class APIKeyServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def verify(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -121,61 +121,61 @@ class APIKeyServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_APIKeyServicer_to_server(servicer, server):
+def add_AppServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'create': grpc.unary_unary_rpc_method_handler(
                     servicer.create,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.CreateAPIKeyRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.CreateAppRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.UpdateAPIKeyRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.UpdateAppRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.SerializeToString,
+            ),
+            'generate_api_key': grpc.unary_unary_rpc_method_handler(
+                    servicer.generate_api_key,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.SerializeToString,
             ),
             'enable': grpc.unary_unary_rpc_method_handler(
                     servicer.enable,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.SerializeToString,
             ),
             'disable': grpc.unary_unary_rpc_method_handler(
                     servicer.disable,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'verify': grpc.unary_unary_rpc_method_handler(
-                    servicer.verify,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.VerifyAPIKeyRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeySearchQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeysInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppSearchQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppsInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyStatQuery.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppStatQuery.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'spaceone.api.identity.v2.APIKey', rpc_method_handlers)
+            'spaceone.api.identity.v2.App', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class APIKey(object):
+class App(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -189,9 +189,9 @@ class APIKey(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.APIKey/create',
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.CreateAPIKeyRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.App/create',
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.CreateAppRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -206,9 +206,26 @@ class APIKey(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.APIKey/update',
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.UpdateAPIKeyRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.App/update',
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.UpdateAppRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def generate_api_key(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.App/generate_api_key',
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -223,9 +240,9 @@ class APIKey(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.APIKey/enable',
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.App/enable',
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -240,9 +257,9 @@ class APIKey(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.APIKey/disable',
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.App/disable',
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -257,26 +274,9 @@ class APIKey(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.APIKey/delete',
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.App/delete',
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def verify(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.APIKey/verify',
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.VerifyAPIKeyRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -291,9 +291,9 @@ class APIKey(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.APIKey/get',
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.App/get',
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -308,9 +308,9 @@ class APIKey(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.APIKey/list',
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeySearchQuery.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeysInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.App/list',
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppSearchQuery.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppsInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -325,8 +325,8 @@ class APIKey(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.APIKey/stat',
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyStatQuery.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.App/stat',
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppStatQuery.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
