@@ -135,8 +135,7 @@ enum UserRequiredAction {
 
 
 message MFA {
-    enum State
-    {
+    enum State {
         NONE = 0;
         ENABLED = 1;
         DISABLED = 2;
@@ -158,8 +157,7 @@ message UserRoleBinding {
 
     string user_id = 1;
     string role_id = 2;
-    bool is_managed_role = 3;
-    Scope scope = 4;
+    Scope scope = 3;
     // +optional
     string workspace_id = 22;
 }
@@ -197,7 +195,6 @@ message UpdateUserRequest {
     string name = 3;
     // +optional
     string email = 4;
-    // +optional
     // +optional
     string language = 5;
     // +optional
@@ -291,8 +288,8 @@ message UserSearchQuery {
     string email = 5;
     // +optional
     AuthType auth_type = 6;
-    // +optional
     string domain_id = 21;
+    // +optional
     string workspace_id = 22;
 }
 
