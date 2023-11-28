@@ -1,0 +1,133 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v2;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+service Schema {
+    rpc create (CreateSchemaRequest) returns (SchemaInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/schema/create"
+            body: "*"
+        };
+    }
+    rpc update (UpdateSchemaRequest) returns (SchemaInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/schema/update"
+            body: "*"
+        };
+    }
+    rpc delete (SchemaRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/identity/v2/schema/delete"
+            body: "*"
+        };
+    }
+    rpc get (SchemaRequest) returns (SchemaInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/schema/get"
+            body: "*"
+        };
+    }
+    rpc list (SchemaSearchQuery) returns (SchemasInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/schema/list"
+            body: "*"
+        };
+    }
+    rpc stat (SchemaStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/identity/v2/schema/stat"
+            body: "*"
+        };
+    }
+}
+
+enum SchemaType {
+    NONE = 0;
+    SERVICE_ACCOUNT = 1;
+    TRUSTED_ACCOUNT = 2;
+    SECRET = 3;
+    TRUSTING_SECRET = 4;
+}
+
+message CreateSchemaRequest {
+    string schema_id = 1;
+    string name = 2;
+    SchemaType schema_type = 3;
+    google.protobuf.Struct schema = 4;
+    string provider = 5;
+    // +optional
+    repeated string related_schemas = 6;
+    // +optional
+    google.protobuf.Struct options = 7;
+    // +optional
+    google.protobuf.Struct tags = 8;
+    string domain_id = 21;
+}
+
+message UpdateSchemaRequest {
+    string schema_id = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    google.protobuf.Struct schema = 3;
+    // +optional
+    google.protobuf.Struct options = 4;
+    // +optional
+    google.protobuf.Struct tags = 5;
+    string domain_id = 21;
+}
+
+message SchemaRequest {
+    string schema_id = 1;
+    string domain_id = 21;
+}
+
+message SchemaSearchQuery {
+    // +optional
+    spaceone.api.core.v1.Query query = 1;
+    // +optional
+    string schema_id = 2;
+    // +optional
+    string name = 3;
+    // +optional
+    SchemaType schema_type = 4;
+    // +optional
+    string provider = 5;
+    // +optional
+    string related_schema_id = 6;
+    // +optional
+    bool is_managed = 7;
+    string domain_id = 21;
+}
+
+message SchemaInfo {
+    string schema_id = 1;
+    string name = 2;
+    SchemaType schema_type = 3;
+    google.protobuf.Struct schema = 4;
+    string provider = 5;
+    repeated string related_schemas = 6;
+    google.protobuf.Struct options = 7;
+    google.protobuf.Struct tags = 8;
+    bool is_managed = 9;
+    string domain_id = 21;
+    string created_at = 31;
+    string updated_at = 32;
+}
+
+message SchemasInfo {
+    repeated SchemaInfo results = 1;
+    int32 total_count = 2;
+}
+
+message SchemaStatQuery {
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    string domain_id = 21;
+}
