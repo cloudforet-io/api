@@ -477,7 +477,7 @@ func RegisterAPIKeyHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.APIKey/Verify", runtime.WithHTTPPathPattern("/identity/v2/api-key/verify"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.APIKey/Verify", runtime.WithHTTPPathPattern("/spaceone.api.identity.v2.APIKey/verify"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -726,7 +726,7 @@ func RegisterAPIKeyHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.APIKey/Verify", runtime.WithHTTPPathPattern("/identity/v2/api-key/verify"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.APIKey/Verify", runtime.WithHTTPPathPattern("/spaceone.api.identity.v2.APIKey/verify"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -822,7 +822,7 @@ var (
 
 	pattern_APIKey_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "api-key", "delete"}, ""))
 
-	pattern_APIKey_Verify_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "api-key", "verify"}, ""))
+	pattern_APIKey_Verify_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.identity.v2.APIKey", "verify"}, ""))
 
 	pattern_APIKey_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "api-key", "get"}, ""))
 

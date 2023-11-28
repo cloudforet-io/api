@@ -26,8 +26,8 @@ class ServiceAccountStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.UpdateServiceAccountRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.FromString,
                 )
-        self.change_trusted_service_account = channel.unary_unary(
-                '/spaceone.api.identity.v2.ServiceAccount/change_trusted_service_account',
+        self.change_trusted_account = channel.unary_unary(
+                '/spaceone.api.identity.v2.ServiceAccount/change_trusted_account',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ChangeTrustedAccountRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.FromString,
                 )
@@ -68,7 +68,7 @@ class ServiceAccountServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def change_trusted_service_account(self, request, context):
+    def change_trusted_account(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -111,8 +111,8 @@ def add_ServiceAccountServicer_to_server(servicer, server):
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.UpdateServiceAccountRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.SerializeToString,
             ),
-            'change_trusted_service_account': grpc.unary_unary_rpc_method_handler(
-                    servicer.change_trusted_service_account,
+            'change_trusted_account': grpc.unary_unary_rpc_method_handler(
+                    servicer.change_trusted_account,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ChangeTrustedAccountRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.SerializeToString,
             ),
@@ -181,7 +181,7 @@ class ServiceAccount(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def change_trusted_service_account(request,
+    def change_trusted_account(request,
             target,
             options=(),
             channel_credentials=None,
@@ -191,7 +191,7 @@ class ServiceAccount(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ServiceAccount/change_trusted_service_account',
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ServiceAccount/change_trusted_account',
             spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ChangeTrustedAccountRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.FromString,
             options, channel_credentials,

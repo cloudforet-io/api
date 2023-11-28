@@ -4,10 +4,10 @@ import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.identity.v2 import trusted_service_account_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2
+from spaceone.api.identity.v2 import schema_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2
 
 
-class TrustedServiceAccountStub(object):
+class SchemaStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -17,38 +17,38 @@ class TrustedServiceAccountStub(object):
             channel: A grpc.Channel.
         """
         self.create = channel.unary_unary(
-                '/spaceone.api.identity.v2.TrustedServiceAccount/create',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.CreateTrustedServiceAccountRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.FromString,
+                '/spaceone.api.identity.v2.Schema/create',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.CreateSchemaRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaInfo.FromString,
                 )
         self.update = channel.unary_unary(
-                '/spaceone.api.identity.v2.TrustedServiceAccount/update',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.UpdateTrustedServiceAccountRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.FromString,
+                '/spaceone.api.identity.v2.Schema/update',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.UpdateSchemaRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaInfo.FromString,
                 )
         self.delete = channel.unary_unary(
-                '/spaceone.api.identity.v2.TrustedServiceAccount/delete',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountRequest.SerializeToString,
+                '/spaceone.api.identity.v2.Schema/delete',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.get = channel.unary_unary(
-                '/spaceone.api.identity.v2.TrustedServiceAccount/get',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.FromString,
+                '/spaceone.api.identity.v2.Schema/get',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaInfo.FromString,
                 )
         self.list = channel.unary_unary(
-                '/spaceone.api.identity.v2.TrustedServiceAccount/list',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountSearchQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountsInfo.FromString,
+                '/spaceone.api.identity.v2.Schema/list',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaSearchQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemasInfo.FromString,
                 )
         self.stat = channel.unary_unary(
-                '/spaceone.api.identity.v2.TrustedServiceAccount/stat',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountStatQuery.SerializeToString,
+                '/spaceone.api.identity.v2.Schema/stat',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaStatQuery.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 )
 
 
-class TrustedServiceAccountServicer(object):
+class SchemaServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
@@ -88,46 +88,46 @@ class TrustedServiceAccountServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_TrustedServiceAccountServicer_to_server(servicer, server):
+def add_SchemaServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'create': grpc.unary_unary_rpc_method_handler(
                     servicer.create,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.CreateTrustedServiceAccountRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.CreateSchemaRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.UpdateTrustedServiceAccountRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.UpdateSchemaRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountSearchQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountsInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaSearchQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemasInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountStatQuery.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaStatQuery.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'spaceone.api.identity.v2.TrustedServiceAccount', rpc_method_handlers)
+            'spaceone.api.identity.v2.Schema', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class TrustedServiceAccount(object):
+class Schema(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -141,9 +141,9 @@ class TrustedServiceAccount(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedServiceAccount/create',
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.CreateTrustedServiceAccountRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Schema/create',
+            spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.CreateSchemaRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -158,9 +158,9 @@ class TrustedServiceAccount(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedServiceAccount/update',
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.UpdateTrustedServiceAccountRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Schema/update',
+            spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.UpdateSchemaRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -175,8 +175,8 @@ class TrustedServiceAccount(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedServiceAccount/delete',
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountRequest.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Schema/delete',
+            spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -192,9 +192,9 @@ class TrustedServiceAccount(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedServiceAccount/get',
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Schema/get',
+            spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -209,9 +209,9 @@ class TrustedServiceAccount(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedServiceAccount/list',
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountSearchQuery.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountsInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Schema/list',
+            spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaSearchQuery.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemasInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -226,8 +226,8 @@ class TrustedServiceAccount(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedServiceAccount/stat',
-            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__service__account__pb2.TrustedServiceAccountStatQuery.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Schema/stat',
+            spaceone_dot_api_dot_identity_dot_v2_dot_schema__pb2.SchemaStatQuery.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

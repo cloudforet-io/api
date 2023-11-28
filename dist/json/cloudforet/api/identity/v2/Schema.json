@@ -1,79 +1,43 @@
 {
   "files": [
     {
-      "name": "spaceone/api/identity/v2/api_key.proto",
+      "name": "spaceone/api/identity/v2/schema.proto",
       "description": "",
       "package": "spaceone.api.identity.v2",
-      "hasEnums": false,
+      "hasEnums": true,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
       "enums": [
         {
-          "name": "State",
-          "longName": "APIKeyInfo.State",
-          "fullName": "spaceone.api.identity.v2.APIKeyInfo.State",
+          "name": "SchemaType",
+          "longName": "SchemaType",
+          "fullName": "spaceone.api.identity.v2.SchemaType",
           "description": "",
           "values": [
             {
-              "name": "NONE_STATE",
+              "name": "SCHEMA_TYPE_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "ENABLED",
+              "name": "SERVICE_ACCOUNT",
               "number": "1",
               "description": ""
             },
             {
-              "name": "DISABLED",
+              "name": "TRUSTED_ACCOUNT",
               "number": "2",
               "description": ""
-            }
-          ]
-        },
-        {
-          "name": "State",
-          "longName": "APIKeySearchQuery.State",
-          "fullName": "spaceone.api.identity.v2.APIKeySearchQuery.State",
-          "description": "",
-          "values": [
+            },
             {
-              "name": "NONE_STATE",
-              "number": "0",
+              "name": "SECRET",
+              "number": "3",
               "description": ""
             },
             {
-              "name": "ENABLED",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "DISABLED",
-              "number": "2",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "API_KEY_TYPE",
-          "longName": "VerifyAPIKeyRequest.API_KEY_TYPE",
-          "fullName": "spaceone.api.identity.v2.VerifyAPIKeyRequest.API_KEY_TYPE",
-          "description": "",
-          "values": [
-            {
-              "name": "NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "APP",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "USER",
-              "number": "2",
+              "name": "TRUSTING_SECRET",
+              "number": "4",
               "description": ""
             }
           ]
@@ -82,9 +46,9 @@
       "extensions": [],
       "messages": [
         {
-          "name": "APIKeyInfo",
-          "longName": "APIKeyInfo",
-          "fullName": "spaceone.api.identity.v2.APIKeyInfo",
+          "name": "CreateSchemaRequest",
+          "longName": "CreateSchemaRequest",
+          "fullName": "spaceone.api.identity.v2.CreateSchemaRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -92,19 +56,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "api_key_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "api_key",
+              "name": "schema_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -128,12 +80,72 @@
               "defaultValue": ""
             },
             {
-              "name": "state",
+              "name": "schema_type",
               "description": "",
               "label": "",
-              "type": "State",
-              "longType": "APIKeyInfo.State",
-              "fullType": "spaceone.api.identity.v2.APIKeyInfo.State",
+              "type": "SchemaType",
+              "longType": "SchemaType",
+              "fullType": "spaceone.api.identity.v2.SchemaType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schema",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "related_schemas",
+              "description": "+optional",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -150,9 +162,129 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SchemaInfo",
+          "longName": "SchemaInfo",
+          "fullName": "spaceone.api.identity.v2.SchemaInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "schema_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             },
             {
-              "name": "user_id",
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schema_type",
+              "description": "",
+              "label": "",
+              "type": "SchemaType",
+              "longType": "SchemaType",
+              "fullType": "spaceone.api.identity.v2.SchemaType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schema",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "related_schemas",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "is_managed",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -176,19 +308,7 @@
               "defaultValue": ""
             },
             {
-              "name": "last_accessed_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "expired_at",
+              "name": "updated_at",
               "description": "",
               "label": "",
               "type": "string",
@@ -202,9 +322,9 @@
           ]
         },
         {
-          "name": "APIKeyRequest",
-          "longName": "APIKeyRequest",
-          "fullName": "spaceone.api.identity.v2.APIKeyRequest",
+          "name": "SchemaRequest",
+          "longName": "SchemaRequest",
+          "fullName": "spaceone.api.identity.v2.SchemaRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -212,7 +332,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "api_key_id",
+              "name": "schema_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -238,9 +358,9 @@
           ]
         },
         {
-          "name": "APIKeySearchQuery",
-          "longName": "APIKeySearchQuery",
-          "fullName": "spaceone.api.identity.v2.APIKeySearchQuery",
+          "name": "SchemaSearchQuery",
+          "longName": "SchemaSearchQuery",
+          "fullName": "spaceone.api.identity.v2.SchemaSearchQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -260,7 +380,7 @@
               "defaultValue": ""
             },
             {
-              "name": "api_key_id",
+              "name": "schema_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -272,12 +392,60 @@
               "defaultValue": ""
             },
             {
-              "name": "state",
+              "name": "name",
               "description": "+optional",
               "label": "",
-              "type": "State",
-              "longType": "APIKeySearchQuery.State",
-              "fullType": "spaceone.api.identity.v2.APIKeySearchQuery.State",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schema_type",
+              "description": "+optional",
+              "label": "",
+              "type": "SchemaType",
+              "longType": "SchemaType",
+              "fullType": "spaceone.api.identity.v2.SchemaType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "related_schema_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "is_managed",
+              "description": "+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -294,25 +462,13 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "user_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
         {
-          "name": "APIKeyStatQuery",
-          "longName": "APIKeyStatQuery",
-          "fullName": "spaceone.api.identity.v2.APIKeyStatQuery",
+          "name": "SchemaStatQuery",
+          "longName": "SchemaStatQuery",
+          "fullName": "spaceone.api.identity.v2.SchemaStatQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -346,9 +502,9 @@
           ]
         },
         {
-          "name": "APIKeysInfo",
-          "longName": "APIKeysInfo",
-          "fullName": "spaceone.api.identity.v2.APIKeysInfo",
+          "name": "SchemasInfo",
+          "longName": "SchemasInfo",
+          "fullName": "spaceone.api.identity.v2.SchemasInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -359,9 +515,9 @@
               "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "APIKeyInfo",
-              "longType": "APIKeyInfo",
-              "fullType": "spaceone.api.identity.v2.APIKeyInfo",
+              "type": "SchemaInfo",
+              "longType": "SchemaInfo",
+              "fullType": "spaceone.api.identity.v2.SchemaInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -382,9 +538,9 @@
           ]
         },
         {
-          "name": "CreateAPIKeyRequest",
-          "longName": "CreateAPIKeyRequest",
-          "fullName": "spaceone.api.identity.v2.CreateAPIKeyRequest",
+          "name": "UpdateSchemaRequest",
+          "longName": "UpdateSchemaRequest",
+          "fullName": "spaceone.api.identity.v2.UpdateSchemaRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -392,7 +548,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "user_id",
+              "name": "schema_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -416,60 +572,36 @@
               "defaultValue": ""
             },
             {
-              "name": "expired_at",
+              "name": "schema",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "UpdateAPIKeyRequest",
-          "longName": "UpdateAPIKeyRequest",
-          "fullName": "spaceone.api.identity.v2.UpdateAPIKeyRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "api_key_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
+              "name": "options",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -485,78 +617,6 @@
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "VerifyAPIKeyRequest",
-          "longName": "VerifyAPIKeyRequest",
-          "fullName": "spaceone.api.identity.v2.VerifyAPIKeyRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "api_key_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "api_key_type",
-              "description": "",
-              "label": "",
-              "type": "API_KEY_TYPE",
-              "longType": "VerifyAPIKeyRequest.API_KEY_TYPE",
-              "fullType": "spaceone.api.identity.v2.VerifyAPIKeyRequest.API_KEY_TYPE",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "app_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": true,
-              "oneofdecl": "api_key_info",
-              "defaultValue": ""
-            },
-            {
-              "name": "user_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": true,
-              "oneofdecl": "api_key_info",
               "defaultValue": ""
             }
           ]
@@ -564,28 +624,28 @@
       ],
       "services": [
         {
-          "name": "APIKey",
-          "longName": "APIKey",
-          "fullName": "spaceone.api.identity.v2.APIKey",
+          "name": "Schema",
+          "longName": "Schema",
+          "fullName": "spaceone.api.identity.v2.Schema",
           "description": "",
           "methods": [
             {
               "name": "create",
               "description": "",
-              "requestType": "CreateAPIKeyRequest",
-              "requestLongType": "CreateAPIKeyRequest",
-              "requestFullType": "spaceone.api.identity.v2.CreateAPIKeyRequest",
+              "requestType": "CreateSchemaRequest",
+              "requestLongType": "CreateSchemaRequest",
+              "requestFullType": "spaceone.api.identity.v2.CreateSchemaRequest",
               "requestStreaming": false,
-              "responseType": "APIKeyInfo",
-              "responseLongType": "APIKeyInfo",
-              "responseFullType": "spaceone.api.identity.v2.APIKeyInfo",
+              "responseType": "SchemaInfo",
+              "responseLongType": "SchemaInfo",
+              "responseFullType": "spaceone.api.identity.v2.SchemaInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/api-key/create",
+                      "pattern": "/identity/v2/schema/create",
                       "body": "*"
                     }
                   ]
@@ -595,66 +655,20 @@
             {
               "name": "update",
               "description": "",
-              "requestType": "UpdateAPIKeyRequest",
-              "requestLongType": "UpdateAPIKeyRequest",
-              "requestFullType": "spaceone.api.identity.v2.UpdateAPIKeyRequest",
+              "requestType": "UpdateSchemaRequest",
+              "requestLongType": "UpdateSchemaRequest",
+              "requestFullType": "spaceone.api.identity.v2.UpdateSchemaRequest",
               "requestStreaming": false,
-              "responseType": "APIKeyInfo",
-              "responseLongType": "APIKeyInfo",
-              "responseFullType": "spaceone.api.identity.v2.APIKeyInfo",
+              "responseType": "SchemaInfo",
+              "responseLongType": "SchemaInfo",
+              "responseFullType": "spaceone.api.identity.v2.SchemaInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/api-key/update",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "enable",
-              "description": "",
-              "requestType": "APIKeyRequest",
-              "requestLongType": "APIKeyRequest",
-              "requestFullType": "spaceone.api.identity.v2.APIKeyRequest",
-              "requestStreaming": false,
-              "responseType": "APIKeyInfo",
-              "responseLongType": "APIKeyInfo",
-              "responseFullType": "spaceone.api.identity.v2.APIKeyInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/identity/v2/api-key/enable",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "disable",
-              "description": "",
-              "requestType": "APIKeyRequest",
-              "requestLongType": "APIKeyRequest",
-              "requestFullType": "spaceone.api.identity.v2.APIKeyRequest",
-              "requestStreaming": false,
-              "responseType": "APIKeyInfo",
-              "responseLongType": "APIKeyInfo",
-              "responseFullType": "spaceone.api.identity.v2.APIKeyInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/identity/v2/api-key/disable",
+                      "pattern": "/identity/v2/schema/update",
                       "body": "*"
                     }
                   ]
@@ -664,9 +678,9 @@
             {
               "name": "delete",
               "description": "",
-              "requestType": "APIKeyRequest",
-              "requestLongType": "APIKeyRequest",
-              "requestFullType": "spaceone.api.identity.v2.APIKeyRequest",
+              "requestType": "SchemaRequest",
+              "requestLongType": "SchemaRequest",
+              "requestFullType": "spaceone.api.identity.v2.SchemaRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -677,7 +691,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/api-key/delete",
+                      "pattern": "/identity/v2/schema/delete",
                       "body": "*"
                     }
                   ]
@@ -685,34 +699,22 @@
               }
             },
             {
-              "name": "verify",
-              "description": "",
-              "requestType": "VerifyAPIKeyRequest",
-              "requestLongType": "VerifyAPIKeyRequest",
-              "requestFullType": "spaceone.api.identity.v2.VerifyAPIKeyRequest",
-              "requestStreaming": false,
-              "responseType": "APIKeyInfo",
-              "responseLongType": "APIKeyInfo",
-              "responseFullType": "spaceone.api.identity.v2.APIKeyInfo",
-              "responseStreaming": false
-            },
-            {
               "name": "get",
               "description": "",
-              "requestType": "APIKeyRequest",
-              "requestLongType": "APIKeyRequest",
-              "requestFullType": "spaceone.api.identity.v2.APIKeyRequest",
+              "requestType": "SchemaRequest",
+              "requestLongType": "SchemaRequest",
+              "requestFullType": "spaceone.api.identity.v2.SchemaRequest",
               "requestStreaming": false,
-              "responseType": "APIKeyInfo",
-              "responseLongType": "APIKeyInfo",
-              "responseFullType": "spaceone.api.identity.v2.APIKeyInfo",
+              "responseType": "SchemaInfo",
+              "responseLongType": "SchemaInfo",
+              "responseFullType": "spaceone.api.identity.v2.SchemaInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/api-key/get",
+                      "pattern": "/identity/v2/schema/get",
                       "body": "*"
                     }
                   ]
@@ -722,20 +724,20 @@
             {
               "name": "list",
               "description": "",
-              "requestType": "APIKeySearchQuery",
-              "requestLongType": "APIKeySearchQuery",
-              "requestFullType": "spaceone.api.identity.v2.APIKeySearchQuery",
+              "requestType": "SchemaSearchQuery",
+              "requestLongType": "SchemaSearchQuery",
+              "requestFullType": "spaceone.api.identity.v2.SchemaSearchQuery",
               "requestStreaming": false,
-              "responseType": "APIKeysInfo",
-              "responseLongType": "APIKeysInfo",
-              "responseFullType": "spaceone.api.identity.v2.APIKeysInfo",
+              "responseType": "SchemasInfo",
+              "responseLongType": "SchemasInfo",
+              "responseFullType": "spaceone.api.identity.v2.SchemasInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/api-key/list",
+                      "pattern": "/identity/v2/schema/list",
                       "body": "*"
                     }
                   ]
@@ -745,9 +747,9 @@
             {
               "name": "stat",
               "description": "",
-              "requestType": "APIKeyStatQuery",
-              "requestLongType": "APIKeyStatQuery",
-              "requestFullType": "spaceone.api.identity.v2.APIKeyStatQuery",
+              "requestType": "SchemaStatQuery",
+              "requestLongType": "SchemaStatQuery",
+              "requestFullType": "spaceone.api.identity.v2.SchemaStatQuery",
               "requestStreaming": false,
               "responseType": "Struct",
               "responseLongType": ".google.protobuf.Struct",
@@ -758,7 +760,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/api-key/stat",
+                      "pattern": "/identity/v2/schema/stat",
                       "body": "*"
                     }
                   ]

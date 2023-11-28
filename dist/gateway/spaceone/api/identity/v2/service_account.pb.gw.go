@@ -100,7 +100,7 @@ func local_request_ServiceAccount_Update_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_ServiceAccount_ChangeTrustedServiceAccount_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ServiceAccount_ChangeTrustedAccount_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq extV2.ChangeTrustedAccountRequest
 	var metadata runtime.ServerMetadata
 
@@ -112,12 +112,12 @@ func request_ServiceAccount_ChangeTrustedServiceAccount_0(ctx context.Context, m
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.ChangeTrustedServiceAccount(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ChangeTrustedAccount(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_ServiceAccount_ChangeTrustedServiceAccount_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ServiceAccount_ChangeTrustedAccount_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq extV2.ChangeTrustedAccountRequest
 	var metadata runtime.ServerMetadata
 
@@ -129,7 +129,7 @@ func local_request_ServiceAccount_ChangeTrustedServiceAccount_0(ctx context.Cont
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.ChangeTrustedServiceAccount(ctx, &protoReq)
+	msg, err := server.ChangeTrustedAccount(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -326,7 +326,7 @@ func RegisterServiceAccountHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_ServiceAccount_ChangeTrustedServiceAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ServiceAccount_ChangeTrustedAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -334,12 +334,12 @@ func RegisterServiceAccountHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.ServiceAccount/ChangeTrustedServiceAccount", runtime.WithHTTPPathPattern("/identity/v2/service-account/change-trusted-service-account"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.ServiceAccount/ChangeTrustedAccount", runtime.WithHTTPPathPattern("/identity/v2/service-account/change-trusted-account"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ServiceAccount_ChangeTrustedServiceAccount_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ServiceAccount_ChangeTrustedAccount_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -347,7 +347,7 @@ func RegisterServiceAccountHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_ServiceAccount_ChangeTrustedServiceAccount_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ServiceAccount_ChangeTrustedAccount_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -536,25 +536,25 @@ func RegisterServiceAccountHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("POST", pattern_ServiceAccount_ChangeTrustedServiceAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ServiceAccount_ChangeTrustedAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.ServiceAccount/ChangeTrustedServiceAccount", runtime.WithHTTPPathPattern("/identity/v2/service-account/change-trusted-service-account"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.ServiceAccount/ChangeTrustedAccount", runtime.WithHTTPPathPattern("/identity/v2/service-account/change-trusted-account"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ServiceAccount_ChangeTrustedServiceAccount_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ServiceAccount_ChangeTrustedAccount_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ServiceAccount_ChangeTrustedServiceAccount_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ServiceAccount_ChangeTrustedAccount_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -654,7 +654,7 @@ var (
 
 	pattern_ServiceAccount_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "service-account", "update"}, ""))
 
-	pattern_ServiceAccount_ChangeTrustedServiceAccount_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "service-account", "change-trusted-service-account"}, ""))
+	pattern_ServiceAccount_ChangeTrustedAccount_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "service-account", "change-trusted-account"}, ""))
 
 	pattern_ServiceAccount_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "service-account", "delete"}, ""))
 
@@ -670,7 +670,7 @@ var (
 
 	forward_ServiceAccount_Update_0 = runtime.ForwardResponseMessage
 
-	forward_ServiceAccount_ChangeTrustedServiceAccount_0 = runtime.ForwardResponseMessage
+	forward_ServiceAccount_ChangeTrustedAccount_0 = runtime.ForwardResponseMessage
 
 	forward_ServiceAccount_Delete_0 = runtime.ForwardResponseMessage
 

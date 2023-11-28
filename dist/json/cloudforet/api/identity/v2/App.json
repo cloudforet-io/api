@@ -10,6 +10,67 @@
       "hasServices": true,
       "enums": [
         {
+          "name": "RoleType",
+          "longName": "AppInfo.RoleType",
+          "fullName": "spaceone.api.identity.v2.AppInfo.RoleType",
+          "description": "",
+          "values": [
+            {
+              "name": "ROLE_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "SYSTEM_ADMIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN_ADMIN",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE_OWNER",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE_MEMBER",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "NO_ROLE",
+              "number": "5",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "Scope",
+          "longName": "AppInfo.Scope",
+          "fullName": "spaceone.api.identity.v2.AppInfo.Scope",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE_SCOPE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "State",
           "longName": "AppInfo.State",
           "fullName": "spaceone.api.identity.v2.AppInfo.State",
@@ -28,6 +89,44 @@
             {
               "name": "DISABLED",
               "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "RoleType",
+          "longName": "AppSearchQuery.RoleType",
+          "fullName": "spaceone.api.identity.v2.AppSearchQuery.RoleType",
+          "description": "",
+          "values": [
+            {
+              "name": "ROLE_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "SYSTEM_ADMIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN_ADMIN",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE_OWNER",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE_MEMBER",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "NO_ROLE",
+              "number": "5",
               "description": ""
             }
           ]
@@ -59,52 +158,6 @@
           "name": "State",
           "longName": "AppSearchQuery.State",
           "fullName": "spaceone.api.identity.v2.AppSearchQuery.State",
-          "description": "",
-          "values": [
-            {
-              "name": "NONE_STATE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "ENABLED",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "DISABLED",
-              "number": "2",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "Scope",
-          "longName": "AppStatQuery.Scope",
-          "fullName": "spaceone.api.identity.v2.AppStatQuery.Scope",
-          "description": "",
-          "values": [
-            {
-              "name": "NONE_SCOPE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "DOMAIN",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE",
-              "number": "2",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "State",
-          "longName": "AppStatQuery.State",
-          "fullName": "spaceone.api.identity.v2.AppStatQuery.State",
           "description": "",
           "values": [
             {
@@ -209,6 +262,30 @@
               "defaultValue": ""
             },
             {
+              "name": "role_type",
+              "description": "",
+              "label": "",
+              "type": "RoleType",
+              "longType": "AppInfo.RoleType",
+              "fullType": "spaceone.api.identity.v2.AppInfo.RoleType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "scope",
+              "description": "",
+              "label": "",
+              "type": "Scope",
+              "longType": "AppInfo.Scope",
+              "fullType": "spaceone.api.identity.v2.AppInfo.Scope",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "domain_id",
               "description": "",
               "label": "",
@@ -221,7 +298,7 @@
               "defaultValue": ""
             },
             {
-              "name": "user_id",
+              "name": "workspace_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -377,18 +454,6 @@
               "defaultValue": ""
             },
             {
-              "name": "app_key",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "name",
               "description": "+optional",
               "label": "",
@@ -428,9 +493,9 @@
               "name": "role_type",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "RoleType",
+              "longType": "AppSearchQuery.RoleType",
+              "fullType": "spaceone.api.identity.v2.AppSearchQuery.RoleType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -462,6 +527,18 @@
             },
             {
               "name": "role_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "api_key_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -497,66 +574,6 @@
               "defaultValue": ""
             },
             {
-              "name": "app_key",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "state",
-              "description": "",
-              "label": "",
-              "type": "State",
-              "longType": "AppStatQuery.State",
-              "fullType": "spaceone.api.identity.v2.AppStatQuery.State",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "scope",
-              "description": "",
-              "label": "",
-              "type": "Scope",
-              "longType": "AppStatQuery.Scope",
-              "fullType": "spaceone.api.identity.v2.AppStatQuery.Scope",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "role_type",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "domain_id",
               "description": "",
               "label": "",
@@ -570,31 +587,7 @@
             },
             {
               "name": "workspace_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "app_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "role_id",
-              "description": "",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -677,18 +670,6 @@
               "defaultValue": ""
             },
             {
-              "name": "scope",
-              "description": "",
-              "label": "",
-              "type": "Scope",
-              "longType": "CreateAppRequest.Scope",
-              "fullType": "spaceone.api.identity.v2.CreateAppRequest.Scope",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "tags",
               "description": "+optional",
               "label": "",
@@ -707,6 +688,18 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "scope",
+              "description": "",
+              "label": "",
+              "type": "Scope",
+              "longType": "CreateAppRequest.Scope",
+              "fullType": "spaceone.api.identity.v2.CreateAppRequest.Scope",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

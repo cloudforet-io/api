@@ -21,13 +21,13 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ServiceAccount_Create_FullMethodName                      = "/spaceone.api.identity.v2.ServiceAccount/create"
-	ServiceAccount_Update_FullMethodName                      = "/spaceone.api.identity.v2.ServiceAccount/update"
-	ServiceAccount_ChangeTrustedServiceAccount_FullMethodName = "/spaceone.api.identity.v2.ServiceAccount/change_trusted_service_account"
-	ServiceAccount_Delete_FullMethodName                      = "/spaceone.api.identity.v2.ServiceAccount/delete"
-	ServiceAccount_Get_FullMethodName                         = "/spaceone.api.identity.v2.ServiceAccount/get"
-	ServiceAccount_List_FullMethodName                        = "/spaceone.api.identity.v2.ServiceAccount/list"
-	ServiceAccount_Stat_FullMethodName                        = "/spaceone.api.identity.v2.ServiceAccount/stat"
+	ServiceAccount_Create_FullMethodName               = "/spaceone.api.identity.v2.ServiceAccount/create"
+	ServiceAccount_Update_FullMethodName               = "/spaceone.api.identity.v2.ServiceAccount/update"
+	ServiceAccount_ChangeTrustedAccount_FullMethodName = "/spaceone.api.identity.v2.ServiceAccount/change_trusted_account"
+	ServiceAccount_Delete_FullMethodName               = "/spaceone.api.identity.v2.ServiceAccount/delete"
+	ServiceAccount_Get_FullMethodName                  = "/spaceone.api.identity.v2.ServiceAccount/get"
+	ServiceAccount_List_FullMethodName                 = "/spaceone.api.identity.v2.ServiceAccount/list"
+	ServiceAccount_Stat_FullMethodName                 = "/spaceone.api.identity.v2.ServiceAccount/stat"
 )
 
 // ServiceAccountClient is the client API for ServiceAccount service.
@@ -36,7 +36,7 @@ const (
 type ServiceAccountClient interface {
 	Create(ctx context.Context, in *CreateServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
 	Update(ctx context.Context, in *UpdateServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
-	ChangeTrustedServiceAccount(ctx context.Context, in *ChangeTrustedAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
+	ChangeTrustedAccount(ctx context.Context, in *ChangeTrustedAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
 	Delete(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
 	List(ctx context.Context, in *ServiceAccountSearchQuery, opts ...grpc.CallOption) (*ServiceAccountsInfo, error)
@@ -69,9 +69,9 @@ func (c *serviceAccountClient) Update(ctx context.Context, in *UpdateServiceAcco
 	return out, nil
 }
 
-func (c *serviceAccountClient) ChangeTrustedServiceAccount(ctx context.Context, in *ChangeTrustedAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error) {
+func (c *serviceAccountClient) ChangeTrustedAccount(ctx context.Context, in *ChangeTrustedAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error) {
 	out := new(ServiceAccountInfo)
-	err := c.cc.Invoke(ctx, ServiceAccount_ChangeTrustedServiceAccount_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, ServiceAccount_ChangeTrustedAccount_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -120,7 +120,7 @@ func (c *serviceAccountClient) Stat(ctx context.Context, in *ServiceAccountStatQ
 type ServiceAccountServer interface {
 	Create(context.Context, *CreateServiceAccountRequest) (*ServiceAccountInfo, error)
 	Update(context.Context, *UpdateServiceAccountRequest) (*ServiceAccountInfo, error)
-	ChangeTrustedServiceAccount(context.Context, *ChangeTrustedAccountRequest) (*ServiceAccountInfo, error)
+	ChangeTrustedAccount(context.Context, *ChangeTrustedAccountRequest) (*ServiceAccountInfo, error)
 	Delete(context.Context, *ServiceAccountRequest) (*empty.Empty, error)
 	Get(context.Context, *ServiceAccountRequest) (*ServiceAccountInfo, error)
 	List(context.Context, *ServiceAccountSearchQuery) (*ServiceAccountsInfo, error)
@@ -138,8 +138,8 @@ func (UnimplementedServiceAccountServer) Create(context.Context, *CreateServiceA
 func (UnimplementedServiceAccountServer) Update(context.Context, *UpdateServiceAccountRequest) (*ServiceAccountInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedServiceAccountServer) ChangeTrustedServiceAccount(context.Context, *ChangeTrustedAccountRequest) (*ServiceAccountInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ChangeTrustedServiceAccount not implemented")
+func (UnimplementedServiceAccountServer) ChangeTrustedAccount(context.Context, *ChangeTrustedAccountRequest) (*ServiceAccountInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeTrustedAccount not implemented")
 }
 func (UnimplementedServiceAccountServer) Delete(context.Context, *ServiceAccountRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -202,20 +202,20 @@ func _ServiceAccount_Update_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServiceAccount_ChangeTrustedServiceAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ServiceAccount_ChangeTrustedAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ChangeTrustedAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceAccountServer).ChangeTrustedServiceAccount(ctx, in)
+		return srv.(ServiceAccountServer).ChangeTrustedAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ServiceAccount_ChangeTrustedServiceAccount_FullMethodName,
+		FullMethod: ServiceAccount_ChangeTrustedAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAccountServer).ChangeTrustedServiceAccount(ctx, req.(*ChangeTrustedAccountRequest))
+		return srv.(ServiceAccountServer).ChangeTrustedAccount(ctx, req.(*ChangeTrustedAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -308,8 +308,8 @@ var ServiceAccount_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ServiceAccount_Update_Handler,
 		},
 		{
-			MethodName: "change_trusted_service_account",
-			Handler:    _ServiceAccount_ChangeTrustedServiceAccount_Handler,
+			MethodName: "change_trusted_account",
+			Handler:    _ServiceAccount_ChangeTrustedAccount_Handler,
 		},
 		{
 			MethodName: "delete",
