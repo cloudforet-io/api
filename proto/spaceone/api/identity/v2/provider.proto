@@ -52,14 +52,17 @@ message CreateProviderRequest {
     string provider = 1;
     string name = 2;
     // +optional
-    int32 order = 3;
-    google.protobuf.Struct template = 4;
+    string alias = 3;
     // +optional
-    google.protobuf.Struct metadata = 5;
+    string color = 4;
     // +optional
-    google.protobuf.Struct capability = 6;
+    string icon = 5;
     // +optional
-    google.protobuf.Struct tags = 7;
+    int32 order = 6;
+    // +optional
+    google.protobuf.Struct options = 7;
+    // +optional
+    google.protobuf.Struct tags = 8;
     string domain_id = 21;
 }
 
@@ -68,15 +71,17 @@ message UpdateProviderRequest {
     // +optional
     string name = 2;
     // +optional
-    int32 order = 3;
+    string alias = 3;
     // +optional
-    google.protobuf.Struct template = 4;
+    string color = 4;
     // +optional
-    google.protobuf.Struct metadata = 5;
+    string icon = 5;
     // +optional
-    google.protobuf.Struct capability = 6;
+    int32 order = 6;
     // +optional
-    google.protobuf.Struct tags = 7;
+    google.protobuf.Struct options = 7;
+    // +optional
+    google.protobuf.Struct tags = 8;
     string domain_id = 21;
 }
 
@@ -92,19 +97,26 @@ message ProviderSearchQuery {
     string provider = 2;
     // +optional
     string name = 3;
+    // +optional
+    string alias = 4;
+    // +optional
+    bool is_managed = 5;
     string domain_id = 21;
 }
 
 message ProviderInfo {
     string provider = 1;
     string name = 2;
-    int32 order = 3;
-    google.protobuf.Struct template = 4;
-    google.protobuf.Struct metadata = 5;
-    google.protobuf.Struct capability = 6;
-    google.protobuf.Struct tags = 7;
+    string alias = 3;
+    string color = 4;
+    string icon = 5;
+    int32 order = 6;
+    google.protobuf.Struct options = 7;
+    google.protobuf.Struct tags = 8;
+    bool is_managed = 9;
     string domain_id = 21;
     string created_at = 31;
+    string updated_at = 32;
 }
 
 message ProvidersInfo {
