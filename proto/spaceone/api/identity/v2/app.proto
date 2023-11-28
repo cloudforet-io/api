@@ -84,11 +84,11 @@ message CreateAppRequest {
 
     string name = 1;
     string role_id = 2;
-    Scope scope = 3;
     // +optional
-    google.protobuf.Struct tags = 4;
+    google.protobuf.Struct tags = 3;
     // +optional
-    string expired_at = 5;
+    string expired_at = 4;
+    Scope scope = 5;
     string domain_id = 21;
     // +optional
     string workspace_id = 22;
@@ -119,12 +119,29 @@ message AppInfo {
         DISABLED = 2;
     }
 
+    enum RoleType {
+        ROLE_TYPE_NONE = 0;
+        SYSTEM_ADMIN = 1;
+        DOMAIN_ADMIN = 2;
+        WORKSPACE_OWNER = 3;
+        WORKSPACE_MEMBER = 4;
+        NO_ROLE = 5;
+    }
+
+    enum Scope {
+        NONE_SCOPE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string app_id = 1;
     string api_key = 2;
     string name = 3;
     State state = 4;
+    RoleType role_type = 5;
+    Scope scope = 6;
     string domain_id = 21;
-    string user_id = 22;
+    string workspace_id = 22;
     string role_id = 23;
     string api_key_id = 24;
     string created_at = 31;
@@ -139,6 +156,15 @@ message AppSearchQuery {
         DISABLED = 2;
     }
 
+    enum RoleType {
+        ROLE_TYPE_NONE = 0;
+        SYSTEM_ADMIN = 1;
+        DOMAIN_ADMIN = 2;
+        WORKSPACE_OWNER = 3;
+        WORKSPACE_MEMBER = 4;
+        NO_ROLE = 5;
+    }
+
     enum Scope {
         NONE_SCOPE = 0;
         DOMAIN = 1;
@@ -150,20 +176,20 @@ message AppSearchQuery {
     // +optional
     string app_id = 2;
     // +optional
-    string app_key = 3;
+    string name = 3;
     // +optional
-    string name = 4;
+    State state = 4;
     // +optional
-    State state = 5;
+    Scope scope = 5;
     // +optional
-    Scope scope = 6;
-    // +optional
-    string role_type = 7;
+    RoleType role_type = 6;
     string domain_id = 21;
     // +optional
     string workspace_id = 22;
     // +optional
     string role_id = 23;
+    // +optional
+    string api_key_id = 24;
 }
 
 message AppsInfo {
@@ -172,27 +198,8 @@ message AppsInfo {
 }
 
 message AppStatQuery {
-    enum State {
-        NONE_STATE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-    }
-
-    enum Scope {
-        NONE_SCOPE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string app_key = 2;
-    string name = 3;
-    State state = 4;
-    Scope scope = 5;
-    string role_type = 6;
     string domain_id = 21;
+    // +optional
     string workspace_id = 22;
-    string app_id = 23;
-    string role_id = 24;
-
 }

@@ -95,21 +95,21 @@ service Project {
     }
 }
 
-message CreateProjectRequest {
-    enum ProjectType {
-        None = 0;
-        PRIVATE = 1;
-        PUBLIC = 2;
-    }
+enum ProjectType {
+    PROJECT_TYPE_NONE = 0;
+    PRIVATE = 1;
+    PUBLIC = 2;
+}
 
+message CreateProjectRequest {
     string name = 1;
     ProjectType project_type  = 2;
     // +optional
-    google.protobuf.Struct tags = 4;
+    google.protobuf.Struct tags = 3;
+    // +optional
+    string project_group_id = 4;
     string domain_id = 21;
     string workspace_id = 22;
-    // +optional
-    string project_group_id = 23;
 }
 
 message UpdateProjectRequest {
@@ -123,17 +123,11 @@ message UpdateProjectRequest {
 }
 
 message UpdateProjectTypeRequest {
-    enum ProjectType {
-        None = 0;
-        PRIVATE = 1;
-        PUBLIC = 2;
-    }
     string project_id = 1;
     ProjectType project_type  = 2;
     string domain_id = 21;
     string workspace_id = 22;
 }
-
 
 message ChangeProjectGroupRequest {
     string project_id = 1;
@@ -169,6 +163,8 @@ message ProjectSearchQuery {
     string project_id = 2;
     // +optional
     string name = 3;
+    // +optional
+    ProjectType project_type = 4;
     string domain_id = 21;
     // +optional
     string workspace_id = 22;
@@ -181,12 +177,6 @@ message ProjectSearchQuery {
 }
 
 message ProjectInfo {
-    enum ProjectType {
-        None = 0;
-        PRIVATE = 1;
-        PUBLIC = 2;
-    }
-
     string project_id = 1;
     string name = 2;
     ProjectType project_type = 3;
