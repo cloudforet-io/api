@@ -21,6 +21,11 @@ class UserStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.CreateUserRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
                 )
+        self.create_workspace_user = channel.unary_unary(
+                '/spaceone.api.identity.v2.User/create_workspace_user',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.CreateWorkspaceUserRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserSummaryInfo.FromString,
+                )
         self.update = channel.unary_unary(
                 '/spaceone.api.identity.v2.User/update',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UpdateUserRequest.SerializeToString,
@@ -91,6 +96,11 @@ class UserStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserStatQuery.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 )
+        self.list_summary = channel.unary_unary(
+                '/spaceone.api.identity.v2.User/list_summary',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserSearchQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UsersSummaryInfo.FromString,
+                )
 
 
 class UserServicer(object):
@@ -101,6 +111,12 @@ class UserServicer(object):
         See role-binding create api.
         External type user do not need password.
         """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def create_workspace_user(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -194,6 +210,12 @@ class UserServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def list_summary(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_UserServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -201,6 +223,11 @@ def add_UserServicer_to_server(servicer, server):
                     servicer.create,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.CreateUserRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.SerializeToString,
+            ),
+            'create_workspace_user': grpc.unary_unary_rpc_method_handler(
+                    servicer.create_workspace_user,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.CreateWorkspaceUserRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserSummaryInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
@@ -272,6 +299,11 @@ def add_UserServicer_to_server(servicer, server):
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserStatQuery.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
+            'list_summary': grpc.unary_unary_rpc_method_handler(
+                    servicer.list_summary,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserSearchQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UsersSummaryInfo.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'spaceone.api.identity.v2.User', rpc_method_handlers)
@@ -296,6 +328,23 @@ class User(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/create',
             spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.CreateUserRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def create_workspace_user(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/create_workspace_user',
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.CreateWorkspaceUserRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserSummaryInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -534,5 +583,22 @@ class User(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/stat',
             spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserStatQuery.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def list_summary(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/list_summary',
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserSearchQuery.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UsersSummaryInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

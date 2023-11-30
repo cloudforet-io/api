@@ -148,7 +148,7 @@ func RegisterExternalAuthHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.ExternalAuth/Set", runtime.WithHTTPPathPattern("/spaceone.api.identity.v2.ExternalAuth/set"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.ExternalAuth/Set", runtime.WithHTTPPathPattern("/identity/v2/external-auth/set"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -173,7 +173,7 @@ func RegisterExternalAuthHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.ExternalAuth/Unset", runtime.WithHTTPPathPattern("/spaceone.api.identity.v2.ExternalAuth/unset"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.ExternalAuth/Unset", runtime.WithHTTPPathPattern("/identity/v2/external-auth/unset"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -198,7 +198,7 @@ func RegisterExternalAuthHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.ExternalAuth/Get", runtime.WithHTTPPathPattern("/spaceone.api.identity.v2.ExternalAuth/get"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.ExternalAuth/Get", runtime.WithHTTPPathPattern("/identity/v2/external-auth/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -262,7 +262,7 @@ func RegisterExternalAuthHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.ExternalAuth/Set", runtime.WithHTTPPathPattern("/spaceone.api.identity.v2.ExternalAuth/set"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.ExternalAuth/Set", runtime.WithHTTPPathPattern("/identity/v2/external-auth/set"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -284,7 +284,7 @@ func RegisterExternalAuthHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.ExternalAuth/Unset", runtime.WithHTTPPathPattern("/spaceone.api.identity.v2.ExternalAuth/unset"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.ExternalAuth/Unset", runtime.WithHTTPPathPattern("/identity/v2/external-auth/unset"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -306,7 +306,7 @@ func RegisterExternalAuthHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.ExternalAuth/Get", runtime.WithHTTPPathPattern("/spaceone.api.identity.v2.ExternalAuth/get"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.ExternalAuth/Get", runtime.WithHTTPPathPattern("/identity/v2/external-auth/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -326,11 +326,11 @@ func RegisterExternalAuthHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_ExternalAuth_Set_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.identity.v2.ExternalAuth", "set"}, ""))
+	pattern_ExternalAuth_Set_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "external-auth", "set"}, ""))
 
-	pattern_ExternalAuth_Unset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.identity.v2.ExternalAuth", "unset"}, ""))
+	pattern_ExternalAuth_Unset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "external-auth", "unset"}, ""))
 
-	pattern_ExternalAuth_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.identity.v2.ExternalAuth", "get"}, ""))
+	pattern_ExternalAuth_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "external-auth", "get"}, ""))
 )
 
 var (

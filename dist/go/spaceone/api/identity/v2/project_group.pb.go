@@ -331,8 +331,7 @@ type ProjectGroupSearchQuery struct {
 	// +optional
 	ProjectGroupId string `protobuf:"bytes,2,opt,name=project_group_id,json=projectGroupId,proto3" json:"project_group_id,omitempty"`
 	// +optional
-	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// +optional
+	Name     string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	DomainId string `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 	// +optional
 	WorkspaceId string `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`

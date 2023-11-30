@@ -10,9 +10,9 @@
       "hasServices": false,
       "enums": [
         {
-          "name": "Scope",
-          "longName": "AuthorizationRequest.Scope",
-          "fullName": "spaceone.api.core.v2.AuthorizationRequest.Scope",
+          "name": "TokenType",
+          "longName": "AuthorizationRequest.TokenType",
+          "fullName": "spaceone.api.core.v2.AuthorizationRequest.TokenType",
           "description": "",
           "values": [
             {
@@ -21,68 +21,13 @@
               "description": ""
             },
             {
-              "name": "PUBLIC",
+              "name": "USER",
               "number": "1",
               "description": ""
             },
             {
-              "name": "SYSTEM",
-              "number": "2",
-              "description": ""
-            },
-            {
-              "name": "DOMAIN",
+              "name": "API_KEY",
               "number": "3",
-              "description": ""
-            },
-            {
-              "name": "DOMAIN_READ",
-              "number": "4",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE",
-              "number": "5",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE_READ",
-              "number": "6",
-              "description": ""
-            },
-            {
-              "name": "DOMAIN_OR_WORKSPACE",
-              "number": "7",
-              "description": ""
-            },
-            {
-              "name": "DOMAIN_OR_WORKSPACE_READ",
-              "number": "8",
-              "description": ""
-            },
-            {
-              "name": "PROJECT",
-              "number": "9",
-              "description": ""
-            },
-            {
-              "name": "PROJECT_READ",
-              "number": "10",
-              "description": ""
-            },
-            {
-              "name": "DOMAIN_OR_USER",
-              "number": "11",
-              "description": ""
-            },
-            {
-              "name": "DOMAIN_OR_USER_READ",
-              "number": "12",
-              "description": ""
-            },
-            {
-              "name": "USER",
-              "number": "13",
               "description": ""
             }
           ]
@@ -99,28 +44,33 @@
               "description": ""
             },
             {
-              "name": "SYSTEM_ADMIN",
+              "name": "SYSTEM",
               "number": "1",
               "description": ""
             },
             {
-              "name": "DOMAIN_ADMIN",
+              "name": "ADMIN",
               "number": "2",
               "description": ""
             },
             {
-              "name": "WORKSPACE_OWNER",
+              "name": "DOMAIN_OWNER",
               "number": "3",
               "description": ""
             },
             {
-              "name": "WORKSPACE_MEMBER",
+              "name": "WORKSPACE_OWNER",
               "number": "4",
               "description": ""
             },
             {
-              "name": "NO_ROLE",
+              "name": "WORKSPACE_MEMBER",
               "number": "5",
+              "description": ""
+            },
+            {
+              "name": "NO_ROLE",
+              "number": "6",
               "description": ""
             }
           ]
@@ -199,103 +149,31 @@
           "extensions": [],
           "fields": [
             {
-              "name": "service",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "resource",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "verb",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "scope",
               "description": "",
               "label": "",
-              "type": "Scope",
-              "longType": "AuthorizationRequest.Scope",
-              "fullType": "spaceone.api.core.v2.AuthorizationRequest.Scope",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "require_domain_id",
+              "name": "token_type",
               "description": "",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "TokenType",
+              "longType": "AuthorizationRequest.TokenType",
+              "fullType": "spaceone.api.core.v2.AuthorizationRequest.TokenType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "require_workspace_id",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "require_project_id",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "require_user_id",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "request_domain_id",
+              "name": "api_key_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -307,31 +185,7 @@
               "defaultValue": ""
             },
             {
-              "name": "request_workspace_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "request_project_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "request_user_id",
+              "name": "app_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -344,18 +198,6 @@
             },
             {
               "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "user_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -391,19 +233,7 @@
               "defaultValue": ""
             },
             {
-              "name": "projects",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project_groups",
+              "name": "user_projects",
               "description": "",
               "label": "repeated",
               "type": "string",
