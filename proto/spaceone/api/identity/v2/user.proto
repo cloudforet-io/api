@@ -22,6 +22,14 @@ service User {
             body: "*"
         };
     }
+
+    rpc create_workspace_user (CreateWorkspaceUserRequest) returns (UserSummaryInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/create-workspace-user"
+            body: "*"
+        };
+    }
+
     // Update user info by given user_id
     rpc update (UpdateUserRequest) returns (UserInfo) {
         option (google.api.http) = {
@@ -115,9 +123,17 @@ service User {
             body: "*"
         };
     }
+
     rpc stat (UserStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/identity/v1/user/stat"
+            body: "*"
+        };
+    }
+
+    rpc list_summary (UserSearchQuery) returns (UsersSummaryInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/list_summary"
             body: "*"
         };
     }
@@ -148,12 +164,29 @@ message MFA {
 }
 
 message CreateUserRequest {
-    enum PermissionGroup {
-        NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
+    string user_id = 1;
+    // When auth_type is LOCAL, password is required.
+    // +optional
+    string password = 2;
+    // +optional
+    string name = 3;
+    // +optional
+    string email = 4;
+    AuthType auth_type = 5;
+    // en,ko
+    // +optional
+    string language = 6;
+    // UTC, Asia/Seoul
+    // +optional
+    string timezone = 7;
+    // +optional
+    google.protobuf.Struct tags = 8;
+    // If reset_password is true, send email
+    bool reset_password = 9;
+    string domain_id = 21;
+}
 
+message CreateWorkspaceUserRequest {
     string user_id = 1;
     // When auth_type is LOCAL, password is required.
     // +optional
@@ -175,9 +208,7 @@ message CreateUserRequest {
     bool reset_password = 9;
     // +optional
     string role_id = 10;
-    PermissionGroup permission_group = 11;
     string domain_id = 21;
-    // +optional
     string workspace_id = 22;
 }
 
@@ -321,8 +352,42 @@ message UserInfo {
     string last_accessed_at = 32;
 }
 
+message UserSummaryInfo {
+    enum State {
+        STATE_NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+        PENDING = 3;
+    }
+
+    enum RoleType {
+        ROLE_TYPE_NONE = 0;
+        ADMIN = 1;
+        DOMAIN_OWNER = 2;
+        WORKSPACE_OWNER = 3;
+        WORKSPACE_MEMBER = 4;
+        USER = 5;
+    }
+
+    string user_id = 1;
+    string name = 2;
+    State state = 3;
+    string email = 4;
+    AuthType auth_type = 6;
+    RoleType role_type = 7;
+    google.protobuf.Struct tags = 13;
+    string domain_id = 21;
+    string created_at = 31;
+    string last_accessed_at = 32;
+}
+
 message UsersInfo {
     repeated UserInfo results = 1;
+    int32 total_count = 2;
+}
+
+message UsersSummaryInfo {
+    repeated UserSummaryInfo results = 1;
     int32 total_count = 2;
 }
 

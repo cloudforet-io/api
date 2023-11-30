@@ -12,12 +12,42 @@ import "spaceone/api/core/v2/handler.proto";
 
 
 service Domain {
-    rpc create (CreateDomainRequest) returns (DomainInfo) {}
-    rpc update (UpdateDomainRequest) returns (DomainInfo) {}
-    rpc delete (DomainRequest) returns (google.protobuf.Empty) {}
-    rpc enable (DomainRequest) returns (DomainInfo) {}
-    rpc disable (DomainRequest) returns (DomainInfo) {}
-    rpc get (DomainRequest) returns (DomainInfo) {}
+    rpc create (CreateDomainRequest) returns (DomainInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/domain/create"
+            body: "*"
+        };
+    }
+    rpc update (UpdateDomainRequest) returns (DomainInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/domain/update"
+            body: "*"
+        };
+    }
+    rpc delete (DomainRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/identity/v2/domain/delete"
+            body: "*"
+        };
+    }
+    rpc enable (DomainRequest) returns (DomainInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/domain/enable"
+            body: "*"
+        };
+    }
+    rpc disable (DomainRequest) returns (DomainInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/domain/disable"
+            body: "*"
+        };
+    }
+    rpc get (DomainRequest) returns (DomainInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/domain/get"
+            body: "*"
+        };
+    }
     rpc get_auth_info (GetDomainAuthRequest) returns (DomainAuthInfo) {
         option (google.api.http) = {
             post: "/identity/v2/domain/get-auth-info"
@@ -26,7 +56,12 @@ service Domain {
     }
     rpc get_public_key (spaceone.api.core.v2.AuthenticationRequest)
     returns (spaceone.api.core.v2.AuthenticationResponse) {}
-    rpc list (DomainSearchQuery) returns (DomainsInfo) {}
+    rpc list (DomainSearchQuery) returns (DomainsInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/domain/list"
+            body: "*"
+        };
+    }
     rpc stat (DomainStatQuery) returns (google.protobuf.Struct) {}
 }
 
