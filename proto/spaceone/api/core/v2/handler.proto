@@ -7,52 +7,32 @@ option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v2";
 import "google/protobuf/struct.proto";
 
 message AuthorizationRequest {
-    enum Scope {
+    enum TokenType {
         NONE = 0;
-        PUBLIC = 1;
-        SYSTEM = 2;
-        DOMAIN = 3;
-        DOMAIN_READ = 4;
-        WORKSPACE = 5;
-        WORKSPACE_READ = 6;
-        DOMAIN_OR_WORKSPACE = 7;
-        DOMAIN_OR_WORKSPACE_READ = 8;
-        PROJECT = 9;
-        PROJECT_READ = 10;
-        DOMAIN_OR_USER = 11;
-        DOMAIN_OR_USER_READ = 12;
-        USER = 13;
+        USER = 1;
+        API_KEY = 3;
     }
 
-    string service = 1;
-    string resource = 2;
-    string verb = 3;
-    Scope scope = 4;
-    bool require_domain_id = 5;
-    bool require_workspace_id = 6;
-    bool require_project_id = 7;
-    bool require_user_id = 8;
-    string request_domain_id = 9;
-    string request_workspace_id = 10;
-    string request_project_id = 11;
-    string request_user_id = 12;
-    string domain_id = 21;
-    string user_id = 22;
+    string scope = 1;
+    TokenType token_type = 2;
+    string api_key_id = 3;
+    string app_id = 4;
+    string domain_id = 5;
 }
 
 message AuthorizationResponse {
     enum RoleType {
         NONE = 0;
-        SYSTEM_ADMIN = 1;
-        DOMAIN_ADMIN = 2;
-        WORKSPACE_OWNER = 3;
-        WORKSPACE_MEMBER = 4;
-        NO_ROLE = 5;
+        SYSTEM = 1;
+        ADMIN = 2;
+        DOMAIN_OWNER = 3;
+        WORKSPACE_OWNER = 4;
+        WORKSPACE_MEMBER = 5;
+        NO_ROLE = 6;
     }
 
     RoleType role_type = 1;
-    repeated string projects = 2;
-    repeated string project_groups = 3;
+    repeated string user_projects = 2;
 }
 
 message AuthenticationRequest {
