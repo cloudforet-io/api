@@ -51,10 +51,11 @@ service Role {
 
 enum RoleType {
     NONE = 0;
-    SYSTEM_ADMIN = 1;
-    DOMAIN_ADMIN = 2;
-    WORKSPACE_OWNER = 3;
-    WORKSPACE_MEMBER = 4;
+    SYSTEM = 1;
+    ADMIN = 2;
+    DOMAIN_OWNER = 3;
+    WORKSPACE_OWNER = 4;
+    WORKSPACE_MEMBER = 5;
 }
 
 message PagePermission {
@@ -71,7 +72,8 @@ message PagePermission {
 message CreateRoleRequest {
     string name = 1;
     RoleType role_type = 2;
-    repeated string policies = 3;
+    // +optional
+    repeated string api_permissions = 3;
     // +optional
     repeated PagePermission page_permissions = 4;
     // +optional
@@ -84,7 +86,7 @@ message UpdateRoleRequest {
     // +optional
     string name = 2;
     // +optional
-    repeated string policies = 3;
+    repeated string api_permissions = 3;
     // +optional
     repeated PagePermission page_permissions = 4;
     // +optional
@@ -101,7 +103,7 @@ message RoleInfo {
     string role_id = 1;
     string name = 2;
     RoleType role_type = 3;
-    repeated string policies = 4;
+    repeated string api_permissions = 4;
     repeated PagePermission page_permissions = 5;
     google.protobuf.Struct tags = 6;
     bool is_managed = 7;

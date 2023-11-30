@@ -18,9 +18,9 @@ service Domain {
     rpc enable (DomainRequest) returns (DomainInfo) {}
     rpc disable (DomainRequest) returns (DomainInfo) {}
     rpc get (DomainRequest) returns (DomainInfo) {}
-    rpc get_metadata (GetDomainMetadataRequest) returns (DomainMetadataInfo) {
+    rpc get_auth_info (GetDomainAuthRequest) returns (DomainAuthInfo) {
         option (google.api.http) = {
-            post: "/identity/v2/domain/get-metadata"
+            post: "/identity/v2/domain/get-auth-info"
             body: "*"
         };
     }
@@ -54,7 +54,9 @@ message CreateDomainRequest {
 message UpdateDomainRequest {
     string domain_id = 1;
     // +optional
-    google.protobuf.Struct tags = 2;
+    string name = 2;
+    // +optional
+    google.protobuf.Struct tags = 3;
 }
 
 
@@ -62,7 +64,7 @@ message DomainRequest {
     string domain_id = 1;
 }
 
-message GetDomainMetadataRequest{
+message GetDomainAuthRequest {
     string name = 1;
 }
 message DomainSearchQuery {
@@ -81,7 +83,7 @@ message DomainSearchQuery {
     State state = 4;
 }
 
-message DomainMetadataInfo {
+message DomainAuthInfo {
     enum ExternalAuthState {
         NONE = 0;
         ENABLED = 1;

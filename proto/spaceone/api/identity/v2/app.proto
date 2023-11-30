@@ -76,7 +76,7 @@ service App {
 }
 
 message CreateAppRequest {
-    enum Scope {
+    enum PermissionGroup {
         NONE = 0;
         DOMAIN = 1;
         WORKSPACE = 2;
@@ -88,7 +88,7 @@ message CreateAppRequest {
     google.protobuf.Struct tags = 3;
     // +optional
     string expired_at = 4;
-    Scope scope = 5;
+    PermissionGroup permission_group = 5;
     string domain_id = 21;
     // +optional
     string workspace_id = 22;
@@ -117,18 +117,17 @@ message AppInfo {
         NONE_STATE = 0;
         ENABLED = 1;
         DISABLED = 2;
+        EXPIRED = 3;
     }
-
     enum RoleType {
         ROLE_TYPE_NONE = 0;
-        SYSTEM_ADMIN = 1;
-        DOMAIN_ADMIN = 2;
-        WORKSPACE_OWNER = 3;
-        WORKSPACE_MEMBER = 4;
-        NO_ROLE = 5;
+        SYSTEM = 1;
+        ADMIN = 2;
+        DOMAIN_OWNER = 3;
+        WORKSPACE_OWNER = 4;
+        WORKSPACE_MEMBER = 5;
     }
-
-    enum Scope {
+    enum PermissionGroup {
         NONE_SCOPE = 0;
         DOMAIN = 1;
         WORKSPACE = 2;
@@ -139,7 +138,7 @@ message AppInfo {
     string name = 3;
     State state = 4;
     RoleType role_type = 5;
-    Scope scope = 6;
+    PermissionGroup permission_group = 6;
     string domain_id = 21;
     string workspace_id = 22;
     string role_id = 23;
@@ -154,18 +153,17 @@ message AppSearchQuery {
         NONE_STATE = 0;
         ENABLED = 1;
         DISABLED = 2;
+        EXPIRED = 3;
     }
-
     enum RoleType {
         ROLE_TYPE_NONE = 0;
-        SYSTEM_ADMIN = 1;
-        DOMAIN_ADMIN = 2;
-        WORKSPACE_OWNER = 3;
-        WORKSPACE_MEMBER = 4;
-        NO_ROLE = 5;
+        SYSTEM = 1;
+        ADMIN = 2;
+        DOMAIN_OWNER = 3;
+        WORKSPACE_OWNER = 4;
+        WORKSPACE_MEMBER = 5;
     }
-
-    enum Scope {
+    enum PermissionGroup {
         NONE_SCOPE = 0;
         DOMAIN = 1;
         WORKSPACE = 2;
@@ -180,9 +178,9 @@ message AppSearchQuery {
     // +optional
     State state = 4;
     // +optional
-    Scope scope = 5;
+    RoleType role_type = 5;
     // +optional
-    RoleType role_type = 6;
+    PermissionGroup permission_group = 6;
     string domain_id = 21;
     // +optional
     string workspace_id = 22;

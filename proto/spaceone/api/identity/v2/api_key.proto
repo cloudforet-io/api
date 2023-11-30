@@ -46,8 +46,6 @@ service APIKey {
         };
     }
 
-    rpc verify (VerifyAPIKeyRequest) returns (APIKeyInfo) {}
-
     rpc get (APIKeyRequest) returns (APIKeyInfo) {
         option (google.api.http) = {
             post: "/identity/v2/api-key/get"
@@ -86,22 +84,6 @@ message UpdateAPIKeyRequest {
     string domain_id = 21;
 }
 
-message VerifyAPIKeyRequest {
-    enum API_KEY_TYPE {
-        NONE = 0;
-        APP = 1;
-        USER = 2;
-    }
-
-    string api_key_id = 1;
-    API_KEY_TYPE api_key_type = 2;
-    string domain_id = 21;
-
-    oneof api_key_info {
-        string app_id = 22;
-        string user_id = 23;
-    }
-}
 message APIKeyRequest {
     string api_key_id = 1;
     string domain_id = 21;
@@ -112,6 +94,7 @@ message APIKeyInfo {
         NONE_STATE = 0;
         ENABLED = 1;
         DISABLED = 2;
+        EXPIRED = 3;
     }
 
     string api_key_id = 1;
@@ -130,6 +113,7 @@ message APIKeySearchQuery {
         NONE_STATE = 0;
         ENABLED = 1;
         DISABLED = 2;
+        EXPIRED = 3;
     }
 
     // +optional
