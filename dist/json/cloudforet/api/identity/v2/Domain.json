@@ -10,9 +10,9 @@
       "hasServices": true,
       "enums": [
         {
-          "name": "State",
-          "longName": "DomainInfo.State",
-          "fullName": "spaceone.api.identity.v2.DomainInfo.State",
+          "name": "ExternalAuthState",
+          "longName": "DomainAuthInfo.ExternalAuthState",
+          "fullName": "spaceone.api.identity.v2.DomainAuthInfo.ExternalAuthState",
           "description": "",
           "values": [
             {
@@ -33,9 +33,9 @@
           ]
         },
         {
-          "name": "ExternalAuthState",
-          "longName": "DomainMetadataInfo.ExternalAuthState",
-          "fullName": "spaceone.api.identity.v2.DomainMetadataInfo.ExternalAuthState",
+          "name": "State",
+          "longName": "DomainInfo.State",
+          "fullName": "spaceone.api.identity.v2.DomainInfo.State",
           "description": "",
           "values": [
             {
@@ -226,6 +226,66 @@
           ]
         },
         {
+          "name": "DomainAuthInfo",
+          "longName": "DomainAuthInfo",
+          "fullName": "spaceone.api.identity.v2.DomainAuthInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "external_auth_state",
+              "description": "",
+              "label": "",
+              "type": "ExternalAuthState",
+              "longType": "DomainAuthInfo.ExternalAuthState",
+              "fullType": "spaceone.api.identity.v2.DomainAuthInfo.ExternalAuthState",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "DomainInfo",
           "longName": "DomainInfo",
           "fullName": "spaceone.api.identity.v2.DomainInfo",
@@ -302,66 +362,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "DomainMetadataInfo",
-          "longName": "DomainMetadataInfo",
-          "fullName": "spaceone.api.identity.v2.DomainMetadataInfo",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "external_auth_state",
-              "description": "",
-              "label": "",
-              "type": "ExternalAuthState",
-              "longType": "DomainMetadataInfo.ExternalAuthState",
-              "fullType": "spaceone.api.identity.v2.DomainMetadataInfo.ExternalAuthState",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "metadata",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -514,9 +514,9 @@
           ]
         },
         {
-          "name": "GetDomainMetadataRequest",
-          "longName": "GetDomainMetadataRequest",
-          "fullName": "spaceone.api.identity.v2.GetDomainMetadataRequest",
+          "name": "GetDomainAuthRequest",
+          "longName": "GetDomainAuthRequest",
+          "fullName": "spaceone.api.identity.v2.GetDomainAuthRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -550,6 +550,18 @@
             {
               "name": "domain_id",
               "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -654,22 +666,22 @@
               "responseStreaming": false
             },
             {
-              "name": "get_metadata",
+              "name": "get_auth_info",
               "description": "",
-              "requestType": "GetDomainMetadataRequest",
-              "requestLongType": "GetDomainMetadataRequest",
-              "requestFullType": "spaceone.api.identity.v2.GetDomainMetadataRequest",
+              "requestType": "GetDomainAuthRequest",
+              "requestLongType": "GetDomainAuthRequest",
+              "requestFullType": "spaceone.api.identity.v2.GetDomainAuthRequest",
               "requestStreaming": false,
-              "responseType": "DomainMetadataInfo",
-              "responseLongType": "DomainMetadataInfo",
-              "responseFullType": "spaceone.api.identity.v2.DomainMetadataInfo",
+              "responseType": "DomainAuthInfo",
+              "responseLongType": "DomainAuthInfo",
+              "responseFullType": "spaceone.api.identity.v2.DomainAuthInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/domain/get-metadata",
+                      "pattern": "/identity/v2/domain/get-auth-info",
                       "body": "*"
                     }
                   ]

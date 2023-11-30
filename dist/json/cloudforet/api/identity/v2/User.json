@@ -33,6 +33,29 @@
           ]
         },
         {
+          "name": "PermissionGroup",
+          "longName": "CreateUserRequest.PermissionGroup",
+          "fullName": "spaceone.api.identity.v2.CreateUserRequest.PermissionGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "State",
           "longName": "MFA.State",
           "fullName": "spaceone.api.identity.v2.MFA.State",
@@ -67,12 +90,12 @@
               "description": ""
             },
             {
-              "name": "SYSTEM_ADMIN",
+              "name": "ADMIN",
               "number": "1",
               "description": ""
             },
             {
-              "name": "DOMAIN_ADMIN",
+              "name": "DOMAIN_OWNER",
               "number": "2",
               "description": ""
             },
@@ -87,7 +110,7 @@
               "description": ""
             },
             {
-              "name": "NO_ROLE",
+              "name": "USER",
               "number": "5",
               "description": ""
             }
@@ -130,29 +153,6 @@
             {
               "name": "UPDATE_PASSWORD",
               "number": "0",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "Scope",
-          "longName": "UserRoleBinding.Scope",
-          "fullName": "spaceone.api.identity.v2.UserRoleBinding.Scope",
-          "description": "",
-          "values": [
-            {
-              "name": "NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "DOMAIN",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE",
-              "number": "2",
               "description": ""
             }
           ]
@@ -403,12 +403,24 @@
               "defaultValue": ""
             },
             {
-              "name": "role_binding",
+              "name": "role_id",
               "description": "+optional",
               "label": "",
-              "type": "UserRoleBinding",
-              "longType": "UserRoleBinding",
-              "fullType": "spaceone.api.identity.v2.UserRoleBinding",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "permission_group",
+              "description": "",
+              "label": "",
+              "type": "PermissionGroup",
+              "longType": "CreateUserRequest.PermissionGroup",
+              "fullType": "spaceone.api.identity.v2.CreateUserRequest.PermissionGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -417,6 +429,18 @@
             {
               "name": "domain_id",
               "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -981,66 +1005,6 @@
           ]
         },
         {
-          "name": "UserRoleBinding",
-          "longName": "UserRoleBinding",
-          "fullName": "spaceone.api.identity.v2.UserRoleBinding",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "user_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "role_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "scope",
-              "description": "",
-              "label": "",
-              "type": "Scope",
-              "longType": "UserRoleBinding.Scope",
-              "fullType": "spaceone.api.identity.v2.UserRoleBinding.Scope",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "UserSearchQuery",
           "longName": "UserSearchQuery",
           "fullName": "spaceone.api.identity.v2.UserSearchQuery",
@@ -1173,18 +1137,6 @@
             {
               "name": "domain_id",
               "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",

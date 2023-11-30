@@ -10,47 +10,9 @@
       "hasServices": true,
       "enums": [
         {
-          "name": "RoleType",
-          "longName": "AppInfo.RoleType",
-          "fullName": "spaceone.api.identity.v2.AppInfo.RoleType",
-          "description": "",
-          "values": [
-            {
-              "name": "ROLE_TYPE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "SYSTEM_ADMIN",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "DOMAIN_ADMIN",
-              "number": "2",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE_OWNER",
-              "number": "3",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE_MEMBER",
-              "number": "4",
-              "description": ""
-            },
-            {
-              "name": "NO_ROLE",
-              "number": "5",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "Scope",
-          "longName": "AppInfo.Scope",
-          "fullName": "spaceone.api.identity.v2.AppInfo.Scope",
+          "name": "PermissionGroup",
+          "longName": "AppInfo.PermissionGroup",
+          "fullName": "spaceone.api.identity.v2.AppInfo.PermissionGroup",
           "description": "",
           "values": [
             {
@@ -66,6 +28,44 @@
             {
               "name": "WORKSPACE",
               "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "RoleType",
+          "longName": "AppInfo.RoleType",
+          "fullName": "spaceone.api.identity.v2.AppInfo.RoleType",
+          "description": "",
+          "values": [
+            {
+              "name": "ROLE_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "SYSTEM",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "ADMIN",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN_OWNER",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE_OWNER",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE_MEMBER",
+              "number": "5",
               "description": ""
             }
           ]
@@ -90,51 +90,18 @@
               "name": "DISABLED",
               "number": "2",
               "description": ""
-            }
-          ]
-        },
-        {
-          "name": "RoleType",
-          "longName": "AppSearchQuery.RoleType",
-          "fullName": "spaceone.api.identity.v2.AppSearchQuery.RoleType",
-          "description": "",
-          "values": [
-            {
-              "name": "ROLE_TYPE_NONE",
-              "number": "0",
-              "description": ""
             },
             {
-              "name": "SYSTEM_ADMIN",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "DOMAIN_ADMIN",
-              "number": "2",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE_OWNER",
+              "name": "EXPIRED",
               "number": "3",
               "description": ""
-            },
-            {
-              "name": "WORKSPACE_MEMBER",
-              "number": "4",
-              "description": ""
-            },
-            {
-              "name": "NO_ROLE",
-              "number": "5",
-              "description": ""
             }
           ]
         },
         {
-          "name": "Scope",
-          "longName": "AppSearchQuery.Scope",
-          "fullName": "spaceone.api.identity.v2.AppSearchQuery.Scope",
+          "name": "PermissionGroup",
+          "longName": "AppSearchQuery.PermissionGroup",
+          "fullName": "spaceone.api.identity.v2.AppSearchQuery.PermissionGroup",
           "description": "",
           "values": [
             {
@@ -150,6 +117,44 @@
             {
               "name": "WORKSPACE",
               "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "RoleType",
+          "longName": "AppSearchQuery.RoleType",
+          "fullName": "spaceone.api.identity.v2.AppSearchQuery.RoleType",
+          "description": "",
+          "values": [
+            {
+              "name": "ROLE_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "SYSTEM",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "ADMIN",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN_OWNER",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE_OWNER",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE_MEMBER",
+              "number": "5",
               "description": ""
             }
           ]
@@ -174,13 +179,18 @@
               "name": "DISABLED",
               "number": "2",
               "description": ""
+            },
+            {
+              "name": "EXPIRED",
+              "number": "3",
+              "description": ""
             }
           ]
         },
         {
-          "name": "Scope",
-          "longName": "CreateAppRequest.Scope",
-          "fullName": "spaceone.api.identity.v2.CreateAppRequest.Scope",
+          "name": "PermissionGroup",
+          "longName": "CreateAppRequest.PermissionGroup",
+          "fullName": "spaceone.api.identity.v2.CreateAppRequest.PermissionGroup",
           "description": "",
           "values": [
             {
@@ -274,12 +284,12 @@
               "defaultValue": ""
             },
             {
-              "name": "scope",
+              "name": "permission_group",
               "description": "",
               "label": "",
-              "type": "Scope",
-              "longType": "AppInfo.Scope",
-              "fullType": "spaceone.api.identity.v2.AppInfo.Scope",
+              "type": "PermissionGroup",
+              "longType": "AppInfo.PermissionGroup",
+              "fullType": "spaceone.api.identity.v2.AppInfo.PermissionGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -478,24 +488,24 @@
               "defaultValue": ""
             },
             {
-              "name": "scope",
-              "description": "+optional",
-              "label": "",
-              "type": "Scope",
-              "longType": "AppSearchQuery.Scope",
-              "fullType": "spaceone.api.identity.v2.AppSearchQuery.Scope",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "role_type",
               "description": "+optional",
               "label": "",
               "type": "RoleType",
               "longType": "AppSearchQuery.RoleType",
               "fullType": "spaceone.api.identity.v2.AppSearchQuery.RoleType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "permission_group",
+              "description": "+optional",
+              "label": "",
+              "type": "PermissionGroup",
+              "longType": "AppSearchQuery.PermissionGroup",
+              "fullType": "spaceone.api.identity.v2.AppSearchQuery.PermissionGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -694,12 +704,12 @@
               "defaultValue": ""
             },
             {
-              "name": "scope",
+              "name": "permission_group",
               "description": "",
               "label": "",
-              "type": "Scope",
-              "longType": "CreateAppRequest.Scope",
-              "fullType": "spaceone.api.identity.v2.CreateAppRequest.Scope",
+              "type": "PermissionGroup",
+              "longType": "CreateAppRequest.PermissionGroup",
+              "fullType": "spaceone.api.identity.v2.CreateAppRequest.PermissionGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

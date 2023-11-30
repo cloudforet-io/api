@@ -10,13 +10,36 @@
       "hasServices": true,
       "enums": [
         {
-          "name": "Scope",
-          "longName": "CreateRoleBindingRequest.Scope",
-          "fullName": "spaceone.api.identity.v2.CreateRoleBindingRequest.Scope",
+          "name": "PermissionGroup",
+          "longName": "CreateRoleBindingRequest.PermissionGroup",
+          "fullName": "spaceone.api.identity.v2.CreateRoleBindingRequest.PermissionGroup",
           "description": "",
           "values": [
             {
               "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "PermissionGroup",
+          "longName": "RoleBindingInfo.PermissionGroup",
+          "fullName": "spaceone.api.identity.v2.RoleBindingInfo.PermissionGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "GROUP_NONE",
               "number": "0",
               "description": ""
             },
@@ -44,35 +67,40 @@
               "description": ""
             },
             {
-              "name": "SYSTEM_ADMIN",
+              "name": "SYSTEM",
               "number": "1",
               "description": ""
             },
             {
-              "name": "DOMAIN_ADMIN",
+              "name": "ADMIN",
               "number": "2",
               "description": ""
             },
             {
-              "name": "WORKSPACE_OWNER",
+              "name": "DOMAIN_OWNER",
               "number": "3",
               "description": ""
             },
             {
-              "name": "WORKSPACE_MEMBER",
+              "name": "WORKSPACE_OWNER",
               "number": "4",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE_MEMBER",
+              "number": "5",
               "description": ""
             }
           ]
         },
         {
-          "name": "Scope",
-          "longName": "RoleBindingInfo.Scope",
-          "fullName": "spaceone.api.identity.v2.RoleBindingInfo.Scope",
+          "name": "PermissionGroup",
+          "longName": "RoleBindingSearchQuery.PermissionGroup",
+          "fullName": "spaceone.api.identity.v2.RoleBindingSearchQuery.PermissionGroup",
           "description": "",
           "values": [
             {
-              "name": "SCOPE_NONE",
+              "name": "GROUP_NONE",
               "number": "0",
               "description": ""
             },
@@ -100,46 +128,28 @@
               "description": ""
             },
             {
-              "name": "SYSTEM_ADMIN",
+              "name": "SYSTEM",
               "number": "1",
               "description": ""
             },
             {
-              "name": "DOMAIN_ADMIN",
+              "name": "ADMIN",
               "number": "2",
               "description": ""
             },
             {
-              "name": "WORKSPACE_OWNER",
+              "name": "DOMAIN_OWNER",
               "number": "3",
               "description": ""
             },
             {
-              "name": "WORKSPACE_MEMBER",
+              "name": "WORKSPACE_OWNER",
               "number": "4",
               "description": ""
-            }
-          ]
-        },
-        {
-          "name": "Scope",
-          "longName": "RoleBindingSearchQuery.Scope",
-          "fullName": "spaceone.api.identity.v2.RoleBindingSearchQuery.Scope",
-          "description": "",
-          "values": [
-            {
-              "name": "SCOPE_NONE",
-              "number": "0",
-              "description": ""
             },
             {
-              "name": "DOMAIN",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE",
-              "number": "2",
+              "name": "WORKSPACE_MEMBER",
+              "number": "5",
               "description": ""
             }
           ]
@@ -182,12 +192,12 @@
               "defaultValue": ""
             },
             {
-              "name": "scope",
+              "name": "permission_group",
               "description": "",
               "label": "",
-              "type": "Scope",
-              "longType": "CreateRoleBindingRequest.Scope",
-              "fullType": "spaceone.api.identity.v2.CreateRoleBindingRequest.Scope",
+              "type": "PermissionGroup",
+              "longType": "CreateRoleBindingRequest.PermissionGroup",
+              "fullType": "spaceone.api.identity.v2.CreateRoleBindingRequest.PermissionGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -242,12 +252,12 @@
               "defaultValue": ""
             },
             {
-              "name": "scope",
+              "name": "permission_group",
               "description": "",
               "label": "",
-              "type": "Scope",
-              "longType": "RoleBindingInfo.Scope",
-              "fullType": "spaceone.api.identity.v2.RoleBindingInfo.Scope",
+              "type": "PermissionGroup",
+              "longType": "RoleBindingInfo.PermissionGroup",
+              "fullType": "spaceone.api.identity.v2.RoleBindingInfo.PermissionGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -410,12 +420,12 @@
               "defaultValue": ""
             },
             {
-              "name": "scope",
+              "name": "permission_group",
               "description": "+optional",
               "label": "",
-              "type": "Scope",
-              "longType": "RoleBindingSearchQuery.Scope",
-              "fullType": "spaceone.api.identity.v2.RoleBindingSearchQuery.Scope",
+              "type": "PermissionGroup",
+              "longType": "RoleBindingSearchQuery.PermissionGroup",
+              "fullType": "spaceone.api.identity.v2.RoleBindingSearchQuery.PermissionGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

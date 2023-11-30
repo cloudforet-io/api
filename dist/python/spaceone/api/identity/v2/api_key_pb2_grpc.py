@@ -41,11 +41,6 @@ class APIKeyStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
-        self.verify = channel.unary_unary(
-                '/spaceone.api.identity.v2.APIKey/verify',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.VerifyAPIKeyRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
-                )
         self.get = channel.unary_unary(
                 '/spaceone.api.identity.v2.APIKey/get',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.SerializeToString,
@@ -96,12 +91,6 @@ class APIKeyServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def verify(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def get(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -147,11 +136,6 @@ def add_APIKeyServicer_to_server(servicer, server):
                     servicer.delete,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'verify': grpc.unary_unary_rpc_method_handler(
-                    servicer.verify,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.VerifyAPIKeyRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
@@ -260,23 +244,6 @@ class APIKey(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.APIKey/delete',
             spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def verify(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.APIKey/verify',
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.VerifyAPIKeyRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_api__key__pb2.APIKeyInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

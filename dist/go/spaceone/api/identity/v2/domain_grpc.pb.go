@@ -28,7 +28,7 @@ const (
 	Domain_Enable_FullMethodName       = "/spaceone.api.identity.v2.Domain/enable"
 	Domain_Disable_FullMethodName      = "/spaceone.api.identity.v2.Domain/disable"
 	Domain_Get_FullMethodName          = "/spaceone.api.identity.v2.Domain/get"
-	Domain_GetMetadata_FullMethodName  = "/spaceone.api.identity.v2.Domain/get_metadata"
+	Domain_GetAuthInfo_FullMethodName  = "/spaceone.api.identity.v2.Domain/get_auth_info"
 	Domain_GetPublicKey_FullMethodName = "/spaceone.api.identity.v2.Domain/get_public_key"
 	Domain_List_FullMethodName         = "/spaceone.api.identity.v2.Domain/list"
 	Domain_Stat_FullMethodName         = "/spaceone.api.identity.v2.Domain/stat"
@@ -44,7 +44,7 @@ type DomainClient interface {
 	Enable(ctx context.Context, in *DomainRequest, opts ...grpc.CallOption) (*DomainInfo, error)
 	Disable(ctx context.Context, in *DomainRequest, opts ...grpc.CallOption) (*DomainInfo, error)
 	Get(ctx context.Context, in *DomainRequest, opts ...grpc.CallOption) (*DomainInfo, error)
-	GetMetadata(ctx context.Context, in *GetDomainMetadataRequest, opts ...grpc.CallOption) (*DomainMetadataInfo, error)
+	GetAuthInfo(ctx context.Context, in *GetDomainAuthRequest, opts ...grpc.CallOption) (*DomainAuthInfo, error)
 	GetPublicKey(ctx context.Context, in *v2.AuthenticationRequest, opts ...grpc.CallOption) (*v2.AuthenticationResponse, error)
 	List(ctx context.Context, in *DomainSearchQuery, opts ...grpc.CallOption) (*DomainsInfo, error)
 	Stat(ctx context.Context, in *DomainStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -112,9 +112,9 @@ func (c *domainClient) Get(ctx context.Context, in *DomainRequest, opts ...grpc.
 	return out, nil
 }
 
-func (c *domainClient) GetMetadata(ctx context.Context, in *GetDomainMetadataRequest, opts ...grpc.CallOption) (*DomainMetadataInfo, error) {
-	out := new(DomainMetadataInfo)
-	err := c.cc.Invoke(ctx, Domain_GetMetadata_FullMethodName, in, out, opts...)
+func (c *domainClient) GetAuthInfo(ctx context.Context, in *GetDomainAuthRequest, opts ...grpc.CallOption) (*DomainAuthInfo, error) {
+	out := new(DomainAuthInfo)
+	err := c.cc.Invoke(ctx, Domain_GetAuthInfo_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -158,7 +158,7 @@ type DomainServer interface {
 	Enable(context.Context, *DomainRequest) (*DomainInfo, error)
 	Disable(context.Context, *DomainRequest) (*DomainInfo, error)
 	Get(context.Context, *DomainRequest) (*DomainInfo, error)
-	GetMetadata(context.Context, *GetDomainMetadataRequest) (*DomainMetadataInfo, error)
+	GetAuthInfo(context.Context, *GetDomainAuthRequest) (*DomainAuthInfo, error)
 	GetPublicKey(context.Context, *v2.AuthenticationRequest) (*v2.AuthenticationResponse, error)
 	List(context.Context, *DomainSearchQuery) (*DomainsInfo, error)
 	Stat(context.Context, *DomainStatQuery) (*_struct.Struct, error)
@@ -187,8 +187,8 @@ func (UnimplementedDomainServer) Disable(context.Context, *DomainRequest) (*Doma
 func (UnimplementedDomainServer) Get(context.Context, *DomainRequest) (*DomainInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedDomainServer) GetMetadata(context.Context, *GetDomainMetadataRequest) (*DomainMetadataInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMetadata not implemented")
+func (UnimplementedDomainServer) GetAuthInfo(context.Context, *GetDomainAuthRequest) (*DomainAuthInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthInfo not implemented")
 }
 func (UnimplementedDomainServer) GetPublicKey(context.Context, *v2.AuthenticationRequest) (*v2.AuthenticationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPublicKey not implemented")
@@ -320,20 +320,20 @@ func _Domain_Get_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Domain_GetMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDomainMetadataRequest)
+func _Domain_GetAuthInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDomainAuthRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DomainServer).GetMetadata(ctx, in)
+		return srv.(DomainServer).GetAuthInfo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Domain_GetMetadata_FullMethodName,
+		FullMethod: Domain_GetAuthInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DomainServer).GetMetadata(ctx, req.(*GetDomainMetadataRequest))
+		return srv.(DomainServer).GetAuthInfo(ctx, req.(*GetDomainAuthRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -424,8 +424,8 @@ var Domain_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Domain_Get_Handler,
 		},
 		{
-			MethodName: "get_metadata",
-			Handler:    _Domain_GetMetadata_Handler,
+			MethodName: "get_auth_info",
+			Handler:    _Domain_GetAuthInfo_Handler,
 		},
 		{
 			MethodName: "get_public_key",
