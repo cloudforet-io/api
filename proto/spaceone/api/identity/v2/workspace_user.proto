@@ -94,7 +94,9 @@ message WorkspaceUserInfo {
     string email = 4;
     AuthType auth_type = 5;
     RoleType role_type = 6;
-    google.protobuf.Struct tags = 7;
+    string language = 7;
+    string timezone = 8;
+    google.protobuf.Struct tags = 9;
     string domain_id = 21;
     string created_at = 31;
     string last_accessed_at = 32;
@@ -126,7 +128,7 @@ message WorkspaceUserSearchQuery {
 }
 
 message WorkspaceUsersInfo {
-    repeated UserInfo results = 1;
+    repeated WorkspaceUserInfo results = 1;
     int32 total_count = 2;
 }
 
