@@ -3519,9 +3519,9 @@
                 "title": "CreateWorkspaceUserRequest"
            }
            ,        "WorkspaceUserInfo": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"auth_type" : {"type": "AuthType","title": "AUTH_TYPE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"auth_type" : {"type": "AuthType","title": "AUTH_TYPE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
          "type": "object",
-         "required": ["user_id","name","state","email","auth_type","role_type","tags","domain_id","created_at","last_accessed_at"],
+         "required": ["user_id","name","state","email","auth_type","role_type","language","timezone","tags","domain_id","created_at","last_accessed_at"],
                 "title": "WorkspaceUserInfo"
            }
            ,        "WorkspaceUserRequest": {
@@ -3543,8 +3543,8 @@
                 "title": "WorkspaceUserStatQuery"
            }
            ,        "WorkspaceUsersInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/UserInfo"},
-               "type": "array","$ref": "#/components/schemas/UserInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceUserInfo"},
+               "type": "array","$ref": "#/components/schemas/WorkspaceUserInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
                 "title": "WorkspaceUsersInfo"
