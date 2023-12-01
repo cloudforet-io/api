@@ -2101,11 +2101,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schema_id||string|True|\n |name||string|True|\n |schema_type|SERVICE_ACCOUNT, TRUSTED_ACCOUNT, SECRET, TRUSTING_SECRET |string|True|\n |schema||Struct|True|\n |provider||string|True|\n |domain_id||string|True|\n |related_schema_id||string||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schema_id||string|True|\n |name||string|True|\n |schema_type|SERVICE_ACCOUNT, TRUSTED_ACCOUNT, SECRET, TRUSTING_SECRET |string|True|\n |schema||Struct|True|\n |provider||string|True|\n |domain_id||string|True|\n |related_schemas||array||\n |options||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"schema_id" : {"type": "string","title": "SCHEMA_ID" },"name" : {"type": "string","title": "NAME" },"schema_type" : {"type": "string","title": "SCHEMA_TYPE" },"schema" : {"type": "object","title": "SCHEMA" },"provider" : {"type": "string","title": "PROVIDER" },"related_schema_id" : {"type": "string","title": "RELATED_SCHEMA_ID" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"schema_id" : {"type": "string","title": "SCHEMA_ID" },"name" : {"type": "string","title": "NAME" },"schema_type" : {"type": "string","title": "SCHEMA_TYPE" },"schema" : {"type": "object","title": "SCHEMA" },"provider" : {"type": "string","title": "PROVIDER" },"related_schemas" : {"items": {}, "type": "array","title": "RELATED_SCHEMAS" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2130,11 +2130,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schema_id||string|True|\n |domain_id||string|True|\n |name||string||\n |schema||Struct||\n |related_schema_id||string||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schema_id||string|True|\n |domain_id||string|True|\n |name||string||\n |schema||Struct||\n |related_schemas||array||\n |options||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"schema_id" : {"type": "string","title": "SCHEMA_ID" },"name" : {"type": "string","title": "NAME" },"schema" : {"type": "object","title": "SCHEMA" },"related_schema_id" : {"type": "string","title": "RELATED_SCHEMA_ID" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"schema_id" : {"type": "string","title": "SCHEMA_ID" },"name" : {"type": "string","title": "NAME" },"schema" : {"type": "object","title": "SCHEMA" },"related_schemas" : {"items": {}, "type": "array","title": "RELATED_SCHEMAS" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -4221,15 +4221,17 @@
                 "title": "UpdateRoleRequest"
            }
            ,        "CreateSchemaRequest": {
-         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"schema_type" : {"type": "string","title": "SCHEMA_TYPE"},"schema" : {"type": "object","title": "SCHEMA"},"provider" : {"type": "string","title": "PROVIDER"},"related_schema_id" : {"type": "string","title": "RELATED_SCHEMA_ID"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"schema_type" : {"type": "string","title": "SCHEMA_TYPE"},"schema" : {"type": "object","title": "SCHEMA"},"provider" : {"type": "string","title": "PROVIDER"},"related_schemas" : {"items": {"type": "string"},
+               "type": "array","title": "RELATED_SCHEMAS"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["schema_id","name","schema_type","schema","provider","domain_id"],
                 "title": "CreateSchemaRequest"
            }
            ,        "SchemaInfo": {
-         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"schema_type" : {"type": "string","title": "SCHEMA_TYPE"},"schema" : {"type": "object","title": "SCHEMA"},"provider" : {"type": "string","title": "PROVIDER"},"related_schema_id" : {"type": "string","title": "RELATED_SCHEMA_ID"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"schema_type" : {"type": "string","title": "SCHEMA_TYPE"},"schema" : {"type": "object","title": "SCHEMA"},"provider" : {"type": "string","title": "PROVIDER"},"related_schemas" : {"items": {"type": "string"},
+               "type": "array","title": "RELATED_SCHEMAS"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["schema_id","name","schema_type","schema","provider","related_schema_id","options","tags","is_managed","domain_id","created_at","updated_at"],
+         "required": ["schema_id","name","schema_type","schema","provider","related_schemas","options","tags","is_managed","domain_id","created_at","updated_at"],
                 "title": "SchemaInfo"
            }
            ,        "SchemaRequest": {
@@ -4258,7 +4260,8 @@
                 "title": "SchemasInfo"
            }
            ,        "UpdateSchemaRequest": {
-         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"schema" : {"type": "object","title": "SCHEMA"},"related_schema_id" : {"type": "string","title": "RELATED_SCHEMA_ID"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"schema" : {"type": "object","title": "SCHEMA"},"related_schemas" : {"items": {"type": "string"},
+               "type": "array","title": "RELATED_SCHEMAS"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["schema_id","domain_id"],
                 "title": "UpdateSchemaRequest"
