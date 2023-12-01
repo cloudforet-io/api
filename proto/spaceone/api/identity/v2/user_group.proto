@@ -100,7 +100,18 @@ message UsersUserGroupRequest {
     string workspace_id = 22;
 }
 
+message UserGroupInfo {
+    string user_group_id = 1;
+    string name = 2;
+    repeated string users = 3;
+    google.protobuf.Struct tags = 4;
+    string domain_id = 21;
+    string workspace_id = 22;
+    string created_at = 31;
+}
+
 message UserGroupSearchQuery {
+    // +optional
     spaceone.api.core.v2.Query query = 1;
     // +optional
     string user_group_id = 2;
@@ -111,16 +122,6 @@ message UserGroupSearchQuery {
     string workspace_id = 22;
     // +optional
     string user_id = 23;
-}
-
-message UserGroupInfo {
-    string user_group_id = 1;
-    string name = 2;
-    repeated string users = 3;
-    google.protobuf.Struct tags = 4;
-    string domain_id = 21;
-    string workspace_id = 22;
-    string created_at = 31;
 }
 
 message UserGroupsInfo {

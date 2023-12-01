@@ -72,29 +72,6 @@ message WorkspaceUserRequest {
     string workspace_id = 22;
 }
 
-message WorkspaceUserSearchQuery {
-    enum State {
-        NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-        PENDING = 3;
-    }
-
-    spaceone.api.core.v2.Query query = 1;
-    string user_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    State state = 4;
-    // +optional
-    string email = 5;
-    // +optional
-    spaceone.api.identity.v2.AuthType auth_type = 6;
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
-}
-
 message WorkspaceUserInfo {
     enum State {
         STATE_NONE = 0;
@@ -121,6 +98,31 @@ message WorkspaceUserInfo {
     string domain_id = 21;
     string created_at = 31;
     string last_accessed_at = 32;
+}
+
+message WorkspaceUserSearchQuery {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+        PENDING = 3;
+    }
+
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string user_id = 2;
+    // +optional
+    string name = 3;
+    // +optional
+    State state = 4;
+    // +optional
+    string email = 5;
+    // +optional
+    spaceone.api.identity.v2.AuthType auth_type = 6;
+    string domain_id = 21;
+    // +optional
+    string workspace_id = 22;
 }
 
 message WorkspaceUsersInfo {
