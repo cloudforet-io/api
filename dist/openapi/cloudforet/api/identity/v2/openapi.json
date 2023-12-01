@@ -8,7 +8,123 @@
      "title": "Identity API",
      "version": "3.1.0"
    },
-   "paths":{"/identity/provider/create": {
+   "paths":{"/identity/workspace-user/create": {
+       "post": {
+         "tags": ["identity > workspace-user"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |auth_type||AuthType|True|\n |reset_password|If reset_password is true, send email|boolean|True|\n |role_id||string|True|\n |domain_id||string|True|\n |workspace_id||string|True|\n |password|When auth_type is LOCAL, password is required. |string||\n |name||string||\n |email||string||\n |language|en,ko |string||\n |timezone|UTC, Asia/Seoul |string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"password" : {"type": "string","title": "PASSWORD" },"name" : {"type": "string","title": "NAME" },"email" : {"type": "string","title": "EMAIL" },"auth_type" : {"type": "AuthType","title": "AUTH_TYPE" },"language" : {"type": "string","title": "LANGUAGE" },"timezone" : {"type": "string","title": "TIMEZONE" },"tags" : {"type": "object","title": "TAGS" },"reset_password" : {"type": "boolean","title": "RESET_PASSWORD" },"role_id" : {"type": "string","title": "ROLE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WorkspaceUserInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceUserInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace-user/get": {
+       "post": {
+         "tags": ["identity > workspace-user"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |domain_id||string|True|\n |workspace_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WorkspaceUserInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceUserInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace-user/list": {
+       "post": {
+         "tags": ["identity > workspace-user"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query|True|\n |user_id||string|True|\n |domain_id||string|True|\n |name||string||\n |state|ENABLED, DISABLED, PENDING |string||\n |email||string||\n |auth_type||AuthType||\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"user_id" : {"type": "string","title": "USER_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"email" : {"type": "string","title": "EMAIL" },"auth_type" : {"type": "AuthType","title": "AUTH_TYPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WorkspaceUsersInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceUsersInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace-user/stat": {
+       "post": {
+         "tags": ["identity > workspace-user"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/provider/create": {
        "post": {
          "tags": ["identity > provider"],
          "summary": "Create",
@@ -3396,48 +3512,42 @@
    },
    "components":{
      "schemas": {
-     "CreateProviderRequest": {
-         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+     "CreateWorkspaceUserRequest": {
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"auth_type" : {"type": "AuthType","title": "AUTH_TYPE"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"},"reset_password" : {"type": "boolean","title": "RESET_PASSWORD"},"role_id" : {"type": "string","title": "ROLE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": ["provider","name","domain_id"],
-                "title": "CreateProviderRequest"
+         "required": ["user_id","auth_type","reset_password","role_id","domain_id","workspace_id"],
+                "title": "CreateWorkspaceUserRequest"
            }
-           ,        "ProviderInfo": {
-         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "WorkspaceUserInfo": {
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"auth_type" : {"type": "AuthType","title": "AUTH_TYPE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
          "type": "object",
-         "required": ["provider","name","alias","color","icon","order","options","tags","is_managed","domain_id","created_at","updated_at"],
-                "title": "ProviderInfo"
+         "required": ["user_id","name","state","email","auth_type","role_type","tags","domain_id","created_at","last_accessed_at"],
+                "title": "WorkspaceUserInfo"
            }
-           ,        "ProviderRequest": {
-         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "WorkspaceUserRequest": {
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": ["provider","domain_id"],
-                "title": "ProviderRequest"
+         "required": ["user_id","domain_id","workspace_id"],
+                "title": "WorkspaceUserRequest"
            }
-           ,        "ProviderSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "WorkspaceUserSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"auth_type" : {"type": "AuthType","title": "AUTH_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": ["domain_id"],
-                "title": "ProviderSearchQuery"
+         "required": ["query","user_id","domain_id"],
+                "title": "WorkspaceUserSearchQuery"
            }
-           ,        "ProviderStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "WorkspaceUserStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": ["query","domain_id"],
-                "title": "ProviderStatQuery"
+                "title": "WorkspaceUserStatQuery"
            }
-           ,        "ProvidersInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ProviderInfo"},
-               "type": "array","$ref": "#/components/schemas/ProviderInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "WorkspaceUsersInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/UserInfo"},
+               "type": "array","$ref": "#/components/schemas/UserInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "ProvidersInfo"
-           }
-           ,        "UpdateProviderRequest": {
-         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["provider","domain_id"],
-                "title": "UpdateProviderRequest"
+                "title": "WorkspaceUsersInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -3645,6 +3755,49 @@
          "type": "object",
          "required": ["version"],
                 "title": "VersionInfo"
+           }
+           ,        "CreateProviderRequest": {
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["provider","name","domain_id"],
+                "title": "CreateProviderRequest"
+           }
+           ,        "ProviderInfo": {
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["provider","name","alias","color","icon","order","options","tags","is_managed","domain_id","created_at","updated_at"],
+                "title": "ProviderInfo"
+           }
+           ,        "ProviderRequest": {
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["provider","domain_id"],
+                "title": "ProviderRequest"
+           }
+           ,        "ProviderSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["domain_id"],
+                "title": "ProviderSearchQuery"
+           }
+           ,        "ProviderStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["query","domain_id"],
+                "title": "ProviderStatQuery"
+           }
+           ,        "ProvidersInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ProviderInfo"},
+               "type": "array","$ref": "#/components/schemas/ProviderInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "ProvidersInfo"
+           }
+           ,        "UpdateProviderRequest": {
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["provider","domain_id"],
+                "title": "UpdateProviderRequest"
            }
            ,        "IssueTokenRequest": {
          "properties" : {"credentials" : {"type": "object","title": "CREDENTIALS"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"timeout" : {"type": "integer","title": "TIMEOUT"},"refresh_count" : {"type": "integer","title": "REFRESH_COUNT"},"verify_code" : {"type": "string","title": "VERIFY_CODE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
