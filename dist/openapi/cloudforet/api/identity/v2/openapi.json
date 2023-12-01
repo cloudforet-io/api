@@ -803,7 +803,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |role_binding_id||string||\n |role_type|SYSTEM, ADMIN, DOMAIN_OWNER, WORKSPACE_OWNER, WORKSPACE_MEMBER |string||\n |permission_group|DOMAIN, WORKSPACE |string||\n |domain_id||string||\n |workspace_id||string||\n |role_id||string||\n |user_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |role_binding_id||string||\n |role_type|SYSTEM, SYSTEM_ADMIN, DOMAIN_ADMIN, WORKSPACE_OWNER, WORKSPACE_MEMBER |string||\n |permission_group|DOMAIN, WORKSPACE |string||\n |domain_id||string||\n |workspace_id||string||\n |role_id||string||\n |user_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -1105,35 +1105,6 @@
                  "schema": {"$ref": "#/components/schemas/UserInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UserInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/user/create-workspace-user": {
-       "post": {
-         "tags": ["identity > user"],
-         "summary": "Create Workspace User",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |auth_type|LOCAL, EXTERNAL |string|True|\n |reset_password|If reset_password is true, send email|boolean|True|\n |domain_id||string|True|\n |workspace_id||string|True|\n |password|When auth_type is LOCAL, password is required. |string||\n |name||string||\n |email||string||\n |language|en,ko |string||\n |timezone|UTC, Asia/Seoul |string||\n |tags||Struct||\n |role_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"password" : {"type": "string","title": "PASSWORD" },"name" : {"type": "string","title": "NAME" },"email" : {"type": "string","title": "EMAIL" },"auth_type" : {"type": "string","title": "AUTH_TYPE" },"language" : {"type": "string","title": "LANGUAGE" },"timezone" : {"type": "string","title": "TIMEZONE" },"tags" : {"type": "object","title": "TAGS" },"reset_password" : {"type": "boolean","title": "RESET_PASSWORD" },"role_id" : {"type": "string","title": "ROLE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/UserSummaryInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/UserSummaryInfo"}}
                }
              }}
          }
@@ -1468,6 +1439,64 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/user/get_workspaces": {
+       "post": {
+         "tags": ["identity > user"],
+         "summary": "Get Workspaces",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |domain_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WorkspacesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WorkspacesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/user/find": {
+       "post": {
+         "tags": ["identity > user"],
+         "summary": "Find",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |keyword||string|True|\n |domain_id||string|True|\n |state|ENABLED, DISABLED, PENDING |string||\n |exclude_domain_id||string||\n |page||Page||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"keyword" : {"type": "string","title": "KEYWORD" },"state" : {"type": "string","title": "STATE" },"exclude_domain_id" : {"type": "string","title": "EXCLUDE_DOMAIN_ID" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UsersSummaryInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UsersSummaryInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/user/list": {
        "post": {
          "tags": ["identity > user"],
@@ -1522,35 +1551,6 @@
                  "schema": {"type": "object"},
                  "examples": {
                    "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/user/list_summary": {
-       "post": {
-         "tags": ["identity > user"],
-         "summary": "List Summary",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query|True|\n |user_id||string|True|\n |domain_id||string|True|\n |name||string||\n |state|ENABLED, DISABLED, PENDING |string||\n |email||string||\n |auth_type|LOCAL, EXTERNAL |string||\n |workspace_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"user_id" : {"type": "string","title": "USER_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"email" : {"type": "string","title": "EMAIL" },"auth_type" : {"type": "string","title": "AUTH_TYPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/UsersSummaryInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/UsersSummaryInfo"}}
                }
              }}
          }
@@ -1759,7 +1759,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |app_id||string||\n |name||string||\n |state|ENABLED, DISABLED, EXPIRED |string||\n |role_type|SYSTEM, ADMIN, DOMAIN_OWNER, WORKSPACE_OWNER, WORKSPACE_MEMBER |string||\n |permission_group|DOMAIN, WORKSPACE |string||\n |workspace_id||string||\n |role_id||string||\n |api_key_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |app_id||string||\n |name||string||\n |state|ENABLED, DISABLED, EXPIRED |string||\n |role_type|SYSTEM, SYSTEM_ADMIN, DOMAIN_ADMIN, WORKSPACE_OWNER, WORKSPACE_MEMBER |string||\n |permission_group|DOMAIN, WORKSPACE |string||\n |workspace_id||string||\n |role_id||string||\n |api_key_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -1817,7 +1817,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |role_type|SYSTEM, ADMIN, DOMAIN_OWNER, WORKSPACE_OWNER, WORKSPACE_MEMBER |string|True|\n |domain_id||string|True|\n |api_permissions||array||\n |page_permissions||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |role_type|SYSTEM, SYSTEM_ADMIN, DOMAIN_ADMIN, WORKSPACE_OWNER, WORKSPACE_MEMBER |string|True|\n |domain_id||string|True|\n |api_permissions||array||\n |page_permissions||array||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -1927,7 +1927,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |role_id||string||\n |name||string||\n |role_type|SYSTEM, ADMIN, DOMAIN_OWNER, WORKSPACE_OWNER, WORKSPACE_MEMBER |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |role_id||string||\n |name||string||\n |role_type|SYSTEM, SYSTEM_ADMIN, DOMAIN_ADMIN, WORKSPACE_OWNER, WORKSPACE_MEMBER |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -2014,11 +2014,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schema_id||string|True|\n |domain_id||string|True|\n |name||string||\n |schema||Struct||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schema_id||string|True|\n |domain_id||string|True|\n |name||string||\n |schema||Struct||\n |related_schema_id||string||\n |options||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"schema_id" : {"type": "string","title": "SCHEMA_ID" },"name" : {"type": "string","title": "NAME" },"schema" : {"type": "object","title": "SCHEMA" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"schema_id" : {"type": "string","title": "SCHEMA_ID" },"name" : {"type": "string","title": "NAME" },"schema" : {"type": "object","title": "SCHEMA" },"related_schema_id" : {"type": "string","title": "RELATED_SCHEMA_ID" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -3881,12 +3881,6 @@
          "required": ["user_id","auth_type","reset_password","domain_id"],
                 "title": "CreateUserRequest"
            }
-           ,        "CreateWorkspaceUserRequest": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"},"reset_password" : {"type": "boolean","title": "RESET_PASSWORD"},"role_id" : {"type": "string","title": "ROLE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
-         "type": "object",
-         "required": ["user_id","auth_type","reset_password","domain_id","workspace_id"],
-                "title": "CreateWorkspaceUserRequest"
-           }
            ,        "DisableMFARequest": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"force" : {"type": "boolean","title": "FORCE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
@@ -3918,6 +3912,12 @@
          "required": ["user_id","domain_id"],
                 "title": "UpdateUserRequest"
            }
+           ,        "UserFindRequest": {
+         "properties" : {"keyword" : {"type": "string","title": "KEYWORD"},"state" : {"type": "string","title": "STATE"},"exclude_domain_id" : {"type": "string","title": "EXCLUDE_DOMAIN_ID"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["keyword","domain_id"],
+                "title": "UserFindRequest"
+           }
            ,        "UserInfo": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"email_verified" : {"type": "boolean","title": "EMAIL_VERIFIED"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"mfa" : {"$ref": "#/components/schemas/MFA","title": "MFA"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"required_actions" : {"items": {"type": "string"},
                "type": "array","title": "REQUIRED_ACTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
@@ -3944,9 +3944,9 @@
                 "title": "UserStatQuery"
            }
            ,        "UserSummaryInfo": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"}},
          "type": "object",
-         "required": ["user_id","name","state","email","auth_type","role_type","tags","domain_id","created_at","last_accessed_at"],
+         "required": ["user_id","name","state"],
                 "title": "UserSummaryInfo"
            }
            ,        "UsersInfo": {
@@ -4105,7 +4105,7 @@
                 "title": "SchemasInfo"
            }
            ,        "UpdateSchemaRequest": {
-         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"schema" : {"type": "object","title": "SCHEMA"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"schema" : {"type": "object","title": "SCHEMA"},"related_schema_id" : {"type": "string","title": "RELATED_SCHEMA_ID"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["schema_id","domain_id"],
                 "title": "UpdateSchemaRequest"

@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
+	v2_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Endpoint_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.EndpointClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.EndpointSearchQuery
+func request_Endpoint_List_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.EndpointClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.EndpointSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Endpoint_List_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Endpoint_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.EndpointServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.EndpointSearchQuery
+func local_request_Endpoint_List_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.EndpointServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.EndpointSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -70,7 +70,7 @@ func local_request_Endpoint_List_0(ctx context.Context, marshaler runtime.Marsha
 // UnaryRPC     :call EndpointServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterEndpointHandlerFromEndpoint instead.
-func RegisterEndpointHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV2.EndpointServer) error {
+func RegisterEndpointHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.EndpointServer) error {
 
 	mux.Handle("POST", pattern_Endpoint_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -128,15 +128,15 @@ func RegisterEndpointHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 // RegisterEndpointHandler registers the http handlers for service Endpoint to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterEndpointHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterEndpointHandlerClient(ctx, mux, extV2.NewEndpointClient(conn))
+	return RegisterEndpointHandlerClient(ctx, mux, v2_0.NewEndpointClient(conn))
 }
 
 // RegisterEndpointHandlerClient registers the http handlers for service Endpoint
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV2.EndpointClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV2.EndpointClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.EndpointClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.EndpointClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV2.EndpointClient" to call the correct interceptors.
-func RegisterEndpointHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV2.EndpointClient) error {
+// "v2_0.EndpointClient" to call the correct interceptors.
+func RegisterEndpointHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.EndpointClient) error {
 
 	mux.Handle("POST", pattern_Endpoint_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
+	v2_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Provider_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProviderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateProviderRequest
+func request_Provider_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProviderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateProviderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Provider_Create_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Provider_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProviderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateProviderRequest
+func local_request_Provider_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProviderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateProviderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Provider_Create_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Provider_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProviderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateProviderRequest
+func request_Provider_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProviderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateProviderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Provider_Update_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Provider_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProviderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateProviderRequest
+func local_request_Provider_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProviderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateProviderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Provider_Update_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Provider_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProviderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProviderRequest
+func request_Provider_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProviderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProviderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Provider_Delete_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Provider_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProviderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProviderRequest
+func local_request_Provider_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProviderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProviderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Provider_Delete_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Provider_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProviderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProviderRequest
+func request_Provider_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProviderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProviderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Provider_Get_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_Provider_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProviderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProviderRequest
+func local_request_Provider_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProviderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProviderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Provider_Get_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func request_Provider_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProviderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProviderSearchQuery
+func request_Provider_List_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProviderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProviderSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Provider_List_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Provider_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProviderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProviderSearchQuery
+func local_request_Provider_List_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProviderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProviderSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Provider_List_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Provider_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProviderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProviderStatQuery
+func request_Provider_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProviderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProviderStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Provider_Stat_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Provider_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProviderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProviderStatQuery
+func local_request_Provider_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProviderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProviderStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -240,7 +240,7 @@ func local_request_Provider_Stat_0(ctx context.Context, marshaler runtime.Marsha
 // UnaryRPC     :call ProviderServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterProviderHandlerFromEndpoint instead.
-func RegisterProviderHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV2.ProviderServer) error {
+func RegisterProviderHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.ProviderServer) error {
 
 	mux.Handle("POST", pattern_Provider_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -423,15 +423,15 @@ func RegisterProviderHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 // RegisterProviderHandler registers the http handlers for service Provider to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterProviderHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterProviderHandlerClient(ctx, mux, extV2.NewProviderClient(conn))
+	return RegisterProviderHandlerClient(ctx, mux, v2_0.NewProviderClient(conn))
 }
 
 // RegisterProviderHandlerClient registers the http handlers for service Provider
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV2.ProviderClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV2.ProviderClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.ProviderClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.ProviderClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV2.ProviderClient" to call the correct interceptors.
-func RegisterProviderHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV2.ProviderClient) error {
+// "v2_0.ProviderClient" to call the correct interceptors.
+func RegisterProviderHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.ProviderClient) error {
 
 	mux.Handle("POST", pattern_Provider_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

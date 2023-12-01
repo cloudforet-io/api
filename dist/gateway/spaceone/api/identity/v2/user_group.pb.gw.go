@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
+	v2_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_UserGroup_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateUserGroupRequest
+func request_UserGroup_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateUserGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_UserGroup_Create_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_UserGroup_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateUserGroupRequest
+func local_request_UserGroup_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateUserGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_UserGroup_Create_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_UserGroup_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateUserGroupRequest
+func request_UserGroup_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateUserGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_UserGroup_Update_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_UserGroup_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateUserGroupRequest
+func local_request_UserGroup_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateUserGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_UserGroup_Update_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_UserGroup_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserGroupRequest
+func request_UserGroup_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_UserGroup_Delete_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_UserGroup_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserGroupRequest
+func local_request_UserGroup_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_UserGroup_Delete_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_UserGroup_AddUsers_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UsersUserGroupRequest
+func request_UserGroup_AddUsers_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UsersUserGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_UserGroup_AddUsers_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_UserGroup_AddUsers_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UsersUserGroupRequest
+func local_request_UserGroup_AddUsers_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UsersUserGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_UserGroup_AddUsers_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_UserGroup_RemoveUsers_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UsersUserGroupRequest
+func request_UserGroup_RemoveUsers_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UsersUserGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_UserGroup_RemoveUsers_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_UserGroup_RemoveUsers_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UsersUserGroupRequest
+func local_request_UserGroup_RemoveUsers_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UsersUserGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_UserGroup_RemoveUsers_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_UserGroup_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserGroupRequest
+func request_UserGroup_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_UserGroup_Get_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_UserGroup_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserGroupRequest
+func local_request_UserGroup_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_UserGroup_Get_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_UserGroup_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserGroupSearchQuery
+func request_UserGroup_List_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserGroupSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_UserGroup_List_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_UserGroup_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserGroupSearchQuery
+func local_request_UserGroup_List_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserGroupSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_UserGroup_List_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_UserGroup_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserGroupStatQuery
+func request_UserGroup_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserGroupStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_UserGroup_Stat_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_UserGroup_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserGroupStatQuery
+func local_request_UserGroup_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserGroupStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -308,7 +308,7 @@ func local_request_UserGroup_Stat_0(ctx context.Context, marshaler runtime.Marsh
 // UnaryRPC     :call UserGroupServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUserGroupHandlerFromEndpoint instead.
-func RegisterUserGroupHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV2.UserGroupServer) error {
+func RegisterUserGroupHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.UserGroupServer) error {
 
 	mux.Handle("POST", pattern_UserGroup_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -541,15 +541,15 @@ func RegisterUserGroupHandlerFromEndpoint(ctx context.Context, mux *runtime.Serv
 // RegisterUserGroupHandler registers the http handlers for service UserGroup to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterUserGroupHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterUserGroupHandlerClient(ctx, mux, extV2.NewUserGroupClient(conn))
+	return RegisterUserGroupHandlerClient(ctx, mux, v2_0.NewUserGroupClient(conn))
 }
 
 // RegisterUserGroupHandlerClient registers the http handlers for service UserGroup
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV2.UserGroupClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV2.UserGroupClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.UserGroupClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.UserGroupClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV2.UserGroupClient" to call the correct interceptors.
-func RegisterUserGroupHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV2.UserGroupClient) error {
+// "v2_0.UserGroupClient" to call the correct interceptors.
+func RegisterUserGroupHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.UserGroupClient) error {
 
 	mux.Handle("POST", pattern_UserGroup_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

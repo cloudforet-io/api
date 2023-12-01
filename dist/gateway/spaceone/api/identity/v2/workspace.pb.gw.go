@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
+	v2_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Workspace_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateWorkSpaceRequest
+func request_Workspace_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateWorkSpaceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Workspace_Create_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_Workspace_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateWorkSpaceRequest
+func local_request_Workspace_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateWorkSpaceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Workspace_Create_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_Workspace_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateWorkSpaceRequest
+func request_Workspace_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateWorkSpaceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Workspace_Update_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_Workspace_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateWorkSpaceRequest
+func local_request_Workspace_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateWorkSpaceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Workspace_Update_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_Workspace_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.WorkspaceRequest
+func request_Workspace_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.WorkspaceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Workspace_Delete_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_Workspace_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.WorkspaceRequest
+func local_request_Workspace_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.WorkspaceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Workspace_Delete_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_Workspace_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.WorkspaceRequest
+func request_Workspace_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.WorkspaceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Workspace_Enable_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_Workspace_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.WorkspaceRequest
+func local_request_Workspace_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.WorkspaceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Workspace_Enable_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_Workspace_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.WorkspaceRequest
+func request_Workspace_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.WorkspaceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Workspace_Disable_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_Workspace_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.WorkspaceRequest
+func local_request_Workspace_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.WorkspaceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Workspace_Disable_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_Workspace_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.WorkspaceRequest
+func request_Workspace_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.WorkspaceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Workspace_Get_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Workspace_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.WorkspaceRequest
+func local_request_Workspace_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.WorkspaceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_Workspace_Get_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Workspace_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.WorkspaceSearchQuery
+func request_Workspace_List_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.WorkspaceSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_Workspace_List_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Workspace_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.WorkspaceSearchQuery
+func local_request_Workspace_List_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.WorkspaceSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_Workspace_List_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Workspace_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.WorkspaceStatQuery
+func request_Workspace_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.WorkspaceStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_Workspace_Stat_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Workspace_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.WorkspaceStatQuery
+func local_request_Workspace_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.WorkspaceStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -308,7 +308,7 @@ func local_request_Workspace_Stat_0(ctx context.Context, marshaler runtime.Marsh
 // UnaryRPC     :call WorkspaceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterWorkspaceHandlerFromEndpoint instead.
-func RegisterWorkspaceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV2.WorkspaceServer) error {
+func RegisterWorkspaceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.WorkspaceServer) error {
 
 	mux.Handle("POST", pattern_Workspace_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -541,15 +541,15 @@ func RegisterWorkspaceHandlerFromEndpoint(ctx context.Context, mux *runtime.Serv
 // RegisterWorkspaceHandler registers the http handlers for service Workspace to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterWorkspaceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterWorkspaceHandlerClient(ctx, mux, extV2.NewWorkspaceClient(conn))
+	return RegisterWorkspaceHandlerClient(ctx, mux, v2_0.NewWorkspaceClient(conn))
 }
 
 // RegisterWorkspaceHandlerClient registers the http handlers for service Workspace
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV2.WorkspaceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV2.WorkspaceClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.WorkspaceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.WorkspaceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV2.WorkspaceClient" to call the correct interceptors.
-func RegisterWorkspaceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV2.WorkspaceClient) error {
+// "v2_0.WorkspaceClient" to call the correct interceptors.
+func RegisterWorkspaceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.WorkspaceClient) error {
 
 	mux.Handle("POST", pattern_Workspace_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

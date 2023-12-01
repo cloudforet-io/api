@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
+	v2_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_User_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateUserRequest
+func request_User_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_User_Create_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_User_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateUserRequest
+func local_request_User_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,42 +66,8 @@ func local_request_User_Create_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_User_CreateWorkspaceUser_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateWorkspaceUserRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.CreateWorkspaceUser(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_User_CreateWorkspaceUser_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateWorkspaceUserRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.CreateWorkspaceUser(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
-func request_User_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateUserRequest
+func request_User_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +83,8 @@ func request_User_Update_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_User_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateUserRequest
+func local_request_User_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +100,8 @@ func local_request_User_Update_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_User_VerifyEmail_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.VerifyEmailRequest
+func request_User_VerifyEmail_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.VerifyEmailRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +117,8 @@ func request_User_VerifyEmail_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_User_VerifyEmail_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.VerifyEmailRequest
+func local_request_User_VerifyEmail_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.VerifyEmailRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +134,8 @@ func local_request_User_VerifyEmail_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_User_ConfirmEmail_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ConfirmEmailRequest
+func request_User_ConfirmEmail_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ConfirmEmailRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +151,8 @@ func request_User_ConfirmEmail_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_User_ConfirmEmail_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ConfirmEmailRequest
+func local_request_User_ConfirmEmail_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ConfirmEmailRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +168,8 @@ func local_request_User_ConfirmEmail_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_User_ResetPassword_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserRequest
+func request_User_ResetPassword_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +185,8 @@ func request_User_ResetPassword_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_User_ResetPassword_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserRequest
+func local_request_User_ResetPassword_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +202,8 @@ func local_request_User_ResetPassword_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_User_SetRequiredActions_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.SetRequiredActionsRequest
+func request_User_SetRequiredActions_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.SetRequiredActionsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +219,8 @@ func request_User_SetRequiredActions_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_User_SetRequiredActions_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.SetRequiredActionsRequest
+func local_request_User_SetRequiredActions_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.SetRequiredActionsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +236,8 @@ func local_request_User_SetRequiredActions_0(ctx context.Context, marshaler runt
 
 }
 
-func request_User_EnableMfa_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.EnableMFARequest
+func request_User_EnableMfa_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.EnableMFARequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +253,8 @@ func request_User_EnableMfa_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_User_EnableMfa_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.EnableMFARequest
+func local_request_User_EnableMfa_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.EnableMFARequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -304,8 +270,8 @@ func local_request_User_EnableMfa_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_User_DisableMfa_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DisableMFARequest
+func request_User_DisableMfa_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DisableMFARequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -321,8 +287,8 @@ func request_User_DisableMfa_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_User_DisableMfa_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.DisableMFARequest
+func local_request_User_DisableMfa_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.DisableMFARequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -338,8 +304,8 @@ func local_request_User_DisableMfa_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_User_ConfirmMfa_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ConfirmMFARequest
+func request_User_ConfirmMfa_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ConfirmMFARequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -355,8 +321,8 @@ func request_User_ConfirmMfa_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_User_ConfirmMfa_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ConfirmMFARequest
+func local_request_User_ConfirmMfa_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ConfirmMFARequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -372,8 +338,8 @@ func local_request_User_ConfirmMfa_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_User_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserRequest
+func request_User_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -389,8 +355,8 @@ func request_User_Enable_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_User_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserRequest
+func local_request_User_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -406,8 +372,8 @@ func local_request_User_Enable_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_User_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserRequest
+func request_User_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -423,8 +389,8 @@ func request_User_Disable_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_User_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserRequest
+func local_request_User_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -440,8 +406,8 @@ func local_request_User_Disable_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func request_User_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserRequest
+func request_User_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -457,8 +423,8 @@ func request_User_Delete_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_User_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserRequest
+func local_request_User_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -474,8 +440,8 @@ func local_request_User_Delete_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_User_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserRequest
+func request_User_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -491,8 +457,8 @@ func request_User_Get_0(ctx context.Context, marshaler runtime.Marshaler, client
 
 }
 
-func local_request_User_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserRequest
+func local_request_User_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -508,8 +474,76 @@ func local_request_User_Get_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func request_User_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserSearchQuery
+func request_User_GetWorkspaces_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetWorkspaces(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_User_GetWorkspaces_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetWorkspaces(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_User_Find_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserFindRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.Find(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_User_Find_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserFindRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.Find(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_User_List_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -525,8 +559,8 @@ func request_User_List_0(ctx context.Context, marshaler runtime.Marshaler, clien
 
 }
 
-func local_request_User_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserSearchQuery
+func local_request_User_List_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -542,8 +576,8 @@ func local_request_User_List_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func request_User_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserStatQuery
+func request_User_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -559,8 +593,8 @@ func request_User_Stat_0(ctx context.Context, marshaler runtime.Marshaler, clien
 
 }
 
-func local_request_User_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserStatQuery
+func local_request_User_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -576,45 +610,11 @@ func local_request_User_Stat_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func request_User_ListSummary_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserSearchQuery
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.ListSummary(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_User_ListSummary_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserSearchQuery
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := server.ListSummary(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
 // RegisterUserHandlerServer registers the http handlers for service User to "mux".
 // UnaryRPC     :call UserServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUserHandlerFromEndpoint instead.
-func RegisterUserHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV2.UserServer) error {
+func RegisterUserHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.UserServer) error {
 
 	mux.Handle("POST", pattern_User_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -638,31 +638,6 @@ func RegisterUserHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 		}
 
 		forward_User_Create_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_User_CreateWorkspaceUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.User/CreateWorkspaceUser", runtime.WithHTTPPathPattern("/identity/v2/user/create-workspace-user"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_User_CreateWorkspaceUser_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_User_CreateWorkspaceUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -966,6 +941,56 @@ func RegisterUserHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 
 	})
 
+	mux.Handle("POST", pattern_User_GetWorkspaces_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.User/GetWorkspaces", runtime.WithHTTPPathPattern("/identity/v2/user/get_workspaces"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_User_GetWorkspaces_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_User_GetWorkspaces_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_User_Find_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.User/Find", runtime.WithHTTPPathPattern("/identity/v2/user/find"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_User_Find_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_User_Find_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("POST", pattern_User_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1016,31 +1041,6 @@ func RegisterUserHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 
 	})
 
-	mux.Handle("POST", pattern_User_ListSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.User/ListSummary", runtime.WithHTTPPathPattern("/identity/v2/user/list_summary"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_User_ListSummary_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_User_ListSummary_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	return nil
 }
 
@@ -1072,15 +1072,15 @@ func RegisterUserHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux,
 // RegisterUserHandler registers the http handlers for service User to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterUserHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterUserHandlerClient(ctx, mux, extV2.NewUserClient(conn))
+	return RegisterUserHandlerClient(ctx, mux, v2_0.NewUserClient(conn))
 }
 
 // RegisterUserHandlerClient registers the http handlers for service User
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV2.UserClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV2.UserClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.UserClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.UserClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV2.UserClient" to call the correct interceptors.
-func RegisterUserHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV2.UserClient) error {
+// "v2_0.UserClient" to call the correct interceptors.
+func RegisterUserHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.UserClient) error {
 
 	mux.Handle("POST", pattern_User_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1101,28 +1101,6 @@ func RegisterUserHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 		}
 
 		forward_User_Create_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("POST", pattern_User_CreateWorkspaceUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.User/CreateWorkspaceUser", runtime.WithHTTPPathPattern("/identity/v2/user/create-workspace-user"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_User_CreateWorkspaceUser_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_User_CreateWorkspaceUser_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1390,6 +1368,50 @@ func RegisterUserHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 
 	})
 
+	mux.Handle("POST", pattern_User_GetWorkspaces_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.User/GetWorkspaces", runtime.WithHTTPPathPattern("/identity/v2/user/get_workspaces"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_User_GetWorkspaces_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_User_GetWorkspaces_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_User_Find_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.User/Find", runtime.WithHTTPPathPattern("/identity/v2/user/find"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_User_Find_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_User_Find_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("POST", pattern_User_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1434,35 +1456,11 @@ func RegisterUserHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 
 	})
 
-	mux.Handle("POST", pattern_User_ListSummary_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.User/ListSummary", runtime.WithHTTPPathPattern("/identity/v2/user/list_summary"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_User_ListSummary_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_User_ListSummary_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	return nil
 }
 
 var (
 	pattern_User_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "user", "create"}, ""))
-
-	pattern_User_CreateWorkspaceUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "user", "create-workspace-user"}, ""))
 
 	pattern_User_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "user", "update"}, ""))
 
@@ -1488,17 +1486,17 @@ var (
 
 	pattern_User_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "user", "get"}, ""))
 
+	pattern_User_GetWorkspaces_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "user", "get_workspaces"}, ""))
+
+	pattern_User_Find_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "user", "find"}, ""))
+
 	pattern_User_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "user", "list"}, ""))
 
 	pattern_User_Stat_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v1", "user", "stat"}, ""))
-
-	pattern_User_ListSummary_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "user", "list_summary"}, ""))
 )
 
 var (
 	forward_User_Create_0 = runtime.ForwardResponseMessage
-
-	forward_User_CreateWorkspaceUser_0 = runtime.ForwardResponseMessage
 
 	forward_User_Update_0 = runtime.ForwardResponseMessage
 
@@ -1524,9 +1522,11 @@ var (
 
 	forward_User_Get_0 = runtime.ForwardResponseMessage
 
+	forward_User_GetWorkspaces_0 = runtime.ForwardResponseMessage
+
+	forward_User_Find_0 = runtime.ForwardResponseMessage
+
 	forward_User_List_0 = runtime.ForwardResponseMessage
 
 	forward_User_Stat_0 = runtime.ForwardResponseMessage
-
-	forward_User_ListSummary_0 = runtime.ForwardResponseMessage
 )

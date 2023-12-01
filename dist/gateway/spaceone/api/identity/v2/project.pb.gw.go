@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
+	v2_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Project_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateProjectRequest
+func request_Project_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Project_Create_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Project_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateProjectRequest
+func local_request_Project_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Project_Create_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Project_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateProjectRequest
+func request_Project_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Project_Update_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Project_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateProjectRequest
+func local_request_Project_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Project_Update_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Project_UpdateProjectType_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateProjectTypeRequest
+func request_Project_UpdateProjectType_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateProjectTypeRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Project_UpdateProjectType_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_Project_UpdateProjectType_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateProjectTypeRequest
+func local_request_Project_UpdateProjectType_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateProjectTypeRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Project_UpdateProjectType_0(ctx context.Context, marshaler ru
 
 }
 
-func request_Project_ChangeProjectGroup_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ChangeProjectGroupRequest
+func request_Project_ChangeProjectGroup_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ChangeProjectGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Project_ChangeProjectGroup_0(ctx context.Context, marshaler runtime
 
 }
 
-func local_request_Project_ChangeProjectGroup_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ChangeProjectGroupRequest
+func local_request_Project_ChangeProjectGroup_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ChangeProjectGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Project_ChangeProjectGroup_0(ctx context.Context, marshaler r
 
 }
 
-func request_Project_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectRequest
+func request_Project_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Project_Delete_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Project_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectRequest
+func local_request_Project_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Project_Delete_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Project_AddUsers_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UsersProjectRequest
+func request_Project_AddUsers_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UsersProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Project_AddUsers_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_Project_AddUsers_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UsersProjectRequest
+func local_request_Project_AddUsers_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UsersProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_Project_AddUsers_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_Project_RemoveUsers_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UsersProjectRequest
+func request_Project_RemoveUsers_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UsersProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_Project_RemoveUsers_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_Project_RemoveUsers_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UsersProjectRequest
+func local_request_Project_RemoveUsers_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UsersProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_Project_RemoveUsers_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_Project_AddUserGroups_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserGroupsProjectRequest
+func request_Project_AddUserGroups_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserGroupsProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_Project_AddUserGroups_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_Project_AddUserGroups_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserGroupsProjectRequest
+func local_request_Project_AddUserGroups_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserGroupsProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -304,8 +304,8 @@ func local_request_Project_AddUserGroups_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_Project_RemoveUserGroups_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserGroupsProjectRequest
+func request_Project_RemoveUserGroups_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserGroupsProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -321,8 +321,8 @@ func request_Project_RemoveUserGroups_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func local_request_Project_RemoveUserGroups_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UserGroupsProjectRequest
+func local_request_Project_RemoveUserGroups_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UserGroupsProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -338,8 +338,8 @@ func local_request_Project_RemoveUserGroups_0(ctx context.Context, marshaler run
 
 }
 
-func request_Project_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectRequest
+func request_Project_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -355,8 +355,8 @@ func request_Project_Get_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Project_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectRequest
+func local_request_Project_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -372,8 +372,8 @@ func local_request_Project_Get_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Project_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectSearchQuery
+func request_Project_List_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -389,8 +389,8 @@ func request_Project_List_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_Project_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectSearchQuery
+func local_request_Project_List_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -406,8 +406,8 @@ func local_request_Project_List_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func request_Project_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectStatQuery
+func request_Project_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -423,8 +423,8 @@ func request_Project_Stat_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_Project_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectStatQuery
+func local_request_Project_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -444,7 +444,7 @@ func local_request_Project_Stat_0(ctx context.Context, marshaler runtime.Marshal
 // UnaryRPC     :call ProjectServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterProjectHandlerFromEndpoint instead.
-func RegisterProjectHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV2.ProjectServer) error {
+func RegisterProjectHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.ProjectServer) error {
 
 	mux.Handle("POST", pattern_Project_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -777,15 +777,15 @@ func RegisterProjectHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeM
 // RegisterProjectHandler registers the http handlers for service Project to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterProjectHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterProjectHandlerClient(ctx, mux, extV2.NewProjectClient(conn))
+	return RegisterProjectHandlerClient(ctx, mux, v2_0.NewProjectClient(conn))
 }
 
 // RegisterProjectHandlerClient registers the http handlers for service Project
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV2.ProjectClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV2.ProjectClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.ProjectClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.ProjectClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV2.ProjectClient" to call the correct interceptors.
-func RegisterProjectHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV2.ProjectClient) error {
+// "v2_0.ProjectClient" to call the correct interceptors.
+func RegisterProjectHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.ProjectClient) error {
 
 	mux.Handle("POST", pattern_Project_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

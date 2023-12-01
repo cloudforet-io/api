@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
+	v2_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_App_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateAppRequest
+func request_App_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateAppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_App_Create_0(ctx context.Context, marshaler runtime.Marshaler, clie
 
 }
 
-func local_request_App_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateAppRequest
+func local_request_App_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateAppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_App_Create_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func request_App_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateAppRequest
+func request_App_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateAppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_App_Update_0(ctx context.Context, marshaler runtime.Marshaler, clie
 
 }
 
-func local_request_App_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateAppRequest
+func local_request_App_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateAppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_App_Update_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func request_App_GenerateApiKey_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppRequest
+func request_App_GenerateApiKey_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_App_GenerateApiKey_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_App_GenerateApiKey_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppRequest
+func local_request_App_GenerateApiKey_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_App_GenerateApiKey_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_App_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppRequest
+func request_App_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_App_Enable_0(ctx context.Context, marshaler runtime.Marshaler, clie
 
 }
 
-func local_request_App_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppRequest
+func local_request_App_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_App_Enable_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func request_App_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppRequest
+func request_App_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_App_Disable_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_App_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppRequest
+func local_request_App_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_App_Disable_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_App_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppRequest
+func request_App_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_App_Delete_0(ctx context.Context, marshaler runtime.Marshaler, clie
 
 }
 
-func local_request_App_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppRequest
+func local_request_App_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_App_Delete_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func request_App_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppRequest
+func request_App_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_App_Get_0(ctx context.Context, marshaler runtime.Marshaler, client 
 
 }
 
-func local_request_App_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppRequest
+func local_request_App_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_App_Get_0(ctx context.Context, marshaler runtime.Marshaler, s
 
 }
 
-func request_App_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppSearchQuery
+func request_App_List_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_App_List_0(ctx context.Context, marshaler runtime.Marshaler, client
 
 }
 
-func local_request_App_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppSearchQuery
+func local_request_App_List_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -304,8 +304,8 @@ func local_request_App_List_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func request_App_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppStatQuery
+func request_App_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -321,8 +321,8 @@ func request_App_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client
 
 }
 
-func local_request_App_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.AppStatQuery
+func local_request_App_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.AppStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -342,7 +342,7 @@ func local_request_App_Stat_0(ctx context.Context, marshaler runtime.Marshaler, 
 // UnaryRPC     :call AppServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterAppHandlerFromEndpoint instead.
-func RegisterAppHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV2.AppServer) error {
+func RegisterAppHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.AppServer) error {
 
 	mux.Handle("POST", pattern_App_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -600,15 +600,15 @@ func RegisterAppHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, 
 // RegisterAppHandler registers the http handlers for service App to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterAppHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterAppHandlerClient(ctx, mux, extV2.NewAppClient(conn))
+	return RegisterAppHandlerClient(ctx, mux, v2_0.NewAppClient(conn))
 }
 
 // RegisterAppHandlerClient registers the http handlers for service App
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV2.AppClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV2.AppClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.AppClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.AppClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV2.AppClient" to call the correct interceptors.
-func RegisterAppHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV2.AppClient) error {
+// "v2_0.AppClient" to call the correct interceptors.
+func RegisterAppHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.AppClient) error {
 
 	mux.Handle("POST", pattern_App_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

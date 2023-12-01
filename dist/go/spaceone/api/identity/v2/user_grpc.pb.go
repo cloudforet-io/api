@@ -24,23 +24,23 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	User_Create_FullMethodName              = "/spaceone.api.identity.v2.User/create"
-	User_CreateWorkspaceUser_FullMethodName = "/spaceone.api.identity.v2.User/create_workspace_user"
-	User_Update_FullMethodName              = "/spaceone.api.identity.v2.User/update"
-	User_VerifyEmail_FullMethodName         = "/spaceone.api.identity.v2.User/verify_email"
-	User_ConfirmEmail_FullMethodName        = "/spaceone.api.identity.v2.User/confirm_email"
-	User_ResetPassword_FullMethodName       = "/spaceone.api.identity.v2.User/reset_password"
-	User_SetRequiredActions_FullMethodName  = "/spaceone.api.identity.v2.User/set_required_actions"
-	User_EnableMfa_FullMethodName           = "/spaceone.api.identity.v2.User/enable_mfa"
-	User_DisableMfa_FullMethodName          = "/spaceone.api.identity.v2.User/disable_mfa"
-	User_ConfirmMfa_FullMethodName          = "/spaceone.api.identity.v2.User/confirm_mfa"
-	User_Enable_FullMethodName              = "/spaceone.api.identity.v2.User/enable"
-	User_Disable_FullMethodName             = "/spaceone.api.identity.v2.User/disable"
-	User_Delete_FullMethodName              = "/spaceone.api.identity.v2.User/delete"
-	User_Get_FullMethodName                 = "/spaceone.api.identity.v2.User/get"
-	User_List_FullMethodName                = "/spaceone.api.identity.v2.User/list"
-	User_Stat_FullMethodName                = "/spaceone.api.identity.v2.User/stat"
-	User_ListSummary_FullMethodName         = "/spaceone.api.identity.v2.User/list_summary"
+	User_Create_FullMethodName             = "/spaceone.api.identity.v2.User/create"
+	User_Update_FullMethodName             = "/spaceone.api.identity.v2.User/update"
+	User_VerifyEmail_FullMethodName        = "/spaceone.api.identity.v2.User/verify_email"
+	User_ConfirmEmail_FullMethodName       = "/spaceone.api.identity.v2.User/confirm_email"
+	User_ResetPassword_FullMethodName      = "/spaceone.api.identity.v2.User/reset_password"
+	User_SetRequiredActions_FullMethodName = "/spaceone.api.identity.v2.User/set_required_actions"
+	User_EnableMfa_FullMethodName          = "/spaceone.api.identity.v2.User/enable_mfa"
+	User_DisableMfa_FullMethodName         = "/spaceone.api.identity.v2.User/disable_mfa"
+	User_ConfirmMfa_FullMethodName         = "/spaceone.api.identity.v2.User/confirm_mfa"
+	User_Enable_FullMethodName             = "/spaceone.api.identity.v2.User/enable"
+	User_Disable_FullMethodName            = "/spaceone.api.identity.v2.User/disable"
+	User_Delete_FullMethodName             = "/spaceone.api.identity.v2.User/delete"
+	User_Get_FullMethodName                = "/spaceone.api.identity.v2.User/get"
+	User_GetWorkspaces_FullMethodName      = "/spaceone.api.identity.v2.User/get_workspaces"
+	User_Find_FullMethodName               = "/spaceone.api.identity.v2.User/find"
+	User_List_FullMethodName               = "/spaceone.api.identity.v2.User/list"
+	User_Stat_FullMethodName               = "/spaceone.api.identity.v2.User/stat"
 )
 
 // UserClient is the client API for User service.
@@ -51,7 +51,6 @@ type UserClient interface {
 	// See role-binding create api.
 	// External type user do not need password.
 	Create(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*UserInfo, error)
-	CreateWorkspaceUser(ctx context.Context, in *CreateWorkspaceUserRequest, opts ...grpc.CallOption) (*UserSummaryInfo, error)
 	// Update user info by given user_id
 	Update(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -69,9 +68,10 @@ type UserClient interface {
 	Disable(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Delete(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserInfo, error)
+	GetWorkspaces(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*WorkspacesInfo, error)
+	Find(ctx context.Context, in *UserFindRequest, opts ...grpc.CallOption) (*UsersSummaryInfo, error)
 	List(ctx context.Context, in *UserSearchQuery, opts ...grpc.CallOption) (*UsersInfo, error)
 	Stat(ctx context.Context, in *UserStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
-	ListSummary(ctx context.Context, in *UserSearchQuery, opts ...grpc.CallOption) (*UsersSummaryInfo, error)
 }
 
 type userClient struct {
@@ -85,15 +85,6 @@ func NewUserClient(cc grpc.ClientConnInterface) UserClient {
 func (c *userClient) Create(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*UserInfo, error) {
 	out := new(UserInfo)
 	err := c.cc.Invoke(ctx, User_Create_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) CreateWorkspaceUser(ctx context.Context, in *CreateWorkspaceUserRequest, opts ...grpc.CallOption) (*UserSummaryInfo, error) {
-	out := new(UserSummaryInfo)
-	err := c.cc.Invoke(ctx, User_CreateWorkspaceUser_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -208,6 +199,24 @@ func (c *userClient) Get(ctx context.Context, in *UserRequest, opts ...grpc.Call
 	return out, nil
 }
 
+func (c *userClient) GetWorkspaces(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*WorkspacesInfo, error) {
+	out := new(WorkspacesInfo)
+	err := c.cc.Invoke(ctx, User_GetWorkspaces_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Find(ctx context.Context, in *UserFindRequest, opts ...grpc.CallOption) (*UsersSummaryInfo, error) {
+	out := new(UsersSummaryInfo)
+	err := c.cc.Invoke(ctx, User_Find_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userClient) List(ctx context.Context, in *UserSearchQuery, opts ...grpc.CallOption) (*UsersInfo, error) {
 	out := new(UsersInfo)
 	err := c.cc.Invoke(ctx, User_List_FullMethodName, in, out, opts...)
@@ -226,15 +235,6 @@ func (c *userClient) Stat(ctx context.Context, in *UserStatQuery, opts ...grpc.C
 	return out, nil
 }
 
-func (c *userClient) ListSummary(ctx context.Context, in *UserSearchQuery, opts ...grpc.CallOption) (*UsersSummaryInfo, error) {
-	out := new(UsersSummaryInfo)
-	err := c.cc.Invoke(ctx, User_ListSummary_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility
@@ -243,7 +243,6 @@ type UserServer interface {
 	// See role-binding create api.
 	// External type user do not need password.
 	Create(context.Context, *CreateUserRequest) (*UserInfo, error)
-	CreateWorkspaceUser(context.Context, *CreateWorkspaceUserRequest) (*UserSummaryInfo, error)
 	// Update user info by given user_id
 	Update(context.Context, *UpdateUserRequest) (*UserInfo, error)
 	VerifyEmail(context.Context, *VerifyEmailRequest) (*empty.Empty, error)
@@ -261,9 +260,10 @@ type UserServer interface {
 	Disable(context.Context, *UserRequest) (*UserInfo, error)
 	Delete(context.Context, *UserRequest) (*empty.Empty, error)
 	Get(context.Context, *UserRequest) (*UserInfo, error)
+	GetWorkspaces(context.Context, *UserRequest) (*WorkspacesInfo, error)
+	Find(context.Context, *UserFindRequest) (*UsersSummaryInfo, error)
 	List(context.Context, *UserSearchQuery) (*UsersInfo, error)
 	Stat(context.Context, *UserStatQuery) (*_struct.Struct, error)
-	ListSummary(context.Context, *UserSearchQuery) (*UsersSummaryInfo, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -273,9 +273,6 @@ type UnimplementedUserServer struct {
 
 func (UnimplementedUserServer) Create(context.Context, *CreateUserRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
-}
-func (UnimplementedUserServer) CreateWorkspaceUser(context.Context, *CreateWorkspaceUserRequest) (*UserSummaryInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateWorkspaceUser not implemented")
 }
 func (UnimplementedUserServer) Update(context.Context, *UpdateUserRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
@@ -313,14 +310,17 @@ func (UnimplementedUserServer) Delete(context.Context, *UserRequest) (*empty.Emp
 func (UnimplementedUserServer) Get(context.Context, *UserRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
+func (UnimplementedUserServer) GetWorkspaces(context.Context, *UserRequest) (*WorkspacesInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWorkspaces not implemented")
+}
+func (UnimplementedUserServer) Find(context.Context, *UserFindRequest) (*UsersSummaryInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Find not implemented")
+}
 func (UnimplementedUserServer) List(context.Context, *UserSearchQuery) (*UsersInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 func (UnimplementedUserServer) Stat(context.Context, *UserStatQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
-}
-func (UnimplementedUserServer) ListSummary(context.Context, *UserSearchQuery) (*UsersSummaryInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListSummary not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 
@@ -349,24 +349,6 @@ func _User_Create_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).Create(ctx, req.(*CreateUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_CreateWorkspaceUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateWorkspaceUserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).CreateWorkspaceUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_CreateWorkspaceUser_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).CreateWorkspaceUser(ctx, req.(*CreateWorkspaceUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -587,6 +569,42 @@ func _User_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_GetWorkspaces_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetWorkspaces(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetWorkspaces_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetWorkspaces(ctx, req.(*UserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Find_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserFindRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Find(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Find_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Find(ctx, req.(*UserFindRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _User_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserSearchQuery)
 	if err := dec(in); err != nil {
@@ -623,24 +641,6 @@ func _User_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_ListSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserSearchQuery)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).ListSummary(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_ListSummary_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).ListSummary(ctx, req.(*UserSearchQuery))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -651,10 +651,6 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "create",
 			Handler:    _User_Create_Handler,
-		},
-		{
-			MethodName: "create_workspace_user",
-			Handler:    _User_CreateWorkspaceUser_Handler,
 		},
 		{
 			MethodName: "update",
@@ -705,16 +701,20 @@ var User_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _User_Get_Handler,
 		},
 		{
+			MethodName: "get_workspaces",
+			Handler:    _User_GetWorkspaces_Handler,
+		},
+		{
+			MethodName: "find",
+			Handler:    _User_Find_Handler,
+		},
+		{
 			MethodName: "list",
 			Handler:    _User_List_Handler,
 		},
 		{
 			MethodName: "stat",
 			Handler:    _User_Stat_Handler,
-		},
-		{
-			MethodName: "list_summary",
-			Handler:    _User_ListSummary_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

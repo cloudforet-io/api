@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
+	v2_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Schema_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.SchemaClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateSchemaRequest
+func request_Schema_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.SchemaClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateSchemaRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Schema_Create_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Schema_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.SchemaServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateSchemaRequest
+func local_request_Schema_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.SchemaServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateSchemaRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Schema_Create_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Schema_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.SchemaClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateSchemaRequest
+func request_Schema_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.SchemaClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateSchemaRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Schema_Update_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Schema_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.SchemaServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateSchemaRequest
+func local_request_Schema_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.SchemaServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateSchemaRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Schema_Update_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Schema_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.SchemaClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.SchemaRequest
+func request_Schema_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.SchemaClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.SchemaRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Schema_Delete_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Schema_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.SchemaServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.SchemaRequest
+func local_request_Schema_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.SchemaServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.SchemaRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Schema_Delete_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Schema_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.SchemaClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.SchemaRequest
+func request_Schema_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.SchemaClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.SchemaRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Schema_Get_0(ctx context.Context, marshaler runtime.Marshaler, clie
 
 }
 
-func local_request_Schema_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.SchemaServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.SchemaRequest
+func local_request_Schema_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.SchemaServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.SchemaRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Schema_Get_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func request_Schema_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.SchemaClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.SchemaSearchQuery
+func request_Schema_List_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.SchemaClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.SchemaSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Schema_List_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Schema_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.SchemaServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.SchemaSearchQuery
+func local_request_Schema_List_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.SchemaServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.SchemaSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Schema_List_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Schema_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.SchemaClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.SchemaStatQuery
+func request_Schema_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.SchemaClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.SchemaStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Schema_Stat_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Schema_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.SchemaServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.SchemaStatQuery
+func local_request_Schema_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.SchemaServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.SchemaStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -240,7 +240,7 @@ func local_request_Schema_Stat_0(ctx context.Context, marshaler runtime.Marshale
 // UnaryRPC     :call SchemaServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterSchemaHandlerFromEndpoint instead.
-func RegisterSchemaHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV2.SchemaServer) error {
+func RegisterSchemaHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.SchemaServer) error {
 
 	mux.Handle("POST", pattern_Schema_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -423,15 +423,15 @@ func RegisterSchemaHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMu
 // RegisterSchemaHandler registers the http handlers for service Schema to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterSchemaHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterSchemaHandlerClient(ctx, mux, extV2.NewSchemaClient(conn))
+	return RegisterSchemaHandlerClient(ctx, mux, v2_0.NewSchemaClient(conn))
 }
 
 // RegisterSchemaHandlerClient registers the http handlers for service Schema
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV2.SchemaClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV2.SchemaClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.SchemaClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.SchemaClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV2.SchemaClient" to call the correct interceptors.
-func RegisterSchemaHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV2.SchemaClient) error {
+// "v2_0.SchemaClient" to call the correct interceptors.
+func RegisterSchemaHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.SchemaClient) error {
 
 	mux.Handle("POST", pattern_Schema_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

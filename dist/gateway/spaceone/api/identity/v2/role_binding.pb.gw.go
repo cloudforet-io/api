@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
+	v2_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_RoleBinding_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.RoleBindingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateRoleBindingRequest
+func request_RoleBinding_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.RoleBindingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateRoleBindingRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_RoleBinding_Create_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_RoleBinding_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.RoleBindingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateRoleBindingRequest
+func local_request_RoleBinding_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.RoleBindingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateRoleBindingRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_RoleBinding_Create_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_RoleBinding_UpdateRole_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.RoleBindingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateRoleBindingRequest
+func request_RoleBinding_UpdateRole_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.RoleBindingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateRoleBindingRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_RoleBinding_UpdateRole_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func local_request_RoleBinding_UpdateRole_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.RoleBindingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateRoleBindingRequest
+func local_request_RoleBinding_UpdateRole_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.RoleBindingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateRoleBindingRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_RoleBinding_UpdateRole_0(ctx context.Context, marshaler runti
 
 }
 
-func request_RoleBinding_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.RoleBindingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleBindingRequest
+func request_RoleBinding_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.RoleBindingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleBindingRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_RoleBinding_Delete_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_RoleBinding_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.RoleBindingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleBindingRequest
+func local_request_RoleBinding_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.RoleBindingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleBindingRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_RoleBinding_Delete_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_RoleBinding_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.RoleBindingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleBindingRequest
+func request_RoleBinding_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.RoleBindingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleBindingRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_RoleBinding_Get_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_RoleBinding_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.RoleBindingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleBindingRequest
+func local_request_RoleBinding_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.RoleBindingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleBindingRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_RoleBinding_Get_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_RoleBinding_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.RoleBindingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleBindingSearchQuery
+func request_RoleBinding_List_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.RoleBindingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleBindingSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_RoleBinding_List_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_RoleBinding_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.RoleBindingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleBindingSearchQuery
+func local_request_RoleBinding_List_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.RoleBindingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleBindingSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_RoleBinding_List_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_RoleBinding_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.RoleBindingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleBindingStatQuery
+func request_RoleBinding_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.RoleBindingClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleBindingStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_RoleBinding_Stat_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_RoleBinding_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.RoleBindingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleBindingStatQuery
+func local_request_RoleBinding_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.RoleBindingServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleBindingStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -240,7 +240,7 @@ func local_request_RoleBinding_Stat_0(ctx context.Context, marshaler runtime.Mar
 // UnaryRPC     :call RoleBindingServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterRoleBindingHandlerFromEndpoint instead.
-func RegisterRoleBindingHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV2.RoleBindingServer) error {
+func RegisterRoleBindingHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.RoleBindingServer) error {
 
 	mux.Handle("POST", pattern_RoleBinding_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -423,15 +423,15 @@ func RegisterRoleBindingHandlerFromEndpoint(ctx context.Context, mux *runtime.Se
 // RegisterRoleBindingHandler registers the http handlers for service RoleBinding to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterRoleBindingHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterRoleBindingHandlerClient(ctx, mux, extV2.NewRoleBindingClient(conn))
+	return RegisterRoleBindingHandlerClient(ctx, mux, v2_0.NewRoleBindingClient(conn))
 }
 
 // RegisterRoleBindingHandlerClient registers the http handlers for service RoleBinding
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV2.RoleBindingClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV2.RoleBindingClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.RoleBindingClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.RoleBindingClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV2.RoleBindingClient" to call the correct interceptors.
-func RegisterRoleBindingHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV2.RoleBindingClient) error {
+// "v2_0.RoleBindingClient" to call the correct interceptors.
+func RegisterRoleBindingHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.RoleBindingClient) error {
 
 	mux.Handle("POST", pattern_RoleBinding_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
+	v2_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_ProjectGroup_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateProjectGroupRequest
+func request_ProjectGroup_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateProjectGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_ProjectGroup_Create_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_ProjectGroup_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateProjectGroupRequest
+func local_request_ProjectGroup_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateProjectGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_ProjectGroup_Create_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_ProjectGroup_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateProjectGroupRequest
+func request_ProjectGroup_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateProjectGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_ProjectGroup_Update_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_ProjectGroup_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateProjectGroupRequest
+func local_request_ProjectGroup_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateProjectGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_ProjectGroup_Update_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_ProjectGroup_ChangeParentGroup_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ChangeParentGroupRequest
+func request_ProjectGroup_ChangeParentGroup_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ChangeParentGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_ProjectGroup_ChangeParentGroup_0(ctx context.Context, marshaler run
 
 }
 
-func local_request_ProjectGroup_ChangeParentGroup_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ChangeParentGroupRequest
+func local_request_ProjectGroup_ChangeParentGroup_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ChangeParentGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_ProjectGroup_ChangeParentGroup_0(ctx context.Context, marshal
 
 }
 
-func request_ProjectGroup_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectGroupRequest
+func request_ProjectGroup_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_ProjectGroup_Delete_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_ProjectGroup_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectGroupRequest
+func local_request_ProjectGroup_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_ProjectGroup_Delete_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_ProjectGroup_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectGroupRequest
+func request_ProjectGroup_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_ProjectGroup_Get_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_ProjectGroup_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectGroupRequest
+func local_request_ProjectGroup_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectGroupRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_ProjectGroup_Get_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_ProjectGroup_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectGroupSearchQuery
+func request_ProjectGroup_List_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectGroupSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_ProjectGroup_List_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_ProjectGroup_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectGroupSearchQuery
+func local_request_ProjectGroup_List_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectGroupSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_ProjectGroup_List_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_ProjectGroup_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectGroupStatQuery
+func request_ProjectGroup_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ProjectGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectGroupStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_ProjectGroup_Stat_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_ProjectGroup_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ProjectGroupStatQuery
+func local_request_ProjectGroup_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ProjectGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ProjectGroupStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -274,7 +274,7 @@ func local_request_ProjectGroup_Stat_0(ctx context.Context, marshaler runtime.Ma
 // UnaryRPC     :call ProjectGroupServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterProjectGroupHandlerFromEndpoint instead.
-func RegisterProjectGroupHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV2.ProjectGroupServer) error {
+func RegisterProjectGroupHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.ProjectGroupServer) error {
 
 	mux.Handle("POST", pattern_ProjectGroup_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -482,15 +482,15 @@ func RegisterProjectGroupHandlerFromEndpoint(ctx context.Context, mux *runtime.S
 // RegisterProjectGroupHandler registers the http handlers for service ProjectGroup to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterProjectGroupHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterProjectGroupHandlerClient(ctx, mux, extV2.NewProjectGroupClient(conn))
+	return RegisterProjectGroupHandlerClient(ctx, mux, v2_0.NewProjectGroupClient(conn))
 }
 
 // RegisterProjectGroupHandlerClient registers the http handlers for service ProjectGroup
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV2.ProjectGroupClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV2.ProjectGroupClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.ProjectGroupClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.ProjectGroupClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV2.ProjectGroupClient" to call the correct interceptors.
-func RegisterProjectGroupHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV2.ProjectGroupClient) error {
+// "v2_0.ProjectGroupClient" to call the correct interceptors.
+func RegisterProjectGroupHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.ProjectGroupClient) error {
 
 	mux.Handle("POST", pattern_ProjectGroup_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

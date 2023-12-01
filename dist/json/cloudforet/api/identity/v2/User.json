@@ -56,6 +56,34 @@
           ]
         },
         {
+          "name": "State",
+          "longName": "UserFindRequest.State",
+          "fullName": "spaceone.api.identity.v2.UserFindRequest.State",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "PENDING",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "RoleType",
           "longName": "UserInfo.RoleType",
           "fullName": "spaceone.api.identity.v2.UserInfo.RoleType",
@@ -67,12 +95,12 @@
               "description": ""
             },
             {
-              "name": "ADMIN",
+              "name": "SYSTEM_ADMIN",
               "number": "1",
               "description": ""
             },
             {
-              "name": "DOMAIN_OWNER",
+              "name": "DOMAIN_ADMIN",
               "number": "2",
               "description": ""
             },
@@ -158,44 +186,6 @@
             {
               "name": "PENDING",
               "number": "3",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "RoleType",
-          "longName": "UserSummaryInfo.RoleType",
-          "fullName": "spaceone.api.identity.v2.UserSummaryInfo.RoleType",
-          "description": "",
-          "values": [
-            {
-              "name": "ROLE_TYPE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "ADMIN",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "DOMAIN_OWNER",
-              "number": "2",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE_OWNER",
-              "number": "3",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE_MEMBER",
-              "number": "4",
-              "description": ""
-            },
-            {
-              "name": "USER",
-              "number": "5",
               "description": ""
             }
           ]
@@ -447,162 +437,6 @@
             },
             {
               "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "CreateWorkspaceUserRequest",
-          "longName": "CreateWorkspaceUserRequest",
-          "fullName": "spaceone.api.identity.v2.CreateWorkspaceUserRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "user_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "password",
-              "description": "When auth_type is LOCAL, password is required.\n+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "email",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "auth_type",
-              "description": "",
-              "label": "",
-              "type": "AuthType",
-              "longType": "AuthType",
-              "fullType": "spaceone.api.identity.v2.AuthType",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "language",
-              "description": "en,ko\n+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "timezone",
-              "description": "UTC, Asia/Seoul\n+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "tags",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "reset_password",
-              "description": "If reset_password is true, send email",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "role_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -940,6 +774,78 @@
           ]
         },
         {
+          "name": "UserFindRequest",
+          "longName": "UserFindRequest",
+          "fullName": "spaceone.api.identity.v2.UserFindRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "keyword",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "+optional",
+              "label": "",
+              "type": "State",
+              "longType": "UserFindRequest.State",
+              "fullType": "spaceone.api.identity.v2.UserFindRequest.State",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "exclude_domain_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "page",
+              "description": "+optional",
+              "label": "",
+              "type": "Page",
+              "longType": "spaceone.api.core.v2.Page",
+              "fullType": "spaceone.api.core.v2.Page",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "UserInfo",
           "longName": "UserInfo",
           "fullName": "spaceone.api.identity.v2.UserInfo",
@@ -1182,8 +1088,8 @@
               "description": "",
               "label": "",
               "type": "Query",
-              "longType": "spaceone.api.core.v1.Query",
-              "fullType": "spaceone.api.core.v1.Query",
+              "longType": "spaceone.api.core.v2.Query",
+              "fullType": "spaceone.api.core.v2.Query",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1290,8 +1196,8 @@
               "description": "",
               "label": "",
               "type": "StatisticsQuery",
-              "longType": "spaceone.api.core.v1.StatisticsQuery",
-              "fullType": "spaceone.api.core.v1.StatisticsQuery",
+              "longType": "spaceone.api.core.v2.StatisticsQuery",
+              "fullType": "spaceone.api.core.v2.StatisticsQuery",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1352,90 +1258,6 @@
               "type": "State",
               "longType": "UserSummaryInfo.State",
               "fullType": "spaceone.api.identity.v2.UserSummaryInfo.State",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "email",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "auth_type",
-              "description": "",
-              "label": "",
-              "type": "AuthType",
-              "longType": "AuthType",
-              "fullType": "spaceone.api.identity.v2.AuthType",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "role_type",
-              "description": "",
-              "label": "",
-              "type": "RoleType",
-              "longType": "UserSummaryInfo.RoleType",
-              "fullType": "spaceone.api.identity.v2.UserSummaryInfo.RoleType",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "tags",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "created_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "last_accessed_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1600,29 +1422,6 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/user/create",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "create_workspace_user",
-              "description": "",
-              "requestType": "CreateWorkspaceUserRequest",
-              "requestLongType": "CreateWorkspaceUserRequest",
-              "requestFullType": "spaceone.api.identity.v2.CreateWorkspaceUserRequest",
-              "requestStreaming": false,
-              "responseType": "UserSummaryInfo",
-              "responseLongType": "UserSummaryInfo",
-              "responseFullType": "spaceone.api.identity.v2.UserSummaryInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/identity/v2/user/create-workspace-user",
                       "body": "*"
                     }
                   ]
@@ -1906,6 +1705,52 @@
               }
             },
             {
+              "name": "get_workspaces",
+              "description": "",
+              "requestType": "UserRequest",
+              "requestLongType": "UserRequest",
+              "requestFullType": "spaceone.api.identity.v2.UserRequest",
+              "requestStreaming": false,
+              "responseType": "WorkspacesInfo",
+              "responseLongType": "WorkspacesInfo",
+              "responseFullType": "spaceone.api.identity.v2.WorkspacesInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/user/get_workspaces",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "find",
+              "description": "",
+              "requestType": "UserFindRequest",
+              "requestLongType": "UserFindRequest",
+              "requestFullType": "spaceone.api.identity.v2.UserFindRequest",
+              "requestStreaming": false,
+              "responseType": "UsersSummaryInfo",
+              "responseLongType": "UsersSummaryInfo",
+              "responseFullType": "spaceone.api.identity.v2.UsersSummaryInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/user/find",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
               "name": "list",
               "description": "",
               "requestType": "UserSearchQuery",
@@ -1945,29 +1790,6 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v1/user/stat",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "list_summary",
-              "description": "",
-              "requestType": "UserSearchQuery",
-              "requestLongType": "UserSearchQuery",
-              "requestFullType": "spaceone.api.identity.v2.UserSearchQuery",
-              "requestStreaming": false,
-              "responseType": "UsersSummaryInfo",
-              "responseLongType": "UsersSummaryInfo",
-              "responseFullType": "spaceone.api.identity.v2.UsersSummaryInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/identity/v2/user/list_summary",
                       "body": "*"
                     }
                   ]

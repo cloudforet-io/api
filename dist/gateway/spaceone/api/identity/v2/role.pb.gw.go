@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
+	v2_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Role_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.RoleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateRoleRequest
+func request_Role_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.RoleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateRoleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Role_Create_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Role_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.RoleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateRoleRequest
+func local_request_Role_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.RoleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateRoleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Role_Create_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Role_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.RoleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateRoleRequest
+func request_Role_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.RoleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateRoleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Role_Update_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Role_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.RoleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateRoleRequest
+func local_request_Role_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.RoleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateRoleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Role_Update_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Role_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.RoleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleRequest
+func request_Role_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.RoleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Role_Delete_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Role_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.RoleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleRequest
+func local_request_Role_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.RoleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Role_Delete_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Role_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.RoleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleRequest
+func request_Role_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.RoleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Role_Get_0(ctx context.Context, marshaler runtime.Marshaler, client
 
 }
 
-func local_request_Role_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.RoleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleRequest
+func local_request_Role_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.RoleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Role_Get_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func request_Role_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.RoleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleSearchQuery
+func request_Role_List_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.RoleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Role_List_0(ctx context.Context, marshaler runtime.Marshaler, clien
 
 }
 
-func local_request_Role_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.RoleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleSearchQuery
+func local_request_Role_List_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.RoleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Role_List_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func request_Role_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.RoleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleStatQuery
+func request_Role_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.RoleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Role_Stat_0(ctx context.Context, marshaler runtime.Marshaler, clien
 
 }
 
-func local_request_Role_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.RoleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.RoleStatQuery
+func local_request_Role_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.RoleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.RoleStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -240,7 +240,7 @@ func local_request_Role_Stat_0(ctx context.Context, marshaler runtime.Marshaler,
 // UnaryRPC     :call RoleServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterRoleHandlerFromEndpoint instead.
-func RegisterRoleHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV2.RoleServer) error {
+func RegisterRoleHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.RoleServer) error {
 
 	mux.Handle("POST", pattern_Role_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -423,15 +423,15 @@ func RegisterRoleHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux,
 // RegisterRoleHandler registers the http handlers for service Role to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterRoleHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterRoleHandlerClient(ctx, mux, extV2.NewRoleClient(conn))
+	return RegisterRoleHandlerClient(ctx, mux, v2_0.NewRoleClient(conn))
 }
 
 // RegisterRoleHandlerClient registers the http handlers for service Role
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV2.RoleClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV2.RoleClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.RoleClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.RoleClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV2.RoleClient" to call the correct interceptors.
-func RegisterRoleHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV2.RoleClient) error {
+// "v2_0.RoleClient" to call the correct interceptors.
+func RegisterRoleHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.RoleClient) error {
 
 	mux.Handle("POST", pattern_Role_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	extV2 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
+	v2_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_ServiceAccount_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateServiceAccountRequest
+func request_ServiceAccount_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateServiceAccountRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_ServiceAccount_Create_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_ServiceAccount_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.CreateServiceAccountRequest
+func local_request_ServiceAccount_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.CreateServiceAccountRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_ServiceAccount_Create_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_ServiceAccount_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateServiceAccountRequest
+func request_ServiceAccount_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateServiceAccountRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_ServiceAccount_Update_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_ServiceAccount_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.UpdateServiceAccountRequest
+func local_request_ServiceAccount_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.UpdateServiceAccountRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_ServiceAccount_Update_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_ServiceAccount_ChangeTrustedAccount_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ChangeTrustedAccountRequest
+func request_ServiceAccount_ChangeTrustedAccount_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ChangeTrustedAccountRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_ServiceAccount_ChangeTrustedAccount_0(ctx context.Context, marshale
 
 }
 
-func local_request_ServiceAccount_ChangeTrustedAccount_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ChangeTrustedAccountRequest
+func local_request_ServiceAccount_ChangeTrustedAccount_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ChangeTrustedAccountRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_ServiceAccount_ChangeTrustedAccount_0(ctx context.Context, ma
 
 }
 
-func request_ServiceAccount_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ServiceAccountRequest
+func request_ServiceAccount_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ServiceAccountRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_ServiceAccount_Delete_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_ServiceAccount_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ServiceAccountRequest
+func local_request_ServiceAccount_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ServiceAccountRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_ServiceAccount_Delete_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_ServiceAccount_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ServiceAccountRequest
+func request_ServiceAccount_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ServiceAccountRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_ServiceAccount_Get_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_ServiceAccount_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ServiceAccountRequest
+func local_request_ServiceAccount_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ServiceAccountRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_ServiceAccount_Get_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_ServiceAccount_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ServiceAccountSearchQuery
+func request_ServiceAccount_List_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ServiceAccountSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_ServiceAccount_List_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_ServiceAccount_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ServiceAccountSearchQuery
+func local_request_ServiceAccount_List_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ServiceAccountSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_ServiceAccount_List_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_ServiceAccount_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV2.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ServiceAccountStatQuery
+func request_ServiceAccount_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.ServiceAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ServiceAccountStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_ServiceAccount_Stat_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_ServiceAccount_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV2.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV2.ServiceAccountStatQuery
+func local_request_ServiceAccount_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.ServiceAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq v2_0.ServiceAccountStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -274,7 +274,7 @@ func local_request_ServiceAccount_Stat_0(ctx context.Context, marshaler runtime.
 // UnaryRPC     :call ServiceAccountServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterServiceAccountHandlerFromEndpoint instead.
-func RegisterServiceAccountHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV2.ServiceAccountServer) error {
+func RegisterServiceAccountHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.ServiceAccountServer) error {
 
 	mux.Handle("POST", pattern_ServiceAccount_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -482,15 +482,15 @@ func RegisterServiceAccountHandlerFromEndpoint(ctx context.Context, mux *runtime
 // RegisterServiceAccountHandler registers the http handlers for service ServiceAccount to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterServiceAccountHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterServiceAccountHandlerClient(ctx, mux, extV2.NewServiceAccountClient(conn))
+	return RegisterServiceAccountHandlerClient(ctx, mux, v2_0.NewServiceAccountClient(conn))
 }
 
 // RegisterServiceAccountHandlerClient registers the http handlers for service ServiceAccount
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV2.ServiceAccountClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV2.ServiceAccountClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.ServiceAccountClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.ServiceAccountClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV2.ServiceAccountClient" to call the correct interceptors.
-func RegisterServiceAccountHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV2.ServiceAccountClient) error {
+// "v2_0.ServiceAccountClient" to call the correct interceptors.
+func RegisterServiceAccountHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.ServiceAccountClient) error {
 
 	mux.Handle("POST", pattern_ServiceAccount_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
