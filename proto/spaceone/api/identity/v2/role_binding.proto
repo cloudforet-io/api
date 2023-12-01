@@ -82,31 +82,6 @@ message RoleBindingRequest {
     string workspace_id = 22;
 }
 
-message RoleBindingInfo {
-    enum PermissionGroup {
-        GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-    enum RoleType {
-        ROLE_TYPE_NONE = 0;
-        SYSTEM = 1;
-        SYSTEM_ADMIN = 2;
-        DOMAIN_ADMIN = 3;
-        WORKSPACE_OWNER = 4;
-        WORKSPACE_MEMBER = 5;
-    }
-
-    string role_binding_id = 1;
-    RoleType role_type = 2;
-    PermissionGroup permission_group = 3;
-    string domain_id = 21;
-    string workspace_id = 22;
-    string role_id = 23;
-    string user_id = 24;
-    string created_at = 31;
-}
-
 message RoleBindingSearchQuery {
     enum PermissionGroup {
         GROUP_NONE = 0;
@@ -138,6 +113,31 @@ message RoleBindingSearchQuery {
     string role_id = 23;
     // +optional
     string user_id = 24;
+}
+
+message RoleBindingInfo {
+    enum PermissionGroup {
+        GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+    enum RoleType {
+        ROLE_TYPE_NONE = 0;
+        SYSTEM = 1;
+        SYSTEM_ADMIN = 2;
+        DOMAIN_ADMIN = 3;
+        WORKSPACE_OWNER = 4;
+        WORKSPACE_MEMBER = 5;
+    }
+
+    string role_binding_id = 1;
+    RoleType role_type = 2;
+    PermissionGroup permission_group = 3;
+    string domain_id = 21;
+    string workspace_id = 22;
+    string role_id = 23;
+    string user_id = 24;
+    string created_at = 31;
 }
 
 message RoleBindingsInfo {

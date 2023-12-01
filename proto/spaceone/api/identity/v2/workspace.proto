@@ -89,16 +89,6 @@ message WorkspaceRequest {
     string domain_id = 21;
 }
 
-message WorkspaceSearchQuery {
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string workspace_id = 2;
-    // +optional
-    string name = 3;
-    string domain_id = 21;
-}
-
 message WorkspaceInfo {
     enum State {
         NONE = 0;
@@ -111,6 +101,16 @@ message WorkspaceInfo {
     google.protobuf.Struct tags = 4;
     string domain_id = 21;
     string created_at = 31;
+}
+
+message WorkspaceSearchQuery {
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string workspace_id = 2;
+    // +optional
+    string name = 3;
+    string domain_id = 21;
 }
 
 message WorkspacesInfo {

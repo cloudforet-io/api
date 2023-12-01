@@ -90,6 +90,16 @@ message ProjectGroupRequest {
     string workspace_id = 22;
 }
 
+message ProjectGroupInfo {
+    string project_group_id = 1;
+    string name = 2;
+    google.protobuf.Struct tags = 3;
+    string domain_id = 21;
+    string workspace_id = 22;
+    string parent_group_id = 23;
+    string created_at = 31;
+}
+
 message ProjectGroupSearchQuery {
     // +optional
     spaceone.api.core.v2.Query query = 1;
@@ -104,22 +114,10 @@ message ProjectGroupSearchQuery {
     string parent_group_id = 23;
 }
 
-
-message ProjectGroupInfo {
-    string project_group_id = 1;
-    string name = 2;
-    google.protobuf.Struct tags = 3;
-    string domain_id = 21;
-    string workspace_id = 22;
-    string parent_group_id = 23;
-    string created_at = 31;
-}
-
 message ProjectGroupsInfo {
     repeated ProjectGroupInfo results = 1;
     int32 total_count = 2;
 }
-
 
 message ProjectGroupStatQuery {
     spaceone.api.core.v2.StatisticsQuery query = 1;

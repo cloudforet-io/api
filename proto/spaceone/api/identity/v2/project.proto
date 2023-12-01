@@ -156,6 +156,19 @@ message UserGroupsProjectRequest {
     string workspace_id = 22;
 }
 
+message ProjectInfo {
+    string project_id = 1;
+    string name = 2;
+    ProjectType project_type = 3;
+    google.protobuf.Struct tags = 4;
+    repeated string users = 5;
+    repeated string user_groups = 6;
+    string domain_id = 21;
+    string workspace_id = 22;
+    string project_group_id = 23;
+    string created_at = 31;
+}
+
 message ProjectSearchQuery {
     // +optional
     spaceone.api.core.v2.Query query = 1;
@@ -174,19 +187,6 @@ message ProjectSearchQuery {
     string user_group_id = 24;
     // +optional
     string user_id = 25;
-}
-
-message ProjectInfo {
-    string project_id = 1;
-    string name = 2;
-    ProjectType project_type = 3;
-    google.protobuf.Struct tags = 4;
-    repeated string users = 5;
-    repeated string user_groups = 6;
-    string domain_id = 21;
-    string workspace_id = 22;
-    string project_group_id = 23;
-    string created_at = 31;
 }
 
 message ProjectsInfo {

@@ -102,21 +102,6 @@ message DomainRequest {
 message GetDomainAuthRequest {
     string name = 1;
 }
-message DomainSearchQuery {
-    enum State {
-        NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-    }
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string domain_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    State state = 4;
-}
 
 message DomainAuthInfo {
     enum ExternalAuthState {
@@ -144,6 +129,22 @@ message DomainInfo {
     google.protobuf.Struct tags = 4;
     string created_at = 31;
     string deleted_at = 32;
+}
+
+message DomainSearchQuery {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string domain_id = 2;
+    // +optional
+    string name = 3;
+    // +optional
+    State state = 4;
 }
 
 message DomainsInfo {
