@@ -70,7 +70,7 @@ func (x WorkspaceInfo_State) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkspaceInfo_State.Descriptor instead.
 func (WorkspaceInfo_State) EnumDescriptor() ([]byte, []int) {
-	return file_spaceone_api_identity_v2_workspace_proto_rawDescGZIP(), []int{4, 0}
+	return file_spaceone_api_identity_v2_workspace_proto_rawDescGZIP(), []int{3, 0}
 }
 
 type CreateWorkSpaceRequest struct {
@@ -264,80 +264,6 @@ func (x *WorkspaceRequest) GetDomainId() string {
 	return ""
 }
 
-type WorkspaceSearchQuery struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// +optional
-	Query *v2.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	// +optional
-	WorkspaceId string `protobuf:"bytes,2,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
-	// +optional
-	Name     string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	DomainId string `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-}
-
-func (x *WorkspaceSearchQuery) Reset() {
-	*x = WorkspaceSearchQuery{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *WorkspaceSearchQuery) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*WorkspaceSearchQuery) ProtoMessage() {}
-
-func (x *WorkspaceSearchQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use WorkspaceSearchQuery.ProtoReflect.Descriptor instead.
-func (*WorkspaceSearchQuery) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_identity_v2_workspace_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *WorkspaceSearchQuery) GetQuery() *v2.Query {
-	if x != nil {
-		return x.Query
-	}
-	return nil
-}
-
-func (x *WorkspaceSearchQuery) GetWorkspaceId() string {
-	if x != nil {
-		return x.WorkspaceId
-	}
-	return ""
-}
-
-func (x *WorkspaceSearchQuery) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *WorkspaceSearchQuery) GetDomainId() string {
-	if x != nil {
-		return x.DomainId
-	}
-	return ""
-}
-
 type WorkspaceInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -354,7 +280,7 @@ type WorkspaceInfo struct {
 func (x *WorkspaceInfo) Reset() {
 	*x = WorkspaceInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[4]
+		mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -367,7 +293,7 @@ func (x *WorkspaceInfo) String() string {
 func (*WorkspaceInfo) ProtoMessage() {}
 
 func (x *WorkspaceInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[4]
+	mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -380,7 +306,7 @@ func (x *WorkspaceInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkspaceInfo.ProtoReflect.Descriptor instead.
 func (*WorkspaceInfo) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_identity_v2_workspace_proto_rawDescGZIP(), []int{4}
+	return file_spaceone_api_identity_v2_workspace_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *WorkspaceInfo) GetWorkspaceId() string {
@@ -421,6 +347,80 @@ func (x *WorkspaceInfo) GetDomainId() string {
 func (x *WorkspaceInfo) GetCreatedAt() string {
 	if x != nil {
 		return x.CreatedAt
+	}
+	return ""
+}
+
+type WorkspaceSearchQuery struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// +optional
+	Query *v2.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	// +optional
+	WorkspaceId string `protobuf:"bytes,2,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	// +optional
+	Name     string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	DomainId string `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+}
+
+func (x *WorkspaceSearchQuery) Reset() {
+	*x = WorkspaceSearchQuery{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *WorkspaceSearchQuery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WorkspaceSearchQuery) ProtoMessage() {}
+
+func (x *WorkspaceSearchQuery) ProtoReflect() protoreflect.Message {
+	mi := &file_spaceone_api_identity_v2_workspace_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WorkspaceSearchQuery.ProtoReflect.Descriptor instead.
+func (*WorkspaceSearchQuery) Descriptor() ([]byte, []int) {
+	return file_spaceone_api_identity_v2_workspace_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *WorkspaceSearchQuery) GetQuery() *v2.Query {
+	if x != nil {
+		return x.Query
+	}
+	return nil
+}
+
+func (x *WorkspaceSearchQuery) GetWorkspaceId() string {
+	if x != nil {
+		return x.WorkspaceId
+	}
+	return ""
+}
+
+func (x *WorkspaceSearchQuery) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *WorkspaceSearchQuery) GetDomainId() string {
+	if x != nil {
+		return x.DomainId
 	}
 	return ""
 }
@@ -581,16 +581,6 @@ var file_spaceone_api_identity_v2_workspace_proto_rawDesc = []byte{
 	0x70, 0x61, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x77,
 	0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x64, 0x6f,
 	0x6d, 0x61, 0x69, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x15, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x64,
-	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x9d, 0x01, 0x0a, 0x14, 0x57, 0x6f, 0x72, 0x6b,
-	0x73, 0x70, 0x61, 0x63, 0x65, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x12, 0x31, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x1b, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63,
-	0x6f, 0x72, 0x65, 0x2e, 0x76, 0x32, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x05, 0x71, 0x75,
-	0x65, 0x72, 0x79, 0x12, 0x21, 0x0a, 0x0c, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65,
-	0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x77, 0x6f, 0x72, 0x6b, 0x73,
-	0x70, 0x61, 0x63, 0x65, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x64, 0x6f,
-	0x6d, 0x61, 0x69, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x15, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x64,
 	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0xa2, 0x02, 0x0a, 0x0d, 0x57, 0x6f, 0x72, 0x6b,
 	0x73, 0x70, 0x61, 0x63, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x21, 0x0a, 0x0c, 0x77, 0x6f, 0x72,
 	0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
@@ -609,7 +599,17 @@ var file_spaceone_api_identity_v2_workspace_proto_rawDesc = []byte{
 	0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x22, 0x2c,
 	0x0a, 0x05, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x08, 0x0a, 0x04, 0x4e, 0x4f, 0x4e, 0x45, 0x10,
 	0x00, 0x12, 0x0b, 0x0a, 0x07, 0x45, 0x4e, 0x41, 0x42, 0x4c, 0x45, 0x44, 0x10, 0x01, 0x12, 0x0c,
-	0x0a, 0x08, 0x44, 0x49, 0x53, 0x41, 0x42, 0x4c, 0x45, 0x44, 0x10, 0x02, 0x22, 0x74, 0x0a, 0x0e,
+	0x0a, 0x08, 0x44, 0x49, 0x53, 0x41, 0x42, 0x4c, 0x45, 0x44, 0x10, 0x02, 0x22, 0x9d, 0x01, 0x0a,
+	0x14, 0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x31, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e,
+	0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x32, 0x2e, 0x51, 0x75, 0x65, 0x72,
+	0x79, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x12, 0x21, 0x0a, 0x0c, 0x77, 0x6f, 0x72, 0x6b,
+	0x73, 0x70, 0x61, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b,
+	0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12,
+	0x1b, 0x0a, 0x09, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x15, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x08, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x74, 0x0a, 0x0e,
 	0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x73, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x41,
 	0x0a, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
 	0x27, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x69,
@@ -721,8 +721,8 @@ var file_spaceone_api_identity_v2_workspace_proto_goTypes = []interface{}{
 	(*CreateWorkSpaceRequest)(nil), // 1: spaceone.api.identity.v2.CreateWorkSpaceRequest
 	(*UpdateWorkSpaceRequest)(nil), // 2: spaceone.api.identity.v2.UpdateWorkSpaceRequest
 	(*WorkspaceRequest)(nil),       // 3: spaceone.api.identity.v2.WorkspaceRequest
-	(*WorkspaceSearchQuery)(nil),   // 4: spaceone.api.identity.v2.WorkspaceSearchQuery
-	(*WorkspaceInfo)(nil),          // 5: spaceone.api.identity.v2.WorkspaceInfo
+	(*WorkspaceInfo)(nil),          // 4: spaceone.api.identity.v2.WorkspaceInfo
+	(*WorkspaceSearchQuery)(nil),   // 5: spaceone.api.identity.v2.WorkspaceSearchQuery
 	(*WorkspacesInfo)(nil),         // 6: spaceone.api.identity.v2.WorkspacesInfo
 	(*WorkspaceStatQuery)(nil),     // 7: spaceone.api.identity.v2.WorkspaceStatQuery
 	(*_struct.Struct)(nil),         // 8: google.protobuf.Struct
@@ -733,10 +733,10 @@ var file_spaceone_api_identity_v2_workspace_proto_goTypes = []interface{}{
 var file_spaceone_api_identity_v2_workspace_proto_depIdxs = []int32{
 	8,  // 0: spaceone.api.identity.v2.CreateWorkSpaceRequest.tags:type_name -> google.protobuf.Struct
 	8,  // 1: spaceone.api.identity.v2.UpdateWorkSpaceRequest.tags:type_name -> google.protobuf.Struct
-	9,  // 2: spaceone.api.identity.v2.WorkspaceSearchQuery.query:type_name -> spaceone.api.core.v2.Query
-	0,  // 3: spaceone.api.identity.v2.WorkspaceInfo.state:type_name -> spaceone.api.identity.v2.WorkspaceInfo.State
-	8,  // 4: spaceone.api.identity.v2.WorkspaceInfo.tags:type_name -> google.protobuf.Struct
-	5,  // 5: spaceone.api.identity.v2.WorkspacesInfo.results:type_name -> spaceone.api.identity.v2.WorkspaceInfo
+	0,  // 2: spaceone.api.identity.v2.WorkspaceInfo.state:type_name -> spaceone.api.identity.v2.WorkspaceInfo.State
+	8,  // 3: spaceone.api.identity.v2.WorkspaceInfo.tags:type_name -> google.protobuf.Struct
+	9,  // 4: spaceone.api.identity.v2.WorkspaceSearchQuery.query:type_name -> spaceone.api.core.v2.Query
+	4,  // 5: spaceone.api.identity.v2.WorkspacesInfo.results:type_name -> spaceone.api.identity.v2.WorkspaceInfo
 	10, // 6: spaceone.api.identity.v2.WorkspaceStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
 	1,  // 7: spaceone.api.identity.v2.Workspace.create:input_type -> spaceone.api.identity.v2.CreateWorkSpaceRequest
 	2,  // 8: spaceone.api.identity.v2.Workspace.update:input_type -> spaceone.api.identity.v2.UpdateWorkSpaceRequest
@@ -744,14 +744,14 @@ var file_spaceone_api_identity_v2_workspace_proto_depIdxs = []int32{
 	3,  // 10: spaceone.api.identity.v2.Workspace.enable:input_type -> spaceone.api.identity.v2.WorkspaceRequest
 	3,  // 11: spaceone.api.identity.v2.Workspace.disable:input_type -> spaceone.api.identity.v2.WorkspaceRequest
 	3,  // 12: spaceone.api.identity.v2.Workspace.get:input_type -> spaceone.api.identity.v2.WorkspaceRequest
-	4,  // 13: spaceone.api.identity.v2.Workspace.list:input_type -> spaceone.api.identity.v2.WorkspaceSearchQuery
+	5,  // 13: spaceone.api.identity.v2.Workspace.list:input_type -> spaceone.api.identity.v2.WorkspaceSearchQuery
 	7,  // 14: spaceone.api.identity.v2.Workspace.stat:input_type -> spaceone.api.identity.v2.WorkspaceStatQuery
-	5,  // 15: spaceone.api.identity.v2.Workspace.create:output_type -> spaceone.api.identity.v2.WorkspaceInfo
-	5,  // 16: spaceone.api.identity.v2.Workspace.update:output_type -> spaceone.api.identity.v2.WorkspaceInfo
+	4,  // 15: spaceone.api.identity.v2.Workspace.create:output_type -> spaceone.api.identity.v2.WorkspaceInfo
+	4,  // 16: spaceone.api.identity.v2.Workspace.update:output_type -> spaceone.api.identity.v2.WorkspaceInfo
 	11, // 17: spaceone.api.identity.v2.Workspace.delete:output_type -> google.protobuf.Empty
-	5,  // 18: spaceone.api.identity.v2.Workspace.enable:output_type -> spaceone.api.identity.v2.WorkspaceInfo
-	5,  // 19: spaceone.api.identity.v2.Workspace.disable:output_type -> spaceone.api.identity.v2.WorkspaceInfo
-	5,  // 20: spaceone.api.identity.v2.Workspace.get:output_type -> spaceone.api.identity.v2.WorkspaceInfo
+	4,  // 18: spaceone.api.identity.v2.Workspace.enable:output_type -> spaceone.api.identity.v2.WorkspaceInfo
+	4,  // 19: spaceone.api.identity.v2.Workspace.disable:output_type -> spaceone.api.identity.v2.WorkspaceInfo
+	4,  // 20: spaceone.api.identity.v2.Workspace.get:output_type -> spaceone.api.identity.v2.WorkspaceInfo
 	6,  // 21: spaceone.api.identity.v2.Workspace.list:output_type -> spaceone.api.identity.v2.WorkspacesInfo
 	8,  // 22: spaceone.api.identity.v2.Workspace.stat:output_type -> google.protobuf.Struct
 	15, // [15:23] is the sub-list for method output_type
@@ -804,7 +804,7 @@ func file_spaceone_api_identity_v2_workspace_proto_init() {
 			}
 		}
 		file_spaceone_api_identity_v2_workspace_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*WorkspaceSearchQuery); i {
+			switch v := v.(*WorkspaceInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -816,7 +816,7 @@ func file_spaceone_api_identity_v2_workspace_proto_init() {
 			}
 		}
 		file_spaceone_api_identity_v2_workspace_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*WorkspaceInfo); i {
+			switch v := v.(*WorkspaceSearchQuery); i {
 			case 0:
 				return &v.state
 			case 1:

@@ -73,7 +73,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query|True|\n |user_id||string|True|\n |domain_id||string|True|\n |name||string||\n |state|ENABLED, DISABLED, PENDING |string||\n |email||string||\n |auth_type||AuthType||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |user_id||string||\n |name||string||\n |state|ENABLED, DISABLED, PENDING |string||\n |email||string||\n |auth_type||AuthType||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -1145,7 +1145,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query|True|\n |domain_id||string|True|\n |user_group_id||string||\n |name||string||\n |workspace_id||string||\n |user_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |user_group_id||string||\n |name||string||\n |workspace_id||string||\n |user_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -1620,7 +1620,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query|True|\n |user_id||string|True|\n |domain_id||string|True|\n |name||string||\n |state|ENABLED, DISABLED, PENDING |string||\n |email||string||\n |auth_type|LOCAL, EXTERNAL |string||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |user_id||string||\n |name||string||\n |state|ENABLED, DISABLED, PENDING |string||\n |email||string||\n |auth_type|LOCAL, EXTERNAL |string||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -3533,7 +3533,7 @@
            ,        "WorkspaceUserSearchQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"auth_type" : {"type": "AuthType","title": "AUTH_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": ["query","user_id","domain_id"],
+         "required": ["domain_id"],
                 "title": "WorkspaceUserSearchQuery"
            }
            ,        "WorkspaceUserStatQuery": {
@@ -3993,7 +3993,7 @@
            ,        "UserGroupSearchQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"user_group_id" : {"type": "string","title": "USER_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_id" : {"type": "string","title": "USER_ID"}},
          "type": "object",
-         "required": ["query","domain_id"],
+         "required": ["domain_id"],
                 "title": "UserGroupSearchQuery"
            }
            ,        "UserGroupStatQuery": {
@@ -4087,7 +4087,7 @@
            ,        "UserSearchQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": ["query","user_id","domain_id"],
+         "required": ["domain_id"],
                 "title": "UserSearchQuery"
            }
            ,        "UserStatQuery": {
