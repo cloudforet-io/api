@@ -10,6 +10,7 @@ message AuthorizationRequest {
     enum TokenType {
         NONE = 0;
         USER = 1;
+        APP = 2;
         API_KEY = 3;
     }
 
@@ -24,11 +25,11 @@ message AuthorizationResponse {
     enum RoleType {
         NONE = 0;
         SYSTEM = 1;
-        ADMIN = 2;
-        DOMAIN_OWNER = 3;
+        SYSTEM_ADMIN = 2;
+        DOMAIN_ADMIN = 3;
         WORKSPACE_OWNER = 4;
         WORKSPACE_MEMBER = 5;
-        NO_ROLE = 6;
+        USER = 6;
     }
 
     RoleType role_type = 1;

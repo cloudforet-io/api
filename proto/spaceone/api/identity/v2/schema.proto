@@ -7,7 +7,7 @@ option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
-import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v2/query.proto";
 
 service Schema {
     rpc create (CreateSchemaRequest) returns (SchemaInfo) {
@@ -78,9 +78,11 @@ message UpdateSchemaRequest {
     // +optional
     google.protobuf.Struct schema = 3;
     // +optional
-    google.protobuf.Struct options = 4;
+    string related_schema_id = 4;
     // +optional
-    google.protobuf.Struct tags = 5;
+    google.protobuf.Struct options = 5;
+    // +optional
+    google.protobuf.Struct tags = 6;
     string domain_id = 21;
 }
 
@@ -91,7 +93,7 @@ message SchemaRequest {
 
 message SchemaSearchQuery {
     // +optional
-    spaceone.api.core.v1.Query query = 1;
+    spaceone.api.core.v2.Query query = 1;
     // +optional
     string schema_id = 2;
     // +optional
@@ -128,6 +130,6 @@ message SchemasInfo {
 }
 
 message SchemaStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;
+    spaceone.api.core.v2.StatisticsQuery query = 1;
     string domain_id = 21;
 }

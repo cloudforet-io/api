@@ -9,7 +9,8 @@ option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
-import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/identity/v2/workspace.proto";
 
 
 service User {
@@ -19,13 +20,6 @@ service User {
     rpc create (CreateUserRequest) returns (UserInfo) {
         option (google.api.http) = {
             post: "/identity/v2/user/create"
-            body: "*"
-        };
-    }
-
-    rpc create_workspace_user (CreateWorkspaceUserRequest) returns (UserSummaryInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/create-workspace-user"
             body: "*"
         };
     }
@@ -97,12 +91,14 @@ service User {
             body: "*"
         };
     }
+
     rpc disable (UserRequest) returns (UserInfo) {
         option (google.api.http) = {
             post: "/identity/v2/user/disable"
             body: "*"
         };
     }
+
     rpc delete (UserRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/identity/v2/user/delete"
@@ -117,6 +113,20 @@ service User {
         };
     }
 
+    rpc get_workspaces (UserRequest) returns (spaceone.api.identity.v2.WorkspacesInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/get_workspaces"
+            body: "*"
+        };
+    }
+
+    rpc find (UserFindRequest) returns (UsersSummaryInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/find"
+            body: "*"
+        };
+    }
+
     rpc list (UserSearchQuery) returns (UsersInfo) {
         option (google.api.http) = {
             post: "/identity/v2/user/list"
@@ -127,13 +137,6 @@ service User {
     rpc stat (UserStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/identity/v1/user/stat"
-            body: "*"
-        };
-    }
-
-    rpc list_summary (UserSearchQuery) returns (UsersSummaryInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/list_summary"
             body: "*"
         };
     }
@@ -184,32 +187,6 @@ message CreateUserRequest {
     // If reset_password is true, send email
     bool reset_password = 9;
     string domain_id = 21;
-}
-
-message CreateWorkspaceUserRequest {
-    string user_id = 1;
-    // When auth_type is LOCAL, password is required.
-    // +optional
-    string password = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    string email = 4;
-    AuthType auth_type = 5;
-    // en,ko
-    // +optional
-    string language = 6;
-    // UTC, Asia/Seoul
-    // +optional
-    string timezone = 7;
-    // +optional
-    google.protobuf.Struct tags = 8;
-    // If reset_password is true, send email
-    bool reset_password = 9;
-    // +optional
-    string role_id = 10;
-    string domain_id = 21;
-    string workspace_id = 22;
 }
 
 message UpdateUserRequest {
@@ -296,6 +273,24 @@ message UserRequest {
     string domain_id = 21;
 }
 
+message UserFindRequest {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+        PENDING = 3;
+    }
+
+    string keyword = 1;
+    // +optional
+    State state = 2;
+    // +optional
+    string exclude_domain_id = 3;
+    // +optional
+    spaceone.api.core.v2.Page page = 4;
+    string domain_id = 21;
+}
+
 message UserSearchQuery {
     enum State {
         NONE = 0;
@@ -303,7 +298,8 @@ message UserSearchQuery {
         DISABLED = 2;
         PENDING = 3;
     }
-    spaceone.api.core.v1.Query query = 1;
+
+    spaceone.api.core.v2.Query query = 1;
     string user_id = 2;
     // +optional
     string name = 3;
@@ -325,11 +321,10 @@ message UserInfo {
         DISABLED = 2;
         PENDING = 3;
     }
-
     enum RoleType {
         ROLE_TYPE_NONE = 0;
-        ADMIN = 1;
-        DOMAIN_OWNER = 2;
+        SYSTEM_ADMIN = 1;
+        DOMAIN_ADMIN = 2;
         WORKSPACE_OWNER = 3;
         WORKSPACE_MEMBER = 4;
         USER = 5;
@@ -352,6 +347,11 @@ message UserInfo {
     string last_accessed_at = 32;
 }
 
+message UsersInfo {
+    repeated UserInfo results = 1;
+    int32 total_count = 2;
+}
+
 message UserSummaryInfo {
     enum State {
         STATE_NONE = 0;
@@ -360,30 +360,9 @@ message UserSummaryInfo {
         PENDING = 3;
     }
 
-    enum RoleType {
-        ROLE_TYPE_NONE = 0;
-        ADMIN = 1;
-        DOMAIN_OWNER = 2;
-        WORKSPACE_OWNER = 3;
-        WORKSPACE_MEMBER = 4;
-        USER = 5;
-    }
-
     string user_id = 1;
     string name = 2;
     State state = 3;
-    string email = 4;
-    AuthType auth_type = 6;
-    RoleType role_type = 7;
-    google.protobuf.Struct tags = 13;
-    string domain_id = 21;
-    string created_at = 31;
-    string last_accessed_at = 32;
-}
-
-message UsersInfo {
-    repeated UserInfo results = 1;
-    int32 total_count = 2;
 }
 
 message UsersSummaryInfo {
@@ -392,7 +371,7 @@ message UsersSummaryInfo {
 }
 
 message UserStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;
+    spaceone.api.core.v2.StatisticsQuery query = 1;
     string domain_id = 21;
 }
 
