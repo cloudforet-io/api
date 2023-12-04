@@ -15,7 +15,7 @@ service Post {
     //Creates a new Post under a specific Board. You must specify the `board_id`, `title`, and `contents`. The parameter `category` is not required but can be set in the scope of `categories` specified in the parent Board. You can make the new Post pinned or pop up by adjusting the parameters.
     rpc create (CreatePostRequest) returns (PostInfo) {
         option (google.api.http) = {
-            post: "/board/v1/board/create"
+            post: "/board/v1/post/create"
             body: "*"
         };
     }
@@ -23,7 +23,7 @@ service Post {
     //Updates a specific Post. You can make changes in Post settings, except `board_id`, `post_id`, and `domain_id`.
     rpc update (UpdatePostRequest) returns (PostInfo) {
         option (google.api.http) = {
-            post: "/board/v1/board/update"
+            post: "/board/v1/post/update"
             body: "*"
         };
     }
@@ -31,7 +31,7 @@ service Post {
     //Not Implemented
     rpc send_notification (SendNotificationRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/board/v1/board/send-notification"
+            post: "/board/v1/post/send-notification"
             body: "*"
         };
     }
@@ -39,7 +39,7 @@ service Post {
     // Deletes a specific Post. You must specify the `post_id` of the Post to delete, and the `board_id` of the Board where the child Post to delete belongs.
     rpc delete (PostRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/board/v1/board/delete"
+            post: "/board/v1/post/delete"
             body: "*"
         };
     }
@@ -47,7 +47,7 @@ service Post {
     // Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.
     rpc get (GetPostRequest) returns (PostInfo) {
         option (google.api.http) = {
-            post: "/board/v1/board/get"
+            post: "/board/v1/post/get"
             body: "*"
         };
     }
@@ -55,14 +55,14 @@ service Post {
     // Gets a list of all Posts. You can use a query to get a filtered list of Posts.
     rpc list (PostQuery) returns (PostsInfo) {
         option (google.api.http) = {
-            post: "/board/v1/board/list"
+            post: "/board/v1/post/list"
             body: "*"
         };
     }
 
     rpc stat (PostStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/board/v1/board/stat"
+            post: "/board/v1/post/stat"
             body: "*"
         };
     }
