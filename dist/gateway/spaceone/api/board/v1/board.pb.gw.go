@@ -284,7 +284,7 @@ func RegisterBoardHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.board.v1.Board/Create", runtime.WithHTTPPathPattern("/spaceone.api.board.v1.Board/create"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.board.v1.Board/Create", runtime.WithHTTPPathPattern("/board/v1/board"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -309,7 +309,7 @@ func RegisterBoardHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.board.v1.Board/Update", runtime.WithHTTPPathPattern("/spaceone.api.board.v1.Board/update"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.board.v1.Board/Update", runtime.WithHTTPPathPattern("/board/v1/board/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -334,7 +334,7 @@ func RegisterBoardHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.board.v1.Board/SetCategories", runtime.WithHTTPPathPattern("/spaceone.api.board.v1.Board/set_categories"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.board.v1.Board/SetCategories", runtime.WithHTTPPathPattern("/board/v1/board/set-categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -498,7 +498,7 @@ func RegisterBoardHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.board.v1.Board/Create", runtime.WithHTTPPathPattern("/spaceone.api.board.v1.Board/create"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.board.v1.Board/Create", runtime.WithHTTPPathPattern("/board/v1/board"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -520,7 +520,7 @@ func RegisterBoardHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.board.v1.Board/Update", runtime.WithHTTPPathPattern("/spaceone.api.board.v1.Board/update"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.board.v1.Board/Update", runtime.WithHTTPPathPattern("/board/v1/board/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -542,7 +542,7 @@ func RegisterBoardHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.board.v1.Board/SetCategories", runtime.WithHTTPPathPattern("/spaceone.api.board.v1.Board/set_categories"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.board.v1.Board/SetCategories", runtime.WithHTTPPathPattern("/board/v1/board/set-categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -650,11 +650,11 @@ func RegisterBoardHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_Board_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.board.v1.Board", "create"}, ""))
+	pattern_Board_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0}, []string{"board", "v1"}, ""))
 
-	pattern_Board_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.board.v1.Board", "update"}, ""))
+	pattern_Board_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"board", "v1", "update"}, ""))
 
-	pattern_Board_SetCategories_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.board.v1.Board", "set_categories"}, ""))
+	pattern_Board_SetCategories_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"board", "v1", "set-categories"}, ""))
 
 	pattern_Board_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.board.v1.Board", "delete"}, ""))
 
