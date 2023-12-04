@@ -12,13 +12,28 @@ import "spaceone/api/core/v1/query.proto";
 
 service Board {
     // Creates a new Board with SYSTEM permission. The `name` of the board is only required. You can add one or more `categories` representing the Board's attributes.
-    rpc create (CreateBoardRequest) returns (BoardInfo) {}
+    rpc create (CreateBoardRequest) returns (BoardInfo) {
+        option (google.api.http) = {
+            post: "/board/v1/board"
+            body: "*"
+        };
+    }
 
     // Updates a specific Board with SYSTEM permission. You can make changes in Board settings, including `name` and `tags`.
-    rpc update (UpdateBoardRequest) returns (BoardInfo) {}
+    rpc update (UpdateBoardRequest) returns (BoardInfo) {
+        option (google.api.http) = {
+            post: "/board/v1/board/update"
+            body: "*"
+        };
+    }
 
     // Adds or changes `categories` of a specific Board with SYSTEM permission. A change in `categories` of a Board does not affect the `category` of the child Posts.
-    rpc set_categories (SetBoardCategoriesRequest) returns (BoardInfo){}
+    rpc set_categories (SetBoardCategoriesRequest) returns (BoardInfo){
+        option (google.api.http) = {
+            post: "/board/v1/board/set-categories"
+            body: "*"
+        };
+    }
 
     // Deletes a specific Board with `SYSTEM` permission. You can delete a Board regardless of the presence of Posts created under the Board.
     rpc delete (BoardRequest) returns (google.protobuf.Empty) {}
