@@ -3519,9 +3519,9 @@
                 "title": "CreateWorkspaceUserRequest"
            }
            ,        "WorkspaceUserInfo": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"auth_type" : {"type": "AuthType","title": "AUTH_TYPE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"auth_type" : {"type": "AuthType","title": "AUTH_TYPE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"api_key_count" : {"type": "integer","title": "API_KEY_COUNT"},"tags" : {"type": "object","title": "TAGS"},"role_binding" : {"$ref": "#/components/schemas/RoleBindingInfo","title": "ROLE_BINDING"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
          "type": "object",
-         "required": ["user_id","name","state","email","auth_type","role_type","language","timezone","tags","domain_id","created_at","last_accessed_at"],
+         "required": ["user_id","name","state","email","auth_type","role_type","language","timezone","api_key_count","tags","role_binding","domain_id","created_at","last_accessed_at"],
                 "title": "WorkspaceUserInfo"
            }
            ,        "WorkspaceUserRequest": {
@@ -4072,10 +4072,10 @@
                 "title": "UserFindRequest"
            }
            ,        "UserInfo": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"email_verified" : {"type": "boolean","title": "EMAIL_VERIFIED"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"mfa" : {"$ref": "#/components/schemas/MFA","title": "MFA"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"required_actions" : {"items": {"type": "string"},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"email_verified" : {"type": "boolean","title": "EMAIL_VERIFIED"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"mfa" : {"$ref": "#/components/schemas/MFA","title": "MFA"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"api_key_count" : {"type": "integer","title": "API_KEY_COUNT"},"required_actions" : {"items": {"type": "string"},
                "type": "array","title": "REQUIRED_ACTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
          "type": "object",
-         "required": ["user_id","name","state","email","email_verified","auth_type","role_type","mfa","language","timezone","required_actions","tags","domain_id","created_at","last_accessed_at"],
+         "required": ["user_id","name","state","email","email_verified","auth_type","role_type","mfa","language","timezone","api_key_count","required_actions","tags","domain_id","created_at","last_accessed_at"],
                 "title": "UserInfo"
            }
            ,        "UserRequest": {
