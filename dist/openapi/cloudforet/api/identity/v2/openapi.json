@@ -3318,11 +3318,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |app_id||string|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |app_id||string|True|\n |expired_at||string|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"app_id" : {"type": "string","title": "APP_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"app_id" : {"type": "string","title": "APP_ID" },"expired_at" : {"type": "string","title": "EXPIRED_AT" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -4399,9 +4399,9 @@
                 "title": "UsersProjectRequest"
            }
            ,        "APIKeyInfo": {
-         "properties" : {"api_key_id" : {"type": "string","title": "API_KEY_ID"},"api_key" : {"type": "string","title": "API_KEY"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"},"expired_at" : {"type": "string","title": "EXPIRED_AT"}},
+         "properties" : {"api_key_id" : {"type": "string","title": "API_KEY_ID"},"api_key" : {"type": "string","title": "API_KEY"},"app_id" : {"type": "string","title": "APP_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"},"expired_at" : {"type": "string","title": "EXPIRED_AT"}},
          "type": "object",
-         "required": ["api_key_id","api_key","name","state","domain_id","user_id","created_at","last_accessed_at","expired_at"],
+         "required": ["api_key_id","api_key","app_id","name","state","domain_id","user_id","created_at","last_accessed_at","expired_at"],
                 "title": "APIKeyInfo"
            }
            ,        "APIKeyRequest": {
@@ -4544,6 +4544,12 @@
          "type": "object",
          "required": ["name","role_id","permission_group","domain_id"],
                 "title": "CreateAppRequest"
+           }
+           ,        "GenerateAPIKeyAppRequest": {
+         "properties" : {"app_id" : {"type": "string","title": "APP_ID"},"expired_at" : {"type": "string","title": "EXPIRED_AT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": ["app_id","expired_at","domain_id"],
+                "title": "GenerateAPIKeyAppRequest"
            }
            ,        "UpdateAppRequest": {
          "properties" : {"app_id" : {"type": "string","title": "APP_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},

@@ -28,7 +28,7 @@ class AppStub(object):
                 )
         self.generate_api_key = channel.unary_unary(
                 '/spaceone.api.identity.v2.App/generate_api_key',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.GenerateAPIKeyAppRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
                 )
         self.enable = channel.unary_unary(
@@ -135,7 +135,7 @@ def add_AppServicer_to_server(servicer, server):
             ),
             'generate_api_key': grpc.unary_unary_rpc_method_handler(
                     servicer.generate_api_key,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.GenerateAPIKeyAppRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.SerializeToString,
             ),
             'enable': grpc.unary_unary_rpc_method_handler(
@@ -224,7 +224,7 @@ class App(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.App/generate_api_key',
-            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.GenerateAPIKeyAppRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

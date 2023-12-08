@@ -101,7 +101,7 @@ func local_request_App_Update_0(ctx context.Context, marshaler runtime.Marshaler
 }
 
 func request_App_GenerateApiKey_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.AppRequest
+	var protoReq v2_0.GenerateAPIKeyAppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -118,7 +118,7 @@ func request_App_GenerateApiKey_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func local_request_App_GenerateApiKey_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.AppRequest
+	var protoReq v2_0.GenerateAPIKeyAppRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

@@ -38,7 +38,7 @@ const (
 type AppClient interface {
 	Create(ctx context.Context, in *CreateAppRequest, opts ...grpc.CallOption) (*AppInfo, error)
 	Update(ctx context.Context, in *UpdateAppRequest, opts ...grpc.CallOption) (*AppInfo, error)
-	GenerateApiKey(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*AppInfo, error)
+	GenerateApiKey(ctx context.Context, in *GenerateAPIKeyAppRequest, opts ...grpc.CallOption) (*AppInfo, error)
 	Enable(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*AppInfo, error)
 	Disable(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*AppInfo, error)
 	Delete(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -73,7 +73,7 @@ func (c *appClient) Update(ctx context.Context, in *UpdateAppRequest, opts ...gr
 	return out, nil
 }
 
-func (c *appClient) GenerateApiKey(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*AppInfo, error) {
+func (c *appClient) GenerateApiKey(ctx context.Context, in *GenerateAPIKeyAppRequest, opts ...grpc.CallOption) (*AppInfo, error) {
 	out := new(AppInfo)
 	err := c.cc.Invoke(ctx, App_GenerateApiKey_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -142,7 +142,7 @@ func (c *appClient) Stat(ctx context.Context, in *AppStatQuery, opts ...grpc.Cal
 type AppServer interface {
 	Create(context.Context, *CreateAppRequest) (*AppInfo, error)
 	Update(context.Context, *UpdateAppRequest) (*AppInfo, error)
-	GenerateApiKey(context.Context, *AppRequest) (*AppInfo, error)
+	GenerateApiKey(context.Context, *GenerateAPIKeyAppRequest) (*AppInfo, error)
 	Enable(context.Context, *AppRequest) (*AppInfo, error)
 	Disable(context.Context, *AppRequest) (*AppInfo, error)
 	Delete(context.Context, *AppRequest) (*empty.Empty, error)
@@ -162,7 +162,7 @@ func (UnimplementedAppServer) Create(context.Context, *CreateAppRequest) (*AppIn
 func (UnimplementedAppServer) Update(context.Context, *UpdateAppRequest) (*AppInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedAppServer) GenerateApiKey(context.Context, *AppRequest) (*AppInfo, error) {
+func (UnimplementedAppServer) GenerateApiKey(context.Context, *GenerateAPIKeyAppRequest) (*AppInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateApiKey not implemented")
 }
 func (UnimplementedAppServer) Enable(context.Context, *AppRequest) (*AppInfo, error) {
@@ -233,7 +233,7 @@ func _App_Update_Handler(srv interface{}, ctx context.Context, dec func(interfac
 }
 
 func _App_GenerateApiKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AppRequest)
+	in := new(GenerateAPIKeyAppRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -245,7 +245,7 @@ func _App_GenerateApiKey_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: App_GenerateApiKey_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServer).GenerateApiKey(ctx, req.(*AppRequest))
+		return srv.(AppServer).GenerateApiKey(ctx, req.(*GenerateAPIKeyAppRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
