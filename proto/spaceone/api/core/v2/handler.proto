@@ -7,18 +7,19 @@ option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v2";
 import "google/protobuf/struct.proto";
 
 message AuthorizationRequest {
-    enum TokenType {
+    enum OwnerType {
         NONE = 0;
         USER = 1;
         APP = 2;
-        API_KEY = 3;
     }
 
     string scope = 1;
-    TokenType token_type = 2;
-    string api_key_id = 3;
+    OwnerType owner_type = 2;
+    string user_id = 3;
     string app_id = 4;
-    string domain_id = 5;
+    string api_key_id = 5;
+    string workspace_id = 6;
+    string domain_id = 7;
 }
 
 message AuthorizationResponse {
