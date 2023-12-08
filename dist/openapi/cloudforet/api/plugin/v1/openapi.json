@@ -8,36 +8,7 @@
      "title": "Plugin API",
      "version": "3.1.0"
    },
-   "paths":{"/plugin/plugin/get-plugin-metadata": {
-       "post": {
-         "tags": ["plugin > plugin"],
-         "summary": "Get Plugin Metadata",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |plugin_id||string|True|\n |domain_id||string|True|\n |version||string||\n |options||Struct||\n |upgrade_mode|AUTO |string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"plugin_id" : {"type": "string","title": "PLUGIN_ID" },"version" : {"type": "string","title": "VERSION" },"options" : {"type": "object","title": "OPTIONS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PluginMetadata"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PluginMetadata"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/plugin/supervisor/publish": {
+   "paths":{"/plugin/supervisor/publish": {
        "post": {
          "tags": ["plugin > supervisor"],
          "summary": "Publish",
@@ -366,39 +337,121 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/plugin/plugin/get-plugin-metadata": {
+       "post": {
+         "tags": ["plugin > plugin"],
+         "summary": "Get Plugin Metadata",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |plugin_id||string|True|\n |domain_id||string|True|\n |version||string||\n |options||Struct||\n |upgrade_mode|AUTO |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"plugin_id" : {"type": "string","title": "PLUGIN_ID" },"version" : {"type": "string","title": "VERSION" },"options" : {"type": "object","title": "OPTIONS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PluginMetadata"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PluginMetadata"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
      "schemas": {
-     "PluginEndpoint": {
-         "properties" : {"endpoint" : {"type": "string","title": "ENDPOINT"},"access_token" : {"type": "string","title": "ACCESS_TOKEN"},"updated_version" : {"type": "string","title": "UPDATED_VERSION"}},
+     "GetSupervisorRequest": {
+         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"}},
          "type": "object",
-         "required": ["endpoint","access_token","updated_version"],
-                "title": "PluginEndpoint"
+         "required": ["supervisor_id","domain_id"],
+                "title": "GetSupervisorRequest"
            }
-           ,        "PluginEndpointRequest": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"labels" : {"type": "object","title": "LABELS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+           ,        "PluginInfo": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"state" : {"type": "string","title": "STATE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"supervisor_name" : {"type": "string","title": "SUPERVISOR_NAME"},"managed" : {"type": "boolean","title": "MANAGED"},"endpoints" : {"items": {"type": "string"},
+               "type": "array","title": "ENDPOINTS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["plugin_id","domain_id"],
-                "title": "PluginEndpointRequest"
+         "required": ["plugin_id","version","state","endpoint","supervisor_id","supervisor_name","managed","endpoints","domain_id"],
+                "title": "PluginInfo"
            }
-           ,        "PluginFailureRequest": {
+           ,        "PluginQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"hostname" : {"type": "string","title": "HOSTNAME"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"state" : {"type": "string","title": "STATE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["domain_id"],
+                "title": "PluginQuery"
+           }
+           ,        "PluginsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PluginInfo"},
+               "type": "array","$ref": "#/components/schemas/PluginInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "PluginsInfo"
+           }
+           ,        "PublishSupervisorRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"hostname" : {"type": "string","title": "HOSTNAME"},"secret_key" : {"type": "string","title": "SECRET_KEY"},"plugin_info" : {"items": {"$ref": "#/components/schemas/PluginInfo"},
+               "type": "array","$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"is_public" : {"type": "boolean","title": "IS_PUBLIC"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"labels" : {"type": "object","title": "LABELS"}},
+         "type": "object",
+         "required": ["name","hostname","domain_id"],
+                "title": "PublishSupervisorRequest"
+           }
+           ,        "RecoverPluginRequest": {
          "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["supervisor_id","plugin_id","version","domain_id"],
-                "title": "PluginFailureRequest"
+                "title": "RecoverPluginRequest"
            }
-           ,        "PluginMetadata": {
-         "properties" : {"metadata" : {"type": "object","title": "METADATA"}},
+           ,        "RegisterSupervisorRequest": {
+         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"name" : {"type": "string","title": "NAME"},"is_public" : {"type": "boolean","title": "IS_PUBLIC"},"priority" : {"type": "integer","title": "PRIORITY"},"labels" : {"type": "object","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["metadata"],
-                "title": "PluginMetadata"
+         "required": ["supervisor_id","domain_id"],
+                "title": "RegisterSupervisorRequest"
            }
-           ,        "PluginMetadataRequest": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+           ,        "SupervisorInfo": {
+         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"name" : {"type": "string","title": "NAME"},"hostname" : {"type": "string","title": "HOSTNAME"},"state" : {"type": "string","title": "STATE"},"is_public" : {"type": "boolean","title": "IS_PUBLIC"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"tags" : {"type": "object","title": "TAGS"},"labels" : {"type": "object","title": "LABELS"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["plugin_id","domain_id"],
-                "title": "PluginMetadataRequest"
+         "required": ["supervisor_id","name","hostname","state","is_public","domain_id","tags","labels","created_at","updated_at"],
+                "title": "SupervisorInfo"
+           }
+           ,        "SupervisorQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"name" : {"type": "string","title": "NAME"},"is_public" : {"type": "boolean","title": "IS_PUBLIC"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["domain_id"],
+                "title": "SupervisorQuery"
+           }
+           ,        "SupervisorRequest": {
+         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["supervisor_id","domain_id"],
+                "title": "SupervisorRequest"
+           }
+           ,        "SupervisorStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["query","domain_id"],
+                "title": "SupervisorStatQuery"
+           }
+           ,        "SupervisorsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/SupervisorInfo"},
+               "type": "array","$ref": "#/components/schemas/SupervisorInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "SupervisorsInfo"
+           }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -601,88 +654,35 @@
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+           ,        "PluginEndpoint": {
+         "properties" : {"endpoint" : {"type": "string","title": "ENDPOINT"},"access_token" : {"type": "string","title": "ACCESS_TOKEN"},"updated_version" : {"type": "string","title": "UPDATED_VERSION"}},
          "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
+         "required": ["endpoint","access_token","updated_version"],
+                "title": "PluginEndpoint"
            }
-           ,        "GetSupervisorRequest": {
-         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
+           ,        "PluginEndpointRequest": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"labels" : {"type": "object","title": "LABELS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
          "type": "object",
-         "required": ["supervisor_id","domain_id"],
-                "title": "GetSupervisorRequest"
+         "required": ["plugin_id","domain_id"],
+                "title": "PluginEndpointRequest"
            }
-           ,        "PluginInfo": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"state" : {"type": "string","title": "STATE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"supervisor_name" : {"type": "string","title": "SUPERVISOR_NAME"},"managed" : {"type": "boolean","title": "MANAGED"},"endpoints" : {"items": {"type": "string"},
-               "type": "array","title": "ENDPOINTS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["plugin_id","version","state","endpoint","supervisor_id","supervisor_name","managed","endpoints","domain_id"],
-                "title": "PluginInfo"
-           }
-           ,        "PluginQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"hostname" : {"type": "string","title": "HOSTNAME"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"state" : {"type": "string","title": "STATE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "PluginQuery"
-           }
-           ,        "PluginsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PluginInfo"},
-               "type": "array","$ref": "#/components/schemas/PluginInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "PluginsInfo"
-           }
-           ,        "PublishSupervisorRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"hostname" : {"type": "string","title": "HOSTNAME"},"secret_key" : {"type": "string","title": "SECRET_KEY"},"plugin_info" : {"items": {"$ref": "#/components/schemas/PluginInfo"},
-               "type": "array","$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"is_public" : {"type": "boolean","title": "IS_PUBLIC"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"labels" : {"type": "object","title": "LABELS"}},
-         "type": "object",
-         "required": ["name","hostname","domain_id"],
-                "title": "PublishSupervisorRequest"
-           }
-           ,        "RecoverPluginRequest": {
+           ,        "PluginFailureRequest": {
          "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["supervisor_id","plugin_id","version","domain_id"],
-                "title": "RecoverPluginRequest"
+                "title": "PluginFailureRequest"
            }
-           ,        "RegisterSupervisorRequest": {
-         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"name" : {"type": "string","title": "NAME"},"is_public" : {"type": "boolean","title": "IS_PUBLIC"},"priority" : {"type": "integer","title": "PRIORITY"},"labels" : {"type": "object","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "PluginMetadata": {
+         "properties" : {"metadata" : {"type": "object","title": "METADATA"}},
          "type": "object",
-         "required": ["supervisor_id","domain_id"],
-                "title": "RegisterSupervisorRequest"
+         "required": ["metadata"],
+                "title": "PluginMetadata"
            }
-           ,        "SupervisorInfo": {
-         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"name" : {"type": "string","title": "NAME"},"hostname" : {"type": "string","title": "HOSTNAME"},"state" : {"type": "string","title": "STATE"},"is_public" : {"type": "boolean","title": "IS_PUBLIC"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"tags" : {"type": "object","title": "TAGS"},"labels" : {"type": "object","title": "LABELS"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "PluginMetadataRequest": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
          "type": "object",
-         "required": ["supervisor_id","name","hostname","state","is_public","domain_id","tags","labels","created_at","updated_at"],
-                "title": "SupervisorInfo"
-           }
-           ,        "SupervisorQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"name" : {"type": "string","title": "NAME"},"is_public" : {"type": "boolean","title": "IS_PUBLIC"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "SupervisorQuery"
-           }
-           ,        "SupervisorRequest": {
-         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["supervisor_id","domain_id"],
-                "title": "SupervisorRequest"
-           }
-           ,        "SupervisorStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["query","domain_id"],
-                "title": "SupervisorStatQuery"
-           }
-           ,        "SupervisorsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/SupervisorInfo"},
-               "type": "array","$ref": "#/components/schemas/SupervisorInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "SupervisorsInfo"
+         "required": ["plugin_id","domain_id"],
+                "title": "PluginMetadataRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
