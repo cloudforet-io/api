@@ -25,7 +25,7 @@ service App {
         };
     }
 
-    rpc generate_api_key (AppRequest) returns (AppInfo) {
+    rpc generate_api_key (GenerateAPIKeyAppRequest) returns (AppInfo) {
         option (google.api.http) = {
             post: "/identity/v2/app/generate-api-key"
             body: "*"
