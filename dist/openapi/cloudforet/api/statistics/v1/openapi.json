@@ -8,285 +8,7 @@
      "title": "Statistics API",
      "version": "3.1.0"
    },
-   "paths":{"/statistics/storage/register": {
-       "post": {
-         "tags": ["statistics > storage"],
-         "summary": "Register",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |user_id||string|True|\n |domain_id||string|True|\n |plugin_info||PluginRequest||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/PluginRequest","title": "PLUGIN_INFO" },"tags" : {"type": "object","title": "TAGS" },"user_id" : {"type": "string","title": "USER_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/StorageInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/StorageInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/storage/update": {
-       "post": {
-         "tags": ["statistics > storage"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |storage_id||string|True|\n |domain_id||string|True|\n |name||string||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"storage_id" : {"type": "string","title": "STORAGE_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/StorageInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/StorageInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/storage/update-plugin": {
-       "post": {
-         "tags": ["statistics > storage"],
-         "summary": "Update Plugin",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |storage_id||string|True|\n |domain_id||string|True|\n |version||string||\n |options||Struct||\n |secret_data||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"storage_id" : {"type": "string","title": "STORAGE_ID" },"version" : {"type": "string","title": "VERSION" },"options" : {"type": "object","title": "OPTIONS" },"secret_data" : {"type": "object","title": "SECRET_DATA" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/StorageInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/StorageInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/storage/verify-plugin": {
-       "post": {
-         "tags": ["statistics > storage"],
-         "summary": "Verify Plugin",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |storage_id||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"storage_id" : {"type": "string","title": "STORAGE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/storage/enable": {
-       "post": {
-         "tags": ["statistics > storage"],
-         "summary": "Enable",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |storage_id||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"storage_id" : {"type": "string","title": "STORAGE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/StorageInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/StorageInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/storage/disable": {
-       "post": {
-         "tags": ["statistics > storage"],
-         "summary": "Disable",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |storage_id||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"storage_id" : {"type": "string","title": "STORAGE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/StorageInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/StorageInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/storage/deregister": {
-       "post": {
-         "tags": ["statistics > storage"],
-         "summary": "Deregister",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |storage_id||string|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"storage_id" : {"type": "string","title": "STORAGE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/storage/get": {
-       "post": {
-         "tags": ["statistics > storage"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |storage_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"storage_id" : {"type": "string","title": "STORAGE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/StorageInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/StorageInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/storage/list": {
-       "post": {
-         "tags": ["statistics > storage"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id||string|True|\n |query||Query||\n |storage_id||string||\n |name||string||\n |state||string||\n |user_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"storage_id" : {"type": "string","title": "STORAGE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"user_id" : {"type": "string","title": "USER_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/StoragesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/StoragesInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/storage/stat": {
-       "post": {
-         "tags": ["statistics > storage"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/schedule/add": {
+   "paths":{"/statistics/schedule/add": {
        "post": {
          "tags": ["statistics > schedule"],
          "summary": "Add",
@@ -640,73 +362,69 @@
    },
    "components":{
      "schemas": {
-     "GetStorageRequest": {
-         "properties" : {"storage_id" : {"type": "string","title": "STORAGE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
+     "AddScheduleRequest": {
+         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["topic","options","schedule","user_id","domain_id"],
+                "title": "AddScheduleRequest"
+           }
+           ,        "GetScheduleRequest": {
+         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
                "type": "array","title": "ONLY"}},
          "type": "object",
-         "required": ["storage_id","domain_id"],
-                "title": "GetStorageRequest"
+         "required": ["schedule_id","domain_id"],
+                "title": "GetScheduleRequest"
            }
-           ,        "PluginInfo": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"secret_id" : {"type": "string","title": "SECRET_ID"},"metadata" : {"type": "object","title": "METADATA"}},
+           ,        "QueryOption": {
+         "properties" : {"aggregate" : {"$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"}},
          "type": "object",
-         "required": ["plugin_id","version","options","secret_id","metadata"],
-                "title": "PluginInfo"
+         "required": ["aggregate"],
+                "title": "QueryOption"
            }
-           ,        "PluginRequest": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"secret_data" : {"type": "object","title": "SECRET_DATA"},"schema" : {"type": "string","title": "SCHEMA"}},
+           ,        "ScheduleInfo": {
+         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"topic" : {"type": "string","title": "TOPIC"},"state" : {"type": "string","title": "STATE"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_scheduled_at" : {"type": "string","title": "LAST_SCHEDULED_AT"}},
          "type": "object",
-         "required": ["plugin_id","version","options","secret_data","schema"],
-                "title": "PluginRequest"
+         "required": ["schedule_id","topic","state","options","schedule","tags","domain_id","created_at","last_scheduled_at"],
+                "title": "ScheduleInfo"
            }
-           ,        "RegisterStorageRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/PluginRequest","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["name","user_id","domain_id"],
-                "title": "RegisterStorageRequest"
-           }
-           ,        "StorageInfo": {
-         "properties" : {"storage_id" : {"type": "string","title": "STORAGE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"options" : {"type": "object","title": "OPTIONS"},"capability" : {"type": "object","title": "CAPABILITY"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["storage_id","name","state","options","capability","plugin_info","tags","user_id","domain_id","created_at"],
-                "title": "StorageInfo"
-           }
-           ,        "StorageQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"storage_id" : {"type": "string","title": "STORAGE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "ScheduleQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"topic" : {"type": "string","title": "TOPIC"},"state" : {"type": "string","title": "STATE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["domain_id"],
-                "title": "StorageQuery"
+                "title": "ScheduleQuery"
            }
-           ,        "StorageRequest": {
-         "properties" : {"storage_id" : {"type": "string","title": "STORAGE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "ScheduleRequest": {
+         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["storage_id","domain_id"],
-                "title": "StorageRequest"
+         "required": ["schedule_id","domain_id"],
+                "title": "ScheduleRequest"
            }
-           ,        "StorageStatQuery": {
+           ,        "ScheduleStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["query","domain_id"],
-                "title": "StorageStatQuery"
+                "title": "ScheduleStatQuery"
            }
-           ,        "StoragesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/StorageInfo"},
-               "type": "array","$ref": "#/components/schemas/StorageInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "Scheduled": {
+         "properties" : {"cron" : {"type": "string","title": "CRON"},"interval" : {"type": "integer","title": "INTERVAL"},"minutes" : {"items": {"type": "integer"},
+               "type": "array","title": "MINUTES"},"hours" : {"items": {"type": "integer"},
+               "type": "array","title": "HOURS"}},
+         "type": "object",
+         "required": ["cron","interval","minutes","hours"],
+                "title": "Scheduled"
+           }
+           ,        "SchedulesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ScheduleInfo"},
+               "type": "array","$ref": "#/components/schemas/ScheduleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "StoragesInfo"
+                "title": "SchedulesInfo"
            }
-           ,        "UpdateStoragePluginRequest": {
-         "properties" : {"storage_id" : {"type": "string","title": "STORAGE_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"secret_data" : {"type": "object","title": "SECRET_DATA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "UpdateScheduleRequest": {
+         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"storage_id" : {"type": "string","title": "STORAGE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["storage_id","domain_id"],
-                "title": "UpdateStoragePluginRequest"
-           }
-           ,        "UpdateStorageRequest": {
-         "properties" : {"storage_id" : {"type": "string","title": "STORAGE_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["storage_id","domain_id"],
-                "title": "UpdateStorageRequest"
+         "required": ["schedule_id","storage_id","domain_id"],
+                "title": "UpdateScheduleRequest"
            }
            ,        "VersionInfo": {
          "properties" : {"version" : {"type": "string","title": "VERSION"}},
@@ -914,70 +632,6 @@
          "type": "object",
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
-           }
-           ,        "AddScheduleRequest": {
-         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["topic","options","schedule","user_id","domain_id"],
-                "title": "AddScheduleRequest"
-           }
-           ,        "GetScheduleRequest": {
-         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
-         "type": "object",
-         "required": ["schedule_id","domain_id"],
-                "title": "GetScheduleRequest"
-           }
-           ,        "QueryOption": {
-         "properties" : {"aggregate" : {"$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"}},
-         "type": "object",
-         "required": ["aggregate"],
-                "title": "QueryOption"
-           }
-           ,        "ScheduleInfo": {
-         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"topic" : {"type": "string","title": "TOPIC"},"state" : {"type": "string","title": "STATE"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_scheduled_at" : {"type": "string","title": "LAST_SCHEDULED_AT"}},
-         "type": "object",
-         "required": ["schedule_id","topic","state","options","schedule","tags","domain_id","created_at","last_scheduled_at"],
-                "title": "ScheduleInfo"
-           }
-           ,        "ScheduleQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"topic" : {"type": "string","title": "TOPIC"},"state" : {"type": "string","title": "STATE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "ScheduleQuery"
-           }
-           ,        "ScheduleRequest": {
-         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["schedule_id","domain_id"],
-                "title": "ScheduleRequest"
-           }
-           ,        "ScheduleStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["query","domain_id"],
-                "title": "ScheduleStatQuery"
-           }
-           ,        "Scheduled": {
-         "properties" : {"cron" : {"type": "string","title": "CRON"},"interval" : {"type": "integer","title": "INTERVAL"},"minutes" : {"items": {"type": "integer"},
-               "type": "array","title": "MINUTES"},"hours" : {"items": {"type": "integer"},
-               "type": "array","title": "HOURS"}},
-         "type": "object",
-         "required": ["cron","interval","minutes","hours"],
-                "title": "Scheduled"
-           }
-           ,        "SchedulesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ScheduleInfo"},
-               "type": "array","$ref": "#/components/schemas/ScheduleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "SchedulesInfo"
-           }
-           ,        "UpdateScheduleRequest": {
-         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"storage_id" : {"type": "string","title": "STORAGE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["schedule_id","storage_id","domain_id"],
-                "title": "UpdateScheduleRequest"
            }
            ,        "ResourceStatRequest": {
          "properties" : {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"},
