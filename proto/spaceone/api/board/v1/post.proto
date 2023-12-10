@@ -53,7 +53,7 @@ service Post {
     }
 
     // Gets a list of all Posts. You can use a query to get a filtered list of Posts.
-    rpc list (PostQuery) returns (PostsInfo) {
+    rpc list (PostSearchQuery) returns (PostsInfo) {
         option (google.api.http) = {
             post: "/board/v1/post/list"
             body: "*"
@@ -78,19 +78,26 @@ service Post {
 //    "domain_id": "domain-123456789012"
 //}
 message CreatePostRequest {
-    string board_id = 1;
+    enum PermissionGroup {
+        PERMISSION_GROUP_NONE = 0;
+        GLOBAL = 1;
+        DOMAIN = 2;
+    }
+
     // +optional
-    string category = 2;
-    string title = 3;
-    string contents = 4;
+    string category = 1;
+    string title = 2;
+    string contents = 3;
+    // +optional
+    repeated string files = 4;
     // +optional
     google.protobuf.Struct options = 5;
     // +optional
     string writer = 6;
+    PermissionGroup permission_group = 7;
     // +optional
-    repeated string files = 7;
-    // +optional
-    string domain_id = 10;
+    string domain_id = 21;
+    string board_id = 22;
 }
 
 //{
@@ -107,29 +114,29 @@ message CreatePostRequest {
 //      "domain_id": "domain-123456789012"
 //}
 message UpdatePostRequest {
-    string board_id = 1;
-    string post_id = 2;
+    string post_id = 1;
     // +optional
-    string category = 3;
+    string category = 2;
     // +optional
-    string title = 4;
+    string title = 3;
     // +optional
-    string contents = 5;
+    string contents = 4;
+    // +optional
+    repeated string files = 5;
     // +optional
     google.protobuf.Struct options = 6;
     // +optional
     string writer = 7;
     // +optional
-    repeated string files = 8;
-    // +optional
-    string domain_id = 10;
+    string domain_id = 21;
+    string board_id = 22;
 }
 
 message SendNotificationRequest {
     string board_id = 1;
     string post_id = 2;
     // +optional
-    string domain_id = 3;
+    string domain_id = 21;
 }
 
 //{
@@ -141,7 +148,7 @@ message PostRequest {
     string board_id = 1;
     string post_id = 2;
     // +optional
-    string domain_id = 3;
+    string domain_id = 21;
 }
 
 //{
@@ -153,48 +160,40 @@ message GetPostRequest {
     string board_id = 1;
     string post_id = 2;
     // +optional
-    repeated string only = 3;
-    // +optional
-    string domain_id = 7;
+    string domain_id = 21;
 }
 
 //{
 //    "board_id": "board-b9aa34e65c60",
 //    "query": {}
 //}
-message PostQuery {
-    enum Scope {
-        SCOPE_NONE = 0;
-        PUBLIC = 1;
+message PostSearchQuery {
+    enum PermissionGroup {
+        PERMISSION_GROUP_NONE = 0;
+        GLOBAL = 1;
         DOMAIN = 2;
     }
 
-    enum PostType {
-        POST_TYPE_NONE = 0;
-        SYSTEM = 1;
-        INTERNAL = 2;
-    }
-
-
-    string board_id = 1;
+    // +optional
+    spaceone.api.core.v1.Query query = 1;
     // +optional
     string post_id = 2;
     // +optional
-    PostType post_type = 3;
+    string category = 3;
     // +optional
-    string category = 4;
+    string writer = 4;
     // +optional
-    string writer = 5;
+    bool is_pinned = 5;
     // +optional
-    Scope scope = 6;
+    bool is_popup = 6;
     // +optional
-    string user_id = 7;
+    string user_domain_id = 7;
+    PermissionGroup permission_group = 8;
     // +optional
-    string user_domain_id = 8;
+    string domain_id = 21;
+    string board_id = 22;
     // +optional
-    string domain_id = 9;
-    // +optional
-    spaceone.api.core.v1.Query query = 10;
+    string user_id = 23;
 }
 
 message PostStatQuery {
@@ -222,32 +221,25 @@ message PostStatQuery {
 //          "updated_at": "2022-01-01T01:06:23.732Z"
 //}
 message PostInfo {
-    enum Scope {
-        SCOPE_NONE = 0;
-        PUBLIC = 1;
+    enum PermissionGroup {
+        PERMISSION_GROUP_NONE = 0;
+        GLOBAL = 1;
         DOMAIN = 2;
     }
 
-    enum PostType {
-        POST_TYPE_NONE = 0;
-        SYSTEM = 1;
-        INTERNAL = 2;
-    }
-
-    string board_id = 1;
     string post_id = 2;
-    PostType post_type = 3;
     string category = 4;
     string title = 5;
     string contents = 6;
     google.protobuf.Struct options = 7;
     int32 view_count = 8;
     string writer = 9;
-    Scope scope = 10;
     google.protobuf.ListValue files = 11;
+    PermissionGroup permission_group = 12;
     string domain_id = 21;
-    string user_id = 22;
-    string user_domain_id = 23;
+    string board_id = 22;
+    string user_id = 23;
+    string user_domain_id = 24;
     string created_at = 31;
     string updated_at = 32;
 }
