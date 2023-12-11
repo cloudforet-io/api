@@ -67,11 +67,19 @@ message FileReference {
 }
 
 message CreateFileRequest {
+
+    enum PermissionGroup {
+        PERMISSION_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string name = 1;
     // +optional
     google.protobuf.Struct tags = 2;
     // +optional
     FileReference reference = 3;
+    PermissionGroup permission_group = 4;
     // +optional
     string workspace_id = 5;
     string domain_id = 21;

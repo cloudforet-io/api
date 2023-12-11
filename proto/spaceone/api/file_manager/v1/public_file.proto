@@ -55,12 +55,6 @@ service PublicFile {
   }
 }
 
-enum PublicFileState {
-  STATE_NONE = 0;
-  PENDING = 1;
-  DONE = 2;
-}
-
 message PublicFileReference {
   string resource_type = 1;
   string resource_id = 2;
@@ -87,6 +81,13 @@ message PublicFileRequest {
 }
 
 message PublicFileSearchQuery {
+
+  enum PublicFileState {
+    PUBLIC_STATE_NONE = 0;
+    PENDING = 1;
+    DONE = 2;
+  }
+
   // +optional
   spaceone.api.core.v1.Query query = 1;
   // +optional
@@ -104,6 +105,13 @@ message PublicFileSearchQuery {
 }
 
 message PublicFileInfo {
+
+  enum PublicFileState {
+    PUBLIC_STATE_NONE = 0;
+    PENDING = 1;
+    DONE = 2;
+  }
+
   string public_file_id = 1;
   string name = 2;
   PublicFileState state = 3;
