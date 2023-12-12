@@ -13,43 +13,43 @@ import "spaceone/api/core/v1/query.proto";
 service PublicFile {
   rpc add (CreatePublicFileRequest) returns (PublicFileInfo) {
     option (google.api.http) = {
-      post: "/file-manager/v1/file/add"
+      post: "/file-manager/v1/public-file/add"
       body: "*"
     };
   }
   rpc update (UpdatePublicFileRequest) returns (PublicFileInfo) {
     option (google.api.http) = {
-      post: "/file-manager/v1/file/update"
+      post: "/file-manager/v1/public-file/update"
       body: "*"
     };
   }
   rpc delete (PublicFileRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/file-manager/v1/file/delete"
+      post: "/file-manager/v1/public-file/delete"
       body: "*"
     };
   }
   rpc get_download_url (PublicFileRequest) returns (PublicFileInfo) {
     option (google.api.http) = {
-      post: "/file-manager/v1/file/get-download-url"
+      post: "/file-manager/v1/public-file/get-download-url"
       body: "*"
     };
   }
   rpc get (PublicFileRequest) returns (PublicFileInfo) {
     option (google.api.http) = {
-      post: "/file-manager/v1/file/get"
+      post: "/file-manager/v1/public-file/get"
       body: "*"
     };
   }
   rpc list (PublicFileSearchQuery) returns (PublicFilesInfo) {
     option (google.api.http) = {
-      post: "/file-manager/v1/file/list"
+      post: "/file-manager/v1/public-file/list"
       body: "*"
     };
   }
   rpc stat (PublicFileStatQuery) returns (google.protobuf.Struct) {
     option (google.api.http) = {
-      post: "/file-manager/v1/file/stat"
+      post: "/file-manager/v1/public-file/stat"
       body: "*"
     };
   }
