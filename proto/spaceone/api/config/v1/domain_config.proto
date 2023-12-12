@@ -18,7 +18,7 @@ service DomainConfig {
             body: "*"
         };
     }
-    rpc update (SetDomainConfigRequest) returns (DomainConfigInfo) {
+    rpc update (UpdateDomainConfigRequest) returns (DomainConfigInfo) {
         option (google.api.http) = {
             post: "/config/v1/domain-config/update"
             body: "*"
@@ -36,13 +36,13 @@ service DomainConfig {
             body: "*"
         };
     }
-    rpc get (GetDomainConfigRequest) returns (DomainConfigInfo) {
+    rpc get (DomainConfigRequest) returns (DomainConfigInfo) {
         option (google.api.http) = {
             post: "/config/v1/domain-config/get"
             body: "*"
         };
     }
-    rpc list (DomainConfigQuery) returns (DomainConfigsInfo) {
+    rpc list (DomainConfigSearchQuery) returns (DomainConfigsInfo) {
         option (google.api.http) = {
             post: "/config/v1/domain-config/list"
             body: "*"
@@ -61,36 +61,38 @@ message SetDomainConfigRequest {
     google.protobuf.Struct data = 2;
     // +optional
     google.protobuf.Struct tags = 3;
-    string domain_id = 4;
+    string domain_id = 21;
+}
+
+message UpdateDomainConfigRequest {
+    string name = 1;
+    // +optional
+    google.protobuf.Struct data = 2;
+    // +optional
+    google.protobuf.Struct tags = 3;
+    string domain_id = 21;
 }
 
 message DomainConfigRequest {
     string name = 1;
-    string domain_id = 2;
+    string domain_id = 21;
 }
 
-message GetDomainConfigRequest {
-    string name = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
-}
-
-message DomainConfigQuery {
+message DomainConfigSearchQuery {
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
     string name = 2;
-    string domain_id = 3;
+    string domain_id = 21;
 }
 
 message DomainConfigInfo {
     string name = 1;
     google.protobuf.Struct data = 2;
     google.protobuf.Struct tags = 3;
-    string domain_id = 4;
-    string created_at = 5;
-    string updated_at = 6;
+    string domain_id = 21;
+    string created_at = 31;
+    string updated_at = 32;
 }
 
 message DomainConfigsInfo {

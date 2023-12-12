@@ -18,7 +18,7 @@ service UserConfig {
             body: "*"
         };
     }
-    rpc update (SetUserConfigRequest) returns (UserConfigInfo) {
+    rpc update (UpdateUserConfigRequest) returns (UserConfigInfo) {
         option (google.api.http) = {
             post: "/config/v1/user-config/update"
             body: "*"
@@ -36,7 +36,7 @@ service UserConfig {
             body: "*"
         };
     }
-    rpc get (GetUserConfigRequest) returns (UserConfigInfo) {
+    rpc get (UserConfigRequest) returns (UserConfigInfo) {
         option (google.api.http) = {
             post: "/config/v1/user-config/get"
             body: "*"
@@ -61,19 +61,21 @@ message SetUserConfigRequest {
     google.protobuf.Struct data = 2;
     // +optional
     google.protobuf.Struct tags = 3;
-    string domain_id = 4;
+    string domain_id = 21;
+}
+
+message UpdateUserConfigRequest {
+    string name = 1;
+    // +optional
+    google.protobuf.Struct data = 2;
+    // +optional
+    google.protobuf.Struct tags = 3;
+    string domain_id = 21;
 }
 
 message UserConfigRequest {
     string name = 1;
-    string domain_id = 2;
-}
-
-message GetUserConfigRequest {
-    string name = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
+    string domain_id = 21;
 }
 
 message UserConfigQuery {
@@ -91,9 +93,9 @@ message UserConfigInfo {
     google.protobuf.Struct data = 2;
     google.protobuf.Struct tags = 3;
     string user_id = 4;
-    string domain_id = 5;
-    string created_at = 6;
-    string updated_at = 7;
+    string domain_id = 21;
+    string created_at = 31;
+    string updated_at = 32;
 }
 
 message UserConfigsInfo {

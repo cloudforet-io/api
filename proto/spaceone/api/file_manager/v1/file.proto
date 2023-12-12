@@ -41,7 +41,7 @@ service File {
             body: "*"
         };
     }
-    rpc list (FileQuery) returns (FilesInfo) {
+    rpc list (FileSearchQuery) returns (FilesInfo) {
         option (google.api.http) = {
             post: "/file-manager/v1/file/list"
             body: "*"
@@ -61,25 +61,28 @@ enum FileState {
     DONE = 2;
 }
 
-enum FileScope {
-    SCOPE_NONE = 0;
-    PUBLIC = 1;
-    DOMAIN = 2;
-}
-
 message FileReference {
     string resource_type = 1;
     string resource_id = 2;
 }
 
 message CreateFileRequest {
+
+    enum PermissionGroup {
+        PERMISSION_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string name = 1;
     // +optional
     google.protobuf.Struct tags = 2;
     // +optional
     FileReference reference = 3;
+    PermissionGroup permission_group = 4;
     // +optional
-    string domain_id = 11;
+    string workspace_id = 5;
+    string domain_id = 21;
 }
 
 message UpdateFileRequest {
@@ -89,24 +92,32 @@ message UpdateFileRequest {
     // +optional
     FileReference reference = 3;
     // +optional
-    string domain_id = 11;
+    string workspace_id = 4;
+    string domain_id = 21;
 }
 
 message FileRequest {
     string file_id = 1;
     // +optional
-    string domain_id = 2;
+    string workspace_id = 2;
+    string domain_id = 21;
 }
 
 message GetFileRequest {
     string file_id = 1;
     // +optional
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
+    string workspace_id = 2;
+    string domain_id = 21;
 }
 
-message FileQuery {
+message FileSearchQuery {
+
+    enum PermissionGroup {
+        PERMISSION_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -116,34 +127,40 @@ message FileQuery {
     // +optional
     FileState state = 4;
     // +optional
-    FileScope scope = 5;
-    // +optional
     string file_type = 6;
     // +optional
     string resource_type = 7;
     // +optional
     string resource_id = 8;
     // +optional
-    string user_domain_id = 11;
+    string permission_group = 9;
     // +optional
-    string domain_id = 12;
+    string workspace_id = 10;
+    // +optional
+    string domain_id = 21;
 }
 
 message FileInfo {
+
+    enum PermissionGroup {
+        PERMISSION_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string file_id = 1;
     string name = 2;
     FileState state = 3;
-    FileScope scope = 4;
     string file_type = 5;
     string upload_url = 6;
     google.protobuf.Struct upload_options = 7;
     string download_url = 8;
     google.protobuf.Struct tags = 9;
     FileReference reference = 10;
-    string user_id = 11;
-    string user_domain_id = 12;
-    string domain_id = 13;
-    string created_at = 21;
+    PermissionGroup permission_group = 11;
+    string workspace_id = 12;
+    string domain_id = 21;
+    string created_at = 31;
 }
 
 message FilesInfo {
