@@ -5,7 +5,6 @@ import grpc
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.identity.v2 import user_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2
-from spaceone.api.identity.v2 import workspace_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2
 
 
 class UserStub(object):
@@ -29,37 +28,17 @@ class UserStub(object):
                 )
         self.verify_email = channel.unary_unary(
                 '/spaceone.api.identity.v2.User/verify_email',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.VerifyEmailRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.VerifyUserEmailRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
-        self.confirm_email = channel.unary_unary(
-                '/spaceone.api.identity.v2.User/confirm_email',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.ConfirmEmailRequest.SerializeToString,
+        self.disable_mfa = channel.unary_unary(
+                '/spaceone.api.identity.v2.User/disable_mfa',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.DisableUserMFARequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
-                )
-        self.reset_password = channel.unary_unary(
-                '/spaceone.api.identity.v2.User/reset_password',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.set_required_actions = channel.unary_unary(
                 '/spaceone.api.identity.v2.User/set_required_actions',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.SetRequiredActionsRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
-                )
-        self.enable_mfa = channel.unary_unary(
-                '/spaceone.api.identity.v2.User/enable_mfa',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.EnableMFARequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
-                )
-        self.disable_mfa = channel.unary_unary(
-                '/spaceone.api.identity.v2.User/disable_mfa',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.DisableMFARequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
-                )
-        self.confirm_mfa = channel.unary_unary(
-                '/spaceone.api.identity.v2.User/confirm_mfa',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.ConfirmMFARequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
                 )
         self.enable = channel.unary_unary(
@@ -81,16 +60,6 @@ class UserStub(object):
                 '/spaceone.api.identity.v2.User/get',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
-                )
-        self.get_workspaces = channel.unary_unary(
-                '/spaceone.api.identity.v2.User/get_workspaces',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacesInfo.FromString,
-                )
-        self.find = channel.unary_unary(
-                '/spaceone.api.identity.v2.User/find',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserFindRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UsersSummaryInfo.FromString,
                 )
         self.list = channel.unary_unary(
                 '/spaceone.api.identity.v2.User/list',
@@ -129,32 +98,6 @@ class UserServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def confirm_email(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def reset_password(self, request, context):
-        """+noauth
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def set_required_actions(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def enable_mfa(self, request, context):
-        """Enable MFA for user. If this api is called, send email to user.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def disable_mfa(self, request, context):
         """Disable MFA for user. If this api is called, send email to user.
         """
@@ -162,9 +105,8 @@ class UserServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def confirm_mfa(self, request, context):
-        """Confirm MFA for user by given verify_code which is sent by your authentication method.
-        """
+    def set_required_actions(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -188,18 +130,6 @@ class UserServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def get_workspaces(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def find(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -232,37 +162,17 @@ def add_UserServicer_to_server(servicer, server):
             ),
             'verify_email': grpc.unary_unary_rpc_method_handler(
                     servicer.verify_email,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.VerifyEmailRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.VerifyUserEmailRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
-            'confirm_email': grpc.unary_unary_rpc_method_handler(
-                    servicer.confirm_email,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.ConfirmEmailRequest.FromString,
+            'disable_mfa': grpc.unary_unary_rpc_method_handler(
+                    servicer.disable_mfa,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.DisableUserMFARequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.SerializeToString,
-            ),
-            'reset_password': grpc.unary_unary_rpc_method_handler(
-                    servicer.reset_password,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'set_required_actions': grpc.unary_unary_rpc_method_handler(
                     servicer.set_required_actions,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.SetRequiredActionsRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.SerializeToString,
-            ),
-            'enable_mfa': grpc.unary_unary_rpc_method_handler(
-                    servicer.enable_mfa,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.EnableMFARequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.SerializeToString,
-            ),
-            'disable_mfa': grpc.unary_unary_rpc_method_handler(
-                    servicer.disable_mfa,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.DisableMFARequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.SerializeToString,
-            ),
-            'confirm_mfa': grpc.unary_unary_rpc_method_handler(
-                    servicer.confirm_mfa,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.ConfirmMFARequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.SerializeToString,
             ),
             'enable': grpc.unary_unary_rpc_method_handler(
@@ -284,16 +194,6 @@ def add_UserServicer_to_server(servicer, server):
                     servicer.get,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.SerializeToString,
-            ),
-            'get_workspaces': grpc.unary_unary_rpc_method_handler(
-                    servicer.get_workspaces,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacesInfo.SerializeToString,
-            ),
-            'find': grpc.unary_unary_rpc_method_handler(
-                    servicer.find,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserFindRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UsersSummaryInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
@@ -361,13 +261,13 @@ class User(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/verify_email',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.VerifyEmailRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.VerifyUserEmailRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def confirm_email(request,
+    def disable_mfa(request,
             target,
             options=(),
             channel_credentials=None,
@@ -377,26 +277,9 @@ class User(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/confirm_email',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.ConfirmEmailRequest.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/disable_mfa',
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.DisableUserMFARequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def reset_password(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/reset_password',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -413,57 +296,6 @@ class User(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/set_required_actions',
             spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.SetRequiredActionsRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def enable_mfa(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/enable_mfa',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.EnableMFARequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def disable_mfa(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/disable_mfa',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.DisableMFARequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def confirm_mfa(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/confirm_mfa',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.ConfirmMFARequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -533,40 +365,6 @@ class User(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/get',
             spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def get_workspaces(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/get_workspaces',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacesInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def find(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.User/find',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserFindRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UsersSummaryInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

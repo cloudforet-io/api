@@ -21,13 +21,14 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ServiceAccount_Create_FullMethodName               = "/spaceone.api.identity.v2.ServiceAccount/create"
-	ServiceAccount_Update_FullMethodName               = "/spaceone.api.identity.v2.ServiceAccount/update"
-	ServiceAccount_ChangeTrustedAccount_FullMethodName = "/spaceone.api.identity.v2.ServiceAccount/change_trusted_account"
-	ServiceAccount_Delete_FullMethodName               = "/spaceone.api.identity.v2.ServiceAccount/delete"
-	ServiceAccount_Get_FullMethodName                  = "/spaceone.api.identity.v2.ServiceAccount/get"
-	ServiceAccount_List_FullMethodName                 = "/spaceone.api.identity.v2.ServiceAccount/list"
-	ServiceAccount_Stat_FullMethodName                 = "/spaceone.api.identity.v2.ServiceAccount/stat"
+	ServiceAccount_Create_FullMethodName           = "/spaceone.api.identity.v2.ServiceAccount/create"
+	ServiceAccount_Update_FullMethodName           = "/spaceone.api.identity.v2.ServiceAccount/update"
+	ServiceAccount_UpdateSecretData_FullMethodName = "/spaceone.api.identity.v2.ServiceAccount/update_secret_data"
+	ServiceAccount_DeleteSecretData_FullMethodName = "/spaceone.api.identity.v2.ServiceAccount/delete_secret_data"
+	ServiceAccount_Delete_FullMethodName           = "/spaceone.api.identity.v2.ServiceAccount/delete"
+	ServiceAccount_Get_FullMethodName              = "/spaceone.api.identity.v2.ServiceAccount/get"
+	ServiceAccount_List_FullMethodName             = "/spaceone.api.identity.v2.ServiceAccount/list"
+	ServiceAccount_Stat_FullMethodName             = "/spaceone.api.identity.v2.ServiceAccount/stat"
 )
 
 // ServiceAccountClient is the client API for ServiceAccount service.
@@ -36,7 +37,8 @@ const (
 type ServiceAccountClient interface {
 	Create(ctx context.Context, in *CreateServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
 	Update(ctx context.Context, in *UpdateServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
-	ChangeTrustedAccount(ctx context.Context, in *ChangeTrustedAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
+	UpdateSecretData(ctx context.Context, in *UpdateServiceAccountSecretRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
+	DeleteSecretData(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
 	Delete(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
 	List(ctx context.Context, in *ServiceAccountSearchQuery, opts ...grpc.CallOption) (*ServiceAccountsInfo, error)
@@ -69,9 +71,18 @@ func (c *serviceAccountClient) Update(ctx context.Context, in *UpdateServiceAcco
 	return out, nil
 }
 
-func (c *serviceAccountClient) ChangeTrustedAccount(ctx context.Context, in *ChangeTrustedAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error) {
+func (c *serviceAccountClient) UpdateSecretData(ctx context.Context, in *UpdateServiceAccountSecretRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error) {
 	out := new(ServiceAccountInfo)
-	err := c.cc.Invoke(ctx, ServiceAccount_ChangeTrustedAccount_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, ServiceAccount_UpdateSecretData_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceAccountClient) DeleteSecretData(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error) {
+	out := new(ServiceAccountInfo)
+	err := c.cc.Invoke(ctx, ServiceAccount_DeleteSecretData_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -120,7 +131,8 @@ func (c *serviceAccountClient) Stat(ctx context.Context, in *ServiceAccountStatQ
 type ServiceAccountServer interface {
 	Create(context.Context, *CreateServiceAccountRequest) (*ServiceAccountInfo, error)
 	Update(context.Context, *UpdateServiceAccountRequest) (*ServiceAccountInfo, error)
-	ChangeTrustedAccount(context.Context, *ChangeTrustedAccountRequest) (*ServiceAccountInfo, error)
+	UpdateSecretData(context.Context, *UpdateServiceAccountSecretRequest) (*ServiceAccountInfo, error)
+	DeleteSecretData(context.Context, *ServiceAccountRequest) (*ServiceAccountInfo, error)
 	Delete(context.Context, *ServiceAccountRequest) (*empty.Empty, error)
 	Get(context.Context, *ServiceAccountRequest) (*ServiceAccountInfo, error)
 	List(context.Context, *ServiceAccountSearchQuery) (*ServiceAccountsInfo, error)
@@ -138,8 +150,11 @@ func (UnimplementedServiceAccountServer) Create(context.Context, *CreateServiceA
 func (UnimplementedServiceAccountServer) Update(context.Context, *UpdateServiceAccountRequest) (*ServiceAccountInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedServiceAccountServer) ChangeTrustedAccount(context.Context, *ChangeTrustedAccountRequest) (*ServiceAccountInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ChangeTrustedAccount not implemented")
+func (UnimplementedServiceAccountServer) UpdateSecretData(context.Context, *UpdateServiceAccountSecretRequest) (*ServiceAccountInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSecretData not implemented")
+}
+func (UnimplementedServiceAccountServer) DeleteSecretData(context.Context, *ServiceAccountRequest) (*ServiceAccountInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSecretData not implemented")
 }
 func (UnimplementedServiceAccountServer) Delete(context.Context, *ServiceAccountRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -202,20 +217,38 @@ func _ServiceAccount_Update_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServiceAccount_ChangeTrustedAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ChangeTrustedAccountRequest)
+func _ServiceAccount_UpdateSecretData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServiceAccountSecretRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceAccountServer).ChangeTrustedAccount(ctx, in)
+		return srv.(ServiceAccountServer).UpdateSecretData(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ServiceAccount_ChangeTrustedAccount_FullMethodName,
+		FullMethod: ServiceAccount_UpdateSecretData_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAccountServer).ChangeTrustedAccount(ctx, req.(*ChangeTrustedAccountRequest))
+		return srv.(ServiceAccountServer).UpdateSecretData(ctx, req.(*UpdateServiceAccountSecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServiceAccount_DeleteSecretData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ServiceAccountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceAccountServer).DeleteSecretData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ServiceAccount_DeleteSecretData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceAccountServer).DeleteSecretData(ctx, req.(*ServiceAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -308,8 +341,12 @@ var ServiceAccount_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ServiceAccount_Update_Handler,
 		},
 		{
-			MethodName: "change_trusted_account",
-			Handler:    _ServiceAccount_ChangeTrustedAccount_Handler,
+			MethodName: "update_secret_data",
+			Handler:    _ServiceAccount_UpdateSecretData_Handler,
+		},
+		{
+			MethodName: "delete_secret_data",
+			Handler:    _ServiceAccount_DeleteSecretData_Handler,
 		},
 		{
 			MethodName: "delete",

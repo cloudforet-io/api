@@ -22,6 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	WorkspaceUser_Create_FullMethodName = "/spaceone.api.identity.v2.WorkspaceUser/create"
 	WorkspaceUser_Get_FullMethodName    = "/spaceone.api.identity.v2.WorkspaceUser/get"
+	WorkspaceUser_Find_FullMethodName   = "/spaceone.api.identity.v2.WorkspaceUser/find"
 	WorkspaceUser_List_FullMethodName   = "/spaceone.api.identity.v2.WorkspaceUser/list"
 	WorkspaceUser_Stat_FullMethodName   = "/spaceone.api.identity.v2.WorkspaceUser/stat"
 )
@@ -32,6 +33,7 @@ const (
 type WorkspaceUserClient interface {
 	Create(ctx context.Context, in *CreateWorkspaceUserRequest, opts ...grpc.CallOption) (*WorkspaceUserInfo, error)
 	Get(ctx context.Context, in *WorkspaceUserRequest, opts ...grpc.CallOption) (*WorkspaceUserInfo, error)
+	Find(ctx context.Context, in *WorkspaceUserFindRequest, opts ...grpc.CallOption) (*UsersSummaryInfo, error)
 	List(ctx context.Context, in *WorkspaceUserSearchQuery, opts ...grpc.CallOption) (*WorkspaceUsersInfo, error)
 	Stat(ctx context.Context, in *WorkspaceUserStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -62,6 +64,15 @@ func (c *workspaceUserClient) Get(ctx context.Context, in *WorkspaceUserRequest,
 	return out, nil
 }
 
+func (c *workspaceUserClient) Find(ctx context.Context, in *WorkspaceUserFindRequest, opts ...grpc.CallOption) (*UsersSummaryInfo, error) {
+	out := new(UsersSummaryInfo)
+	err := c.cc.Invoke(ctx, WorkspaceUser_Find_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *workspaceUserClient) List(ctx context.Context, in *WorkspaceUserSearchQuery, opts ...grpc.CallOption) (*WorkspaceUsersInfo, error) {
 	out := new(WorkspaceUsersInfo)
 	err := c.cc.Invoke(ctx, WorkspaceUser_List_FullMethodName, in, out, opts...)
@@ -86,6 +97,7 @@ func (c *workspaceUserClient) Stat(ctx context.Context, in *WorkspaceUserStatQue
 type WorkspaceUserServer interface {
 	Create(context.Context, *CreateWorkspaceUserRequest) (*WorkspaceUserInfo, error)
 	Get(context.Context, *WorkspaceUserRequest) (*WorkspaceUserInfo, error)
+	Find(context.Context, *WorkspaceUserFindRequest) (*UsersSummaryInfo, error)
 	List(context.Context, *WorkspaceUserSearchQuery) (*WorkspaceUsersInfo, error)
 	Stat(context.Context, *WorkspaceUserStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedWorkspaceUserServer()
@@ -100,6 +112,9 @@ func (UnimplementedWorkspaceUserServer) Create(context.Context, *CreateWorkspace
 }
 func (UnimplementedWorkspaceUserServer) Get(context.Context, *WorkspaceUserRequest) (*WorkspaceUserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedWorkspaceUserServer) Find(context.Context, *WorkspaceUserFindRequest) (*UsersSummaryInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Find not implemented")
 }
 func (UnimplementedWorkspaceUserServer) List(context.Context, *WorkspaceUserSearchQuery) (*WorkspaceUsersInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
@@ -156,6 +171,24 @@ func _WorkspaceUser_Get_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WorkspaceUser_Find_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkspaceUserFindRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkspaceUserServer).Find(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WorkspaceUser_Find_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkspaceUserServer).Find(ctx, req.(*WorkspaceUserFindRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _WorkspaceUser_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WorkspaceUserSearchQuery)
 	if err := dec(in); err != nil {
@@ -206,6 +239,10 @@ var WorkspaceUser_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "get",
 			Handler:    _WorkspaceUser_Get_Handler,
+		},
+		{
+			MethodName: "find",
+			Handler:    _WorkspaceUser_Find_Handler,
 		},
 		{
 			MethodName: "list",

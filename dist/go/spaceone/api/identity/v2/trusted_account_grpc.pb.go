@@ -21,12 +21,13 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	TrustedAccount_Create_FullMethodName = "/spaceone.api.identity.v2.TrustedAccount/create"
-	TrustedAccount_Update_FullMethodName = "/spaceone.api.identity.v2.TrustedAccount/update"
-	TrustedAccount_Delete_FullMethodName = "/spaceone.api.identity.v2.TrustedAccount/delete"
-	TrustedAccount_Get_FullMethodName    = "/spaceone.api.identity.v2.TrustedAccount/get"
-	TrustedAccount_List_FullMethodName   = "/spaceone.api.identity.v2.TrustedAccount/list"
-	TrustedAccount_Stat_FullMethodName   = "/spaceone.api.identity.v2.TrustedAccount/stat"
+	TrustedAccount_Create_FullMethodName       = "/spaceone.api.identity.v2.TrustedAccount/create"
+	TrustedAccount_Update_FullMethodName       = "/spaceone.api.identity.v2.TrustedAccount/update"
+	TrustedAccount_UpdateSecret_FullMethodName = "/spaceone.api.identity.v2.TrustedAccount/update_secret"
+	TrustedAccount_Delete_FullMethodName       = "/spaceone.api.identity.v2.TrustedAccount/delete"
+	TrustedAccount_Get_FullMethodName          = "/spaceone.api.identity.v2.TrustedAccount/get"
+	TrustedAccount_List_FullMethodName         = "/spaceone.api.identity.v2.TrustedAccount/list"
+	TrustedAccount_Stat_FullMethodName         = "/spaceone.api.identity.v2.TrustedAccount/stat"
 )
 
 // TrustedAccountClient is the client API for TrustedAccount service.
@@ -35,6 +36,7 @@ const (
 type TrustedAccountClient interface {
 	Create(ctx context.Context, in *CreateTrustedAccountRequest, opts ...grpc.CallOption) (*TrustedAccountInfo, error)
 	Update(ctx context.Context, in *UpdateTrustedAccountRequest, opts ...grpc.CallOption) (*TrustedAccountInfo, error)
+	UpdateSecret(ctx context.Context, in *UpdateTrustedAccountSecretRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Delete(ctx context.Context, in *TrustedAccountRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *TrustedAccountRequest, opts ...grpc.CallOption) (*TrustedAccountInfo, error)
 	List(ctx context.Context, in *TrustedAccountSearchQuery, opts ...grpc.CallOption) (*TrustedAccountsInfo, error)
@@ -61,6 +63,15 @@ func (c *trustedAccountClient) Create(ctx context.Context, in *CreateTrustedAcco
 func (c *trustedAccountClient) Update(ctx context.Context, in *UpdateTrustedAccountRequest, opts ...grpc.CallOption) (*TrustedAccountInfo, error) {
 	out := new(TrustedAccountInfo)
 	err := c.cc.Invoke(ctx, TrustedAccount_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trustedAccountClient) UpdateSecret(ctx context.Context, in *UpdateTrustedAccountSecretRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, TrustedAccount_UpdateSecret_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -109,6 +120,7 @@ func (c *trustedAccountClient) Stat(ctx context.Context, in *TrustedAccountStatQ
 type TrustedAccountServer interface {
 	Create(context.Context, *CreateTrustedAccountRequest) (*TrustedAccountInfo, error)
 	Update(context.Context, *UpdateTrustedAccountRequest) (*TrustedAccountInfo, error)
+	UpdateSecret(context.Context, *UpdateTrustedAccountSecretRequest) (*empty.Empty, error)
 	Delete(context.Context, *TrustedAccountRequest) (*empty.Empty, error)
 	Get(context.Context, *TrustedAccountRequest) (*TrustedAccountInfo, error)
 	List(context.Context, *TrustedAccountSearchQuery) (*TrustedAccountsInfo, error)
@@ -125,6 +137,9 @@ func (UnimplementedTrustedAccountServer) Create(context.Context, *CreateTrustedA
 }
 func (UnimplementedTrustedAccountServer) Update(context.Context, *UpdateTrustedAccountRequest) (*TrustedAccountInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedTrustedAccountServer) UpdateSecret(context.Context, *UpdateTrustedAccountSecretRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSecret not implemented")
 }
 func (UnimplementedTrustedAccountServer) Delete(context.Context, *TrustedAccountRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -183,6 +198,24 @@ func _TrustedAccount_Update_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TrustedAccountServer).Update(ctx, req.(*UpdateTrustedAccountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrustedAccount_UpdateSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTrustedAccountSecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrustedAccountServer).UpdateSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrustedAccount_UpdateSecret_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrustedAccountServer).UpdateSecret(ctx, req.(*UpdateTrustedAccountSecretRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -273,6 +306,10 @@ var TrustedAccount_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _TrustedAccount_Update_Handler,
+		},
+		{
+			MethodName: "update_secret",
+			Handler:    _TrustedAccount_UpdateSecret_Handler,
 		},
 		{
 			MethodName: "delete",

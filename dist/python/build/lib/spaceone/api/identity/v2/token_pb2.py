@@ -17,7 +17,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$spaceone/api/identity/v2/token.proto\x12\x18spaceone.api.identity.v2\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\"\x89\x02\n\x11IssueTokenRequest\x12,\n\x0b\x63redentials\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\x12G\n\tauth_type\x18\x02 \x01(\x0e\x32\x34.spaceone.api.identity.v2.IssueTokenRequest.AuthType\x12\x0f\n\x07timeout\x18\x03 \x01(\x05\x12\x15\n\rrefresh_count\x18\x04 \x01(\x05\x12\x13\n\x0bverify_code\x18\x05 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"-\n\x08\x41uthType\x12\x08\n\x04NONE\x10\x00\x12\t\n\x05LOCAL\x10\x01\x12\x0c\n\x08\x45XTERNAL\x10\x02\"8\n\tTokenInfo\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x15\n\rrefresh_token\x18\x02 \x01(\t2\xf6\x01\n\x05Token\x12~\n\x05issue\x12+.spaceone.api.identity.v2.IssueTokenRequest\x1a#.spaceone.api.identity.v2.TokenInfo\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/identity/v2/token/issue:\x01*\x12m\n\x07refresh\x12\x16.google.protobuf.Empty\x1a#.spaceone.api.identity.v2.TokenInfo\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/identity/v2/token/refresh:\x01*B?Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$spaceone/api/identity/v2/token.proto\x12\x18spaceone.api.identity.v2\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xfa\x01\n\x11IssueTokenRequest\x12,\n\x0b\x63redentials\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Struct\x12G\n\tauth_type\x18\x02 \x01(\x0e\x32\x34.spaceone.api.identity.v2.IssueTokenRequest.AuthType\x12\x17\n\x0frefresh_timeout\x18\x03 \x01(\x05\x12\x13\n\x0bverify_code\x18\x04 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"-\n\x08\x41uthType\x12\x08\n\x04NONE\x10\x00\x12\t\n\x05LOCAL\x10\x01\x12\x0c\n\x08\x45XTERNAL\x10\x02\"8\n\tTokenInfo\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x15\n\rrefresh_token\x18\x02 \x01(\t\"\xd7\x02\n\x11GrantTokenRequest\x12I\n\ngrant_type\x18\x01 \x01(\x0e\x32\x35.spaceone.api.identity.v2.GrantTokenRequest.GrantType\x12\r\n\x05token\x18\x02 \x01(\t\x12@\n\x05scope\x18\x03 \x01(\x0e\x32\x31.spaceone.api.identity.v2.GrantTokenRequest.Scope\x12\x14\n\x0cworkspace_id\x18\x04 \x01(\t\"9\n\tGrantType\x12\x13\n\x0fGRANT_TYPE_NONE\x10\x00\x12\t\n\x05LOCAL\x10\x01\x12\x0c\n\x08\x45XTERNAL\x10\x02\"U\n\x05Scope\x12\x0e\n\nSCOPE_NONE\x10\x00\x12\n\n\x06SYSTEM\x10\x01\x12\n\n\x06\x44OMAIN\x10\x02\x12\r\n\tWORKSPACE\x10\x03\x12\x0b\n\x07PROJECT\x10\x04\x12\x08\n\x04USER\x10\x05\"\x9f\x02\n\x0eGrantTokenInfo\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x0f\n\x07role_id\x18\x02 \x01(\t\x12\x44\n\trole_type\x18\x03 \x01(\x0e\x32\x31.spaceone.api.identity.v2.GrantTokenInfo.RoleType\x12\x14\n\x0cworkspace_id\x18\x04 \x01(\t\x12\x11\n\tdomain_id\x18\x05 \x01(\t\"w\n\x08RoleType\x12\x12\n\x0eROLE_TYPE_NONE\x10\x00\x12\x10\n\x0cSYSTEM_ADMIN\x10\x01\x12\x10\n\x0c\x44OMAIN_ADMIN\x10\x02\x12\x13\n\x0fWORKSPACE_OWNER\x10\x03\x12\x14\n\x10WORKSPACE_MEMBER\x10\x04\x12\x08\n\x04USER\x10\x05\x32\x8d\x02\n\x05Token\x12~\n\x05issue\x12+.spaceone.api.identity.v2.IssueTokenRequest\x1a#.spaceone.api.identity.v2.TokenInfo\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/identity/v2/token/issue:\x01*\x12\x83\x01\n\x05grant\x12+.spaceone.api.identity.v2.GrantTokenRequest\x1a(.spaceone.api.identity.v2.GrantTokenInfo\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/identity/v2/token/grant:\x01*B?Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -27,14 +27,24 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['DESCRIPTOR']._serialized_options = b'Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2'
   _globals['_TOKEN'].methods_by_name['issue']._options = None
   _globals['_TOKEN'].methods_by_name['issue']._serialized_options = b'\202\323\344\223\002\035\"\030/identity/v2/token/issue:\001*'
-  _globals['_TOKEN'].methods_by_name['refresh']._options = None
-  _globals['_TOKEN'].methods_by_name['refresh']._serialized_options = b'\202\323\344\223\002\037\"\032/identity/v2/token/refresh:\001*'
+  _globals['_TOKEN'].methods_by_name['grant']._options = None
+  _globals['_TOKEN'].methods_by_name['grant']._serialized_options = b'\202\323\344\223\002\035\"\030/identity/v2/token/grant:\001*'
   _globals['_ISSUETOKENREQUEST']._serialized_start=156
-  _globals['_ISSUETOKENREQUEST']._serialized_end=421
-  _globals['_ISSUETOKENREQUEST_AUTHTYPE']._serialized_start=376
-  _globals['_ISSUETOKENREQUEST_AUTHTYPE']._serialized_end=421
-  _globals['_TOKENINFO']._serialized_start=423
-  _globals['_TOKENINFO']._serialized_end=479
-  _globals['_TOKEN']._serialized_start=482
-  _globals['_TOKEN']._serialized_end=728
+  _globals['_ISSUETOKENREQUEST']._serialized_end=406
+  _globals['_ISSUETOKENREQUEST_AUTHTYPE']._serialized_start=361
+  _globals['_ISSUETOKENREQUEST_AUTHTYPE']._serialized_end=406
+  _globals['_TOKENINFO']._serialized_start=408
+  _globals['_TOKENINFO']._serialized_end=464
+  _globals['_GRANTTOKENREQUEST']._serialized_start=467
+  _globals['_GRANTTOKENREQUEST']._serialized_end=810
+  _globals['_GRANTTOKENREQUEST_GRANTTYPE']._serialized_start=666
+  _globals['_GRANTTOKENREQUEST_GRANTTYPE']._serialized_end=723
+  _globals['_GRANTTOKENREQUEST_SCOPE']._serialized_start=725
+  _globals['_GRANTTOKENREQUEST_SCOPE']._serialized_end=810
+  _globals['_GRANTTOKENINFO']._serialized_start=813
+  _globals['_GRANTTOKENINFO']._serialized_end=1100
+  _globals['_GRANTTOKENINFO_ROLETYPE']._serialized_start=981
+  _globals['_GRANTTOKENINFO_ROLETYPE']._serialized_end=1100
+  _globals['_TOKEN']._serialized_start=1103
+  _globals['_TOKEN']._serialized_end=1372
 # @@protoc_insertion_point(module_scope)

@@ -203,7 +203,7 @@ func local_request_File_Get_0(ctx context.Context, marshaler runtime.Marshaler, 
 }
 
 func request_File_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.FileClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.FileQuery
+	var protoReq v1_0.FileSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -220,7 +220,7 @@ func request_File_List_0(ctx context.Context, marshaler runtime.Marshaler, clien
 }
 
 func local_request_File_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.FileServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.FileQuery
+	var protoReq v1_0.FileSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

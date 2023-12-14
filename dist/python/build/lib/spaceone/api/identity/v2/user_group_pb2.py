@@ -18,7 +18,7 @@ from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from spaceone.api.core.v2 import query_pb2 as spaceone_dot_api_dot_core_dot_v2_dot_query__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)spaceone/api/identity/v2/user_group.proto\x12\x18spaceone.api.identity.v2\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"v\n\x16\x43reateUserGroupRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04tags\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\"\x8d\x01\n\x16UpdateUserGroupRequest\x12\x15\n\ruser_group_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12%\n\x04tags\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\"R\n\x10UserGroupRequest\x12\x15\n\ruser_group_id\x18\x01 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\"f\n\x15UsersUserGroupRequest\x12\x15\n\ruser_group_id\x18\x01 \x01(\t\x12\r\n\x05users\x18\x02 \x03(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\"\xa7\x01\n\rUserGroupInfo\x12\x15\n\ruser_group_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05users\x18\x03 \x03(\t\x12%\n\x04tags\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\"\xa1\x01\n\x14UserGroupSearchQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x15\n\ruser_group_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\x12\x0f\n\x07user_id\x18\x17 \x01(\t\"_\n\x0eUserGroupsInfo\x12\x38\n\x07results\x18\x01 \x03(\x0b\x32\'.spaceone.api.identity.v2.UserGroupInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"s\n\x12UserGroupStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v2.StatisticsQuery\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t2\xe1\x08\n\tUserGroup\x12\x8e\x01\n\x06\x63reate\x12\x30.spaceone.api.identity.v2.CreateUserGroupRequest\x1a\'.spaceone.api.identity.v2.UserGroupInfo\")\x82\xd3\xe4\x93\x02#\"\x1e/identity/v2/user-group/create:\x01*\x12\x8e\x01\n\x06update\x12\x30.spaceone.api.identity.v2.UpdateUserGroupRequest\x1a\'.spaceone.api.identity.v2.UserGroupInfo\")\x82\xd3\xe4\x93\x02#\"\x1e/identity/v2/user-group/update:\x01*\x12w\n\x06\x64\x65lete\x12*.spaceone.api.identity.v2.UserGroupRequest\x1a\x16.google.protobuf.Empty\")\x82\xd3\xe4\x93\x02#\"\x1e/identity/v2/user-group/delete:\x01*\x12\x93\x01\n\tadd_users\x12/.spaceone.api.identity.v2.UsersUserGroupRequest\x1a\'.spaceone.api.identity.v2.UserGroupInfo\",\x82\xd3\xe4\x93\x02&\"!/identity/v2/user-group/add-users:\x01*\x12\x99\x01\n\x0cremove_users\x12/.spaceone.api.identity.v2.UsersUserGroupRequest\x1a\'.spaceone.api.identity.v2.UserGroupInfo\"/\x82\xd3\xe4\x93\x02)\"$/identity/v2/user-group/remove-users:\x01*\x12\x82\x01\n\x03get\x12*.spaceone.api.identity.v2.UserGroupRequest\x1a\'.spaceone.api.identity.v2.UserGroupInfo\"&\x82\xd3\xe4\x93\x02 \"\x1b/identity/v2/user-group/get:\x01*\x12\x89\x01\n\x04list\x12..spaceone.api.identity.v2.UserGroupSearchQuery\x1a(.spaceone.api.identity.v2.UserGroupsInfo\"\'\x82\xd3\xe4\x93\x02!\"\x1c/identity/v2/user-group/list:\x01*\x12v\n\x04stat\x12,.spaceone.api.identity.v2.UserGroupStatQuery\x1a\x17.google.protobuf.Struct\"\'\x82\xd3\xe4\x93\x02!\"\x1c/identity/v1/user-group/stat:\x01*B?Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)spaceone/api/identity/v2/user_group.proto\x12\x18spaceone.api.identity.v2\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"M\n\x16\x43reateUserGroupRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04tags\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\"d\n\x16UpdateUserGroupRequest\x12\x15\n\ruser_group_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12%\n\x04tags\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\")\n\x10UserGroupRequest\x12\x15\n\ruser_group_id\x18\x01 \x01(\t\"=\n\x15UsersUserGroupRequest\x12\x15\n\ruser_group_id\x18\x01 \x01(\t\x12\r\n\x05users\x18\x02 \x03(\t\"\xa7\x01\n\rUserGroupInfo\x12\x15\n\ruser_group_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05users\x18\x03 \x03(\t\x12%\n\x04tags\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\"x\n\x14UserGroupSearchQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x15\n\ruser_group_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x0f\n\x07user_id\x18\x15 \x01(\t\"_\n\x0eUserGroupsInfo\x12\x38\n\x07results\x18\x01 \x03(\x0b\x32\'.spaceone.api.identity.v2.UserGroupInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"J\n\x12UserGroupStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v2.StatisticsQuery2\xe1\x08\n\tUserGroup\x12\x8e\x01\n\x06\x63reate\x12\x30.spaceone.api.identity.v2.CreateUserGroupRequest\x1a\'.spaceone.api.identity.v2.UserGroupInfo\")\x82\xd3\xe4\x93\x02#\"\x1e/identity/v2/user-group/create:\x01*\x12\x8e\x01\n\x06update\x12\x30.spaceone.api.identity.v2.UpdateUserGroupRequest\x1a\'.spaceone.api.identity.v2.UserGroupInfo\")\x82\xd3\xe4\x93\x02#\"\x1e/identity/v2/user-group/update:\x01*\x12w\n\x06\x64\x65lete\x12*.spaceone.api.identity.v2.UserGroupRequest\x1a\x16.google.protobuf.Empty\")\x82\xd3\xe4\x93\x02#\"\x1e/identity/v2/user-group/delete:\x01*\x12\x93\x01\n\tadd_users\x12/.spaceone.api.identity.v2.UsersUserGroupRequest\x1a\'.spaceone.api.identity.v2.UserGroupInfo\",\x82\xd3\xe4\x93\x02&\"!/identity/v2/user-group/add-users:\x01*\x12\x99\x01\n\x0cremove_users\x12/.spaceone.api.identity.v2.UsersUserGroupRequest\x1a\'.spaceone.api.identity.v2.UserGroupInfo\"/\x82\xd3\xe4\x93\x02)\"$/identity/v2/user-group/remove-users:\x01*\x12\x82\x01\n\x03get\x12*.spaceone.api.identity.v2.UserGroupRequest\x1a\'.spaceone.api.identity.v2.UserGroupInfo\"&\x82\xd3\xe4\x93\x02 \"\x1b/identity/v2/user-group/get:\x01*\x12\x89\x01\n\x04list\x12..spaceone.api.identity.v2.UserGroupSearchQuery\x1a(.spaceone.api.identity.v2.UserGroupsInfo\"\'\x82\xd3\xe4\x93\x02!\"\x1c/identity/v2/user-group/list:\x01*\x12v\n\x04stat\x12,.spaceone.api.identity.v2.UserGroupStatQuery\x1a\x17.google.protobuf.Struct\"\'\x82\xd3\xe4\x93\x02!\"\x1c/identity/v1/user-group/stat:\x01*B?Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -43,21 +43,21 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_USERGROUP'].methods_by_name['stat']._options = None
   _globals['_USERGROUP'].methods_by_name['stat']._serialized_options = b'\202\323\344\223\002!\"\034/identity/v1/user-group/stat:\001*'
   _globals['_CREATEUSERGROUPREQUEST']._serialized_start=194
-  _globals['_CREATEUSERGROUPREQUEST']._serialized_end=312
-  _globals['_UPDATEUSERGROUPREQUEST']._serialized_start=315
-  _globals['_UPDATEUSERGROUPREQUEST']._serialized_end=456
-  _globals['_USERGROUPREQUEST']._serialized_start=458
-  _globals['_USERGROUPREQUEST']._serialized_end=540
-  _globals['_USERSUSERGROUPREQUEST']._serialized_start=542
-  _globals['_USERSUSERGROUPREQUEST']._serialized_end=644
-  _globals['_USERGROUPINFO']._serialized_start=647
-  _globals['_USERGROUPINFO']._serialized_end=814
-  _globals['_USERGROUPSEARCHQUERY']._serialized_start=817
-  _globals['_USERGROUPSEARCHQUERY']._serialized_end=978
-  _globals['_USERGROUPSINFO']._serialized_start=980
-  _globals['_USERGROUPSINFO']._serialized_end=1075
-  _globals['_USERGROUPSTATQUERY']._serialized_start=1077
-  _globals['_USERGROUPSTATQUERY']._serialized_end=1192
-  _globals['_USERGROUP']._serialized_start=1195
-  _globals['_USERGROUP']._serialized_end=2316
+  _globals['_CREATEUSERGROUPREQUEST']._serialized_end=271
+  _globals['_UPDATEUSERGROUPREQUEST']._serialized_start=273
+  _globals['_UPDATEUSERGROUPREQUEST']._serialized_end=373
+  _globals['_USERGROUPREQUEST']._serialized_start=375
+  _globals['_USERGROUPREQUEST']._serialized_end=416
+  _globals['_USERSUSERGROUPREQUEST']._serialized_start=418
+  _globals['_USERSUSERGROUPREQUEST']._serialized_end=479
+  _globals['_USERGROUPINFO']._serialized_start=482
+  _globals['_USERGROUPINFO']._serialized_end=649
+  _globals['_USERGROUPSEARCHQUERY']._serialized_start=651
+  _globals['_USERGROUPSEARCHQUERY']._serialized_end=771
+  _globals['_USERGROUPSINFO']._serialized_start=773
+  _globals['_USERGROUPSINFO']._serialized_end=868
+  _globals['_USERGROUPSTATQUERY']._serialized_start=870
+  _globals['_USERGROUPSTATQUERY']._serialized_end=944
+  _globals['_USERGROUP']._serialized_start=947
+  _globals['_USERGROUP']._serialized_end=2068
 # @@protoc_insertion_point(module_scope)

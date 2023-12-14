@@ -8,7 +8,6 @@ package v2
 
 import (
 	context "context"
-	empty "github.com/golang/protobuf/ptypes/empty"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Token_Issue_FullMethodName   = "/spaceone.api.identity.v2.Token/issue"
-	Token_Refresh_FullMethodName = "/spaceone.api.identity.v2.Token/refresh"
+	Token_Issue_FullMethodName = "/spaceone.api.identity.v2.Token/issue"
+	Token_Grant_FullMethodName = "/spaceone.api.identity.v2.Token/grant"
 )
 
 // TokenClient is the client API for Token service.
@@ -31,7 +30,7 @@ type TokenClient interface {
 	// +noauth
 	Issue(ctx context.Context, in *IssueTokenRequest, opts ...grpc.CallOption) (*TokenInfo, error)
 	// +noauth
-	Refresh(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*TokenInfo, error)
+	Grant(ctx context.Context, in *GrantTokenRequest, opts ...grpc.CallOption) (*GrantTokenInfo, error)
 }
 
 type tokenClient struct {
@@ -51,9 +50,9 @@ func (c *tokenClient) Issue(ctx context.Context, in *IssueTokenRequest, opts ...
 	return out, nil
 }
 
-func (c *tokenClient) Refresh(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*TokenInfo, error) {
-	out := new(TokenInfo)
-	err := c.cc.Invoke(ctx, Token_Refresh_FullMethodName, in, out, opts...)
+func (c *tokenClient) Grant(ctx context.Context, in *GrantTokenRequest, opts ...grpc.CallOption) (*GrantTokenInfo, error) {
+	out := new(GrantTokenInfo)
+	err := c.cc.Invoke(ctx, Token_Grant_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,7 +66,7 @@ type TokenServer interface {
 	// +noauth
 	Issue(context.Context, *IssueTokenRequest) (*TokenInfo, error)
 	// +noauth
-	Refresh(context.Context, *empty.Empty) (*TokenInfo, error)
+	Grant(context.Context, *GrantTokenRequest) (*GrantTokenInfo, error)
 	mustEmbedUnimplementedTokenServer()
 }
 
@@ -78,8 +77,8 @@ type UnimplementedTokenServer struct {
 func (UnimplementedTokenServer) Issue(context.Context, *IssueTokenRequest) (*TokenInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Issue not implemented")
 }
-func (UnimplementedTokenServer) Refresh(context.Context, *empty.Empty) (*TokenInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
+func (UnimplementedTokenServer) Grant(context.Context, *GrantTokenRequest) (*GrantTokenInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Grant not implemented")
 }
 func (UnimplementedTokenServer) mustEmbedUnimplementedTokenServer() {}
 
@@ -112,20 +111,20 @@ func _Token_Issue_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Token_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
+func _Token_Grant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GrantTokenRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TokenServer).Refresh(ctx, in)
+		return srv.(TokenServer).Grant(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Token_Refresh_FullMethodName,
+		FullMethod: Token_Grant_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TokenServer).Refresh(ctx, req.(*empty.Empty))
+		return srv.(TokenServer).Grant(ctx, req.(*GrantTokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -142,8 +141,8 @@ var Token_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Token_Issue_Handler,
 		},
 		{
-			MethodName: "refresh",
-			Handler:    _Token_Refresh_Handler,
+			MethodName: "grant",
+			Handler:    _Token_Grant_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

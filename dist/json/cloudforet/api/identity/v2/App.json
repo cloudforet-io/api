@@ -10,13 +10,13 @@
       "hasServices": true,
       "enums": [
         {
-          "name": "PermissionGroup",
-          "longName": "AppInfo.PermissionGroup",
-          "fullName": "spaceone.api.identity.v2.AppInfo.PermissionGroup",
+          "name": "ResourceGroup",
+          "longName": "AppInfo.ResourceGroup",
+          "fullName": "spaceone.api.identity.v2.AppInfo.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "NONE_SCOPE",
+              "name": "GROUP_NONE",
               "number": "0",
               "description": ""
             },
@@ -44,28 +44,23 @@
               "description": ""
             },
             {
-              "name": "SYSTEM",
+              "name": "SYSTEM_ADMIN",
               "number": "1",
               "description": ""
             },
             {
-              "name": "SYSTEM_ADMIN",
+              "name": "DOMAIN_ADMIN",
               "number": "2",
               "description": ""
             },
             {
-              "name": "DOMAIN_ADMIN",
+              "name": "WORKSPACE_OWNER",
               "number": "3",
               "description": ""
             },
             {
-              "name": "WORKSPACE_OWNER",
-              "number": "4",
-              "description": ""
-            },
-            {
               "name": "WORKSPACE_MEMBER",
-              "number": "5",
+              "number": "4",
               "description": ""
             }
           ]
@@ -77,7 +72,7 @@
           "description": "",
           "values": [
             {
-              "name": "NONE_STATE",
+              "name": "STATE_NONE",
               "number": "0",
               "description": ""
             },
@@ -99,13 +94,13 @@
           ]
         },
         {
-          "name": "PermissionGroup",
-          "longName": "AppSearchQuery.PermissionGroup",
-          "fullName": "spaceone.api.identity.v2.AppSearchQuery.PermissionGroup",
+          "name": "ResourceGroup",
+          "longName": "AppSearchQuery.ResourceGroup",
+          "fullName": "spaceone.api.identity.v2.AppSearchQuery.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "NONE_SCOPE",
+              "name": "GROUP_NONE",
               "number": "0",
               "description": ""
             },
@@ -133,28 +128,23 @@
               "description": ""
             },
             {
-              "name": "SYSTEM",
+              "name": "SYSTEM_ADMIN",
               "number": "1",
               "description": ""
             },
             {
-              "name": "SYSTEM_ADMIN",
+              "name": "DOMAIN_ADMIN",
               "number": "2",
               "description": ""
             },
             {
-              "name": "DOMAIN_ADMIN",
+              "name": "WORKSPACE_OWNER",
               "number": "3",
               "description": ""
             },
             {
-              "name": "WORKSPACE_OWNER",
-              "number": "4",
-              "description": ""
-            },
-            {
               "name": "WORKSPACE_MEMBER",
-              "number": "5",
+              "number": "4",
               "description": ""
             }
           ]
@@ -166,7 +156,7 @@
           "description": "",
           "values": [
             {
-              "name": "NONE_STATE",
+              "name": "STATE_NONE",
               "number": "0",
               "description": ""
             },
@@ -188,9 +178,9 @@
           ]
         },
         {
-          "name": "PermissionGroup",
-          "longName": "CreateAppRequest.PermissionGroup",
-          "fullName": "spaceone.api.identity.v2.CreateAppRequest.PermissionGroup",
+          "name": "ResourceGroup",
+          "longName": "CreateAppRequest.ResourceGroup",
+          "fullName": "spaceone.api.identity.v2.CreateAppRequest.ResourceGroup",
           "description": "",
           "values": [
             {
@@ -272,6 +262,18 @@
               "defaultValue": ""
             },
             {
+              "name": "tags",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "role_type",
               "description": "",
               "label": "",
@@ -284,12 +286,12 @@
               "defaultValue": ""
             },
             {
-              "name": "permission_group",
+              "name": "resource_group",
               "description": "",
               "label": "",
-              "type": "PermissionGroup",
-              "longType": "AppInfo.PermissionGroup",
-              "fullType": "spaceone.api.identity.v2.AppInfo.PermissionGroup",
+              "type": "ResourceGroup",
+              "longType": "AppInfo.ResourceGroup",
+              "fullType": "spaceone.api.identity.v2.AppInfo.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -402,30 +404,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -500,24 +478,12 @@
               "defaultValue": ""
             },
             {
-              "name": "permission_group",
+              "name": "resource_group",
               "description": "+optional",
               "label": "",
-              "type": "PermissionGroup",
-              "longType": "AppSearchQuery.PermissionGroup",
-              "fullType": "spaceone.api.identity.v2.AppSearchQuery.PermissionGroup",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "ResourceGroup",
+              "longType": "AppSearchQuery.ResourceGroup",
+              "fullType": "spaceone.api.identity.v2.AppSearchQuery.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -578,30 +544,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v2.StatisticsQuery",
               "fullType": "spaceone.api.core.v2.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -704,36 +646,12 @@
               "defaultValue": ""
             },
             {
-              "name": "permission_group",
+              "name": "resource_group",
               "description": "",
               "label": "",
-              "type": "PermissionGroup",
-              "longType": "CreateAppRequest.PermissionGroup",
-              "fullType": "spaceone.api.identity.v2.CreateAppRequest.PermissionGroup",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "ResourceGroup",
+              "longType": "CreateAppRequest.ResourceGroup",
+              "fullType": "spaceone.api.identity.v2.CreateAppRequest.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -765,30 +683,6 @@
             },
             {
               "name": "expired_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -842,30 +736,6 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

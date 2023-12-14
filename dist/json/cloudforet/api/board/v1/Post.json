@@ -10,41 +10,18 @@
       "hasServices": true,
       "enums": [
         {
-          "name": "PostType",
-          "longName": "PostInfo.PostType",
-          "fullName": "spaceone.api.board.v1.PostInfo.PostType",
+          "name": "PermissionGroup",
+          "longName": "CreatePostRequest.PermissionGroup",
+          "fullName": "spaceone.api.board.v1.CreatePostRequest.PermissionGroup",
           "description": "",
           "values": [
             {
-              "name": "POST_TYPE_NONE",
+              "name": "PERMISSION_GROUP_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "SYSTEM",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "INTERNAL",
-              "number": "2",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "Scope",
-          "longName": "PostInfo.Scope",
-          "fullName": "spaceone.api.board.v1.PostInfo.Scope",
-          "description": "",
-          "values": [
-            {
-              "name": "SCOPE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "PUBLIC",
+              "name": "GLOBAL",
               "number": "1",
               "description": ""
             },
@@ -56,41 +33,41 @@
           ]
         },
         {
-          "name": "PostType",
-          "longName": "PostQuery.PostType",
-          "fullName": "spaceone.api.board.v1.PostQuery.PostType",
+          "name": "PermissionGroup",
+          "longName": "PostInfo.PermissionGroup",
+          "fullName": "spaceone.api.board.v1.PostInfo.PermissionGroup",
           "description": "",
           "values": [
             {
-              "name": "POST_TYPE_NONE",
+              "name": "PERMISSION_GROUP_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "SYSTEM",
+              "name": "GLOBAL",
               "number": "1",
               "description": ""
             },
             {
-              "name": "INTERNAL",
+              "name": "DOMAIN",
               "number": "2",
               "description": ""
             }
           ]
         },
         {
-          "name": "Scope",
-          "longName": "PostQuery.Scope",
-          "fullName": "spaceone.api.board.v1.PostQuery.Scope",
+          "name": "PermissionGroup",
+          "longName": "PostSearchQuery.PermissionGroup",
+          "fullName": "spaceone.api.board.v1.PostSearchQuery.PermissionGroup",
           "description": "",
           "values": [
             {
-              "name": "SCOPE_NONE",
+              "name": "PERMISSION_GROUP_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "PUBLIC",
+              "name": "GLOBAL",
               "number": "1",
               "description": ""
             },
@@ -114,18 +91,6 @@
           "hasOneofs": false,
           "extensions": [],
           "fields": [
-            {
-              "name": "board_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
             {
               "name": "category",
               "description": "+optional",
@@ -163,6 +128,18 @@
               "defaultValue": ""
             },
             {
+              "name": "files",
+              "description": "+optional",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "options",
               "description": "+optional",
               "label": "",
@@ -187,9 +164,21 @@
               "defaultValue": ""
             },
             {
-              "name": "files",
+              "name": "permission_group",
+              "description": "",
+              "label": "",
+              "type": "PermissionGroup",
+              "longType": "CreatePostRequest.PermissionGroup",
+              "fullType": "spaceone.api.board.v1.CreatePostRequest.PermissionGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
               "description": "+optional",
-              "label": "repeated",
+              "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
@@ -199,8 +188,8 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "+optional",
+              "name": "board_id",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -247,18 +236,6 @@
               "defaultValue": ""
             },
             {
-              "name": "only",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "domain_id",
               "description": "+optional",
               "label": "",
@@ -283,36 +260,12 @@
           "extensions": [],
           "fields": [
             {
-              "name": "board_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "post_id",
               "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "post_type",
-              "description": "",
-              "label": "",
-              "type": "PostType",
-              "longType": "PostInfo.PostType",
-              "fullType": "spaceone.api.board.v1.PostInfo.PostType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -391,18 +344,6 @@
               "defaultValue": ""
             },
             {
-              "name": "scope",
-              "description": "",
-              "label": "",
-              "type": "Scope",
-              "longType": "PostInfo.Scope",
-              "fullType": "spaceone.api.board.v1.PostInfo.Scope",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "files",
               "description": "",
               "label": "",
@@ -415,7 +356,31 @@
               "defaultValue": ""
             },
             {
+              "name": "permission_group",
+              "description": "",
+              "label": "",
+              "type": "PermissionGroup",
+              "longType": "PostInfo.PermissionGroup",
+              "fullType": "spaceone.api.board.v1.PostInfo.PermissionGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "board_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -477,138 +442,6 @@
           ]
         },
         {
-          "name": "PostQuery",
-          "longName": "PostQuery",
-          "fullName": "spaceone.api.board.v1.PostQuery",
-          "description": "{\n   \"board_id\": \"board-b9aa34e65c60\",\n   \"query\": {}\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "board_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "post_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "post_type",
-              "description": "+optional",
-              "label": "",
-              "type": "PostType",
-              "longType": "PostQuery.PostType",
-              "fullType": "spaceone.api.board.v1.PostQuery.PostType",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "category",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "writer",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "scope",
-              "description": "+optional",
-              "label": "",
-              "type": "Scope",
-              "longType": "PostQuery.Scope",
-              "fullType": "spaceone.api.board.v1.PostQuery.Scope",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "user_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "user_domain_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "query",
-              "description": "+optional",
-              "label": "",
-              "type": "Query",
-              "longType": "spaceone.api.core.v1.Query",
-              "fullType": "spaceone.api.core.v1.Query",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "PostRequest",
           "longName": "PostRequest",
           "fullName": "spaceone.api.board.v1.PostRequest",
@@ -644,6 +477,150 @@
             },
             {
               "name": "domain_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PostSearchQuery",
+          "longName": "PostSearchQuery",
+          "fullName": "spaceone.api.board.v1.PostSearchQuery",
+          "description": "{\n   \"board_id\": \"board-b9aa34e65c60\",\n   \"query\": {}\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "+optional",
+              "label": "",
+              "type": "Query",
+              "longType": "spaceone.api.core.v1.Query",
+              "fullType": "spaceone.api.core.v1.Query",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "post_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "category",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "writer",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "is_pinned",
+              "description": "+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "is_popup",
+              "description": "+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "user_domain_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "permission_group",
+              "description": "",
+              "label": "",
+              "type": "PermissionGroup",
+              "longType": "PostSearchQuery.PermissionGroup",
+              "fullType": "spaceone.api.board.v1.PostSearchQuery.PermissionGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "board_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "user_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -787,18 +764,6 @@
           "extensions": [],
           "fields": [
             {
-              "name": "board_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "post_id",
               "description": "",
               "label": "",
@@ -847,6 +812,18 @@
               "defaultValue": ""
             },
             {
+              "name": "files",
+              "description": "+optional",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "options",
               "description": "+optional",
               "label": "",
@@ -871,9 +848,9 @@
               "defaultValue": ""
             },
             {
-              "name": "files",
+              "name": "domain_id",
               "description": "+optional",
-              "label": "repeated",
+              "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
@@ -883,8 +860,8 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "+optional",
+              "name": "board_id",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1022,9 +999,9 @@
             {
               "name": "list",
               "description": "Gets a list of all Posts. You can use a query to get a filtered list of Posts.",
-              "requestType": "PostQuery",
-              "requestLongType": "PostQuery",
-              "requestFullType": "spaceone.api.board.v1.PostQuery",
+              "requestType": "PostSearchQuery",
+              "requestLongType": "PostSearchQuery",
+              "requestFullType": "spaceone.api.board.v1.PostSearchQuery",
               "requestStreaming": false,
               "responseType": "PostsInfo",
               "responseLongType": "PostsInfo",

@@ -203,7 +203,7 @@ func local_request_Post_Get_0(ctx context.Context, marshaler runtime.Marshaler, 
 }
 
 func request_Post_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PostClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.PostQuery
+	var protoReq extV1.PostSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -220,7 +220,7 @@ func request_Post_List_0(ctx context.Context, marshaler runtime.Marshaler, clien
 }
 
 func local_request_Post_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PostServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.PostQuery
+	var protoReq extV1.PostSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

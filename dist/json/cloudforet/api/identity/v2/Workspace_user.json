@@ -10,6 +10,62 @@
       "hasServices": true,
       "enums": [
         {
+          "name": "State",
+          "longName": "UserSummaryInfo.State",
+          "fullName": "spaceone.api.identity.v2.UserSummaryInfo.State",
+          "description": "",
+          "values": [
+            {
+              "name": "STATE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "PENDING",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "State",
+          "longName": "WorkspaceUserFindRequest.State",
+          "fullName": "spaceone.api.identity.v2.WorkspaceUserFindRequest.State",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "PENDING",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "RoleType",
           "longName": "WorkspaceUserInfo.RoleType",
           "fullName": "spaceone.api.identity.v2.WorkspaceUserInfo.RoleType",
@@ -31,18 +87,8 @@
               "description": ""
             },
             {
-              "name": "WORKSPACE_OWNER",
-              "number": "3",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE_MEMBER",
-              "number": "4",
-              "description": ""
-            },
-            {
               "name": "USER",
-              "number": "5",
+              "number": "3",
               "description": ""
             }
           ]
@@ -235,9 +281,21 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
+            }
+          ]
+        },
+        {
+          "name": "UserSummaryInfo",
+          "longName": "UserSummaryInfo",
+          "fullName": "spaceone.api.identity.v2.UserSummaryInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
             {
-              "name": "domain_id",
+              "name": "user_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -249,12 +307,108 @@
               "defaultValue": ""
             },
             {
-              "name": "workspace_id",
+              "name": "name",
               "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "State",
+              "longType": "UserSummaryInfo.State",
+              "fullType": "spaceone.api.identity.v2.UserSummaryInfo.State",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UsersSummaryInfo",
+          "longName": "UsersSummaryInfo",
+          "fullName": "spaceone.api.identity.v2.UsersSummaryInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "UserSummaryInfo",
+              "longType": "UserSummaryInfo",
+              "fullType": "spaceone.api.identity.v2.UserSummaryInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "WorkspaceUserFindRequest",
+          "longName": "WorkspaceUserFindRequest",
+          "fullName": "spaceone.api.identity.v2.WorkspaceUserFindRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "keyword",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "+optional",
+              "label": "",
+              "type": "State",
+              "longType": "WorkspaceUserFindRequest.State",
+              "fullType": "spaceone.api.identity.v2.WorkspaceUserFindRequest.State",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "page",
+              "description": "+optional",
+              "label": "",
+              "type": "Page",
+              "longType": "spaceone.api.core.v2.Page",
+              "fullType": "spaceone.api.core.v2.Page",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -463,30 +617,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -573,18 +703,6 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "workspace_id",
               "description": "+optional",
               "label": "",
@@ -615,30 +733,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v2.StatisticsQuery",
               "fullType": "spaceone.api.core.v2.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -730,6 +824,29 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/workspace-user/get",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "find",
+              "description": "",
+              "requestType": "WorkspaceUserFindRequest",
+              "requestLongType": "WorkspaceUserFindRequest",
+              "requestFullType": "spaceone.api.identity.v2.WorkspaceUserFindRequest",
+              "requestStreaming": false,
+              "responseType": "UsersSummaryInfo",
+              "responseLongType": "UsersSummaryInfo",
+              "responseFullType": "spaceone.api.identity.v2.UsersSummaryInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/user/find",
                       "body": "*"
                     }
                   ]
