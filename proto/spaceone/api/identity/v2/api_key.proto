@@ -69,29 +69,25 @@ service APIKey {
 }
 
 message CreateAPIKeyRequest {
-    string user_id = 1;
     // +optional
-    string name = 2;
+    string name = 1;
     // +optional
-    string expired_at = 3;
-    string domain_id = 21;
+    string expired_at = 2;
 }
 
 message UpdateAPIKeyRequest {
     string api_key_id = 1;
     // +optional
     string name = 2;
-    string domain_id = 21;
 }
 
 message APIKeyRequest {
     string api_key_id = 1;
-    string domain_id = 21;
 }
 
 message APIKeyInfo {
     enum State {
-        NONE_STATE = 0;
+        STATE_NONE = 0;
         ENABLED = 1;
         DISABLED = 2;
         EXPIRED = 3;
@@ -111,7 +107,7 @@ message APIKeyInfo {
 
 message APIKeySearchQuery {
     enum State {
-        NONE_STATE = 0;
+        STATE_NONE = 0;
         ENABLED = 1;
         DISABLED = 2;
         EXPIRED = 3;
@@ -122,10 +118,11 @@ message APIKeySearchQuery {
     // +optional
     string api_key_id = 2;
     // +optional
-    State state = 3;
-    string domain_id = 21;
+    string name = 3;
     // +optional
-    string user_id = 22;
+    State state = 4;
+    // +optional
+    string user_id = 21;
 }
 
 message APIKeysInfo {
@@ -135,5 +132,4 @@ message APIKeysInfo {
 
 message APIKeyStatQuery {
     spaceone.api.core.v2.StatisticsQuery query = 1;
-    string domain_id = 21;
 }

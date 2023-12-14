@@ -27,6 +27,13 @@ service WorkspaceUser {
         };
     }
 
+    rpc find (WorkspaceUserFindRequest) returns (UsersSummaryInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user/find"
+            body: "*"
+        };
+    }
+
     rpc list (WorkspaceUserSearchQuery) returns (WorkspaceUsersInfo) {
         option (google.api.http) = {
             post: "/identity/v2/workspace-user/list"
@@ -63,15 +70,27 @@ message CreateWorkspaceUserRequest {
     // If reset_password is true, send email
     bool reset_password = 9;
     string role_id = 10;
-    string domain_id = 21;
-    string workspace_id = 22;
 }
 
 message WorkspaceUserRequest {
     string user_id = 1;
-    string domain_id = 21;
-    string workspace_id = 22;
 }
+
+message WorkspaceUserFindRequest {
+    enum State {
+        NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+        PENDING = 3;
+    }
+
+    string keyword = 1;
+    // +optional
+    State state = 2;
+    // +optional
+    spaceone.api.core.v2.Page page = 3;
+}
+
 
 message WorkspaceUserInfo {
     enum State {
@@ -84,9 +103,7 @@ message WorkspaceUserInfo {
         ROLE_TYPE_NONE = 0;
         SYSTEM_ADMIN = 1;
         DOMAIN_ADMIN = 2;
-        WORKSPACE_OWNER = 3;
-        WORKSPACE_MEMBER = 4;
-        USER = 5;
+        USER = 3;
     }
 
     string user_id = 1;
@@ -125,9 +142,8 @@ message WorkspaceUserSearchQuery {
     string email = 5;
     // +optional
     spaceone.api.identity.v2.AuthType auth_type = 6;
-    string domain_id = 21;
     // +optional
-    string workspace_id = 22;
+    string workspace_id = 21;
 }
 
 message WorkspaceUsersInfo {
@@ -135,10 +151,27 @@ message WorkspaceUsersInfo {
     int32 total_count = 2;
 }
 
+
+message UserSummaryInfo {
+    enum State {
+        STATE_NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+        PENDING = 3;
+    }
+
+    string user_id = 1;
+    string name = 2;
+    State state = 3;
+}
+
+message UsersSummaryInfo {
+    repeated UserSummaryInfo results = 1;
+    int32 total_count = 2;
+}
+
+
 message WorkspaceUserStatQuery {
     spaceone.api.core.v2.StatisticsQuery query = 1;
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
 }
 

@@ -76,7 +76,7 @@ service App {
 }
 
 message CreateAppRequest {
-    enum PermissionGroup {
+    enum ResourceGroup {
         NONE = 0;
         DOMAIN = 1;
         WORKSPACE = 2;
@@ -88,10 +88,7 @@ message CreateAppRequest {
     google.protobuf.Struct tags = 3;
     // +optional
     string expired_at = 4;
-    PermissionGroup permission_group = 5;
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
+    ResourceGroup resource_group = 5;
 }
 
 message UpdateAppRequest {
@@ -100,43 +97,34 @@ message UpdateAppRequest {
     string name = 2;
     // +optional
     google.protobuf.Struct tags = 3;
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
 }
 
 message GenerateAPIKeyAppRequest {
     string app_id = 1;
-    string expired_at = 2;
-    string domain_id = 21;
     // +optional
-    string workspace_id = 22;
+    string expired_at = 2;
 }
 
 message AppRequest {
     string app_id = 1;
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
 }
 
 message AppInfo {
     enum State {
-        NONE_STATE = 0;
+        STATE_NONE = 0;
         ENABLED = 1;
         DISABLED = 2;
         EXPIRED = 3;
     }
     enum RoleType {
         ROLE_TYPE_NONE = 0;
-        SYSTEM = 1;
-        SYSTEM_ADMIN = 2;
-        DOMAIN_ADMIN = 3;
-        WORKSPACE_OWNER = 4;
-        WORKSPACE_MEMBER = 5;
+        SYSTEM_ADMIN = 1;
+        DOMAIN_ADMIN = 2;
+        WORKSPACE_OWNER = 3;
+        WORKSPACE_MEMBER = 4;
     }
-    enum PermissionGroup {
-        NONE_SCOPE = 0;
+    enum ResourceGroup {
+        GROUP_NONE = 0;
         DOMAIN = 1;
         WORKSPACE = 2;
     }
@@ -145,8 +133,9 @@ message AppInfo {
     string api_key = 2;
     string name = 3;
     State state = 4;
-    RoleType role_type = 5;
-    PermissionGroup permission_group = 6;
+    google.protobuf.Struct tags = 5;
+    RoleType role_type = 6;
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
     string workspace_id = 22;
     string role_id = 23;
@@ -158,21 +147,20 @@ message AppInfo {
 
 message AppSearchQuery {
     enum State {
-        NONE_STATE = 0;
+        STATE_NONE = 0;
         ENABLED = 1;
         DISABLED = 2;
         EXPIRED = 3;
     }
     enum RoleType {
         ROLE_TYPE_NONE = 0;
-        SYSTEM = 1;
-        SYSTEM_ADMIN = 2;
-        DOMAIN_ADMIN = 3;
-        WORKSPACE_OWNER = 4;
-        WORKSPACE_MEMBER = 5;
+        SYSTEM_ADMIN = 1;
+        DOMAIN_ADMIN = 2;
+        WORKSPACE_OWNER = 3;
+        WORKSPACE_MEMBER = 4;
     }
-    enum PermissionGroup {
-        NONE_SCOPE = 0;
+    enum ResourceGroup {
+        GROUP_NONE = 0;
         DOMAIN = 1;
         WORKSPACE = 2;
     }
@@ -188,14 +176,13 @@ message AppSearchQuery {
     // +optional
     RoleType role_type = 5;
     // +optional
-    PermissionGroup permission_group = 6;
-    string domain_id = 21;
+    ResourceGroup resource_group = 6;
     // +optional
-    string workspace_id = 22;
+    string workspace_id = 21;
     // +optional
-    string role_id = 23;
+    string role_id = 22;
     // +optional
-    string api_key_id = 24;
+    string api_key_id = 23;
 }
 
 message AppsInfo {
@@ -205,7 +192,4 @@ message AppsInfo {
 
 message AppStatQuery {
     spaceone.api.core.v2.StatisticsQuery query = 1;
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
 }

@@ -18,9 +18,9 @@ service Token {
         };
     }
     // +noauth
-    rpc refresh (google.protobuf.Empty) returns (TokenInfo) {
+    rpc grant (GrantTokenRequest) returns (GrantTokenInfo) {
         option (google.api.http) = {
-            post: "/identity/v2/token/refresh"
+            post: "/identity/v2/token/grant"
             body: "*"
         };
     }
@@ -38,16 +38,54 @@ message IssueTokenRequest {
     // +optional
     AuthType auth_type = 2;
     // +optional
-    int32 timeout = 3;
-    // +optional
-    int32 refresh_count = 4;
+    int32 refresh_timeout = 3;
     // if MFA is enabled, verify_code is required
     // +optional
-    string verify_code = 5;
+    string verify_code = 4;
     string domain_id = 21;
 }
 
 message TokenInfo {
     string access_token = 1;
     string refresh_token = 2;
+}
+
+message GrantTokenRequest {
+    enum GrantType {
+        GRANT_TYPE_NONE = 0;
+        LOCAL = 1;
+        EXTERNAL = 2;
+    }
+
+    enum Scope {
+        SCOPE_NONE = 0;
+        SYSTEM = 1;
+        DOMAIN = 2;
+        WORKSPACE = 3;
+        PROJECT = 4;
+        USER = 5;
+    }
+
+    GrantType grant_type = 1;
+    string token = 2;
+    Scope scope = 3;
+    // +optional
+    string workspace_id = 4;
+}
+
+message GrantTokenInfo {
+    enum RoleType {
+        ROLE_TYPE_NONE = 0;
+        SYSTEM_ADMIN = 1;
+        DOMAIN_ADMIN = 2;
+        WORKSPACE_OWNER = 3;
+        WORKSPACE_MEMBER = 4;
+        USER = 5;
+    }
+
+    string access_token = 1;
+    string role_id = 2;
+    RoleType role_type = 3;
+    string workspace_id = 4;
+    string domain_id = 5;
 }
