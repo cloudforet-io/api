@@ -801,7 +801,7 @@
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"role_type" : {"type": "string","title": "ROLE_TYPE" },"permissions" : {"items": {}, "type": "array","title": "PERMISSIONS" },"page_access" : {"items": {"$ref": "#/components/schemas/PageAccess"}, "type": "array","title": "PAGE_ACCESS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"role_type" : {"type": "string","title": "ROLE_TYPE" },"permissions" : {"items": {}, "type": "array","title": "PERMISSIONS" },"page_access" : {"items": {}, "type": "array","title": "PAGE_ACCESS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -830,7 +830,7 @@
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"role_id" : {"type": "string","title": "ROLE_ID" },"name" : {"type": "string","title": "NAME" },"permissions" : {"items": {}, "type": "array","title": "PERMISSIONS" },"page_access" : {"items": {"$ref": "#/components/schemas/PageAccess"}, "type": "array","title": "PAGE_ACCESS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"role_id" : {"type": "string","title": "ROLE_ID" },"name" : {"type": "string","title": "NAME" },"permissions" : {"items": {}, "type": "array","title": "PERMISSIONS" },"page_access" : {"items": {}, "type": "array","title": "PAGE_ACCESS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -4067,22 +4067,16 @@
            }
            ,        "CreateRoleRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"permissions" : {"items": {"type": "string"},
-               "type": "array","title": "PERMISSIONS"},"page_access" : {"items": {"$ref": "#/components/schemas/PageAccess"},
-               "type": "array","$ref": "#/components/schemas/PageAccess","title": "PAGE_ACCESS"},"tags" : {"type": "object","title": "TAGS"}},
+               "type": "array","title": "PERMISSIONS"},"page_access" : {"items": {"type": "string"},
+               "type": "array","title": "PAGE_ACCESS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["name","role_type"],
                 "title": "CreateRoleRequest"
            }
-           ,        "PageAccess": {
-         "properties" : {"page" : {"type": "string","title": "PAGE"},"permission" : {"type": "string","title": "PERMISSION"}},
-         "type": "object",
-         "required": ["page","permission"],
-                "title": "PageAccess"
-           }
            ,        "RoleInfo": {
          "properties" : {"role_id" : {"type": "string","title": "ROLE_ID"},"name" : {"type": "string","title": "NAME"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"permissions" : {"items": {"type": "string"},
-               "type": "array","title": "PERMISSIONS"},"page_access" : {"items": {"$ref": "#/components/schemas/PageAccess"},
-               "type": "array","$ref": "#/components/schemas/PageAccess","title": "PAGE_ACCESS"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+               "type": "array","title": "PERMISSIONS"},"page_access" : {"items": {"type": "string"},
+               "type": "array","title": "PAGE_ACCESS"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
          "required": ["role_id","name","role_type","permissions","page_access","tags","is_managed","domain_id","created_at","updated_at"],
                 "title": "RoleInfo"
@@ -4114,8 +4108,8 @@
            }
            ,        "UpdateRoleRequest": {
          "properties" : {"role_id" : {"type": "string","title": "ROLE_ID"},"name" : {"type": "string","title": "NAME"},"permissions" : {"items": {"type": "string"},
-               "type": "array","title": "PERMISSIONS"},"page_access" : {"items": {"$ref": "#/components/schemas/PageAccess"},
-               "type": "array","$ref": "#/components/schemas/PageAccess","title": "PAGE_ACCESS"},"tags" : {"type": "object","title": "TAGS"}},
+               "type": "array","title": "PERMISSIONS"},"page_access" : {"items": {"type": "string"},
+               "type": "array","title": "PAGE_ACCESS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["role_id"],
                 "title": "UpdateRoleRequest"
