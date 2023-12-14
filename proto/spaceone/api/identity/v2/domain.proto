@@ -18,50 +18,60 @@ service Domain {
             body: "*"
         };
     }
+
     rpc update (UpdateDomainRequest) returns (DomainInfo) {
         option (google.api.http) = {
             post: "/identity/v2/domain/update"
             body: "*"
         };
     }
+
     rpc delete (DomainRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/identity/v2/domain/delete"
             body: "*"
         };
     }
+
     rpc enable (DomainRequest) returns (DomainInfo) {
         option (google.api.http) = {
             post: "/identity/v2/domain/enable"
             body: "*"
         };
     }
+
     rpc disable (DomainRequest) returns (DomainInfo) {
         option (google.api.http) = {
             post: "/identity/v2/domain/disable"
             body: "*"
         };
     }
+
     rpc get (DomainRequest) returns (DomainInfo) {
         option (google.api.http) = {
             post: "/identity/v2/domain/get"
             body: "*"
         };
     }
+    // +noauth
     rpc get_auth_info (GetDomainAuthRequest) returns (DomainAuthInfo) {
         option (google.api.http) = {
             post: "/identity/v2/domain/get-auth-info"
             body: "*"
         };
     }
+
     rpc get_public_key (spaceone.api.core.v2.AuthenticationRequest)
+
     returns (spaceone.api.core.v2.AuthenticationResponse) {}
+
     rpc list (DomainSearchQuery) returns (DomainsInfo) {
         option (google.api.http) = {
             post: "/identity/v2/domain/list"
             body: "*"
         };
     }
+
     rpc stat (DomainStatQuery) returns (google.protobuf.Struct) {}
 }
 

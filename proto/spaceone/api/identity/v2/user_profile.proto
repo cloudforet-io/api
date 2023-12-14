@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v2;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/identity/v2/workspace.proto";
+import "spaceone/api/identity/v2/user.proto";
+
+
+service UserProfile {
+    rpc update (UpdateUserProfileRequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-profile/update"
+            body: "*"
+        };
+    }
+
+    rpc verify_email (VerifyEmailRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-profile/verify-email"
+            body: "*"
+        };
+    }
+
+    rpc confirm_email (ConfirmEmailRequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-profile/confirm-email"
+            body: "*"
+        };
+    }
+
+    // +noauth
+    rpc reset_password (UserProfileRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-profile/reset-password"
+            body: "*",
+        };
+    }
+
+    // Enable MFA for user. If this api is called, send email to user.
+    rpc enable_mfa (EnableMFARequest) returns (UserInfo){
+        option (google.api.http) = {
+            post: "/identity/v2/user-profile/enable-mfa"
+            body: "*"
+        };
+    }
+
+    // Disable MFA for user. If this api is called, send email to user.
+    rpc disable_mfa (DisableMFARequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-profile/disable-mfa"
+            body: "*"
+        };
+    }
+
+    // Confirm MFA for user by given verify_code which is sent by your authentication method.
+    rpc confirm_mfa (ConfirmMFARequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-profile/confirm-mfa"
+            body: "*"
+        };
+    }
+
+    rpc get (UserProfileRequest) returns (UserInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-profile/get"
+            body: "*"
+        };
+    }
+
+    rpc get_workspaces (UserProfileRequest) returns (spaceone.api.identity.v2.WorkspacesInfo) {
+        option (google.api.http) = {
+            post: "/identity/v2/user-profile/get-workspaces"
+            body: "*"
+        };
+    }
+}
+
+message UpdateUserProfileRequest {
+    // +optional
+    string password = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    string email = 3;
+    // +optional
+    string language = 4;
+    // +optional
+    string timezone = 5;
+    // +optional
+    google.protobuf.Struct tags = 6;
+}
+
+message VerifyEmailRequest {
+    // +optional
+    string email = 1;
+}
+
+message ConfirmEmailRequest {
+    string verify_code = 1;
+}
+
+//{
+//  "user_id": "example@cloudforet.com",
+//  "mfa_type": "EMAIL",
+//  "options": {"email": "wonny@cloudforet.com"},
+//  "domain_id": "domain-a1b2c3d4e5f6"
+//}
+message EnableMFARequest {
+    // EMAIL
+    string mfa_type = 1;
+    // If mfa_type is EMAIL, email is required in options. options will be saved in mfa's options field.
+    google.protobuf.Struct options = 3;
+}
+
+//{
+//  "user_id": "example@cloudforet.com",
+//  "force": false,
+//  "domain_id": "domain-a1b2c3d4e5f6"
+//}
+message DisableMFARequest {
+}
+
+//{
+//  "user_id": "example@cloudforet",
+//  "verify_code": "123456",
+//  "domain_id": "domain-a1b2c3d4e5f6"
+//}
+message ConfirmMFARequest {
+    string verify_code = 1;
+}
+
+message UserProfileRequest {
+}
+
+message UserPasswordResetRequest {
+    string user_id = 1;
+    string domain_id = 21;
+}
