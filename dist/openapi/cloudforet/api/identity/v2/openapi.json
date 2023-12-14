@@ -3069,11 +3069,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |credentials||Struct|True|\n |domain_id||string|True|\n |auth_type|LOCAL, EXTERNAL LOCAL, EXTERNAL |string||\n |refresh_timeout||int||\n |verify_code|if MFA is enabled, verify_code is required |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |credentials||Struct|True|\n |domain_id||string|True|\n |auth_type|LOCAL, EXTERNAL LOCAL, EXTERNAL |string||\n |timeout||int||\n |verify_code|if MFA is enabled, verify_code is required |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"credentials" : {"type": "object","title": "CREDENTIALS" },"auth_type" : {"type": "string","title": "AUTH_TYPE" },"refresh_timeout" : {"type": "integer","title": "REFRESH_TIMEOUT" },"verify_code" : {"type": "string","title": "VERIFY_CODE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"credentials" : {"type": "object","title": "CREDENTIALS" },"auth_type" : {"type": "string","title": "AUTH_TYPE" },"timeout" : {"type": "integer","title": "TIMEOUT" },"verify_code" : {"type": "string","title": "VERIFY_CODE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -4639,7 +4639,7 @@
                 "title": "GrantTokenRequest"
            }
            ,        "IssueTokenRequest": {
-         "properties" : {"credentials" : {"type": "object","title": "CREDENTIALS"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"refresh_timeout" : {"type": "integer","title": "REFRESH_TIMEOUT"},"verify_code" : {"type": "string","title": "VERIFY_CODE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"credentials" : {"type": "object","title": "CREDENTIALS"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"timeout" : {"type": "integer","title": "TIMEOUT"},"verify_code" : {"type": "string","title": "VERIFY_CODE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["credentials","domain_id"],
                 "title": "IssueTokenRequest"
