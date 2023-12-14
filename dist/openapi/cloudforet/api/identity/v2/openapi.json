@@ -295,7 +295,7 @@
      },"/identity/trusted-account/update-secret-data": {
        "post": {
          "tags": ["identity > trusted-account"],
-         "summary": "Update Secret",
+         "summary": "Update Secret Data",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
@@ -312,7 +312,13 @@
          },
          "responses": {
            "200": {
-             "description": "Successfull Response"}
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TrustedAccountInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TrustedAccountInfo"}}
+               }
+             }}
          }
           ,"security": [{"HTTPBearer": []}]        }
      },"/identity/trusted-account/delete": {
