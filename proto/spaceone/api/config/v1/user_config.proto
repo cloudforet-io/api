@@ -18,7 +18,7 @@ service UserConfig {
             body: "*"
         };
     }
-    rpc update (UpdateUserConfigRequest) returns (UserConfigInfo) {
+    rpc update (SetUserConfigRequest) returns (UserConfigInfo) {
         option (google.api.http) = {
             post: "/config/v1/user-config/update"
             body: "*"
@@ -61,21 +61,10 @@ message SetUserConfigRequest {
     google.protobuf.Struct data = 2;
     // +optional
     google.protobuf.Struct tags = 3;
-    string domain_id = 21;
-}
-
-message UpdateUserConfigRequest {
-    string name = 1;
-    // +optional
-    google.protobuf.Struct data = 2;
-    // +optional
-    google.protobuf.Struct tags = 3;
-    string domain_id = 21;
 }
 
 message UserConfigRequest {
     string name = 1;
-    string domain_id = 21;
 }
 
 message UserConfigQuery {
@@ -83,9 +72,6 @@ message UserConfigQuery {
     spaceone.api.core.v1.Query query = 1;
     // +optional
     string name = 2;
-    // +optional
-    string user_id = 3;
-    string domain_id = 4;
 }
 
 message UserConfigInfo {
@@ -105,5 +91,4 @@ message UserConfigsInfo {
 
 message UserConfigStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }
