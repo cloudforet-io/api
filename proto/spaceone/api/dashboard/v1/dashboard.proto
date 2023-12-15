@@ -10,87 +10,96 @@ import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 
-service DomainDashboard{
+service Dashboard{
 
-  rpc create(CreateDomainDashboardRequest) returns (DomainDashboardInfo) {
+  rpc create(CreateDashboardRequest) returns (DashboardInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/domain-dashboard/create"
+      post: "/dashboard/v1/dashboard/create"
       body: "*"
     };
   }
 
-  rpc update (UpdateDomainDashboardRequest) returns (DomainDashboardInfo) {
+  rpc update (UpdateDashboardRequest) returns (DashboardInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/domain-dashboard/update"
+      post: "/dashboard/v1/dashboard/update"
       body: "*"
     };
   }
 
-  rpc delete (DomainDashboardRequest) returns (google.protobuf.Empty) {
+  rpc delete (DashboardRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/dashboard/v1/domain-dashboard/delete"
+      post: "/dashboard/v1/dashboard/delete"
       body: "*"
     };
   }
 
-  rpc get (GetDomainDashboardRequest) returns (DomainDashboardInfo) {
+  rpc get (DashboardRequest) returns (DashboardInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/domain-dashboard/get"
+      post: "/dashboard/v1/dashboard/get"
       body: "*"
     };
   }
 
-  rpc delete_version (DomainDashboardVersionRequest) returns (google.protobuf.Empty) {
+  rpc delete_version (DashboardVersionRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/dashboard/v1/domain-dashboard/delete-version"
+      post: "/dashboard/v1/dashboard/delete-version"
       body: "*"
     };
   }
 
-  rpc revert_version (DomainDashboardVersionRequest) returns (DomainDashboardInfo) {
+  rpc revert_version (DashboardVersionRequest) returns (DashboardInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/domain-dashboard/revert-version"
+      post: "/dashboard/v1/dashboard/revert-version"
       body: "*"
     };
   }
 
-  rpc get_version (GetDomainDashboardVersionRequest) returns (DomainDashboardVersionInfo) {
+  rpc get_version (DashboardVersionRequest) returns (DashboardVersionInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/domain-dashboard/get-version"
+      post: "/dashboard/v1/dashboard/get-version"
       body: "*"
     };
   }
 
-  rpc list_versions (DomainDashboardVersionQuery) returns (DomainDashboardVersionsInfo) {
+  rpc list_versions (DashboardVersionSearchQuery) returns (DashboardVersionsInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/domain-dashboard/list-versions"
+      post: "/dashboard/v1/dashboard/list-versions"
       body: "*"
     };
   }
 
-  rpc list (DomainDashboardQuery) returns (DomainDashboardsInfo) {
+  rpc list (DashboardQuery) returns (DashboardsInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/domain-dashboard/list"
+      post: "/dashboard/v1/dashboard/list"
       body: "*"
     };
   }
 
-  rpc stat (DomainDashboardStatQuery) returns (google.protobuf.Struct) {
+  rpc stat (DashboardStatQuery) returns (google.protobuf.Struct) {
     option (google.api.http) = {
-      post: "/dashboard/v1/domain-dashboard/stat"
+      post: "/dashboard/v1/dashboard/stat"
       body: "*"
     };
   }
 }
 
-message CreateDomainDashboardRequest {
-  enum Viewers {
-    VIEWERS_NONE = 0;
+message CreateDashboardRequest {
+
+  enum DashboardType {
+    DASHBOARD_TYPE_NONE = 0;
     PUBLIC = 1;
     PRIVATE = 2;
   }
+
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+    PROJECT = 3;
+  }
+
   string name = 1;
-  Viewers viewers = 2;
+  DashboardType dashboard_type = 2;
   // +optional
   google.protobuf.ListValue layouts = 3;
   // +optional
@@ -103,11 +112,13 @@ message CreateDomainDashboardRequest {
   google.protobuf.ListValue labels = 10;
   // +optional
   google.protobuf.Struct tags = 11;
-  string domain_id = 21;
+  ResourceGroup resource_group = 20;
+  // +optional
+  string project_id = 22;
 }
 
-message UpdateDomainDashboardRequest {
-  string domain_dashboard_id = 1;
+message UpdateDashboardRequest {
+  string dashboard_id = 1;
   // +optional
   string name = 2;
   // +optional
@@ -122,72 +133,76 @@ message UpdateDomainDashboardRequest {
   google.protobuf.ListValue labels = 10;
   // +optional
   google.protobuf.Struct tags = 11;
-  string domain_id = 21;
 }
 
-message DomainDashboardRequest {
-  string domain_dashboard_id = 1;
-  string domain_id = 2;
+message DashboardRequest {
+  string dashboard_id = 1;
 }
 
-message GetDomainDashboardRequest {
-  string domain_dashboard_id = 1;
-  string domain_id = 2;
-  // +optional
-  repeated string only = 3;
-}
-
-message DomainDashboardVersionRequest {
-  string domain_dashboard_id = 1;
+message DashboardVersionRequest {
+  string dashboard_id = 1;
   int32 version = 4;
-  string domain_id = 21;
 }
 
-message GetDomainDashboardVersionRequest {
-  string domain_dashboard_id = 1;
-  int32 version = 2;
-  string domain_id = 10;
-  // +optional
-  repeated string only = 11;
-}
-
-message DomainDashboardVersionQuery {
+message DashboardVersionSearchQuery {
   // +optional
   spaceone.api.core.v1.Query query = 1;
-  string domain_dashboard_id = 2;
+  string dashboard_id = 2;
   // +optional
   int32 version = 3;
-  string domain_id = 10;
 }
 
-message DomainDashboardQuery {
-  enum Viewers {
-    VIEWERS_NONE = 0;
+message DashboardQuery {
+
+  enum DashboardType {
+    DASHBOARD_TYPE_NONE = 0;
     PUBLIC = 1;
     PRIVATE = 2;
   }
+
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+    PROJECT = 3;
+  }
+
   // +optional
   spaceone.api.core.v1.Query query = 1;
   // +optional
-  string domain_dashboard_id = 2;
+  string dashboard_id = 2;
   // +optional
   string name = 3;
   // +optional
-  Viewers viewers = 4;
+  DashboardType dashboard_type = 4;
   // +optional
   string user_id = 10;
-  string domain_id = 11;
+  // +optional
+  ResourceGroup resource_group = 11;
+  // +optional
+  string project_id = 12;
+  // +optional
+  string workspace_id = 13;
 }
 
-message DomainDashboardInfo {
-  enum Viewers {
-    VIEWERS_NONE = 0;
+message DashboardInfo {
+
+  enum DashboardType {
+    DASHBOARD_TYPE_NONE = 0;
     PUBLIC = 1;
     PRIVATE = 2;
   }
-  string domain_dashboard_id = 1;
+
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+    PROJECT = 3;
+  }
+
+  string dashboard_id = 1;
   string name = 2;
-  Viewers viewers = 3;
+  DashboardType dashboard_type = 3;
   int32 version = 4;
   google.protobuf.ListValue layouts = 5;
   google.protobuf.Struct variables = 6;
@@ -195,25 +210,27 @@ message DomainDashboardInfo {
   google.protobuf.Struct variables_schema = 8;
   google.protobuf.ListValue labels = 10;
   google.protobuf.Struct tags = 11;
-  string user_id = 20;
+  ResourceGroup resource_group = 12;
+  string user_id = 18;
+  string project_id = 19;
+  string workspace_id = 20;
   string domain_id = 21;
   string created_at = 22;
   string updated_at = 23;
 }
 
-message DomainDashboardsInfo {
-  repeated DomainDashboardInfo results = 1;
+message DashboardsInfo {
+  repeated DashboardInfo results = 1;
   int32 total_count = 2;
 }
 
-message DomainDashboardStatQuery {
+message DashboardStatQuery {
   spaceone.api.core.v1.StatisticsQuery query = 1;
-  string domain_id = 2;
 }
 
 
-message DomainDashboardVersionInfo {
-  string domain_dashboard_id = 1;
+message DashboardVersionInfo {
+  string dashboard_id = 1;
   int32 version = 2;
   bool latest = 3;
   google.protobuf.ListValue layouts = 5;
@@ -224,7 +241,7 @@ message DomainDashboardVersionInfo {
   string created_at = 22;
 }
 
-message DomainDashboardVersionsInfo {
-  repeated DomainDashboardVersionInfo results = 1;
+message DashboardVersionsInfo {
+  repeated DashboardVersionInfo results = 1;
   int32 total_count = 2;
 }
