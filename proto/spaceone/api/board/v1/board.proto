@@ -39,7 +39,7 @@ service Board {
     rpc delete (BoardRequest) returns (google.protobuf.Empty) {}
 
     // Gets a specific Board. You must specify the `board_id` of the Board to get. Prints detailed information about the Board, including `name`, `categories`.
-    rpc get (GetBoardRequest) returns (BoardInfo) {
+    rpc get (BoardRequest) returns (BoardInfo) {
         option (google.api.http) = {
             post: "/board/v1/board/get"
             body: "*"
@@ -105,22 +105,15 @@ message BoardRequest {
 }
 
 //{
-//    "board_id": "board-123456789012"
-//}
-message GetBoardRequest {
-    string board_id = 1;
-}
-
-//{
 //    "query": {}
 //}
 message BoardQuery {
     // +optional
-    string board_id = 1;
+    spaceone.api.core.v1.Query query = 1;
     // +optional
-    string name = 2;
+    string board_id = 2;
     // +optional
-    spaceone.api.core.v1.Query query = 3;
+    string name = 3;
 }
 
 message BoardStatQuery {
