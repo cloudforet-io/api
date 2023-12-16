@@ -22,7 +22,7 @@ service Job {
     }
     
     // Gets a specific Job. Prints detailed information about the Job, including its state, total tasks, and collector info.
-    rpc get (GetJobRequest) returns (JobInfo) {
+    rpc get (JobRequest) returns (JobInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/job/get"
             body: "*"
@@ -54,22 +54,9 @@ service Job {
 
 //{
 //    "job_id": "job-123456789012",
-//    "domain_id": "domain-123456789012"
 //}
 message JobRequest {
     string job_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//    "job_id": "job-123456789012",
-//    "domain_id": "domain-123456789012"
-//}
-message GetJobRequest {
-    string job_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -85,6 +72,12 @@ message JobsQuery {
         TIMEOUT = 6;
     }
 
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -95,7 +88,10 @@ message JobsQuery {
     string collector_id = 4;
     // +optional
     string secret_id = 5;
-    string domain_id = 10;
+    // +optional
+    string plugin_id = 6;
+    // +optional
+    ResourceGroup resource_group = 7;
 }
 
 //{
@@ -121,6 +117,7 @@ message JobsQuery {
 //                },
 //                "is_public": true
 //            },
+//            "resource_group": "DOMAIN",
 //            "domain_id": "domain-58010aa2e451",
 //            "created_at": "2022-06-17T08:00:01.225Z",
 //            "updated_at": "2022-06-17T08:00:01.225Z",
@@ -147,6 +144,7 @@ message JobsQuery {
 //                },
 //                "is_public": true
 //            },
+//            "resource_group": "DOMAIN",
 //            "domain_id": "domain-58010aa2e451",
 //            "created_at": "2022-06-17T08:00:00.407Z",
 //            "updated_at": "2022-06-17T08:00:00.407Z",
@@ -162,10 +160,8 @@ message JobsInfo {
 
 message JobAnalyzeQuery {
     spaceone.api.core.v1.AnalyzeQuery query = 1;
-    string domain_id = 2;
 }
 
 message JobStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }

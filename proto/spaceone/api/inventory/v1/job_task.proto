@@ -22,7 +22,7 @@ service JobTask {
     }
     
     // Gets a specific JobTask. Prints detailed information about the JobTask, including its state, updated or failure counts, and error log.
-    rpc get (GetJobTaskRequest) returns (JobTaskInfo) {
+    rpc get (JobTaskRequest) returns (JobTaskInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/job-task/get"
             body: "*"
@@ -47,22 +47,9 @@ service JobTask {
 
 //{
 //    "job_task_id": "job-task-123456789012",
-//    "domain_id": "domain-123456789012"
 //}
 message JobTaskRequest {
     string job_task_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//    "job_task_id": "job-task-123456789012",
-//    "domain_id": "domain-123456789012"
-//}
-message GetJobTaskRequest {
-    string job_task_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -93,7 +80,6 @@ message JobTaskQuery {
     string service_account_id = 7;
     // +optional
     string project_id = 8;
-    string domain_id = 9;
 }
 
 //{
@@ -148,11 +134,13 @@ message JobTaskInfo {
     string provider = 13;
     string service_account_id = 14;
     string project_id = 15;
-    string domain_id = 16;
 
-    string created_at = 21;
-    string started_at = 22;
-    string finished_at = 23;
+    string workspace_id = 20;
+    string domain_id = 21;
+
+    string created_at = 31;
+    string started_at = 32;
+    string finished_at = 33;
 }
 
 //{
@@ -195,5 +183,4 @@ message JobTasksInfo {
 
 message JobTaskStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }

@@ -54,7 +54,7 @@ service Collector {
     }
     
     // Gets a specific Collector. Prints detailed information about the Collector, including its state, basic information, and the plugin information used for cloud resource collection.
-    rpc get (GetCollectorRequest) returns (CollectorInfo) {
+    rpc get (CollectorRequest) returns (CollectorInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/collector/get"
             body: "*"
@@ -162,6 +162,13 @@ message PluginInfo {
 //    },
 //}
 message CreateCollectorRequest {
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string name = 1;
     PluginInfo plugin_info = 2;
     // +optional
@@ -172,7 +179,7 @@ message CreateCollectorRequest {
     google.protobuf.Struct tags = 5;
     // +optional
     SecretFilter secret_filter = 6;
-    string domain_id = 11;
+    ResourceGroup resource_group = 7;
 }
 
 //{
@@ -208,7 +215,6 @@ message UpdateCollectorRequest {
     SecretFilter secret_filter = 6;
     // +optional
     google.protobuf.Struct tags = 7;
-    string domain_id = 21;
 }
 
 message UpdatePluginRequest {
@@ -223,7 +229,6 @@ message UpdatePluginRequest {
     string version = 2;
     // +optional
     google.protobuf.Struct options = 3;
-    string domain_id = 4;
     // +optional
     UpgradeMode upgrade_mode = 5;
 }
@@ -233,17 +238,6 @@ message UpdatePluginRequest {
 //}
 message CollectorRequest {
     string collector_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//    "collector_id": "collector-f2e4e9cc7f21"
-//}
-message GetCollectorRequest {
-    string collector_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -251,38 +245,36 @@ message GetCollectorRequest {
 //}
 message CollectorQuery {
     enum State {
-        NONE = 0;
+        STATE_NONE = 0;
         ENABLED = 1;
         DISABLED = 2;
+    }
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
     }
 
     spaceone.api.core.v1.Query query = 1;
     string collector_id = 2;
     string name = 3;
-    State state = 4;
-    int32 priority = 5;
+    State secret_filter_state = 4;
+    State schedule_state = 5;
     string plugin_id = 6;
-    string domain_id = 7;
+    ResourceGroup resource_group = 7;
 }
 
 message CollectRequest {
     string collector_id = 1;
     // +optional
-    google.protobuf.Struct filter = 2;
-    // +optional
-    string secret_id = 3;
-    // +optional
-    string collect_mode = 4;
-    string domain_id = 5;
-    // +optional
-    bool use_cache = 6;
+    string secret_id = 2;
 }
 
 message VerifyPluginRequest {
     string collector_id = 1;
     // +optional
     string secret_id = 2;
-    string domain_id = 3;
 }
 
 //{
@@ -338,6 +330,12 @@ message CollectorInfo {
         DISABLED = 2;
     }
 
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string collector_id = 1;
     string name = 2;
     PluginInfo plugin_info = 4;
@@ -348,6 +346,9 @@ message CollectorInfo {
     SecretFilter secret_filter = 9;
     string created_at = 11;
     string last_collected_at = 12;
+    ResourceGroup resource_group = 13;
+
+    string workspace_id = 20;
     string domain_id = 21;
 }
 
@@ -455,7 +456,6 @@ message CollectorsInfo {
 
 message CollectorStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }
 
 message VerifyInfo {
@@ -499,21 +499,30 @@ message JobInfo {
         SUCCESS = 4;
     }
 
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string job_id = 1;
     Status status = 2;
     int32 total_tasks = 4;
     int32 remained_tasks = 5;
     int32 success_tasks = 6;
     int32 failure_tasks = 7;
+    ResourceGroup resource_group = 8;
 
     string collector_id = 11;
     string secret_id = 12;
-    string domain_id = 13;
-    string plugin_id = 15;
+    string plugin_id = 13;
 
-    string created_at = 21;
-    string updated_at = 22;
-    string finished_at = 23;
+    string workspace_id = 20;
+    string domain_id = 21;
+
+    string created_at = 31;
+    string updated_at = 32;
+    string finished_at = 33;
 }
 
 //{

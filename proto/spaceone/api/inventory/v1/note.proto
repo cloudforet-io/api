@@ -31,7 +31,7 @@ service Note {
         };
     }
 
-    rpc get (GetNoteRequest) returns (NoteInfo) {
+    rpc get (NoteRequest) returns (NoteInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/note/get"
             body: "*"
@@ -57,64 +57,42 @@ service Note {
 //
 //}
 message CreateNoteRequest {
-    // is_required: true
     string record_id = 1;
-    // is_required: true
     string note = 2;
-    // is_required: true
-    string domain_id = 11;
 }
 
 //{
 //
 //}
 message UpdateNoteRequest {
-    // is_required: true
     string note_id = 1;
-    // is_required: false
+    // +optional
     string note = 2;
-    // is_required: true
-    string domain_id = 11;
 }
 
 //{
 //
 //}
 message NoteRequest {
-    // is_required: true
     string note_id = 1;
-    // is_required: true
-    string domain_id = 2;
-}
-
-//{
-//
-//}
-message GetNoteRequest {
-    // is_required: true
-    string note_id = 1;
-    // is_required: true
-    string domain_id = 2;
-    // is_required: false
-    repeated string only = 3;
 }
 
 //{
 //
 //}
 message NoteQuery {
-    // is_required: false
+    // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
+    // +optional
     string note_id = 2;
-    // is_required: false
+    // +optional
     string record_id = 3;
-    // is_required: false
+    // +optional
     string cloud_service_id = 4;
-    // is_required: false
+    // +optional
     string created_by = 5;
-    // is_required: false
-    string domain_id = 6;
+    // +optional
+    string project_id = 6;
 }
 
 //{
@@ -126,8 +104,10 @@ message NoteInfo {
     string cloud_service_id = 3;
     string note = 4;
     string created_by = 11;
-    string domain_id = 12;
-    string created_at = 21;
+    string project_id = 19;
+    string workspace_id = 20;
+    string domain_id = 21;
+    string created_at = 31;
 }
 
 message NotesInfo {
@@ -136,8 +116,5 @@ message NotesInfo {
 }
 
 message NoteStatQuery {
-    // is_required: true
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
-    string domain_id = 2;
 }
