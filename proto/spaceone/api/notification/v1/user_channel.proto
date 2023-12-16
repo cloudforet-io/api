@@ -120,8 +120,6 @@ message UserChannelSchedule {
 //    "data": {
 //        "email": "user1@email.com"
 //    },
-//    "user_id": "user1@email.com",
-//    "domain_id": "domain-123456789012"
 //}
 message CreateUserChannelRequest {
     // The ID of protocol that will be set in user channel.
@@ -149,10 +147,6 @@ message CreateUserChannelRequest {
     // The tags for user channel.
     // +optional
     google.protobuf.Struct tags = 8;
-    // The ID of user
-    string user_id = 21;
-    // The ID of domain.
-    string domain_id = 22;
 }
 
 //{
@@ -184,8 +178,6 @@ message UpdateUserChannelRequest {
     // The tags for user channel.
     // +optional
     google.protobuf.Struct tags = 5;
-    // The ID of domain.
-    string domain_id = 11;
 }
 
 //{
@@ -201,7 +193,6 @@ message UpdateUserChannelRequest {
 //        ],
 //        "end_hour": 9
 //    },
-//    "domain_id": "domain-58010aa2e451"
 //}
 message UpdateUserChannelScheduleRequest {
     // The ID of user channel.
@@ -211,8 +202,6 @@ message UpdateUserChannelScheduleRequest {
     // Schedule for which you want to receive notifications through the user channel.
     // +optional
     UserChannelSchedule schedule = 3;
-    // The ID of domain.
-    string domain_id = 4;
 }
 
 //{
@@ -221,7 +210,6 @@ message UpdateUserChannelScheduleRequest {
 //    "subscriptions": [
 //        "monitoring.Alert"
 //    ],
-//    "domain_id": "domain-58010aa2e451"
 //}
 message UpdateUserChannelSubscriptionRequest {
     // The ID of user channel.
@@ -231,8 +219,6 @@ message UpdateUserChannelSubscriptionRequest {
     // If is_subscribe is set to false, this value is ignored.
     // +optional
     repeated string subscriptions = 3;
-    // The ID of domain.
-    string domain_id = 4;
 }
 
 //{
@@ -241,18 +227,11 @@ message UpdateUserChannelSubscriptionRequest {
 message UserChannelRequest {
     // The ID of user channel.
     string user_channel_id = 1;
-    // The ID of domain.
-    string domain_id = 2;
 }
 
 message GetUserChannelRequest {
     // The ID of user channel.
     string user_channel_id = 1;
-    // The ID of domain.
-    string domain_id = 2;
-    // The list of the user channel information column you want to be returned. It must be specified in the UserChannelInfo.
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -282,11 +261,6 @@ message UserChannelQuery {
     // The ID of protocol set in the user channel.
     // +optional
     string protocol_id = 11;
-    // The ID of user using the user channel.
-    // +optional
-    string user_id = 12;
-    // The ID of domain.
-    string domain_id = 13;
 }
 
 //{
@@ -388,6 +362,4 @@ message UserChannelsInfo {
 message UserChannelStatQuery {
     // Statistics Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // The ID of domain.
-    string domain_id = 2;
 }

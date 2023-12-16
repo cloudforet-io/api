@@ -178,8 +178,6 @@ message CreateProjectChannelRequest {
     google.protobuf.Struct tags = 9;
     // The ID of project to which the project channel belongs.
     string project_id = 21;
-    // The ID of domain.
-    string domain_id = 22;
 }
 
 //{
@@ -236,8 +234,6 @@ message UpdateProjectChannelScheduleRequest {
     // Schedule for which you want to receive notifications through the project channel.
     // +optional
     ProjectChannelSchedule schedule = 3;
-    // The ID of domain.
-    string domain_id = 4;
 }
 
 //{
@@ -256,8 +252,6 @@ message UpdateProjectChannelSubscriptionRequest {
     // If is_subscribe is set to false, this value is ignored.
     // +optional
     repeated string subscriptions = 3;
-    // The ID of domain.
-    string domain_id = 4;
 }
 
 //{
@@ -266,8 +260,6 @@ message UpdateProjectChannelSubscriptionRequest {
 message ProjectChannelRequest {
     // The ID of project channel.
     string project_channel_id = 1;
-    // The ID of domain.
-    string domain_id = 2;
 }
 
 //{
@@ -276,11 +268,6 @@ message ProjectChannelRequest {
 message GetProjectChannelRequest {
     // The ID of project channel.
     string project_channel_id = 1;
-    // The ID of domain.
-    string domain_id = 2;
-    // The list of the project channel information column you want to be returned. It must be specified in the ProjectChannelInfo.
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -315,17 +302,18 @@ message ProjectChannelQuery {
     // The ID of secret encrypted data in the security service
     // +optional
     string secret_id = 5;
+    // Indicates whether schedule will be used.
+    // +optional
+    bool is_scheduled = 6;
     // The level of notification.
     // +optional
-    NotificationLevel notification_level = 6;
+    NotificationLevel notification_level = 7;
     // The ID of protocol set in the project channel.
     // +optional
     string protocol_id = 11;
     // The ID of project to which the project channel belongs.
     // +optional
     string project_id = 12;
-    // The ID of domain.
-    string domain_id = 13;
 }
 
 //{
@@ -339,6 +327,7 @@ message ProjectChannelQuery {
 //    "tags": {},
 //    "protocol_id": "protocol-ab94ea7d574e",
 //    "project_id": "project-aa723eed3d69",
+//    "workspace_id": "workspace-123456789012"
 //    "domain_id": "domain-58010aa2e451",
 //    "created_at": "2022-06-13T07:35:28.305Z"
 //}
@@ -374,8 +363,10 @@ message ProjectChannelInfo {
     string protocol_id = 21;
     // The ID of project to which the project channel belongs.
     string project_id = 22;
+    // The ID of workspace
+    string workspace_id = 23;
     // The ID of domain.
-    string domain_id = 23;
+    string domain_id = 24;
     // Project channel creation time.
     string created_at = 31;
 }

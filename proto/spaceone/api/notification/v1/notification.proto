@@ -122,13 +122,12 @@ message CreateNotificationRequest {
     google.protobuf.Struct message = 4;
     // is_required: false
     // The type of notification.
+    // +optional
     NotificationType notification_type = 5;
     // is_required: false
     // The level of notification.
+    // +optional
     NotificationLEVEL notification_level = 7;
-    // is_required: true
-    // The ID of domain.
-    string domain_id = 11;
 }
 
 //{
@@ -164,15 +163,17 @@ message PushNotificationRequest {
     // The ID of Protocol.
     string protocol_id = 1;
     // is_required: true
-    google.protobuf.Struct data = 2;
+    string data = 2;
     // is_required: true
     google.protobuf.Struct message = 3;
     // is_required: false
+    // +optional
     string notification_type = 4;
     // is_required: false
+    // +optional
     string notification_level = 5;
-    // is_required: true
-    string domain_id = 11;
+    // +optional
+    string topic = 6;
 }
 
 //{
@@ -186,9 +187,6 @@ message NotificationRequest {
     // is_required: true
     // ID list of Notifications.
     repeated string notifications = 1;
-    // is_required: true
-    // The ID of domain.
-    string domain_id = 2;
 }
 
 //{
@@ -201,9 +199,6 @@ message SetReadNotificationRequest {
     // is_required: true
     // The ID list of notification that want to change read status.
     repeated string notifications = 1;
-    // is_required: true
-    // The ID of domain.
-    string domain_id = 2;
 }
 
 //{
@@ -213,12 +208,9 @@ message GetNotificationRequest {
     // is_required: true
     // The ID of Notification.
     string notification_id = 1;
-    // is_required: true
-    // The ID of domain.
-    string domain_id = 2;
-    // is_required: false
-    // The list of the notification information column you want to be returned. It must be specified in the NotificationInfo.
-    repeated string only = 3;
+    // +optional
+    // Check whether read or not
+    bool set_read = 2;
 }
 
 //{
@@ -251,35 +243,37 @@ message NotificationQuery {
     }
     // is_required: false
     // Query format provided by SpaceONE. Please check the link for more information.
+    // +optional
     spaceone.api.core.v1.Query query = 1;
     // is_required: false
     // The ID of notification.
+    // +optional
     string notification_id = 2;
     // is_required: false
     // The topic of notification.
+    // +optional
     string topic = 3;
     // is_required: false
     // The type of notification.
+    // +optional
     NotificationType notification_type = 4;
     // is_required: false
     // The level of notification.
+    // +optional
     NotificationLEVEL notification_level = 5;
     // is_required: false
     // Whether or not to check the notification.
     // If is_read is False, the user has not checked the notification yet.
+    // +optional
     bool is_read = 6;
     // is_required: false
     // The ID of parent notification. Not used yet.
+    // +optional
     string parent_notification_id = 7;
     // is_required: false
     // The project ID to which the notification will be dispatched.
+    // +optional
     string project_id = 8;
-    // is_required: false
-    // The ID of user.
-    string user_id = 9;
-    // is_required: true
-    // The ID of domain.
-    string domain_id = 11;
 }
 
 //{
@@ -404,7 +398,4 @@ message NotificationStatQuery {
     // is_required: true
     // Statistics Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // is_required: true
-    // The ID of domain.
-    string domain_id = 2;
 }

@@ -54,7 +54,6 @@ message CreateRepositoryRequest {
     string repository_type = 2;
     // +optional
     string endpoint = 10;
-    string domain_id = 13;
 }
 
 //{
@@ -65,7 +64,6 @@ message UpdateRepositoryRequest {
     string repository_id = 1;
     // +optional
     string name = 2;
-    string domain_id = 3;
 }
 
 //{
@@ -73,7 +71,6 @@ message UpdateRepositoryRequest {
 //}
 message RepositoryRequest {
     string repository_id = 1;
-    string domain_id = 2;
 }
 
 //{
@@ -81,9 +78,6 @@ message RepositoryRequest {
 //}
 message GetRepositoryRequest {
     string repository_id = 1;
-    // +optional
-    repeated string only = 2;
-    string domain_id = 3;
 }
 
 //{
@@ -99,7 +93,6 @@ message RepositoryQuery {
     string name = 3;
     // +optional
     string repository_type = 4;
-    string domain_id = 5;
 }
 
 //{
@@ -136,5 +129,4 @@ message RepositoriesInfo {
 
 message RepositoryStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }
