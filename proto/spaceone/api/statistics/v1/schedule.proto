@@ -267,15 +267,12 @@ message QueryOption {
 //        }}]},
 //    "schedule": {"hours": [1]},
 //    "tags": {},
-//    "domain_id": "domain-58010aa2e451"}
 message AddScheduleRequest {
     string topic = 1;
     google.protobuf.Struct options = 2;
     Scheduled schedule = 3;
     // +optional
     google.protobuf.Struct tags = 4;
-    string user_id = 11;
-    string domain_id = 12;
 }
 
     
@@ -283,7 +280,6 @@ message AddScheduleRequest {
 //    "schedule_id": "sch-65bb6b55d162",
 //    "schedule": {"hours": [2]},
 //    "tags": {"a": "b"},
-//    "domain_id": "domain-58010aa2e451"
 //}
 message UpdateScheduleRequest {
     string schedule_id = 1;
@@ -291,33 +287,24 @@ message UpdateScheduleRequest {
     Scheduled schedule = 2;
     // +optional
     google.protobuf.Struct tags = 3;
-    string storage_id = 4;
-    string domain_id = 11;
 }
 
 //{
 //    "schedule_id": "sch-65bb6b55d162",
-//    "domain_id": "domain-58010aa2e451"
 //}
 message ScheduleRequest {
     string schedule_id = 1;
-    string domain_id = 2;
 }
 
 //{
 //    "schedule_id": "sch-3da9c9ed2ee2",
-//    "domain_id": "domain-58010aa2e451"
 //}
 message GetScheduleRequest {
     string schedule_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
 //    "query": {},
-//    "domain_id": "domain-58010aa2e451"
 //}
 message ScheduleQuery {
     // +optional
@@ -330,7 +317,6 @@ message ScheduleQuery {
     string state = 4;
     // +optional
     string resource_type = 5;
-    string domain_id = 6;
 }
 
 //{
@@ -1221,5 +1207,4 @@ message SchedulesInfo {
 
 message ScheduleStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }

@@ -39,23 +39,19 @@ service History {
 
 //{
 //    "schedule_id": "sch-b1d8be347bed",
-//    "domain_id": "domain-58010aa2e451"
 //}
 message CreateHistoryRequest {
     string schedule_id = 1;
-    string domain_id = 2;
 }
 
 //{
 //    "query": {},
-//    "domain_id": "domain-58010aa2e451"
 //}
 message QueryHistoryRequest {
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
     string topic = 2;
-    string domain_id = 3;
 }
 
 message HistoryValueInfo {
@@ -105,5 +101,4 @@ message HistoryStatRequest {
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // +optional
     string topic = 2;
-    string domain_id = 3;
 }

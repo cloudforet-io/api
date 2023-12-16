@@ -154,7 +154,6 @@ message CreatePluginRequest {
     google.protobuf.Struct tags = 14;
     // +optional
     string project_id = 21;
-    string domain_id = 22;
 }
 
 //{
@@ -206,40 +205,31 @@ message UpdatePluginRequest {
     google.protobuf.ListValue labels = 13;
     // +optional
     google.protobuf.Struct tags = 14;
-    string domain_id = 21;
 }
 
 //{
 //    "plugin_id": "plugin-aws-sns-mon-webhook",
-//    "domain_id": "domain-123456789012"
 //}
 message PluginRequest {
     string plugin_id = 1;
-    string domain_id = 2;
 }
 
 //{
 //    "plugin_id": "plugin-aws-sns-mon-webhook",
-//    "domain_id": "domain-123456789012"
 //}
 message RepositoryPluginRequest {
     string plugin_id = 1;
-    string domain_id = 2;
     // +optional
-    string repository_id = 3;
+    string repository_id = 2;
 }
 
 //{
 //    "plugin_id": "plugin-aws-sns-mon-webhook",
-//    "domain_id": "domain-123456789012"
 //}
 message GetRepositoryPluginRequest {
     string plugin_id = 1;
-    string domain_id = 2;
     // +optional
-    string repository_id = 3;
-    // +optional
-    repeated string only = 4;
+    string repository_id = 2;
 }
 
 //{
@@ -265,7 +255,6 @@ message PluginQuery {
     // +optional
     string provider = 6;
     string repository_id = 7;
-    string domain_id = 8;
     // +optional
     PublicRegistryType registry_type = 9;
 
@@ -347,7 +336,6 @@ message PluginInfo {
     google.protobuf.Struct tags = 14;
 
     RepositoryInfo repository_info = 21;
-    string project_id = 22;
     string domain_id = 23;
 
     string created_at = 31;
@@ -430,5 +418,4 @@ message VersionsInfo {
 message PluginStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
     string repository_id = 2;
-    string domain_id = 3;
 }

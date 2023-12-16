@@ -126,6 +126,7 @@ message PluginInfo{
     // The Options that contains information about using plugin.
     google.protobuf.Struct options = 3;
     // The ID of the Secret containing encrypted data to be used in the plugin.
+    // +optional
     string secret_id = 4;
     // The metadata of plugin. It includes schema for the data that must be set for the Channel when creating the Channel using a Protocol.
     // The schema follows the JSON Schema format.
@@ -177,8 +178,6 @@ message CreateProtocolRequest {
     // The tags for protocol.
     // +optional
     google.protobuf.Struct tags = 3;
-    // The ID of domain to which the Protocol belongs.
-    string domain_id = 12;
 }
 
 //{
@@ -197,8 +196,6 @@ message UpdateProtocolRequest {
     // The tags for protocol. When updating, existing tag information is deleted all and will be updated with new.
     // +optional
     google.protobuf.Struct tags = 3;
-    // The ID of domain to which the Protocol belongs.
-    string domain_id = 11;
 }
 
 //{
@@ -225,8 +222,6 @@ message UpdateProtocolPluginRequest {
 message ProtocolRequest {
     // The ID of Protocol.
     string protocol_id = 1;
-    // The ID of domain to which the Protocol belongs.
-    string domain_id = 2;
 }
 
 //{
@@ -235,11 +230,6 @@ message ProtocolRequest {
 message GetProtocolRequest {
     // The ID of Protocol.
     string protocol_id = 1;
-    // The ID of domain to which the Protocol belongs.
-    string domain_id = 2;
-    // The list of the Protocol information column you want to be returned. It must be specified in the ProtocolInfo.
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -273,8 +263,6 @@ message ProtocolQuery {
     // The type of Protocol. INTERNAL or EXTERNAL only.
     // +optional
     ProtocolType protocol_type = 5;
-    // The ID of domain to which the Protocol belongs.
-    string domain_id = 11;
 }
 
 //{
@@ -421,6 +409,4 @@ message ProtocolsInfo {
 message ProtocolStatQuery {
     // Statistics Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // The ID of domain to which the Protocol belongs.
-    string domain_id = 2;
 }
