@@ -45,7 +45,7 @@ service Post {
     }
 
     // Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.
-    rpc get (GetPostRequest) returns (PostInfo) {
+    rpc get (PostRequest) returns (PostInfo) {
         option (google.api.http) = {
             post: "/board/v1/post/get"
             body: "*"
@@ -73,13 +73,15 @@ service Post {
 //    "category": "developer",
 //    "title": "title",
 //    "contents": "This is contents.",
+//    "files": ["file-123456789012"],
 //    "options": {"is_popup": true},
 //    "writer": "user1",
+//    "resource_group": "DOMAIN",
 //    "domain_id": "domain-123456789012"
 //}
 message CreatePostRequest {
-    enum PermissionGroup {
-        PERMISSION_GROUP_NONE = 0;
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
         GLOBAL = 1;
         DOMAIN = 2;
     }
@@ -92,9 +94,9 @@ message CreatePostRequest {
     repeated string files = 4;
     // +optional
     google.protobuf.Struct options = 5;
+    ResourceGroup resource_group = 6;
     // +optional
-    string writer = 6;
-    PermissionGroup permission_group = 7;
+    string writer = 7;
     // +optional
     string domain_id = 21;
     string board_id = 22;
@@ -110,10 +112,15 @@ message CreatePostRequest {
 //          "is_popup": false,
 //          "is_pinned": true
 //      },
-//      "writer": "user1",
-//      "domain_id": "domain-123456789012"
+//      "writer": "user1"
 //}
 message UpdatePostRequest {
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        GLOBAL = 1;
+        DOMAIN = 2;
+    }
+
     string post_id = 1;
     // +optional
     string category = 2;
@@ -127,40 +134,22 @@ message UpdatePostRequest {
     google.protobuf.Struct options = 6;
     // +optional
     string writer = 7;
-    // +optional
-    string domain_id = 21;
+    ResourceGroup resource_group = 8;
     string board_id = 22;
 }
 
 message SendNotificationRequest {
     string board_id = 1;
     string post_id = 2;
-    // +optional
-    string domain_id = 21;
 }
 
 //{
 //    "board_id": "board-b9aa34e65c60",
-//    "post_id": "post-2118473ce15e",
-//    "domain_id": "domain-123456789012"
+//    "post_id": "post-2118473ce15e"
 //}
 message PostRequest {
     string board_id = 1;
     string post_id = 2;
-    // +optional
-    string domain_id = 21;
-}
-
-//{
-//    "board_id": "board-b9aa34e65c60",
-//    "post_id": "post-2118473ce15e",
-//    "domain_id": "domain-58010aa2e451"
-//}
-message GetPostRequest {
-    string board_id = 1;
-    string post_id = 2;
-    // +optional
-    string domain_id = 21;
 }
 
 //{
@@ -168,8 +157,8 @@ message GetPostRequest {
 //    "query": {}
 //}
 message PostSearchQuery {
-    enum PermissionGroup {
-        PERMISSION_GROUP_NONE = 0;
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
         GLOBAL = 1;
         DOMAIN = 2;
     }
@@ -186,25 +175,18 @@ message PostSearchQuery {
     bool is_pinned = 5;
     // +optional
     bool is_popup = 6;
+    ResourceGroup resource_group = 8;
     // +optional
-    string user_domain_id = 7;
-    PermissionGroup permission_group = 8;
-    // +optional
-    string domain_id = 21;
     string board_id = 22;
-    // +optional
-    string user_id = 23;
 }
 
 message PostStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }
 
 //{
 //          "board_id": "board-123456789012",
 //          "post_id": "post-123456789012",
-//          "post_type": "INTERNAL",
 //          "category": "developer",
 //          "title": "title",
 //          "contents": "This is contents.",
@@ -214,15 +196,14 @@ message PostStatQuery {
 //          },
 //          "view_count": 0,
 //          "writer": "user1",
-//          "scope": "DOMAIN",
 //          "domain_id": "domain-123456789012",
 //          "user_id": "user1@email.com",
 //          "created_at": "2022-01-01T01:06:23.732Z",
 //          "updated_at": "2022-01-01T01:06:23.732Z"
 //}
 message PostInfo {
-    enum PermissionGroup {
-        PERMISSION_GROUP_NONE = 0;
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
         GLOBAL = 1;
         DOMAIN = 2;
     }
@@ -235,11 +216,10 @@ message PostInfo {
     int32 view_count = 8;
     string writer = 9;
     google.protobuf.ListValue files = 11;
-    PermissionGroup permission_group = 12;
+    ResourceGroup resource_group = 12;
     string domain_id = 21;
     string board_id = 22;
     string user_id = 23;
-    string user_domain_id = 24;
     string created_at = 31;
     string updated_at = 32;
 }
@@ -249,7 +229,6 @@ message PostInfo {
 //          {
 //              "board_id": "board-b9aa34e65c60",
 //              "post_id": "post-2118473ce15e",
-//              "post_type": "INTERNAL",
 //              "category": "spaceone",
 //              "title": "title2",
 //              "contents": "this is contents2.",
@@ -259,7 +238,8 @@ message PostInfo {
 //              },
 //              "view_count": 3,
 //              "writer": "seolmin2",
-//              "scope": "DOMAIN",
+//              "files": ["file-123456789012"],
+//              "resource_group": "DOMAIN",
 //              "domain_id": "domain-58010aa2e451",
 //              "user_id": "user1@email.com",
 //              "created_at": "2022-06-13T01:06:23.732Z",
@@ -268,7 +248,6 @@ message PostInfo {
 //          {
 //              "board_id": "board-b9aa34e65c60",
 //              "post_id": "post-532ae1191233",
-//              "post_type": "INTERNAL",
 //              "category": "flower",
 //              "title": "작업공지",
 //              "contents": "This is description",
@@ -277,7 +256,8 @@ message PostInfo {
 //                  "is_popup": true
 //              },
 //              "writer": "권설민",
-//              "scope": "PUBLIC",
+//              "files": ["file-123456789022"],
+//              "resource_group": "DOMAIN",
 //              "user_id": "supervisor",
 //              "created_at": "2022-06-10T07:01:44.384Z",
 //              "updated_at": "2022-06-10T07:01:44.384Z"

@@ -18,7 +18,7 @@ service DomainConfig {
             body: "*"
         };
     }
-    rpc update (UpdateDomainConfigRequest) returns (DomainConfigInfo) {
+    rpc update (SetDomainConfigRequest) returns (DomainConfigInfo) {
         option (google.api.http) = {
             post: "/config/v1/domain-config/update"
             body: "*"
@@ -61,21 +61,10 @@ message SetDomainConfigRequest {
     google.protobuf.Struct data = 2;
     // +optional
     google.protobuf.Struct tags = 3;
-    string domain_id = 21;
-}
-
-message UpdateDomainConfigRequest {
-    string name = 1;
-    // +optional
-    google.protobuf.Struct data = 2;
-    // +optional
-    google.protobuf.Struct tags = 3;
-    string domain_id = 21;
 }
 
 message DomainConfigRequest {
     string name = 1;
-    string domain_id = 21;
 }
 
 message DomainConfigSearchQuery {
@@ -83,7 +72,6 @@ message DomainConfigSearchQuery {
     spaceone.api.core.v1.Query query = 1;
     // +optional
     string name = 2;
-    string domain_id = 21;
 }
 
 message DomainConfigInfo {
@@ -102,5 +90,4 @@ message DomainConfigsInfo {
 
 message DomainConfigStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }
