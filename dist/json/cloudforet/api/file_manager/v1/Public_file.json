@@ -1,20 +1,67 @@
 {
   "files": [
     {
-      "name": "spaceone/api/secret/v1/secret_group.proto",
+      "name": "spaceone/api/file_manager/v1/public_file.proto",
       "description": "",
-      "package": "spaceone.api.secret.v1",
+      "package": "spaceone.api.file_manager.v1",
       "hasEnums": false,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
-      "enums": [],
+      "enums": [
+        {
+          "name": "PublicFileState",
+          "longName": "PublicFileInfo.PublicFileState",
+          "fullName": "spaceone.api.file_manager.v1.PublicFileInfo.PublicFileState",
+          "description": "",
+          "values": [
+            {
+              "name": "PUBLIC_STATE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "PENDING",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DONE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "PublicFileState",
+          "longName": "PublicFileSearchQuery.PublicFileState",
+          "fullName": "spaceone.api.file_manager.v1.PublicFileSearchQuery.PublicFileState",
+          "description": "",
+          "values": [
+            {
+              "name": "PUBLIC_STATE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "PENDING",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DONE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        }
+      ],
       "extensions": [],
       "messages": [
         {
-          "name": "CreateSecretGroupRequest",
-          "longName": "CreateSecretGroupRequest",
-          "fullName": "spaceone.api.secret.v1.CreateSecretGroupRequest",
+          "name": "CreatePublicFileRequest",
+          "longName": "CreatePublicFileRequest",
+          "fullName": "spaceone.api.file_manager.v1.CreatePublicFileRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -46,60 +93,12 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "GetSecretGroupRequest",
-          "longName": "GetSecretGroupRequest",
-          "fullName": "spaceone.api.secret.v1.GetSecretGroupRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "secret_group_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "only",
+              "name": "reference",
               "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "label": "",
+              "type": "PublicFileReference",
+              "longType": "PublicFileReference",
+              "fullType": "spaceone.api.file_manager.v1.PublicFileReference",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -108,9 +107,9 @@
           ]
         },
         {
-          "name": "SecretGroupInfo",
-          "longName": "SecretGroupInfo",
-          "fullName": "spaceone.api.secret.v1.SecretGroupInfo",
+          "name": "PublicFileInfo",
+          "longName": "PublicFileInfo",
+          "fullName": "spaceone.api.file_manager.v1.PublicFileInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -118,7 +117,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "secret_group_id",
+              "name": "public_file_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -142,6 +141,66 @@
               "defaultValue": ""
             },
             {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "PublicFileState",
+              "longType": "PublicFileInfo.PublicFileState",
+              "fullType": "spaceone.api.file_manager.v1.PublicFileInfo.PublicFileState",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "file_type",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "upload_url",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "upload_options",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "download_url",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "tags",
               "description": "",
               "label": "",
@@ -154,12 +213,12 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "reference",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "PublicFileReference",
+              "longType": "PublicFileReference",
+              "fullType": "spaceone.api.file_manager.v1.PublicFileReference",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -180,9 +239,69 @@
           ]
         },
         {
-          "name": "SecretGroupQuery",
-          "longName": "SecretGroupQuery",
-          "fullName": "spaceone.api.secret.v1.SecretGroupQuery",
+          "name": "PublicFileReference",
+          "longName": "PublicFileReference",
+          "fullName": "spaceone.api.file_manager.v1.PublicFileReference",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "resource_type",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PublicFileRequest",
+          "longName": "PublicFileRequest",
+          "fullName": "spaceone.api.file_manager.v1.PublicFileRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "public_file_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PublicFileSearchQuery",
+          "longName": "PublicFileSearchQuery",
+          "fullName": "spaceone.api.file_manager.v1.PublicFileSearchQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -202,7 +321,7 @@
               "defaultValue": ""
             },
             {
-              "name": "secret_group_id",
+              "name": "public_file_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -226,7 +345,19 @@
               "defaultValue": ""
             },
             {
-              "name": "secret_id",
+              "name": "state",
+              "description": "+optional",
+              "label": "",
+              "type": "PublicFileState",
+              "longType": "PublicFileSearchQuery.PublicFileState",
+              "fullType": "spaceone.api.file_manager.v1.PublicFileSearchQuery.PublicFileState",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "file_type",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -238,8 +369,20 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "",
+              "name": "resource_type",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_id",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -252,141 +395,9 @@
           ]
         },
         {
-          "name": "SecretGroupRequest",
-          "longName": "SecretGroupRequest",
-          "fullName": "spaceone.api.secret.v1.SecretGroupRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "secret_group_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "SecretGroupSecretInfo",
-          "longName": "SecretGroupSecretInfo",
-          "fullName": "spaceone.api.secret.v1.SecretGroupSecretInfo",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "secret_group_info",
-              "description": "",
-              "label": "",
-              "type": "SecretGroupInfo",
-              "longType": "SecretGroupInfo",
-              "fullType": "spaceone.api.secret.v1.SecretGroupInfo",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "secret_info",
-              "description": "",
-              "label": "",
-              "type": "SecretInfo",
-              "longType": "SecretInfo",
-              "fullType": "spaceone.api.secret.v1.SecretInfo",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "SecretGroupSecretRequest",
-          "longName": "SecretGroupSecretRequest",
-          "fullName": "spaceone.api.secret.v1.SecretGroupSecretRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "secret_group_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "secret_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "SecretGroupStatQuery",
-          "longName": "SecretGroupStatQuery",
-          "fullName": "spaceone.api.secret.v1.SecretGroupStatQuery",
+          "name": "PublicFileStatQuery",
+          "longName": "PublicFileStatQuery",
+          "fullName": "spaceone.api.file_manager.v1.PublicFileStatQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -420,9 +431,9 @@
           ]
         },
         {
-          "name": "SecretGroupsInfo",
-          "longName": "SecretGroupsInfo",
-          "fullName": "spaceone.api.secret.v1.SecretGroupsInfo",
+          "name": "PublicFilesInfo",
+          "longName": "PublicFilesInfo",
+          "fullName": "spaceone.api.file_manager.v1.PublicFilesInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -433,9 +444,9 @@
               "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "SecretGroupInfo",
-              "longType": "SecretGroupInfo",
-              "fullType": "spaceone.api.secret.v1.SecretGroupInfo",
+              "type": "PublicFileInfo",
+              "longType": "PublicFileInfo",
+              "fullType": "spaceone.api.file_manager.v1.PublicFileInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -456,9 +467,9 @@
           ]
         },
         {
-          "name": "UpdateSecretGroupRequest",
-          "longName": "UpdateSecretGroupRequest",
-          "fullName": "spaceone.api.secret.v1.UpdateSecretGroupRequest",
+          "name": "UpdatePublicFileRequest",
+          "longName": "UpdatePublicFileRequest",
+          "fullName": "spaceone.api.file_manager.v1.UpdatePublicFileRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -466,20 +477,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "secret_group_id",
+              "name": "public_file_id",
               "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -502,12 +501,12 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "",
+              "name": "reference",
+              "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "PublicFileReference",
+              "longType": "PublicFileReference",
+              "fullType": "spaceone.api.file_manager.v1.PublicFileReference",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -518,28 +517,28 @@
       ],
       "services": [
         {
-          "name": "SecretGroup",
-          "longName": "SecretGroup",
-          "fullName": "spaceone.api.secret.v1.SecretGroup",
+          "name": "PublicFile",
+          "longName": "PublicFile",
+          "fullName": "spaceone.api.file_manager.v1.PublicFile",
           "description": "",
           "methods": [
             {
-              "name": "create",
+              "name": "add",
               "description": "",
-              "requestType": "CreateSecretGroupRequest",
-              "requestLongType": "CreateSecretGroupRequest",
-              "requestFullType": "spaceone.api.secret.v1.CreateSecretGroupRequest",
+              "requestType": "CreatePublicFileRequest",
+              "requestLongType": "CreatePublicFileRequest",
+              "requestFullType": "spaceone.api.file_manager.v1.CreatePublicFileRequest",
               "requestStreaming": false,
-              "responseType": "SecretGroupInfo",
-              "responseLongType": "SecretGroupInfo",
-              "responseFullType": "spaceone.api.secret.v1.SecretGroupInfo",
+              "responseType": "PublicFileInfo",
+              "responseLongType": "PublicFileInfo",
+              "responseFullType": "spaceone.api.file_manager.v1.PublicFileInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/secret/v1/secret-group/create",
+                      "pattern": "/file-manager/v1/public-file/add",
                       "body": "*"
                     }
                   ]
@@ -549,66 +548,20 @@
             {
               "name": "update",
               "description": "",
-              "requestType": "UpdateSecretGroupRequest",
-              "requestLongType": "UpdateSecretGroupRequest",
-              "requestFullType": "spaceone.api.secret.v1.UpdateSecretGroupRequest",
+              "requestType": "UpdatePublicFileRequest",
+              "requestLongType": "UpdatePublicFileRequest",
+              "requestFullType": "spaceone.api.file_manager.v1.UpdatePublicFileRequest",
               "requestStreaming": false,
-              "responseType": "SecretGroupInfo",
-              "responseLongType": "SecretGroupInfo",
-              "responseFullType": "spaceone.api.secret.v1.SecretGroupInfo",
+              "responseType": "PublicFileInfo",
+              "responseLongType": "PublicFileInfo",
+              "responseFullType": "spaceone.api.file_manager.v1.PublicFileInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/secret/v1/secret-group/update",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "add_secret",
-              "description": "",
-              "requestType": "SecretGroupSecretRequest",
-              "requestLongType": "SecretGroupSecretRequest",
-              "requestFullType": "spaceone.api.secret.v1.SecretGroupSecretRequest",
-              "requestStreaming": false,
-              "responseType": "SecretGroupSecretInfo",
-              "responseLongType": "SecretGroupSecretInfo",
-              "responseFullType": "spaceone.api.secret.v1.SecretGroupSecretInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/secret/v1/secret-group/add-secret",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "remove_secret",
-              "description": "",
-              "requestType": "SecretGroupSecretRequest",
-              "requestLongType": "SecretGroupSecretRequest",
-              "requestFullType": "spaceone.api.secret.v1.SecretGroupSecretRequest",
-              "requestStreaming": false,
-              "responseType": "Empty",
-              "responseLongType": ".google.protobuf.Empty",
-              "responseFullType": "google.protobuf.Empty",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/secret/v1/secret-group/remove-secret",
+                      "pattern": "/file-manager/v1/public-file/update",
                       "body": "*"
                     }
                   ]
@@ -618,9 +571,9 @@
             {
               "name": "delete",
               "description": "",
-              "requestType": "SecretGroupRequest",
-              "requestLongType": "SecretGroupRequest",
-              "requestFullType": "spaceone.api.secret.v1.SecretGroupRequest",
+              "requestType": "PublicFileRequest",
+              "requestLongType": "PublicFileRequest",
+              "requestFullType": "spaceone.api.file_manager.v1.PublicFileRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -631,7 +584,30 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/secret/v1/secret-group/delete",
+                      "pattern": "/file-manager/v1/public-file/delete",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get_download_url",
+              "description": "",
+              "requestType": "PublicFileRequest",
+              "requestLongType": "PublicFileRequest",
+              "requestFullType": "spaceone.api.file_manager.v1.PublicFileRequest",
+              "requestStreaming": false,
+              "responseType": "PublicFileInfo",
+              "responseLongType": "PublicFileInfo",
+              "responseFullType": "spaceone.api.file_manager.v1.PublicFileInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/file-manager/v1/public-file/get-download-url",
                       "body": "*"
                     }
                   ]
@@ -641,20 +617,20 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "GetSecretGroupRequest",
-              "requestLongType": "GetSecretGroupRequest",
-              "requestFullType": "spaceone.api.secret.v1.GetSecretGroupRequest",
+              "requestType": "PublicFileRequest",
+              "requestLongType": "PublicFileRequest",
+              "requestFullType": "spaceone.api.file_manager.v1.PublicFileRequest",
               "requestStreaming": false,
-              "responseType": "SecretGroupInfo",
-              "responseLongType": "SecretGroupInfo",
-              "responseFullType": "spaceone.api.secret.v1.SecretGroupInfo",
+              "responseType": "PublicFileInfo",
+              "responseLongType": "PublicFileInfo",
+              "responseFullType": "spaceone.api.file_manager.v1.PublicFileInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/secret/v1/secret-group/get",
+                      "pattern": "/file-manager/v1/public-file/get",
                       "body": "*"
                     }
                   ]
@@ -664,20 +640,20 @@
             {
               "name": "list",
               "description": "",
-              "requestType": "SecretGroupQuery",
-              "requestLongType": "SecretGroupQuery",
-              "requestFullType": "spaceone.api.secret.v1.SecretGroupQuery",
+              "requestType": "PublicFileSearchQuery",
+              "requestLongType": "PublicFileSearchQuery",
+              "requestFullType": "spaceone.api.file_manager.v1.PublicFileSearchQuery",
               "requestStreaming": false,
-              "responseType": "SecretGroupsInfo",
-              "responseLongType": "SecretGroupsInfo",
-              "responseFullType": "spaceone.api.secret.v1.SecretGroupsInfo",
+              "responseType": "PublicFilesInfo",
+              "responseLongType": "PublicFilesInfo",
+              "responseFullType": "spaceone.api.file_manager.v1.PublicFilesInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/secret/v1/secret-group/list",
+                      "pattern": "/file-manager/v1/public-file/list",
                       "body": "*"
                     }
                   ]
@@ -687,9 +663,9 @@
             {
               "name": "stat",
               "description": "",
-              "requestType": "SecretGroupStatQuery",
-              "requestLongType": "SecretGroupStatQuery",
-              "requestFullType": "spaceone.api.secret.v1.SecretGroupStatQuery",
+              "requestType": "PublicFileStatQuery",
+              "requestLongType": "PublicFileStatQuery",
+              "requestFullType": "spaceone.api.file_manager.v1.PublicFileStatQuery",
               "requestStreaming": false,
               "responseType": "Struct",
               "responseLongType": ".google.protobuf.Struct",
@@ -700,7 +676,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/secret/v1/secret-group/stat",
+                      "pattern": "/file-manager/v1/public-file/stat",
                       "body": "*"
                     }
                   ]

@@ -27,18 +27,12 @@ const (
 	User_Create_FullMethodName             = "/spaceone.api.identity.v2.User/create"
 	User_Update_FullMethodName             = "/spaceone.api.identity.v2.User/update"
 	User_VerifyEmail_FullMethodName        = "/spaceone.api.identity.v2.User/verify_email"
-	User_ConfirmEmail_FullMethodName       = "/spaceone.api.identity.v2.User/confirm_email"
-	User_ResetPassword_FullMethodName      = "/spaceone.api.identity.v2.User/reset_password"
-	User_SetRequiredActions_FullMethodName = "/spaceone.api.identity.v2.User/set_required_actions"
-	User_EnableMfa_FullMethodName          = "/spaceone.api.identity.v2.User/enable_mfa"
 	User_DisableMfa_FullMethodName         = "/spaceone.api.identity.v2.User/disable_mfa"
-	User_ConfirmMfa_FullMethodName         = "/spaceone.api.identity.v2.User/confirm_mfa"
+	User_SetRequiredActions_FullMethodName = "/spaceone.api.identity.v2.User/set_required_actions"
 	User_Enable_FullMethodName             = "/spaceone.api.identity.v2.User/enable"
 	User_Disable_FullMethodName            = "/spaceone.api.identity.v2.User/disable"
 	User_Delete_FullMethodName             = "/spaceone.api.identity.v2.User/delete"
 	User_Get_FullMethodName                = "/spaceone.api.identity.v2.User/get"
-	User_GetWorkspaces_FullMethodName      = "/spaceone.api.identity.v2.User/get_workspaces"
-	User_Find_FullMethodName               = "/spaceone.api.identity.v2.User/find"
 	User_List_FullMethodName               = "/spaceone.api.identity.v2.User/list"
 	User_Stat_FullMethodName               = "/spaceone.api.identity.v2.User/stat"
 )
@@ -53,23 +47,14 @@ type UserClient interface {
 	Create(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	// Update user info by given user_id
 	Update(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UserInfo, error)
-	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	ConfirmEmail(ctx context.Context, in *ConfirmEmailRequest, opts ...grpc.CallOption) (*UserInfo, error)
-	// +noauth
-	ResetPassword(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	SetRequiredActions(ctx context.Context, in *SetRequiredActionsRequest, opts ...grpc.CallOption) (*UserInfo, error)
-	// Enable MFA for user. If this api is called, send email to user.
-	EnableMfa(ctx context.Context, in *EnableMFARequest, opts ...grpc.CallOption) (*UserInfo, error)
+	VerifyEmail(ctx context.Context, in *VerifyUserEmailRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Disable MFA for user. If this api is called, send email to user.
-	DisableMfa(ctx context.Context, in *DisableMFARequest, opts ...grpc.CallOption) (*UserInfo, error)
-	// Confirm MFA for user by given verify_code which is sent by your authentication method.
-	ConfirmMfa(ctx context.Context, in *ConfirmMFARequest, opts ...grpc.CallOption) (*UserInfo, error)
+	DisableMfa(ctx context.Context, in *DisableUserMFARequest, opts ...grpc.CallOption) (*UserInfo, error)
+	SetRequiredActions(ctx context.Context, in *SetRequiredActionsRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Enable(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Disable(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Delete(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserInfo, error)
-	GetWorkspaces(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*WorkspacesInfo, error)
-	Find(ctx context.Context, in *UserFindRequest, opts ...grpc.CallOption) (*UsersSummaryInfo, error)
 	List(ctx context.Context, in *UserSearchQuery, opts ...grpc.CallOption) (*UsersInfo, error)
 	Stat(ctx context.Context, in *UserStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -100,7 +85,7 @@ func (c *userClient) Update(ctx context.Context, in *UpdateUserRequest, opts ...
 	return out, nil
 }
 
-func (c *userClient) VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *userClient) VerifyEmail(ctx context.Context, in *VerifyUserEmailRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, User_VerifyEmail_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -109,18 +94,9 @@ func (c *userClient) VerifyEmail(ctx context.Context, in *VerifyEmailRequest, op
 	return out, nil
 }
 
-func (c *userClient) ConfirmEmail(ctx context.Context, in *ConfirmEmailRequest, opts ...grpc.CallOption) (*UserInfo, error) {
+func (c *userClient) DisableMfa(ctx context.Context, in *DisableUserMFARequest, opts ...grpc.CallOption) (*UserInfo, error) {
 	out := new(UserInfo)
-	err := c.cc.Invoke(ctx, User_ConfirmEmail_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) ResetPassword(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, User_ResetPassword_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, User_DisableMfa_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -130,33 +106,6 @@ func (c *userClient) ResetPassword(ctx context.Context, in *UserRequest, opts ..
 func (c *userClient) SetRequiredActions(ctx context.Context, in *SetRequiredActionsRequest, opts ...grpc.CallOption) (*UserInfo, error) {
 	out := new(UserInfo)
 	err := c.cc.Invoke(ctx, User_SetRequiredActions_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) EnableMfa(ctx context.Context, in *EnableMFARequest, opts ...grpc.CallOption) (*UserInfo, error) {
-	out := new(UserInfo)
-	err := c.cc.Invoke(ctx, User_EnableMfa_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) DisableMfa(ctx context.Context, in *DisableMFARequest, opts ...grpc.CallOption) (*UserInfo, error) {
-	out := new(UserInfo)
-	err := c.cc.Invoke(ctx, User_DisableMfa_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) ConfirmMfa(ctx context.Context, in *ConfirmMFARequest, opts ...grpc.CallOption) (*UserInfo, error) {
-	out := new(UserInfo)
-	err := c.cc.Invoke(ctx, User_ConfirmMfa_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -199,24 +148,6 @@ func (c *userClient) Get(ctx context.Context, in *UserRequest, opts ...grpc.Call
 	return out, nil
 }
 
-func (c *userClient) GetWorkspaces(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*WorkspacesInfo, error) {
-	out := new(WorkspacesInfo)
-	err := c.cc.Invoke(ctx, User_GetWorkspaces_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) Find(ctx context.Context, in *UserFindRequest, opts ...grpc.CallOption) (*UsersSummaryInfo, error) {
-	out := new(UsersSummaryInfo)
-	err := c.cc.Invoke(ctx, User_Find_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *userClient) List(ctx context.Context, in *UserSearchQuery, opts ...grpc.CallOption) (*UsersInfo, error) {
 	out := new(UsersInfo)
 	err := c.cc.Invoke(ctx, User_List_FullMethodName, in, out, opts...)
@@ -245,23 +176,14 @@ type UserServer interface {
 	Create(context.Context, *CreateUserRequest) (*UserInfo, error)
 	// Update user info by given user_id
 	Update(context.Context, *UpdateUserRequest) (*UserInfo, error)
-	VerifyEmail(context.Context, *VerifyEmailRequest) (*empty.Empty, error)
-	ConfirmEmail(context.Context, *ConfirmEmailRequest) (*UserInfo, error)
-	// +noauth
-	ResetPassword(context.Context, *UserRequest) (*empty.Empty, error)
-	SetRequiredActions(context.Context, *SetRequiredActionsRequest) (*UserInfo, error)
-	// Enable MFA for user. If this api is called, send email to user.
-	EnableMfa(context.Context, *EnableMFARequest) (*UserInfo, error)
+	VerifyEmail(context.Context, *VerifyUserEmailRequest) (*empty.Empty, error)
 	// Disable MFA for user. If this api is called, send email to user.
-	DisableMfa(context.Context, *DisableMFARequest) (*UserInfo, error)
-	// Confirm MFA for user by given verify_code which is sent by your authentication method.
-	ConfirmMfa(context.Context, *ConfirmMFARequest) (*UserInfo, error)
+	DisableMfa(context.Context, *DisableUserMFARequest) (*UserInfo, error)
+	SetRequiredActions(context.Context, *SetRequiredActionsRequest) (*UserInfo, error)
 	Enable(context.Context, *UserRequest) (*UserInfo, error)
 	Disable(context.Context, *UserRequest) (*UserInfo, error)
 	Delete(context.Context, *UserRequest) (*empty.Empty, error)
 	Get(context.Context, *UserRequest) (*UserInfo, error)
-	GetWorkspaces(context.Context, *UserRequest) (*WorkspacesInfo, error)
-	Find(context.Context, *UserFindRequest) (*UsersSummaryInfo, error)
 	List(context.Context, *UserSearchQuery) (*UsersInfo, error)
 	Stat(context.Context, *UserStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedUserServer()
@@ -277,26 +199,14 @@ func (UnimplementedUserServer) Create(context.Context, *CreateUserRequest) (*Use
 func (UnimplementedUserServer) Update(context.Context, *UpdateUserRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedUserServer) VerifyEmail(context.Context, *VerifyEmailRequest) (*empty.Empty, error) {
+func (UnimplementedUserServer) VerifyEmail(context.Context, *VerifyUserEmailRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyEmail not implemented")
 }
-func (UnimplementedUserServer) ConfirmEmail(context.Context, *ConfirmEmailRequest) (*UserInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ConfirmEmail not implemented")
-}
-func (UnimplementedUserServer) ResetPassword(context.Context, *UserRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
+func (UnimplementedUserServer) DisableMfa(context.Context, *DisableUserMFARequest) (*UserInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DisableMfa not implemented")
 }
 func (UnimplementedUserServer) SetRequiredActions(context.Context, *SetRequiredActionsRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetRequiredActions not implemented")
-}
-func (UnimplementedUserServer) EnableMfa(context.Context, *EnableMFARequest) (*UserInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method EnableMfa not implemented")
-}
-func (UnimplementedUserServer) DisableMfa(context.Context, *DisableMFARequest) (*UserInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DisableMfa not implemented")
-}
-func (UnimplementedUserServer) ConfirmMfa(context.Context, *ConfirmMFARequest) (*UserInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ConfirmMfa not implemented")
 }
 func (UnimplementedUserServer) Enable(context.Context, *UserRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
@@ -309,12 +219,6 @@ func (UnimplementedUserServer) Delete(context.Context, *UserRequest) (*empty.Emp
 }
 func (UnimplementedUserServer) Get(context.Context, *UserRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
-}
-func (UnimplementedUserServer) GetWorkspaces(context.Context, *UserRequest) (*WorkspacesInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetWorkspaces not implemented")
-}
-func (UnimplementedUserServer) Find(context.Context, *UserFindRequest) (*UsersSummaryInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Find not implemented")
 }
 func (UnimplementedUserServer) List(context.Context, *UserSearchQuery) (*UsersInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
@@ -372,7 +276,7 @@ func _User_Update_Handler(srv interface{}, ctx context.Context, dec func(interfa
 }
 
 func _User_VerifyEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(VerifyEmailRequest)
+	in := new(VerifyUserEmailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -384,43 +288,25 @@ func _User_VerifyEmail_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: User_VerifyEmail_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).VerifyEmail(ctx, req.(*VerifyEmailRequest))
+		return srv.(UserServer).VerifyEmail(ctx, req.(*VerifyUserEmailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_ConfirmEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ConfirmEmailRequest)
+func _User_DisableMfa_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DisableUserMFARequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).ConfirmEmail(ctx, in)
+		return srv.(UserServer).DisableMfa(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: User_ConfirmEmail_FullMethodName,
+		FullMethod: User_DisableMfa_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).ConfirmEmail(ctx, req.(*ConfirmEmailRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).ResetPassword(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_ResetPassword_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).ResetPassword(ctx, req.(*UserRequest))
+		return srv.(UserServer).DisableMfa(ctx, req.(*DisableUserMFARequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -439,60 +325,6 @@ func _User_SetRequiredActions_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).SetRequiredActions(ctx, req.(*SetRequiredActionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_EnableMfa_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EnableMFARequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).EnableMfa(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_EnableMfa_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).EnableMfa(ctx, req.(*EnableMFARequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_DisableMfa_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DisableMFARequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).DisableMfa(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_DisableMfa_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).DisableMfa(ctx, req.(*DisableMFARequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_ConfirmMfa_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ConfirmMFARequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).ConfirmMfa(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_ConfirmMfa_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).ConfirmMfa(ctx, req.(*ConfirmMFARequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -569,42 +401,6 @@ func _User_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	return interceptor(ctx, in, info, handler)
 }
 
-func _User_GetWorkspaces_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).GetWorkspaces(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_GetWorkspaces_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).GetWorkspaces(ctx, req.(*UserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_Find_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserFindRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).Find(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: User_Find_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).Find(ctx, req.(*UserFindRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _User_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserSearchQuery)
 	if err := dec(in); err != nil {
@@ -661,28 +457,12 @@ var User_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _User_VerifyEmail_Handler,
 		},
 		{
-			MethodName: "confirm_email",
-			Handler:    _User_ConfirmEmail_Handler,
-		},
-		{
-			MethodName: "reset_password",
-			Handler:    _User_ResetPassword_Handler,
-		},
-		{
-			MethodName: "set_required_actions",
-			Handler:    _User_SetRequiredActions_Handler,
-		},
-		{
-			MethodName: "enable_mfa",
-			Handler:    _User_EnableMfa_Handler,
-		},
-		{
 			MethodName: "disable_mfa",
 			Handler:    _User_DisableMfa_Handler,
 		},
 		{
-			MethodName: "confirm_mfa",
-			Handler:    _User_ConfirmMfa_Handler,
+			MethodName: "set_required_actions",
+			Handler:    _User_SetRequiredActions_Handler,
 		},
 		{
 			MethodName: "enable",
@@ -699,14 +479,6 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "get",
 			Handler:    _User_Get_Handler,
-		},
-		{
-			MethodName: "get_workspaces",
-			Handler:    _User_GetWorkspaces_Handler,
-		},
-		{
-			MethodName: "find",
-			Handler:    _User_Find_Handler,
 		},
 		{
 			MethodName: "list",

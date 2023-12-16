@@ -58,27 +58,15 @@ enum RoleType {
     WORKSPACE_MEMBER = 5;
 }
 
-message PagePermission {
-    enum Permission {
-        NONE = 0;
-        VIEW = 1;
-        MANAGE = 2;
-    }
-
-    string page = 1;
-    Permission permission = 2;
-}
-
 message CreateRoleRequest {
     string name = 1;
     RoleType role_type = 2;
     // +optional
-    repeated string api_permissions = 3;
+    repeated string permissions = 3;
     // +optional
-    repeated PagePermission page_permissions = 4;
+    repeated string page_access = 4;
     // +optional
     google.protobuf.Struct tags = 5;
-    string domain_id = 21;
 }
 
 message UpdateRoleRequest {
@@ -86,25 +74,23 @@ message UpdateRoleRequest {
     // +optional
     string name = 2;
     // +optional
-    repeated string api_permissions = 3;
+    repeated string permissions = 3;
     // +optional
-    repeated PagePermission page_permissions = 4;
+    repeated string page_access = 4;
     // +optional
     google.protobuf.Struct tags = 5;
-    string domain_id = 21;
 }
 
 message RoleRequest {
     string role_id = 1;
-    string domain_id = 21;
 }
 
 message RoleInfo {
     string role_id = 1;
     string name = 2;
     RoleType role_type = 3;
-    repeated string api_permissions = 4;
-    repeated PagePermission page_permissions = 5;
+    repeated string permissions = 4;
+    repeated string page_access = 5;
     google.protobuf.Struct tags = 6;
     bool is_managed = 7;
     string domain_id = 21;
@@ -121,7 +107,6 @@ message RoleSearchQuery {
     string name = 3;
     // +optional
     RoleType role_type = 4;
-    string domain_id = 21;
 }
 
 message RolesInfo {
@@ -131,5 +116,4 @@ message RolesInfo {
 
 message RoleStatQuery {
     spaceone.api.core.v2.StatisticsQuery query = 1;
-    string domain_id = 21;
 }

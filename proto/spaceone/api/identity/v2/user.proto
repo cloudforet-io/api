@@ -32,55 +32,24 @@ service User {
         };
     }
 
-    rpc verify_email (VerifyEmailRequest) returns (google.protobuf.Empty) {
+    rpc verify_email (VerifyUserEmailRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/identity/v2/user/verify-email"
             body: "*"
         };
     }
 
-    rpc confirm_email (ConfirmEmailRequest) returns (UserInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/confirm-email"
-            body: "*"
-        };
-    }
-
-    // +noauth
-    rpc reset_password (UserRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/reset-password"
-            body: "*",
-        };
-    }
-
-    rpc set_required_actions (SetRequiredActionsRequest) returns (UserInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/set-required-actions"
-            body: "*"
-        };
-    }
-
-    // Enable MFA for user. If this api is called, send email to user.
-    rpc enable_mfa (EnableMFARequest) returns (UserInfo){
-        option (google.api.http) = {
-            post: "/identity/v2/user/enable-mfa"
-            body: "*"
-        };
-    }
-
     // Disable MFA for user. If this api is called, send email to user.
-    rpc disable_mfa (DisableMFARequest) returns (UserInfo) {
+    rpc disable_mfa (DisableUserMFARequest) returns (UserInfo) {
         option (google.api.http) = {
             post: "/identity/v2/user/disable-mfa"
             body: "*"
         };
     }
 
-    // Confirm MFA for user by given verify_code which is sent by your authentication method.
-    rpc confirm_mfa (ConfirmMFARequest) returns (UserInfo) {
+    rpc set_required_actions (SetRequiredActionsRequest) returns (UserInfo) {
         option (google.api.http) = {
-            post: "/identity/v2/user/confirm-mfa"
+            post: "/identity/v2/user/set-required-actions"
             body: "*"
         };
     }
@@ -109,20 +78,6 @@ service User {
     rpc get (UserRequest) returns (UserInfo) {
         option (google.api.http) = {
             post: "/identity/v2/user/get"
-            body: "*"
-        };
-    }
-
-    rpc get_workspaces (UserRequest) returns (spaceone.api.identity.v2.WorkspacesInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/get-workspaces"
-            body: "*"
-        };
-    }
-
-    rpc find (UserFindRequest) returns (UsersSummaryInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/find"
             body: "*"
         };
     }
@@ -186,7 +141,6 @@ message CreateUserRequest {
     google.protobuf.Struct tags = 8;
     // If reset_password is true, send email
     bool reset_password = 9;
-    string domain_id = 21;
 }
 
 message UpdateUserRequest {
@@ -205,43 +159,12 @@ message UpdateUserRequest {
     google.protobuf.Struct tags = 7;
     // +optional
     bool reset_password = 8;
-    string domain_id = 21;
 }
 
-message VerifyEmailRequest {
+message VerifyUserEmailRequest {
     string user_id = 1;
     // +optional
     string email = 2;
-    // +optional
-    bool force = 3;
-    string domain_id = 21;
-}
-
-message ConfirmEmailRequest {
-    string user_id = 1;
-    string verify_code = 2;
-    string domain_id = 21;
-}
-
-message SetRequiredActionsRequest {
-    string user_id = 1;
-    repeated UserRequiredAction actions = 2;
-    string domain_id = 21;
-}
-
-//{
-//  "user_id": "example@cloudforet.com",
-//  "mfa_type": "EMAIL",
-//  "options": {"email": "wonny@cloudforet.com"},
-//  "domain_id": "domain-a1b2c3d4e5f6"
-//}
-message EnableMFARequest {
-    string user_id = 1;
-    // EMAIL
-    string mfa_type = 2;
-    // If mfa_type is EMAIL, email is required in options. options will be saved in mfa's options field.
-    google.protobuf.Struct options = 3;
-    string domain_id = 21;
 }
 
 //{
@@ -249,46 +172,17 @@ message EnableMFARequest {
 //  "force": false,
 //  "domain_id": "domain-a1b2c3d4e5f6"
 //}
-message DisableMFARequest {
+message DisableUserMFARequest {
     string user_id = 1;
-    //If this value true, disable MFA without verification for user.
-    //+optional
-    bool force = 2;
-    string domain_id = 21;
 }
 
-//{
-//  "user_id": "example@cloudforet",
-//  "verify_code": "123456",
-//  "domain_id": "domain-a1b2c3d4e5f6"
-//}
-message ConfirmMFARequest {
+message SetRequiredActionsRequest {
     string user_id = 1;
-    string verify_code = 2;
-    string domain_id = 21;
+    repeated UserRequiredAction actions = 2;
 }
 
 message UserRequest {
     string user_id = 1;
-    string domain_id = 21;
-}
-
-message UserFindRequest {
-    enum State {
-        NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-        PENDING = 3;
-    }
-
-    string keyword = 1;
-    // +optional
-    State state = 2;
-    // +optional
-    string exclude_workspace_id = 3;
-    // +optional
-    spaceone.api.core.v2.Page page = 4;
-    string domain_id = 21;
 }
 
 message UserSearchQuery {
@@ -311,9 +205,6 @@ message UserSearchQuery {
     string email = 5;
     // +optional
     AuthType auth_type = 6;
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
 }
 
 message UserInfo {
@@ -327,9 +218,7 @@ message UserInfo {
         ROLE_TYPE_NONE = 0;
         SYSTEM_ADMIN = 1;
         DOMAIN_ADMIN = 2;
-        WORKSPACE_OWNER = 3;
-        WORKSPACE_MEMBER = 4;
-        USER = 5;
+        USER = 3;
     }
 
     string user_id = 1;
@@ -355,26 +244,7 @@ message UsersInfo {
     int32 total_count = 2;
 }
 
-message UserSummaryInfo {
-    enum State {
-        STATE_NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-        PENDING = 3;
-    }
-
-    string user_id = 1;
-    string name = 2;
-    State state = 3;
-}
-
-message UsersSummaryInfo {
-    repeated UserSummaryInfo results = 1;
-    int32 total_count = 2;
-}
-
 message UserStatQuery {
     spaceone.api.core.v2.StatisticsQuery query = 1;
-    string domain_id = 21;
 }
 

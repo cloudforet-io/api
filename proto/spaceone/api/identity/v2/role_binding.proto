@@ -53,7 +53,7 @@ service RoleBinding {
 }
 
 message CreateRoleBindingRequest {
-    enum PermissionGroup {
+    enum ResourceGroup {
         NONE = 0;
         DOMAIN = 1;
         WORKSPACE = 2;
@@ -61,29 +61,20 @@ message CreateRoleBindingRequest {
 
     string user_id = 1;
     string role_id = 2;
-    PermissionGroup permission_group = 3;
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
+    ResourceGroup resource_group = 3;
 }
 
 message UpdateRoleBindingRequest {
     string role_binding_id = 1;
     string role_id = 2;
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
 }
 
 message RoleBindingRequest {
     string role_binding_id = 1;
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
 }
 
 message RoleBindingSearchQuery {
-    enum PermissionGroup {
+    enum ResourceGroup {
         GROUP_NONE = 0;
         DOMAIN = 1;
         WORKSPACE = 2;
@@ -104,19 +95,17 @@ message RoleBindingSearchQuery {
     // +optional
     RoleType role_type = 3;
     // +optional
-    PermissionGroup permission_group = 4;
+    ResourceGroup resource_group = 20;
     // +optional
-    string domain_id = 21;
+    string workspace_id = 21;
     // +optional
-    string workspace_id = 22;
+    string role_id = 22;
     // +optional
-    string role_id = 23;
-    // +optional
-    string user_id = 24;
+    string user_id = 23;
 }
 
 message RoleBindingInfo {
-    enum PermissionGroup {
+    enum ResourceGroup {
         GROUP_NONE = 0;
         DOMAIN = 1;
         WORKSPACE = 2;
@@ -132,7 +121,7 @@ message RoleBindingInfo {
 
     string role_binding_id = 1;
     RoleType role_type = 2;
-    PermissionGroup permission_group = 3;
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
     string workspace_id = 22;
     string role_id = 23;
@@ -147,7 +136,4 @@ message RoleBindingsInfo {
 
 message RoleBindingStatQuery {
     spaceone.api.core.v2.StatisticsQuery query = 1;
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
 }

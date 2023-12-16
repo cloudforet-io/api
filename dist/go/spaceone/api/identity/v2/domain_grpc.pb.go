@@ -44,6 +44,7 @@ type DomainClient interface {
 	Enable(ctx context.Context, in *DomainRequest, opts ...grpc.CallOption) (*DomainInfo, error)
 	Disable(ctx context.Context, in *DomainRequest, opts ...grpc.CallOption) (*DomainInfo, error)
 	Get(ctx context.Context, in *DomainRequest, opts ...grpc.CallOption) (*DomainInfo, error)
+	// +noauth
 	GetAuthInfo(ctx context.Context, in *GetDomainAuthRequest, opts ...grpc.CallOption) (*DomainAuthInfo, error)
 	GetPublicKey(ctx context.Context, in *v2.AuthenticationRequest, opts ...grpc.CallOption) (*v2.AuthenticationResponse, error)
 	List(ctx context.Context, in *DomainSearchQuery, opts ...grpc.CallOption) (*DomainsInfo, error)
@@ -158,6 +159,7 @@ type DomainServer interface {
 	Enable(context.Context, *DomainRequest) (*DomainInfo, error)
 	Disable(context.Context, *DomainRequest) (*DomainInfo, error)
 	Get(context.Context, *DomainRequest) (*DomainInfo, error)
+	// +noauth
 	GetAuthInfo(context.Context, *GetDomainAuthRequest) (*DomainAuthInfo, error)
 	GetPublicKey(context.Context, *v2.AuthenticationRequest) (*v2.AuthenticationResponse, error)
 	List(context.Context, *DomainSearchQuery) (*DomainsInfo, error)

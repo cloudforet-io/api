@@ -23,7 +23,7 @@ class DomainConfigStub(object):
                 )
         self.update = channel.unary_unary(
                 '/spaceone.api.config.v1.DomainConfig/update',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.SetDomainConfigRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.UpdateDomainConfigRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigInfo.FromString,
                 )
         self.set = channel.unary_unary(
@@ -38,12 +38,12 @@ class DomainConfigStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.config.v1.DomainConfig/get',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.GetDomainConfigRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigInfo.FromString,
                 )
         self.list = channel.unary_unary(
                 '/spaceone.api.config.v1.DomainConfig/list',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigQuery.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigSearchQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigsInfo.FromString,
                 )
         self.stat = channel.unary_unary(
@@ -108,7 +108,7 @@ def add_DomainConfigServicer_to_server(servicer, server):
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.SetDomainConfigRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.UpdateDomainConfigRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigInfo.SerializeToString,
             ),
             'set': grpc.unary_unary_rpc_method_handler(
@@ -123,12 +123,12 @@ def add_DomainConfigServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.GetDomainConfigRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigQuery.FromString,
+                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigSearchQuery.FromString,
                     response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigsInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
@@ -175,7 +175,7 @@ class DomainConfig(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.config.v1.DomainConfig/update',
-            spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.SetDomainConfigRequest.SerializeToString,
+            spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.UpdateDomainConfigRequest.SerializeToString,
             spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -226,7 +226,7 @@ class DomainConfig(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.config.v1.DomainConfig/get',
-            spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.GetDomainConfigRequest.SerializeToString,
+            spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigRequest.SerializeToString,
             spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -243,7 +243,7 @@ class DomainConfig(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.config.v1.DomainConfig/list',
-            spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigQuery.SerializeToString,
+            spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigSearchQuery.SerializeToString,
             spaceone_dot_api_dot_config_dot_v1_dot_domain__config__pb2.DomainConfigsInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

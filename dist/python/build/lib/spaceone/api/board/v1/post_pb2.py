@@ -18,7 +18,7 @@ from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from spaceone.api.core.v1 import query_pb2 as spaceone_dot_api_dot_core_dot_v1_dot_query__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n spaceone/api/board/v1/post.proto\x12\x15spaceone.api.board.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v1/query.proto\"\xb4\x01\n\x11\x43reatePostRequest\x12\x10\n\x08\x62oard_id\x18\x01 \x01(\t\x12\x10\n\x08\x63\x61tegory\x18\x02 \x01(\t\x12\r\n\x05title\x18\x03 \x01(\t\x12\x10\n\x08\x63ontents\x18\x04 \x01(\t\x12(\n\x07options\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x0e\n\x06writer\x18\x06 \x01(\t\x12\r\n\x05\x66iles\x18\x07 \x03(\t\x12\x11\n\tdomain_id\x18\n \x01(\t\"\xc5\x01\n\x11UpdatePostRequest\x12\x10\n\x08\x62oard_id\x18\x01 \x01(\t\x12\x0f\n\x07post_id\x18\x02 \x01(\t\x12\x10\n\x08\x63\x61tegory\x18\x03 \x01(\t\x12\r\n\x05title\x18\x04 \x01(\t\x12\x10\n\x08\x63ontents\x18\x05 \x01(\t\x12(\n\x07options\x18\x06 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x0e\n\x06writer\x18\x07 \x01(\t\x12\r\n\x05\x66iles\x18\x08 \x03(\t\x12\x11\n\tdomain_id\x18\n \x01(\t\"O\n\x17SendNotificationRequest\x12\x10\n\x08\x62oard_id\x18\x01 \x01(\t\x12\x0f\n\x07post_id\x18\x02 \x01(\t\x12\x11\n\tdomain_id\x18\x03 \x01(\t\"C\n\x0bPostRequest\x12\x10\n\x08\x62oard_id\x18\x01 \x01(\t\x12\x0f\n\x07post_id\x18\x02 \x01(\t\x12\x11\n\tdomain_id\x18\x03 \x01(\t\"T\n\x0eGetPostRequest\x12\x10\n\x08\x62oard_id\x18\x01 \x01(\t\x12\x0f\n\x07post_id\x18\x02 \x01(\t\x12\x0c\n\x04only\x18\x03 \x03(\t\x12\x11\n\tdomain_id\x18\x07 \x01(\t\"\x98\x03\n\tPostQuery\x12\x10\n\x08\x62oard_id\x18\x01 \x01(\t\x12\x0f\n\x07post_id\x18\x02 \x01(\t\x12<\n\tpost_type\x18\x03 \x01(\x0e\x32).spaceone.api.board.v1.PostQuery.PostType\x12\x10\n\x08\x63\x61tegory\x18\x04 \x01(\t\x12\x0e\n\x06writer\x18\x05 \x01(\t\x12\x35\n\x05scope\x18\x06 \x01(\x0e\x32&.spaceone.api.board.v1.PostQuery.Scope\x12\x0f\n\x07user_id\x18\x07 \x01(\t\x12\x16\n\x0euser_domain_id\x18\x08 \x01(\t\x12\x11\n\tdomain_id\x18\t \x01(\t\x12*\n\x05query\x18\n \x01(\x0b\x32\x1b.spaceone.api.core.v1.Query\"/\n\x05Scope\x12\x0e\n\nSCOPE_NONE\x10\x00\x12\n\n\x06PUBLIC\x10\x01\x12\n\n\x06\x44OMAIN\x10\x02\"8\n\x08PostType\x12\x12\n\x0ePOST_TYPE_NONE\x10\x00\x12\n\n\x06SYSTEM\x10\x01\x12\x0c\n\x08INTERNAL\x10\x02\"X\n\rPostStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v1.StatisticsQuery\x12\x11\n\tdomain_id\x18\x02 \x01(\t\"\x9b\x04\n\x08PostInfo\x12\x10\n\x08\x62oard_id\x18\x01 \x01(\t\x12\x0f\n\x07post_id\x18\x02 \x01(\t\x12;\n\tpost_type\x18\x03 \x01(\x0e\x32(.spaceone.api.board.v1.PostInfo.PostType\x12\x10\n\x08\x63\x61tegory\x18\x04 \x01(\t\x12\r\n\x05title\x18\x05 \x01(\t\x12\x10\n\x08\x63ontents\x18\x06 \x01(\t\x12(\n\x07options\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x12\n\nview_count\x18\x08 \x01(\x05\x12\x0e\n\x06writer\x18\t \x01(\t\x12\x34\n\x05scope\x18\n \x01(\x0e\x32%.spaceone.api.board.v1.PostInfo.Scope\x12)\n\x05\x66iles\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.ListValue\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x0f\n\x07user_id\x18\x16 \x01(\t\x12\x16\n\x0euser_domain_id\x18\x17 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\x12\x12\n\nupdated_at\x18  \x01(\t\"/\n\x05Scope\x12\x0e\n\nSCOPE_NONE\x10\x00\x12\n\n\x06PUBLIC\x10\x01\x12\n\n\x06\x44OMAIN\x10\x02\"8\n\x08PostType\x12\x12\n\x0ePOST_TYPE_NONE\x10\x00\x12\n\n\x06SYSTEM\x10\x01\x12\x0c\n\x08INTERNAL\x10\x02\"R\n\tPostsInfo\x12\x30\n\x07results\x18\x01 \x03(\x0b\x32\x1f.spaceone.api.board.v1.PostInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\x32\xa8\x06\n\x04Post\x12u\n\x06\x63reate\x12(.spaceone.api.board.v1.CreatePostRequest\x1a\x1f.spaceone.api.board.v1.PostInfo\" \x82\xd3\xe4\x93\x02\x1a\"\x15/board/v1/post/create:\x01*\x12u\n\x06update\x12(.spaceone.api.board.v1.UpdatePostRequest\x1a\x1f.spaceone.api.board.v1.PostInfo\" \x82\xd3\xe4\x93\x02\x1a\"\x15/board/v1/post/update:\x01*\x12\x88\x01\n\x11send_notification\x12..spaceone.api.board.v1.SendNotificationRequest\x1a\x16.google.protobuf.Empty\"+\x82\xd3\xe4\x93\x02%\" /board/v1/post/send-notification:\x01*\x12\x66\n\x06\x64\x65lete\x12\".spaceone.api.board.v1.PostRequest\x1a\x16.google.protobuf.Empty\" \x82\xd3\xe4\x93\x02\x1a\"\x15/board/v1/post/delete:\x01*\x12l\n\x03get\x12%.spaceone.api.board.v1.GetPostRequest\x1a\x1f.spaceone.api.board.v1.PostInfo\"\x1d\x82\xd3\xe4\x93\x02\x17\"\x12/board/v1/post/get:\x01*\x12j\n\x04list\x12 .spaceone.api.board.v1.PostQuery\x1a .spaceone.api.board.v1.PostsInfo\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/board/v1/post/list:\x01*\x12\x65\n\x04stat\x12$.spaceone.api.board.v1.PostStatQuery\x1a\x17.google.protobuf.Struct\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/board/v1/post/stat:\x01*B<Z:github.com/cloudforet-io/api/dist/go/spaceone/api/board/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n spaceone/api/board/v1/post.proto\x12\x15spaceone.api.board.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v1/query.proto\"\xce\x02\n\x11\x43reatePostRequest\x12\x10\n\x08\x63\x61tegory\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x10\n\x08\x63ontents\x18\x03 \x01(\t\x12\r\n\x05\x66iles\x18\x04 \x03(\t\x12(\n\x07options\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x0e\n\x06writer\x18\x06 \x01(\t\x12R\n\x10permission_group\x18\x07 \x01(\x0e\x32\x38.spaceone.api.board.v1.CreatePostRequest.PermissionGroup\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x10\n\x08\x62oard_id\x18\x16 \x01(\t\"D\n\x0fPermissionGroup\x12\x19\n\x15PERMISSION_GROUP_NONE\x10\x00\x12\n\n\x06GLOBAL\x10\x01\x12\n\n\x06\x44OMAIN\x10\x02\"\xc5\x01\n\x11UpdatePostRequest\x12\x0f\n\x07post_id\x18\x01 \x01(\t\x12\x10\n\x08\x63\x61tegory\x18\x02 \x01(\t\x12\r\n\x05title\x18\x03 \x01(\t\x12\x10\n\x08\x63ontents\x18\x04 \x01(\t\x12\r\n\x05\x66iles\x18\x05 \x03(\t\x12(\n\x07options\x18\x06 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x0e\n\x06writer\x18\x07 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x10\n\x08\x62oard_id\x18\x16 \x01(\t\"O\n\x17SendNotificationRequest\x12\x10\n\x08\x62oard_id\x18\x01 \x01(\t\x12\x0f\n\x07post_id\x18\x02 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"C\n\x0bPostRequest\x12\x10\n\x08\x62oard_id\x18\x01 \x01(\t\x12\x0f\n\x07post_id\x18\x02 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"F\n\x0eGetPostRequest\x12\x10\n\x08\x62oard_id\x18\x01 \x01(\t\x12\x0f\n\x07post_id\x18\x02 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"\xfb\x02\n\x0fPostSearchQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v1.Query\x12\x0f\n\x07post_id\x18\x02 \x01(\t\x12\x10\n\x08\x63\x61tegory\x18\x03 \x01(\t\x12\x0e\n\x06writer\x18\x04 \x01(\t\x12\x11\n\tis_pinned\x18\x05 \x01(\x08\x12\x10\n\x08is_popup\x18\x06 \x01(\x08\x12\x16\n\x0euser_domain_id\x18\x07 \x01(\t\x12P\n\x10permission_group\x18\x08 \x01(\x0e\x32\x36.spaceone.api.board.v1.PostSearchQuery.PermissionGroup\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x10\n\x08\x62oard_id\x18\x16 \x01(\t\x12\x0f\n\x07user_id\x18\x17 \x01(\t\"D\n\x0fPermissionGroup\x12\x19\n\x15PERMISSION_GROUP_NONE\x10\x00\x12\n\n\x06GLOBAL\x10\x01\x12\n\n\x06\x44OMAIN\x10\x02\"X\n\rPostStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v1.StatisticsQuery\x12\x11\n\tdomain_id\x18\x02 \x01(\t\"\xce\x03\n\x08PostInfo\x12\x0f\n\x07post_id\x18\x02 \x01(\t\x12\x10\n\x08\x63\x61tegory\x18\x04 \x01(\t\x12\r\n\x05title\x18\x05 \x01(\t\x12\x10\n\x08\x63ontents\x18\x06 \x01(\t\x12(\n\x07options\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x12\n\nview_count\x18\x08 \x01(\x05\x12\x0e\n\x06writer\x18\t \x01(\t\x12)\n\x05\x66iles\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.ListValue\x12I\n\x10permission_group\x18\x0c \x01(\x0e\x32/.spaceone.api.board.v1.PostInfo.PermissionGroup\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x10\n\x08\x62oard_id\x18\x16 \x01(\t\x12\x0f\n\x07user_id\x18\x17 \x01(\t\x12\x16\n\x0euser_domain_id\x18\x18 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\x12\x12\n\nupdated_at\x18  \x01(\t\"D\n\x0fPermissionGroup\x12\x19\n\x15PERMISSION_GROUP_NONE\x10\x00\x12\n\n\x06GLOBAL\x10\x01\x12\n\n\x06\x44OMAIN\x10\x02\"R\n\tPostsInfo\x12\x30\n\x07results\x18\x01 \x03(\x0b\x32\x1f.spaceone.api.board.v1.PostInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\x32\xae\x06\n\x04Post\x12u\n\x06\x63reate\x12(.spaceone.api.board.v1.CreatePostRequest\x1a\x1f.spaceone.api.board.v1.PostInfo\" \x82\xd3\xe4\x93\x02\x1a\"\x15/board/v1/post/create:\x01*\x12u\n\x06update\x12(.spaceone.api.board.v1.UpdatePostRequest\x1a\x1f.spaceone.api.board.v1.PostInfo\" \x82\xd3\xe4\x93\x02\x1a\"\x15/board/v1/post/update:\x01*\x12\x88\x01\n\x11send_notification\x12..spaceone.api.board.v1.SendNotificationRequest\x1a\x16.google.protobuf.Empty\"+\x82\xd3\xe4\x93\x02%\" /board/v1/post/send-notification:\x01*\x12\x66\n\x06\x64\x65lete\x12\".spaceone.api.board.v1.PostRequest\x1a\x16.google.protobuf.Empty\" \x82\xd3\xe4\x93\x02\x1a\"\x15/board/v1/post/delete:\x01*\x12l\n\x03get\x12%.spaceone.api.board.v1.GetPostRequest\x1a\x1f.spaceone.api.board.v1.PostInfo\"\x1d\x82\xd3\xe4\x93\x02\x17\"\x12/board/v1/post/get:\x01*\x12p\n\x04list\x12&.spaceone.api.board.v1.PostSearchQuery\x1a .spaceone.api.board.v1.PostsInfo\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/board/v1/post/list:\x01*\x12\x65\n\x04stat\x12$.spaceone.api.board.v1.PostStatQuery\x1a\x17.google.protobuf.Struct\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/board/v1/post/stat:\x01*B<Z:github.com/cloudforet-io/api/dist/go/spaceone/api/board/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -41,31 +41,29 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_POST'].methods_by_name['stat']._options = None
   _globals['_POST'].methods_by_name['stat']._serialized_options = b'\202\323\344\223\002\030\"\023/board/v1/post/stat:\001*'
   _globals['_CREATEPOSTREQUEST']._serialized_start=183
-  _globals['_CREATEPOSTREQUEST']._serialized_end=363
-  _globals['_UPDATEPOSTREQUEST']._serialized_start=366
-  _globals['_UPDATEPOSTREQUEST']._serialized_end=563
-  _globals['_SENDNOTIFICATIONREQUEST']._serialized_start=565
-  _globals['_SENDNOTIFICATIONREQUEST']._serialized_end=644
-  _globals['_POSTREQUEST']._serialized_start=646
-  _globals['_POSTREQUEST']._serialized_end=713
-  _globals['_GETPOSTREQUEST']._serialized_start=715
-  _globals['_GETPOSTREQUEST']._serialized_end=799
-  _globals['_POSTQUERY']._serialized_start=802
-  _globals['_POSTQUERY']._serialized_end=1210
-  _globals['_POSTQUERY_SCOPE']._serialized_start=1105
-  _globals['_POSTQUERY_SCOPE']._serialized_end=1152
-  _globals['_POSTQUERY_POSTTYPE']._serialized_start=1154
-  _globals['_POSTQUERY_POSTTYPE']._serialized_end=1210
-  _globals['_POSTSTATQUERY']._serialized_start=1212
-  _globals['_POSTSTATQUERY']._serialized_end=1300
-  _globals['_POSTINFO']._serialized_start=1303
-  _globals['_POSTINFO']._serialized_end=1842
-  _globals['_POSTINFO_SCOPE']._serialized_start=1105
-  _globals['_POSTINFO_SCOPE']._serialized_end=1152
-  _globals['_POSTINFO_POSTTYPE']._serialized_start=1154
-  _globals['_POSTINFO_POSTTYPE']._serialized_end=1210
-  _globals['_POSTSINFO']._serialized_start=1844
-  _globals['_POSTSINFO']._serialized_end=1926
-  _globals['_POST']._serialized_start=1929
-  _globals['_POST']._serialized_end=2737
+  _globals['_CREATEPOSTREQUEST']._serialized_end=517
+  _globals['_CREATEPOSTREQUEST_PERMISSIONGROUP']._serialized_start=449
+  _globals['_CREATEPOSTREQUEST_PERMISSIONGROUP']._serialized_end=517
+  _globals['_UPDATEPOSTREQUEST']._serialized_start=520
+  _globals['_UPDATEPOSTREQUEST']._serialized_end=717
+  _globals['_SENDNOTIFICATIONREQUEST']._serialized_start=719
+  _globals['_SENDNOTIFICATIONREQUEST']._serialized_end=798
+  _globals['_POSTREQUEST']._serialized_start=800
+  _globals['_POSTREQUEST']._serialized_end=867
+  _globals['_GETPOSTREQUEST']._serialized_start=869
+  _globals['_GETPOSTREQUEST']._serialized_end=939
+  _globals['_POSTSEARCHQUERY']._serialized_start=942
+  _globals['_POSTSEARCHQUERY']._serialized_end=1321
+  _globals['_POSTSEARCHQUERY_PERMISSIONGROUP']._serialized_start=449
+  _globals['_POSTSEARCHQUERY_PERMISSIONGROUP']._serialized_end=517
+  _globals['_POSTSTATQUERY']._serialized_start=1323
+  _globals['_POSTSTATQUERY']._serialized_end=1411
+  _globals['_POSTINFO']._serialized_start=1414
+  _globals['_POSTINFO']._serialized_end=1876
+  _globals['_POSTINFO_PERMISSIONGROUP']._serialized_start=449
+  _globals['_POSTINFO_PERMISSIONGROUP']._serialized_end=517
+  _globals['_POSTSINFO']._serialized_start=1878
+  _globals['_POSTSINFO']._serialized_end=1960
+  _globals['_POST']._serialized_start=1963
+  _globals['_POST']._serialized_end=2777
 # @@protoc_insertion_point(module_scope)

@@ -56,34 +56,6 @@
           ]
         },
         {
-          "name": "State",
-          "longName": "UserFindRequest.State",
-          "fullName": "spaceone.api.identity.v2.UserFindRequest.State",
-          "description": "",
-          "values": [
-            {
-              "name": "NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "ENABLED",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "DISABLED",
-              "number": "2",
-              "description": ""
-            },
-            {
-              "name": "PENDING",
-              "number": "3",
-              "description": ""
-            }
-          ]
-        },
-        {
           "name": "RoleType",
           "longName": "UserInfo.RoleType",
           "fullName": "spaceone.api.identity.v2.UserInfo.RoleType",
@@ -105,18 +77,8 @@
               "description": ""
             },
             {
-              "name": "WORKSPACE_OWNER",
-              "number": "3",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE_MEMBER",
-              "number": "4",
-              "description": ""
-            },
-            {
               "name": "USER",
-              "number": "5",
+              "number": "3",
               "description": ""
             }
           ]
@@ -189,134 +151,10 @@
               "description": ""
             }
           ]
-        },
-        {
-          "name": "State",
-          "longName": "UserSummaryInfo.State",
-          "fullName": "spaceone.api.identity.v2.UserSummaryInfo.State",
-          "description": "",
-          "values": [
-            {
-              "name": "STATE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "ENABLED",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "DISABLED",
-              "number": "2",
-              "description": ""
-            },
-            {
-              "name": "PENDING",
-              "number": "3",
-              "description": ""
-            }
-          ]
         }
       ],
       "extensions": [],
       "messages": [
-        {
-          "name": "ConfirmEmailRequest",
-          "longName": "ConfirmEmailRequest",
-          "fullName": "spaceone.api.identity.v2.ConfirmEmailRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "user_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "verify_code",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "ConfirmMFARequest",
-          "longName": "ConfirmMFARequest",
-          "fullName": "spaceone.api.identity.v2.ConfirmMFARequest",
-          "description": "{\n \"user_id\": \"example@cloudforet\",\n \"verify_code\": \"123456\",\n \"domain_id\": \"domain-a1b2c3d4e5f6\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "user_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "verify_code",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
         {
           "name": "CreateUserRequest",
           "longName": "CreateUserRequest",
@@ -434,25 +272,13 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
         {
-          "name": "DisableMFARequest",
-          "longName": "DisableMFARequest",
-          "fullName": "spaceone.api.identity.v2.DisableMFARequest",
+          "name": "DisableUserMFARequest",
+          "longName": "DisableUserMFARequest",
+          "fullName": "spaceone.api.identity.v2.DisableUserMFARequest",
           "description": "{\n \"user_id\": \"example@cloudforet.com\",\n \"force\": false,\n \"domain_id\": \"domain-a1b2c3d4e5f6\"\n}",
           "hasExtensions": false,
           "hasFields": true,
@@ -461,90 +287,6 @@
           "fields": [
             {
               "name": "user_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "force",
-              "description": "If this value true, disable MFA without verification for user.\n+optional",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "EnableMFARequest",
-          "longName": "EnableMFARequest",
-          "fullName": "spaceone.api.identity.v2.EnableMFARequest",
-          "description": "{\n \"user_id\": \"example@cloudforet.com\",\n \"mfa_type\": \"EMAIL\",\n \"options\": {\"email\": \"wonny@cloudforet.com\"},\n \"domain_id\": \"domain-a1b2c3d4e5f6\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "user_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "mfa_type",
-              "description": "EMAIL",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "options",
-              "description": "If mfa_type is EMAIL, email is required in options. options will be saved in mfa's options field.",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -634,18 +376,6 @@
               "type": "UserRequiredAction",
               "longType": "UserRequiredAction",
               "fullType": "spaceone.api.identity.v2.UserRequiredAction",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -754,90 +484,6 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "UserFindRequest",
-          "longName": "UserFindRequest",
-          "fullName": "spaceone.api.identity.v2.UserFindRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "keyword",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "state",
-              "description": "+optional",
-              "label": "",
-              "type": "State",
-              "longType": "UserFindRequest.State",
-              "fullType": "spaceone.api.identity.v2.UserFindRequest.State",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "exclude_workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "page",
-              "description": "+optional",
-              "label": "",
-              "type": "Page",
-              "longType": "spaceone.api.core.v2.Page",
-              "fullType": "spaceone.api.core.v2.Page",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1070,18 +716,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -1166,30 +800,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -1210,66 +820,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v2.StatisticsQuery",
               "fullType": "spaceone.api.core.v2.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "UserSummaryInfo",
-          "longName": "UserSummaryInfo",
-          "fullName": "spaceone.api.identity.v2.UserSummaryInfo",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "user_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "state",
-              "description": "",
-              "label": "",
-              "type": "State",
-              "longType": "UserSummaryInfo.State",
-              "fullType": "spaceone.api.identity.v2.UserSummaryInfo.State",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1314,45 +864,9 @@
           ]
         },
         {
-          "name": "UsersSummaryInfo",
-          "longName": "UsersSummaryInfo",
-          "fullName": "spaceone.api.identity.v2.UsersSummaryInfo",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "results",
-              "description": "",
-              "label": "repeated",
-              "type": "UserSummaryInfo",
-              "longType": "UserSummaryInfo",
-              "fullType": "spaceone.api.identity.v2.UserSummaryInfo",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "total_count",
-              "description": "",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "VerifyEmailRequest",
-          "longName": "VerifyEmailRequest",
-          "fullName": "spaceone.api.identity.v2.VerifyEmailRequest",
+          "name": "VerifyUserEmailRequest",
+          "longName": "VerifyUserEmailRequest",
+          "fullName": "spaceone.api.identity.v2.VerifyUserEmailRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -1374,30 +888,6 @@
             {
               "name": "email",
               "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "force",
-              "description": "+optional",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1466,9 +956,9 @@
             {
               "name": "verify_email",
               "description": "",
-              "requestType": "VerifyEmailRequest",
-              "requestLongType": "VerifyEmailRequest",
-              "requestFullType": "spaceone.api.identity.v2.VerifyEmailRequest",
+              "requestType": "VerifyUserEmailRequest",
+              "requestLongType": "VerifyUserEmailRequest",
+              "requestFullType": "spaceone.api.identity.v2.VerifyUserEmailRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -1487,11 +977,11 @@
               }
             },
             {
-              "name": "confirm_email",
-              "description": "",
-              "requestType": "ConfirmEmailRequest",
-              "requestLongType": "ConfirmEmailRequest",
-              "requestFullType": "spaceone.api.identity.v2.ConfirmEmailRequest",
+              "name": "disable_mfa",
+              "description": "Disable MFA for user. If this api is called, send email to user.",
+              "requestType": "DisableUserMFARequest",
+              "requestLongType": "DisableUserMFARequest",
+              "requestFullType": "spaceone.api.identity.v2.DisableUserMFARequest",
               "requestStreaming": false,
               "responseType": "UserInfo",
               "responseLongType": "UserInfo",
@@ -1502,30 +992,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/user/confirm-email",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "reset_password",
-              "description": "+noauth",
-              "requestType": "UserRequest",
-              "requestLongType": "UserRequest",
-              "requestFullType": "spaceone.api.identity.v2.UserRequest",
-              "requestStreaming": false,
-              "responseType": "Empty",
-              "responseLongType": ".google.protobuf.Empty",
-              "responseFullType": "google.protobuf.Empty",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/identity/v2/user/reset-password",
+                      "pattern": "/identity/v2/user/disable-mfa",
                       "body": "*"
                     }
                   ]
@@ -1549,75 +1016,6 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/user/set-required-actions",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "enable_mfa",
-              "description": "Enable MFA for user. If this api is called, send email to user.",
-              "requestType": "EnableMFARequest",
-              "requestLongType": "EnableMFARequest",
-              "requestFullType": "spaceone.api.identity.v2.EnableMFARequest",
-              "requestStreaming": false,
-              "responseType": "UserInfo",
-              "responseLongType": "UserInfo",
-              "responseFullType": "spaceone.api.identity.v2.UserInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/identity/v2/user/enable-mfa",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "disable_mfa",
-              "description": "Disable MFA for user. If this api is called, send email to user.",
-              "requestType": "DisableMFARequest",
-              "requestLongType": "DisableMFARequest",
-              "requestFullType": "spaceone.api.identity.v2.DisableMFARequest",
-              "requestStreaming": false,
-              "responseType": "UserInfo",
-              "responseLongType": "UserInfo",
-              "responseFullType": "spaceone.api.identity.v2.UserInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/identity/v2/user/disable-mfa",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "confirm_mfa",
-              "description": "Confirm MFA for user by given verify_code which is sent by your authentication method.",
-              "requestType": "ConfirmMFARequest",
-              "requestLongType": "ConfirmMFARequest",
-              "requestFullType": "spaceone.api.identity.v2.ConfirmMFARequest",
-              "requestStreaming": false,
-              "responseType": "UserInfo",
-              "responseLongType": "UserInfo",
-              "responseFullType": "spaceone.api.identity.v2.UserInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/identity/v2/user/confirm-mfa",
                       "body": "*"
                     }
                   ]
@@ -1710,52 +1108,6 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/user/get",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "get_workspaces",
-              "description": "",
-              "requestType": "UserRequest",
-              "requestLongType": "UserRequest",
-              "requestFullType": "spaceone.api.identity.v2.UserRequest",
-              "requestStreaming": false,
-              "responseType": "WorkspacesInfo",
-              "responseLongType": "WorkspacesInfo",
-              "responseFullType": "spaceone.api.identity.v2.WorkspacesInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/identity/v2/user/get-workspaces",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "find",
-              "description": "",
-              "requestType": "UserFindRequest",
-              "requestLongType": "UserFindRequest",
-              "requestFullType": "spaceone.api.identity.v2.UserFindRequest",
-              "requestStreaming": false,
-              "responseType": "UsersSummaryInfo",
-              "responseLongType": "UsersSummaryInfo",
-              "responseFullType": "spaceone.api.identity.v2.UsersSummaryInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/identity/v2/user/find",
                       "body": "*"
                     }
                   ]

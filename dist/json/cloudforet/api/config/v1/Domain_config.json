@@ -96,9 +96,9 @@
           ]
         },
         {
-          "name": "DomainConfigQuery",
-          "longName": "DomainConfigQuery",
-          "fullName": "spaceone.api.config.v1.DomainConfigQuery",
+          "name": "DomainConfigRequest",
+          "longName": "DomainConfigRequest",
+          "fullName": "spaceone.api.config.v1.DomainConfigRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -106,20 +106,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "query",
-              "description": "+optional",
-              "label": "",
-              "type": "Query",
-              "longType": "spaceone.api.core.v1.Query",
-              "fullType": "spaceone.api.core.v1.Query",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "name",
-              "description": "+optional",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -144,9 +132,9 @@
           ]
         },
         {
-          "name": "DomainConfigRequest",
-          "longName": "DomainConfigRequest",
-          "fullName": "spaceone.api.config.v1.DomainConfigRequest",
+          "name": "DomainConfigSearchQuery",
+          "longName": "DomainConfigSearchQuery",
+          "fullName": "spaceone.api.config.v1.DomainConfigSearchQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -154,8 +142,20 @@
           "extensions": [],
           "fields": [
             {
+              "name": "query",
+              "description": "+optional",
+              "label": "",
+              "type": "Query",
+              "longType": "spaceone.api.core.v1.Query",
+              "fullType": "spaceone.api.core.v1.Query",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "name",
-              "description": "",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -252,54 +252,6 @@
           ]
         },
         {
-          "name": "GetDomainConfigRequest",
-          "longName": "GetDomainConfigRequest",
-          "fullName": "spaceone.api.config.v1.GetDomainConfigRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "only",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "SetDomainConfigRequest",
           "longName": "SetDomainConfigRequest",
           "fullName": "spaceone.api.config.v1.SetDomainConfigRequest",
@@ -324,6 +276,66 @@
             {
               "name": "data",
               "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateDomainConfigRequest",
+          "longName": "UpdateDomainConfigRequest",
+          "fullName": "spaceone.api.config.v1.UpdateDomainConfigRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -393,9 +405,9 @@
             {
               "name": "update",
               "description": "",
-              "requestType": "SetDomainConfigRequest",
-              "requestLongType": "SetDomainConfigRequest",
-              "requestFullType": "spaceone.api.config.v1.SetDomainConfigRequest",
+              "requestType": "UpdateDomainConfigRequest",
+              "requestLongType": "UpdateDomainConfigRequest",
+              "requestFullType": "spaceone.api.config.v1.UpdateDomainConfigRequest",
               "requestStreaming": false,
               "responseType": "DomainConfigInfo",
               "responseLongType": "DomainConfigInfo",
@@ -462,9 +474,9 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "GetDomainConfigRequest",
-              "requestLongType": "GetDomainConfigRequest",
-              "requestFullType": "spaceone.api.config.v1.GetDomainConfigRequest",
+              "requestType": "DomainConfigRequest",
+              "requestLongType": "DomainConfigRequest",
+              "requestFullType": "spaceone.api.config.v1.DomainConfigRequest",
               "requestStreaming": false,
               "responseType": "DomainConfigInfo",
               "responseLongType": "DomainConfigInfo",
@@ -485,9 +497,9 @@
             {
               "name": "list",
               "description": "",
-              "requestType": "DomainConfigQuery",
-              "requestLongType": "DomainConfigQuery",
-              "requestFullType": "spaceone.api.config.v1.DomainConfigQuery",
+              "requestType": "DomainConfigSearchQuery",
+              "requestLongType": "DomainConfigSearchQuery",
+              "requestFullType": "spaceone.api.config.v1.DomainConfigSearchQuery",
               "requestStreaming": false,
               "responseType": "DomainConfigsInfo",
               "responseLongType": "DomainConfigsInfo",

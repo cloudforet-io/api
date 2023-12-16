@@ -47,7 +47,7 @@ type PostClient interface {
 	// Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.
 	Get(ctx context.Context, in *GetPostRequest, opts ...grpc.CallOption) (*PostInfo, error)
 	// Gets a list of all Posts. You can use a query to get a filtered list of Posts.
-	List(ctx context.Context, in *PostQuery, opts ...grpc.CallOption) (*PostsInfo, error)
+	List(ctx context.Context, in *PostSearchQuery, opts ...grpc.CallOption) (*PostsInfo, error)
 	Stat(ctx context.Context, in *PostStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
@@ -104,7 +104,7 @@ func (c *postClient) Get(ctx context.Context, in *GetPostRequest, opts ...grpc.C
 	return out, nil
 }
 
-func (c *postClient) List(ctx context.Context, in *PostQuery, opts ...grpc.CallOption) (*PostsInfo, error) {
+func (c *postClient) List(ctx context.Context, in *PostSearchQuery, opts ...grpc.CallOption) (*PostsInfo, error) {
 	out := new(PostsInfo)
 	err := c.cc.Invoke(ctx, Post_List_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -137,7 +137,7 @@ type PostServer interface {
 	// Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.
 	Get(context.Context, *GetPostRequest) (*PostInfo, error)
 	// Gets a list of all Posts. You can use a query to get a filtered list of Posts.
-	List(context.Context, *PostQuery) (*PostsInfo, error)
+	List(context.Context, *PostSearchQuery) (*PostsInfo, error)
 	Stat(context.Context, *PostStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedPostServer()
 }
@@ -161,7 +161,7 @@ func (UnimplementedPostServer) Delete(context.Context, *PostRequest) (*empty.Emp
 func (UnimplementedPostServer) Get(context.Context, *GetPostRequest) (*PostInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedPostServer) List(context.Context, *PostQuery) (*PostsInfo, error) {
+func (UnimplementedPostServer) List(context.Context, *PostSearchQuery) (*PostsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 func (UnimplementedPostServer) Stat(context.Context, *PostStatQuery) (*_struct.Struct, error) {
@@ -271,7 +271,7 @@ func _Post_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 }
 
 func _Post_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PostQuery)
+	in := new(PostSearchQuery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -283,7 +283,7 @@ func _Post_List_Handler(srv interface{}, ctx context.Context, dec func(interface
 		FullMethod: Post_List_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostServer).List(ctx, req.(*PostQuery))
+		return srv.(PostServer).List(ctx, req.(*PostSearchQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }

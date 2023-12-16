@@ -25,6 +25,11 @@ class WorkspaceUserStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__user__pb2.WorkspaceUserRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__user__pb2.WorkspaceUserInfo.FromString,
                 )
+        self.find = channel.unary_unary(
+                '/spaceone.api.identity.v2.WorkspaceUser/find',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__user__pb2.WorkspaceUserFindRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__user__pb2.UsersSummaryInfo.FromString,
+                )
         self.list = channel.unary_unary(
                 '/spaceone.api.identity.v2.WorkspaceUser/list',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__user__pb2.WorkspaceUserSearchQuery.SerializeToString,
@@ -47,6 +52,12 @@ class WorkspaceUserServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def find(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -76,6 +87,11 @@ def add_WorkspaceUserServicer_to_server(servicer, server):
                     servicer.get,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__user__pb2.WorkspaceUserRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__user__pb2.WorkspaceUserInfo.SerializeToString,
+            ),
+            'find': grpc.unary_unary_rpc_method_handler(
+                    servicer.find,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__user__pb2.WorkspaceUserFindRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__user__pb2.UsersSummaryInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
@@ -128,6 +144,23 @@ class WorkspaceUser(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.WorkspaceUser/get',
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__user__pb2.WorkspaceUserRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__user__pb2.WorkspaceUserInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def find(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.WorkspaceUser/find',
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__user__pb2.WorkspaceUserFindRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__user__pb2.UsersSummaryInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

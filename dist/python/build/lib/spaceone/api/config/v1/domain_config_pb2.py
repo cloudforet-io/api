@@ -18,7 +18,7 @@ from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from spaceone.api.core.v1 import query_pb2 as spaceone_dot_api_dot_core_dot_v1_dot_query__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n*spaceone/api/config/v1/domain_config.proto\x12\x16spaceone.api.config.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v1/query.proto\"\x87\x01\n\x16SetDomainConfigRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x04 \x01(\t\"6\n\x13\x44omainConfigRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\tdomain_id\x18\x02 \x01(\t\"G\n\x16GetDomainConfigRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\tdomain_id\x18\x02 \x01(\t\x12\x0c\n\x04only\x18\x03 \x03(\t\"`\n\x11\x44omainConfigQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v1.Query\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tdomain_id\x18\x03 \x01(\t\"\xa9\x01\n\x10\x44omainConfigInfo\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x04 \x01(\t\x12\x12\n\ncreated_at\x18\x05 \x01(\t\x12\x12\n\nupdated_at\x18\x06 \x01(\t\"c\n\x11\x44omainConfigsInfo\x12\x39\n\x07results\x18\x01 \x03(\x0b\x32(.spaceone.api.config.v1.DomainConfigInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"`\n\x15\x44omainConfigStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v1.StatisticsQuery\x12\x11\n\tdomain_id\x18\x02 \x01(\t2\xc4\x07\n\x0c\x44omainConfig\x12\x8e\x01\n\x06\x63reate\x12..spaceone.api.config.v1.SetDomainConfigRequest\x1a(.spaceone.api.config.v1.DomainConfigInfo\"*\x82\xd3\xe4\x93\x02$\"\x1f/config/v1/domain-config/create:\x01*\x12\x8e\x01\n\x06update\x12..spaceone.api.config.v1.SetDomainConfigRequest\x1a(.spaceone.api.config.v1.DomainConfigInfo\"*\x82\xd3\xe4\x93\x02$\"\x1f/config/v1/domain-config/update:\x01*\x12\x88\x01\n\x03set\x12..spaceone.api.config.v1.SetDomainConfigRequest\x1a(.spaceone.api.config.v1.DomainConfigInfo\"\'\x82\xd3\xe4\x93\x02!\"\x1c/config/v1/domain-config/set:\x01*\x12y\n\x06\x64\x65lete\x12+.spaceone.api.config.v1.DomainConfigRequest\x1a\x16.google.protobuf.Empty\"*\x82\xd3\xe4\x93\x02$\"\x1f/config/v1/domain-config/delete:\x01*\x12\x88\x01\n\x03get\x12..spaceone.api.config.v1.GetDomainConfigRequest\x1a(.spaceone.api.config.v1.DomainConfigInfo\"\'\x82\xd3\xe4\x93\x02!\"\x1c/config/v1/domain-config/get:\x01*\x12\x86\x01\n\x04list\x12).spaceone.api.config.v1.DomainConfigQuery\x1a).spaceone.api.config.v1.DomainConfigsInfo\"(\x82\xd3\xe4\x93\x02\"\"\x1d/config/v1/domain-config/list:\x01*\x12x\n\x04stat\x12-.spaceone.api.config.v1.DomainConfigStatQuery\x1a\x17.google.protobuf.Struct\"(\x82\xd3\xe4\x93\x02\"\"\x1d/config/v1/domain-config/stat:\x01*B=Z;github.com/cloudforet-io/api/dist/go/spaceone/api/config/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n*spaceone/api/config/v1/domain_config.proto\x12\x16spaceone.api.config.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v1/query.proto\"\x87\x01\n\x16SetDomainConfigRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"\x8a\x01\n\x19UpdateDomainConfigRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"6\n\x13\x44omainConfigRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"f\n\x17\x44omainConfigSearchQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v1.Query\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\"\xa9\x01\n\x10\x44omainConfigInfo\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\x12\x12\n\nupdated_at\x18  \x01(\t\"c\n\x11\x44omainConfigsInfo\x12\x39\n\x07results\x18\x01 \x03(\x0b\x32(.spaceone.api.config.v1.DomainConfigInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"`\n\x15\x44omainConfigStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v1.StatisticsQuery\x12\x11\n\tdomain_id\x18\x02 \x01(\t2\xca\x07\n\x0c\x44omainConfig\x12\x8e\x01\n\x06\x63reate\x12..spaceone.api.config.v1.SetDomainConfigRequest\x1a(.spaceone.api.config.v1.DomainConfigInfo\"*\x82\xd3\xe4\x93\x02$\"\x1f/config/v1/domain-config/create:\x01*\x12\x91\x01\n\x06update\x12\x31.spaceone.api.config.v1.UpdateDomainConfigRequest\x1a(.spaceone.api.config.v1.DomainConfigInfo\"*\x82\xd3\xe4\x93\x02$\"\x1f/config/v1/domain-config/update:\x01*\x12\x88\x01\n\x03set\x12..spaceone.api.config.v1.SetDomainConfigRequest\x1a(.spaceone.api.config.v1.DomainConfigInfo\"\'\x82\xd3\xe4\x93\x02!\"\x1c/config/v1/domain-config/set:\x01*\x12y\n\x06\x64\x65lete\x12+.spaceone.api.config.v1.DomainConfigRequest\x1a\x16.google.protobuf.Empty\"*\x82\xd3\xe4\x93\x02$\"\x1f/config/v1/domain-config/delete:\x01*\x12\x85\x01\n\x03get\x12+.spaceone.api.config.v1.DomainConfigRequest\x1a(.spaceone.api.config.v1.DomainConfigInfo\"\'\x82\xd3\xe4\x93\x02!\"\x1c/config/v1/domain-config/get:\x01*\x12\x8c\x01\n\x04list\x12/.spaceone.api.config.v1.DomainConfigSearchQuery\x1a).spaceone.api.config.v1.DomainConfigsInfo\"(\x82\xd3\xe4\x93\x02\"\"\x1d/config/v1/domain-config/list:\x01*\x12x\n\x04stat\x12-.spaceone.api.config.v1.DomainConfigStatQuery\x1a\x17.google.protobuf.Struct\"(\x82\xd3\xe4\x93\x02\"\"\x1d/config/v1/domain-config/stat:\x01*B=Z;github.com/cloudforet-io/api/dist/go/spaceone/api/config/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -42,18 +42,18 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_DOMAINCONFIG'].methods_by_name['stat']._serialized_options = b'\202\323\344\223\002\"\"\035/config/v1/domain-config/stat:\001*'
   _globals['_SETDOMAINCONFIGREQUEST']._serialized_start=194
   _globals['_SETDOMAINCONFIGREQUEST']._serialized_end=329
-  _globals['_DOMAINCONFIGREQUEST']._serialized_start=331
-  _globals['_DOMAINCONFIGREQUEST']._serialized_end=385
-  _globals['_GETDOMAINCONFIGREQUEST']._serialized_start=387
-  _globals['_GETDOMAINCONFIGREQUEST']._serialized_end=458
-  _globals['_DOMAINCONFIGQUERY']._serialized_start=460
-  _globals['_DOMAINCONFIGQUERY']._serialized_end=556
-  _globals['_DOMAINCONFIGINFO']._serialized_start=559
-  _globals['_DOMAINCONFIGINFO']._serialized_end=728
-  _globals['_DOMAINCONFIGSINFO']._serialized_start=730
-  _globals['_DOMAINCONFIGSINFO']._serialized_end=829
-  _globals['_DOMAINCONFIGSTATQUERY']._serialized_start=831
-  _globals['_DOMAINCONFIGSTATQUERY']._serialized_end=927
-  _globals['_DOMAINCONFIG']._serialized_start=930
-  _globals['_DOMAINCONFIG']._serialized_end=1894
+  _globals['_UPDATEDOMAINCONFIGREQUEST']._serialized_start=332
+  _globals['_UPDATEDOMAINCONFIGREQUEST']._serialized_end=470
+  _globals['_DOMAINCONFIGREQUEST']._serialized_start=472
+  _globals['_DOMAINCONFIGREQUEST']._serialized_end=526
+  _globals['_DOMAINCONFIGSEARCHQUERY']._serialized_start=528
+  _globals['_DOMAINCONFIGSEARCHQUERY']._serialized_end=630
+  _globals['_DOMAINCONFIGINFO']._serialized_start=633
+  _globals['_DOMAINCONFIGINFO']._serialized_end=802
+  _globals['_DOMAINCONFIGSINFO']._serialized_start=804
+  _globals['_DOMAINCONFIGSINFO']._serialized_end=903
+  _globals['_DOMAINCONFIGSTATQUERY']._serialized_start=905
+  _globals['_DOMAINCONFIGSTATQUERY']._serialized_end=1001
+  _globals['_DOMAINCONFIG']._serialized_start=1004
+  _globals['_DOMAINCONFIG']._serialized_end=1974
 # @@protoc_insertion_point(module_scope)

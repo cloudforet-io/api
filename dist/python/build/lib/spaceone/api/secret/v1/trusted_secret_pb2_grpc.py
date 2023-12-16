@@ -38,7 +38,7 @@ class TrustedSecretStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.secret.v1.TrustedSecret/get',
-                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_trusted__secret__pb2.GetTrustedSecretRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_trusted__secret__pb2.TrustedSecretRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_trusted__secret__pb2.TrustedSecretInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -57,42 +57,47 @@ class TrustedSecretServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """Creates a new Trusted Secret. When creating the resource, external `data` is encrypted, and a `trusted_secret_id` is issued for data access by other microservices.
+        """Create a new trusted secret.
+        Created trusted secret is encrypted and stored securely.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """Updates a specific Secret. You can make changes in Secret settings, including `name` and`tags`.
+        """Updates a specific trusted secret's information.
+        You can only change the 'name' and 'tags', and to change the data you must use the update_data API.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """Deletes a specific Secret. You must specify the `secret_id` of the Secret to delete.
+        """Deletes a specific trusted secret.
+        If a trusted secret is attached to a Secret, it cannot be deleted.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update_data(self, request, context):
-        """Updates encrypted data of a specific Secret resource. For example, to change the parameter `data`, external data to encrypt, you can use `update_data` to create new encrypted data based on the changed `data` and store it in the Secret resource.
+        """Updates a specific trusted secret's data.
+        Updated trusted secret is encrypted and stored securely.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.
+        """Get a specific trusted secret's information.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """Gets a list of all Posts. You can use a query to get a filtered list of Posts.
+        """Queries a list of trusted secrets.
+        You can use a query to get a filtered list of trusted secrets.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -129,7 +134,7 @@ def add_TrustedSecretServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_trusted__secret__pb2.GetTrustedSecretRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_trusted__secret__pb2.TrustedSecretRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_trusted__secret__pb2.TrustedSecretInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -232,7 +237,7 @@ class TrustedSecret(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.secret.v1.TrustedSecret/get',
-            spaceone_dot_api_dot_secret_dot_v1_dot_trusted__secret__pb2.GetTrustedSecretRequest.SerializeToString,
+            spaceone_dot_api_dot_secret_dot_v1_dot_trusted__secret__pb2.TrustedSecretRequest.SerializeToString,
             spaceone_dot_api_dot_secret_dot_v1_dot_trusted__secret__pb2.TrustedSecretInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

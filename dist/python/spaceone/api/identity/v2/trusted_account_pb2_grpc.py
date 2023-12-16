@@ -26,6 +26,11 @@ class TrustedAccountStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.UpdateTrustedAccountRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountInfo.FromString,
                 )
+        self.update_secret_data = channel.unary_unary(
+                '/spaceone.api.identity.v2.TrustedAccount/update_secret_data',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.UpdateTrustedAccountSecretRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountInfo.FromString,
+                )
         self.delete = channel.unary_unary(
                 '/spaceone.api.identity.v2.TrustedAccount/delete',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountRequest.SerializeToString,
@@ -58,6 +63,12 @@ class TrustedAccountServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def update_secret_data(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -98,6 +109,11 @@ def add_TrustedAccountServicer_to_server(servicer, server):
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.UpdateTrustedAccountRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountInfo.SerializeToString,
+            ),
+            'update_secret_data': grpc.unary_unary_rpc_method_handler(
+                    servicer.update_secret_data,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.UpdateTrustedAccountSecretRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
@@ -160,6 +176,23 @@ class TrustedAccount(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedAccount/update',
             spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.UpdateTrustedAccountRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def update_secret_data(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedAccount/update_secret_data',
+            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.UpdateTrustedAccountSecretRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

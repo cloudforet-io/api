@@ -18,7 +18,7 @@ from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from spaceone.api.core.v2 import plugin_pb2 as spaceone_dot_api_dot_core_dot_v2_dot_plugin__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n,spaceone/api/identity/v2/external_auth.proto\x12\x18spaceone.api.identity.v2\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a!spaceone/api/core/v2/plugin.proto\"e\n\x16SetExternalAuthRequest\x12\x11\n\tdomain_id\x18\x01 \x01(\t\x12\x38\n\x0bplugin_info\x18\x02 \x01(\x0b\x32#.spaceone.api.core.v2.PluginRequest\"(\n\x13\x45xternalAuthRequest\x12\x11\n\tdomain_id\x18\x01 \x01(\t\"\xdf\x01\n\x10\x45xternalAuthInfo\x12\x11\n\tdomain_id\x18\x01 \x01(\t\x12?\n\x05state\x18\x02 \x01(\x0e\x32\x30.spaceone.api.identity.v2.ExternalAuthInfo.State\x12\x35\n\x0bplugin_info\x18\x03 \x01(\x0b\x32 .spaceone.api.core.v2.PluginInfo\x12\x12\n\nupdated_at\x18\x1f \x01(\t\",\n\x05State\x12\x08\n\x04NONE\x10\x00\x12\x0b\n\x07\x45NABLED\x10\x01\x12\x0c\n\x08\x44ISABLED\x10\x02\x32\xbf\x03\n\x0c\x45xternalAuth\x12\x8e\x01\n\x03set\x12\x30.spaceone.api.identity.v2.SetExternalAuthRequest\x1a*.spaceone.api.identity.v2.ExternalAuthInfo\")\x82\xd3\xe4\x93\x02#\"\x1e/identity/v2/external-auth/set:\x01*\x12\x8f\x01\n\x05unset\x12-.spaceone.api.identity.v2.ExternalAuthRequest\x1a*.spaceone.api.identity.v2.ExternalAuthInfo\"+\x82\xd3\xe4\x93\x02%\" /identity/v2/external-auth/unset:\x01*\x12\x8b\x01\n\x03get\x12-.spaceone.api.identity.v2.ExternalAuthRequest\x1a*.spaceone.api.identity.v2.ExternalAuthInfo\")\x82\xd3\xe4\x93\x02#\"\x1e/identity/v2/external-auth/get:\x01*B?Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n,spaceone/api/identity/v2/external_auth.proto\x12\x18spaceone.api.identity.v2\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a!spaceone/api/core/v2/plugin.proto\"R\n\x16SetExternalAuthRequest\x12\x38\n\x0bplugin_info\x18\x02 \x01(\x0b\x32#.spaceone.api.core.v2.PluginRequest\"\x15\n\x13\x45xternalAuthRequest\"\xdf\x01\n\x10\x45xternalAuthInfo\x12\x11\n\tdomain_id\x18\x01 \x01(\t\x12?\n\x05state\x18\x02 \x01(\x0e\x32\x30.spaceone.api.identity.v2.ExternalAuthInfo.State\x12\x35\n\x0bplugin_info\x18\x03 \x01(\x0b\x32 .spaceone.api.core.v2.PluginInfo\x12\x12\n\nupdated_at\x18\x1f \x01(\t\",\n\x05State\x12\x08\n\x04NONE\x10\x00\x12\x0b\n\x07\x45NABLED\x10\x01\x12\x0c\n\x08\x44ISABLED\x10\x02\x32\xbf\x03\n\x0c\x45xternalAuth\x12\x8e\x01\n\x03set\x12\x30.spaceone.api.identity.v2.SetExternalAuthRequest\x1a*.spaceone.api.identity.v2.ExternalAuthInfo\")\x82\xd3\xe4\x93\x02#\"\x1e/identity/v2/external-auth/set:\x01*\x12\x8f\x01\n\x05unset\x12-.spaceone.api.identity.v2.ExternalAuthRequest\x1a*.spaceone.api.identity.v2.ExternalAuthInfo\"+\x82\xd3\xe4\x93\x02%\" /identity/v2/external-auth/unset:\x01*\x12\x8b\x01\n\x03get\x12-.spaceone.api.identity.v2.ExternalAuthRequest\x1a*.spaceone.api.identity.v2.ExternalAuthInfo\")\x82\xd3\xe4\x93\x02#\"\x1e/identity/v2/external-auth/get:\x01*B?Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,13 +33,13 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_EXTERNALAUTH'].methods_by_name['get']._options = None
   _globals['_EXTERNALAUTH'].methods_by_name['get']._serialized_options = b'\202\323\344\223\002#\"\036/identity/v2/external-auth/get:\001*'
   _globals['_SETEXTERNALAUTHREQUEST']._serialized_start=198
-  _globals['_SETEXTERNALAUTHREQUEST']._serialized_end=299
-  _globals['_EXTERNALAUTHREQUEST']._serialized_start=301
-  _globals['_EXTERNALAUTHREQUEST']._serialized_end=341
-  _globals['_EXTERNALAUTHINFO']._serialized_start=344
-  _globals['_EXTERNALAUTHINFO']._serialized_end=567
-  _globals['_EXTERNALAUTHINFO_STATE']._serialized_start=523
-  _globals['_EXTERNALAUTHINFO_STATE']._serialized_end=567
-  _globals['_EXTERNALAUTH']._serialized_start=570
-  _globals['_EXTERNALAUTH']._serialized_end=1017
+  _globals['_SETEXTERNALAUTHREQUEST']._serialized_end=280
+  _globals['_EXTERNALAUTHREQUEST']._serialized_start=282
+  _globals['_EXTERNALAUTHREQUEST']._serialized_end=303
+  _globals['_EXTERNALAUTHINFO']._serialized_start=306
+  _globals['_EXTERNALAUTHINFO']._serialized_end=529
+  _globals['_EXTERNALAUTHINFO_STATE']._serialized_start=485
+  _globals['_EXTERNALAUTHINFO_STATE']._serialized_end=529
+  _globals['_EXTERNALAUTH']._serialized_start=532
+  _globals['_EXTERNALAUTH']._serialized_end=979
 # @@protoc_insertion_point(module_scope)
