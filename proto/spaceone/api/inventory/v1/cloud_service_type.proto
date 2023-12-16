@@ -38,7 +38,7 @@ service CloudServiceType {
     }
     
     // Gets a specific CloudServiceType. Prints detailed information about the CloudServiceType.
-    rpc get (GetCloudServiceTypeRequest) returns (CloudServiceTypeInfo) {
+    rpc get (CloudServiceTypeRequest) returns (CloudServiceTypeInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/cloud-service-type/get"
             body: "*"
@@ -95,8 +95,6 @@ message CreateCloudServiceTypeRequest {
     google.protobuf.ListValue labels = 12;
     // +optional
     google.protobuf.Struct tags = 13;
-    
-    string domain_id = 21;
 }
 
 //{
@@ -126,7 +124,6 @@ message UpdateCloudServiceTypeRequest {
     google.protobuf.ListValue labels = 12;
     // +optional
     google.protobuf.Struct tags = 13;
-    string domain_id = 21;
 }
 
 //{
@@ -134,17 +131,6 @@ message UpdateCloudServiceTypeRequest {
 //}
 message CloudServiceTypeRequest {
     string cloud_service_type_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//    "cloud_service_type_id": "cloud-svc-type-27dd73ac89f8"
-//}
-message GetCloudServiceTypeRequest {
-    string cloud_service_type_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -179,7 +165,6 @@ message CloudServiceTypeQuery {
     bool is_major = 9;
     // +optional
     string resource_type = 10;
-    string domain_id = 11;
 }
 
 //{
@@ -218,6 +203,7 @@ message CloudServiceTypeInfo {
     google.protobuf.Struct tags = 12;
     google.protobuf.ListValue labels = 13;
 
+    string workspace_id = 20;
     string domain_id = 21;
 
     string created_at = 31;

@@ -38,7 +38,7 @@ service CloudService {
     }
     
     // Gets a specific CloudService. Prints detailed information about the CloudService, including its state, classification information, and attribute values.
-    rpc get (GetCloudServiceRequest) returns (CloudServiceInfo) {
+    rpc get (CloudServiceRequest) returns (CloudServiceInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/cloud-service/get"
             body: "*"
@@ -161,7 +161,6 @@ message CreateServiceRequest {
     string region_code = 21;
     // +optional
     string project_id = 22;
-    string domain_id = 23;
 }
 
 //{
@@ -200,17 +199,11 @@ message UpdateCloudServiceRequest {
     string region_code = 20;
     // +optional
     string project_id = 21;
-    string domain_id = 22;
-    // +optional
-    bool release_project = 30;
-    // +optional
-    bool release_region = 31;
 }
 
 message PinCloudServiceDataRequest {
     string cloud_service_id = 1;
     repeated string keys = 2;
-    string domain_id = 3;
 }
 
 //{
@@ -218,17 +211,6 @@ message PinCloudServiceDataRequest {
 //}
 message CloudServiceRequest {
     string cloud_service_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//    "cloud_service_id": "cloud-svc-fea2b0d32141"
-//}
-message GetCloudServiceRequest {
-    string cloud_service_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -269,7 +251,6 @@ message CloudServiceQuery {
     string project_id = 21;
     // +optional
     string project_group_id = 22;
-    string domain_id = 24;
 }
 
 //{
@@ -326,6 +307,7 @@ message CloudServiceQuery {
 //    },
 //    "ip_addresses": [],
 //    "region_code": "ap-northeast-1",
+//    "workspace_id": "workspace-58010aa2e451",
 //    "domain_id": "domain-58010aa2e451",
 //    "created_at": "2022-06-22T06:38:48.989Z",
 //    "updated_at": "2022-06-22T06:38:48.989Z",
@@ -352,7 +334,8 @@ message CloudServiceInfo {
 
     string region_code = 21;
     string project_id = 22;
-    string domain_id = 23;
+    string workspace_id = 23;
+    string domain_id = 24;
 
     string created_at = 31;
     string updated_at = 32;
@@ -417,6 +400,7 @@ message CloudServiceInfo {
 //            "2.2.2.2"
 //        ],
 //        "region_code": "ap-northeast-1",
+//        "workspace_id": "workspace-58010aa2e451",
 //        "domain_id": "domain-58010aa2e451",
 //        "created_at": "2022-06-22T06:38:48.989Z",
 //        "updated_at": "2022-06-22T06:38:48.989Z",
@@ -443,15 +427,12 @@ message CloudServiceExportRequest {
     string file_name = 3;
     // +optional
     string timezone = 4;
-    string domain_id = 21;
 }
 
 message CloudServiceAnalyzeQuery {
     spaceone.api.core.v1.AnalyzeQuery query = 1;
-    string domain_id = 2;
 }
 
 message CloudServiceStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }

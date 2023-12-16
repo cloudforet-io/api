@@ -62,7 +62,6 @@ message CloudServiceStatsQuery {
     string account = 7;
     // +optional
     string project_id = 11;
-    string domain_id = 12;
 }
 
 //{
@@ -102,7 +101,8 @@ message CloudServiceStatInfo {
     google.protobuf.Struct additional_info = 11;
 
     string project_id = 21;
-    string domain_id = 22;
+    string workspace_id = 22;
+    string domain_id = 23;
 
     string created_date = 31;
 }
@@ -146,12 +146,10 @@ message CloudServiceStatsInfo {
 message CloudServiceStatsAnalyzeQuery {
     spaceone.api.core.v1.TimeSeriesAnalyzeQuery query = 1;
     string query_set_id = 2;
-    string domain_id = 3;
 }
 
 message CloudServiceStatsStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
     // +optional
     string query_set_id = 2;
-    string domain_id = 3;
 }

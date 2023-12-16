@@ -111,6 +111,12 @@ service CloudServiceQuerySet {
 //    }
 //}
 message CreateCloudServiceQuerySetRequest {
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
     string name = 1;
     spaceone.api.core.v1.AnalyzeQuery query_options = 2;
     // +optional
@@ -120,7 +126,7 @@ message CreateCloudServiceQuerySetRequest {
     string cloud_service_type = 6;
     // +optional
     google.protobuf.Struct tags = 11;
-    string domain_id = 21;
+    ResourceGroup resource_group = 12;
 }
 
 //{
@@ -146,7 +152,6 @@ message UpdateCloudServiceQuerySetRequest {
     google.protobuf.Struct unit = 4;
     // +optional
     google.protobuf.Struct tags = 11;
-    string domain_id = 21;
 }
 
 //{
@@ -154,17 +159,6 @@ message UpdateCloudServiceQuerySetRequest {
 //}
 message CloudServiceQuerySetRequest {
     string query_set_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//    "query_set_id": "query-set-abcd1234"
-//}
-message GetCloudServiceQuerySetRequest {
-    string query_set_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -176,6 +170,7 @@ message GetCloudServiceQuerySetRequest {
 //    "provider": "aws",
 //    "cloud_service_group": "EC2",
 //    "cloud_service_type": "Instance",
+//    "resource_group": "DOMAIN",
 //}
 message CloudServiceQuerySetQuery {
     enum State {
@@ -188,6 +183,12 @@ message CloudServiceQuerySetQuery {
         NONE_QUERY_TYPE = 0;
         MANAGED = 1;
         CUSTOM = 2;
+    }
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
     }
 
     // +optional
@@ -206,7 +207,7 @@ message CloudServiceQuerySetQuery {
     string cloud_service_group = 7;
     // +optional
     string cloud_service_type = 8;
-    string domain_id = 11;
+    ResourceGroup resource_group = 9;
 }
 
 //{
@@ -251,6 +252,12 @@ message CloudServiceQuerySetInfo {
         CUSTOM = 2;
     }
 
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string query_set_id = 1;
     string name = 2;
     State state = 3;
@@ -264,7 +271,9 @@ message CloudServiceQuerySetInfo {
     string cloud_service_type = 11;
 
     google.protobuf.Struct tags = 21;
+    ResourceGroup resource_group = 22;
 
+    string workspace_id = 30;
     string domain_id = 31;
 
     string created_at = 41;
@@ -313,5 +322,4 @@ message CloudServiceQuerySetsInfo {
 
 message CloudServiceQuerySetStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }
