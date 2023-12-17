@@ -5,6 +5,7 @@ import grpc
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.inventory.v1 import collector_pb2 as spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2
+from spaceone.api.inventory.v1 import job_pb2 as spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2
 
 
 class CollectorStub(object):
@@ -43,7 +44,7 @@ class CollectorStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.inventory.v1.Collector/get',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.GetCollectorRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -59,7 +60,7 @@ class CollectorStub(object):
         self.collect = channel.unary_unary(
                 '/spaceone.api.inventory.v1.Collector/collect',
                 request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.JobInfo.FromString,
+                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobInfo.FromString,
                 )
 
 
@@ -157,7 +158,7 @@ def add_CollectorServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.GetCollectorRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -173,7 +174,7 @@ def add_CollectorServicer_to_server(servicer, server):
             'collect': grpc.unary_unary_rpc_method_handler(
                     servicer.collect,
                     request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.JobInfo.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobInfo.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -282,7 +283,7 @@ class Collector(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Collector/get',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.GetCollectorRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorRequest.SerializeToString,
             spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectorInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -334,6 +335,6 @@ class Collector(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Collector/collect',
             spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.CollectRequest.SerializeToString,
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.JobInfo.FromString,
+            spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

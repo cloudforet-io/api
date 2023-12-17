@@ -33,7 +33,7 @@ class CloudServiceTypeStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.inventory.v1.CloudServiceType/get',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__type__pb2.GetCloudServiceTypeRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__type__pb2.CloudServiceTypeRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__type__pb2.CloudServiceTypeInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -112,7 +112,7 @@ def add_CloudServiceTypeServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__type__pb2.GetCloudServiceTypeRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__type__pb2.CloudServiceTypeRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__type__pb2.CloudServiceTypeInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -198,7 +198,7 @@ class CloudServiceType(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.CloudServiceType/get',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__type__pb2.GetCloudServiceTypeRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__type__pb2.CloudServiceTypeRequest.SerializeToString,
             spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__type__pb2.CloudServiceTypeInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

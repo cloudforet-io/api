@@ -271,7 +271,7 @@ func local_request_DataSource_VerifyPlugin_0(ctx context.Context, marshaler runt
 }
 
 func request_DataSource_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetDataSourceRequest
+	var protoReq v1_0.DataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -288,7 +288,7 @@ func request_DataSource_Get_0(ctx context.Context, marshaler runtime.Marshaler, 
 }
 
 func local_request_DataSource_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetDataSourceRequest
+	var protoReq v1_0.DataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

@@ -59,7 +59,7 @@ class DataSourceStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.DataSource/get',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.GetDataSourceRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -198,7 +198,7 @@ def add_DataSourceServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.GetDataSourceRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -369,7 +369,7 @@ class DataSource(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.DataSource/get',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.GetDataSourceRequest.SerializeToString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

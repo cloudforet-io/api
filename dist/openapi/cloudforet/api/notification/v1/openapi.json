@@ -15,11 +15,11 @@
          "operationId" : "",
          "description": "### Description \nCreates a new Notification. When a Notification is created, it is delivered to a UserChannel or a ProjectChannel depending on the parameter `resource_type`. If a Notification is delivered to a UserChannel, the `resource_type` is `identity.User`, and if a Notification is delivered to a ProjectChannel, the `resource_type` is `identity.Project`.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |resource_type|is_required: true The type of resource to which the notification is dispatched. Currently, only 'identity.Project' or 'identity.User' can be set.|string|True|\n |resource_id|is_required: true The ID of the resource to which notifications are dispatched. If resource_type is 'identity.Project', then resource_id requires a project ID values. If resource_type is 'identity.User', then resource_id requires a user ID value.|string|True|\n |topic|is_required: true The topic of notification.|string|True|\n |message|is_required: true This message is used for each protocol.|Struct|True|\n |notification_type|INFO, ERROR, SUCCESS, WARNING is_required: false The type of notification.|string|True|\n |notification_level|ALL, LV1, LV2, LV3, LV4, LV5 is_required: false The level of notification.|string|True|\n |domain_id|is_required: true The ID of domain.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |resource_type|is_required: true The type of resource to which the notification is dispatched. Currently, only 'identity.Project' or 'identity.User' can be set.|string|True|\n |resource_id|is_required: true The ID of the resource to which notifications are dispatched. If resource_type is 'identity.Project', then resource_id requires a project ID values. If resource_type is 'identity.User', then resource_id requires a user ID value.|string|True|\n |topic|is_required: true The topic of notification.|string|True|\n |message|is_required: true This message is used for each protocol.|Struct|True|\n |notification_type|INFO, ERROR, SUCCESS, WARNING is_required: false The type of notification. |string||\n |notification_level|ALL, LV1, LV2, LV3, LV4, LV5 is_required: false The level of notification. |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"topic" : {"type": "string","title": "TOPIC" },"message" : {"type": "object","title": "MESSAGE" },"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"topic" : {"type": "string","title": "TOPIC" },"message" : {"type": "object","title": "MESSAGE" },"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"resource_type\": \"identity.Project\",\n   \"resource_id\": \"resource-123456789012\",\n   \"topic\": \"monitoring.Alert\",\n   \"message\": {\n       \"title\": \"[Alerting] Not Running Pods 0:OK alert\",\n       \"description\": \"[spaceone-dev] Not Running Pods 0 is OK\\n\\nFailure level : WorkerNode\\nPanel ... \",\n       \"tags\": {\n           \"urgency\": \"LOW\",\n           \"resource_id\": \"pod\",\n           \"assignee\": \"user1@email.com\",\n           \"created_at\": \"2022-01-01T17:12:45.990Z\",\n           \"state\": \"ACKNOWLEDGED\",\n           \"project_id\": \"project-123456789012\"\n       }\n   },\n   \"notification_type\": \"INFO\",\n   \"notification_level\": \"LV2\"\n}"},"Schema":{}
                }
@@ -38,11 +38,11 @@
          "operationId" : "",
          "description": "### Description \nManually raises a Notification. A Notification is raised with a message to be sent using a valid specific Protocol, and data used for a specific Protocol such as a phone number.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|is_required: true The ID of Protocol.|string|True|\n |data|is_required: true|Struct|True|\n |message|is_required: true|Struct|True|\n |notification_type|is_required: false|string|True|\n |notification_level|is_required: false|string|True|\n |domain_id|is_required: true|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|is_required: true The ID of Protocol.|string|True|\n |data|is_required: true|string|True|\n |message|is_required: true|Struct|True|\n |notification_type|is_required: false |string||\n |notification_level|is_required: false |string||\n |topic||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"data" : {"type": "object","title": "DATA" },"message" : {"type": "object","title": "MESSAGE" },"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"data" : {"type": "string","title": "DATA" },"message" : {"type": "object","title": "MESSAGE" },"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"topic" : {"type": "string","title": "TOPIC" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-fb30cb6c28d6\",\n   \"data\": {\n       \"phone_number\": \"01012345678\"\n   },\n   \"message\": {\n       \"tags\": [\n           {\n               \"key\": \"project_id\",\n               \"value\": \"project-xxxx\"\n           },\n           {\n               \"key\": \"project_name\",\n               \"value\": \"Test Project\"\n           },\n           {\n               \"key\": \"resource_id\",\n               \"value\": \"server-yyyyy\"\n           },\n           {\n               \"key\": \"resource_name\",\n               \"value\": \"web-server-001\"\n           }\n       ],\n       \"description\": \"This is Sample Message\",\n       \"title\": \"Sample\"\n   }\n}"},"Schema":{}
                }
@@ -61,11 +61,11 @@
          "operationId" : "",
          "description": "### Description \nDeletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notifications|is_required: true ID list of Notifications.|array|True|\n |domain_id|is_required: true The ID of domain.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notifications|is_required: true ID list of Notifications.|array|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"notifications" : {"items": {}, "type": "array","title": "NOTIFICATIONS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"notifications" : {"items": {}, "type": "array","title": "NOTIFICATIONS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"notifications\": [\n       \"notification-4025c1b61225\",\n       \"notification-13hk3fh32534\",\n       \"notification-4kth40jth5jy\"\n   ]\n}"},"Schema":{}
                }
@@ -84,11 +84,11 @@
          "operationId" : "",
          "description": "### Description \nMarks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notifications|is_required: true The ID list of notification that want to change read status.|array|True|\n |domain_id|is_required: true The ID of domain.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notifications|is_required: true The ID list of notification that want to change read status.|array|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"notifications" : {"items": {}, "type": "array","title": "NOTIFICATIONS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"notifications" : {"items": {}, "type": "array","title": "NOTIFICATIONS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"notifications\": [\n       \"notification-6c548a37ee77\",\n       \"notification-4j3jt9384fnf\"\n   ]\n}"},"Schema":{}
                }
@@ -107,11 +107,11 @@
          "operationId" : "",
          "description": "### Description \nGets a specific Notification. Prints detailed information about the Notification, including not only the message contents(`title`, `description`) but also related data such as created time and urgency.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notification_id|is_required: true The ID of Notification.|string|True|\n |domain_id|is_required: true The ID of domain.|string|True|\n |only|is_required: false The list of the notification information column you want to be returned. It must be specified in the NotificationInfo.|array|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notification_id|is_required: true The ID of Notification.|string|True|\n |set_read| Check whether read or not|boolean|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"notification_id" : {"type": "string","title": "NOTIFICATION_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+                 "properties": {"notification_id" : {"type": "string","title": "NOTIFICATION_ID" },"set_read" : {"type": "boolean","title": "SET_READ" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"notification_id\": \"notification-4025c1b61225\"\n}"},"Schema":{}
                }
@@ -138,11 +138,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all Notifications. You can use a query to get a filtered list of Notifications.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|is_required: false Query format provided by SpaceONE. Please check the link for more information.|Query|True|\n |notification_id|is_required: false The ID of notification.|string|True|\n |topic|is_required: false The topic of notification.|string|True|\n |notification_type|INFO, ERROR, SUCCESS, WARNING is_required: false The type of notification.|string|True|\n |notification_level|ALL, LV1, LV2, LV3, LV4, LV5 is_required: false The level of notification.|string|True|\n |is_read|is_required: false Whether or not to check the notification. If is_read is False, the user has not checked the notification yet.|boolean|True|\n |parent_notification_id|is_required: false The ID of parent notification. Not used yet.|string|True|\n |project_id|is_required: false The project ID to which the notification will be dispatched.|string|True|\n |user_id|is_required: false The ID of user.|string|True|\n |domain_id|is_required: true The ID of domain.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|is_required: false Query format provided by SpaceONE. Please check the link for more information. |Query||\n |notification_id|is_required: false The ID of notification. |string||\n |topic|is_required: false The topic of notification. |string||\n |notification_type|INFO, ERROR, SUCCESS, WARNING is_required: false The type of notification. |string||\n |notification_level|ALL, LV1, LV2, LV3, LV4, LV5 is_required: false The level of notification. |string||\n |is_read|is_required: false Whether or not to check the notification. If is_read is False, the user has not checked the notification yet. |boolean||\n |parent_notification_id|is_required: false The ID of parent notification. Not used yet. |string||\n |project_id|is_required: false The project ID to which the notification will be dispatched. |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"notification_id" : {"type": "string","title": "NOTIFICATION_ID" },"topic" : {"type": "string","title": "TOPIC" },"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"is_read" : {"type": "boolean","title": "IS_READ" },"parent_notification_id" : {"type": "string","title": "PARENT_NOTIFICATION_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"user_id" : {"type": "string","title": "USER_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"notification_id" : {"type": "string","title": "NOTIFICATION_ID" },"topic" : {"type": "string","title": "TOPIC" },"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"is_read" : {"type": "boolean","title": "IS_READ" },"parent_notification_id" : {"type": "string","title": "PARENT_NOTIFICATION_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"notification_type\",\n               \"value\": \"INFO\",\n               \"operator\": \"eq\"\n           }\n       ]\n   }\n}"},"Schema":{}
                }
@@ -169,11 +169,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|is_required: true Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n |domain_id|is_required: true The ID of domain.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|is_required: true Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -198,11 +198,11 @@
          "operationId" : "",
          "description": "### Description \nCreates a new ProjectChannel. ProjectChannel is a channel that delivers a Notification to the Project when the Notification is created. When creating a ProjectChannel, one Protocol must be selected, and a Notification is dispatched via the selected Protocol.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of protocol that will be set in project channel.|string|True|\n |name|The name of Project Channel. It can have a maximum of 255 characters.|string|True|\n |data|The data for using project channel. This data is encrypted and stored in the Secret service if JSON schema in the protocol's metadata is set to SECRET type. In this case, the secret ID that is stored in the security service will be returned and the data value will be empty. if JSON schema in the protocol's metadata is set to PLAIN_TEXT type, This data is not encrypted and stored directly in the DB.|Struct|True|\n |project_id|The ID of project to which the project channel belongs.|string|True|\n |domain_id|The ID of domain.|string|True|\n |is_subscribe|Indicates whether subscriptions will be used. |boolean||\n |subscriptions|When using subscriptions, it indicates the topic list to subscription. If is_subscribe is set to false, this value is ignored. |array||\n |notification_level|LV1, LV2, LV3, LV4, LV5 Set the level of notification. If a notification has a level and a notification level that this channel can receive is set, a notification is dispatched only if the notification level is the same. |string||\n |is_scheduled|Indicates whether schedule will be used. |boolean||\n |schedule|Schedule for which you want to receive notifications through the project channel. |ProjectChannelSchedule||\n |tags|The tags for project channel. |Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of protocol that will be set in project channel.|string|True|\n |name|The name of Project Channel. It can have a maximum of 255 characters.|string|True|\n |data|The data for using project channel. This data is encrypted and stored in the Secret service if JSON schema in the protocol's metadata is set to SECRET type. In this case, the secret ID that is stored in the security service will be returned and the data value will be empty. if JSON schema in the protocol's metadata is set to PLAIN_TEXT type, This data is not encrypted and stored directly in the DB.|Struct|True|\n |project_id|The ID of project to which the project channel belongs.|string|True|\n |is_subscribe|Indicates whether subscriptions will be used. |boolean||\n |subscriptions|When using subscriptions, it indicates the topic list to subscription. If is_subscribe is set to false, this value is ignored. |array||\n |notification_level|LV1, LV2, LV3, LV4, LV5 Set the level of notification. If a notification has a level and a notification level that this channel can receive is set, a notification is dispatched only if the notification level is the same. |string||\n |is_scheduled|Indicates whether schedule will be used. |boolean||\n |schedule|Schedule for which you want to receive notifications through the project channel. |ProjectChannelSchedule||\n |tags|The tags for project channel. |Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"subscriptions" : {"items": {}, "type": "array","title": "SUBSCRIPTIONS" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE" },"tags" : {"type": "object","title": "TAGS" },"project_id" : {"type": "string","title": "PROJECT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"subscriptions" : {"items": {}, "type": "array","title": "SUBSCRIPTIONS" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE" },"tags" : {"type": "object","title": "TAGS" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"name\": \"sms-test\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"is_subscribe\": true,\n   \"subscriptions\": [\"monitoring.Alert\"],\n   \"notification_level\": \"LV1\",\n   \"is_scheduled\": true,\n   \"schedule\": {\n       \"day_of_week\": [\n           \"MON\",\n           \"TUE\",\n           \"WED\",\n           \"THU\",\n           \"FRI\"\n       ],\n       \"end_hour\": 9\n   },\n   \"project_id\": \"project-52a423012d5e\"\n}"},"Schema":{}
                }
@@ -216,7 +216,7 @@
                  "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
                    }}
                }
              }}
@@ -247,7 +247,7 @@
                  "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
                    }}
                }
              }}
@@ -260,11 +260,11 @@
          "operationId" : "",
          "description": "### Description \nSets a schedule for a ProjectChannel. A schedule defines the time to receive a Notification. When a Notification is created, you can set the day of the week and time you want to receive it. When you set the day of the week, you can receive a notification only on the day of the week you set. If you also set the start time and end time with the day of the week, you can receive a Notification only at the scheduled time on the day of the week you set. If there is no schedule set in a ProjectChannel, Notifications will be dispatched at all times via the ProjectChannel.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |is_scheduled|Indicates whether schedule will be used.|boolean|True|\n |domain_id|The ID of domain.|string|True|\n |schedule|Schedule for which you want to receive notifications through the project channel. |ProjectChannelSchedule||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |is_scheduled|Indicates whether schedule will be used.|boolean|True|\n |schedule|Schedule for which you want to receive notifications through the project channel. |ProjectChannelSchedule||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"is_scheduled\": true,\n   \"schedule\": {\n       \"day_of_week\": [\n           \"MON\",\n           \"WED\",\n           \"FRI\"\n       ],\n       \"end_hour\": 9\n   }\n}"},"Schema":{}
                }
@@ -278,7 +278,7 @@
                  "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
                    }}
                }
              }}
@@ -291,11 +291,11 @@
          "operationId" : "",
          "description": "### Description \nSets a subscription for a ProjectChannel. A subscription is a topic for channels to subscribe to and get notified about. If a ProjectChannel has subscriptions, a Notification is dispatched only if the topic of the Notification is the same as the one set in the subscriptions. If there is no subscription in a ProjectChannel, all Notifications will be dispatched.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |is_subscribe|Indicates whether subscriptions will be used.|boolean|True|\n |domain_id|The ID of domain.|string|True|\n |subscriptions|When using subscriptions, it indicates the topic list to subscription. If is_subscribe is set to false, this value is ignored. |array||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |is_subscribe|Indicates whether subscriptions will be used.|boolean|True|\n |subscriptions|When using subscriptions, it indicates the topic list to subscription. If is_subscribe is set to false, this value is ignored. |array||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"subscriptions" : {"items": {}, "type": "array","title": "SUBSCRIPTIONS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"subscriptions" : {"items": {}, "type": "array","title": "SUBSCRIPTIONS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-cff007433a23\",\n   \"is_subscribe\": true,\n   \"subscriptions\": [\n       \"monitoring.Alert\"\n   ]\n}"},"Schema":{}
                }
@@ -309,7 +309,7 @@
                  "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
                    }}
                }
              }}
@@ -322,11 +322,11 @@
          "operationId" : "",
          "description": "### Description \nEnables a specific ProjectChannel. If a ProjectChannel is enabled, the ProjectChannel can be used and the Notification can be dispatched. Even if a ProjectChannel is enabled, if the Protocol used in the ProjectChannel is disabled, the Notification is not dispatched.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |domain_id|The ID of domain.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-ffdb1d6cc774\"\n}"},"Schema":{}
                }
@@ -340,7 +340,7 @@
                  "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
                    }}
                }
              }}
@@ -353,11 +353,11 @@
          "operationId" : "",
          "description": "### Description \nDisables a specific ProjectChannel. If a ProjectChannel is disabled, the Notification is not dispatched, even if it is created.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |domain_id|The ID of domain.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-ffdb1d6cc774\"\n}"},"Schema":{}
                }
@@ -371,7 +371,7 @@
                  "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
                    }}
                }
              }}
@@ -384,11 +384,11 @@
          "operationId" : "",
          "description": "### Description \nDeletes a specific ProjectChannel.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |domain_id|The ID of domain.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-ffdb1d6cc774\"\n}"},"Schema":{}
                }
@@ -407,11 +407,11 @@
          "operationId" : "",
          "description": "### Description \nGets a specific ProjectChannel. Prints detailed information about the ProjectChannel.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n |domain_id|The ID of domain.|string|True|\n |only|The list of the project channel information column you want to be returned. It must be specified in the ProjectChannelInfo. |array||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |project_channel_id|The ID of project channel.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+                 "properties": {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"project_channel_id\": \"project-ch-ffdb1d6cc774\"\n}"},"Schema":{}
                }
@@ -425,7 +425,7 @@
                  "schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/ProjectChannelInfo"},"Default Example":{
-                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
+                     "value": "{\n   \"project_channel_id\": \"project-ch-488df94d026d\",\n   \"name\": \"sms-test\",\n   \"state\": \"ENABLED\",\n   \"data\": {\n       \"phone_number\": \"01011112222\"\n   },\n   \"notification_level\": \"LV1\",\n   \"tags\": {},\n   \"protocol_id\": \"protocol-ab94ea7d574e\",\n   \"project_id\": \"project-aa723eed3d69\",\n   \"workspace_id\": \"workspace-123456789012\"\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-13T07:35:28.305Z\"\n}"
                    }}
                }
              }}
@@ -438,11 +438,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all ProjectChannels. You can use a query to get a filtered list of ProjectChannels.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id|The ID of domain.|string|True|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |project_channel_id|The ID of project channel. |string||\n |name|The name of project channel. |string||\n |state|ENABLED, DISABLED The state of project channel. ENABLED or DISABLED only. |string||\n |secret_id|The ID of secret encrypted data in the security service |string||\n |notification_level|LV1, LV2, LV3, LV4, LV5 The level of notification. |string||\n |protocol_id|The ID of protocol set in the project channel. |string||\n |project_id|The ID of project to which the project channel belongs. |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |project_channel_id|The ID of project channel. |string||\n |name|The name of project channel. |string||\n |state|ENABLED, DISABLED The state of project channel. ENABLED or DISABLED only. |string||\n |secret_id|The ID of secret encrypted data in the security service |string||\n |is_scheduled|Indicates whether schedule will be used. |boolean||\n |notification_level|LV1, LV2, LV3, LV4, LV5 The level of notification. |string||\n |protocol_id|The ID of protocol set in the project channel. |string||\n |project_id|The ID of project to which the project channel belongs. |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"secret_id" : {"type": "string","title": "SECRET_ID" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"secret_id" : {"type": "string","title": "SECRET_ID" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"state\",\n               \"value\": \"ENABLED\",\n               \"operator\": \"eq\"\n           }\n       ]\n   }\n}"},"Schema":{}
                }
@@ -734,11 +734,11 @@
          "operationId" : "",
          "description": "### Description \nCreates a new Protocol. When creating a protocol, you must specify the plugins provided from the repository, and you must also set the credentials to be set in the plugin if necessary.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name|The name of Protocol. It can have a maximum of 255 characters.|string|True|\n |plugin_info|Describe a Plugin information for protocol that include was used plugin, specific version, schema etc.|PluginRequest|True|\n |domain_id|The ID of domain to which the Protocol belongs.|string|True|\n |tags|The tags for protocol. |Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name|The name of Protocol. It can have a maximum of 255 characters.|string|True|\n |plugin_info|Describe a Plugin information for protocol that include was used plugin, specific version, schema etc.|PluginRequest|True|\n |tags|The tags for protocol. |Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/PluginRequest","title": "PLUGIN_INFO" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/PluginRequest","title": "PLUGIN_INFO" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"name\": \"Email\",\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-email-noti-protocol\",\n       \"version\": \"1.0.1\",\n       \"options\": {},\n       \"secret_id\": \"secret-123546789012\",\n       \"metadata\": {\n           \"data\": {\n               \"schema\": {\n                   \"properties\": {\n                       \"email\": {\n                           \"pattern\": \"^[\\\\W]*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4}[\\\\W]*,{1}[\\\\W]*)*([\\\\w+\\\\-.%]+@[\\\\w\\\\-.]+\\\\.[A-Za-z]{2,4})[\\\\W]*$\",\n                           \"examples\": [\n                               \"user1@test.com, user2@test.com\"\n                           ],\n                           \"minLength\": 10.0,\n                           \"description\": \"Email address to receive notifications\",\n                           \"type\": \"string\",\n                           \"title\": \"Email Address\"\n                       }\n                   },\n                   \"required\": [\n                       \"email\"\n                   ],\n                   \"type\": \"object\"\n               }\n           },\n           \"data_type\": \"PLAIN_TEXT\"\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {}\n}"},"Schema":{}
                }
@@ -765,11 +765,11 @@
          "operationId" : "",
          "description": "### Description \nUpdates a specific Protocol. The method `update` can update the name and tags only. If you want to update the plugin version or options, you can use `update_plugin` method.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n |domain_id|The ID of domain to which the Protocol belongs.|string|True|\n |name|The Name of Protocol. It can have a maximum of 255 characters. |string||\n |tags|The tags for protocol. When updating, existing tag information is deleted all and will be updated with new. |Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n |name|The Name of Protocol. It can have a maximum of 255 characters. |string||\n |tags|The tags for protocol. When updating, existing tag information is deleted all and will be updated with new. |Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\",\n   \"name\": \"Email-test\",\n   \"tags\": {\n       \"type\": \"test\"\n   }\n}"},"Schema":{}
                }
@@ -827,11 +827,11 @@
          "operationId" : "",
          "description": "### Description \nEnables a specific Protocol. If the Protocol is enabled, the Protocol can be used and the Notification can be dispatched.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n |domain_id|The ID of domain to which the Protocol belongs.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}"},"Schema":{}
                }
@@ -858,11 +858,11 @@
          "operationId" : "",
          "description": "### Description \nDisables a specific Protocol. If a Protocol is disabled, the Notification will not be dispatched, even if it is created.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n |domain_id|The ID of domain to which the Protocol belongs.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}"},"Schema":{}
                }
@@ -889,11 +889,11 @@
          "operationId" : "",
          "description": "### Description \nDeletes a specific Protocol. If there exists a channel using the Protocol, it cannot be deleted.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n |domain_id|The ID of domain to which the Protocol belongs.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}"},"Schema":{}
                }
@@ -912,11 +912,11 @@
          "operationId" : "",
          "description": "### Description \nGets a specific Protocol. Prints detailed information about the Protocol.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n |domain_id|The ID of domain to which the Protocol belongs.|string|True|\n |only|The list of the Protocol information column you want to be returned. It must be specified in the ProtocolInfo. |array||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\"\n}"},"Schema":{}
                }
@@ -943,11 +943,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of Protocols. You can use a query to get a filtered list of Protocols.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id|The ID of domain to which the Protocol belongs.|string|True|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |protocol_id|The ID of Protocol. |string||\n |name|The name of Protocol. |string||\n |state|ENABLED, DISABLED The state of Protocol. ENABLED or DISABLED only. |string||\n |protocol_type|INTERNAL, EXTERNAL The type of Protocol. INTERNAL or EXTERNAL only. |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |protocol_id|The ID of Protocol. |string||\n |name|The name of Protocol. |string||\n |state|ENABLED, DISABLED The state of Protocol. ENABLED or DISABLED only. |string||\n |protocol_type|INTERNAL, EXTERNAL The type of Protocol. INTERNAL or EXTERNAL only. |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"protocol_type" : {"type": "string","title": "PROTOCOL_TYPE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"protocol_type" : {"type": "string","title": "PROTOCOL_TYPE" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
                }
@@ -974,11 +974,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n |domain_id|The ID of domain to which the Protocol belongs.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1003,13 +1003,13 @@
          "operationId" : "",
          "description": "### Description \nCreates a new UserChannel. A UserChannel is a channel that delivers a Notification to users when the Notification is created. When creating a UserChannel, one Protocol must be selected, and an Notification is dispatched via the selected Protocol.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of protocol that will be set in user channel.|string|True|\n |name|The name of User Channel. It can have a maximum of 255 characters.|string|True|\n |data|The data for using user channel. This data is encrypted and stored in the Secret service if JSON schema in the protocol's metadata is set to SECRET type. In this case, the secret ID that is stored in the security service will be returned and the data value will be empty. if JSON schema in the protocol's metadata is set to PLAIN_TEXT type, This data is not encrypted and stored directly in the DB.|Struct|True|\n |user_id|The ID of user|string|True|\n |domain_id|The ID of domain.|string|True|\n |is_subscribe|Indicates whether subscriptions will be used. |boolean||\n |subscriptions|When using subscriptions, it indicates the topic list to subscription. If is_subscribe is set to false, this value is ignored. |array||\n |is_scheduled|Indicates whether schedule will be used. |boolean||\n |schedule|Schedule for which you want to receive notifications through the user channel. |UserChannelSchedule||\n |tags|The tags for user channel. |Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of protocol that will be set in user channel.|string|True|\n |name|The name of User Channel. It can have a maximum of 255 characters.|string|True|\n |data|The data for using user channel. This data is encrypted and stored in the Secret service if JSON schema in the protocol's metadata is set to SECRET type. In this case, the secret ID that is stored in the security service will be returned and the data value will be empty. if JSON schema in the protocol's metadata is set to PLAIN_TEXT type, This data is not encrypted and stored directly in the DB.|Struct|True|\n |is_subscribe|Indicates whether subscriptions will be used. |boolean||\n |subscriptions|When using subscriptions, it indicates the topic list to subscription. If is_subscribe is set to false, this value is ignored. |array||\n |is_scheduled|Indicates whether schedule will be used. |boolean||\n |schedule|Schedule for which you want to receive notifications through the user channel. |UserChannelSchedule||\n |tags|The tags for user channel. |Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"subscriptions" : {"items": {}, "type": "array","title": "SUBSCRIPTIONS" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE" },"tags" : {"type": "object","title": "TAGS" },"user_id" : {"type": "string","title": "USER_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"subscriptions" : {"items": {}, "type": "array","title": "SUBSCRIPTIONS" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\",\n   \"name\": \"Email\",\n   \"data\": {\n       \"email\": \"user1@email.com\"\n   },\n   \"user_id\": \"user1@email.com\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\",\n   \"name\": \"Email\",\n   \"data\": {\n       \"email\": \"user1@email.com\"\n   },\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1034,11 +1034,11 @@
          "operationId" : "",
          "description": "### Description \nUpdates a specific UserChannel. A UserChannel that has already been configured cannot be changed. Instead, the data required for dispatching Notifications to a UserChannel can be updated.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n |domain_id|The ID of domain.|string|True|\n |name|The name of user channel. It can have a maximum of 255 characters. |string||\n |data|The data for using user channel. This data is encrypted and stored in the Secret service if JSON schema in the protocol's metadata is set to SECRET type. In this case, the secret ID that is stored in the security service will be returned and the data value will be empty. if JSON schema in the protocol's metadata is set to PLAIN_TEXT type, This data is not encrypted and stored directly in the DB. |Struct||\n |schedule|Set the level of notification. If a notification has a level and a notification level that this channel can receive is set, a notification is dispatched only if the notification level is the same. |UserChannelSchedule||\n |tags|The tags for user channel. |Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n |name|The name of user channel. It can have a maximum of 255 characters. |string||\n |data|The data for using user channel. This data is encrypted and stored in the Secret service if JSON schema in the protocol's metadata is set to SECRET type. In this case, the secret ID that is stored in the security service will be returned and the data value will be empty. if JSON schema in the protocol's metadata is set to PLAIN_TEXT type, This data is not encrypted and stored directly in the DB. |Struct||\n |schedule|Set the level of notification. If a notification has a level and a notification level that this channel can receive is set, a notification is dispatched only if the notification level is the same. |UserChannelSchedule||\n |tags|The tags for user channel. |Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"user_channel_id\": \"user-ch-123456789012\",\n   \"name\": \"Email2\",\n   \"data\": {\n       \"email\": \"user1@gmail.com\"\n   },\n   \"tags\": {\n       \"type\": \"test\"\n   }\n}"},"Schema":{}
                }
@@ -1065,13 +1065,13 @@
          "operationId" : "",
          "description": "### Description \nSets a schedule for a UserChannel. A schedule defines the time to receive a Notification. When a Notification is created, you can set the day of the week and time you want to receive it. When you set the day of the week, you can receive a notification only on the day of the week you set. If you also set the start time and end time with the day of the week, you can receive a Notification only at the scheduled time on the day of the week you set. If there is no schedule set in a UserChannel, Notifications will be dispatched at all times via the UserChannel.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n |is_scheduled|Indicates whether schedule will be used.|boolean|True|\n |domain_id|The ID of domain.|string|True|\n |schedule|Schedule for which you want to receive notifications through the user channel. |UserChannelSchedule||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n |is_scheduled|Indicates whether schedule will be used.|boolean|True|\n |schedule|Schedule for which you want to receive notifications through the user channel. |UserChannelSchedule||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"user_channel_id\": \"user-ch-28097e8d5d59\",\n   \"is_scheduled\": true,\n   \"schedule\": {\n       \"day_of_week\": [\n           \"MON\",\n           \"TUE\",\n           \"WED\",\n           \"THU\",\n           \"FRI\"\n       ],\n       \"end_hour\": 9\n   },\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"user_channel_id\": \"user-ch-28097e8d5d59\",\n   \"is_scheduled\": true,\n   \"schedule\": {\n       \"day_of_week\": [\n           \"MON\",\n           \"TUE\",\n           \"WED\",\n           \"THU\",\n           \"FRI\"\n       ],\n       \"end_hour\": 9\n   },\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1096,13 +1096,13 @@
          "operationId" : "",
          "description": "### Description \nSets a subscription for a UserChannel. A subscription is a topic for channels to subscribe to and get notified about. If a UserChannel has subscriptions, a Notification is dispatched only if the topic of the Notification is the same as the one set in the subscriptions. If there is no subscription in a UserChannel, all Notifications will be dispatched.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n |is_subscribe|Indicates whether subscriptions will be used.|boolean|True|\n |domain_id|The ID of domain.|string|True|\n |subscriptions|If is_subscribe is set to false, this value is ignored. |array||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n |is_subscribe|Indicates whether subscriptions will be used.|boolean|True|\n |subscriptions|If is_subscribe is set to false, this value is ignored. |array||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"subscriptions" : {"items": {}, "type": "array","title": "SUBSCRIPTIONS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"subscriptions" : {"items": {}, "type": "array","title": "SUBSCRIPTIONS" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"user_channel_id\": \"user-ch-28097e8d5d59\",\n   \"is_subscribe\": true,\n   \"subscriptions\": [\n       \"monitoring.Alert\"\n   ],\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"user_channel_id\": \"user-ch-28097e8d5d59\",\n   \"is_subscribe\": true,\n   \"subscriptions\": [\n       \"monitoring.Alert\"\n   ],\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1127,11 +1127,11 @@
          "operationId" : "",
          "description": "### Description \nEnables a specific UserChannel. If a UserChannel is enabled, the UserChannel can be used and the Notification can be dispatched. Even if a UserChannel is enabled, if the Protocol used in the UserChannel is disabled, the Notification is not dispatched.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n |domain_id|The ID of domain.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"user_channel_id\": \"user-ch-123456789012\"\n}"},"Schema":{}
                }
@@ -1158,11 +1158,11 @@
          "operationId" : "",
          "description": "### Description \nDisables a specific UserChannel. If a UserChannel is disabled, the Notification is not dispatched, even if it is created.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n |domain_id|The ID of domain.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"user_channel_id\": \"user-ch-123456789012\"\n}"},"Schema":{}
                }
@@ -1189,11 +1189,11 @@
          "operationId" : "",
          "description": "### Description \nDeletes a specific UserChannel. You must specify the `user_channel_id` of the UserChannel to delete.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n |domain_id|The ID of domain.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"user_channel_id\": \"user-ch-123456789012\"\n}"},"Schema":{}
                }
@@ -1212,11 +1212,11 @@
          "operationId" : "",
          "description": "### Description \nGets a specific UserChannel. Prints detailed information about the UserChannel, including the Protocol configured and the Notification settings.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n |domain_id|The ID of domain.|string|True|\n |only|The list of the user channel information column you want to be returned. It must be specified in the UserChannelInfo. |array||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_channel_id|The ID of user channel.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+                 "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1243,11 +1243,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all UserChannels. You can use a query to get a filtered list of UserChannels.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id|The ID of domain.|string|True|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |user_channel_id|The ID of user channel. |string||\n |name|The name of user channel. It can have a maximum of 255 characters. |string||\n |state|ENABLED, DISABLED The state of user channel. ENABLED or DISABLED only. |string||\n |secret_id|The ID of secret encrypted data in the security service |string||\n |protocol_id|The ID of protocol set in the user channel. |string||\n |user_id|The ID of user using the user channel. |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |user_channel_id|The ID of user channel. |string||\n |name|The name of user channel. It can have a maximum of 255 characters. |string||\n |state|ENABLED, DISABLED The state of user channel. ENABLED or DISABLED only. |string||\n |secret_id|The ID of secret encrypted data in the security service |string||\n |protocol_id|The ID of protocol set in the user channel. |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"secret_id" : {"type": "string","title": "SECRET_ID" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"user_id" : {"type": "string","title": "USER_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"secret_id" : {"type": "string","title": "SECRET_ID" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
                }
@@ -1274,11 +1274,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n |domain_id|The ID of domain.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1301,16 +1301,15 @@
    "components":{
      "schemas": {
      "CreateNotificationRequest": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"topic" : {"type": "string","title": "TOPIC"},"message" : {"type": "object","title": "MESSAGE"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"topic" : {"type": "string","title": "TOPIC"},"message" : {"type": "object","title": "MESSAGE"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"}},
          "type": "object",
-         "required": ["resource_type","resource_id","topic","message","notification_type","notification_level","domain_id"],
+         "required": ["resource_type","resource_id","topic","message"],
                 "title": "CreateNotificationRequest"
            }
            ,        "GetNotificationRequest": {
-         "properties" : {"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
+         "properties" : {"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"set_read" : {"type": "boolean","title": "SET_READ"}},
          "type": "object",
-         "required": ["notification_id","domain_id","only"],
+         "required": ["notification_id","set_read"],
                 "title": "GetNotificationRequest"
            }
            ,        "NotificationInfo": {
@@ -1320,22 +1319,22 @@
                 "title": "NotificationInfo"
            }
            ,        "NotificationQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"topic" : {"type": "string","title": "TOPIC"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_read" : {"type": "boolean","title": "IS_READ"},"parent_notification_id" : {"type": "string","title": "PARENT_NOTIFICATION_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"topic" : {"type": "string","title": "TOPIC"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_read" : {"type": "boolean","title": "IS_READ"},"parent_notification_id" : {"type": "string","title": "PARENT_NOTIFICATION_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
-         "required": ["query","notification_id","topic","notification_type","notification_level","is_read","parent_notification_id","project_id","user_id","domain_id"],
+         "required": [],
                 "title": "NotificationQuery"
            }
            ,        "NotificationRequest": {
          "properties" : {"notifications" : {"items": {"type": "string"},
-               "type": "array","title": "NOTIFICATIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+               "type": "array","title": "NOTIFICATIONS"}},
          "type": "object",
-         "required": ["notifications","domain_id"],
+         "required": ["notifications"],
                 "title": "NotificationRequest"
            }
            ,        "NotificationStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
-         "required": ["query","domain_id"],
+         "required": ["query"],
                 "title": "NotificationStatQuery"
            }
            ,        "NotificationsInfo": {
@@ -1346,16 +1345,16 @@
                 "title": "NotificationsInfo"
            }
            ,        "PushNotificationRequest": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"data" : {"type": "object","title": "DATA"},"message" : {"type": "object","title": "MESSAGE"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"data" : {"type": "string","title": "DATA"},"message" : {"type": "object","title": "MESSAGE"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"topic" : {"type": "string","title": "TOPIC"}},
          "type": "object",
-         "required": ["protocol_id","data","message","notification_type","notification_level","domain_id"],
+         "required": ["protocol_id","data","message"],
                 "title": "PushNotificationRequest"
            }
            ,        "SetReadNotificationRequest": {
          "properties" : {"notifications" : {"items": {"type": "string"},
-               "type": "array","title": "NOTIFICATIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+               "type": "array","title": "NOTIFICATIONS"}},
          "type": "object",
-         "required": ["notifications","domain_id"],
+         "required": ["notifications"],
                 "title": "SetReadNotificationRequest"
            }
            ,        "VersionInfo": {
@@ -1567,35 +1566,34 @@
            }
            ,        "CreateProjectChannelRequest": {
          "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
-               "type": "array","title": "SUBSCRIPTIONS"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"project_id" : {"type": "string","title": "PROJECT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+               "type": "array","title": "SUBSCRIPTIONS"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
-         "required": ["protocol_id","name","data","project_id","domain_id"],
+         "required": ["protocol_id","name","data","project_id"],
                 "title": "CreateProjectChannelRequest"
            }
            ,        "GetProjectChannelRequest": {
-         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
+         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"}},
          "type": "object",
-         "required": ["project_channel_id","domain_id"],
+         "required": ["project_channel_id"],
                 "title": "GetProjectChannelRequest"
            }
            ,        "ProjectChannelInfo": {
          "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data" : {"type": "object","title": "DATA"},"secret_id" : {"type": "string","title": "SECRET_ID"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
-               "type": "array","title": "SUBSCRIPTIONS"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+               "type": "array","title": "SUBSCRIPTIONS"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["project_channel_id","name","state","data","secret_id","is_subscribe","subscriptions","notification_level","is_scheduled","schedule","tags","protocol_id","project_id","domain_id","created_at"],
+         "required": ["project_channel_id","name","state","data","secret_id","is_subscribe","subscriptions","notification_level","is_scheduled","schedule","tags","protocol_id","project_id","workspace_id","domain_id","created_at"],
                 "title": "ProjectChannelInfo"
            }
            ,        "ProjectChannelQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"secret_id" : {"type": "string","title": "SECRET_ID"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"secret_id" : {"type": "string","title": "SECRET_ID"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
-         "required": ["domain_id"],
+         "required": [],
                 "title": "ProjectChannelQuery"
            }
            ,        "ProjectChannelRequest": {
-         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"}},
          "type": "object",
-         "required": ["project_channel_id","domain_id"],
+         "required": ["project_channel_id"],
                 "title": "ProjectChannelRequest"
            }
            ,        "ProjectChannelSchedule": {
@@ -1625,16 +1623,16 @@
                 "title": "UpdateProjectChannelRequest"
            }
            ,        "UpdateProjectChannelScheduleRequest": {
-         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"}},
          "type": "object",
-         "required": ["project_channel_id","is_scheduled","domain_id"],
+         "required": ["project_channel_id","is_scheduled"],
                 "title": "UpdateProjectChannelScheduleRequest"
            }
            ,        "UpdateProjectChannelSubscriptionRequest": {
          "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
-               "type": "array","title": "SUBSCRIPTIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+               "type": "array","title": "SUBSCRIPTIONS"}},
          "type": "object",
-         "required": ["project_channel_id","is_subscribe","domain_id"],
+         "required": ["project_channel_id","is_subscribe"],
                 "title": "UpdateProjectChannelSubscriptionRequest"
            }
            ,        "NotificationUsageInfo": {
@@ -1706,22 +1704,21 @@
                 "title": "UpdateQuotaRequest"
            }
            ,        "CreateProtocolRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/PluginRequest","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/PluginRequest","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["name","plugin_info","domain_id"],
+         "required": ["name","plugin_info"],
                 "title": "CreateProtocolRequest"
            }
            ,        "GetProtocolRequest": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"}},
          "type": "object",
-         "required": ["protocol_id","domain_id"],
+         "required": ["protocol_id"],
                 "title": "GetProtocolRequest"
            }
            ,        "PluginInfo": {
          "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"secret_id" : {"type": "string","title": "SECRET_ID"},"metadata" : {"type": "object","title": "METADATA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
          "type": "object",
-         "required": ["plugin_id","version","options","secret_id","metadata","upgrade_mode"],
+         "required": ["plugin_id","version","options","metadata","upgrade_mode"],
                 "title": "PluginInfo"
            }
            ,        "PluginRequest": {
@@ -1737,21 +1734,21 @@
                 "title": "ProtocolInfo"
            }
            ,        "ProtocolQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"protocol_type" : {"type": "string","title": "PROTOCOL_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"protocol_type" : {"type": "string","title": "PROTOCOL_TYPE"}},
          "type": "object",
-         "required": ["domain_id"],
+         "required": [],
                 "title": "ProtocolQuery"
            }
            ,        "ProtocolRequest": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"}},
          "type": "object",
-         "required": ["protocol_id","domain_id"],
+         "required": ["protocol_id"],
                 "title": "ProtocolRequest"
            }
            ,        "ProtocolStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
-         "required": ["query","domain_id"],
+         "required": ["query"],
                 "title": "ProtocolStatQuery"
            }
            ,        "ProtocolsInfo": {
@@ -1768,42 +1765,41 @@
                 "title": "UpdateProtocolPluginRequest"
            }
            ,        "UpdateProtocolRequest": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["protocol_id","domain_id"],
+         "required": ["protocol_id"],
                 "title": "UpdateProtocolRequest"
            }
            ,        "CreateUserChannelRequest": {
          "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
-               "type": "array","title": "SUBSCRIPTIONS"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+               "type": "array","title": "SUBSCRIPTIONS"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["protocol_id","name","data","user_id","domain_id"],
+         "required": ["protocol_id","name","data"],
                 "title": "CreateUserChannelRequest"
            }
            ,        "GetUserChannelRequest": {
-         "properties" : {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
+         "properties" : {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"}},
          "type": "object",
-         "required": ["user_channel_id","domain_id"],
+         "required": ["user_channel_id"],
                 "title": "GetUserChannelRequest"
            }
            ,        "UpdateUserChannelRequest": {
-         "properties" : {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["user_channel_id","domain_id"],
+         "required": ["user_channel_id"],
                 "title": "UpdateUserChannelRequest"
            }
            ,        "UpdateUserChannelScheduleRequest": {
-         "properties" : {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE"}},
          "type": "object",
-         "required": ["user_channel_id","is_scheduled","domain_id"],
+         "required": ["user_channel_id","is_scheduled"],
                 "title": "UpdateUserChannelScheduleRequest"
            }
            ,        "UpdateUserChannelSubscriptionRequest": {
          "properties" : {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
-               "type": "array","title": "SUBSCRIPTIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+               "type": "array","title": "SUBSCRIPTIONS"}},
          "type": "object",
-         "required": ["user_channel_id","is_subscribe","domain_id"],
+         "required": ["user_channel_id","is_subscribe"],
                 "title": "UpdateUserChannelSubscriptionRequest"
            }
            ,        "UserChannelInfo": {
@@ -1814,15 +1810,15 @@
                 "title": "UserChannelInfo"
            }
            ,        "UserChannelQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"secret_id" : {"type": "string","title": "SECRET_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"secret_id" : {"type": "string","title": "SECRET_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"}},
          "type": "object",
-         "required": ["domain_id"],
+         "required": [],
                 "title": "UserChannelQuery"
            }
            ,        "UserChannelRequest": {
-         "properties" : {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"}},
          "type": "object",
-         "required": ["user_channel_id","domain_id"],
+         "required": ["user_channel_id"],
                 "title": "UserChannelRequest"
            }
            ,        "UserChannelSchedule": {
@@ -1833,9 +1829,9 @@
                 "title": "UserChannelSchedule"
            }
            ,        "UserChannelStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
-         "required": ["query","domain_id"],
+         "required": ["query"],
                 "title": "UserChannelStatQuery"
            }
            ,        "UserChannelsInfo": {

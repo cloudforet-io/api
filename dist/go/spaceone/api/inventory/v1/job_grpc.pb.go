@@ -37,7 +37,7 @@ type JobClient interface {
 	// Deletes a specific Job. You must specify the `job_id` of the Job to delete.
 	Delete(ctx context.Context, in *JobRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Job. Prints detailed information about the Job, including its state, total tasks, and collector info.
-	Get(ctx context.Context, in *GetJobRequest, opts ...grpc.CallOption) (*JobInfo, error)
+	Get(ctx context.Context, in *JobRequest, opts ...grpc.CallOption) (*JobInfo, error)
 	// Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.
 	List(ctx context.Context, in *JobsQuery, opts ...grpc.CallOption) (*JobsInfo, error)
 	Analyze(ctx context.Context, in *JobAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -61,7 +61,7 @@ func (c *jobClient) Delete(ctx context.Context, in *JobRequest, opts ...grpc.Cal
 	return out, nil
 }
 
-func (c *jobClient) Get(ctx context.Context, in *GetJobRequest, opts ...grpc.CallOption) (*JobInfo, error) {
+func (c *jobClient) Get(ctx context.Context, in *JobRequest, opts ...grpc.CallOption) (*JobInfo, error) {
 	out := new(JobInfo)
 	err := c.cc.Invoke(ctx, Job_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -104,7 +104,7 @@ type JobServer interface {
 	// Deletes a specific Job. You must specify the `job_id` of the Job to delete.
 	Delete(context.Context, *JobRequest) (*empty.Empty, error)
 	// Gets a specific Job. Prints detailed information about the Job, including its state, total tasks, and collector info.
-	Get(context.Context, *GetJobRequest) (*JobInfo, error)
+	Get(context.Context, *JobRequest) (*JobInfo, error)
 	// Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.
 	List(context.Context, *JobsQuery) (*JobsInfo, error)
 	Analyze(context.Context, *JobAnalyzeQuery) (*_struct.Struct, error)
@@ -119,7 +119,7 @@ type UnimplementedJobServer struct {
 func (UnimplementedJobServer) Delete(context.Context, *JobRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedJobServer) Get(context.Context, *GetJobRequest) (*JobInfo, error) {
+func (UnimplementedJobServer) Get(context.Context, *JobRequest) (*JobInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedJobServer) List(context.Context, *JobsQuery) (*JobsInfo, error) {
@@ -163,7 +163,7 @@ func _Job_Delete_Handler(srv interface{}, ctx context.Context, dec func(interfac
 }
 
 func _Job_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetJobRequest)
+	in := new(JobRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -175,7 +175,7 @@ func _Job_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}
 		FullMethod: Job_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JobServer).Get(ctx, req.(*GetJobRequest))
+		return srv.(JobServer).Get(ctx, req.(*JobRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -33,6 +33,29 @@
           ]
         },
         {
+          "name": "ResourceGroup",
+          "longName": "CreateEscalationPolicyRequest.ResourceGroup",
+          "fullName": "spaceone.api.monitoring.v1.CreateEscalationPolicyRequest.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PROJECT",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "EscalationFinishCondition",
           "longName": "EscalationPolicyInfo.EscalationFinishCondition",
           "fullName": "spaceone.api.monitoring.v1.EscalationPolicyInfo.EscalationFinishCondition",
@@ -56,18 +79,18 @@
           ]
         },
         {
-          "name": "EscalationPolicyScope",
-          "longName": "EscalationPolicyInfo.EscalationPolicyScope",
-          "fullName": "spaceone.api.monitoring.v1.EscalationPolicyInfo.EscalationPolicyScope",
+          "name": "ResourceGroup",
+          "longName": "EscalationPolicyInfo.ResourceGroup",
+          "fullName": "spaceone.api.monitoring.v1.EscalationPolicyInfo.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "SCOPE_NONE",
+              "name": "RESOURCE_GROUP_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "DOMAIN",
+              "name": "WORKSPACE",
               "number": "1",
               "description": ""
             },
@@ -102,18 +125,18 @@
           ]
         },
         {
-          "name": "EscalationPolicyScope",
-          "longName": "EscalationPolicyQuery.EscalationPolicyScope",
-          "fullName": "spaceone.api.monitoring.v1.EscalationPolicyQuery.EscalationPolicyScope",
+          "name": "ResourceGroup",
+          "longName": "EscalationPolicyQuery.ResourceGroup",
+          "fullName": "spaceone.api.monitoring.v1.EscalationPolicyQuery.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "SCOPE_NONE",
+              "name": "RESOURCE_GROUP_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "DOMAIN",
+              "name": "WORKSPACE",
               "number": "1",
               "description": ""
             },
@@ -276,12 +299,12 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "resource_group",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "ResourceGroup",
+              "longType": "CreateEscalationPolicyRequest.ResourceGroup",
+              "fullType": "spaceone.api.monitoring.v1.CreateEscalationPolicyRequest.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -408,12 +431,12 @@
               "defaultValue": ""
             },
             {
-              "name": "scope",
+              "name": "resource_group",
               "description": "",
               "label": "",
-              "type": "EscalationPolicyScope",
-              "longType": "EscalationPolicyInfo.EscalationPolicyScope",
-              "fullType": "spaceone.api.monitoring.v1.EscalationPolicyInfo.EscalationPolicyScope",
+              "type": "ResourceGroup",
+              "longType": "EscalationPolicyInfo.ResourceGroup",
+              "fullType": "spaceone.api.monitoring.v1.EscalationPolicyInfo.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -438,6 +461,18 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -540,12 +575,12 @@
               "defaultValue": ""
             },
             {
-              "name": "scope",
-              "description": "+optional",
+              "name": "resource_group",
+              "description": "",
               "label": "",
-              "type": "EscalationPolicyScope",
-              "longType": "EscalationPolicyQuery.EscalationPolicyScope",
-              "fullType": "spaceone.api.monitoring.v1.EscalationPolicyQuery.EscalationPolicyScope",
+              "type": "ResourceGroup",
+              "longType": "EscalationPolicyQuery.ResourceGroup",
+              "fullType": "spaceone.api.monitoring.v1.EscalationPolicyQuery.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -554,18 +589,6 @@
             {
               "name": "project_id",
               "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -589,18 +612,6 @@
           "fields": [
             {
               "name": "escalation_policy_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -666,66 +677,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
               "fullType": "spaceone.api.core.v1.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "GetEscalationPolicyRequest",
-          "longName": "GetEscalationPolicyRequest",
-          "fullName": "spaceone.api.monitoring.v1.GetEscalationPolicyRequest",
-          "description": "{\n   \"escalation_policy_id\": \"ep-d75670166af4\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "escalation_policy_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "only",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -810,18 +761,6 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -932,9 +871,9 @@
             {
               "name": "get",
               "description": "Gets a specific EscalationPolicy. Prints detailed information about the EscalationPolicy, including the name, rules, and termination conditions.",
-              "requestType": "GetEscalationPolicyRequest",
-              "requestLongType": "GetEscalationPolicyRequest",
-              "requestFullType": "spaceone.api.monitoring.v1.GetEscalationPolicyRequest",
+              "requestType": "EscalationPolicyRequest",
+              "requestLongType": "EscalationPolicyRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.EscalationPolicyRequest",
               "requestStreaming": false,
               "responseType": "EscalationPolicyInfo",
               "responseLongType": "EscalationPolicyInfo",

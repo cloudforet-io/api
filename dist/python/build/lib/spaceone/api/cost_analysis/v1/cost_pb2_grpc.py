@@ -28,7 +28,7 @@ class CostStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.Cost/get',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.GetCostRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.CostRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.CostInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -107,7 +107,7 @@ def add_CostServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.GetCostRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.CostRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.CostInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -181,7 +181,7 @@ class Cost(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.Cost/get',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.GetCostRequest.SerializeToString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.CostRequest.SerializeToString,
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__pb2.CostInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

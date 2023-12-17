@@ -37,7 +37,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserConfigClient interface {
 	Create(ctx context.Context, in *SetUserConfigRequest, opts ...grpc.CallOption) (*UserConfigInfo, error)
-	Update(ctx context.Context, in *UpdateUserConfigRequest, opts ...grpc.CallOption) (*UserConfigInfo, error)
+	Update(ctx context.Context, in *SetUserConfigRequest, opts ...grpc.CallOption) (*UserConfigInfo, error)
 	Set(ctx context.Context, in *SetUserConfigRequest, opts ...grpc.CallOption) (*UserConfigInfo, error)
 	Delete(ctx context.Context, in *UserConfigRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *UserConfigRequest, opts ...grpc.CallOption) (*UserConfigInfo, error)
@@ -62,7 +62,7 @@ func (c *userConfigClient) Create(ctx context.Context, in *SetUserConfigRequest,
 	return out, nil
 }
 
-func (c *userConfigClient) Update(ctx context.Context, in *UpdateUserConfigRequest, opts ...grpc.CallOption) (*UserConfigInfo, error) {
+func (c *userConfigClient) Update(ctx context.Context, in *SetUserConfigRequest, opts ...grpc.CallOption) (*UserConfigInfo, error) {
 	out := new(UserConfigInfo)
 	err := c.cc.Invoke(ctx, UserConfig_Update_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -121,7 +121,7 @@ func (c *userConfigClient) Stat(ctx context.Context, in *UserConfigStatQuery, op
 // for forward compatibility
 type UserConfigServer interface {
 	Create(context.Context, *SetUserConfigRequest) (*UserConfigInfo, error)
-	Update(context.Context, *UpdateUserConfigRequest) (*UserConfigInfo, error)
+	Update(context.Context, *SetUserConfigRequest) (*UserConfigInfo, error)
 	Set(context.Context, *SetUserConfigRequest) (*UserConfigInfo, error)
 	Delete(context.Context, *UserConfigRequest) (*empty.Empty, error)
 	Get(context.Context, *UserConfigRequest) (*UserConfigInfo, error)
@@ -137,7 +137,7 @@ type UnimplementedUserConfigServer struct {
 func (UnimplementedUserConfigServer) Create(context.Context, *SetUserConfigRequest) (*UserConfigInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedUserConfigServer) Update(context.Context, *UpdateUserConfigRequest) (*UserConfigInfo, error) {
+func (UnimplementedUserConfigServer) Update(context.Context, *SetUserConfigRequest) (*UserConfigInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedUserConfigServer) Set(context.Context, *SetUserConfigRequest) (*UserConfigInfo, error) {
@@ -187,7 +187,7 @@ func _UserConfig_Create_Handler(srv interface{}, ctx context.Context, dec func(i
 }
 
 func _UserConfig_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateUserConfigRequest)
+	in := new(SetUserConfigRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -199,7 +199,7 @@ func _UserConfig_Update_Handler(srv interface{}, ctx context.Context, dec func(i
 		FullMethod: UserConfig_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserConfigServer).Update(ctx, req.(*UpdateUserConfigRequest))
+		return srv.(UserConfigServer).Update(ctx, req.(*SetUserConfigRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

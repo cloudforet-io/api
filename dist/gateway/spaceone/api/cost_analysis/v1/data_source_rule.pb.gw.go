@@ -169,7 +169,7 @@ func local_request_DataSourceRule_Delete_0(ctx context.Context, marshaler runtim
 }
 
 func request_DataSourceRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.DataSourceRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetDataSourceRuleRequest
+	var protoReq v1_0.DataSourceRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -186,7 +186,7 @@ func request_DataSourceRule_Get_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func local_request_DataSourceRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.DataSourceRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetDataSourceRuleRequest
+	var protoReq v1_0.DataSourceRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

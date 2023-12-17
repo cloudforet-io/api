@@ -22,7 +22,7 @@ class JobStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.Job/get',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_job__pb2.GetJobRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_job__pb2.JobRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_job__pb2.JobInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -77,7 +77,7 @@ def add_JobServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_job__pb2.GetJobRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_job__pb2.JobRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_job__pb2.JobInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -129,7 +129,7 @@ class Job(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.Job/get',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_job__pb2.GetJobRequest.SerializeToString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_job__pb2.JobRequest.SerializeToString,
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_job__pb2.JobInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -35,7 +35,7 @@ type JobClient interface {
 	// Cancels a specific Job. You can manually cease a Job in run with this method.
 	Cancel(ctx context.Context, in *JobRequest, opts ...grpc.CallOption) (*JobInfo, error)
 	// Gets a specific Job. Prints detailed information about the Job, including the plugin used, operation time, and `status`.
-	Get(ctx context.Context, in *GetJobRequest, opts ...grpc.CallOption) (*JobInfo, error)
+	Get(ctx context.Context, in *JobRequest, opts ...grpc.CallOption) (*JobInfo, error)
 	// Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.
 	List(ctx context.Context, in *JobQuery, opts ...grpc.CallOption) (*JobsInfo, error)
 	Stat(ctx context.Context, in *JobStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -58,7 +58,7 @@ func (c *jobClient) Cancel(ctx context.Context, in *JobRequest, opts ...grpc.Cal
 	return out, nil
 }
 
-func (c *jobClient) Get(ctx context.Context, in *GetJobRequest, opts ...grpc.CallOption) (*JobInfo, error) {
+func (c *jobClient) Get(ctx context.Context, in *JobRequest, opts ...grpc.CallOption) (*JobInfo, error) {
 	out := new(JobInfo)
 	err := c.cc.Invoke(ctx, Job_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -92,7 +92,7 @@ type JobServer interface {
 	// Cancels a specific Job. You can manually cease a Job in run with this method.
 	Cancel(context.Context, *JobRequest) (*JobInfo, error)
 	// Gets a specific Job. Prints detailed information about the Job, including the plugin used, operation time, and `status`.
-	Get(context.Context, *GetJobRequest) (*JobInfo, error)
+	Get(context.Context, *JobRequest) (*JobInfo, error)
 	// Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.
 	List(context.Context, *JobQuery) (*JobsInfo, error)
 	Stat(context.Context, *JobStatQuery) (*_struct.Struct, error)
@@ -106,7 +106,7 @@ type UnimplementedJobServer struct {
 func (UnimplementedJobServer) Cancel(context.Context, *JobRequest) (*JobInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Cancel not implemented")
 }
-func (UnimplementedJobServer) Get(context.Context, *GetJobRequest) (*JobInfo, error) {
+func (UnimplementedJobServer) Get(context.Context, *JobRequest) (*JobInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedJobServer) List(context.Context, *JobQuery) (*JobsInfo, error) {
@@ -147,7 +147,7 @@ func _Job_Cancel_Handler(srv interface{}, ctx context.Context, dec func(interfac
 }
 
 func _Job_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetJobRequest)
+	in := new(JobRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -159,7 +159,7 @@ func _Job_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}
 		FullMethod: Job_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JobServer).Get(ctx, req.(*GetJobRequest))
+		return srv.(JobServer).Get(ctx, req.(*JobRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -271,7 +271,7 @@ func local_request_CloudServiceQuerySet_Disable_0(ctx context.Context, marshaler
 }
 
 func request_CloudServiceQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetCloudServiceQuerySetRequest
+	var protoReq v1_0.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -288,7 +288,7 @@ func request_CloudServiceQuerySet_Get_0(ctx context.Context, marshaler runtime.M
 }
 
 func local_request_CloudServiceQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetCloudServiceQuerySetRequest
+	var protoReq v1_0.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

@@ -36,7 +36,7 @@ type NoteClient interface {
 	Create(ctx context.Context, in *CreateNoteRequest, opts ...grpc.CallOption) (*NoteInfo, error)
 	Update(ctx context.Context, in *UpdateNoteRequest, opts ...grpc.CallOption) (*NoteInfo, error)
 	Delete(ctx context.Context, in *NoteRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Get(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*NoteInfo, error)
+	Get(ctx context.Context, in *NoteRequest, opts ...grpc.CallOption) (*NoteInfo, error)
 	List(ctx context.Context, in *NoteQuery, opts ...grpc.CallOption) (*NotesInfo, error)
 	Stat(ctx context.Context, in *NoteStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -76,7 +76,7 @@ func (c *noteClient) Delete(ctx context.Context, in *NoteRequest, opts ...grpc.C
 	return out, nil
 }
 
-func (c *noteClient) Get(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*NoteInfo, error) {
+func (c *noteClient) Get(ctx context.Context, in *NoteRequest, opts ...grpc.CallOption) (*NoteInfo, error) {
 	out := new(NoteInfo)
 	err := c.cc.Invoke(ctx, Note_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -110,7 +110,7 @@ type NoteServer interface {
 	Create(context.Context, *CreateNoteRequest) (*NoteInfo, error)
 	Update(context.Context, *UpdateNoteRequest) (*NoteInfo, error)
 	Delete(context.Context, *NoteRequest) (*empty.Empty, error)
-	Get(context.Context, *GetNoteRequest) (*NoteInfo, error)
+	Get(context.Context, *NoteRequest) (*NoteInfo, error)
 	List(context.Context, *NoteQuery) (*NotesInfo, error)
 	Stat(context.Context, *NoteStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedNoteServer()
@@ -129,7 +129,7 @@ func (UnimplementedNoteServer) Update(context.Context, *UpdateNoteRequest) (*Not
 func (UnimplementedNoteServer) Delete(context.Context, *NoteRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedNoteServer) Get(context.Context, *GetNoteRequest) (*NoteInfo, error) {
+func (UnimplementedNoteServer) Get(context.Context, *NoteRequest) (*NoteInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedNoteServer) List(context.Context, *NoteQuery) (*NotesInfo, error) {
@@ -206,7 +206,7 @@ func _Note_Delete_Handler(srv interface{}, ctx context.Context, dec func(interfa
 }
 
 func _Note_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNoteRequest)
+	in := new(NoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -218,7 +218,7 @@ func _Note_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 		FullMethod: Note_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NoteServer).Get(ctx, req.(*GetNoteRequest))
+		return srv.(NoteServer).Get(ctx, req.(*NoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -53,7 +53,7 @@ class CloudServiceQuerySetStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.inventory.v1.CloudServiceQuerySet/get',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.GetCloudServiceQuerySetRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.CloudServiceQuerySetRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.CloudServiceQuerySetInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -182,7 +182,7 @@ def add_CloudServiceQuerySetServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.GetCloudServiceQuerySetRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.CloudServiceQuerySetRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.CloudServiceQuerySetInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -336,7 +336,7 @@ class CloudServiceQuerySet(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.CloudServiceQuerySet/get',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.GetCloudServiceQuerySetRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.CloudServiceQuerySetRequest.SerializeToString,
             spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__query__set__pb2.CloudServiceQuerySetInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

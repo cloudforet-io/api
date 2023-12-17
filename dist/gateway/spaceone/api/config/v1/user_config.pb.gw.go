@@ -67,7 +67,7 @@ func local_request_UserConfig_Create_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func request_UserConfig_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserConfigClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.UpdateUserConfigRequest
+	var protoReq extV1.SetUserConfigRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,7 +84,7 @@ func request_UserConfig_Update_0(ctx context.Context, marshaler runtime.Marshale
 }
 
 func local_request_UserConfig_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserConfigServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.UpdateUserConfigRequest
+	var protoReq extV1.SetUserConfigRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

@@ -45,7 +45,7 @@ type EscalationPolicyClient interface {
 	// Deletes a specific EscalationPolicy. Deletes the EscalationPolicy with the escalation_policy_id from the deletion request.
 	Delete(ctx context.Context, in *EscalationPolicyRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific EscalationPolicy. Prints detailed information about the EscalationPolicy, including the name, rules, and termination conditions.
-	Get(ctx context.Context, in *GetEscalationPolicyRequest, opts ...grpc.CallOption) (*EscalationPolicyInfo, error)
+	Get(ctx context.Context, in *EscalationPolicyRequest, opts ...grpc.CallOption) (*EscalationPolicyInfo, error)
 	// Gets a list of all EscalationPolicies. You can use a query to get a filtered list of EscalationPolicies.
 	List(ctx context.Context, in *EscalationPolicyQuery, opts ...grpc.CallOption) (*EscalationPoliciesInfo, error)
 	Stat(ctx context.Context, in *EscalationPolicyStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -95,7 +95,7 @@ func (c *escalationPolicyClient) Delete(ctx context.Context, in *EscalationPolic
 	return out, nil
 }
 
-func (c *escalationPolicyClient) Get(ctx context.Context, in *GetEscalationPolicyRequest, opts ...grpc.CallOption) (*EscalationPolicyInfo, error) {
+func (c *escalationPolicyClient) Get(ctx context.Context, in *EscalationPolicyRequest, opts ...grpc.CallOption) (*EscalationPolicyInfo, error) {
 	out := new(EscalationPolicyInfo)
 	err := c.cc.Invoke(ctx, EscalationPolicy_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -135,7 +135,7 @@ type EscalationPolicyServer interface {
 	// Deletes a specific EscalationPolicy. Deletes the EscalationPolicy with the escalation_policy_id from the deletion request.
 	Delete(context.Context, *EscalationPolicyRequest) (*empty.Empty, error)
 	// Gets a specific EscalationPolicy. Prints detailed information about the EscalationPolicy, including the name, rules, and termination conditions.
-	Get(context.Context, *GetEscalationPolicyRequest) (*EscalationPolicyInfo, error)
+	Get(context.Context, *EscalationPolicyRequest) (*EscalationPolicyInfo, error)
 	// Gets a list of all EscalationPolicies. You can use a query to get a filtered list of EscalationPolicies.
 	List(context.Context, *EscalationPolicyQuery) (*EscalationPoliciesInfo, error)
 	Stat(context.Context, *EscalationPolicyStatQuery) (*_struct.Struct, error)
@@ -158,7 +158,7 @@ func (UnimplementedEscalationPolicyServer) SetDefault(context.Context, *Escalati
 func (UnimplementedEscalationPolicyServer) Delete(context.Context, *EscalationPolicyRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedEscalationPolicyServer) Get(context.Context, *GetEscalationPolicyRequest) (*EscalationPolicyInfo, error) {
+func (UnimplementedEscalationPolicyServer) Get(context.Context, *EscalationPolicyRequest) (*EscalationPolicyInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedEscalationPolicyServer) List(context.Context, *EscalationPolicyQuery) (*EscalationPoliciesInfo, error) {
@@ -253,7 +253,7 @@ func _EscalationPolicy_Delete_Handler(srv interface{}, ctx context.Context, dec 
 }
 
 func _EscalationPolicy_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetEscalationPolicyRequest)
+	in := new(EscalationPolicyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -265,7 +265,7 @@ func _EscalationPolicy_Get_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: EscalationPolicy_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EscalationPolicyServer).Get(ctx, req.(*GetEscalationPolicyRequest))
+		return srv.(EscalationPolicyServer).Get(ctx, req.(*EscalationPolicyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

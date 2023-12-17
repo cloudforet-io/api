@@ -34,8 +34,7 @@ type SetDomainConfigRequest struct {
 	Name string          `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Data *_struct.Struct `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 	// +optional
-	Tags     *_struct.Struct `protobuf:"bytes,3,opt,name=tags,proto3" json:"tags,omitempty"`
-	DomainId string          `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Tags *_struct.Struct `protobuf:"bytes,3,opt,name=tags,proto3" json:"tags,omitempty"`
 }
 
 func (x *SetDomainConfigRequest) Reset() {
@@ -91,99 +90,18 @@ func (x *SetDomainConfigRequest) GetTags() *_struct.Struct {
 	return nil
 }
 
-func (x *SetDomainConfigRequest) GetDomainId() string {
-	if x != nil {
-		return x.DomainId
-	}
-	return ""
-}
-
-type UpdateDomainConfigRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// +optional
-	Data *_struct.Struct `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
-	// +optional
-	Tags     *_struct.Struct `protobuf:"bytes,3,opt,name=tags,proto3" json:"tags,omitempty"`
-	DomainId string          `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-}
-
-func (x *UpdateDomainConfigRequest) Reset() {
-	*x = UpdateDomainConfigRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *UpdateDomainConfigRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateDomainConfigRequest) ProtoMessage() {}
-
-func (x *UpdateDomainConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateDomainConfigRequest.ProtoReflect.Descriptor instead.
-func (*UpdateDomainConfigRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_config_v1_domain_config_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *UpdateDomainConfigRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *UpdateDomainConfigRequest) GetData() *_struct.Struct {
-	if x != nil {
-		return x.Data
-	}
-	return nil
-}
-
-func (x *UpdateDomainConfigRequest) GetTags() *_struct.Struct {
-	if x != nil {
-		return x.Tags
-	}
-	return nil
-}
-
-func (x *UpdateDomainConfigRequest) GetDomainId() string {
-	if x != nil {
-		return x.DomainId
-	}
-	return ""
-}
-
 type DomainConfigRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name     string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	DomainId string `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 }
 
 func (x *DomainConfigRequest) Reset() {
 	*x = DomainConfigRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[2]
+		mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -196,7 +114,7 @@ func (x *DomainConfigRequest) String() string {
 func (*DomainConfigRequest) ProtoMessage() {}
 
 func (x *DomainConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[2]
+	mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -209,19 +127,12 @@ func (x *DomainConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DomainConfigRequest.ProtoReflect.Descriptor instead.
 func (*DomainConfigRequest) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_config_v1_domain_config_proto_rawDescGZIP(), []int{2}
+	return file_spaceone_api_config_v1_domain_config_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *DomainConfigRequest) GetName() string {
 	if x != nil {
 		return x.Name
-	}
-	return ""
-}
-
-func (x *DomainConfigRequest) GetDomainId() string {
-	if x != nil {
-		return x.DomainId
 	}
 	return ""
 }
@@ -234,14 +145,13 @@ type DomainConfigSearchQuery struct {
 	// +optional
 	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 	// +optional
-	Name     string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	DomainId string `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 }
 
 func (x *DomainConfigSearchQuery) Reset() {
 	*x = DomainConfigSearchQuery{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[3]
+		mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -254,7 +164,7 @@ func (x *DomainConfigSearchQuery) String() string {
 func (*DomainConfigSearchQuery) ProtoMessage() {}
 
 func (x *DomainConfigSearchQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[3]
+	mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -267,7 +177,7 @@ func (x *DomainConfigSearchQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DomainConfigSearchQuery.ProtoReflect.Descriptor instead.
 func (*DomainConfigSearchQuery) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_config_v1_domain_config_proto_rawDescGZIP(), []int{3}
+	return file_spaceone_api_config_v1_domain_config_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *DomainConfigSearchQuery) GetQuery() *v1.Query {
@@ -280,13 +190,6 @@ func (x *DomainConfigSearchQuery) GetQuery() *v1.Query {
 func (x *DomainConfigSearchQuery) GetName() string {
 	if x != nil {
 		return x.Name
-	}
-	return ""
-}
-
-func (x *DomainConfigSearchQuery) GetDomainId() string {
-	if x != nil {
-		return x.DomainId
 	}
 	return ""
 }
@@ -307,7 +210,7 @@ type DomainConfigInfo struct {
 func (x *DomainConfigInfo) Reset() {
 	*x = DomainConfigInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[4]
+		mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -320,7 +223,7 @@ func (x *DomainConfigInfo) String() string {
 func (*DomainConfigInfo) ProtoMessage() {}
 
 func (x *DomainConfigInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[4]
+	mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -333,7 +236,7 @@ func (x *DomainConfigInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DomainConfigInfo.ProtoReflect.Descriptor instead.
 func (*DomainConfigInfo) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_config_v1_domain_config_proto_rawDescGZIP(), []int{4}
+	return file_spaceone_api_config_v1_domain_config_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *DomainConfigInfo) GetName() string {
@@ -390,7 +293,7 @@ type DomainConfigsInfo struct {
 func (x *DomainConfigsInfo) Reset() {
 	*x = DomainConfigsInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[5]
+		mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -403,7 +306,7 @@ func (x *DomainConfigsInfo) String() string {
 func (*DomainConfigsInfo) ProtoMessage() {}
 
 func (x *DomainConfigsInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[5]
+	mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -416,7 +319,7 @@ func (x *DomainConfigsInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DomainConfigsInfo.ProtoReflect.Descriptor instead.
 func (*DomainConfigsInfo) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_config_v1_domain_config_proto_rawDescGZIP(), []int{5}
+	return file_spaceone_api_config_v1_domain_config_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *DomainConfigsInfo) GetResults() []*DomainConfigInfo {
@@ -438,14 +341,13 @@ type DomainConfigStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Query    *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	DomainId string              `protobuf:"bytes,2,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 }
 
 func (x *DomainConfigStatQuery) Reset() {
 	*x = DomainConfigStatQuery{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[6]
+		mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -458,7 +360,7 @@ func (x *DomainConfigStatQuery) String() string {
 func (*DomainConfigStatQuery) ProtoMessage() {}
 
 func (x *DomainConfigStatQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[6]
+	mi := &file_spaceone_api_config_v1_domain_config_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -471,7 +373,7 @@ func (x *DomainConfigStatQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DomainConfigStatQuery.ProtoReflect.Descriptor instead.
 func (*DomainConfigStatQuery) Descriptor() ([]byte, []int) {
-	return file_spaceone_api_config_v1_domain_config_proto_rawDescGZIP(), []int{6}
+	return file_spaceone_api_config_v1_domain_config_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *DomainConfigStatQuery) GetQuery() *v1.StatisticsQuery {
@@ -479,13 +381,6 @@ func (x *DomainConfigStatQuery) GetQuery() *v1.StatisticsQuery {
 		return x.Query
 	}
 	return nil
-}
-
-func (x *DomainConfigStatQuery) GetDomainId() string {
-	if x != nil {
-		return x.DomainId
-	}
-	return ""
 }
 
 var File_spaceone_api_config_v1_domain_config_proto protoreflect.FileDescriptor
@@ -503,7 +398,7 @@ var file_spaceone_api_config_v1_domain_config_proto_rawDesc = []byte{
 	0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x20, 0x73,
 	0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x72, 0x65,
 	0x2f, 0x76, 0x31, 0x2f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22,
-	0xa3, 0x01, 0x0a, 0x16, 0x53, 0x65, 0x74, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x43, 0x6f, 0x6e,
+	0x86, 0x01, 0x0a, 0x16, 0x53, 0x65, 0x74, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x43, 0x6f, 0x6e,
 	0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
 	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x2b,
 	0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67,
@@ -511,32 +406,16 @@ var file_spaceone_api_config_v1_domain_config_proto_rawDesc = []byte{
 	0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x12, 0x2b, 0x0a, 0x04, 0x74,
 	0x61, 0x67, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67,
 	0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75,
-	0x63, 0x74, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x12, 0x1b, 0x0a, 0x09, 0x64, 0x6f, 0x6d, 0x61,
-	0x69, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x15, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x64, 0x6f, 0x6d,
-	0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0xa6, 0x01, 0x0a, 0x19, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x2b, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x04,
-	0x64, 0x61, 0x74, 0x61, 0x12, 0x2b, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18, 0x03, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x04, 0x74, 0x61, 0x67,
-	0x73, 0x12, 0x1b, 0x0a, 0x09, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x15,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x46,
-	0x0a, 0x13, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x64, 0x6f, 0x6d,
-	0x61, 0x69, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x15, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x64, 0x6f,
-	0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x7d, 0x0a, 0x17, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
-	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x12, 0x31, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x1b, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e,
-	0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x05, 0x71,
-	0x75, 0x65, 0x72, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x64, 0x6f, 0x6d, 0x61,
-	0x69, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x15, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x64, 0x6f, 0x6d,
-	0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0xdb, 0x01, 0x0a, 0x10, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x63, 0x74, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x22, 0x29, 0x0a, 0x13, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x22, 0x60, 0x0a, 0x17, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x43, 0x6f, 0x6e,
+	0x66, 0x69, 0x67, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x31,
+	0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e,
+	0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72,
+	0x79, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0xdb, 0x01, 0x0a, 0x10, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
 	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
 	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x2b,
 	0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67,
@@ -557,27 +436,25 @@ var file_spaceone_api_config_v1_domain_config_proto_rawDesc = []byte{
 	0x76, 0x31, 0x2e, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x49,
 	0x6e, 0x66, 0x6f, 0x52, 0x07, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x73, 0x12, 0x1f, 0x0a, 0x0b,
 	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x05, 0x52, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x71, 0x0a,
+	0x05, 0x52, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x54, 0x0a,
 	0x15, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x53, 0x74, 0x61,
 	0x74, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x3b, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65,
 	0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x74, 0x61,
 	0x74, 0x69, 0x73, 0x74, 0x69, 0x63, 0x73, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x05, 0x71, 0x75,
-	0x65, 0x72, 0x79, 0x12, 0x1b, 0x0a, 0x09, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x5f, 0x69, 0x64,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64,
-	0x32, 0xca, 0x07, 0x0a, 0x0c, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x43, 0x6f, 0x6e, 0x66, 0x69,
-	0x67, 0x12, 0x8e, 0x01, 0x0a, 0x06, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x12, 0x2e, 0x2e, 0x73,
-	0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x6e, 0x66,
-	0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x43,
-	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x73,
-	0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x6e, 0x66,
-	0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x43, 0x6f, 0x6e, 0x66,
-	0x69, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x22, 0x2a, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x24, 0x3a, 0x01,
-	0x2a, 0x22, 0x1f, 0x2f, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x2f, 0x76, 0x31, 0x2f, 0x64, 0x6f,
-	0x6d, 0x61, 0x69, 0x6e, 0x2d, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x2f, 0x63, 0x72, 0x65, 0x61,
-	0x74, 0x65, 0x12, 0x91, 0x01, 0x0a, 0x06, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x12, 0x31, 0x2e,
-	0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x6e,
-	0x66, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x44, 0x6f, 0x6d,
+	0x65, 0x72, 0x79, 0x32, 0xc7, 0x07, 0x0a, 0x0c, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x43, 0x6f,
+	0x6e, 0x66, 0x69, 0x67, 0x12, 0x8e, 0x01, 0x0a, 0x06, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x12,
+	0x2e, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63,
+	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x28, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63,
+	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x43,
+	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x22, 0x2a, 0x82, 0xd3, 0xe4, 0x93, 0x02,
+	0x24, 0x3a, 0x01, 0x2a, 0x22, 0x1f, 0x2f, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x2f, 0x76, 0x31,
+	0x2f, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x2d, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x2f, 0x63,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x12, 0x8e, 0x01, 0x0a, 0x06, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x12, 0x2e, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e,
+	0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x44, 0x6f, 0x6d,
 	0x61, 0x69, 0x6e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x1a, 0x28, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e,
 	0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
@@ -645,49 +522,46 @@ func file_spaceone_api_config_v1_domain_config_proto_rawDescGZIP() []byte {
 	return file_spaceone_api_config_v1_domain_config_proto_rawDescData
 }
 
-var file_spaceone_api_config_v1_domain_config_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_spaceone_api_config_v1_domain_config_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_spaceone_api_config_v1_domain_config_proto_goTypes = []interface{}{
-	(*SetDomainConfigRequest)(nil),    // 0: spaceone.api.config.v1.SetDomainConfigRequest
-	(*UpdateDomainConfigRequest)(nil), // 1: spaceone.api.config.v1.UpdateDomainConfigRequest
-	(*DomainConfigRequest)(nil),       // 2: spaceone.api.config.v1.DomainConfigRequest
-	(*DomainConfigSearchQuery)(nil),   // 3: spaceone.api.config.v1.DomainConfigSearchQuery
-	(*DomainConfigInfo)(nil),          // 4: spaceone.api.config.v1.DomainConfigInfo
-	(*DomainConfigsInfo)(nil),         // 5: spaceone.api.config.v1.DomainConfigsInfo
-	(*DomainConfigStatQuery)(nil),     // 6: spaceone.api.config.v1.DomainConfigStatQuery
-	(*_struct.Struct)(nil),            // 7: google.protobuf.Struct
-	(*v1.Query)(nil),                  // 8: spaceone.api.core.v1.Query
-	(*v1.StatisticsQuery)(nil),        // 9: spaceone.api.core.v1.StatisticsQuery
-	(*empty.Empty)(nil),               // 10: google.protobuf.Empty
+	(*SetDomainConfigRequest)(nil),  // 0: spaceone.api.config.v1.SetDomainConfigRequest
+	(*DomainConfigRequest)(nil),     // 1: spaceone.api.config.v1.DomainConfigRequest
+	(*DomainConfigSearchQuery)(nil), // 2: spaceone.api.config.v1.DomainConfigSearchQuery
+	(*DomainConfigInfo)(nil),        // 3: spaceone.api.config.v1.DomainConfigInfo
+	(*DomainConfigsInfo)(nil),       // 4: spaceone.api.config.v1.DomainConfigsInfo
+	(*DomainConfigStatQuery)(nil),   // 5: spaceone.api.config.v1.DomainConfigStatQuery
+	(*_struct.Struct)(nil),          // 6: google.protobuf.Struct
+	(*v1.Query)(nil),                // 7: spaceone.api.core.v1.Query
+	(*v1.StatisticsQuery)(nil),      // 8: spaceone.api.core.v1.StatisticsQuery
+	(*empty.Empty)(nil),             // 9: google.protobuf.Empty
 }
 var file_spaceone_api_config_v1_domain_config_proto_depIdxs = []int32{
-	7,  // 0: spaceone.api.config.v1.SetDomainConfigRequest.data:type_name -> google.protobuf.Struct
-	7,  // 1: spaceone.api.config.v1.SetDomainConfigRequest.tags:type_name -> google.protobuf.Struct
-	7,  // 2: spaceone.api.config.v1.UpdateDomainConfigRequest.data:type_name -> google.protobuf.Struct
-	7,  // 3: spaceone.api.config.v1.UpdateDomainConfigRequest.tags:type_name -> google.protobuf.Struct
-	8,  // 4: spaceone.api.config.v1.DomainConfigSearchQuery.query:type_name -> spaceone.api.core.v1.Query
-	7,  // 5: spaceone.api.config.v1.DomainConfigInfo.data:type_name -> google.protobuf.Struct
-	7,  // 6: spaceone.api.config.v1.DomainConfigInfo.tags:type_name -> google.protobuf.Struct
-	4,  // 7: spaceone.api.config.v1.DomainConfigsInfo.results:type_name -> spaceone.api.config.v1.DomainConfigInfo
-	9,  // 8: spaceone.api.config.v1.DomainConfigStatQuery.query:type_name -> spaceone.api.core.v1.StatisticsQuery
-	0,  // 9: spaceone.api.config.v1.DomainConfig.create:input_type -> spaceone.api.config.v1.SetDomainConfigRequest
-	1,  // 10: spaceone.api.config.v1.DomainConfig.update:input_type -> spaceone.api.config.v1.UpdateDomainConfigRequest
-	0,  // 11: spaceone.api.config.v1.DomainConfig.set:input_type -> spaceone.api.config.v1.SetDomainConfigRequest
-	2,  // 12: spaceone.api.config.v1.DomainConfig.delete:input_type -> spaceone.api.config.v1.DomainConfigRequest
-	2,  // 13: spaceone.api.config.v1.DomainConfig.get:input_type -> spaceone.api.config.v1.DomainConfigRequest
-	3,  // 14: spaceone.api.config.v1.DomainConfig.list:input_type -> spaceone.api.config.v1.DomainConfigSearchQuery
-	6,  // 15: spaceone.api.config.v1.DomainConfig.stat:input_type -> spaceone.api.config.v1.DomainConfigStatQuery
-	4,  // 16: spaceone.api.config.v1.DomainConfig.create:output_type -> spaceone.api.config.v1.DomainConfigInfo
-	4,  // 17: spaceone.api.config.v1.DomainConfig.update:output_type -> spaceone.api.config.v1.DomainConfigInfo
-	4,  // 18: spaceone.api.config.v1.DomainConfig.set:output_type -> spaceone.api.config.v1.DomainConfigInfo
-	10, // 19: spaceone.api.config.v1.DomainConfig.delete:output_type -> google.protobuf.Empty
-	4,  // 20: spaceone.api.config.v1.DomainConfig.get:output_type -> spaceone.api.config.v1.DomainConfigInfo
-	5,  // 21: spaceone.api.config.v1.DomainConfig.list:output_type -> spaceone.api.config.v1.DomainConfigsInfo
-	7,  // 22: spaceone.api.config.v1.DomainConfig.stat:output_type -> google.protobuf.Struct
-	16, // [16:23] is the sub-list for method output_type
-	9,  // [9:16] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	6,  // 0: spaceone.api.config.v1.SetDomainConfigRequest.data:type_name -> google.protobuf.Struct
+	6,  // 1: spaceone.api.config.v1.SetDomainConfigRequest.tags:type_name -> google.protobuf.Struct
+	7,  // 2: spaceone.api.config.v1.DomainConfigSearchQuery.query:type_name -> spaceone.api.core.v1.Query
+	6,  // 3: spaceone.api.config.v1.DomainConfigInfo.data:type_name -> google.protobuf.Struct
+	6,  // 4: spaceone.api.config.v1.DomainConfigInfo.tags:type_name -> google.protobuf.Struct
+	3,  // 5: spaceone.api.config.v1.DomainConfigsInfo.results:type_name -> spaceone.api.config.v1.DomainConfigInfo
+	8,  // 6: spaceone.api.config.v1.DomainConfigStatQuery.query:type_name -> spaceone.api.core.v1.StatisticsQuery
+	0,  // 7: spaceone.api.config.v1.DomainConfig.create:input_type -> spaceone.api.config.v1.SetDomainConfigRequest
+	0,  // 8: spaceone.api.config.v1.DomainConfig.update:input_type -> spaceone.api.config.v1.SetDomainConfigRequest
+	0,  // 9: spaceone.api.config.v1.DomainConfig.set:input_type -> spaceone.api.config.v1.SetDomainConfigRequest
+	1,  // 10: spaceone.api.config.v1.DomainConfig.delete:input_type -> spaceone.api.config.v1.DomainConfigRequest
+	1,  // 11: spaceone.api.config.v1.DomainConfig.get:input_type -> spaceone.api.config.v1.DomainConfigRequest
+	2,  // 12: spaceone.api.config.v1.DomainConfig.list:input_type -> spaceone.api.config.v1.DomainConfigSearchQuery
+	5,  // 13: spaceone.api.config.v1.DomainConfig.stat:input_type -> spaceone.api.config.v1.DomainConfigStatQuery
+	3,  // 14: spaceone.api.config.v1.DomainConfig.create:output_type -> spaceone.api.config.v1.DomainConfigInfo
+	3,  // 15: spaceone.api.config.v1.DomainConfig.update:output_type -> spaceone.api.config.v1.DomainConfigInfo
+	3,  // 16: spaceone.api.config.v1.DomainConfig.set:output_type -> spaceone.api.config.v1.DomainConfigInfo
+	9,  // 17: spaceone.api.config.v1.DomainConfig.delete:output_type -> google.protobuf.Empty
+	3,  // 18: spaceone.api.config.v1.DomainConfig.get:output_type -> spaceone.api.config.v1.DomainConfigInfo
+	4,  // 19: spaceone.api.config.v1.DomainConfig.list:output_type -> spaceone.api.config.v1.DomainConfigsInfo
+	6,  // 20: spaceone.api.config.v1.DomainConfig.stat:output_type -> google.protobuf.Struct
+	14, // [14:21] is the sub-list for method output_type
+	7,  // [7:14] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_spaceone_api_config_v1_domain_config_proto_init() }
@@ -709,18 +583,6 @@ func file_spaceone_api_config_v1_domain_config_proto_init() {
 			}
 		}
 		file_spaceone_api_config_v1_domain_config_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateDomainConfigRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_spaceone_api_config_v1_domain_config_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DomainConfigRequest); i {
 			case 0:
 				return &v.state
@@ -732,7 +594,7 @@ func file_spaceone_api_config_v1_domain_config_proto_init() {
 				return nil
 			}
 		}
-		file_spaceone_api_config_v1_domain_config_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_spaceone_api_config_v1_domain_config_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DomainConfigSearchQuery); i {
 			case 0:
 				return &v.state
@@ -744,7 +606,7 @@ func file_spaceone_api_config_v1_domain_config_proto_init() {
 				return nil
 			}
 		}
-		file_spaceone_api_config_v1_domain_config_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_spaceone_api_config_v1_domain_config_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DomainConfigInfo); i {
 			case 0:
 				return &v.state
@@ -756,7 +618,7 @@ func file_spaceone_api_config_v1_domain_config_proto_init() {
 				return nil
 			}
 		}
-		file_spaceone_api_config_v1_domain_config_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_spaceone_api_config_v1_domain_config_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DomainConfigsInfo); i {
 			case 0:
 				return &v.state
@@ -768,7 +630,7 @@ func file_spaceone_api_config_v1_domain_config_proto_init() {
 				return nil
 			}
 		}
-		file_spaceone_api_config_v1_domain_config_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_spaceone_api_config_v1_domain_config_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DomainConfigStatQuery); i {
 			case 0:
 				return &v.state
@@ -787,7 +649,7 @@ func file_spaceone_api_config_v1_domain_config_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_spaceone_api_config_v1_domain_config_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

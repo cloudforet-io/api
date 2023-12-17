@@ -169,7 +169,7 @@ func local_request_Board_Delete_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func request_Board_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.BoardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.GetBoardRequest
+	var protoReq extV1.BoardRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -186,7 +186,7 @@ func request_Board_Get_0(ctx context.Context, marshaler runtime.Marshaler, clien
 }
 
 func local_request_Board_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.BoardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.GetBoardRequest
+	var protoReq extV1.BoardRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

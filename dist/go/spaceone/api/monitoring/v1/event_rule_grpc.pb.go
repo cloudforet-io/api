@@ -45,7 +45,7 @@ type EventRuleClient interface {
 	// Deletes a specific EventRule. You must assign an EventRule resource to delete by specifying `event_rule_id`.
 	Delete(ctx context.Context, in *EventRuleRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific EventRule. Prints detailed information about the EventRule.
-	Get(ctx context.Context, in *GetEventRuleRequest, opts ...grpc.CallOption) (*EventRuleInfo, error)
+	Get(ctx context.Context, in *EventRuleRequest, opts ...grpc.CallOption) (*EventRuleInfo, error)
 	// Gets a list of all EventRules. You can use a query to get a filtered list of EventRules. For example, you can adjust the scope of the list to a certain Project or Domain.
 	List(ctx context.Context, in *EventRuleQuery, opts ...grpc.CallOption) (*EventRulesInfo, error)
 	Stat(ctx context.Context, in *EventRuleStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -95,7 +95,7 @@ func (c *eventRuleClient) Delete(ctx context.Context, in *EventRuleRequest, opts
 	return out, nil
 }
 
-func (c *eventRuleClient) Get(ctx context.Context, in *GetEventRuleRequest, opts ...grpc.CallOption) (*EventRuleInfo, error) {
+func (c *eventRuleClient) Get(ctx context.Context, in *EventRuleRequest, opts ...grpc.CallOption) (*EventRuleInfo, error) {
 	out := new(EventRuleInfo)
 	err := c.cc.Invoke(ctx, EventRule_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -135,7 +135,7 @@ type EventRuleServer interface {
 	// Deletes a specific EventRule. You must assign an EventRule resource to delete by specifying `event_rule_id`.
 	Delete(context.Context, *EventRuleRequest) (*empty.Empty, error)
 	// Gets a specific EventRule. Prints detailed information about the EventRule.
-	Get(context.Context, *GetEventRuleRequest) (*EventRuleInfo, error)
+	Get(context.Context, *EventRuleRequest) (*EventRuleInfo, error)
 	// Gets a list of all EventRules. You can use a query to get a filtered list of EventRules. For example, you can adjust the scope of the list to a certain Project or Domain.
 	List(context.Context, *EventRuleQuery) (*EventRulesInfo, error)
 	Stat(context.Context, *EventRuleStatQuery) (*_struct.Struct, error)
@@ -158,7 +158,7 @@ func (UnimplementedEventRuleServer) ChangeOrder(context.Context, *ChangeEventRul
 func (UnimplementedEventRuleServer) Delete(context.Context, *EventRuleRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedEventRuleServer) Get(context.Context, *GetEventRuleRequest) (*EventRuleInfo, error) {
+func (UnimplementedEventRuleServer) Get(context.Context, *EventRuleRequest) (*EventRuleInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedEventRuleServer) List(context.Context, *EventRuleQuery) (*EventRulesInfo, error) {
@@ -253,7 +253,7 @@ func _EventRule_Delete_Handler(srv interface{}, ctx context.Context, dec func(in
 }
 
 func _EventRule_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetEventRuleRequest)
+	in := new(EventRuleRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -265,7 +265,7 @@ func _EventRule_Get_Handler(srv interface{}, ctx context.Context, dec func(inter
 		FullMethod: EventRule_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventRuleServer).Get(ctx, req.(*GetEventRuleRequest))
+		return srv.(EventRuleServer).Get(ctx, req.(*EventRuleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

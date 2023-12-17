@@ -300,7 +300,7 @@
             },
             {
               "name": "notification_type",
-              "description": "is_required: false\nThe type of notification.",
+              "description": "is_required: false\nThe type of notification.\n+optional",
               "label": "",
               "type": "NotificationType",
               "longType": "CreateNotificationRequest.NotificationType",
@@ -312,23 +312,11 @@
             },
             {
               "name": "notification_level",
-              "description": "is_required: false\nThe level of notification.",
+              "description": "is_required: false\nThe level of notification.\n+optional",
               "label": "",
               "type": "NotificationLEVEL",
               "longType": "CreateNotificationRequest.NotificationLEVEL",
               "fullType": "spaceone.api.notification.v1.CreateNotificationRequest.NotificationLEVEL",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "is_required: true\nThe ID of domain.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -359,24 +347,12 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "is_required: true\nThe ID of domain.",
+              "name": "set_read",
+              "description": "+optional\nCheck whether read or not",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "only",
-              "description": "is_required: false\nThe list of the notification information column you want to be returned. It must be specified in the NotificationInfo.",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -516,7 +492,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false\nQuery format provided by SpaceONE. Please check the link for more information.",
+              "description": "is_required: false\nQuery format provided by SpaceONE. Please check the link for more information.\n+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -528,7 +504,7 @@
             },
             {
               "name": "notification_id",
-              "description": "is_required: false\nThe ID of notification.",
+              "description": "is_required: false\nThe ID of notification.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -540,7 +516,7 @@
             },
             {
               "name": "topic",
-              "description": "is_required: false\nThe topic of notification.",
+              "description": "is_required: false\nThe topic of notification.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -552,7 +528,7 @@
             },
             {
               "name": "notification_type",
-              "description": "is_required: false\nThe type of notification.",
+              "description": "is_required: false\nThe type of notification.\n+optional",
               "label": "",
               "type": "NotificationType",
               "longType": "NotificationQuery.NotificationType",
@@ -564,7 +540,7 @@
             },
             {
               "name": "notification_level",
-              "description": "is_required: false\nThe level of notification.",
+              "description": "is_required: false\nThe level of notification.\n+optional",
               "label": "",
               "type": "NotificationLEVEL",
               "longType": "NotificationQuery.NotificationLEVEL",
@@ -576,7 +552,7 @@
             },
             {
               "name": "is_read",
-              "description": "is_required: false\nWhether or not to check the notification.\nIf is_read is False, the user has not checked the notification yet.",
+              "description": "is_required: false\nWhether or not to check the notification.\nIf is_read is False, the user has not checked the notification yet.\n+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -588,7 +564,7 @@
             },
             {
               "name": "parent_notification_id",
-              "description": "is_required: false\nThe ID of parent notification. Not used yet.",
+              "description": "is_required: false\nThe ID of parent notification. Not used yet.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -600,31 +576,7 @@
             },
             {
               "name": "project_id",
-              "description": "is_required: false\nThe project ID to which the notification will be dispatched.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "user_id",
-              "description": "is_required: false\nThe ID of user.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "is_required: true\nThe ID of domain.",
+              "description": "is_required: false\nThe project ID to which the notification will be dispatched.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -657,18 +609,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "is_required: true\nThe ID of domain.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -689,18 +629,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
               "fullType": "spaceone.api.core.v1.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "is_required: true\nThe ID of domain.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -770,9 +698,9 @@
               "name": "data",
               "description": "is_required: true",
               "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -792,7 +720,7 @@
             },
             {
               "name": "notification_type",
-              "description": "is_required: false",
+              "description": "is_required: false\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -804,7 +732,7 @@
             },
             {
               "name": "notification_level",
-              "description": "is_required: false",
+              "description": "is_required: false\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -815,8 +743,8 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "is_required: true",
+              "name": "topic",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -842,18 +770,6 @@
               "name": "notifications",
               "description": "is_required: true\nThe ID list of notification that want to change read status.",
               "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "is_required: true\nThe ID of domain.",
-              "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",

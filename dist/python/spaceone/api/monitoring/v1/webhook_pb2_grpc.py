@@ -53,7 +53,7 @@ class WebhookStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.monitoring.v1.Webhook/get',
-                request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_webhook__pb2.GetWebhookRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_webhook__pb2.WebhookRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_webhook__pb2.WebhookInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -180,7 +180,7 @@ def add_WebhookServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_webhook__pb2.GetWebhookRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_webhook__pb2.WebhookRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_webhook__pb2.WebhookInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -334,7 +334,7 @@ class Webhook(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.monitoring.v1.Webhook/get',
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_webhook__pb2.GetWebhookRequest.SerializeToString,
+            spaceone_dot_api_dot_monitoring_dot_v1_dot_webhook__pb2.WebhookRequest.SerializeToString,
             spaceone_dot_api_dot_monitoring_dot_v1_dot_webhook__pb2.WebhookInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

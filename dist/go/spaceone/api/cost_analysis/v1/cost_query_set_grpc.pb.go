@@ -42,7 +42,7 @@ type CostQuerySetClient interface {
 	// Deletes a specific CostQuerySet. You must specify the `cost_query_set_id` of the CostQuerySet to delete.
 	Delete(ctx context.Context, in *CostQuerySetRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific CostQuerySet. Prints detailed information about the CostQuerySet, including the details of queries.
-	Get(ctx context.Context, in *GetCostQuerySetRequest, opts ...grpc.CallOption) (*CostQuerySetInfo, error)
+	Get(ctx context.Context, in *CostQuerySetRequest, opts ...grpc.CallOption) (*CostQuerySetInfo, error)
 	// Gets a list of all CostQuerySets. You can use a query to get a filtered list of CostQuerySets.
 	List(ctx context.Context, in *CostQuerySetQuery, opts ...grpc.CallOption) (*CostQuerySetsInfo, error)
 	Stat(ctx context.Context, in *CostQuerySetStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -83,7 +83,7 @@ func (c *costQuerySetClient) Delete(ctx context.Context, in *CostQuerySetRequest
 	return out, nil
 }
 
-func (c *costQuerySetClient) Get(ctx context.Context, in *GetCostQuerySetRequest, opts ...grpc.CallOption) (*CostQuerySetInfo, error) {
+func (c *costQuerySetClient) Get(ctx context.Context, in *CostQuerySetRequest, opts ...grpc.CallOption) (*CostQuerySetInfo, error) {
 	out := new(CostQuerySetInfo)
 	err := c.cc.Invoke(ctx, CostQuerySet_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -121,7 +121,7 @@ type CostQuerySetServer interface {
 	// Deletes a specific CostQuerySet. You must specify the `cost_query_set_id` of the CostQuerySet to delete.
 	Delete(context.Context, *CostQuerySetRequest) (*empty.Empty, error)
 	// Gets a specific CostQuerySet. Prints detailed information about the CostQuerySet, including the details of queries.
-	Get(context.Context, *GetCostQuerySetRequest) (*CostQuerySetInfo, error)
+	Get(context.Context, *CostQuerySetRequest) (*CostQuerySetInfo, error)
 	// Gets a list of all CostQuerySets. You can use a query to get a filtered list of CostQuerySets.
 	List(context.Context, *CostQuerySetQuery) (*CostQuerySetsInfo, error)
 	Stat(context.Context, *CostQuerySetStatQuery) (*_struct.Struct, error)
@@ -141,7 +141,7 @@ func (UnimplementedCostQuerySetServer) Update(context.Context, *UpdateCostQueryS
 func (UnimplementedCostQuerySetServer) Delete(context.Context, *CostQuerySetRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedCostQuerySetServer) Get(context.Context, *GetCostQuerySetRequest) (*CostQuerySetInfo, error) {
+func (UnimplementedCostQuerySetServer) Get(context.Context, *CostQuerySetRequest) (*CostQuerySetInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedCostQuerySetServer) List(context.Context, *CostQuerySetQuery) (*CostQuerySetsInfo, error) {
@@ -218,7 +218,7 @@ func _CostQuerySet_Delete_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _CostQuerySet_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCostQuerySetRequest)
+	in := new(CostQuerySetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -230,7 +230,7 @@ func _CostQuerySet_Get_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: CostQuerySet_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CostQuerySetServer).Get(ctx, req.(*GetCostQuerySetRequest))
+		return srv.(CostQuerySetServer).Get(ctx, req.(*CostQuerySetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

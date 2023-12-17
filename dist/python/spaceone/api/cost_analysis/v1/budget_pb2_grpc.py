@@ -38,7 +38,7 @@ class BudgetStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.Budget/get',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_budget__pb2.GetBudgetRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_budget__pb2.BudgetRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_budget__pb2.BudgetInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -129,7 +129,7 @@ def add_BudgetServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_budget__pb2.GetBudgetRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_budget__pb2.BudgetRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_budget__pb2.BudgetInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -232,7 +232,7 @@ class Budget(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.Budget/get',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_budget__pb2.GetBudgetRequest.SerializeToString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_budget__pb2.BudgetRequest.SerializeToString,
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_budget__pb2.BudgetInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

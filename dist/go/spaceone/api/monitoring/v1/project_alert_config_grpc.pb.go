@@ -42,7 +42,7 @@ type ProjectAlertConfigClient interface {
 	// Deletes a specific ProjectAlertConfig. Deletes alert configuration data in a Project.
 	Delete(ctx context.Context, in *ProjectAlertConfigRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific ProjectAlertConfig. Prints detailed information about the ProjectAlertConfig, including EscalationPolicy, recovery mode, and notification urgency.
-	Get(ctx context.Context, in *GetProjectAlertConfigRequest, opts ...grpc.CallOption) (*ProjectAlertConfigInfo, error)
+	Get(ctx context.Context, in *ProjectAlertConfigRequest, opts ...grpc.CallOption) (*ProjectAlertConfigInfo, error)
 	// Gets a list of all ProjectAlertConfigs from all projects configured in the same domain. You can use a query to get a filtered list of ProjectAlertConfigs.
 	List(ctx context.Context, in *ProjectAlertConfigQuery, opts ...grpc.CallOption) (*ProjectAlertConfigsInfo, error)
 	Stat(ctx context.Context, in *ProjectAlertConfigStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -83,7 +83,7 @@ func (c *projectAlertConfigClient) Delete(ctx context.Context, in *ProjectAlertC
 	return out, nil
 }
 
-func (c *projectAlertConfigClient) Get(ctx context.Context, in *GetProjectAlertConfigRequest, opts ...grpc.CallOption) (*ProjectAlertConfigInfo, error) {
+func (c *projectAlertConfigClient) Get(ctx context.Context, in *ProjectAlertConfigRequest, opts ...grpc.CallOption) (*ProjectAlertConfigInfo, error) {
 	out := new(ProjectAlertConfigInfo)
 	err := c.cc.Invoke(ctx, ProjectAlertConfig_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -121,7 +121,7 @@ type ProjectAlertConfigServer interface {
 	// Deletes a specific ProjectAlertConfig. Deletes alert configuration data in a Project.
 	Delete(context.Context, *ProjectAlertConfigRequest) (*empty.Empty, error)
 	// Gets a specific ProjectAlertConfig. Prints detailed information about the ProjectAlertConfig, including EscalationPolicy, recovery mode, and notification urgency.
-	Get(context.Context, *GetProjectAlertConfigRequest) (*ProjectAlertConfigInfo, error)
+	Get(context.Context, *ProjectAlertConfigRequest) (*ProjectAlertConfigInfo, error)
 	// Gets a list of all ProjectAlertConfigs from all projects configured in the same domain. You can use a query to get a filtered list of ProjectAlertConfigs.
 	List(context.Context, *ProjectAlertConfigQuery) (*ProjectAlertConfigsInfo, error)
 	Stat(context.Context, *ProjectAlertConfigStatQuery) (*_struct.Struct, error)
@@ -141,7 +141,7 @@ func (UnimplementedProjectAlertConfigServer) Update(context.Context, *UpdateProj
 func (UnimplementedProjectAlertConfigServer) Delete(context.Context, *ProjectAlertConfigRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedProjectAlertConfigServer) Get(context.Context, *GetProjectAlertConfigRequest) (*ProjectAlertConfigInfo, error) {
+func (UnimplementedProjectAlertConfigServer) Get(context.Context, *ProjectAlertConfigRequest) (*ProjectAlertConfigInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedProjectAlertConfigServer) List(context.Context, *ProjectAlertConfigQuery) (*ProjectAlertConfigsInfo, error) {
@@ -218,7 +218,7 @@ func _ProjectAlertConfig_Delete_Handler(srv interface{}, ctx context.Context, de
 }
 
 func _ProjectAlertConfig_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetProjectAlertConfigRequest)
+	in := new(ProjectAlertConfigRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -230,7 +230,7 @@ func _ProjectAlertConfig_Get_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: ProjectAlertConfig_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProjectAlertConfigServer).Get(ctx, req.(*GetProjectAlertConfigRequest))
+		return srv.(ProjectAlertConfigServer).Get(ctx, req.(*ProjectAlertConfigRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

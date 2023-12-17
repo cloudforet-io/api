@@ -38,7 +38,7 @@ class DataSourceRuleStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.DataSourceRule/get',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__rule__pb2.GetDataSourceRuleRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__rule__pb2.DataSourceRuleRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__rule__pb2.DataSourceRuleInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -129,7 +129,7 @@ def add_DataSourceRuleServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__rule__pb2.GetDataSourceRuleRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__rule__pb2.DataSourceRuleRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__rule__pb2.DataSourceRuleInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -232,7 +232,7 @@ class DataSourceRule(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.DataSourceRule/get',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__rule__pb2.GetDataSourceRuleRequest.SerializeToString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__rule__pb2.DataSourceRuleRequest.SerializeToString,
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__rule__pb2.DataSourceRuleInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

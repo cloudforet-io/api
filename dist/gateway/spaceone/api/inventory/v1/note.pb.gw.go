@@ -135,7 +135,7 @@ func local_request_Note_Delete_0(ctx context.Context, marshaler runtime.Marshale
 }
 
 func request_Note_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NoteClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetNoteRequest
+	var protoReq v1_0.NoteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -152,7 +152,7 @@ func request_Note_Get_0(ctx context.Context, marshaler runtime.Marshaler, client
 }
 
 func local_request_Note_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NoteServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetNoteRequest
+	var protoReq v1_0.NoteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

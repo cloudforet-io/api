@@ -38,6 +38,29 @@
           ]
         },
         {
+          "name": "ResourceGroup",
+          "longName": "CreateEventRuleRequest.ResourceGroup",
+          "fullName": "spaceone.api.monitoring.v1.CreateEventRuleRequest.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PROJECT",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "ConditionsPolicy",
           "longName": "EventRuleInfo.ConditionsPolicy",
           "fullName": "spaceone.api.monitoring.v1.EventRuleInfo.ConditionsPolicy",
@@ -66,18 +89,18 @@
           ]
         },
         {
-          "name": "EventRuleScope",
-          "longName": "EventRuleInfo.EventRuleScope",
-          "fullName": "spaceone.api.monitoring.v1.EventRuleInfo.EventRuleScope",
+          "name": "ResourceGroup",
+          "longName": "EventRuleInfo.ResourceGroup",
+          "fullName": "spaceone.api.monitoring.v1.EventRuleInfo.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "SCOPE_NONE",
+              "name": "RESOURCE_GROUP_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "GLOBAL",
+              "name": "WORKSPACE",
               "number": "1",
               "description": ""
             },
@@ -89,18 +112,18 @@
           ]
         },
         {
-          "name": "EventRuleScope",
-          "longName": "EventRuleQuery.EventRuleScope",
-          "fullName": "spaceone.api.monitoring.v1.EventRuleQuery.EventRuleScope",
+          "name": "ResourceGroup",
+          "longName": "EventRuleQuery.ResourceGroup",
+          "fullName": "spaceone.api.monitoring.v1.EventRuleQuery.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "SCOPE_NONE",
+              "name": "RESOURCE_GROUP_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "GLOBAL",
+              "name": "WORKSPACE",
               "number": "1",
               "description": ""
             },
@@ -171,18 +194,6 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -285,12 +296,12 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "resource_group",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "ResourceGroup",
+              "longType": "CreateEventRuleRequest.ResourceGroup",
+              "fullType": "spaceone.api.monitoring.v1.CreateEventRuleRequest.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -585,18 +596,6 @@
               "defaultValue": ""
             },
             {
-              "name": "scope",
-              "description": "",
-              "label": "",
-              "type": "EventRuleScope",
-              "longType": "EventRuleInfo.EventRuleScope",
-              "fullType": "spaceone.api.monitoring.v1.EventRuleInfo.EventRuleScope",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "project_id",
               "description": "",
               "label": "",
@@ -615,6 +614,30 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "EventRuleInfo.ResourceGroup",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleInfo.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -717,12 +740,12 @@
               "defaultValue": ""
             },
             {
-              "name": "scope",
+              "name": "resource_group",
               "description": "+optional",
               "label": "",
-              "type": "EventRuleScope",
-              "longType": "EventRuleQuery.EventRuleScope",
-              "fullType": "spaceone.api.monitoring.v1.EventRuleQuery.EventRuleScope",
+              "type": "ResourceGroup",
+              "longType": "EventRuleQuery.ResourceGroup",
+              "fullType": "spaceone.api.monitoring.v1.EventRuleQuery.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -731,18 +754,6 @@
             {
               "name": "project_id",
               "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -775,18 +786,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -807,18 +806,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
               "fullType": "spaceone.api.core.v1.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -855,54 +842,6 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "GetEventRuleRequest",
-          "longName": "GetEventRuleRequest",
-          "fullName": "spaceone.api.monitoring.v1.GetEventRuleRequest",
-          "description": "{\n   \"event_rule_id\": \"er-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "event_rule_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "only",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1039,18 +978,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         }
@@ -1157,9 +1084,9 @@
             {
               "name": "get",
               "description": "Gets a specific EventRule. Prints detailed information about the EventRule.",
-              "requestType": "GetEventRuleRequest",
-              "requestLongType": "GetEventRuleRequest",
-              "requestFullType": "spaceone.api.monitoring.v1.GetEventRuleRequest",
+              "requestType": "EventRuleRequest",
+              "requestLongType": "EventRuleRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.EventRuleRequest",
               "requestStreaming": false,
               "responseType": "EventRuleInfo",
               "responseLongType": "EventRuleInfo",

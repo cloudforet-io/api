@@ -55,7 +55,7 @@ type CloudServiceQuerySetClient interface {
 	// Disable a specific query set. query set is not executed when disabled.
 	Disable(ctx context.Context, in *CloudServiceQuerySetRequest, opts ...grpc.CallOption) (*CloudServiceQuerySetInfo, error)
 	// Get a specific query set.
-	Get(ctx context.Context, in *GetCloudServiceQuerySetRequest, opts ...grpc.CallOption) (*CloudServiceQuerySetInfo, error)
+	Get(ctx context.Context, in *CloudServiceQuerySetRequest, opts ...grpc.CallOption) (*CloudServiceQuerySetInfo, error)
 	// Gets a list of all query sets.
 	// You can use a query to get a filtered list of query sets.
 	List(ctx context.Context, in *CloudServiceQuerySetQuery, opts ...grpc.CallOption) (*CloudServiceQuerySetsInfo, error)
@@ -133,7 +133,7 @@ func (c *cloudServiceQuerySetClient) Disable(ctx context.Context, in *CloudServi
 	return out, nil
 }
 
-func (c *cloudServiceQuerySetClient) Get(ctx context.Context, in *GetCloudServiceQuerySetRequest, opts ...grpc.CallOption) (*CloudServiceQuerySetInfo, error) {
+func (c *cloudServiceQuerySetClient) Get(ctx context.Context, in *CloudServiceQuerySetRequest, opts ...grpc.CallOption) (*CloudServiceQuerySetInfo, error) {
 	out := new(CloudServiceQuerySetInfo)
 	err := c.cc.Invoke(ctx, CloudServiceQuerySet_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ type CloudServiceQuerySetServer interface {
 	// Disable a specific query set. query set is not executed when disabled.
 	Disable(context.Context, *CloudServiceQuerySetRequest) (*CloudServiceQuerySetInfo, error)
 	// Get a specific query set.
-	Get(context.Context, *GetCloudServiceQuerySetRequest) (*CloudServiceQuerySetInfo, error)
+	Get(context.Context, *CloudServiceQuerySetRequest) (*CloudServiceQuerySetInfo, error)
 	// Gets a list of all query sets.
 	// You can use a query to get a filtered list of query sets.
 	List(context.Context, *CloudServiceQuerySetQuery) (*CloudServiceQuerySetsInfo, error)
@@ -213,7 +213,7 @@ func (UnimplementedCloudServiceQuerySetServer) Enable(context.Context, *CloudSer
 func (UnimplementedCloudServiceQuerySetServer) Disable(context.Context, *CloudServiceQuerySetRequest) (*CloudServiceQuerySetInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
 }
-func (UnimplementedCloudServiceQuerySetServer) Get(context.Context, *GetCloudServiceQuerySetRequest) (*CloudServiceQuerySetInfo, error) {
+func (UnimplementedCloudServiceQuerySetServer) Get(context.Context, *CloudServiceQuerySetRequest) (*CloudServiceQuerySetInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedCloudServiceQuerySetServer) List(context.Context, *CloudServiceQuerySetQuery) (*CloudServiceQuerySetsInfo, error) {
@@ -362,7 +362,7 @@ func _CloudServiceQuerySet_Disable_Handler(srv interface{}, ctx context.Context,
 }
 
 func _CloudServiceQuerySet_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCloudServiceQuerySetRequest)
+	in := new(CloudServiceQuerySetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -374,7 +374,7 @@ func _CloudServiceQuerySet_Get_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: CloudServiceQuerySet_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudServiceQuerySetServer).Get(ctx, req.(*GetCloudServiceQuerySetRequest))
+		return srv.(CloudServiceQuerySetServer).Get(ctx, req.(*CloudServiceQuerySetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

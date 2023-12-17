@@ -23,19 +23,13 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Alert_Create_FullMethodName                  = "/spaceone.api.monitoring.v1.Alert/create"
-	Alert_Update_FullMethodName                  = "/spaceone.api.monitoring.v1.Alert/update"
-	Alert_UpdateState_FullMethodName             = "/spaceone.api.monitoring.v1.Alert/update_state"
-	Alert_Merge_FullMethodName                   = "/spaceone.api.monitoring.v1.Alert/merge"
-	Alert_Snooze_FullMethodName                  = "/spaceone.api.monitoring.v1.Alert/snooze"
-	Alert_AddResponder_FullMethodName            = "/spaceone.api.monitoring.v1.Alert/add_responder"
-	Alert_RemoveResponder_FullMethodName         = "/spaceone.api.monitoring.v1.Alert/remove_responder"
-	Alert_AddProjectDependency_FullMethodName    = "/spaceone.api.monitoring.v1.Alert/add_project_dependency"
-	Alert_RemoveProjectDependency_FullMethodName = "/spaceone.api.monitoring.v1.Alert/remove_project_dependency"
-	Alert_Delete_FullMethodName                  = "/spaceone.api.monitoring.v1.Alert/delete"
-	Alert_Get_FullMethodName                     = "/spaceone.api.monitoring.v1.Alert/get"
-	Alert_List_FullMethodName                    = "/spaceone.api.monitoring.v1.Alert/list"
-	Alert_Stat_FullMethodName                    = "/spaceone.api.monitoring.v1.Alert/stat"
+	Alert_Create_FullMethodName      = "/spaceone.api.monitoring.v1.Alert/create"
+	Alert_Update_FullMethodName      = "/spaceone.api.monitoring.v1.Alert/update"
+	Alert_UpdateState_FullMethodName = "/spaceone.api.monitoring.v1.Alert/update_state"
+	Alert_Delete_FullMethodName      = "/spaceone.api.monitoring.v1.Alert/delete"
+	Alert_Get_FullMethodName         = "/spaceone.api.monitoring.v1.Alert/get"
+	Alert_List_FullMethodName        = "/spaceone.api.monitoring.v1.Alert/list"
+	Alert_Stat_FullMethodName        = "/spaceone.api.monitoring.v1.Alert/stat"
 )
 
 // AlertClient is the client API for Alert service.
@@ -48,18 +42,10 @@ type AlertClient interface {
 	Update(ctx context.Context, in *UpdateAlertRequest, opts ...grpc.CallOption) (*AlertInfo, error)
 	// Updates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.
 	UpdateState(ctx context.Context, in *UpdateAlertStateRequest, opts ...grpc.CallOption) (*AlertInfo, error)
-	Merge(ctx context.Context, in *MergeAlertRequest, opts ...grpc.CallOption) (*AlertInfo, error)
-	Snooze(ctx context.Context, in *SnoozeAlertRequest, opts ...grpc.CallOption) (*AlertInfo, error)
-	// Adds a responder who receives a Notification about an Alert.
-	AddResponder(ctx context.Context, in *AlertResponderRequest, opts ...grpc.CallOption) (*AlertInfo, error)
-	// Deletes a responder who receives a Notification about an Alert.
-	RemoveResponder(ctx context.Context, in *AlertResponderRequest, opts ...grpc.CallOption) (*AlertInfo, error)
-	AddProjectDependency(ctx context.Context, in *AlertProjectDependencyRequest, opts ...grpc.CallOption) (*AlertInfo, error)
-	RemoveProjectDependency(ctx context.Context, in *AlertProjectDependencyRequest, opts ...grpc.CallOption) (*AlertInfo, error)
 	// Deletes a specific Alert and remove it from the list of Alerts. You must specify the `alert_id` of the Alert to delete.
 	Delete(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Alert. Prints detailed information about the Alert.
-	Get(ctx context.Context, in *GetAlertRequest, opts ...grpc.CallOption) (*AlertInfo, error)
+	Get(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*AlertInfo, error)
 	// Gets a list of all Alerts. You can use a query to get a filtered list of Alerts.
 	List(ctx context.Context, in *AlertQuery, opts ...grpc.CallOption) (*AlertsInfo, error)
 	Stat(ctx context.Context, in *AlertStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -100,60 +86,6 @@ func (c *alertClient) UpdateState(ctx context.Context, in *UpdateAlertStateReque
 	return out, nil
 }
 
-func (c *alertClient) Merge(ctx context.Context, in *MergeAlertRequest, opts ...grpc.CallOption) (*AlertInfo, error) {
-	out := new(AlertInfo)
-	err := c.cc.Invoke(ctx, Alert_Merge_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alertClient) Snooze(ctx context.Context, in *SnoozeAlertRequest, opts ...grpc.CallOption) (*AlertInfo, error) {
-	out := new(AlertInfo)
-	err := c.cc.Invoke(ctx, Alert_Snooze_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alertClient) AddResponder(ctx context.Context, in *AlertResponderRequest, opts ...grpc.CallOption) (*AlertInfo, error) {
-	out := new(AlertInfo)
-	err := c.cc.Invoke(ctx, Alert_AddResponder_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alertClient) RemoveResponder(ctx context.Context, in *AlertResponderRequest, opts ...grpc.CallOption) (*AlertInfo, error) {
-	out := new(AlertInfo)
-	err := c.cc.Invoke(ctx, Alert_RemoveResponder_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alertClient) AddProjectDependency(ctx context.Context, in *AlertProjectDependencyRequest, opts ...grpc.CallOption) (*AlertInfo, error) {
-	out := new(AlertInfo)
-	err := c.cc.Invoke(ctx, Alert_AddProjectDependency_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *alertClient) RemoveProjectDependency(ctx context.Context, in *AlertProjectDependencyRequest, opts ...grpc.CallOption) (*AlertInfo, error) {
-	out := new(AlertInfo)
-	err := c.cc.Invoke(ctx, Alert_RemoveProjectDependency_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *alertClient) Delete(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, Alert_Delete_FullMethodName, in, out, opts...)
@@ -163,7 +95,7 @@ func (c *alertClient) Delete(ctx context.Context, in *AlertRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *alertClient) Get(ctx context.Context, in *GetAlertRequest, opts ...grpc.CallOption) (*AlertInfo, error) {
+func (c *alertClient) Get(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*AlertInfo, error) {
 	out := new(AlertInfo)
 	err := c.cc.Invoke(ctx, Alert_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -200,18 +132,10 @@ type AlertServer interface {
 	Update(context.Context, *UpdateAlertRequest) (*AlertInfo, error)
 	// Updates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.
 	UpdateState(context.Context, *UpdateAlertStateRequest) (*AlertInfo, error)
-	Merge(context.Context, *MergeAlertRequest) (*AlertInfo, error)
-	Snooze(context.Context, *SnoozeAlertRequest) (*AlertInfo, error)
-	// Adds a responder who receives a Notification about an Alert.
-	AddResponder(context.Context, *AlertResponderRequest) (*AlertInfo, error)
-	// Deletes a responder who receives a Notification about an Alert.
-	RemoveResponder(context.Context, *AlertResponderRequest) (*AlertInfo, error)
-	AddProjectDependency(context.Context, *AlertProjectDependencyRequest) (*AlertInfo, error)
-	RemoveProjectDependency(context.Context, *AlertProjectDependencyRequest) (*AlertInfo, error)
 	// Deletes a specific Alert and remove it from the list of Alerts. You must specify the `alert_id` of the Alert to delete.
 	Delete(context.Context, *AlertRequest) (*empty.Empty, error)
 	// Gets a specific Alert. Prints detailed information about the Alert.
-	Get(context.Context, *GetAlertRequest) (*AlertInfo, error)
+	Get(context.Context, *AlertRequest) (*AlertInfo, error)
 	// Gets a list of all Alerts. You can use a query to get a filtered list of Alerts.
 	List(context.Context, *AlertQuery) (*AlertsInfo, error)
 	Stat(context.Context, *AlertStatQuery) (*_struct.Struct, error)
@@ -231,28 +155,10 @@ func (UnimplementedAlertServer) Update(context.Context, *UpdateAlertRequest) (*A
 func (UnimplementedAlertServer) UpdateState(context.Context, *UpdateAlertStateRequest) (*AlertInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateState not implemented")
 }
-func (UnimplementedAlertServer) Merge(context.Context, *MergeAlertRequest) (*AlertInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Merge not implemented")
-}
-func (UnimplementedAlertServer) Snooze(context.Context, *SnoozeAlertRequest) (*AlertInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Snooze not implemented")
-}
-func (UnimplementedAlertServer) AddResponder(context.Context, *AlertResponderRequest) (*AlertInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddResponder not implemented")
-}
-func (UnimplementedAlertServer) RemoveResponder(context.Context, *AlertResponderRequest) (*AlertInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveResponder not implemented")
-}
-func (UnimplementedAlertServer) AddProjectDependency(context.Context, *AlertProjectDependencyRequest) (*AlertInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddProjectDependency not implemented")
-}
-func (UnimplementedAlertServer) RemoveProjectDependency(context.Context, *AlertProjectDependencyRequest) (*AlertInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveProjectDependency not implemented")
-}
 func (UnimplementedAlertServer) Delete(context.Context, *AlertRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedAlertServer) Get(context.Context, *GetAlertRequest) (*AlertInfo, error) {
+func (UnimplementedAlertServer) Get(context.Context, *AlertRequest) (*AlertInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedAlertServer) List(context.Context, *AlertQuery) (*AlertsInfo, error) {
@@ -328,114 +234,6 @@ func _Alert_UpdateState_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Alert_Merge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MergeAlertRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlertServer).Merge(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Alert_Merge_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlertServer).Merge(ctx, req.(*MergeAlertRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Alert_Snooze_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SnoozeAlertRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlertServer).Snooze(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Alert_Snooze_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlertServer).Snooze(ctx, req.(*SnoozeAlertRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Alert_AddResponder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AlertResponderRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlertServer).AddResponder(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Alert_AddResponder_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlertServer).AddResponder(ctx, req.(*AlertResponderRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Alert_RemoveResponder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AlertResponderRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlertServer).RemoveResponder(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Alert_RemoveResponder_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlertServer).RemoveResponder(ctx, req.(*AlertResponderRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Alert_AddProjectDependency_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AlertProjectDependencyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlertServer).AddProjectDependency(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Alert_AddProjectDependency_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlertServer).AddProjectDependency(ctx, req.(*AlertProjectDependencyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Alert_RemoveProjectDependency_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AlertProjectDependencyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AlertServer).RemoveProjectDependency(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Alert_RemoveProjectDependency_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlertServer).RemoveProjectDependency(ctx, req.(*AlertProjectDependencyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Alert_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AlertRequest)
 	if err := dec(in); err != nil {
@@ -455,7 +253,7 @@ func _Alert_Delete_Handler(srv interface{}, ctx context.Context, dec func(interf
 }
 
 func _Alert_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAlertRequest)
+	in := new(AlertRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -467,7 +265,7 @@ func _Alert_Get_Handler(srv interface{}, ctx context.Context, dec func(interface
 		FullMethod: Alert_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlertServer).Get(ctx, req.(*GetAlertRequest))
+		return srv.(AlertServer).Get(ctx, req.(*AlertRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -526,30 +324,6 @@ var Alert_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update_state",
 			Handler:    _Alert_UpdateState_Handler,
-		},
-		{
-			MethodName: "merge",
-			Handler:    _Alert_Merge_Handler,
-		},
-		{
-			MethodName: "snooze",
-			Handler:    _Alert_Snooze_Handler,
-		},
-		{
-			MethodName: "add_responder",
-			Handler:    _Alert_AddResponder_Handler,
-		},
-		{
-			MethodName: "remove_responder",
-			Handler:    _Alert_RemoveResponder_Handler,
-		},
-		{
-			MethodName: "add_project_dependency",
-			Handler:    _Alert_AddProjectDependency_Handler,
-		},
-		{
-			MethodName: "remove_project_dependency",
-			Handler:    _Alert_RemoveProjectDependency_Handler,
 		},
 		{
 			MethodName: "delete",

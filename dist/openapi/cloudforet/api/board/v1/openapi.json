@@ -15,13 +15,13 @@
          "operationId" : "",
          "description": "### Description \nCreates a new Post under a specific Board. You must specify the `board_id`, `title`, and `contents`. The parameter `category` is not required but can be set in the scope of `categories` specified in the parent Board. You can make the new Post pinned or pop up by adjusting the parameters.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |title||string|True|\n |contents||string|True|\n |permission_group|GLOBAL, DOMAIN |string|True|\n |board_id||string|True|\n |category||string||\n |files||array||\n |options||Struct||\n |writer||string||\n |domain_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |title||string|True|\n |contents||string|True|\n |resource_group|GLOBAL, DOMAIN |string|True|\n |board_id||string|True|\n |category||string||\n |files||array||\n |options||Struct||\n |writer||string||\n |domain_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"category" : {"type": "string","title": "CATEGORY" },"title" : {"type": "string","title": "TITLE" },"contents" : {"type": "string","title": "CONTENTS" },"files" : {"items": {}, "type": "array","title": "FILES" },"options" : {"type": "object","title": "OPTIONS" },"writer" : {"type": "string","title": "WRITER" },"permission_group" : {"type": "string","title": "PERMISSION_GROUP" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"board_id" : {"type": "string","title": "BOARD_ID" }                 }
+                 "properties": {"category" : {"type": "string","title": "CATEGORY" },"title" : {"type": "string","title": "TITLE" },"contents" : {"type": "string","title": "CONTENTS" },"files" : {"items": {}, "type": "array","title": "FILES" },"options" : {"type": "object","title": "OPTIONS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"writer" : {"type": "string","title": "WRITER" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"board_id" : {"type": "string","title": "BOARD_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"board_id\": \"board-123456789012\",\n   \"category\": \"developer\",\n   \"title\": \"title\",\n   \"contents\": \"This is contents.\",\n   \"options\": {\"is_popup\": true},\n   \"writer\": \"user1\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"board_id\": \"board-123456789012\",\n   \"category\": \"developer\",\n   \"title\": \"title\",\n   \"contents\": \"This is contents.\",\n   \"files\": [\"file-123456789012\"],\n   \"options\": {\"is_popup\": true},\n   \"writer\": \"user1\",\n   \"resource_group\": \"DOMAIN\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -33,7 +33,7 @@
                  "schema": {"$ref": "#/components/schemas/PostInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/PostInfo"},"Default Example":{
-                     "value": "{\n         \"board_id\": \"board-123456789012\",\n         \"post_id\": \"post-123456789012\",\n         \"post_type\": \"INTERNAL\",\n         \"category\": \"developer\",\n         \"title\": \"title\",\n         \"contents\": \"This is contents.\",\n         \"options\": {\n             \"is_pinned\": false,\n             \"is_popup\": true\n         },\n         \"view_count\": 0,\n         \"writer\": \"user1\",\n         \"scope\": \"DOMAIN\",\n         \"domain_id\": \"domain-123456789012\",\n         \"user_id\": \"user1@email.com\",\n         \"created_at\": \"2022-01-01T01:06:23.732Z\",\n         \"updated_at\": \"2022-01-01T01:06:23.732Z\"\n}"
+                     "value": "{\n         \"board_id\": \"board-123456789012\",\n         \"post_id\": \"post-123456789012\",\n         \"category\": \"developer\",\n         \"title\": \"title\",\n         \"contents\": \"This is contents.\",\n         \"options\": {\n             \"is_pinned\": false,\n             \"is_popup\": true\n         },\n         \"view_count\": 0,\n         \"writer\": \"user1\",\n         \"domain_id\": \"domain-123456789012\",\n         \"user_id\": \"user1@email.com\",\n         \"created_at\": \"2022-01-01T01:06:23.732Z\",\n         \"updated_at\": \"2022-01-01T01:06:23.732Z\"\n}"
                    }}
                }
              }}
@@ -46,13 +46,13 @@
          "operationId" : "",
          "description": "### Description \nUpdates a specific Post. You can make changes in Post settings, except `board_id`, `post_id`, and `domain_id`.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |post_id||string|True|\n |board_id||string|True|\n |category||string||\n |title||string||\n |contents||string||\n |files||array||\n |options||Struct||\n |writer||string||\n |domain_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |post_id||string|True|\n |resource_group|GLOBAL, DOMAIN |string|True|\n |board_id||string|True|\n |category||string||\n |title||string||\n |contents||string||\n |files||array||\n |options||Struct||\n |writer||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"post_id" : {"type": "string","title": "POST_ID" },"category" : {"type": "string","title": "CATEGORY" },"title" : {"type": "string","title": "TITLE" },"contents" : {"type": "string","title": "CONTENTS" },"files" : {"items": {}, "type": "array","title": "FILES" },"options" : {"type": "object","title": "OPTIONS" },"writer" : {"type": "string","title": "WRITER" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"board_id" : {"type": "string","title": "BOARD_ID" }                 }
+                 "properties": {"post_id" : {"type": "string","title": "POST_ID" },"category" : {"type": "string","title": "CATEGORY" },"title" : {"type": "string","title": "TITLE" },"contents" : {"type": "string","title": "CONTENTS" },"files" : {"items": {}, "type": "array","title": "FILES" },"options" : {"type": "object","title": "OPTIONS" },"writer" : {"type": "string","title": "WRITER" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"board_id" : {"type": "string","title": "BOARD_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n     \"board_id\": \"board-123456789012\",\n     \"post_id\": \"post-2118473ce15e\",\n     \"category\": \"developer\",\n     \"title\": \"title2\",\n     \"contents\": \"this is contents2.\",\n     \"options\": {\n         \"is_popup\": false,\n         \"is_pinned\": true\n     },\n     \"writer\": \"user1\",\n     \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n     \"board_id\": \"board-123456789012\",\n     \"post_id\": \"post-2118473ce15e\",\n     \"category\": \"developer\",\n     \"title\": \"title2\",\n     \"contents\": \"this is contents2.\",\n     \"options\": {\n         \"is_popup\": false,\n         \"is_pinned\": true\n     },\n     \"writer\": \"user1\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -64,7 +64,7 @@
                  "schema": {"$ref": "#/components/schemas/PostInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/PostInfo"},"Default Example":{
-                     "value": "{\n         \"board_id\": \"board-123456789012\",\n         \"post_id\": \"post-123456789012\",\n         \"post_type\": \"INTERNAL\",\n         \"category\": \"developer\",\n         \"title\": \"title\",\n         \"contents\": \"This is contents.\",\n         \"options\": {\n             \"is_pinned\": false,\n             \"is_popup\": true\n         },\n         \"view_count\": 0,\n         \"writer\": \"user1\",\n         \"scope\": \"DOMAIN\",\n         \"domain_id\": \"domain-123456789012\",\n         \"user_id\": \"user1@email.com\",\n         \"created_at\": \"2022-01-01T01:06:23.732Z\",\n         \"updated_at\": \"2022-01-01T01:06:23.732Z\"\n}"
+                     "value": "{\n         \"board_id\": \"board-123456789012\",\n         \"post_id\": \"post-123456789012\",\n         \"category\": \"developer\",\n         \"title\": \"title\",\n         \"contents\": \"This is contents.\",\n         \"options\": {\n             \"is_pinned\": false,\n             \"is_popup\": true\n         },\n         \"view_count\": 0,\n         \"writer\": \"user1\",\n         \"domain_id\": \"domain-123456789012\",\n         \"user_id\": \"user1@email.com\",\n         \"created_at\": \"2022-01-01T01:06:23.732Z\",\n         \"updated_at\": \"2022-01-01T01:06:23.732Z\"\n}"
                    }}
                }
              }}
@@ -77,11 +77,11 @@
          "operationId" : "",
          "description": "### Description \nNot Implemented",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |board_id||string|True|\n |post_id||string|True|\n |domain_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |board_id||string|True|\n |post_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"board_id" : {"type": "string","title": "BOARD_ID" },"post_id" : {"type": "string","title": "POST_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"board_id" : {"type": "string","title": "BOARD_ID" },"post_id" : {"type": "string","title": "POST_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -100,13 +100,13 @@
          "operationId" : "",
          "description": "### Description \nDeletes a specific Post. You must specify the `post_id` of the Post to delete, and the `board_id` of the Board where the child Post to delete belongs.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |board_id||string|True|\n |post_id||string|True|\n |domain_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |board_id||string|True|\n |post_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"board_id" : {"type": "string","title": "BOARD_ID" },"post_id" : {"type": "string","title": "POST_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"board_id" : {"type": "string","title": "BOARD_ID" },"post_id" : {"type": "string","title": "POST_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"board_id\": \"board-b9aa34e65c60\",\n   \"post_id\": \"post-2118473ce15e\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"board_id\": \"board-b9aa34e65c60\",\n   \"post_id\": \"post-2118473ce15e\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -123,13 +123,13 @@
          "operationId" : "",
          "description": "### Description \nGets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |board_id||string|True|\n |post_id||string|True|\n |domain_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |board_id||string|True|\n |post_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"board_id" : {"type": "string","title": "BOARD_ID" },"post_id" : {"type": "string","title": "POST_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"board_id" : {"type": "string","title": "BOARD_ID" },"post_id" : {"type": "string","title": "POST_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"board_id\": \"board-b9aa34e65c60\",\n   \"post_id\": \"post-2118473ce15e\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"board_id\": \"board-b9aa34e65c60\",\n   \"post_id\": \"post-2118473ce15e\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -141,7 +141,7 @@
                  "schema": {"$ref": "#/components/schemas/PostInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/PostInfo"},"Default Example":{
-                     "value": "{\n         \"board_id\": \"board-123456789012\",\n         \"post_id\": \"post-123456789012\",\n         \"post_type\": \"INTERNAL\",\n         \"category\": \"developer\",\n         \"title\": \"title\",\n         \"contents\": \"This is contents.\",\n         \"options\": {\n             \"is_pinned\": false,\n             \"is_popup\": true\n         },\n         \"view_count\": 0,\n         \"writer\": \"user1\",\n         \"scope\": \"DOMAIN\",\n         \"domain_id\": \"domain-123456789012\",\n         \"user_id\": \"user1@email.com\",\n         \"created_at\": \"2022-01-01T01:06:23.732Z\",\n         \"updated_at\": \"2022-01-01T01:06:23.732Z\"\n}"
+                     "value": "{\n         \"board_id\": \"board-123456789012\",\n         \"post_id\": \"post-123456789012\",\n         \"category\": \"developer\",\n         \"title\": \"title\",\n         \"contents\": \"This is contents.\",\n         \"options\": {\n             \"is_pinned\": false,\n             \"is_popup\": true\n         },\n         \"view_count\": 0,\n         \"writer\": \"user1\",\n         \"domain_id\": \"domain-123456789012\",\n         \"user_id\": \"user1@email.com\",\n         \"created_at\": \"2022-01-01T01:06:23.732Z\",\n         \"updated_at\": \"2022-01-01T01:06:23.732Z\"\n}"
                    }}
                }
              }}
@@ -154,11 +154,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all Posts. You can use a query to get a filtered list of Posts.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |permission_group|GLOBAL, DOMAIN |string|True|\n |board_id||string|True|\n |query||Query||\n |post_id||string||\n |category||string||\n |writer||string||\n |is_pinned||boolean||\n |is_popup||boolean||\n |user_domain_id||string||\n |domain_id||string||\n |user_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |resource_group|GLOBAL, DOMAIN |string|True|\n |query||Query||\n |post_id||string||\n |category||string||\n |writer||string||\n |is_pinned||boolean||\n |is_popup||boolean||\n |board_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"post_id" : {"type": "string","title": "POST_ID" },"category" : {"type": "string","title": "CATEGORY" },"writer" : {"type": "string","title": "WRITER" },"is_pinned" : {"type": "boolean","title": "IS_PINNED" },"is_popup" : {"type": "boolean","title": "IS_POPUP" },"user_domain_id" : {"type": "string","title": "USER_DOMAIN_ID" },"permission_group" : {"type": "string","title": "PERMISSION_GROUP" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"board_id" : {"type": "string","title": "BOARD_ID" },"user_id" : {"type": "string","title": "USER_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"post_id" : {"type": "string","title": "POST_ID" },"category" : {"type": "string","title": "CATEGORY" },"writer" : {"type": "string","title": "WRITER" },"is_pinned" : {"type": "boolean","title": "IS_PINNED" },"is_popup" : {"type": "boolean","title": "IS_POPUP" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"board_id" : {"type": "string","title": "BOARD_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"board_id\": \"board-b9aa34e65c60\",\n   \"query\": {}\n}"},"Schema":{}
                }
@@ -172,7 +172,7 @@
                  "schema": {"$ref": "#/components/schemas/PostsInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/PostsInfo"},"Default Example":{
-                     "value": "{\n     \"results\": [\n         {\n             \"board_id\": \"board-b9aa34e65c60\",\n             \"post_id\": \"post-2118473ce15e\",\n             \"post_type\": \"INTERNAL\",\n             \"category\": \"spaceone\",\n             \"title\": \"title2\",\n             \"contents\": \"this is contents2.\",\n             \"options\": {\n                 \"is_popup\": false,\n                 \"is_pinned\": true\n             },\n             \"view_count\": 3,\n             \"writer\": \"seolmin2\",\n             \"scope\": \"DOMAIN\",\n             \"domain_id\": \"domain-58010aa2e451\",\n             \"user_id\": \"user1@email.com\",\n             \"created_at\": \"2022-06-13T01:06:23.732Z\",\n             \"updated_at\": \"2022-06-13T01:06:23.732Z\"\n         },\n         {\n             \"board_id\": \"board-b9aa34e65c60\",\n             \"post_id\": \"post-532ae1191233\",\n             \"post_type\": \"INTERNAL\",\n             \"category\": \"flower\",\n             \"title\": \"\uc791\uc5c5\uacf5\uc9c0\",\n             \"contents\": \"This is description\",\n             \"options\": {\n                 \"is_pinned\": true,\n                 \"is_popup\": true\n             },\n             \"writer\": \"\uad8c\uc124\ubbfc\",\n             \"scope\": \"PUBLIC\",\n             \"user_id\": \"supervisor\",\n             \"created_at\": \"2022-06-10T07:01:44.384Z\",\n             \"updated_at\": \"2022-06-10T07:01:44.384Z\"\n         }\n     ],\n     \"total_count\": 2\n}"
+                     "value": "{\n     \"results\": [\n         {\n             \"board_id\": \"board-b9aa34e65c60\",\n             \"post_id\": \"post-2118473ce15e\",\n             \"category\": \"spaceone\",\n             \"title\": \"title2\",\n             \"contents\": \"this is contents2.\",\n             \"options\": {\n                 \"is_popup\": false,\n                 \"is_pinned\": true\n             },\n             \"view_count\": 3,\n             \"writer\": \"seolmin2\",\n             \"files\": [\"file-123456789012\"],\n             \"resource_group\": \"DOMAIN\",\n             \"domain_id\": \"domain-58010aa2e451\",\n             \"user_id\": \"user1@email.com\",\n             \"created_at\": \"2022-06-13T01:06:23.732Z\",\n             \"updated_at\": \"2022-06-13T01:06:23.732Z\"\n         },\n         {\n             \"board_id\": \"board-b9aa34e65c60\",\n             \"post_id\": \"post-532ae1191233\",\n             \"category\": \"flower\",\n             \"title\": \"\uc791\uc5c5\uacf5\uc9c0\",\n             \"contents\": \"This is description\",\n             \"options\": {\n                 \"is_pinned\": true,\n                 \"is_popup\": true\n             },\n             \"writer\": \"\uad8c\uc124\ubbfc\",\n             \"files\": [\"file-123456789022\"],\n             \"resource_group\": \"DOMAIN\",\n             \"user_id\": \"supervisor\",\n             \"created_at\": \"2022-06-10T07:01:44.384Z\",\n             \"updated_at\": \"2022-06-10T07:01:44.384Z\"\n         }\n     ],\n     \"total_count\": 2\n}"
                    }}
                }
              }}
@@ -185,11 +185,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -338,11 +338,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all Boards. You can use a query to get a filtered list of Boards.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |board_id||string||\n |name||string||\n |query||Query||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |board_id||string||\n |name||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"board_id" : {"type": "string","title": "BOARD_ID" },"name" : {"type": "string","title": "NAME" },"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"board_id" : {"type": "string","title": "BOARD_ID" },"name" : {"type": "string","title": "NAME" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
                }
@@ -397,39 +397,33 @@
      "schemas": {
      "CreatePostRequest": {
          "properties" : {"category" : {"type": "string","title": "CATEGORY"},"title" : {"type": "string","title": "TITLE"},"contents" : {"type": "string","title": "CONTENTS"},"files" : {"items": {"type": "string"},
-               "type": "array","title": "FILES"},"options" : {"type": "object","title": "OPTIONS"},"writer" : {"type": "string","title": "WRITER"},"permission_group" : {"type": "string","title": "PERMISSION_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"board_id" : {"type": "string","title": "BOARD_ID"}},
+               "type": "array","title": "FILES"},"options" : {"type": "object","title": "OPTIONS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"writer" : {"type": "string","title": "WRITER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"board_id" : {"type": "string","title": "BOARD_ID"}},
          "type": "object",
-         "required": ["title","contents","permission_group","board_id"],
+         "required": ["title","contents","resource_group","board_id"],
                 "title": "CreatePostRequest"
            }
-           ,        "GetPostRequest": {
-         "properties" : {"board_id" : {"type": "string","title": "BOARD_ID"},"post_id" : {"type": "string","title": "POST_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["board_id","post_id"],
-                "title": "GetPostRequest"
-           }
            ,        "PostInfo": {
-         "properties" : {"post_id" : {"type": "string","title": "POST_ID"},"category" : {"type": "string","title": "CATEGORY"},"title" : {"type": "string","title": "TITLE"},"contents" : {"type": "string","title": "CONTENTS"},"options" : {"type": "object","title": "OPTIONS"},"view_count" : {"type": "integer","title": "VIEW_COUNT"},"writer" : {"type": "string","title": "WRITER"},"files" : {"type": "array","title": "FILES"},"permission_group" : {"type": "string","title": "PERMISSION_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"board_id" : {"type": "string","title": "BOARD_ID"},"user_id" : {"type": "string","title": "USER_ID"},"user_domain_id" : {"type": "string","title": "USER_DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"post_id" : {"type": "string","title": "POST_ID"},"category" : {"type": "string","title": "CATEGORY"},"title" : {"type": "string","title": "TITLE"},"contents" : {"type": "string","title": "CONTENTS"},"options" : {"type": "object","title": "OPTIONS"},"view_count" : {"type": "integer","title": "VIEW_COUNT"},"writer" : {"type": "string","title": "WRITER"},"files" : {"type": "array","title": "FILES"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"board_id" : {"type": "string","title": "BOARD_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["post_id","category","title","contents","options","view_count","writer","files","permission_group","domain_id","board_id","user_id","user_domain_id","created_at","updated_at"],
+         "required": ["post_id","category","title","contents","options","view_count","writer","files","resource_group","domain_id","board_id","user_id","created_at","updated_at"],
                 "title": "PostInfo"
            }
            ,        "PostRequest": {
-         "properties" : {"board_id" : {"type": "string","title": "BOARD_ID"},"post_id" : {"type": "string","title": "POST_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"board_id" : {"type": "string","title": "BOARD_ID"},"post_id" : {"type": "string","title": "POST_ID"}},
          "type": "object",
          "required": ["board_id","post_id"],
                 "title": "PostRequest"
            }
            ,        "PostSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"post_id" : {"type": "string","title": "POST_ID"},"category" : {"type": "string","title": "CATEGORY"},"writer" : {"type": "string","title": "WRITER"},"is_pinned" : {"type": "boolean","title": "IS_PINNED"},"is_popup" : {"type": "boolean","title": "IS_POPUP"},"user_domain_id" : {"type": "string","title": "USER_DOMAIN_ID"},"permission_group" : {"type": "string","title": "PERMISSION_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"board_id" : {"type": "string","title": "BOARD_ID"},"user_id" : {"type": "string","title": "USER_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"post_id" : {"type": "string","title": "POST_ID"},"category" : {"type": "string","title": "CATEGORY"},"writer" : {"type": "string","title": "WRITER"},"is_pinned" : {"type": "boolean","title": "IS_PINNED"},"is_popup" : {"type": "boolean","title": "IS_POPUP"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"board_id" : {"type": "string","title": "BOARD_ID"}},
          "type": "object",
-         "required": ["permission_group","board_id"],
+         "required": ["resource_group"],
                 "title": "PostSearchQuery"
            }
            ,        "PostStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
-         "required": ["query","domain_id"],
+         "required": ["query"],
                 "title": "PostStatQuery"
            }
            ,        "PostsInfo": {
@@ -440,16 +434,16 @@
                 "title": "PostsInfo"
            }
            ,        "SendNotificationRequest": {
-         "properties" : {"board_id" : {"type": "string","title": "BOARD_ID"},"post_id" : {"type": "string","title": "POST_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"board_id" : {"type": "string","title": "BOARD_ID"},"post_id" : {"type": "string","title": "POST_ID"}},
          "type": "object",
          "required": ["board_id","post_id"],
                 "title": "SendNotificationRequest"
            }
            ,        "UpdatePostRequest": {
          "properties" : {"post_id" : {"type": "string","title": "POST_ID"},"category" : {"type": "string","title": "CATEGORY"},"title" : {"type": "string","title": "TITLE"},"contents" : {"type": "string","title": "CONTENTS"},"files" : {"items": {"type": "string"},
-               "type": "array","title": "FILES"},"options" : {"type": "object","title": "OPTIONS"},"writer" : {"type": "string","title": "WRITER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"board_id" : {"type": "string","title": "BOARD_ID"}},
+               "type": "array","title": "FILES"},"options" : {"type": "object","title": "OPTIONS"},"writer" : {"type": "string","title": "WRITER"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"board_id" : {"type": "string","title": "BOARD_ID"}},
          "type": "object",
-         "required": ["post_id","board_id"],
+         "required": ["post_id","resource_group","board_id"],
                 "title": "UpdatePostRequest"
            }
            ,        "VersionInfo": {
@@ -667,7 +661,7 @@
                 "title": "BoardInfo"
            }
            ,        "BoardQuery": {
-         "properties" : {"board_id" : {"type": "string","title": "BOARD_ID"},"name" : {"type": "string","title": "NAME"},"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"board_id" : {"type": "string","title": "BOARD_ID"},"name" : {"type": "string","title": "NAME"}},
          "type": "object",
          "required": [],
                 "title": "BoardQuery"
@@ -697,12 +691,6 @@
          "type": "object",
          "required": ["name"],
                 "title": "CreateBoardRequest"
-           }
-           ,        "GetBoardRequest": {
-         "properties" : {"board_id" : {"type": "string","title": "BOARD_ID"}},
-         "type": "object",
-         "required": ["board_id"],
-                "title": "GetBoardRequest"
            }
            ,        "SetBoardCategoriesRequest": {
          "properties" : {"board_id" : {"type": "string","title": "BOARD_ID"},"categories" : {"items": {"type": "string"},

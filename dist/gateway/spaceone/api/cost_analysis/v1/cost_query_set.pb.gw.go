@@ -135,7 +135,7 @@ func local_request_CostQuerySet_Delete_0(ctx context.Context, marshaler runtime.
 }
 
 func request_CostQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CostQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetCostQuerySetRequest
+	var protoReq v1_0.CostQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -152,7 +152,7 @@ func request_CostQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler
 }
 
 func local_request_CostQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CostQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetCostQuerySetRequest
+	var protoReq v1_0.CostQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

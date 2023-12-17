@@ -32,7 +32,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type JobTaskClient interface {
 	// Gets a specific JobTask. Prints detailed information about the JobTask, including the relevant resources: DataSource and Job. The criteria used for dividing a Job into JobTasks can be found in the DataSource used, but the total count of divided JobTasks can be found by this method.
-	Get(ctx context.Context, in *GetJobTaskRequest, opts ...grpc.CallOption) (*JobTaskInfo, error)
+	Get(ctx context.Context, in *JobTaskRequest, opts ...grpc.CallOption) (*JobTaskInfo, error)
 	// Gets a list of all JobTasks. You can use a query to get a filtered list of JobTasks.
 	List(ctx context.Context, in *JobTaskQuery, opts ...grpc.CallOption) (*JobTasksInfo, error)
 	Stat(ctx context.Context, in *JobTaskStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -46,7 +46,7 @@ func NewJobTaskClient(cc grpc.ClientConnInterface) JobTaskClient {
 	return &jobTaskClient{cc}
 }
 
-func (c *jobTaskClient) Get(ctx context.Context, in *GetJobTaskRequest, opts ...grpc.CallOption) (*JobTaskInfo, error) {
+func (c *jobTaskClient) Get(ctx context.Context, in *JobTaskRequest, opts ...grpc.CallOption) (*JobTaskInfo, error) {
 	out := new(JobTaskInfo)
 	err := c.cc.Invoke(ctx, JobTask_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -78,7 +78,7 @@ func (c *jobTaskClient) Stat(ctx context.Context, in *JobTaskStatQuery, opts ...
 // for forward compatibility
 type JobTaskServer interface {
 	// Gets a specific JobTask. Prints detailed information about the JobTask, including the relevant resources: DataSource and Job. The criteria used for dividing a Job into JobTasks can be found in the DataSource used, but the total count of divided JobTasks can be found by this method.
-	Get(context.Context, *GetJobTaskRequest) (*JobTaskInfo, error)
+	Get(context.Context, *JobTaskRequest) (*JobTaskInfo, error)
 	// Gets a list of all JobTasks. You can use a query to get a filtered list of JobTasks.
 	List(context.Context, *JobTaskQuery) (*JobTasksInfo, error)
 	Stat(context.Context, *JobTaskStatQuery) (*_struct.Struct, error)
@@ -89,7 +89,7 @@ type JobTaskServer interface {
 type UnimplementedJobTaskServer struct {
 }
 
-func (UnimplementedJobTaskServer) Get(context.Context, *GetJobTaskRequest) (*JobTaskInfo, error) {
+func (UnimplementedJobTaskServer) Get(context.Context, *JobTaskRequest) (*JobTaskInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedJobTaskServer) List(context.Context, *JobTaskQuery) (*JobTasksInfo, error) {
@@ -112,7 +112,7 @@ func RegisterJobTaskServer(s grpc.ServiceRegistrar, srv JobTaskServer) {
 }
 
 func _JobTask_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetJobTaskRequest)
+	in := new(JobTaskRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -124,7 +124,7 @@ func _JobTask_Get_Handler(srv interface{}, ctx context.Context, dec func(interfa
 		FullMethod: JobTask_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JobTaskServer).Get(ctx, req.(*GetJobTaskRequest))
+		return srv.(JobTaskServer).Get(ctx, req.(*JobTaskRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

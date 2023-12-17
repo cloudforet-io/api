@@ -38,7 +38,7 @@ class PostStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.board.v1.Post/get',
-                request_serializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.GetPostRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -129,7 +129,7 @@ def add_PostServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.GetPostRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -232,7 +232,7 @@ class Post(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.board.v1.Post/get',
-            spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.GetPostRequest.SerializeToString,
+            spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostRequest.SerializeToString,
             spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

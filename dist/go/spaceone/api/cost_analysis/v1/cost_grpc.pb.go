@@ -40,7 +40,7 @@ type CostClient interface {
 	// Deletes a specific Cost. You must specify the `cost_id` of the Cost to delete.
 	Delete(ctx context.Context, in *CostRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Cost. Prints detailed information about the Cost, including  `region_code` and `account`.
-	Get(ctx context.Context, in *GetCostRequest, opts ...grpc.CallOption) (*CostInfo, error)
+	Get(ctx context.Context, in *CostRequest, opts ...grpc.CallOption) (*CostInfo, error)
 	// Gets a list of all Costs. You can use a query to get a filtered list of Costs.
 	List(ctx context.Context, in *CostQuery, opts ...grpc.CallOption) (*CostsInfo, error)
 	// Gets the Cost information of specific `product`s based on the time granularity: `DAILY`, `MONTHLY`, or `ACCUMULATED`. For `DAILY` granularity, this method can get the Cost data of at most 31 days. For `MONTHLY` or `ACCUMULATED` granularity, this method can get the Cost data of at most 12 months.
@@ -74,7 +74,7 @@ func (c *costClient) Delete(ctx context.Context, in *CostRequest, opts ...grpc.C
 	return out, nil
 }
 
-func (c *costClient) Get(ctx context.Context, in *GetCostRequest, opts ...grpc.CallOption) (*CostInfo, error) {
+func (c *costClient) Get(ctx context.Context, in *CostRequest, opts ...grpc.CallOption) (*CostInfo, error) {
 	out := new(CostInfo)
 	err := c.cc.Invoke(ctx, Cost_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -119,7 +119,7 @@ type CostServer interface {
 	// Deletes a specific Cost. You must specify the `cost_id` of the Cost to delete.
 	Delete(context.Context, *CostRequest) (*empty.Empty, error)
 	// Gets a specific Cost. Prints detailed information about the Cost, including  `region_code` and `account`.
-	Get(context.Context, *GetCostRequest) (*CostInfo, error)
+	Get(context.Context, *CostRequest) (*CostInfo, error)
 	// Gets a list of all Costs. You can use a query to get a filtered list of Costs.
 	List(context.Context, *CostQuery) (*CostsInfo, error)
 	// Gets the Cost information of specific `product`s based on the time granularity: `DAILY`, `MONTHLY`, or `ACCUMULATED`. For `DAILY` granularity, this method can get the Cost data of at most 31 days. For `MONTHLY` or `ACCUMULATED` granularity, this method can get the Cost data of at most 12 months.
@@ -138,7 +138,7 @@ func (UnimplementedCostServer) Create(context.Context, *CreateCostRequest) (*Cos
 func (UnimplementedCostServer) Delete(context.Context, *CostRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedCostServer) Get(context.Context, *GetCostRequest) (*CostInfo, error) {
+func (UnimplementedCostServer) Get(context.Context, *CostRequest) (*CostInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedCostServer) List(context.Context, *CostQuery) (*CostsInfo, error) {
@@ -200,7 +200,7 @@ func _Cost_Delete_Handler(srv interface{}, ctx context.Context, dec func(interfa
 }
 
 func _Cost_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCostRequest)
+	in := new(CostRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -212,7 +212,7 @@ func _Cost_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 		FullMethod: Cost_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CostServer).Get(ctx, req.(*GetCostRequest))
+		return srv.(CostServer).Get(ctx, req.(*CostRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

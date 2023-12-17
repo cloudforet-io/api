@@ -36,6 +36,98 @@
               "description": ""
             }
           ]
+        },
+        {
+          "name": "ResourceGroup",
+          "longName": "CreateDataSourceRuleRequest.ResourceGroup",
+          "fullName": "spaceone.api.cost_analysis.v1.CreateDataSourceRuleRequest.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ResourceGroup",
+          "longName": "DataSourceRuleInfo.ResourceGroup",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceRuleInfo.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "RuleType",
+          "longName": "DataSourceRuleInfo.RuleType",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceRuleInfo.RuleType",
+          "description": "",
+          "values": [
+            {
+              "name": "RULE_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANAGED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "CUSTOM",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "RuleType",
+          "longName": "DataSourceRuleQuery.RuleType",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceRuleQuery.RuleType",
+          "description": "",
+          "values": [
+            {
+              "name": "RULE_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANAGED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "CUSTOM",
+              "number": "2",
+              "description": ""
+            }
+          ]
         }
       ],
       "extensions": [],
@@ -69,18 +161,6 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -177,18 +257,6 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -339,6 +407,18 @@
               "defaultValue": ""
             },
             {
+              "name": "rule_type",
+              "description": "",
+              "label": "",
+              "type": "RuleType",
+              "longType": "DataSourceRuleInfo.RuleType",
+              "fullType": "spaceone.api.cost_analysis.v1.DataSourceRuleInfo.RuleType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "order",
               "description": "",
               "label": "",
@@ -411,7 +491,31 @@
               "defaultValue": ""
             },
             {
-              "name": "rule_type",
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "DataSourceRuleInfo.ResourceGroup",
+              "fullType": "spaceone.api.cost_analysis.v1.DataSourceRuleInfo.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -424,18 +528,6 @@
             },
             {
               "name": "data_source_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -534,16 +626,16 @@
               "name": "rule_type",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "RuleType",
+              "longType": "DataSourceRuleQuery.RuleType",
+              "fullType": "spaceone.api.cost_analysis.v1.DataSourceRuleQuery.RuleType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "data_source_id",
+              "name": "workspace_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -555,8 +647,8 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "",
+              "name": "data_source_id",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -589,18 +681,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -621,18 +701,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
               "fullType": "spaceone.api.core.v1.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -669,54 +737,6 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "GetDataSourceRuleRequest",
-          "longName": "GetDataSourceRuleRequest",
-          "fullName": "spaceone.api.cost_analysis.v1.GetDataSourceRuleRequest",
-          "description": "{\n \"data_source_rule_id\": \"rule-22fab02f6b51\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "data_source_rule_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "only",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -853,18 +873,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         }
@@ -971,9 +979,9 @@
             {
               "name": "get",
               "description": "Gets a specific DataSourceRule. Prints detailed information about the DataSourceRule, including  `conditions_policy` and conditions applied to DataSources.",
-              "requestType": "GetDataSourceRuleRequest",
-              "requestLongType": "GetDataSourceRuleRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.GetDataSourceRuleRequest",
+              "requestType": "DataSourceRuleRequest",
+              "requestLongType": "DataSourceRuleRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceRuleRequest",
               "requestStreaming": false,
               "responseType": "DataSourceRuleInfo",
               "responseLongType": "DataSourceRuleInfo",

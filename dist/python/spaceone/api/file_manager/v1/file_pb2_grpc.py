@@ -38,7 +38,7 @@ class FileStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.file_manager.v1.File/get',
-                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.GetFileRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -123,7 +123,7 @@ def add_FileServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.GetFileRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -226,7 +226,7 @@ class File(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.file_manager.v1.File/get',
-            spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.GetFileRequest.SerializeToString,
+            spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileRequest.SerializeToString,
             spaceone_dot_api_dot_file__manager_dot_v1_dot_file__pb2.FileInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

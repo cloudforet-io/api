@@ -10,6 +10,29 @@
       "hasServices": true,
       "enums": [
         {
+          "name": "ResourceGroup",
+          "longName": "CollectorInfo.ResourceGroup",
+          "fullName": "spaceone.api.inventory.v1.CollectorInfo.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "State",
           "longName": "CollectorInfo.State",
           "fullName": "spaceone.api.inventory.v1.CollectorInfo.State",
@@ -39,7 +62,7 @@
           "description": "",
           "values": [
             {
-              "name": "NONE",
+              "name": "STATE_NONE",
               "number": "0",
               "description": ""
             },
@@ -56,34 +79,24 @@
           ]
         },
         {
-          "name": "Status",
-          "longName": "JobInfo.Status",
-          "fullName": "spaceone.api.inventory.v1.JobInfo.Status",
+          "name": "ResourceGroup",
+          "longName": "CreateCollectorRequest.ResourceGroup",
+          "fullName": "spaceone.api.inventory.v1.CreateCollectorRequest.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "NONE",
+              "name": "RESOURCE_GROUP_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "FAILURE",
+              "name": "DOMAIN",
               "number": "1",
               "description": ""
             },
             {
-              "name": "CANCELED",
+              "name": "WORKSPACE",
               "number": "2",
-              "description": ""
-            },
-            {
-              "name": "IN_PROGRESS",
-              "number": "3",
-              "description": ""
-            },
-            {
-              "name": "SUCCESS",
-              "number": "4",
               "description": ""
             }
           ]
@@ -206,60 +219,12 @@
               "defaultValue": ""
             },
             {
-              "name": "filter",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "secret_id",
               "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collect_mode",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "use_cache",
-              "description": "+optional",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -302,30 +267,6 @@
               "defaultValue": ""
             },
             {
-              "name": "plugin_info",
-              "description": "",
-              "label": "",
-              "type": "PluginInfo",
-              "longType": "PluginInfo",
-              "fullType": "spaceone.api.inventory.v1.PluginInfo",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "tags",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "provider",
               "description": "",
               "label": "",
@@ -350,6 +291,30 @@
               "defaultValue": ""
             },
             {
+              "name": "secret_filter",
+              "description": "",
+              "label": "",
+              "type": "SecretFilter",
+              "longType": "SecretFilter",
+              "fullType": "spaceone.api.inventory.v1.SecretFilter",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "",
+              "label": "",
+              "type": "PluginInfo",
+              "longType": "PluginInfo",
+              "fullType": "spaceone.api.inventory.v1.PluginInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "schedule",
               "description": "",
               "label": "",
@@ -362,12 +327,48 @@
               "defaultValue": ""
             },
             {
-              "name": "secret_filter",
+              "name": "tags",
               "description": "",
               "label": "",
-              "type": "SecretFilter",
-              "longType": "SecretFilter",
-              "fullType": "spaceone.api.inventory.v1.SecretFilter",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "CollectorInfo.ResourceGroup",
+              "fullType": "spaceone.api.inventory.v1.CollectorInfo.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -387,18 +388,6 @@
             },
             {
               "name": "last_collected_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -458,7 +447,7 @@
               "defaultValue": ""
             },
             {
-              "name": "state",
+              "name": "secret_filter_state",
               "description": "",
               "label": "",
               "type": "State",
@@ -470,19 +459,19 @@
               "defaultValue": ""
             },
             {
-              "name": "priority",
+              "name": "schedule_state",
               "description": "",
               "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
+              "type": "State",
+              "longType": "CollectorQuery.State",
+              "fullType": "spaceone.api.inventory.v1.CollectorQuery.State",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "plugin_id",
+              "name": "workspace_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -494,7 +483,7 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "plugin_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -528,18 +517,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -560,18 +537,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
               "fullType": "spaceone.api.core.v1.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -674,18 +639,6 @@
               "defaultValue": ""
             },
             {
-              "name": "tags",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "secret_filter",
               "description": "+optional",
               "label": "",
@@ -698,91 +651,7 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "CreateScheduleRequest",
-          "longName": "CreateScheduleRequest",
-          "fullName": "spaceone.api.inventory.v1.CreateScheduleRequest",
-          "description": "{\n   \"collector_id\": \"collector-2c0847644f39\",\n   \"name\": \"regular collection\",\n   \"schedule\": {\n       \"hours\": [16, 18, 20, 22, 0]\n   }\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collector_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collect_mode",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "schedule",
-              "description": "",
-              "label": "",
-              "type": "Scheduled",
-              "longType": "Scheduled",
-              "fullType": "spaceone.api.inventory.v1.Scheduled",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "filter",
+              "name": "tags",
               "description": "+optional",
               "label": "",
               "type": "Struct",
@@ -792,314 +661,14 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "DeleteScheduleRequest",
-          "longName": "DeleteScheduleRequest",
-          "fullName": "spaceone.api.inventory.v1.DeleteScheduleRequest",
-          "description": "{\n   \"schedule_id\": \"sched-dfb2f6ef84bc\",\n   \"collector_id\": \"collector-2c0847644f39\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             },
             {
-              "name": "schedule_id",
+              "name": "resource_group",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collector_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "ErrorInfo",
-          "longName": "ErrorInfo",
-          "fullName": "spaceone.api.inventory.v1.ErrorInfo",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "error_code",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "message",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "additional",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "GetCollectorRequest",
-          "longName": "GetCollectorRequest",
-          "fullName": "spaceone.api.inventory.v1.GetCollectorRequest",
-          "description": "{\n   \"collector_id\": \"collector-f2e4e9cc7f21\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "collector_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "only",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "JobInfo",
-          "longName": "JobInfo",
-          "fullName": "spaceone.api.inventory.v1.JobInfo",
-          "description": "{\n     \"job_id\": \"job-123456789012\",\n     \"status\": \"ERROR\",\n     \"filter\": {},\n     \"total_tasks\": 2,\n     \"collector_info\": {\n         \"collector_id\": \"collector-123456789012\",\n         \"name\": \"Jenkins Collector\",\n         \"state\": \"ENABLED\",\n         \"plugin_info\": {\n             \"plugin_id\": \"plugin-jenkins-inven-collector\",\n             \"version\": \"0.1.1\"\n         },\n         \"provider\": \"jenkins\",\n         \"capability\": {},\n         \"is_public\": true\n     },\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T10:00:01.389Z\",\n     \"updated_at\": \"2022-01-01T10:00:01.389Z\",\n     \"finished_at\": \"2022-01-01T10:02:11.270Z\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "job_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "status",
-              "description": "",
-              "label": "",
-              "type": "Status",
-              "longType": "JobInfo.Status",
-              "fullType": "spaceone.api.inventory.v1.JobInfo.Status",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "total_tasks",
-              "description": "",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "remained_tasks",
-              "description": "",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "success_tasks",
-              "description": "",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "failure_tasks",
-              "description": "",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collector_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "secret_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "plugin_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "created_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "updated_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "finished_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "ResourceGroup",
+              "longType": "CreateCollectorRequest.ResourceGroup",
+              "fullType": "spaceone.api.inventory.v1.CreateCollectorRequest.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1180,234 +749,6 @@
           ]
         },
         {
-          "name": "ScheduleInfo",
-          "longName": "ScheduleInfo",
-          "fullName": "spaceone.api.inventory.v1.ScheduleInfo",
-          "description": "{\n   \"schedule_id\": \"sched-dfb2f6ef84bc\",\n   \"name\": \"regular collection\",\n   \"collect_mode\": \"ALL\",\n   \"schedule\": {\n       \"hours\": [\n           16,\n           18,\n           20,\n           22,\n           0\n       ]\n   },\n   \"created_at\": \"2022-06-17T07:12:07.374Z\",\n   \"collector_info\": {\n       \"collector_id\": \"collector-2c0847644f39\",\n       \"name\": \"AWS stat-kwon Collector\",\n       \"state\": \"ENABLED\",\n       \"plugin_info\": {\n           \"plugin_id\": \"plugin-30d21ef75a5d\",\n           \"version\": \"1.13.13.20220610.143142\",\n           \"options\": {},\n           \"provider\": \"aws\",\n           \"metadata\": {\n               \"supported_resource_type\": [\n                   \"inventory.CloudService\",\n                   \"inventory.CloudServiceType\",\n                   \"inventory.Region\"\n               ],\n               \"supported_features\": [\n                   \"garbage_collection\"\n               ],\n               \"filter_format\": [],\n               \"supported_schedules\": [\n                   \"hours\"\n               ]\n           },\n           \"upgrade_mode\": \"MANUAL\"\n       },\n       \"priority\": 10,\n       \"tags\": {\n           \"a\": \"b\"\n       },\n       \"created_at\": \"2022-06-17T06:33:27.195Z\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"provider\": \"aws\",\n       \"capability\": {\n           \"supported_schema\": [\n               \"aws_access_key\"\n           ]\n       },\n       \"is_public\": true\n   },\n   \"filter\": {}\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "schedule_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collect_mode",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "schedule",
-              "description": "",
-              "label": "",
-              "type": "Scheduled",
-              "longType": "Scheduled",
-              "fullType": "spaceone.api.inventory.v1.Scheduled",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "created_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "last_scheduled_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collector_info",
-              "description": "",
-              "label": "",
-              "type": "CollectorInfo",
-              "longType": "CollectorInfo",
-              "fullType": "spaceone.api.inventory.v1.CollectorInfo",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "filter",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "ScheduleQuery",
-          "longName": "ScheduleQuery",
-          "fullName": "spaceone.api.inventory.v1.ScheduleQuery",
-          "description": "{\n   \"collector_id\": \"collector-f2e4e9cc7f21\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "query",
-              "description": "+optional",
-              "label": "",
-              "type": "Query",
-              "longType": "spaceone.api.core.v1.Query",
-              "fullType": "spaceone.api.core.v1.Query",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collector_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "schedule_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "ScheduleRequest",
-          "longName": "ScheduleRequest",
-          "fullName": "spaceone.api.inventory.v1.ScheduleRequest",
-          "description": "{\n   \"collector_id\": \"collector-2c0847644f39\",\n   \"schedule_id\": \"sched-dfb2f6ef84bc\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "schedule_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collector_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "Scheduled",
           "longName": "Scheduled",
           "fullName": "spaceone.api.inventory.v1.Scheduled",
@@ -1433,42 +774,6 @@
               "name": "hours",
               "description": "",
               "label": "repeated",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "SchedulesInfo",
-          "longName": "SchedulesInfo",
-          "fullName": "spaceone.api.inventory.v1.SchedulesInfo",
-          "description": "{\n   \"results\": [\n           {\n               \"schedule_id\": \"sched-572819cabe90\",\n               \"name\": \"daily\",\n               \"collect_mode\": \"ALL\",\n               \"schedule\": {\n                   \"hours\": [\n                       15,\n                       16,\n                       18,\n                       21,\n                       0,\n                       3,\n                       4,\n                       6,\n                       9,\n                       12\n                   ]\n               },\n               \"created_at\": \"2021-03-13T14:32:46.137Z\",\n               \"collector_info\": {\n                   \"collector_id\": \"collector-f2e4e9cc7f21\",\n                   \"name\": \"AWS Cloud Service Collector\",\n                   \"state\": \"ENABLED\",\n                   \"plugin_info\": {\n                       \"plugin_id\": \"plugin-30d21ef75a5d\",\n                       \"version\": \"1.13.13.20220610.143142\",\n                       \"options\": {},\n                       \"provider\": \"aws\",\n                       \"metadata\": {\n                           \"supported_features\": [\n                               \"garbage_collection\"\n                           ],\n                           \"supported_schedules\": [\n                               \"hours\"\n                           ],\n                           \"filter_format\": [],\n                           \"supported_resource_type\": [\n                               \"inventory.CloudService\",\n                               \"inventory.CloudServiceType\",\n                               \"inventory.Region\"\n                           ]\n                       },\n                       \"upgrade_mode\": \"AUTO\"\n                   },\n                   \"priority\": 10,\n                   \"tags\": {},\n                   \"created_at\": \"2021-03-08T06:49:27.876Z\",\n                   \"last_collected_at\": \"2022-06-17T06:00:07.162Z\",\n                   \"domain_id\": \"domain-58010aa2e451\",\n                   \"provider\": \"aws\",\n                   \"capability\": {\n                       \"supported_schema\": [\n                           \"aws_access_key\"\n                       ]\n                   },\n                   \"is_public\": true\n               },\n               \"filter\": {}\n           }\n   ],\n   \"total_count\": 1\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "results",
-              "description": "",
-              "label": "repeated",
-              "type": "ScheduleInfo",
-              "longType": "ScheduleInfo",
-              "fullType": "spaceone.api.inventory.v1.ScheduleInfo",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "total_count",
-              "description": "",
-              "label": "",
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
@@ -1644,18 +949,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -1706,144 +999,12 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "upgrade_mode",
               "description": "+optional",
               "label": "",
               "type": "UpgradeMode",
               "longType": "UpdatePluginRequest.UpgradeMode",
               "fullType": "spaceone.api.inventory.v1.UpdatePluginRequest.UpgradeMode",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "UpdateScheduleRequest",
-          "longName": "UpdateScheduleRequest",
-          "fullName": "spaceone.api.inventory.v1.UpdateScheduleRequest",
-          "description": "{\n   \"schedule_id\": \"sched-dfb2f6ef84bc\",\n   \"collector_id\": \"collector-2c0847644f39\",\n   \"name\": \"regular collection\",\n   \"collect_mode\": \"ALL\",\n   \"schedule\": {\n       \"hours\": [2, 4, 6, 8, 0]\n   },\n   \"filter\": {}\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "schedule_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collector_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collect_mode",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "schedule",
-              "description": "+optional",
-              "label": "",
-              "type": "Scheduled",
-              "longType": "Scheduled",
-              "fullType": "spaceone.api.inventory.v1.Scheduled",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "filter",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "VerifyInfo",
-          "longName": "VerifyInfo",
-          "fullName": "spaceone.api.inventory.v1.VerifyInfo",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "status",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1876,18 +1037,6 @@
             {
               "name": "secret_id",
               "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2025,9 +1174,9 @@
             {
               "name": "get",
               "description": "Gets a specific Collector. Prints detailed information about the Collector, including its state, basic information, and the plugin information used for cloud resource collection.",
-              "requestType": "GetCollectorRequest",
-              "requestLongType": "GetCollectorRequest",
-              "requestFullType": "spaceone.api.inventory.v1.GetCollectorRequest",
+              "requestType": "CollectorRequest",
+              "requestLongType": "CollectorRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CollectorRequest",
               "requestStreaming": false,
               "responseType": "CollectorInfo",
               "responseLongType": "CollectorInfo",

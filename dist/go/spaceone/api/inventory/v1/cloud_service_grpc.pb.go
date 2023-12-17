@@ -44,7 +44,7 @@ type CloudServiceClient interface {
 	// Deletes a specific CloudService. You must specify the `cloud_service_id` of the CloudService to delete.
 	Delete(ctx context.Context, in *CloudServiceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific CloudService. Prints detailed information about the CloudService, including its state, classification information, and attribute values.
-	Get(ctx context.Context, in *GetCloudServiceRequest, opts ...grpc.CallOption) (*CloudServiceInfo, error)
+	Get(ctx context.Context, in *CloudServiceRequest, opts ...grpc.CallOption) (*CloudServiceInfo, error)
 	// Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.
 	List(ctx context.Context, in *CloudServiceQuery, opts ...grpc.CallOption) (*CloudServicesInfo, error)
 	Export(ctx context.Context, in *CloudServiceExportRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -87,7 +87,7 @@ func (c *cloudServiceClient) Delete(ctx context.Context, in *CloudServiceRequest
 	return out, nil
 }
 
-func (c *cloudServiceClient) Get(ctx context.Context, in *GetCloudServiceRequest, opts ...grpc.CallOption) (*CloudServiceInfo, error) {
+func (c *cloudServiceClient) Get(ctx context.Context, in *CloudServiceRequest, opts ...grpc.CallOption) (*CloudServiceInfo, error) {
 	out := new(CloudServiceInfo)
 	err := c.cc.Invoke(ctx, CloudService_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -143,7 +143,7 @@ type CloudServiceServer interface {
 	// Deletes a specific CloudService. You must specify the `cloud_service_id` of the CloudService to delete.
 	Delete(context.Context, *CloudServiceRequest) (*empty.Empty, error)
 	// Gets a specific CloudService. Prints detailed information about the CloudService, including its state, classification information, and attribute values.
-	Get(context.Context, *GetCloudServiceRequest) (*CloudServiceInfo, error)
+	Get(context.Context, *CloudServiceRequest) (*CloudServiceInfo, error)
 	// Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.
 	List(context.Context, *CloudServiceQuery) (*CloudServicesInfo, error)
 	Export(context.Context, *CloudServiceExportRequest) (*_struct.Struct, error)
@@ -165,7 +165,7 @@ func (UnimplementedCloudServiceServer) Update(context.Context, *UpdateCloudServi
 func (UnimplementedCloudServiceServer) Delete(context.Context, *CloudServiceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedCloudServiceServer) Get(context.Context, *GetCloudServiceRequest) (*CloudServiceInfo, error) {
+func (UnimplementedCloudServiceServer) Get(context.Context, *CloudServiceRequest) (*CloudServiceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedCloudServiceServer) List(context.Context, *CloudServiceQuery) (*CloudServicesInfo, error) {
@@ -248,7 +248,7 @@ func _CloudService_Delete_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _CloudService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCloudServiceRequest)
+	in := new(CloudServiceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -260,7 +260,7 @@ func _CloudService_Get_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: CloudService_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudServiceServer).Get(ctx, req.(*GetCloudServiceRequest))
+		return srv.(CloudServiceServer).Get(ctx, req.(*CloudServiceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

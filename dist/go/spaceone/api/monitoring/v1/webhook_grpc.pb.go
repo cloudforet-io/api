@@ -54,7 +54,7 @@ type WebhookClient interface {
 	// Deletes a specific Webhook. By deleting a Webhook, you cannot collect data from an external monitoring system, as the `REST URL` is also deleted.
 	Delete(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Webhook. Prints detailed information about the Webhook, including the name, the version, and the created datetime.
-	Get(ctx context.Context, in *GetWebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
+	Get(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
 	// Gets a list of all Webhooks. You can use a query to get a filtered list of Webhooks.
 	List(ctx context.Context, in *WebhookQuery, opts ...grpc.CallOption) (*WebhooksInfo, error)
 	Stat(ctx context.Context, in *WebhookStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -131,7 +131,7 @@ func (c *webhookClient) Delete(ctx context.Context, in *WebhookRequest, opts ...
 	return out, nil
 }
 
-func (c *webhookClient) Get(ctx context.Context, in *GetWebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error) {
+func (c *webhookClient) Get(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error) {
 	out := new(WebhookInfo)
 	err := c.cc.Invoke(ctx, Webhook_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -177,7 +177,7 @@ type WebhookServer interface {
 	// Deletes a specific Webhook. By deleting a Webhook, you cannot collect data from an external monitoring system, as the `REST URL` is also deleted.
 	Delete(context.Context, *WebhookRequest) (*empty.Empty, error)
 	// Gets a specific Webhook. Prints detailed information about the Webhook, including the name, the version, and the created datetime.
-	Get(context.Context, *GetWebhookRequest) (*WebhookInfo, error)
+	Get(context.Context, *WebhookRequest) (*WebhookInfo, error)
 	// Gets a list of all Webhooks. You can use a query to get a filtered list of Webhooks.
 	List(context.Context, *WebhookQuery) (*WebhooksInfo, error)
 	Stat(context.Context, *WebhookStatQuery) (*_struct.Struct, error)
@@ -209,7 +209,7 @@ func (UnimplementedWebhookServer) Disable(context.Context, *WebhookRequest) (*We
 func (UnimplementedWebhookServer) Delete(context.Context, *WebhookRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedWebhookServer) Get(context.Context, *GetWebhookRequest) (*WebhookInfo, error) {
+func (UnimplementedWebhookServer) Get(context.Context, *WebhookRequest) (*WebhookInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedWebhookServer) List(context.Context, *WebhookQuery) (*WebhooksInfo, error) {
@@ -358,7 +358,7 @@ func _Webhook_Delete_Handler(srv interface{}, ctx context.Context, dec func(inte
 }
 
 func _Webhook_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetWebhookRequest)
+	in := new(WebhookRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -370,7 +370,7 @@ func _Webhook_Get_Handler(srv interface{}, ctx context.Context, dec func(interfa
 		FullMethod: Webhook_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WebhookServer).Get(ctx, req.(*GetWebhookRequest))
+		return srv.(WebhookServer).Get(ctx, req.(*WebhookRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

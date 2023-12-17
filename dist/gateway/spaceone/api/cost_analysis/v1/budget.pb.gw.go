@@ -169,7 +169,7 @@ func local_request_Budget_Delete_0(ctx context.Context, marshaler runtime.Marsha
 }
 
 func request_Budget_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetBudgetRequest
+	var protoReq v1_0.BudgetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -186,7 +186,7 @@ func request_Budget_Get_0(ctx context.Context, marshaler runtime.Marshaler, clie
 }
 
 func local_request_Budget_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetBudgetRequest
+	var protoReq v1_0.BudgetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

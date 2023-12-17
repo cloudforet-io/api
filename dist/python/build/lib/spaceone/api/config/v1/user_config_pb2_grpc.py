@@ -23,7 +23,7 @@ class UserConfigStub(object):
                 )
         self.update = channel.unary_unary(
                 '/spaceone.api.config.v1.UserConfig/update',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_user__config__pb2.UpdateUserConfigRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_user__config__pb2.SetUserConfigRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_user__config__pb2.UserConfigInfo.FromString,
                 )
         self.set = channel.unary_unary(
@@ -108,7 +108,7 @@ def add_UserConfigServicer_to_server(servicer, server):
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_user__config__pb2.UpdateUserConfigRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_user__config__pb2.SetUserConfigRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_user__config__pb2.UserConfigInfo.SerializeToString,
             ),
             'set': grpc.unary_unary_rpc_method_handler(
@@ -175,7 +175,7 @@ class UserConfig(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.config.v1.UserConfig/update',
-            spaceone_dot_api_dot_config_dot_v1_dot_user__config__pb2.UpdateUserConfigRequest.SerializeToString,
+            spaceone_dot_api_dot_config_dot_v1_dot_user__config__pb2.SetUserConfigRequest.SerializeToString,
             spaceone_dot_api_dot_config_dot_v1_dot_user__config__pb2.UserConfigInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

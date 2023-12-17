@@ -45,7 +45,7 @@ type BoardClient interface {
 	// Deletes a specific Board with `SYSTEM` permission. You can delete a Board regardless of the presence of Posts created under the Board.
 	Delete(ctx context.Context, in *BoardRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Board. You must specify the `board_id` of the Board to get. Prints detailed information about the Board, including `name`, `categories`.
-	Get(ctx context.Context, in *GetBoardRequest, opts ...grpc.CallOption) (*BoardInfo, error)
+	Get(ctx context.Context, in *BoardRequest, opts ...grpc.CallOption) (*BoardInfo, error)
 	// Gets a list of all Boards. You can use a query to get a filtered list of Boards.
 	List(ctx context.Context, in *BoardQuery, opts ...grpc.CallOption) (*BoardsInfo, error)
 	Stat(ctx context.Context, in *BoardStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -95,7 +95,7 @@ func (c *boardClient) Delete(ctx context.Context, in *BoardRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *boardClient) Get(ctx context.Context, in *GetBoardRequest, opts ...grpc.CallOption) (*BoardInfo, error) {
+func (c *boardClient) Get(ctx context.Context, in *BoardRequest, opts ...grpc.CallOption) (*BoardInfo, error) {
 	out := new(BoardInfo)
 	err := c.cc.Invoke(ctx, Board_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -135,7 +135,7 @@ type BoardServer interface {
 	// Deletes a specific Board with `SYSTEM` permission. You can delete a Board regardless of the presence of Posts created under the Board.
 	Delete(context.Context, *BoardRequest) (*empty.Empty, error)
 	// Gets a specific Board. You must specify the `board_id` of the Board to get. Prints detailed information about the Board, including `name`, `categories`.
-	Get(context.Context, *GetBoardRequest) (*BoardInfo, error)
+	Get(context.Context, *BoardRequest) (*BoardInfo, error)
 	// Gets a list of all Boards. You can use a query to get a filtered list of Boards.
 	List(context.Context, *BoardQuery) (*BoardsInfo, error)
 	Stat(context.Context, *BoardStatQuery) (*_struct.Struct, error)
@@ -158,7 +158,7 @@ func (UnimplementedBoardServer) SetCategories(context.Context, *SetBoardCategori
 func (UnimplementedBoardServer) Delete(context.Context, *BoardRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedBoardServer) Get(context.Context, *GetBoardRequest) (*BoardInfo, error) {
+func (UnimplementedBoardServer) Get(context.Context, *BoardRequest) (*BoardInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedBoardServer) List(context.Context, *BoardQuery) (*BoardsInfo, error) {
@@ -253,7 +253,7 @@ func _Board_Delete_Handler(srv interface{}, ctx context.Context, dec func(interf
 }
 
 func _Board_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBoardRequest)
+	in := new(BoardRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -265,7 +265,7 @@ func _Board_Get_Handler(srv interface{}, ctx context.Context, dec func(interface
 		FullMethod: Board_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BoardServer).Get(ctx, req.(*GetBoardRequest))
+		return srv.(BoardServer).Get(ctx, req.(*BoardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

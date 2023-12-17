@@ -38,7 +38,7 @@ type CloudServiceReportClient interface {
 	Update(ctx context.Context, in *UpdateCloudServiceReportRequest, opts ...grpc.CallOption) (*CloudServiceReportInfo, error)
 	Delete(ctx context.Context, in *CloudServiceReportRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Send(ctx context.Context, in *CloudServiceReportRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Get(ctx context.Context, in *GetCloudServiceReportRequest, opts ...grpc.CallOption) (*CloudServiceReportInfo, error)
+	Get(ctx context.Context, in *CloudServiceReportRequest, opts ...grpc.CallOption) (*CloudServiceReportInfo, error)
 	List(ctx context.Context, in *CloudServiceReportQuery, opts ...grpc.CallOption) (*CloudServiceReportsInfo, error)
 	Stat(ctx context.Context, in *CloudServiceReportStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -87,7 +87,7 @@ func (c *cloudServiceReportClient) Send(ctx context.Context, in *CloudServiceRep
 	return out, nil
 }
 
-func (c *cloudServiceReportClient) Get(ctx context.Context, in *GetCloudServiceReportRequest, opts ...grpc.CallOption) (*CloudServiceReportInfo, error) {
+func (c *cloudServiceReportClient) Get(ctx context.Context, in *CloudServiceReportRequest, opts ...grpc.CallOption) (*CloudServiceReportInfo, error) {
 	out := new(CloudServiceReportInfo)
 	err := c.cc.Invoke(ctx, CloudServiceReport_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -122,7 +122,7 @@ type CloudServiceReportServer interface {
 	Update(context.Context, *UpdateCloudServiceReportRequest) (*CloudServiceReportInfo, error)
 	Delete(context.Context, *CloudServiceReportRequest) (*empty.Empty, error)
 	Send(context.Context, *CloudServiceReportRequest) (*empty.Empty, error)
-	Get(context.Context, *GetCloudServiceReportRequest) (*CloudServiceReportInfo, error)
+	Get(context.Context, *CloudServiceReportRequest) (*CloudServiceReportInfo, error)
 	List(context.Context, *CloudServiceReportQuery) (*CloudServiceReportsInfo, error)
 	Stat(context.Context, *CloudServiceReportStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedCloudServiceReportServer()
@@ -144,7 +144,7 @@ func (UnimplementedCloudServiceReportServer) Delete(context.Context, *CloudServi
 func (UnimplementedCloudServiceReportServer) Send(context.Context, *CloudServiceReportRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Send not implemented")
 }
-func (UnimplementedCloudServiceReportServer) Get(context.Context, *GetCloudServiceReportRequest) (*CloudServiceReportInfo, error) {
+func (UnimplementedCloudServiceReportServer) Get(context.Context, *CloudServiceReportRequest) (*CloudServiceReportInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedCloudServiceReportServer) List(context.Context, *CloudServiceReportQuery) (*CloudServiceReportsInfo, error) {
@@ -239,7 +239,7 @@ func _CloudServiceReport_Send_Handler(srv interface{}, ctx context.Context, dec 
 }
 
 func _CloudServiceReport_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCloudServiceReportRequest)
+	in := new(CloudServiceReportRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -251,7 +251,7 @@ func _CloudServiceReport_Get_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: CloudServiceReport_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudServiceReportServer).Get(ctx, req.(*GetCloudServiceReportRequest))
+		return srv.(CloudServiceReportServer).Get(ctx, req.(*CloudServiceReportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

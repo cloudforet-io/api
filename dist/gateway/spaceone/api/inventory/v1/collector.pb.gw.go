@@ -203,7 +203,7 @@ func local_request_Collector_Delete_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func request_Collector_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetCollectorRequest
+	var protoReq v1_0.CollectorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -220,7 +220,7 @@ func request_Collector_Get_0(ctx context.Context, marshaler runtime.Marshaler, c
 }
 
 func local_request_Collector_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetCollectorRequest
+	var protoReq v1_0.CollectorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

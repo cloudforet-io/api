@@ -33,7 +33,7 @@ class CloudServiceStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.inventory.v1.CloudService/get',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.GetCloudServiceRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -134,7 +134,7 @@ def add_CloudServiceServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.GetCloudServiceRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -230,7 +230,7 @@ class CloudService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.CloudService/get',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.GetCloudServiceRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceRequest.SerializeToString,
             spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__pb2.CloudServiceInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

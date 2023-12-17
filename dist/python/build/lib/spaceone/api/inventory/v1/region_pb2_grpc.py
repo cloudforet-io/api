@@ -33,7 +33,7 @@ class RegionStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.inventory.v1.Region/get',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_region__pb2.GetRegionRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_region__pb2.RegionRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_region__pb2.RegionInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -112,7 +112,7 @@ def add_RegionServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_region__pb2.GetRegionRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_region__pb2.RegionRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_region__pb2.RegionInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -198,7 +198,7 @@ class Region(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Region/get',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_region__pb2.GetRegionRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory_dot_v1_dot_region__pb2.RegionRequest.SerializeToString,
             spaceone_dot_api_dot_inventory_dot_v1_dot_region__pb2.RegionInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

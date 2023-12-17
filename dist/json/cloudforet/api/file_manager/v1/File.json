@@ -10,70 +10,85 @@
       "hasServices": true,
       "enums": [
         {
-          "name": "PermissionGroup",
-          "longName": "CreateFileRequest.PermissionGroup",
-          "fullName": "spaceone.api.file_manager.v1.CreateFileRequest.PermissionGroup",
+          "name": "ResourceGroup",
+          "longName": "CreateFileRequest.ResourceGroup",
+          "fullName": "spaceone.api.file_manager.v1.CreateFileRequest.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "PERMISSION_GROUP_NONE",
+              "name": "RESOURCE_GROUP_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "DOMAIN",
+              "name": "SYSTEM",
               "number": "1",
               "description": ""
             },
             {
-              "name": "WORKSPACE",
+              "name": "DOMAIN",
               "number": "2",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "3",
               "description": ""
             }
           ]
         },
         {
-          "name": "PermissionGroup",
-          "longName": "FileInfo.PermissionGroup",
-          "fullName": "spaceone.api.file_manager.v1.FileInfo.PermissionGroup",
+          "name": "ResourceGroup",
+          "longName": "FileInfo.ResourceGroup",
+          "fullName": "spaceone.api.file_manager.v1.FileInfo.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "PERMISSION_GROUP_NONE",
+              "name": "RESOURCE_GROUP_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "DOMAIN",
+              "name": "SYSTEM",
               "number": "1",
               "description": ""
             },
             {
-              "name": "WORKSPACE",
+              "name": "DOMAIN",
               "number": "2",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "3",
               "description": ""
             }
           ]
         },
         {
-          "name": "PermissionGroup",
-          "longName": "FileSearchQuery.PermissionGroup",
-          "fullName": "spaceone.api.file_manager.v1.FileSearchQuery.PermissionGroup",
+          "name": "ResourceGroup",
+          "longName": "FileSearchQuery.ResourceGroup",
+          "fullName": "spaceone.api.file_manager.v1.FileSearchQuery.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "PERMISSION_GROUP_NONE",
+              "name": "RESOURCE_GROUP_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "DOMAIN",
+              "name": "SYSTEM",
               "number": "1",
               "description": ""
             },
             {
-              "name": "WORKSPACE",
+              "name": "DOMAIN",
               "number": "2",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "3",
               "description": ""
             }
           ]
@@ -151,12 +166,12 @@
               "defaultValue": ""
             },
             {
-              "name": "permission_group",
+              "name": "resource_group",
               "description": "",
               "label": "",
-              "type": "PermissionGroup",
-              "longType": "CreateFileRequest.PermissionGroup",
-              "fullType": "spaceone.api.file_manager.v1.CreateFileRequest.PermissionGroup",
+              "type": "ResourceGroup",
+              "longType": "CreateFileRequest.ResourceGroup",
+              "fullType": "spaceone.api.file_manager.v1.CreateFileRequest.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -176,7 +191,7 @@
             },
             {
               "name": "domain_id",
-              "description": "",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -235,6 +250,18 @@
               "defaultValue": ""
             },
             {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "FileInfo.ResourceGroup",
+              "fullType": "spaceone.api.file_manager.v1.FileInfo.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "file_type",
               "description": "",
               "label": "",
@@ -248,7 +275,7 @@
             },
             {
               "name": "upload_url",
-              "description": "",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -260,7 +287,7 @@
             },
             {
               "name": "upload_options",
-              "description": "",
+              "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -272,7 +299,7 @@
             },
             {
               "name": "download_url",
-              "description": "",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -307,18 +334,6 @@
               "defaultValue": ""
             },
             {
-              "name": "permission_group",
-              "description": "",
-              "label": "",
-              "type": "PermissionGroup",
-              "longType": "FileInfo.PermissionGroup",
-              "fullType": "spaceone.api.file_manager.v1.FileInfo.PermissionGroup",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "workspace_id",
               "description": "",
               "label": "",
@@ -332,6 +347,18 @@
             },
             {
               "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "user_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -404,30 +431,6 @@
           "fields": [
             {
               "name": "file_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -535,36 +538,12 @@
               "defaultValue": ""
             },
             {
-              "name": "permission_group",
+              "name": "resource_group",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "ResourceGroup",
+              "longType": "FileSearchQuery.ResourceGroup",
+              "fullType": "spaceone.api.file_manager.v1.FileSearchQuery.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -645,54 +624,6 @@
           ]
         },
         {
-          "name": "GetFileRequest",
-          "longName": "GetFileRequest",
-          "fullName": "spaceone.api.file_manager.v1.GetFileRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "file_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "UpdateFileRequest",
           "longName": "UpdateFileRequest",
           "fullName": "spaceone.api.file_manager.v1.UpdateFileRequest",
@@ -733,30 +664,6 @@
               "type": "FileReference",
               "longType": "FileReference",
               "fullType": "spaceone.api.file_manager.v1.FileReference",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -867,9 +774,9 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "GetFileRequest",
-              "requestLongType": "GetFileRequest",
-              "requestFullType": "spaceone.api.file_manager.v1.GetFileRequest",
+              "requestType": "FileRequest",
+              "requestLongType": "FileRequest",
+              "requestFullType": "spaceone.api.file_manager.v1.FileRequest",
               "requestStreaming": false,
               "responseType": "FileInfo",
               "responseLongType": "FileInfo",

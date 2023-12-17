@@ -45,7 +45,7 @@ type CollectorRuleClient interface {
 	// Deletes a specific CollectorRule. You must specify the `collector_rule_id` of the CollectorRule to delete.
 	Delete(ctx context.Context, in *CollectorRuleRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific CollectorRule. Prints detailed information about the CollectorRule, including  `conditions_policy` and conditions applied to Collector.
-	Get(ctx context.Context, in *GetCollectorRuleRequest, opts ...grpc.CallOption) (*CollectorRuleInfo, error)
+	Get(ctx context.Context, in *CollectorRuleRequest, opts ...grpc.CallOption) (*CollectorRuleInfo, error)
 	// Gets a list of all CollectorRules. You can use a query to get a filtered list of CollectorRules.
 	List(ctx context.Context, in *CollectorRuleQuery, opts ...grpc.CallOption) (*CollectorRulesInfo, error)
 	Stat(ctx context.Context, in *CollectorRuleStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -95,7 +95,7 @@ func (c *collectorRuleClient) Delete(ctx context.Context, in *CollectorRuleReque
 	return out, nil
 }
 
-func (c *collectorRuleClient) Get(ctx context.Context, in *GetCollectorRuleRequest, opts ...grpc.CallOption) (*CollectorRuleInfo, error) {
+func (c *collectorRuleClient) Get(ctx context.Context, in *CollectorRuleRequest, opts ...grpc.CallOption) (*CollectorRuleInfo, error) {
 	out := new(CollectorRuleInfo)
 	err := c.cc.Invoke(ctx, CollectorRule_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -135,7 +135,7 @@ type CollectorRuleServer interface {
 	// Deletes a specific CollectorRule. You must specify the `collector_rule_id` of the CollectorRule to delete.
 	Delete(context.Context, *CollectorRuleRequest) (*empty.Empty, error)
 	// Gets a specific CollectorRule. Prints detailed information about the CollectorRule, including  `conditions_policy` and conditions applied to Collector.
-	Get(context.Context, *GetCollectorRuleRequest) (*CollectorRuleInfo, error)
+	Get(context.Context, *CollectorRuleRequest) (*CollectorRuleInfo, error)
 	// Gets a list of all CollectorRules. You can use a query to get a filtered list of CollectorRules.
 	List(context.Context, *CollectorRuleQuery) (*CollectorRulesInfo, error)
 	Stat(context.Context, *CollectorRuleStatQuery) (*_struct.Struct, error)
@@ -158,7 +158,7 @@ func (UnimplementedCollectorRuleServer) ChangeOrder(context.Context, *ChangeColl
 func (UnimplementedCollectorRuleServer) Delete(context.Context, *CollectorRuleRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedCollectorRuleServer) Get(context.Context, *GetCollectorRuleRequest) (*CollectorRuleInfo, error) {
+func (UnimplementedCollectorRuleServer) Get(context.Context, *CollectorRuleRequest) (*CollectorRuleInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedCollectorRuleServer) List(context.Context, *CollectorRuleQuery) (*CollectorRulesInfo, error) {
@@ -253,7 +253,7 @@ func _CollectorRule_Delete_Handler(srv interface{}, ctx context.Context, dec fun
 }
 
 func _CollectorRule_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCollectorRuleRequest)
+	in := new(CollectorRuleRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -265,7 +265,7 @@ func _CollectorRule_Get_Handler(srv interface{}, ctx context.Context, dec func(i
 		FullMethod: CollectorRule_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CollectorRuleServer).Get(ctx, req.(*GetCollectorRuleRequest))
+		return srv.(CollectorRuleServer).Get(ctx, req.(*CollectorRuleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

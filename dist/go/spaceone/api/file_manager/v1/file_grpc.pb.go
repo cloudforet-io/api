@@ -38,7 +38,7 @@ type FileClient interface {
 	Update(ctx context.Context, in *UpdateFileRequest, opts ...grpc.CallOption) (*FileInfo, error)
 	Delete(ctx context.Context, in *FileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetDownloadUrl(ctx context.Context, in *FileRequest, opts ...grpc.CallOption) (*FileInfo, error)
-	Get(ctx context.Context, in *GetFileRequest, opts ...grpc.CallOption) (*FileInfo, error)
+	Get(ctx context.Context, in *FileRequest, opts ...grpc.CallOption) (*FileInfo, error)
 	List(ctx context.Context, in *FileSearchQuery, opts ...grpc.CallOption) (*FilesInfo, error)
 	Stat(ctx context.Context, in *FileStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -87,7 +87,7 @@ func (c *fileClient) GetDownloadUrl(ctx context.Context, in *FileRequest, opts .
 	return out, nil
 }
 
-func (c *fileClient) Get(ctx context.Context, in *GetFileRequest, opts ...grpc.CallOption) (*FileInfo, error) {
+func (c *fileClient) Get(ctx context.Context, in *FileRequest, opts ...grpc.CallOption) (*FileInfo, error) {
 	out := new(FileInfo)
 	err := c.cc.Invoke(ctx, File_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -122,7 +122,7 @@ type FileServer interface {
 	Update(context.Context, *UpdateFileRequest) (*FileInfo, error)
 	Delete(context.Context, *FileRequest) (*empty.Empty, error)
 	GetDownloadUrl(context.Context, *FileRequest) (*FileInfo, error)
-	Get(context.Context, *GetFileRequest) (*FileInfo, error)
+	Get(context.Context, *FileRequest) (*FileInfo, error)
 	List(context.Context, *FileSearchQuery) (*FilesInfo, error)
 	Stat(context.Context, *FileStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedFileServer()
@@ -144,7 +144,7 @@ func (UnimplementedFileServer) Delete(context.Context, *FileRequest) (*empty.Emp
 func (UnimplementedFileServer) GetDownloadUrl(context.Context, *FileRequest) (*FileInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDownloadUrl not implemented")
 }
-func (UnimplementedFileServer) Get(context.Context, *GetFileRequest) (*FileInfo, error) {
+func (UnimplementedFileServer) Get(context.Context, *FileRequest) (*FileInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedFileServer) List(context.Context, *FileSearchQuery) (*FilesInfo, error) {
@@ -239,7 +239,7 @@ func _File_GetDownloadUrl_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _File_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFileRequest)
+	in := new(FileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -251,7 +251,7 @@ func _File_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 		FullMethod: File_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FileServer).Get(ctx, req.(*GetFileRequest))
+		return srv.(FileServer).Get(ctx, req.(*FileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

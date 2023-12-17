@@ -33,6 +33,29 @@
           ]
         },
         {
+          "name": "ResourceGroup",
+          "longName": "CloudServiceQuerySetInfo.ResourceGroup",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "State",
           "longName": "CloudServiceQuerySetInfo.State",
           "fullName": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo.State",
@@ -96,6 +119,29 @@
             },
             {
               "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ResourceGroup",
+          "longName": "CreateCloudServiceQuerySetRequest.ResourceGroup",
+          "fullName": "spaceone.api.inventory.v1.CreateCloudServiceQuerySetRequest.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
               "number": "2",
               "description": ""
             }
@@ -259,7 +305,31 @@
               "defaultValue": ""
             },
             {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "CloudServiceQuerySetInfo.ResourceGroup",
+              "fullType": "spaceone.api.inventory.v1.CloudServiceQuerySetInfo.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -300,7 +370,7 @@
           "name": "CloudServiceQuerySetQuery",
           "longName": "CloudServiceQuerySetQuery",
           "fullName": "spaceone.api.inventory.v1.CloudServiceQuerySetQuery",
-          "description": "{\n   \"query\": \u003cSearchQuery\u003e,\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_type\": \"MANAGED\",\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n}",
+          "description": "{\n   \"query\": \u003cSearchQuery\u003e,\n   \"query_set_id\": \"query-set-abcd1234\",\n   \"name\": \"EC2 Count by Instance Type\",\n   \"state\": \"ENABLED\",\n   \"query_type\": \"MANAGED\",\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"resource_group\": \"DOMAIN\",\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -403,8 +473,8 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "",
+              "name": "workspace_id",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -437,18 +507,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -469,18 +527,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
               "fullType": "spaceone.api.core.v1.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -619,60 +665,12 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "resource_group",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "GetCloudServiceQuerySetRequest",
-          "longName": "GetCloudServiceQuerySetRequest",
-          "fullName": "spaceone.api.inventory.v1.GetCloudServiceQuerySetRequest",
-          "description": "{\n   \"query_set_id\": \"query-set-abcd1234\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "query_set_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "only",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "ResourceGroup",
+              "longType": "CreateCloudServiceQuerySetRequest.ResourceGroup",
+              "fullType": "spaceone.api.inventory.v1.CreateCloudServiceQuerySetRequest.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -745,18 +743,6 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -936,9 +922,9 @@
             {
               "name": "get",
               "description": "Get a specific query set.",
-              "requestType": "GetCloudServiceQuerySetRequest",
-              "requestLongType": "GetCloudServiceQuerySetRequest",
-              "requestFullType": "spaceone.api.inventory.v1.GetCloudServiceQuerySetRequest",
+              "requestType": "CloudServiceQuerySetRequest",
+              "requestLongType": "CloudServiceQuerySetRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CloudServiceQuerySetRequest",
               "requestStreaming": false,
               "responseType": "CloudServiceQuerySetInfo",
               "responseLongType": "CloudServiceQuerySetInfo",

@@ -235,30 +235,6 @@
               "defaultValue": ""
             },
             {
-              "name": "is_snoozed",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "snoozed_end_time",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "escalation_step",
               "description": "",
               "label": "",
@@ -277,30 +253,6 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "responders",
-              "description": "",
-              "label": "repeated",
-              "type": "AlertResponder",
-              "longType": "AlertResponder",
-              "fullType": "spaceone.api.monitoring.v1.AlertResponder",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project_dependencies",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -379,6 +331,18 @@
               "defaultValue": ""
             },
             {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "domain_id",
               "description": "",
               "label": "",
@@ -440,54 +404,6 @@
             },
             {
               "name": "escalated_at",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "AlertProjectDependencyRequest",
-          "longName": "AlertProjectDependencyRequest",
-          "fullName": "spaceone.api.monitoring.v1.AlertProjectDependencyRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "alert_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -607,18 +523,6 @@
               "defaultValue": ""
             },
             {
-              "name": "is_snoozed",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "resource_id",
               "description": "+optional",
               "label": "",
@@ -701,18 +605,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -720,7 +612,7 @@
           "name": "AlertRequest",
           "longName": "AlertRequest",
           "fullName": "spaceone.api.monitoring.v1.AlertRequest",
-          "description": "{\n     \"alert_id\": \"alert-123456789012\",\n     \"domain_id\": \"domain-123456789012\"\n}",
+          "description": "{\n     \"alert_id\": \"alert-123456789012\",\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -728,18 +620,6 @@
           "fields": [
             {
               "name": "alert_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -837,66 +717,6 @@
           ]
         },
         {
-          "name": "AlertResponderRequest",
-          "longName": "AlertResponderRequest",
-          "fullName": "spaceone.api.monitoring.v1.AlertResponderRequest",
-          "description": "{\n     \"alert_id\": \"alert-123456789012\",\n     \"resource_type\": \"identity.User\",\n     \"resource_id\": \"user2@email.com\",\n     \"domain_id\": \"domain-123456789012\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "alert_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "resource_type",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "resource_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "AlertStatQuery",
           "longName": "AlertStatQuery",
           "fullName": "spaceone.api.monitoring.v1.AlertStatQuery",
@@ -913,18 +733,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
               "fullType": "spaceone.api.core.v1.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1028,162 +836,6 @@
             },
             {
               "name": "project_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "GetAlertRequest",
-          "longName": "GetAlertRequest",
-          "fullName": "spaceone.api.monitoring.v1.GetAlertRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "alert_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "only",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "MergeAlertRequest",
-          "longName": "MergeAlertRequest",
-          "fullName": "spaceone.api.monitoring.v1.MergeAlertRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "alerts",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "merge_to",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "SnoozeAlertRequest",
-          "longName": "SnoozeAlertRequest",
-          "fullName": "spaceone.api.monitoring.v1.SnoozeAlertRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "alert_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "end_time",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -1337,18 +989,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -1388,7 +1028,7 @@
             },
             {
               "name": "state",
-              "description": "+optional",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1478,144 +1118,6 @@
               }
             },
             {
-              "name": "merge",
-              "description": "",
-              "requestType": "MergeAlertRequest",
-              "requestLongType": "MergeAlertRequest",
-              "requestFullType": "spaceone.api.monitoring.v1.MergeAlertRequest",
-              "requestStreaming": false,
-              "responseType": "AlertInfo",
-              "responseLongType": "AlertInfo",
-              "responseFullType": "spaceone.api.monitoring.v1.AlertInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/monitoring/v1/alert/merge",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "snooze",
-              "description": "",
-              "requestType": "SnoozeAlertRequest",
-              "requestLongType": "SnoozeAlertRequest",
-              "requestFullType": "spaceone.api.monitoring.v1.SnoozeAlertRequest",
-              "requestStreaming": false,
-              "responseType": "AlertInfo",
-              "responseLongType": "AlertInfo",
-              "responseFullType": "spaceone.api.monitoring.v1.AlertInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/monitoring/v1/alert/snooze",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "add_responder",
-              "description": "Adds a responder who receives a Notification about an Alert.",
-              "requestType": "AlertResponderRequest",
-              "requestLongType": "AlertResponderRequest",
-              "requestFullType": "spaceone.api.monitoring.v1.AlertResponderRequest",
-              "requestStreaming": false,
-              "responseType": "AlertInfo",
-              "responseLongType": "AlertInfo",
-              "responseFullType": "spaceone.api.monitoring.v1.AlertInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/monitoring/v1/alert/add-responder",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "remove_responder",
-              "description": "Deletes a responder who receives a Notification about an Alert.",
-              "requestType": "AlertResponderRequest",
-              "requestLongType": "AlertResponderRequest",
-              "requestFullType": "spaceone.api.monitoring.v1.AlertResponderRequest",
-              "requestStreaming": false,
-              "responseType": "AlertInfo",
-              "responseLongType": "AlertInfo",
-              "responseFullType": "spaceone.api.monitoring.v1.AlertInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/monitoring/v1/alert/remove-responder",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "add_project_dependency",
-              "description": "",
-              "requestType": "AlertProjectDependencyRequest",
-              "requestLongType": "AlertProjectDependencyRequest",
-              "requestFullType": "spaceone.api.monitoring.v1.AlertProjectDependencyRequest",
-              "requestStreaming": false,
-              "responseType": "AlertInfo",
-              "responseLongType": "AlertInfo",
-              "responseFullType": "spaceone.api.monitoring.v1.AlertInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/monitoring/v1/alert/add-project-dependency",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "remove_project_dependency",
-              "description": "",
-              "requestType": "AlertProjectDependencyRequest",
-              "requestLongType": "AlertProjectDependencyRequest",
-              "requestFullType": "spaceone.api.monitoring.v1.AlertProjectDependencyRequest",
-              "requestStreaming": false,
-              "responseType": "AlertInfo",
-              "responseLongType": "AlertInfo",
-              "responseFullType": "spaceone.api.monitoring.v1.AlertInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/monitoring/v1/alert/remove-project-dependency",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
               "name": "delete",
               "description": "Deletes a specific Alert and remove it from the list of Alerts. You must specify the `alert_id` of the Alert to delete.",
               "requestType": "AlertRequest",
@@ -1641,9 +1143,9 @@
             {
               "name": "get",
               "description": "Gets a specific Alert. Prints detailed information about the Alert.",
-              "requestType": "GetAlertRequest",
-              "requestLongType": "GetAlertRequest",
-              "requestFullType": "spaceone.api.monitoring.v1.GetAlertRequest",
+              "requestType": "AlertRequest",
+              "requestLongType": "AlertRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.AlertRequest",
               "requestStreaming": false,
               "responseType": "AlertInfo",
               "responseLongType": "AlertInfo",

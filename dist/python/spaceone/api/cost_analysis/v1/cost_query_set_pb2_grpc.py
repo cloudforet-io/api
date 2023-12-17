@@ -33,7 +33,7 @@ class CostQuerySetStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.CostQuerySet/get',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__query__set__pb2.GetCostQuerySetRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__query__set__pb2.CostQuerySetRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__query__set__pb2.CostQuerySetInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -112,7 +112,7 @@ def add_CostQuerySetServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__query__set__pb2.GetCostQuerySetRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__query__set__pb2.CostQuerySetRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__query__set__pb2.CostQuerySetInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -198,7 +198,7 @@ class CostQuerySet(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.CostQuerySet/get',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__query__set__pb2.GetCostQuerySetRequest.SerializeToString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__query__set__pb2.CostQuerySetRequest.SerializeToString,
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__query__set__pb2.CostQuerySetInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

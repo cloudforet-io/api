@@ -31,36 +31,6 @@ class AlertStub(object):
                 request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.UpdateAlertStateRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
                 )
-        self.merge = channel.unary_unary(
-                '/spaceone.api.monitoring.v1.Alert/merge',
-                request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.MergeAlertRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
-                )
-        self.snooze = channel.unary_unary(
-                '/spaceone.api.monitoring.v1.Alert/snooze',
-                request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.SnoozeAlertRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
-                )
-        self.add_responder = channel.unary_unary(
-                '/spaceone.api.monitoring.v1.Alert/add_responder',
-                request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertResponderRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
-                )
-        self.remove_responder = channel.unary_unary(
-                '/spaceone.api.monitoring.v1.Alert/remove_responder',
-                request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertResponderRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
-                )
-        self.add_project_dependency = channel.unary_unary(
-                '/spaceone.api.monitoring.v1.Alert/add_project_dependency',
-                request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertProjectDependencyRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
-                )
-        self.remove_project_dependency = channel.unary_unary(
-                '/spaceone.api.monitoring.v1.Alert/remove_project_dependency',
-                request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertProjectDependencyRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
-                )
         self.delete = channel.unary_unary(
                 '/spaceone.api.monitoring.v1.Alert/delete',
                 request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertRequest.SerializeToString,
@@ -68,7 +38,7 @@ class AlertStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.monitoring.v1.Alert/get',
-                request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.GetAlertRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -103,44 +73,6 @@ class AlertServicer(object):
     def update_state(self, request, context):
         """Updates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.
         """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def merge(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def snooze(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def add_responder(self, request, context):
-        """Adds a responder who receives a Notification about an Alert.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def remove_responder(self, request, context):
-        """Deletes a responder who receives a Notification about an Alert.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def add_project_dependency(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def remove_project_dependency(self, request, context):
-        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -190,36 +122,6 @@ def add_AlertServicer_to_server(servicer, server):
                     request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.UpdateAlertStateRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.SerializeToString,
             ),
-            'merge': grpc.unary_unary_rpc_method_handler(
-                    servicer.merge,
-                    request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.MergeAlertRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.SerializeToString,
-            ),
-            'snooze': grpc.unary_unary_rpc_method_handler(
-                    servicer.snooze,
-                    request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.SnoozeAlertRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.SerializeToString,
-            ),
-            'add_responder': grpc.unary_unary_rpc_method_handler(
-                    servicer.add_responder,
-                    request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertResponderRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.SerializeToString,
-            ),
-            'remove_responder': grpc.unary_unary_rpc_method_handler(
-                    servicer.remove_responder,
-                    request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertResponderRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.SerializeToString,
-            ),
-            'add_project_dependency': grpc.unary_unary_rpc_method_handler(
-                    servicer.add_project_dependency,
-                    request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertProjectDependencyRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.SerializeToString,
-            ),
-            'remove_project_dependency': grpc.unary_unary_rpc_method_handler(
-                    servicer.remove_project_dependency,
-                    request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertProjectDependencyRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.SerializeToString,
-            ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
                     request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertRequest.FromString,
@@ -227,7 +129,7 @@ def add_AlertServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.GetAlertRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -302,108 +204,6 @@ class Alert(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def merge(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.monitoring.v1.Alert/merge',
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.MergeAlertRequest.SerializeToString,
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def snooze(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.monitoring.v1.Alert/snooze',
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.SnoozeAlertRequest.SerializeToString,
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def add_responder(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.monitoring.v1.Alert/add_responder',
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertResponderRequest.SerializeToString,
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def remove_responder(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.monitoring.v1.Alert/remove_responder',
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertResponderRequest.SerializeToString,
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def add_project_dependency(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.monitoring.v1.Alert/add_project_dependency',
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertProjectDependencyRequest.SerializeToString,
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def remove_project_dependency(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.monitoring.v1.Alert/remove_project_dependency',
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertProjectDependencyRequest.SerializeToString,
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
     def delete(request,
             target,
             options=(),
@@ -432,7 +232,7 @@ class Alert(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.monitoring.v1.Alert/get',
-            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.GetAlertRequest.SerializeToString,
+            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertRequest.SerializeToString,
             spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

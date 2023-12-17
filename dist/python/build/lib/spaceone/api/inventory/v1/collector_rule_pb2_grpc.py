@@ -38,7 +38,7 @@ class CollectorRuleStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.inventory.v1.CollectorRule/get',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__rule__pb2.GetCollectorRuleRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__rule__pb2.CollectorRuleRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -129,7 +129,7 @@ def add_CollectorRuleServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__rule__pb2.GetCollectorRuleRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__rule__pb2.CollectorRuleRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -232,7 +232,7 @@ class CollectorRule(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.CollectorRule/get',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__rule__pb2.GetCollectorRuleRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__rule__pb2.CollectorRuleRequest.SerializeToString,
             spaceone_dot_api_dot_inventory_dot_v1_dot_collector__rule__pb2.CollectorRuleInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

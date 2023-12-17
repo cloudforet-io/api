@@ -38,7 +38,7 @@ class BoardStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.board.v1.Board/get',
-                request_serializer=spaceone_dot_api_dot_board_dot_v1_dot_board__pb2.GetBoardRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_board_dot_v1_dot_board__pb2.BoardRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_board_dot_v1_dot_board__pb2.BoardInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -129,7 +129,7 @@ def add_BoardServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_board_dot_v1_dot_board__pb2.GetBoardRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_board_dot_v1_dot_board__pb2.BoardRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_board_dot_v1_dot_board__pb2.BoardInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -232,7 +232,7 @@ class Board(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.board.v1.Board/get',
-            spaceone_dot_api_dot_board_dot_v1_dot_board__pb2.GetBoardRequest.SerializeToString,
+            spaceone_dot_api_dot_board_dot_v1_dot_board__pb2.BoardRequest.SerializeToString,
             spaceone_dot_api_dot_board_dot_v1_dot_board__pb2.BoardInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -4,7 +4,6 @@ import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.inventory.v1 import collector_pb2 as spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2
 from spaceone.api.inventory.v1 import job_pb2 as spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2
 
 
@@ -24,8 +23,8 @@ class JobStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.inventory.v1.Job/get',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.GetJobRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.JobInfo.FromString,
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobInfo.FromString,
                 )
         self.list = channel.unary_unary(
                 '/spaceone.api.inventory.v1.Job/list',
@@ -90,8 +89,8 @@ def add_JobServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.GetJobRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.JobInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
@@ -147,8 +146,8 @@ class Job(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Job/get',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.GetJobRequest.SerializeToString,
-            spaceone_dot_api_dot_inventory_dot_v1_dot_collector__pb2.JobInfo.FromString,
+            spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory_dot_v1_dot_job__pb2.JobInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

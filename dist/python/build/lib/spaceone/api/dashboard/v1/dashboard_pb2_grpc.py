@@ -4,10 +4,10 @@ import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.dashboard.v1 import project_dashboard_pb2 as spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2
+from spaceone.api.dashboard.v1 import dashboard_pb2 as spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2
 
 
-class ProjectDashboardStub(object):
+class DashboardStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -17,58 +17,58 @@ class ProjectDashboardStub(object):
             channel: A grpc.Channel.
         """
         self.create = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.ProjectDashboard/create',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.CreateProjectDashboardRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardInfo.FromString,
+                '/spaceone.api.dashboard.v1.Dashboard/create',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.CreateDashboardRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardInfo.FromString,
                 )
         self.update = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.ProjectDashboard/update',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.UpdateProjectDashboardRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardInfo.FromString,
+                '/spaceone.api.dashboard.v1.Dashboard/update',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.UpdateDashboardRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardInfo.FromString,
                 )
         self.delete = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.ProjectDashboard/delete',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardRequest.SerializeToString,
+                '/spaceone.api.dashboard.v1.Dashboard/delete',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.get = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.ProjectDashboard/get',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.GetProjectDashboardRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardInfo.FromString,
+                '/spaceone.api.dashboard.v1.Dashboard/get',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardInfo.FromString,
                 )
         self.delete_version = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.ProjectDashboard/delete_version',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionRequest.SerializeToString,
+                '/spaceone.api.dashboard.v1.Dashboard/delete_version',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.revert_version = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.ProjectDashboard/revert_version',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardInfo.FromString,
+                '/spaceone.api.dashboard.v1.Dashboard/revert_version',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardInfo.FromString,
                 )
         self.get_version = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.ProjectDashboard/get_version',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.GetProjectDashboardVersionRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionInfo.FromString,
+                '/spaceone.api.dashboard.v1.Dashboard/get_version',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionInfo.FromString,
                 )
         self.list_versions = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.ProjectDashboard/list_versions',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionsInfo.FromString,
+                '/spaceone.api.dashboard.v1.Dashboard/list_versions',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionSearchQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionsInfo.FromString,
                 )
         self.list = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.ProjectDashboard/list',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardsInfo.FromString,
+                '/spaceone.api.dashboard.v1.Dashboard/list',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardsInfo.FromString,
                 )
         self.stat = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.ProjectDashboard/stat',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardStatQuery.SerializeToString,
+                '/spaceone.api.dashboard.v1.Dashboard/stat',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardStatQuery.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 )
 
 
-class ProjectDashboardServicer(object):
+class DashboardServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
@@ -132,66 +132,66 @@ class ProjectDashboardServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_ProjectDashboardServicer_to_server(servicer, server):
+def add_DashboardServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'create': grpc.unary_unary_rpc_method_handler(
                     servicer.create,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.CreateProjectDashboardRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.CreateDashboardRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.UpdateProjectDashboardRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.UpdateDashboardRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.GetProjectDashboardRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardInfo.SerializeToString,
             ),
             'delete_version': grpc.unary_unary_rpc_method_handler(
                     servicer.delete_version,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'revert_version': grpc.unary_unary_rpc_method_handler(
                     servicer.revert_version,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardInfo.SerializeToString,
             ),
             'get_version': grpc.unary_unary_rpc_method_handler(
                     servicer.get_version,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.GetProjectDashboardVersionRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionInfo.SerializeToString,
             ),
             'list_versions': grpc.unary_unary_rpc_method_handler(
                     servicer.list_versions,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionsInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionSearchQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionsInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardsInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardsInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardStatQuery.FromString,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardStatQuery.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'spaceone.api.dashboard.v1.ProjectDashboard', rpc_method_handlers)
+            'spaceone.api.dashboard.v1.Dashboard', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class ProjectDashboard(object):
+class Dashboard(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -205,9 +205,9 @@ class ProjectDashboard(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.ProjectDashboard/create',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.CreateProjectDashboardRequest.SerializeToString,
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.Dashboard/create',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.CreateDashboardRequest.SerializeToString,
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -222,9 +222,9 @@ class ProjectDashboard(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.ProjectDashboard/update',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.UpdateProjectDashboardRequest.SerializeToString,
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.Dashboard/update',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.UpdateDashboardRequest.SerializeToString,
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -239,8 +239,8 @@ class ProjectDashboard(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.ProjectDashboard/delete',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardRequest.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.Dashboard/delete',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -256,9 +256,9 @@ class ProjectDashboard(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.ProjectDashboard/get',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.GetProjectDashboardRequest.SerializeToString,
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.Dashboard/get',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardRequest.SerializeToString,
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -273,8 +273,8 @@ class ProjectDashboard(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.ProjectDashboard/delete_version',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionRequest.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.Dashboard/delete_version',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -290,9 +290,9 @@ class ProjectDashboard(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.ProjectDashboard/revert_version',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionRequest.SerializeToString,
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.Dashboard/revert_version',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionRequest.SerializeToString,
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -307,9 +307,9 @@ class ProjectDashboard(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.ProjectDashboard/get_version',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.GetProjectDashboardVersionRequest.SerializeToString,
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.Dashboard/get_version',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionRequest.SerializeToString,
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -324,9 +324,9 @@ class ProjectDashboard(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.ProjectDashboard/list_versions',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionQuery.SerializeToString,
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardVersionsInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.Dashboard/list_versions',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionSearchQuery.SerializeToString,
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardVersionsInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -341,9 +341,9 @@ class ProjectDashboard(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.ProjectDashboard/list',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardQuery.SerializeToString,
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardsInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.Dashboard/list',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardQuery.SerializeToString,
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardsInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -358,8 +358,8 @@ class ProjectDashboard(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.ProjectDashboard/stat',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_project__dashboard__pb2.ProjectDashboardStatQuery.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.dashboard.v1.Dashboard/stat',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_dashboard__pb2.DashboardStatQuery.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -36,7 +36,7 @@ type JobTaskClient interface {
 	// Deletes a specific JobTask. You must specify the `job_task_id` of the JobTask to delete.
 	Delete(ctx context.Context, in *JobTaskRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific JobTask. Prints detailed information about the JobTask, including its state, updated or failure counts, and error log.
-	Get(ctx context.Context, in *GetJobTaskRequest, opts ...grpc.CallOption) (*JobTaskInfo, error)
+	Get(ctx context.Context, in *JobTaskRequest, opts ...grpc.CallOption) (*JobTaskInfo, error)
 	// Gets a list of all JobTasks in a specific Job. You can use a query to get a filtered list of JobTasks.
 	List(ctx context.Context, in *JobTaskQuery, opts ...grpc.CallOption) (*JobTasksInfo, error)
 	Stat(ctx context.Context, in *JobTaskStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -59,7 +59,7 @@ func (c *jobTaskClient) Delete(ctx context.Context, in *JobTaskRequest, opts ...
 	return out, nil
 }
 
-func (c *jobTaskClient) Get(ctx context.Context, in *GetJobTaskRequest, opts ...grpc.CallOption) (*JobTaskInfo, error) {
+func (c *jobTaskClient) Get(ctx context.Context, in *JobTaskRequest, opts ...grpc.CallOption) (*JobTaskInfo, error) {
 	out := new(JobTaskInfo)
 	err := c.cc.Invoke(ctx, JobTask_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -93,7 +93,7 @@ type JobTaskServer interface {
 	// Deletes a specific JobTask. You must specify the `job_task_id` of the JobTask to delete.
 	Delete(context.Context, *JobTaskRequest) (*empty.Empty, error)
 	// Gets a specific JobTask. Prints detailed information about the JobTask, including its state, updated or failure counts, and error log.
-	Get(context.Context, *GetJobTaskRequest) (*JobTaskInfo, error)
+	Get(context.Context, *JobTaskRequest) (*JobTaskInfo, error)
 	// Gets a list of all JobTasks in a specific Job. You can use a query to get a filtered list of JobTasks.
 	List(context.Context, *JobTaskQuery) (*JobTasksInfo, error)
 	Stat(context.Context, *JobTaskStatQuery) (*_struct.Struct, error)
@@ -107,7 +107,7 @@ type UnimplementedJobTaskServer struct {
 func (UnimplementedJobTaskServer) Delete(context.Context, *JobTaskRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedJobTaskServer) Get(context.Context, *GetJobTaskRequest) (*JobTaskInfo, error) {
+func (UnimplementedJobTaskServer) Get(context.Context, *JobTaskRequest) (*JobTaskInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedJobTaskServer) List(context.Context, *JobTaskQuery) (*JobTasksInfo, error) {
@@ -148,7 +148,7 @@ func _JobTask_Delete_Handler(srv interface{}, ctx context.Context, dec func(inte
 }
 
 func _JobTask_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetJobTaskRequest)
+	in := new(JobTaskRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -160,7 +160,7 @@ func _JobTask_Get_Handler(srv interface{}, ctx context.Context, dec func(interfa
 		FullMethod: JobTask_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JobTaskServer).Get(ctx, req.(*GetJobTaskRequest))
+		return srv.(JobTaskServer).Get(ctx, req.(*JobTaskRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

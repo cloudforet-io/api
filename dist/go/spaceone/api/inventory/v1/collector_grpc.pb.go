@@ -49,7 +49,7 @@ type CollectorClient interface {
 	// Deletes a specific Collector. You must specify the `collector_id` of the Collector to delete.
 	Delete(ctx context.Context, in *CollectorRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Collector. Prints detailed information about the Collector, including its state, basic information, and the plugin information used for cloud resource collection.
-	Get(ctx context.Context, in *GetCollectorRequest, opts ...grpc.CallOption) (*CollectorInfo, error)
+	Get(ctx context.Context, in *CollectorRequest, opts ...grpc.CallOption) (*CollectorInfo, error)
 	// Gets a list of all Collectors. You can use a query to get a filtered list of Collectors.
 	List(ctx context.Context, in *CollectorQuery, opts ...grpc.CallOption) (*CollectorsInfo, error)
 	Stat(ctx context.Context, in *CollectorStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -109,7 +109,7 @@ func (c *collectorClient) Delete(ctx context.Context, in *CollectorRequest, opts
 	return out, nil
 }
 
-func (c *collectorClient) Get(ctx context.Context, in *GetCollectorRequest, opts ...grpc.CallOption) (*CollectorInfo, error) {
+func (c *collectorClient) Get(ctx context.Context, in *CollectorRequest, opts ...grpc.CallOption) (*CollectorInfo, error) {
 	out := new(CollectorInfo)
 	err := c.cc.Invoke(ctx, Collector_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -160,7 +160,7 @@ type CollectorServer interface {
 	// Deletes a specific Collector. You must specify the `collector_id` of the Collector to delete.
 	Delete(context.Context, *CollectorRequest) (*empty.Empty, error)
 	// Gets a specific Collector. Prints detailed information about the Collector, including its state, basic information, and the plugin information used for cloud resource collection.
-	Get(context.Context, *GetCollectorRequest) (*CollectorInfo, error)
+	Get(context.Context, *CollectorRequest) (*CollectorInfo, error)
 	// Gets a list of all Collectors. You can use a query to get a filtered list of Collectors.
 	List(context.Context, *CollectorQuery) (*CollectorsInfo, error)
 	Stat(context.Context, *CollectorStatQuery) (*_struct.Struct, error)
@@ -187,7 +187,7 @@ func (UnimplementedCollectorServer) VerifyPlugin(context.Context, *VerifyPluginR
 func (UnimplementedCollectorServer) Delete(context.Context, *CollectorRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedCollectorServer) Get(context.Context, *GetCollectorRequest) (*CollectorInfo, error) {
+func (UnimplementedCollectorServer) Get(context.Context, *CollectorRequest) (*CollectorInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedCollectorServer) List(context.Context, *CollectorQuery) (*CollectorsInfo, error) {
@@ -303,7 +303,7 @@ func _Collector_Delete_Handler(srv interface{}, ctx context.Context, dec func(in
 }
 
 func _Collector_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCollectorRequest)
+	in := new(CollectorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -315,7 +315,7 @@ func _Collector_Get_Handler(srv interface{}, ctx context.Context, dec func(inter
 		FullMethod: Collector_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CollectorServer).Get(ctx, req.(*GetCollectorRequest))
+		return srv.(CollectorServer).Get(ctx, req.(*CollectorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -37,7 +37,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DomainConfigClient interface {
 	Create(ctx context.Context, in *SetDomainConfigRequest, opts ...grpc.CallOption) (*DomainConfigInfo, error)
-	Update(ctx context.Context, in *UpdateDomainConfigRequest, opts ...grpc.CallOption) (*DomainConfigInfo, error)
+	Update(ctx context.Context, in *SetDomainConfigRequest, opts ...grpc.CallOption) (*DomainConfigInfo, error)
 	Set(ctx context.Context, in *SetDomainConfigRequest, opts ...grpc.CallOption) (*DomainConfigInfo, error)
 	Delete(ctx context.Context, in *DomainConfigRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *DomainConfigRequest, opts ...grpc.CallOption) (*DomainConfigInfo, error)
@@ -62,7 +62,7 @@ func (c *domainConfigClient) Create(ctx context.Context, in *SetDomainConfigRequ
 	return out, nil
 }
 
-func (c *domainConfigClient) Update(ctx context.Context, in *UpdateDomainConfigRequest, opts ...grpc.CallOption) (*DomainConfigInfo, error) {
+func (c *domainConfigClient) Update(ctx context.Context, in *SetDomainConfigRequest, opts ...grpc.CallOption) (*DomainConfigInfo, error) {
 	out := new(DomainConfigInfo)
 	err := c.cc.Invoke(ctx, DomainConfig_Update_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -121,7 +121,7 @@ func (c *domainConfigClient) Stat(ctx context.Context, in *DomainConfigStatQuery
 // for forward compatibility
 type DomainConfigServer interface {
 	Create(context.Context, *SetDomainConfigRequest) (*DomainConfigInfo, error)
-	Update(context.Context, *UpdateDomainConfigRequest) (*DomainConfigInfo, error)
+	Update(context.Context, *SetDomainConfigRequest) (*DomainConfigInfo, error)
 	Set(context.Context, *SetDomainConfigRequest) (*DomainConfigInfo, error)
 	Delete(context.Context, *DomainConfigRequest) (*empty.Empty, error)
 	Get(context.Context, *DomainConfigRequest) (*DomainConfigInfo, error)
@@ -137,7 +137,7 @@ type UnimplementedDomainConfigServer struct {
 func (UnimplementedDomainConfigServer) Create(context.Context, *SetDomainConfigRequest) (*DomainConfigInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedDomainConfigServer) Update(context.Context, *UpdateDomainConfigRequest) (*DomainConfigInfo, error) {
+func (UnimplementedDomainConfigServer) Update(context.Context, *SetDomainConfigRequest) (*DomainConfigInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedDomainConfigServer) Set(context.Context, *SetDomainConfigRequest) (*DomainConfigInfo, error) {
@@ -187,7 +187,7 @@ func _DomainConfig_Create_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _DomainConfig_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateDomainConfigRequest)
+	in := new(SetDomainConfigRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -199,7 +199,7 @@ func _DomainConfig_Update_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: DomainConfig_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DomainConfigServer).Update(ctx, req.(*UpdateDomainConfigRequest))
+		return srv.(DomainConfigServer).Update(ctx, req.(*SetDomainConfigRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

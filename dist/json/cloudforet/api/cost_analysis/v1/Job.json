@@ -10,6 +10,29 @@
       "hasServices": true,
       "enums": [
         {
+          "name": "ResourceGroup",
+          "longName": "JobInfo.ResourceGroup",
+          "fullName": "spaceone.api.cost_analysis.v1.JobInfo.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "Status",
           "longName": "JobInfo.Status",
           "fullName": "spaceone.api.cost_analysis.v1.JobInfo.Status",
@@ -137,54 +160,6 @@
           ]
         },
         {
-          "name": "GetJobRequest",
-          "longName": "GetJobRequest",
-          "fullName": "spaceone.api.cost_analysis.v1.GetJobRequest",
-          "description": "{\n   \"job_id\": \"job-85cf2c385252\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "job_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "only",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "JobInfo",
           "longName": "JobInfo",
           "fullName": "spaceone.api.cost_analysis.v1.JobInfo",
@@ -279,7 +254,31 @@
               "defaultValue": ""
             },
             {
-              "name": "data_source_id",
+              "name": "changed",
+              "description": "",
+              "label": "repeated",
+              "type": "ChangedInfo",
+              "longType": "ChangedInfo",
+              "fullType": "spaceone.api.cost_analysis.v1.ChangedInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "JobInfo.ResourceGroup",
+              "fullType": "spaceone.api.cost_analysis.v1.JobInfo.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -291,7 +290,19 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data_source_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -333,18 +344,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "changed",
-              "description": "",
-              "label": "repeated",
-              "type": "ChangedInfo",
-              "longType": "ChangedInfo",
-              "fullType": "spaceone.api.cost_analysis.v1.ChangedInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -399,7 +398,7 @@
               "defaultValue": ""
             },
             {
-              "name": "data_source_id",
+              "name": "workspace_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -411,8 +410,8 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "",
+              "name": "data_source_id",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -445,18 +444,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -477,18 +464,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
               "fullType": "spaceone.api.core.v1.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -566,9 +541,9 @@
             {
               "name": "get",
               "description": "Gets a specific Job. Prints detailed information about the Job, including the plugin used, operation time, and `status`.",
-              "requestType": "GetJobRequest",
-              "requestLongType": "GetJobRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.GetJobRequest",
+              "requestType": "JobRequest",
+              "requestLongType": "JobRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.JobRequest",
               "requestStreaming": false,
               "responseType": "JobInfo",
               "responseLongType": "JobInfo",

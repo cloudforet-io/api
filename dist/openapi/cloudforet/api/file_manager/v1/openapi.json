@@ -8,215 +8,18 @@
      "title": "File Manager API",
      "version": "3.1.0"
    },
-   "paths":{"/file-manager/public-file/add": {
-       "post": {
-         "tags": ["file-manager > public-file"],
-         "summary": "Add",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |tags||Struct||\n |reference||PublicFileReference||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" },"reference" : {"$ref": "#/components/schemas/PublicFileReference","title": "REFERENCE" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicFileInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicFileInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/file-manager/public-file/update": {
-       "post": {
-         "tags": ["file-manager > public-file"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_file_id||string|True|\n |tags||Struct||\n |reference||PublicFileReference||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"public_file_id" : {"type": "string","title": "PUBLIC_FILE_ID" },"tags" : {"type": "object","title": "TAGS" },"reference" : {"$ref": "#/components/schemas/PublicFileReference","title": "REFERENCE" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicFileInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicFileInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/file-manager/public-file/delete": {
-       "post": {
-         "tags": ["file-manager > public-file"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_file_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"public_file_id" : {"type": "string","title": "PUBLIC_FILE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/file-manager/public-file/get-download-url": {
-       "post": {
-         "tags": ["file-manager > public-file"],
-         "summary": "Get Download Url",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_file_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"public_file_id" : {"type": "string","title": "PUBLIC_FILE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicFileInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicFileInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/file-manager/public-file/get": {
-       "post": {
-         "tags": ["file-manager > public-file"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_file_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"public_file_id" : {"type": "string","title": "PUBLIC_FILE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicFileInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicFileInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/file-manager/public-file/list": {
-       "post": {
-         "tags": ["file-manager > public-file"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |public_file_id||string||\n |name||string||\n |state|PENDING, DONE |string||\n |file_type||string||\n |resource_type||string||\n |resource_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"public_file_id" : {"type": "string","title": "PUBLIC_FILE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"file_type" : {"type": "string","title": "FILE_TYPE" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"resource_id" : {"type": "string","title": "RESOURCE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicFilesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicFilesInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/file-manager/public-file/stat": {
-       "post": {
-         "tags": ["file-manager > public-file"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/file-manager/file/add": {
+   "paths":{"/file-manager/file/add": {
        "post": {
          "tags": ["file-manager > file"],
          "summary": "Add",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |permission_group|DOMAIN, WORKSPACE |string|True|\n |domain_id||string|True|\n |tags||Struct||\n |reference||FileReference||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |resource_group|SYSTEM, DOMAIN, WORKSPACE |string|True|\n |tags||Struct||\n |reference||FileReference||\n |workspace_id||string||\n |domain_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" },"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE" },"permission_group" : {"type": "string","title": "PERMISSION_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" },"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -241,11 +44,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n |domain_id||string|True|\n |tags||Struct||\n |reference||FileReference||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n |tags||Struct||\n |reference||FileReference||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" },"tags" : {"type": "object","title": "TAGS" },"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" },"tags" : {"type": "object","title": "TAGS" },"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -270,11 +73,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -293,11 +96,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -322,11 +125,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n |domain_id||string|True|\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |file_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"file_id" : {"type": "string","title": "FILE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -351,11 +154,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |file_id||string||\n |name||string||\n |state|PENDING, DONE |string||\n |file_type||string||\n |resource_type||string||\n |resource_id||string||\n |permission_group||string||\n |workspace_id||string||\n |domain_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |file_id||string||\n |name||string||\n |state|PENDING, DONE |string||\n |file_type||string||\n |resource_type||string||\n |resource_id||string||\n |resource_group|SYSTEM, DOMAIN, WORKSPACE |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"file_id" : {"type": "string","title": "FILE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"file_type" : {"type": "string","title": "FILE_TYPE" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"permission_group" : {"type": "string","title": "PERMISSION_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"file_id" : {"type": "string","title": "FILE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"file_type" : {"type": "string","title": "FILE_TYPE" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -406,54 +209,54 @@
    },
    "components":{
      "schemas": {
-     "CreatePublicFileRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/PublicFileReference","title": "REFERENCE"}},
+     "CreateFileRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["name"],
-                "title": "CreatePublicFileRequest"
+         "required": ["name","resource_group"],
+                "title": "CreateFileRequest"
            }
-           ,        "PublicFileInfo": {
-         "properties" : {"public_file_id" : {"type": "string","title": "PUBLIC_FILE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"file_type" : {"type": "string","title": "FILE_TYPE"},"upload_url" : {"type": "string","title": "UPLOAD_URL"},"upload_options" : {"type": "object","title": "UPLOAD_OPTIONS"},"download_url" : {"type": "string","title": "DOWNLOAD_URL"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/PublicFileReference","title": "REFERENCE"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+           ,        "FileInfo": {
+         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"file_type" : {"type": "string","title": "FILE_TYPE"},"upload_url" : {"type": "string","title": "UPLOAD_URL"},"upload_options" : {"type": "object","title": "UPLOAD_OPTIONS"},"download_url" : {"type": "string","title": "DOWNLOAD_URL"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["public_file_id","name","state","file_type","upload_url","upload_options","download_url","tags","reference","created_at"],
-                "title": "PublicFileInfo"
+         "required": ["file_id","name","state","resource_group","file_type","tags","reference","workspace_id","domain_id","user_id","created_at"],
+                "title": "FileInfo"
            }
-           ,        "PublicFileReference": {
+           ,        "FileReference": {
          "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"}},
          "type": "object",
          "required": ["resource_type","resource_id"],
-                "title": "PublicFileReference"
+                "title": "FileReference"
            }
-           ,        "PublicFileRequest": {
-         "properties" : {"public_file_id" : {"type": "string","title": "PUBLIC_FILE_ID"}},
+           ,        "FileRequest": {
+         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"}},
          "type": "object",
-         "required": ["public_file_id"],
-                "title": "PublicFileRequest"
+         "required": ["file_id"],
+                "title": "FileRequest"
            }
-           ,        "PublicFileSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"public_file_id" : {"type": "string","title": "PUBLIC_FILE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"file_type" : {"type": "string","title": "FILE_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"}},
+           ,        "FileSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"file_type" : {"type": "string","title": "FILE_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"}},
          "type": "object",
          "required": [],
-                "title": "PublicFileSearchQuery"
+                "title": "FileSearchQuery"
            }
-           ,        "PublicFileStatQuery": {
+           ,        "FileStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["query","domain_id"],
-                "title": "PublicFileStatQuery"
+                "title": "FileStatQuery"
            }
-           ,        "PublicFilesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PublicFileInfo"},
-               "type": "array","$ref": "#/components/schemas/PublicFileInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "FilesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/FileInfo"},
+               "type": "array","$ref": "#/components/schemas/FileInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "PublicFilesInfo"
+                "title": "FilesInfo"
            }
-           ,        "UpdatePublicFileRequest": {
-         "properties" : {"public_file_id" : {"type": "string","title": "PUBLIC_FILE_ID"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/PublicFileReference","title": "REFERENCE"}},
+           ,        "UpdateFileRequest": {
+         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"}},
          "type": "object",
-         "required": ["public_file_id"],
-                "title": "UpdatePublicFileRequest"
+         "required": ["file_id"],
+                "title": "UpdateFileRequest"
            }
            ,        "VersionInfo": {
          "properties" : {"version" : {"type": "string","title": "VERSION"}},
@@ -661,61 +464,6 @@
          "type": "object",
          "required": ["path","filter"],
                 "title": "Unwind"
-           }
-           ,        "CreateFileRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"permission_group" : {"type": "string","title": "PERMISSION_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["name","permission_group","domain_id"],
-                "title": "CreateFileRequest"
-           }
-           ,        "FileInfo": {
-         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"file_type" : {"type": "string","title": "FILE_TYPE"},"upload_url" : {"type": "string","title": "UPLOAD_URL"},"upload_options" : {"type": "object","title": "UPLOAD_OPTIONS"},"download_url" : {"type": "string","title": "DOWNLOAD_URL"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"permission_group" : {"type": "string","title": "PERMISSION_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["file_id","name","state","file_type","upload_url","upload_options","download_url","tags","reference","permission_group","workspace_id","domain_id","created_at"],
-                "title": "FileInfo"
-           }
-           ,        "FileReference": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"}},
-         "type": "object",
-         "required": ["resource_type","resource_id"],
-                "title": "FileReference"
-           }
-           ,        "FileRequest": {
-         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["file_id","domain_id"],
-                "title": "FileRequest"
-           }
-           ,        "FileSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"file_type" : {"type": "string","title": "FILE_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"permission_group" : {"type": "string","title": "PERMISSION_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": [],
-                "title": "FileSearchQuery"
-           }
-           ,        "FileStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["query","domain_id"],
-                "title": "FileStatQuery"
-           }
-           ,        "FilesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/FileInfo"},
-               "type": "array","$ref": "#/components/schemas/FileInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "FilesInfo"
-           }
-           ,        "GetFileRequest": {
-         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["file_id","domain_id"],
-                "title": "GetFileRequest"
-           }
-           ,        "UpdateFileRequest": {
-         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["file_id","domain_id"],
-                "title": "UpdateFileRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},

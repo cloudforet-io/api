@@ -67,7 +67,7 @@ func local_request_DomainConfig_Create_0(ctx context.Context, marshaler runtime.
 }
 
 func request_DomainConfig_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.DomainConfigClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.UpdateDomainConfigRequest
+	var protoReq extV1.SetDomainConfigRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,7 +84,7 @@ func request_DomainConfig_Update_0(ctx context.Context, marshaler runtime.Marsha
 }
 
 func local_request_DomainConfig_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.DomainConfigServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.UpdateDomainConfigRequest
+	var protoReq extV1.SetDomainConfigRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

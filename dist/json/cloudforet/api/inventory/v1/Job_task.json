@@ -89,17 +89,17 @@
       "extensions": [],
       "messages": [
         {
-          "name": "GetJobTaskRequest",
-          "longName": "GetJobTaskRequest",
-          "fullName": "spaceone.api.inventory.v1.GetJobTaskRequest",
-          "description": "{\n   \"job_task_id\": \"job-task-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}",
+          "name": "ErrorInfo",
+          "longName": "ErrorInfo",
+          "fullName": "spaceone.api.inventory.v1.ErrorInfo",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "job_task_id",
+              "name": "error_code",
               "description": "",
               "label": "",
               "type": "string",
@@ -111,7 +111,7 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "message",
               "description": "",
               "label": "",
               "type": "string",
@@ -123,12 +123,12 @@
               "defaultValue": ""
             },
             {
-              "name": "only",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "name": "additional",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -165,6 +165,18 @@
               "type": "JobTaskStatus",
               "longType": "JobTaskInfo.JobTaskStatus",
               "fullType": "spaceone.api.inventory.v1.JobTaskInfo.JobTaskStatus",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -243,7 +255,7 @@
               "defaultValue": ""
             },
             {
-              "name": "job_id",
+              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -255,31 +267,7 @@
               "defaultValue": ""
             },
             {
-              "name": "secret_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "provider",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "service_account_id",
+              "name": "workspace_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -303,7 +291,31 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "service_account_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "job_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -399,30 +411,6 @@
               "defaultValue": ""
             },
             {
-              "name": "job_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "secret_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "provider",
               "description": "+optional",
               "label": "",
@@ -435,7 +423,7 @@
               "defaultValue": ""
             },
             {
-              "name": "service_account_id",
+              "name": "workspace_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -459,8 +447,32 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "",
+              "name": "service_account_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "job_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_id",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -476,7 +488,7 @@
           "name": "JobTaskRequest",
           "longName": "JobTaskRequest",
           "fullName": "spaceone.api.inventory.v1.JobTaskRequest",
-          "description": "{\n   \"job_task_id\": \"job-task-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}",
+          "description": "{\n   \"job_task_id\": \"job-task-123456789012\",\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -484,18 +496,6 @@
           "fields": [
             {
               "name": "job_task_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -525,18 +525,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
               "fullType": "spaceone.api.core.v1.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -614,9 +602,9 @@
             {
               "name": "get",
               "description": "Gets a specific JobTask. Prints detailed information about the JobTask, including its state, updated or failure counts, and error log.",
-              "requestType": "GetJobTaskRequest",
-              "requestLongType": "GetJobTaskRequest",
-              "requestFullType": "spaceone.api.inventory.v1.GetJobTaskRequest",
+              "requestType": "JobTaskRequest",
+              "requestLongType": "JobTaskRequest",
+              "requestFullType": "spaceone.api.inventory.v1.JobTaskRequest",
               "requestStreaming": false,
               "responseType": "JobTaskInfo",
               "responseLongType": "JobTaskInfo",

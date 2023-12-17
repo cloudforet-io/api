@@ -45,7 +45,7 @@ type PostClient interface {
 	// Deletes a specific Post. You must specify the `post_id` of the Post to delete, and the `board_id` of the Board where the child Post to delete belongs.
 	Delete(ctx context.Context, in *PostRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.
-	Get(ctx context.Context, in *GetPostRequest, opts ...grpc.CallOption) (*PostInfo, error)
+	Get(ctx context.Context, in *PostRequest, opts ...grpc.CallOption) (*PostInfo, error)
 	// Gets a list of all Posts. You can use a query to get a filtered list of Posts.
 	List(ctx context.Context, in *PostSearchQuery, opts ...grpc.CallOption) (*PostsInfo, error)
 	Stat(ctx context.Context, in *PostStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -95,7 +95,7 @@ func (c *postClient) Delete(ctx context.Context, in *PostRequest, opts ...grpc.C
 	return out, nil
 }
 
-func (c *postClient) Get(ctx context.Context, in *GetPostRequest, opts ...grpc.CallOption) (*PostInfo, error) {
+func (c *postClient) Get(ctx context.Context, in *PostRequest, opts ...grpc.CallOption) (*PostInfo, error) {
 	out := new(PostInfo)
 	err := c.cc.Invoke(ctx, Post_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -135,7 +135,7 @@ type PostServer interface {
 	// Deletes a specific Post. You must specify the `post_id` of the Post to delete, and the `board_id` of the Board where the child Post to delete belongs.
 	Delete(context.Context, *PostRequest) (*empty.Empty, error)
 	// Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.
-	Get(context.Context, *GetPostRequest) (*PostInfo, error)
+	Get(context.Context, *PostRequest) (*PostInfo, error)
 	// Gets a list of all Posts. You can use a query to get a filtered list of Posts.
 	List(context.Context, *PostSearchQuery) (*PostsInfo, error)
 	Stat(context.Context, *PostStatQuery) (*_struct.Struct, error)
@@ -158,7 +158,7 @@ func (UnimplementedPostServer) SendNotification(context.Context, *SendNotificati
 func (UnimplementedPostServer) Delete(context.Context, *PostRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedPostServer) Get(context.Context, *GetPostRequest) (*PostInfo, error) {
+func (UnimplementedPostServer) Get(context.Context, *PostRequest) (*PostInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedPostServer) List(context.Context, *PostSearchQuery) (*PostsInfo, error) {
@@ -253,7 +253,7 @@ func _Post_Delete_Handler(srv interface{}, ctx context.Context, dec func(interfa
 }
 
 func _Post_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPostRequest)
+	in := new(PostRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -265,7 +265,7 @@ func _Post_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 		FullMethod: Post_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostServer).Get(ctx, req.(*GetPostRequest))
+		return srv.(PostServer).Get(ctx, req.(*PostRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -169,7 +169,7 @@ func local_request_EscalationPolicy_Delete_0(ctx context.Context, marshaler runt
 }
 
 func request_EscalationPolicy_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.EscalationPolicyClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetEscalationPolicyRequest
+	var protoReq v1_0.EscalationPolicyRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -186,7 +186,7 @@ func request_EscalationPolicy_Get_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_EscalationPolicy_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.EscalationPolicyServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetEscalationPolicyRequest
+	var protoReq v1_0.EscalationPolicyRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

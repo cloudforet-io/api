@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetJobTaskRequest
+	var protoReq v1_0.JobTaskRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -50,7 +50,7 @@ func request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshaler, cli
 }
 
 func local_request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetJobTaskRequest
+	var protoReq v1_0.JobTaskRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

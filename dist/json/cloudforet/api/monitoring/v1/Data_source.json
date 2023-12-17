@@ -10,6 +10,29 @@
       "hasServices": true,
       "enums": [
         {
+          "name": "ResourceGroup",
+          "longName": "DataSourceInfo.ResourceGroup",
+          "fullName": "spaceone.api.monitoring.v1.DataSourceInfo.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "State",
           "longName": "DataSourceInfo.State",
           "fullName": "spaceone.api.monitoring.v1.DataSourceInfo.State",
@@ -56,6 +79,29 @@
           ]
         },
         {
+          "name": "ResourceGroup",
+          "longName": "DataSourceQuery.ResourceGroup",
+          "fullName": "spaceone.api.monitoring.v1.DataSourceQuery.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "MonitoringType",
           "longName": "MonitoringType",
           "fullName": "spaceone.api.monitoring.v1.MonitoringType",
@@ -73,6 +119,29 @@
             },
             {
               "name": "LOG",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ResourceGroup",
+          "longName": "RegisterDataSourceRequest.ResourceGroup",
+          "fullName": "spaceone.api.monitoring.v1.RegisterDataSourceRequest.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
               "number": "2",
               "description": ""
             }
@@ -205,6 +274,30 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "DataSourceInfo.ResourceGroup",
+              "fullType": "spaceone.api.monitoring.v1.DataSourceInfo.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -415,8 +508,20 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "",
+              "name": "resource_group",
+              "description": "+optional",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "DataSourceQuery.ResourceGroup",
+              "fullType": "spaceone.api.monitoring.v1.DataSourceQuery.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -449,18 +554,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -481,18 +574,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
               "fullType": "spaceone.api.core.v1.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -529,54 +610,6 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "GetDataSourceRequest",
-          "longName": "GetDataSourceRequest",
-          "fullName": "spaceone.api.monitoring.v1.GetDataSourceRequest",
-          "description": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "data_source_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "only",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -631,12 +664,12 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "resource_group",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "ResourceGroup",
+              "longType": "RegisterDataSourceRequest.ResourceGroup",
+              "fullType": "spaceone.api.monitoring.v1.RegisterDataSourceRequest.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -701,18 +734,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -757,18 +778,6 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -948,9 +957,9 @@
             {
               "name": "get",
               "description": "Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.",
-              "requestType": "GetDataSourceRequest",
-              "requestLongType": "GetDataSourceRequest",
-              "requestFullType": "spaceone.api.monitoring.v1.GetDataSourceRequest",
+              "requestType": "DataSourceRequest",
+              "requestLongType": "DataSourceRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.DataSourceRequest",
               "requestStreaming": false,
               "responseType": "DataSourceInfo",
               "responseLongType": "DataSourceInfo",

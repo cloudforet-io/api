@@ -23,7 +23,7 @@ class JobTaskStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.inventory.v1.JobTask/get',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__task__pb2.GetJobTaskRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__task__pb2.JobTaskRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__task__pb2.JobTaskInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -78,7 +78,7 @@ def add_JobTaskServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__task__pb2.GetJobTaskRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__task__pb2.JobTaskRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_job__task__pb2.JobTaskInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -130,7 +130,7 @@ class JobTask(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.JobTask/get',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_job__task__pb2.GetJobTaskRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory_dot_v1_dot_job__task__pb2.JobTaskRequest.SerializeToString,
             spaceone_dot_api_dot_inventory_dot_v1_dot_job__task__pb2.JobTaskInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

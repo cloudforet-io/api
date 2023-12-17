@@ -10,6 +10,29 @@
       "hasServices": true,
       "enums": [
         {
+          "name": "ResourceGroup",
+          "longName": "JobTaskInfo.ResourceGroup",
+          "fullName": "spaceone.api.cost_analysis.v1.JobTaskInfo.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "Status",
           "longName": "JobTaskInfo.Status",
           "fullName": "spaceone.api.cost_analysis.v1.JobTaskInfo.Status",
@@ -99,54 +122,6 @@
       "extensions": [],
       "messages": [
         {
-          "name": "GetJobTaskRequest",
-          "longName": "GetJobTaskRequest",
-          "fullName": "spaceone.api.cost_analysis.v1.GetJobTaskRequest",
-          "description": "{\n   \"job_task_id\": \"job-task-3622d860a776\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "job_task_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "only",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "JobTaskInfo",
           "longName": "JobTaskInfo",
           "fullName": "spaceone.api.cost_analysis.v1.JobTaskInfo",
@@ -229,6 +204,42 @@
               "defaultValue": ""
             },
             {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "JobTaskInfo.ResourceGroup",
+              "fullType": "spaceone.api.cost_analysis.v1.JobTaskInfo.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "job_id",
               "description": "",
               "label": "",
@@ -242,18 +253,6 @@
             },
             {
               "name": "data_source_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -361,6 +360,18 @@
               "defaultValue": ""
             },
             {
+              "name": "workspace_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "job_id",
               "description": "+optional",
               "label": "",
@@ -383,9 +394,21 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
+            }
+          ]
+        },
+        {
+          "name": "JobTaskRequest",
+          "longName": "JobTaskRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.JobTaskRequest",
+          "description": "{\n   \"job_task_id\": \"job-task-3622d860a776\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
             {
-              "name": "domain_id",
+              "name": "job_task_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -415,18 +438,6 @@
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v1.StatisticsQuery",
               "fullType": "spaceone.api.core.v1.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -481,9 +492,9 @@
             {
               "name": "get",
               "description": "Gets a specific JobTask. Prints detailed information about the JobTask, including the relevant resources: DataSource and Job. The criteria used for dividing a Job into JobTasks can be found in the DataSource used, but the total count of divided JobTasks can be found by this method.",
-              "requestType": "GetJobTaskRequest",
-              "requestLongType": "GetJobTaskRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.GetJobTaskRequest",
+              "requestType": "JobTaskRequest",
+              "requestLongType": "JobTaskRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.JobTaskRequest",
               "requestStreaming": false,
               "responseType": "JobTaskInfo",
               "responseLongType": "JobTaskInfo",

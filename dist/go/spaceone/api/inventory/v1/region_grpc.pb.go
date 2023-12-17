@@ -42,7 +42,7 @@ type RegionClient interface {
 	// Deletes a specific Region. You must specify the `region_id` of the Region to delete.
 	Delete(ctx context.Context, in *RegionRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Region. Prints detailed information about the Region, including `name`, `region_code`, and a location coordinate.
-	Get(ctx context.Context, in *GetRegionRequest, opts ...grpc.CallOption) (*RegionInfo, error)
+	Get(ctx context.Context, in *RegionRequest, opts ...grpc.CallOption) (*RegionInfo, error)
 	// Gets a list of all Regions. You can use a query to get a filtered list of Regions.
 	List(ctx context.Context, in *RegionQuery, opts ...grpc.CallOption) (*RegionsInfo, error)
 	Stat(ctx context.Context, in *RegionStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -83,7 +83,7 @@ func (c *regionClient) Delete(ctx context.Context, in *RegionRequest, opts ...gr
 	return out, nil
 }
 
-func (c *regionClient) Get(ctx context.Context, in *GetRegionRequest, opts ...grpc.CallOption) (*RegionInfo, error) {
+func (c *regionClient) Get(ctx context.Context, in *RegionRequest, opts ...grpc.CallOption) (*RegionInfo, error) {
 	out := new(RegionInfo)
 	err := c.cc.Invoke(ctx, Region_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -121,7 +121,7 @@ type RegionServer interface {
 	// Deletes a specific Region. You must specify the `region_id` of the Region to delete.
 	Delete(context.Context, *RegionRequest) (*empty.Empty, error)
 	// Gets a specific Region. Prints detailed information about the Region, including `name`, `region_code`, and a location coordinate.
-	Get(context.Context, *GetRegionRequest) (*RegionInfo, error)
+	Get(context.Context, *RegionRequest) (*RegionInfo, error)
 	// Gets a list of all Regions. You can use a query to get a filtered list of Regions.
 	List(context.Context, *RegionQuery) (*RegionsInfo, error)
 	Stat(context.Context, *RegionStatQuery) (*_struct.Struct, error)
@@ -141,7 +141,7 @@ func (UnimplementedRegionServer) Update(context.Context, *UpdateRegionRequest) (
 func (UnimplementedRegionServer) Delete(context.Context, *RegionRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedRegionServer) Get(context.Context, *GetRegionRequest) (*RegionInfo, error) {
+func (UnimplementedRegionServer) Get(context.Context, *RegionRequest) (*RegionInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedRegionServer) List(context.Context, *RegionQuery) (*RegionsInfo, error) {
@@ -218,7 +218,7 @@ func _Region_Delete_Handler(srv interface{}, ctx context.Context, dec func(inter
 }
 
 func _Region_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRegionRequest)
+	in := new(RegionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -230,7 +230,7 @@ func _Region_Get_Handler(srv interface{}, ctx context.Context, dec func(interfac
 		FullMethod: Region_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegionServer).Get(ctx, req.(*GetRegionRequest))
+		return srv.(RegionServer).Get(ctx, req.(*RegionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

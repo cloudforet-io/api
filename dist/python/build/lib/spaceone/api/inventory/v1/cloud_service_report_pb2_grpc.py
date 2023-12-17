@@ -38,7 +38,7 @@ class CloudServiceReportStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.inventory.v1.CloudServiceReport/get',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__report__pb2.GetCloudServiceReportRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__report__pb2.CloudServiceReportRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__report__pb2.CloudServiceReportInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -123,7 +123,7 @@ def add_CloudServiceReportServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__report__pb2.GetCloudServiceReportRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__report__pb2.CloudServiceReportRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__report__pb2.CloudServiceReportInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -226,7 +226,7 @@ class CloudServiceReport(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.CloudServiceReport/get',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__report__pb2.GetCloudServiceReportRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__report__pb2.CloudServiceReportRequest.SerializeToString,
             spaceone_dot_api_dot_inventory_dot_v1_dot_cloud__service__report__pb2.CloudServiceReportInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

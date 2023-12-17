@@ -94,6 +94,18 @@
           "extensions": [],
           "fields": [
             {
+              "name": "query",
+              "description": "+optional",
+              "label": "",
+              "type": "Query",
+              "longType": "spaceone.api.core.v1.Query",
+              "fullType": "spaceone.api.core.v1.Query",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "board_id",
               "description": "+optional",
               "label": "",
@@ -112,18 +124,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "query",
-              "description": "+optional",
-              "label": "",
-              "type": "Query",
-              "longType": "spaceone.api.core.v1.Query",
-              "fullType": "spaceone.api.core.v1.Query",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -256,30 +256,6 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "GetBoardRequest",
-          "longName": "GetBoardRequest",
-          "fullName": "spaceone.api.board.v1.GetBoardRequest",
-          "description": "{\n   \"board_id\": \"board-123456789012\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "board_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -463,9 +439,9 @@
             {
               "name": "get",
               "description": "Gets a specific Board. You must specify the `board_id` of the Board to get. Prints detailed information about the Board, including `name`, `categories`.",
-              "requestType": "GetBoardRequest",
-              "requestLongType": "GetBoardRequest",
-              "requestFullType": "spaceone.api.board.v1.GetBoardRequest",
+              "requestType": "BoardRequest",
+              "requestLongType": "BoardRequest",
+              "requestFullType": "spaceone.api.board.v1.BoardRequest",
               "requestStreaming": false,
               "responseType": "BoardInfo",
               "responseLongType": "BoardInfo",

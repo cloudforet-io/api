@@ -57,7 +57,7 @@ type DataSourceClient interface {
 	// Manually runs a specific DataSource to collect the cost data. This method is to get up-to-date cost data.
 	Sync(ctx context.Context, in *SyncDataSourceRequest, opts ...grpc.CallOption) (*JobInfo, error)
 	// Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.
-	Get(ctx context.Context, in *GetDataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
+	Get(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
 	// Gets a list of all DataSources. You can use a query to get a filtered list of DataSources.
 	List(ctx context.Context, in *DataSourceQuery, opts ...grpc.CallOption) (*DataSourcesInfo, error)
 	Stat(ctx context.Context, in *DataSourceStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -143,7 +143,7 @@ func (c *dataSourceClient) Sync(ctx context.Context, in *SyncDataSourceRequest, 
 	return out, nil
 }
 
-func (c *dataSourceClient) Get(ctx context.Context, in *GetDataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error) {
+func (c *dataSourceClient) Get(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error) {
 	out := new(DataSourceInfo)
 	err := c.cc.Invoke(ctx, DataSource_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -191,7 +191,7 @@ type DataSourceServer interface {
 	// Manually runs a specific DataSource to collect the cost data. This method is to get up-to-date cost data.
 	Sync(context.Context, *SyncDataSourceRequest) (*JobInfo, error)
 	// Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.
-	Get(context.Context, *GetDataSourceRequest) (*DataSourceInfo, error)
+	Get(context.Context, *DataSourceRequest) (*DataSourceInfo, error)
 	// Gets a list of all DataSources. You can use a query to get a filtered list of DataSources.
 	List(context.Context, *DataSourceQuery) (*DataSourcesInfo, error)
 	Stat(context.Context, *DataSourceStatQuery) (*_struct.Struct, error)
@@ -226,7 +226,7 @@ func (UnimplementedDataSourceServer) Deregister(context.Context, *DeregisterData
 func (UnimplementedDataSourceServer) Sync(context.Context, *SyncDataSourceRequest) (*JobInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Sync not implemented")
 }
-func (UnimplementedDataSourceServer) Get(context.Context, *GetDataSourceRequest) (*DataSourceInfo, error) {
+func (UnimplementedDataSourceServer) Get(context.Context, *DataSourceRequest) (*DataSourceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedDataSourceServer) List(context.Context, *DataSourceQuery) (*DataSourcesInfo, error) {
@@ -393,7 +393,7 @@ func _DataSource_Sync_Handler(srv interface{}, ctx context.Context, dec func(int
 }
 
 func _DataSource_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDataSourceRequest)
+	in := new(DataSourceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -405,7 +405,7 @@ func _DataSource_Get_Handler(srv interface{}, ctx context.Context, dec func(inte
 		FullMethod: DataSource_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataSourceServer).Get(ctx, req.(*GetDataSourceRequest))
+		return srv.(DataSourceServer).Get(ctx, req.(*DataSourceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

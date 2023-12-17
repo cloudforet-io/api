@@ -169,7 +169,7 @@ func local_request_EventRule_Delete_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func request_EventRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetEventRuleRequest
+	var protoReq v1_0.EventRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -186,7 +186,7 @@ func request_EventRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, c
 }
 
 func local_request_EventRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetEventRuleRequest
+	var protoReq v1_0.EventRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

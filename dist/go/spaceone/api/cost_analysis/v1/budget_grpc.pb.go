@@ -45,7 +45,7 @@ type BudgetClient interface {
 	// Deletes a specific Budget. You must specify the `budget_id` of the Budget to delete.
 	Delete(ctx context.Context, in *BudgetRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Budget. Prints detailed information about the Budget, including `planned_limits` of the project group or project for the pre-defined period.
-	Get(ctx context.Context, in *GetBudgetRequest, opts ...grpc.CallOption) (*BudgetInfo, error)
+	Get(ctx context.Context, in *BudgetRequest, opts ...grpc.CallOption) (*BudgetInfo, error)
 	// Gets a list of all Budgets. You can use a query to get a filtered list of Budgets.
 	List(ctx context.Context, in *BudgetQuery, opts ...grpc.CallOption) (*BudgetsInfo, error)
 	Stat(ctx context.Context, in *BudgetStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -95,7 +95,7 @@ func (c *budgetClient) Delete(ctx context.Context, in *BudgetRequest, opts ...gr
 	return out, nil
 }
 
-func (c *budgetClient) Get(ctx context.Context, in *GetBudgetRequest, opts ...grpc.CallOption) (*BudgetInfo, error) {
+func (c *budgetClient) Get(ctx context.Context, in *BudgetRequest, opts ...grpc.CallOption) (*BudgetInfo, error) {
 	out := new(BudgetInfo)
 	err := c.cc.Invoke(ctx, Budget_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -135,7 +135,7 @@ type BudgetServer interface {
 	// Deletes a specific Budget. You must specify the `budget_id` of the Budget to delete.
 	Delete(context.Context, *BudgetRequest) (*empty.Empty, error)
 	// Gets a specific Budget. Prints detailed information about the Budget, including `planned_limits` of the project group or project for the pre-defined period.
-	Get(context.Context, *GetBudgetRequest) (*BudgetInfo, error)
+	Get(context.Context, *BudgetRequest) (*BudgetInfo, error)
 	// Gets a list of all Budgets. You can use a query to get a filtered list of Budgets.
 	List(context.Context, *BudgetQuery) (*BudgetsInfo, error)
 	Stat(context.Context, *BudgetStatQuery) (*_struct.Struct, error)
@@ -158,7 +158,7 @@ func (UnimplementedBudgetServer) SetNotification(context.Context, *SetBudgetNoti
 func (UnimplementedBudgetServer) Delete(context.Context, *BudgetRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedBudgetServer) Get(context.Context, *GetBudgetRequest) (*BudgetInfo, error) {
+func (UnimplementedBudgetServer) Get(context.Context, *BudgetRequest) (*BudgetInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedBudgetServer) List(context.Context, *BudgetQuery) (*BudgetsInfo, error) {
@@ -253,7 +253,7 @@ func _Budget_Delete_Handler(srv interface{}, ctx context.Context, dec func(inter
 }
 
 func _Budget_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBudgetRequest)
+	in := new(BudgetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -265,7 +265,7 @@ func _Budget_Get_Handler(srv interface{}, ctx context.Context, dec func(interfac
 		FullMethod: Budget_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BudgetServer).Get(ctx, req.(*GetBudgetRequest))
+		return srv.(BudgetServer).Get(ctx, req.(*BudgetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

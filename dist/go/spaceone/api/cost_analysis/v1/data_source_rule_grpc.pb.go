@@ -45,7 +45,7 @@ type DataSourceRuleClient interface {
 	// Deletes a specific DataSourceRule. You must specify the `data_source_rule_id` of the DataSourceRule to delete. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
 	Delete(ctx context.Context, in *DataSourceRuleRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific DataSourceRule. Prints detailed information about the DataSourceRule, including  `conditions_policy` and conditions applied to DataSources.
-	Get(ctx context.Context, in *GetDataSourceRuleRequest, opts ...grpc.CallOption) (*DataSourceRuleInfo, error)
+	Get(ctx context.Context, in *DataSourceRuleRequest, opts ...grpc.CallOption) (*DataSourceRuleInfo, error)
 	// Gets a list of all DataSourceRules. You can use a query to get a filtered list of DataSourceRules.
 	List(ctx context.Context, in *DataSourceRuleQuery, opts ...grpc.CallOption) (*DataSourceRulesInfo, error)
 	Stat(ctx context.Context, in *DataSourceRuleStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -95,7 +95,7 @@ func (c *dataSourceRuleClient) Delete(ctx context.Context, in *DataSourceRuleReq
 	return out, nil
 }
 
-func (c *dataSourceRuleClient) Get(ctx context.Context, in *GetDataSourceRuleRequest, opts ...grpc.CallOption) (*DataSourceRuleInfo, error) {
+func (c *dataSourceRuleClient) Get(ctx context.Context, in *DataSourceRuleRequest, opts ...grpc.CallOption) (*DataSourceRuleInfo, error) {
 	out := new(DataSourceRuleInfo)
 	err := c.cc.Invoke(ctx, DataSourceRule_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -135,7 +135,7 @@ type DataSourceRuleServer interface {
 	// Deletes a specific DataSourceRule. You must specify the `data_source_rule_id` of the DataSourceRule to delete. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
 	Delete(context.Context, *DataSourceRuleRequest) (*empty.Empty, error)
 	// Gets a specific DataSourceRule. Prints detailed information about the DataSourceRule, including  `conditions_policy` and conditions applied to DataSources.
-	Get(context.Context, *GetDataSourceRuleRequest) (*DataSourceRuleInfo, error)
+	Get(context.Context, *DataSourceRuleRequest) (*DataSourceRuleInfo, error)
 	// Gets a list of all DataSourceRules. You can use a query to get a filtered list of DataSourceRules.
 	List(context.Context, *DataSourceRuleQuery) (*DataSourceRulesInfo, error)
 	Stat(context.Context, *DataSourceRuleStatQuery) (*_struct.Struct, error)
@@ -158,7 +158,7 @@ func (UnimplementedDataSourceRuleServer) ChangeOrder(context.Context, *ChangeDat
 func (UnimplementedDataSourceRuleServer) Delete(context.Context, *DataSourceRuleRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedDataSourceRuleServer) Get(context.Context, *GetDataSourceRuleRequest) (*DataSourceRuleInfo, error) {
+func (UnimplementedDataSourceRuleServer) Get(context.Context, *DataSourceRuleRequest) (*DataSourceRuleInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedDataSourceRuleServer) List(context.Context, *DataSourceRuleQuery) (*DataSourceRulesInfo, error) {
@@ -253,7 +253,7 @@ func _DataSourceRule_Delete_Handler(srv interface{}, ctx context.Context, dec fu
 }
 
 func _DataSourceRule_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDataSourceRuleRequest)
+	in := new(DataSourceRuleRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -265,7 +265,7 @@ func _DataSourceRule_Get_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: DataSourceRule_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataSourceRuleServer).Get(ctx, req.(*GetDataSourceRuleRequest))
+		return srv.(DataSourceRuleServer).Get(ctx, req.(*DataSourceRuleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -10,13 +10,13 @@
       "hasServices": true,
       "enums": [
         {
-          "name": "PermissionGroup",
-          "longName": "CreatePostRequest.PermissionGroup",
-          "fullName": "spaceone.api.board.v1.CreatePostRequest.PermissionGroup",
+          "name": "ResourceGroup",
+          "longName": "CreatePostRequest.ResourceGroup",
+          "fullName": "spaceone.api.board.v1.CreatePostRequest.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "PERMISSION_GROUP_NONE",
+              "name": "RESOURCE_GROUP_NONE",
               "number": "0",
               "description": ""
             },
@@ -33,13 +33,13 @@
           ]
         },
         {
-          "name": "PermissionGroup",
-          "longName": "PostInfo.PermissionGroup",
-          "fullName": "spaceone.api.board.v1.PostInfo.PermissionGroup",
+          "name": "ResourceGroup",
+          "longName": "PostInfo.ResourceGroup",
+          "fullName": "spaceone.api.board.v1.PostInfo.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "PERMISSION_GROUP_NONE",
+              "name": "RESOURCE_GROUP_NONE",
               "number": "0",
               "description": ""
             },
@@ -56,13 +56,36 @@
           ]
         },
         {
-          "name": "PermissionGroup",
-          "longName": "PostSearchQuery.PermissionGroup",
-          "fullName": "spaceone.api.board.v1.PostSearchQuery.PermissionGroup",
+          "name": "ResourceGroup",
+          "longName": "PostSearchQuery.ResourceGroup",
+          "fullName": "spaceone.api.board.v1.PostSearchQuery.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "PERMISSION_GROUP_NONE",
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "GLOBAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ResourceGroup",
+          "longName": "UpdatePostRequest.ResourceGroup",
+          "fullName": "spaceone.api.board.v1.UpdatePostRequest.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
               "number": "0",
               "description": ""
             },
@@ -85,7 +108,7 @@
           "name": "CreatePostRequest",
           "longName": "CreatePostRequest",
           "fullName": "spaceone.api.board.v1.CreatePostRequest",
-          "description": "{\n   \"board_id\": \"board-123456789012\",\n   \"category\": \"developer\",\n   \"title\": \"title\",\n   \"contents\": \"This is contents.\",\n   \"options\": {\"is_popup\": true},\n   \"writer\": \"user1\",\n   \"domain_id\": \"domain-123456789012\"\n}",
+          "description": "{\n   \"board_id\": \"board-123456789012\",\n   \"category\": \"developer\",\n   \"title\": \"title\",\n   \"contents\": \"This is contents.\",\n   \"files\": [\"file-123456789012\"],\n   \"options\": {\"is_popup\": true},\n   \"writer\": \"user1\",\n   \"resource_group\": \"DOMAIN\",\n   \"domain_id\": \"domain-123456789012\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -152,6 +175,18 @@
               "defaultValue": ""
             },
             {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "CreatePostRequest.ResourceGroup",
+              "fullType": "spaceone.api.board.v1.CreatePostRequest.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "writer",
               "description": "+optional",
               "label": "",
@@ -164,18 +199,6 @@
               "defaultValue": ""
             },
             {
-              "name": "permission_group",
-              "description": "",
-              "label": "",
-              "type": "PermissionGroup",
-              "longType": "CreatePostRequest.PermissionGroup",
-              "fullType": "spaceone.api.board.v1.CreatePostRequest.PermissionGroup",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "domain_id",
               "description": "+optional",
               "label": "",
@@ -190,54 +213,6 @@
             {
               "name": "board_id",
               "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "GetPostRequest",
-          "longName": "GetPostRequest",
-          "fullName": "spaceone.api.board.v1.GetPostRequest",
-          "description": "{\n   \"board_id\": \"board-b9aa34e65c60\",\n   \"post_id\": \"post-2118473ce15e\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "board_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "post_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -253,7 +228,7 @@
           "name": "PostInfo",
           "longName": "PostInfo",
           "fullName": "spaceone.api.board.v1.PostInfo",
-          "description": "{\n         \"board_id\": \"board-123456789012\",\n         \"post_id\": \"post-123456789012\",\n         \"post_type\": \"INTERNAL\",\n         \"category\": \"developer\",\n         \"title\": \"title\",\n         \"contents\": \"This is contents.\",\n         \"options\": {\n             \"is_pinned\": false,\n             \"is_popup\": true\n         },\n         \"view_count\": 0,\n         \"writer\": \"user1\",\n         \"scope\": \"DOMAIN\",\n         \"domain_id\": \"domain-123456789012\",\n         \"user_id\": \"user1@email.com\",\n         \"created_at\": \"2022-01-01T01:06:23.732Z\",\n         \"updated_at\": \"2022-01-01T01:06:23.732Z\"\n}",
+          "description": "{\n         \"board_id\": \"board-123456789012\",\n         \"post_id\": \"post-123456789012\",\n         \"category\": \"developer\",\n         \"title\": \"title\",\n         \"contents\": \"This is contents.\",\n         \"options\": {\n             \"is_pinned\": false,\n             \"is_popup\": true\n         },\n         \"view_count\": 0,\n         \"writer\": \"user1\",\n         \"domain_id\": \"domain-123456789012\",\n         \"user_id\": \"user1@email.com\",\n         \"created_at\": \"2022-01-01T01:06:23.732Z\",\n         \"updated_at\": \"2022-01-01T01:06:23.732Z\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -356,12 +331,12 @@
               "defaultValue": ""
             },
             {
-              "name": "permission_group",
+              "name": "resource_group",
               "description": "",
               "label": "",
-              "type": "PermissionGroup",
-              "longType": "PostInfo.PermissionGroup",
-              "fullType": "spaceone.api.board.v1.PostInfo.PermissionGroup",
+              "type": "ResourceGroup",
+              "longType": "PostInfo.ResourceGroup",
+              "fullType": "spaceone.api.board.v1.PostInfo.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -404,18 +379,6 @@
               "defaultValue": ""
             },
             {
-              "name": "user_domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "created_at",
               "description": "",
               "label": "",
@@ -445,7 +408,7 @@
           "name": "PostRequest",
           "longName": "PostRequest",
           "fullName": "spaceone.api.board.v1.PostRequest",
-          "description": "{\n   \"board_id\": \"board-b9aa34e65c60\",\n   \"post_id\": \"post-2118473ce15e\",\n   \"domain_id\": \"domain-123456789012\"\n}",
+          "description": "{\n   \"board_id\": \"board-b9aa34e65c60\",\n   \"post_id\": \"post-2118473ce15e\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -466,18 +429,6 @@
             {
               "name": "post_id",
               "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -572,36 +523,12 @@
               "defaultValue": ""
             },
             {
-              "name": "user_domain_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "permission_group",
+              "name": "resource_group",
               "description": "",
               "label": "",
-              "type": "PermissionGroup",
-              "longType": "PostSearchQuery.PermissionGroup",
-              "fullType": "spaceone.api.board.v1.PostSearchQuery.PermissionGroup",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "ResourceGroup",
+              "longType": "PostSearchQuery.ResourceGroup",
+              "fullType": "spaceone.api.board.v1.PostSearchQuery.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -609,18 +536,6 @@
             },
             {
               "name": "board_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "user_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -654,18 +569,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -673,7 +576,7 @@
           "name": "PostsInfo",
           "longName": "PostsInfo",
           "fullName": "spaceone.api.board.v1.PostsInfo",
-          "description": "{\n     \"results\": [\n         {\n             \"board_id\": \"board-b9aa34e65c60\",\n             \"post_id\": \"post-2118473ce15e\",\n             \"post_type\": \"INTERNAL\",\n             \"category\": \"spaceone\",\n             \"title\": \"title2\",\n             \"contents\": \"this is contents2.\",\n             \"options\": {\n                 \"is_popup\": false,\n                 \"is_pinned\": true\n             },\n             \"view_count\": 3,\n             \"writer\": \"seolmin2\",\n             \"scope\": \"DOMAIN\",\n             \"domain_id\": \"domain-58010aa2e451\",\n             \"user_id\": \"user1@email.com\",\n             \"created_at\": \"2022-06-13T01:06:23.732Z\",\n             \"updated_at\": \"2022-06-13T01:06:23.732Z\"\n         },\n         {\n             \"board_id\": \"board-b9aa34e65c60\",\n             \"post_id\": \"post-532ae1191233\",\n             \"post_type\": \"INTERNAL\",\n             \"category\": \"flower\",\n             \"title\": \"작업공지\",\n             \"contents\": \"This is description\",\n             \"options\": {\n                 \"is_pinned\": true,\n                 \"is_popup\": true\n             },\n             \"writer\": \"권설민\",\n             \"scope\": \"PUBLIC\",\n             \"user_id\": \"supervisor\",\n             \"created_at\": \"2022-06-10T07:01:44.384Z\",\n             \"updated_at\": \"2022-06-10T07:01:44.384Z\"\n         }\n     ],\n     \"total_count\": 2\n}",
+          "description": "{\n     \"results\": [\n         {\n             \"board_id\": \"board-b9aa34e65c60\",\n             \"post_id\": \"post-2118473ce15e\",\n             \"category\": \"spaceone\",\n             \"title\": \"title2\",\n             \"contents\": \"this is contents2.\",\n             \"options\": {\n                 \"is_popup\": false,\n                 \"is_pinned\": true\n             },\n             \"view_count\": 3,\n             \"writer\": \"seolmin2\",\n             \"files\": [\"file-123456789012\"],\n             \"resource_group\": \"DOMAIN\",\n             \"domain_id\": \"domain-58010aa2e451\",\n             \"user_id\": \"user1@email.com\",\n             \"created_at\": \"2022-06-13T01:06:23.732Z\",\n             \"updated_at\": \"2022-06-13T01:06:23.732Z\"\n         },\n         {\n             \"board_id\": \"board-b9aa34e65c60\",\n             \"post_id\": \"post-532ae1191233\",\n             \"category\": \"flower\",\n             \"title\": \"작업공지\",\n             \"contents\": \"This is description\",\n             \"options\": {\n                 \"is_pinned\": true,\n                 \"is_popup\": true\n             },\n             \"writer\": \"권설민\",\n             \"files\": [\"file-123456789022\"],\n             \"resource_group\": \"DOMAIN\",\n             \"user_id\": \"supervisor\",\n             \"created_at\": \"2022-06-10T07:01:44.384Z\",\n             \"updated_at\": \"2022-06-10T07:01:44.384Z\"\n         }\n     ],\n     \"total_count\": 2\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -738,18 +641,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -757,7 +648,7 @@
           "name": "UpdatePostRequest",
           "longName": "UpdatePostRequest",
           "fullName": "spaceone.api.board.v1.UpdatePostRequest",
-          "description": "{\n     \"board_id\": \"board-123456789012\",\n     \"post_id\": \"post-2118473ce15e\",\n     \"category\": \"developer\",\n     \"title\": \"title2\",\n     \"contents\": \"this is contents2.\",\n     \"options\": {\n         \"is_popup\": false,\n         \"is_pinned\": true\n     },\n     \"writer\": \"user1\",\n     \"domain_id\": \"domain-123456789012\"\n}",
+          "description": "{\n     \"board_id\": \"board-123456789012\",\n     \"post_id\": \"post-2118473ce15e\",\n     \"category\": \"developer\",\n     \"title\": \"title2\",\n     \"contents\": \"this is contents2.\",\n     \"options\": {\n         \"is_popup\": false,\n         \"is_pinned\": true\n     },\n     \"writer\": \"user1\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -848,12 +739,12 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "+optional",
+              "name": "resource_group",
+              "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "ResourceGroup",
+              "longType": "UpdatePostRequest.ResourceGroup",
+              "fullType": "spaceone.api.board.v1.UpdatePostRequest.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -976,9 +867,9 @@
             {
               "name": "get",
               "description": "Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.",
-              "requestType": "GetPostRequest",
-              "requestLongType": "GetPostRequest",
-              "requestFullType": "spaceone.api.board.v1.GetPostRequest",
+              "requestType": "PostRequest",
+              "requestLongType": "PostRequest",
+              "requestFullType": "spaceone.api.board.v1.PostRequest",
               "requestStreaming": false,
               "responseType": "PostInfo",
               "responseLongType": "PostInfo",
