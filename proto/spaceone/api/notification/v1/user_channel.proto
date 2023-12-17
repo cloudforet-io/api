@@ -69,7 +69,7 @@ service UserChannel {
     }
     
     // Gets a specific UserChannel. Prints detailed information about the UserChannel, including the Protocol configured and the Notification settings.
-    rpc get (GetUserChannelRequest) returns (UserChannelInfo) {
+    rpc get (UserChannelRequest) returns (UserChannelInfo) {
         option (google.api.http) = {
             post: "/notification/v1/user-channel/get"
             body: "*"
@@ -229,11 +229,6 @@ message UserChannelRequest {
     string user_channel_id = 1;
 }
 
-message GetUserChannelRequest {
-    // The ID of user channel.
-    string user_channel_id = 1;
-}
-
 //{
 //    "query": {}
 //}
@@ -255,12 +250,18 @@ message UserChannelQuery {
     // The state of user channel. ENABLED or DISABLED only.
     // +optional
     UserChannelState state = 4;
-    // The ID of secret encrypted data in the security service
+    // Indicates whether subscriptions will be used.
     // +optional
-    string secret_id = 5;
+    bool is_subscribe = 5;
+    // Indicates whether schedule will be used.
+    // +optional
+    bool is_scheduled = 6;
     // The ID of protocol set in the user channel.
     // +optional
-    string protocol_id = 11;
+    string protocol_id = 21;
+    // The ID of secret encrypted data in the security service
+    // +optional
+    string secret_id = 22;
 }
 
 //{
@@ -289,26 +290,28 @@ message UserChannelInfo {
     UserChannelState state = 3;
     // The data for using user channel.
     google.protobuf.Struct data = 4;
-    // The ID of secret encrypted data in the security service
-    string secret_id = 5;
     // Indicates whether subscriptions will be used.
-    bool is_subscribe = 6;
+    bool is_subscribe = 5;
     // The topic list to subscription.
-    repeated string subscriptions = 7;
+    repeated string subscriptions = 6;
     // Indicates whether schedule will be used.
-    bool is_scheduled = 8;
+    bool is_scheduled = 7;
     // Schedule for which you want to receive notifications through the user channel.
-    UserChannelSchedule schedule = 9;
+    UserChannelSchedule schedule = 8;
     // The tags for user channel.
-    google.protobuf.Struct tags = 10;
-    // The ID of protocol set in the user channel.
-    string protocol_id = 11;
-    // The ID of user using the user channel.
-    string user_id = 12;
+    google.protobuf.Struct tags = 9;
+
     // The ID of domain.
-    string domain_id = 13;
+    string domain_id = 21;
+    // The ID of user using the user channel.
+    string user_id = 22;
+    // The ID of protocol set in the user channel.
+    string protocol_id = 23;
+    // The ID of secret encrypted data in the security service
+    string secret_id = 24;
+
     // User channel creation time.
-    string created_at = 21;
+    string created_at = 31;
 }
 
 //{

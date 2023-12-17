@@ -70,7 +70,7 @@ service ProjectChannel {
     }
     
     // Gets a specific ProjectChannel. Prints detailed information about the ProjectChannel.
-    rpc get (GetProjectChannelRequest) returns (ProjectChannelInfo) {
+    rpc get (ProjectChannelRequest) returns (ProjectChannelInfo) {
         option (google.api.http) = {
             post: "/notification/v1/project-channel/get"
             body: "*"
@@ -211,7 +211,7 @@ message UpdateProjectChannelRequest {
     // +optional
     google.protobuf.Struct tags = 7;
     // The ID of domain.
-    string domain_id = 11;
+    string domain_id = 21;
 }
 
 //{
@@ -263,14 +263,6 @@ message ProjectChannelRequest {
 }
 
 //{
-//    "project_channel_id": "project-ch-ffdb1d6cc774"
-//}
-message GetProjectChannelRequest {
-    // The ID of project channel.
-    string project_channel_id = 1;
-}
-
-//{
 //    "query": {
 //        "filter": [
 //            {
@@ -299,21 +291,24 @@ message ProjectChannelQuery {
     // The state of project channel. ENABLED or DISABLED only.
     // +optional
     ProjectChannelState state = 4;
-    // The ID of secret encrypted data in the security service
+    // Indicates whether subscriptions will be used.
     // +optional
-    string secret_id = 5;
+    bool is_subscribe = 5;
     // Indicates whether schedule will be used.
     // +optional
     bool is_scheduled = 6;
     // The level of notification.
     // +optional
     NotificationLevel notification_level = 7;
-    // The ID of protocol set in the project channel.
-    // +optional
-    string protocol_id = 11;
     // The ID of project to which the project channel belongs.
     // +optional
-    string project_id = 12;
+    string project_id = 21;
+    // The ID of protocol set in the project channel.
+    // +optional
+    string protocol_id = 22;
+    // The ID of secret encrypted data in the security service
+    // +optional
+    string secret_id = 23;
 }
 
 //{
@@ -337,6 +332,7 @@ message ProjectChannelInfo {
         ENABLED = 1;
         DISABLED = 2;
     }
+
     // The ID of project channel.
     string project_channel_id = 1;
     // The name of project channel
@@ -345,28 +341,30 @@ message ProjectChannelInfo {
     ProjectChannelState state = 3;
     // The data for using project channel.
     google.protobuf.Struct data = 4;
-    // The ID of secret encrypted data in the security service
-    string secret_id = 5;
     // Indicates whether subscriptions will be used.
-    bool is_subscribe = 6;
+    bool is_subscribe = 5;
     // The topic list to subscription.
-    repeated string subscriptions = 7;
-    // Set the level of notification.
-    NotificationLevel notification_level = 8;
+    repeated string subscriptions = 6;
     // Indicates whether schedule will be used.
-    bool is_scheduled = 9;
+    bool is_scheduled = 7;
     // Schedule for which you want to receive notifications through the project channel.
-    ProjectChannelSchedule schedule = 10;
+    ProjectChannelSchedule schedule = 8;
+    // Set the level of notification.
+    NotificationLevel notification_level = 9;
     // The tags for project channel.
-    google.protobuf.Struct tags = 11;
-    // The ID of protocol set in the project channel.
-    string protocol_id = 21;
-    // The ID of project to which the project channel belongs.
-    string project_id = 22;
-    // The ID of workspace
-    string workspace_id = 23;
+    google.protobuf.Struct tags = 10;
+
     // The ID of domain.
-    string domain_id = 24;
+    string domain_id = 21;
+    // The ID of workspace
+    string workspace_id = 22;
+    // The ID of project to which the project channel belongs.
+    string project_id = 23;
+    // The ID of protocol set in the project channel.
+    string protocol_id = 24;
+    // The ID of secret encrypted data in the security service
+    string secret_id = 25;
+
     // Project channel creation time.
     string created_at = 31;
 }
@@ -414,6 +412,4 @@ message ProjectChannelsInfo {
 message ProjectChannelStatQuery {
     // Statistics Query format provided by SpaceONE. Please check the link for more information.
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // The ID of domain.
-    string domain_id = 2;
 }
