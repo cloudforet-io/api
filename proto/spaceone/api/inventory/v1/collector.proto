@@ -251,20 +251,13 @@ message CollectorQuery {
         DISABLED = 2;
     }
 
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-
     spaceone.api.core.v1.Query query = 1;
     string collector_id = 2;
     string name = 3;
     State secret_filter_state = 4;
     State schedule_state = 5;
-    string plugin_id = 6;
-    ResourceGroup resource_group = 20;
     string workspace_id = 21;
+    string plugin_id = 22;
 }
 
 message CollectRequest {

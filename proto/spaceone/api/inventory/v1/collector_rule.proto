@@ -180,11 +180,10 @@ message CollectorRuleRequest {
 //    "query": {}
 //} 
 message CollectorRuleQuery {
-
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
+    enum RuleType {
+        RULE_TYPE_NONE = 0;
+        MANAGED = 1;
+        CUSTOM = 2;
     }
 
     // +optional
@@ -193,6 +192,8 @@ message CollectorRuleQuery {
     string collector_rule_id = 2;
     // +optional
     string name = 3;
+    // +optional
+    RuleType rule_type = 4;
     // +optional
     string workspace_id = 21;
     // +optional
@@ -235,7 +236,7 @@ message CollectorRuleInfo {
 
     string collector_rule_id = 1;
     string name = 2;
-    RuleType collector_rule_type = 3;
+    RuleType rule_type = 3;
     int32 order = 4;
     repeated CollectorRuleCondition conditions = 5;
     ConditionsPolicy conditions_policy = 6;
