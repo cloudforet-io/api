@@ -418,7 +418,7 @@ func RegisterSecretHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.secret.v1.Secret/GetData", runtime.WithHTTPPathPattern("/secret/v1/secret/get-data"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.secret.v1.Secret/GetData", runtime.WithHTTPPathPattern("/spaceone.api.secret.v1.Secret/get_data"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -645,7 +645,7 @@ func RegisterSecretHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.secret.v1.Secret/GetData", runtime.WithHTTPPathPattern("/secret/v1/secret/get-data"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.secret.v1.Secret/GetData", runtime.WithHTTPPathPattern("/spaceone.api.secret.v1.Secret/get_data"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -739,7 +739,7 @@ var (
 
 	pattern_Secret_UpdateData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"secret", "v1", "update-data"}, ""))
 
-	pattern_Secret_GetData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"secret", "v1", "get-data"}, ""))
+	pattern_Secret_GetData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.secret.v1.Secret", "get_data"}, ""))
 
 	pattern_Secret_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"secret", "v1", "get"}, ""))
 
