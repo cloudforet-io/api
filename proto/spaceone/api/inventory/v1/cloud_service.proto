@@ -158,9 +158,9 @@ message CreateServiceRequest {
     // +optional
     google.protobuf.Struct tags = 14;
     // +optional
-    string region_code = 21;
+    string region_code = 15;
     // +optional
-    string project_id = 22;
+    string project_id = 21;
 }
 
 //{
@@ -196,14 +196,9 @@ message UpdateCloudServiceRequest {
     // +optional
     google.protobuf.Struct tags = 14;
     // +optional
-    string region_code = 20;
+    string region_code = 15;
     // +optional
     string project_id = 21;
-}
-
-message PinCloudServiceDataRequest {
-    string cloud_service_id = 1;
-    repeated string keys = 2;
 }
 
 //{
@@ -234,23 +229,25 @@ message CloudServiceQuery {
     // +optional
     string state = 4;
     // +optional
-    string account = 5;
+    string ip_address = 5;
     // +optional
-    string instance_type = 6;
+    string account = 6;
     // +optional
-    string cloud_service_type = 7;
+    string instance_type = 7;
     // +optional
-    string cloud_service_group = 8;
+    string cloud_service_type = 8;
     // +optional
-    string provider = 9;
+    string cloud_service_group = 9;
     // +optional
-    string region_code = 10;
+    string provider = 10;
     // +optional
-    string ip_address = 11;
+    string region_code = 11;
     // +optional
-    string project_id = 21;
+    string workspace_id = 21;
     // +optional
-    string project_group_id = 22;
+    string project_id = 22;
+    // +optional
+    string project_group_id = 23;
 }
 
 //{
@@ -317,12 +314,13 @@ message CloudServiceInfo {
     string cloud_service_id = 1;
     string name = 2;
     string state = 3;
-    string account = 4;
-    string instance_type = 5;
-    float instance_size = 6;
-    string cloud_service_type = 7;
-    string cloud_service_group = 8;
-    string provider = 9;
+    repeated string ip_addresses = 4;
+    string account = 5;
+    string instance_type = 6;
+    float instance_size = 7;
+    string cloud_service_type = 8;
+    string cloud_service_group = 9;
+    string provider = 10;
 
     google.protobuf.Struct data = 11;
     google.protobuf.Struct metadata = 12;
@@ -330,12 +328,11 @@ message CloudServiceInfo {
     google.protobuf.Struct tags = 14;
     google.protobuf.Struct tag_keys = 15;
     repeated CollectionInfo collection_info = 16;
-    repeated string ip_addresses = 17;
+    string region_code = 17;
 
-    string region_code = 21;
-    string project_id = 22;
-    string workspace_id = 23;
-    string domain_id = 24;
+    string domain_id = 21;
+    string workspace_id = 22;
+    string project_id = 23;
 
     string created_at = 31;
     string updated_at = 32;

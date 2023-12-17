@@ -45,6 +45,12 @@ service JobTask {
     }
 }
 
+message ErrorInfo {
+    string error_code = 1;
+    string message = 2;
+    google.protobuf.Struct additional = 3;
+}
+
 //{
 //    "job_task_id": "job-task-123456789012",
 //}
@@ -71,15 +77,17 @@ message JobTaskQuery {
     // +optional
     JobTaskStatus status = 3;
     // +optional
-    string job_id = 4;
+    string provider = 4;
     // +optional
-    string secret_id = 5;
+    string workspace_id = 21;
     // +optional
-    string provider = 6;
+    string project_id = 22;
     // +optional
-    string service_account_id = 7;
+    string service_account_id = 23;
     // +optional
-    string project_id = 8;
+    string job_id = 24;
+    // +optional
+    string secret_id = 25;
 }
 
 //{
@@ -122,21 +130,20 @@ message JobTaskInfo {
     }
     string job_task_id = 1;
     JobTaskStatus status = 2;
-    int32 created_count = 3;
-    int32 updated_count = 4;
-    int32 failure_count = 5;
-    int32 deleted_count = 6;
-    int32 disconnected_count = 7;
-    repeated spaceone.api.inventory.v1.ErrorInfo errors = 9;
+    string provider = 3;
+    int32 created_count = 4;
+    int32 updated_count = 5;
+    int32 failure_count = 6;
+    int32 deleted_count = 7;
+    int32 disconnected_count = 8;
+    repeated ErrorInfo errors = 9;
 
-    string job_id = 11;
-    string secret_id = 12;
-    string provider = 13;
-    string service_account_id = 14;
-    string project_id = 15;
-
-    string workspace_id = 20;
     string domain_id = 21;
+    string workspace_id = 22;
+    string project_id = 23;
+    string service_account_id = 24;
+    string job_id = 25;
+    string secret_id = 26;
 
     string created_at = 31;
     string started_at = 32;
