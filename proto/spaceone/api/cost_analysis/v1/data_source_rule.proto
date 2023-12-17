@@ -46,7 +46,7 @@ service DataSourceRule {
     }
     
     // Gets a specific DataSourceRule. Prints detailed information about the DataSourceRule, including  `conditions_policy` and conditions applied to DataSources.
-    rpc get (GetDataSourceRuleRequest) returns (DataSourceRuleInfo) {
+    rpc get (DataSourceRuleRequest) returns (DataSourceRuleInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/data-source-rule/get"
             body: "*"
@@ -109,7 +109,6 @@ message DataSourceRuleOptions {
 //    "tags": {"b": "c", "a": "b"}
 //}
 message CreateDataSourceRuleRequest {
-
     enum ResourceGroup {
         RESOURCE_GROUP_NONE = 0;
         DOMAIN = 1;
@@ -127,7 +126,6 @@ message CreateDataSourceRuleRequest {
     DataSourceRuleOptions options = 6;
     // +optional
     google.protobuf.Struct tags = 7;
-    ResourceGroup resource_group = 8;
 }
 
 //{
@@ -181,11 +179,10 @@ message DataSourceRuleRequest {
 //  "query": {}
 //}
 message DataSourceRuleQuery {
-
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
+    enum RuleType {
+        RULE_TYPE_NONE = 0;
+        MANAGED = 1;
+        CUSTOM = 2;
     }
 
     // +optional
@@ -195,10 +192,11 @@ message DataSourceRuleQuery {
     // +optional
     string name = 3;
     // +optional
-    string rule_type = 4;
+    RuleType rule_type = 4;
     // +optional
-    string data_source_id = 5;
-    ResourceGroup resource_group = 6;
+    string workspace_id = 21;
+    // +optional
+    string data_source_id = 22;
 }
 
 //{
@@ -224,27 +222,31 @@ message DataSourceRuleQuery {
 //    "created_at": "2022-07-19T10:13:28.335Z"
 //}
 message DataSourceRuleInfo {
-
     enum ResourceGroup {
         RESOURCE_GROUP_NONE = 0;
         DOMAIN = 1;
         WORKSPACE = 2;
     }
+    enum RuleType {
+        RULE_TYPE_NONE = 0;
+        MANAGED = 1;
+        CUSTOM = 2;
+    }
 
     string data_source_rule_id = 1;
     string name = 2;
-    int32 order = 3;
-    repeated DataSourceRuleCondition conditions = 4;
-    ConditionsPolicy conditions_policy = 5;
-    DataSourceRuleActions actions = 6;
-    DataSourceRuleOptions options = 7;
-    google.protobuf.Struct tags = 8;
-    string rule_type = 9;
-    string data_source_id = 11;
-    ResourceGroup resource_group = 12;
+    RuleType rule_type = 3;
+    int32 order = 4;
+    repeated DataSourceRuleCondition conditions = 5;
+    ConditionsPolicy conditions_policy = 6;
+    DataSourceRuleActions actions = 7;
+    DataSourceRuleOptions options = 8;
+    google.protobuf.Struct tags = 9;
 
-    string workspace_id = 20;
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
+    string workspace_id = 22;
+    string data_source_id = 23;
 
     string created_at = 31;
 }

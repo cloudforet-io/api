@@ -136,24 +136,26 @@ message CreateBudgetRequest {
         PROJECT = 2;
     }
 
+
+    string data_source_id = 1;
     // +optional
-    string name = 1;
+    string name = 2;
     // +optional
-    float limit = 2;
+    float limit = 3;
     // +optional
-    repeated PlannedLimit planned_limits = 3;
+    repeated PlannedLimit planned_limits = 4;
     // +optional
-    ProviderFilter provider_filter = 4;
-    TimeUnit time_unit = 5;
-    string start = 6;
-    string end = 7;
+    ProviderFilter provider_filter = 5;
+    TimeUnit time_unit = 6;
+    string start = 7;
+    string end = 8;
     // +optional
-    repeated BudgetNotification notifications = 8;
+    repeated BudgetNotification notifications = 9;
     // +optional
-    google.protobuf.Struct tags = 9;
+    google.protobuf.Struct tags = 10;
+    ResourceGroup resource_group = 20;
     // +optional
     string project_id = 11;
-    string data_source_id = 13;
 }
 
 //{
@@ -220,12 +222,6 @@ message BudgetQuery {
         MONTHLY = 2;
     }
 
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        WORKSPACE = 1;
-        PROJECT = 2;
-    }
-
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -233,12 +229,13 @@ message BudgetQuery {
     // +optional
     string name = 3;
     // +optional
-    string project_id = 4;
+    TimeUnit time_unit = 4;
     // +optional
-    TimeUnit time_unit = 6;
+    string workspace_id = 21;
     // +optional
-    string data_source_id = 7;
-    ResourceGroup resource_group = 8;
+    string project_id = 22;
+    // +optional
+    string data_source_id = 23;
 }
 
 //{
@@ -338,10 +335,11 @@ message BudgetInfo {
     repeated BudgetNotification notifications = 10;
     google.protobuf.Struct tags = 11;
 
-    string data_source_id = 18;
-    string project_id = 19;
-    string workspace_id = 20;
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
+    string workspace_id = 22;
+    string project_id = 23;
+    string data_source_id = 24;
 
     string created_at = 31;
     string updated_at = 32;

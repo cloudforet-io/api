@@ -94,14 +94,14 @@ message CreateCostRequest {
     // +optional
     string resource = 8;
     // +optional
-    google.protobuf.Struct tags = 21;
+    google.protobuf.Struct tags = 9;
     // +optional
-    google.protobuf.Struct additional_info = 22;
+    google.protobuf.Struct additional_info = 10;
+    string project_id = 21;
     // +optional
-    string service_account_id = 31;
-    string project_id = 32;
-    string data_source_id = 33;
-    string billed_date = 41;
+    string service_account_id = 22;
+    string data_source_id = 23;
+    string billed_date = 31;
 }
 
 //{
@@ -117,31 +117,33 @@ message CostRequest {
 message CostQuery {
     // +optional
     spaceone.api.core.v1.Query query = 1;
+    string data_source_id = 2;
     // +optional
-    string cost_id = 2;
+    string cost_id = 3;
     // +optional
-    string provider = 3;
+    string provider = 4;
     // +optional
-    string region_code = 4;
+    string region_code = 5;
     // +optional
-    string region_key = 5;
+    string region_key = 6;
     // +optional
-    string product = 6;
+    string product = 7;
     // +optional
-    string usage_type = 7;
+    string usage_type = 8;
     // +optional
-    string resource = 8;
+    string resource = 9;
     // +optional
-    string service_account_id = 11;
+    string workspace_id = 21;
     // +optional
-    string project_id = 12;
-    string data_source_id = 14;
+    string project_id = 22;
     // +optional
-    string billed_year = 21;
+    string service_account_id = 23;
     // +optional
-    string billed_month = 22;
+    string billed_year = 31;
     // +optional
-    string billed_date = 23;
+    string billed_month = 32;
+    // +optional
+    string billed_date = 33;
 }
 
 
@@ -177,16 +179,19 @@ message CostInfo {
     string product = 8;
     string usage_type = 9;
     string resource = 10;
-    google.protobuf.Struct tags = 21;
-    google.protobuf.Struct additional_info = 22;
-    string service_account_id = 31;
-    string project_id = 32;
-    string data_source_id = 33;
-    string workspace_id = 34;
-    string domain_id = 35;
-    string billed_year = 41;
-    string billed_month = 42;
-    string billed_date = 43;
+    google.protobuf.Struct tags = 11;
+    google.protobuf.Struct additional_info = 12;
+
+    string domain_id = 21;
+    string workspace_id = 22;
+    string project_id = 23;
+    string service_account_id = 24;
+    string data_source_id = 25;
+
+
+    string billed_year = 31;
+    string billed_month = 32;
+    string billed_date = 33;
 }
 
 //{
@@ -245,5 +250,6 @@ message CostAnalyzeQuery {
 
 message CostStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
+    // +optional
     string data_source_id = 2;
 }

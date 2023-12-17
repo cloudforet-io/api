@@ -9,7 +9,6 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
-import "spaceone/api/inventory/v1/collector.proto";
 
 service Job {
     
@@ -72,12 +71,6 @@ message JobsQuery {
         TIMEOUT = 6;
     }
 
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -85,13 +78,70 @@ message JobsQuery {
     // +optional
     JobStatus status = 3;
     // +optional
-    string collector_id = 4;
+    string workspace_id = 21;
     // +optional
-    string secret_id = 5;
+    string collector_id = 22;
     // +optional
-    string plugin_id = 6;
+    string secret_id = 23;
     // +optional
-    ResourceGroup resource_group = 7;
+    string plugin_id = 24;
+}
+
+
+//{
+//      "job_id": "job-123456789012",
+//      "status": "ERROR",
+//      "filter": {},
+//      "total_tasks": 2,
+//      "collector_info": {
+//          "collector_id": "collector-123456789012",
+//          "name": "Jenkins Collector",
+//          "state": "ENABLED",
+//          "plugin_info": {
+//              "plugin_id": "plugin-jenkins-inven-collector",
+//              "version": "0.1.1"
+//          },
+//          "provider": "jenkins",
+//          "capability": {},
+//          "is_public": true
+//      },
+//      "domain_id": "domain-123456789012",
+//      "created_at": "2022-01-01T10:00:01.389Z",
+//      "updated_at": "2022-01-01T10:00:01.389Z",
+//      "finished_at": "2022-01-01T10:02:11.270Z"
+//}
+message JobInfo {
+    enum Status {
+        NONE = 0;
+        FAILURE = 1;
+        CANCELED = 2;
+        IN_PROGRESS = 3;
+        SUCCESS = 4;
+    }
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
+    string job_id = 1;
+    Status status = 2;
+    int32 total_tasks = 4;
+    int32 remained_tasks = 5;
+    int32 success_tasks = 6;
+    int32 failure_tasks = 7;
+
+    ResourceGroup resource_group = 20;
+    string domain_id = 21;
+    string workspace_id = 22;
+    string collector_id = 23;
+    string secret_id = 24;
+    string plugin_id = 25;
+
+    string created_at = 31;
+    string updated_at = 32;
+    string finished_at = 33;
 }
 
 //{

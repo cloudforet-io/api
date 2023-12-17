@@ -61,7 +61,9 @@ message CloudServiceStatsQuery {
     // +optional
     string account = 7;
     // +optional
-    string project_id = 11;
+    string workspace_id = 21;
+    // +optional
+    string project_id = 22;
 }
 
 //{
@@ -97,12 +99,11 @@ message CloudServiceStatInfo {
     string cloud_service_type = 6;
     string region_code = 7;
     string account = 8;
+    google.protobuf.Struct additional_info = 9;
 
-    google.protobuf.Struct additional_info = 11;
-
-    string project_id = 21;
+    string domain_id = 21;
     string workspace_id = 22;
-    string domain_id = 23;
+    string project_id = 23;
 
     string created_date = 31;
 }

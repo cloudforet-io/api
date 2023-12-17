@@ -186,16 +186,16 @@ message RegisterDataSourceRequest {
     // +optional
     string provider = 3;
     // +optional
-    google.protobuf.Struct template = 4;
+    SecretType secret_type = 4;
     // +optional
-    PluginInfo plugin_info = 5;
+    SecretFilter secret_filter = 5;
     // +optional
-    google.protobuf.Struct tags = 6;
+    google.protobuf.Struct template = 6;
     // +optional
-    SecretType secret_type = 7;
+    PluginInfo plugin_info = 7;
     // +optional
-    SecretFilter secret_filter = 8;
-    ResourceGroup resource_group = 9;
+    google.protobuf.Struct tags = 8;
+    ResourceGroup resource_group = 20;
 }
 
 //{
@@ -210,11 +210,11 @@ message UpdateDataSourceRequest {
     // +optional
     string name = 2;
     // +optional
-    google.protobuf.Struct template = 3;
+    SecretFilter secret_filter = 3;
     // +optional
-    google.protobuf.Struct tags = 4;
+    google.protobuf.Struct template = 4;
     // +optional
-    SecretFilter secret_filter = 5;
+    google.protobuf.Struct tags = 5;
 }
 
 //{
@@ -249,7 +249,6 @@ message DeregisterDataSourceRequest {
     // Default value is true. If true delete all cost data related to data_source_id
     // +optional
     bool cascade_delete_cost = 2;
-    string domain_id = 3;
 }
 
 message SyncDataSourceRequest {
@@ -272,15 +271,9 @@ message DataSourceRequest {
 //}
 message DataSourceQuery {
     enum DataSourceType {
-        NONE = 0;
+        TYPE_NONE = 0;
         LOCAL = 1;
         EXTERNAL = 2;
-    }
-
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
     }
 
     // +optional
@@ -295,7 +288,8 @@ message DataSourceQuery {
     DataSourceType data_source_type = 5;
     // +optional
     string provider = 6;
-    ResourceGroup resource_group = 7;
+    // +optional
+    string workspace_id = 21;
 }
 
 //{
@@ -382,18 +376,18 @@ message DataSourceInfo {
     State state = 3;
     DataSourceType data_source_type = 4;
     string provider = 5;
-    PluginInfo plugin_info = 6;
-    SecretType secret_type = 7;
-    SecretFilter secret_filter = 8;
+    SecretType secret_type = 6;
+    SecretFilter secret_filter = 7;
+    PluginInfo plugin_info = 8;
     google.protobuf.Struct template = 9;
     google.protobuf.Struct tags = 10;
     repeated string cost_tag_keys = 11;
     repeated string cost_additional_info_keys = 12;
     repeated string cost_data_keys = 13;
-    ResourceGroup resource_group = 14;
 
-    string workspace_id = 20;
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
+    string workspace_id = 22;
 
     string created_at = 31;
     string last_synchronized_at = 32;

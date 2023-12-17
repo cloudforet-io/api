@@ -125,8 +125,8 @@ message CreateCloudServiceQuerySetRequest {
     string cloud_service_group = 5;
     string cloud_service_type = 6;
     // +optional
-    google.protobuf.Struct tags = 11;
-    ResourceGroup resource_group = 12;
+    google.protobuf.Struct tags = 7;
+    ResourceGroup resource_group = 20;
 }
 
 //{
@@ -151,7 +151,7 @@ message UpdateCloudServiceQuerySetRequest {
     // +optional
     google.protobuf.Struct unit = 4;
     // +optional
-    google.protobuf.Struct tags = 11;
+    google.protobuf.Struct tags = 5;
 }
 
 //{
@@ -178,17 +178,10 @@ message CloudServiceQuerySetQuery {
         ENABLED = 1;
         DISABLED = 2;
     }
-
     enum QueryType {
         NONE_QUERY_TYPE = 0;
         MANAGED = 1;
         CUSTOM = 2;
-    }
-
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
     }
 
     // +optional
@@ -207,7 +200,9 @@ message CloudServiceQuerySetQuery {
     string cloud_service_group = 7;
     // +optional
     string cloud_service_type = 8;
-    ResourceGroup resource_group = 9;
+    // +optional
+    string workspace_id = 21;
+
 }
 
 //{
@@ -269,15 +264,14 @@ message CloudServiceQuerySetInfo {
     string provider = 9;
     string cloud_service_group = 10;
     string cloud_service_type = 11;
+    google.protobuf.Struct tags = 12;
 
-    google.protobuf.Struct tags = 21;
-    ResourceGroup resource_group = 22;
+    ResourceGroup resource_group = 20;
+    string domain_id = 21;
+    string workspace_id = 22;
 
-    string workspace_id = 30;
-    string domain_id = 31;
-
-    string created_at = 41;
-    string updated_at = 42;
+    string created_at = 31;
+    string updated_at = 32;
 }
 
 //{

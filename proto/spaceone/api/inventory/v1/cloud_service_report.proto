@@ -102,15 +102,15 @@ message CreateCloudServiceReportRequest {
     repeated spaceone.api.core.v1.ExportOption options = 2;
     // +optional
     FileFormat file_format = 3;
-    ReportSchedule schedule = 4;
-    google.protobuf.Struct target = 5;
     // +optional
-    string timezone = 6;
+    string timezone = 4;
     // +optional
-    string language = 7;
+    string language = 5;
+    ReportSchedule schedule = 6;
+    google.protobuf.Struct target = 7;
     // +optional
-    google.protobuf.Struct tags = 11;
-    ResourceGroup resource_group = 12;
+    google.protobuf.Struct tags = 8;
+    ResourceGroup resource_group = 20;
 }
 
 
@@ -129,15 +129,15 @@ message UpdateCloudServiceReportRequest {
     // +optional
     FileFormat file_format = 4;
     // +optional
-    ReportSchedule schedule = 5;
+    string timezone = 5;
     // +optional
-    google.protobuf.Struct target = 6;
+    string language = 6;
     // +optional
-    string timezone = 7;
+    ReportSchedule schedule = 7;
     // +optional
-    string language = 8;
+    google.protobuf.Struct target = 8;
     // +optional
-    google.protobuf.Struct tags = 11;
+    google.protobuf.Struct tags = 9;
 }
 
 message CloudServiceReportRequest {
@@ -151,6 +151,8 @@ message CloudServiceReportQuery {
     string report_id = 2;
     // +optional
     string name = 3;
+    // +optional
+    string workspace_id = 21;
 }
 
 message CloudServiceReportInfo {
@@ -170,16 +172,15 @@ message CloudServiceReportInfo {
     string name = 2;
     repeated spaceone.api.core.v1.ExportOption options = 3;
     FileFormat file_format = 4;
-    ReportSchedule schedule = 5;
-    google.protobuf.Struct target = 6;
-    string timezone = 7;
-    string language = 8;
+    string timezone = 5;
+    string language = 6;
+    ReportSchedule schedule = 7;
+    google.protobuf.Struct target = 8;
+    google.protobuf.Struct tags = 9;
 
-    google.protobuf.Struct tags = 11;
-    ResourceGroup resource_group = 12;
-
-    string workspace_id = 20;
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
+    string workspace_id = 22;
 
     string created_at = 31;
     string last_sent_at = 32;

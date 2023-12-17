@@ -9,6 +9,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/inventory/v1/job.proto";
 
 
 service Collector {
@@ -76,7 +77,7 @@ service Collector {
         };
     }
 
-    rpc collect (CollectRequest) returns (JobInfo) {
+    rpc collect (CollectRequest) returns (spaceone.api.inventory.v1.JobInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/collector/collect"
             body: "*"
@@ -176,10 +177,10 @@ message CreateCollectorRequest {
     // +optional
     string provider = 4;
     // +optional
-    google.protobuf.Struct tags = 5;
+    SecretFilter secret_filter = 5;
     // +optional
-    SecretFilter secret_filter = 6;
-    ResourceGroup resource_group = 7;
+    google.protobuf.Struct tags = 6;
+    ResourceGroup resource_group = 20;
 }
 
 //{
@@ -250,19 +251,13 @@ message CollectorQuery {
         DISABLED = 2;
     }
 
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-
     spaceone.api.core.v1.Query query = 1;
     string collector_id = 2;
     string name = 3;
     State secret_filter_state = 4;
     State schedule_state = 5;
-    string plugin_id = 6;
-    ResourceGroup resource_group = 7;
+    string workspace_id = 21;
+    string plugin_id = 22;
 }
 
 message CollectRequest {
@@ -338,18 +333,19 @@ message CollectorInfo {
 
     string collector_id = 1;
     string name = 2;
-    PluginInfo plugin_info = 4;
-    google.protobuf.Struct tags = 5;
-    string provider = 6;
-    google.protobuf.Struct capability = 7;
-    Scheduled schedule = 8;
-    SecretFilter secret_filter = 9;
-    string created_at = 11;
-    string last_collected_at = 12;
-    ResourceGroup resource_group = 13;
+    string provider = 3;
+    google.protobuf.Struct capability = 4;
+    SecretFilter secret_filter = 5;
+    PluginInfo plugin_info = 6;
+    Scheduled schedule = 7;
+    google.protobuf.Struct tags = 8;
 
-    string workspace_id = 20;
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
+    string workspace_id = 22;
+
+    string created_at = 31;
+    string last_collected_at = 32;
 }
 
 //{
@@ -457,282 +453,3 @@ message CollectorsInfo {
 message CollectorStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
 }
-
-message VerifyInfo {
-    bool status = 1;
-}
-
-message ErrorInfo {
-    string error_code = 1;
-    string message = 2;
-    google.protobuf.Struct additional = 3;
-}
-
-//{
-//      "job_id": "job-123456789012",
-//      "status": "ERROR",
-//      "filter": {},
-//      "total_tasks": 2,
-//      "collector_info": {
-//          "collector_id": "collector-123456789012",
-//          "name": "Jenkins Collector",
-//          "state": "ENABLED",
-//          "plugin_info": {
-//              "plugin_id": "plugin-jenkins-inven-collector",
-//              "version": "0.1.1"
-//          },
-//          "provider": "jenkins",
-//          "capability": {},
-//          "is_public": true
-//      },
-//      "domain_id": "domain-123456789012",
-//      "created_at": "2022-01-01T10:00:01.389Z",
-//      "updated_at": "2022-01-01T10:00:01.389Z",
-//      "finished_at": "2022-01-01T10:02:11.270Z"
-//}
-message JobInfo {
-    enum Status {
-        NONE = 0;
-        FAILURE = 1;
-        CANCELED = 2;
-        IN_PROGRESS = 3;
-        SUCCESS = 4;
-    }
-
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-
-    string job_id = 1;
-    Status status = 2;
-    int32 total_tasks = 4;
-    int32 remained_tasks = 5;
-    int32 success_tasks = 6;
-    int32 failure_tasks = 7;
-    ResourceGroup resource_group = 8;
-
-    string collector_id = 11;
-    string secret_id = 12;
-    string plugin_id = 13;
-
-    string workspace_id = 20;
-    string domain_id = 21;
-
-    string created_at = 31;
-    string updated_at = 32;
-    string finished_at = 33;
-}
-
-//{
-//    "collector_id": "collector-2c0847644f39",
-//    "name": "regular collection",
-//    "schedule": {
-//        "hours": [16, 18, 20, 22, 0]
-//    }
-//}
-message CreateScheduleRequest {
-    string domain_id = 1;
-    string collector_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    string collect_mode = 4;
-    Scheduled schedule = 5;
-    // +optional
-    google.protobuf.Struct filter = 6;
-}
-
-//{
-//    "schedule_id": "sched-dfb2f6ef84bc",
-//    "collector_id": "collector-2c0847644f39",
-//    "name": "regular collection",
-//    "collect_mode": "ALL",
-//    "schedule": {
-//        "hours": [2, 4, 6, 8, 0]
-//    },
-//    "filter": {}
-//}
-message UpdateScheduleRequest {
-    string domain_id = 1;
-    string schedule_id = 2;
-    string collector_id = 3;
-    // +optional
-    string name = 4;
-    // +optional
-    string collect_mode = 5;
-    // +optional
-    Scheduled schedule = 6;
-    // +optional
-    google.protobuf.Struct filter = 7;
-}
-
-//{
-//    "collector_id": "collector-2c0847644f39",
-//    "schedule_id": "sched-dfb2f6ef84bc"
-//}
-message ScheduleRequest {
-    string domain_id = 1;
-    string schedule_id = 2;
-    string collector_id = 3;
-}
-
-//{
-//    "schedule_id": "sched-dfb2f6ef84bc",
-//    "collector_id": "collector-2c0847644f39"
-//}
-message DeleteScheduleRequest {
-    string domain_id = 1;
-    string schedule_id = 2;
-    string collector_id = 3;
-}
-
-//{
-//    "collector_id": "collector-f2e4e9cc7f21"
-//}
-message ScheduleQuery {
-    // +optional
-    spaceone.api.core.v1.Query query = 1;
-    string collector_id = 2;
-    // +optional
-    string schedule_id = 3;
-    string domain_id = 4;
-}
-
-//{
-//    "schedule_id": "sched-dfb2f6ef84bc",
-//    "name": "regular collection",
-//    "collect_mode": "ALL",
-//    "schedule": {
-//        "hours": [
-//            16,
-//            18,
-//            20,
-//            22,
-//            0
-//        ]
-//    },
-//    "created_at": "2022-06-17T07:12:07.374Z",
-//    "collector_info": {
-//        "collector_id": "collector-2c0847644f39",
-//        "name": "AWS stat-kwon Collector",
-//        "state": "ENABLED",
-//        "plugin_info": {
-//            "plugin_id": "plugin-30d21ef75a5d",
-//            "version": "1.13.13.20220610.143142",
-//            "options": {},
-//            "provider": "aws",
-//            "metadata": {
-//                "supported_resource_type": [
-//                    "inventory.CloudService",
-//                    "inventory.CloudServiceType",
-//                    "inventory.Region"
-//                ],
-//                "supported_features": [
-//                    "garbage_collection"
-//                ],
-//                "filter_format": [],
-//                "supported_schedules": [
-//                    "hours"
-//                ]
-//            },
-//            "upgrade_mode": "MANUAL"
-//        },
-//        "priority": 10,
-//        "tags": {
-//            "a": "b"
-//        },
-//        "created_at": "2022-06-17T06:33:27.195Z",
-//        "domain_id": "domain-58010aa2e451",
-//        "provider": "aws",
-//        "capability": {
-//            "supported_schema": [
-//                "aws_access_key"
-//            ]
-//        },
-//        "is_public": true
-//    },
-//    "filter": {}
-//}
-message ScheduleInfo {
-    string domain_id = 1;
-    string schedule_id = 2;
-    string name = 3;
-    string collect_mode = 4;
-    Scheduled schedule = 5;
-    string created_at = 10;
-    string last_scheduled_at = 11;
-    CollectorInfo collector_info = 20;
-    google.protobuf.Struct filter = 21;
-}
-
-//{
-//    "results": [
-//            {
-//                "schedule_id": "sched-572819cabe90",
-//                "name": "daily",
-//                "collect_mode": "ALL",
-//                "schedule": {
-//                    "hours": [
-//                        15,
-//                        16,
-//                        18,
-//                        21,
-//                        0,
-//                        3,
-//                        4,
-//                        6,
-//                        9,
-//                        12
-//                    ]
-//                },
-//                "created_at": "2021-03-13T14:32:46.137Z",
-//                "collector_info": {
-//                    "collector_id": "collector-f2e4e9cc7f21",
-//                    "name": "AWS Cloud Service Collector",
-//                    "state": "ENABLED",
-//                    "plugin_info": {
-//                        "plugin_id": "plugin-30d21ef75a5d",
-//                        "version": "1.13.13.20220610.143142",
-//                        "options": {},
-//                        "provider": "aws",
-//                        "metadata": {
-//                            "supported_features": [
-//                                "garbage_collection"
-//                            ],
-//                            "supported_schedules": [
-//                                "hours"
-//                            ],
-//                            "filter_format": [],
-//                            "supported_resource_type": [
-//                                "inventory.CloudService",
-//                                "inventory.CloudServiceType",
-//                                "inventory.Region"
-//                            ]
-//                        },
-//                        "upgrade_mode": "AUTO"
-//                    },
-//                    "priority": 10,
-//                    "tags": {},
-//                    "created_at": "2021-03-08T06:49:27.876Z",
-//                    "last_collected_at": "2022-06-17T06:00:07.162Z",
-//                    "domain_id": "domain-58010aa2e451",
-//                    "provider": "aws",
-//                    "capability": {
-//                        "supported_schema": [
-//                            "aws_access_key"
-//                        ]
-//                    },
-//                    "is_public": true
-//                },
-//                "filter": {}
-//            }
-//    ],
-//    "total_count": 1
-//}
-message SchedulesInfo {
-    repeated ScheduleInfo results = 1;
-    int32 total_count = 2;
-}
-
