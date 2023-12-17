@@ -49,6 +49,13 @@ message BudgetUsageProviderFilter {
 //    "query": {}
 //}
 message BudgetUsageQuery {
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        WORKSPACE = 1;
+        PROJECT = 2;
+    }
+
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -59,7 +66,7 @@ message BudgetUsageQuery {
     string name = 4;
     // +optional
     string date = 5;
-    string domain_id = 11;
+    ResourceGroup resource_group = 6;
 }
 
 //{
@@ -82,6 +89,13 @@ message BudgetUsageQuery {
 //    "updated_at": "2022-07-19T04:26:08.099Z"
 //}
 message BudgetUsageInfo {
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        WORKSPACE = 1;
+        PROJECT = 2;
+    }
+
     string budget_id = 1;
     string name = 2;
     string date = 3;
@@ -89,11 +103,14 @@ message BudgetUsageInfo {
     float limit = 6;
     string currency = 7;
     BudgetUsageProviderFilter provider_filter = 8;
-    string project_id = 11;
-    string project_group_id = 12;
+    ResourceGroup resource_group = 9;
     string data_source_id = 13;
-    string domain_id = 14;
-    string updated_at = 21;
+
+    string project_id = 19;
+    string workspace_id = 20;
+    string domain_id = 21;
+
+    string updated_at = 31;
 }
 
 //{
@@ -147,7 +164,6 @@ message BudgetUsageAnalyzeQuery {
     string budget_id = 2;
     // +optional
     string data_source_id = 3;
-    string domain_id = 4;
 }
 
 message BudgetUsageStatQuery {
@@ -156,5 +172,4 @@ message BudgetUsageStatQuery {
     string budget_id = 2;
     // +optional
     string data_source_id = 3;
-    string domain_id = 4;
 }

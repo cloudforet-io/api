@@ -78,7 +78,7 @@ service DataSource {
     }
 
     // Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.
-    rpc get (GetDataSourceRequest) returns (DataSourceInfo) {
+    rpc get (DataSourceRequest) returns (DataSourceInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/data-source/get"
             body: "*"
@@ -175,6 +175,12 @@ message RegisterDataSourceRequest {
         USE_SERVICE_ACCOUNT_SECRET = 2;
     }
 
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string name = 1;
     DataSourceType data_source_type = 2;
     // +optional
@@ -189,7 +195,7 @@ message RegisterDataSourceRequest {
     SecretType secret_type = 7;
     // +optional
     SecretFilter secret_filter = 8;
-    string domain_id = 11;
+    ResourceGroup resource_group = 9;
 }
 
 //{
@@ -209,7 +215,6 @@ message UpdateDataSourceRequest {
     google.protobuf.Struct tags = 4;
     // +optional
     SecretFilter secret_filter = 5;
-    string domain_id = 11;
 }
 
 //{
@@ -232,7 +237,6 @@ message UpdateDataSourcePluginRequest {
     google.protobuf.Struct options = 3;
     // +optional
     UpgradeMode upgrade_mode = 4;
-    string domain_id = 11;
 }
 
 //{
@@ -254,7 +258,6 @@ message SyncDataSourceRequest {
     string start = 2;
     // +optional
     bool no_preload_cache = 3;
-    string domain_id = 11;
 }
 
 //{
@@ -262,14 +265,6 @@ message SyncDataSourceRequest {
 //}
 message DataSourceRequest {
     string data_source_id = 1;
-    string domain_id = 2;
-}
-
-message GetDataSourceRequest {
-    string data_source_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -280,6 +275,12 @@ message DataSourceQuery {
         NONE = 0;
         LOCAL = 1;
         EXTERNAL = 2;
+    }
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
     }
 
     // +optional
@@ -294,7 +295,7 @@ message DataSourceQuery {
     DataSourceType data_source_type = 5;
     // +optional
     string provider = 6;
-    string domain_id = 11;
+    ResourceGroup resource_group = 7;
 }
 
 //{
@@ -370,6 +371,12 @@ message DataSourceInfo {
         USE_SERVICE_ACCOUNT_SECRET = 2;
     }
 
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string data_source_id = 1;
     string name = 2;
     State state = 3;
@@ -383,7 +390,11 @@ message DataSourceInfo {
     repeated string cost_tag_keys = 11;
     repeated string cost_additional_info_keys = 12;
     repeated string cost_data_keys = 13;
+    ResourceGroup resource_group = 14;
+
+    string workspace_id = 20;
     string domain_id = 21;
+
     string created_at = 31;
     string last_synchronized_at = 32;
 }
@@ -453,8 +464,5 @@ message DataSourcesInfo {
 }
 
 message DataSourceStatQuery {
-    
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    
-    string domain_id = 2;
 }
