@@ -45,7 +45,7 @@ service EventRule {
     }
     
     // Gets a specific EventRule. Prints detailed information about the EventRule.
-    rpc get (GetEventRuleRequest) returns (EventRuleInfo) {
+    rpc get (EventRuleRequest) returns (EventRuleInfo) {
         option (google.api.http) = {
             post: "/monitoring/v1/event-rule/get"
             body: "*"
@@ -118,6 +118,12 @@ message CreateEventRuleRequest {
         ANY = 2;
         ALWAYS = 3;
     }
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        WORKSPACE = 1;
+        PROJECT = 2;
+    }
     
     string name = 1;
     repeated EventRuleCondition conditions = 2;
@@ -129,7 +135,7 @@ message CreateEventRuleRequest {
     string project_id = 6;
     // +optional
     google.protobuf.Struct tags = 7;
-    string domain_id = 11;
+    ResourceGroup resource_group = 8;
 }
 
 //{
@@ -165,7 +171,6 @@ message UpdateEventRuleRequest {
     EventRuleOptions options = 6;
     // +optional
     google.protobuf.Struct tags = 7;
-    string domain_id = 11;
 }
 
 //{
@@ -176,7 +181,6 @@ message UpdateEventRuleRequest {
 message ChangeEventRuleOrderRequest {
     string event_rule_id = 1;
     int32 order = 2;
-    string domain_id = 11;
 }
 
 //{
@@ -186,18 +190,6 @@ message ChangeEventRuleOrderRequest {
 //}
 message EventRuleRequest {
     string event_rule_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//    "event_rule_id": "er-123456789012",
-//    "domain_id": "domain-123456789012"
-//}
-message GetEventRuleRequest {
-    string event_rule_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -205,9 +197,10 @@ message GetEventRuleRequest {
 //    "domain_id": "domain-123456789012"
 //}
 message EventRuleQuery {
-    enum EventRuleScope {
-        SCOPE_NONE = 0;
-        GLOBAL = 1;
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        WORKSPACE = 1;
         PROJECT = 2;
     }
 
@@ -218,10 +211,9 @@ message EventRuleQuery {
     // +optional
     string name = 3;
     // +optional
-    EventRuleScope scope = 4;
+    ResourceGroup resource_group = 4;
     // +optional
     string project_id = 5;
-    string domain_id = 11;
 }
 
 //{
@@ -252,17 +244,18 @@ message EventRuleQuery {
 //      "created_at": "2022-01-02T06:02:31.517Z"
 //}
 message EventRuleInfo {
-    enum EventRuleScope {
-        SCOPE_NONE = 0;
-        GLOBAL = 1;
-        PROJECT = 2;
-    }
 
     enum ConditionsPolicy {
         NONE = 0;
         ALL = 1;
         ANY = 2;
         ALWAYS = 3;
+    }
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        WORKSPACE = 1;
+        PROJECT = 2;
     }
 
     string event_rule_id = 1;
@@ -272,11 +265,14 @@ message EventRuleInfo {
     ConditionsPolicy conditions_policy = 5;
     EventRuleActions actions = 6;
     EventRuleOptions options = 7;
-    EventRuleScope scope = 8;
     string project_id = 9;
     google.protobuf.Struct tags = 10;
-    string domain_id = 11;
-    string created_at = 21;
+    ResourceGroup resource_group = 11;
+
+    string workspace_id = 20;
+    string domain_id = 21;
+
+    string created_at = 31;
 }
 
 //{
@@ -340,5 +336,4 @@ message EventRulesInfo {
 
 message EventRuleStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }

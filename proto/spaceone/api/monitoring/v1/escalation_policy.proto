@@ -45,7 +45,7 @@ service EscalationPolicy {
     }
     
     // Gets a specific EscalationPolicy. Prints detailed information about the EscalationPolicy, including the name, rules, and termination conditions.
-    rpc get (GetEscalationPolicyRequest) returns (EscalationPolicyInfo) {
+    rpc get (EscalationPolicyRequest) returns (EscalationPolicyInfo) {
         option (google.api.http) = {
             post: "/monitoring/v1/escalation-policy/get"
             body: "*"
@@ -97,6 +97,12 @@ message CreateEscalationPolicyRequest {
         ACKNOWLEDGED = 1;
         RESOLVED = 2;
     }
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        WORKSPACE = 1;
+        PROJECT = 2;
+    }
     
     string name = 1;
     repeated EscalationPolicyRule rules = 2;
@@ -108,7 +114,7 @@ message CreateEscalationPolicyRequest {
     string project_id = 5;
     // +optional
     google.protobuf.Struct tags = 6;
-    string domain_id = 11;
+    ResourceGroup resource_group = 7;
 }
 
 //{
@@ -139,7 +145,6 @@ message UpdateEscalationPolicyRequest {
     EscalationFinishCondition finish_condition = 5;
     // +optional
     google.protobuf.Struct tags = 6;
-    string domain_id = 11;
 }
 
 //{
@@ -148,18 +153,6 @@ message UpdateEscalationPolicyRequest {
 //}
 message EscalationPolicyRequest {
     string escalation_policy_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//    "escalation_policy_id": "ep-d75670166af4",
-//    "domain_id": "domain-58010aa2e451"
-//}
-message GetEscalationPolicyRequest {
-    string escalation_policy_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -167,16 +160,17 @@ message GetEscalationPolicyRequest {
 //    "domain_id": "domain-58010aa2e451"
 //}
 message EscalationPolicyQuery {
-    enum EscalationPolicyScope {
-        SCOPE_NONE = 0;
-        DOMAIN = 1;
-        PROJECT = 2;
-    }
 
     enum EscalationFinishCondition {
         NONE = 0;
         ACKNOWLEDGED = 1;
         RESOLVED = 2;
+    }
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        WORKSPACE = 1;
+        PROJECT = 2;
     }
 
     // +optional
@@ -189,11 +183,9 @@ message EscalationPolicyQuery {
     bool is_default = 4;
     // +optional
     EscalationFinishCondition finish_condition = 5;
-    // +optional
-    EscalationPolicyScope scope = 6;
+    ResourceGroup resource_group = 6;
     // +optional
     string project_id = 7;
-    string domain_id = 11;
 }
 
 //{
@@ -217,16 +209,17 @@ message EscalationPolicyQuery {
 //        "created_at": "2022-06-21T09:22:45.340Z"
 //}
 message EscalationPolicyInfo {
-    enum EscalationPolicyScope {
-        SCOPE_NONE = 0;
-        DOMAIN = 1;
-        PROJECT = 2;
-    }
 
     enum EscalationFinishCondition {
         NONE = 0;
         ACKNOWLEDGED = 1;
         RESOLVED = 2;
+    }
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        WORKSPACE = 1;
+        PROJECT = 2;
     }
 
     string escalation_policy_id = 1;
@@ -235,9 +228,10 @@ message EscalationPolicyInfo {
     repeated EscalationPolicyRule rules = 4;
     int32 repeat_count = 5;
     EscalationFinishCondition finish_condition = 6;
-    EscalationPolicyScope scope = 7;
+    ResourceGroup resource_group = 7;
     string project_id = 8;
     google.protobuf.Struct tags = 9;
+    string workspace_id = 10;
     string domain_id = 11;
     string created_at = 21;
 }
@@ -286,5 +280,4 @@ message EscalationPoliciesInfo {
 
 message EscalationPolicyStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }

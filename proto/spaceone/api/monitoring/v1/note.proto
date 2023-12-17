@@ -37,7 +37,7 @@ service Note {
     }
     
     // Gets a specific Note. You must specify the `note_id` and `domain_id`.
-    rpc get (GetNoteRequest) returns (NoteInfo) {
+    rpc get (NoteRequest) returns (NoteInfo) {
         option (google.api.http) = {
             post: "/monitoring/v1/note/get"
             body: "*"
@@ -63,44 +63,27 @@ service Note {
 //{
 //    "alert_id": "alert-160ce04f6908",
 //    "note": "This is a description",
-//    "domain_id": "domain-58010aa2e451"
 //}
 message CreateNoteRequest {
     string alert_id = 1;
     string note = 2;
-    string domain_id = 11;
 }
 
 //{
 //    "note_id": "note-df107d31bf20",
 //    "note": "This is a test",
-//    "domain_id": "domain-58010aa2e451"
 //}
 message UpdateNoteRequest {
     string note_id = 1;
     // +optional
     string note = 2;
-    string domain_id = 11;
 }
 
 //{
 //    "note_id": "note-0bfac585bf5a",
-//    "domain_id": "domain-58010aa2e451"
 //}
 message NoteRequest {
     string note_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//    "note_id": "note-0bfac585bf5a",
-//    "domain_id": "domain-58010aa2e451"
-//}
-message GetNoteRequest {
-    string note_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -118,8 +101,6 @@ message NoteQuery {
     string created_by = 4;
     // +optional
     string project_id = 5;
-    // +optional
-    string domain_id = 6;
 }
 
 //{
@@ -136,9 +117,12 @@ message NoteInfo {
     string alert_id = 2;
     string note = 3;
     string created_by = 11;
-    string project_id = 12;
-    string domain_id = 13;
-    string created_at = 21;
+
+    string project_id = 19;
+    string workspace_id = 20;
+    string domain_id = 21;
+
+    string created_at = 31;
 }
 
 //{
@@ -171,5 +155,4 @@ message NotesInfo {
 
 message NoteStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }

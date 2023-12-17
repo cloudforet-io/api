@@ -38,7 +38,7 @@ service ProjectAlertConfig {
     }
     
     // Gets a specific ProjectAlertConfig. Prints detailed information about the ProjectAlertConfig, including EscalationPolicy, recovery mode, and notification urgency.
-    rpc get (GetProjectAlertConfigRequest) returns (ProjectAlertConfigInfo) {
+    rpc get (ProjectAlertConfigRequest) returns (ProjectAlertConfigInfo) {
         option (google.api.http) = {
             post: "/monitoring/v1/project-alert-config/get"
             body: "*"
@@ -93,7 +93,6 @@ message CreateProjectAlertConfigRequest {
     string escalation_policy_id = 2;
     // +optional
     AlertOptions options = 3;
-    string domain_id = 11;
 }
 
 //{
@@ -111,7 +110,6 @@ message UpdateProjectAlertConfigRequest {
     string escalation_policy_id = 2;
     // +optional
     AlertOptions options = 3;
-    string domain_id = 11;
 }
 
 //{
@@ -120,18 +118,6 @@ message UpdateProjectAlertConfigRequest {
 //}
 message ProjectAlertConfigRequest {
     string project_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//    "project_id": "project-430bf6ab1e6d",
-//    "domain_id": "domain-58010aa2e451"
-//}
-message GetProjectAlertConfigRequest {
-    string project_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -145,7 +131,6 @@ message ProjectAlertConfigQuery {
     string project_id = 2;
     // +optional
     string escalation_policy_id = 3;
-    string domain_id = 11;
 }
 
 //{
@@ -166,6 +151,7 @@ message ProjectAlertConfigInfo {
     AlertOptions options = 2;
     spaceone.api.monitoring.v1.EscalationPolicyInfo escalation_policy_info = 3;
     string domain_id = 11;
+    string workspace_id = 20;
     string created_at = 21;
 }
 
@@ -208,5 +194,4 @@ message ProjectAlertConfigsInfo {
 
 message ProjectAlertConfigStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }

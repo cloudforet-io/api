@@ -58,13 +58,9 @@ message CreateEventRequest {
 
 //{
 //    "event_id": "event-4e16ba3bd384",
-//    "domain_id": "domain-58010aa2e451"
 //}
 message GetEventRequest {
     string event_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -94,8 +90,6 @@ message EventQuery {
     string webhook_id = 12;
     // +optional
     string project_id = 13;
-    // +optional
-    string domain_id = 14;
 }
 
 //{
@@ -152,8 +146,11 @@ message EventInfo {
     google.protobuf.Struct additional_info = 22;
     string alert_id = 31;
     string webhook_id = 32;
+
     string project_id = 33;
-    string domain_id = 34;
+    string workspace_id = 34;
+    string domain_id = 35;
+
     string created_at = 41;
     string occurred_at = 42;
 }
@@ -248,5 +245,4 @@ message EventsInfo {
 
 message EventStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }

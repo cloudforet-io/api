@@ -37,49 +37,6 @@ service Alert {
         };
     }
     
-    rpc merge (MergeAlertRequest) returns (AlertInfo) {
-        option (google.api.http) = {
-            post: "/monitoring/v1/alert/merge"
-            body: "*"
-        };
-    }
-    
-    rpc snooze (SnoozeAlertRequest) returns (AlertInfo) {
-        option (google.api.http) = {
-            post: "/monitoring/v1/alert/snooze"
-            body: "*"
-        };
-    }
-    
-    // Adds a responder who receives a Notification about an Alert.
-    rpc add_responder (AlertResponderRequest) returns (AlertInfo) {
-        option (google.api.http) = {
-            post: "/monitoring/v1/alert/add-responder"
-            body: "*"
-        };
-    }
-    
-    // Deletes a responder who receives a Notification about an Alert.
-    rpc remove_responder (AlertResponderRequest) returns (AlertInfo) {
-        option (google.api.http) = {
-            post: "/monitoring/v1/alert/remove-responder"
-            body: "*"
-        };
-    }
-    
-    rpc add_project_dependency (AlertProjectDependencyRequest) returns (AlertInfo) {
-        option (google.api.http) = {
-            post: "/monitoring/v1/alert/add-project-dependency"
-            body: "*"
-        };
-    }
-    rpc remove_project_dependency (AlertProjectDependencyRequest) returns (AlertInfo) {
-        option (google.api.http) = {
-            post: "/monitoring/v1/alert/remove-project-dependency"
-            body: "*"
-        };
-    }
-    
     // Deletes a specific Alert and remove it from the list of Alerts. You must specify the `alert_id` of the Alert to delete.
     rpc delete (AlertRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
@@ -89,7 +46,7 @@ service Alert {
     }
     
     // Gets a specific Alert. Prints detailed information about the Alert.
-    rpc get (GetAlertRequest) returns (AlertInfo) {
+    rpc get (AlertRequest) returns (AlertInfo) {
         option (google.api.http) = {
             post: "/monitoring/v1/alert/get"
             body: "*"
@@ -153,7 +110,6 @@ message CreateAlertRequest {
     // +optional
     AlertUrgency urgency = 4;
     string project_id = 5;
-    string domain_id = 11;
 }
 
 //{
@@ -185,7 +141,6 @@ message UpdateAlertRequest {
     bool reset_description = 12;
     // +optional
     bool reset_assignee = 13;
-    string domain_id = 21;
 }
 
 //{
@@ -196,56 +151,14 @@ message UpdateAlertRequest {
 message UpdateAlertStateRequest {
     string alert_id = 1;
     string access_key = 2;
-    // +optional
     string state = 3;
 }
 
-message MergeAlertRequest {
-    repeated string alerts = 1;
-    string merge_to = 2;
-    string domain_id = 3;
-}
-
-message SnoozeAlertRequest {
-    string alert_id = 1;
-    string end_time = 2;
-    string domain_id = 3;
-}
-
-
 //{
 //      "alert_id": "alert-123456789012",
-//      "resource_type": "identity.User",
-//      "resource_id": "user2@email.com",
-//      "domain_id": "domain-123456789012"
-//}
-message AlertResponderRequest {
-    string alert_id = 1;
-    string resource_type = 2;
-    string resource_id = 3;
-    string domain_id = 4;
-}
-
-message AlertProjectDependencyRequest {
-    string alert_id = 1;
-    string project_id = 2;
-    string domain_id = 3;
-}
-
-//{
-//      "alert_id": "alert-123456789012",
-//      "domain_id": "domain-123456789012"
 //}
 message AlertRequest {
     string alert_id = 1;
-    string domain_id = 2;
-}
-
-message GetAlertRequest {
-    string alert_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -270,8 +183,6 @@ message AlertQuery {
     // +optional
     string severity = 8;
     // +optional
-    string is_snoozed = 9;
-    // +optional
     string resource_id = 10;
     // +optional
     string provider = 11;
@@ -285,7 +196,6 @@ message AlertQuery {
     string escalation_policy_id = 22;
     // +optional
     string project_id = 23;
-    string domain_id = 24;
 }
 
 //{
@@ -320,24 +230,23 @@ message AlertInfo {
     AlertResource resource = 11;
     string provider = 12;
     string account = 13;
-    bool is_snoozed = 14;
-    string snoozed_end_time = 15;
-    int32 escalation_step = 16;
-    int32 escalation_ttl = 17;
-    repeated AlertResponder responders = 18;
-    repeated string project_dependencies = 19;
-    string image_url = 20;
-    google.protobuf.Struct additional_info = 21;
-    string triggered_by = 31;
-    string webhook_id = 32;
-    string escalation_policy_id = 33;
-    string project_id = 34;
-    string domain_id = 35;
-    string created_at = 41;
-    string updated_at = 42;
-    string acknowledged_at = 43;
-    string resolved_at = 44;
-    string escalated_at = 45;
+    int32 escalation_step = 14;
+    int32 escalation_ttl = 15;
+    string image_url = 16;
+    google.protobuf.Struct additional_info = 17;
+    string triggered_by = 18;
+    string webhook_id = 19;
+    string escalation_policy_id = 20;
+
+    string project_id = 21;
+    string workspace_id = 22;
+    string domain_id = 23;
+
+    string created_at = 31;
+    string updated_at = 32;
+    string acknowledged_at = 33;
+    string resolved_at = 34;
+    string escalated_at = 35;
 }
 
 //{
@@ -408,5 +317,4 @@ message AlertsInfo {
 
 message AlertStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }
