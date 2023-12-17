@@ -299,11 +299,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |trusted_account_id||string|True|\n |secret_data||Struct|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |trusted_account_id||string|True|\n |secret_schema_id||string|True|\n |secret_data||Struct|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID" },"secret_data" : {"type": "object","title": "SECRET_DATA" }                 }
+                 "properties": {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID" },"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID" },"secret_data" : {"type": "object","title": "SECRET_DATA" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2901,11 +2901,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n |secret_data||Struct|True|\n |trusted_account_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n |secret_schema_id||string|True|\n |secret_data||Struct|True|\n |trusted_account_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"secret_data" : {"type": "object","title": "SECRET_DATA" },"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID" }                 }
+                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID" },"secret_data" : {"type": "object","title": "SECRET_DATA" },"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -3974,9 +3974,9 @@
                 "title": "UpdateTrustedAccountRequest"
            }
            ,        "UpdateTrustedAccountSecretRequest": {
-         "properties" : {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"secret_data" : {"type": "object","title": "SECRET_DATA"}},
+         "properties" : {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_data" : {"type": "object","title": "SECRET_DATA"}},
          "type": "object",
-         "required": ["trusted_account_id","secret_data"],
+         "required": ["trusted_account_id","secret_schema_id","secret_data"],
                 "title": "UpdateTrustedAccountSecretRequest"
            }
            ,        "ChangeParentGroupRequest": {
@@ -4621,9 +4621,9 @@
                 "title": "UpdateServiceAccountRequest"
            }
            ,        "UpdateServiceAccountSecretRequest": {
-         "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"secret_data" : {"type": "object","title": "SECRET_DATA"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"}},
+         "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_data" : {"type": "object","title": "SECRET_DATA"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"}},
          "type": "object",
-         "required": ["service_account_id","secret_data","trusted_account_id"],
+         "required": ["service_account_id","secret_schema_id","secret_data"],
                 "title": "UpdateServiceAccountSecretRequest"
            }
            ,        "GrantTokenInfo": {
