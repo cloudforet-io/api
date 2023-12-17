@@ -62,7 +62,7 @@ service Plugin {
     }
     
     // Gets a specific Plugin. Prints detailed information about the Plugin, including  `image`, `registry_url`, and `state`.
-    rpc get (GetRepositoryPluginRequest) returns (PluginInfo) {
+    rpc get (RepositoryPluginRequest) returns (PluginInfo) {
         option (google.api.http) = {
             post: "/repository/v1/plugin/get"
             body: "*"
@@ -136,7 +136,7 @@ enum PublicRegistryType {
 //}
 message CreatePluginRequest {
     string name = 1;
-    string service_type = 2;
+    string resource_type = 2;
     string image = 3;
     // +optional
     string provider = 4;
@@ -145,15 +145,11 @@ message CreatePluginRequest {
     // +optional
     google.protobuf.Struct registry_config = 6;
     // +optional
-    google.protobuf.Struct capability = 11;
+    google.protobuf.Struct capability = 7;
     // +optional
-    google.protobuf.Struct template = 12;
+    google.protobuf.ListValue labels = 8;
     // +optional
-    google.protobuf.ListValue labels = 13;
-    // +optional
-    google.protobuf.Struct tags = 14;
-    // +optional
-    string project_id = 21;
+    google.protobuf.Struct tags = 9;
 }
 
 //{
@@ -198,13 +194,11 @@ message UpdatePluginRequest {
     // +optional
     string name = 2;
     // +optional
-    google.protobuf.Struct capability = 11;
+    google.protobuf.Struct capability = 3;
     // +optional
-    google.protobuf.Struct template = 12;
+    google.protobuf.ListValue labels = 4;
     // +optional
-    google.protobuf.ListValue labels = 13;
-    // +optional
-    google.protobuf.Struct tags = 14;
+    google.protobuf.Struct tags = 5;
 }
 
 //{
@@ -220,16 +214,7 @@ message PluginRequest {
 message RepositoryPluginRequest {
     string plugin_id = 1;
     // +optional
-    string repository_id = 2;
-}
-
-//{
-//    "plugin_id": "plugin-aws-sns-mon-webhook",
-//}
-message GetRepositoryPluginRequest {
-    string plugin_id = 1;
-    // +optional
-    string repository_id = 2;
+    string repository_id = 21;
 }
 
 //{
@@ -242,6 +227,7 @@ message PluginQuery {
         ENABLED = 1;
         DISABLED = 2;
     }
+
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -251,12 +237,13 @@ message PluginQuery {
     // +optional
     State state = 4;
     // +optional
-    string service_type = 5;
+    string resource_type = 5;
     // +optional
     string provider = 6;
-    string repository_id = 7;
     // +optional
-    PublicRegistryType registry_type = 9;
+    PublicRegistryType registry_type = 7;
+    // +optional
+    string repository_id = 21;
 
 }
 
@@ -322,21 +309,19 @@ message PluginInfo {
 
     string plugin_id = 1;
     string name = 2;
-    string image = 3;
-    string registry_url = 4;
-    State  state = 5;
-    string service_type = 6;
-    string provider = 7;
-    PublicRegistryType registry_type = 8;
+    State  state = 3;
+    string resource_type = 4;
+    string image = 5;
+    string provider = 6;
+    PublicRegistryType registry_type = 7;
+    string registry_url = 8;
     google.protobuf.Struct registry_config = 9;
+    google.protobuf.Struct capability = 10;
+    google.protobuf.ListValue labels = 11;
+    google.protobuf.Struct tags = 12;
 
-    google.protobuf.Struct capability = 11;
-    google.protobuf.Struct template = 12;
-    google.protobuf.ListValue labels = 13;
-    google.protobuf.Struct tags = 14;
-
-    RepositoryInfo repository_info = 21;
-    string domain_id = 23;
+    string domain_id = 21;
+    RepositoryInfo repository_info = 22;
 
     string created_at = 31;
     string updated_at = 32;

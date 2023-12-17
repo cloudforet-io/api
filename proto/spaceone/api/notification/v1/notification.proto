@@ -30,7 +30,7 @@ service Notification {
     }
     
     // Deletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.
-    rpc delete (NotificationRequest) returns (google.protobuf.Empty) {
+    rpc delete (NotificationsRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/notification/v1/notification/delete"
             body: "*"
@@ -38,7 +38,7 @@ service Notification {
     }
     
     // Marks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.
-    rpc set_read (SetReadNotificationRequest) returns (google.protobuf.Empty) {
+    rpc set_read (NotificationsRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/notification/v1/notification/set-read"
             body: "*"
@@ -105,26 +105,20 @@ message CreateNotificationRequest {
         LV4 = 5;
         LV5 = 6;
     }
-    // is_required: true
     // The type of resource to which the notification is dispatched.
     // Currently, only "identity.Project" or "identity.User" can be set.
     string resource_type = 1;
-    // is_required: true
     // The ID of the resource to which notifications are dispatched.
     // If resource_type is "identity.Project", then resource_id requires a project ID values.
     // If resource_type is "identity.User", then resource_id requires a user ID value.
     string resource_id = 2;
-    // is_required: true
     // The topic of notification.
     string topic = 3;
-    // is_required: true
     // This message is used for each protocol.
     google.protobuf.Struct message = 4;
-    // is_required: false
     // The type of notification.
     // +optional
     NotificationType notification_type = 5;
-    // is_required: false
     // The level of notification.
     // +optional
     NotificationLEVEL notification_level = 7;
@@ -159,17 +153,12 @@ message CreateNotificationRequest {
 //    }
 //}
 message PushNotificationRequest {
-    // is_required: true
     // The ID of Protocol.
     string protocol_id = 1;
-    // is_required: true
     string data = 2;
-    // is_required: true
     google.protobuf.Struct message = 3;
-    // is_required: false
     // +optional
     string notification_type = 4;
-    // is_required: false
     // +optional
     string notification_level = 5;
     // +optional
@@ -183,29 +172,16 @@ message PushNotificationRequest {
 //        "notification-4kth40jth5jy"
 //    ]
 //}
-message NotificationRequest {
-    // is_required: true
+message NotificationsRequest {
     // ID list of Notifications.
     repeated string notifications = 1;
 }
 
-//{
-//    "notifications": [
-//        "notification-6c548a37ee77",
-//        "notification-4j3jt9384fnf"
-//    ]
-//}
-message SetReadNotificationRequest {
-    // is_required: true
-    // The ID list of notification that want to change read status.
-    repeated string notifications = 1;
-}
 
 //{
 //    "notification_id": "notification-4025c1b61225"
 //}
 message GetNotificationRequest {
-    // is_required: true
     // The ID of Notification.
     string notification_id = 1;
     // +optional
@@ -241,39 +217,32 @@ message NotificationQuery {
         LV4 = 5;
         LV5 = 6;
     }
-    // is_required: false
+
     // Query format provided by SpaceONE. Please check the link for more information.
     // +optional
     spaceone.api.core.v1.Query query = 1;
-    // is_required: false
     // The ID of notification.
     // +optional
     string notification_id = 2;
-    // is_required: false
     // The topic of notification.
     // +optional
     string topic = 3;
-    // is_required: false
     // The type of notification.
     // +optional
     NotificationType notification_type = 4;
-    // is_required: false
     // The level of notification.
     // +optional
     NotificationLEVEL notification_level = 5;
-    // is_required: false
     // Whether or not to check the notification.
     // If is_read is False, the user has not checked the notification yet.
     // +optional
     bool is_read = 6;
-    // is_required: false
-    // The ID of parent notification. Not used yet.
-    // +optional
-    string parent_notification_id = 7;
-    // is_required: false
     // The project ID to which the notification will be dispatched.
     // +optional
-    string project_id = 8;
+    string project_id = 21;
+    // The ID of parent notification. Not used yet.
+    // +optional
+    string parent_notification_id = 22;
 }
 
 //{
@@ -330,12 +299,14 @@ message NotificationInfo {
     // Whether or not to check the notification.
     // If notification has been returned at least once through the Get or List method, is_read is changed to True.
     bool is_read = 6;
-    // The ID of user to whom the notification was dispatched.
-    string user_id = 11;
+
     // The ID of domain
-    string domain_id = 12;
+    string domain_id = 21;
+    // The ID of user to whom the notification was dispatched.
+    string user_id = 22;
+
     // Notification creation time.
-    string created_at = 21;
+    string created_at = 31;
 }
 
 //{

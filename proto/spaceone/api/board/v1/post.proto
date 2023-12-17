@@ -29,7 +29,7 @@ service Post {
     }
 
     //Not Implemented
-    rpc send_notification (SendNotificationRequest) returns (google.protobuf.Empty) {
+    rpc send_notification (PostRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/board/v1/post/send-notification"
             body: "*"
@@ -82,24 +82,24 @@ service Post {
 message CreatePostRequest {
     enum ResourceGroup {
         RESOURCE_GROUP_NONE = 0;
-        GLOBAL = 1;
+        SYSTEM = 1;
         DOMAIN = 2;
     }
 
-    // +optional
-    string category = 1;
+    string board_id = 1;
     string title = 2;
     string contents = 3;
     // +optional
-    repeated string files = 4;
+    string category = 4;
     // +optional
-    google.protobuf.Struct options = 5;
-    ResourceGroup resource_group = 6;
+    repeated string files = 5;
+    // +optional
+    google.protobuf.Struct options = 6;
     // +optional
     string writer = 7;
+    ResourceGroup resource_group = 20;
     // +optional
     string domain_id = 21;
-    string board_id = 22;
 }
 
 //{
@@ -115,32 +115,20 @@ message CreatePostRequest {
 //      "writer": "user1"
 //}
 message UpdatePostRequest {
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        GLOBAL = 1;
-        DOMAIN = 2;
-    }
-
     string post_id = 1;
     // +optional
-    string category = 2;
+    string title = 2;
     // +optional
-    string title = 3;
+    string contents = 3;
     // +optional
-    string contents = 4;
+    string category = 4;
     // +optional
     repeated string files = 5;
     // +optional
     google.protobuf.Struct options = 6;
     // +optional
     string writer = 7;
-    ResourceGroup resource_group = 8;
-    string board_id = 22;
-}
-
-message SendNotificationRequest {
-    string board_id = 1;
-    string post_id = 2;
+    string board_id = 21;
 }
 
 //{
@@ -157,12 +145,6 @@ message PostRequest {
 //    "query": {}
 //}
 message PostSearchQuery {
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        GLOBAL = 1;
-        DOMAIN = 2;
-    }
-
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -175,8 +157,8 @@ message PostSearchQuery {
     bool is_pinned = 5;
     // +optional
     bool is_popup = 6;
-    ResourceGroup resource_group = 8;
     // +optional
+    string domain_id = 21;
     string board_id = 22;
 }
 
@@ -204,22 +186,24 @@ message PostStatQuery {
 message PostInfo {
     enum ResourceGroup {
         RESOURCE_GROUP_NONE = 0;
-        GLOBAL = 1;
+        SYSTEM = 1;
         DOMAIN = 2;
     }
 
-    string post_id = 2;
+    string post_id = 1;
+    string title = 2;
+    string contents = 3;
     string category = 4;
-    string title = 5;
-    string contents = 6;
-    google.protobuf.Struct options = 7;
-    int32 view_count = 8;
-    string writer = 9;
-    google.protobuf.ListValue files = 11;
-    ResourceGroup resource_group = 12;
+    google.protobuf.Struct options = 5;
+    int32 view_count = 6;
+    string writer = 7;
+    google.protobuf.ListValue files = 8;
+
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
-    string board_id = 22;
-    string user_id = 23;
+    string user_id = 22;
+    string board_id = 23;
+
     string created_at = 31;
     string updated_at = 32;
 }

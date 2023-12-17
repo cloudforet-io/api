@@ -61,7 +61,7 @@ service Protocol {
     }
     
     // Gets a specific Protocol. Prints detailed information about the Protocol.
-    rpc get (GetProtocolRequest) returns (ProtocolInfo) {
+    rpc get (ProtocolRequest) returns (ProtocolInfo) {
         option (google.api.http) = {
             post: "/notification/v1/protocol/get"
             body: "*"
@@ -225,14 +225,6 @@ message ProtocolRequest {
 }
 
 //{
-//    "protocol_id": "protocol-123456789012"
-//}
-message GetProtocolRequest {
-    // The ID of Protocol.
-    string protocol_id = 1;
-}
-
-//{
 //    "query": {}
 //}
 message ProtocolQuery {
@@ -340,10 +332,12 @@ message ProtocolInfo {
     PluginInfo plugin_info = 7;
     // The tags for protocol.
     google.protobuf.Struct tags = 8;
+
     // The ID of domain to which the Protocol belongs.
-    string domain_id = 11;
+    string domain_id = 21;
+
     // Protocol creation time.
-    string created_at = 21;
+    string created_at = 31;
 }
 
 //{
