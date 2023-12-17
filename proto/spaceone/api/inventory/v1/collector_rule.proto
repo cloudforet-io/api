@@ -46,7 +46,7 @@ service CollectorRule {
     }
     
     // Gets a specific CollectorRule. Prints detailed information about the CollectorRule, including  `conditions_policy` and conditions applied to Collector.
-    rpc get (GetCollectorRuleRequest) returns (CollectorRuleInfo) {
+    rpc get (CollectorRuleRequest) returns (CollectorRuleInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/collector-rule/get"
             body: "*"
