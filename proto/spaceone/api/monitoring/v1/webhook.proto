@@ -69,7 +69,7 @@ service Webhook {
     }
     
     // Gets a specific Webhook. Prints detailed information about the Webhook, including the name, the version, and the created datetime.
-    rpc get (GetWebhookRequest) returns (WebhookInfo) {
+    rpc get (WebhookRequest) returns (WebhookInfo) {
         option (google.api.http) = {
             post: "/monitoring/v1/webhook/get"
             body: "*"
@@ -121,7 +121,6 @@ message CreateWebhookRequest {
     // +optional
     google.protobuf.Struct tags = 3;
     string project_id = 11;
-    string domain_id = 12;
 }
 
 //{
@@ -135,7 +134,6 @@ message UpdateWebhookRequest {
     string name = 2;
     // +optional
     google.protobuf.Struct tags = 3;
-    string domain_id = 11;
 }
 
 //{
@@ -159,7 +157,6 @@ message UpdateWebhookPluginRequest {
     google.protobuf.Struct options = 3;
     // +optional
     UpgradeMode upgrade_mode = 4;
-    string domain_id = 11;
 }
 
 //{
@@ -168,18 +165,6 @@ message UpdateWebhookPluginRequest {
 //}
 message WebhookRequest {
     string webhook_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//    "webhook_id": "webhook-123456789012",
-//    "domain_id": "domain-123456789012"
-//}
-message GetWebhookRequest {
-    string webhook_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -208,7 +193,6 @@ message WebhookQuery {
     string webhook_url = 6;
     // +optional
     string project_id = 7;
-    string domain_id = 11;
 }
 
 //{
@@ -244,9 +228,12 @@ message WebhookInfo {
     google.protobuf.Struct capability = 6;
     WebhookPluginInfo plugin_info = 7;
     google.protobuf.Struct tags = 8;
-    string project_id = 11;
-    string domain_id = 12;
-    string created_at = 21;
+
+    string project_id = 19;
+    string workspace_id = 20;
+    string domain_id = 21;
+
+    string created_at = 31;
 }
 
 //{
@@ -297,5 +284,4 @@ message WebhooksInfo {
 
 message WebhookStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }
