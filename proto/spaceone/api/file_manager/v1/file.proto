@@ -80,11 +80,11 @@ message CreateFileRequest {
     google.protobuf.Struct tags = 2;
     // +optional
     FileReference reference = 3;
-    ResourceGroup resource_group = 4;
-    // +optional
-    string workspace_id = 5;
+    ResourceGroup resource_group = 20;
     // +optional
     string domain_id = 21;
+    // +optional
+    string workspace_id = 22;
 }
 
 message UpdateFileRequest {
@@ -100,14 +100,6 @@ message FileRequest {
 }
 
 message FileSearchQuery {
-
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        SYSTEM = 1;
-        DOMAIN = 2;
-        WORKSPACE = 3;
-    }
-
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -123,11 +115,12 @@ message FileSearchQuery {
     // +optional
     string resource_id = 8;
     // +optional
-    ResourceGroup resource_group = 9;
+    string domain_id = 21;
+    // +optional
+    string workspace_id = 22;
 }
 
 message FileInfo {
-
     enum ResourceGroup {
         RESOURCE_GROUP_NONE = 0;
         SYSTEM = 1;
@@ -138,19 +131,18 @@ message FileInfo {
     string file_id = 1;
     string name = 2;
     FileState state = 3;
-    ResourceGroup resource_group = 4;
-    string file_type = 5;
-    // +optional
-    string upload_url = 6;
-    // +optional
-    google.protobuf.Struct upload_options = 7;
-    // +optional
-    string download_url = 8;
-    google.protobuf.Struct tags = 9;
-    FileReference reference = 10;
-    string workspace_id = 12;
+    string file_type = 4;
+    string upload_url = 5;
+    google.protobuf.Struct upload_options = 6;
+    string download_url = 7;
+    google.protobuf.Struct tags = 8;
+    FileReference reference = 9;
+
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
-    string user_id = 22;
+    string workspace_id = 22;
+    string user_id = 23;
+
     string created_at = 31;
 }
 
@@ -161,5 +153,4 @@ message FilesInfo {
 
 message FileStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }
