@@ -132,10 +132,10 @@ message CreateEventRuleRequest {
     // +optional
     EventRuleOptions options = 5;
     // +optional
-    string project_id = 6;
+    google.protobuf.Struct tags = 6;
+    ResourceGroup resource_group = 20;
     // +optional
-    google.protobuf.Struct tags = 7;
-    ResourceGroup resource_group = 8;
+    string project_id = 21;
 }
 
 //{
@@ -197,13 +197,6 @@ message EventRuleRequest {
 //    "domain_id": "domain-123456789012"
 //}
 message EventRuleQuery {
-
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        WORKSPACE = 1;
-        PROJECT = 2;
-    }
-
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -211,9 +204,9 @@ message EventRuleQuery {
     // +optional
     string name = 3;
     // +optional
-    ResourceGroup resource_group = 4;
+    string workspace_id = 21;
     // +optional
-    string project_id = 5;
+    string project_id = 22;
 }
 
 //{
@@ -244,7 +237,6 @@ message EventRuleQuery {
 //      "created_at": "2022-01-02T06:02:31.517Z"
 //}
 message EventRuleInfo {
-
     enum ConditionsPolicy {
         NONE = 0;
         ALL = 1;
@@ -265,12 +257,12 @@ message EventRuleInfo {
     ConditionsPolicy conditions_policy = 5;
     EventRuleActions actions = 6;
     EventRuleOptions options = 7;
-    string project_id = 9;
-    google.protobuf.Struct tags = 10;
-    ResourceGroup resource_group = 11;
+    google.protobuf.Struct tags = 8;
 
-    string workspace_id = 20;
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
+    string workspace_id = 22;
+    string project_id = 23;
 
     string created_at = 31;
 }

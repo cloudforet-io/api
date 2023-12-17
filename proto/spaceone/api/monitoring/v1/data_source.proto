@@ -133,18 +133,10 @@ enum MonitoringType {
 //        "domain_id": "domain-123456789012"
 //}
 message RegisterDataSourceRequest {
-
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-
     string name = 1;
-    DataSourcePluginInfo plugin_info = 3;
+    DataSourcePluginInfo plugin_info = 2;
     // +optional
-    google.protobuf.Struct tags = 4;
-    ResourceGroup resource_group = 5;
+    google.protobuf.Struct tags = 3;
 }
 
 //{
@@ -197,13 +189,6 @@ message DataSourceRequest {
 //    "domain_id": "domain-123456789012"
 //}
 message DataSourceQuery {
-
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -216,10 +201,6 @@ message DataSourceQuery {
     MonitoringType monitoring_type = 5;
     // +optional
     string provider = 6;
-    // +optional
-    ResourceGroup resource_group = 7;
-    // +optional
-    string workspace_id = 8;
 }
 
 //{
@@ -271,12 +252,6 @@ message DataSourceInfo {
         DISABLED = 2;
     }
 
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-
     string data_source_id = 1;
     string name = 2;
     State state = 3;
@@ -285,10 +260,9 @@ message DataSourceInfo {
     google.protobuf.Struct capability = 6;
     DataSourcePluginInfo plugin_info = 7;
     google.protobuf.Struct tags = 8;
-    ResourceGroup resource_group = 9;
 
-    string workspace_id = 20;
     string domain_id = 21;
+
     string created_at = 31;
 }
 

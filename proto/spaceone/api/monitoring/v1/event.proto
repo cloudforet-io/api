@@ -13,15 +13,10 @@ import "spaceone/api/core/v1/query.proto";
 
 service Event {
     // Creates a new Event. The Event creation process starts with validation checking whether the input data is from a webhook or not. After the input data is validated, the data is processed and used to create the Event.
-    rpc create (CreateEventRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/monitoring/v1/event/create"
-            body: "*"
-        };
-    }
+    rpc create (CreateEventRequest) returns (google.protobuf.Empty) {}
     
     // Gets a specific Event matching the input parameters, `event_id` and `domain_id`. Prints detailed information about the Event.
-    rpc get (GetEventRequest) returns (EventInfo) {
+    rpc get (EventRequest) returns (EventInfo) {
         option (google.api.http) = {
             post: "/monitoring/v1/event/get"
             body: "*"
@@ -59,7 +54,7 @@ message CreateEventRequest {
 //{
 //    "event_id": "event-4e16ba3bd384",
 //}
-message GetEventRequest {
+message EventRequest {
     string event_id = 1;
 }
 
@@ -85,11 +80,13 @@ message EventQuery {
     // +optional
     string account = 8;
     // +optional
-    string alert_id = 11;
+    string workspace_id = 21;
     // +optional
-    string webhook_id = 12;
+    string project_id = 22;
     // +optional
-    string project_id = 13;
+    string alert_id = 23;
+    // +optional
+    string webhook_id = 24;
 }
 
 //{
@@ -138,18 +135,18 @@ message EventInfo {
     string description = 5;
     string severity = 6;
     string rule = 7;
-    EventResource resource = 8;
-    string provider = 9;
-    string account = 10;
-    string image_url = 11;
-    google.protobuf.Struct raw_data = 21;
-    google.protobuf.Struct additional_info = 22;
-    string alert_id = 31;
-    string webhook_id = 32;
+    string image_url = 8;
+    EventResource resource = 9;
+    string provider = 10;
+    string account = 11;
+    google.protobuf.Struct additional_info = 12;
+    google.protobuf.Struct raw_data = 13;
 
-    string project_id = 33;
-    string workspace_id = 34;
-    string domain_id = 35;
+    string domain_id = 21;
+    string workspace_id = 22;
+    string project_id = 23;
+    string alert_id = 24;
+    string webhook_id = 25;
 
     string created_at = 41;
     string occurred_at = 42;
