@@ -26,6 +26,11 @@ class AlertStub(object):
                 request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.UpdateAlertRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
                 )
+        self.assign_user = channel.unary_unary(
+                '/spaceone.api.monitoring.v1.Alert/assign_user',
+                request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AssignUserRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
+                )
         self.update_state = channel.unary_unary(
                 '/spaceone.api.monitoring.v1.Alert/update_state',
                 request_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.UpdateAlertStateRequest.SerializeToString,
@@ -70,8 +75,15 @@ class AlertServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def assign_user(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def update_state(self, request, context):
         """Updates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.
+        +noauth
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -115,6 +127,11 @@ def add_AlertServicer_to_server(servicer, server):
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.UpdateAlertRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.SerializeToString,
+            ),
+            'assign_user': grpc.unary_unary_rpc_method_handler(
+                    servicer.assign_user,
+                    request_deserializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AssignUserRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.SerializeToString,
             ),
             'update_state': grpc.unary_unary_rpc_method_handler(
@@ -182,6 +199,23 @@ class Alert(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.monitoring.v1.Alert/update',
             spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.UpdateAlertRequest.SerializeToString,
+            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def assign_user(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.monitoring.v1.Alert/assign_user',
+            spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AssignUserRequest.SerializeToString,
             spaceone_dot_api_dot_monitoring_dot_v1_dot_alert__pb2.AlertInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

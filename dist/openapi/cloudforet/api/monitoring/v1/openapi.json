@@ -15,11 +15,11 @@
          "operationId" : "",
          "description": "### Description \nCreates a new EventRule. You can filter the Events to apply the EventRule by setting the input parameter `Conditions`. The method can change the Events' assignee or Project.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |conditions||array|True|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||EventRuleActions|True|\n |resource_group|WORKSPACE, PROJECT |string|True|\n |options||EventRuleOptions||\n |project_id||string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |conditions||array|True|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||EventRuleActions|True|\n |resource_group|WORKSPACE, PROJECT |string|True|\n |options||EventRuleOptions||\n |tags||Struct||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {"$ref": "#/components/schemas/EventRuleCondition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"$ref": "#/components/schemas/EventRuleActions","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS" },"project_id" : {"type": "string","title": "PROJECT_ID" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {"$ref": "#/components/schemas/EventRuleCondition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"$ref": "#/components/schemas/EventRuleActions","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n     \"conditions\": [{\"key\": \"description\", \"value\": \"API\", \"operator\": \"contain\"}],\n     \"conditions_policy\": \"ALL\",\n     \"actions\": {\"change_assignee\": \"user1@email.com\",\n     \"change_urgency\": \"LOW\",\n     \"change_project\": \"project-123456789012\",\n     \"add_additional_info\": {\"type\": \"personal rule\"},\n     \"no_notification\": true},\n     \"options\": {},\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
@@ -162,11 +162,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all EventRules. You can use a query to get a filtered list of EventRules. For example, you can adjust the scope of the list to a certain Project or Domain.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |event_rule_id||string||\n |name||string||\n |resource_group|WORKSPACE, PROJECT |string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |event_rule_id||string||\n |name||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID" },"name" : {"type": "string","title": "NAME" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID" },"name" : {"type": "string","title": "NAME" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"project_id\": \"project-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
@@ -253,11 +253,11 @@
          "operationId" : "",
          "description": "### Description \nUpdates a specific Alert. You can make changes in Alert settings, including the `title`, `description`, `responder`, `state`, and `urgency`. The `responder` of the Alert is a User who is assigned to respond to the Alert.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |title||string||\n |state||string||\n |status_message||string||\n |description||string||\n |assignee||string||\n |urgency|HIGH, LOW |string||\n |project_id||string||\n |reset_status_message||boolean||\n |reset_description||boolean||\n |reset_assignee||boolean||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |title||string||\n |state||string||\n |description||string||\n |urgency|HIGH, LOW |string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"title" : {"type": "string","title": "TITLE" },"state" : {"type": "string","title": "STATE" },"status_message" : {"type": "string","title": "STATUS_MESSAGE" },"description" : {"type": "string","title": "DESCRIPTION" },"assignee" : {"type": "string","title": "ASSIGNEE" },"urgency" : {"type": "string","title": "URGENCY" },"project_id" : {"type": "string","title": "PROJECT_ID" },"reset_status_message" : {"type": "boolean","title": "RESET_STATUS_MESSAGE" },"reset_description" : {"type": "boolean","title": "RESET_DESCRIPTION" },"reset_assignee" : {"type": "boolean","title": "RESET_ASSIGNEE" }                 }
+                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"title" : {"type": "string","title": "TITLE" },"state" : {"type": "string","title": "STATE" },"description" : {"type": "string","title": "DESCRIPTION" },"urgency" : {"type": "string","title": "URGENCY" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n     \"alert_id\": \"alert-123456789012\",\n     \"state\": \"ACKNOWLEDGED\",\n     \"urgency\": \"LOW\",\n     \"description\": \"[updating]This is a description of sample.\",\n     \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
@@ -277,20 +277,20 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/alert/update-state": {
+     },"/monitoring/alert/assign-user": {
        "post": {
          "tags": ["monitoring > alert"],
-         "summary": "Update State",
+         "summary": "Assign User",
          "operationId" : "",
-         "description": "### Description \nUpdates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.",
+         "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |access_key||string|True|\n |state||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |assignee||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"access_key" : {"type": "string","title": "ACCESS_KEY" },"state" : {"type": "string","title": "STATE" }                 }
+                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"assignee" : {"type": "string","title": "ASSIGNEE" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n     \"alert_id\": \"alert-123456789012\",\n     \"access_key\": \"1q2w3e4r5t6y7u8i9o0p\",\n     \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
+               "examples":{"Schema":{}
                }
              }
            },"required": true
@@ -369,11 +369,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all Alerts. You can use a query to get a filtered list of Alerts.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |alert_number||int||\n |alert_id||string||\n |title||string||\n |state|TRIGGERED, ACKNOWLEDGED, RESOLVED, ERROR |string||\n |assignee||string||\n |urgency|HIGH, LOW |string||\n |severity||string||\n |resource_id||string||\n |provider||string||\n |account||string||\n |triggered_by||string||\n |webhook_id||string||\n |escalation_policy_id||string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |alert_number||int||\n |alert_id||string||\n |title||string||\n |state|TRIGGERED, ACKNOWLEDGED, RESOLVED, ERROR |string||\n |assignee||string||\n |urgency|HIGH, LOW |string||\n |severity||string||\n |resource_id||string||\n |provider||string||\n |account||string||\n |triggered_by||string||\n |workspace_id||string||\n |project_id||string||\n |webhook_id||string||\n |escalation_policy_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"alert_number" : {"type": "integer","title": "ALERT_NUMBER" },"alert_id" : {"type": "string","title": "ALERT_ID" },"title" : {"type": "string","title": "TITLE" },"state" : {"type": "string","title": "STATE" },"assignee" : {"type": "string","title": "ASSIGNEE" },"urgency" : {"type": "string","title": "URGENCY" },"severity" : {"type": "string","title": "SEVERITY" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"provider" : {"type": "string","title": "PROVIDER" },"account" : {"type": "string","title": "ACCOUNT" },"triggered_by" : {"type": "string","title": "TRIGGERED_BY" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"alert_number" : {"type": "integer","title": "ALERT_NUMBER" },"alert_id" : {"type": "string","title": "ALERT_ID" },"title" : {"type": "string","title": "TITLE" },"state" : {"type": "string","title": "STATE" },"assignee" : {"type": "string","title": "ASSIGNEE" },"urgency" : {"type": "string","title": "URGENCY" },"severity" : {"type": "string","title": "SEVERITY" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"provider" : {"type": "string","title": "PROVIDER" },"account" : {"type": "string","title": "ACCOUNT" },"triggered_by" : {"type": "string","title": "TRIGGERED_BY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {}, \n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
@@ -545,11 +545,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all Notes. You can use a query to get a filtered list of Notes.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |note_id||string||\n |alert_id||string||\n |created_by||string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |note_id||string||\n |alert_id||string||\n |created_by||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"note_id" : {"type": "string","title": "NOTE_ID" },"alert_id" : {"type": "string","title": "ALERT_ID" },"created_by" : {"type": "string","title": "CREATED_BY" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"note_id" : {"type": "string","title": "NOTE_ID" },"alert_id" : {"type": "string","title": "ALERT_ID" },"created_by" : {"type": "string","title": "CREATED_BY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
                }
@@ -1013,11 +1013,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all Webhooks. You can use a query to get a filtered list of Webhooks.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |webhook_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |access_key||string||\n |webhook_url||string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |webhook_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |access_key||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"access_key" : {"type": "string","title": "ACCESS_KEY" },"webhook_url" : {"type": "string","title": "WEBHOOK_URL" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"access_key" : {"type": "string","title": "ACCESS_KEY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"project_id\": \"project-123456789012\",\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
@@ -1066,29 +1066,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/monitoring/event/create": {
-       "post": {
-         "tags": ["monitoring > event"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new Event. The Event creation process starts with validation checking whether the input data is from a webhook or not. After the input data is validated, the data is processed and used to create the Event.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |webhook_id||string|True|\n |access_key||string|True|\n |data||Struct|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"access_key" : {"type": "string","title": "ACCESS_KEY" },"data" : {"type": "object","title": "DATA" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/monitoring/event/get": {
        "post": {
          "tags": ["monitoring > event"],
@@ -1096,13 +1073,13 @@
          "operationId" : "",
          "description": "### Description \nGets a specific Event matching the input parameters, `event_id` and `domain_id`. Prints detailed information about the Event.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |event_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service||string|True|\n |resource||string|True|\n |verb||string|True|\n |status||string|True|\n |message||Struct|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"event_id" : {"type": "string","title": "EVENT_ID" }                 }
+                 "properties": {"service" : {"type": "string","title": "SERVICE" },"resource" : {"type": "string","title": "RESOURCE" },"verb" : {"type": "string","title": "VERB" },"status" : {"type": "string","title": "STATUS" },"message" : {"type": "object","title": "MESSAGE" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"event_id\": \"event-4e16ba3bd384\",\n}"},"Schema":{}
+               "examples":{"Schema":{}
                }
              }
            },"required": true
@@ -1127,11 +1104,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all Events. You must specify the `domain_id`. You can use a query to get a filtered list of Events.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |event_id||string||\n |event_key||string||\n |event_type||string||\n |severity||string||\n |resource_id||string||\n |provider||string||\n |account||string||\n |alert_id||string||\n |webhook_id||string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |event_id||string||\n |event_key||string||\n |event_type||string||\n |severity||string||\n |resource_id||string||\n |provider||string||\n |account||string||\n |workspace_id||string||\n |project_id||string||\n |alert_id||string||\n |webhook_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"event_id" : {"type": "string","title": "EVENT_ID" },"event_key" : {"type": "string","title": "EVENT_KEY" },"event_type" : {"type": "string","title": "EVENT_TYPE" },"severity" : {"type": "string","title": "SEVERITY" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"provider" : {"type": "string","title": "PROVIDER" },"account" : {"type": "string","title": "ACCOUNT" },"alert_id" : {"type": "string","title": "ALERT_ID" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"event_id" : {"type": "string","title": "EVENT_ID" },"event_key" : {"type": "string","title": "EVENT_KEY" },"event_type" : {"type": "string","title": "EVENT_TYPE" },"severity" : {"type": "string","title": "SEVERITY" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"provider" : {"type": "string","title": "PROVIDER" },"account" : {"type": "string","title": "ACCOUNT" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"alert_id" : {"type": "string","title": "ALERT_ID" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
                }
@@ -1423,11 +1400,11 @@
          "operationId" : "",
          "description": "### Description \nRegisters a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, `upgrade_mode`.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |plugin_info||DataSourcePluginInfo|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |plugin_info||DataSourcePluginInfo|True|\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/DataSourcePluginInfo","title": "PLUGIN_INFO" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/DataSourcePluginInfo","title": "PLUGIN_INFO" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n       \"name\": \"datasource-test\",\n       \"plugin_info\": {\"plugin_id\": \"plugin-123456789012\",\n                       \"version\": \"1.1.4.20220617.135934\",\n                       \"options\": {},\n                       \"provider\": \"aws\",\n                       \"metadata\": {\n                           \"supported_resource_type\": [\"inventory.Server\", \"inventory.CloudService\"],\n                           \"required_keys\": [\"data.cloudwatch\"],\n                           \"supported_stat\": [\"AVERAGE\", \"MAX\", \"MIN\", \"SUM\"]},\n                       \"upgrade_mode\": \"AUTO\"\n                       },\n       \"tags\": {\"a\": \"b\"},\n       \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
@@ -1655,11 +1632,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all DataSources. You can use a query to get a filtered list of DataSources.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |data_source_id||string||\n |name||string||\n |state||string||\n |monitoring_type|METRIC, LOG |string||\n |provider||string||\n |resource_group|DOMAIN, WORKSPACE |string||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |data_source_id||string||\n |name||string||\n |state||string||\n |monitoring_type|METRIC, LOG |string||\n |provider||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"monitoring_type" : {"type": "string","title": "MONITORING_TYPE" },"provider" : {"type": "string","title": "PROVIDER" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"monitoring_type" : {"type": "string","title": "MONITORING_TYPE" },"provider" : {"type": "string","title": "PROVIDER" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {},\n   \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
@@ -1782,7 +1759,7 @@
            }
            ,        "CreateEventRuleRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"conditions" : {"items": {"$ref": "#/components/schemas/EventRuleCondition"},
-               "type": "array","$ref": "#/components/schemas/EventRuleCondition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"$ref": "#/components/schemas/EventRuleActions","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS"},"project_id" : {"type": "string","title": "PROJECT_ID"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"}},
+               "type": "array","$ref": "#/components/schemas/EventRuleCondition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"$ref": "#/components/schemas/EventRuleActions","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": ["name","conditions","conditions_policy","actions","resource_group"],
                 "title": "CreateEventRuleRequest"
@@ -1809,9 +1786,9 @@
            }
            ,        "EventRuleInfo": {
          "properties" : {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"order" : {"type": "integer","title": "ORDER"},"conditions" : {"items": {"$ref": "#/components/schemas/EventRuleCondition"},
-               "type": "array","$ref": "#/components/schemas/EventRuleCondition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"$ref": "#/components/schemas/EventRuleActions","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS"},"project_id" : {"type": "string","title": "PROJECT_ID"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+               "type": "array","$ref": "#/components/schemas/EventRuleCondition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"$ref": "#/components/schemas/EventRuleActions","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["event_rule_id","name","order","conditions","conditions_policy","actions","options","project_id","tags","resource_group","workspace_id","domain_id","created_at"],
+         "required": ["event_rule_id","name","order","conditions","conditions_policy","actions","options","tags","resource_group","domain_id","workspace_id","project_id","created_at"],
                 "title": "EventRuleInfo"
            }
            ,        "EventRuleOptions": {
@@ -1821,7 +1798,7 @@
                 "title": "EventRuleOptions"
            }
            ,        "EventRuleQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": [],
                 "title": "EventRuleQuery"
@@ -2066,13 +2043,13 @@
                 "title": "Unwind"
            }
            ,        "AlertInfo": {
-         "properties" : {"alert_number" : {"type": "integer","title": "ALERT_NUMBER"},"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"status_message" : {"type": "string","title": "STATUS_MESSAGE"},"description" : {"type": "string","title": "DESCRIPTION"},"assignee" : {"type": "string","title": "ASSIGNEE"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "string","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"resource" : {"$ref": "#/components/schemas/AlertResource","title": "RESOURCE"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"escalation_step" : {"type": "integer","title": "ESCALATION_STEP"},"escalation_ttl" : {"type": "integer","title": "ESCALATION_TTL"},"image_url" : {"type": "string","title": "IMAGE_URL"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"acknowledged_at" : {"type": "string","title": "ACKNOWLEDGED_AT"},"resolved_at" : {"type": "string","title": "RESOLVED_AT"},"escalated_at" : {"type": "string","title": "ESCALATED_AT"}},
+         "properties" : {"alert_number" : {"type": "integer","title": "ALERT_NUMBER"},"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"assignee" : {"type": "string","title": "ASSIGNEE"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "string","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resource" : {"$ref": "#/components/schemas/AlertResource","title": "RESOURCE"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"escalation_step" : {"type": "integer","title": "ESCALATION_STEP"},"escalation_ttl" : {"type": "integer","title": "ESCALATION_TTL"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"acknowledged_at" : {"type": "string","title": "ACKNOWLEDGED_AT"},"resolved_at" : {"type": "string","title": "RESOLVED_AT"},"escalated_at" : {"type": "string","title": "ESCALATED_AT"}},
          "type": "object",
-         "required": ["alert_number","alert_id","title","state","status_message","description","assignee","urgency","severity","rule","resource","provider","account","escalation_step","escalation_ttl","image_url","additional_info","triggered_by","webhook_id","escalation_policy_id","project_id","workspace_id","domain_id","created_at","updated_at","acknowledged_at","resolved_at","escalated_at"],
+         "required": ["alert_number","alert_id","title","state","description","assignee","urgency","severity","rule","image_url","resource","provider","account","additional_info","escalation_step","escalation_ttl","triggered_by","domain_id","workspace_id","project_id","webhook_id","escalation_policy_id","created_at","updated_at","acknowledged_at","resolved_at","escalated_at"],
                 "title": "AlertInfo"
            }
            ,        "AlertQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"alert_number" : {"type": "integer","title": "ALERT_NUMBER"},"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"assignee" : {"type": "string","title": "ASSIGNEE"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "string","title": "SEVERITY"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"alert_number" : {"type": "integer","title": "ALERT_NUMBER"},"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"assignee" : {"type": "string","title": "ASSIGNEE"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "string","title": "SEVERITY"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
          "type": "object",
          "required": [],
                 "title": "AlertQuery"
@@ -2089,12 +2066,6 @@
          "required": ["resource_id","resource_type","name"],
                 "title": "AlertResource"
            }
-           ,        "AlertResponder": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"}},
-         "type": "object",
-         "required": ["resource_type","resource_id"],
-                "title": "AlertResponder"
-           }
            ,        "AlertStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
@@ -2108,6 +2079,12 @@
          "required": ["results","total_count"],
                 "title": "AlertsInfo"
            }
+           ,        "AssignUserRequest": {
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"assignee" : {"type": "string","title": "ASSIGNEE"}},
+         "type": "object",
+         "required": ["alert_id","assignee"],
+                "title": "AssignUserRequest"
+           }
            ,        "CreateAlertRequest": {
          "properties" : {"title" : {"type": "string","title": "TITLE"},"description" : {"type": "string","title": "DESCRIPTION"},"assignee" : {"type": "string","title": "ASSIGNEE"},"urgency" : {"type": "string","title": "URGENCY"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
@@ -2115,7 +2092,7 @@
                 "title": "CreateAlertRequest"
            }
            ,        "UpdateAlertRequest": {
-         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"status_message" : {"type": "string","title": "STATUS_MESSAGE"},"description" : {"type": "string","title": "DESCRIPTION"},"assignee" : {"type": "string","title": "ASSIGNEE"},"urgency" : {"type": "string","title": "URGENCY"},"project_id" : {"type": "string","title": "PROJECT_ID"},"reset_status_message" : {"type": "boolean","title": "RESET_STATUS_MESSAGE"},"reset_description" : {"type": "boolean","title": "RESET_DESCRIPTION"},"reset_assignee" : {"type": "boolean","title": "RESET_ASSIGNEE"}},
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": ["alert_id"],
                 "title": "UpdateAlertRequest"
@@ -2133,13 +2110,13 @@
                 "title": "CreateNoteRequest"
            }
            ,        "NoteInfo": {
-         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"note" : {"type": "string","title": "NOTE"},"created_by" : {"type": "string","title": "CREATED_BY"},"project_id" : {"type": "string","title": "PROJECT_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"note" : {"type": "string","title": "NOTE"},"created_by" : {"type": "string","title": "CREATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["note_id","alert_id","note","created_by","project_id","workspace_id","domain_id","created_at"],
+         "required": ["note_id","alert_id","note","created_by","domain_id","workspace_id","project_id","created_at"],
                 "title": "NoteInfo"
            }
            ,        "NoteQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"note_id" : {"type": "string","title": "NOTE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"created_by" : {"type": "string","title": "CREATED_BY"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"note_id" : {"type": "string","title": "NOTE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"created_by" : {"type": "string","title": "CREATED_BY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": [],
                 "title": "NoteQuery"
@@ -2237,9 +2214,9 @@
                 "title": "UpdateWebhookRequest"
            }
            ,        "WebhookInfo": {
-         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"webhook_url" : {"type": "string","title": "WEBHOOK_URL"},"capability" : {"type": "object","title": "CAPABILITY"},"plugin_info" : {"$ref": "#/components/schemas/WebhookPluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"project_id" : {"type": "string","title": "PROJECT_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"webhook_url" : {"type": "string","title": "WEBHOOK_URL"},"capability" : {"type": "object","title": "CAPABILITY"},"plugin_info" : {"$ref": "#/components/schemas/WebhookPluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["webhook_id","name","state","access_key","webhook_url","capability","plugin_info","tags","project_id","workspace_id","domain_id","created_at"],
+         "required": ["webhook_id","name","state","access_key","webhook_url","capability","plugin_info","tags","domain_id","workspace_id","project_id","created_at"],
                 "title": "WebhookInfo"
            }
            ,        "WebhookPluginInfo": {
@@ -2249,7 +2226,7 @@
                 "title": "WebhookPluginInfo"
            }
            ,        "WebhookQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"webhook_url" : {"type": "string","title": "WEBHOOK_URL"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": [],
                 "title": "WebhookQuery"
@@ -2280,13 +2257,13 @@
                 "title": "CreateEventRequest"
            }
            ,        "EventInfo": {
-         "properties" : {"event_id" : {"type": "string","title": "EVENT_ID"},"event_key" : {"type": "string","title": "EVENT_KEY"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"title" : {"type": "string","title": "TITLE"},"description" : {"type": "string","title": "DESCRIPTION"},"severity" : {"type": "string","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"resource" : {"$ref": "#/components/schemas/EventResource","title": "RESOURCE"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"image_url" : {"type": "string","title": "IMAGE_URL"},"raw_data" : {"type": "object","title": "RAW_DATA"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"alert_id" : {"type": "string","title": "ALERT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"occurred_at" : {"type": "string","title": "OCCURRED_AT"}},
+         "properties" : {"event_id" : {"type": "string","title": "EVENT_ID"},"event_key" : {"type": "string","title": "EVENT_KEY"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"title" : {"type": "string","title": "TITLE"},"description" : {"type": "string","title": "DESCRIPTION"},"severity" : {"type": "string","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resource" : {"$ref": "#/components/schemas/EventResource","title": "RESOURCE"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"raw_data" : {"type": "object","title": "RAW_DATA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"occurred_at" : {"type": "string","title": "OCCURRED_AT"}},
          "type": "object",
-         "required": ["event_id","event_key","event_type","title","description","severity","rule","resource","provider","account","image_url","raw_data","additional_info","alert_id","webhook_id","project_id","workspace_id","domain_id","created_at","occurred_at"],
+         "required": ["event_id","event_key","event_type","title","description","severity","rule","image_url","resource","provider","account","additional_info","raw_data","domain_id","workspace_id","project_id","alert_id","webhook_id","created_at","occurred_at"],
                 "title": "EventInfo"
            }
            ,        "EventQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"event_id" : {"type": "string","title": "EVENT_ID"},"event_key" : {"type": "string","title": "EVENT_KEY"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"severity" : {"type": "string","title": "SEVERITY"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"alert_id" : {"type": "string","title": "ALERT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"event_id" : {"type": "string","title": "EVENT_ID"},"event_key" : {"type": "string","title": "EVENT_KEY"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"severity" : {"type": "string","title": "SEVERITY"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"}},
          "type": "object",
          "required": [],
                 "title": "EventQuery"
@@ -2309,12 +2286,6 @@
          "type": "object",
          "required": ["results","total_count"],
                 "title": "EventsInfo"
-           }
-           ,        "GetEventRequest": {
-         "properties" : {"event_id" : {"type": "string","title": "EVENT_ID"}},
-         "type": "object",
-         "required": ["event_id"],
-                "title": "GetEventRequest"
            }
            ,        "LogDataInfo": {
          "properties" : {"results" : {"type": "array","title": "RESULTS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
@@ -2381,9 +2352,9 @@
                 "title": "UpdateEscalationPolicyRequest"
            }
            ,        "DataSourceInfo": {
-         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"monitoring_type" : {"type": "string","title": "MONITORING_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"capability" : {"type": "object","title": "CAPABILITY"},"plugin_info" : {"$ref": "#/components/schemas/DataSourcePluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"monitoring_type" : {"type": "string","title": "MONITORING_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"capability" : {"type": "object","title": "CAPABILITY"},"plugin_info" : {"$ref": "#/components/schemas/DataSourcePluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["data_source_id","name","state","monitoring_type","provider","capability","plugin_info","tags","resource_group","workspace_id","domain_id","created_at"],
+         "required": ["data_source_id","name","state","monitoring_type","provider","capability","plugin_info","tags","domain_id","created_at"],
                 "title": "DataSourceInfo"
            }
            ,        "DataSourcePluginInfo": {
@@ -2393,7 +2364,7 @@
                 "title": "DataSourcePluginInfo"
            }
            ,        "DataSourceQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"monitoring_type" : {"type": "string","title": "MONITORING_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"monitoring_type" : {"type": "string","title": "MONITORING_TYPE"},"provider" : {"type": "string","title": "PROVIDER"}},
          "type": "object",
          "required": [],
                 "title": "DataSourceQuery"
@@ -2418,9 +2389,9 @@
                 "title": "DataSourcesInfo"
            }
            ,        "RegisterDataSourceRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/DataSourcePluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/DataSourcePluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["name","plugin_info","resource_group"],
+         "required": ["name","plugin_info"],
                 "title": "RegisterDataSourceRequest"
            }
            ,        "UpdateDataSourcePluginRequest": {

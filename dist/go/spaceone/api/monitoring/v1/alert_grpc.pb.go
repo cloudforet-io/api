@@ -25,6 +25,7 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	Alert_Create_FullMethodName      = "/spaceone.api.monitoring.v1.Alert/create"
 	Alert_Update_FullMethodName      = "/spaceone.api.monitoring.v1.Alert/update"
+	Alert_AssignUser_FullMethodName  = "/spaceone.api.monitoring.v1.Alert/assign_user"
 	Alert_UpdateState_FullMethodName = "/spaceone.api.monitoring.v1.Alert/update_state"
 	Alert_Delete_FullMethodName      = "/spaceone.api.monitoring.v1.Alert/delete"
 	Alert_Get_FullMethodName         = "/spaceone.api.monitoring.v1.Alert/get"
@@ -40,7 +41,9 @@ type AlertClient interface {
 	Create(ctx context.Context, in *CreateAlertRequest, opts ...grpc.CallOption) (*AlertInfo, error)
 	// Updates a specific Alert. You can make changes in Alert settings, including the `title`, `description`, `responder`, `state`, and `urgency`. The `responder` of the Alert is a User who is assigned to respond to the Alert.
 	Update(ctx context.Context, in *UpdateAlertRequest, opts ...grpc.CallOption) (*AlertInfo, error)
+	AssignUser(ctx context.Context, in *AssignUserRequest, opts ...grpc.CallOption) (*AlertInfo, error)
 	// Updates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.
+	// +noauth
 	UpdateState(ctx context.Context, in *UpdateAlertStateRequest, opts ...grpc.CallOption) (*AlertInfo, error)
 	// Deletes a specific Alert and remove it from the list of Alerts. You must specify the `alert_id` of the Alert to delete.
 	Delete(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -71,6 +74,15 @@ func (c *alertClient) Create(ctx context.Context, in *CreateAlertRequest, opts .
 func (c *alertClient) Update(ctx context.Context, in *UpdateAlertRequest, opts ...grpc.CallOption) (*AlertInfo, error) {
 	out := new(AlertInfo)
 	err := c.cc.Invoke(ctx, Alert_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *alertClient) AssignUser(ctx context.Context, in *AssignUserRequest, opts ...grpc.CallOption) (*AlertInfo, error) {
+	out := new(AlertInfo)
+	err := c.cc.Invoke(ctx, Alert_AssignUser_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -130,7 +142,9 @@ type AlertServer interface {
 	Create(context.Context, *CreateAlertRequest) (*AlertInfo, error)
 	// Updates a specific Alert. You can make changes in Alert settings, including the `title`, `description`, `responder`, `state`, and `urgency`. The `responder` of the Alert is a User who is assigned to respond to the Alert.
 	Update(context.Context, *UpdateAlertRequest) (*AlertInfo, error)
+	AssignUser(context.Context, *AssignUserRequest) (*AlertInfo, error)
 	// Updates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.
+	// +noauth
 	UpdateState(context.Context, *UpdateAlertStateRequest) (*AlertInfo, error)
 	// Deletes a specific Alert and remove it from the list of Alerts. You must specify the `alert_id` of the Alert to delete.
 	Delete(context.Context, *AlertRequest) (*empty.Empty, error)
@@ -151,6 +165,9 @@ func (UnimplementedAlertServer) Create(context.Context, *CreateAlertRequest) (*A
 }
 func (UnimplementedAlertServer) Update(context.Context, *UpdateAlertRequest) (*AlertInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedAlertServer) AssignUser(context.Context, *AssignUserRequest) (*AlertInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AssignUser not implemented")
 }
 func (UnimplementedAlertServer) UpdateState(context.Context, *UpdateAlertStateRequest) (*AlertInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateState not implemented")
@@ -212,6 +229,24 @@ func _Alert_Update_Handler(srv interface{}, ctx context.Context, dec func(interf
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AlertServer).Update(ctx, req.(*UpdateAlertRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Alert_AssignUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AssignUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AlertServer).AssignUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Alert_AssignUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AlertServer).AssignUser(ctx, req.(*AssignUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -320,6 +355,10 @@ var Alert_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _Alert_Update_Handler,
+		},
+		{
+			MethodName: "assign_user",
+			Handler:    _Alert_AssignUser_Handler,
 		},
 		{
 			MethodName: "update_state",

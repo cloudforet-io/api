@@ -36,7 +36,7 @@ type EventClient interface {
 	// Creates a new Event. The Event creation process starts with validation checking whether the input data is from a webhook or not. After the input data is validated, the data is processed and used to create the Event.
 	Create(ctx context.Context, in *CreateEventRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Event matching the input parameters, `event_id` and `domain_id`. Prints detailed information about the Event.
-	Get(ctx context.Context, in *GetEventRequest, opts ...grpc.CallOption) (*EventInfo, error)
+	Get(ctx context.Context, in *EventRequest, opts ...grpc.CallOption) (*EventInfo, error)
 	// Gets a list of all Events. You must specify the `domain_id`. You can use a query to get a filtered list of Events.
 	List(ctx context.Context, in *EventQuery, opts ...grpc.CallOption) (*EventsInfo, error)
 	Stat(ctx context.Context, in *EventStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -59,7 +59,7 @@ func (c *eventClient) Create(ctx context.Context, in *CreateEventRequest, opts .
 	return out, nil
 }
 
-func (c *eventClient) Get(ctx context.Context, in *GetEventRequest, opts ...grpc.CallOption) (*EventInfo, error) {
+func (c *eventClient) Get(ctx context.Context, in *EventRequest, opts ...grpc.CallOption) (*EventInfo, error) {
 	out := new(EventInfo)
 	err := c.cc.Invoke(ctx, Event_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -93,7 +93,7 @@ type EventServer interface {
 	// Creates a new Event. The Event creation process starts with validation checking whether the input data is from a webhook or not. After the input data is validated, the data is processed and used to create the Event.
 	Create(context.Context, *CreateEventRequest) (*empty.Empty, error)
 	// Gets a specific Event matching the input parameters, `event_id` and `domain_id`. Prints detailed information about the Event.
-	Get(context.Context, *GetEventRequest) (*EventInfo, error)
+	Get(context.Context, *EventRequest) (*EventInfo, error)
 	// Gets a list of all Events. You must specify the `domain_id`. You can use a query to get a filtered list of Events.
 	List(context.Context, *EventQuery) (*EventsInfo, error)
 	Stat(context.Context, *EventStatQuery) (*_struct.Struct, error)
@@ -107,7 +107,7 @@ type UnimplementedEventServer struct {
 func (UnimplementedEventServer) Create(context.Context, *CreateEventRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedEventServer) Get(context.Context, *GetEventRequest) (*EventInfo, error) {
+func (UnimplementedEventServer) Get(context.Context, *EventRequest) (*EventInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedEventServer) List(context.Context, *EventQuery) (*EventsInfo, error) {
@@ -148,7 +148,7 @@ func _Event_Create_Handler(srv interface{}, ctx context.Context, dec func(interf
 }
 
 func _Event_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetEventRequest)
+	in := new(EventRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -160,7 +160,7 @@ func _Event_Get_Handler(srv interface{}, ctx context.Context, dec func(interface
 		FullMethod: Event_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventServer).Get(ctx, req.(*GetEventRequest))
+		return srv.(EventServer).Get(ctx, req.(*EventRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

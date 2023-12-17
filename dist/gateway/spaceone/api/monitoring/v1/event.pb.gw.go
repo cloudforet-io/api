@@ -67,7 +67,7 @@ func local_request_Event_Create_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func request_Event_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.EventClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetEventRequest
+	var protoReq v1_0.EventRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,7 +84,7 @@ func request_Event_Get_0(ctx context.Context, marshaler runtime.Marshaler, clien
 }
 
 func local_request_Event_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.EventServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetEventRequest
+	var protoReq v1_0.EventRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -182,7 +182,7 @@ func RegisterEventHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.monitoring.v1.Event/Create", runtime.WithHTTPPathPattern("/monitoring/v1/event/create"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.monitoring.v1.Event/Create", runtime.WithHTTPPathPattern("/spaceone.api.monitoring.v1.Event/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -321,7 +321,7 @@ func RegisterEventHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.monitoring.v1.Event/Create", runtime.WithHTTPPathPattern("/monitoring/v1/event/create"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.monitoring.v1.Event/Create", runtime.WithHTTPPathPattern("/spaceone.api.monitoring.v1.Event/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -407,7 +407,7 @@ func RegisterEventHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_Event_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"monitoring", "v1", "event", "create"}, ""))
+	pattern_Event_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.monitoring.v1.Event", "create"}, ""))
 
 	pattern_Event_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"monitoring", "v1", "event", "get"}, ""))
 
