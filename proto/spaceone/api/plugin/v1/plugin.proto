@@ -37,10 +37,10 @@ message PluginEndpointRequest {
     // +optional
     string version = 2;
     // +optional
-    google.protobuf.Struct labels = 3;
-    string domain_id = 4;
+    UpgradeMode upgrade_mode = 3;
     // +optional
-    UpgradeMode upgrade_mode = 5;
+    google.protobuf.Struct labels = 4;
+    string domain_id = 21;
 }
 
 message PluginMetadataRequest {
@@ -53,16 +53,16 @@ message PluginMetadataRequest {
     // +optional
     string version = 2;
     // +optional
-    google.protobuf.Struct options = 3;
+    UpgradeMode upgrade_mode = 3;
     // +optional
-    UpgradeMode upgrade_mode = 5;
+    google.protobuf.Struct options = 4;
 }
 
 message PluginFailureRequest {
     string supervisor_id = 1;
-    string plugin_id = 2;
-    string version = 3;
-    string domain_id = 4;
+    string version = 2;
+    string domain_id = 21;
+    string plugin_id = 22;
 }
 
 //{
