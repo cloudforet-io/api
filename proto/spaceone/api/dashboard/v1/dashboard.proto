@@ -84,7 +84,6 @@ service Dashboard{
 }
 
 message CreateDashboardRequest {
-
   enum DashboardType {
     DASHBOARD_TYPE_NONE = 0;
     PUBLIC = 1;
@@ -109,12 +108,12 @@ message CreateDashboardRequest {
   // +optional
   google.protobuf.Struct variables_schema = 7;
   // +optional
-  google.protobuf.ListValue labels = 10;
+  google.protobuf.ListValue labels = 8;
   // +optional
-  google.protobuf.Struct tags = 11;
+  google.protobuf.Struct tags = 9;
   ResourceGroup resource_group = 20;
   // +optional
-  string project_id = 22;
+  string project_id = 21;
 }
 
 message UpdateDashboardRequest {
@@ -130,9 +129,9 @@ message UpdateDashboardRequest {
   // +optional
   google.protobuf.Struct variables_schema = 7;
   // +optional
-  google.protobuf.ListValue labels = 10;
+  google.protobuf.ListValue labels = 8;
   // +optional
-  google.protobuf.Struct tags = 11;
+  google.protobuf.Struct tags = 9;
 }
 
 message DashboardRequest {
@@ -153,18 +152,10 @@ message DashboardVersionSearchQuery {
 }
 
 message DashboardQuery {
-
   enum DashboardType {
     DASHBOARD_TYPE_NONE = 0;
     PUBLIC = 1;
     PRIVATE = 2;
-  }
-
-  enum ResourceGroup {
-    RESOURCE_GROUP_NONE = 0;
-    DOMAIN = 1;
-    WORKSPACE = 2;
-    PROJECT = 3;
   }
 
   // +optional
@@ -176,23 +167,20 @@ message DashboardQuery {
   // +optional
   DashboardType dashboard_type = 4;
   // +optional
-  string user_id = 10;
+  string workspace_id = 21;
   // +optional
-  ResourceGroup resource_group = 11;
+  string project_id = 22;
   // +optional
-  string project_id = 12;
-  // +optional
-  string workspace_id = 13;
+  string user_id = 23;
+
 }
 
 message DashboardInfo {
-
   enum DashboardType {
     DASHBOARD_TYPE_NONE = 0;
     PUBLIC = 1;
     PRIVATE = 2;
   }
-
   enum ResourceGroup {
     RESOURCE_GROUP_NONE = 0;
     DOMAIN = 1;
@@ -208,15 +196,17 @@ message DashboardInfo {
   google.protobuf.Struct variables = 6;
   google.protobuf.Struct settings = 7;
   google.protobuf.Struct variables_schema = 8;
-  google.protobuf.ListValue labels = 10;
-  google.protobuf.Struct tags = 11;
-  ResourceGroup resource_group = 12;
-  string user_id = 18;
-  string project_id = 19;
-  string workspace_id = 20;
+  google.protobuf.ListValue labels = 9;
+  google.protobuf.Struct tags = 10;
+
+  ResourceGroup resource_group = 20;
   string domain_id = 21;
-  string created_at = 22;
-  string updated_at = 23;
+  string workspace_id = 22;
+  string project_id = 23;
+  string user_id = 24;
+
+  string created_at = 31;
+  string updated_at = 32;
 }
 
 message DashboardsInfo {
@@ -233,12 +223,14 @@ message DashboardVersionInfo {
   string dashboard_id = 1;
   int32 version = 2;
   bool latest = 3;
-  google.protobuf.ListValue layouts = 5;
-  google.protobuf.Struct variables = 6;
-  google.protobuf.Struct settings = 7;
-  google.protobuf.Struct variables_schema = 8;
+  google.protobuf.ListValue layouts = 4;
+  google.protobuf.Struct variables = 5;
+  google.protobuf.Struct settings = 6;
+  google.protobuf.Struct variables_schema = 7;
+
   string domain_id = 21;
-  string created_at = 22;
+
+  string created_at = 31;
 }
 
 message DashboardVersionsInfo {
