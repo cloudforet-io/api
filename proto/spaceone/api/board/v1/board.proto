@@ -14,7 +14,7 @@ service Board {
     // Creates a new Board with SYSTEM permission. The `name` of the board is only required. You can add one or more `categories` representing the Board's attributes.
     rpc create (CreateBoardRequest) returns (BoardInfo) {
         option (google.api.http) = {
-            post: "/board/v1/board"
+            post: "/board/v1/board/create"
             body: "*"
         };
     }
@@ -36,7 +36,12 @@ service Board {
     }
 
     // Deletes a specific Board with `SYSTEM` permission. You can delete a Board regardless of the presence of Posts created under the Board.
-    rpc delete (BoardRequest) returns (google.protobuf.Empty) {}
+    rpc delete (BoardRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/board/v1/board/delete"
+            body: "*"
+        };
+    }
 
     // Gets a specific Board. You must specify the `board_id` of the Board to get. Prints detailed information about the Board, including `name`, `categories`.
     rpc get (BoardRequest) returns (BoardInfo) {
@@ -138,7 +143,8 @@ message BoardInfo {
     string name = 2;
     repeated string categories = 3;
     google.protobuf.Struct tags = 4;
-    string created_at = 11;
+
+    string created_at = 31;
 }
 
 //{
