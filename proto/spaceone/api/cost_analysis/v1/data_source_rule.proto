@@ -109,6 +109,13 @@ message DataSourceRuleOptions {
 //    "tags": {"b": "c", "a": "b"}
 //}
 message CreateDataSourceRuleRequest {
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string data_source_id = 1;
     // +optional
     string name = 2;
@@ -120,7 +127,7 @@ message CreateDataSourceRuleRequest {
     DataSourceRuleOptions options = 6;
     // +optional
     google.protobuf.Struct tags = 7;
-    string domain_id = 11;
+    ResourceGroup resource_group = 8;
 }
 
 //{
@@ -152,7 +159,6 @@ message UpdateDataSourceRuleRequest {
     DataSourceRuleOptions options = 6;
     // +optional
     google.protobuf.Struct tags = 7;
-    string domain_id = 11;
 }
 
 //{
@@ -162,7 +168,6 @@ message UpdateDataSourceRuleRequest {
 message ChangeDataSourceRuleOrderRequest {
     string data_source_rule_id = 1;
     int32 order = 2;
-    string domain_id = 11;
 }
 
 //{
@@ -170,23 +175,19 @@ message ChangeDataSourceRuleOrderRequest {
 //}
 message DataSourceRuleRequest {
     string data_source_rule_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//  "data_source_rule_id": "rule-22fab02f6b51"
-//}
-message GetDataSourceRuleRequest {
-    string data_source_rule_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
 //  "query": {}
 //}
 message DataSourceRuleQuery {
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -197,7 +198,7 @@ message DataSourceRuleQuery {
     string rule_type = 4;
     // +optional
     string data_source_id = 5;
-    string domain_id = 11;
+    ResourceGroup resource_group = 6;
 }
 
 //{
@@ -223,6 +224,13 @@ message DataSourceRuleQuery {
 //    "created_at": "2022-07-19T10:13:28.335Z"
 //}
 message DataSourceRuleInfo {
+
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string data_source_rule_id = 1;
     string name = 2;
     int32 order = 3;
@@ -233,8 +241,12 @@ message DataSourceRuleInfo {
     google.protobuf.Struct tags = 8;
     string rule_type = 9;
     string data_source_id = 11;
-    string domain_id = 12;
-    string created_at = 21;
+    ResourceGroup resource_group = 12;
+
+    string workspace_id = 20;
+    string domain_id = 21;
+
+    string created_at = 31;
 }
 
 //{
@@ -287,5 +299,4 @@ message DataSourceRulesInfo {
 
 message DataSourceRuleStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }

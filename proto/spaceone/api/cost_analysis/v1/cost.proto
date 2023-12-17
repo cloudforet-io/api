@@ -30,7 +30,7 @@ service Cost {
     }
     
     // Gets a specific Cost. Prints detailed information about the Cost, including  `region_code` and `account`.
-    rpc get (GetCostRequest) returns (CostInfo) {
+    rpc get (CostRequest) returns (CostInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/cost/get"
             body: "*"
@@ -99,10 +99,8 @@ message CreateCostRequest {
     google.protobuf.Struct additional_info = 22;
     // +optional
     string service_account_id = 31;
-    // +optional
     string project_id = 32;
     string data_source_id = 33;
-    string domain_id = 34;
     string billed_date = 41;
 }
 
@@ -111,17 +109,6 @@ message CreateCostRequest {
 //}
 message CostRequest {
     string cost_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//    "cost_id": "cost-2ad052ed03d7"
-//}
-message GetCostRequest {
-    string cost_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -148,10 +135,7 @@ message CostQuery {
     string service_account_id = 11;
     // +optional
     string project_id = 12;
-    // +optional
-    string project_group_id = 13;
     string data_source_id = 14;
-    string domain_id = 15;
     // +optional
     string billed_year = 21;
     // +optional
@@ -197,8 +181,8 @@ message CostInfo {
     google.protobuf.Struct additional_info = 22;
     string service_account_id = 31;
     string project_id = 32;
-    string project_group_id = 33;
-    string data_source_id = 34;
+    string data_source_id = 33;
+    string workspace_id = 34;
     string domain_id = 35;
     string billed_year = 41;
     string billed_month = 42;
@@ -257,11 +241,9 @@ message CostsInfo {
 message CostAnalyzeQuery {
     spaceone.api.core.v1.TimeSeriesAnalyzeQuery query = 1;
     string data_source_id = 2;
-    string domain_id = 3;
 }
 
 message CostStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
     string data_source_id = 2;
-    string domain_id = 3;
 }

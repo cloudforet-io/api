@@ -42,9 +42,9 @@ service JobTask {
 //}
 message GetJobTaskRequest {
     string job_task_id = 1;
-    string domain_id = 2;
     // +optional
-    repeated string only = 3;
+    string workspace_id = 2;
+    string domain_id = 3;
 }
 
 //{
@@ -61,6 +61,12 @@ message JobTaskQuery {
         CANCELED = 6;
     }
 
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -71,7 +77,12 @@ message JobTaskQuery {
     string job_id = 11;
     // +optional
     string data_source_id = 12;
-    string domain_id = 13;
+    // +optional
+    ResourceGroup resource_group = 13;
+
+    // +optional
+    string workspace_id = 20;
+    string domain_id = 21;
 }
 
 //{
@@ -101,6 +112,12 @@ message JobTaskInfo {
         CANCELED = 6;
     }
 
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string job_task_id = 1;
     Status status = 2;
     google.protobuf.Struct options = 3;
@@ -109,11 +126,15 @@ message JobTaskInfo {
     string error_message = 6;
     string job_id = 11;
     string data_source_id = 12;
-    string domain_id = 13;
-    string created_at = 21;
-    string started_at = 22;
-    string updated_at = 23;
-    string finished_at = 24;
+    ResourceGroup resource_group = 13;
+
+    string workspace_id = 20;
+    string domain_id = 21;
+
+    string created_at = 31;
+    string started_at = 32;
+    string updated_at = 33;
+    string finished_at = 34;
 }
 
 //{
@@ -160,5 +181,7 @@ message JobTasksInfo {
 
 message JobTaskStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
+    // +optional
+    string workspace_id = 2;
+    string domain_id = 3;
 }

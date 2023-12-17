@@ -38,7 +38,7 @@ service CostQuerySet {
     }
     
     // Gets a specific CostQuerySet. Prints detailed information about the CostQuerySet, including the details of queries.
-    rpc get (GetCostQuerySetRequest) returns (CostQuerySetInfo) {
+    rpc get (CostQuerySetRequest) returns (CostQuerySetInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/cost-query-set/get",
             body: "*"
@@ -72,7 +72,6 @@ message CreateCostQuerySetRequest {
     google.protobuf.Struct options = 3;
     // +optional
     google.protobuf.Struct tags = 4;
-    string domain_id = 11;
 }
 
 //{
@@ -94,8 +93,6 @@ message UpdateCostQuerySetRequest {
     google.protobuf.Struct options = 3;
     // +optional
     google.protobuf.Struct tags = 4;
-    
-    string domain_id = 11;
 }
 
 //{
@@ -104,18 +101,6 @@ message UpdateCostQuerySetRequest {
 //}
 message CostQuerySetRequest {
     string cost_query_set_id = 1;
-    string domain_id = 2;
-}
-
-//{
-//    "cost_query_set_id": "query-16ae671dc8fb",
-//    "domain_id": "domain-58010aa2e451"
-//}
-message GetCostQuerySetRequest {
-    string cost_query_set_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -127,12 +112,7 @@ message CostQuerySetQuery {
     // +optional
     string data_source_id = 2;
     // +optional
-    string cost_query_set_id = 3;
-    // +optional
     string name = 4;
-    // +optional
-    string user_id = 5;
-    string domain_id = 11;
 }
 
 //{
@@ -151,11 +131,13 @@ message CostQuerySetInfo {
     string name = 2;
     google.protobuf.Struct options = 3;
     google.protobuf.Struct tags = 4;
-    string user_id = 11;
     string data_source_id = 12;
-    string domain_id = 13;
-    string created_at = 21;
-    string updated_at = 22;
+
+    string user_id = 20;
+    string domain_id = 21;
+
+    string created_at = 31;
+    string updated_at = 32;
 }
 
 //{
@@ -193,5 +175,4 @@ message CostQuerySetsInfo {
 message CostQuerySetStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
     string data_source_id = 2;
-    string domain_id = 3;
 }

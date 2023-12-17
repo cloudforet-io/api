@@ -46,7 +46,7 @@ service Budget {
     }
     
     // Gets a specific Budget. Prints detailed information about the Budget, including `planned_limits` of the project group or project for the pre-defined period.
-    rpc get (GetBudgetRequest) returns (BudgetInfo) {
+    rpc get (BudgetRequest) returns (BudgetInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/budget/get"
             body: "*"
@@ -130,6 +130,12 @@ message CreateBudgetRequest {
         MONTHLY = 2;
     }
 
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        WORKSPACE = 1;
+        PROJECT = 2;
+    }
+
     // +optional
     string name = 1;
     // +optional
@@ -147,10 +153,7 @@ message CreateBudgetRequest {
     google.protobuf.Struct tags = 9;
     // +optional
     string project_id = 11;
-    // +optional
-    string project_group_id = 12;
     string data_source_id = 13;
-    string domain_id = 14;
 }
 
 //{
@@ -178,7 +181,6 @@ message UpdateBudgetRequest {
     repeated PlannedLimit planned_limits = 4;
     // +optional
     google.protobuf.Struct tags = 5;
-    string domain_id = 11;
 }
 
 //{
@@ -199,7 +201,6 @@ message UpdateBudgetRequest {
 message SetBudgetNotificationRequest {
     string budget_id = 1;
     repeated BudgetNotification notifications = 2;
-    string domain_id = 11;
 }
 
 //{
@@ -207,14 +208,6 @@ message SetBudgetNotificationRequest {
 //}
 message BudgetRequest {
     string budget_id = 1;
-    string domain_id = 2;
-}
-
-message GetBudgetRequest {
-    string budget_id = 1;
-    string domain_id = 2;
-    // +optional
-    repeated string only = 3;
 }
 
 //{
@@ -227,6 +220,12 @@ message BudgetQuery {
         MONTHLY = 2;
     }
 
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        WORKSPACE = 1;
+        PROJECT = 2;
+    }
+
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -236,12 +235,10 @@ message BudgetQuery {
     // +optional
     string project_id = 4;
     // +optional
-    string project_group_id = 5;
-    // +optional
     TimeUnit time_unit = 6;
     // +optional
     string data_source_id = 7;
-    string domain_id = 11;
+    ResourceGroup resource_group = 8;
 }
 
 //{
@@ -323,6 +320,12 @@ message BudgetInfo {
         MONTHLY = 2;
     }
 
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        WORKSPACE = 1;
+        PROJECT = 2;
+    }
+
     string budget_id = 1;
     string name = 2;
     float limit = 3;
@@ -333,13 +336,15 @@ message BudgetInfo {
     string start = 8;
     string end = 9;
     repeated BudgetNotification notifications = 10;
-    google.protobuf.Struct tags = 21;
-    string project_id = 31;
-    string project_group_id = 32;
-    string data_source_id = 33;
-    string domain_id = 34;
-    string created_at = 41;
-    string updated_at = 42;
+    google.protobuf.Struct tags = 11;
+
+    string data_source_id = 18;
+    string project_id = 19;
+    string workspace_id = 20;
+    string domain_id = 21;
+
+    string created_at = 31;
+    string updated_at = 32;
 }
 
 //{
@@ -426,5 +431,4 @@ message BudgetsInfo {
 
 message BudgetStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    string domain_id = 2;
 }
