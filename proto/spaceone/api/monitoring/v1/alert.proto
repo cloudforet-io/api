@@ -28,14 +28,18 @@ service Alert {
             body: "*"
         };
     }
-    
-    // Updates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.
-    rpc update_state (UpdateAlertStateRequest) returns (AlertInfo) {
+
+
+    rpc assign_user (AssignUserRequest) returns (AlertInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/alert/update-state"
+            post: "/monitoring/v1/alert/assign-user"
             body: "*"
         };
     }
+    
+    // Updates the state of an Alert via callback URL by creating a temporary `access_key` while generating a Notification about the Alert.
+    // +noauth
+    rpc update_state (UpdateAlertStateRequest) returns (AlertInfo) {}
     
     // Deletes a specific Alert and remove it from the list of Alerts. You must specify the `alert_id` of the Alert to delete.
     rpc delete (AlertRequest) returns (google.protobuf.Empty) {
@@ -89,11 +93,6 @@ message AlertResource {
     string name = 3;
 }
 
-message AlertResponder {
-    string resource_type = 1;
-    string resource_id = 2;
-}
-
 //{
 //      "title": "sample test",
 //      "description": "This is a description of sample.",
@@ -126,21 +125,11 @@ message UpdateAlertRequest {
     // +optional
     string state = 3;
     // +optional
-    string status_message = 4;
+    string description = 4;
     // +optional
-    string description = 5;
+    AlertUrgency urgency = 5;
     // +optional
-    string assignee = 6;
-    // +optional
-    AlertUrgency urgency = 7;
-    // +optional
-    string project_id = 8;
-    // +optional
-    bool reset_status_message = 11;
-    // +optional
-    bool reset_description = 12;
-    // +optional
-    bool reset_assignee = 13;
+    string project_id = 21;
 }
 
 //{
@@ -152,6 +141,11 @@ message UpdateAlertStateRequest {
     string alert_id = 1;
     string access_key = 2;
     string state = 3;
+}
+
+message AssignUserRequest {
+    string alert_id = 1;
+    string assignee = 2;
 }
 
 //{
@@ -191,11 +185,13 @@ message AlertQuery {
     // +optional
     string triggered_by = 13;
     // +optional
-    string webhook_id = 21;
+    string workspace_id = 21;
     // +optional
-    string escalation_policy_id = 22;
+    string project_id = 22;
     // +optional
-    string project_id = 23;
+    string webhook_id = 23;
+    // +optional
+    string escalation_policy_id = 24;
 }
 
 //{
@@ -221,26 +217,25 @@ message AlertInfo {
     string alert_id = 2;
     string title = 3;
     AlertState state = 4;
-    string status_message = 5;
-    string description = 6;
-    string assignee = 7;
-    AlertUrgency urgency = 8;
-    string severity = 9;
-    string rule = 10;
+    string description = 5;
+    string assignee = 6;
+    AlertUrgency urgency = 7;
+    string severity = 8;
+    string rule = 9;
+    string image_url = 10;
     AlertResource resource = 11;
     string provider = 12;
     string account = 13;
-    int32 escalation_step = 14;
-    int32 escalation_ttl = 15;
-    string image_url = 16;
-    google.protobuf.Struct additional_info = 17;
-    string triggered_by = 18;
-    string webhook_id = 19;
-    string escalation_policy_id = 20;
+    google.protobuf.Struct additional_info = 14;
+    int32 escalation_step = 15;
+    int32 escalation_ttl = 16;
+    string triggered_by = 17;
 
-    string project_id = 21;
+    string domain_id = 21;
     string workspace_id = 22;
-    string domain_id = 23;
+    string project_id = 23;
+    string webhook_id = 24;
+    string escalation_policy_id = 25;
 
     string created_at = 31;
     string updated_at = 32;
