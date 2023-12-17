@@ -252,7 +252,7 @@
           "fields": [
             {
               "name": "resource_type",
-              "description": "is_required: true\nThe type of resource to which the notification is dispatched.\nCurrently, only \"identity.Project\" or \"identity.User\" can be set.",
+              "description": "The type of resource to which the notification is dispatched.\nCurrently, only \"identity.Project\" or \"identity.User\" can be set.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -264,7 +264,7 @@
             },
             {
               "name": "resource_id",
-              "description": "is_required: true\nThe ID of the resource to which notifications are dispatched.\nIf resource_type is \"identity.Project\", then resource_id requires a project ID values.\nIf resource_type is \"identity.User\", then resource_id requires a user ID value.",
+              "description": "The ID of the resource to which notifications are dispatched.\nIf resource_type is \"identity.Project\", then resource_id requires a project ID values.\nIf resource_type is \"identity.User\", then resource_id requires a user ID value.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -276,7 +276,7 @@
             },
             {
               "name": "topic",
-              "description": "is_required: true\nThe topic of notification.",
+              "description": "The topic of notification.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -288,7 +288,7 @@
             },
             {
               "name": "message",
-              "description": "is_required: true\nThis message is used for each protocol.",
+              "description": "This message is used for each protocol.",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -300,7 +300,7 @@
             },
             {
               "name": "notification_type",
-              "description": "is_required: false\nThe type of notification.\n+optional",
+              "description": "The type of notification.\n+optional",
               "label": "",
               "type": "NotificationType",
               "longType": "CreateNotificationRequest.NotificationType",
@@ -312,7 +312,7 @@
             },
             {
               "name": "notification_level",
-              "description": "is_required: false\nThe level of notification.\n+optional",
+              "description": "The level of notification.\n+optional",
               "label": "",
               "type": "NotificationLEVEL",
               "longType": "CreateNotificationRequest.NotificationLEVEL",
@@ -336,7 +336,7 @@
           "fields": [
             {
               "name": "notification_id",
-              "description": "is_required: true\nThe ID of Notification.",
+              "description": "The ID of Notification.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -443,8 +443,8 @@
               "defaultValue": ""
             },
             {
-              "name": "user_id",
-              "description": "The ID of user to whom the notification was dispatched.",
+              "name": "domain_id",
+              "description": "The ID of domain",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -455,8 +455,8 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "The ID of domain",
+              "name": "user_id",
+              "description": "The ID of user to whom the notification was dispatched.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -492,7 +492,7 @@
           "fields": [
             {
               "name": "query",
-              "description": "is_required: false\nQuery format provided by SpaceONE. Please check the link for more information.\n+optional",
+              "description": "Query format provided by SpaceONE. Please check the link for more information.\n+optional",
               "label": "",
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
@@ -504,7 +504,7 @@
             },
             {
               "name": "notification_id",
-              "description": "is_required: false\nThe ID of notification.\n+optional",
+              "description": "The ID of notification.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -516,7 +516,7 @@
             },
             {
               "name": "topic",
-              "description": "is_required: false\nThe topic of notification.\n+optional",
+              "description": "The topic of notification.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -528,7 +528,7 @@
             },
             {
               "name": "notification_type",
-              "description": "is_required: false\nThe type of notification.\n+optional",
+              "description": "The type of notification.\n+optional",
               "label": "",
               "type": "NotificationType",
               "longType": "NotificationQuery.NotificationType",
@@ -540,7 +540,7 @@
             },
             {
               "name": "notification_level",
-              "description": "is_required: false\nThe level of notification.\n+optional",
+              "description": "The level of notification.\n+optional",
               "label": "",
               "type": "NotificationLEVEL",
               "longType": "NotificationQuery.NotificationLEVEL",
@@ -552,7 +552,7 @@
             },
             {
               "name": "is_read",
-              "description": "is_required: false\nWhether or not to check the notification.\nIf is_read is False, the user has not checked the notification yet.\n+optional",
+              "description": "Whether or not to check the notification.\nIf is_read is False, the user has not checked the notification yet.\n+optional",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -563,8 +563,8 @@
               "defaultValue": ""
             },
             {
-              "name": "parent_notification_id",
-              "description": "is_required: false\nThe ID of parent notification. Not used yet.\n+optional",
+              "name": "project_id",
+              "description": "The project ID to which the notification will be dispatched.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -575,33 +575,9 @@
               "defaultValue": ""
             },
             {
-              "name": "project_id",
-              "description": "is_required: false\nThe project ID to which the notification will be dispatched.\n+optional",
+              "name": "parent_notification_id",
+              "description": "The ID of parent notification. Not used yet.\n+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "NotificationRequest",
-          "longName": "NotificationRequest",
-          "fullName": "spaceone.api.notification.v1.NotificationRequest",
-          "description": "{\n   \"notifications\": [\n       \"notification-4025c1b61225\",\n       \"notification-13hk3fh32534\",\n       \"notification-4kth40jth5jy\"\n   ]\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "notifications",
-              "description": "is_required: true\nID list of Notifications.",
-              "label": "repeated",
               "type": "string",
               "longType": "string",
               "fullType": "string",
@@ -673,6 +649,30 @@
           ]
         },
         {
+          "name": "NotificationsRequest",
+          "longName": "NotificationsRequest",
+          "fullName": "spaceone.api.notification.v1.NotificationsRequest",
+          "description": "{\n   \"notifications\": [\n       \"notification-4025c1b61225\",\n       \"notification-13hk3fh32534\",\n       \"notification-4kth40jth5jy\"\n   ]\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "notifications",
+              "description": "ID list of Notifications.",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "PushNotificationRequest",
           "longName": "PushNotificationRequest",
           "fullName": "spaceone.api.notification.v1.PushNotificationRequest",
@@ -684,7 +684,7 @@
           "fields": [
             {
               "name": "protocol_id",
-              "description": "is_required: true\nThe ID of Protocol.",
+              "description": "The ID of Protocol.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -696,7 +696,7 @@
             },
             {
               "name": "data",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -708,7 +708,7 @@
             },
             {
               "name": "message",
-              "description": "is_required: true",
+              "description": "",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -720,7 +720,7 @@
             },
             {
               "name": "notification_type",
-              "description": "is_required: false\n+optional",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -732,7 +732,7 @@
             },
             {
               "name": "notification_level",
-              "description": "is_required: false\n+optional",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -746,30 +746,6 @@
               "name": "topic",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "SetReadNotificationRequest",
-          "longName": "SetReadNotificationRequest",
-          "fullName": "spaceone.api.notification.v1.SetReadNotificationRequest",
-          "description": "{\n   \"notifications\": [\n       \"notification-6c548a37ee77\",\n       \"notification-4j3jt9384fnf\"\n   ]\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "notifications",
-              "description": "is_required: true\nThe ID list of notification that want to change read status.",
-              "label": "repeated",
               "type": "string",
               "longType": "string",
               "fullType": "string",
@@ -837,9 +813,9 @@
             {
               "name": "delete",
               "description": "Deletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.",
-              "requestType": "NotificationRequest",
-              "requestLongType": "NotificationRequest",
-              "requestFullType": "spaceone.api.notification.v1.NotificationRequest",
+              "requestType": "NotificationsRequest",
+              "requestLongType": "NotificationsRequest",
+              "requestFullType": "spaceone.api.notification.v1.NotificationsRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -860,9 +836,9 @@
             {
               "name": "set_read",
               "description": "Marks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.",
-              "requestType": "SetReadNotificationRequest",
-              "requestLongType": "SetReadNotificationRequest",
-              "requestFullType": "spaceone.api.notification.v1.SetReadNotificationRequest",
+              "requestType": "NotificationsRequest",
+              "requestLongType": "NotificationsRequest",
+              "requestFullType": "spaceone.api.notification.v1.NotificationsRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",

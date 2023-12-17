@@ -51,7 +51,7 @@ type PluginClient interface {
 	// Gets all version data of a specific Plugin from its Repository. The parameter `plugin_id` is used as an identifier of a Plugin to get version data.
 	GetVersions(ctx context.Context, in *RepositoryPluginRequest, opts ...grpc.CallOption) (*VersionsInfo, error)
 	// Gets a specific Plugin. Prints detailed information about the Plugin, including  `image`, `registry_url`, and `state`.
-	Get(ctx context.Context, in *GetRepositoryPluginRequest, opts ...grpc.CallOption) (*PluginInfo, error)
+	Get(ctx context.Context, in *RepositoryPluginRequest, opts ...grpc.CallOption) (*PluginInfo, error)
 	// Gets a list of all Plugins registered in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Plugins. You can use a query to get a filtered list of Plugins.
 	List(ctx context.Context, in *PluginQuery, opts ...grpc.CallOption) (*PluginsInfo, error)
 	Stat(ctx context.Context, in *PluginStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -119,7 +119,7 @@ func (c *pluginClient) GetVersions(ctx context.Context, in *RepositoryPluginRequ
 	return out, nil
 }
 
-func (c *pluginClient) Get(ctx context.Context, in *GetRepositoryPluginRequest, opts ...grpc.CallOption) (*PluginInfo, error) {
+func (c *pluginClient) Get(ctx context.Context, in *RepositoryPluginRequest, opts ...grpc.CallOption) (*PluginInfo, error) {
 	out := new(PluginInfo)
 	err := c.cc.Invoke(ctx, Plugin_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -163,7 +163,7 @@ type PluginServer interface {
 	// Gets all version data of a specific Plugin from its Repository. The parameter `plugin_id` is used as an identifier of a Plugin to get version data.
 	GetVersions(context.Context, *RepositoryPluginRequest) (*VersionsInfo, error)
 	// Gets a specific Plugin. Prints detailed information about the Plugin, including  `image`, `registry_url`, and `state`.
-	Get(context.Context, *GetRepositoryPluginRequest) (*PluginInfo, error)
+	Get(context.Context, *RepositoryPluginRequest) (*PluginInfo, error)
 	// Gets a list of all Plugins registered in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Plugins. You can use a query to get a filtered list of Plugins.
 	List(context.Context, *PluginQuery) (*PluginsInfo, error)
 	Stat(context.Context, *PluginStatQuery) (*_struct.Struct, error)
@@ -192,7 +192,7 @@ func (UnimplementedPluginServer) Disable(context.Context, *PluginRequest) (*Plug
 func (UnimplementedPluginServer) GetVersions(context.Context, *RepositoryPluginRequest) (*VersionsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetVersions not implemented")
 }
-func (UnimplementedPluginServer) Get(context.Context, *GetRepositoryPluginRequest) (*PluginInfo, error) {
+func (UnimplementedPluginServer) Get(context.Context, *RepositoryPluginRequest) (*PluginInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedPluginServer) List(context.Context, *PluginQuery) (*PluginsInfo, error) {
@@ -323,7 +323,7 @@ func _Plugin_GetVersions_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _Plugin_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRepositoryPluginRequest)
+	in := new(RepositoryPluginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -335,7 +335,7 @@ func _Plugin_Get_Handler(srv interface{}, ctx context.Context, dec func(interfac
 		FullMethod: Plugin_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PluginServer).Get(ctx, req.(*GetRepositoryPluginRequest))
+		return srv.(PluginServer).Get(ctx, req.(*RepositoryPluginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -15,11 +15,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |resource_group|SYSTEM, DOMAIN, WORKSPACE |string|True|\n |tags||Struct||\n |reference||FileReference||\n |workspace_id||string||\n |domain_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |resource_group|SYSTEM, DOMAIN, WORKSPACE |string|True|\n |tags||Struct||\n |reference||FileReference||\n |domain_id||string||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" },"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" },"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -154,11 +154,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |file_id||string||\n |name||string||\n |state|PENDING, DONE |string||\n |file_type||string||\n |resource_type||string||\n |resource_id||string||\n |resource_group|SYSTEM, DOMAIN, WORKSPACE |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |file_id||string||\n |name||string||\n |state|PENDING, DONE |string||\n |file_type||string||\n |resource_type||string||\n |resource_id||string||\n |domain_id||string||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"file_id" : {"type": "string","title": "FILE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"file_type" : {"type": "string","title": "FILE_TYPE" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"file_id" : {"type": "string","title": "FILE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"file_type" : {"type": "string","title": "FILE_TYPE" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -183,11 +183,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -210,15 +210,15 @@
    "components":{
      "schemas": {
      "CreateFileRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": ["name","resource_group"],
                 "title": "CreateFileRequest"
            }
            ,        "FileInfo": {
-         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"file_type" : {"type": "string","title": "FILE_TYPE"},"upload_url" : {"type": "string","title": "UPLOAD_URL"},"upload_options" : {"type": "object","title": "UPLOAD_OPTIONS"},"download_url" : {"type": "string","title": "DOWNLOAD_URL"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"file_type" : {"type": "string","title": "FILE_TYPE"},"upload_url" : {"type": "string","title": "UPLOAD_URL"},"upload_options" : {"type": "object","title": "UPLOAD_OPTIONS"},"download_url" : {"type": "string","title": "DOWNLOAD_URL"},"tags" : {"type": "object","title": "TAGS"},"reference" : {"$ref": "#/components/schemas/FileReference","title": "REFERENCE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["file_id","name","state","resource_group","file_type","tags","reference","workspace_id","domain_id","user_id","created_at"],
+         "required": ["file_id","name","state","file_type","upload_url","upload_options","download_url","tags","reference","resource_group","domain_id","workspace_id","user_id","created_at"],
                 "title": "FileInfo"
            }
            ,        "FileReference": {
@@ -234,15 +234,15 @@
                 "title": "FileRequest"
            }
            ,        "FileSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"file_type" : {"type": "string","title": "FILE_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"file_id" : {"type": "string","title": "FILE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"file_type" : {"type": "string","title": "FILE_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": [],
                 "title": "FileSearchQuery"
            }
            ,        "FileStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
-         "required": ["query","domain_id"],
+         "required": ["query"],
                 "title": "FileStatQuery"
            }
            ,        "FilesInfo": {

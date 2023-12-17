@@ -41,9 +41,9 @@ type NotificationClient interface {
 	// Manually raises a Notification. A Notification is raised with a message to be sent using a valid specific Protocol, and data used for a specific Protocol such as a phone number.
 	Push(ctx context.Context, in *PushNotificationRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Deletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.
-	Delete(ctx context.Context, in *NotificationRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Delete(ctx context.Context, in *NotificationsRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Marks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.
-	SetRead(ctx context.Context, in *SetReadNotificationRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	SetRead(ctx context.Context, in *NotificationsRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Notification. Prints detailed information about the Notification, including not only the message contents(`title`, `description`) but also related data such as created time and urgency.
 	Get(ctx context.Context, in *GetNotificationRequest, opts ...grpc.CallOption) (*NotificationInfo, error)
 	// Gets a list of all Notifications. You can use a query to get a filtered list of Notifications.
@@ -77,7 +77,7 @@ func (c *notificationClient) Push(ctx context.Context, in *PushNotificationReque
 	return out, nil
 }
 
-func (c *notificationClient) Delete(ctx context.Context, in *NotificationRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *notificationClient) Delete(ctx context.Context, in *NotificationsRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, Notification_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -86,7 +86,7 @@ func (c *notificationClient) Delete(ctx context.Context, in *NotificationRequest
 	return out, nil
 }
 
-func (c *notificationClient) SetRead(ctx context.Context, in *SetReadNotificationRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *notificationClient) SetRead(ctx context.Context, in *NotificationsRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, Notification_SetRead_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -131,9 +131,9 @@ type NotificationServer interface {
 	// Manually raises a Notification. A Notification is raised with a message to be sent using a valid specific Protocol, and data used for a specific Protocol such as a phone number.
 	Push(context.Context, *PushNotificationRequest) (*empty.Empty, error)
 	// Deletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.
-	Delete(context.Context, *NotificationRequest) (*empty.Empty, error)
+	Delete(context.Context, *NotificationsRequest) (*empty.Empty, error)
 	// Marks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.
-	SetRead(context.Context, *SetReadNotificationRequest) (*empty.Empty, error)
+	SetRead(context.Context, *NotificationsRequest) (*empty.Empty, error)
 	// Gets a specific Notification. Prints detailed information about the Notification, including not only the message contents(`title`, `description`) but also related data such as created time and urgency.
 	Get(context.Context, *GetNotificationRequest) (*NotificationInfo, error)
 	// Gets a list of all Notifications. You can use a query to get a filtered list of Notifications.
@@ -152,10 +152,10 @@ func (UnimplementedNotificationServer) Create(context.Context, *CreateNotificati
 func (UnimplementedNotificationServer) Push(context.Context, *PushNotificationRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Push not implemented")
 }
-func (UnimplementedNotificationServer) Delete(context.Context, *NotificationRequest) (*empty.Empty, error) {
+func (UnimplementedNotificationServer) Delete(context.Context, *NotificationsRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedNotificationServer) SetRead(context.Context, *SetReadNotificationRequest) (*empty.Empty, error) {
+func (UnimplementedNotificationServer) SetRead(context.Context, *NotificationsRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetRead not implemented")
 }
 func (UnimplementedNotificationServer) Get(context.Context, *GetNotificationRequest) (*NotificationInfo, error) {
@@ -217,7 +217,7 @@ func _Notification_Push_Handler(srv interface{}, ctx context.Context, dec func(i
 }
 
 func _Notification_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(NotificationRequest)
+	in := new(NotificationsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -229,13 +229,13 @@ func _Notification_Delete_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: Notification_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NotificationServer).Delete(ctx, req.(*NotificationRequest))
+		return srv.(NotificationServer).Delete(ctx, req.(*NotificationsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Notification_SetRead_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetReadNotificationRequest)
+	in := new(NotificationsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -247,7 +247,7 @@ func _Notification_SetRead_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: Notification_SetRead_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NotificationServer).SetRead(ctx, req.(*SetReadNotificationRequest))
+		return srv.(NotificationServer).SetRead(ctx, req.(*NotificationsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

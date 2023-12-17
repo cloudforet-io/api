@@ -237,7 +237,7 @@ func local_request_Protocol_Delete_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func request_Protocol_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetProtocolRequest
+	var protoReq v1_0.ProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -254,7 +254,7 @@ func request_Protocol_Get_0(ctx context.Context, marshaler runtime.Marshaler, cl
 }
 
 func local_request_Protocol_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetProtocolRequest
+	var protoReq v1_0.ProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

@@ -28,12 +28,12 @@ class NotificationStub(object):
                 )
         self.delete = channel.unary_unary(
                 '/spaceone.api.notification.v1.Notification/delete',
-                request_serializer=spaceone_dot_api_dot_notification_dot_v1_dot_notification__pb2.NotificationRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_notification_dot_v1_dot_notification__pb2.NotificationsRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.set_read = channel.unary_unary(
                 '/spaceone.api.notification.v1.Notification/set_read',
-                request_serializer=spaceone_dot_api_dot_notification_dot_v1_dot_notification__pb2.SetReadNotificationRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_notification_dot_v1_dot_notification__pb2.NotificationsRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.get = channel.unary_unary(
@@ -119,12 +119,12 @@ def add_NotificationServicer_to_server(servicer, server):
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_notification_dot_v1_dot_notification__pb2.NotificationRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_notification_dot_v1_dot_notification__pb2.NotificationsRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'set_read': grpc.unary_unary_rpc_method_handler(
                     servicer.set_read,
-                    request_deserializer=spaceone_dot_api_dot_notification_dot_v1_dot_notification__pb2.SetReadNotificationRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_notification_dot_v1_dot_notification__pb2.NotificationsRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
@@ -198,7 +198,7 @@ class Notification(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.notification.v1.Notification/delete',
-            spaceone_dot_api_dot_notification_dot_v1_dot_notification__pb2.NotificationRequest.SerializeToString,
+            spaceone_dot_api_dot_notification_dot_v1_dot_notification__pb2.NotificationsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -215,7 +215,7 @@ class Notification(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.notification.v1.Notification/set_read',
-            spaceone_dot_api_dot_notification_dot_v1_dot_notification__pb2.SetReadNotificationRequest.SerializeToString,
+            spaceone_dot_api_dot_notification_dot_v1_dot_notification__pb2.NotificationsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -15,11 +15,11 @@
          "operationId" : "",
          "description": "### Description \nCreates a new Supervisor. Only Users with the `MANAGED` permission can set the Supervisor `public`. The Supervisor manages the lifecycle of plugin instances by the Supervisor's state. When a Supervisor is created, the state of the resource is `PENDING`. If the state remains the same for 5 minutes, the state is changed to `DISCONNECTED`.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |hostname||string|True|\n |domain_id||string|True|\n |secret_key||string||\n |plugin_info||array||\n |tags||Struct||\n |is_public||boolean||\n |labels||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |hostname||string|True|\n |domain_id||string|True|\n |secret_key||string||\n |plugin_info||array||\n |is_public||boolean||\n |labels||array||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"hostname" : {"type": "string","title": "HOSTNAME" },"secret_key" : {"type": "string","title": "SECRET_KEY" },"plugin_info" : {"items": {"$ref": "#/components/schemas/PluginInfo"}, "type": "array","title": "PLUGIN_INFO" },"tags" : {"type": "object","title": "TAGS" },"is_public" : {"type": "boolean","title": "IS_PUBLIC" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"labels" : {"type": "object","title": "LABELS" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"hostname" : {"type": "string","title": "HOSTNAME" },"secret_key" : {"type": "string","title": "SECRET_KEY" },"plugin_info" : {"items": {"$ref": "#/components/schemas/PluginInfo"}, "type": "array","title": "PLUGIN_INFO" },"is_public" : {"type": "boolean","title": "IS_PUBLIC" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"name\": \"test\",\n   \"hostname\": \"dev-test2\",\n   \"secret_key\": \"xxxxx\",\n   \"tags\": {\n       \"a\": \"b\"\n   }\n}"},"Schema":{}
                }
@@ -193,11 +193,11 @@
          "operationId" : "",
          "description": "### Description \nRecovers a specific plugin instance in a specific Supervisor. Changes the `state` of the Supervisor to `RE-PROVISIONING`.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |supervisor_id||string|True|\n |plugin_id||string|True|\n |version||string|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |supervisor_id||string|True|\n |version||string|True|\n |domain_id||string|True|\n |plugin_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID" },"plugin_id" : {"type": "string","title": "PLUGIN_ID" },"version" : {"type": "string","title": "VERSION" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID" },"version" : {"type": "string","title": "VERSION" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"plugin_id" : {"type": "string","title": "PLUGIN_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"supervisor_id\": \"supervisor-a4c287cba676\",\n   \"plugin_id\": \"plugin-api-direct-mon-webhook\",\n   \"version\": \"1.1.0\"\n}"},"Schema":{}
                }
@@ -222,13 +222,13 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |supervisor_id||string|True|\n |domain_id||string|True|\n |only||array||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |supervisor_id||string|True|\n |domain_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"only" : {"items": {}, "type": "array","title": "ONLY" }                 }
+                 "properties": {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"supervisor_id\": \"supervisor-d73011256d55\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -344,11 +344,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |plugin_id||string|True|\n |version||string||\n |options||Struct||\n |upgrade_mode|AUTO |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |plugin_id||string|True|\n |version||string||\n |upgrade_mode|AUTO |string||\n |options||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"plugin_id" : {"type": "string","title": "PLUGIN_ID" },"version" : {"type": "string","title": "VERSION" },"options" : {"type": "object","title": "OPTIONS" },"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE" }                 }
+                 "properties": {"plugin_id" : {"type": "string","title": "PLUGIN_ID" },"version" : {"type": "string","title": "VERSION" },"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE" },"options" : {"type": "object","title": "OPTIONS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -370,18 +370,11 @@
    },
    "components":{
      "schemas": {
-     "GetSupervisorRequest": {
-         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"only" : {"items": {"type": "string"},
-               "type": "array","title": "ONLY"}},
+     "PluginInfo": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"state" : {"type": "string","title": "STATE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"managed" : {"type": "boolean","title": "MANAGED"},"endpoints" : {"items": {"type": "string"},
+               "type": "array","title": "ENDPOINTS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"supervisor_name" : {"type": "string","title": "SUPERVISOR_NAME"}},
          "type": "object",
-         "required": ["supervisor_id","domain_id"],
-                "title": "GetSupervisorRequest"
-           }
-           ,        "PluginInfo": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"state" : {"type": "string","title": "STATE"},"endpoint" : {"type": "string","title": "ENDPOINT"},"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"supervisor_name" : {"type": "string","title": "SUPERVISOR_NAME"},"managed" : {"type": "boolean","title": "MANAGED"},"endpoints" : {"items": {"type": "string"},
-               "type": "array","title": "ENDPOINTS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["plugin_id","version","state","endpoint","supervisor_id","supervisor_name","managed","endpoints","domain_id"],
+         "required": ["plugin_id","version","state","endpoint","managed","endpoints","domain_id","supervisor_id","supervisor_name"],
                 "title": "PluginInfo"
            }
            ,        "PluginQuery": {
@@ -399,15 +392,15 @@
            }
            ,        "PublishSupervisorRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"hostname" : {"type": "string","title": "HOSTNAME"},"secret_key" : {"type": "string","title": "SECRET_KEY"},"plugin_info" : {"items": {"$ref": "#/components/schemas/PluginInfo"},
-               "type": "array","$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"is_public" : {"type": "boolean","title": "IS_PUBLIC"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"labels" : {"type": "object","title": "LABELS"}},
+               "type": "array","$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"is_public" : {"type": "boolean","title": "IS_PUBLIC"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["name","hostname","domain_id"],
                 "title": "PublishSupervisorRequest"
            }
            ,        "RecoverPluginRequest": {
-         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"version" : {"type": "string","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
          "type": "object",
-         "required": ["supervisor_id","plugin_id","version","domain_id"],
+         "required": ["supervisor_id","version","domain_id","plugin_id"],
                 "title": "RecoverPluginRequest"
            }
            ,        "RegisterSupervisorRequest": {
@@ -417,9 +410,9 @@
                 "title": "RegisterSupervisorRequest"
            }
            ,        "SupervisorInfo": {
-         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"name" : {"type": "string","title": "NAME"},"hostname" : {"type": "string","title": "HOSTNAME"},"state" : {"type": "string","title": "STATE"},"is_public" : {"type": "boolean","title": "IS_PUBLIC"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"tags" : {"type": "object","title": "TAGS"},"labels" : {"type": "object","title": "LABELS"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"name" : {"type": "string","title": "NAME"},"hostname" : {"type": "string","title": "HOSTNAME"},"state" : {"type": "string","title": "STATE"},"is_public" : {"type": "boolean","title": "IS_PUBLIC"},"labels" : {"type": "object","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["supervisor_id","name","hostname","state","is_public","domain_id","tags","labels","created_at","updated_at"],
+         "required": ["supervisor_id","name","hostname","state","is_public","labels","tags","domain_id","created_at","updated_at"],
                 "title": "SupervisorInfo"
            }
            ,        "SupervisorQuery": {
@@ -661,15 +654,15 @@
                 "title": "PluginEndpoint"
            }
            ,        "PluginEndpointRequest": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"labels" : {"type": "object","title": "LABELS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"},"labels" : {"type": "object","title": "LABELS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
          "required": ["plugin_id","domain_id"],
                 "title": "PluginEndpointRequest"
            }
            ,        "PluginFailureRequest": {
-         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"supervisor_id" : {"type": "string","title": "SUPERVISOR_ID"},"version" : {"type": "string","title": "VERSION"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
          "type": "object",
-         "required": ["supervisor_id","plugin_id","version","domain_id"],
+         "required": ["supervisor_id","version","domain_id","plugin_id"],
                 "title": "PluginFailureRequest"
            }
            ,        "PluginMetadata": {
@@ -679,7 +672,7 @@
                 "title": "PluginMetadata"
            }
            ,        "PluginMetadataRequest": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"},"options" : {"type": "object","title": "OPTIONS"}},
          "type": "object",
          "required": ["plugin_id"],
                 "title": "PluginMetadataRequest"

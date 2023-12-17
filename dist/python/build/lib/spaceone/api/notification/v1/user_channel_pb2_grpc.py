@@ -53,7 +53,7 @@ class UserChannelStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.notification.v1.UserChannel/get',
-                request_serializer=spaceone_dot_api_dot_notification_dot_v1_dot_user__channel__pb2.GetUserChannelRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_notification_dot_v1_dot_user__channel__pb2.UserChannelRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_notification_dot_v1_dot_user__channel__pb2.UserChannelInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -180,7 +180,7 @@ def add_UserChannelServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_notification_dot_v1_dot_user__channel__pb2.GetUserChannelRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_notification_dot_v1_dot_user__channel__pb2.UserChannelRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_notification_dot_v1_dot_user__channel__pb2.UserChannelInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -334,7 +334,7 @@ class UserChannel(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.notification.v1.UserChannel/get',
-            spaceone_dot_api_dot_notification_dot_v1_dot_user__channel__pb2.GetUserChannelRequest.SerializeToString,
+            spaceone_dot_api_dot_notification_dot_v1_dot_user__channel__pb2.UserChannelRequest.SerializeToString,
             spaceone_dot_api_dot_notification_dot_v1_dot_user__channel__pb2.UserChannelInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

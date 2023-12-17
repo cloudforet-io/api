@@ -271,7 +271,7 @@ func local_request_ProjectChannel_Delete_0(ctx context.Context, marshaler runtim
 }
 
 func request_ProjectChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetProjectChannelRequest
+	var protoReq v1_0.ProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -288,7 +288,7 @@ func request_ProjectChannel_Get_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func local_request_ProjectChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetProjectChannelRequest
+	var protoReq v1_0.ProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

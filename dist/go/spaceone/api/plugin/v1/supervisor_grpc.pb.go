@@ -54,7 +54,7 @@ type SupervisorClient interface {
 	Disable(ctx context.Context, in *SupervisorRequest, opts ...grpc.CallOption) (*SupervisorInfo, error)
 	// Recovers a specific plugin instance in a specific Supervisor. Changes the `state` of the Supervisor to `RE-PROVISIONING`.
 	RecoverPlugin(ctx context.Context, in *RecoverPluginRequest, opts ...grpc.CallOption) (*PluginInfo, error)
-	Get(ctx context.Context, in *GetSupervisorRequest, opts ...grpc.CallOption) (*SupervisorInfo, error)
+	Get(ctx context.Context, in *SupervisorRequest, opts ...grpc.CallOption) (*SupervisorInfo, error)
 	// Gets a list of all Supervisors. You can use a query to get a filtered list of Supervisors.
 	List(ctx context.Context, in *SupervisorQuery, opts ...grpc.CallOption) (*SupervisorsInfo, error)
 	Stat(ctx context.Context, in *SupervisorStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -133,7 +133,7 @@ func (c *supervisorClient) RecoverPlugin(ctx context.Context, in *RecoverPluginR
 	return out, nil
 }
 
-func (c *supervisorClient) Get(ctx context.Context, in *GetSupervisorRequest, opts ...grpc.CallOption) (*SupervisorInfo, error) {
+func (c *supervisorClient) Get(ctx context.Context, in *SupervisorRequest, opts ...grpc.CallOption) (*SupervisorInfo, error) {
 	out := new(SupervisorInfo)
 	err := c.cc.Invoke(ctx, Supervisor_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -187,7 +187,7 @@ type SupervisorServer interface {
 	Disable(context.Context, *SupervisorRequest) (*SupervisorInfo, error)
 	// Recovers a specific plugin instance in a specific Supervisor. Changes the `state` of the Supervisor to `RE-PROVISIONING`.
 	RecoverPlugin(context.Context, *RecoverPluginRequest) (*PluginInfo, error)
-	Get(context.Context, *GetSupervisorRequest) (*SupervisorInfo, error)
+	Get(context.Context, *SupervisorRequest) (*SupervisorInfo, error)
 	// Gets a list of all Supervisors. You can use a query to get a filtered list of Supervisors.
 	List(context.Context, *SupervisorQuery) (*SupervisorsInfo, error)
 	Stat(context.Context, *SupervisorStatQuery) (*_struct.Struct, error)
@@ -221,7 +221,7 @@ func (UnimplementedSupervisorServer) Disable(context.Context, *SupervisorRequest
 func (UnimplementedSupervisorServer) RecoverPlugin(context.Context, *RecoverPluginRequest) (*PluginInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RecoverPlugin not implemented")
 }
-func (UnimplementedSupervisorServer) Get(context.Context, *GetSupervisorRequest) (*SupervisorInfo, error) {
+func (UnimplementedSupervisorServer) Get(context.Context, *SupervisorRequest) (*SupervisorInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedSupervisorServer) List(context.Context, *SupervisorQuery) (*SupervisorsInfo, error) {
@@ -373,7 +373,7 @@ func _Supervisor_RecoverPlugin_Handler(srv interface{}, ctx context.Context, dec
 }
 
 func _Supervisor_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSupervisorRequest)
+	in := new(SupervisorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -385,7 +385,7 @@ func _Supervisor_Get_Handler(srv interface{}, ctx context.Context, dec func(inte
 		FullMethod: Supervisor_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SupervisorServer).Get(ctx, req.(*GetSupervisorRequest))
+		return srv.(SupervisorServer).Get(ctx, req.(*SupervisorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

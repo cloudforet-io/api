@@ -15,7 +15,7 @@
          "operationId" : "",
          "description": "### Description \nCreates a new Notification. When a Notification is created, it is delivered to a UserChannel or a ProjectChannel depending on the parameter `resource_type`. If a Notification is delivered to a UserChannel, the `resource_type` is `identity.User`, and if a Notification is delivered to a ProjectChannel, the `resource_type` is `identity.Project`.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |resource_type|is_required: true The type of resource to which the notification is dispatched. Currently, only 'identity.Project' or 'identity.User' can be set.|string|True|\n |resource_id|is_required: true The ID of the resource to which notifications are dispatched. If resource_type is 'identity.Project', then resource_id requires a project ID values. If resource_type is 'identity.User', then resource_id requires a user ID value.|string|True|\n |topic|is_required: true The topic of notification.|string|True|\n |message|is_required: true This message is used for each protocol.|Struct|True|\n |notification_type|INFO, ERROR, SUCCESS, WARNING is_required: false The type of notification. |string||\n |notification_level|ALL, LV1, LV2, LV3, LV4, LV5 is_required: false The level of notification. |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |resource_type|The type of resource to which the notification is dispatched. Currently, only 'identity.Project' or 'identity.User' can be set.|string|True|\n |resource_id|The ID of the resource to which notifications are dispatched. If resource_type is 'identity.Project', then resource_id requires a project ID values. If resource_type is 'identity.User', then resource_id requires a user ID value.|string|True|\n |topic|The topic of notification.|string|True|\n |message|This message is used for each protocol.|Struct|True|\n |notification_type|INFO, ERROR, SUCCESS, WARNING The type of notification. |string||\n |notification_level|ALL, LV1, LV2, LV3, LV4, LV5 The level of notification. |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -38,7 +38,7 @@
          "operationId" : "",
          "description": "### Description \nManually raises a Notification. A Notification is raised with a message to be sent using a valid specific Protocol, and data used for a specific Protocol such as a phone number.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|is_required: true The ID of Protocol.|string|True|\n |data|is_required: true|string|True|\n |message|is_required: true|Struct|True|\n |notification_type|is_required: false |string||\n |notification_level|is_required: false |string||\n |topic||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n |data||string|True|\n |message||Struct|True|\n |notification_type||string||\n |notification_level||string||\n |topic||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -61,7 +61,7 @@
          "operationId" : "",
          "description": "### Description \nDeletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notifications|is_required: true ID list of Notifications.|array|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notifications|ID list of Notifications.|array|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -84,13 +84,13 @@
          "operationId" : "",
          "description": "### Description \nMarks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notifications|is_required: true The ID list of notification that want to change read status.|array|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notifications|ID list of Notifications.|array|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
                  "properties": {"notifications" : {"items": {}, "type": "array","title": "NOTIFICATIONS" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"notifications\": [\n       \"notification-6c548a37ee77\",\n       \"notification-4j3jt9384fnf\"\n   ]\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"notifications\": [\n       \"notification-4025c1b61225\",\n       \"notification-13hk3fh32534\",\n       \"notification-4kth40jth5jy\"\n   ]\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -107,7 +107,7 @@
          "operationId" : "",
          "description": "### Description \nGets a specific Notification. Prints detailed information about the Notification, including not only the message contents(`title`, `description`) but also related data such as created time and urgency.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notification_id|is_required: true The ID of Notification.|string|True|\n |set_read| Check whether read or not|boolean|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notification_id|The ID of Notification.|string|True|\n |set_read| Check whether read or not|boolean|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -138,11 +138,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all Notifications. You can use a query to get a filtered list of Notifications.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|is_required: false Query format provided by SpaceONE. Please check the link for more information. |Query||\n |notification_id|is_required: false The ID of notification. |string||\n |topic|is_required: false The topic of notification. |string||\n |notification_type|INFO, ERROR, SUCCESS, WARNING is_required: false The type of notification. |string||\n |notification_level|ALL, LV1, LV2, LV3, LV4, LV5 is_required: false The level of notification. |string||\n |is_read|is_required: false Whether or not to check the notification. If is_read is False, the user has not checked the notification yet. |boolean||\n |parent_notification_id|is_required: false The ID of parent notification. Not used yet. |string||\n |project_id|is_required: false The project ID to which the notification will be dispatched. |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |notification_id|The ID of notification. |string||\n |topic|The topic of notification. |string||\n |notification_type|INFO, ERROR, SUCCESS, WARNING The type of notification. |string||\n |notification_level|ALL, LV1, LV2, LV3, LV4, LV5 The level of notification. |string||\n |is_read|Whether or not to check the notification. If is_read is False, the user has not checked the notification yet. |boolean||\n |project_id|The project ID to which the notification will be dispatched. |string||\n |parent_notification_id|The ID of parent notification. Not used yet. |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"notification_id" : {"type": "string","title": "NOTIFICATION_ID" },"topic" : {"type": "string","title": "TOPIC" },"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"is_read" : {"type": "boolean","title": "IS_READ" },"parent_notification_id" : {"type": "string","title": "PARENT_NOTIFICATION_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"notification_id" : {"type": "string","title": "NOTIFICATION_ID" },"topic" : {"type": "string","title": "TOPIC" },"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"is_read" : {"type": "boolean","title": "IS_READ" },"project_id" : {"type": "string","title": "PROJECT_ID" },"parent_notification_id" : {"type": "string","title": "PARENT_NOTIFICATION_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"notification_type\",\n               \"value\": \"INFO\",\n               \"operator\": \"eq\"\n           }\n       ]\n   }\n}"},"Schema":{}
                }
@@ -438,11 +438,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all ProjectChannels. You can use a query to get a filtered list of ProjectChannels.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |project_channel_id|The ID of project channel. |string||\n |name|The name of project channel. |string||\n |state|ENABLED, DISABLED The state of project channel. ENABLED or DISABLED only. |string||\n |secret_id|The ID of secret encrypted data in the security service |string||\n |is_scheduled|Indicates whether schedule will be used. |boolean||\n |notification_level|LV1, LV2, LV3, LV4, LV5 The level of notification. |string||\n |protocol_id|The ID of protocol set in the project channel. |string||\n |project_id|The ID of project to which the project channel belongs. |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |project_channel_id|The ID of project channel. |string||\n |name|The name of project channel. |string||\n |state|ENABLED, DISABLED The state of project channel. ENABLED or DISABLED only. |string||\n |is_subscribe|Indicates whether subscriptions will be used. |boolean||\n |is_scheduled|Indicates whether schedule will be used. |boolean||\n |notification_level|LV1, LV2, LV3, LV4, LV5 The level of notification. |string||\n |project_id|The ID of project to which the project channel belongs. |string||\n |protocol_id|The ID of protocol set in the project channel. |string||\n |secret_id|The ID of secret encrypted data in the security service |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"secret_id" : {"type": "string","title": "SECRET_ID" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"project_id" : {"type": "string","title": "PROJECT_ID" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"state\",\n               \"value\": \"ENABLED\",\n               \"operator\": \"eq\"\n           }\n       ]\n   }\n}"},"Schema":{}
                }
@@ -469,247 +469,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n |domain_id|The ID of domain.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/notification-usage/list": {
-       "post": {
-         "tags": ["notification > notification-usage"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all NotificationUsages. You can use a query to get a filtered list of Notification Usages.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id|The ID of domain.|string|True|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |protocol_id|The ID of Protocol. |string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NotificationUsagesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NotificationUsagesInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"protocol_id\": \"protocol-123456789012\",\n           \"usage_date\": \"08\",\n           \"usage_month\": \"2022-05\",\n           \"count\": 2,\n           \"domain_id\": \"domain-123456789012\"\n       },\n       {\n           \"protocol_id\": \"protocol-123456789012\",\n           \"usage_date\": \"18\",\n           \"usage_month\": \"2022-05\",\n           \"count\": 7,\n           \"domain_id\": \"domain-123456789012\"\n       }\n   ],\n   \"total_count\": 2\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/notification-usage/stat": {
-       "post": {
-         "tags": ["notification > notification-usage"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n |domain_id|The ID of domain.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/quota/create": {
-       "post": {
-         "tags": ["notification > quota"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new Quota limiting the use of a selected Protocol for a day or a month. If the parameter `limit` has no value, it will be deemed unlimited. If a Protocol has not set a Quota, the default Quota set in the Config will be applied.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n |limit|The information about Quota limitation.|Struct|True|\n |domain_id|The ID of domain.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"limit" : {"type": "object","title": "LIMIT" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-123456789012\",\n   \"limit\": {\n       \"day\": 5.0,\n       \"month\": 7.0\n   }\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/QuotaInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/QuotaInfo"},"Default Example":{
-                     "value": "{\n   \"quota_id\": \"quota-123456789012\",\n   \"protocol_id\": \"protocol-123456789012\",\n   \"limit\": {\n       \"day\": 5.0,\n       \"month\": 7.0\n   },\n   \"domain_id\": \"domain-123456789012\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/quota/update": {
-       "post": {
-         "tags": ["notification > quota"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \nUpdates a specific Quota. You can make changes in Quota `limit`, managing the use of the Protocol.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |quota_id|The ID of Quota.|string|True|\n |limit|The information about Quota limitation.|Struct|True|\n |domain_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"quota_id" : {"type": "string","title": "QUOTA_ID" },"limit" : {"type": "object","title": "LIMIT" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"quota_id\": \"quota-123456789012\",\n   \"limit\": {\n       \"day\": 10.0,\n       \"month\": 15.0\n   }\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/QuotaInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/QuotaInfo"},"Default Example":{
-                     "value": "{\n   \"quota_id\": \"quota-123456789012\",\n   \"protocol_id\": \"protocol-123456789012\",\n   \"limit\": {\n       \"day\": 5.0,\n       \"month\": 7.0\n   },\n   \"domain_id\": \"domain-123456789012\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/quota/delete": {
-       "post": {
-         "tags": ["notification > quota"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \nDeletes a specific Quota. The default Quota set in the Config will be applied to the Protocol you deleted the Quota of.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |quota_id|The ID of Quota.|string|True|\n |domain_id|The ID of domain.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"quota_id" : {"type": "string","title": "QUOTA_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"quota_id\": \"quota-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/quota/get": {
-       "post": {
-         "tags": ["notification > quota"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \nGets a specific Quota. Prints detailed information about the Quota, including the `limit` and the Protocol limited by the Quota.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |quota_id|The ID of Quota.|string|True|\n |domain_id|The ID of domain.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"quota_id" : {"type": "string","title": "QUOTA_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"quota_id\": \"quota-123456789012\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/QuotaInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/QuotaInfo"},"Default Example":{
-                     "value": "{\n   \"quota_id\": \"quota-123456789012\",\n   \"protocol_id\": \"protocol-123456789012\",\n   \"limit\": {\n       \"day\": 5.0,\n       \"month\": 7.0\n   },\n   \"domain_id\": \"domain-123456789012\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/quota/list": {
-       "post": {
-         "tags": ["notification > quota"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all Quotas. You can use a query to get a filtered list of Quotas.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |domain_id|The ID of domain.|string|True|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |quota_id|The ID of Quota. |string||\n |protocol_id|The ID of Protocol. |string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"quota_id" : {"type": "string","title": "QUOTA_ID" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/QuotasInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/QuotasInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"quota_id\": \"quota-123456789012\",\n           \"protocol_id\": \"protocol-123456789012\",\n           \"limit\": {\n               \"day\": 10.0,\n               \"month\": 15.0\n           },\n           \"domain_id\": \"domain-123456789012\"\n       },\n       {\n           \"quota_id\": \"quota-987654321098\",\n           \"protocol_id\": \"protocol-987654321098\",\n           \"limit\": {\n               \"day\": 5.0,\n               \"month\": 7.0\n           },\n           \"domain_id\": \"domain-123456789012\"\n       }\n   ],\n   \"total_count\": 2\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/quota/stat": {
-       "post": {
-         "tags": ["notification > quota"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n |domain_id|The ID of domain.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1218,7 +982,7 @@
                "schema": {
                  "properties": {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"user_channel_id\": \"user-ch-123456789012\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1243,11 +1007,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all UserChannels. You can use a query to get a filtered list of UserChannels.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |user_channel_id|The ID of user channel. |string||\n |name|The name of user channel. It can have a maximum of 255 characters. |string||\n |state|ENABLED, DISABLED The state of user channel. ENABLED or DISABLED only. |string||\n |secret_id|The ID of secret encrypted data in the security service |string||\n |protocol_id|The ID of protocol set in the user channel. |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |user_channel_id|The ID of user channel. |string||\n |name|The name of user channel. It can have a maximum of 255 characters. |string||\n |state|ENABLED, DISABLED The state of user channel. ENABLED or DISABLED only. |string||\n |is_subscribe|Indicates whether subscriptions will be used. |boolean||\n |is_scheduled|Indicates whether schedule will be used. |boolean||\n |protocol_id|The ID of protocol set in the user channel. |string||\n |secret_id|The ID of secret encrypted data in the security service |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"secret_id" : {"type": "string","title": "SECRET_ID" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE" },"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
                }
@@ -1313,23 +1077,16 @@
                 "title": "GetNotificationRequest"
            }
            ,        "NotificationInfo": {
-         "properties" : {"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"topic" : {"type": "string","title": "TOPIC"},"message" : {"type": "object","title": "MESSAGE"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_read" : {"type": "boolean","title": "IS_READ"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"topic" : {"type": "string","title": "TOPIC"},"message" : {"type": "object","title": "MESSAGE"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_read" : {"type": "boolean","title": "IS_READ"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["notification_id","topic","message","notification_type","notification_level","is_read","user_id","domain_id","created_at"],
+         "required": ["notification_id","topic","message","notification_type","notification_level","is_read","domain_id","user_id","created_at"],
                 "title": "NotificationInfo"
            }
            ,        "NotificationQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"topic" : {"type": "string","title": "TOPIC"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_read" : {"type": "boolean","title": "IS_READ"},"parent_notification_id" : {"type": "string","title": "PARENT_NOTIFICATION_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"topic" : {"type": "string","title": "TOPIC"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_read" : {"type": "boolean","title": "IS_READ"},"project_id" : {"type": "string","title": "PROJECT_ID"},"parent_notification_id" : {"type": "string","title": "PARENT_NOTIFICATION_ID"}},
          "type": "object",
          "required": [],
                 "title": "NotificationQuery"
-           }
-           ,        "NotificationRequest": {
-         "properties" : {"notifications" : {"items": {"type": "string"},
-               "type": "array","title": "NOTIFICATIONS"}},
-         "type": "object",
-         "required": ["notifications"],
-                "title": "NotificationRequest"
            }
            ,        "NotificationStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
@@ -1344,18 +1101,18 @@
          "required": ["results","total_count"],
                 "title": "NotificationsInfo"
            }
+           ,        "NotificationsRequest": {
+         "properties" : {"notifications" : {"items": {"type": "string"},
+               "type": "array","title": "NOTIFICATIONS"}},
+         "type": "object",
+         "required": ["notifications"],
+                "title": "NotificationsRequest"
+           }
            ,        "PushNotificationRequest": {
          "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"data" : {"type": "string","title": "DATA"},"message" : {"type": "object","title": "MESSAGE"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"topic" : {"type": "string","title": "TOPIC"}},
          "type": "object",
          "required": ["protocol_id","data","message"],
                 "title": "PushNotificationRequest"
-           }
-           ,        "SetReadNotificationRequest": {
-         "properties" : {"notifications" : {"items": {"type": "string"},
-               "type": "array","title": "NOTIFICATIONS"}},
-         "type": "object",
-         "required": ["notifications"],
-                "title": "SetReadNotificationRequest"
            }
            ,        "VersionInfo": {
          "properties" : {"version" : {"type": "string","title": "VERSION"}},
@@ -1571,21 +1328,15 @@
          "required": ["protocol_id","name","data","project_id"],
                 "title": "CreateProjectChannelRequest"
            }
-           ,        "GetProjectChannelRequest": {
-         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"}},
-         "type": "object",
-         "required": ["project_channel_id"],
-                "title": "GetProjectChannelRequest"
-           }
            ,        "ProjectChannelInfo": {
-         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data" : {"type": "object","title": "DATA"},"secret_id" : {"type": "string","title": "SECRET_ID"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
-               "type": "array","title": "SUBSCRIPTIONS"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data" : {"type": "object","title": "DATA"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
+               "type": "array","title": "SUBSCRIPTIONS"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/ProjectChannelSchedule","title": "SCHEDULE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["project_channel_id","name","state","data","secret_id","is_subscribe","subscriptions","notification_level","is_scheduled","schedule","tags","protocol_id","project_id","workspace_id","domain_id","created_at"],
+         "required": ["project_channel_id","name","state","data","is_subscribe","subscriptions","is_scheduled","schedule","notification_level","tags","domain_id","workspace_id","project_id","protocol_id","secret_id","created_at"],
                 "title": "ProjectChannelInfo"
            }
            ,        "ProjectChannelQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"secret_id" : {"type": "string","title": "SECRET_ID"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"project_channel_id" : {"type": "string","title": "PROJECT_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"project_id" : {"type": "string","title": "PROJECT_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"}},
          "type": "object",
          "required": [],
                 "title": "ProjectChannelQuery"
@@ -1604,9 +1355,9 @@
                 "title": "ProjectChannelSchedule"
            }
            ,        "ProjectChannelStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
-         "required": ["query","domain_id"],
+         "required": ["query"],
                 "title": "ProjectChannelStatQuery"
            }
            ,        "ProjectChannelsInfo": {
@@ -1635,85 +1386,11 @@
          "required": ["project_channel_id","is_subscribe"],
                 "title": "UpdateProjectChannelSubscriptionRequest"
            }
-           ,        "NotificationUsageInfo": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"usage_date" : {"type": "string","title": "USAGE_DATE"},"usage_month" : {"type": "string","title": "USAGE_MONTH"},"count" : {"type": "integer","title": "COUNT"},"fail_count" : {"type": "integer","title": "FAIL_COUNT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["protocol_id","usage_date","usage_month","count","fail_count","domain_id"],
-                "title": "NotificationUsageInfo"
-           }
-           ,        "NotificationUsageQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "NotificationUsageQuery"
-           }
-           ,        "NotificationUsageStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["query","domain_id"],
-                "title": "NotificationUsageStatQuery"
-           }
-           ,        "NotificationUsagesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NotificationUsageInfo"},
-               "type": "array","$ref": "#/components/schemas/NotificationUsageInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "NotificationUsagesInfo"
-           }
-           ,        "CreateQuotaRequest": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"limit" : {"type": "object","title": "LIMIT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["protocol_id","limit","domain_id"],
-                "title": "CreateQuotaRequest"
-           }
-           ,        "QuotaInfo": {
-         "properties" : {"quota_id" : {"type": "string","title": "QUOTA_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"limit" : {"type": "object","title": "LIMIT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["quota_id","protocol_id","limit","domain_id"],
-                "title": "QuotaInfo"
-           }
-           ,        "QuotaQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"quota_id" : {"type": "string","title": "QUOTA_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["domain_id"],
-                "title": "QuotaQuery"
-           }
-           ,        "QuotaRequest": {
-         "properties" : {"quota_id" : {"type": "string","title": "QUOTA_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["quota_id","domain_id"],
-                "title": "QuotaRequest"
-           }
-           ,        "QuotaStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["query","domain_id"],
-                "title": "QuotaStatQuery"
-           }
-           ,        "QuotasInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/QuotaInfo"},
-               "type": "array","$ref": "#/components/schemas/QuotaInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "QuotasInfo"
-           }
-           ,        "UpdateQuotaRequest": {
-         "properties" : {"quota_id" : {"type": "string","title": "QUOTA_ID"},"limit" : {"type": "object","title": "LIMIT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
-         "type": "object",
-         "required": ["quota_id","limit","domain_id"],
-                "title": "UpdateQuotaRequest"
-           }
            ,        "CreateProtocolRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/PluginRequest","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["name","plugin_info"],
                 "title": "CreateProtocolRequest"
-           }
-           ,        "GetProtocolRequest": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"}},
-         "type": "object",
-         "required": ["protocol_id"],
-                "title": "GetProtocolRequest"
            }
            ,        "PluginInfo": {
          "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"secret_id" : {"type": "string","title": "SECRET_ID"},"metadata" : {"type": "object","title": "METADATA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
@@ -1777,12 +1454,6 @@
          "required": ["protocol_id","name","data"],
                 "title": "CreateUserChannelRequest"
            }
-           ,        "GetUserChannelRequest": {
-         "properties" : {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"}},
-         "type": "object",
-         "required": ["user_channel_id"],
-                "title": "GetUserChannelRequest"
-           }
            ,        "UpdateUserChannelRequest": {
          "properties" : {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
@@ -1803,14 +1474,14 @@
                 "title": "UpdateUserChannelSubscriptionRequest"
            }
            ,        "UserChannelInfo": {
-         "properties" : {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data" : {"type": "object","title": "DATA"},"secret_id" : {"type": "string","title": "SECRET_ID"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
-               "type": "array","title": "SUBSCRIPTIONS"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"user_id" : {"type": "string","title": "USER_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data" : {"type": "object","title": "DATA"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
+               "type": "array","title": "SUBSCRIPTIONS"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"schedule" : {"$ref": "#/components/schemas/UserChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["user_channel_id","name","state","data","secret_id","is_subscribe","subscriptions","is_scheduled","schedule","tags","protocol_id","user_id","domain_id","created_at"],
+         "required": ["user_channel_id","name","state","data","is_subscribe","subscriptions","is_scheduled","schedule","tags","domain_id","user_id","protocol_id","secret_id","created_at"],
                 "title": "UserChannelInfo"
            }
            ,        "UserChannelQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"secret_id" : {"type": "string","title": "SECRET_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"user_channel_id" : {"type": "string","title": "USER_CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"}},
          "type": "object",
          "required": [],
                 "title": "UserChannelQuery"

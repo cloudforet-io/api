@@ -48,7 +48,7 @@ class ProtocolStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.notification.v1.Protocol/get',
-                request_serializer=spaceone_dot_api_dot_notification_dot_v1_dot_protocol__pb2.GetProtocolRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_notification_dot_v1_dot_protocol__pb2.ProtocolRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_notification_dot_v1_dot_protocol__pb2.ProtocolInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -163,7 +163,7 @@ def add_ProtocolServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_notification_dot_v1_dot_protocol__pb2.GetProtocolRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_notification_dot_v1_dot_protocol__pb2.ProtocolRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_notification_dot_v1_dot_protocol__pb2.ProtocolInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -300,7 +300,7 @@ class Protocol(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.notification.v1.Protocol/get',
-            spaceone_dot_api_dot_notification_dot_v1_dot_protocol__pb2.GetProtocolRequest.SerializeToString,
+            spaceone_dot_api_dot_notification_dot_v1_dot_protocol__pb2.ProtocolRequest.SerializeToString,
             spaceone_dot_api_dot_notification_dot_v1_dot_protocol__pb2.ProtocolInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

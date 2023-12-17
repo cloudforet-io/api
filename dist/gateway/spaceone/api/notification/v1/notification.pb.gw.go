@@ -101,7 +101,7 @@ func local_request_Notification_Push_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func request_Notification_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NotificationRequest
+	var protoReq v1_0.NotificationsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -118,7 +118,7 @@ func request_Notification_Delete_0(ctx context.Context, marshaler runtime.Marsha
 }
 
 func local_request_Notification_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NotificationRequest
+	var protoReq v1_0.NotificationsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -135,7 +135,7 @@ func local_request_Notification_Delete_0(ctx context.Context, marshaler runtime.
 }
 
 func request_Notification_SetRead_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SetReadNotificationRequest
+	var protoReq v1_0.NotificationsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -152,7 +152,7 @@ func request_Notification_SetRead_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_Notification_SetRead_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SetReadNotificationRequest
+	var protoReq v1_0.NotificationsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

@@ -53,7 +53,7 @@ class ProjectChannelStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.notification.v1.ProjectChannel/get',
-                request_serializer=spaceone_dot_api_dot_notification_dot_v1_dot_project__channel__pb2.GetProjectChannelRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_notification_dot_v1_dot_project__channel__pb2.ProjectChannelRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_notification_dot_v1_dot_project__channel__pb2.ProjectChannelInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -180,7 +180,7 @@ def add_ProjectChannelServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_notification_dot_v1_dot_project__channel__pb2.GetProjectChannelRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_notification_dot_v1_dot_project__channel__pb2.ProjectChannelRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_notification_dot_v1_dot_project__channel__pb2.ProjectChannelInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -334,7 +334,7 @@ class ProjectChannel(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.notification.v1.ProjectChannel/get',
-            spaceone_dot_api_dot_notification_dot_v1_dot_project__channel__pb2.GetProjectChannelRequest.SerializeToString,
+            spaceone_dot_api_dot_notification_dot_v1_dot_project__channel__pb2.ProjectChannelRequest.SerializeToString,
             spaceone_dot_api_dot_notification_dot_v1_dot_project__channel__pb2.ProjectChannelInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

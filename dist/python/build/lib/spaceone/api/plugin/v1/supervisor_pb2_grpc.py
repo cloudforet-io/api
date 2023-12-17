@@ -53,7 +53,7 @@ class SupervisorStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.plugin.v1.Supervisor/get',
-                request_serializer=spaceone_dot_api_dot_plugin_dot_v1_dot_supervisor__pb2.GetSupervisorRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_plugin_dot_v1_dot_supervisor__pb2.SupervisorRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_plugin_dot_v1_dot_supervisor__pb2.SupervisorInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -191,7 +191,7 @@ def add_SupervisorServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_plugin_dot_v1_dot_supervisor__pb2.GetSupervisorRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_plugin_dot_v1_dot_supervisor__pb2.SupervisorRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_plugin_dot_v1_dot_supervisor__pb2.SupervisorInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -350,7 +350,7 @@ class Supervisor(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.plugin.v1.Supervisor/get',
-            spaceone_dot_api_dot_plugin_dot_v1_dot_supervisor__pb2.GetSupervisorRequest.SerializeToString,
+            spaceone_dot_api_dot_plugin_dot_v1_dot_supervisor__pb2.SupervisorRequest.SerializeToString,
             spaceone_dot_api_dot_plugin_dot_v1_dot_supervisor__pb2.SupervisorInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

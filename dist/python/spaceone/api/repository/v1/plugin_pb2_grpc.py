@@ -48,7 +48,7 @@ class PluginStub(object):
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.repository.v1.Plugin/get',
-                request_serializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.GetRepositoryPluginRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.RepositoryPluginRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginInfo.FromString,
                 )
         self.list = channel.unary_unary(
@@ -163,7 +163,7 @@ def add_PluginServicer_to_server(servicer, server):
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.GetRepositoryPluginRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.RepositoryPluginRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -300,7 +300,7 @@ class Plugin(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.repository.v1.Plugin/get',
-            spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.GetRepositoryPluginRequest.SerializeToString,
+            spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.RepositoryPluginRequest.SerializeToString,
             spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -271,7 +271,7 @@ func local_request_Supervisor_RecoverPlugin_0(ctx context.Context, marshaler run
 }
 
 func request_Supervisor_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetSupervisorRequest
+	var protoReq v1_0.SupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -288,7 +288,7 @@ func request_Supervisor_Get_0(ctx context.Context, marshaler runtime.Marshaler, 
 }
 
 func local_request_Supervisor_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetSupervisorRequest
+	var protoReq v1_0.SupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

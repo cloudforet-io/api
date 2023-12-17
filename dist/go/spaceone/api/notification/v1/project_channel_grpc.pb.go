@@ -54,7 +54,7 @@ type ProjectChannelClient interface {
 	// Deletes a specific ProjectChannel.
 	Delete(ctx context.Context, in *ProjectChannelRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific ProjectChannel. Prints detailed information about the ProjectChannel.
-	Get(ctx context.Context, in *GetProjectChannelRequest, opts ...grpc.CallOption) (*ProjectChannelInfo, error)
+	Get(ctx context.Context, in *ProjectChannelRequest, opts ...grpc.CallOption) (*ProjectChannelInfo, error)
 	// Gets a list of all ProjectChannels. You can use a query to get a filtered list of ProjectChannels.
 	List(ctx context.Context, in *ProjectChannelQuery, opts ...grpc.CallOption) (*ProjectChannelsInfo, error)
 	Stat(ctx context.Context, in *ProjectChannelStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -131,7 +131,7 @@ func (c *projectChannelClient) Delete(ctx context.Context, in *ProjectChannelReq
 	return out, nil
 }
 
-func (c *projectChannelClient) Get(ctx context.Context, in *GetProjectChannelRequest, opts ...grpc.CallOption) (*ProjectChannelInfo, error) {
+func (c *projectChannelClient) Get(ctx context.Context, in *ProjectChannelRequest, opts ...grpc.CallOption) (*ProjectChannelInfo, error) {
 	out := new(ProjectChannelInfo)
 	err := c.cc.Invoke(ctx, ProjectChannel_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -177,7 +177,7 @@ type ProjectChannelServer interface {
 	// Deletes a specific ProjectChannel.
 	Delete(context.Context, *ProjectChannelRequest) (*empty.Empty, error)
 	// Gets a specific ProjectChannel. Prints detailed information about the ProjectChannel.
-	Get(context.Context, *GetProjectChannelRequest) (*ProjectChannelInfo, error)
+	Get(context.Context, *ProjectChannelRequest) (*ProjectChannelInfo, error)
 	// Gets a list of all ProjectChannels. You can use a query to get a filtered list of ProjectChannels.
 	List(context.Context, *ProjectChannelQuery) (*ProjectChannelsInfo, error)
 	Stat(context.Context, *ProjectChannelStatQuery) (*_struct.Struct, error)
@@ -209,7 +209,7 @@ func (UnimplementedProjectChannelServer) Disable(context.Context, *ProjectChanne
 func (UnimplementedProjectChannelServer) Delete(context.Context, *ProjectChannelRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedProjectChannelServer) Get(context.Context, *GetProjectChannelRequest) (*ProjectChannelInfo, error) {
+func (UnimplementedProjectChannelServer) Get(context.Context, *ProjectChannelRequest) (*ProjectChannelInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedProjectChannelServer) List(context.Context, *ProjectChannelQuery) (*ProjectChannelsInfo, error) {
@@ -358,7 +358,7 @@ func _ProjectChannel_Delete_Handler(srv interface{}, ctx context.Context, dec fu
 }
 
 func _ProjectChannel_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetProjectChannelRequest)
+	in := new(ProjectChannelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -370,7 +370,7 @@ func _ProjectChannel_Get_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: ProjectChannel_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProjectChannelServer).Get(ctx, req.(*GetProjectChannelRequest))
+		return srv.(ProjectChannelServer).Get(ctx, req.(*ProjectChannelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

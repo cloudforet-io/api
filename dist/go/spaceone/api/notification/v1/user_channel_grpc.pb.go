@@ -54,7 +54,7 @@ type UserChannelClient interface {
 	// Deletes a specific UserChannel. You must specify the `user_channel_id` of the UserChannel to delete.
 	Delete(ctx context.Context, in *UserChannelRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific UserChannel. Prints detailed information about the UserChannel, including the Protocol configured and the Notification settings.
-	Get(ctx context.Context, in *GetUserChannelRequest, opts ...grpc.CallOption) (*UserChannelInfo, error)
+	Get(ctx context.Context, in *UserChannelRequest, opts ...grpc.CallOption) (*UserChannelInfo, error)
 	// Gets a list of all UserChannels. You can use a query to get a filtered list of UserChannels.
 	List(ctx context.Context, in *UserChannelQuery, opts ...grpc.CallOption) (*UserChannelsInfo, error)
 	Stat(ctx context.Context, in *UserChannelStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -131,7 +131,7 @@ func (c *userChannelClient) Delete(ctx context.Context, in *UserChannelRequest, 
 	return out, nil
 }
 
-func (c *userChannelClient) Get(ctx context.Context, in *GetUserChannelRequest, opts ...grpc.CallOption) (*UserChannelInfo, error) {
+func (c *userChannelClient) Get(ctx context.Context, in *UserChannelRequest, opts ...grpc.CallOption) (*UserChannelInfo, error) {
 	out := new(UserChannelInfo)
 	err := c.cc.Invoke(ctx, UserChannel_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -177,7 +177,7 @@ type UserChannelServer interface {
 	// Deletes a specific UserChannel. You must specify the `user_channel_id` of the UserChannel to delete.
 	Delete(context.Context, *UserChannelRequest) (*empty.Empty, error)
 	// Gets a specific UserChannel. Prints detailed information about the UserChannel, including the Protocol configured and the Notification settings.
-	Get(context.Context, *GetUserChannelRequest) (*UserChannelInfo, error)
+	Get(context.Context, *UserChannelRequest) (*UserChannelInfo, error)
 	// Gets a list of all UserChannels. You can use a query to get a filtered list of UserChannels.
 	List(context.Context, *UserChannelQuery) (*UserChannelsInfo, error)
 	Stat(context.Context, *UserChannelStatQuery) (*_struct.Struct, error)
@@ -209,7 +209,7 @@ func (UnimplementedUserChannelServer) Disable(context.Context, *UserChannelReque
 func (UnimplementedUserChannelServer) Delete(context.Context, *UserChannelRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedUserChannelServer) Get(context.Context, *GetUserChannelRequest) (*UserChannelInfo, error) {
+func (UnimplementedUserChannelServer) Get(context.Context, *UserChannelRequest) (*UserChannelInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedUserChannelServer) List(context.Context, *UserChannelQuery) (*UserChannelsInfo, error) {
@@ -358,7 +358,7 @@ func _UserChannel_Delete_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _UserChannel_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserChannelRequest)
+	in := new(UserChannelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -370,7 +370,7 @@ func _UserChannel_Get_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: UserChannel_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserChannelServer).Get(ctx, req.(*GetUserChannelRequest))
+		return srv.(UserChannelServer).Get(ctx, req.(*UserChannelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

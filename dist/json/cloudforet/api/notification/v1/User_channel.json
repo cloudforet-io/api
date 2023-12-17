@@ -215,30 +215,6 @@
           ]
         },
         {
-          "name": "GetUserChannelRequest",
-          "longName": "GetUserChannelRequest",
-          "fullName": "spaceone.api.notification.v1.GetUserChannelRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "user_channel_id",
-              "description": "The ID of user channel.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "UpdateUserChannelRequest",
           "longName": "UpdateUserChannelRequest",
           "fullName": "spaceone.api.notification.v1.UpdateUserChannelRequest",
@@ -465,18 +441,6 @@
               "defaultValue": ""
             },
             {
-              "name": "secret_id",
-              "description": "The ID of secret encrypted data in the security service",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "is_subscribe",
               "description": "Indicates whether subscriptions will be used.",
               "label": "",
@@ -537,8 +501,8 @@
               "defaultValue": ""
             },
             {
-              "name": "protocol_id",
-              "description": "The ID of protocol set in the user channel.",
+              "name": "domain_id",
+              "description": "The ID of domain.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -561,8 +525,20 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
-              "description": "The ID of domain.",
+              "name": "protocol_id",
+              "description": "The ID of protocol set in the user channel.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_id",
+              "description": "The ID of secret encrypted data in the security service",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -645,8 +621,32 @@
               "defaultValue": ""
             },
             {
-              "name": "secret_id",
-              "description": "The ID of secret encrypted data in the security service\n+optional",
+              "name": "is_subscribe",
+              "description": "Indicates whether subscriptions will be used.\n+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "is_scheduled",
+              "description": "Indicates whether schedule will be used.\n+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "protocol_id",
+              "description": "The ID of protocol set in the user channel.\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -657,8 +657,8 @@
               "defaultValue": ""
             },
             {
-              "name": "protocol_id",
-              "description": "The ID of protocol set in the user channel.\n+optional",
+              "name": "secret_id",
+              "description": "The ID of secret encrypted data in the security service\n+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -974,9 +974,9 @@
             {
               "name": "get",
               "description": "Gets a specific UserChannel. Prints detailed information about the UserChannel, including the Protocol configured and the Notification settings.",
-              "requestType": "GetUserChannelRequest",
-              "requestLongType": "GetUserChannelRequest",
-              "requestFullType": "spaceone.api.notification.v1.GetUserChannelRequest",
+              "requestType": "UserChannelRequest",
+              "requestLongType": "UserChannelRequest",
+              "requestFullType": "spaceone.api.notification.v1.UserChannelRequest",
               "requestStreaming": false,
               "responseType": "UserChannelInfo",
               "responseLongType": "UserChannelInfo",

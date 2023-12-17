@@ -51,7 +51,7 @@ type ProtocolClient interface {
 	// Deletes a specific Protocol. If there exists a channel using the Protocol, it cannot be deleted.
 	Delete(ctx context.Context, in *ProtocolRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Protocol. Prints detailed information about the Protocol.
-	Get(ctx context.Context, in *GetProtocolRequest, opts ...grpc.CallOption) (*ProtocolInfo, error)
+	Get(ctx context.Context, in *ProtocolRequest, opts ...grpc.CallOption) (*ProtocolInfo, error)
 	// Gets a list of Protocols. You can use a query to get a filtered list of Protocols.
 	List(ctx context.Context, in *ProtocolQuery, opts ...grpc.CallOption) (*ProtocolsInfo, error)
 	Stat(ctx context.Context, in *ProtocolStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -119,7 +119,7 @@ func (c *protocolClient) Delete(ctx context.Context, in *ProtocolRequest, opts .
 	return out, nil
 }
 
-func (c *protocolClient) Get(ctx context.Context, in *GetProtocolRequest, opts ...grpc.CallOption) (*ProtocolInfo, error) {
+func (c *protocolClient) Get(ctx context.Context, in *ProtocolRequest, opts ...grpc.CallOption) (*ProtocolInfo, error) {
 	out := new(ProtocolInfo)
 	err := c.cc.Invoke(ctx, Protocol_Get_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -163,7 +163,7 @@ type ProtocolServer interface {
 	// Deletes a specific Protocol. If there exists a channel using the Protocol, it cannot be deleted.
 	Delete(context.Context, *ProtocolRequest) (*empty.Empty, error)
 	// Gets a specific Protocol. Prints detailed information about the Protocol.
-	Get(context.Context, *GetProtocolRequest) (*ProtocolInfo, error)
+	Get(context.Context, *ProtocolRequest) (*ProtocolInfo, error)
 	// Gets a list of Protocols. You can use a query to get a filtered list of Protocols.
 	List(context.Context, *ProtocolQuery) (*ProtocolsInfo, error)
 	Stat(context.Context, *ProtocolStatQuery) (*_struct.Struct, error)
@@ -192,7 +192,7 @@ func (UnimplementedProtocolServer) Disable(context.Context, *ProtocolRequest) (*
 func (UnimplementedProtocolServer) Delete(context.Context, *ProtocolRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedProtocolServer) Get(context.Context, *GetProtocolRequest) (*ProtocolInfo, error) {
+func (UnimplementedProtocolServer) Get(context.Context, *ProtocolRequest) (*ProtocolInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedProtocolServer) List(context.Context, *ProtocolQuery) (*ProtocolsInfo, error) {
@@ -323,7 +323,7 @@ func _Protocol_Delete_Handler(srv interface{}, ctx context.Context, dec func(int
 }
 
 func _Protocol_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetProtocolRequest)
+	in := new(ProtocolRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -335,7 +335,7 @@ func _Protocol_Get_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: Protocol_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProtocolServer).Get(ctx, req.(*GetProtocolRequest))
+		return srv.(ProtocolServer).Get(ctx, req.(*ProtocolRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

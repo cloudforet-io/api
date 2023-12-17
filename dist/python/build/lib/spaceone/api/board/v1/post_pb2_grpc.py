@@ -28,7 +28,7 @@ class PostStub(object):
                 )
         self.send_notification = channel.unary_unary(
                 '/spaceone.api.board.v1.Post/send_notification',
-                request_serializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.SendNotificationRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.delete = channel.unary_unary(
@@ -119,7 +119,7 @@ def add_PostServicer_to_server(servicer, server):
             ),
             'send_notification': grpc.unary_unary_rpc_method_handler(
                     servicer.send_notification,
-                    request_deserializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.SendNotificationRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
@@ -198,7 +198,7 @@ class Post(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.board.v1.Post/send_notification',
-            spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.SendNotificationRequest.SerializeToString,
+            spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

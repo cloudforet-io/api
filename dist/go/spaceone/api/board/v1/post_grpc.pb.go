@@ -41,7 +41,7 @@ type PostClient interface {
 	// Updates a specific Post. You can make changes in Post settings, except `board_id`, `post_id`, and `domain_id`.
 	Update(ctx context.Context, in *UpdatePostRequest, opts ...grpc.CallOption) (*PostInfo, error)
 	// Not Implemented
-	SendNotification(ctx context.Context, in *SendNotificationRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	SendNotification(ctx context.Context, in *PostRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Deletes a specific Post. You must specify the `post_id` of the Post to delete, and the `board_id` of the Board where the child Post to delete belongs.
 	Delete(ctx context.Context, in *PostRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.
@@ -77,7 +77,7 @@ func (c *postClient) Update(ctx context.Context, in *UpdatePostRequest, opts ...
 	return out, nil
 }
 
-func (c *postClient) SendNotification(ctx context.Context, in *SendNotificationRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *postClient) SendNotification(ctx context.Context, in *PostRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, Post_SendNotification_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -131,7 +131,7 @@ type PostServer interface {
 	// Updates a specific Post. You can make changes in Post settings, except `board_id`, `post_id`, and `domain_id`.
 	Update(context.Context, *UpdatePostRequest) (*PostInfo, error)
 	// Not Implemented
-	SendNotification(context.Context, *SendNotificationRequest) (*empty.Empty, error)
+	SendNotification(context.Context, *PostRequest) (*empty.Empty, error)
 	// Deletes a specific Post. You must specify the `post_id` of the Post to delete, and the `board_id` of the Board where the child Post to delete belongs.
 	Delete(context.Context, *PostRequest) (*empty.Empty, error)
 	// Gets a specific Post. You must specify the `post_id` of the Post to get, and the `board_id` of the Board where the child Post to get belongs. Prints detailed information about the Post.
@@ -152,7 +152,7 @@ func (UnimplementedPostServer) Create(context.Context, *CreatePostRequest) (*Pos
 func (UnimplementedPostServer) Update(context.Context, *UpdatePostRequest) (*PostInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedPostServer) SendNotification(context.Context, *SendNotificationRequest) (*empty.Empty, error) {
+func (UnimplementedPostServer) SendNotification(context.Context, *PostRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendNotification not implemented")
 }
 func (UnimplementedPostServer) Delete(context.Context, *PostRequest) (*empty.Empty, error) {
@@ -217,7 +217,7 @@ func _Post_Update_Handler(srv interface{}, ctx context.Context, dec func(interfa
 }
 
 func _Post_SendNotification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendNotificationRequest)
+	in := new(PostRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -229,7 +229,7 @@ func _Post_SendNotification_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: Post_SendNotification_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostServer).SendNotification(ctx, req.(*SendNotificationRequest))
+		return srv.(PostServer).SendNotification(ctx, req.(*PostRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

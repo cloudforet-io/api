@@ -271,7 +271,7 @@ func local_request_UserChannel_Delete_0(ctx context.Context, marshaler runtime.M
 }
 
 func request_UserChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetUserChannelRequest
+	var protoReq v1_0.UserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -288,7 +288,7 @@ func request_UserChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler,
 }
 
 func local_request_UserChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetUserChannelRequest
+	var protoReq v1_0.UserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
