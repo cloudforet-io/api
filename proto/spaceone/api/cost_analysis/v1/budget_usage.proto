@@ -49,24 +49,20 @@ message BudgetUsageProviderFilter {
 //    "query": {}
 //}
 message BudgetUsageQuery {
-
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        WORKSPACE = 1;
-        PROJECT = 2;
-    }
-
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
-    string budget_id = 2;
+    string name = 2;
     // +optional
-    string data_source_id = 3;
+    string date = 3;
     // +optional
-    string name = 4;
+    string workspace_id = 21;
     // +optional
-    string date = 5;
-    ResourceGroup resource_group = 6;
+    string project_id = 22;
+    // +optional
+    string budget_id = 23;
+    // +optional
+    string data_source_id = 24;
 }
 
 //{

@@ -13,7 +13,7 @@ import "spaceone/api/core/v1/query.proto";
 service JobTask {
     
     // Gets a specific JobTask. Prints detailed information about the JobTask, including the relevant resources: DataSource and Job. The criteria used for dividing a Job into JobTasks can be found in the DataSource used, but the total count of divided JobTasks can be found by this method.
-    rpc get (GetJobTaskRequest) returns (JobTaskInfo) {
+    rpc get (JobTaskRequest) returns (JobTaskInfo) {
         option (google.api.http) = {
             post: "/cost-analysis/v1/job-task/get"
             body: "*"
@@ -40,11 +40,8 @@ service JobTask {
 //{
 //    "job_task_id": "job-task-3622d860a776"
 //}
-message GetJobTaskRequest {
+message JobTaskRequest {
     string job_task_id = 1;
-    // +optional
-    string workspace_id = 2;
-    string domain_id = 3;
 }
 
 //{
@@ -61,28 +58,19 @@ message JobTaskQuery {
         CANCELED = 6;
     }
 
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
     string job_task_id = 2;
     // +optional
     Status status = 3;
-    // +optional
-    string job_id = 11;
-    // +optional
-    string data_source_id = 12;
-    // +optional
-    ResourceGroup resource_group = 13;
 
     // +optional
-    string workspace_id = 20;
-    string domain_id = 21;
+    string workspace_id = 21;
+    // +optional
+    string job_id = 22;
+    // +optional
+    string data_source_id = 23;
 }
 
 //{
@@ -124,12 +112,12 @@ message JobTaskInfo {
     int32 created_count = 4;
     string error_code = 5;
     string error_message = 6;
-    string job_id = 11;
-    string data_source_id = 12;
-    ResourceGroup resource_group = 13;
 
-    string workspace_id = 20;
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
+    string workspace_id = 22;
+    string job_id = 23;
+    string data_source_id = 24;
 
     string created_at = 31;
     string started_at = 32;
@@ -181,7 +169,4 @@ message JobTasksInfo {
 
 message JobTaskStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // +optional
-    string workspace_id = 2;
-    string domain_id = 3;
 }

@@ -62,12 +62,6 @@ message JobQuery {
         CANCELED = 5;
     }
 
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-
     // +optional
     spaceone.api.core.v1.Query query = 1;
     // +optional
@@ -75,8 +69,9 @@ message JobQuery {
     // +optional
     Status status = 3;
     // +optional
-    string data_source_id = 11;
-    ResourceGroup resource_group = 12;
+    string workspace_id = 21;
+    // +optional
+    string data_source_id = 22;
 }
 
 message ChangedInfo {
@@ -128,16 +123,17 @@ message JobInfo {
     string error_message = 5;
     int32 total_tasks = 6;
     int32 remained_tasks = 7;
-    string data_source_id = 11;
-    ResourceGroup resource_group = 12;
+    repeated ChangedInfo changed = 8;
 
-    string workspace_id = 20;
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
+    string workspace_id = 22;
+    string data_source_id = 23;
+
 
     string created_at = 31;
     string updated_at = 32;
     string finished_at = 33;
-    repeated ChangedInfo changed = 34;
 }
 
 //{
@@ -190,7 +186,4 @@ message JobsInfo {
 
 message JobStatQuery {
     spaceone.api.core.v1.StatisticsQuery query = 1;
-    // +optional
-    string workspace_id = 2;
-    string domain_id = 3;
 }
