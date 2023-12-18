@@ -53,6 +53,13 @@ service Workspace {
         };
     }
 
+    rpc check (WorkspaceRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/identity/v2/workspace/check"
+            body: "*"
+        };
+    }
+
     rpc list (WorkspaceSearchQuery) returns (WorkspacesInfo) {
         option (google.api.http) = {
             post: "/identity/v2/workspace/list"
