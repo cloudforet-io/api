@@ -237,7 +237,7 @@ func local_request_Workspace_Get_0(ctx context.Context, marshaler runtime.Marsha
 }
 
 func request_Workspace_Check_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.WorkspaceRequest
+	var protoReq v2_0.WorkspaceCheckRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -254,7 +254,7 @@ func request_Workspace_Check_0(ctx context.Context, marshaler runtime.Marshaler,
 }
 
 func local_request_Workspace_Check_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.WorkspaceRequest
+	var protoReq v2_0.WorkspaceCheckRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -502,7 +502,7 @@ func RegisterWorkspaceHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.Workspace/Check", runtime.WithHTTPPathPattern("/identity/v2/workspace/check"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.Workspace/Check", runtime.WithHTTPPathPattern("/spaceone.api.identity.v2.Workspace/check"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -748,7 +748,7 @@ func RegisterWorkspaceHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.Workspace/Check", runtime.WithHTTPPathPattern("/identity/v2/workspace/check"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.Workspace/Check", runtime.WithHTTPPathPattern("/spaceone.api.identity.v2.Workspace/check"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -824,7 +824,7 @@ var (
 
 	pattern_Workspace_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "workspace", "get"}, ""))
 
-	pattern_Workspace_Check_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "workspace", "check"}, ""))
+	pattern_Workspace_Check_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.identity.v2.Workspace", "check"}, ""))
 
 	pattern_Workspace_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "workspace", "list"}, ""))
 

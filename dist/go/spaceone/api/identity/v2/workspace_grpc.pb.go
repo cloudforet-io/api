@@ -42,7 +42,7 @@ type WorkspaceClient interface {
 	Enable(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Disable(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Get(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
-	Check(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Check(ctx context.Context, in *WorkspaceCheckRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	List(ctx context.Context, in *WorkspaceSearchQuery, opts ...grpc.CallOption) (*WorkspacesInfo, error)
 	Stat(ctx context.Context, in *WorkspaceStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -109,7 +109,7 @@ func (c *workspaceClient) Get(ctx context.Context, in *WorkspaceRequest, opts ..
 	return out, nil
 }
 
-func (c *workspaceClient) Check(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *workspaceClient) Check(ctx context.Context, in *WorkspaceCheckRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, Workspace_Check_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -146,7 +146,7 @@ type WorkspaceServer interface {
 	Enable(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
 	Disable(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
 	Get(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
-	Check(context.Context, *WorkspaceRequest) (*empty.Empty, error)
+	Check(context.Context, *WorkspaceCheckRequest) (*empty.Empty, error)
 	List(context.Context, *WorkspaceSearchQuery) (*WorkspacesInfo, error)
 	Stat(context.Context, *WorkspaceStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedWorkspaceServer()
@@ -174,7 +174,7 @@ func (UnimplementedWorkspaceServer) Disable(context.Context, *WorkspaceRequest) 
 func (UnimplementedWorkspaceServer) Get(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedWorkspaceServer) Check(context.Context, *WorkspaceRequest) (*empty.Empty, error) {
+func (UnimplementedWorkspaceServer) Check(context.Context, *WorkspaceCheckRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
 }
 func (UnimplementedWorkspaceServer) List(context.Context, *WorkspaceSearchQuery) (*WorkspacesInfo, error) {
@@ -305,7 +305,7 @@ func _Workspace_Get_Handler(srv interface{}, ctx context.Context, dec func(inter
 }
 
 func _Workspace_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WorkspaceRequest)
+	in := new(WorkspaceCheckRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -317,7 +317,7 @@ func _Workspace_Check_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: Workspace_Check_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WorkspaceServer).Check(ctx, req.(*WorkspaceRequest))
+		return srv.(WorkspaceServer).Check(ctx, req.(*WorkspaceCheckRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

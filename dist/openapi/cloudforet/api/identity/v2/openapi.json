@@ -1671,29 +1671,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/workspace/check": {
-       "post": {
-         "tags": ["identity > workspace"],
-         "summary": "Check",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/workspace/list": {
        "post": {
          "tags": ["identity > workspace"],
@@ -4314,6 +4291,12 @@
          "type": "object",
          "required": ["workspace_id"],
                 "title": "UpdateWorkSpaceRequest"
+           }
+           ,        "WorkspaceCheckRequest": {
+         "properties" : {"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["workspace_id","domain_id"],
+                "title": "WorkspaceCheckRequest"
            }
            ,        "WorkspaceInfo": {
          "properties" : {"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},

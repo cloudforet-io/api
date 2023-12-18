@@ -48,7 +48,7 @@ class WorkspaceStub(object):
                 )
         self.check = channel.unary_unary(
                 '/spaceone.api.identity.v2.Workspace/check',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceCheckRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.list = channel.unary_unary(
@@ -155,7 +155,7 @@ def add_WorkspaceServicer_to_server(servicer, server):
             ),
             'check': grpc.unary_unary_rpc_method_handler(
                     servicer.check,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceCheckRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
@@ -292,7 +292,7 @@ class Workspace(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Workspace/check',
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceCheckRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
