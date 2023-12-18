@@ -53,12 +53,7 @@ service Workspace {
         };
     }
 
-    rpc check (WorkspaceRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v2/workspace/check"
-            body: "*"
-        };
-    }
+    rpc check (WorkspaceCheckRequest) returns (google.protobuf.Empty) {}
 
     rpc list (WorkspaceSearchQuery) returns (WorkspacesInfo) {
         option (google.api.http) = {
@@ -91,6 +86,11 @@ message UpdateWorkSpaceRequest {
 
 message WorkspaceRequest {
     string workspace_id = 1;
+}
+
+message WorkspaceCheckRequest {
+    string workspace_id = 1;
+    string domain_id = 21;
 }
 
 message WorkspaceInfo {
