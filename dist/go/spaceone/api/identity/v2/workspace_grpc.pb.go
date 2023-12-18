@@ -27,6 +27,7 @@ const (
 	Workspace_Enable_FullMethodName  = "/spaceone.api.identity.v2.Workspace/enable"
 	Workspace_Disable_FullMethodName = "/spaceone.api.identity.v2.Workspace/disable"
 	Workspace_Get_FullMethodName     = "/spaceone.api.identity.v2.Workspace/get"
+	Workspace_Check_FullMethodName   = "/spaceone.api.identity.v2.Workspace/check"
 	Workspace_List_FullMethodName    = "/spaceone.api.identity.v2.Workspace/list"
 	Workspace_Stat_FullMethodName    = "/spaceone.api.identity.v2.Workspace/stat"
 )
@@ -41,6 +42,7 @@ type WorkspaceClient interface {
 	Enable(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Disable(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Get(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
+	Check(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	List(ctx context.Context, in *WorkspaceSearchQuery, opts ...grpc.CallOption) (*WorkspacesInfo, error)
 	Stat(ctx context.Context, in *WorkspaceStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -107,6 +109,15 @@ func (c *workspaceClient) Get(ctx context.Context, in *WorkspaceRequest, opts ..
 	return out, nil
 }
 
+func (c *workspaceClient) Check(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, Workspace_Check_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *workspaceClient) List(ctx context.Context, in *WorkspaceSearchQuery, opts ...grpc.CallOption) (*WorkspacesInfo, error) {
 	out := new(WorkspacesInfo)
 	err := c.cc.Invoke(ctx, Workspace_List_FullMethodName, in, out, opts...)
@@ -135,6 +146,7 @@ type WorkspaceServer interface {
 	Enable(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
 	Disable(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
 	Get(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
+	Check(context.Context, *WorkspaceRequest) (*empty.Empty, error)
 	List(context.Context, *WorkspaceSearchQuery) (*WorkspacesInfo, error)
 	Stat(context.Context, *WorkspaceStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedWorkspaceServer()
@@ -161,6 +173,9 @@ func (UnimplementedWorkspaceServer) Disable(context.Context, *WorkspaceRequest) 
 }
 func (UnimplementedWorkspaceServer) Get(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedWorkspaceServer) Check(context.Context, *WorkspaceRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
 }
 func (UnimplementedWorkspaceServer) List(context.Context, *WorkspaceSearchQuery) (*WorkspacesInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
@@ -289,6 +304,24 @@ func _Workspace_Get_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Workspace_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkspaceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkspaceServer).Check(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Workspace_Check_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkspaceServer).Check(ctx, req.(*WorkspaceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Workspace_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WorkspaceSearchQuery)
 	if err := dec(in); err != nil {
@@ -355,6 +388,10 @@ var Workspace_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "get",
 			Handler:    _Workspace_Get_Handler,
+		},
+		{
+			MethodName: "check",
+			Handler:    _Workspace_Check_Handler,
 		},
 		{
 			MethodName: "list",

@@ -1671,6 +1671,29 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace/check": {
+       "post": {
+         "tags": ["identity > workspace"],
+         "summary": "Check",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/workspace/list": {
        "post": {
          "tags": ["identity > workspace"],
