@@ -52,7 +52,7 @@ type SecretClient interface {
 	UpdateData(ctx context.Context, in *UpdateSecretDataRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Updates a specific secret's data.
 	// This API is for internal system use only.
-	GetData(ctx context.Context, in *SecretRequest, opts ...grpc.CallOption) (*SecretDataInfo, error)
+	GetData(ctx context.Context, in *GetSecretDataRequest, opts ...grpc.CallOption) (*SecretDataInfo, error)
 	// Get a specific secret's information.
 	Get(ctx context.Context, in *SecretRequest, opts ...grpc.CallOption) (*SecretInfo, error)
 	// Queries a list of secrets.
@@ -105,7 +105,7 @@ func (c *secretClient) UpdateData(ctx context.Context, in *UpdateSecretDataReque
 	return out, nil
 }
 
-func (c *secretClient) GetData(ctx context.Context, in *SecretRequest, opts ...grpc.CallOption) (*SecretDataInfo, error) {
+func (c *secretClient) GetData(ctx context.Context, in *GetSecretDataRequest, opts ...grpc.CallOption) (*SecretDataInfo, error) {
 	out := new(SecretDataInfo)
 	err := c.cc.Invoke(ctx, Secret_GetData_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -159,7 +159,7 @@ type SecretServer interface {
 	UpdateData(context.Context, *UpdateSecretDataRequest) (*empty.Empty, error)
 	// Updates a specific secret's data.
 	// This API is for internal system use only.
-	GetData(context.Context, *SecretRequest) (*SecretDataInfo, error)
+	GetData(context.Context, *GetSecretDataRequest) (*SecretDataInfo, error)
 	// Get a specific secret's information.
 	Get(context.Context, *SecretRequest) (*SecretInfo, error)
 	// Queries a list of secrets.
@@ -185,7 +185,7 @@ func (UnimplementedSecretServer) Delete(context.Context, *SecretRequest) (*empty
 func (UnimplementedSecretServer) UpdateData(context.Context, *UpdateSecretDataRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateData not implemented")
 }
-func (UnimplementedSecretServer) GetData(context.Context, *SecretRequest) (*SecretDataInfo, error) {
+func (UnimplementedSecretServer) GetData(context.Context, *GetSecretDataRequest) (*SecretDataInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetData not implemented")
 }
 func (UnimplementedSecretServer) Get(context.Context, *SecretRequest) (*SecretInfo, error) {
@@ -283,7 +283,7 @@ func _Secret_UpdateData_Handler(srv interface{}, ctx context.Context, dec func(i
 }
 
 func _Secret_GetData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SecretRequest)
+	in := new(GetSecretDataRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -295,7 +295,7 @@ func _Secret_GetData_Handler(srv interface{}, ctx context.Context, dec func(inte
 		FullMethod: Secret_GetData_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SecretServer).GetData(ctx, req.(*SecretRequest))
+		return srv.(SecretServer).GetData(ctx, req.(*GetSecretDataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

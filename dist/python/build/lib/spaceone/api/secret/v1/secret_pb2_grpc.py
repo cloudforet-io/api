@@ -38,7 +38,7 @@ class SecretStub(object):
                 )
         self.get_data = channel.unary_unary(
                 '/spaceone.api.secret.v1.Secret/get_data',
-                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.GetSecretDataRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretDataInfo.FromString,
                 )
         self.get = channel.unary_unary(
@@ -147,7 +147,7 @@ def add_SecretServicer_to_server(servicer, server):
             ),
             'get_data': grpc.unary_unary_rpc_method_handler(
                     servicer.get_data,
-                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.GetSecretDataRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretDataInfo.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
@@ -255,7 +255,7 @@ class Secret(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.secret.v1.Secret/get_data',
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretRequest.SerializeToString,
+            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.GetSecretDataRequest.SerializeToString,
             spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretDataInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
