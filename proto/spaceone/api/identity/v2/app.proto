@@ -60,6 +60,8 @@ service App {
         };
     }
 
+    rpc check (AppCheckRequest) returns (google.protobuf.Empty) {}
+
     rpc list (AppSearchQuery) returns (AppsInfo) {
         option (google.api.http) = {
             post: "/identity/v2/app/list"
@@ -107,6 +109,11 @@ message GenerateAPIKeyAppRequest {
 
 message AppRequest {
     string app_id = 1;
+}
+
+message AppCheckRequest {
+    string api_key_id = 1;
+    string domain_id = 2;
 }
 
 message AppInfo {
