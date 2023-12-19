@@ -62,14 +62,14 @@
           "name": "CreatePostRequest",
           "longName": "CreatePostRequest",
           "fullName": "spaceone.api.board.v1.CreatePostRequest",
-          "description": "{\n   \"board_id\": \"board-123456789012\",\n   \"category\": \"developer\",\n   \"title\": \"title\",\n   \"contents\": \"This is contents.\",\n   \"files\": [\"file-123456789012\"],\n   \"options\": {\"is_popup\": true},\n   \"writer\": \"user1\",\n   \"resource_group\": \"DOMAIN\",\n   \"domain_id\": \"domain-123456789012\"\n}",
+          "description": "{\n   \"board_type\": \"NOTICE\",\n   \"category\": \"developer\",\n   \"title\": \"title\",\n   \"contents\": \"This is contents.\",\n   \"files\": [\"file-123456789012\"],\n   \"options\": {\"is_popup\": true},\n   \"writer\": \"user1\",\n   \"resource_group\": \"DOMAIN\",\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "board_id",
+              "name": "board_type",
               "description": "",
               "label": "",
               "type": "string",
@@ -163,10 +163,22 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
+            }
+          ]
+        },
+        {
+          "name": "PostInfo",
+          "longName": "PostInfo",
+          "fullName": "spaceone.api.board.v1.PostInfo",
+          "description": "{\n         \"board_type\": \"NOTICE\",\n         \"post_id\": \"post-123456789012\",\n         \"category\": \"developer\",\n         \"title\": \"title\",\n         \"contents\": \"This is contents.\",\n         \"options\": {\n             \"is_pinned\": false,\n             \"is_popup\": true\n         },\n         \"view_count\": 0,\n         \"writer\": \"user1\",\n         \"resource_group\": \"DOMAIN\",\n         \"domain_id\": \"domain-123456789012\",\n         \"user_id\": \"user1@email.com\",\n         \"created_at\": \"2022-01-01T01:06:23.732Z\",\n         \"updated_at\": \"2022-01-01T01:06:23.732Z\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
             {
-              "name": "domain_id",
-              "description": "+optional",
+              "name": "board_type",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -175,21 +187,21 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "PostInfo",
-          "longName": "PostInfo",
-          "fullName": "spaceone.api.board.v1.PostInfo",
-          "description": "{\n         \"board_id\": \"board-123456789012\",\n         \"post_id\": \"post-123456789012\",\n         \"category\": \"developer\",\n         \"title\": \"title\",\n         \"contents\": \"This is contents.\",\n         \"options\": {\n             \"is_pinned\": false,\n             \"is_popup\": true\n         },\n         \"view_count\": 0,\n         \"writer\": \"user1\",\n         \"domain_id\": \"domain-123456789012\",\n         \"user_id\": \"user1@email.com\",\n         \"created_at\": \"2022-01-01T01:06:23.732Z\",\n         \"updated_at\": \"2022-01-01T01:06:23.732Z\"\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
+            },
             {
               "name": "post_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "category",
               "description": "",
               "label": "",
               "type": "string",
@@ -214,18 +226,6 @@
             },
             {
               "name": "contents",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "category",
               "description": "",
               "label": "",
               "type": "string",
@@ -321,18 +321,6 @@
               "defaultValue": ""
             },
             {
-              "name": "board_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "created_at",
               "description": "",
               "label": "",
@@ -362,24 +350,12 @@
           "name": "PostRequest",
           "longName": "PostRequest",
           "fullName": "spaceone.api.board.v1.PostRequest",
-          "description": "{\n   \"board_id\": \"board-b9aa34e65c60\",\n   \"post_id\": \"post-2118473ce15e\"\n}",
+          "description": "{\n   \"post_id\": \"post-2118473ce15e\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
-            {
-              "name": "board_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
             {
               "name": "post_id",
               "description": "",
@@ -398,7 +374,7 @@
           "name": "PostSearchQuery",
           "longName": "PostSearchQuery",
           "fullName": "spaceone.api.board.v1.PostSearchQuery",
-          "description": "{\n   \"board_id\": \"board-b9aa34e65c60\",\n   \"query\": {}\n}",
+          "description": "{\n   \"query\": {}\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -411,6 +387,18 @@
               "type": "Query",
               "longType": "spaceone.api.core.v1.Query",
               "fullType": "spaceone.api.core.v1.Query",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "board_type",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -487,18 +475,6 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "board_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
@@ -566,7 +542,7 @@
           "name": "UpdatePostRequest",
           "longName": "UpdatePostRequest",
           "fullName": "spaceone.api.board.v1.UpdatePostRequest",
-          "description": "{\n     \"board_id\": \"board-123456789012\",\n     \"post_id\": \"post-2118473ce15e\",\n     \"category\": \"developer\",\n     \"title\": \"title2\",\n     \"contents\": \"this is contents2.\",\n     \"options\": {\n         \"is_popup\": false,\n         \"is_pinned\": true\n     },\n     \"writer\": \"user1\"\n}",
+          "description": "{\n     \"post_id\": \"post-2118473ce15e\",\n     \"title\": \"title2\",\n     \"contents\": \"this is contents2.\",\n     \"category\": \"developer\",\n     \"options\": {\n         \"is_popup\": false,\n         \"is_pinned\": true\n     },\n     \"writer\": \"user1\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -647,18 +623,6 @@
             {
               "name": "writer",
               "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "board_id",
-              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",

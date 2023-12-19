@@ -745,7 +745,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |role_binding_id||string||\n |role_type|SYSTEM, SYSTEM_ADMIN, DOMAIN_ADMIN, WORKSPACE_OWNER, WORKSPACE_MEMBER |string||\n |workspace_id||string||\n |role_id||string||\n |user_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |role_binding_id||string||\n |role_type|DOMAIN_ADMIN, WORKSPACE_OWNER, WORKSPACE_MEMBER |string||\n |workspace_id||string||\n |role_id||string||\n |user_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -803,7 +803,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |role_type|SYSTEM, SYSTEM_ADMIN, DOMAIN_ADMIN, WORKSPACE_OWNER, WORKSPACE_MEMBER |string|True|\n |permissions||array||\n |page_access||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |role_type|DOMAIN_ADMIN, WORKSPACE_OWNER, WORKSPACE_MEMBER |string|True|\n |permissions||array||\n |page_access||array||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -913,7 +913,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |role_id||string||\n |name||string||\n |role_type|SYSTEM, SYSTEM_ADMIN, DOMAIN_ADMIN, WORKSPACE_OWNER, WORKSPACE_MEMBER |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |role_id||string||\n |name||string||\n |role_type|DOMAIN_ADMIN, WORKSPACE_OWNER, WORKSPACE_MEMBER |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -2246,7 +2246,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |app_id||string||\n |name||string||\n |state|ENABLED, DISABLED, EXPIRED |string||\n |role_type|SYSTEM_ADMIN, DOMAIN_ADMIN, WORKSPACE_OWNER, WORKSPACE_MEMBER |string||\n |workspace_id||string||\n |role_id||string||\n |api_key_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |app_id||string||\n |name||string||\n |state|ENABLED, DISABLED, EXPIRED |string||\n |role_type|DOMAIN_ADMIN, WORKSPACE_OWNER, WORKSPACE_MEMBER |string||\n |workspace_id||string||\n |role_id||string||\n |api_key_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -3098,11 +3098,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |grant_type|API_KEY, REFRESH_TOKEN |string|True|\n |token||string|True|\n |scope|SYSTEM, DOMAIN, WORKSPACE, PROJECT, USER |string|True|\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |grant_type|API_KEY, REFRESH_TOKEN |string|True|\n |token||string|True|\n |scope|SYSTEM, DOMAIN, WORKSPACE, PROJECT, USER |string|True|\n |timeout||int||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"grant_type" : {"type": "string","title": "GRANT_TYPE" },"token" : {"type": "string","title": "TOKEN" },"scope" : {"type": "string","title": "SCOPE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"grant_type" : {"type": "string","title": "GRANT_TYPE" },"token" : {"type": "string","title": "TOKEN" },"scope" : {"type": "string","title": "SCOPE" },"timeout" : {"type": "integer","title": "TIMEOUT" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -3680,48 +3680,17 @@
    },
    "components":{
      "schemas": {
-     "APIKeyInfo": {
-         "properties" : {"api_key_id" : {"type": "string","title": "API_KEY_ID"},"api_key" : {"type": "string","title": "API_KEY"},"app_id" : {"type": "string","title": "APP_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"},"expired_at" : {"type": "string","title": "EXPIRED_AT"}},
+     "SystemInfo": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"name" : {"type": "string","title": "NAME"},"system_token" : {"type": "string","title": "SYSTEM_TOKEN"}},
          "type": "object",
-         "required": ["api_key_id","api_key","app_id","name","state","domain_id","user_id","created_at","last_accessed_at","expired_at"],
-                "title": "APIKeyInfo"
+         "required": ["domain_id","name","system_token"],
+                "title": "SystemInfo"
            }
-           ,        "APIKeyRequest": {
-         "properties" : {"api_key_id" : {"type": "string","title": "API_KEY_ID"}},
+           ,        "SystemInitRequest": {
+         "properties" : {"admin" : {"$ref": "#/components/schemas/Admin","title": "ADMIN"},"force" : {"type": "boolean","title": "FORCE"}},
          "type": "object",
-         "required": ["api_key_id"],
-                "title": "APIKeyRequest"
-           }
-           ,        "APIKeySearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"api_key_id" : {"type": "string","title": "API_KEY_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"user_id" : {"type": "string","title": "USER_ID"}},
-         "type": "object",
-         "required": [],
-                "title": "APIKeySearchQuery"
-           }
-           ,        "APIKeyStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "APIKeyStatQuery"
-           }
-           ,        "APIKeysInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/APIKeyInfo"},
-               "type": "array","$ref": "#/components/schemas/APIKeyInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "APIKeysInfo"
-           }
-           ,        "CreateAPIKeyRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"expired_at" : {"type": "string","title": "EXPIRED_AT"}},
-         "type": "object",
-         "required": [],
-                "title": "CreateAPIKeyRequest"
-           }
-           ,        "UpdateAPIKeyRequest": {
-         "properties" : {"api_key_id" : {"type": "string","title": "API_KEY_ID"},"name" : {"type": "string","title": "NAME"}},
-         "type": "object",
-         "required": ["api_key_id"],
-                "title": "UpdateAPIKeyRequest"
+         "required": ["admin","force"],
+                "title": "SystemInitRequest"
            }
            ,        "VersionInfo": {
          "properties" : {"version" : {"type": "string","title": "VERSION"}},
@@ -3929,6 +3898,49 @@
          "type": "object",
          "required": ["path","filter"],
                 "title": "Unwind"
+           }
+           ,        "APIKeyInfo": {
+         "properties" : {"api_key_id" : {"type": "string","title": "API_KEY_ID"},"api_key" : {"type": "string","title": "API_KEY"},"app_id" : {"type": "string","title": "APP_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"},"expired_at" : {"type": "string","title": "EXPIRED_AT"}},
+         "type": "object",
+         "required": ["api_key_id","api_key","app_id","name","state","domain_id","user_id","created_at","last_accessed_at","expired_at"],
+                "title": "APIKeyInfo"
+           }
+           ,        "APIKeyRequest": {
+         "properties" : {"api_key_id" : {"type": "string","title": "API_KEY_ID"}},
+         "type": "object",
+         "required": ["api_key_id"],
+                "title": "APIKeyRequest"
+           }
+           ,        "APIKeySearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"api_key_id" : {"type": "string","title": "API_KEY_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"user_id" : {"type": "string","title": "USER_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "APIKeySearchQuery"
+           }
+           ,        "APIKeyStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "APIKeyStatQuery"
+           }
+           ,        "APIKeysInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/APIKeyInfo"},
+               "type": "array","$ref": "#/components/schemas/APIKeyInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "APIKeysInfo"
+           }
+           ,        "CreateAPIKeyRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"expired_at" : {"type": "string","title": "EXPIRED_AT"}},
+         "type": "object",
+         "required": [],
+                "title": "CreateAPIKeyRequest"
+           }
+           ,        "UpdateAPIKeyRequest": {
+         "properties" : {"api_key_id" : {"type": "string","title": "API_KEY_ID"},"name" : {"type": "string","title": "NAME"}},
+         "type": "object",
+         "required": ["api_key_id"],
+                "title": "UpdateAPIKeyRequest"
            }
            ,        "CreateTrustedAccountRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_data" : {"type": "object","title": "SECRET_DATA"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
@@ -4639,7 +4651,7 @@
                 "title": "GrantTokenInfo"
            }
            ,        "GrantTokenRequest": {
-         "properties" : {"grant_type" : {"type": "string","title": "GRANT_TYPE"},"token" : {"type": "string","title": "TOKEN"},"scope" : {"type": "string","title": "SCOPE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"grant_type" : {"type": "string","title": "GRANT_TYPE"},"token" : {"type": "string","title": "TOKEN"},"scope" : {"type": "string","title": "SCOPE"},"timeout" : {"type": "integer","title": "TIMEOUT"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": ["grant_type","token","scope"],
                 "title": "GrantTokenRequest"
