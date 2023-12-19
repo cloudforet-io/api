@@ -1,7 +1,7 @@
 {
   "files": [
     {
-      "name": "spaceone/api/dashboard/v1/dashboard.proto",
+      "name": "spaceone/api/dashboard/v1/public_dashboard.proto",
       "description": "description of dashboard",
       "package": "spaceone.api.dashboard.v1",
       "hasEnums": false,
@@ -10,32 +10,9 @@
       "hasServices": true,
       "enums": [
         {
-          "name": "DashboardType",
-          "longName": "CreateDashboardRequest.DashboardType",
-          "fullName": "spaceone.api.dashboard.v1.CreateDashboardRequest.DashboardType",
-          "description": "",
-          "values": [
-            {
-              "name": "DASHBOARD_TYPE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "PUBLIC",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "PRIVATE",
-              "number": "2",
-              "description": ""
-            }
-          ]
-        },
-        {
           "name": "ResourceGroup",
-          "longName": "CreateDashboardRequest.ResourceGroup",
-          "fullName": "spaceone.api.dashboard.v1.CreateDashboardRequest.ResourceGroup",
+          "longName": "CreatePublicDashboardRequest.ResourceGroup",
+          "fullName": "spaceone.api.dashboard.v1.CreatePublicDashboardRequest.ResourceGroup",
           "description": "",
           "values": [
             {
@@ -61,32 +38,9 @@
           ]
         },
         {
-          "name": "DashboardType",
-          "longName": "DashboardInfo.DashboardType",
-          "fullName": "spaceone.api.dashboard.v1.DashboardInfo.DashboardType",
-          "description": "",
-          "values": [
-            {
-              "name": "DASHBOARD_TYPE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "PUBLIC",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "PRIVATE",
-              "number": "2",
-              "description": ""
-            }
-          ]
-        },
-        {
           "name": "ResourceGroup",
-          "longName": "DashboardInfo.ResourceGroup",
-          "fullName": "spaceone.api.dashboard.v1.DashboardInfo.ResourceGroup",
+          "longName": "PublicDashboardInfo.ResourceGroup",
+          "fullName": "spaceone.api.dashboard.v1.PublicDashboardInfo.ResourceGroup",
           "description": "",
           "values": [
             {
@@ -107,29 +61,6 @@
             {
               "name": "PROJECT",
               "number": "3",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "DashboardType",
-          "longName": "DashboardQuery.DashboardType",
-          "fullName": "spaceone.api.dashboard.v1.DashboardQuery.DashboardType",
-          "description": "",
-          "values": [
-            {
-              "name": "DASHBOARD_TYPE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "PUBLIC",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "PRIVATE",
-              "number": "2",
               "description": ""
             }
           ]
@@ -138,9 +69,9 @@
       "extensions": [],
       "messages": [
         {
-          "name": "CreateDashboardRequest",
-          "longName": "CreateDashboardRequest",
-          "fullName": "spaceone.api.dashboard.v1.CreateDashboardRequest",
+          "name": "CreatePublicDashboardRequest",
+          "longName": "CreatePublicDashboardRequest",
+          "fullName": "spaceone.api.dashboard.v1.CreatePublicDashboardRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -154,18 +85,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "dashboard_type",
-              "description": "",
-              "label": "",
-              "type": "DashboardType",
-              "longType": "CreateDashboardRequest.DashboardType",
-              "fullType": "spaceone.api.dashboard.v1.CreateDashboardRequest.DashboardType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -248,8 +167,8 @@
               "description": "",
               "label": "",
               "type": "ResourceGroup",
-              "longType": "CreateDashboardRequest.ResourceGroup",
-              "fullType": "spaceone.api.dashboard.v1.CreateDashboardRequest.ResourceGroup",
+              "longType": "CreatePublicDashboardRequest.ResourceGroup",
+              "fullType": "spaceone.api.dashboard.v1.CreatePublicDashboardRequest.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -270,9 +189,9 @@
           ]
         },
         {
-          "name": "DashboardInfo",
-          "longName": "DashboardInfo",
-          "fullName": "spaceone.api.dashboard.v1.DashboardInfo",
+          "name": "PublicDashboardInfo",
+          "longName": "PublicDashboardInfo",
+          "fullName": "spaceone.api.dashboard.v1.PublicDashboardInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -280,7 +199,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "dashboard_id",
+              "name": "public_dashboard_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -298,18 +217,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "dashboard_type",
-              "description": "",
-              "label": "",
-              "type": "DashboardType",
-              "longType": "DashboardInfo.DashboardType",
-              "fullType": "spaceone.api.dashboard.v1.DashboardInfo.DashboardType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -404,8 +311,8 @@
               "description": "",
               "label": "",
               "type": "ResourceGroup",
-              "longType": "DashboardInfo.ResourceGroup",
-              "fullType": "spaceone.api.dashboard.v1.DashboardInfo.ResourceGroup",
+              "longType": "PublicDashboardInfo.ResourceGroup",
+              "fullType": "spaceone.api.dashboard.v1.PublicDashboardInfo.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -448,18 +355,6 @@
               "defaultValue": ""
             },
             {
-              "name": "user_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "created_at",
               "description": "",
               "label": "",
@@ -486,9 +381,9 @@
           ]
         },
         {
-          "name": "DashboardQuery",
-          "longName": "DashboardQuery",
-          "fullName": "spaceone.api.dashboard.v1.DashboardQuery",
+          "name": "PublicDashboardQuery",
+          "longName": "PublicDashboardQuery",
+          "fullName": "spaceone.api.dashboard.v1.PublicDashboardQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -508,7 +403,7 @@
               "defaultValue": ""
             },
             {
-              "name": "dashboard_id",
+              "name": "public_dashboard_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -526,18 +421,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "dashboard_type",
-              "description": "+optional",
-              "label": "",
-              "type": "DashboardType",
-              "longType": "DashboardQuery.DashboardType",
-              "fullType": "spaceone.api.dashboard.v1.DashboardQuery.DashboardType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -566,25 +449,13 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "user_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
         {
-          "name": "DashboardRequest",
-          "longName": "DashboardRequest",
-          "fullName": "spaceone.api.dashboard.v1.DashboardRequest",
+          "name": "PublicDashboardRequest",
+          "longName": "PublicDashboardRequest",
+          "fullName": "spaceone.api.dashboard.v1.PublicDashboardRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -592,7 +463,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "dashboard_id",
+              "name": "public_dashboard_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -606,9 +477,9 @@
           ]
         },
         {
-          "name": "DashboardStatQuery",
-          "longName": "DashboardStatQuery",
-          "fullName": "spaceone.api.dashboard.v1.DashboardStatQuery",
+          "name": "PublicDashboardStatQuery",
+          "longName": "PublicDashboardStatQuery",
+          "fullName": "spaceone.api.dashboard.v1.PublicDashboardStatQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -630,9 +501,9 @@
           ]
         },
         {
-          "name": "DashboardVersionInfo",
-          "longName": "DashboardVersionInfo",
-          "fullName": "spaceone.api.dashboard.v1.DashboardVersionInfo",
+          "name": "PublicDashboardVersionInfo",
+          "longName": "PublicDashboardVersionInfo",
+          "fullName": "spaceone.api.dashboard.v1.PublicDashboardVersionInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -640,7 +511,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "dashboard_id",
+              "name": "public_dashboard_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -750,9 +621,9 @@
           ]
         },
         {
-          "name": "DashboardVersionRequest",
-          "longName": "DashboardVersionRequest",
-          "fullName": "spaceone.api.dashboard.v1.DashboardVersionRequest",
+          "name": "PublicDashboardVersionRequest",
+          "longName": "PublicDashboardVersionRequest",
+          "fullName": "spaceone.api.dashboard.v1.PublicDashboardVersionRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -760,7 +631,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "dashboard_id",
+              "name": "public_dashboard_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -786,9 +657,9 @@
           ]
         },
         {
-          "name": "DashboardVersionSearchQuery",
-          "longName": "DashboardVersionSearchQuery",
-          "fullName": "spaceone.api.dashboard.v1.DashboardVersionSearchQuery",
+          "name": "PublicDashboardVersionSearchQuery",
+          "longName": "PublicDashboardVersionSearchQuery",
+          "fullName": "spaceone.api.dashboard.v1.PublicDashboardVersionSearchQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -808,7 +679,7 @@
               "defaultValue": ""
             },
             {
-              "name": "dashboard_id",
+              "name": "public_dashboard_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -834,9 +705,9 @@
           ]
         },
         {
-          "name": "DashboardVersionsInfo",
-          "longName": "DashboardVersionsInfo",
-          "fullName": "spaceone.api.dashboard.v1.DashboardVersionsInfo",
+          "name": "PublicDashboardVersionsInfo",
+          "longName": "PublicDashboardVersionsInfo",
+          "fullName": "spaceone.api.dashboard.v1.PublicDashboardVersionsInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -847,9 +718,9 @@
               "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "DashboardVersionInfo",
-              "longType": "DashboardVersionInfo",
-              "fullType": "spaceone.api.dashboard.v1.DashboardVersionInfo",
+              "type": "PublicDashboardVersionInfo",
+              "longType": "PublicDashboardVersionInfo",
+              "fullType": "spaceone.api.dashboard.v1.PublicDashboardVersionInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -870,9 +741,9 @@
           ]
         },
         {
-          "name": "DashboardsInfo",
-          "longName": "DashboardsInfo",
-          "fullName": "spaceone.api.dashboard.v1.DashboardsInfo",
+          "name": "PublicDashboardsInfo",
+          "longName": "PublicDashboardsInfo",
+          "fullName": "spaceone.api.dashboard.v1.PublicDashboardsInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -883,9 +754,9 @@
               "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "DashboardInfo",
-              "longType": "DashboardInfo",
-              "fullType": "spaceone.api.dashboard.v1.DashboardInfo",
+              "type": "PublicDashboardInfo",
+              "longType": "PublicDashboardInfo",
+              "fullType": "spaceone.api.dashboard.v1.PublicDashboardInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -906,9 +777,9 @@
           ]
         },
         {
-          "name": "UpdateDashboardRequest",
-          "longName": "UpdateDashboardRequest",
-          "fullName": "spaceone.api.dashboard.v1.UpdateDashboardRequest",
+          "name": "UpdatePublicDashboardRequest",
+          "longName": "UpdatePublicDashboardRequest",
+          "fullName": "spaceone.api.dashboard.v1.UpdatePublicDashboardRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -916,7 +787,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "dashboard_id",
+              "name": "public_dashboard_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -1016,28 +887,28 @@
       ],
       "services": [
         {
-          "name": "Dashboard",
-          "longName": "Dashboard",
-          "fullName": "spaceone.api.dashboard.v1.Dashboard",
+          "name": "PublicDashboard",
+          "longName": "PublicDashboard",
+          "fullName": "spaceone.api.dashboard.v1.PublicDashboard",
           "description": "",
           "methods": [
             {
               "name": "create",
               "description": "",
-              "requestType": "CreateDashboardRequest",
-              "requestLongType": "CreateDashboardRequest",
-              "requestFullType": "spaceone.api.dashboard.v1.CreateDashboardRequest",
+              "requestType": "CreatePublicDashboardRequest",
+              "requestLongType": "CreatePublicDashboardRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.CreatePublicDashboardRequest",
               "requestStreaming": false,
-              "responseType": "DashboardInfo",
-              "responseLongType": "DashboardInfo",
-              "responseFullType": "spaceone.api.dashboard.v1.DashboardInfo",
+              "responseType": "PublicDashboardInfo",
+              "responseLongType": "PublicDashboardInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicDashboardInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/dashboard/create",
+                      "pattern": "/dashboard/v1/public-dashboard/create",
                       "body": "*"
                     }
                   ]
@@ -1047,20 +918,20 @@
             {
               "name": "update",
               "description": "",
-              "requestType": "UpdateDashboardRequest",
-              "requestLongType": "UpdateDashboardRequest",
-              "requestFullType": "spaceone.api.dashboard.v1.UpdateDashboardRequest",
+              "requestType": "UpdatePublicDashboardRequest",
+              "requestLongType": "UpdatePublicDashboardRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.UpdatePublicDashboardRequest",
               "requestStreaming": false,
-              "responseType": "DashboardInfo",
-              "responseLongType": "DashboardInfo",
-              "responseFullType": "spaceone.api.dashboard.v1.DashboardInfo",
+              "responseType": "PublicDashboardInfo",
+              "responseLongType": "PublicDashboardInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicDashboardInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/dashboard/update",
+                      "pattern": "/dashboard/v1/public-dashboard/update",
                       "body": "*"
                     }
                   ]
@@ -1070,9 +941,9 @@
             {
               "name": "delete",
               "description": "",
-              "requestType": "DashboardRequest",
-              "requestLongType": "DashboardRequest",
-              "requestFullType": "spaceone.api.dashboard.v1.DashboardRequest",
+              "requestType": "PublicDashboardRequest",
+              "requestLongType": "PublicDashboardRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.PublicDashboardRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -1083,7 +954,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/dashboard/delete",
+                      "pattern": "/dashboard/v1/public-dashboard/delete",
                       "body": "*"
                     }
                   ]
@@ -1093,20 +964,20 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "DashboardRequest",
-              "requestLongType": "DashboardRequest",
-              "requestFullType": "spaceone.api.dashboard.v1.DashboardRequest",
+              "requestType": "PublicDashboardRequest",
+              "requestLongType": "PublicDashboardRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.PublicDashboardRequest",
               "requestStreaming": false,
-              "responseType": "DashboardInfo",
-              "responseLongType": "DashboardInfo",
-              "responseFullType": "spaceone.api.dashboard.v1.DashboardInfo",
+              "responseType": "PublicDashboardInfo",
+              "responseLongType": "PublicDashboardInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicDashboardInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/dashboard/get",
+                      "pattern": "/dashboard/v1/public-dashboard/get",
                       "body": "*"
                     }
                   ]
@@ -1116,9 +987,9 @@
             {
               "name": "delete_version",
               "description": "",
-              "requestType": "DashboardVersionRequest",
-              "requestLongType": "DashboardVersionRequest",
-              "requestFullType": "spaceone.api.dashboard.v1.DashboardVersionRequest",
+              "requestType": "PublicDashboardVersionRequest",
+              "requestLongType": "PublicDashboardVersionRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.PublicDashboardVersionRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -1129,7 +1000,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/dashboard/delete-version",
+                      "pattern": "/dashboard/v1/public-dashboard/delete-version",
                       "body": "*"
                     }
                   ]
@@ -1139,20 +1010,20 @@
             {
               "name": "revert_version",
               "description": "",
-              "requestType": "DashboardVersionRequest",
-              "requestLongType": "DashboardVersionRequest",
-              "requestFullType": "spaceone.api.dashboard.v1.DashboardVersionRequest",
+              "requestType": "PublicDashboardVersionRequest",
+              "requestLongType": "PublicDashboardVersionRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.PublicDashboardVersionRequest",
               "requestStreaming": false,
-              "responseType": "DashboardInfo",
-              "responseLongType": "DashboardInfo",
-              "responseFullType": "spaceone.api.dashboard.v1.DashboardInfo",
+              "responseType": "PublicDashboardInfo",
+              "responseLongType": "PublicDashboardInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicDashboardInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/dashboard/revert-version",
+                      "pattern": "/dashboard/v1/public-dashboard/revert-version",
                       "body": "*"
                     }
                   ]
@@ -1162,20 +1033,20 @@
             {
               "name": "get_version",
               "description": "",
-              "requestType": "DashboardVersionRequest",
-              "requestLongType": "DashboardVersionRequest",
-              "requestFullType": "spaceone.api.dashboard.v1.DashboardVersionRequest",
+              "requestType": "PublicDashboardVersionRequest",
+              "requestLongType": "PublicDashboardVersionRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.PublicDashboardVersionRequest",
               "requestStreaming": false,
-              "responseType": "DashboardVersionInfo",
-              "responseLongType": "DashboardVersionInfo",
-              "responseFullType": "spaceone.api.dashboard.v1.DashboardVersionInfo",
+              "responseType": "PublicDashboardVersionInfo",
+              "responseLongType": "PublicDashboardVersionInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicDashboardVersionInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/dashboard/get-version",
+                      "pattern": "/dashboard/v1/public-dashboard/get-version",
                       "body": "*"
                     }
                   ]
@@ -1185,20 +1056,20 @@
             {
               "name": "list_versions",
               "description": "",
-              "requestType": "DashboardVersionSearchQuery",
-              "requestLongType": "DashboardVersionSearchQuery",
-              "requestFullType": "spaceone.api.dashboard.v1.DashboardVersionSearchQuery",
+              "requestType": "PublicDashboardVersionSearchQuery",
+              "requestLongType": "PublicDashboardVersionSearchQuery",
+              "requestFullType": "spaceone.api.dashboard.v1.PublicDashboardVersionSearchQuery",
               "requestStreaming": false,
-              "responseType": "DashboardVersionsInfo",
-              "responseLongType": "DashboardVersionsInfo",
-              "responseFullType": "spaceone.api.dashboard.v1.DashboardVersionsInfo",
+              "responseType": "PublicDashboardVersionsInfo",
+              "responseLongType": "PublicDashboardVersionsInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicDashboardVersionsInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/dashboard/list-versions",
+                      "pattern": "/dashboard/v1/public-dashboard/list-versions",
                       "body": "*"
                     }
                   ]
@@ -1208,20 +1079,20 @@
             {
               "name": "list",
               "description": "",
-              "requestType": "DashboardQuery",
-              "requestLongType": "DashboardQuery",
-              "requestFullType": "spaceone.api.dashboard.v1.DashboardQuery",
+              "requestType": "PublicDashboardQuery",
+              "requestLongType": "PublicDashboardQuery",
+              "requestFullType": "spaceone.api.dashboard.v1.PublicDashboardQuery",
               "requestStreaming": false,
-              "responseType": "DashboardsInfo",
-              "responseLongType": "DashboardsInfo",
-              "responseFullType": "spaceone.api.dashboard.v1.DashboardsInfo",
+              "responseType": "PublicDashboardsInfo",
+              "responseLongType": "PublicDashboardsInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicDashboardsInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/dashboard/list",
+                      "pattern": "/dashboard/v1/public-dashboard/list",
                       "body": "*"
                     }
                   ]
@@ -1231,9 +1102,9 @@
             {
               "name": "stat",
               "description": "",
-              "requestType": "DashboardStatQuery",
-              "requestLongType": "DashboardStatQuery",
-              "requestFullType": "spaceone.api.dashboard.v1.DashboardStatQuery",
+              "requestType": "PublicDashboardStatQuery",
+              "requestLongType": "PublicDashboardStatQuery",
+              "requestFullType": "spaceone.api.dashboard.v1.PublicDashboardStatQuery",
               "requestStreaming": false,
               "responseType": "Struct",
               "responseLongType": ".google.protobuf.Struct",
@@ -1244,7 +1115,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/dashboard/stat",
+                      "pattern": "/dashboard/v1/public-dashboard/stat",
                       "body": "*"
                     }
                   ]

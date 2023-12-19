@@ -8,18 +8,18 @@
      "title": "Dashboard API",
      "version": "3.1.0"
    },
-   "paths":{"/dashboard/dashboard/create": {
+   "paths":{"/dashboard/private-dashboard/create": {
        "post": {
-         "tags": ["dashboard > dashboard"],
+         "tags": ["dashboard > private-dashboard"],
          "summary": "Create",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |dashboard_type|PUBLIC, PRIVATE |string|True|\n |resource_group|DOMAIN, WORKSPACE, PROJECT |string|True|\n |layouts||array||\n |variables||Struct||\n |settings||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |layouts||array||\n |variables||Struct||\n |settings||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"dashboard_type" : {"type": "string","title": "DASHBOARD_TYPE" },"layouts" : {"type": "array","title": "LAYOUTS" },"variables" : {"type": "object","title": "VARIABLES" },"settings" : {"type": "object","title": "SETTINGS" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"layouts" : {"type": "array","title": "LAYOUTS" },"variables" : {"type": "object","title": "VARIABLES" },"settings" : {"type": "object","title": "SETTINGS" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -30,25 +30,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DashboardInfo"},
+                 "schema": {"$ref": "#/components/schemas/PrivateDashboardInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DashboardInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PrivateDashboardInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/dashboard/update": {
+     },"/dashboard/private-dashboard/update": {
        "post": {
-         "tags": ["dashboard > dashboard"],
+         "tags": ["dashboard > private-dashboard"],
          "summary": "Update",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |name||string||\n |layouts||array||\n |variables||Struct||\n |settings||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |private_dashboard_id||string|True|\n |name||string||\n |layouts||array||\n |variables||Struct||\n |settings||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"layouts" : {"type": "array","title": "LAYOUTS" },"variables" : {"type": "object","title": "VARIABLES" },"settings" : {"type": "object","title": "SETTINGS" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"layouts" : {"type": "array","title": "LAYOUTS" },"variables" : {"type": "object","title": "VARIABLES" },"settings" : {"type": "object","title": "SETTINGS" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -59,25 +59,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DashboardInfo"},
+                 "schema": {"$ref": "#/components/schemas/PrivateDashboardInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DashboardInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PrivateDashboardInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/dashboard/delete": {
+     },"/dashboard/private-dashboard/delete": {
        "post": {
-         "tags": ["dashboard > dashboard"],
+         "tags": ["dashboard > private-dashboard"],
          "summary": "Delete",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |private_dashboard_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" }                 }
+                 "properties": {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -89,18 +89,18 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/dashboard/get": {
+     },"/dashboard/private-dashboard/get": {
        "post": {
-         "tags": ["dashboard > dashboard"],
+         "tags": ["dashboard > private-dashboard"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |private_dashboard_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" }                 }
+                 "properties": {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -111,25 +111,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DashboardInfo"},
+                 "schema": {"$ref": "#/components/schemas/PrivateDashboardInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DashboardInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PrivateDashboardInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/dashboard/delete-version": {
+     },"/dashboard/private-dashboard/delete-version": {
        "post": {
-         "tags": ["dashboard > dashboard"],
+         "tags": ["dashboard > private-dashboard"],
          "summary": "Delete Version",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |version||int|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |private_dashboard_id||string|True|\n |version||int|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" }                 }
+                 "properties": {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -141,18 +141,18 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/dashboard/revert-version": {
+     },"/dashboard/private-dashboard/revert-version": {
        "post": {
-         "tags": ["dashboard > dashboard"],
+         "tags": ["dashboard > private-dashboard"],
          "summary": "Revert Version",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |version||int|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |private_dashboard_id||string|True|\n |version||int|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" }                 }
+                 "properties": {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -163,25 +163,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DashboardInfo"},
+                 "schema": {"$ref": "#/components/schemas/PrivateDashboardInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DashboardInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PrivateDashboardInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/dashboard/get-version": {
+     },"/dashboard/private-dashboard/get-version": {
        "post": {
-         "tags": ["dashboard > dashboard"],
+         "tags": ["dashboard > private-dashboard"],
          "summary": "Get Version",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |version||int|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |private_dashboard_id||string|True|\n |version||int|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" }                 }
+                 "properties": {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -192,25 +192,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DashboardVersionInfo"},
+                 "schema": {"$ref": "#/components/schemas/PrivateDashboardVersionInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DashboardVersionInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PrivateDashboardVersionInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/dashboard/list-versions": {
+     },"/dashboard/private-dashboard/list-versions": {
        "post": {
-         "tags": ["dashboard > dashboard"],
+         "tags": ["dashboard > private-dashboard"],
          "summary": "List Versions",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |query||Query||\n |version||int||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |private_dashboard_id||string|True|\n |query||Query||\n |version||int||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -221,25 +221,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DashboardVersionsInfo"},
+                 "schema": {"$ref": "#/components/schemas/PrivateDashboardVersionsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DashboardVersionsInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PrivateDashboardVersionsInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/dashboard/list": {
+     },"/dashboard/private-dashboard/list": {
        "post": {
-         "tags": ["dashboard > dashboard"],
+         "tags": ["dashboard > private-dashboard"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |dashboard_id||string||\n |name||string||\n |dashboard_type|PUBLIC, PRIVATE |string||\n |workspace_id||string||\n |project_id||string||\n |user_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |private_dashboard_id||string||\n |name||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"dashboard_type" : {"type": "string","title": "DASHBOARD_TYPE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"user_id" : {"type": "string","title": "USER_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -250,16 +250,294 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DashboardsInfo"},
+                 "schema": {"$ref": "#/components/schemas/PrivateDashboardsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DashboardsInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PrivateDashboardsInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/dashboard/dashboard/stat": {
+     },"/dashboard/private-dashboard/stat": {
        "post": {
-         "tags": ["dashboard > dashboard"],
+         "tags": ["dashboard > private-dashboard"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-dashboard/create": {
+       "post": {
+         "tags": ["dashboard > public-dashboard"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |resource_group|DOMAIN, WORKSPACE, PROJECT |string|True|\n |layouts||array||\n |variables||Struct||\n |settings||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n |project_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"layouts" : {"type": "array","title": "LAYOUTS" },"variables" : {"type": "object","title": "VARIABLES" },"settings" : {"type": "object","title": "SETTINGS" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicDashboardInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicDashboardInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-dashboard/update": {
+       "post": {
+         "tags": ["dashboard > public-dashboard"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_dashboard_id||string|True|\n |name||string||\n |layouts||array||\n |variables||Struct||\n |settings||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"layouts" : {"type": "array","title": "LAYOUTS" },"variables" : {"type": "object","title": "VARIABLES" },"settings" : {"type": "object","title": "SETTINGS" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicDashboardInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicDashboardInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-dashboard/delete": {
+       "post": {
+         "tags": ["dashboard > public-dashboard"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_dashboard_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-dashboard/get": {
+       "post": {
+         "tags": ["dashboard > public-dashboard"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_dashboard_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicDashboardInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicDashboardInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-dashboard/delete-version": {
+       "post": {
+         "tags": ["dashboard > public-dashboard"],
+         "summary": "Delete Version",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_dashboard_id||string|True|\n |version||int|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-dashboard/revert-version": {
+       "post": {
+         "tags": ["dashboard > public-dashboard"],
+         "summary": "Revert Version",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_dashboard_id||string|True|\n |version||int|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicDashboardInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicDashboardInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-dashboard/get-version": {
+       "post": {
+         "tags": ["dashboard > public-dashboard"],
+         "summary": "Get Version",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_dashboard_id||string|True|\n |version||int|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicDashboardVersionInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicDashboardVersionInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-dashboard/list-versions": {
+       "post": {
+         "tags": ["dashboard > public-dashboard"],
+         "summary": "List Versions",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_dashboard_id||string|True|\n |query||Query||\n |version||int||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" },"version" : {"type": "integer","title": "VERSION" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicDashboardVersionsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicDashboardVersionsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-dashboard/list": {
+       "post": {
+         "tags": ["dashboard > public-dashboard"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |public_dashboard_id||string||\n |name||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicDashboardsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicDashboardsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-dashboard/stat": {
+       "post": {
+         "tags": ["dashboard > public-dashboard"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -290,73 +568,73 @@
    },
    "components":{
      "schemas": {
-     "CreateDashboardRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"dashboard_type" : {"type": "string","title": "DASHBOARD_TYPE"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+     "PrivateCreateDashboardRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["name","dashboard_type","resource_group"],
-                "title": "CreateDashboardRequest"
+         "required": ["name"],
+                "title": "PrivateCreateDashboardRequest"
            }
-           ,        "DashboardInfo": {
-         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"dashboard_type" : {"type": "string","title": "DASHBOARD_TYPE"},"version" : {"type": "integer","title": "VERSION"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "PrivateDashboardInfo": {
+         "properties" : {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"version" : {"type": "integer","title": "VERSION"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["dashboard_id","name","dashboard_type","version","layouts","variables","settings","variables_schema","labels","tags","resource_group","domain_id","workspace_id","project_id","user_id","created_at","updated_at"],
-                "title": "DashboardInfo"
+         "required": ["private_dashboard_id","name","version","layouts","variables","settings","variables_schema","labels","tags","domain_id","user_id","created_at","updated_at"],
+                "title": "PrivateDashboardInfo"
            }
-           ,        "DashboardQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"dashboard_type" : {"type": "string","title": "DASHBOARD_TYPE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"user_id" : {"type": "string","title": "USER_ID"}},
+           ,        "PrivateDashboardQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": [],
-                "title": "DashboardQuery"
+                "title": "PrivateDashboardQuery"
            }
-           ,        "DashboardRequest": {
-         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"}},
+           ,        "PrivateDashboardRequest": {
+         "properties" : {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"}},
          "type": "object",
-         "required": ["dashboard_id"],
-                "title": "DashboardRequest"
+         "required": ["private_dashboard_id"],
+                "title": "PrivateDashboardRequest"
            }
-           ,        "DashboardStatQuery": {
+           ,        "PrivateDashboardStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "DashboardStatQuery"
+                "title": "PrivateDashboardStatQuery"
            }
-           ,        "DashboardVersionInfo": {
-         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"latest" : {"type": "boolean","title": "LATEST"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+           ,        "PrivateDashboardVersionInfo": {
+         "properties" : {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"latest" : {"type": "boolean","title": "LATEST"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["dashboard_id","version","latest","layouts","variables","settings","variables_schema","domain_id","created_at"],
-                "title": "DashboardVersionInfo"
+         "required": ["private_dashboard_id","version","latest","layouts","variables","settings","variables_schema","domain_id","created_at"],
+                "title": "PrivateDashboardVersionInfo"
            }
-           ,        "DashboardVersionRequest": {
-         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"}},
+           ,        "PrivateDashboardVersionRequest": {
+         "properties" : {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"}},
          "type": "object",
-         "required": ["dashboard_id","version"],
-                "title": "DashboardVersionRequest"
+         "required": ["private_dashboard_id","version"],
+                "title": "PrivateDashboardVersionRequest"
            }
-           ,        "DashboardVersionSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"}},
+           ,        "PrivateDashboardVersionSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"}},
          "type": "object",
-         "required": ["dashboard_id"],
-                "title": "DashboardVersionSearchQuery"
+         "required": ["private_dashboard_id"],
+                "title": "PrivateDashboardVersionSearchQuery"
            }
-           ,        "DashboardVersionsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/DashboardVersionInfo"},
-               "type": "array","$ref": "#/components/schemas/DashboardVersionInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "DashboardVersionsInfo"
-           }
-           ,        "DashboardsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/DashboardInfo"},
-               "type": "array","$ref": "#/components/schemas/DashboardInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "PrivateDashboardVersionsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PrivateDashboardVersionInfo"},
+               "type": "array","$ref": "#/components/schemas/PrivateDashboardVersionInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "DashboardsInfo"
+                "title": "PrivateDashboardVersionsInfo"
            }
-           ,        "UpdateDashboardRequest": {
-         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "PrivateDashboardsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PrivateDashboardInfo"},
+               "type": "array","$ref": "#/components/schemas/PrivateDashboardInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
-         "required": ["dashboard_id"],
-                "title": "UpdateDashboardRequest"
+         "required": ["results","total_count"],
+                "title": "PrivateDashboardsInfo"
+           }
+           ,        "PrivateUpdateDashboardRequest": {
+         "properties" : {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["private_dashboard_id"],
+                "title": "PrivateUpdateDashboardRequest"
            }
            ,        "VersionInfo": {
          "properties" : {"version" : {"type": "string","title": "VERSION"}},
@@ -564,6 +842,74 @@
          "type": "object",
          "required": ["path","filter"],
                 "title": "Unwind"
+           }
+           ,        "CreatePublicDashboardRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": ["name","resource_group"],
+                "title": "CreatePublicDashboardRequest"
+           }
+           ,        "PublicDashboardInfo": {
+         "properties" : {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"version" : {"type": "integer","title": "VERSION"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["public_dashboard_id","name","version","layouts","variables","settings","variables_schema","labels","tags","resource_group","domain_id","workspace_id","project_id","created_at","updated_at"],
+                "title": "PublicDashboardInfo"
+           }
+           ,        "PublicDashboardQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "PublicDashboardQuery"
+           }
+           ,        "PublicDashboardRequest": {
+         "properties" : {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"}},
+         "type": "object",
+         "required": ["public_dashboard_id"],
+                "title": "PublicDashboardRequest"
+           }
+           ,        "PublicDashboardStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "PublicDashboardStatQuery"
+           }
+           ,        "PublicDashboardVersionInfo": {
+         "properties" : {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"},"latest" : {"type": "boolean","title": "LATEST"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["public_dashboard_id","version","latest","layouts","variables","settings","variables_schema","domain_id","created_at"],
+                "title": "PublicDashboardVersionInfo"
+           }
+           ,        "PublicDashboardVersionRequest": {
+         "properties" : {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"}},
+         "type": "object",
+         "required": ["public_dashboard_id","version"],
+                "title": "PublicDashboardVersionRequest"
+           }
+           ,        "PublicDashboardVersionSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"},"version" : {"type": "integer","title": "VERSION"}},
+         "type": "object",
+         "required": ["public_dashboard_id"],
+                "title": "PublicDashboardVersionSearchQuery"
+           }
+           ,        "PublicDashboardVersionsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PublicDashboardVersionInfo"},
+               "type": "array","$ref": "#/components/schemas/PublicDashboardVersionInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "PublicDashboardVersionsInfo"
+           }
+           ,        "PublicDashboardsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PublicDashboardInfo"},
+               "type": "array","$ref": "#/components/schemas/PublicDashboardInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "PublicDashboardsInfo"
+           }
+           ,        "UpdatePublicDashboardRequest": {
+         "properties" : {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["public_dashboard_id"],
+                "title": "UpdatePublicDashboardRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
