@@ -28,6 +28,7 @@ const (
 	App_Disable_FullMethodName        = "/spaceone.api.identity.v2.App/disable"
 	App_Delete_FullMethodName         = "/spaceone.api.identity.v2.App/delete"
 	App_Get_FullMethodName            = "/spaceone.api.identity.v2.App/get"
+	App_Check_FullMethodName          = "/spaceone.api.identity.v2.App/check"
 	App_List_FullMethodName           = "/spaceone.api.identity.v2.App/list"
 	App_Stat_FullMethodName           = "/spaceone.api.identity.v2.App/stat"
 )
@@ -43,6 +44,7 @@ type AppClient interface {
 	Disable(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*AppInfo, error)
 	Delete(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*AppInfo, error)
+	Check(ctx context.Context, in *AppCheckRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	List(ctx context.Context, in *AppSearchQuery, opts ...grpc.CallOption) (*AppsInfo, error)
 	Stat(ctx context.Context, in *AppStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -118,6 +120,15 @@ func (c *appClient) Get(ctx context.Context, in *AppRequest, opts ...grpc.CallOp
 	return out, nil
 }
 
+func (c *appClient) Check(ctx context.Context, in *AppCheckRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, App_Check_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *appClient) List(ctx context.Context, in *AppSearchQuery, opts ...grpc.CallOption) (*AppsInfo, error) {
 	out := new(AppsInfo)
 	err := c.cc.Invoke(ctx, App_List_FullMethodName, in, out, opts...)
@@ -147,6 +158,7 @@ type AppServer interface {
 	Disable(context.Context, *AppRequest) (*AppInfo, error)
 	Delete(context.Context, *AppRequest) (*empty.Empty, error)
 	Get(context.Context, *AppRequest) (*AppInfo, error)
+	Check(context.Context, *AppCheckRequest) (*empty.Empty, error)
 	List(context.Context, *AppSearchQuery) (*AppsInfo, error)
 	Stat(context.Context, *AppStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedAppServer()
@@ -176,6 +188,9 @@ func (UnimplementedAppServer) Delete(context.Context, *AppRequest) (*empty.Empty
 }
 func (UnimplementedAppServer) Get(context.Context, *AppRequest) (*AppInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedAppServer) Check(context.Context, *AppCheckRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
 }
 func (UnimplementedAppServer) List(context.Context, *AppSearchQuery) (*AppsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
@@ -322,6 +337,24 @@ func _App_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}
 	return interceptor(ctx, in, info, handler)
 }
 
+func _App_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppCheckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppServer).Check(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: App_Check_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppServer).Check(ctx, req.(*AppCheckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _App_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AppSearchQuery)
 	if err := dec(in); err != nil {
@@ -392,6 +425,10 @@ var App_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "get",
 			Handler:    _App_Get_Handler,
+		},
+		{
+			MethodName: "check",
+			Handler:    _App_Check_Handler,
 		},
 		{
 			MethodName: "list",
