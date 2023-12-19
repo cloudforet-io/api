@@ -10,86 +10,80 @@ import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v1/query.proto";
 
-service Dashboard{
+service PublicDashboard{
 
-  rpc create(CreateDashboardRequest) returns (DashboardInfo) {
+  rpc create(CreatePublicDashboardRequest) returns (PublicDashboardInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/dashboard/create"
+      post: "/dashboard/v1/public-dashboard/create"
       body: "*"
     };
   }
 
-  rpc update (UpdateDashboardRequest) returns (DashboardInfo) {
+  rpc update (UpdatePublicDashboardRequest) returns (PublicDashboardInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/dashboard/update"
+      post: "/dashboard/v1/public-dashboard/update"
       body: "*"
     };
   }
 
-  rpc delete (DashboardRequest) returns (google.protobuf.Empty) {
+  rpc delete (PublicDashboardRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/dashboard/v1/dashboard/delete"
+      post: "/dashboard/v1/public-dashboard/delete"
       body: "*"
     };
   }
 
-  rpc get (DashboardRequest) returns (DashboardInfo) {
+  rpc get (PublicDashboardRequest) returns (PublicDashboardInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/dashboard/get"
+      post: "/dashboard/v1/public-dashboard/get"
       body: "*"
     };
   }
 
-  rpc delete_version (DashboardVersionRequest) returns (google.protobuf.Empty) {
+  rpc delete_version (PublicDashboardVersionRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/dashboard/v1/dashboard/delete-version"
+      post: "/dashboard/v1/public-dashboard/delete-version"
       body: "*"
     };
   }
 
-  rpc revert_version (DashboardVersionRequest) returns (DashboardInfo) {
+  rpc revert_version (PublicDashboardVersionRequest) returns (PublicDashboardInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/dashboard/revert-version"
+      post: "/dashboard/v1/public-dashboard/revert-version"
       body: "*"
     };
   }
 
-  rpc get_version (DashboardVersionRequest) returns (DashboardVersionInfo) {
+  rpc get_version (PublicDashboardVersionRequest) returns (PublicDashboardVersionInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/dashboard/get-version"
+      post: "/dashboard/v1/public-dashboard/get-version"
       body: "*"
     };
   }
 
-  rpc list_versions (DashboardVersionSearchQuery) returns (DashboardVersionsInfo) {
+  rpc list_versions (PublicDashboardVersionSearchQuery) returns (PublicDashboardVersionsInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/dashboard/list-versions"
+      post: "/dashboard/v1/public-dashboard/list-versions"
       body: "*"
     };
   }
 
-  rpc list (DashboardQuery) returns (DashboardsInfo) {
+  rpc list (PublicDashboardQuery) returns (PublicDashboardsInfo) {
     option (google.api.http) = {
-      post: "/dashboard/v1/dashboard/list"
+      post: "/dashboard/v1/public-dashboard/list"
       body: "*"
     };
   }
 
-  rpc stat (DashboardStatQuery) returns (google.protobuf.Struct) {
+  rpc stat (PublicDashboardStatQuery) returns (google.protobuf.Struct) {
     option (google.api.http) = {
-      post: "/dashboard/v1/dashboard/stat"
+      post: "/dashboard/v1/public-dashboard/stat"
       body: "*"
     };
   }
 }
 
-message CreateDashboardRequest {
-  enum DashboardType {
-    DASHBOARD_TYPE_NONE = 0;
-    PUBLIC = 1;
-    PRIVATE = 2;
-  }
-
+message CreatePublicDashboardRequest {
   enum ResourceGroup {
     RESOURCE_GROUP_NONE = 0;
     DOMAIN = 1;
@@ -98,7 +92,6 @@ message CreateDashboardRequest {
   }
 
   string name = 1;
-  DashboardType dashboard_type = 2;
   // +optional
   google.protobuf.ListValue layouts = 3;
   // +optional
@@ -116,8 +109,8 @@ message CreateDashboardRequest {
   string project_id = 21;
 }
 
-message UpdateDashboardRequest {
-  string dashboard_id = 1;
+message UpdatePublicDashboardRequest {
+  string public_dashboard_id = 1;
   // +optional
   string name = 2;
   // +optional
@@ -134,53 +127,37 @@ message UpdateDashboardRequest {
   google.protobuf.Struct tags = 9;
 }
 
-message DashboardRequest {
-  string dashboard_id = 1;
+message PublicDashboardRequest {
+  string public_dashboard_id = 1;
 }
 
-message DashboardVersionRequest {
-  string dashboard_id = 1;
+message PublicDashboardVersionRequest {
+  string public_dashboard_id = 1;
   int32 version = 4;
 }
 
-message DashboardVersionSearchQuery {
+message PublicDashboardVersionSearchQuery {
   // +optional
   spaceone.api.core.v1.Query query = 1;
-  string dashboard_id = 2;
+  string public_dashboard_id = 2;
   // +optional
   int32 version = 3;
 }
 
-message DashboardQuery {
-  enum DashboardType {
-    DASHBOARD_TYPE_NONE = 0;
-    PUBLIC = 1;
-    PRIVATE = 2;
-  }
-
+message PublicDashboardQuery {
   // +optional
   spaceone.api.core.v1.Query query = 1;
   // +optional
-  string dashboard_id = 2;
+  string public_dashboard_id = 2;
   // +optional
   string name = 3;
-  // +optional
-  DashboardType dashboard_type = 4;
   // +optional
   string workspace_id = 21;
   // +optional
   string project_id = 22;
-  // +optional
-  string user_id = 23;
-
 }
 
-message DashboardInfo {
-  enum DashboardType {
-    DASHBOARD_TYPE_NONE = 0;
-    PUBLIC = 1;
-    PRIVATE = 2;
-  }
+message PublicDashboardInfo {
   enum ResourceGroup {
     RESOURCE_GROUP_NONE = 0;
     DOMAIN = 1;
@@ -188,9 +165,8 @@ message DashboardInfo {
     PROJECT = 3;
   }
 
-  string dashboard_id = 1;
+  string public_dashboard_id = 1;
   string name = 2;
-  DashboardType dashboard_type = 3;
   int32 version = 4;
   google.protobuf.ListValue layouts = 5;
   google.protobuf.Struct variables = 6;
@@ -203,24 +179,23 @@ message DashboardInfo {
   string domain_id = 21;
   string workspace_id = 22;
   string project_id = 23;
-  string user_id = 24;
 
   string created_at = 31;
   string updated_at = 32;
 }
 
-message DashboardsInfo {
-  repeated DashboardInfo results = 1;
+message PublicDashboardsInfo {
+  repeated PublicDashboardInfo results = 1;
   int32 total_count = 2;
 }
 
-message DashboardStatQuery {
+message PublicDashboardStatQuery {
   spaceone.api.core.v1.StatisticsQuery query = 1;
 }
 
 
-message DashboardVersionInfo {
-  string dashboard_id = 1;
+message PublicDashboardVersionInfo {
+  string public_dashboard_id = 1;
   int32 version = 2;
   bool latest = 3;
   google.protobuf.ListValue layouts = 4;
@@ -233,7 +208,7 @@ message DashboardVersionInfo {
   string created_at = 31;
 }
 
-message DashboardVersionsInfo {
-  repeated DashboardVersionInfo results = 1;
+message PublicDashboardVersionsInfo {
+  repeated PublicDashboardVersionInfo results = 1;
   int32 total_count = 2;
 }
