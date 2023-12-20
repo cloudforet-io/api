@@ -60,7 +60,7 @@ service App {
         };
     }
 
-    rpc check (AppCheckRequest) returns (google.protobuf.Empty) {}
+    rpc check (AppCheckRequest) returns (CheckAppInfo) {}
 
     rpc list (AppSearchQuery) returns (AppsInfo) {
         option (google.api.http) = {
@@ -90,7 +90,9 @@ message CreateAppRequest {
     google.protobuf.Struct tags = 3;
     // +optional
     string expired_at = 4;
-    ResourceGroup resource_group = 5;
+    ResourceGroup resource_group = 20;
+    // +optional
+    string workspace_id = 21;
 }
 
 message UpdateAppRequest {
@@ -114,6 +116,10 @@ message AppRequest {
 message AppCheckRequest {
     string api_key_id = 1;
     string domain_id = 2;
+}
+
+message CheckAppInfo {
+    repeated string permissions = 1;
 }
 
 message AppInfo {
