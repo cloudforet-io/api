@@ -1193,11 +1193,11 @@
          "operationId" : "",
          "description": "### Description \nCreates a new EscalationPolicy. When creating an EscalationPolicy, if the project_id is assigned, the EscalationPolicy is applied to the Project with the same project_id. If an EscalationPolicy is set as a global policy, all Projects in the same domain can apply the policy.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |rules||array|True|\n |resource_group|WORKSPACE, PROJECT |string|True|\n |repeat_count||int||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |project_id||string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |rules||array|True|\n |resource_group|WORKSPACE, PROJECT |string|True|\n |repeat_count||int||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |tags||Struct||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"rules" : {"items": {"$ref": "#/components/schemas/EscalationPolicyRule"}, "type": "array","title": "RULES" },"repeat_count" : {"type": "integer","title": "REPEAT_COUNT" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"project_id" : {"type": "string","title": "PROJECT_ID" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"rules" : {"items": {"$ref": "#/components/schemas/EscalationPolicyRule"}, "type": "array","title": "RULES" },"repeat_count" : {"type": "integer","title": "REPEAT_COUNT" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"name\": \"es-test\",\n   \"rules\": [{\"notification_level\": \"LV1\", \"escalate_minutes\": 30},\n             {\"notification_level\": \"LV2\", \"escalate_minutes\": 30}],\n   \"repeat_count\": 2,\n   \"finish_condition\": \"ACKNOWLEDGED\",\n   \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
                }
@@ -2301,7 +2301,7 @@
            }
            ,        "CreateEscalationPolicyRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"rules" : {"items": {"$ref": "#/components/schemas/EscalationPolicyRule"},
-               "type": "array","$ref": "#/components/schemas/EscalationPolicyRule","title": "RULES"},"repeat_count" : {"type": "integer","title": "REPEAT_COUNT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"project_id" : {"type": "string","title": "PROJECT_ID"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"}},
+               "type": "array","$ref": "#/components/schemas/EscalationPolicyRule","title": "RULES"},"repeat_count" : {"type": "integer","title": "REPEAT_COUNT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": ["name","rules","resource_group"],
                 "title": "CreateEscalationPolicyRequest"

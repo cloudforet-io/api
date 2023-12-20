@@ -293,11 +293,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |resource_group|DOMAIN, WORKSPACE, PROJECT |string|True|\n |layouts||array||\n |variables||Struct||\n |settings||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |resource_group|DOMAIN, WORKSPACE, PROJECT |string|True|\n |layouts||array||\n |variables||Struct||\n |settings||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n |workspace_id||string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"layouts" : {"type": "array","title": "LAYOUTS" },"variables" : {"type": "object","title": "VARIABLES" },"settings" : {"type": "object","title": "SETTINGS" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"layouts" : {"type": "array","title": "LAYOUTS" },"variables" : {"type": "object","title": "VARIABLES" },"settings" : {"type": "object","title": "SETTINGS" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -575,9 +575,9 @@
                 "title": "PrivateCreateDashboardRequest"
            }
            ,        "PrivateDashboardInfo": {
-         "properties" : {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"version" : {"type": "integer","title": "VERSION"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"version" : {"type": "integer","title": "VERSION"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["private_dashboard_id","name","version","layouts","variables","settings","variables_schema","labels","tags","domain_id","user_id","created_at","updated_at"],
+         "required": ["private_dashboard_id","name","version","layouts","variables","settings","variables_schema","labels","tags","domain_id","workspace_id","user_id","created_at","updated_at"],
                 "title": "PrivateDashboardInfo"
            }
            ,        "PrivateDashboardQuery": {
@@ -844,7 +844,7 @@
                 "title": "Unwind"
            }
            ,        "CreatePublicDashboardRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"variables" : {"type": "object","title": "VARIABLES"},"settings" : {"type": "object","title": "SETTINGS"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": ["name","resource_group"],
                 "title": "CreatePublicDashboardRequest"

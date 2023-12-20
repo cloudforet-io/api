@@ -311,11 +311,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |options||array|True|\n |schedule||ReportSchedule|True|\n |target||Struct|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |file_format|EXCEL, CSV |string||\n |timezone||string||\n |language||string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |options||array|True|\n |schedule||ReportSchedule|True|\n |target||Struct|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |file_format|EXCEL, CSV |string||\n |timezone||string||\n |language||string||\n |tags||Struct||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"timezone" : {"type": "string","title": "TIMEZONE" },"language" : {"type": "string","title": "LANGUAGE" },"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE" },"target" : {"type": "object","title": "TARGET" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"timezone" : {"type": "string","title": "TIMEZONE" },"language" : {"type": "string","title": "LANGUAGE" },"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE" },"target" : {"type": "object","title": "TARGET" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -678,11 +678,11 @@
          "operationId" : "",
          "description": "### Description \nCreates a new Collector with information of the plugin to use. Information of the plugin includes `version`, `provider`, and `upgrade_mode`.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |plugin_info||PluginInfo|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |schedule||Scheduled||\n |provider||string||\n |secret_filter||SecretFilter||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |plugin_info||PluginInfo|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |schedule||Scheduled||\n |provider||string||\n |secret_filter||SecretFilter||\n |tags||Struct||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO" },"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE" },"provider" : {"type": "string","title": "PROVIDER" },"secret_filter" : {"$ref": "#/components/schemas/SecretFilter","title": "SECRET_FILTER" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO" },"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE" },"provider" : {"type": "string","title": "PROVIDER" },"secret_filter" : {"$ref": "#/components/schemas/SecretFilter","title": "SECRET_FILTER" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"name\": \"AWS Collector\",\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-30d21ef75a5d\",\n       \"version\": \"1.13.13\",\n       \"options\": {},\n       \"metadata\": {\n           \"filter_format\": [],\n           \"supported_schedules\": [\n               \"hours\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.CloudService\",\n               \"inventory.CloudServiceType\",\n               \"inventory.Region\"\n           ],\n           \"supported_features\": [\n               \"garbage_collection\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"schedule\": {\n       \"state\": \"ENABLED\",\n       \"hours\": [0, 6, 12, 18]\n   },\n   \"secret_filter\": {\n       \"state\": \"ENABLED\",\n       \"secrets\": [\"secret-xxx\", \"secret-yyy\"],\n       \"service_accounts\": [\"sa-xxx\", \"sa-yyy\"],\n       \"schemas\": [\"schema-xxx\", \"schema-yyy\"]\n   },\n   \"tags\": {\n       \"type\": \"test\"\n   },\n}"},"Schema":{}
                }
@@ -1405,11 +1405,11 @@
          "operationId" : "",
          "description": "### Description \nCreate a new query set. Periodic statistics data is created based on the query set.\n`query` parameters refer to AnalyzeQuery.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |query_options||AnalyzeQuery|True|\n |provider||string|True|\n |cloud_service_group||string|True|\n |cloud_service_type||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |unit||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |query_options||AnalyzeQuery|True|\n |provider||string|True|\n |cloud_service_group||string|True|\n |cloud_service_type||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |unit||Struct||\n |tags||Struct||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"unit" : {"type": "object","title": "UNIT" },"provider" : {"type": "string","title": "PROVIDER" },"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP" },"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"unit" : {"type": "object","title": "UNIT" },"provider" : {"type": "string","title": "PROVIDER" },"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP" },"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"name\": \"EC2 Count by Instance Type\",\n   \"query_options\": \"\u003cAnalyzeQuery\u003e\",\n   \"unit\": {\n       \"Disk Size\": \"GB\",\n       \"Memory\": \"GB\",\n       \"CPU\": \"Core\"\n   },\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"EC2\",\n   \"cloud_service_type\": \"Instance\",\n   \"tags\": {\n       \"foo\": \"bar\"\n   }\n}"},"Schema":{}
                }
@@ -2473,7 +2473,7 @@
            }
            ,        "CreateCloudServiceReportRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
-               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"timezone" : {"type": "string","title": "TIMEZONE"},"language" : {"type": "string","title": "LANGUAGE"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"}},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"timezone" : {"type": "string","title": "TIMEZONE"},"language" : {"type": "string","title": "LANGUAGE"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": ["name","options","schedule","target","resource_group"],
                 "title": "CreateCloudServiceReportRequest"
@@ -2574,7 +2574,7 @@
                 "title": "CollectorsInfo"
            }
            ,        "CreateCollectorRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"provider" : {"type": "string","title": "PROVIDER"},"secret_filter" : {"$ref": "#/components/schemas/SecretFilter","title": "SECRET_FILTER"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"provider" : {"type": "string","title": "PROVIDER"},"secret_filter" : {"$ref": "#/components/schemas/SecretFilter","title": "SECRET_FILTER"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": ["name","plugin_info","resource_group"],
                 "title": "CreateCollectorRequest"
@@ -2796,7 +2796,7 @@
                 "title": "CloudServiceQuerySetsInfo"
            }
            ,        "CreateCloudServiceQuerySetRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"unit" : {"type": "object","title": "UNIT"},"provider" : {"type": "string","title": "PROVIDER"},"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP"},"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"unit" : {"type": "object","title": "UNIT"},"provider" : {"type": "string","title": "PROVIDER"},"cloud_service_group" : {"type": "string","title": "CLOUD_SERVICE_GROUP"},"cloud_service_type" : {"type": "string","title": "CLOUD_SERVICE_TYPE"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": ["name","query_options","provider","cloud_service_group","cloud_service_type","resource_group"],
                 "title": "CreateCloudServiceQuerySetRequest"

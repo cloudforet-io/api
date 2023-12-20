@@ -44,7 +44,7 @@ type AppClient interface {
 	Disable(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*AppInfo, error)
 	Delete(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*AppInfo, error)
-	Check(ctx context.Context, in *AppCheckRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Check(ctx context.Context, in *AppCheckRequest, opts ...grpc.CallOption) (*CheckAppInfo, error)
 	List(ctx context.Context, in *AppSearchQuery, opts ...grpc.CallOption) (*AppsInfo, error)
 	Stat(ctx context.Context, in *AppStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -120,8 +120,8 @@ func (c *appClient) Get(ctx context.Context, in *AppRequest, opts ...grpc.CallOp
 	return out, nil
 }
 
-func (c *appClient) Check(ctx context.Context, in *AppCheckRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
+func (c *appClient) Check(ctx context.Context, in *AppCheckRequest, opts ...grpc.CallOption) (*CheckAppInfo, error) {
+	out := new(CheckAppInfo)
 	err := c.cc.Invoke(ctx, App_Check_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -158,7 +158,7 @@ type AppServer interface {
 	Disable(context.Context, *AppRequest) (*AppInfo, error)
 	Delete(context.Context, *AppRequest) (*empty.Empty, error)
 	Get(context.Context, *AppRequest) (*AppInfo, error)
-	Check(context.Context, *AppCheckRequest) (*empty.Empty, error)
+	Check(context.Context, *AppCheckRequest) (*CheckAppInfo, error)
 	List(context.Context, *AppSearchQuery) (*AppsInfo, error)
 	Stat(context.Context, *AppStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedAppServer()
@@ -189,7 +189,7 @@ func (UnimplementedAppServer) Delete(context.Context, *AppRequest) (*empty.Empty
 func (UnimplementedAppServer) Get(context.Context, *AppRequest) (*AppInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedAppServer) Check(context.Context, *AppCheckRequest) (*empty.Empty, error) {
+func (UnimplementedAppServer) Check(context.Context, *AppCheckRequest) (*CheckAppInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
 }
 func (UnimplementedAppServer) List(context.Context, *AppSearchQuery) (*AppsInfo, error) {

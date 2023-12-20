@@ -54,7 +54,7 @@ class AppStub(object):
         self.check = channel.unary_unary(
                 '/spaceone.api.identity.v2.App/check',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppCheckRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.CheckAppInfo.FromString,
                 )
         self.list = channel.unary_unary(
                 '/spaceone.api.identity.v2.App/list',
@@ -172,7 +172,7 @@ def add_AppServicer_to_server(servicer, server):
             'check': grpc.unary_unary_rpc_method_handler(
                     servicer.check,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppCheckRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.CheckAppInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
@@ -326,7 +326,7 @@ class App(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.App/check',
             spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppCheckRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.CheckAppInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

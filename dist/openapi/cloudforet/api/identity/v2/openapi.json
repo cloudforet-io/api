@@ -409,11 +409,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |role_id||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |role_id||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"role_id" : {"type": "string","title": "ROLE_ID" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" }                 }
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"role_id" : {"type": "string","title": "ROLE_ID" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1823,11 +1823,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |role_id||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |tags||Struct||\n |expired_at||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |role_id||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |tags||Struct||\n |expired_at||string||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"role_id" : {"type": "string","title": "ROLE_ID" },"tags" : {"type": "object","title": "TAGS" },"expired_at" : {"type": "string","title": "EXPIRED_AT" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"role_id" : {"type": "string","title": "ROLE_ID" },"tags" : {"type": "object","title": "TAGS" },"expired_at" : {"type": "string","title": "EXPIRED_AT" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -3772,7 +3772,7 @@
                 "title": "UpdateProjectGroupRequest"
            }
            ,        "CreateRoleBindingRequest": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"}},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": ["user_id","role_id","resource_group"],
                 "title": "CreateRoleBindingRequest"
@@ -4178,8 +4178,15 @@
          "required": ["results","total_count"],
                 "title": "AppsInfo"
            }
+           ,        "CheckAppInfo": {
+         "properties" : {"permissions" : {"items": {"type": "string"},
+               "type": "array","title": "PERMISSIONS"}},
+         "type": "object",
+         "required": ["permissions"],
+                "title": "CheckAppInfo"
+           }
            ,        "CreateAppRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"role_id" : {"type": "string","title": "ROLE_ID"},"tags" : {"type": "object","title": "TAGS"},"expired_at" : {"type": "string","title": "EXPIRED_AT"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"role_id" : {"type": "string","title": "ROLE_ID"},"tags" : {"type": "object","title": "TAGS"},"expired_at" : {"type": "string","title": "EXPIRED_AT"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": ["name","role_id","resource_group"],
                 "title": "CreateAppRequest"
