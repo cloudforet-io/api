@@ -8,26 +8,8 @@ option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/repositor
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
-import "spaceone/api/core/v1/query.proto";
 
 service Repository {
-    // Registers a Repository. The parameter `name` can only include alphabets, numbers, and hyphens(-). The parameter `repository_type` can be either `local` or `remote`. The parameter `endpoint` is needed if the `repository_type` is `remote`.
-    rpc register (CreateRepositoryRequest) returns (RepositoryInfo) {}
-    
-    // Updates a specific Repository registered. You must specify the `repository_id` of the Repository to update. You can make changes in Repository settings, including `name`.
-    rpc update (UpdateRepositoryRequest) returns (RepositoryInfo) {}
-    
-    // Deregisters and deletes a specific Repository. You must specify the `repository_id` of the Repository to deregister.
-    rpc deregister (RepositoryRequest) returns (google.protobuf.Empty) {}
-    
-    // Gets a specific Repository. Prints detailed information about the Repository, including  `name`, `repository_type`, and `endpoint`.
-    rpc get (GetRepositoryRequest) returns (RepositoryInfo) {
-        option (google.api.http) = {
-            post: "/repository/v1/repository/get"
-            body: "*"
-        };
-    }
-    
     // Gets a list of all Repositories regardless of `domain`. You can use a query to get a filtered list of Repositories.
     rpc list (RepositoryQuery) returns (RepositoriesInfo) {
         option (google.api.http) = {
@@ -35,49 +17,6 @@ service Repository {
             body: "*"
         };
     }
-    
-    rpc stat (RepositoryStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/repository/v1/repository/stat"
-            body: "*"
-        };
-    }
-}
-
-//{
-//    "name": "Open Source Marketplace",
-//    "repository_type": "remote",
-//    "endpoint": "grpc+ssl://repository.portal.spaceone.megazone.io:443"
-//}
-message CreateRepositoryRequest {
-    string name = 1;
-    string repository_type = 2;
-    // +optional
-    string endpoint = 10;
-}
-
-//{
-//    "repository_id": "repo-123456789012",
-//    "name": "Changed Name"
-//}
-message UpdateRepositoryRequest {
-    string repository_id = 1;
-    // +optional
-    string name = 2;
-}
-
-//{
-//    "repository_id": "repo-123456789012"
-//}
-message RepositoryRequest {
-    string repository_id = 1;
-}
-
-//{
-//    "repository_id": "repo-123456789012"
-//}
-message GetRepositoryRequest {
-    string repository_id = 1;
 }
 
 //{
@@ -86,13 +25,9 @@ message GetRepositoryRequest {
 //}
 message RepositoryQuery {
     // +optional
-    spaceone.api.core.v1.Query query = 1;
+    string repository_id = 1;
     // +optional
-    string repository_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    string repository_type = 4;
+    string repository_type = 2;
 }
 
 //{
@@ -100,15 +35,12 @@ message RepositoryQuery {
 //    "name": "Open Source Marketplace",
 //    "repository_type": "remote",
 //    "endpoint": "grpc+ssl://repository.portal.spaceone.megazone.io:443",
-//    "created_at": "2022-01-01T02:27:02.924Z"
 //}
 message RepositoryInfo {
     string repository_id = 1;
     string name = 2;
     string repository_type = 3;
     string endpoint = 4;
-
-    string created_at = 31;
 }
 
 //{
@@ -118,7 +50,6 @@ message RepositoryInfo {
 //            "name": "Open Source Marketplace",
 //            "repository_type": "remote",
 //            "endpoint": "grpc+ssl://repository.portal.spaceone.megazone.io:443",
-//            "created_at": "2022-01-01T02:26:29.081Z"
 //        }
 //    ],
 //    "total_count": 1
@@ -126,8 +57,4 @@ message RepositoryInfo {
 message RepositoriesInfo {
     repeated RepositoryInfo results = 1;
     int32 total_count = 2;
-}
-
-message RepositoryStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;
 }

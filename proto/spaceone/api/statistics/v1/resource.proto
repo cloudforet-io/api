@@ -7,7 +7,7 @@ option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/statistic
 
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
-import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v2/query.proto";
 
 
 service Resource {
@@ -22,7 +22,7 @@ service Resource {
 
 message StatAggregateQuery {
     string resource_type = 1;
-    spaceone.api.core.v1.StatisticsQuery query = 2;
+    spaceone.api.core.v2.StatisticsQuery query = 2;
     // +optional
     google.protobuf.Struct extend_data = 3;
 }
@@ -36,7 +36,7 @@ message StatAggregateJoin {
     }
 
     string resource_type = 1;
-    spaceone.api.core.v1.StatisticsQuery query = 2;
+    spaceone.api.core.v2.StatisticsQuery query = 2;
     // +optional
     google.protobuf.Struct extend_data = 3;
     // +optional
@@ -47,7 +47,7 @@ message StatAggregateJoin {
 
 message StatAggregateConcat {
     string resource_type = 1;
-    spaceone.api.core.v1.StatisticsQuery query = 2;
+    spaceone.api.core.v2.StatisticsQuery query = 2;
     // +optional
     google.protobuf.Struct extend_data = 3;
 }

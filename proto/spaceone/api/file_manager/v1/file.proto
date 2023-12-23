@@ -7,13 +7,13 @@ option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/file_mana
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
-import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v2/query.proto";
 
 
 service File {
     rpc add (CreateFileRequest) returns (FileInfo) {
         option (google.api.http) = {
-            post: "/file-manager/v1/file/add"
+            post: "/file-manager/v2/file/add"
             body: "*"
         };
     }
@@ -101,7 +101,7 @@ message FileRequest {
 
 message FileSearchQuery {
     // +optional
-    spaceone.api.core.v1.Query query = 1;
+    spaceone.api.core.v2.Query query = 1;
     // +optional
     string file_id = 2;
     /// +optional
@@ -152,5 +152,5 @@ message FilesInfo {
 }
 
 message FileStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;
+    spaceone.api.core.v2.StatisticsQuery query = 1;
 }
