@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/notification/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/notification/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_UserChannel_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateUserChannelRequest
+func request_UserChannel_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateUserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_UserChannel_Create_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_UserChannel_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateUserChannelRequest
+func local_request_UserChannel_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateUserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_UserChannel_Create_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_UserChannel_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateUserChannelRequest
+func request_UserChannel_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateUserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_UserChannel_Update_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_UserChannel_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateUserChannelRequest
+func local_request_UserChannel_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateUserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_UserChannel_Update_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_UserChannel_SetSchedule_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateUserChannelScheduleRequest
+func request_UserChannel_SetSchedule_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateUserChannelScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_UserChannel_SetSchedule_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_UserChannel_SetSchedule_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateUserChannelScheduleRequest
+func local_request_UserChannel_SetSchedule_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateUserChannelScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_UserChannel_SetSchedule_0(ctx context.Context, marshaler runt
 
 }
 
-func request_UserChannel_SetSubscription_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateUserChannelSubscriptionRequest
+func request_UserChannel_SetSubscription_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateUserChannelSubscriptionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_UserChannel_SetSubscription_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_UserChannel_SetSubscription_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateUserChannelSubscriptionRequest
+func local_request_UserChannel_SetSubscription_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateUserChannelSubscriptionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_UserChannel_SetSubscription_0(ctx context.Context, marshaler 
 
 }
 
-func request_UserChannel_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserChannelRequest
+func request_UserChannel_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_UserChannel_Enable_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_UserChannel_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserChannelRequest
+func local_request_UserChannel_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_UserChannel_Enable_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_UserChannel_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserChannelRequest
+func request_UserChannel_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_UserChannel_Disable_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_UserChannel_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserChannelRequest
+func local_request_UserChannel_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_UserChannel_Disable_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_UserChannel_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserChannelRequest
+func request_UserChannel_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_UserChannel_Delete_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_UserChannel_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserChannelRequest
+func local_request_UserChannel_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_UserChannel_Delete_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_UserChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserChannelRequest
+func request_UserChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_UserChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_UserChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserChannelRequest
+func local_request_UserChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -304,8 +304,8 @@ func local_request_UserChannel_Get_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_UserChannel_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserChannelQuery
+func request_UserChannel_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserChannelQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -321,8 +321,8 @@ func request_UserChannel_List_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_UserChannel_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserChannelQuery
+func local_request_UserChannel_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserChannelQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -338,8 +338,8 @@ func local_request_UserChannel_List_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_UserChannel_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserChannelStatQuery
+func request_UserChannel_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserChannelStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -355,8 +355,8 @@ func request_UserChannel_Stat_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_UserChannel_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserChannelStatQuery
+func local_request_UserChannel_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserChannelStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -376,7 +376,7 @@ func local_request_UserChannel_Stat_0(ctx context.Context, marshaler runtime.Mar
 // UnaryRPC     :call UserChannelServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUserChannelHandlerFromEndpoint instead.
-func RegisterUserChannelHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.UserChannelServer) error {
+func RegisterUserChannelHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.UserChannelServer) error {
 
 	mux.Handle("POST", pattern_UserChannel_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -659,15 +659,15 @@ func RegisterUserChannelHandlerFromEndpoint(ctx context.Context, mux *runtime.Se
 // RegisterUserChannelHandler registers the http handlers for service UserChannel to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterUserChannelHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterUserChannelHandlerClient(ctx, mux, v1_0.NewUserChannelClient(conn))
+	return RegisterUserChannelHandlerClient(ctx, mux, extV1.NewUserChannelClient(conn))
 }
 
 // RegisterUserChannelHandlerClient registers the http handlers for service UserChannel
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.UserChannelClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.UserChannelClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.UserChannelClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.UserChannelClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.UserChannelClient" to call the correct interceptors.
-func RegisterUserChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.UserChannelClient) error {
+// "extV1.UserChannelClient" to call the correct interceptors.
+func RegisterUserChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.UserChannelClient) error {
 
 	mux.Handle("POST", pattern_UserChannel_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

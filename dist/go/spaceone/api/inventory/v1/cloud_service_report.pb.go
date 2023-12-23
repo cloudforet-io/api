@@ -7,7 +7,7 @@
 package v1
 
 import (
-	v1 "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v1"
+	v2 "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v2"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	_struct "github.com/golang/protobuf/ptypes/struct"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -451,7 +451,7 @@ type CreateCloudServiceReportRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	Name    string             `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Options []*v1.ExportOption `protobuf:"bytes,2,rep,name=options,proto3" json:"options,omitempty"`
+	Options []*v2.ExportOption `protobuf:"bytes,2,rep,name=options,proto3" json:"options,omitempty"`
 	// +optional
 	FileFormat CreateCloudServiceReportRequest_FileFormat `protobuf:"varint,3,opt,name=file_format,json=fileFormat,proto3,enum=spaceone.api.inventory.v1.CreateCloudServiceReportRequest_FileFormat" json:"file_format,omitempty"`
 	// +optional
@@ -506,7 +506,7 @@ func (x *CreateCloudServiceReportRequest) GetName() string {
 	return ""
 }
 
-func (x *CreateCloudServiceReportRequest) GetOptions() []*v1.ExportOption {
+func (x *CreateCloudServiceReportRequest) GetOptions() []*v2.ExportOption {
 	if x != nil {
 		return x.Options
 	}
@@ -578,7 +578,7 @@ type UpdateCloudServiceReportRequest struct {
 	// +optional
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// +optional
-	Options []*v1.ExportOption `protobuf:"bytes,3,rep,name=options,proto3" json:"options,omitempty"`
+	Options []*v2.ExportOption `protobuf:"bytes,3,rep,name=options,proto3" json:"options,omitempty"`
 	// +optional
 	FileFormat UpdateCloudServiceReportRequest_FileFormat `protobuf:"varint,4,opt,name=file_format,json=fileFormat,proto3,enum=spaceone.api.inventory.v1.UpdateCloudServiceReportRequest_FileFormat" json:"file_format,omitempty"`
 	// +optional
@@ -639,7 +639,7 @@ func (x *UpdateCloudServiceReportRequest) GetName() string {
 	return ""
 }
 
-func (x *UpdateCloudServiceReportRequest) GetOptions() []*v1.ExportOption {
+func (x *UpdateCloudServiceReportRequest) GetOptions() []*v2.ExportOption {
 	if x != nil {
 		return x.Options
 	}
@@ -741,7 +741,7 @@ type CloudServiceReportQuery struct {
 	unknownFields protoimpl.UnknownFields
 
 	// +optional
-	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	Query *v2.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 	// +optional
 	ReportId string `protobuf:"bytes,2,opt,name=report_id,json=reportId,proto3" json:"report_id,omitempty"`
 	// +optional
@@ -782,7 +782,7 @@ func (*CloudServiceReportQuery) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_inventory_v1_cloud_service_report_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *CloudServiceReportQuery) GetQuery() *v1.Query {
+func (x *CloudServiceReportQuery) GetQuery() *v2.Query {
 	if x != nil {
 		return x.Query
 	}
@@ -817,7 +817,7 @@ type CloudServiceReportInfo struct {
 
 	ReportId      string                               `protobuf:"bytes,1,opt,name=report_id,json=reportId,proto3" json:"report_id,omitempty"`
 	Name          string                               `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Options       []*v1.ExportOption                   `protobuf:"bytes,3,rep,name=options,proto3" json:"options,omitempty"`
+	Options       []*v2.ExportOption                   `protobuf:"bytes,3,rep,name=options,proto3" json:"options,omitempty"`
 	FileFormat    CloudServiceReportInfo_FileFormat    `protobuf:"varint,4,opt,name=file_format,json=fileFormat,proto3,enum=spaceone.api.inventory.v1.CloudServiceReportInfo_FileFormat" json:"file_format,omitempty"`
 	Timezone      string                               `protobuf:"bytes,5,opt,name=timezone,proto3" json:"timezone,omitempty"`
 	Language      string                               `protobuf:"bytes,6,opt,name=language,proto3" json:"language,omitempty"`
@@ -877,7 +877,7 @@ func (x *CloudServiceReportInfo) GetName() string {
 	return ""
 }
 
-func (x *CloudServiceReportInfo) GetOptions() []*v1.ExportOption {
+func (x *CloudServiceReportInfo) GetOptions() []*v2.ExportOption {
 	if x != nil {
 		return x.Options
 	}
@@ -1021,7 +1021,7 @@ type CloudServiceReportStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	Query *v2.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 }
 
 func (x *CloudServiceReportStatQuery) Reset() {
@@ -1056,7 +1056,7 @@ func (*CloudServiceReportStatQuery) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_inventory_v1_cloud_service_report_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *CloudServiceReportStatQuery) GetQuery() *v1.StatisticsQuery {
+func (x *CloudServiceReportStatQuery) GetQuery() *v2.StatisticsQuery {
 	if x != nil {
 		return x.Query
 	}
@@ -1077,7 +1077,7 @@ var file_spaceone_api_inventory_v1_cloud_service_report_proto_rawDesc = []byte{
 	0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1c, 0x67, 0x6f,
 	0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74,
 	0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x20, 0x73, 0x70, 0x61, 0x63,
-	0x65, 0x6f, 0x6e, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2f, 0x76, 0x31,
+	0x65, 0x6f, 0x6e, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2f, 0x76, 0x32,
 	0x2f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xf3, 0x02, 0x0a,
 	0x0e, 0x52, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x53, 0x63, 0x68, 0x65, 0x64, 0x75, 0x6c, 0x65, 0x12,
 	0x4d, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x37,
@@ -1108,7 +1108,7 @@ var file_spaceone_api_inventory_v1_cloud_service_report_proto_rawDesc = []byte{
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x3c, 0x0a, 0x07, 0x6f, 0x70,
 	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x73, 0x70,
 	0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e,
-	0x76, 0x31, 0x2e, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52,
+	0x76, 0x32, 0x2e, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52,
 	0x07, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x66, 0x0a, 0x0b, 0x66, 0x69, 0x6c, 0x65,
 	0x5f, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x45, 0x2e,
 	0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x76,
@@ -1154,7 +1154,7 @@ var file_spaceone_api_inventory_v1_cloud_service_report_proto_rawDesc = []byte{
 	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
 	0x61, 0x6d, 0x65, 0x12, 0x3c, 0x0a, 0x07, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x03,
 	0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e,
-	0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78, 0x70, 0x6f,
+	0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x32, 0x2e, 0x45, 0x78, 0x70, 0x6f,
 	0x72, 0x74, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x07, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e,
 	0x73, 0x12, 0x66, 0x0a, 0x0b, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74,
 	0x18, 0x04, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x45, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e,
@@ -1187,7 +1187,7 @@ var file_spaceone_api_inventory_v1_cloud_service_report_proto_rawDesc = []byte{
 	0x75, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x51,
 	0x75, 0x65, 0x72, 0x79, 0x12, 0x31, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61,
-	0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
+	0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x32, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
 	0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x12, 0x1b, 0x0a, 0x09, 0x72, 0x65, 0x70, 0x6f, 0x72,
 	0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x72, 0x65, 0x70, 0x6f,
 	0x72, 0x74, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01,
@@ -1200,7 +1200,7 @@ var file_spaceone_api_inventory_v1_cloud_service_report_proto_rawDesc = []byte{
 	0x74, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x3c, 0x0a, 0x07, 0x6f, 0x70, 0x74, 0x69, 0x6f,
 	0x6e, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65,
-	0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e,
+	0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x32, 0x2e,
 	0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x07, 0x6f, 0x70,
 	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x5d, 0x0a, 0x0b, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x66, 0x6f,
 	0x72, 0x6d, 0x61, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x3c, 0x2e, 0x73, 0x70, 0x61,
@@ -1257,7 +1257,7 @@ var file_spaceone_api_inventory_v1_cloud_service_report_proto_rawDesc = []byte{
 	0x65, 0x52, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x53, 0x74, 0x61, 0x74, 0x51, 0x75, 0x65, 0x72, 0x79,
 	0x12, 0x3b, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x25, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63,
-	0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63,
+	0x6f, 0x72, 0x65, 0x2e, 0x76, 0x32, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63,
 	0x73, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x32, 0xe5, 0x08,
 	0x0a, 0x12, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65,
 	0x70, 0x6f, 0x72, 0x74, 0x12, 0xad, 0x01, 0x0a, 0x06, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x12,
@@ -1366,35 +1366,35 @@ var file_spaceone_api_inventory_v1_cloud_service_report_proto_goTypes = []interf
 	(*CloudServiceReportInfo)(nil),                     // 12: spaceone.api.inventory.v1.CloudServiceReportInfo
 	(*CloudServiceReportsInfo)(nil),                    // 13: spaceone.api.inventory.v1.CloudServiceReportsInfo
 	(*CloudServiceReportStatQuery)(nil),                // 14: spaceone.api.inventory.v1.CloudServiceReportStatQuery
-	(*v1.ExportOption)(nil),                            // 15: spaceone.api.core.v1.ExportOption
+	(*v2.ExportOption)(nil),                            // 15: spaceone.api.core.v2.ExportOption
 	(*_struct.Struct)(nil),                             // 16: google.protobuf.Struct
-	(*v1.Query)(nil),                                   // 17: spaceone.api.core.v1.Query
-	(*v1.StatisticsQuery)(nil),                         // 18: spaceone.api.core.v1.StatisticsQuery
+	(*v2.Query)(nil),                                   // 17: spaceone.api.core.v2.Query
+	(*v2.StatisticsQuery)(nil),                         // 18: spaceone.api.core.v2.StatisticsQuery
 	(*empty.Empty)(nil),                                // 19: google.protobuf.Empty
 }
 var file_spaceone_api_inventory_v1_cloud_service_report_proto_depIdxs = []int32{
 	0,  // 0: spaceone.api.inventory.v1.ReportSchedule.state:type_name -> spaceone.api.inventory.v1.ReportSchedule.ScheduleState
 	1,  // 1: spaceone.api.inventory.v1.ReportSchedule.days_of_week:type_name -> spaceone.api.inventory.v1.ReportSchedule.DayOfWeek
-	15, // 2: spaceone.api.inventory.v1.CreateCloudServiceReportRequest.options:type_name -> spaceone.api.core.v1.ExportOption
+	15, // 2: spaceone.api.inventory.v1.CreateCloudServiceReportRequest.options:type_name -> spaceone.api.core.v2.ExportOption
 	2,  // 3: spaceone.api.inventory.v1.CreateCloudServiceReportRequest.file_format:type_name -> spaceone.api.inventory.v1.CreateCloudServiceReportRequest.FileFormat
 	7,  // 4: spaceone.api.inventory.v1.CreateCloudServiceReportRequest.schedule:type_name -> spaceone.api.inventory.v1.ReportSchedule
 	16, // 5: spaceone.api.inventory.v1.CreateCloudServiceReportRequest.target:type_name -> google.protobuf.Struct
 	16, // 6: spaceone.api.inventory.v1.CreateCloudServiceReportRequest.tags:type_name -> google.protobuf.Struct
 	3,  // 7: spaceone.api.inventory.v1.CreateCloudServiceReportRequest.resource_group:type_name -> spaceone.api.inventory.v1.CreateCloudServiceReportRequest.ResourceGroup
-	15, // 8: spaceone.api.inventory.v1.UpdateCloudServiceReportRequest.options:type_name -> spaceone.api.core.v1.ExportOption
+	15, // 8: spaceone.api.inventory.v1.UpdateCloudServiceReportRequest.options:type_name -> spaceone.api.core.v2.ExportOption
 	4,  // 9: spaceone.api.inventory.v1.UpdateCloudServiceReportRequest.file_format:type_name -> spaceone.api.inventory.v1.UpdateCloudServiceReportRequest.FileFormat
 	7,  // 10: spaceone.api.inventory.v1.UpdateCloudServiceReportRequest.schedule:type_name -> spaceone.api.inventory.v1.ReportSchedule
 	16, // 11: spaceone.api.inventory.v1.UpdateCloudServiceReportRequest.target:type_name -> google.protobuf.Struct
 	16, // 12: spaceone.api.inventory.v1.UpdateCloudServiceReportRequest.tags:type_name -> google.protobuf.Struct
-	17, // 13: spaceone.api.inventory.v1.CloudServiceReportQuery.query:type_name -> spaceone.api.core.v1.Query
-	15, // 14: spaceone.api.inventory.v1.CloudServiceReportInfo.options:type_name -> spaceone.api.core.v1.ExportOption
+	17, // 13: spaceone.api.inventory.v1.CloudServiceReportQuery.query:type_name -> spaceone.api.core.v2.Query
+	15, // 14: spaceone.api.inventory.v1.CloudServiceReportInfo.options:type_name -> spaceone.api.core.v2.ExportOption
 	5,  // 15: spaceone.api.inventory.v1.CloudServiceReportInfo.file_format:type_name -> spaceone.api.inventory.v1.CloudServiceReportInfo.FileFormat
 	7,  // 16: spaceone.api.inventory.v1.CloudServiceReportInfo.schedule:type_name -> spaceone.api.inventory.v1.ReportSchedule
 	16, // 17: spaceone.api.inventory.v1.CloudServiceReportInfo.target:type_name -> google.protobuf.Struct
 	16, // 18: spaceone.api.inventory.v1.CloudServiceReportInfo.tags:type_name -> google.protobuf.Struct
 	6,  // 19: spaceone.api.inventory.v1.CloudServiceReportInfo.resource_group:type_name -> spaceone.api.inventory.v1.CloudServiceReportInfo.ResourceGroup
 	12, // 20: spaceone.api.inventory.v1.CloudServiceReportsInfo.results:type_name -> spaceone.api.inventory.v1.CloudServiceReportInfo
-	18, // 21: spaceone.api.inventory.v1.CloudServiceReportStatQuery.query:type_name -> spaceone.api.core.v1.StatisticsQuery
+	18, // 21: spaceone.api.inventory.v1.CloudServiceReportStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
 	8,  // 22: spaceone.api.inventory.v1.CloudServiceReport.create:input_type -> spaceone.api.inventory.v1.CreateCloudServiceReportRequest
 	9,  // 23: spaceone.api.inventory.v1.CloudServiceReport.update:input_type -> spaceone.api.inventory.v1.UpdateCloudServiceReportRequest
 	10, // 24: spaceone.api.inventory.v1.CloudServiceReport.delete:input_type -> spaceone.api.inventory.v1.CloudServiceReportRequest

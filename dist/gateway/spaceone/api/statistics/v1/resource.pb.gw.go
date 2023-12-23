@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/statistics/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/statistics/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Resource_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ResourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ResourceStatRequest
+func request_Resource_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ResourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ResourceStatRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Resource_Stat_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Resource_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ResourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ResourceStatRequest
+func local_request_Resource_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ResourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ResourceStatRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -70,7 +70,7 @@ func local_request_Resource_Stat_0(ctx context.Context, marshaler runtime.Marsha
 // UnaryRPC     :call ResourceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterResourceHandlerFromEndpoint instead.
-func RegisterResourceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.ResourceServer) error {
+func RegisterResourceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.ResourceServer) error {
 
 	mux.Handle("POST", pattern_Resource_Stat_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -128,15 +128,15 @@ func RegisterResourceHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 // RegisterResourceHandler registers the http handlers for service Resource to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterResourceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterResourceHandlerClient(ctx, mux, v1_0.NewResourceClient(conn))
+	return RegisterResourceHandlerClient(ctx, mux, extV1.NewResourceClient(conn))
 }
 
 // RegisterResourceHandlerClient registers the http handlers for service Resource
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.ResourceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.ResourceClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.ResourceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.ResourceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.ResourceClient" to call the correct interceptors.
-func RegisterResourceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.ResourceClient) error {
+// "extV1.ResourceClient" to call the correct interceptors.
+func RegisterResourceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.ResourceClient) error {
 
 	mux.Handle("POST", pattern_Resource_Stat_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

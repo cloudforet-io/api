@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_DataSource_Register_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegisterDataSourceRequest
+func request_DataSource_Register_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegisterDataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_DataSource_Register_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_DataSource_Register_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegisterDataSourceRequest
+func local_request_DataSource_Register_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegisterDataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_DataSource_Register_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_DataSource_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateDataSourceRequest
+func request_DataSource_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateDataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_DataSource_Update_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_DataSource_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateDataSourceRequest
+func local_request_DataSource_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateDataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_DataSource_Update_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_DataSource_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceRequest
+func request_DataSource_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_DataSource_Enable_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_DataSource_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceRequest
+func local_request_DataSource_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_DataSource_Enable_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_DataSource_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceRequest
+func request_DataSource_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_DataSource_Disable_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_DataSource_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceRequest
+func local_request_DataSource_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_DataSource_Disable_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_DataSource_Deregister_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceRequest
+func request_DataSource_Deregister_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_DataSource_Deregister_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_DataSource_Deregister_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceRequest
+func local_request_DataSource_Deregister_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_DataSource_Deregister_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_DataSource_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateDataSourcePluginRequest
+func request_DataSource_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateDataSourcePluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_DataSource_UpdatePlugin_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_DataSource_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateDataSourcePluginRequest
+func local_request_DataSource_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateDataSourcePluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_DataSource_UpdatePlugin_0(ctx context.Context, marshaler runt
 
 }
 
-func request_DataSource_VerifyPlugin_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceRequest
+func request_DataSource_VerifyPlugin_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_DataSource_VerifyPlugin_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_DataSource_VerifyPlugin_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceRequest
+func local_request_DataSource_VerifyPlugin_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_DataSource_VerifyPlugin_0(ctx context.Context, marshaler runt
 
 }
 
-func request_DataSource_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceRequest
+func request_DataSource_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_DataSource_Get_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_DataSource_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceRequest
+func local_request_DataSource_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -304,8 +304,8 @@ func local_request_DataSource_Get_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_DataSource_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceQuery
+func request_DataSource_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -321,8 +321,8 @@ func request_DataSource_List_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_DataSource_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceQuery
+func local_request_DataSource_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -338,8 +338,8 @@ func local_request_DataSource_List_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_DataSource_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceStatQuery
+func request_DataSource_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.DataSourceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -355,8 +355,8 @@ func request_DataSource_Stat_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_DataSource_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.DataSourceStatQuery
+func local_request_DataSource_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.DataSourceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.DataSourceStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -376,7 +376,7 @@ func local_request_DataSource_Stat_0(ctx context.Context, marshaler runtime.Mars
 // UnaryRPC     :call DataSourceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterDataSourceHandlerFromEndpoint instead.
-func RegisterDataSourceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.DataSourceServer) error {
+func RegisterDataSourceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.DataSourceServer) error {
 
 	mux.Handle("POST", pattern_DataSource_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -659,15 +659,15 @@ func RegisterDataSourceHandlerFromEndpoint(ctx context.Context, mux *runtime.Ser
 // RegisterDataSourceHandler registers the http handlers for service DataSource to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterDataSourceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterDataSourceHandlerClient(ctx, mux, v1_0.NewDataSourceClient(conn))
+	return RegisterDataSourceHandlerClient(ctx, mux, extV1.NewDataSourceClient(conn))
 }
 
 // RegisterDataSourceHandlerClient registers the http handlers for service DataSource
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.DataSourceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.DataSourceClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.DataSourceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.DataSourceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.DataSourceClient" to call the correct interceptors.
-func RegisterDataSourceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.DataSourceClient) error {
+// "extV1.DataSourceClient" to call the correct interceptors.
+func RegisterDataSourceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.DataSourceClient) error {
 
 	mux.Handle("POST", pattern_DataSource_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

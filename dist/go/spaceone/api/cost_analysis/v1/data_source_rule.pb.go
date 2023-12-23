@@ -9,7 +9,7 @@
 package v1
 
 import (
-	v1 "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v1"
+	v2 "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v2"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	_struct "github.com/golang/protobuf/ptypes/struct"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -869,7 +869,7 @@ type DataSourceRuleQuery struct {
 	unknownFields protoimpl.UnknownFields
 
 	// +optional
-	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	Query *v2.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 	// +optional
 	DataSourceRuleId string `protobuf:"bytes,2,opt,name=data_source_rule_id,json=dataSourceRuleId,proto3" json:"data_source_rule_id,omitempty"`
 	// +optional
@@ -914,7 +914,7 @@ func (*DataSourceRuleQuery) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_cost_analysis_v1_data_source_rule_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *DataSourceRuleQuery) GetQuery() *v1.Query {
+func (x *DataSourceRuleQuery) GetQuery() *v2.Query {
 	if x != nil {
 		return x.Query
 	}
@@ -1232,7 +1232,7 @@ type DataSourceRuleStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	Query *v2.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 }
 
 func (x *DataSourceRuleStatQuery) Reset() {
@@ -1267,7 +1267,7 @@ func (*DataSourceRuleStatQuery) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_cost_analysis_v1_data_source_rule_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *DataSourceRuleStatQuery) GetQuery() *v1.StatisticsQuery {
+func (x *DataSourceRuleStatQuery) GetQuery() *v2.StatisticsQuery {
 	if x != nil {
 		return x.Query
 	}
@@ -1289,7 +1289,7 @@ var file_spaceone_api_cost_analysis_v1_data_source_rule_proto_rawDesc = []byte{
 	0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e,
 	0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x20,
 	0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x72,
-	0x65, 0x2f, 0x76, 0x31, 0x2f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x65, 0x2f, 0x76, 0x32, 0x2f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x22, 0x5d, 0x0a, 0x17, 0x44, 0x61, 0x74, 0x61, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x52, 0x75,
 	0x6c, 0x65, 0x43, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x10, 0x0a, 0x03, 0x6b,
 	0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a,
@@ -1411,7 +1411,7 @@ var file_spaceone_api_cost_analysis_v1_data_source_rule_proto_rawDesc = []byte{
 	0x49, 0x64, 0x22, 0xe7, 0x02, 0x0a, 0x13, 0x44, 0x61, 0x74, 0x61, 0x53, 0x6f, 0x75, 0x72, 0x63,
 	0x65, 0x52, 0x75, 0x6c, 0x65, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x31, 0x0a, 0x05, 0x71, 0x75,
 	0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x73, 0x70, 0x61, 0x63,
-	0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31,
+	0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x32,
 	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x12, 0x2d, 0x0a,
 	0x13, 0x64, 0x61, 0x74, 0x61, 0x5f, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x72, 0x75, 0x6c,
 	0x65, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x10, 0x64, 0x61, 0x74, 0x61,
@@ -1502,7 +1502,7 @@ var file_spaceone_api_cost_analysis_v1_data_source_rule_proto_rawDesc = []byte{
 	0x61, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x52, 0x75, 0x6c, 0x65, 0x53, 0x74, 0x61, 0x74, 0x51,
 	0x75, 0x65, 0x72, 0x79, 0x12, 0x3b, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61,
-	0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x69,
+	0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x32, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x69,
 	0x73, 0x74, 0x69, 0x63, 0x73, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72,
 	0x79, 0x2a, 0x3a, 0x0a, 0x10, 0x43, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x50,
 	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x08, 0x0a, 0x04, 0x4e, 0x4f, 0x4e, 0x45, 0x10, 0x00, 0x12,
@@ -1622,8 +1622,8 @@ var file_spaceone_api_cost_analysis_v1_data_source_rule_proto_goTypes = []interf
 	(*DataSourceRulesInfo)(nil),                    // 15: spaceone.api.cost_analysis.v1.DataSourceRulesInfo
 	(*DataSourceRuleStatQuery)(nil),                // 16: spaceone.api.cost_analysis.v1.DataSourceRuleStatQuery
 	(*_struct.Struct)(nil),                         // 17: google.protobuf.Struct
-	(*v1.Query)(nil),                               // 18: spaceone.api.core.v1.Query
-	(*v1.StatisticsQuery)(nil),                     // 19: spaceone.api.core.v1.StatisticsQuery
+	(*v2.Query)(nil),                               // 18: spaceone.api.core.v2.Query
+	(*v2.StatisticsQuery)(nil),                     // 19: spaceone.api.core.v2.StatisticsQuery
 	(*empty.Empty)(nil),                            // 20: google.protobuf.Empty
 }
 var file_spaceone_api_cost_analysis_v1_data_source_rule_proto_depIdxs = []int32{
@@ -1641,7 +1641,7 @@ var file_spaceone_api_cost_analysis_v1_data_source_rule_proto_depIdxs = []int32{
 	7,  // 11: spaceone.api.cost_analysis.v1.UpdateDataSourceRuleRequest.actions:type_name -> spaceone.api.cost_analysis.v1.DataSourceRuleActions
 	8,  // 12: spaceone.api.cost_analysis.v1.UpdateDataSourceRuleRequest.options:type_name -> spaceone.api.cost_analysis.v1.DataSourceRuleOptions
 	17, // 13: spaceone.api.cost_analysis.v1.UpdateDataSourceRuleRequest.tags:type_name -> google.protobuf.Struct
-	18, // 14: spaceone.api.cost_analysis.v1.DataSourceRuleQuery.query:type_name -> spaceone.api.core.v1.Query
+	18, // 14: spaceone.api.cost_analysis.v1.DataSourceRuleQuery.query:type_name -> spaceone.api.core.v2.Query
 	2,  // 15: spaceone.api.cost_analysis.v1.DataSourceRuleQuery.rule_type:type_name -> spaceone.api.cost_analysis.v1.DataSourceRuleQuery.RuleType
 	4,  // 16: spaceone.api.cost_analysis.v1.DataSourceRuleInfo.rule_type:type_name -> spaceone.api.cost_analysis.v1.DataSourceRuleInfo.RuleType
 	5,  // 17: spaceone.api.cost_analysis.v1.DataSourceRuleInfo.conditions:type_name -> spaceone.api.cost_analysis.v1.DataSourceRuleCondition
@@ -1651,7 +1651,7 @@ var file_spaceone_api_cost_analysis_v1_data_source_rule_proto_depIdxs = []int32{
 	17, // 21: spaceone.api.cost_analysis.v1.DataSourceRuleInfo.tags:type_name -> google.protobuf.Struct
 	3,  // 22: spaceone.api.cost_analysis.v1.DataSourceRuleInfo.resource_group:type_name -> spaceone.api.cost_analysis.v1.DataSourceRuleInfo.ResourceGroup
 	14, // 23: spaceone.api.cost_analysis.v1.DataSourceRulesInfo.results:type_name -> spaceone.api.cost_analysis.v1.DataSourceRuleInfo
-	19, // 24: spaceone.api.cost_analysis.v1.DataSourceRuleStatQuery.query:type_name -> spaceone.api.core.v1.StatisticsQuery
+	19, // 24: spaceone.api.cost_analysis.v1.DataSourceRuleStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
 	9,  // 25: spaceone.api.cost_analysis.v1.DataSourceRule.create:input_type -> spaceone.api.cost_analysis.v1.CreateDataSourceRuleRequest
 	10, // 26: spaceone.api.cost_analysis.v1.DataSourceRule.update:input_type -> spaceone.api.cost_analysis.v1.UpdateDataSourceRuleRequest
 	11, // 27: spaceone.api.cost_analysis.v1.DataSourceRule.change_order:input_type -> spaceone.api.cost_analysis.v1.ChangeDataSourceRuleOrderRequest

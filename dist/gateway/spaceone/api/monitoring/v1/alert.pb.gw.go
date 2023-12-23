@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Alert_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateAlertRequest
+func request_Alert_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateAlertRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Alert_Create_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_Alert_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateAlertRequest
+func local_request_Alert_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateAlertRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Alert_Create_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func request_Alert_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateAlertRequest
+func request_Alert_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateAlertRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Alert_Update_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_Alert_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateAlertRequest
+func local_request_Alert_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateAlertRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Alert_Update_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func request_Alert_AssignUser_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.AssignUserRequest
+func request_Alert_AssignUser_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AssignUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Alert_AssignUser_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_Alert_AssignUser_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.AssignUserRequest
+func local_request_Alert_AssignUser_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AssignUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Alert_AssignUser_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_Alert_UpdateState_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateAlertStateRequest
+func request_Alert_UpdateState_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateAlertStateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Alert_UpdateState_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_Alert_UpdateState_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateAlertStateRequest
+func local_request_Alert_UpdateState_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateAlertStateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Alert_UpdateState_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_Alert_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.AlertRequest
+func request_Alert_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AlertRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Alert_Delete_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_Alert_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.AlertRequest
+func local_request_Alert_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AlertRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Alert_Delete_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func request_Alert_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.AlertRequest
+func request_Alert_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AlertRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Alert_Get_0(ctx context.Context, marshaler runtime.Marshaler, clien
 
 }
 
-func local_request_Alert_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.AlertRequest
+func local_request_Alert_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AlertRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_Alert_Get_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func request_Alert_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.AlertQuery
+func request_Alert_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AlertQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_Alert_List_0(ctx context.Context, marshaler runtime.Marshaler, clie
 
 }
 
-func local_request_Alert_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.AlertQuery
+func local_request_Alert_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AlertQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_Alert_List_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func request_Alert_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.AlertStatQuery
+func request_Alert_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.AlertClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AlertStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_Alert_Stat_0(ctx context.Context, marshaler runtime.Marshaler, clie
 
 }
 
-func local_request_Alert_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.AlertStatQuery
+func local_request_Alert_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.AlertServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AlertStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -308,7 +308,7 @@ func local_request_Alert_Stat_0(ctx context.Context, marshaler runtime.Marshaler
 // UnaryRPC     :call AlertServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterAlertHandlerFromEndpoint instead.
-func RegisterAlertHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.AlertServer) error {
+func RegisterAlertHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.AlertServer) error {
 
 	mux.Handle("POST", pattern_Alert_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -541,15 +541,15 @@ func RegisterAlertHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux
 // RegisterAlertHandler registers the http handlers for service Alert to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterAlertHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterAlertHandlerClient(ctx, mux, v1_0.NewAlertClient(conn))
+	return RegisterAlertHandlerClient(ctx, mux, extV1.NewAlertClient(conn))
 }
 
 // RegisterAlertHandlerClient registers the http handlers for service Alert
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.AlertClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.AlertClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.AlertClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.AlertClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.AlertClient" to call the correct interceptors.
-func RegisterAlertHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.AlertClient) error {
+// "extV1.AlertClient" to call the correct interceptors.
+func RegisterAlertHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.AlertClient) error {
 
 	mux.Handle("POST", pattern_Alert_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

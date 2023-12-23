@@ -9,7 +9,7 @@
 package v1
 
 import (
-	v1 "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v1"
+	v2 "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v2"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	_struct "github.com/golang/protobuf/ptypes/struct"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -755,7 +755,7 @@ type EscalationPolicyQuery struct {
 	unknownFields protoimpl.UnknownFields
 
 	// +optional
-	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	Query *v2.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 	// +optional
 	EscalationPolicyId string `protobuf:"bytes,2,opt,name=escalation_policy_id,json=escalationPolicyId,proto3" json:"escalation_policy_id,omitempty"`
 	// +optional
@@ -801,7 +801,7 @@ func (*EscalationPolicyQuery) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_monitoring_v1_escalation_policy_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *EscalationPolicyQuery) GetQuery() *v1.Query {
+func (x *EscalationPolicyQuery) GetQuery() *v2.Query {
 	if x != nil {
 		return x.Query
 	}
@@ -1102,7 +1102,7 @@ type EscalationPolicyStatQuery struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	Query *v2.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 }
 
 func (x *EscalationPolicyStatQuery) Reset() {
@@ -1137,7 +1137,7 @@ func (*EscalationPolicyStatQuery) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_monitoring_v1_escalation_policy_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *EscalationPolicyStatQuery) GetQuery() *v1.StatisticsQuery {
+func (x *EscalationPolicyStatQuery) GetQuery() *v2.StatisticsQuery {
 	if x != nil {
 		return x.Query
 	}
@@ -1158,7 +1158,7 @@ var file_spaceone_api_monitoring_v1_escalation_policy_proto_rawDesc = []byte{
 	0x74, 0x72, 0x75, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1c, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69,
 	0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x20, 0x73, 0x70, 0x61, 0x63, 0x65,
-	0x6f, 0x6e, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2f, 0x76, 0x31, 0x2f,
+	0x6f, 0x6e, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2f, 0x76, 0x32, 0x2f,
 	0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x89, 0x02, 0x0a, 0x14,
 	0x45, 0x73, 0x63, 0x61, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79,
 	0x52, 0x75, 0x6c, 0x65, 0x12, 0x71, 0x0a, 0x12, 0x6e, 0x6f, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61,
@@ -1252,7 +1252,7 @@ var file_spaceone_api_monitoring_v1_escalation_policy_proto_rawDesc = []byte{
 	0x74, 0x69, 0x6f, 0x6e, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12,
 	0x31, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b,
 	0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f,
-	0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x05, 0x71, 0x75, 0x65,
+	0x72, 0x65, 0x2e, 0x76, 0x32, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x05, 0x71, 0x75, 0x65,
 	0x72, 0x79, 0x12, 0x30, 0x0a, 0x14, 0x65, 0x73, 0x63, 0x61, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e,
 	0x5f, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x12, 0x65, 0x73, 0x63, 0x61, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x6f, 0x6c, 0x69,
@@ -1344,7 +1344,7 @@ var file_spaceone_api_monitoring_v1_escalation_policy_proto_rawDesc = []byte{
 	0x63, 0x61, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x53, 0x74,
 	0x61, 0x74, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x3b, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e,
-	0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x74,
+	0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x32, 0x2e, 0x53, 0x74,
 	0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63, 0x73, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x05, 0x71,
 	0x75, 0x65, 0x72, 0x79, 0x32, 0xf3, 0x08, 0x0a, 0x10, 0x45, 0x73, 0x63, 0x61, 0x6c, 0x61, 0x74,
 	0x69, 0x6f, 0x6e, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0xa9, 0x01, 0x0a, 0x06, 0x63, 0x72,
@@ -1457,8 +1457,8 @@ var file_spaceone_api_monitoring_v1_escalation_policy_proto_goTypes = []interfac
 	(*EscalationPoliciesInfo)(nil),                               // 14: spaceone.api.monitoring.v1.EscalationPoliciesInfo
 	(*EscalationPolicyStatQuery)(nil),                            // 15: spaceone.api.monitoring.v1.EscalationPolicyStatQuery
 	(*_struct.Struct)(nil),                                       // 16: google.protobuf.Struct
-	(*v1.Query)(nil),                                             // 17: spaceone.api.core.v1.Query
-	(*v1.StatisticsQuery)(nil),                                   // 18: spaceone.api.core.v1.StatisticsQuery
+	(*v2.Query)(nil),                                             // 17: spaceone.api.core.v2.Query
+	(*v2.StatisticsQuery)(nil),                                   // 18: spaceone.api.core.v2.StatisticsQuery
 	(*empty.Empty)(nil),                                          // 19: google.protobuf.Empty
 }
 var file_spaceone_api_monitoring_v1_escalation_policy_proto_depIdxs = []int32{
@@ -1470,7 +1470,7 @@ var file_spaceone_api_monitoring_v1_escalation_policy_proto_depIdxs = []int32{
 	8,  // 5: spaceone.api.monitoring.v1.UpdateEscalationPolicyRequest.rules:type_name -> spaceone.api.monitoring.v1.EscalationPolicyRule
 	3,  // 6: spaceone.api.monitoring.v1.UpdateEscalationPolicyRequest.finish_condition:type_name -> spaceone.api.monitoring.v1.UpdateEscalationPolicyRequest.EscalationFinishCondition
 	16, // 7: spaceone.api.monitoring.v1.UpdateEscalationPolicyRequest.tags:type_name -> google.protobuf.Struct
-	17, // 8: spaceone.api.monitoring.v1.EscalationPolicyQuery.query:type_name -> spaceone.api.core.v1.Query
+	17, // 8: spaceone.api.monitoring.v1.EscalationPolicyQuery.query:type_name -> spaceone.api.core.v2.Query
 	4,  // 9: spaceone.api.monitoring.v1.EscalationPolicyQuery.finish_condition:type_name -> spaceone.api.monitoring.v1.EscalationPolicyQuery.EscalationFinishCondition
 	5,  // 10: spaceone.api.monitoring.v1.EscalationPolicyQuery.resource_group:type_name -> spaceone.api.monitoring.v1.EscalationPolicyQuery.ResourceGroup
 	8,  // 11: spaceone.api.monitoring.v1.EscalationPolicyInfo.rules:type_name -> spaceone.api.monitoring.v1.EscalationPolicyRule
@@ -1478,7 +1478,7 @@ var file_spaceone_api_monitoring_v1_escalation_policy_proto_depIdxs = []int32{
 	7,  // 13: spaceone.api.monitoring.v1.EscalationPolicyInfo.resource_group:type_name -> spaceone.api.monitoring.v1.EscalationPolicyInfo.ResourceGroup
 	16, // 14: spaceone.api.monitoring.v1.EscalationPolicyInfo.tags:type_name -> google.protobuf.Struct
 	13, // 15: spaceone.api.monitoring.v1.EscalationPoliciesInfo.results:type_name -> spaceone.api.monitoring.v1.EscalationPolicyInfo
-	18, // 16: spaceone.api.monitoring.v1.EscalationPolicyStatQuery.query:type_name -> spaceone.api.core.v1.StatisticsQuery
+	18, // 16: spaceone.api.monitoring.v1.EscalationPolicyStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
 	9,  // 17: spaceone.api.monitoring.v1.EscalationPolicy.create:input_type -> spaceone.api.monitoring.v1.CreateEscalationPolicyRequest
 	10, // 18: spaceone.api.monitoring.v1.EscalationPolicy.update:input_type -> spaceone.api.monitoring.v1.UpdateEscalationPolicyRequest
 	11, // 19: spaceone.api.monitoring.v1.EscalationPolicy.set_default:input_type -> spaceone.api.monitoring.v1.EscalationPolicyRequest

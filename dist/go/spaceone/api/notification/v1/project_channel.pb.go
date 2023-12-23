@@ -9,7 +9,7 @@
 package v1
 
 import (
-	v1 "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v1"
+	v2 "github.com/cloudforet-io/api/dist/go/spaceone/api/core/v2"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	_struct "github.com/golang/protobuf/ptypes/struct"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -812,7 +812,7 @@ type ProjectChannelQuery struct {
 
 	// Query format provided by SpaceONE. Please check the link for more information.
 	// +optional
-	Query *v1.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	Query *v2.Query `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 	// The ID of project channel.
 	// +optional
 	ProjectChannelId string `protobuf:"bytes,2,opt,name=project_channel_id,json=projectChannelId,proto3" json:"project_channel_id,omitempty"`
@@ -874,7 +874,7 @@ func (*ProjectChannelQuery) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_notification_v1_project_channel_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *ProjectChannelQuery) GetQuery() *v1.Query {
+func (x *ProjectChannelQuery) GetQuery() *v2.Query {
 	if x != nil {
 		return x.Query
 	}
@@ -1238,7 +1238,7 @@ type ProjectChannelStatQuery struct {
 	unknownFields protoimpl.UnknownFields
 
 	// Statistics Query format provided by SpaceONE. Please check the link for more information.
-	Query *v1.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	Query *v2.StatisticsQuery `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 }
 
 func (x *ProjectChannelStatQuery) Reset() {
@@ -1273,7 +1273,7 @@ func (*ProjectChannelStatQuery) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_notification_v1_project_channel_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *ProjectChannelStatQuery) GetQuery() *v1.StatisticsQuery {
+func (x *ProjectChannelStatQuery) GetQuery() *v2.StatisticsQuery {
 	if x != nil {
 		return x.Query
 	}
@@ -1295,7 +1295,7 @@ var file_spaceone_api_notification_v1_project_channel_proto_rawDesc = []byte{
 	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61,
 	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x20, 0x73, 0x70, 0x61,
 	0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2f, 0x76,
-	0x31, 0x2f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x88, 0x02,
+	0x32, 0x2f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x88, 0x02,
 	0x0a, 0x16, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
 	0x53, 0x63, 0x68, 0x65, 0x64, 0x75, 0x6c, 0x65, 0x12, 0x5e, 0x0a, 0x0b, 0x64, 0x61, 0x79, 0x5f,
 	0x6f, 0x66, 0x5f, 0x77, 0x65, 0x65, 0x6b, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0e, 0x32, 0x3e, 0x2e,
@@ -1393,7 +1393,7 @@ var file_spaceone_api_notification_v1_project_channel_proto_rawDesc = []byte{
 	0x49, 0x64, 0x22, 0xa6, 0x04, 0x0a, 0x13, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x43, 0x68,
 	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x31, 0x0a, 0x05, 0x71, 0x75,
 	0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x73, 0x70, 0x61, 0x63,
-	0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31,
+	0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x76, 0x32,
 	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x12, 0x2c, 0x0a,
 	0x12, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
 	0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x10, 0x70, 0x72, 0x6f, 0x6a, 0x65,
@@ -1487,7 +1487,7 @@ var file_spaceone_api_notification_v1_project_channel_proto_rawDesc = []byte{
 	0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x51, 0x75, 0x65, 0x72, 0x79,
 	0x12, 0x3b, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x25, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x63,
-	0x6f, 0x72, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63,
+	0x6f, 0x72, 0x65, 0x2e, 0x76, 0x32, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x69, 0x73, 0x74, 0x69, 0x63,
 	0x73, 0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2a, 0x4a, 0x0a,
 	0x11, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4c, 0x65, 0x76,
 	0x65, 0x6c, 0x12, 0x08, 0x0a, 0x04, 0x4e, 0x4f, 0x4e, 0x45, 0x10, 0x00, 0x12, 0x07, 0x0a, 0x03,
@@ -1637,8 +1637,8 @@ var file_spaceone_api_notification_v1_project_channel_proto_goTypes = []interfac
 	(*ProjectChannelsInfo)(nil),                     // 12: spaceone.api.notification.v1.ProjectChannelsInfo
 	(*ProjectChannelStatQuery)(nil),                 // 13: spaceone.api.notification.v1.ProjectChannelStatQuery
 	(*_struct.Struct)(nil),                          // 14: google.protobuf.Struct
-	(*v1.Query)(nil),                                // 15: spaceone.api.core.v1.Query
-	(*v1.StatisticsQuery)(nil),                      // 16: spaceone.api.core.v1.StatisticsQuery
+	(*v2.Query)(nil),                                // 15: spaceone.api.core.v2.Query
+	(*v2.StatisticsQuery)(nil),                      // 16: spaceone.api.core.v2.StatisticsQuery
 	(*empty.Empty)(nil),                             // 17: google.protobuf.Empty
 }
 var file_spaceone_api_notification_v1_project_channel_proto_depIdxs = []int32{
@@ -1651,7 +1651,7 @@ var file_spaceone_api_notification_v1_project_channel_proto_depIdxs = []int32{
 	0,  // 6: spaceone.api.notification.v1.UpdateProjectChannelRequest.notification_level:type_name -> spaceone.api.notification.v1.NotificationLevel
 	14, // 7: spaceone.api.notification.v1.UpdateProjectChannelRequest.tags:type_name -> google.protobuf.Struct
 	4,  // 8: spaceone.api.notification.v1.UpdateProjectChannelScheduleRequest.schedule:type_name -> spaceone.api.notification.v1.ProjectChannelSchedule
-	15, // 9: spaceone.api.notification.v1.ProjectChannelQuery.query:type_name -> spaceone.api.core.v1.Query
+	15, // 9: spaceone.api.notification.v1.ProjectChannelQuery.query:type_name -> spaceone.api.core.v2.Query
 	2,  // 10: spaceone.api.notification.v1.ProjectChannelQuery.state:type_name -> spaceone.api.notification.v1.ProjectChannelQuery.ProjectChannelState
 	0,  // 11: spaceone.api.notification.v1.ProjectChannelQuery.notification_level:type_name -> spaceone.api.notification.v1.NotificationLevel
 	3,  // 12: spaceone.api.notification.v1.ProjectChannelInfo.state:type_name -> spaceone.api.notification.v1.ProjectChannelInfo.ProjectChannelState
@@ -1660,7 +1660,7 @@ var file_spaceone_api_notification_v1_project_channel_proto_depIdxs = []int32{
 	0,  // 15: spaceone.api.notification.v1.ProjectChannelInfo.notification_level:type_name -> spaceone.api.notification.v1.NotificationLevel
 	14, // 16: spaceone.api.notification.v1.ProjectChannelInfo.tags:type_name -> google.protobuf.Struct
 	11, // 17: spaceone.api.notification.v1.ProjectChannelsInfo.results:type_name -> spaceone.api.notification.v1.ProjectChannelInfo
-	16, // 18: spaceone.api.notification.v1.ProjectChannelStatQuery.query:type_name -> spaceone.api.core.v1.StatisticsQuery
+	16, // 18: spaceone.api.notification.v1.ProjectChannelStatQuery.query:type_name -> spaceone.api.core.v2.StatisticsQuery
 	5,  // 19: spaceone.api.notification.v1.ProjectChannel.create:input_type -> spaceone.api.notification.v1.CreateProjectChannelRequest
 	6,  // 20: spaceone.api.notification.v1.ProjectChannel.update:input_type -> spaceone.api.notification.v1.UpdateProjectChannelRequest
 	7,  // 21: spaceone.api.notification.v1.ProjectChannel.set_schedule:input_type -> spaceone.api.notification.v1.UpdateProjectChannelScheduleRequest

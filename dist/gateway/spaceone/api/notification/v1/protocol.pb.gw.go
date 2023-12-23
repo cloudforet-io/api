@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/notification/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/notification/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Protocol_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateProtocolRequest
+func request_Protocol_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Protocol_Create_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Protocol_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateProtocolRequest
+func local_request_Protocol_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Protocol_Create_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Protocol_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateProtocolRequest
+func request_Protocol_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Protocol_Update_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Protocol_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateProtocolRequest
+func local_request_Protocol_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Protocol_Update_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Protocol_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateProtocolPluginRequest
+func request_Protocol_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateProtocolPluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Protocol_UpdatePlugin_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_Protocol_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateProtocolPluginRequest
+func local_request_Protocol_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateProtocolPluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Protocol_UpdatePlugin_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_Protocol_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProtocolRequest
+func request_Protocol_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Protocol_Enable_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Protocol_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProtocolRequest
+func local_request_Protocol_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Protocol_Enable_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Protocol_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProtocolRequest
+func request_Protocol_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Protocol_Disable_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_Protocol_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProtocolRequest
+func local_request_Protocol_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Protocol_Disable_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_Protocol_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProtocolRequest
+func request_Protocol_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Protocol_Delete_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Protocol_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProtocolRequest
+func local_request_Protocol_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_Protocol_Delete_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Protocol_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProtocolRequest
+func request_Protocol_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_Protocol_Get_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_Protocol_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProtocolRequest
+func local_request_Protocol_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProtocolRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_Protocol_Get_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func request_Protocol_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProtocolQuery
+func request_Protocol_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProtocolQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_Protocol_List_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Protocol_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProtocolQuery
+func local_request_Protocol_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProtocolQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -304,8 +304,8 @@ func local_request_Protocol_List_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Protocol_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProtocolStatQuery
+func request_Protocol_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProtocolClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProtocolStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -321,8 +321,8 @@ func request_Protocol_Stat_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Protocol_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProtocolStatQuery
+func local_request_Protocol_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProtocolServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProtocolStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -342,7 +342,7 @@ func local_request_Protocol_Stat_0(ctx context.Context, marshaler runtime.Marsha
 // UnaryRPC     :call ProtocolServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterProtocolHandlerFromEndpoint instead.
-func RegisterProtocolHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.ProtocolServer) error {
+func RegisterProtocolHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.ProtocolServer) error {
 
 	mux.Handle("POST", pattern_Protocol_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -600,15 +600,15 @@ func RegisterProtocolHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 // RegisterProtocolHandler registers the http handlers for service Protocol to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterProtocolHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterProtocolHandlerClient(ctx, mux, v1_0.NewProtocolClient(conn))
+	return RegisterProtocolHandlerClient(ctx, mux, extV1.NewProtocolClient(conn))
 }
 
 // RegisterProtocolHandlerClient registers the http handlers for service Protocol
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.ProtocolClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.ProtocolClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.ProtocolClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.ProtocolClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.ProtocolClient" to call the correct interceptors.
-func RegisterProtocolHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.ProtocolClient) error {
+// "extV1.ProtocolClient" to call the correct interceptors.
+func RegisterProtocolHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.ProtocolClient) error {
 
 	mux.Handle("POST", pattern_Protocol_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

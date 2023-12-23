@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/plugin/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/plugin/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Supervisor_Publish_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PublishSupervisorRequest
+func request_Supervisor_Publish_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PublishSupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Supervisor_Publish_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_Supervisor_Publish_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PublishSupervisorRequest
+func local_request_Supervisor_Publish_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PublishSupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Supervisor_Publish_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_Supervisor_Register_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegisterSupervisorRequest
+func request_Supervisor_Register_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegisterSupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Supervisor_Register_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_Supervisor_Register_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegisterSupervisorRequest
+func local_request_Supervisor_Register_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegisterSupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Supervisor_Register_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_Supervisor_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegisterSupervisorRequest
+func request_Supervisor_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegisterSupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Supervisor_Update_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_Supervisor_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegisterSupervisorRequest
+func local_request_Supervisor_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegisterSupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Supervisor_Update_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_Supervisor_Deregister_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SupervisorRequest
+func request_Supervisor_Deregister_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Supervisor_Deregister_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_Supervisor_Deregister_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SupervisorRequest
+func local_request_Supervisor_Deregister_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Supervisor_Deregister_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_Supervisor_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SupervisorRequest
+func request_Supervisor_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Supervisor_Enable_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_Supervisor_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SupervisorRequest
+func local_request_Supervisor_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Supervisor_Enable_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_Supervisor_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SupervisorRequest
+func request_Supervisor_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Supervisor_Disable_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_Supervisor_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SupervisorRequest
+func local_request_Supervisor_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_Supervisor_Disable_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_Supervisor_RecoverPlugin_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RecoverPluginRequest
+func request_Supervisor_RecoverPlugin_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RecoverPluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_Supervisor_RecoverPlugin_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func local_request_Supervisor_RecoverPlugin_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RecoverPluginRequest
+func local_request_Supervisor_RecoverPlugin_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RecoverPluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_Supervisor_RecoverPlugin_0(ctx context.Context, marshaler run
 
 }
 
-func request_Supervisor_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SupervisorRequest
+func request_Supervisor_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_Supervisor_Get_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Supervisor_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SupervisorRequest
+func local_request_Supervisor_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SupervisorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -304,8 +304,8 @@ func local_request_Supervisor_Get_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Supervisor_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SupervisorQuery
+func request_Supervisor_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SupervisorQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -321,8 +321,8 @@ func request_Supervisor_List_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Supervisor_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SupervisorQuery
+func local_request_Supervisor_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SupervisorQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -338,8 +338,8 @@ func local_request_Supervisor_List_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Supervisor_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SupervisorStatQuery
+func request_Supervisor_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SupervisorStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -355,8 +355,8 @@ func request_Supervisor_Stat_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Supervisor_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SupervisorStatQuery
+func local_request_Supervisor_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SupervisorStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -372,8 +372,8 @@ func local_request_Supervisor_Stat_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Supervisor_ListPlugins_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PluginQuery
+func request_Supervisor_ListPlugins_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SupervisorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PluginQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -389,8 +389,8 @@ func request_Supervisor_ListPlugins_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func local_request_Supervisor_ListPlugins_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PluginQuery
+func local_request_Supervisor_ListPlugins_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.SupervisorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PluginQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -410,7 +410,7 @@ func local_request_Supervisor_ListPlugins_0(ctx context.Context, marshaler runti
 // UnaryRPC     :call SupervisorServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterSupervisorHandlerFromEndpoint instead.
-func RegisterSupervisorHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.SupervisorServer) error {
+func RegisterSupervisorHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.SupervisorServer) error {
 
 	mux.Handle("POST", pattern_Supervisor_Publish_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -718,15 +718,15 @@ func RegisterSupervisorHandlerFromEndpoint(ctx context.Context, mux *runtime.Ser
 // RegisterSupervisorHandler registers the http handlers for service Supervisor to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterSupervisorHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterSupervisorHandlerClient(ctx, mux, v1_0.NewSupervisorClient(conn))
+	return RegisterSupervisorHandlerClient(ctx, mux, extV1.NewSupervisorClient(conn))
 }
 
 // RegisterSupervisorHandlerClient registers the http handlers for service Supervisor
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.SupervisorClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.SupervisorClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.SupervisorClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.SupervisorClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.SupervisorClient" to call the correct interceptors.
-func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.SupervisorClient) error {
+// "extV1.SupervisorClient" to call the correct interceptors.
+func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.SupervisorClient) error {
 
 	mux.Handle("POST", pattern_Supervisor_Publish_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

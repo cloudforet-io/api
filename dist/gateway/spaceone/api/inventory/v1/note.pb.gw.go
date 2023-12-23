@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Note_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NoteClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateNoteRequest
+func request_Note_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.NoteClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateNoteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Note_Create_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Note_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NoteServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateNoteRequest
+func local_request_Note_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.NoteServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateNoteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Note_Create_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Note_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NoteClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateNoteRequest
+func request_Note_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.NoteClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateNoteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Note_Update_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Note_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NoteServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateNoteRequest
+func local_request_Note_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.NoteServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateNoteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Note_Update_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Note_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NoteClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NoteRequest
+func request_Note_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.NoteClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NoteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Note_Delete_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Note_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NoteServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NoteRequest
+func local_request_Note_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.NoteServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NoteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Note_Delete_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Note_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NoteClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NoteRequest
+func request_Note_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.NoteClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NoteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Note_Get_0(ctx context.Context, marshaler runtime.Marshaler, client
 
 }
 
-func local_request_Note_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NoteServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NoteRequest
+func local_request_Note_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.NoteServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NoteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Note_Get_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func request_Note_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NoteClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NoteQuery
+func request_Note_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.NoteClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NoteQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Note_List_0(ctx context.Context, marshaler runtime.Marshaler, clien
 
 }
 
-func local_request_Note_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NoteServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NoteQuery
+func local_request_Note_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.NoteServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NoteQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Note_List_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func request_Note_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NoteClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NoteStatQuery
+func request_Note_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.NoteClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NoteStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Note_Stat_0(ctx context.Context, marshaler runtime.Marshaler, clien
 
 }
 
-func local_request_Note_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NoteServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NoteStatQuery
+func local_request_Note_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.NoteServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NoteStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -240,7 +240,7 @@ func local_request_Note_Stat_0(ctx context.Context, marshaler runtime.Marshaler,
 // UnaryRPC     :call NoteServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterNoteHandlerFromEndpoint instead.
-func RegisterNoteHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.NoteServer) error {
+func RegisterNoteHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.NoteServer) error {
 
 	mux.Handle("POST", pattern_Note_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -423,15 +423,15 @@ func RegisterNoteHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux,
 // RegisterNoteHandler registers the http handlers for service Note to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterNoteHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterNoteHandlerClient(ctx, mux, v1_0.NewNoteClient(conn))
+	return RegisterNoteHandlerClient(ctx, mux, extV1.NewNoteClient(conn))
 }
 
 // RegisterNoteHandlerClient registers the http handlers for service Note
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.NoteClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.NoteClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.NoteClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.NoteClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.NoteClient" to call the correct interceptors.
-func RegisterNoteHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.NoteClient) error {
+// "extV1.NoteClient" to call the correct interceptors.
+func RegisterNoteHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.NoteClient) error {
 
 	mux.Handle("POST", pattern_Note_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

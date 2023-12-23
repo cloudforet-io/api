@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/repository/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/repository/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Plugin_Register_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreatePluginRequest
+func request_Plugin_Register_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreatePluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Plugin_Register_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Plugin_Register_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreatePluginRequest
+func local_request_Plugin_Register_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreatePluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Plugin_Register_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Plugin_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdatePluginRequest
+func request_Plugin_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdatePluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Plugin_Update_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Plugin_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdatePluginRequest
+func local_request_Plugin_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdatePluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Plugin_Update_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Plugin_Deregister_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PluginRequest
+func request_Plugin_Deregister_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Plugin_Deregister_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_Plugin_Deregister_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PluginRequest
+func local_request_Plugin_Deregister_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Plugin_Deregister_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_Plugin_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PluginRequest
+func request_Plugin_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Plugin_Enable_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Plugin_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PluginRequest
+func local_request_Plugin_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Plugin_Enable_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Plugin_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PluginRequest
+func request_Plugin_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Plugin_Disable_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Plugin_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PluginRequest
+func local_request_Plugin_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Plugin_Disable_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Plugin_GetVersions_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RepositoryPluginRequest
+func request_Plugin_GetVersions_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RepositoryPluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Plugin_GetVersions_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_Plugin_GetVersions_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RepositoryPluginRequest
+func local_request_Plugin_GetVersions_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RepositoryPluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_Plugin_GetVersions_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_Plugin_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RepositoryPluginRequest
+func request_Plugin_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RepositoryPluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_Plugin_Get_0(ctx context.Context, marshaler runtime.Marshaler, clie
 
 }
 
-func local_request_Plugin_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RepositoryPluginRequest
+func local_request_Plugin_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RepositoryPluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_Plugin_Get_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func request_Plugin_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PluginQuery
+func request_Plugin_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PluginQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_Plugin_List_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Plugin_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PluginQuery
+func local_request_Plugin_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PluginQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -304,8 +304,8 @@ func local_request_Plugin_List_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Plugin_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PluginStatQuery
+func request_Plugin_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PluginStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -321,8 +321,8 @@ func request_Plugin_Stat_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Plugin_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PluginStatQuery
+func local_request_Plugin_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PluginStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -342,7 +342,7 @@ func local_request_Plugin_Stat_0(ctx context.Context, marshaler runtime.Marshale
 // UnaryRPC     :call PluginServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterPluginHandlerFromEndpoint instead.
-func RegisterPluginHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.PluginServer) error {
+func RegisterPluginHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.PluginServer) error {
 
 	mux.Handle("POST", pattern_Plugin_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -600,15 +600,15 @@ func RegisterPluginHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMu
 // RegisterPluginHandler registers the http handlers for service Plugin to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterPluginHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterPluginHandlerClient(ctx, mux, v1_0.NewPluginClient(conn))
+	return RegisterPluginHandlerClient(ctx, mux, extV1.NewPluginClient(conn))
 }
 
 // RegisterPluginHandlerClient registers the http handlers for service Plugin
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.PluginClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.PluginClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.PluginClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.PluginClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.PluginClient" to call the correct interceptors.
-func RegisterPluginHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.PluginClient) error {
+// "extV1.PluginClient" to call the correct interceptors.
+func RegisterPluginHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.PluginClient) error {
 
 	mux.Handle("POST", pattern_Plugin_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_BudgetUsage_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.BudgetUsageClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetUsageQuery
+func request_BudgetUsage_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.BudgetUsageClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetUsageQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_BudgetUsage_List_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_BudgetUsage_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.BudgetUsageServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetUsageQuery
+func local_request_BudgetUsage_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.BudgetUsageServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetUsageQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_BudgetUsage_List_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_BudgetUsage_Analyze_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.BudgetUsageClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetUsageAnalyzeQuery
+func request_BudgetUsage_Analyze_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.BudgetUsageClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetUsageAnalyzeQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_BudgetUsage_Analyze_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_BudgetUsage_Analyze_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.BudgetUsageServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetUsageAnalyzeQuery
+func local_request_BudgetUsage_Analyze_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.BudgetUsageServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetUsageAnalyzeQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_BudgetUsage_Analyze_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_BudgetUsage_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.BudgetUsageClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetUsageStatQuery
+func request_BudgetUsage_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.BudgetUsageClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetUsageStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_BudgetUsage_Stat_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_BudgetUsage_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.BudgetUsageServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetUsageStatQuery
+func local_request_BudgetUsage_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.BudgetUsageServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetUsageStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -138,7 +138,7 @@ func local_request_BudgetUsage_Stat_0(ctx context.Context, marshaler runtime.Mar
 // UnaryRPC     :call BudgetUsageServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterBudgetUsageHandlerFromEndpoint instead.
-func RegisterBudgetUsageHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.BudgetUsageServer) error {
+func RegisterBudgetUsageHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.BudgetUsageServer) error {
 
 	mux.Handle("POST", pattern_BudgetUsage_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -246,15 +246,15 @@ func RegisterBudgetUsageHandlerFromEndpoint(ctx context.Context, mux *runtime.Se
 // RegisterBudgetUsageHandler registers the http handlers for service BudgetUsage to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterBudgetUsageHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterBudgetUsageHandlerClient(ctx, mux, v1_0.NewBudgetUsageClient(conn))
+	return RegisterBudgetUsageHandlerClient(ctx, mux, extV1.NewBudgetUsageClient(conn))
 }
 
 // RegisterBudgetUsageHandlerClient registers the http handlers for service BudgetUsage
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.BudgetUsageClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.BudgetUsageClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.BudgetUsageClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.BudgetUsageClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.BudgetUsageClient" to call the correct interceptors.
-func RegisterBudgetUsageHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.BudgetUsageClient) error {
+// "extV1.BudgetUsageClient" to call the correct interceptors.
+func RegisterBudgetUsageHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.BudgetUsageClient) error {
 
 	mux.Handle("POST", pattern_BudgetUsage_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

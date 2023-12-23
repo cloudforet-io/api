@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Region_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.RegionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateRegionRequest
+func request_Region_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.RegionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateRegionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Region_Create_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Region_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.RegionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateRegionRequest
+func local_request_Region_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.RegionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateRegionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Region_Create_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Region_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.RegionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateRegionRequest
+func request_Region_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.RegionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateRegionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Region_Update_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Region_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.RegionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateRegionRequest
+func local_request_Region_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.RegionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateRegionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Region_Update_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Region_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.RegionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegionRequest
+func request_Region_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.RegionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Region_Delete_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Region_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.RegionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegionRequest
+func local_request_Region_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.RegionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Region_Delete_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Region_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.RegionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegionRequest
+func request_Region_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.RegionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Region_Get_0(ctx context.Context, marshaler runtime.Marshaler, clie
 
 }
 
-func local_request_Region_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.RegionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegionRequest
+func local_request_Region_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.RegionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Region_Get_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func request_Region_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.RegionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegionQuery
+func request_Region_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.RegionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegionQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Region_List_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Region_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.RegionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegionQuery
+func local_request_Region_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.RegionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegionQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Region_List_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Region_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.RegionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegionStatQuery
+func request_Region_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.RegionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegionStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Region_Stat_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Region_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.RegionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.RegionStatQuery
+func local_request_Region_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.RegionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.RegionStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -240,7 +240,7 @@ func local_request_Region_Stat_0(ctx context.Context, marshaler runtime.Marshale
 // UnaryRPC     :call RegionServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterRegionHandlerFromEndpoint instead.
-func RegisterRegionHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.RegionServer) error {
+func RegisterRegionHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.RegionServer) error {
 
 	mux.Handle("POST", pattern_Region_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -423,15 +423,15 @@ func RegisterRegionHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMu
 // RegisterRegionHandler registers the http handlers for service Region to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterRegionHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterRegionHandlerClient(ctx, mux, v1_0.NewRegionClient(conn))
+	return RegisterRegionHandlerClient(ctx, mux, extV1.NewRegionClient(conn))
 }
 
 // RegisterRegionHandlerClient registers the http handlers for service Region
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.RegionClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.RegionClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.RegionClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.RegionClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.RegionClient" to call the correct interceptors.
-func RegisterRegionHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.RegionClient) error {
+// "extV1.RegionClient" to call the correct interceptors.
+func RegisterRegionHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.RegionClient) error {
 
 	mux.Handle("POST", pattern_Region_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_CostQuerySet_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CostQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateCostQuerySetRequest
+func request_CostQuerySet_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CostQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateCostQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_CostQuerySet_Create_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_CostQuerySet_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CostQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateCostQuerySetRequest
+func local_request_CostQuerySet_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CostQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateCostQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_CostQuerySet_Create_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_CostQuerySet_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CostQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateCostQuerySetRequest
+func request_CostQuerySet_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CostQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateCostQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_CostQuerySet_Update_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_CostQuerySet_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CostQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateCostQuerySetRequest
+func local_request_CostQuerySet_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CostQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateCostQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_CostQuerySet_Update_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_CostQuerySet_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CostQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CostQuerySetRequest
+func request_CostQuerySet_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CostQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CostQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_CostQuerySet_Delete_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_CostQuerySet_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CostQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CostQuerySetRequest
+func local_request_CostQuerySet_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CostQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CostQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_CostQuerySet_Delete_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_CostQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CostQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CostQuerySetRequest
+func request_CostQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CostQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CostQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_CostQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_CostQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CostQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CostQuerySetRequest
+func local_request_CostQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CostQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CostQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_CostQuerySet_Get_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_CostQuerySet_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CostQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CostQuerySetQuery
+func request_CostQuerySet_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CostQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CostQuerySetQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_CostQuerySet_List_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_CostQuerySet_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CostQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CostQuerySetQuery
+func local_request_CostQuerySet_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CostQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CostQuerySetQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_CostQuerySet_List_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_CostQuerySet_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CostQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CostQuerySetStatQuery
+func request_CostQuerySet_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CostQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CostQuerySetStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_CostQuerySet_Stat_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_CostQuerySet_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CostQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CostQuerySetStatQuery
+func local_request_CostQuerySet_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CostQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CostQuerySetStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -240,7 +240,7 @@ func local_request_CostQuerySet_Stat_0(ctx context.Context, marshaler runtime.Ma
 // UnaryRPC     :call CostQuerySetServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterCostQuerySetHandlerFromEndpoint instead.
-func RegisterCostQuerySetHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.CostQuerySetServer) error {
+func RegisterCostQuerySetHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.CostQuerySetServer) error {
 
 	mux.Handle("POST", pattern_CostQuerySet_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -423,15 +423,15 @@ func RegisterCostQuerySetHandlerFromEndpoint(ctx context.Context, mux *runtime.S
 // RegisterCostQuerySetHandler registers the http handlers for service CostQuerySet to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterCostQuerySetHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterCostQuerySetHandlerClient(ctx, mux, v1_0.NewCostQuerySetClient(conn))
+	return RegisterCostQuerySetHandlerClient(ctx, mux, extV1.NewCostQuerySetClient(conn))
 }
 
 // RegisterCostQuerySetHandlerClient registers the http handlers for service CostQuerySet
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.CostQuerySetClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.CostQuerySetClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.CostQuerySetClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.CostQuerySetClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.CostQuerySetClient" to call the correct interceptors.
-func RegisterCostQuerySetHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.CostQuerySetClient) error {
+// "extV1.CostQuerySetClient" to call the correct interceptors.
+func RegisterCostQuerySetHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.CostQuerySetClient) error {
 
 	mux.Handle("POST", pattern_CostQuerySet_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

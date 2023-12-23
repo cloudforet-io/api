@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/dashboard/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/dashboard/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_PrivateDashboard_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateCreateDashboardRequest
+func request_PrivateDashboard_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateCreateDashboardRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_PrivateDashboard_Create_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_PrivateDashboard_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateCreateDashboardRequest
+func local_request_PrivateDashboard_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateCreateDashboardRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_PrivateDashboard_Create_0(ctx context.Context, marshaler runt
 
 }
 
-func request_PrivateDashboard_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateUpdateDashboardRequest
+func request_PrivateDashboard_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateUpdateDashboardRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_PrivateDashboard_Update_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_PrivateDashboard_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateUpdateDashboardRequest
+func local_request_PrivateDashboard_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateUpdateDashboardRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_PrivateDashboard_Update_0(ctx context.Context, marshaler runt
 
 }
 
-func request_PrivateDashboard_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardRequest
+func request_PrivateDashboard_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_PrivateDashboard_Delete_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_PrivateDashboard_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardRequest
+func local_request_PrivateDashboard_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_PrivateDashboard_Delete_0(ctx context.Context, marshaler runt
 
 }
 
-func request_PrivateDashboard_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardRequest
+func request_PrivateDashboard_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_PrivateDashboard_Get_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_PrivateDashboard_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardRequest
+func local_request_PrivateDashboard_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_PrivateDashboard_Get_0(ctx context.Context, marshaler runtime
 
 }
 
-func request_PrivateDashboard_DeleteVersion_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardVersionRequest
+func request_PrivateDashboard_DeleteVersion_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardVersionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_PrivateDashboard_DeleteVersion_0(ctx context.Context, marshaler run
 
 }
 
-func local_request_PrivateDashboard_DeleteVersion_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardVersionRequest
+func local_request_PrivateDashboard_DeleteVersion_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardVersionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_PrivateDashboard_DeleteVersion_0(ctx context.Context, marshal
 
 }
 
-func request_PrivateDashboard_RevertVersion_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardVersionRequest
+func request_PrivateDashboard_RevertVersion_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardVersionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_PrivateDashboard_RevertVersion_0(ctx context.Context, marshaler run
 
 }
 
-func local_request_PrivateDashboard_RevertVersion_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardVersionRequest
+func local_request_PrivateDashboard_RevertVersion_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardVersionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_PrivateDashboard_RevertVersion_0(ctx context.Context, marshal
 
 }
 
-func request_PrivateDashboard_GetVersion_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardVersionRequest
+func request_PrivateDashboard_GetVersion_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardVersionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_PrivateDashboard_GetVersion_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_PrivateDashboard_GetVersion_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardVersionRequest
+func local_request_PrivateDashboard_GetVersion_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardVersionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_PrivateDashboard_GetVersion_0(ctx context.Context, marshaler 
 
 }
 
-func request_PrivateDashboard_ListVersions_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardVersionSearchQuery
+func request_PrivateDashboard_ListVersions_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardVersionSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_PrivateDashboard_ListVersions_0(ctx context.Context, marshaler runt
 
 }
 
-func local_request_PrivateDashboard_ListVersions_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardVersionSearchQuery
+func local_request_PrivateDashboard_ListVersions_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardVersionSearchQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -304,8 +304,8 @@ func local_request_PrivateDashboard_ListVersions_0(ctx context.Context, marshale
 
 }
 
-func request_PrivateDashboard_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardQuery
+func request_PrivateDashboard_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -321,8 +321,8 @@ func request_PrivateDashboard_List_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_PrivateDashboard_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardQuery
+func local_request_PrivateDashboard_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -338,8 +338,8 @@ func local_request_PrivateDashboard_List_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_PrivateDashboard_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardStatQuery
+func request_PrivateDashboard_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -355,8 +355,8 @@ func request_PrivateDashboard_Stat_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_PrivateDashboard_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PrivateDashboardStatQuery
+func local_request_PrivateDashboard_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PrivateDashboardStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -376,7 +376,7 @@ func local_request_PrivateDashboard_Stat_0(ctx context.Context, marshaler runtim
 // UnaryRPC     :call PrivateDashboardServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterPrivateDashboardHandlerFromEndpoint instead.
-func RegisterPrivateDashboardHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.PrivateDashboardServer) error {
+func RegisterPrivateDashboardHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.PrivateDashboardServer) error {
 
 	mux.Handle("POST", pattern_PrivateDashboard_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -659,15 +659,15 @@ func RegisterPrivateDashboardHandlerFromEndpoint(ctx context.Context, mux *runti
 // RegisterPrivateDashboardHandler registers the http handlers for service PrivateDashboard to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterPrivateDashboardHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterPrivateDashboardHandlerClient(ctx, mux, v1_0.NewPrivateDashboardClient(conn))
+	return RegisterPrivateDashboardHandlerClient(ctx, mux, extV1.NewPrivateDashboardClient(conn))
 }
 
 // RegisterPrivateDashboardHandlerClient registers the http handlers for service PrivateDashboard
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.PrivateDashboardClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.PrivateDashboardClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.PrivateDashboardClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.PrivateDashboardClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.PrivateDashboardClient" to call the correct interceptors.
-func RegisterPrivateDashboardHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.PrivateDashboardClient) error {
+// "extV1.PrivateDashboardClient" to call the correct interceptors.
+func RegisterPrivateDashboardHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.PrivateDashboardClient) error {
 
 	mux.Handle("POST", pattern_PrivateDashboard_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

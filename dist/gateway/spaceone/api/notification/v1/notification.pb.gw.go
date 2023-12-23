@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/notification/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/notification/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Notification_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateNotificationRequest
+func request_Notification_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateNotificationRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Notification_Create_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_Notification_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateNotificationRequest
+func local_request_Notification_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateNotificationRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Notification_Create_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_Notification_Push_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PushNotificationRequest
+func request_Notification_Push_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PushNotificationRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Notification_Push_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_Notification_Push_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.PushNotificationRequest
+func local_request_Notification_Push_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.PushNotificationRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Notification_Push_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_Notification_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NotificationsRequest
+func request_Notification_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NotificationsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Notification_Delete_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_Notification_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NotificationsRequest
+func local_request_Notification_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NotificationsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Notification_Delete_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_Notification_SetRead_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NotificationsRequest
+func request_Notification_SetRead_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NotificationsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Notification_SetRead_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_Notification_SetRead_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NotificationsRequest
+func local_request_Notification_SetRead_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NotificationsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Notification_SetRead_0(ctx context.Context, marshaler runtime
 
 }
 
-func request_Notification_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetNotificationRequest
+func request_Notification_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.GetNotificationRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Notification_Get_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_Notification_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetNotificationRequest
+func local_request_Notification_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.GetNotificationRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Notification_Get_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_Notification_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NotificationQuery
+func request_Notification_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NotificationQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Notification_List_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_Notification_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NotificationQuery
+func local_request_Notification_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NotificationQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_Notification_List_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_Notification_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NotificationStatQuery
+func request_Notification_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.NotificationClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NotificationStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_Notification_Stat_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_Notification_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.NotificationStatQuery
+func local_request_Notification_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.NotificationServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.NotificationStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -274,7 +274,7 @@ func local_request_Notification_Stat_0(ctx context.Context, marshaler runtime.Ma
 // UnaryRPC     :call NotificationServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterNotificationHandlerFromEndpoint instead.
-func RegisterNotificationHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.NotificationServer) error {
+func RegisterNotificationHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.NotificationServer) error {
 
 	mux.Handle("POST", pattern_Notification_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -482,15 +482,15 @@ func RegisterNotificationHandlerFromEndpoint(ctx context.Context, mux *runtime.S
 // RegisterNotificationHandler registers the http handlers for service Notification to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterNotificationHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterNotificationHandlerClient(ctx, mux, v1_0.NewNotificationClient(conn))
+	return RegisterNotificationHandlerClient(ctx, mux, extV1.NewNotificationClient(conn))
 }
 
 // RegisterNotificationHandlerClient registers the http handlers for service Notification
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.NotificationClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.NotificationClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.NotificationClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.NotificationClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.NotificationClient" to call the correct interceptors.
-func RegisterNotificationHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.NotificationClient) error {
+// "extV1.NotificationClient" to call the correct interceptors.
+func RegisterNotificationHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.NotificationClient) error {
 
 	mux.Handle("POST", pattern_Notification_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

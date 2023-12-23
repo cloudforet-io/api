@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.JobTaskRequest
+func request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.JobTaskRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.JobTaskRequest
+func local_request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.JobTaskRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_JobTask_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.JobTaskQuery
+func request_JobTask_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.JobTaskQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_JobTask_List_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_JobTask_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.JobTaskQuery
+func local_request_JobTask_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.JobTaskQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_JobTask_List_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func request_JobTask_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.JobTaskStatQuery
+func request_JobTask_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.JobTaskStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_JobTask_Stat_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_JobTask_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.JobTaskStatQuery
+func local_request_JobTask_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.JobTaskStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -138,7 +138,7 @@ func local_request_JobTask_Stat_0(ctx context.Context, marshaler runtime.Marshal
 // UnaryRPC     :call JobTaskServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterJobTaskHandlerFromEndpoint instead.
-func RegisterJobTaskHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.JobTaskServer) error {
+func RegisterJobTaskHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.JobTaskServer) error {
 
 	mux.Handle("POST", pattern_JobTask_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -246,15 +246,15 @@ func RegisterJobTaskHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeM
 // RegisterJobTaskHandler registers the http handlers for service JobTask to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterJobTaskHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterJobTaskHandlerClient(ctx, mux, v1_0.NewJobTaskClient(conn))
+	return RegisterJobTaskHandlerClient(ctx, mux, extV1.NewJobTaskClient(conn))
 }
 
 // RegisterJobTaskHandlerClient registers the http handlers for service JobTask
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.JobTaskClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.JobTaskClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.JobTaskClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.JobTaskClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.JobTaskClient" to call the correct interceptors.
-func RegisterJobTaskHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.JobTaskClient) error {
+// "extV1.JobTaskClient" to call the correct interceptors.
+func RegisterJobTaskHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.JobTaskClient) error {
 
 	mux.Handle("POST", pattern_JobTask_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

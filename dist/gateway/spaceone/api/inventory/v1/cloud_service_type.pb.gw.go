@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_CloudServiceType_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceTypeClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateCloudServiceTypeRequest
+func request_CloudServiceType_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceTypeClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateCloudServiceTypeRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_CloudServiceType_Create_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_CloudServiceType_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceTypeServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateCloudServiceTypeRequest
+func local_request_CloudServiceType_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceTypeServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateCloudServiceTypeRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_CloudServiceType_Create_0(ctx context.Context, marshaler runt
 
 }
 
-func request_CloudServiceType_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceTypeClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateCloudServiceTypeRequest
+func request_CloudServiceType_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceTypeClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateCloudServiceTypeRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_CloudServiceType_Update_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_CloudServiceType_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceTypeServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateCloudServiceTypeRequest
+func local_request_CloudServiceType_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceTypeServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateCloudServiceTypeRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_CloudServiceType_Update_0(ctx context.Context, marshaler runt
 
 }
 
-func request_CloudServiceType_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceTypeClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceTypeRequest
+func request_CloudServiceType_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceTypeClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceTypeRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_CloudServiceType_Delete_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_CloudServiceType_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceTypeServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceTypeRequest
+func local_request_CloudServiceType_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceTypeServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceTypeRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_CloudServiceType_Delete_0(ctx context.Context, marshaler runt
 
 }
 
-func request_CloudServiceType_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceTypeClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceTypeRequest
+func request_CloudServiceType_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceTypeClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceTypeRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_CloudServiceType_Get_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_CloudServiceType_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceTypeServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceTypeRequest
+func local_request_CloudServiceType_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceTypeServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceTypeRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_CloudServiceType_Get_0(ctx context.Context, marshaler runtime
 
 }
 
-func request_CloudServiceType_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceTypeClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceTypeQuery
+func request_CloudServiceType_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceTypeClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceTypeQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_CloudServiceType_List_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_CloudServiceType_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceTypeServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceTypeQuery
+func local_request_CloudServiceType_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceTypeServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceTypeQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_CloudServiceType_List_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_CloudServiceType_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceTypeClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceTypeStatQuery
+func request_CloudServiceType_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceTypeClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceTypeStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_CloudServiceType_Stat_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_CloudServiceType_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceTypeServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceTypeStatQuery
+func local_request_CloudServiceType_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceTypeServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceTypeStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -240,7 +240,7 @@ func local_request_CloudServiceType_Stat_0(ctx context.Context, marshaler runtim
 // UnaryRPC     :call CloudServiceTypeServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterCloudServiceTypeHandlerFromEndpoint instead.
-func RegisterCloudServiceTypeHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.CloudServiceTypeServer) error {
+func RegisterCloudServiceTypeHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.CloudServiceTypeServer) error {
 
 	mux.Handle("POST", pattern_CloudServiceType_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -423,15 +423,15 @@ func RegisterCloudServiceTypeHandlerFromEndpoint(ctx context.Context, mux *runti
 // RegisterCloudServiceTypeHandler registers the http handlers for service CloudServiceType to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterCloudServiceTypeHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterCloudServiceTypeHandlerClient(ctx, mux, v1_0.NewCloudServiceTypeClient(conn))
+	return RegisterCloudServiceTypeHandlerClient(ctx, mux, extV1.NewCloudServiceTypeClient(conn))
 }
 
 // RegisterCloudServiceTypeHandlerClient registers the http handlers for service CloudServiceType
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.CloudServiceTypeClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.CloudServiceTypeClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.CloudServiceTypeClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.CloudServiceTypeClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.CloudServiceTypeClient" to call the correct interceptors.
-func RegisterCloudServiceTypeHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.CloudServiceTypeClient) error {
+// "extV1.CloudServiceTypeClient" to call the correct interceptors.
+func RegisterCloudServiceTypeHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.CloudServiceTypeClient) error {
 
 	mux.Handle("POST", pattern_CloudServiceType_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

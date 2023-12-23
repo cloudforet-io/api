@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Budget_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateBudgetRequest
+func request_Budget_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateBudgetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Budget_Create_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Budget_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateBudgetRequest
+func local_request_Budget_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateBudgetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Budget_Create_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Budget_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateBudgetRequest
+func request_Budget_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateBudgetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Budget_Update_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Budget_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateBudgetRequest
+func local_request_Budget_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateBudgetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Budget_Update_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Budget_SetNotification_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SetBudgetNotificationRequest
+func request_Budget_SetNotification_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SetBudgetNotificationRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Budget_SetNotification_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func local_request_Budget_SetNotification_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.SetBudgetNotificationRequest
+func local_request_Budget_SetNotification_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.SetBudgetNotificationRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Budget_SetNotification_0(ctx context.Context, marshaler runti
 
 }
 
-func request_Budget_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetRequest
+func request_Budget_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Budget_Delete_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Budget_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetRequest
+func local_request_Budget_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Budget_Delete_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Budget_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetRequest
+func request_Budget_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Budget_Get_0(ctx context.Context, marshaler runtime.Marshaler, clie
 
 }
 
-func local_request_Budget_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetRequest
+func local_request_Budget_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Budget_Get_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func request_Budget_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetQuery
+func request_Budget_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Budget_List_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Budget_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetQuery
+func local_request_Budget_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_Budget_List_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Budget_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetStatQuery
+func request_Budget_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.BudgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_Budget_Stat_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Budget_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.BudgetStatQuery
+func local_request_Budget_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.BudgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.BudgetStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -274,7 +274,7 @@ func local_request_Budget_Stat_0(ctx context.Context, marshaler runtime.Marshale
 // UnaryRPC     :call BudgetServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterBudgetHandlerFromEndpoint instead.
-func RegisterBudgetHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.BudgetServer) error {
+func RegisterBudgetHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.BudgetServer) error {
 
 	mux.Handle("POST", pattern_Budget_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -482,15 +482,15 @@ func RegisterBudgetHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMu
 // RegisterBudgetHandler registers the http handlers for service Budget to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterBudgetHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterBudgetHandlerClient(ctx, mux, v1_0.NewBudgetClient(conn))
+	return RegisterBudgetHandlerClient(ctx, mux, extV1.NewBudgetClient(conn))
 }
 
 // RegisterBudgetHandlerClient registers the http handlers for service Budget
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.BudgetClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.BudgetClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.BudgetClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.BudgetClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.BudgetClient" to call the correct interceptors.
-func RegisterBudgetHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.BudgetClient) error {
+// "extV1.BudgetClient" to call the correct interceptors.
+func RegisterBudgetHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.BudgetClient) error {
 
 	mux.Handle("POST", pattern_Budget_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

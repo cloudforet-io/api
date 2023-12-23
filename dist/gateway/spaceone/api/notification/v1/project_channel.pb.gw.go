@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/notification/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/notification/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_ProjectChannel_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateProjectChannelRequest
+func request_ProjectChannel_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_ProjectChannel_Create_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_ProjectChannel_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateProjectChannelRequest
+func local_request_ProjectChannel_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_ProjectChannel_Create_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_ProjectChannel_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateProjectChannelRequest
+func request_ProjectChannel_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_ProjectChannel_Update_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_ProjectChannel_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateProjectChannelRequest
+func local_request_ProjectChannel_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_ProjectChannel_Update_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_ProjectChannel_SetSchedule_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateProjectChannelScheduleRequest
+func request_ProjectChannel_SetSchedule_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateProjectChannelScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_ProjectChannel_SetSchedule_0(ctx context.Context, marshaler runtime
 
 }
 
-func local_request_ProjectChannel_SetSchedule_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateProjectChannelScheduleRequest
+func local_request_ProjectChannel_SetSchedule_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateProjectChannelScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_ProjectChannel_SetSchedule_0(ctx context.Context, marshaler r
 
 }
 
-func request_ProjectChannel_SetSubscription_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateProjectChannelSubscriptionRequest
+func request_ProjectChannel_SetSubscription_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateProjectChannelSubscriptionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_ProjectChannel_SetSubscription_0(ctx context.Context, marshaler run
 
 }
 
-func local_request_ProjectChannel_SetSubscription_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateProjectChannelSubscriptionRequest
+func local_request_ProjectChannel_SetSubscription_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateProjectChannelSubscriptionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_ProjectChannel_SetSubscription_0(ctx context.Context, marshal
 
 }
 
-func request_ProjectChannel_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProjectChannelRequest
+func request_ProjectChannel_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_ProjectChannel_Enable_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_ProjectChannel_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProjectChannelRequest
+func local_request_ProjectChannel_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_ProjectChannel_Enable_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_ProjectChannel_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProjectChannelRequest
+func request_ProjectChannel_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_ProjectChannel_Disable_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func local_request_ProjectChannel_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProjectChannelRequest
+func local_request_ProjectChannel_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_ProjectChannel_Disable_0(ctx context.Context, marshaler runti
 
 }
 
-func request_ProjectChannel_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProjectChannelRequest
+func request_ProjectChannel_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_ProjectChannel_Delete_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_ProjectChannel_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProjectChannelRequest
+func local_request_ProjectChannel_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_ProjectChannel_Delete_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_ProjectChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProjectChannelRequest
+func request_ProjectChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_ProjectChannel_Get_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_ProjectChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProjectChannelRequest
+func local_request_ProjectChannel_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProjectChannelRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -304,8 +304,8 @@ func local_request_ProjectChannel_Get_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_ProjectChannel_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProjectChannelQuery
+func request_ProjectChannel_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProjectChannelQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -321,8 +321,8 @@ func request_ProjectChannel_List_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_ProjectChannel_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProjectChannelQuery
+func local_request_ProjectChannel_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProjectChannelQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -338,8 +338,8 @@ func local_request_ProjectChannel_List_0(ctx context.Context, marshaler runtime.
 
 }
 
-func request_ProjectChannel_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProjectChannelStatQuery
+func request_ProjectChannel_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ProjectChannelClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProjectChannelStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -355,8 +355,8 @@ func request_ProjectChannel_Stat_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func local_request_ProjectChannel_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ProjectChannelStatQuery
+func local_request_ProjectChannel_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ProjectChannelServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ProjectChannelStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -376,7 +376,7 @@ func local_request_ProjectChannel_Stat_0(ctx context.Context, marshaler runtime.
 // UnaryRPC     :call ProjectChannelServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterProjectChannelHandlerFromEndpoint instead.
-func RegisterProjectChannelHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.ProjectChannelServer) error {
+func RegisterProjectChannelHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.ProjectChannelServer) error {
 
 	mux.Handle("POST", pattern_ProjectChannel_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -659,15 +659,15 @@ func RegisterProjectChannelHandlerFromEndpoint(ctx context.Context, mux *runtime
 // RegisterProjectChannelHandler registers the http handlers for service ProjectChannel to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterProjectChannelHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterProjectChannelHandlerClient(ctx, mux, v1_0.NewProjectChannelClient(conn))
+	return RegisterProjectChannelHandlerClient(ctx, mux, extV1.NewProjectChannelClient(conn))
 }
 
 // RegisterProjectChannelHandlerClient registers the http handlers for service ProjectChannel
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.ProjectChannelClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.ProjectChannelClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.ProjectChannelClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.ProjectChannelClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.ProjectChannelClient" to call the correct interceptors.
-func RegisterProjectChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.ProjectChannelClient) error {
+// "extV1.ProjectChannelClient" to call the correct interceptors.
+func RegisterProjectChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.ProjectChannelClient) error {
 
 	mux.Handle("POST", pattern_ProjectChannel_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

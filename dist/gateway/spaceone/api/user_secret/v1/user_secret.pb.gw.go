@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/user_secret/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/user_secret/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_UserSecret_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateUserSecretRequest
+func request_UserSecret_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateUserSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_UserSecret_Create_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_UserSecret_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateUserSecretRequest
+func local_request_UserSecret_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateUserSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_UserSecret_Create_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_UserSecret_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateUserSecretRequest
+func request_UserSecret_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateUserSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_UserSecret_Update_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_UserSecret_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateUserSecretRequest
+func local_request_UserSecret_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateUserSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_UserSecret_Update_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_UserSecret_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserSecretRequest
+func request_UserSecret_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_UserSecret_Delete_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_UserSecret_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserSecretRequest
+func local_request_UserSecret_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_UserSecret_Delete_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_UserSecret_UpdateData_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateUserSecretDataRequest
+func request_UserSecret_UpdateData_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateUserSecretDataRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_UserSecret_UpdateData_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_UserSecret_UpdateData_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateUserSecretDataRequest
+func local_request_UserSecret_UpdateData_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateUserSecretDataRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_UserSecret_UpdateData_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_UserSecret_GetData_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetUserSecretDataRequest
+func request_UserSecret_GetData_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.GetUserSecretDataRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_UserSecret_GetData_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_UserSecret_GetData_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.GetUserSecretDataRequest
+func local_request_UserSecret_GetData_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.GetUserSecretDataRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_UserSecret_GetData_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_UserSecret_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserSecretRequest
+func request_UserSecret_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_UserSecret_Get_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_UserSecret_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserSecretRequest
+func local_request_UserSecret_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_UserSecret_Get_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_UserSecret_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserSecretQuery
+func request_UserSecret_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserSecretQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_UserSecret_List_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_UserSecret_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserSecretQuery
+func local_request_UserSecret_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserSecretQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_UserSecret_List_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_UserSecret_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserSecretStatQuery
+func request_UserSecret_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.UserSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserSecretStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_UserSecret_Stat_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_UserSecret_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UserSecretStatQuery
+func local_request_UserSecret_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.UserSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UserSecretStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -308,7 +308,7 @@ func local_request_UserSecret_Stat_0(ctx context.Context, marshaler runtime.Mars
 // UnaryRPC     :call UserSecretServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUserSecretHandlerFromEndpoint instead.
-func RegisterUserSecretHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.UserSecretServer) error {
+func RegisterUserSecretHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.UserSecretServer) error {
 
 	mux.Handle("POST", pattern_UserSecret_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -541,15 +541,15 @@ func RegisterUserSecretHandlerFromEndpoint(ctx context.Context, mux *runtime.Ser
 // RegisterUserSecretHandler registers the http handlers for service UserSecret to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterUserSecretHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterUserSecretHandlerClient(ctx, mux, v1_0.NewUserSecretClient(conn))
+	return RegisterUserSecretHandlerClient(ctx, mux, extV1.NewUserSecretClient(conn))
 }
 
 // RegisterUserSecretHandlerClient registers the http handlers for service UserSecret
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.UserSecretClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.UserSecretClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.UserSecretClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.UserSecretClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.UserSecretClient" to call the correct interceptors.
-func RegisterUserSecretHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.UserSecretClient) error {
+// "extV1.UserSecretClient" to call the correct interceptors.
+func RegisterUserSecretHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.UserSecretClient) error {
 
 	mux.Handle("POST", pattern_UserSecret_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

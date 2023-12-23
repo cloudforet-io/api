@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Webhook_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateWebhookRequest
+func request_Webhook_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateWebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Webhook_Create_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Webhook_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateWebhookRequest
+func local_request_Webhook_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateWebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Webhook_Create_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Webhook_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateWebhookRequest
+func request_Webhook_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateWebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Webhook_Update_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Webhook_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateWebhookRequest
+func local_request_Webhook_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateWebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Webhook_Update_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Webhook_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateWebhookPluginRequest
+func request_Webhook_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateWebhookPluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Webhook_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_Webhook_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateWebhookPluginRequest
+func local_request_Webhook_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateWebhookPluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Webhook_UpdatePlugin_0(ctx context.Context, marshaler runtime
 
 }
 
-func request_Webhook_VerifyPlugin_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookRequest
+func request_Webhook_VerifyPlugin_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Webhook_VerifyPlugin_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_Webhook_VerifyPlugin_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookRequest
+func local_request_Webhook_VerifyPlugin_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Webhook_VerifyPlugin_0(ctx context.Context, marshaler runtime
 
 }
 
-func request_Webhook_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookRequest
+func request_Webhook_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Webhook_Enable_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Webhook_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookRequest
+func local_request_Webhook_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Webhook_Enable_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Webhook_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookRequest
+func request_Webhook_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Webhook_Disable_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Webhook_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookRequest
+func local_request_Webhook_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_Webhook_Disable_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Webhook_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookRequest
+func request_Webhook_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_Webhook_Delete_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Webhook_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookRequest
+func local_request_Webhook_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_Webhook_Delete_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Webhook_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookRequest
+func request_Webhook_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_Webhook_Get_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 }
 
-func local_request_Webhook_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookRequest
+func local_request_Webhook_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -304,8 +304,8 @@ func local_request_Webhook_Get_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Webhook_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookQuery
+func request_Webhook_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -321,8 +321,8 @@ func request_Webhook_List_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_Webhook_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookQuery
+func local_request_Webhook_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -338,8 +338,8 @@ func local_request_Webhook_List_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func request_Webhook_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookStatQuery
+func request_Webhook_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.WebhookClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -355,8 +355,8 @@ func request_Webhook_Stat_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_Webhook_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.WebhookStatQuery
+func local_request_Webhook_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.WebhookServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.WebhookStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -376,7 +376,7 @@ func local_request_Webhook_Stat_0(ctx context.Context, marshaler runtime.Marshal
 // UnaryRPC     :call WebhookServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterWebhookHandlerFromEndpoint instead.
-func RegisterWebhookHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.WebhookServer) error {
+func RegisterWebhookHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.WebhookServer) error {
 
 	mux.Handle("POST", pattern_Webhook_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -659,15 +659,15 @@ func RegisterWebhookHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeM
 // RegisterWebhookHandler registers the http handlers for service Webhook to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterWebhookHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterWebhookHandlerClient(ctx, mux, v1_0.NewWebhookClient(conn))
+	return RegisterWebhookHandlerClient(ctx, mux, extV1.NewWebhookClient(conn))
 }
 
 // RegisterWebhookHandlerClient registers the http handlers for service Webhook
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.WebhookClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.WebhookClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.WebhookClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.WebhookClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.WebhookClient" to call the correct interceptors.
-func RegisterWebhookHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.WebhookClient) error {
+// "extV1.WebhookClient" to call the correct interceptors.
+func RegisterWebhookHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.WebhookClient) error {
 
 	mux.Handle("POST", pattern_Webhook_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

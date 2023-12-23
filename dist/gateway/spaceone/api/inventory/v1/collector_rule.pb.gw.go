@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_CollectorRule_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateCollectorRuleRequest
+func request_CollectorRule_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateCollectorRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_CollectorRule_Create_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_CollectorRule_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateCollectorRuleRequest
+func local_request_CollectorRule_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateCollectorRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_CollectorRule_Create_0(ctx context.Context, marshaler runtime
 
 }
 
-func request_CollectorRule_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateCollectorRuleRequest
+func request_CollectorRule_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateCollectorRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_CollectorRule_Update_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_CollectorRule_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateCollectorRuleRequest
+func local_request_CollectorRule_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateCollectorRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_CollectorRule_Update_0(ctx context.Context, marshaler runtime
 
 }
 
-func request_CollectorRule_ChangeOrder_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ChangeCollectorRuleOrderRequest
+func request_CollectorRule_ChangeOrder_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ChangeCollectorRuleOrderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_CollectorRule_ChangeOrder_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_CollectorRule_ChangeOrder_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ChangeCollectorRuleOrderRequest
+func local_request_CollectorRule_ChangeOrder_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ChangeCollectorRuleOrderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_CollectorRule_ChangeOrder_0(ctx context.Context, marshaler ru
 
 }
 
-func request_CollectorRule_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorRuleRequest
+func request_CollectorRule_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_CollectorRule_Delete_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_CollectorRule_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorRuleRequest
+func local_request_CollectorRule_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_CollectorRule_Delete_0(ctx context.Context, marshaler runtime
 
 }
 
-func request_CollectorRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorRuleRequest
+func request_CollectorRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_CollectorRule_Get_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_CollectorRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorRuleRequest
+func local_request_CollectorRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_CollectorRule_Get_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_CollectorRule_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorRuleQuery
+func request_CollectorRule_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorRuleQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_CollectorRule_List_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_CollectorRule_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorRuleQuery
+func local_request_CollectorRule_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorRuleQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_CollectorRule_List_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_CollectorRule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorRuleStatQuery
+func request_CollectorRule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorRuleStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_CollectorRule_Stat_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_CollectorRule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorRuleStatQuery
+func local_request_CollectorRule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorRuleStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -274,7 +274,7 @@ func local_request_CollectorRule_Stat_0(ctx context.Context, marshaler runtime.M
 // UnaryRPC     :call CollectorRuleServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterCollectorRuleHandlerFromEndpoint instead.
-func RegisterCollectorRuleHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.CollectorRuleServer) error {
+func RegisterCollectorRuleHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.CollectorRuleServer) error {
 
 	mux.Handle("POST", pattern_CollectorRule_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -482,15 +482,15 @@ func RegisterCollectorRuleHandlerFromEndpoint(ctx context.Context, mux *runtime.
 // RegisterCollectorRuleHandler registers the http handlers for service CollectorRule to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterCollectorRuleHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterCollectorRuleHandlerClient(ctx, mux, v1_0.NewCollectorRuleClient(conn))
+	return RegisterCollectorRuleHandlerClient(ctx, mux, extV1.NewCollectorRuleClient(conn))
 }
 
 // RegisterCollectorRuleHandlerClient registers the http handlers for service CollectorRule
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.CollectorRuleClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.CollectorRuleClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.CollectorRuleClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.CollectorRuleClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.CollectorRuleClient" to call the correct interceptors.
-func RegisterCollectorRuleHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.CollectorRuleClient) error {
+// "extV1.CollectorRuleClient" to call the correct interceptors.
+func RegisterCollectorRuleHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.CollectorRuleClient) error {
 
 	mux.Handle("POST", pattern_CollectorRule_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

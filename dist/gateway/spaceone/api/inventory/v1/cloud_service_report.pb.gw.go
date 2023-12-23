@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_CloudServiceReport_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateCloudServiceReportRequest
+func request_CloudServiceReport_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateCloudServiceReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_CloudServiceReport_Create_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_CloudServiceReport_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateCloudServiceReportRequest
+func local_request_CloudServiceReport_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateCloudServiceReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_CloudServiceReport_Create_0(ctx context.Context, marshaler ru
 
 }
 
-func request_CloudServiceReport_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateCloudServiceReportRequest
+func request_CloudServiceReport_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateCloudServiceReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_CloudServiceReport_Update_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_CloudServiceReport_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateCloudServiceReportRequest
+func local_request_CloudServiceReport_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateCloudServiceReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_CloudServiceReport_Update_0(ctx context.Context, marshaler ru
 
 }
 
-func request_CloudServiceReport_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceReportRequest
+func request_CloudServiceReport_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_CloudServiceReport_Delete_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_CloudServiceReport_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceReportRequest
+func local_request_CloudServiceReport_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_CloudServiceReport_Delete_0(ctx context.Context, marshaler ru
 
 }
 
-func request_CloudServiceReport_Send_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceReportRequest
+func request_CloudServiceReport_Send_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_CloudServiceReport_Send_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_CloudServiceReport_Send_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceReportRequest
+func local_request_CloudServiceReport_Send_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_CloudServiceReport_Send_0(ctx context.Context, marshaler runt
 
 }
 
-func request_CloudServiceReport_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceReportRequest
+func request_CloudServiceReport_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_CloudServiceReport_Get_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func local_request_CloudServiceReport_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceReportRequest
+func local_request_CloudServiceReport_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_CloudServiceReport_Get_0(ctx context.Context, marshaler runti
 
 }
 
-func request_CloudServiceReport_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceReportQuery
+func request_CloudServiceReport_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceReportQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_CloudServiceReport_List_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_CloudServiceReport_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceReportQuery
+func local_request_CloudServiceReport_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceReportQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_CloudServiceReport_List_0(ctx context.Context, marshaler runt
 
 }
 
-func request_CloudServiceReport_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceReportStatQuery
+func request_CloudServiceReport_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceReportClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceReportStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_CloudServiceReport_Stat_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func local_request_CloudServiceReport_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceReportStatQuery
+func local_request_CloudServiceReport_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceReportServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceReportStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -274,7 +274,7 @@ func local_request_CloudServiceReport_Stat_0(ctx context.Context, marshaler runt
 // UnaryRPC     :call CloudServiceReportServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterCloudServiceReportHandlerFromEndpoint instead.
-func RegisterCloudServiceReportHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.CloudServiceReportServer) error {
+func RegisterCloudServiceReportHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.CloudServiceReportServer) error {
 
 	mux.Handle("POST", pattern_CloudServiceReport_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -482,15 +482,15 @@ func RegisterCloudServiceReportHandlerFromEndpoint(ctx context.Context, mux *run
 // RegisterCloudServiceReportHandler registers the http handlers for service CloudServiceReport to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterCloudServiceReportHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterCloudServiceReportHandlerClient(ctx, mux, v1_0.NewCloudServiceReportClient(conn))
+	return RegisterCloudServiceReportHandlerClient(ctx, mux, extV1.NewCloudServiceReportClient(conn))
 }
 
 // RegisterCloudServiceReportHandlerClient registers the http handlers for service CloudServiceReport
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.CloudServiceReportClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.CloudServiceReportClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.CloudServiceReportClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.CloudServiceReportClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.CloudServiceReportClient" to call the correct interceptors.
-func RegisterCloudServiceReportHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.CloudServiceReportClient) error {
+// "extV1.CloudServiceReportClient" to call the correct interceptors.
+func RegisterCloudServiceReportHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.CloudServiceReportClient) error {
 
 	mux.Handle("POST", pattern_CloudServiceReport_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

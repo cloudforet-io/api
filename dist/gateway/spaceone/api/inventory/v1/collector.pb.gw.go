@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Collector_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateCollectorRequest
+func request_Collector_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateCollectorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_Collector_Create_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_Collector_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateCollectorRequest
+func local_request_Collector_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateCollectorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_Collector_Create_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_Collector_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateCollectorRequest
+func request_Collector_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateCollectorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_Collector_Update_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_Collector_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateCollectorRequest
+func local_request_Collector_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateCollectorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_Collector_Update_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_Collector_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdatePluginRequest
+func request_Collector_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdatePluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_Collector_UpdatePlugin_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func local_request_Collector_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdatePluginRequest
+func local_request_Collector_UpdatePlugin_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdatePluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_Collector_UpdatePlugin_0(ctx context.Context, marshaler runti
 
 }
 
-func request_Collector_VerifyPlugin_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.VerifyPluginRequest
+func request_Collector_VerifyPlugin_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.VerifyPluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_Collector_VerifyPlugin_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func local_request_Collector_VerifyPlugin_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.VerifyPluginRequest
+func local_request_Collector_VerifyPlugin_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.VerifyPluginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_Collector_VerifyPlugin_0(ctx context.Context, marshaler runti
 
 }
 
-func request_Collector_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorRequest
+func request_Collector_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_Collector_Delete_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_Collector_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorRequest
+func local_request_Collector_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_Collector_Delete_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_Collector_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorRequest
+func request_Collector_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_Collector_Get_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Collector_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorRequest
+func local_request_Collector_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_Collector_Get_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Collector_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorQuery
+func request_Collector_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_Collector_List_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Collector_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorQuery
+func local_request_Collector_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_Collector_List_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Collector_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorStatQuery
+func request_Collector_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_Collector_Stat_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_Collector_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectorStatQuery
+func local_request_Collector_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectorStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -304,8 +304,8 @@ func local_request_Collector_Stat_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_Collector_Collect_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectRequest
+func request_Collector_Collect_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CollectorClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -321,8 +321,8 @@ func request_Collector_Collect_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_Collector_Collect_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CollectRequest
+func local_request_Collector_Collect_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CollectorServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CollectRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -342,7 +342,7 @@ func local_request_Collector_Collect_0(ctx context.Context, marshaler runtime.Ma
 // UnaryRPC     :call CollectorServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterCollectorHandlerFromEndpoint instead.
-func RegisterCollectorHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.CollectorServer) error {
+func RegisterCollectorHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.CollectorServer) error {
 
 	mux.Handle("POST", pattern_Collector_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -600,15 +600,15 @@ func RegisterCollectorHandlerFromEndpoint(ctx context.Context, mux *runtime.Serv
 // RegisterCollectorHandler registers the http handlers for service Collector to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterCollectorHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterCollectorHandlerClient(ctx, mux, v1_0.NewCollectorClient(conn))
+	return RegisterCollectorHandlerClient(ctx, mux, extV1.NewCollectorClient(conn))
 }
 
 // RegisterCollectorHandlerClient registers the http handlers for service Collector
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.CollectorClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.CollectorClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.CollectorClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.CollectorClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.CollectorClient" to call the correct interceptors.
-func RegisterCollectorHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.CollectorClient) error {
+// "extV1.CollectorClient" to call the correct interceptors.
+func RegisterCollectorHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.CollectorClient) error {
 
 	mux.Handle("POST", pattern_Collector_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

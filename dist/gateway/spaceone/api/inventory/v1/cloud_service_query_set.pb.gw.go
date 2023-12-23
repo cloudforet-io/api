@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_CloudServiceQuerySet_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateCloudServiceQuerySetRequest
+func request_CloudServiceQuerySet_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateCloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_CloudServiceQuerySet_Create_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_CloudServiceQuerySet_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateCloudServiceQuerySetRequest
+func local_request_CloudServiceQuerySet_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateCloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_CloudServiceQuerySet_Create_0(ctx context.Context, marshaler 
 
 }
 
-func request_CloudServiceQuerySet_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateCloudServiceQuerySetRequest
+func request_CloudServiceQuerySet_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateCloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_CloudServiceQuerySet_Update_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_CloudServiceQuerySet_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateCloudServiceQuerySetRequest
+func local_request_CloudServiceQuerySet_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateCloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_CloudServiceQuerySet_Update_0(ctx context.Context, marshaler 
 
 }
 
-func request_CloudServiceQuerySet_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetRequest
+func request_CloudServiceQuerySet_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_CloudServiceQuerySet_Delete_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_CloudServiceQuerySet_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetRequest
+func local_request_CloudServiceQuerySet_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_CloudServiceQuerySet_Delete_0(ctx context.Context, marshaler 
 
 }
 
-func request_CloudServiceQuerySet_Run_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetRequest
+func request_CloudServiceQuerySet_Run_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_CloudServiceQuerySet_Run_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func local_request_CloudServiceQuerySet_Run_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetRequest
+func local_request_CloudServiceQuerySet_Run_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_CloudServiceQuerySet_Run_0(ctx context.Context, marshaler run
 
 }
 
-func request_CloudServiceQuerySet_Test_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetRequest
+func request_CloudServiceQuerySet_Test_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_CloudServiceQuerySet_Test_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_CloudServiceQuerySet_Test_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetRequest
+func local_request_CloudServiceQuerySet_Test_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_CloudServiceQuerySet_Test_0(ctx context.Context, marshaler ru
 
 }
 
-func request_CloudServiceQuerySet_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetRequest
+func request_CloudServiceQuerySet_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_CloudServiceQuerySet_Enable_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_CloudServiceQuerySet_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetRequest
+func local_request_CloudServiceQuerySet_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_CloudServiceQuerySet_Enable_0(ctx context.Context, marshaler 
 
 }
 
-func request_CloudServiceQuerySet_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetRequest
+func request_CloudServiceQuerySet_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_CloudServiceQuerySet_Disable_0(ctx context.Context, marshaler runti
 
 }
 
-func local_request_CloudServiceQuerySet_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetRequest
+func local_request_CloudServiceQuerySet_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -270,8 +270,8 @@ func local_request_CloudServiceQuerySet_Disable_0(ctx context.Context, marshaler
 
 }
 
-func request_CloudServiceQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetRequest
+func request_CloudServiceQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -287,8 +287,8 @@ func request_CloudServiceQuerySet_Get_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func local_request_CloudServiceQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetRequest
+func local_request_CloudServiceQuerySet_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -304,8 +304,8 @@ func local_request_CloudServiceQuerySet_Get_0(ctx context.Context, marshaler run
 
 }
 
-func request_CloudServiceQuerySet_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetQuery
+func request_CloudServiceQuerySet_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -321,8 +321,8 @@ func request_CloudServiceQuerySet_List_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_CloudServiceQuerySet_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetQuery
+func local_request_CloudServiceQuerySet_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -338,8 +338,8 @@ func local_request_CloudServiceQuerySet_List_0(ctx context.Context, marshaler ru
 
 }
 
-func request_CloudServiceQuerySet_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetStatQuery
+func request_CloudServiceQuerySet_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.CloudServiceQuerySetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -355,8 +355,8 @@ func request_CloudServiceQuerySet_Stat_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_CloudServiceQuerySet_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CloudServiceQuerySetStatQuery
+func local_request_CloudServiceQuerySet_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.CloudServiceQuerySetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CloudServiceQuerySetStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -376,7 +376,7 @@ func local_request_CloudServiceQuerySet_Stat_0(ctx context.Context, marshaler ru
 // UnaryRPC     :call CloudServiceQuerySetServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterCloudServiceQuerySetHandlerFromEndpoint instead.
-func RegisterCloudServiceQuerySetHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.CloudServiceQuerySetServer) error {
+func RegisterCloudServiceQuerySetHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.CloudServiceQuerySetServer) error {
 
 	mux.Handle("POST", pattern_CloudServiceQuerySet_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -659,15 +659,15 @@ func RegisterCloudServiceQuerySetHandlerFromEndpoint(ctx context.Context, mux *r
 // RegisterCloudServiceQuerySetHandler registers the http handlers for service CloudServiceQuerySet to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterCloudServiceQuerySetHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterCloudServiceQuerySetHandlerClient(ctx, mux, v1_0.NewCloudServiceQuerySetClient(conn))
+	return RegisterCloudServiceQuerySetHandlerClient(ctx, mux, extV1.NewCloudServiceQuerySetClient(conn))
 }
 
 // RegisterCloudServiceQuerySetHandlerClient registers the http handlers for service CloudServiceQuerySet
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.CloudServiceQuerySetClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.CloudServiceQuerySetClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.CloudServiceQuerySetClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.CloudServiceQuerySetClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.CloudServiceQuerySetClient" to call the correct interceptors.
-func RegisterCloudServiceQuerySetHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.CloudServiceQuerySetClient) error {
+// "extV1.CloudServiceQuerySetClient" to call the correct interceptors.
+func RegisterCloudServiceQuerySetHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.CloudServiceQuerySetClient) error {
 
 	mux.Handle("POST", pattern_CloudServiceQuerySet_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

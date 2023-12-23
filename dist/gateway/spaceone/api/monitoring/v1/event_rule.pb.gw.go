@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/monitoring/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_EventRule_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateEventRuleRequest
+func request_EventRule_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateEventRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_EventRule_Create_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_EventRule_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateEventRuleRequest
+func local_request_EventRule_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateEventRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_EventRule_Create_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_EventRule_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateEventRuleRequest
+func request_EventRule_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateEventRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_EventRule_Update_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_EventRule_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateEventRuleRequest
+func local_request_EventRule_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateEventRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_EventRule_Update_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_EventRule_ChangeOrder_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ChangeEventRuleOrderRequest
+func request_EventRule_ChangeOrder_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ChangeEventRuleOrderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_EventRule_ChangeOrder_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func local_request_EventRule_ChangeOrder_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ChangeEventRuleOrderRequest
+func local_request_EventRule_ChangeOrder_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ChangeEventRuleOrderRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_EventRule_ChangeOrder_0(ctx context.Context, marshaler runtim
 
 }
 
-func request_EventRule_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.EventRuleRequest
+func request_EventRule_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.EventRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_EventRule_Delete_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_EventRule_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.EventRuleRequest
+func local_request_EventRule_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.EventRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_EventRule_Delete_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_EventRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.EventRuleRequest
+func request_EventRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.EventRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_EventRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_EventRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.EventRuleRequest
+func local_request_EventRule_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.EventRuleRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_EventRule_Get_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_EventRule_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.EventRuleQuery
+func request_EventRule_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.EventRuleQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_EventRule_List_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_EventRule_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.EventRuleQuery
+func local_request_EventRule_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.EventRuleQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_EventRule_List_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_EventRule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.EventRuleStatQuery
+func request_EventRule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.EventRuleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.EventRuleStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_EventRule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_EventRule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.EventRuleStatQuery
+func local_request_EventRule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.EventRuleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.EventRuleStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -274,7 +274,7 @@ func local_request_EventRule_Stat_0(ctx context.Context, marshaler runtime.Marsh
 // UnaryRPC     :call EventRuleServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterEventRuleHandlerFromEndpoint instead.
-func RegisterEventRuleHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.EventRuleServer) error {
+func RegisterEventRuleHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.EventRuleServer) error {
 
 	mux.Handle("POST", pattern_EventRule_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -482,15 +482,15 @@ func RegisterEventRuleHandlerFromEndpoint(ctx context.Context, mux *runtime.Serv
 // RegisterEventRuleHandler registers the http handlers for service EventRule to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterEventRuleHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterEventRuleHandlerClient(ctx, mux, v1_0.NewEventRuleClient(conn))
+	return RegisterEventRuleHandlerClient(ctx, mux, extV1.NewEventRuleClient(conn))
 }
 
 // RegisterEventRuleHandlerClient registers the http handlers for service EventRule
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.EventRuleClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.EventRuleClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.EventRuleClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.EventRuleClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.EventRuleClient" to call the correct interceptors.
-func RegisterEventRuleHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.EventRuleClient) error {
+// "extV1.EventRuleClient" to call the correct interceptors.
+func RegisterEventRuleHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.EventRuleClient) error {
 
 	mux.Handle("POST", pattern_EventRule_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

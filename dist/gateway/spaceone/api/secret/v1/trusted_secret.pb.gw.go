@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/secret/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/secret/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_TrustedSecret_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateTrustedSecretRequest
+func request_TrustedSecret_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateTrustedSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,8 +49,8 @@ func request_TrustedSecret_Create_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_TrustedSecret_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateTrustedSecretRequest
+func local_request_TrustedSecret_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateTrustedSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -66,8 +66,8 @@ func local_request_TrustedSecret_Create_0(ctx context.Context, marshaler runtime
 
 }
 
-func request_TrustedSecret_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateTrustedSecretRequest
+func request_TrustedSecret_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateTrustedSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,8 +83,8 @@ func request_TrustedSecret_Update_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_TrustedSecret_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateTrustedSecretRequest
+func local_request_TrustedSecret_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateTrustedSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,8 +100,8 @@ func local_request_TrustedSecret_Update_0(ctx context.Context, marshaler runtime
 
 }
 
-func request_TrustedSecret_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.TrustedSecretRequest
+func request_TrustedSecret_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.TrustedSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,8 +117,8 @@ func request_TrustedSecret_Delete_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func local_request_TrustedSecret_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.TrustedSecretRequest
+func local_request_TrustedSecret_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.TrustedSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -134,8 +134,8 @@ func local_request_TrustedSecret_Delete_0(ctx context.Context, marshaler runtime
 
 }
 
-func request_TrustedSecret_UpdateData_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateTrustedSecretDataRequest
+func request_TrustedSecret_UpdateData_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateTrustedSecretDataRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -151,8 +151,8 @@ func request_TrustedSecret_UpdateData_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func local_request_TrustedSecret_UpdateData_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateTrustedSecretDataRequest
+func local_request_TrustedSecret_UpdateData_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateTrustedSecretDataRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,8 @@ func local_request_TrustedSecret_UpdateData_0(ctx context.Context, marshaler run
 
 }
 
-func request_TrustedSecret_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.TrustedSecretRequest
+func request_TrustedSecret_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.TrustedSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -185,8 +185,8 @@ func request_TrustedSecret_Get_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func local_request_TrustedSecret_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.TrustedSecretRequest
+func local_request_TrustedSecret_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.TrustedSecretRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,8 +202,8 @@ func local_request_TrustedSecret_Get_0(ctx context.Context, marshaler runtime.Ma
 
 }
 
-func request_TrustedSecret_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.TrustedSecretQuery
+func request_TrustedSecret_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.TrustedSecretQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,8 +219,8 @@ func request_TrustedSecret_List_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_TrustedSecret_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.TrustedSecretQuery
+func local_request_TrustedSecret_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.TrustedSecretQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -236,8 +236,8 @@ func local_request_TrustedSecret_List_0(ctx context.Context, marshaler runtime.M
 
 }
 
-func request_TrustedSecret_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.TrustedSecretStatQuery
+func request_TrustedSecret_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.TrustedSecretClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.TrustedSecretStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -253,8 +253,8 @@ func request_TrustedSecret_Stat_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func local_request_TrustedSecret_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.TrustedSecretStatQuery
+func local_request_TrustedSecret_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.TrustedSecretServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.TrustedSecretStatQuery
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -274,7 +274,7 @@ func local_request_TrustedSecret_Stat_0(ctx context.Context, marshaler runtime.M
 // UnaryRPC     :call TrustedSecretServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterTrustedSecretHandlerFromEndpoint instead.
-func RegisterTrustedSecretHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.TrustedSecretServer) error {
+func RegisterTrustedSecretHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.TrustedSecretServer) error {
 
 	mux.Handle("POST", pattern_TrustedSecret_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -482,15 +482,15 @@ func RegisterTrustedSecretHandlerFromEndpoint(ctx context.Context, mux *runtime.
 // RegisterTrustedSecretHandler registers the http handlers for service TrustedSecret to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterTrustedSecretHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterTrustedSecretHandlerClient(ctx, mux, v1_0.NewTrustedSecretClient(conn))
+	return RegisterTrustedSecretHandlerClient(ctx, mux, extV1.NewTrustedSecretClient(conn))
 }
 
 // RegisterTrustedSecretHandlerClient registers the http handlers for service TrustedSecret
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.TrustedSecretClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.TrustedSecretClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.TrustedSecretClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.TrustedSecretClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.TrustedSecretClient" to call the correct interceptors.
-func RegisterTrustedSecretHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.TrustedSecretClient) error {
+// "extV1.TrustedSecretClient" to call the correct interceptors.
+func RegisterTrustedSecretHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.TrustedSecretClient) error {
 
 	mux.Handle("POST", pattern_TrustedSecret_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
