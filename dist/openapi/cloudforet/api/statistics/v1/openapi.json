@@ -56,7 +56,7 @@
                 "title": "Sort"
            }
            ,        "StatAggregate": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatAggregateQuery","title": "QUERY"},"join" : {"$ref": "#/components/schemas/StatAggregateJoin","title": "JOIN"},"concat" : {"$ref": "#/components/schemas/StatAggregateConcat","title": "CONCAT"},"sort" : {"$ref": "#/components/schemas/StatAggregateSort","title": "SORT"},"formula" : {"$ref": "#/components/schemas/StatAggregateFormula","title": "FORMULA"},"fill_na" : {"$ref": "#/components/schemas/StatAggregateFillNA","title": "FILL_NA"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatAggregateQuery","title": "QUERY"},"join" : {"$ref": "#/components/schemas/StatAggregateJoin","title": "JOIN"},"concat" : {"$ref": "#/components/schemas/StatAggregateConcat","title": "CONCAT"},"sort" : {"type": "array","title": "SORT"},"formula" : {"$ref": "#/components/schemas/StatAggregateFormula","title": "FORMULA"},"fill_na" : {"$ref": "#/components/schemas/StatAggregateFillNA","title": "FILL_NA"}},
          "type": "object",
          "required": ["query","join","concat","sort","formula","fill_na"],
                 "title": "StatAggregate"
@@ -91,13 +91,6 @@
          "type": "object",
          "required": ["resource_type","query"],
                 "title": "StatAggregateQuery"
-           }
-           ,        "StatAggregateSort": {
-         "properties" : {"keys" : {"items": {"$ref": "#/components/schemas/Sort"},
-               "type": "array","$ref": "#/components/schemas/Sort","title": "KEYS"}},
-         "type": "object",
-         "required": ["keys"],
-                "title": "StatAggregateSort"
            }
            ,        "StatPage": {
          "properties" : {"start" : {"type": "integer/long","title": "START"},"limit" : {"type": "integer/long","title": "LIMIT"}},
