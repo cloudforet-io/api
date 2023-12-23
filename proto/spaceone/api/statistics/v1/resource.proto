@@ -52,18 +52,13 @@ message StatAggregateConcat {
     google.protobuf.Struct extend_data = 3;
 }
 
-message SortKey {
+message Sort {
     string key = 1;
     bool desc = 2;
 }
 
 message StatAggregateSort {
-    // +optional
-    string key = 1;
-    // +optional
-    bool desc = 2;
-    // +optional
-    repeated SortKey keys = 3;
+    repeated Sort keys = 3;
 }
 
 message StatAggregateFormula {
@@ -94,52 +89,6 @@ message StatPage {
     uint32 limit = 2;
 }
 
-//{
-//    "aggregate": [
-//        {"query": {"resource_type": "inventory.CloudServiceType",
-//                   "query": {
-//                       "filter": [{"k": "labels", "v": ["Server"], "o": "in"},
-//                                  {"k": "is_primary", "v": true, "o": "eq"}], "aggregate": [{
-//                           "group": {
-//                               "keys": [
-//                                   {
-//                                       "key": "cloud_service_type_id",
-//                                       "name": "cloud_service_type_id"},
-//                                   {
-//                                       "key": "name",
-//                                       "name": "cloud_service_type"},
-//                                   {
-//                                       "key": "group",
-//                                       "name": "cloud_service_group"},
-//                                   {
-//                                       "key": "provider",
-//                                       "name": "provider"},
-//                                   {
-//                                       "key": "cloud_service_type_id",
-//                                       "name": "cloud_service_type_id"}],
-//                               "fields": [
-//                                   {
-//                                       "key": "tags",
-//                                       "name": "tags",
-//                                       "operator": "first"},
-//                                   {
-//                                       "key": "labels",
-//                                       "name": "labels",
-//                                       "operator": "first"}]}}]}}},
-//        {"join": {"resource_type": "inventory.CloudService", "query": {"filter": [
-//            {"k": "ref_cloud_service_type.cloud_service_type_id",
-//             "v": ["cloud-svc-type-58c926b19aca", "cloud-svc-type-c7e5bc38d911",
-//                   "cloud-svc-type-8dd4d7a13b95", "cloud-svc-type-719e705cb529",
-//                   "cloud-svc-type-50bd62cf6e0e"], "o": "in"}], "aggregate": [{"group": {
-//            "keys": [{"key": "cloud_service_type", "name": "cloud_service_type"},
-//                     {"key": "cloud_service_group", "name": "cloud_service_group"},
-//                     {"key": "provider", "name": "provider"}],
-//            "fields": [{"name": "count", "operator": "count"}]}}]},
-//                  "keys": ["cloud_service_type", "cloud_service_group", "provider"]}},
-//        {"fill_na": {"data": {"count": 0.0}}}, {"formula": {"query": "count > 0"}},
-//        {"sort": {"key": "count", "desc": true}}],
-//    "domain_id": "domain-58010aa2e451"
-//}
 message ResourceStatRequest {
     repeated StatAggregate aggregate = 1;
     // +optional
