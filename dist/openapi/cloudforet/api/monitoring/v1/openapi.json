@@ -253,11 +253,11 @@
          "operationId" : "",
          "description": "### Description \nUpdates a specific Alert. You can make changes in Alert settings, including the `title`, `description`, `responder`, `state`, and `urgency`. The `responder` of the Alert is a User who is assigned to respond to the Alert.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |title||string||\n |state||string||\n |description||string||\n |urgency|HIGH, LOW |string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |title||string||\n |state||string||\n |description||string||\n |reset_description||boolean||\n |urgency|HIGH, LOW |string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"title" : {"type": "string","title": "TITLE" },"state" : {"type": "string","title": "STATE" },"description" : {"type": "string","title": "DESCRIPTION" },"urgency" : {"type": "string","title": "URGENCY" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"title" : {"type": "string","title": "TITLE" },"state" : {"type": "string","title": "STATE" },"description" : {"type": "string","title": "DESCRIPTION" },"reset_description" : {"type": "boolean","title": "RESET_DESCRIPTION" },"urgency" : {"type": "string","title": "URGENCY" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n     \"alert_id\": \"alert-123456789012\",\n     \"state\": \"ACKNOWLEDGED\",\n     \"urgency\": \"LOW\",\n     \"description\": \"[updating]This is a description of sample.\",\n     \"domain_id\": \"domain-123456789012\"\n}"},"Schema":{}
                }
@@ -2092,7 +2092,7 @@
                 "title": "CreateAlertRequest"
            }
            ,        "UpdateAlertRequest": {
-         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"reset_description" : {"type": "boolean","title": "RESET_DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": ["alert_id"],
                 "title": "UpdateAlertRequest"
