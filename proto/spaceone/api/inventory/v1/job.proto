@@ -8,7 +8,7 @@ option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
-import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v2/query.proto";
 
 service Job {
     
@@ -72,7 +72,7 @@ message JobsQuery {
     }
 
     // +optional
-    spaceone.api.core.v1.Query query = 1;
+    spaceone.api.core.v2.Query query = 1;
     // +optional
     string job_id = 2;
     // +optional
@@ -209,9 +209,9 @@ message JobsInfo {
 }
 
 message JobAnalyzeQuery {
-    spaceone.api.core.v1.AnalyzeQuery query = 1;
+    spaceone.api.core.v2.AnalyzeQuery query = 1;
 }
 
 message JobStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;
+    spaceone.api.core.v2.StatisticsQuery query = 1;
 }

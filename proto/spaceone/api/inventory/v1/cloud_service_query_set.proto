@@ -8,7 +8,7 @@ option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
-import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v2/query.proto";
 
 
 service CloudServiceQuerySet {
@@ -118,7 +118,7 @@ message CreateCloudServiceQuerySetRequest {
     }
 
     string name = 1;
-    spaceone.api.core.v1.AnalyzeQuery query_options = 2;
+    spaceone.api.core.v2.AnalyzeQuery query_options = 2;
     // +optional
     google.protobuf.Struct unit = 3;
     string provider = 4;
@@ -149,7 +149,7 @@ message UpdateCloudServiceQuerySetRequest {
     // +optional
     string name = 2;
     // +optional
-    spaceone.api.core.v1.AnalyzeQuery query_options = 3;
+    spaceone.api.core.v2.AnalyzeQuery query_options = 3;
     // +optional
     google.protobuf.Struct unit = 4;
     // +optional
@@ -187,7 +187,7 @@ message CloudServiceQuerySetQuery {
     }
 
     // +optional
-    spaceone.api.core.v1.Query query = 1;
+    spaceone.api.core.v2.Query query = 1;
     // +optional
     string query_set_id = 2;
     // +optional
@@ -258,7 +258,7 @@ message CloudServiceQuerySetInfo {
     string query_set_id = 1;
     string name = 2;
     State state = 3;
-    spaceone.api.core.v1.AnalyzeQuery query_options = 4;
+    spaceone.api.core.v2.AnalyzeQuery query_options = 4;
     QueryType query_type = 5;
     google.protobuf.Struct unit = 6;
     repeated string data_keys = 7;
@@ -317,5 +317,5 @@ message CloudServiceQuerySetsInfo {
 }
 
 message CloudServiceQuerySetStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;
+    spaceone.api.core.v2.StatisticsQuery query = 1;
 }

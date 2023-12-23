@@ -7,7 +7,7 @@ option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
-import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v2/query.proto";
 
 
 service CloudServiceReport {
@@ -99,7 +99,7 @@ message CreateCloudServiceReportRequest {
     }
 
     string name = 1;
-    repeated spaceone.api.core.v1.ExportOption options = 2;
+    repeated spaceone.api.core.v2.ExportOption options = 2;
     // +optional
     FileFormat file_format = 3;
     // +optional
@@ -127,7 +127,7 @@ message UpdateCloudServiceReportRequest {
     // +optional
     string name = 2;
     // +optional
-    repeated spaceone.api.core.v1.ExportOption options = 3;
+    repeated spaceone.api.core.v2.ExportOption options = 3;
     // +optional
     FileFormat file_format = 4;
     // +optional
@@ -148,7 +148,7 @@ message CloudServiceReportRequest {
 
 message CloudServiceReportQuery {
     // +optional
-    spaceone.api.core.v1.Query query = 1;
+    spaceone.api.core.v2.Query query = 1;
     // +optional
     string report_id = 2;
     // +optional
@@ -172,7 +172,7 @@ message CloudServiceReportInfo {
 
     string report_id = 1;
     string name = 2;
-    repeated spaceone.api.core.v1.ExportOption options = 3;
+    repeated spaceone.api.core.v2.ExportOption options = 3;
     FileFormat file_format = 4;
     string timezone = 5;
     string language = 6;
@@ -194,5 +194,5 @@ message CloudServiceReportsInfo {
 }
 
 message CloudServiceReportStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;
+    spaceone.api.core.v2.StatisticsQuery query = 1;
 }

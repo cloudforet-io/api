@@ -6,7 +6,7 @@ option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory
 
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
-import "spaceone/api/core/v1/query.proto";
+import "spaceone/api/core/v2/query.proto";
 
 service ChangeHistory {
     rpc list (ChangeHistoryQuery) returns (ChangeHistoryInfo) {
@@ -33,7 +33,7 @@ message ChangeHistoryQuery {
     }
 
     // +optional
-    spaceone.api.core.v1.Query query = 1;
+    spaceone.api.core.v2.Query query = 1;
     string cloud_service_id = 2;
     // +optional
     RecordAction action = 3;
@@ -96,6 +96,6 @@ message ChangeHistoryInfo {
 }
 
 message ChangeHistoryStatQuery {
-    spaceone.api.core.v1.StatisticsQuery query = 1;
+    spaceone.api.core.v2.StatisticsQuery query = 1;
     string cloud_service_id = 3;
 }
