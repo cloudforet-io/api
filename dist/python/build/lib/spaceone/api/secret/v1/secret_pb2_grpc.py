@@ -94,7 +94,7 @@ class SecretServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def get_data(self, request, context):
-        """Updates a specific secret's data.
+        """Get a specific secret's data.
         This API is for internal system use only.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)

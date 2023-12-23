@@ -4,10 +4,10 @@ import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.secret.v1 import secret_pb2 as spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2
+from spaceone.api.secret.v1 import user_secret_pb2 as spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2
 
 
-class SecretStub(object):
+class UserSecretStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -17,61 +17,60 @@ class SecretStub(object):
             channel: A grpc.Channel.
         """
         self.create = channel.unary_unary(
-                '/spaceone.api.secret.v1.Secret/create',
-                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.CreateSecretRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretInfo.FromString,
+                '/spaceone.api.user_secret.v1.UserSecret/create',
+                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.CreateUserSecretRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretInfo.FromString,
                 )
         self.update = channel.unary_unary(
-                '/spaceone.api.secret.v1.Secret/update',
-                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.UpdateSecretRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretInfo.FromString,
+                '/spaceone.api.user_secret.v1.UserSecret/update',
+                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UpdateUserSecretRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretInfo.FromString,
                 )
         self.delete = channel.unary_unary(
-                '/spaceone.api.secret.v1.Secret/delete',
-                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretRequest.SerializeToString,
+                '/spaceone.api.user_secret.v1.UserSecret/delete',
+                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.update_data = channel.unary_unary(
-                '/spaceone.api.secret.v1.Secret/update_data',
-                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.UpdateSecretDataRequest.SerializeToString,
+                '/spaceone.api.user_secret.v1.UserSecret/update_data',
+                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UpdateUserSecretDataRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.get_data = channel.unary_unary(
-                '/spaceone.api.secret.v1.Secret/get_data',
-                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.GetSecretDataRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretDataInfo.FromString,
+                '/spaceone.api.user_secret.v1.UserSecret/get_data',
+                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.GetUserSecretDataRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretDataInfo.FromString,
                 )
         self.get = channel.unary_unary(
-                '/spaceone.api.secret.v1.Secret/get',
-                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretInfo.FromString,
+                '/spaceone.api.user_secret.v1.UserSecret/get',
+                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretInfo.FromString,
                 )
         self.list = channel.unary_unary(
-                '/spaceone.api.secret.v1.Secret/list',
-                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretsInfo.FromString,
+                '/spaceone.api.user_secret.v1.UserSecret/list',
+                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretsInfo.FromString,
                 )
         self.stat = channel.unary_unary(
-                '/spaceone.api.secret.v1.Secret/stat',
-                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretStatQuery.SerializeToString,
+                '/spaceone.api.user_secret.v1.UserSecret/stat',
+                request_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretStatQuery.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 )
 
 
-class SecretServicer(object):
+class UserSecretServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
-        """Create a new secret.
-        Created secret is encrypted and stored securely.
-        It can be used to link to a trusted secret if you request it with 'trusted_secret_id' in the parameter.
+        """Create a new user secret.
+        Created user secret is encrypted and stored securely.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """Updates a specific secret's information.
+        """Updates a specific user secret's information.
         You can only change the 'name' and 'tags', and to change the data you must use the update_data API.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -79,22 +78,22 @@ class SecretServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """Deletes a specific secret.
+        """Deletes a specific user secret.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def update_data(self, request, context):
-        """Updates a specific secret's data.
-        Updated secret is encrypted and stored securely.
+        """Updates a specific user secret's data.
+        Updated user_secret is encrypted and stored securely.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get_data(self, request, context):
-        """Get a specific secret's data.
+        """Get a specific user secret's data.
         This API is for internal system use only.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -102,15 +101,15 @@ class SecretServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """Get a specific secret's information.
+        """Get a specific user secret's information.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def list(self, request, context):
-        """Queries a list of secrets.
-        You can use a query to get a filtered list of secrets.
+        """Queries a list of user secrets.
+        You can use a query to get a filtered list of user secrets.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -123,56 +122,56 @@ class SecretServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_SecretServicer_to_server(servicer, server):
+def add_UserSecretServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'create': grpc.unary_unary_rpc_method_handler(
                     servicer.create,
-                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.CreateSecretRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.CreateUserSecretRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.UpdateSecretRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UpdateUserSecretRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'update_data': grpc.unary_unary_rpc_method_handler(
                     servicer.update_data,
-                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.UpdateSecretDataRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UpdateUserSecretDataRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get_data': grpc.unary_unary_rpc_method_handler(
                     servicer.get_data,
-                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.GetSecretDataRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretDataInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.GetUserSecretDataRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretDataInfo.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretsInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretsInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretStatQuery.FromString,
+                    request_deserializer=spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretStatQuery.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'spaceone.api.secret.v1.Secret', rpc_method_handlers)
+            'spaceone.api.user_secret.v1.UserSecret', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class Secret(object):
+class UserSecret(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -186,9 +185,9 @@ class Secret(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.secret.v1.Secret/create',
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.CreateSecretRequest.SerializeToString,
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.user_secret.v1.UserSecret/create',
+            spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.CreateUserSecretRequest.SerializeToString,
+            spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -203,9 +202,9 @@ class Secret(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.secret.v1.Secret/update',
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.UpdateSecretRequest.SerializeToString,
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.user_secret.v1.UserSecret/update',
+            spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UpdateUserSecretRequest.SerializeToString,
+            spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -220,8 +219,8 @@ class Secret(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.secret.v1.Secret/delete',
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretRequest.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.user_secret.v1.UserSecret/delete',
+            spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -237,8 +236,8 @@ class Secret(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.secret.v1.Secret/update_data',
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.UpdateSecretDataRequest.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.user_secret.v1.UserSecret/update_data',
+            spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UpdateUserSecretDataRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -254,9 +253,9 @@ class Secret(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.secret.v1.Secret/get_data',
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.GetSecretDataRequest.SerializeToString,
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretDataInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.user_secret.v1.UserSecret/get_data',
+            spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.GetUserSecretDataRequest.SerializeToString,
+            spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretDataInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -271,9 +270,9 @@ class Secret(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.secret.v1.Secret/get',
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretRequest.SerializeToString,
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.user_secret.v1.UserSecret/get',
+            spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretRequest.SerializeToString,
+            spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -288,9 +287,9 @@ class Secret(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.secret.v1.Secret/list',
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretQuery.SerializeToString,
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretsInfo.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.user_secret.v1.UserSecret/list',
+            spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretQuery.SerializeToString,
+            spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretsInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -305,8 +304,8 @@ class Secret(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.secret.v1.Secret/stat',
-            spaceone_dot_api_dot_secret_dot_v1_dot_secret__pb2.SecretStatQuery.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.user_secret.v1.UserSecret/stat',
+            spaceone_dot_api_dot_secret_dot_v1_dot_user__secret__pb2.UserSecretStatQuery.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
