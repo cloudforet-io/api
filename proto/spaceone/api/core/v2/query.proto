@@ -148,16 +148,12 @@ message AggregateCount {
     string name = 1;
 }
 
-message AggregateSort {
-    repeated Sort keys = 1;
-}
-
 message StatisticsAggregate {
     oneof aggregate_alias {
         AggregateUnwind unwind = 1;
         AggregateGroup group = 2;
         AggregateCount count = 3;
-        AggregateSort sort = 4;
+        google.protobuf.ListValue sort = 4;
         AggregateProject project = 5;
         int32 limit = 6;
         int32 skip = 7;

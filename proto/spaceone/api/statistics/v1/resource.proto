@@ -57,10 +57,6 @@ message Sort {
     bool desc = 2;
 }
 
-message StatAggregateSort {
-    repeated Sort keys = 3;
-}
-
 message StatAggregateFormula {
     oneof formula_alias {
         string eval = 1;
@@ -77,7 +73,7 @@ message StatAggregate {
         StatAggregateQuery query = 1;
         StatAggregateJoin join = 2;
         StatAggregateConcat concat = 3;
-        StatAggregateSort sort = 4;
+        google.protobuf.ListValue sort = 4;
         StatAggregateFormula formula = 5;
         StatAggregateFillNA fill_na = 6;
     }
