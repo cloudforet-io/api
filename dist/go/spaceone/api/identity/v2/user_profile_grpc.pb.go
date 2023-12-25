@@ -39,7 +39,7 @@ type UserProfileClient interface {
 	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	ConfirmEmail(ctx context.Context, in *ConfirmEmailRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	// +noauth
-	ResetPassword(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	ResetPassword(ctx context.Context, in *UserPasswordResetRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Enable MFA for user. If this api is called, send email to user.
 	EnableMfa(ctx context.Context, in *EnableMFARequest, opts ...grpc.CallOption) (*UserInfo, error)
 	// Disable MFA for user. If this api is called, send email to user.
@@ -85,7 +85,7 @@ func (c *userProfileClient) ConfirmEmail(ctx context.Context, in *ConfirmEmailRe
 	return out, nil
 }
 
-func (c *userProfileClient) ResetPassword(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *userProfileClient) ResetPassword(ctx context.Context, in *UserPasswordResetRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, UserProfile_ResetPassword_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -147,7 +147,7 @@ type UserProfileServer interface {
 	VerifyEmail(context.Context, *VerifyEmailRequest) (*empty.Empty, error)
 	ConfirmEmail(context.Context, *ConfirmEmailRequest) (*UserInfo, error)
 	// +noauth
-	ResetPassword(context.Context, *UserProfileRequest) (*empty.Empty, error)
+	ResetPassword(context.Context, *UserPasswordResetRequest) (*empty.Empty, error)
 	// Enable MFA for user. If this api is called, send email to user.
 	EnableMfa(context.Context, *EnableMFARequest) (*UserInfo, error)
 	// Disable MFA for user. If this api is called, send email to user.
@@ -172,7 +172,7 @@ func (UnimplementedUserProfileServer) VerifyEmail(context.Context, *VerifyEmailR
 func (UnimplementedUserProfileServer) ConfirmEmail(context.Context, *ConfirmEmailRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfirmEmail not implemented")
 }
-func (UnimplementedUserProfileServer) ResetPassword(context.Context, *UserProfileRequest) (*empty.Empty, error) {
+func (UnimplementedUserProfileServer) ResetPassword(context.Context, *UserPasswordResetRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
 }
 func (UnimplementedUserProfileServer) EnableMfa(context.Context, *EnableMFARequest) (*UserInfo, error) {
@@ -258,7 +258,7 @@ func _UserProfile_ConfirmEmail_Handler(srv interface{}, ctx context.Context, dec
 }
 
 func _UserProfile_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserProfileRequest)
+	in := new(UserPasswordResetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -270,7 +270,7 @@ func _UserProfile_ResetPassword_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: UserProfile_ResetPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserProfileServer).ResetPassword(ctx, req.(*UserProfileRequest))
+		return srv.(UserProfileServer).ResetPassword(ctx, req.(*UserPasswordResetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

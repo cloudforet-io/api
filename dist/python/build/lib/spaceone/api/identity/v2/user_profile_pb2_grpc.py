@@ -34,7 +34,7 @@ class UserProfileStub(object):
                 )
         self.reset_password = channel.unary_unary(
                 '/spaceone.api.identity.v2.UserProfile/reset_password',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UserProfileRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UserPasswordResetRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.enable_mfa = channel.unary_unary(
@@ -145,7 +145,7 @@ def add_UserProfileServicer_to_server(servicer, server):
             ),
             'reset_password': grpc.unary_unary_rpc_method_handler(
                     servicer.reset_password,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UserProfileRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UserPasswordResetRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'enable_mfa': grpc.unary_unary_rpc_method_handler(
@@ -246,7 +246,7 @@ class UserProfile(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.UserProfile/reset_password',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UserProfileRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UserPasswordResetRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

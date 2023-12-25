@@ -135,7 +135,7 @@ func local_request_UserProfile_ConfirmEmail_0(ctx context.Context, marshaler run
 }
 
 func request_UserProfile_ResetPassword_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserProfileClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.UserProfileRequest
+	var protoReq v2_0.UserPasswordResetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -152,7 +152,7 @@ func request_UserProfile_ResetPassword_0(ctx context.Context, marshaler runtime.
 }
 
 func local_request_UserProfile_ResetPassword_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserProfileServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.UserProfileRequest
+	var protoReq v2_0.UserPasswordResetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
