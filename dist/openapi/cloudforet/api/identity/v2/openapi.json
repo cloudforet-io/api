@@ -3011,11 +3011,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |actions| |array|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |required_actions| |array|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"actions" : {"items": {}, "type": "array","title": "ACTIONS" }                 }
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"required_actions" : {"items": {}, "type": "array","title": "REQUIRED_ACTIONS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -4431,10 +4431,10 @@
                 "title": "MFA"
            }
            ,        "SetRequiredActionsRequest": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"actions" : {"items": {"type": "string"},
-               "type": "array","title": "ACTIONS"}},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"required_actions" : {"items": {"type": "string"},
+               "type": "array","title": "REQUIRED_ACTIONS"}},
          "type": "object",
-         "required": ["user_id","actions"],
+         "required": ["user_id","required_actions"],
                 "title": "SetRequiredActionsRequest"
            }
            ,        "UpdateUserRequest": {
