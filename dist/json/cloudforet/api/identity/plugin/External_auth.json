@@ -1,7 +1,7 @@
 {
   "files": [
     {
-      "name": "spaceone/api/identity/plugin/auth.proto",
+      "name": "spaceone/api/identity/plugin/external_auth.proto",
       "description": "",
       "package": "spaceone.api.identity.plugin",
       "hasEnums": false,
@@ -41,33 +41,9 @@
       "extensions": [],
       "messages": [
         {
-          "name": "AuthVerifyInfo",
-          "longName": "AuthVerifyInfo",
-          "fullName": "spaceone.api.identity.plugin.AuthVerifyInfo",
-          "description": "Deprecated",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "options",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "FindRequest",
-          "longName": "FindRequest",
-          "fullName": "spaceone.api.identity.plugin.FindRequest",
+          "name": "AuthorizeRequest",
+          "longName": "AuthorizeRequest",
+          "fullName": "spaceone.api.identity.plugin.AuthorizeRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -87,6 +63,18 @@
               "defaultValue": ""
             },
             {
+              "name": "schema_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "secret_data",
               "description": "",
               "label": "",
@@ -99,32 +87,20 @@
               "defaultValue": ""
             },
             {
-              "name": "user_id",
-              "description": "+optional",
+              "name": "credentials",
+              "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "keyword",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "schema",
-              "description": "+optional",
+              "name": "domain_id",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -157,58 +133,10 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "LoginRequest",
-          "longName": "LoginRequest",
-          "fullName": "spaceone.api.identity.plugin.LoginRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "options",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             },
             {
-              "name": "secret_data",
+              "name": "domain_id",
               "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "user_credentials",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "schema",
-              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -327,109 +255,13 @@
               "defaultValue": ""
             }
           ]
-        },
-        {
-          "name": "UsersInfo",
-          "longName": "UsersInfo",
-          "fullName": "spaceone.api.identity.plugin.UsersInfo",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "results",
-              "description": "",
-              "label": "repeated",
-              "type": "UserInfo",
-              "longType": "UserInfo",
-              "fullType": "spaceone.api.identity.plugin.UserInfo",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "total_count",
-              "description": "will be depricated",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "more",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "VerifyRequest",
-          "longName": "VerifyRequest",
-          "fullName": "spaceone.api.identity.plugin.VerifyRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "options",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "secret_data",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "schema",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
         }
       ],
       "services": [
         {
-          "name": "Auth",
-          "longName": "Auth",
-          "fullName": "spaceone.api.identity.plugin.Auth",
+          "name": "ExternalAuth",
+          "longName": "ExternalAuth",
+          "fullName": "spaceone.api.identity.plugin.ExternalAuth",
           "description": "",
           "methods": [
             {
@@ -445,35 +277,11 @@
               "responseStreaming": false
             },
             {
-              "name": "verify",
+              "name": "authorize",
               "description": "",
-              "requestType": "VerifyRequest",
-              "requestLongType": "VerifyRequest",
-              "requestFullType": "spaceone.api.identity.plugin.VerifyRequest",
-              "requestStreaming": false,
-              "responseType": "Empty",
-              "responseLongType": ".google.protobuf.Empty",
-              "responseFullType": "google.protobuf.Empty",
-              "responseStreaming": false
-            },
-            {
-              "name": "find",
-              "description": "",
-              "requestType": "FindRequest",
-              "requestLongType": "FindRequest",
-              "requestFullType": "spaceone.api.identity.plugin.FindRequest",
-              "requestStreaming": false,
-              "responseType": "UsersInfo",
-              "responseLongType": "UsersInfo",
-              "responseFullType": "spaceone.api.identity.plugin.UsersInfo",
-              "responseStreaming": false
-            },
-            {
-              "name": "login",
-              "description": "",
-              "requestType": "LoginRequest",
-              "requestLongType": "LoginRequest",
-              "requestFullType": "spaceone.api.identity.plugin.LoginRequest",
+              "requestType": "AuthorizeRequest",
+              "requestLongType": "AuthorizeRequest",
+              "requestFullType": "spaceone.api.identity.plugin.AuthorizeRequest",
               "requestStreaming": false,
               "responseType": "UserInfo",
               "responseLongType": "UserInfo",
