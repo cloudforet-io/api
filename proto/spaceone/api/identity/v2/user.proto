@@ -14,157 +14,157 @@ import "spaceone/api/identity/v2/workspace.proto";
 
 
 service User {
-    // You can create user. after create user you have to binding role to user.
-    // See role-binding create api.
-    // External type user do not need password.
-    rpc create (CreateUserRequest) returns (UserInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/create"
-            body: "*"
-        };
-    }
+  // You can create user. after create user you have to binding role to user.
+  // See role-binding create api.
+  // External type user do not need password.
+  rpc create (CreateUserRequest) returns (UserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/user/create"
+      body: "*"
+    };
+  }
 
-    // Update user info by given user_id
-    rpc update (UpdateUserRequest) returns (UserInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/update"
-            body: "*"
-        };
-    }
+  // Update user info by given user_id
+  rpc update (UpdateUserRequest) returns (UserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/user/update"
+      body: "*"
+    };
+  }
 
-    rpc verify_email (VerifyUserEmailRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/verify-email"
-            body: "*"
-        };
-    }
+  rpc verify_email (VerifyUserEmailRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/identity/v2/user/verify-email"
+      body: "*"
+    };
+  }
 
-    // Disable MFA for user. If this api is called, send email to user.
-    rpc disable_mfa (DisableUserMFARequest) returns (UserInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/disable-mfa"
-            body: "*"
-        };
-    }
+  // Disable MFA for user. If this api is called, send email to user.
+  rpc disable_mfa (DisableUserMFARequest) returns (UserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/user/disable-mfa"
+      body: "*"
+    };
+  }
 
-    rpc set_required_actions (SetRequiredActionsRequest) returns (UserInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/set-required-actions"
-            body: "*"
-        };
-    }
+  rpc set_required_actions (SetRequiredActionsRequest) returns (UserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/user/set-required-actions"
+      body: "*"
+    };
+  }
 
-    rpc enable (UserRequest) returns (UserInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/enable"
-            body: "*"
-        };
-    }
+  rpc enable (UserRequest) returns (UserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/user/enable"
+      body: "*"
+    };
+  }
 
-    rpc disable (UserRequest) returns (UserInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/disable"
-            body: "*"
-        };
-    }
+  rpc disable (UserRequest) returns (UserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/user/disable"
+      body: "*"
+    };
+  }
 
-    rpc delete (UserRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/delete"
-            body: "*"
-        };
-    }
+  rpc delete (UserRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/identity/v2/user/delete"
+      body: "*"
+    };
+  }
 
-    rpc get (UserRequest) returns (UserInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/get"
-            body: "*"
-        };
-    }
+  rpc get (UserRequest) returns (UserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/user/get"
+      body: "*"
+    };
+  }
 
-    rpc list (UserSearchQuery) returns (UsersInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/user/list"
-            body: "*"
-        };
-    }
+  rpc list (UserSearchQuery) returns (UsersInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/user/list"
+      body: "*"
+    };
+  }
 
-    rpc stat (UserStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/identity/v1/user/stat"
-            body: "*"
-        };
-    }
+  rpc stat (UserStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/identity/v1/user/stat"
+      body: "*"
+    };
+  }
 }
 
 enum AuthType {
-    NONE_BACKEND = 0;
-    LOCAL = 1;
-    EXTERNAL = 2;
+  NONE_BACKEND = 0;
+  LOCAL = 1;
+  EXTERNAL = 2;
 }
 
 enum UserRequiredAction {
-    UPDATE_PASSWORD = 0;
+  UPDATE_PASSWORD = 0;
 }
 
 
 message MFA {
-    enum State {
-        NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-    }
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
 
-    State state = 1;
-    string mfa_type = 2;
-    google.protobuf.Struct options = 3;
+  State state = 1;
+  string mfa_type = 2;
+  google.protobuf.Struct options = 3;
 
 }
 
 message CreateUserRequest {
-    string user_id = 1;
-    // When auth_type is LOCAL, password is required.
-    // +optional
-    string password = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    string email = 4;
-    AuthType auth_type = 5;
-    // en,ko
-    // +optional
-    string language = 6;
-    // UTC, Asia/Seoul
-    // +optional
-    string timezone = 7;
-    // +optional
-    google.protobuf.Struct tags = 8;
-    // If reset_password is true, send email
-    bool reset_password = 9;
+  string user_id = 1;
+  // When auth_type is LOCAL, password is required.
+  // +optional
+  string password = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  string email = 4;
+  AuthType auth_type = 5;
+  // en,ko
+  // +optional
+  string language = 6;
+  // UTC, Asia/Seoul
+  // +optional
+  string timezone = 7;
+  // +optional
+  google.protobuf.Struct tags = 8;
+  // If reset_password is true, send email
+  bool reset_password = 9;
 }
 
 message UpdateUserRequest {
-    string user_id = 1;
-    // +optional
-    string password = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    string email = 4;
-    // +optional
-    string language = 5;
-    // +optional
-    string timezone = 6;
-    // +optional
-    google.protobuf.Struct tags = 7;
-    // +optional
-    bool reset_password = 8;
+  string user_id = 1;
+  // +optional
+  string password = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  string email = 4;
+  // +optional
+  string language = 5;
+  // +optional
+  string timezone = 6;
+  // +optional
+  google.protobuf.Struct tags = 7;
+  // +optional
+  bool reset_password = 8;
 }
 
 message VerifyUserEmailRequest {
-    string user_id = 1;
-    // +optional
-    string email = 2;
+  string user_id = 1;
+  // +optional
+  string email = 2;
 }
 
 //{
@@ -173,77 +173,76 @@ message VerifyUserEmailRequest {
 //  "domain_id": "domain-a1b2c3d4e5f6"
 //}
 message DisableUserMFARequest {
-    string user_id = 1;
+  string user_id = 1;
 }
 
 message SetRequiredActionsRequest {
-    string user_id = 1;
-    repeated UserRequiredAction required_actions = 2;
+  string user_id = 1;
+  repeated UserRequiredAction required_actions = 2;
 }
 
 message UserRequest {
-    string user_id = 1;
+  string user_id = 1;
 }
 
 message UserSearchQuery {
-    enum State {
-        NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-        PENDING = 3;
-    }
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    PENDING = 3;
+  }
 
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string user_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    State state = 4;
-    // +optional
-    string email = 5;
-    // +optional
-    AuthType auth_type = 6;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string user_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  State state = 4;
+  // +optional
+  string email = 5;
+  // +optional
+  AuthType auth_type = 6;
 }
 
 message UserInfo {
-    enum State {
-        STATE_NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-        PENDING = 3;
-    }
-    enum RoleType {
-        ROLE_TYPE_NONE = 0;
-        DOMAIN_ADMIN = 1;
-        USER = 2;
-    }
+  enum State {
+    STATE_NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    PENDING = 3;
+  }
+  enum RoleType {
+    ROLE_TYPE_NONE = 0;
+    DOMAIN_ADMIN = 1;
+    USER = 2;
+  }
 
-    string user_id = 1;
-    string name = 2;
-    State state = 3;
-    string email = 4;
-    bool email_verified = 5;
-    AuthType auth_type = 6;
-    RoleType role_type = 7;
-    MFA mfa = 8;
-    string language = 10;
-    string timezone = 11;
-    int32 api_key_count = 12;
-    repeated UserRequiredAction required_actions = 13;
-    google.protobuf.Struct tags = 14;
-    string domain_id = 21;
-    string created_at = 31;
-    string last_accessed_at = 32;
+  string user_id = 1;
+  string name = 2;
+  State state = 3;
+  string email = 4;
+  bool email_verified = 5;
+  AuthType auth_type = 6;
+  RoleType role_type = 7;
+  MFA mfa = 8;
+  string language = 10;
+  string timezone = 11;
+  repeated UserRequiredAction required_actions = 12;
+  google.protobuf.Struct tags = 13;
+  string domain_id = 21;
+  string created_at = 31;
+  string last_accessed_at = 32;
 }
 
 message UsersInfo {
-    repeated UserInfo results = 1;
-    int32 total_count = 2;
+  repeated UserInfo results = 1;
+  int32 total_count = 2;
 }
 
 message UserStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
 
