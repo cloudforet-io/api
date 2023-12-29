@@ -21,16 +21,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	App_Create_FullMethodName         = "/spaceone.api.identity.v2.App/create"
-	App_Update_FullMethodName         = "/spaceone.api.identity.v2.App/update"
-	App_GenerateApiKey_FullMethodName = "/spaceone.api.identity.v2.App/generate_api_key"
-	App_Enable_FullMethodName         = "/spaceone.api.identity.v2.App/enable"
-	App_Disable_FullMethodName        = "/spaceone.api.identity.v2.App/disable"
-	App_Delete_FullMethodName         = "/spaceone.api.identity.v2.App/delete"
-	App_Get_FullMethodName            = "/spaceone.api.identity.v2.App/get"
-	App_Check_FullMethodName          = "/spaceone.api.identity.v2.App/check"
-	App_List_FullMethodName           = "/spaceone.api.identity.v2.App/list"
-	App_Stat_FullMethodName           = "/spaceone.api.identity.v2.App/stat"
+	App_Create_FullMethodName               = "/spaceone.api.identity.v2.App/create"
+	App_Update_FullMethodName               = "/spaceone.api.identity.v2.App/update"
+	App_GenerateClientSecret_FullMethodName = "/spaceone.api.identity.v2.App/generate_client_secret"
+	App_Enable_FullMethodName               = "/spaceone.api.identity.v2.App/enable"
+	App_Disable_FullMethodName              = "/spaceone.api.identity.v2.App/disable"
+	App_Delete_FullMethodName               = "/spaceone.api.identity.v2.App/delete"
+	App_Get_FullMethodName                  = "/spaceone.api.identity.v2.App/get"
+	App_Check_FullMethodName                = "/spaceone.api.identity.v2.App/check"
+	App_List_FullMethodName                 = "/spaceone.api.identity.v2.App/list"
+	App_Stat_FullMethodName                 = "/spaceone.api.identity.v2.App/stat"
 )
 
 // AppClient is the client API for App service.
@@ -39,7 +39,7 @@ const (
 type AppClient interface {
 	Create(ctx context.Context, in *CreateAppRequest, opts ...grpc.CallOption) (*AppInfo, error)
 	Update(ctx context.Context, in *UpdateAppRequest, opts ...grpc.CallOption) (*AppInfo, error)
-	GenerateApiKey(ctx context.Context, in *GenerateAPIKeyAppRequest, opts ...grpc.CallOption) (*AppInfo, error)
+	GenerateClientSecret(ctx context.Context, in *GenerateAPIKeyAppRequest, opts ...grpc.CallOption) (*AppInfo, error)
 	Enable(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*AppInfo, error)
 	Disable(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*AppInfo, error)
 	Delete(ctx context.Context, in *AppRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -75,9 +75,9 @@ func (c *appClient) Update(ctx context.Context, in *UpdateAppRequest, opts ...gr
 	return out, nil
 }
 
-func (c *appClient) GenerateApiKey(ctx context.Context, in *GenerateAPIKeyAppRequest, opts ...grpc.CallOption) (*AppInfo, error) {
+func (c *appClient) GenerateClientSecret(ctx context.Context, in *GenerateAPIKeyAppRequest, opts ...grpc.CallOption) (*AppInfo, error) {
 	out := new(AppInfo)
-	err := c.cc.Invoke(ctx, App_GenerateApiKey_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, App_GenerateClientSecret_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -153,7 +153,7 @@ func (c *appClient) Stat(ctx context.Context, in *AppStatQuery, opts ...grpc.Cal
 type AppServer interface {
 	Create(context.Context, *CreateAppRequest) (*AppInfo, error)
 	Update(context.Context, *UpdateAppRequest) (*AppInfo, error)
-	GenerateApiKey(context.Context, *GenerateAPIKeyAppRequest) (*AppInfo, error)
+	GenerateClientSecret(context.Context, *GenerateAPIKeyAppRequest) (*AppInfo, error)
 	Enable(context.Context, *AppRequest) (*AppInfo, error)
 	Disable(context.Context, *AppRequest) (*AppInfo, error)
 	Delete(context.Context, *AppRequest) (*empty.Empty, error)
@@ -174,8 +174,8 @@ func (UnimplementedAppServer) Create(context.Context, *CreateAppRequest) (*AppIn
 func (UnimplementedAppServer) Update(context.Context, *UpdateAppRequest) (*AppInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedAppServer) GenerateApiKey(context.Context, *GenerateAPIKeyAppRequest) (*AppInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GenerateApiKey not implemented")
+func (UnimplementedAppServer) GenerateClientSecret(context.Context, *GenerateAPIKeyAppRequest) (*AppInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateClientSecret not implemented")
 }
 func (UnimplementedAppServer) Enable(context.Context, *AppRequest) (*AppInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
@@ -247,20 +247,20 @@ func _App_Update_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
-func _App_GenerateApiKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _App_GenerateClientSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GenerateAPIKeyAppRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AppServer).GenerateApiKey(ctx, in)
+		return srv.(AppServer).GenerateClientSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: App_GenerateApiKey_FullMethodName,
+		FullMethod: App_GenerateClientSecret_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppServer).GenerateApiKey(ctx, req.(*GenerateAPIKeyAppRequest))
+		return srv.(AppServer).GenerateClientSecret(ctx, req.(*GenerateAPIKeyAppRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -407,8 +407,8 @@ var App_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _App_Update_Handler,
 		},
 		{
-			MethodName: "generate_api_key",
-			Handler:    _App_GenerateApiKey_Handler,
+			MethodName: "generate_client_secret",
+			Handler:    _App_GenerateClientSecret_Handler,
 		},
 		{
 			MethodName: "enable",

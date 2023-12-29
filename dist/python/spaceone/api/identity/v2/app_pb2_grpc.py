@@ -26,8 +26,8 @@ class AppStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.UpdateAppRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
                 )
-        self.generate_api_key = channel.unary_unary(
-                '/spaceone.api.identity.v2.App/generate_api_key',
+        self.generate_client_secret = channel.unary_unary(
+                '/spaceone.api.identity.v2.App/generate_client_secret',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.GenerateAPIKeyAppRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
                 )
@@ -83,7 +83,7 @@ class AppServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def generate_api_key(self, request, context):
+    def generate_client_secret(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -144,8 +144,8 @@ def add_AppServicer_to_server(servicer, server):
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.UpdateAppRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.SerializeToString,
             ),
-            'generate_api_key': grpc.unary_unary_rpc_method_handler(
-                    servicer.generate_api_key,
+            'generate_client_secret': grpc.unary_unary_rpc_method_handler(
+                    servicer.generate_client_secret,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.GenerateAPIKeyAppRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.SerializeToString,
             ),
@@ -229,7 +229,7 @@ class App(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def generate_api_key(request,
+    def generate_client_secret(request,
             target,
             options=(),
             channel_credentials=None,
@@ -239,7 +239,7 @@ class App(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.App/generate_api_key',
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.App/generate_client_secret',
             spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.GenerateAPIKeyAppRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
             options, channel_credentials,

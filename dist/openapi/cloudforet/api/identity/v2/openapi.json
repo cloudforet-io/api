@@ -1874,10 +1874,10 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/app/generate-api-key": {
+     },"/identity/app/generate-client-secret": {
        "post": {
          "tags": ["identity > app"],
-         "summary": "Generate Api Key",
+         "summary": "Generate Client Secret",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
@@ -2020,11 +2020,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |app_id||string||\n |name||string||\n |state|ENABLED, DISABLED, EXPIRED |string||\n |role_type|DOMAIN_ADMIN, WORKSPACE_OWNER |string||\n |workspace_id||string||\n |role_id||string||\n |api_key_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |app_id||string||\n |name||string||\n |state|ENABLED, DISABLED, EXPIRED |string||\n |role_type|DOMAIN_ADMIN, WORKSPACE_OWNER |string||\n |workspace_id||string||\n |role_id||string||\n |client_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"app_id" : {"type": "string","title": "APP_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"role_type" : {"type": "string","title": "ROLE_TYPE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"role_id" : {"type": "string","title": "ROLE_ID" },"api_key_id" : {"type": "string","title": "API_KEY_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"app_id" : {"type": "string","title": "APP_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"role_type" : {"type": "string","title": "ROLE_TYPE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"role_id" : {"type": "string","title": "ROLE_ID" },"client_id" : {"type": "string","title": "CLIENT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -4142,15 +4142,15 @@
                 "title": "SetExternalAuthRequest"
            }
            ,        "AppCheckRequest": {
-         "properties" : {"api_key_id" : {"type": "string","title": "API_KEY_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"client_id" : {"type": "string","title": "CLIENT_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["api_key_id","domain_id"],
+         "required": ["client_id","domain_id"],
                 "title": "AppCheckRequest"
            }
            ,        "AppInfo": {
-         "properties" : {"app_id" : {"type": "string","title": "APP_ID"},"api_key" : {"type": "string","title": "API_KEY"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"tags" : {"type": "object","title": "TAGS"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"api_key_id" : {"type": "string","title": "API_KEY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"expired_at" : {"type": "string","title": "EXPIRED_AT"}},
+         "properties" : {"app_id" : {"type": "string","title": "APP_ID"},"client_secret" : {"type": "string","title": "CLIENT_SECRET"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"tags" : {"type": "object","title": "TAGS"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"client_id" : {"type": "string","title": "CLIENT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"expired_at" : {"type": "string","title": "EXPIRED_AT"}},
          "type": "object",
-         "required": ["app_id","api_key","name","state","tags","role_type","resource_group","domain_id","workspace_id","role_id","api_key_id","created_at","expired_at"],
+         "required": ["app_id","client_secret","name","state","tags","role_type","resource_group","domain_id","workspace_id","role_id","client_id","created_at","expired_at"],
                 "title": "AppInfo"
            }
            ,        "AppRequest": {
@@ -4160,7 +4160,7 @@
                 "title": "AppRequest"
            }
            ,        "AppSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"app_id" : {"type": "string","title": "APP_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"api_key_id" : {"type": "string","title": "API_KEY_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"app_id" : {"type": "string","title": "APP_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"client_id" : {"type": "string","title": "CLIENT_ID"}},
          "type": "object",
          "required": [],
                 "title": "AppSearchQuery"

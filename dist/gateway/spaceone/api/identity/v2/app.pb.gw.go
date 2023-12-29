@@ -100,7 +100,7 @@ func local_request_App_Update_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func request_App_GenerateApiKey_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_App_GenerateClientSecret_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.AppClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq v2_0.GenerateAPIKeyAppRequest
 	var metadata runtime.ServerMetadata
 
@@ -112,12 +112,12 @@ func request_App_GenerateApiKey_0(ctx context.Context, marshaler runtime.Marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GenerateApiKey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GenerateClientSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_App_GenerateApiKey_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_App_GenerateClientSecret_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.AppServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq v2_0.GenerateAPIKeyAppRequest
 	var metadata runtime.ServerMetadata
 
@@ -129,7 +129,7 @@ func local_request_App_GenerateApiKey_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GenerateApiKey(ctx, &protoReq)
+	msg, err := server.GenerateClientSecret(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -428,7 +428,7 @@ func RegisterAppHandlerServer(ctx context.Context, mux *runtime.ServeMux, server
 
 	})
 
-	mux.Handle("POST", pattern_App_GenerateApiKey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_App_GenerateClientSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -436,12 +436,12 @@ func RegisterAppHandlerServer(ctx context.Context, mux *runtime.ServeMux, server
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.App/GenerateApiKey", runtime.WithHTTPPathPattern("/identity/v2/app/generate-api-key"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.App/GenerateClientSecret", runtime.WithHTTPPathPattern("/identity/v2/app/generate-client-secret"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_App_GenerateApiKey_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_App_GenerateClientSecret_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -449,7 +449,7 @@ func RegisterAppHandlerServer(ctx context.Context, mux *runtime.ServeMux, server
 			return
 		}
 
-		forward_App_GenerateApiKey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_App_GenerateClientSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -713,25 +713,25 @@ func RegisterAppHandlerClient(ctx context.Context, mux *runtime.ServeMux, client
 
 	})
 
-	mux.Handle("POST", pattern_App_GenerateApiKey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_App_GenerateClientSecret_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.App/GenerateApiKey", runtime.WithHTTPPathPattern("/identity/v2/app/generate-api-key"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.App/GenerateClientSecret", runtime.WithHTTPPathPattern("/identity/v2/app/generate-client-secret"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_App_GenerateApiKey_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_App_GenerateClientSecret_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_App_GenerateApiKey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_App_GenerateClientSecret_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -897,7 +897,7 @@ var (
 
 	pattern_App_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "app", "update"}, ""))
 
-	pattern_App_GenerateApiKey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "app", "generate-api-key"}, ""))
+	pattern_App_GenerateClientSecret_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "app", "generate-client-secret"}, ""))
 
 	pattern_App_Enable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "app", "enable"}, ""))
 
@@ -919,7 +919,7 @@ var (
 
 	forward_App_Update_0 = runtime.ForwardResponseMessage
 
-	forward_App_GenerateApiKey_0 = runtime.ForwardResponseMessage
+	forward_App_GenerateClientSecret_0 = runtime.ForwardResponseMessage
 
 	forward_App_Enable_0 = runtime.ForwardResponseMessage
 
