@@ -25,9 +25,9 @@ service App {
         };
     }
 
-    rpc generate_api_key (GenerateAPIKeyAppRequest) returns (AppInfo) {
+    rpc generate_client_secret (GenerateAPIKeyAppRequest) returns (AppInfo) {
         option (google.api.http) = {
-            post: "/identity/v2/app/generate-api-key"
+            post: "/identity/v2/app/generate-client-secret"
             body: "*"
         };
     }
@@ -114,7 +114,7 @@ message AppRequest {
 }
 
 message AppCheckRequest {
-    string api_key_id = 1;
+    string client_id = 1;
     string domain_id = 2;
 }
 
@@ -141,7 +141,7 @@ message AppInfo {
     }
 
     string app_id = 1;
-    string api_key = 2;
+    string client_secret = 2;
     string name = 3;
     State state = 4;
     google.protobuf.Struct tags = 5;
@@ -150,7 +150,7 @@ message AppInfo {
     string domain_id = 21;
     string workspace_id = 22;
     string role_id = 23;
-    string api_key_id = 24;
+    string client_id = 24;
     string created_at = 31;
     string expired_at = 32;
 }
@@ -188,7 +188,7 @@ message AppSearchQuery {
     // +optional
     string role_id = 22;
     // +optional
-    string api_key_id = 23;
+    string client_id = 23;
 }
 
 message AppsInfo {
