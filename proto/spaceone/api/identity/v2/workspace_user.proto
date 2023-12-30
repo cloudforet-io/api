@@ -13,164 +13,166 @@ import "spaceone/api/identity/v2/role_binding.proto";
 
 
 service WorkspaceUser {
-    rpc create (CreateWorkspaceUserRequest) returns (WorkspaceUserInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/workspace-user/create"
-            body: "*"
-        };
-    }
+  rpc create (CreateWorkspaceUserRequest) returns (WorkspaceUserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace-user/create"
+      body: "*"
+    };
+  }
 
-    rpc get (WorkspaceUserRequest) returns (WorkspaceUserInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/workspace-user/get"
-            body: "*"
-        };
-    }
+  rpc get (WorkspaceUserRequest) returns (WorkspaceUserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace-user/get"
+      body: "*"
+    };
+  }
 
-    rpc find (WorkspaceUserFindRequest) returns (UsersSummaryInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/workspace-user/find"
-            body: "*"
-        };
-    }
+  rpc find (WorkspaceUserFindRequest) returns (UsersSummaryInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace-user/find"
+      body: "*"
+    };
+  }
 
-    rpc list (WorkspaceUserSearchQuery) returns (WorkspaceUsersInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/workspace-user/list"
-            body: "*"
-        };
-    }
+  rpc list (WorkspaceUserSearchQuery) returns (WorkspaceUsersInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace-user/list"
+      body: "*"
+    };
+  }
 
-    rpc stat (WorkspaceUserStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/identity/v1/workspace-user/stat"
-            body: "*"
-        };
-    }
+  rpc stat (WorkspaceUserStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/identity/v1/workspace-user/stat"
+      body: "*"
+    };
+  }
 }
 
 message CreateWorkspaceUserRequest {
-    string user_id = 1;
-    // When auth_type is LOCAL, password is required.
-    // +optional
-    string password = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    string email = 4;
-    AuthType auth_type = 5;
-    // en,ko
-    // +optional
-    string language = 6;
-    // UTC, Asia/Seoul
-    // +optional
-    string timezone = 7;
-    // +optional
-    google.protobuf.Struct tags = 8;
-    // If reset_password is true, send email
-    bool reset_password = 9;
-    string role_id = 10;
+  string user_id = 1;
+  // When auth_type is LOCAL, password is required.
+  // +optional
+  string password = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  string email = 4;
+  AuthType auth_type = 5;
+  // en,ko
+  // +optional
+  string language = 6;
+  // UTC, Asia/Seoul
+  // +optional
+  string timezone = 7;
+  // +optional
+  google.protobuf.Struct tags = 8;
+  // If reset_password is true, send email
+  bool reset_password = 9;
+  string role_id = 10;
 }
 
 message WorkspaceUserRequest {
-    string user_id = 1;
+  string user_id = 1;
+  // +optional
+  string workspace_id = 21;
 }
 
 message WorkspaceUserFindRequest {
-    enum State {
-        NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-        PENDING = 3;
-    }
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    PENDING = 3;
+  }
 
-    string keyword = 1;
-    // +optional
-    State state = 2;
-    // +optional
-    spaceone.api.core.v2.Page page = 3;
+  string keyword = 1;
+  // +optional
+  State state = 2;
+  // +optional
+  spaceone.api.core.v2.Page page = 3;
 }
 
 
 message WorkspaceUserInfo {
-    enum State {
-        STATE_NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-        PENDING = 3;
-    }
-    enum RoleType {
-        ROLE_TYPE_NONE = 0;
-        DOMAIN_ADMIN = 1;
-        USER = 2;
-    }
+  enum State {
+    STATE_NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    PENDING = 3;
+  }
+  enum RoleType {
+    ROLE_TYPE_NONE = 0;
+    DOMAIN_ADMIN = 1;
+    USER = 2;
+  }
 
-    string user_id = 1;
-    string name = 2;
-    State state = 3;
-    string email = 4;
-    AuthType auth_type = 5;
-    RoleType role_type = 6;
-    string language = 7;
-    string timezone = 8;
-    int32 api_key_count = 9;
-    google.protobuf.Struct tags = 10;
-    spaceone.api.identity.v2.RoleBindingInfo role_binding_info = 11;
-    string domain_id = 21;
-    string created_at = 31;
-    string last_accessed_at = 32;
+  string user_id = 1;
+  string name = 2;
+  State state = 3;
+  string email = 4;
+  AuthType auth_type = 5;
+  RoleType role_type = 6;
+  string language = 7;
+  string timezone = 8;
+  int32 api_key_count = 9;
+  google.protobuf.Struct tags = 10;
+  spaceone.api.identity.v2.RoleBindingInfo role_binding_info = 11;
+  string domain_id = 21;
+  string created_at = 31;
+  string last_accessed_at = 32;
 }
 
 message WorkspaceUserSearchQuery {
-    enum State {
-        NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-        PENDING = 3;
-    }
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    PENDING = 3;
+  }
 
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string user_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    State state = 4;
-    // +optional
-    string email = 5;
-    // +optional
-    spaceone.api.identity.v2.AuthType auth_type = 6;
-    // +optional
-    string workspace_id = 21;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string user_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  State state = 4;
+  // +optional
+  string email = 5;
+  // +optional
+  spaceone.api.identity.v2.AuthType auth_type = 6;
+  // +optional
+  string workspace_id = 21;
 }
 
 message WorkspaceUsersInfo {
-    repeated WorkspaceUserInfo results = 1;
-    int32 total_count = 2;
+  repeated WorkspaceUserInfo results = 1;
+  int32 total_count = 2;
 }
 
 
 message UserSummaryInfo {
-    enum State {
-        STATE_NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-        PENDING = 3;
-    }
+  enum State {
+    STATE_NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    PENDING = 3;
+  }
 
-    string user_id = 1;
-    string name = 2;
-    State state = 3;
+  string user_id = 1;
+  string name = 2;
+  State state = 3;
 }
 
 message UsersSummaryInfo {
-    repeated UserSummaryInfo results = 1;
-    int32 total_count = 2;
+  repeated UserSummaryInfo results = 1;
+  int32 total_count = 2;
 }
 
 
 message WorkspaceUserStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
 
