@@ -72,12 +72,6 @@ message CreateWorkspaceUserRequest {
   string role_id = 10;
 }
 
-message WorkspaceUserRequest {
-  string user_id = 1;
-  // +optional
-  string workspace_id = 21;
-}
-
 message WorkspaceUserFindRequest {
   enum State {
     NONE = 0;
@@ -93,6 +87,10 @@ message WorkspaceUserFindRequest {
   spaceone.api.core.v2.Page page = 3;
 }
 
+message WorkspaceUserRequest {
+  string user_id = 1;
+  string workspace_id = 21;
+}
 
 message WorkspaceUserInfo {
   enum State {
@@ -143,7 +141,6 @@ message WorkspaceUserSearchQuery {
   string email = 5;
   // +optional
   spaceone.api.identity.v2.AuthType auth_type = 6;
-  // +optional
   string workspace_id = 21;
 }
 
@@ -174,5 +171,6 @@ message UsersSummaryInfo {
 
 message WorkspaceUserStatQuery {
   spaceone.api.core.v2.StatisticsQuery query = 1;
+  string workspace_id = 21;
 }
 
