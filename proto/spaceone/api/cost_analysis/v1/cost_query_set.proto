@@ -12,53 +12,53 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service CostQuerySet {
-    
-    // Creates a new CostQuerySet. You can make your own custom query that meets your needs, and input it as an `option` parameter of the resource. Queries such as `group_by` and `granularity` are provided by default.
-    rpc create (CreateCostQuerySetRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/cost-query-set/create",
-            body: "*"
-        };
-    }
-    
-    // Updates a specific CostQuerySet. You can make changes in the details of queries.
-    rpc update (UpdateCostQuerySetRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/cost-query-set/update",
-            body: "*"
-        };
-    }
-    
-    // Deletes a specific CostQuerySet. You must specify the `cost_query_set_id` of the CostQuerySet to delete.
-    rpc delete (CostQuerySetRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/cost-query-set/delete",
-            body: "*"
-        };
-    }
-    
-    // Gets a specific CostQuerySet. Prints detailed information about the CostQuerySet, including the details of queries.
-    rpc get (CostQuerySetRequest) returns (CostQuerySetInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/cost-query-set/get",
-            body: "*"
-        };
-    }
-    
-    // Gets a list of all CostQuerySets. You can use a query to get a filtered list of CostQuerySets.
-    rpc list (CostQuerySetQuery) returns (CostQuerySetsInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/cost-query-set/list",
-            body: "*"
-        };
-    }
 
-    rpc stat (CostQuerySetStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/cost-query-set/stat",
-            body: "*"
-        };
-    }
+  // Creates a new CostQuerySet. You can make your own custom query that meets your needs, and input it as an `option` parameter of the resource. Queries such as `group_by` and `granularity` are provided by default.
+  rpc create (CreateCostQuerySetRequest) returns (CostQuerySetInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-query-set/create",
+      body: "*"
+    };
+  }
+
+  // Updates a specific CostQuerySet. You can make changes in the details of queries.
+  rpc update (UpdateCostQuerySetRequest) returns (CostQuerySetInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-query-set/update",
+      body: "*"
+    };
+  }
+
+  // Deletes a specific CostQuerySet. You must specify the `cost_query_set_id` of the CostQuerySet to delete.
+  rpc delete (CostQuerySetRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-query-set/delete",
+      body: "*"
+    };
+  }
+
+  // Gets a specific CostQuerySet. Prints detailed information about the CostQuerySet, including the details of queries.
+  rpc get (CostQuerySetRequest) returns (CostQuerySetInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-query-set/get",
+      body: "*"
+    };
+  }
+
+  // Gets a list of all CostQuerySets. You can use a query to get a filtered list of CostQuerySets.
+  rpc list (CostQuerySetQuery) returns (CostQuerySetsInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-query-set/list",
+      body: "*"
+    };
+  }
+
+  rpc stat (CostQuerySetStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-query-set/stat",
+      body: "*"
+    };
+  }
 }
 
 //{
@@ -67,11 +67,11 @@ service CostQuerySet {
 //        "options": {}
 //}
 message CreateCostQuerySetRequest {
-    string data_source_id = 1;
-    string name = 2;
-    google.protobuf.Struct options = 3;
-    // +optional
-    google.protobuf.Struct tags = 4;
+  string data_source_id = 1;
+  string name = 2;
+  google.protobuf.Struct options = 3;
+  // +optional
+  google.protobuf.Struct tags = 4;
 }
 
 //{
@@ -85,13 +85,13 @@ message CreateCostQuerySetRequest {
 //        "updated_at": "2022-07-19T06:11:03.701Z"
 //}
 message UpdateCostQuerySetRequest {
-    string cost_query_set_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    google.protobuf.Struct options = 3;
-    // +optional
-    google.protobuf.Struct tags = 4;
+  string cost_query_set_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  google.protobuf.Struct options = 3;
+  // +optional
+  google.protobuf.Struct tags = 4;
 }
 
 //{
@@ -99,18 +99,18 @@ message UpdateCostQuerySetRequest {
 //     "domain_id": "domain-58010aa2e451"
 //}
 message CostQuerySetRequest {
-    string cost_query_set_id = 1;
+  string cost_query_set_id = 1;
 }
 
 //{
 //    "query": {}
 //}
 message CostQuerySetQuery {
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    string data_source_id = 2;
-    // +optional
-    string name = 3;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  string data_source_id = 2;
+  // +optional
+  string name = 3;
 }
 
 //{
@@ -125,17 +125,18 @@ message CostQuerySetQuery {
 //        "updated_at": "2022-07-19T06:11:03.701Z"
 //}
 message CostQuerySetInfo {
-    string cost_query_set_id = 1;
-    string name = 2;
-    google.protobuf.Struct options = 3;
-    google.protobuf.Struct tags = 4;
+  string cost_query_set_id = 1;
+  string name = 2;
+  google.protobuf.Struct options = 3;
+  google.protobuf.Struct tags = 4;
 
-    string domain_id = 21;
-    string user_id = 22;
-    string data_source_id = 23;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string user_id = 23;
+  string data_source_id = 24;
 
-    string created_at = 31;
-    string updated_at = 32;
+  string created_at = 31;
+  string updated_at = 32;
 }
 
 //{
@@ -166,11 +167,11 @@ message CostQuerySetInfo {
 //        "total_count": 34
 //}
 message CostQuerySetsInfo {
-    repeated CostQuerySetInfo results = 1;
-    int32 total_count = 2;
+  repeated CostQuerySetInfo results = 1;
+  int32 total_count = 2;
 }
 
 message CostQuerySetStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
-    string data_source_id = 2;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+  string data_source_id = 2;
 }
