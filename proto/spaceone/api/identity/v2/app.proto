@@ -11,191 +11,192 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service App {
-    rpc create (CreateAppRequest) returns (AppInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/app/create"
-            body: "*"
-        };
-    }
+  rpc create (CreateAppRequest) returns (AppInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/app/create"
+      body: "*"
+    };
+  }
 
-    rpc update (UpdateAppRequest) returns (AppInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/app/update"
-            body: "*"
-        };
-    }
+  rpc update (UpdateAppRequest) returns (AppInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/app/update"
+      body: "*"
+    };
+  }
 
-    rpc generate_client_secret (GenerateAPIKeyAppRequest) returns (AppInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/app/generate-client-secret"
-            body: "*"
-        };
-    }
+  rpc generate_client_secret (GenerateAPIKeyAppRequest) returns (AppInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/app/generate-client-secret"
+      body: "*"
+    };
+  }
 
-    rpc enable (AppRequest) returns (AppInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/app/enable"
-            body: "*"
-        };
-    }
+  rpc enable (AppRequest) returns (AppInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/app/enable"
+      body: "*"
+    };
+  }
 
-    rpc disable (AppRequest) returns (AppInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/app/disable"
-            body: "*"
-        };
-    }
+  rpc disable (AppRequest) returns (AppInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/app/disable"
+      body: "*"
+    };
+  }
 
-    rpc delete (AppRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v2/app/delete"
-            body: "*"
-        };
-    }
+  rpc delete (AppRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/identity/v2/app/delete"
+      body: "*"
+    };
+  }
 
-    rpc get (AppRequest) returns (AppInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/app/get"
-            body: "*"
-        };
-    }
+  rpc get (AppRequest) returns (AppInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/app/get"
+      body: "*"
+    };
+  }
 
-    rpc check (AppCheckRequest) returns (CheckAppInfo) {}
+  rpc check (AppCheckRequest) returns (CheckAppInfo) {}
 
-    rpc list (AppSearchQuery) returns (AppsInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/app/list"
-            body: "*"
-        };
-    }
+  rpc list (AppSearchQuery) returns (AppsInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/app/list"
+      body: "*"
+    };
+  }
 
-    rpc stat (AppStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/identity/v2/app/stat"
-            body: "*"
-        };
-    }
+  rpc stat (AppStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/identity/v2/app/stat"
+      body: "*"
+    };
+  }
 }
 
 message CreateAppRequest {
-    enum ResourceGroup {
-        NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
+  enum ResourceGroup {
+    NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
 
-    string name = 1;
-    string role_id = 2;
-    // +optional
-    google.protobuf.Struct tags = 3;
-    // +optional
-    string expired_at = 4;
-    ResourceGroup resource_group = 20;
-    // +optional
-    string workspace_id = 21;
+  string name = 1;
+  string role_id = 2;
+  // +optional
+  google.protobuf.Struct tags = 3;
+  // +optional
+  string expired_at = 4;
+  ResourceGroup resource_group = 20;
+  // +optional
+  string workspace_id = 21;
 }
 
 message UpdateAppRequest {
-    string app_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    google.protobuf.Struct tags = 3;
+  string app_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  google.protobuf.Struct tags = 3;
 }
 
 message GenerateAPIKeyAppRequest {
-    string app_id = 1;
-    // +optional
-    string expired_at = 2;
+  string app_id = 1;
+  // +optional
+  string expired_at = 2;
 }
 
 message AppRequest {
-    string app_id = 1;
+  string app_id = 1;
 }
 
 message AppCheckRequest {
-    string client_id = 1;
-    string domain_id = 2;
+  string client_id = 1;
+  string domain_id = 2;
 }
 
 message CheckAppInfo {
-    repeated string permissions = 1;
+  repeated string permissions = 1;
 }
 
 message AppInfo {
-    enum State {
-        STATE_NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-        EXPIRED = 3;
-    }
-    enum RoleType {
-        ROLE_TYPE_NONE = 0;
-        DOMAIN_ADMIN = 1;
-        WORKSPACE_OWNER = 2;
-    }
-    enum ResourceGroup {
-        GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
+  enum State {
+    STATE_NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    EXPIRED = 3;
+  }
+  enum RoleType {
+    ROLE_TYPE_NONE = 0;
+    DOMAIN_ADMIN = 1;
+    WORKSPACE_OWNER = 2;
+  }
+  enum ResourceGroup {
+    GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
 
-    string app_id = 1;
-    string client_secret = 2;
-    string name = 3;
-    State state = 4;
-    google.protobuf.Struct tags = 5;
-    RoleType role_type = 6;
-    ResourceGroup resource_group = 20;
-    string domain_id = 21;
-    string workspace_id = 22;
-    string role_id = 23;
-    string client_id = 24;
-    string created_at = 31;
-    string expired_at = 32;
+  string app_id = 1;
+  string client_secret = 2;
+  string name = 3;
+  State state = 4;
+  google.protobuf.Struct tags = 5;
+  RoleType role_type = 6;
+  ResourceGroup resource_group = 20;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string role_id = 23;
+  string client_id = 24;
+  string created_at = 31;
+  string expired_at = 32;
+  string last_accessed_at = 33;
 }
 
 message AppSearchQuery {
-    enum State {
-        STATE_NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-        EXPIRED = 3;
-    }
-    enum RoleType {
-        ROLE_TYPE_NONE = 0;
-        DOMAIN_ADMIN = 1;
-        WORKSPACE_OWNER = 2;
-    }
-    enum ResourceGroup {
-        GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
+  enum State {
+    STATE_NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    EXPIRED = 3;
+  }
+  enum RoleType {
+    ROLE_TYPE_NONE = 0;
+    DOMAIN_ADMIN = 1;
+    WORKSPACE_OWNER = 2;
+  }
+  enum ResourceGroup {
+    GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
 
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string app_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    State state = 4;
-    // +optional
-    RoleType role_type = 5;
-    // +optional
-    string workspace_id = 21;
-    // +optional
-    string role_id = 22;
-    // +optional
-    string client_id = 23;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string app_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  State state = 4;
+  // +optional
+  RoleType role_type = 5;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string role_id = 22;
+  // +optional
+  string client_id = 23;
 }
 
 message AppsInfo {
-    repeated AppInfo results = 1;
-    int32 total_count = 2;
+  repeated AppInfo results = 1;
+  int32 total_count = 2;
 }
 
 message AppStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
