@@ -8,53 +8,7 @@
      "title": "Notification API",
      "version": "3.1.0"
    },
-   "paths":{"/notification/notification/create": {
-       "post": {
-         "tags": ["notification > notification"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new Notification. When a Notification is created, it is delivered to a UserChannel or a ProjectChannel depending on the parameter `resource_type`. If a Notification is delivered to a UserChannel, the `resource_type` is `identity.User`, and if a Notification is delivered to a ProjectChannel, the `resource_type` is `identity.Project`.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |resource_type|The type of resource to which the notification is dispatched. Currently, only 'identity.Project' or 'identity.User' can be set.|string|True|\n |resource_id|The ID of the resource to which notifications are dispatched. If resource_type is 'identity.Project', then resource_id requires a project ID values. If resource_type is 'identity.User', then resource_id requires a user ID value.|string|True|\n |topic|The topic of notification.|string|True|\n |message|This message is used for each protocol.|Struct|True|\n |notification_type|INFO, ERROR, SUCCESS, WARNING The type of notification. |string||\n |notification_level|ALL, LV1, LV2, LV3, LV4, LV5 The level of notification. |string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"resource_id" : {"type": "string","title": "RESOURCE_ID" },"topic" : {"type": "string","title": "TOPIC" },"message" : {"type": "object","title": "MESSAGE" },"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"resource_type\": \"identity.Project\",\n   \"resource_id\": \"resource-123456789012\",\n   \"topic\": \"monitoring.Alert\",\n   \"message\": {\n       \"title\": \"[Alerting] Not Running Pods 0:OK alert\",\n       \"description\": \"[spaceone-dev] Not Running Pods 0 is OK\\n\\nFailure level : WorkerNode\\nPanel ... \",\n       \"tags\": {\n           \"urgency\": \"LOW\",\n           \"resource_id\": \"pod\",\n           \"assignee\": \"user1@email.com\",\n           \"created_at\": \"2022-01-01T17:12:45.990Z\",\n           \"state\": \"ACKNOWLEDGED\",\n           \"project_id\": \"project-123456789012\"\n       }\n   },\n   \"notification_type\": \"INFO\",\n   \"notification_level\": \"LV2\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/notification/push": {
-       "post": {
-         "tags": ["notification > notification"],
-         "summary": "Push",
-         "operationId" : "",
-         "description": "### Description \nManually raises a Notification. A Notification is raised with a message to be sent using a valid specific Protocol, and data used for a specific Protocol such as a phone number.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id|The ID of Protocol.|string|True|\n |data||string|True|\n |message||Struct|True|\n |notification_type||string||\n |notification_level||string||\n |topic||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"data" : {"type": "string","title": "DATA" },"message" : {"type": "object","title": "MESSAGE" },"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"topic" : {"type": "string","title": "TOPIC" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"protocol_id\": \"protocol-fb30cb6c28d6\",\n   \"data\": {\n       \"phone_number\": \"01012345678\"\n   },\n   \"message\": {\n       \"tags\": [\n           {\n               \"key\": \"project_id\",\n               \"value\": \"project-xxxx\"\n           },\n           {\n               \"key\": \"project_name\",\n               \"value\": \"Test Project\"\n           },\n           {\n               \"key\": \"resource_id\",\n               \"value\": \"server-yyyyy\"\n           },\n           {\n               \"key\": \"resource_name\",\n               \"value\": \"web-server-001\"\n           }\n       ],\n       \"description\": \"This is Sample Message\",\n       \"title\": \"Sample\"\n   }\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/notification/delete": {
+   "paths":{"/notification/notification/delete": {
        "post": {
          "tags": ["notification > notification"],
          "summary": "Delete",

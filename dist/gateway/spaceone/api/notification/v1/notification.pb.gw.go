@@ -228,7 +228,7 @@ func RegisterNotificationHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.notification.v1.Notification/Create", runtime.WithHTTPPathPattern("/notification/v1/notification/create"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.notification.v1.Notification/Create", runtime.WithHTTPPathPattern("/spaceone.api.notification.v1.Notification/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -253,7 +253,7 @@ func RegisterNotificationHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.notification.v1.Notification/Push", runtime.WithHTTPPathPattern("/notification/v1/notification/push"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.notification.v1.Notification/Push", runtime.WithHTTPPathPattern("/spaceone.api.notification.v1.Notification/push"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -442,7 +442,7 @@ func RegisterNotificationHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.notification.v1.Notification/Create", runtime.WithHTTPPathPattern("/notification/v1/notification/create"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.notification.v1.Notification/Create", runtime.WithHTTPPathPattern("/spaceone.api.notification.v1.Notification/create"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -464,7 +464,7 @@ func RegisterNotificationHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.notification.v1.Notification/Push", runtime.WithHTTPPathPattern("/notification/v1/notification/push"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.notification.v1.Notification/Push", runtime.WithHTTPPathPattern("/spaceone.api.notification.v1.Notification/push"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -594,9 +594,9 @@ func RegisterNotificationHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_Notification_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"notification", "v1", "create"}, ""))
+	pattern_Notification_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.notification.v1.Notification", "create"}, ""))
 
-	pattern_Notification_Push_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"notification", "v1", "push"}, ""))
+	pattern_Notification_Push_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.notification.v1.Notification", "push"}, ""))
 
 	pattern_Notification_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"notification", "v1", "delete"}, ""))
 
