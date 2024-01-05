@@ -12,61 +12,51 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service Notification {
-    
-    // Creates a new Notification. When a Notification is created, it is delivered to a UserChannel or a ProjectChannel depending on the parameter `resource_type`. If a Notification is delivered to a UserChannel, the `resource_type` is `identity.User`, and if a Notification is delivered to a ProjectChannel, the `resource_type` is `identity.Project`.
-    rpc create (CreateNotificationRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/notification/v1/notification/create"
-            body: "*"
-        };
-    }
-    
-    // Manually raises a Notification. A Notification is raised with a message to be sent using a valid specific Protocol, and data used for a specific Protocol such as a phone number.
-    rpc push (PushNotificationRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/notification/v1/notification/push"
-            body: "*"
-        };
-    }
-    
-    // Deletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.
-    rpc delete (NotificationsRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/notification/v1/notification/delete"
-            body: "*"
-        };
-    }
-    
-    // Marks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.
-    rpc set_read (NotificationsRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/notification/v1/notification/set-read"
-            body: "*"
-        };
-    }
-    
-    //Gets a specific Notification. Prints detailed information about the Notification, including not only the message contents(`title`, `description`) but also related data such as created time and urgency.
-    rpc get (GetNotificationRequest) returns (NotificationInfo) {
-        option (google.api.http) = {
-            post: "/notification/v1/notification/get"
-            body: "*"
-        };
-    }
-    
-    //Gets a list of all Notifications. You can use a query to get a filtered list of Notifications.
-    rpc list (NotificationQuery) returns (NotificationsInfo) {
-        option (google.api.http) = {
-            post: "/notification/v1/notification/list"
-            body: "*"
-        };
-    }
 
-    rpc stat (NotificationStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/notification/v1/notification/stat"
-            body: "*"
-        };
-    }
+  // Creates a new Notification. When a Notification is created, it is delivered to a UserChannel or a ProjectChannel depending on the parameter `resource_type`. If a Notification is delivered to a UserChannel, the `resource_type` is `identity.User`, and if a Notification is delivered to a ProjectChannel, the `resource_type` is `identity.Project`.
+  rpc create (CreateNotificationRequest) returns (google.protobuf.Empty) {}
+
+  // Manually raises a Notification. A Notification is raised with a message to be sent using a valid specific Protocol, and data used for a specific Protocol such as a phone number.
+  rpc push (PushNotificationRequest) returns (google.protobuf.Empty) {}
+
+  // Deletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.
+  rpc delete (NotificationsRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/notification/v1/notification/delete"
+      body: "*"
+    };
+  }
+
+  // Marks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.
+  rpc set_read (NotificationsRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/notification/v1/notification/set-read"
+      body: "*"
+    };
+  }
+
+  //Gets a specific Notification. Prints detailed information about the Notification, including not only the message contents(`title`, `description`) but also related data such as created time and urgency.
+  rpc get (GetNotificationRequest) returns (NotificationInfo) {
+    option (google.api.http) = {
+      post: "/notification/v1/notification/get"
+      body: "*"
+    };
+  }
+
+  //Gets a list of all Notifications. You can use a query to get a filtered list of Notifications.
+  rpc list (NotificationQuery) returns (NotificationsInfo) {
+    option (google.api.http) = {
+      post: "/notification/v1/notification/list"
+      body: "*"
+    };
+  }
+
+  rpc stat (NotificationStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/notification/v1/notification/stat"
+      body: "*"
+    };
+  }
 }
 
 //{
@@ -89,39 +79,39 @@ service Notification {
 //    "notification_level": "LV2"
 //}
 message CreateNotificationRequest {
-    enum NotificationType {
-        NOTIFICATION_TYPE_NONE = 0;
-        INFO = 1;
-        ERROR = 2;
-        SUCCESS = 3;
-        WARNING = 4;
-    }
-    enum NotificationLEVEL {
-        NONE = 0;
-        ALL = 1;
-        LV1 = 2;
-        LV2 = 3;
-        LV3 = 4;
-        LV4 = 5;
-        LV5 = 6;
-    }
-    // The type of resource to which the notification is dispatched.
-    // Currently, only "identity.Project" or "identity.User" can be set.
-    string resource_type = 1;
-    // The ID of the resource to which notifications are dispatched.
-    // If resource_type is "identity.Project", then resource_id requires a project ID values.
-    // If resource_type is "identity.User", then resource_id requires a user ID value.
-    string resource_id = 2;
-    // The topic of notification.
-    string topic = 3;
-    // This message is used for each protocol.
-    google.protobuf.Struct message = 4;
-    // The type of notification.
-    // +optional
-    NotificationType notification_type = 5;
-    // The level of notification.
-    // +optional
-    NotificationLEVEL notification_level = 7;
+  enum NotificationType {
+    NOTIFICATION_TYPE_NONE = 0;
+    INFO = 1;
+    ERROR = 2;
+    SUCCESS = 3;
+    WARNING = 4;
+  }
+  enum NotificationLEVEL {
+    NONE = 0;
+    ALL = 1;
+    LV1 = 2;
+    LV2 = 3;
+    LV3 = 4;
+    LV4 = 5;
+    LV5 = 6;
+  }
+  // The type of resource to which the notification is dispatched.
+  // Currently, only "identity.Project" or "identity.User" can be set.
+  string resource_type = 1;
+  // The ID of the resource to which notifications are dispatched.
+  // If resource_type is "identity.Project", then resource_id requires a project ID values.
+  // If resource_type is "identity.User", then resource_id requires a user ID value.
+  string resource_id = 2;
+  // The topic of notification.
+  string topic = 3;
+  // This message is used for each protocol.
+  google.protobuf.Struct message = 4;
+  // The type of notification.
+  // +optional
+  NotificationType notification_type = 5;
+  // The level of notification.
+  // +optional
+  NotificationLEVEL notification_level = 7;
 }
 
 //{
@@ -153,16 +143,16 @@ message CreateNotificationRequest {
 //    }
 //}
 message PushNotificationRequest {
-    // The ID of Protocol.
-    string protocol_id = 1;
-    string data = 2;
-    google.protobuf.Struct message = 3;
-    // +optional
-    string notification_type = 4;
-    // +optional
-    string notification_level = 5;
-    // +optional
-    string topic = 6;
+  // The ID of Protocol.
+  string protocol_id = 1;
+  string data = 2;
+  google.protobuf.Struct message = 3;
+  // +optional
+  string notification_type = 4;
+  // +optional
+  string notification_level = 5;
+  // +optional
+  string topic = 6;
 }
 
 //{
@@ -173,8 +163,8 @@ message PushNotificationRequest {
 //    ]
 //}
 message NotificationsRequest {
-    // ID list of Notifications.
-    repeated string notifications = 1;
+  // ID list of Notifications.
+  repeated string notifications = 1;
 }
 
 
@@ -182,11 +172,11 @@ message NotificationsRequest {
 //    "notification_id": "notification-4025c1b61225"
 //}
 message GetNotificationRequest {
-    // The ID of Notification.
-    string notification_id = 1;
-    // +optional
-    // Check whether read or not
-    bool set_read = 2;
+  // The ID of Notification.
+  string notification_id = 1;
+  // +optional
+  // Check whether read or not
+  bool set_read = 2;
 }
 
 //{
@@ -201,48 +191,48 @@ message GetNotificationRequest {
 //    }
 //}
 message NotificationQuery {
-    enum NotificationType {
-        NOTIFICATION_TYPE_NONE = 0;
-        INFO = 1;
-        ERROR = 2;
-        SUCCESS = 3;
-        WARNING = 4;
-    }
-    enum NotificationLEVEL {
-        NONE = 0;
-        ALL = 1;
-        LV1 = 2;
-        LV2 = 3;
-        LV3 = 4;
-        LV4 = 5;
-        LV5 = 6;
-    }
+  enum NotificationType {
+    NOTIFICATION_TYPE_NONE = 0;
+    INFO = 1;
+    ERROR = 2;
+    SUCCESS = 3;
+    WARNING = 4;
+  }
+  enum NotificationLEVEL {
+    NONE = 0;
+    ALL = 1;
+    LV1 = 2;
+    LV2 = 3;
+    LV3 = 4;
+    LV4 = 5;
+    LV5 = 6;
+  }
 
-    // Query format provided by SpaceONE. Please check the link for more information.
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // The ID of notification.
-    // +optional
-    string notification_id = 2;
-    // The topic of notification.
-    // +optional
-    string topic = 3;
-    // The type of notification.
-    // +optional
-    NotificationType notification_type = 4;
-    // The level of notification.
-    // +optional
-    NotificationLEVEL notification_level = 5;
-    // Whether or not to check the notification.
-    // If is_read is False, the user has not checked the notification yet.
-    // +optional
-    bool is_read = 6;
-    // The project ID to which the notification will be dispatched.
-    // +optional
-    string project_id = 21;
-    // The ID of parent notification. Not used yet.
-    // +optional
-    string parent_notification_id = 22;
+  // Query format provided by SpaceONE. Please check the link for more information.
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // The ID of notification.
+  // +optional
+  string notification_id = 2;
+  // The topic of notification.
+  // +optional
+  string topic = 3;
+  // The type of notification.
+  // +optional
+  NotificationType notification_type = 4;
+  // The level of notification.
+  // +optional
+  NotificationLEVEL notification_level = 5;
+  // Whether or not to check the notification.
+  // If is_read is False, the user has not checked the notification yet.
+  // +optional
+  bool is_read = 6;
+  // The project ID to which the notification will be dispatched.
+  // +optional
+  string project_id = 21;
+  // The ID of parent notification. Not used yet.
+  // +optional
+  string parent_notification_id = 22;
 }
 
 //{
@@ -268,45 +258,45 @@ message NotificationQuery {
 //    "created_at": "2021-06-25T06:42:05.867Z"
 //}
 message NotificationInfo {
-    enum NotificationType {
-        NOTIFICATION_TYPE_NONE = 0;
-        INFO = 1;
-        ERROR = 2;
-        SUCCESS = 3;
-        WARNING = 4;
-    }
-    enum NotificationLEVEL {
-        NONE = 0;
-        ALL = 1;
-        LV1 = 2;
-        LV2 = 3;
-        LV3 = 4;
-        LV4 = 5;
-        LV5 = 6;
-    }
+  enum NotificationType {
+    NOTIFICATION_TYPE_NONE = 0;
+    INFO = 1;
+    ERROR = 2;
+    SUCCESS = 3;
+    WARNING = 4;
+  }
+  enum NotificationLEVEL {
+    NONE = 0;
+    ALL = 1;
+    LV1 = 2;
+    LV2 = 3;
+    LV3 = 4;
+    LV4 = 5;
+    LV5 = 6;
+  }
 
-    // The ID of notification.
-    string notification_id = 1;
-    // The topic of notification.
-    string topic = 2;
-    // The contents of notification.
-    // This message is used for each protocol.
-    google.protobuf.Struct message = 3;
-    // The type of notification.
-    NotificationType notification_type = 4;
-    // The level of notification.
-    NotificationLEVEL notification_level = 5;
-    // Whether or not to check the notification.
-    // If notification has been returned at least once through the Get or List method, is_read is changed to True.
-    bool is_read = 6;
+  // The ID of notification.
+  string notification_id = 1;
+  // The topic of notification.
+  string topic = 2;
+  // The contents of notification.
+  // This message is used for each protocol.
+  google.protobuf.Struct message = 3;
+  // The type of notification.
+  NotificationType notification_type = 4;
+  // The level of notification.
+  NotificationLEVEL notification_level = 5;
+  // Whether or not to check the notification.
+  // If notification has been returned at least once through the Get or List method, is_read is changed to True.
+  bool is_read = 6;
 
-    // The ID of domain
-    string domain_id = 21;
-    // The ID of user to whom the notification was dispatched.
-    string user_id = 22;
+  // The ID of domain
+  string domain_id = 21;
+  // The ID of user to whom the notification was dispatched.
+  string user_id = 22;
 
-    // Notification creation time.
-    string created_at = 31;
+  // Notification creation time.
+  string created_at = 31;
 }
 
 //{
@@ -359,14 +349,14 @@ message NotificationInfo {
 //    "total_count": 2
 //}
 message NotificationsInfo {
-    // List of queried notifications.
-    repeated NotificationInfo results = 1;
-    // Total counts of queried notifications.
-    int32 total_count = 2;
+  // List of queried notifications.
+  repeated NotificationInfo results = 1;
+  // Total counts of queried notifications.
+  int32 total_count = 2;
 }
 
 message NotificationStatQuery {
-    // is_required: true
-    // Statistics Query format provided by SpaceONE. Please check the link for more information.
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  // is_required: true
+  // Statistics Query format provided by SpaceONE. Please check the link for more information.
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
