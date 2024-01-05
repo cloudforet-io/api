@@ -1197,11 +1197,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |keyword||string|True|\n |state|ENABLED, DISABLED, PENDING |string||\n |page||Page||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |keyword||string|True|\n |workspace_id||string|True|\n |state|ENABLED, DISABLED, PENDING |string||\n |page||Page||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"keyword" : {"type": "string","title": "KEYWORD" },"state" : {"type": "string","title": "STATE" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" }                 }
+                 "properties": {"keyword" : {"type": "string","title": "KEYWORD" },"state" : {"type": "string","title": "STATE" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -3987,9 +3987,9 @@
                 "title": "UsersSummaryInfo"
            }
            ,        "WorkspaceUserFindRequest": {
-         "properties" : {"keyword" : {"type": "string","title": "KEYWORD"},"state" : {"type": "string","title": "STATE"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
+         "properties" : {"keyword" : {"type": "string","title": "KEYWORD"},"state" : {"type": "string","title": "STATE"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": ["keyword"],
+         "required": ["keyword","workspace_id"],
                 "title": "WorkspaceUserFindRequest"
            }
            ,        "WorkspaceUserInfo": {
