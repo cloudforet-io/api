@@ -13,90 +13,35 @@ import "spaceone/api/core/v2/query.proto";
 
 service Supervisor {
     // Creates a new Supervisor. Only Users with the `MANAGED` permission can set the Supervisor `public`. The Supervisor manages the lifecycle of plugin instances by the Supervisor's state. When a Supervisor is created, the state of the resource is `PENDING`. If the state remains the same for 5 minutes, the state is changed to `DISCONNECTED`.
-    rpc publish (PublishSupervisorRequest) returns (SupervisorInfo) {
-        option (google.api.http) = {
-            post: "/plugin/v1/supervisor/publish"
-            body: "*"
-        };
-    }
+    rpc publish (PublishSupervisorRequest) returns (SupervisorInfo) {}
     
     // Registers a specific Supervisor. You must specify the `supervisor_id` of the Supervisor to register. The `state` of the Supervisor changes from `PENDING` to `ENABLED`.
-    rpc register (RegisterSupervisorRequest) returns (SupervisorInfo) {
-        option (google.api.http) = {
-            post: "/plugin/v1/supervisor/register"
-            body: "*"
-        };
-    }
+    rpc register (RegisterSupervisorRequest) returns (SupervisorInfo) {}
     
     // Updates a specific Supervisor. You can make changes in Supervisor settings, including `labels`, `tags`, and the `bool` type parameter `is_public`.
-    rpc update (RegisterSupervisorRequest) returns (SupervisorInfo) {
-        option (google.api.http) = {
-            post: "/plugin/v1/supervisor/update"
-            body: "*"
-        };
-    }
+    rpc update (RegisterSupervisorRequest) returns (SupervisorInfo) {}
     
     // Deregisters and deletes a specific Supervisor. You must specify the `supervisor_id` of the Supervisor to deregister.
-    rpc deregister (SupervisorRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/plugin/v1/supervisor/deregister"
-            body: "*"
-        };
-    }
+    rpc deregister (SupervisorRequest) returns (google.protobuf.Empty) {}
     
     // Enables a specific Supervisor. By changing the `state` parameter to `ENABLED`, the Supervisor can deploy or delete the `pod` of the plugin instance.
-    rpc enable (SupervisorRequest) returns (SupervisorInfo) {
-        option (google.api.http) = {
-            post: "/plugin/v1/supervisor/enable"
-            body: "*"
-        };
-    }
+    rpc enable (SupervisorRequest) returns (SupervisorInfo) {}
     
     // Disables a specific Supervisor. By changing the `state` parameter to `DISABLED`, the Supervisor cannot deploy or delete the `pod` of the plugin instance.
-    rpc disable (SupervisorRequest) returns (SupervisorInfo) {
-        option (google.api.http) = {
-            post: "/plugin/v1/supervisor/disable"
-            body: "*"
-        };
-    }
+    rpc disable (SupervisorRequest) returns (SupervisorInfo) {}
     
     // Recovers a specific plugin instance in a specific Supervisor. Changes the `state` of the Supervisor to `RE-PROVISIONING`.
-    rpc recover_plugin (RecoverPluginRequest) returns (PluginInfo) {
-        option (google.api.http) = {
-            post: "/plugin/v1/supervisor/recover-plugin"
-            body: "*"
-        };
-    }
+    rpc recover_plugin (RecoverPluginRequest) returns (PluginInfo) {}
     
-    rpc get (SupervisorRequest) returns (SupervisorInfo) {
-        option (google.api.http) = {
-            post: "/plugin/v1/supervisor/get"
-            body: "*"
-        };
-    }
+    rpc get (SupervisorRequest) returns (SupervisorInfo) {}
     
     // Gets a list of all Supervisors. You can use a query to get a filtered list of Supervisors.
-    rpc list (SupervisorQuery) returns (SupervisorsInfo) {
-        option (google.api.http) = {
-            post: "/plugin/v1/supervisor/list"
-            body: "*"
-        };
-    }
+    rpc list (SupervisorQuery) returns (SupervisorsInfo) {}
     
-    rpc stat (SupervisorStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/plugin/v1/supervisor/stat"
-            body: "*"
-        };
-    }
+    rpc stat (SupervisorStatQuery) returns (google.protobuf.Struct) {}
     
     // Gets a list of all plugin instances regardless of Supervisors. Prints detailed information about the plugin instances, including `version`, `state`, and the relevant Supervisor.
-    rpc list_plugins (PluginQuery) returns (PluginsInfo) {
-        option (google.api.http) = {
-            post: "/plugin/v1/supervisor/list-plugins"
-            body: "*"
-        };
-    }
+    rpc list_plugins (PluginQuery) returns (PluginsInfo) {}
 }
 
 //{
