@@ -332,7 +332,7 @@ func RegisterSupervisorHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Publish", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/publish"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Publish", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -357,7 +357,7 @@ func RegisterSupervisorHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Register", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/register"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Register", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/register"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -382,7 +382,7 @@ func RegisterSupervisorHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Update", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/update"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Update", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -407,7 +407,7 @@ func RegisterSupervisorHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Deregister", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/deregister"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Deregister", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/deregister"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -432,7 +432,7 @@ func RegisterSupervisorHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Enable", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/enable"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Enable", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/enable"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -457,7 +457,7 @@ func RegisterSupervisorHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Disable", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/disable"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Disable", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/disable"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -482,7 +482,7 @@ func RegisterSupervisorHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/RecoverPlugin", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/recover-plugin"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/RecoverPlugin", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/recover_plugin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -507,7 +507,7 @@ func RegisterSupervisorHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Get", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/get"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Get", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -532,7 +532,7 @@ func RegisterSupervisorHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/List", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/list"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/List", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -557,7 +557,7 @@ func RegisterSupervisorHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Stat", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/stat"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Stat", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/stat"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -582,7 +582,7 @@ func RegisterSupervisorHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/ListPlugins", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/list-plugins"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/ListPlugins", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/list_plugins"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -646,7 +646,7 @@ func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Publish", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/publish"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Publish", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -668,7 +668,7 @@ func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Register", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/register"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Register", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/register"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -690,7 +690,7 @@ func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Update", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/update"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Update", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -712,7 +712,7 @@ func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Deregister", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/deregister"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Deregister", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/deregister"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -734,7 +734,7 @@ func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Enable", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/enable"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Enable", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/enable"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -756,7 +756,7 @@ func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Disable", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/disable"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Disable", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/disable"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -778,7 +778,7 @@ func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/RecoverPlugin", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/recover-plugin"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/RecoverPlugin", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/recover_plugin"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -800,7 +800,7 @@ func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Get", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/get"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Get", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -822,7 +822,7 @@ func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/List", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/list"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/List", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -844,7 +844,7 @@ func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Stat", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/stat"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/Stat", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/stat"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -866,7 +866,7 @@ func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/ListPlugins", runtime.WithHTTPPathPattern("/plugin/v1/supervisor/list-plugins"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.plugin.v1.Supervisor/ListPlugins", runtime.WithHTTPPathPattern("/spaceone.api.plugin.v1.Supervisor/list_plugins"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -886,27 +886,27 @@ func RegisterSupervisorHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 }
 
 var (
-	pattern_Supervisor_Publish_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"plugin", "v1", "supervisor", "publish"}, ""))
+	pattern_Supervisor_Publish_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.plugin.v1.Supervisor", "publish"}, ""))
 
-	pattern_Supervisor_Register_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"plugin", "v1", "supervisor", "register"}, ""))
+	pattern_Supervisor_Register_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.plugin.v1.Supervisor", "register"}, ""))
 
-	pattern_Supervisor_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"plugin", "v1", "supervisor", "update"}, ""))
+	pattern_Supervisor_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.plugin.v1.Supervisor", "update"}, ""))
 
-	pattern_Supervisor_Deregister_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"plugin", "v1", "supervisor", "deregister"}, ""))
+	pattern_Supervisor_Deregister_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.plugin.v1.Supervisor", "deregister"}, ""))
 
-	pattern_Supervisor_Enable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"plugin", "v1", "supervisor", "enable"}, ""))
+	pattern_Supervisor_Enable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.plugin.v1.Supervisor", "enable"}, ""))
 
-	pattern_Supervisor_Disable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"plugin", "v1", "supervisor", "disable"}, ""))
+	pattern_Supervisor_Disable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.plugin.v1.Supervisor", "disable"}, ""))
 
-	pattern_Supervisor_RecoverPlugin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"plugin", "v1", "supervisor", "recover-plugin"}, ""))
+	pattern_Supervisor_RecoverPlugin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.plugin.v1.Supervisor", "recover_plugin"}, ""))
 
-	pattern_Supervisor_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"plugin", "v1", "supervisor", "get"}, ""))
+	pattern_Supervisor_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.plugin.v1.Supervisor", "get"}, ""))
 
-	pattern_Supervisor_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"plugin", "v1", "supervisor", "list"}, ""))
+	pattern_Supervisor_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.plugin.v1.Supervisor", "list"}, ""))
 
-	pattern_Supervisor_Stat_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"plugin", "v1", "supervisor", "stat"}, ""))
+	pattern_Supervisor_Stat_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.plugin.v1.Supervisor", "stat"}, ""))
 
-	pattern_Supervisor_ListPlugins_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"plugin", "v1", "supervisor", "list-plugins"}, ""))
+	pattern_Supervisor_ListPlugins_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"spaceone.api.plugin.v1.Supervisor", "list_plugins"}, ""))
 )
 
 var (

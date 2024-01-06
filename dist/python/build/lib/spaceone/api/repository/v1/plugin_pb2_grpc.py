@@ -3,7 +3,6 @@
 import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
-from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.repository.v1 import plugin_pb2 as spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2
 
 
@@ -55,11 +54,6 @@ class PluginStub(object):
                 '/spaceone.api.repository.v1.Plugin/list',
                 request_serializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginsInfo.FromString,
-                )
-        self.stat = channel.unary_unary(
-                '/spaceone.api.repository.v1.Plugin/stat',
-                request_serializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginStatQuery.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 )
 
 
@@ -122,12 +116,6 @@ class PluginServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def stat(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_PluginServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -170,11 +158,6 @@ def add_PluginServicer_to_server(servicer, server):
                     servicer.list,
                     request_deserializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginQuery.FromString,
                     response_serializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginsInfo.SerializeToString,
-            ),
-            'stat': grpc.unary_unary_rpc_method_handler(
-                    servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginStatQuery.FromString,
-                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -319,22 +302,5 @@ class Plugin(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.repository.v1.Plugin/list',
             spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginQuery.SerializeToString,
             spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginsInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def stat(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.repository.v1.Plugin/stat',
-            spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginStatQuery.SerializeToString,
-            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

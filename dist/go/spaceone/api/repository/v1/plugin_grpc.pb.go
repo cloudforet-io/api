@@ -11,7 +11,6 @@ package v1
 import (
 	context "context"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -31,7 +30,6 @@ const (
 	Plugin_GetVersions_FullMethodName = "/spaceone.api.repository.v1.Plugin/get_versions"
 	Plugin_Get_FullMethodName         = "/spaceone.api.repository.v1.Plugin/get"
 	Plugin_List_FullMethodName        = "/spaceone.api.repository.v1.Plugin/list"
-	Plugin_Stat_FullMethodName        = "/spaceone.api.repository.v1.Plugin/stat"
 )
 
 // PluginClient is the client API for Plugin service.
@@ -54,7 +52,6 @@ type PluginClient interface {
 	Get(ctx context.Context, in *RepositoryPluginRequest, opts ...grpc.CallOption) (*PluginInfo, error)
 	// Gets a list of all Plugins registered in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Plugins. You can use a query to get a filtered list of Plugins.
 	List(ctx context.Context, in *PluginQuery, opts ...grpc.CallOption) (*PluginsInfo, error)
-	Stat(ctx context.Context, in *PluginStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
 type pluginClient struct {
@@ -137,15 +134,6 @@ func (c *pluginClient) List(ctx context.Context, in *PluginQuery, opts ...grpc.C
 	return out, nil
 }
 
-func (c *pluginClient) Stat(ctx context.Context, in *PluginStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
-	out := new(_struct.Struct)
-	err := c.cc.Invoke(ctx, Plugin_Stat_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // PluginServer is the server API for Plugin service.
 // All implementations must embed UnimplementedPluginServer
 // for forward compatibility
@@ -166,7 +154,6 @@ type PluginServer interface {
 	Get(context.Context, *RepositoryPluginRequest) (*PluginInfo, error)
 	// Gets a list of all Plugins registered in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Plugins. You can use a query to get a filtered list of Plugins.
 	List(context.Context, *PluginQuery) (*PluginsInfo, error)
-	Stat(context.Context, *PluginStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedPluginServer()
 }
 
@@ -197,9 +184,6 @@ func (UnimplementedPluginServer) Get(context.Context, *RepositoryPluginRequest) 
 }
 func (UnimplementedPluginServer) List(context.Context, *PluginQuery) (*PluginsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
-func (UnimplementedPluginServer) Stat(context.Context, *PluginStatQuery) (*_struct.Struct, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
 }
 func (UnimplementedPluginServer) mustEmbedUnimplementedPluginServer() {}
 
@@ -358,24 +342,6 @@ func _Plugin_List_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Plugin_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PluginStatQuery)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PluginServer).Stat(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Plugin_Stat_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PluginServer).Stat(ctx, req.(*PluginStatQuery))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Plugin_ServiceDesc is the grpc.ServiceDesc for Plugin service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -414,10 +380,6 @@ var Plugin_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "list",
 			Handler:    _Plugin_List_Handler,
-		},
-		{
-			MethodName: "stat",
-			Handler:    _Plugin_Stat_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
