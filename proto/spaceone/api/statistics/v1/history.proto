@@ -1,0 +1,69 @@
+// A History is a record of data collection based on a Schedule.
+syntax = "proto3";
+
+package spaceone.api.statistics.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/statistics/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v1/query.proto";
+
+
+service History {
+
+    // Creates a new History. Gets a Schedule as an input and creates a History as an output. You can use this method to manually run a specific Schedule.
+    rpc create (CreateHistoryRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/statistics/v1/history/create"
+            body: "*"
+        };
+    }
+
+    // Gets a list of all Histories. You can use a query to get a filtered list of Histories.
+    rpc list (QueryHistoryRequest) returns (HistoryInfo) {
+        option (google.api.http) = {
+            post: "/statistics/v1/history/list"
+            body: "*"
+        };
+    }
+
+    rpc stat (HistoryStatRequest) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/statistics/v1/history/stat"
+            body: "*"
+        };
+    }
+}
+
+message CreateHistoryRequest {
+    string schedule_id = 1;
+}
+
+message QueryHistoryRequest {
+    // +optional
+    spaceone.api.core.v1.Query query = 1;
+    // +optional
+    string topic = 2;
+}
+
+message HistoryValueInfo {
+    string topic = 1;
+    google.protobuf.Struct values = 2;
+
+    string domain_id = 21;
+
+    string created_at = 31;
+}
+
+message HistoryInfo {
+    repeated HistoryValueInfo results = 1;
+    int32 total_count = 2;
+}
+
+message HistoryStatRequest {
+    spaceone.api.core.v1.StatisticsQuery query = 1;
+    // +optional
+    string topic = 2;
+}
