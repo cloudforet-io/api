@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/statistics/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/statistics/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_History_Create_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.HistoryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateHistoryRequest
+func request_History_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.HistoryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateHistoryRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -45,8 +45,8 @@ func request_History_Create_0(ctx context.Context, marshaler runtime.Marshaler, 
 
 }
 
-func local_request_History_Create_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.HistoryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.CreateHistoryRequest
+func local_request_History_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.HistoryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.CreateHistoryRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -58,8 +58,8 @@ func local_request_History_Create_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-func request_History_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.HistoryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.QueryHistoryRequest
+func request_History_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.HistoryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.QueryHistoryRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -71,8 +71,8 @@ func request_History_List_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_History_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.HistoryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.QueryHistoryRequest
+func local_request_History_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.HistoryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.QueryHistoryRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -84,8 +84,8 @@ func local_request_History_List_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func request_History_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.HistoryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.HistoryStatRequest
+func request_History_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.HistoryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.HistoryStatRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -97,8 +97,8 @@ func request_History_Stat_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_History_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.HistoryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.HistoryStatRequest
+func local_request_History_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.HistoryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.HistoryStatRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -114,7 +114,7 @@ func local_request_History_Stat_0(ctx context.Context, marshaler runtime.Marshal
 // UnaryRPC     :call HistoryServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterHistoryHandlerFromEndpoint instead.
-func RegisterHistoryHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.HistoryServer) error {
+func RegisterHistoryHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.HistoryServer) error {
 
 	mux.Handle("POST", pattern_History_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -222,15 +222,15 @@ func RegisterHistoryHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeM
 // RegisterHistoryHandler registers the http handlers for service History to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterHistoryHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterHistoryHandlerClient(ctx, mux, v1_0.NewHistoryClient(conn))
+	return RegisterHistoryHandlerClient(ctx, mux, extV1.NewHistoryClient(conn))
 }
 
 // RegisterHistoryHandlerClient registers the http handlers for service History
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.HistoryClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.HistoryClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.HistoryClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.HistoryClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.HistoryClient" to call the correct interceptors.
-func RegisterHistoryHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.HistoryClient) error {
+// "extV1.HistoryClient" to call the correct interceptors.
+func RegisterHistoryHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.HistoryClient) error {
 
 	mux.Handle("POST", pattern_History_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())

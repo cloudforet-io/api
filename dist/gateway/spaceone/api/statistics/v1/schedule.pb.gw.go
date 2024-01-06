@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/statistics/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/statistics/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -32,8 +32,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_Schedule_Add_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.AddScheduleRequest
+func request_Schedule_Add_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AddScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -45,8 +45,8 @@ func request_Schedule_Add_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_Schedule_Add_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.AddScheduleRequest
+func local_request_Schedule_Add_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AddScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -58,8 +58,8 @@ func local_request_Schedule_Add_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func request_Schedule_Update_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateScheduleRequest
+func request_Schedule_Update_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -71,8 +71,8 @@ func request_Schedule_Update_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Schedule_Update_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.UpdateScheduleRequest
+func local_request_Schedule_Update_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.UpdateScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -84,8 +84,8 @@ func local_request_Schedule_Update_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Schedule_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ScheduleRequest
+func request_Schedule_Enable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -97,8 +97,8 @@ func request_Schedule_Enable_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Schedule_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ScheduleRequest
+func local_request_Schedule_Enable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -110,8 +110,8 @@ func local_request_Schedule_Enable_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Schedule_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ScheduleRequest
+func request_Schedule_Disable_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -123,8 +123,8 @@ func request_Schedule_Disable_0(ctx context.Context, marshaler runtime.Marshaler
 
 }
 
-func local_request_Schedule_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ScheduleRequest
+func local_request_Schedule_Disable_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -136,8 +136,8 @@ func local_request_Schedule_Disable_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-func request_Schedule_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ScheduleRequest
+func request_Schedule_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -149,8 +149,8 @@ func request_Schedule_Delete_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_Schedule_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ScheduleRequest
+func local_request_Schedule_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -162,8 +162,8 @@ func local_request_Schedule_Delete_0(ctx context.Context, marshaler runtime.Mars
 
 }
 
-func request_Schedule_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ScheduleRequest
+func request_Schedule_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -175,8 +175,8 @@ func request_Schedule_Get_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 }
 
-func local_request_Schedule_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ScheduleRequest
+func local_request_Schedule_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ScheduleRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -188,8 +188,8 @@ func local_request_Schedule_Get_0(ctx context.Context, marshaler runtime.Marshal
 
 }
 
-func request_Schedule_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ScheduleQuery
+func request_Schedule_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ScheduleQuery
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -201,8 +201,8 @@ func request_Schedule_List_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Schedule_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ScheduleQuery
+func local_request_Schedule_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ScheduleQuery
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -214,8 +214,8 @@ func local_request_Schedule_List_0(ctx context.Context, marshaler runtime.Marsha
 
 }
 
-func request_Schedule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ScheduleStatQuery
+func request_Schedule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.ScheduleClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ScheduleStatQuery
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -227,8 +227,8 @@ func request_Schedule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_Schedule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v1_0.ScheduleStatQuery
+func local_request_Schedule_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.ScheduleServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.ScheduleStatQuery
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -244,7 +244,7 @@ func local_request_Schedule_Stat_0(ctx context.Context, marshaler runtime.Marsha
 // UnaryRPC     :call ScheduleServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterScheduleHandlerFromEndpoint instead.
-func RegisterScheduleHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.ScheduleServer) error {
+func RegisterScheduleHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.ScheduleServer) error {
 
 	mux.Handle("POST", pattern_Schedule_Add_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -477,15 +477,15 @@ func RegisterScheduleHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 // RegisterScheduleHandler registers the http handlers for service Schedule to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterScheduleHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterScheduleHandlerClient(ctx, mux, v1_0.NewScheduleClient(conn))
+	return RegisterScheduleHandlerClient(ctx, mux, extV1.NewScheduleClient(conn))
 }
 
 // RegisterScheduleHandlerClient registers the http handlers for service Schedule
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.ScheduleClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.ScheduleClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.ScheduleClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.ScheduleClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.ScheduleClient" to call the correct interceptors.
-func RegisterScheduleHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.ScheduleClient) error {
+// "extV1.ScheduleClient" to call the correct interceptors.
+func RegisterScheduleHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.ScheduleClient) error {
 
 	mux.Handle("POST", pattern_Schedule_Add_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
