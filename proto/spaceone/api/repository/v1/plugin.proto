@@ -13,83 +13,83 @@ import "spaceone/api/repository/v1/repository.proto";
 
 
 service Plugin {
-    // Registers a Plugin. The parameter `registry_type`, meaning container registry type, can be either `DOCKER_HUB` or `AWS_PRIVATE_ECR`. The default value of the `registry_type` is `DOCKER_HUB`. The parameter `registry_url` is required if the `registry_type` is not `DOCKER_HUB`. The parameter `image` is limited to 40 characters.
-    rpc register (CreatePluginRequest) returns (PluginInfo) {
-        option (google.api.http) = {
-            post: "/repository/v1/plugin/register"
-            body: "*"
-        };
-    }
-    
-    // Updates a specific Plugin registered. A Plugin can be updated only if its Repository's `repository_type` is `local`. You can make changes in Plugin settings, including `template` and its options, `schema`.
-    rpc update (UpdatePluginRequest) returns (PluginInfo) {
-        option (google.api.http) = {
-            post: "/repository/v1/plugin/update"
-            body: "*"
-        };
-    }
-    
-    // Deregisters and deletes a specific Plugin. You must specify the `plugin_id` of the Plugin to deregister.
-    rpc deregister (PluginRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/repository/v1/plugin/deregister"
-            body: "*"
-        };
-    }
-    
-    // Enables a specific Plugin. If the Plugin is enabled, the Plugin can be used as its parameter `state` becomes `ENABLED`.
-    rpc enable (PluginRequest) returns (PluginInfo) {
-        option (google.api.http) = {
-            post: "/repository/v1/plugin/enable"
-            body: "*"
-        };
-    }
-    
-    // Disables a specific Plugin. If the Plugin is disabled, the Plugin cannot be used as its parameter `state` becomes `DISABLED`.
-    rpc disable (PluginRequest) returns (PluginInfo) {
-        option (google.api.http) = {
-            post: "/repository/v1/plugin/disable"
-            body: "*"
-        };
-    }
-    
-    // Gets all version data of a specific Plugin from its Repository. The parameter `plugin_id` is used as an identifier of a Plugin to get version data.
-    rpc get_versions (RepositoryPluginRequest) returns (VersionsInfo) {
-        option (google.api.http) = {
-            post: "/repository/v1/plugin/get-versions"
-            body: "*"
-        };
-    }
-    
-    // Gets a specific Plugin. Prints detailed information about the Plugin, including  `image`, `registry_url`, and `state`.
-    rpc get (RepositoryPluginRequest) returns (PluginInfo) {
-        option (google.api.http) = {
-            post: "/repository/v1/plugin/get"
-            body: "*"
-        };
-    }
-    
-    // Gets a list of all Plugins registered in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Plugins. You can use a query to get a filtered list of Plugins.
-    rpc list (PluginQuery) returns (PluginsInfo) {
-        option (google.api.http) = {
-            post: "/repository/v1/plugin/list"
-            body: "*"
-        };
-    }
-    
-    rpc stat (PluginStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/repository/v1/plugin/stat"
-            body: "*"
-        };
-    }
+  // Registers a Plugin. The parameter `registry_type`, meaning container registry type, can be either `DOCKER_HUB` or `AWS_PRIVATE_ECR`. The default value of the `registry_type` is `DOCKER_HUB`. The parameter `registry_url` is required if the `registry_type` is not `DOCKER_HUB`. The parameter `image` is limited to 40 characters.
+  rpc register (CreatePluginRequest) returns (PluginInfo) {
+    option (google.api.http) = {
+      post: "/repository/v1/plugin/register"
+      body: "*"
+    };
+  }
+
+  // Updates a specific Plugin registered. A Plugin can be updated only if its Repository's `repository_type` is `local`. You can make changes in Plugin settings, including `template` and its options, `schema`.
+  rpc update (UpdatePluginRequest) returns (PluginInfo) {
+    option (google.api.http) = {
+      post: "/repository/v1/plugin/update"
+      body: "*"
+    };
+  }
+
+  // Deregisters and deletes a specific Plugin. You must specify the `plugin_id` of the Plugin to deregister.
+  rpc deregister (PluginRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/repository/v1/plugin/deregister"
+      body: "*"
+    };
+  }
+
+  // Enables a specific Plugin. If the Plugin is enabled, the Plugin can be used as its parameter `state` becomes `ENABLED`.
+  rpc enable (PluginRequest) returns (PluginInfo) {
+    option (google.api.http) = {
+      post: "/repository/v1/plugin/enable"
+      body: "*"
+    };
+  }
+
+  // Disables a specific Plugin. If the Plugin is disabled, the Plugin cannot be used as its parameter `state` becomes `DISABLED`.
+  rpc disable (PluginRequest) returns (PluginInfo) {
+    option (google.api.http) = {
+      post: "/repository/v1/plugin/disable"
+      body: "*"
+    };
+  }
+
+  // Gets all version data of a specific Plugin from its Repository. The parameter `plugin_id` is used as an identifier of a Plugin to get version data.
+  rpc get_versions (RepositoryPluginRequest) returns (VersionsInfo) {
+    option (google.api.http) = {
+      post: "/repository/v1/plugin/get-versions"
+      body: "*"
+    };
+  }
+
+  // Gets a specific Plugin. Prints detailed information about the Plugin, including  `image`, `registry_url`, and `state`.
+  rpc get (RepositoryPluginRequest) returns (PluginInfo) {
+    option (google.api.http) = {
+      post: "/repository/v1/plugin/get"
+      body: "*"
+    };
+  }
+
+  // Gets a list of all Plugins registered in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Plugins. You can use a query to get a filtered list of Plugins.
+  rpc list (PluginQuery) returns (PluginsInfo) {
+    option (google.api.http) = {
+      post: "/repository/v1/plugin/list"
+      body: "*"
+    };
+  }
+
+  rpc stat (PluginStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/repository/v1/plugin/stat"
+      body: "*"
+    };
+  }
 }
 
 enum PublicRegistryType {
-    NONE_REGISTRY_TYPE = 0;
-    DOCKER_HUB = 1;
-    AWS_PRIVATE_ECR = 2;
-    HARBOR = 3;
+  NONE_REGISTRY_TYPE = 0;
+  DOCKER_HUB = 1;
+  AWS_PRIVATE_ECR = 2;
+  HARBOR = 3;
 }
 
 //{
@@ -135,21 +135,21 @@ enum PublicRegistryType {
 //    }
 //}
 message CreatePluginRequest {
-    string name = 1;
-    string resource_type = 2;
-    string image = 3;
-    // +optional
-    string provider = 4;
-    // +optional
-    PublicRegistryType registry_type = 5;
-    // +optional
-    google.protobuf.Struct registry_config = 6;
-    // +optional
-    google.protobuf.Struct capability = 7;
-    // +optional
-    google.protobuf.ListValue labels = 8;
-    // +optional
-    google.protobuf.Struct tags = 9;
+  string name = 1;
+  string resource_type = 2;
+  string image = 3;
+  // +optional
+  string provider = 4;
+  // +optional
+  PublicRegistryType registry_type = 5;
+  // +optional
+  google.protobuf.Struct registry_config = 6;
+  // +optional
+  google.protobuf.Struct capability = 7;
+  // +optional
+  google.protobuf.ListValue labels = 8;
+  // +optional
+  google.protobuf.Struct tags = 9;
 }
 
 //{
@@ -190,31 +190,31 @@ message CreatePluginRequest {
 //    }
 //}
 message UpdatePluginRequest {
-    string plugin_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    google.protobuf.Struct capability = 3;
-    // +optional
-    google.protobuf.ListValue labels = 4;
-    // +optional
-    google.protobuf.Struct tags = 5;
+  string plugin_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  google.protobuf.Struct capability = 3;
+  // +optional
+  google.protobuf.ListValue labels = 4;
+  // +optional
+  google.protobuf.Struct tags = 5;
 }
 
 //{
 //    "plugin_id": "plugin-aws-sns-mon-webhook",
 //}
 message PluginRequest {
-    string plugin_id = 1;
+  string plugin_id = 1;
 }
 
 //{
 //    "plugin_id": "plugin-aws-sns-mon-webhook",
 //}
 message RepositoryPluginRequest {
-    string plugin_id = 1;
-    // +optional
-    string repository_id = 21;
+  string plugin_id = 1;
+  // +optional
+  string repository_id = 21;
 }
 
 //{
@@ -222,28 +222,28 @@ message RepositoryPluginRequest {
 //    "repository_id": "repo-123456789012"
 //}
 message PluginQuery {
-    enum State {
-        NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-    }
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
 
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string plugin_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    State state = 4;
-    // +optional
-    string resource_type = 5;
-    // +optional
-    string provider = 6;
-    // +optional
-    PublicRegistryType registry_type = 7;
-    // +optional
-    string repository_id = 21;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string plugin_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  State state = 4;
+  // +optional
+  string resource_type = 5;
+  // +optional
+  string provider = 6;
+  // +optional
+  PublicRegistryType registry_type = 7;
+  // +optional
+  string repository_id = 21;
 
 }
 
@@ -301,30 +301,29 @@ message PluginQuery {
 //    "updated_at": "2022-01-01T08:02:38.094Z"
 //}
 message PluginInfo {
-    enum State {
-        NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-    }
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
 
-    string plugin_id = 1;
-    string name = 2;
-    State  state = 3;
-    string resource_type = 4;
-    string image = 5;
-    string provider = 6;
-    PublicRegistryType registry_type = 7;
-    string registry_url = 8;
-    google.protobuf.Struct registry_config = 9;
-    google.protobuf.Struct capability = 10;
-    google.protobuf.ListValue labels = 11;
-    google.protobuf.Struct tags = 12;
+  string plugin_id = 1;
+  string name = 2;
+  State  state = 3;
+  string resource_type = 4;
+  string image = 5;
+  string provider = 6;
+  PublicRegistryType registry_type = 7;
+  string registry_url = 8;
+  google.protobuf.Struct registry_config = 9;
+  google.protobuf.Struct capability = 10;
+  google.protobuf.ListValue labels = 11;
+  google.protobuf.Struct tags = 12;
 
-    string domain_id = 21;
-    RepositoryInfo repository_info = 22;
+  string domain_id = 21;
 
-    string created_at = 31;
-    string updated_at = 32;
+  string created_at = 31;
+  string updated_at = 32;
 }
 
 //{
@@ -379,8 +378,8 @@ message PluginInfo {
 //    "total_count": 2
 //}
 message PluginsInfo {
-    repeated PluginInfo results = 1;
-    int32 total_count = 2;
+  repeated PluginInfo results = 1;
+  int32 total_count = 2;
 }
 
 //{
@@ -394,13 +393,13 @@ message PluginsInfo {
 //    ]
 //}
 message VersionsInfo {
-    // deprecated field
-    repeated string version = 1;
-    int32 total_count = 2;
-    repeated string results = 3;
+  // deprecated field
+  repeated string version = 1;
+  int32 total_count = 2;
+  repeated string results = 3;
 }
 
 message PluginStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
-    string repository_id = 2;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+  string repository_id = 2;
 }
