@@ -2039,11 +2039,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all Jobs. You can use a query to get a filtered list of Jobs.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |job_id||string||\n |status|CANCELED, IN_PROGRESS, SUCCESS, FAILURE, TIMEOUT |string||\n |workspace_id||string||\n |collector_id||string||\n |secret_id||string||\n |plugin_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |job_id||string||\n |status|CANCELED, IN_PROGRESS, SUCCESS, FAILURE, TIMEOUT |string||\n |workspace_id||string||\n |collector_id||string||\n |plugin_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"job_id" : {"type": "string","title": "JOB_ID" },"status" : {"type": "string","title": "STATUS" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"collector_id" : {"type": "string","title": "COLLECTOR_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" },"plugin_id" : {"type": "string","title": "PLUGIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"job_id" : {"type": "string","title": "JOB_ID" },"status" : {"type": "string","title": "STATUS" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"collector_id" : {"type": "string","title": "COLLECTOR_ID" },"plugin_id" : {"type": "string","title": "PLUGIN_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
                }
@@ -2895,9 +2895,9 @@
                 "title": "JobAnalyzeQuery"
            }
            ,        "JobInfo": {
-         "properties" : {"job_id" : {"type": "string","title": "JOB_ID"},"status" : {"type": "string","title": "STATUS"},"total_tasks" : {"type": "integer","title": "TOTAL_TASKS"},"remained_tasks" : {"type": "integer","title": "REMAINED_TASKS"},"success_tasks" : {"type": "integer","title": "SUCCESS_TASKS"},"failure_tasks" : {"type": "integer","title": "FAILURE_TASKS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"finished_at" : {"type": "string","title": "FINISHED_AT"}},
+         "properties" : {"job_id" : {"type": "string","title": "JOB_ID"},"status" : {"type": "string","title": "STATUS"},"total_tasks" : {"type": "integer","title": "TOTAL_TASKS"},"remained_tasks" : {"type": "integer","title": "REMAINED_TASKS"},"success_tasks" : {"type": "integer","title": "SUCCESS_TASKS"},"failure_tasks" : {"type": "integer","title": "FAILURE_TASKS"},"request_secret_id" : {"type": "string","title": "REQUEST_SECRET_ID"},"request_workspace_id" : {"type": "string","title": "REQUEST_WORKSPACE_ID"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"finished_at" : {"type": "string","title": "FINISHED_AT"}},
          "type": "object",
-         "required": ["job_id","status","total_tasks","remained_tasks","success_tasks","failure_tasks","resource_group","domain_id","workspace_id","collector_id","secret_id","plugin_id","created_at","updated_at","finished_at"],
+         "required": ["job_id","status","total_tasks","remained_tasks","success_tasks","failure_tasks","request_secret_id","request_workspace_id","resource_group","domain_id","workspace_id","collector_id","plugin_id","created_at","updated_at","finished_at"],
                 "title": "JobInfo"
            }
            ,        "JobRequest": {
@@ -2920,7 +2920,7 @@
                 "title": "JobsInfo"
            }
            ,        "JobsQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"job_id" : {"type": "string","title": "JOB_ID"},"status" : {"type": "string","title": "STATUS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"job_id" : {"type": "string","title": "JOB_ID"},"status" : {"type": "string","title": "STATUS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
          "type": "object",
          "required": [],
                 "title": "JobsQuery"
