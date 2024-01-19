@@ -46,7 +46,7 @@
          "operationId" : "",
          "description": "### Description \nRegisters a Plugin. The parameter `registry_type`, meaning container registry type, can be either `DOCKER_HUB` or `AWS_PRIVATE_ECR`. The default value of the `registry_type` is `DOCKER_HUB`. The parameter `registry_url` is required if the `registry_type` is not `DOCKER_HUB`. The parameter `image` is limited to 40 characters.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |resource_type||string|True|\n |image||string|True|\n |provider||string||\n |registry_type|DOCKER_HUB, AWS_PRIVATE_ECR, HARBOR |string||\n |registry_config||Struct||\n |capability||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |resource_type||string|True|\n |image||string|True|\n |provider||string||\n |registry_type|DOCKER_HUB, AWS_PRIVATE_ECR, HARBOR, GITHUB |string||\n |registry_config||Struct||\n |capability||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -255,7 +255,7 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all Plugins registered in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Plugins. You can use a query to get a filtered list of Plugins.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |plugin_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |resource_type||string||\n |provider||string||\n |registry_type|DOCKER_HUB, AWS_PRIVATE_ECR, HARBOR |string||\n |repository_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |plugin_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |resource_type||string||\n |provider||string||\n |registry_type|DOCKER_HUB, AWS_PRIVATE_ECR, HARBOR, GITHUB |string||\n |repository_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
