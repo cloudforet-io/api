@@ -11,54 +11,21 @@ import "spaceone/api/core/v2/query.proto";
 import "spaceone/api/cost_analysis/v1/job.proto";
 
 service CostReport {
-  rpc create (CreateCostReportRequest) returns (CostReportInfo) {
-    option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/create",
-      body: "*"
-    };
-  }
-
-  rpc update (UpdateCostReportRequest) returns (CostReportInfo) {
-    option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/update",
-      body: "*"
-    };
-  }
-
-  rpc enable (CostReportRequest) returns (CostReportInfo) {
-    option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/enable",
-      body: "*"
-    };
-  }
-
-  rpc disable (CostReportRequest) returns (CostReportInfo) {
-    option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/disable",
-      body: "*"
-    };
-  }
-
-  rpc delete (CostReportRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/delete"
-      body: "*"
-    };
-  }
-
-  rpc send (SendCostReportRequest) returns (google.protobuf.Struct) {
+  rpc send (CostReportRequest) returns (CostReportInfo) {
     option (google.api.http) = {
       post: "/cost-analysis/v1/cost-report/send",
       body: "*"
     };
   }
 
-  rpc run (RunCostReportRequest) returns (google.protobuf.Empty) {
+  rpc get_url (GetUrlCostReportRequest) returns (google.protobuf.Struct) {
     option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/run",
+      post: "/cost-analysis/v1/cost-report/get-url",
       body: "*"
     };
   }
+
+
 
   rpc get (CostReportRequest) returns (CostReportInfo) {
     option (google.api.http) = {
@@ -67,14 +34,14 @@ service CostReport {
     };
   }
 
-  rpc list (CostReportAnalyzeQuery) returns (CostReportInfos) {
+  rpc list (CostReportQuery) returns (CostReportsInfo) {
     option (google.api.http) = {
       post: "/cost-analysis/v1/cost-report/list",
       body: "*"
     };
   }
 
-  rpc stat (CostReportStatQuery) returns (CostReportInfos) {
+  rpc stat (CostReportStatQuery) returns (google.protobuf.Struct) {
     option (google.api.http) = {
       post: "/cost-analysis/v1/cost-report/stat",
       body: "*"
@@ -82,95 +49,59 @@ service CostReport {
   }
 }
 
-message CreateCostReportRequest {
-  // +optional
-  string issue_day = 1;
-  // +optional
-  bool is_last_day = 2;
-  string currency = 3;
-  repeated string recipients = 4;
-  // +optional
-  google.protobuf.Struct data_source_filter = 5;
-}
 
-message UpdateCostReportRequest {
-  // The ID of cost report in the Protocol.
-  string cost_report_id = 1;
-  // +optional
-  string start = 2;
-  // +optional
-  string end = 3;
-  // +optional
-  string issue_day = 4;
-  // +optional
-  string currency = 5;
-  // +optional
-  repeated string recipients = 6;
-  // +optional
-  repeated string data_sources = 7;
-}
 
 message CostReportRequest {
   // The ID of cost report in the Protocol.
   string cost_report_id = 1;
 }
 
-message SendCostReportRequest {
-  // The ID of cost report in the Protocol.
+message GetUrlCostReportRequest {
+  // The ID of cost report in the Protocol
   string cost_report_id = 1;
-  // The Workspace ID which is related to cost report.
-  // +optional
-  string workspace_id = 21;
 }
 
-message RunCostReportRequest {
-  // The ID of cost report in the Protocol.
-  string cost_report_id = 1;
-  // The report date is the Cost Report generated.
-  // +optional
-  string report_date = 2;
-}
-
-message CostReportAnalyzeQuery {
+message CostReportQuery {
   // +optional
   spaceone.api.core.v2.Query query = 1;
-  // The ID of cost report in the Protocol.
   string cost_report_id = 2;
   // +optional
-  string issue_day = 3;
+  string workspace_name = 3;
   // +optional
-  repeated string recipients = 4;
+  string issue_date = 4;
+
+}
+
+
+message CostReportInfo {
+  enum Status {
+    NONE = 0;
+    IN_PROGRESS = 1;
+    SUCCESS = 2;
+  }
+  string cost_report_id = 1;
+  google.protobuf.Struct cost = 2;
+  Status status = 3;
+  string cost_report_number = 4;
+  string currency = 5;
+  string issue_date = 6;
+  // YYYY
+  string report_year = 7;
+  // YYYY-mm
+  string report_month = 8;
+  string workspace_name = 9;
+  string cost_report_config_id = 21;
+  string workspace_id = 22;
+  string domain_id = 23;
+  string created_at = 31;
+}
+
+message CostReportsInfo {
+  repeated CostReportInfo results = 1;
+  int32 total_count = 2;
 }
 
 message CostReportStatQuery {
   // +optional
   spaceone.api.core.v2.StatisticsQuery query = 1;
 }
-
-message CostReportInfo {
-  enum Status {
-    ENABLED = 0;
-    DISABLED = 1;
-    DELETED = 2;
-  }
-
-  // The ID of cost report in the Protocol.
-  string cost_report_id = 1;
-  string start = 2;
-  string end = 3;
-  string issue_day = 4;
-  bool is_last_day = 5;
-  string currency = 6;
-  repeated string recipients = 7;
-  repeated string data_sources = 8;
-  string domain_id = 21;
-  string created_at = 31;
-  string updated_at = 32;
-}
-
-message CostReportInfos {
-  repeated CostReportInfo results = 1;
-  int32 total_count = 2;
-}
-
-
