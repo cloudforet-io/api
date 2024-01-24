@@ -16,17 +16,17 @@
           "description": "",
           "values": [
             {
-              "name": "ENABLED",
+              "name": "NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "DISABLED",
+              "name": "IN_PROGRESS",
               "number": "1",
               "description": ""
             },
             {
-              "name": "DELETED",
+              "name": "SUCCESS",
               "number": "2",
               "description": ""
             }
@@ -35,66 +35,6 @@
       ],
       "extensions": [],
       "messages": [
-        {
-          "name": "CostReportAnalyzeQuery",
-          "longName": "CostReportAnalyzeQuery",
-          "fullName": "spaceone.api.cost_analysis.v1.CostReportAnalyzeQuery",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "query",
-              "description": "+optional",
-              "label": "",
-              "type": "Query",
-              "longType": "spaceone.api.core.v2.Query",
-              "fullType": "spaceone.api.core.v2.Query",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "cost_report_id",
-              "description": "The ID of cost report in the Protocol.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "issue_day",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "recipients",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
         {
           "name": "CostReportInfo",
           "longName": "CostReportInfo",
@@ -107,18 +47,6 @@
           "fields": [
             {
               "name": "cost_report_id",
-              "description": "The ID of cost report in the Protocol.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "start",
               "description": "",
               "label": "",
               "type": "string",
@@ -130,36 +58,36 @@
               "defaultValue": ""
             },
             {
-              "name": "end",
+              "name": "cost",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "issue_day",
+              "name": "status",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "Status",
+              "longType": "CostReportInfo.Status",
+              "fullType": "spaceone.api.cost_analysis.v1.CostReportInfo.Status",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "is_last_day",
+              "name": "cost_report_number",
               "description": "",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -178,9 +106,9 @@
               "defaultValue": ""
             },
             {
-              "name": "recipients",
+              "name": "issue_date",
               "description": "",
-              "label": "repeated",
+              "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
@@ -190,9 +118,57 @@
               "defaultValue": ""
             },
             {
-              "name": "data_sources",
+              "name": "report_year",
+              "description": "YYYY",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "report_month",
+              "description": "YYYY-mm",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_name",
               "description": "",
-              "label": "repeated",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cost_report_config_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
@@ -224,9 +200,33 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CostReportQuery",
+          "longName": "CostReportQuery",
+          "fullName": "spaceone.api.cost_analysis.v1.CostReportQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "+optional",
+              "label": "",
+              "type": "Query",
+              "longType": "spaceone.api.core.v2.Query",
+              "fullType": "spaceone.api.core.v2.Query",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             },
             {
-              "name": "updated_at",
+              "name": "cost_report_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -236,38 +236,26 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "CostReportInfos",
-          "longName": "CostReportInfos",
-          "fullName": "spaceone.api.cost_analysis.v1.CostReportInfos",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
+            },
             {
-              "name": "results",
-              "description": "",
-              "label": "repeated",
-              "type": "CostReportInfo",
-              "longType": "CostReportInfo",
-              "fullType": "spaceone.api.cost_analysis.v1.CostReportInfo",
+              "name": "workspace_name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "total_count",
-              "description": "",
+              "name": "issue_date",
+              "description": "+optional",
               "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -324,9 +312,9 @@
           ]
         },
         {
-          "name": "CreateCostReportRequest",
-          "longName": "CreateCostReportRequest",
-          "fullName": "spaceone.api.cost_analysis.v1.CreateCostReportRequest",
+          "name": "CostReportsInfo",
+          "longName": "CostReportsInfo",
+          "fullName": "spaceone.api.cost_analysis.v1.CostReportsInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -334,60 +322,24 @@
           "extensions": [],
           "fields": [
             {
-              "name": "issue_day",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "is_last_day",
-              "description": "+optional",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "currency",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "recipients",
+              "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "CostReportInfo",
+              "longType": "CostReportInfo",
+              "fullType": "spaceone.api.cost_analysis.v1.CostReportInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "data_source_filter",
-              "description": "+optional",
+              "name": "total_count",
+              "description": "",
               "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -396,9 +348,9 @@
           ]
         },
         {
-          "name": "RunCostReportRequest",
-          "longName": "RunCostReportRequest",
-          "fullName": "spaceone.api.cost_analysis.v1.RunCostReportRequest",
+          "name": "GetUrlCostReportRequest",
+          "longName": "GetUrlCostReportRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.GetUrlCostReportRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -407,152 +359,8 @@
           "fields": [
             {
               "name": "cost_report_id",
-              "description": "The ID of cost report in the Protocol.",
+              "description": "The ID of cost report in the Protocol",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "report_date",
-              "description": "The report date is the Cost Report generated.\n+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "SendCostReportRequest",
-          "longName": "SendCostReportRequest",
-          "fullName": "spaceone.api.cost_analysis.v1.SendCostReportRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "cost_report_id",
-              "description": "The ID of cost report in the Protocol.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "The Workspace ID which is related to cost report.\n+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "UpdateCostReportRequest",
-          "longName": "UpdateCostReportRequest",
-          "fullName": "spaceone.api.cost_analysis.v1.UpdateCostReportRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "cost_report_id",
-              "description": "The ID of cost report in the Protocol.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "start",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "end",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "issue_day",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "currency",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "recipients",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "data_sources",
-              "description": "+optional",
-              "label": "repeated",
               "type": "string",
               "longType": "string",
               "fullType": "string",
@@ -572,130 +380,15 @@
           "description": "",
           "methods": [
             {
-              "name": "create",
-              "description": "",
-              "requestType": "CreateCostReportRequest",
-              "requestLongType": "CreateCostReportRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.CreateCostReportRequest",
-              "requestStreaming": false,
-              "responseType": "CostReportInfo",
-              "responseLongType": "CostReportInfo",
-              "responseFullType": "spaceone.api.cost_analysis.v1.CostReportInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/cost-analysis/v1/cost-report/create",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "update",
-              "description": "",
-              "requestType": "UpdateCostReportRequest",
-              "requestLongType": "UpdateCostReportRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.UpdateCostReportRequest",
-              "requestStreaming": false,
-              "responseType": "CostReportInfo",
-              "responseLongType": "CostReportInfo",
-              "responseFullType": "spaceone.api.cost_analysis.v1.CostReportInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/cost-analysis/v1/cost-report/update",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "enable",
-              "description": "",
-              "requestType": "CostReportRequest",
-              "requestLongType": "CostReportRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.CostReportRequest",
-              "requestStreaming": false,
-              "responseType": "CostReportInfo",
-              "responseLongType": "CostReportInfo",
-              "responseFullType": "spaceone.api.cost_analysis.v1.CostReportInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/cost-analysis/v1/cost-report/enable",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "disable",
-              "description": "",
-              "requestType": "CostReportRequest",
-              "requestLongType": "CostReportRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.CostReportRequest",
-              "requestStreaming": false,
-              "responseType": "CostReportInfo",
-              "responseLongType": "CostReportInfo",
-              "responseFullType": "spaceone.api.cost_analysis.v1.CostReportInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/cost-analysis/v1/cost-report/disable",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "delete",
-              "description": "",
-              "requestType": "CostReportRequest",
-              "requestLongType": "CostReportRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.CostReportRequest",
-              "requestStreaming": false,
-              "responseType": "Empty",
-              "responseLongType": ".google.protobuf.Empty",
-              "responseFullType": "google.protobuf.Empty",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/cost-analysis/v1/cost-report/delete",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
               "name": "send",
               "description": "",
-              "requestType": "SendCostReportRequest",
-              "requestLongType": "SendCostReportRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.SendCostReportRequest",
+              "requestType": "CostReportRequest",
+              "requestLongType": "CostReportRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.CostReportRequest",
               "requestStreaming": false,
-              "responseType": "Struct",
-              "responseLongType": ".google.protobuf.Struct",
-              "responseFullType": "google.protobuf.Struct",
+              "responseType": "CostReportInfo",
+              "responseLongType": "CostReportInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.CostReportInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
@@ -710,22 +403,22 @@
               }
             },
             {
-              "name": "run",
+              "name": "get_url",
               "description": "",
-              "requestType": "RunCostReportRequest",
-              "requestLongType": "RunCostReportRequest",
-              "requestFullType": "spaceone.api.cost_analysis.v1.RunCostReportRequest",
+              "requestType": "GetUrlCostReportRequest",
+              "requestLongType": "GetUrlCostReportRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.GetUrlCostReportRequest",
               "requestStreaming": false,
-              "responseType": "Empty",
-              "responseLongType": ".google.protobuf.Empty",
-              "responseFullType": "google.protobuf.Empty",
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/cost-analysis/v1/cost-report/run",
+                      "pattern": "/cost-analysis/v1/cost-report/get-url",
                       "body": "*"
                     }
                   ]
@@ -758,13 +451,13 @@
             {
               "name": "list",
               "description": "",
-              "requestType": "CostReportAnalyzeQuery",
-              "requestLongType": "CostReportAnalyzeQuery",
-              "requestFullType": "spaceone.api.cost_analysis.v1.CostReportAnalyzeQuery",
+              "requestType": "CostReportQuery",
+              "requestLongType": "CostReportQuery",
+              "requestFullType": "spaceone.api.cost_analysis.v1.CostReportQuery",
               "requestStreaming": false,
-              "responseType": "CostReportInfos",
-              "responseLongType": "CostReportInfos",
-              "responseFullType": "spaceone.api.cost_analysis.v1.CostReportInfos",
+              "responseType": "CostReportsInfo",
+              "responseLongType": "CostReportsInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.CostReportsInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
@@ -785,9 +478,9 @@
               "requestLongType": "CostReportStatQuery",
               "requestFullType": "spaceone.api.cost_analysis.v1.CostReportStatQuery",
               "requestStreaming": false,
-              "responseType": "CostReportInfos",
-              "responseLongType": "CostReportInfos",
-              "responseFullType": "spaceone.api.cost_analysis.v1.CostReportInfos",
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {

@@ -19,7 +19,7 @@ from spaceone.api.core.v2 import query_pb2 as spaceone_dot_api_dot_core_dot_v2_d
 from spaceone.api.cost_analysis.v1 import job_pb2 as spaceone_dot_api_dot_cost__analysis_dot_v1_dot_job__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n/spaceone/api/cost_analysis/v1/cost_report.proto\x12\x1dspaceone.api.cost_analysis.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a spaceone/api/core/v2/query.proto\x1a\'spaceone/api/cost_analysis/v1/job.proto\"\x9c\x01\n\x17\x43reateCostReportRequest\x12\x11\n\tissue_day\x18\x01 \x01(\t\x12\x13\n\x0bis_last_day\x18\x02 \x01(\x08\x12\x10\n\x08\x63urrency\x18\x03 \x01(\t\x12\x12\n\nrecipients\x18\x04 \x03(\t\x12\x33\n\x12\x64\x61ta_source_filter\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\"\x9c\x01\n\x17UpdateCostReportRequest\x12\x16\n\x0e\x63ost_report_id\x18\x01 \x01(\t\x12\r\n\x05start\x18\x02 \x01(\t\x12\x0b\n\x03\x65nd\x18\x03 \x01(\t\x12\x11\n\tissue_day\x18\x04 \x01(\t\x12\x10\n\x08\x63urrency\x18\x05 \x01(\t\x12\x12\n\nrecipients\x18\x06 \x03(\t\x12\x14\n\x0c\x64\x61ta_sources\x18\x07 \x03(\t\"+\n\x11\x43ostReportRequest\x12\x16\n\x0e\x63ost_report_id\x18\x01 \x01(\t\"E\n\x15SendCostReportRequest\x12\x16\n\x0e\x63ost_report_id\x18\x01 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x15 \x01(\t\"C\n\x14RunCostReportRequest\x12\x16\n\x0e\x63ost_report_id\x18\x01 \x01(\t\x12\x13\n\x0breport_date\x18\x02 \x01(\t\"\x83\x01\n\x16\x43ostReportAnalyzeQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x16\n\x0e\x63ost_report_id\x18\x02 \x01(\t\x12\x11\n\tissue_day\x18\x03 \x01(\t\x12\x12\n\nrecipients\x18\x04 \x03(\t\"K\n\x13\x43ostReportStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v2.StatisticsQuery\"\x95\x02\n\x0e\x43ostReportInfo\x12\x16\n\x0e\x63ost_report_id\x18\x01 \x01(\t\x12\r\n\x05start\x18\x02 \x01(\t\x12\x0b\n\x03\x65nd\x18\x03 \x01(\t\x12\x11\n\tissue_day\x18\x04 \x01(\t\x12\x13\n\x0bis_last_day\x18\x05 \x01(\x08\x12\x10\n\x08\x63urrency\x18\x06 \x01(\t\x12\x12\n\nrecipients\x18\x07 \x03(\t\x12\x14\n\x0c\x64\x61ta_sources\x18\x08 \x03(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\x12\x12\n\nupdated_at\x18  \x01(\t\"0\n\x06Status\x12\x0b\n\x07\x45NABLED\x10\x00\x12\x0c\n\x08\x44ISABLED\x10\x01\x12\x0b\n\x07\x44\x45LETED\x10\x02\"f\n\x0f\x43ostReportInfos\x12>\n\x07results\x18\x01 \x03(\x0b\x32-.spaceone.api.cost_analysis.v1.CostReportInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\x32\xf0\x0b\n\nCostReport\x12\xa0\x01\n\x06\x63reate\x12\x36.spaceone.api.cost_analysis.v1.CreateCostReportRequest\x1a-.spaceone.api.cost_analysis.v1.CostReportInfo\"/\x82\xd3\xe4\x93\x02)\"$/cost-analysis/v1/cost-report/create:\x01*\x12\xa0\x01\n\x06update\x12\x36.spaceone.api.cost_analysis.v1.UpdateCostReportRequest\x1a-.spaceone.api.cost_analysis.v1.CostReportInfo\"/\x82\xd3\xe4\x93\x02)\"$/cost-analysis/v1/cost-report/update:\x01*\x12\x9a\x01\n\x06\x65nable\x12\x30.spaceone.api.cost_analysis.v1.CostReportRequest\x1a-.spaceone.api.cost_analysis.v1.CostReportInfo\"/\x82\xd3\xe4\x93\x02)\"$/cost-analysis/v1/cost-report/enable:\x01*\x12\x9c\x01\n\x07\x64isable\x12\x30.spaceone.api.cost_analysis.v1.CostReportRequest\x1a-.spaceone.api.cost_analysis.v1.CostReportInfo\"0\x82\xd3\xe4\x93\x02*\"%/cost-analysis/v1/cost-report/disable:\x01*\x12\x83\x01\n\x06\x64\x65lete\x12\x30.spaceone.api.cost_analysis.v1.CostReportRequest\x1a\x16.google.protobuf.Empty\"/\x82\xd3\xe4\x93\x02)\"$/cost-analysis/v1/cost-report/delete:\x01*\x12\x84\x01\n\x04send\x12\x34.spaceone.api.cost_analysis.v1.SendCostReportRequest\x1a\x17.google.protobuf.Struct\"-\x82\xd3\xe4\x93\x02\'\"\"/cost-analysis/v1/cost-report/send:\x01*\x12\x80\x01\n\x03run\x12\x33.spaceone.api.cost_analysis.v1.RunCostReportRequest\x1a\x16.google.protobuf.Empty\",\x82\xd3\xe4\x93\x02&\"!/cost-analysis/v1/cost-report/run:\x01*\x12\x94\x01\n\x03get\x12\x30.spaceone.api.cost_analysis.v1.CostReportRequest\x1a-.spaceone.api.cost_analysis.v1.CostReportInfo\",\x82\xd3\xe4\x93\x02&\"!/cost-analysis/v1/cost-report/get:\x01*\x12\x9c\x01\n\x04list\x12\x35.spaceone.api.cost_analysis.v1.CostReportAnalyzeQuery\x1a..spaceone.api.cost_analysis.v1.CostReportInfos\"-\x82\xd3\xe4\x93\x02\'\"\"/cost-analysis/v1/cost-report/list:\x01*\x12\x99\x01\n\x04stat\x12\x32.spaceone.api.cost_analysis.v1.CostReportStatQuery\x1a..spaceone.api.cost_analysis.v1.CostReportInfos\"-\x82\xd3\xe4\x93\x02\'\"\"/cost-analysis/v1/cost-report/stat:\x01*BDZBgithub.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n/spaceone/api/cost_analysis/v1/cost_report.proto\x12\x1dspaceone.api.cost_analysis.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a spaceone/api/core/v2/query.proto\x1a\'spaceone/api/cost_analysis/v1/job.proto\"+\n\x11\x43ostReportRequest\x12\x16\n\x0e\x63ost_report_id\x18\x01 \x01(\t\"1\n\x17GetUrlCostReportRequest\x12\x16\n\x0e\x63ost_report_id\x18\x01 \x01(\t\"\x81\x01\n\x0f\x43ostReportQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x16\n\x0e\x63ost_report_id\x18\x02 \x01(\t\x12\x16\n\x0eworkspace_name\x18\x03 \x01(\t\x12\x12\n\nissue_date\x18\x04 \x01(\t\"\xa8\x03\n\x0e\x43ostReportInfo\x12\x16\n\x0e\x63ost_report_id\x18\x01 \x01(\t\x12%\n\x04\x63ost\x18\x02 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x44\n\x06status\x18\x03 \x01(\x0e\x32\x34.spaceone.api.cost_analysis.v1.CostReportInfo.Status\x12\x1a\n\x12\x63ost_report_number\x18\x04 \x01(\t\x12\x10\n\x08\x63urrency\x18\x05 \x01(\t\x12\x12\n\nissue_date\x18\x06 \x01(\t\x12\x13\n\x0breport_year\x18\x07 \x01(\t\x12\x14\n\x0creport_month\x18\x08 \x01(\t\x12\x16\n\x0eworkspace_name\x18\t \x01(\t\x12\x1d\n\x15\x63ost_report_config_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\x12\x11\n\tdomain_id\x18\x17 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\"0\n\x06Status\x12\x08\n\x04NONE\x10\x00\x12\x0f\n\x0bIN_PROGRESS\x10\x01\x12\x0b\n\x07SUCCESS\x10\x02\"f\n\x0f\x43ostReportsInfo\x12>\n\x07results\x18\x01 \x03(\x0b\x32-.spaceone.api.cost_analysis.v1.CostReportInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"K\n\x13\x43ostReportStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v2.StatisticsQuery2\xe8\x05\n\nCostReport\x12\x96\x01\n\x04send\x12\x30.spaceone.api.cost_analysis.v1.CostReportRequest\x1a-.spaceone.api.cost_analysis.v1.CostReportInfo\"-\x82\xd3\xe4\x93\x02\'\"\"/cost-analysis/v1/cost-report/send:\x01*\x12\x8c\x01\n\x07get_url\x12\x36.spaceone.api.cost_analysis.v1.GetUrlCostReportRequest\x1a\x17.google.protobuf.Struct\"0\x82\xd3\xe4\x93\x02*\"%/cost-analysis/v1/cost-report/get-url:\x01*\x12\x94\x01\n\x03get\x12\x30.spaceone.api.cost_analysis.v1.CostReportRequest\x1a-.spaceone.api.cost_analysis.v1.CostReportInfo\",\x82\xd3\xe4\x93\x02&\"!/cost-analysis/v1/cost-report/get:\x01*\x12\x95\x01\n\x04list\x12..spaceone.api.cost_analysis.v1.CostReportQuery\x1a..spaceone.api.cost_analysis.v1.CostReportsInfo\"-\x82\xd3\xe4\x93\x02\'\"\"/cost-analysis/v1/cost-report/list:\x01*\x12\x82\x01\n\x04stat\x12\x32.spaceone.api.cost_analysis.v1.CostReportStatQuery\x1a\x17.google.protobuf.Struct\"-\x82\xd3\xe4\x93\x02\'\"\"/cost-analysis/v1/cost-report/stat:\x01*BDZBgithub.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -27,46 +27,30 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'spaceone.api.cost_analysis.
 if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['DESCRIPTOR']._options = None
   _globals['DESCRIPTOR']._serialized_options = b'ZBgithub.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1'
-  _globals['_COSTREPORT'].methods_by_name['create']._options = None
-  _globals['_COSTREPORT'].methods_by_name['create']._serialized_options = b'\202\323\344\223\002)\"$/cost-analysis/v1/cost-report/create:\001*'
-  _globals['_COSTREPORT'].methods_by_name['update']._options = None
-  _globals['_COSTREPORT'].methods_by_name['update']._serialized_options = b'\202\323\344\223\002)\"$/cost-analysis/v1/cost-report/update:\001*'
-  _globals['_COSTREPORT'].methods_by_name['enable']._options = None
-  _globals['_COSTREPORT'].methods_by_name['enable']._serialized_options = b'\202\323\344\223\002)\"$/cost-analysis/v1/cost-report/enable:\001*'
-  _globals['_COSTREPORT'].methods_by_name['disable']._options = None
-  _globals['_COSTREPORT'].methods_by_name['disable']._serialized_options = b'\202\323\344\223\002*\"%/cost-analysis/v1/cost-report/disable:\001*'
-  _globals['_COSTREPORT'].methods_by_name['delete']._options = None
-  _globals['_COSTREPORT'].methods_by_name['delete']._serialized_options = b'\202\323\344\223\002)\"$/cost-analysis/v1/cost-report/delete:\001*'
   _globals['_COSTREPORT'].methods_by_name['send']._options = None
   _globals['_COSTREPORT'].methods_by_name['send']._serialized_options = b'\202\323\344\223\002\'\"\"/cost-analysis/v1/cost-report/send:\001*'
-  _globals['_COSTREPORT'].methods_by_name['run']._options = None
-  _globals['_COSTREPORT'].methods_by_name['run']._serialized_options = b'\202\323\344\223\002&\"!/cost-analysis/v1/cost-report/run:\001*'
+  _globals['_COSTREPORT'].methods_by_name['get_url']._options = None
+  _globals['_COSTREPORT'].methods_by_name['get_url']._serialized_options = b'\202\323\344\223\002*\"%/cost-analysis/v1/cost-report/get-url:\001*'
   _globals['_COSTREPORT'].methods_by_name['get']._options = None
   _globals['_COSTREPORT'].methods_by_name['get']._serialized_options = b'\202\323\344\223\002&\"!/cost-analysis/v1/cost-report/get:\001*'
   _globals['_COSTREPORT'].methods_by_name['list']._options = None
   _globals['_COSTREPORT'].methods_by_name['list']._serialized_options = b'\202\323\344\223\002\'\"\"/cost-analysis/v1/cost-report/list:\001*'
   _globals['_COSTREPORT'].methods_by_name['stat']._options = None
   _globals['_COSTREPORT'].methods_by_name['stat']._serialized_options = b'\202\323\344\223\002\'\"\"/cost-analysis/v1/cost-report/stat:\001*'
-  _globals['_CREATECOSTREPORTREQUEST']._serialized_start=247
-  _globals['_CREATECOSTREPORTREQUEST']._serialized_end=403
-  _globals['_UPDATECOSTREPORTREQUEST']._serialized_start=406
-  _globals['_UPDATECOSTREPORTREQUEST']._serialized_end=562
-  _globals['_COSTREPORTREQUEST']._serialized_start=564
-  _globals['_COSTREPORTREQUEST']._serialized_end=607
-  _globals['_SENDCOSTREPORTREQUEST']._serialized_start=609
-  _globals['_SENDCOSTREPORTREQUEST']._serialized_end=678
-  _globals['_RUNCOSTREPORTREQUEST']._serialized_start=680
-  _globals['_RUNCOSTREPORTREQUEST']._serialized_end=747
-  _globals['_COSTREPORTANALYZEQUERY']._serialized_start=750
-  _globals['_COSTREPORTANALYZEQUERY']._serialized_end=881
-  _globals['_COSTREPORTSTATQUERY']._serialized_start=883
-  _globals['_COSTREPORTSTATQUERY']._serialized_end=958
-  _globals['_COSTREPORTINFO']._serialized_start=961
-  _globals['_COSTREPORTINFO']._serialized_end=1238
-  _globals['_COSTREPORTINFO_STATUS']._serialized_start=1190
-  _globals['_COSTREPORTINFO_STATUS']._serialized_end=1238
-  _globals['_COSTREPORTINFOS']._serialized_start=1240
-  _globals['_COSTREPORTINFOS']._serialized_end=1342
-  _globals['_COSTREPORT']._serialized_start=1345
-  _globals['_COSTREPORT']._serialized_end=2865
+  _globals['_COSTREPORTREQUEST']._serialized_start=246
+  _globals['_COSTREPORTREQUEST']._serialized_end=289
+  _globals['_GETURLCOSTREPORTREQUEST']._serialized_start=291
+  _globals['_GETURLCOSTREPORTREQUEST']._serialized_end=340
+  _globals['_COSTREPORTQUERY']._serialized_start=343
+  _globals['_COSTREPORTQUERY']._serialized_end=472
+  _globals['_COSTREPORTINFO']._serialized_start=475
+  _globals['_COSTREPORTINFO']._serialized_end=899
+  _globals['_COSTREPORTINFO_STATUS']._serialized_start=851
+  _globals['_COSTREPORTINFO_STATUS']._serialized_end=899
+  _globals['_COSTREPORTSINFO']._serialized_start=901
+  _globals['_COSTREPORTSINFO']._serialized_end=1003
+  _globals['_COSTREPORTSTATQUERY']._serialized_start=1005
+  _globals['_COSTREPORTSTATQUERY']._serialized_end=1080
+  _globals['_COSTREPORT']._serialized_start=1083
+  _globals['_COSTREPORT']._serialized_end=1827
 # @@protoc_insertion_point(module_scope)

@@ -2,7 +2,6 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.cost_analysis.v1 import cost_report_pb2 as spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2
 
@@ -16,40 +15,15 @@ class CostReportStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.create = channel.unary_unary(
-                '/spaceone.api.cost_analysis.v1.CostReport/create',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CreateCostReportRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.FromString,
-                )
-        self.update = channel.unary_unary(
-                '/spaceone.api.cost_analysis.v1.CostReport/update',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.UpdateCostReportRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.FromString,
-                )
-        self.enable = channel.unary_unary(
-                '/spaceone.api.cost_analysis.v1.CostReport/enable',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.FromString,
-                )
-        self.disable = channel.unary_unary(
-                '/spaceone.api.cost_analysis.v1.CostReport/disable',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.FromString,
-                )
-        self.delete = channel.unary_unary(
-                '/spaceone.api.cost_analysis.v1.CostReport/delete',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                )
         self.send = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.CostReport/send',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.SendCostReportRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.FromString,
                 )
-        self.run = channel.unary_unary(
-                '/spaceone.api.cost_analysis.v1.CostReport/run',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.RunCostReportRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+        self.get_url = channel.unary_unary(
+                '/spaceone.api.cost_analysis.v1.CostReport/get_url',
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.GetUrlCostReportRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.CostReport/get',
@@ -58,48 +32,18 @@ class CostReportStub(object):
                 )
         self.list = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.CostReport/list',
-                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportAnalyzeQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfos.FromString,
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportsInfo.FromString,
                 )
         self.stat = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.CostReport/stat',
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportStatQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfos.FromString,
+                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 )
 
 
 class CostReportServicer(object):
     """Missing associated documentation comment in .proto file."""
-
-    def create(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def update(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def enable(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def disable(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def delete(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
 
     def send(self, request, context):
         """Missing associated documentation comment in .proto file."""
@@ -107,7 +51,7 @@ class CostReportServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def run(self, request, context):
+    def get_url(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -134,40 +78,15 @@ class CostReportServicer(object):
 
 def add_CostReportServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'create': grpc.unary_unary_rpc_method_handler(
-                    servicer.create,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CreateCostReportRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.SerializeToString,
-            ),
-            'update': grpc.unary_unary_rpc_method_handler(
-                    servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.UpdateCostReportRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.SerializeToString,
-            ),
-            'enable': grpc.unary_unary_rpc_method_handler(
-                    servicer.enable,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.SerializeToString,
-            ),
-            'disable': grpc.unary_unary_rpc_method_handler(
-                    servicer.disable,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.SerializeToString,
-            ),
-            'delete': grpc.unary_unary_rpc_method_handler(
-                    servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
             'send': grpc.unary_unary_rpc_method_handler(
                     servicer.send,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.SendCostReportRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.SerializeToString,
             ),
-            'run': grpc.unary_unary_rpc_method_handler(
-                    servicer.run,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.RunCostReportRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            'get_url': grpc.unary_unary_rpc_method_handler(
+                    servicer.get_url,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.GetUrlCostReportRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
@@ -176,13 +95,13 @@ def add_CostReportServicer_to_server(servicer, server):
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportAnalyzeQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfos.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportsInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
                     request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportStatQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfos.SerializeToString,
+                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -193,91 +112,6 @@ def add_CostReportServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class CostReport(object):
     """Missing associated documentation comment in .proto file."""
-
-    @staticmethod
-    def create(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.CostReport/create',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CreateCostReportRequest.SerializeToString,
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def update(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.CostReport/update',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.UpdateCostReportRequest.SerializeToString,
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def enable(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.CostReport/enable',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.SerializeToString,
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def disable(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.CostReport/disable',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.SerializeToString,
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def delete(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.CostReport/delete',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def send(request,
@@ -291,13 +125,13 @@ class CostReport(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.CostReport/send',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.SendCostReportRequest.SerializeToString,
-            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.SerializeToString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def run(request,
+    def get_url(request,
             target,
             options=(),
             channel_credentials=None,
@@ -307,9 +141,9 @@ class CostReport(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.CostReport/run',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.RunCostReportRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.CostReport/get_url',
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.GetUrlCostReportRequest.SerializeToString,
+            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -342,8 +176,8 @@ class CostReport(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.CostReport/list',
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportAnalyzeQuery.SerializeToString,
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfos.FromString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportQuery.SerializeToString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportsInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -360,6 +194,6 @@ class CostReport(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.CostReport/stat',
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportStatQuery.SerializeToString,
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfos.FromString,
+            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

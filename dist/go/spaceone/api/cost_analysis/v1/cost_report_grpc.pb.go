@@ -8,7 +8,6 @@ package v1
 
 import (
 	context "context"
-	empty "github.com/golang/protobuf/ptypes/empty"
 	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -21,32 +20,22 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CostReport_Create_FullMethodName  = "/spaceone.api.cost_analysis.v1.CostReport/create"
-	CostReport_Update_FullMethodName  = "/spaceone.api.cost_analysis.v1.CostReport/update"
-	CostReport_Enable_FullMethodName  = "/spaceone.api.cost_analysis.v1.CostReport/enable"
-	CostReport_Disable_FullMethodName = "/spaceone.api.cost_analysis.v1.CostReport/disable"
-	CostReport_Delete_FullMethodName  = "/spaceone.api.cost_analysis.v1.CostReport/delete"
-	CostReport_Send_FullMethodName    = "/spaceone.api.cost_analysis.v1.CostReport/send"
-	CostReport_Run_FullMethodName     = "/spaceone.api.cost_analysis.v1.CostReport/run"
-	CostReport_Get_FullMethodName     = "/spaceone.api.cost_analysis.v1.CostReport/get"
-	CostReport_List_FullMethodName    = "/spaceone.api.cost_analysis.v1.CostReport/list"
-	CostReport_Stat_FullMethodName    = "/spaceone.api.cost_analysis.v1.CostReport/stat"
+	CostReport_Send_FullMethodName   = "/spaceone.api.cost_analysis.v1.CostReport/send"
+	CostReport_GetUrl_FullMethodName = "/spaceone.api.cost_analysis.v1.CostReport/get_url"
+	CostReport_Get_FullMethodName    = "/spaceone.api.cost_analysis.v1.CostReport/get"
+	CostReport_List_FullMethodName   = "/spaceone.api.cost_analysis.v1.CostReport/list"
+	CostReport_Stat_FullMethodName   = "/spaceone.api.cost_analysis.v1.CostReport/stat"
 )
 
 // CostReportClient is the client API for CostReport service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CostReportClient interface {
-	Create(ctx context.Context, in *CreateCostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error)
-	Update(ctx context.Context, in *UpdateCostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error)
-	Enable(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error)
-	Disable(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error)
-	Delete(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Send(ctx context.Context, in *SendCostReportRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
-	Run(ctx context.Context, in *RunCostReportRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Send(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error)
+	GetUrl(ctx context.Context, in *GetUrlCostReportRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Get(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error)
-	List(ctx context.Context, in *CostReportAnalyzeQuery, opts ...grpc.CallOption) (*CostReportInfos, error)
-	Stat(ctx context.Context, in *CostReportStatQuery, opts ...grpc.CallOption) (*CostReportInfos, error)
+	List(ctx context.Context, in *CostReportQuery, opts ...grpc.CallOption) (*CostReportsInfo, error)
+	Stat(ctx context.Context, in *CostReportStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
 type costReportClient struct {
@@ -57,53 +46,8 @@ func NewCostReportClient(cc grpc.ClientConnInterface) CostReportClient {
 	return &costReportClient{cc}
 }
 
-func (c *costReportClient) Create(ctx context.Context, in *CreateCostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error) {
+func (c *costReportClient) Send(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error) {
 	out := new(CostReportInfo)
-	err := c.cc.Invoke(ctx, CostReport_Create_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *costReportClient) Update(ctx context.Context, in *UpdateCostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error) {
-	out := new(CostReportInfo)
-	err := c.cc.Invoke(ctx, CostReport_Update_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *costReportClient) Enable(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error) {
-	out := new(CostReportInfo)
-	err := c.cc.Invoke(ctx, CostReport_Enable_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *costReportClient) Disable(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error) {
-	out := new(CostReportInfo)
-	err := c.cc.Invoke(ctx, CostReport_Disable_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *costReportClient) Delete(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, CostReport_Delete_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *costReportClient) Send(ctx context.Context, in *SendCostReportRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
-	out := new(_struct.Struct)
 	err := c.cc.Invoke(ctx, CostReport_Send_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -111,9 +55,9 @@ func (c *costReportClient) Send(ctx context.Context, in *SendCostReportRequest, 
 	return out, nil
 }
 
-func (c *costReportClient) Run(ctx context.Context, in *RunCostReportRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, CostReport_Run_FullMethodName, in, out, opts...)
+func (c *costReportClient) GetUrl(ctx context.Context, in *GetUrlCostReportRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
+	out := new(_struct.Struct)
+	err := c.cc.Invoke(ctx, CostReport_GetUrl_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -129,8 +73,8 @@ func (c *costReportClient) Get(ctx context.Context, in *CostReportRequest, opts 
 	return out, nil
 }
 
-func (c *costReportClient) List(ctx context.Context, in *CostReportAnalyzeQuery, opts ...grpc.CallOption) (*CostReportInfos, error) {
-	out := new(CostReportInfos)
+func (c *costReportClient) List(ctx context.Context, in *CostReportQuery, opts ...grpc.CallOption) (*CostReportsInfo, error) {
+	out := new(CostReportsInfo)
 	err := c.cc.Invoke(ctx, CostReport_List_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -138,8 +82,8 @@ func (c *costReportClient) List(ctx context.Context, in *CostReportAnalyzeQuery,
 	return out, nil
 }
 
-func (c *costReportClient) Stat(ctx context.Context, in *CostReportStatQuery, opts ...grpc.CallOption) (*CostReportInfos, error) {
-	out := new(CostReportInfos)
+func (c *costReportClient) Stat(ctx context.Context, in *CostReportStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
+	out := new(_struct.Struct)
 	err := c.cc.Invoke(ctx, CostReport_Stat_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -151,16 +95,11 @@ func (c *costReportClient) Stat(ctx context.Context, in *CostReportStatQuery, op
 // All implementations must embed UnimplementedCostReportServer
 // for forward compatibility
 type CostReportServer interface {
-	Create(context.Context, *CreateCostReportRequest) (*CostReportInfo, error)
-	Update(context.Context, *UpdateCostReportRequest) (*CostReportInfo, error)
-	Enable(context.Context, *CostReportRequest) (*CostReportInfo, error)
-	Disable(context.Context, *CostReportRequest) (*CostReportInfo, error)
-	Delete(context.Context, *CostReportRequest) (*empty.Empty, error)
-	Send(context.Context, *SendCostReportRequest) (*_struct.Struct, error)
-	Run(context.Context, *RunCostReportRequest) (*empty.Empty, error)
+	Send(context.Context, *CostReportRequest) (*CostReportInfo, error)
+	GetUrl(context.Context, *GetUrlCostReportRequest) (*_struct.Struct, error)
 	Get(context.Context, *CostReportRequest) (*CostReportInfo, error)
-	List(context.Context, *CostReportAnalyzeQuery) (*CostReportInfos, error)
-	Stat(context.Context, *CostReportStatQuery) (*CostReportInfos, error)
+	List(context.Context, *CostReportQuery) (*CostReportsInfo, error)
+	Stat(context.Context, *CostReportStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedCostReportServer()
 }
 
@@ -168,34 +107,19 @@ type CostReportServer interface {
 type UnimplementedCostReportServer struct {
 }
 
-func (UnimplementedCostReportServer) Create(context.Context, *CreateCostReportRequest) (*CostReportInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
-}
-func (UnimplementedCostReportServer) Update(context.Context, *UpdateCostReportRequest) (*CostReportInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
-}
-func (UnimplementedCostReportServer) Enable(context.Context, *CostReportRequest) (*CostReportInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
-}
-func (UnimplementedCostReportServer) Disable(context.Context, *CostReportRequest) (*CostReportInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
-}
-func (UnimplementedCostReportServer) Delete(context.Context, *CostReportRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
-}
-func (UnimplementedCostReportServer) Send(context.Context, *SendCostReportRequest) (*_struct.Struct, error) {
+func (UnimplementedCostReportServer) Send(context.Context, *CostReportRequest) (*CostReportInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Send not implemented")
 }
-func (UnimplementedCostReportServer) Run(context.Context, *RunCostReportRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Run not implemented")
+func (UnimplementedCostReportServer) GetUrl(context.Context, *GetUrlCostReportRequest) (*_struct.Struct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUrl not implemented")
 }
 func (UnimplementedCostReportServer) Get(context.Context, *CostReportRequest) (*CostReportInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedCostReportServer) List(context.Context, *CostReportAnalyzeQuery) (*CostReportInfos, error) {
+func (UnimplementedCostReportServer) List(context.Context, *CostReportQuery) (*CostReportsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedCostReportServer) Stat(context.Context, *CostReportStatQuery) (*CostReportInfos, error) {
+func (UnimplementedCostReportServer) Stat(context.Context, *CostReportStatQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
 }
 func (UnimplementedCostReportServer) mustEmbedUnimplementedCostReportServer() {}
@@ -211,98 +135,8 @@ func RegisterCostReportServer(s grpc.ServiceRegistrar, srv CostReportServer) {
 	s.RegisterService(&CostReport_ServiceDesc, srv)
 }
 
-func _CostReport_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateCostReportRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CostReportServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CostReport_Create_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CostReportServer).Create(ctx, req.(*CreateCostReportRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CostReport_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateCostReportRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CostReportServer).Update(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CostReport_Update_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CostReportServer).Update(ctx, req.(*UpdateCostReportRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CostReport_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CostReportRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CostReportServer).Enable(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CostReport_Enable_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CostReportServer).Enable(ctx, req.(*CostReportRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CostReport_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CostReportRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CostReportServer).Disable(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CostReport_Disable_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CostReportServer).Disable(ctx, req.(*CostReportRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CostReport_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CostReportRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CostReportServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CostReport_Delete_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CostReportServer).Delete(ctx, req.(*CostReportRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _CostReport_Send_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendCostReportRequest)
+	in := new(CostReportRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -314,25 +148,25 @@ func _CostReport_Send_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: CostReport_Send_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CostReportServer).Send(ctx, req.(*SendCostReportRequest))
+		return srv.(CostReportServer).Send(ctx, req.(*CostReportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CostReport_Run_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RunCostReportRequest)
+func _CostReport_GetUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUrlCostReportRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CostReportServer).Run(ctx, in)
+		return srv.(CostReportServer).GetUrl(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: CostReport_Run_FullMethodName,
+		FullMethod: CostReport_GetUrl_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CostReportServer).Run(ctx, req.(*RunCostReportRequest))
+		return srv.(CostReportServer).GetUrl(ctx, req.(*GetUrlCostReportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -356,7 +190,7 @@ func _CostReport_Get_Handler(srv interface{}, ctx context.Context, dec func(inte
 }
 
 func _CostReport_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CostReportAnalyzeQuery)
+	in := new(CostReportQuery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -368,7 +202,7 @@ func _CostReport_List_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: CostReport_List_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CostReportServer).List(ctx, req.(*CostReportAnalyzeQuery))
+		return srv.(CostReportServer).List(ctx, req.(*CostReportQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -399,32 +233,12 @@ var CostReport_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*CostReportServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "create",
-			Handler:    _CostReport_Create_Handler,
-		},
-		{
-			MethodName: "update",
-			Handler:    _CostReport_Update_Handler,
-		},
-		{
-			MethodName: "enable",
-			Handler:    _CostReport_Enable_Handler,
-		},
-		{
-			MethodName: "disable",
-			Handler:    _CostReport_Disable_Handler,
-		},
-		{
-			MethodName: "delete",
-			Handler:    _CostReport_Delete_Handler,
-		},
-		{
 			MethodName: "send",
 			Handler:    _CostReport_Send_Handler,
 		},
 		{
-			MethodName: "run",
-			Handler:    _CostReport_Run_Handler,
+			MethodName: "get_url",
+			Handler:    _CostReport_GetUrl_Handler,
 		},
 		{
 			MethodName: "get",
