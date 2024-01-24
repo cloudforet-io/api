@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package spaceone.api.cost_analysis.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/cost_analysis/v1/job.proto";
+
+service CostReportData {
+  rpc list (CostReportDataQuery) returns (CostReportsDataInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report-data/list",
+      body: "*"
+    };
+  }
+
+  rpc analyze (CostReportDataAnalyzeQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report-data/analyze"
+      body: "*"
+    };
+  }
+
+  rpc stat (CostReportDataStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report-data/stat"
+      body: "*"
+    };
+  }
+}
+
+message CostReportDataQuery {
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string cost_report_id = 2;
+  // +optional
+  string product = 3;
+  // +optional
+  string provider = 4;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string data_source_id = 22;
+}
+
+message CostReportDataAnalyzeQuery {
+  // +optional
+  spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 1;
+  string cost_report_id = 2;
+  // +optional
+  string product = 3;
+  // +optional
+  string provider = 4;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string data_source_id = 22;
+}
+
+message CostReportDataStatQuery {
+  // +optional
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+  // +optional
+  string cost_report_id = 2;
+}
+
+message CostReportDataInfo {
+  google.protobuf.Struct cost = 1;
+  string cost_report_name = 2;
+  string provider = 3;
+  string product = 4;
+  string project_name = 5;
+  string project_id = 6;
+  string service_account_name = 7;
+  string service_account_id = 8;
+  string data_source_name = 9;
+  string workspace_name = 10;
+  string report_year = 11;
+  string report_month = 12;
+  string start = 13;
+  string end = 14;
+  google.protobuf.Struct icons = 15;
+  google.protobuf.Struct domain_config = 16;
+  string cost_report_id = 17;
+  string data_source_id = 18;
+  string workspace_id = 21;
+  string domain_id = 22;
+}
+
+message CostReportsDataInfo {
+  repeated CostReportDataInfo results = 1;
+  string total_count = 2;
+}
+
+message StatInfo {
+  repeated string results = 1;
+}
+
