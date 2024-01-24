@@ -1,0 +1,174 @@
+syntax = "proto3";
+
+package spaceone.api.cost_analysis.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/cost_analysis/v1/job.proto";
+
+service CostReportConfig {
+  rpc create (CreateCostReportConfigRequest) returns (CostReportConfigInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report/create",
+      body: "*"
+    };
+  }
+
+  rpc update (UpdateCostReportConfigRequest) returns (CostReportConfigInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report/update",
+      body: "*"
+    };
+  }
+
+  rpc update_recipients (UpdateCostReportConfigRecipientsRequest) returns (CostReportConfigInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report/update-recipients",
+      body: "*"
+    };
+  }
+
+  rpc enable (CostReportConfigRequest) returns (CostReportConfigInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report/enable",
+      body: "*"
+    };
+  }
+
+  rpc disable (CostReportConfigRequest) returns (CostReportConfigInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report/disable",
+      body: "*"
+    };
+  }
+
+  rpc delete (CostReportConfigRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report/delete"
+      body: "*"
+    };
+  }
+
+  rpc run (CostReportConfigRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report/run",
+      body: "*"
+    };
+  }
+
+  rpc get (CostReportConfigRequest) returns (CostReportConfigInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report/get",
+      body: "*"
+    };
+  }
+
+  rpc list (CostReportConfigQuery) returns (CostReportConfigsInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report/list",
+      body: "*"
+    };
+  }
+
+  rpc stat (CostReportConfigStatQuery) returns (CostReportConfigsInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost-report/stat",
+      body: "*"
+    };
+  }
+}
+
+message CreateCostReportConfigRequest {
+  // +optional
+  int32 issue_day = 1;
+  // +optional
+  bool is_last_day = 2;
+  string currency = 3;
+  google.protobuf.Struct recipients = 4;
+  // +optional
+  google.protobuf.Struct data_source_filter = 5;
+}
+
+message UpdateCostReportConfigRequest {
+  // The ID of cost report in the Protocol.
+  string cost_report_config_id = 1;
+  // +optional
+  string issue_day = 2;
+  // +optional
+  bool is_last_day = 3;
+  // +optional
+  string currency = 4;
+  // +optional
+  google.protobuf.Struct data_source_filter = 5;
+}
+
+message UpdateCostReportConfigRecipientsRequest {
+  string cost_report_config_id = 1;
+  // +optional
+  google.protobuf.Struct recipients = 2;
+}
+message CostReportConfigRequest {
+  // The ID of cost report in the Protocol.
+  string cost_report_config_id = 1;
+}
+
+message SendCostReportConfigRequest {
+  // The ID of cost report in the Protocol.
+  string cost_report_config_id = 1;
+  // The Workspace ID which is related to cost report.
+  // +optional
+  string workspace_id = 21;
+}
+
+message CostReportConfigQuery {
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    DELETED = 3;
+  }
+
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // The ID of cost report in the Protocol.
+  string cost_report_config_id = 2;
+  // +optional
+  State state = 3;
+}
+
+message CostReportConfigStatQuery {
+  // +optional
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+}
+
+message CostReportConfigInfo {
+  enum Status {
+    ENABLED = 0;
+    DISABLED = 1;
+    DELETED = 2;
+  }
+
+  // The ID of cost report in the Protocol.
+  string cost_report_config_id = 1;
+  string start = 2;
+  string end = 3;
+  string issue_day = 4;
+  bool is_last_day = 5;
+  string currency = 6;
+  repeated string recipients = 7;
+  repeated string data_sources = 8;
+  string domain_id = 21;
+  string created_at = 31;
+  string updated_at = 32;
+}
+
+message CostReportConfigsInfo {
+  repeated CostReportConfigInfo results = 1;
+  int32 total_count = 2;
+}
+
+
