@@ -31,6 +31,29 @@
               "description": ""
             }
           ]
+        },
+        {
+          "name": "Status",
+          "longName": "CostReportQuery.Status",
+          "fullName": "spaceone.api.cost_analysis.v1.CostReportQuery.Status",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "IN_PROGRESS",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "SUCCESS",
+              "number": "2",
+              "description": ""
+            }
+          ]
         }
       ],
       "extensions": [],
@@ -107,7 +130,7 @@
             },
             {
               "name": "issue_date",
-              "description": "",
+              "description": "YYYY-mm 2023-12",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -131,7 +154,7 @@
             },
             {
               "name": "report_month",
-              "description": "YYYY-mm",
+              "description": "YYYY-mm 2023-12",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -227,18 +250,6 @@
             },
             {
               "name": "cost_report_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_name",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -250,7 +261,31 @@
               "defaultValue": ""
             },
             {
+              "name": "status",
+              "description": "+optional",
+              "label": "",
+              "type": "Status",
+              "longType": "CostReportQuery.Status",
+              "fullType": "spaceone.api.cost_analysis.v1.CostReportQuery.Status",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "issue_date",
+              "description": "YYYY-mm 2023-12\n+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_name",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -299,11 +334,23 @@
           "fields": [
             {
               "name": "query",
-              "description": "+optional",
+              "description": "",
               "label": "",
               "type": "StatisticsQuery",
               "longType": "spaceone.api.core.v2.StatisticsQuery",
               "fullType": "spaceone.api.core.v2.StatisticsQuery",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cost_report_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
