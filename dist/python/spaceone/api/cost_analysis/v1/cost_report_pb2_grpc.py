@@ -2,6 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.cost_analysis.v1 import cost_report_pb2 as spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2
 
@@ -18,7 +19,7 @@ class CostReportStub(object):
         self.send = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.CostReport/send',
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.FromString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.get_url = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.CostReport/get_url',
@@ -81,7 +82,7 @@ def add_CostReportServicer_to_server(servicer, server):
             'send': grpc.unary_unary_rpc_method_handler(
                     servicer.send,
                     request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.SerializeToString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get_url': grpc.unary_unary_rpc_method_handler(
                     servicer.get_url,
@@ -126,7 +127,7 @@ class CostReport(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.CostReport/send',
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportRequest.SerializeToString,
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_cost__report__pb2.CostReportInfo.FromString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

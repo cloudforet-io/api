@@ -8,6 +8,7 @@ package v1
 
 import (
 	context "context"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -31,7 +32,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CostReportClient interface {
-	Send(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error)
+	Send(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetUrl(ctx context.Context, in *GetUrlCostReportRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Get(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error)
 	List(ctx context.Context, in *CostReportQuery, opts ...grpc.CallOption) (*CostReportsInfo, error)
@@ -46,8 +47,8 @@ func NewCostReportClient(cc grpc.ClientConnInterface) CostReportClient {
 	return &costReportClient{cc}
 }
 
-func (c *costReportClient) Send(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*CostReportInfo, error) {
-	out := new(CostReportInfo)
+func (c *costReportClient) Send(ctx context.Context, in *CostReportRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, CostReport_Send_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -95,7 +96,7 @@ func (c *costReportClient) Stat(ctx context.Context, in *CostReportStatQuery, op
 // All implementations must embed UnimplementedCostReportServer
 // for forward compatibility
 type CostReportServer interface {
-	Send(context.Context, *CostReportRequest) (*CostReportInfo, error)
+	Send(context.Context, *CostReportRequest) (*empty.Empty, error)
 	GetUrl(context.Context, *GetUrlCostReportRequest) (*_struct.Struct, error)
 	Get(context.Context, *CostReportRequest) (*CostReportInfo, error)
 	List(context.Context, *CostReportQuery) (*CostReportsInfo, error)
@@ -107,7 +108,7 @@ type CostReportServer interface {
 type UnimplementedCostReportServer struct {
 }
 
-func (UnimplementedCostReportServer) Send(context.Context, *CostReportRequest) (*CostReportInfo, error) {
+func (UnimplementedCostReportServer) Send(context.Context, *CostReportRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Send not implemented")
 }
 func (UnimplementedCostReportServer) GetUrl(context.Context, *GetUrlCostReportRequest) (*_struct.Struct, error) {
