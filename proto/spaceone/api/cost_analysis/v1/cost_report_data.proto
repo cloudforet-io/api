@@ -69,11 +69,6 @@ message CostReportDataAnalyzeQuery {
   string data_source_id = 23;
 }
 
-message CostReportDataStatQuery {
-  spaceone.api.core.v2.StatisticsQuery query = 1;
-  // +optional
-  string cost_report_id = 2;
-}
 
 message CostReportDataInfo {
   string cost_report_data_id = 1;
@@ -104,7 +99,11 @@ message CostReportsDataInfo {
   string total_count = 2;
 }
 
-message StatInfo {
-  repeated string results = 1;
-}
+message CostReportDataStatQuery {
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+  // +optional
+  string cost_report_id = 21;
+  // +optional
+  string cost_report_config_id = 22;
 
+}
