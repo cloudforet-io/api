@@ -11,7 +11,7 @@ import "spaceone/api/core/v2/query.proto";
 import "spaceone/api/cost_analysis/v1/job.proto";
 
 service CostReport {
-  rpc send (CostReportRequest) returns (CostReportInfo) {
+  rpc send (CostReportRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/cost-analysis/v1/cost-report/send",
       body: "*"
@@ -100,6 +100,7 @@ message CostReportInfo {
   // YYYY-mm 2023-12
   string report_month = 8;
   string workspace_name = 9;
+  string bank_name = 10;
   string cost_report_config_id = 21;
   string workspace_id = 22;
   string domain_id = 23;
