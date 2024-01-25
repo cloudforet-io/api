@@ -62,13 +62,22 @@ message GetUrlCostReportRequest {
 }
 
 message CostReportQuery {
+  enum Status {
+    NONE = 0;
+    IN_PROGRESS = 1;
+    SUCCESS = 2;
+  }
   // +optional
   spaceone.api.core.v2.Query query = 1;
+  // +optional
   string cost_report_id = 2;
   // +optional
-  string workspace_name = 3;
+  Status status = 3;
+  // YYYY-mm 2023-12
   // +optional
   string issue_date = 4;
+  // +optional
+  string workspace_name = 5;
 
 }
 
@@ -84,10 +93,11 @@ message CostReportInfo {
   Status status = 3;
   string cost_report_number = 4;
   string currency = 5;
+  // YYYY-mm 2023-12
   string issue_date = 6;
   // YYYY
   string report_year = 7;
-  // YYYY-mm
+  // YYYY-mm 2023-12
   string report_month = 8;
   string workspace_name = 9;
   string cost_report_config_id = 21;
@@ -102,6 +112,7 @@ message CostReportsInfo {
 }
 
 message CostReportStatQuery {
-  // +optional
   spaceone.api.core.v2.StatisticsQuery query = 1;
+  // +optional
+  string cost_report_id = 2;
 }
