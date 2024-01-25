@@ -37,56 +37,65 @@ message CostReportDataQuery {
   // +optional
   spaceone.api.core.v2.Query query = 1;
   // +optional
-  string cost_report_id = 2;
+  string cost_report_data_id = 2;
   // +optional
   string product = 3;
   // +optional
   string provider = 4;
   // +optional
+  bool is_confirmed = 5;
+  // +optional
   string workspace_id = 21;
   // +optional
-  string data_source_id = 22;
+  string cost_report_config_id = 22;
+  // +optional
+  string cost_report_id = 23;
+  // +optional
+  string data_source_id = 24;
 }
 
 message CostReportDataAnalyzeQuery {
   // +optional
   spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 1;
-  string cost_report_id = 2;
   // +optional
-  string product = 3;
+  string product = 2;
   // +optional
-  string provider = 4;
+  string provider = 3;
   // +optional
   string workspace_id = 21;
   // +optional
-  string data_source_id = 22;
+  string cost_report_config_id = 22;
+  // +optional
+  string data_source_id = 23;
 }
 
 message CostReportDataStatQuery {
-  // +optional
   spaceone.api.core.v2.StatisticsQuery query = 1;
   // +optional
   string cost_report_id = 2;
 }
 
 message CostReportDataInfo {
-  google.protobuf.Struct cost = 1;
-  string cost_report_name = 2;
-  string provider = 3;
-  string product = 4;
-  string service_account_name = 5;
-  string data_source_name = 6;
-  string project_name = 7;
-  string workspace_name = 8;
-  string report_year = 9;
-  string report_month = 10;
-  bool is_confirmed = 11;
-  string service_account_id = 21;
-  string project_id = 22;
-  string cost_report_id = 23;
-  string data_source_id = 24;
-  string workspace_id = 25;
-  string domain_id = 26;
+  string cost_report_data_id = 1;
+  google.protobuf.Struct cost = 2;
+  string cost_report_name = 3;
+  string issue_date = 4;
+  string report_year = 5;
+  string report_month = 6;
+  bool is_confirmed = 7;
+  string provider = 8;
+  string product = 9;
+  string service_account_name = 10;
+  string data_source_name = 11;
+  string project_name = 12;
+  string workspace_name = 13;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string project_id = 23;
+  string cost_report_config_id = 24;
+  string cost_report_id = 25;
+  string data_source_id = 26;
+  string service_account_id = 27;
   string created_at = 31;
 }
 

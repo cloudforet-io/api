@@ -13,70 +13,70 @@ import "spaceone/api/cost_analysis/v1/job.proto";
 service CostReportConfig {
   rpc create (CreateCostReportConfigRequest) returns (CostReportConfigInfo) {
     option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/create",
+      post: "/cost-analysis/v1/cost-report-config/create",
       body: "*"
     };
   }
 
   rpc update (UpdateCostReportConfigRequest) returns (CostReportConfigInfo) {
     option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/update",
+      post: "/cost-analysis/v1/cost-report-config/update",
       body: "*"
     };
   }
 
   rpc update_recipients (UpdateCostReportConfigRecipientsRequest) returns (CostReportConfigInfo) {
     option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/update-recipients",
+      post: "/cost-analysis/v1/cost-report-config/update-recipients",
       body: "*"
     };
   }
 
   rpc enable (CostReportConfigRequest) returns (CostReportConfigInfo) {
     option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/enable",
+      post: "/cost-analysis/v1/cost-report-config/enable",
       body: "*"
     };
   }
 
   rpc disable (CostReportConfigRequest) returns (CostReportConfigInfo) {
     option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/disable",
+      post: "/cost-analysis/v1/cost-report-config/disable",
       body: "*"
     };
   }
 
   rpc delete (CostReportConfigRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/delete"
+      post: "/cost-analysis/v1/cost-report-config/delete"
       body: "*"
     };
   }
 
   rpc run (CostReportConfigRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/run",
+      post: "/cost-analysis/v1/cost-report-config/run",
       body: "*"
     };
   }
 
   rpc get (CostReportConfigRequest) returns (CostReportConfigInfo) {
     option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/get",
+      post: "/cost-analysis/v1/cost-report-config/get",
       body: "*"
     };
   }
 
   rpc list (CostReportConfigQuery) returns (CostReportConfigsInfo) {
     option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/list",
+      post: "/cost-analysis/v1/cost-report-config/list",
       body: "*"
     };
   }
 
   rpc stat (CostReportConfigStatQuery) returns (CostReportConfigsInfo) {
     option (google.api.http) = {
-      post: "/cost-analysis/v1/cost-report/stat",
+      post: "/cost-analysis/v1/cost-report-config/stat",
       body: "*"
     };
   }
@@ -116,15 +116,23 @@ message CostReportConfigRequest {
   string cost_report_config_id = 1;
 }
 
-message SendCostReportConfigRequest {
-  // The ID of cost report in the Protocol.
-  string cost_report_config_id = 1;
-  // The Workspace ID which is related to cost report.
+message CostReportConfigQuery {
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
+
   // +optional
-  string workspace_id = 21;
+  spaceone.api.core.v2.Query query = 1;
+  // The ID of cost report in the Protocol.
+  // +optional
+  string cost_report_config_id = 2;
+  // +optional
+  State state = 3;
 }
 
-message CostReportConfigQuery {
+message CostReportConfigInfo {
   enum State {
     NONE = 0;
     ENABLED = 1;
@@ -132,35 +140,14 @@ message CostReportConfigQuery {
     DELETED = 3;
   }
 
-  // +optional
-  spaceone.api.core.v2.Query query = 1;
-  // The ID of cost report in the Protocol.
-  string cost_report_config_id = 2;
-  // +optional
-  State state = 3;
-}
-
-message CostReportConfigStatQuery {
-  // +optional
-  spaceone.api.core.v2.StatisticsQuery query = 1;
-}
-
-message CostReportConfigInfo {
-  enum Status {
-    ENABLED = 0;
-    DISABLED = 1;
-    DELETED = 2;
-  }
-
   // The ID of cost report in the Protocol.
   string cost_report_config_id = 1;
-  string start = 2;
-  string end = 3;
-  string issue_day = 4;
-  bool is_last_day = 5;
+  State state = 2;
+  string issue_day = 3;
+  bool is_last_day = 4;
   string currency = 6;
-  repeated string recipients = 7;
-  repeated string data_sources = 8;
+  google.protobuf.Struct recipients = 7;
+  google.protobuf.Struct data_source_filter = 8;
   string domain_id = 21;
   string created_at = 31;
   string updated_at = 32;
@@ -172,3 +159,6 @@ message CostReportConfigsInfo {
 }
 
 
+message CostReportConfigStatQuery {
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+}
