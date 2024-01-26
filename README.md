@@ -1,9 +1,7 @@
-**How to build protobuf**
-
-Ex) make python
-
 # Release Note
 
-## Version 1.3.2
+| Version | Status | URL |
+| ---     | ---    | --- |
+| 2.x     | Development | https://cloudforet-io.github.io/api-doc/ |
+| 1.12    | Stable      | https://cloudforet-io.github.io/api-doc-1-12/ |
 
-* Support NEW power_scheduler API
