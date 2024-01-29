@@ -55,6 +55,7 @@ message GrantTokenRequest {
   enum GrantType {
     GRANT_TYPE_NONE = 0;
     REFRESH_TOKEN = 1;
+    SYSTEM_TOKEN = 2;
   }
 
   enum Scope {
@@ -73,6 +74,10 @@ message GrantTokenRequest {
   int32 timeout = 4;
   // +optional
   string workspace_id = 5;
+  // +optional
+  string domain_id = 6;
+  // +optional
+  repeated string permissions = 7;
 }
 
 message GrantTokenInfo {
