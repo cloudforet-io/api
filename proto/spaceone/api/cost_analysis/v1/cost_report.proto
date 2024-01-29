@@ -10,6 +10,7 @@ import "google/protobuf/struct.proto";
 import "spaceone/api/core/v2/query.proto";
 import "spaceone/api/cost_analysis/v1/job.proto";
 
+
 service CostReport {
   rpc send (CostReportRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
@@ -24,8 +25,6 @@ service CostReport {
       body: "*"
     };
   }
-
-
 
   rpc get (CostReportRequest) returns (CostReportInfo) {
     option (google.api.http) = {
@@ -48,7 +47,6 @@ service CostReport {
     };
   }
 }
-
 
 
 message CostReportRequest {
@@ -93,23 +91,27 @@ message CostReportInfo {
   Status status = 3;
   string report_number = 4;
   string currency = 5;
+  // YYYY-mm-dd 00:00:00 2023-12-31 00:00:00
+  string currency_date = 6;
   // YYYY-mm 2023-12
-  string issue_date = 6;
+  string issue_date = 7;
   // YYYY
-  string report_year = 7;
+  string report_year = 8;
   // YYYY-mm 2023-12
-  string report_month = 8;
-  string workspace_name = 9;
-  string bank_name = 10;
+  string report_month = 9;
+  string workspace_name = 10;
+  string bank_name = 11;
   string cost_report_config_id = 21;
   string workspace_id = 22;
   string domain_id = 23;
 }
 
+
 message CostReportsInfo {
   repeated CostReportInfo results = 1;
   int32 total_count = 2;
 }
+
 
 message CostReportStatQuery {
   spaceone.api.core.v2.StatisticsQuery query = 1;
