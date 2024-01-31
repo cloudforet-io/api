@@ -11,146 +11,147 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service File {
-    rpc add (CreateFileRequest) returns (FileInfo) {
-        option (google.api.http) = {
-            post: "/file-manager/v2/file/add"
-            body: "*"
-        };
-    }
-    rpc update (UpdateFileRequest) returns (FileInfo) {
-        option (google.api.http) = {
-            post: "/file-manager/v1/file/update"
-            body: "*"
-        };
-    }
-    rpc delete (FileRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/file-manager/v1/file/delete"
-            body: "*"
-        };
-    }
-    rpc get_download_url (FileRequest) returns (FileInfo) {
-        option (google.api.http) = {
-            post: "/file-manager/v1/file/get-download-url"
-            body: "*"
-        };
-    }
-    rpc get (FileRequest) returns (FileInfo) {
-        option (google.api.http) = {
-            post: "/file-manager/v1/file/get"
-            body: "*"
-        };
-    }
-    rpc list (FileSearchQuery) returns (FilesInfo) {
-        option (google.api.http) = {
-            post: "/file-manager/v1/file/list"
-            body: "*"
-        };
-    }
-    rpc stat (FileStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/file-manager/v1/file/stat"
-            body: "*"
-        };
-    }
+  rpc add (CreateFileRequest) returns (FileInfo) {
+    option (google.api.http) = {
+      post: "/file-manager/v2/file/add"
+      body: "*"
+    };
+  }
+  rpc update (UpdateFileRequest) returns (FileInfo) {
+    option (google.api.http) = {
+      post: "/file-manager/v1/file/update"
+      body: "*"
+    };
+  }
+  rpc delete (FileRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/file-manager/v1/file/delete"
+      body: "*"
+    };
+  }
+  rpc get_download_url (FileRequest) returns (FileInfo) {
+    option (google.api.http) = {
+      post: "/file-manager/v1/file/get-download-url"
+      body: "*"
+    };
+  }
+  rpc get (FileRequest) returns (FileInfo) {
+    option (google.api.http) = {
+      post: "/file-manager/v1/file/get"
+      body: "*"
+    };
+  }
+  rpc list (FileSearchQuery) returns (FilesInfo) {
+    option (google.api.http) = {
+      post: "/file-manager/v1/file/list"
+      body: "*"
+    };
+  }
+  rpc stat (FileStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/file-manager/v1/file/stat"
+      body: "*"
+    };
+  }
 }
 
 enum FileState {
-    STATE_NONE = 0;
-    PENDING = 1;
-    DONE = 2;
+  STATE_NONE = 0;
+  PENDING = 1;
+  DONE = 2;
 }
 
 message FileReference {
-    string resource_type = 1;
-    string resource_id = 2;
+  string resource_type = 1;
+  string resource_id = 2;
 }
 
 message CreateFileRequest {
 
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        SYSTEM = 1;
-        DOMAIN = 2;
-        WORKSPACE = 3;
-    }
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    SYSTEM = 1;
+    DOMAIN = 2;
+    WORKSPACE = 3;
+    PROJECT = 4;
+  }
 
-    string name = 1;
-    // +optional
-    google.protobuf.Struct tags = 2;
-    // +optional
-    FileReference reference = 3;
-    ResourceGroup resource_group = 20;
-    // +optional
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
+  string name = 1;
+  // +optional
+  google.protobuf.Struct tags = 2;
+  // +optional
+  FileReference reference = 3;
+  ResourceGroup resource_group = 20;
+  // +optional
+  string domain_id = 21;
+  // +optional
+  string workspace_id = 22;
 }
 
 message UpdateFileRequest {
-    string file_id = 1;
-    // +optional
-    google.protobuf.Struct tags = 2;
-    // +optional
-    FileReference reference = 3;
+  string file_id = 1;
+  // +optional
+  google.protobuf.Struct tags = 2;
+  // +optional
+  FileReference reference = 3;
 }
 
 message FileRequest {
-    string file_id = 1;
+  string file_id = 1;
 }
 
 message FileSearchQuery {
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string file_id = 2;
-    /// +optional
-    string name = 3;
-    // +optional
-    FileState state = 4;
-    // +optional
-    string file_type = 6;
-    // +optional
-    string resource_type = 7;
-    // +optional
-    string resource_id = 8;
-    // +optional
-    string domain_id = 21;
-    // +optional
-    string workspace_id = 22;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string file_id = 2;
+  /// +optional
+  string name = 3;
+  // +optional
+  FileState state = 4;
+  // +optional
+  string file_type = 6;
+  // +optional
+  string resource_type = 7;
+  // +optional
+  string resource_id = 8;
+  // +optional
+  string domain_id = 21;
+  // +optional
+  string workspace_id = 22;
 }
 
 message FileInfo {
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        SYSTEM = 1;
-        DOMAIN = 2;
-        WORKSPACE = 3;
-    }
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    SYSTEM = 1;
+    DOMAIN = 2;
+    WORKSPACE = 3;
+  }
 
-    string file_id = 1;
-    string name = 2;
-    FileState state = 3;
-    string file_type = 4;
-    string upload_url = 5;
-    google.protobuf.Struct upload_options = 6;
-    string download_url = 7;
-    google.protobuf.Struct tags = 8;
-    FileReference reference = 9;
+  string file_id = 1;
+  string name = 2;
+  FileState state = 3;
+  string file_type = 4;
+  string upload_url = 5;
+  google.protobuf.Struct upload_options = 6;
+  string download_url = 7;
+  google.protobuf.Struct tags = 8;
+  FileReference reference = 9;
 
-    ResourceGroup resource_group = 20;
-    string domain_id = 21;
-    string workspace_id = 22;
-    string user_id = 23;
+  ResourceGroup resource_group = 20;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string user_id = 23;
 
-    string created_at = 31;
+  string created_at = 31;
 }
 
 message FilesInfo {
-    repeated FileInfo results = 1;
-    int32 total_count = 2;
+  repeated FileInfo results = 1;
+  int32 total_count = 2;
 }
 
 message FileStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
