@@ -12,52 +12,52 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service Cost {
-    
-    // Creates a new Cost. When creating a Cost, if the parameter `provider` is not entered, the default value of the parameter will be the provider information of the DataSource which collected the raw data of the Cost from the provider. The parameter `billed_at` is the data of when the cost is billed. While the DataSource collects the cost data, if the `billed_at` data does not exist, the value will be replaced with the `created_at` data indicating when the Cost is created. If the cost data collected is based on USD, the Cost is created without the currency exchange.
-    rpc create (CreateCostRequest) returns (CostInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/cost/create"
-            body: "*"
-        };
-    }
-    
-    // Deletes a specific Cost. You must specify the `cost_id` of the Cost to delete.
-    rpc delete (CostRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/cost/delete"
-            body: "*"
-        };
-    }
-    
-    // Gets a specific Cost. Prints detailed information about the Cost, including  `region_code` and `account`.
-    rpc get (CostRequest) returns (CostInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/cost/get"
-            body: "*"
-        };
-    }
-    
-    // Gets a list of all Costs. You can use a query to get a filtered list of Costs.
-    rpc list (CostQuery) returns (CostsInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/cost/list"
-            body: "*"
-        };
-    }
-    
-    // Gets the Cost information of specific `product`s based on the time granularity: `DAILY`, `MONTHLY`, or `ACCUMULATED`. For `DAILY` granularity, this method can get the Cost data of at most 31 days. For `MONTHLY` or `ACCUMULATED` granularity, this method can get the Cost data of at most 12 months.
-    rpc analyze (CostAnalyzeQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/cost/analyze"
-            body: "*"
-        };
-    }
-    rpc stat (CostStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/cost/stat"
-            body: "*"
-        };
-    }
+
+  // Creates a new Cost. When creating a Cost, if the parameter `provider` is not entered, the default value of the parameter will be the provider information of the DataSource which collected the raw data of the Cost from the provider. The parameter `billed_at` is the data of when the cost is billed. While the DataSource collects the cost data, if the `billed_at` data does not exist, the value will be replaced with the `created_at` data indicating when the Cost is created. If the cost data collected is based on USD, the Cost is created without the currency exchange.
+  rpc create (CreateCostRequest) returns (CostInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost/create"
+      body: "*"
+    };
+  }
+
+  // Deletes a specific Cost. You must specify the `cost_id` of the Cost to delete.
+  rpc delete (CostRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost/delete"
+      body: "*"
+    };
+  }
+
+  // Gets a specific Cost. Prints detailed information about the Cost, including  `region_code` and `account`.
+  rpc get (CostRequest) returns (CostInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost/get"
+      body: "*"
+    };
+  }
+
+  // Gets a list of all Costs. You can use a query to get a filtered list of Costs.
+  rpc list (CostQuery) returns (CostsInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost/list"
+      body: "*"
+    };
+  }
+
+  // Gets the Cost information of specific `product`s based on the time granularity: `DAILY`, `MONTHLY`, or `ACCUMULATED`. For `DAILY` granularity, this method can get the Cost data of at most 31 days. For `MONTHLY` or `ACCUMULATED` granularity, this method can get the Cost data of at most 12 months.
+  rpc analyze (CostAnalyzeQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost/analyze"
+      body: "*"
+    };
+  }
+  rpc stat (CostStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/cost/stat"
+      body: "*"
+    };
+  }
 }
 
 //{
@@ -78,74 +78,74 @@ service Cost {
 //        "data_source_id": "ds-fcba92ca73b1"
 //}
 message CreateCostRequest {
-    double cost = 1;
-    // +optional
-    double usage_quantity = 2;
-    // +optional
-    float usage_unit = 3;
-    // +optional
-    string provider = 4;
-    // +optional
-    string region_code = 5;
-    // +optional
-    string product = 6;
-    // +optional
-    string usage_type = 7;
-    // +optional
-    string resource = 8;
-    // +optional
-    google.protobuf.Struct tags = 9;
-    // +optional
-    google.protobuf.Struct additional_info = 10;
-    string project_id = 21;
-    // +optional
-    string service_account_id = 22;
-    string data_source_id = 23;
-    string billed_date = 31;
+  double cost = 1;
+  // +optional
+  double usage_quantity = 2;
+  // +optional
+  float usage_unit = 3;
+  // +optional
+  string provider = 4;
+  // +optional
+  string region_code = 5;
+  // +optional
+  string product = 6;
+  // +optional
+  string usage_type = 7;
+  // +optional
+  string resource = 8;
+  // +optional
+  google.protobuf.Struct tags = 9;
+  // +optional
+  google.protobuf.Struct additional_info = 10;
+  string project_id = 21;
+  // +optional
+  string service_account_id = 22;
+  string data_source_id = 23;
+  string billed_date = 31;
 }
 
 //{
 //    "cost_id": "cost-2ad052ed03d7"
 //}
 message CostRequest {
-    string cost_id = 1;
+  string cost_id = 1;
 }
 
 //{
 //    "query": {}
 //}
 message CostQuery {
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    string data_source_id = 2;
-    // +optional
-    string cost_id = 3;
-    // +optional
-    string provider = 4;
-    // +optional
-    string region_code = 5;
-    // +optional
-    string region_key = 6;
-    // +optional
-    string product = 7;
-    // +optional
-    string usage_type = 8;
-    // +optional
-    string resource = 9;
-    // +optional
-    string workspace_id = 21;
-    // +optional
-    string project_id = 22;
-    // +optional
-    string project_group_id = 23;
-    // +optional
-    string service_account_id = 24;
-    // +optional
-    string billed_year = 31;
-    // +optional
-    string billed_month = 32;
-    // +optional
-    string billed_date = 33;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  string data_source_id = 2;
+  // +optional
+  string cost_id = 3;
+  // +optional
+  string provider = 4;
+  // +optional
+  string region_code = 5;
+  // +optional
+  string region_key = 6;
+  // +optional
+  string product = 7;
+  // +optional
+  string usage_type = 8;
+  // +optional
+  string resource = 9;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string project_id = 22;
+  // +optional
+  string project_group_id = 23;
+  // +optional
+  string service_account_id = 24;
+  // +optional
+  string billed_year = 31;
+  // +optional
+  string billed_month = 32;
+  // +optional
+  string billed_date = 33;
 }
 
 
@@ -171,29 +171,30 @@ message CostQuery {
 //        "billed_date": "2022-07-19"
 //}
 message CostInfo {
-    string cost_id = 1;
-    double cost = 2;
-    double usage_quantity = 3;
-    string usage_unit = 4;
-    string provider = 5;
-    string region_code = 6;
-    string region_key = 7;
-    string product = 8;
-    string usage_type = 9;
-    string resource = 10;
-    google.protobuf.Struct tags = 11;
-    google.protobuf.Struct additional_info = 12;
+  string cost_id = 1;
+  double cost = 2;
+  double usage_quantity = 3;
+  string usage_unit = 4;
+  string provider = 5;
+  string region_code = 6;
+  string region_key = 7;
+  string product = 8;
+  string usage_type = 9;
+  string resource = 10;
+  google.protobuf.Struct tags = 11;
+  google.protobuf.Struct additional_info = 12;
+  google.protobuf.Struct data = 13;
 
-    string domain_id = 21;
-    string workspace_id = 22;
-    string project_id = 23;
-    string service_account_id = 24;
-    string data_source_id = 25;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string project_id = 23;
+  string service_account_id = 24;
+  string data_source_id = 25;
 
 
-    string billed_year = 31;
-    string billed_month = 32;
-    string billed_date = 33;
+  string billed_year = 31;
+  string billed_month = 32;
+  string billed_date = 33;
 }
 
 //{
@@ -241,17 +242,17 @@ message CostInfo {
 //        "total_count": 307066
 //}
 message CostsInfo {
-    repeated CostInfo results = 1;
-    int32 total_count = 2;
+  repeated CostInfo results = 1;
+  int32 total_count = 2;
 }
 
 message CostAnalyzeQuery {
-    spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 1;
-    string data_source_id = 2;
+  spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 1;
+  string data_source_id = 2;
 }
 
 message CostStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
-    // +optional
-    string data_source_id = 2;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+  // +optional
+  string data_source_id = 2;
 }
