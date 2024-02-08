@@ -8,7 +8,181 @@
      "title": "Cost Analysis API",
      "version": "3.1.0"
    },
-   "paths":{"/cost-analysis/budget/create": {
+   "paths":{"/cost-analysis/cost/create": {
+       "post": {
+         "tags": ["cost-analysis > cost"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \nCreates a new Cost. When creating a Cost, if the parameter `provider` is not entered, the default value of the parameter will be the provider information of the DataSource which collected the raw data of the Cost from the provider. The parameter `billed_at` is the data of when the cost is billed. While the DataSource collects the cost data, if the `billed_at` data does not exist, the value will be replaced with the `created_at` data indicating when the Cost is created. If the cost data collected is based on USD, the Cost is created without the currency exchange.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost||float|True|\n |project_id||string|True|\n |data_source_id||string|True|\n |billed_date||string|True|\n |usage_quantity||float||\n |usage_unit||float||\n |provider||string||\n |region_code||string||\n |product||string||\n |usage_type||string||\n |resource||string||\n |tags||Struct||\n |additional_info||Struct||\n |service_account_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"cost" : {"type": "float","title": "COST" },"usage_quantity" : {"type": "float","title": "USAGE_QUANTITY" },"usage_unit" : {"type": "float","title": "USAGE_UNIT" },"provider" : {"type": "string","title": "PROVIDER" },"region_code" : {"type": "string","title": "REGION_CODE" },"product" : {"type": "string","title": "PRODUCT" },"usage_type" : {"type": "string","title": "USAGE_TYPE" },"resource" : {"type": "string","title": "RESOURCE" },"tags" : {"type": "object","title": "TAGS" },"additional_info" : {"type": "object","title": "ADDITIONAL_INFO" },"project_id" : {"type": "string","title": "PROJECT_ID" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"billed_date" : {"type": "string","title": "BILLED_DATE" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n       \"cost\": 142,\n       \"usage_quantity\": 84532,\n       \"usage_unit\": \"GB\",\n       \"provider\": \"aws\",\n       \"region_code\": \"ap-northeast-1\",\n       \"product\": \"AWSDataTransfer\",\n       \"account\": \"722069360300\",\n       \"usage_type\": \"data-transfer.out\",\n       \"additional_info\": {\n           \"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n       },\n       \"tags\": {\n           \"Environment\": \"Dev\"\n       },\n       \"data_source_id\": \"ds-fcba92ca73b1\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CostInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CostInfo"},"Default Example":{
+                     "value": "{\n       \"cost_id\": \"cost-c5aae7712ec9\",\n       \"cost\": 142,\n       \"usage_quantity\": 84532,\n       \"usage_unit\": \"GB\",\n       \"provider\": \"aws\",\n       \"region_code\": \"ap-northeast-1\",\n       \"product\": \"AWSDataTransfer\",\n       \"usage_type\": \"data-transfer.out\",\n       \"additional_info\": {\n           \"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n       },\n       \"tags\": {\n           \"Environment\": \"Dev\"\n       },\n       \"data_source_id\": \"ds-fcba92ca73b1\"\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"billed_year\": \"2022\",\n       \"billed_month\": \"2022-07\",\n       \"billed_date\": \"2022-07-19\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost/delete": {
+       "post": {
+         "tags": ["cost-analysis > cost"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific Cost. You must specify the `cost_id` of the Cost to delete.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"cost_id" : {"type": "string","title": "COST_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"cost_id\": \"cost-2ad052ed03d7\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost/get": {
+       "post": {
+         "tags": ["cost-analysis > cost"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific Cost. Prints detailed information about the Cost, including  `region_code` and `account`.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"cost_id" : {"type": "string","title": "COST_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"cost_id\": \"cost-2ad052ed03d7\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CostInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CostInfo"},"Default Example":{
+                     "value": "{\n       \"cost_id\": \"cost-c5aae7712ec9\",\n       \"cost\": 142,\n       \"usage_quantity\": 84532,\n       \"usage_unit\": \"GB\",\n       \"provider\": \"aws\",\n       \"region_code\": \"ap-northeast-1\",\n       \"product\": \"AWSDataTransfer\",\n       \"usage_type\": \"data-transfer.out\",\n       \"additional_info\": {\n           \"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n       },\n       \"tags\": {\n           \"Environment\": \"Dev\"\n       },\n       \"data_source_id\": \"ds-fcba92ca73b1\"\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"billed_year\": \"2022\",\n       \"billed_month\": \"2022-07\",\n       \"billed_date\": \"2022-07-19\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost/list": {
+       "post": {
+         "tags": ["cost-analysis > cost"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Costs. You can use a query to get a filtered list of Costs.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |query||Query||\n |cost_id||string||\n |provider||string||\n |region_code||string||\n |region_key||string||\n |product||string||\n |usage_type||string||\n |resource||string||\n |workspace_id||string||\n |project_id||string||\n |project_group_id||string||\n |service_account_id||string||\n |billed_year||string||\n |billed_month||string||\n |billed_date||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"cost_id" : {"type": "string","title": "COST_ID" },"provider" : {"type": "string","title": "PROVIDER" },"region_code" : {"type": "string","title": "REGION_CODE" },"region_key" : {"type": "string","title": "REGION_KEY" },"product" : {"type": "string","title": "PRODUCT" },"usage_type" : {"type": "string","title": "USAGE_TYPE" },"resource" : {"type": "string","title": "RESOURCE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"billed_year" : {"type": "string","title": "BILLED_YEAR" },"billed_month" : {"type": "string","title": "BILLED_MONTH" },"billed_date" : {"type": "string","title": "BILLED_DATE" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CostsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CostsInfo"},"Default Example":{
+                     "value": "{\n       \"results\": [\n           {\n               \"cost_id\": \"cost-c5aae7712ec9\",\n               \"cost\": 142,\n               \"usage_quantity\": 84532,\n               \"usage_unit\": \"GB\",\n               \"provider\": \"aws\",\n               \"region_code\": \"ap-northeast-1\",\n               \"product\": \"AWSDataTransfer\",\n               \"usage_type\": \"data-transfer.out\",\n               \"additional_info\": {\n               \"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n               },\n               \"tags\": {\n               \"Environment\": \"Dev\"\n               },\n               \"data_source_id\": \"ds-fcba92ca73b1\"\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"billed_year\": \"2022\",\n               \"billed_month\": \"2022-07\",\n               \"billed_date\": \"2022-07-19\"\n           },\n           {\n               \"cost_id\": \"cost-1d5e1b0dbf82\",\n               \"cost\": 78,\n               \"usage_quantity\": 34523,\n               \"usage_unit\": \"Count\",\n               \"provider\": \"aws\",\n               \"region_code\": \"ap-northeast-1\",\n               \"product\": \"AWSQueueService\"\n               \"additional_info\": {\n                   \"raw_usage_type\": \"APN1-Requests-Tier1\"\n               },\n               \"tags\": {},\n               \"data_source_id\": \"ds-fcba92ca73b1\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"billed_year\": \"2022\",\n               \"billed_month\": \"2022-07\",\n               \"billed_date\": \"2022-07-20\"\n           }\n       ],\n       \"total_count\": 307066\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost/analyze": {
+       "post": {
+         "tags": ["cost-analysis > cost"],
+         "summary": "Analyze",
+         "operationId" : "",
+         "description": "### Description \nGets the Cost information of specific `product`s based on the time granularity: `DAILY`, `MONTHLY`, or `ACCUMULATED`. For `DAILY` granularity, this method can get the Cost data of at most 31 days. For `MONTHLY` or `ACCUMULATED` granularity, this method can get the Cost data of at most 12 months.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||TimeSeriesAnalyzeQuery|True|\n |data_source_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost/stat": {
+       "post": {
+         "tags": ["cost-analysis > cost"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |data_source_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/budget/create": {
        "post": {
          "tags": ["cost-analysis > budget"],
          "summary": "Create",
@@ -215,105 +389,20 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-query-set/create": {
+     },"/cost-analysis/job-task/get": {
        "post": {
-         "tags": ["cost-analysis > cost-query-set"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new CostQuerySet. You can make your own custom query that meets your needs, and input it as an `option` parameter of the resource. Queries such as `group_by` and `granularity` are provided by default.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |name||string|True|\n |options||Struct|True|\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n       \"data_source_id\": \"ds-085d1e872789\",\n       \"name\": \"project_provider_region\",\n       \"options\": {}\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostQuerySetInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostQuerySetInfo"},"Default Example":{
-                     "value": "{\n       \"cost_query_set_id\": \"query-76a58ea5d02c\",\n       \"name\": \"project_provider_region\",\n       \"options\": {},\n       \"tags\": {},\n       \"user_id\": \"test@cloudforet.io\",\n       \"data_source_id\": \"ds-085d1e872789\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-19T06:11:03.701Z\",\n       \"updated_at\": \"2022-07-19T06:11:03.701Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-query-set/update": {
-       "post": {
-         "tags": ["cost-analysis > cost-query-set"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \nUpdates a specific CostQuerySet. You can make changes in the details of queries.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_query_set_id||string|True|\n |name||string||\n |options||Struct||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"cost_query_set_id" : {"type": "string","title": "COST_QUERY_SET_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n       \"cost_query_set_id\": \"query-76a58ea5d02c\",\n       \"name\": \"project_provider_region\",\n       \"options\": {},\n       \"tags\": {},\n       \"user_id\": \"test@cloudforet.io\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-19T06:11:03.701Z\",\n       \"updated_at\": \"2022-07-19T06:11:03.701Z\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostQuerySetInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostQuerySetInfo"},"Default Example":{
-                     "value": "{\n       \"cost_query_set_id\": \"query-76a58ea5d02c\",\n       \"name\": \"project_provider_region\",\n       \"options\": {},\n       \"tags\": {},\n       \"user_id\": \"test@cloudforet.io\",\n       \"data_source_id\": \"ds-085d1e872789\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-19T06:11:03.701Z\",\n       \"updated_at\": \"2022-07-19T06:11:03.701Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-query-set/delete": {
-       "post": {
-         "tags": ["cost-analysis > cost-query-set"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \nDeletes a specific CostQuerySet. You must specify the `cost_query_set_id` of the CostQuerySet to delete.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_query_set_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"cost_query_set_id" : {"type": "string","title": "COST_QUERY_SET_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"cost_query_set_id\": \"query-16ae671dc8fb\",\n    \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-query-set/get": {
-       "post": {
-         "tags": ["cost-analysis > cost-query-set"],
+         "tags": ["cost-analysis > job-task"],
          "summary": "Get",
          "operationId" : "",
-         "description": "### Description \nGets a specific CostQuerySet. Prints detailed information about the CostQuerySet, including the details of queries.",
+         "description": "### Description \nGets a specific JobTask. Prints detailed information about the JobTask, including the relevant resources: DataSource and Job. The criteria used for dividing a Job into JobTasks can be found in the DataSource used, but the total count of divided JobTasks can be found by this method.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_query_set_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_task_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"cost_query_set_id" : {"type": "string","title": "COST_QUERY_SET_ID" }                 }
+                 "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"cost_query_set_id\": \"query-16ae671dc8fb\",\n    \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-3622d860a776\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -322,27 +411,27 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostQuerySetInfo"},
+                 "schema": {"$ref": "#/components/schemas/JobTaskInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostQuerySetInfo"},"Default Example":{
-                     "value": "{\n       \"cost_query_set_id\": \"query-76a58ea5d02c\",\n       \"name\": \"project_provider_region\",\n       \"options\": {},\n       \"tags\": {},\n       \"user_id\": \"test@cloudforet.io\",\n       \"data_source_id\": \"ds-085d1e872789\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-19T06:11:03.701Z\",\n       \"updated_at\": \"2022-07-19T06:11:03.701Z\"\n}"
+                   "Schema": {"$ref": "#/components/schemas/JobTaskInfo"},"Default Example":{
+                     "value": "{\n   \"job_task_id\": \"job-task-3622d860a776\",\n   \"status\": \"SUCCESS\",\n   \"options\": {\n       \"month\": \"202207\",\n       \"platform\": \"gcp\"\n   },\n   \"created_count\": 1,\n   \"job_id\": \"job-85cf2c385252\",\n   \"data_source_id\": \"ds-c96609f5afeb\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-17T16:00:08.266Z\",\n   \"started_at\": \"2022-07-17T16:01:28.243Z\",\n   \"updated_at\": \"2022-07-17T16:01:28.939Z\",\n   \"finished_at\": \"2022-07-17T16:01:28.939Z\"\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-query-set/list": {
+     },"/cost-analysis/job-task/list": {
        "post": {
-         "tags": ["cost-analysis > cost-query-set"],
+         "tags": ["cost-analysis > job-task"],
          "summary": "List",
          "operationId" : "",
-         "description": "### Description \nGets a list of all CostQuerySets. You can use a query to get a filtered list of CostQuerySets.",
+         "description": "### Description \nGets a list of all JobTasks. You can use a query to get a filtered list of JobTasks.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |query||Query||\n |name||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |job_task_id||string||\n |status|PENDING, IN_PROGRESS, SUCCESS, FAILURE, TIMEOUT, CANCELED |string||\n |workspace_id||string||\n |job_id||string||\n |data_source_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"name" : {"type": "string","title": "NAME" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"job_task_id" : {"type": "string","title": "JOB_TASK_ID" },"status" : {"type": "string","title": "STATUS" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"job_id" : {"type": "string","title": "JOB_ID" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
                }
@@ -353,27 +442,27 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostQuerySetsInfo"},
+                 "schema": {"$ref": "#/components/schemas/JobTasksInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostQuerySetsInfo"},"Default Example":{
-                     "value": "{\n       \"results\": [\n           {\n               \"cost_query_set_id\": \"query-16ae671dc8fb\",\n               \"name\": \"3 month product pie chart\",\n               \"options\": {},\n               \"tags\": {},\n               \"user_id\": \"yuda@mz.co.kr\",\n               \"data_source_id\": \"ds-085d1e872789\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-03-08T03:37:31.404Z\",\n               \"updated_at\": \"2022-03-08T03:37:31.404Z\"\n           },\n           {\n               \"cost_query_set_id\": \"query-d90addf25e4b\",\n               \"name\": \"6 month project group\",\n               \"options\": {},\n               \"tags\": {},\n               \"user_id\": \"yuda@mz.co.kr\",\n               \"data_source_id\": \"ds-085d1e872789\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-03-14T09:29:54.306Z\",\n               \"updated_at\": \"2022-03-14T09:29:54.306Z\"\n           }\n       ],\n       \"total_count\": 34\n}"
+                   "Schema": {"$ref": "#/components/schemas/JobTasksInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"job_task_id\": \"job-task-3622d860a776\",\n           \"status\": \"SUCCESS\",\n           \"options\": {\n               \"platform\": \"gcp\",\n               \"month\": \"202207\"\n           },\n           \"created_count\": 1,\n           \"job_id\": \"job-85cf2c385252\",\n           \"data_source_id\": \"ds-c96609f5afeb\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-07-17T16:00:08.266Z\",\n           \"started_at\": \"2022-07-17T16:01:28.243Z\",\n           \"updated_at\": \"2022-07-17T16:01:28.939Z\",\n           \"finished_at\": \"2022-07-17T16:01:28.939Z\"\n       },\n       {\n           \"job_task_id\": \"job-task-038c0b076ec5\",\n           \"status\": \"SUCCESS\",\n           \"options\": {\n               \"account\": \"257706363616\",\n               \"start\": \"2022-07-01\"\n           },\n           \"created_count\": 5756,\n           \"job_id\": \"job-6b6765f757a9\",\n           \"data_source_id\": \"ds-fcba92ca73b1\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-07-17T16:00:05.099Z\",\n           \"started_at\": \"2022-07-17T16:00:47.356Z\",\n           \"updated_at\": \"2022-07-17T16:01:20.856Z\",\n           \"finished_at\": \"2022-07-17T16:01:20.856Z\"\n       }\n   ],\n   \"total_count\": 720\n}"
                    }}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-query-set/stat": {
+     },"/cost-analysis/job-task/stat": {
        "post": {
-         "tags": ["cost-analysis > cost-query-set"],
+         "tags": ["cost-analysis > job-task"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |data_source_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -480,18 +569,18 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report-data/list": {
+     },"/cost-analysis/cost-report/send": {
        "post": {
-         "tags": ["cost-analysis > cost-report-data"],
-         "summary": "List",
+         "tags": ["cost-analysis > cost-report"],
+         "summary": "Send",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |cost_report_data_id||string||\n |product||string||\n |provider||string||\n |is_confirmed||boolean||\n |workspace_id||string||\n |cost_report_config_id||string||\n |cost_report_id||string||\n |data_source_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_id|The ID of cost report in the Protocol.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"cost_report_data_id" : {"type": "string","title": "COST_REPORT_DATA_ID" },"product" : {"type": "string","title": "PRODUCT" },"provider" : {"type": "string","title": "PROVIDER" },"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+                 "properties": {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -500,27 +589,21 @@
          },
          "responses": {
            "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostReportsDataInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostReportsDataInfo"}}
-               }
-             }}
+             "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report-data/analyze": {
+     },"/cost-analysis/cost-report/get-url": {
        "post": {
-         "tags": ["cost-analysis > cost-report-data"],
-         "summary": "Analyze",
+         "tags": ["cost-analysis > cost-report"],
+         "summary": "Get Url",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||TimeSeriesAnalyzeQuery||\n |product||string||\n |provider||string||\n |is_confirmed||boolean||\n |workspace_id||string||\n |cost_report_config_id||string||\n |data_source_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_id|The ID of cost report in the Protocol|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"product" : {"type": "string","title": "PRODUCT" },"provider" : {"type": "string","title": "PROVIDER" },"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+                 "properties": {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -538,238 +621,18 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report-data/stat": {
+     },"/cost-analysis/cost-report/get": {
        "post": {
-         "tags": ["cost-analysis > cost-report-data"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |cost_report_id||string||\n |cost_report_config_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" },"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report-config/create": {
-       "post": {
-         "tags": ["cost-analysis > cost-report-config"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |recipients||Struct|True|\n |issue_day||int||\n |is_last_day||boolean||\n |currency||string||\n |data_source_filter||Struct||\n |language|Default `en` |string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"issue_day" : {"type": "integer","title": "ISSUE_DAY" },"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY" },"currency" : {"type": "string","title": "CURRENCY" },"recipients" : {"type": "object","title": "RECIPIENTS" },"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER" },"language" : {"type": "string","title": "LANGUAGE" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostReportConfigInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostReportConfigInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report-config/update": {
-       "post": {
-         "tags": ["cost-analysis > cost-report-config"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n |issue_day||int||\n |is_last_day||boolean||\n |currency||string||\n |data_source_filter||Struct||\n |language||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"issue_day" : {"type": "integer","title": "ISSUE_DAY" },"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY" },"currency" : {"type": "string","title": "CURRENCY" },"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER" },"language" : {"type": "string","title": "LANGUAGE" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostReportConfigInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostReportConfigInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report-config/update-recipients": {
-       "post": {
-         "tags": ["cost-analysis > cost-report-config"],
-         "summary": "Update Recipients",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id||string|True|\n |recipients||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"recipients" : {"type": "object","title": "RECIPIENTS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostReportConfigInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostReportConfigInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report-config/enable": {
-       "post": {
-         "tags": ["cost-analysis > cost-report-config"],
-         "summary": "Enable",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostReportConfigInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostReportConfigInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report-config/disable": {
-       "post": {
-         "tags": ["cost-analysis > cost-report-config"],
-         "summary": "Disable",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostReportConfigInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostReportConfigInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report-config/delete": {
-       "post": {
-         "tags": ["cost-analysis > cost-report-config"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report-config/run": {
-       "post": {
-         "tags": ["cost-analysis > cost-report-config"],
-         "summary": "Run",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report-config/get": {
-       "post": {
-         "tags": ["cost-analysis > cost-report-config"],
+         "tags": ["cost-analysis > cost-report"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_id|The ID of cost report in the Protocol.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" }                 }
+                 "properties": {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -780,25 +643,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostReportConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/CostReportInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostReportConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/CostReportInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report-config/list": {
+     },"/cost-analysis/cost-report/list": {
        "post": {
-         "tags": ["cost-analysis > cost-report-config"],
+         "tags": ["cost-analysis > cost-report"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |cost_report_config_id|The ID of cost report in the Protocol. |string||\n |state|ENABLED, DISABLED |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |cost_report_id||string||\n |status|IN_PROGRESS, SUCCESS |string||\n |issue_date|YYYY-mm 2023-12 |string||\n |workspace_name||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"state" : {"type": "string","title": "STATE" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" },"status" : {"type": "string","title": "STATUS" },"issue_date" : {"type": "string","title": "ISSUE_DATE" },"workspace_name" : {"type": "string","title": "WORKSPACE_NAME" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -809,25 +672,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostReportConfigsInfo"},
+                 "schema": {"$ref": "#/components/schemas/CostReportsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostReportConfigsInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/CostReportsInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report-config/stat": {
+     },"/cost-analysis/cost-report/stat": {
        "post": {
-         "tags": ["cost-analysis > cost-report-config"],
+         "tags": ["cost-analysis > cost-report"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |cost_report_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -838,9 +701,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostReportConfigsInfo"},
+                 "schema": {"type": "object"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostReportConfigsInfo"}}
+                   "Schema": {"type": "object"}}
                }
              }}
          }
@@ -1375,18 +1238,426 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report/send": {
+     },"/cost-analysis/cost-query-set/create": {
        "post": {
-         "tags": ["cost-analysis > cost-report"],
-         "summary": "Send",
+         "tags": ["cost-analysis > cost-query-set"],
+         "summary": "Create",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nCreates a new CostQuerySet. You can make your own custom query that meets your needs, and input it as an `option` parameter of the resource. Queries such as `group_by` and `granularity` are provided by default.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_id|The ID of cost report in the Protocol.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |name||string|True|\n |options||Struct|True|\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" }                 }
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n       \"data_source_id\": \"ds-085d1e872789\",\n       \"name\": \"project_provider_region\",\n       \"options\": {}\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CostQuerySetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CostQuerySetInfo"},"Default Example":{
+                     "value": "{\n       \"cost_query_set_id\": \"query-76a58ea5d02c\",\n       \"name\": \"project_provider_region\",\n       \"options\": {},\n       \"tags\": {},\n       \"user_id\": \"test@cloudforet.io\",\n       \"data_source_id\": \"ds-085d1e872789\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-19T06:11:03.701Z\",\n       \"updated_at\": \"2022-07-19T06:11:03.701Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-query-set/update": {
+       "post": {
+         "tags": ["cost-analysis > cost-query-set"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \nUpdates a specific CostQuerySet. You can make changes in the details of queries.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_query_set_id||string|True|\n |name||string||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"cost_query_set_id" : {"type": "string","title": "COST_QUERY_SET_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n       \"cost_query_set_id\": \"query-76a58ea5d02c\",\n       \"name\": \"project_provider_region\",\n       \"options\": {},\n       \"tags\": {},\n       \"user_id\": \"test@cloudforet.io\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-19T06:11:03.701Z\",\n       \"updated_at\": \"2022-07-19T06:11:03.701Z\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CostQuerySetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CostQuerySetInfo"},"Default Example":{
+                     "value": "{\n       \"cost_query_set_id\": \"query-76a58ea5d02c\",\n       \"name\": \"project_provider_region\",\n       \"options\": {},\n       \"tags\": {},\n       \"user_id\": \"test@cloudforet.io\",\n       \"data_source_id\": \"ds-085d1e872789\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-19T06:11:03.701Z\",\n       \"updated_at\": \"2022-07-19T06:11:03.701Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-query-set/delete": {
+       "post": {
+         "tags": ["cost-analysis > cost-query-set"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific CostQuerySet. You must specify the `cost_query_set_id` of the CostQuerySet to delete.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_query_set_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"cost_query_set_id" : {"type": "string","title": "COST_QUERY_SET_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"cost_query_set_id\": \"query-16ae671dc8fb\",\n    \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-query-set/get": {
+       "post": {
+         "tags": ["cost-analysis > cost-query-set"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific CostQuerySet. Prints detailed information about the CostQuerySet, including the details of queries.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_query_set_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"cost_query_set_id" : {"type": "string","title": "COST_QUERY_SET_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"cost_query_set_id\": \"query-16ae671dc8fb\",\n    \"domain_id\": \"domain-58010aa2e451\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CostQuerySetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CostQuerySetInfo"},"Default Example":{
+                     "value": "{\n       \"cost_query_set_id\": \"query-76a58ea5d02c\",\n       \"name\": \"project_provider_region\",\n       \"options\": {},\n       \"tags\": {},\n       \"user_id\": \"test@cloudforet.io\",\n       \"data_source_id\": \"ds-085d1e872789\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-19T06:11:03.701Z\",\n       \"updated_at\": \"2022-07-19T06:11:03.701Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-query-set/list": {
+       "post": {
+         "tags": ["cost-analysis > cost-query-set"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all CostQuerySets. You can use a query to get a filtered list of CostQuerySets.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |query||Query||\n |name||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"name" : {"type": "string","title": "NAME" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CostQuerySetsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CostQuerySetsInfo"},"Default Example":{
+                     "value": "{\n       \"results\": [\n           {\n               \"cost_query_set_id\": \"query-16ae671dc8fb\",\n               \"name\": \"3 month product pie chart\",\n               \"options\": {},\n               \"tags\": {},\n               \"user_id\": \"yuda@mz.co.kr\",\n               \"data_source_id\": \"ds-085d1e872789\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-03-08T03:37:31.404Z\",\n               \"updated_at\": \"2022-03-08T03:37:31.404Z\"\n           },\n           {\n               \"cost_query_set_id\": \"query-d90addf25e4b\",\n               \"name\": \"6 month project group\",\n               \"options\": {},\n               \"tags\": {},\n               \"user_id\": \"yuda@mz.co.kr\",\n               \"data_source_id\": \"ds-085d1e872789\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-03-14T09:29:54.306Z\",\n               \"updated_at\": \"2022-03-14T09:29:54.306Z\"\n           }\n       ],\n       \"total_count\": 34\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-query-set/stat": {
+       "post": {
+         "tags": ["cost-analysis > cost-query-set"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |data_source_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-report-data/list": {
+       "post": {
+         "tags": ["cost-analysis > cost-report-data"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |cost_report_data_id||string||\n |product||string||\n |provider||string||\n |is_confirmed||boolean||\n |workspace_id||string||\n |cost_report_config_id||string||\n |cost_report_id||string||\n |data_source_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"cost_report_data_id" : {"type": "string","title": "COST_REPORT_DATA_ID" },"product" : {"type": "string","title": "PRODUCT" },"provider" : {"type": "string","title": "PROVIDER" },"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CostReportsDataInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CostReportsDataInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-report-data/analyze": {
+       "post": {
+         "tags": ["cost-analysis > cost-report-data"],
+         "summary": "Analyze",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||TimeSeriesAnalyzeQuery||\n |product||string||\n |provider||string||\n |is_confirmed||boolean||\n |workspace_id||string||\n |cost_report_config_id||string||\n |data_source_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"product" : {"type": "string","title": "PRODUCT" },"provider" : {"type": "string","title": "PROVIDER" },"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-report-data/stat": {
+       "post": {
+         "tags": ["cost-analysis > cost-report-data"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |cost_report_id||string||\n |cost_report_config_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" },"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-report-config/create": {
+       "post": {
+         "tags": ["cost-analysis > cost-report-config"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |recipients||Struct|True|\n |issue_day||int||\n |is_last_day||boolean||\n |currency||string||\n |data_source_filter||Struct||\n |language|Default `en` |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"issue_day" : {"type": "integer","title": "ISSUE_DAY" },"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY" },"currency" : {"type": "string","title": "CURRENCY" },"recipients" : {"type": "object","title": "RECIPIENTS" },"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER" },"language" : {"type": "string","title": "LANGUAGE" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CostReportConfigInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CostReportConfigInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-report-config/update": {
+       "post": {
+         "tags": ["cost-analysis > cost-report-config"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n |issue_day||int||\n |is_last_day||boolean||\n |currency||string||\n |data_source_filter||Struct||\n |language||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"issue_day" : {"type": "integer","title": "ISSUE_DAY" },"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY" },"currency" : {"type": "string","title": "CURRENCY" },"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER" },"language" : {"type": "string","title": "LANGUAGE" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CostReportConfigInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CostReportConfigInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-report-config/update-recipients": {
+       "post": {
+         "tags": ["cost-analysis > cost-report-config"],
+         "summary": "Update Recipients",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id||string|True|\n |recipients||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"recipients" : {"type": "object","title": "RECIPIENTS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CostReportConfigInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CostReportConfigInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-report-config/enable": {
+       "post": {
+         "tags": ["cost-analysis > cost-report-config"],
+         "summary": "Enable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CostReportConfigInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CostReportConfigInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-report-config/disable": {
+       "post": {
+         "tags": ["cost-analysis > cost-report-config"],
+         "summary": "Disable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/CostReportConfigInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/CostReportConfigInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/cost-report-config/delete": {
+       "post": {
+         "tags": ["cost-analysis > cost-report-config"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1398,18 +1669,18 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report/get-url": {
+     },"/cost-analysis/cost-report-config/run": {
        "post": {
-         "tags": ["cost-analysis > cost-report"],
-         "summary": "Get Url",
+         "tags": ["cost-analysis > cost-report-config"],
+         "summary": "Run",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_id|The ID of cost report in the Protocol|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" }                 }
+                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1418,27 +1689,21 @@
          },
          "responses": {
            "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
+             "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report/get": {
+     },"/cost-analysis/cost-report-config/get": {
        "post": {
-         "tags": ["cost-analysis > cost-report"],
+         "tags": ["cost-analysis > cost-report-config"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_id|The ID of cost report in the Protocol.|string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_report_config_id|The ID of cost report in the Protocol.|string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" }                 }
+                 "properties": {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1449,25 +1714,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostReportInfo"},
+                 "schema": {"$ref": "#/components/schemas/CostReportConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostReportInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/CostReportConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report/list": {
+     },"/cost-analysis/cost-report-config/list": {
        "post": {
-         "tags": ["cost-analysis > cost-report"],
+         "tags": ["cost-analysis > cost-report-config"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |cost_report_id||string||\n |status|IN_PROGRESS, SUCCESS |string||\n |issue_date|YYYY-mm 2023-12 |string||\n |workspace_name||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |cost_report_config_id|The ID of cost report in the Protocol. |string||\n |state|ENABLED, DISABLED |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" },"status" : {"type": "string","title": "STATUS" },"issue_date" : {"type": "string","title": "ISSUE_DATE" },"workspace_name" : {"type": "string","title": "WORKSPACE_NAME" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID" },"state" : {"type": "string","title": "STATE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1478,107 +1743,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostReportsInfo"},
+                 "schema": {"$ref": "#/components/schemas/CostReportConfigsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostReportsInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/CostReportConfigsInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost-report/stat": {
+     },"/cost-analysis/cost-report-config/stat": {
        "post": {
-         "tags": ["cost-analysis > cost-report"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |cost_report_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"cost_report_id" : {"type": "string","title": "COST_REPORT_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/job-task/get": {
-       "post": {
-         "tags": ["cost-analysis > job-task"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \nGets a specific JobTask. Prints detailed information about the JobTask, including the relevant resources: DataSource and Job. The criteria used for dividing a Job into JobTasks can be found in the DataSource used, but the total count of divided JobTasks can be found by this method.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_task_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-3622d860a776\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/JobTaskInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/JobTaskInfo"},"Default Example":{
-                     "value": "{\n   \"job_task_id\": \"job-task-3622d860a776\",\n   \"status\": \"SUCCESS\",\n   \"options\": {\n       \"month\": \"202207\",\n       \"platform\": \"gcp\"\n   },\n   \"created_count\": 1,\n   \"job_id\": \"job-85cf2c385252\",\n   \"data_source_id\": \"ds-c96609f5afeb\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-07-17T16:00:08.266Z\",\n   \"started_at\": \"2022-07-17T16:01:28.243Z\",\n   \"updated_at\": \"2022-07-17T16:01:28.939Z\",\n   \"finished_at\": \"2022-07-17T16:01:28.939Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/job-task/list": {
-       "post": {
-         "tags": ["cost-analysis > job-task"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all JobTasks. You can use a query to get a filtered list of JobTasks.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |job_task_id||string||\n |status|PENDING, IN_PROGRESS, SUCCESS, FAILURE, TIMEOUT, CANCELED |string||\n |workspace_id||string||\n |job_id||string||\n |data_source_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"job_task_id" : {"type": "string","title": "JOB_TASK_ID" },"status" : {"type": "string","title": "STATUS" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"job_id" : {"type": "string","title": "JOB_ID" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/JobTasksInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/JobTasksInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"job_task_id\": \"job-task-3622d860a776\",\n           \"status\": \"SUCCESS\",\n           \"options\": {\n               \"platform\": \"gcp\",\n               \"month\": \"202207\"\n           },\n           \"created_count\": 1,\n           \"job_id\": \"job-85cf2c385252\",\n           \"data_source_id\": \"ds-c96609f5afeb\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-07-17T16:00:08.266Z\",\n           \"started_at\": \"2022-07-17T16:01:28.243Z\",\n           \"updated_at\": \"2022-07-17T16:01:28.939Z\",\n           \"finished_at\": \"2022-07-17T16:01:28.939Z\"\n       },\n       {\n           \"job_task_id\": \"job-task-038c0b076ec5\",\n           \"status\": \"SUCCESS\",\n           \"options\": {\n               \"account\": \"257706363616\",\n               \"start\": \"2022-07-01\"\n           },\n           \"created_count\": 5756,\n           \"job_id\": \"job-6b6765f757a9\",\n           \"data_source_id\": \"ds-fcba92ca73b1\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-07-17T16:00:05.099Z\",\n           \"started_at\": \"2022-07-17T16:00:47.356Z\",\n           \"updated_at\": \"2022-07-17T16:01:20.856Z\",\n           \"finished_at\": \"2022-07-17T16:01:20.856Z\"\n       }\n   ],\n   \"total_count\": 720\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/job-task/stat": {
-       "post": {
-         "tags": ["cost-analysis > job-task"],
+         "tags": ["cost-analysis > cost-report-config"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -1598,183 +1772,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"type": "object"},
+                 "schema": {"$ref": "#/components/schemas/CostReportConfigsInfo"},
                  "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost/create": {
-       "post": {
-         "tags": ["cost-analysis > cost"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new Cost. When creating a Cost, if the parameter `provider` is not entered, the default value of the parameter will be the provider information of the DataSource which collected the raw data of the Cost from the provider. The parameter `billed_at` is the data of when the cost is billed. While the DataSource collects the cost data, if the `billed_at` data does not exist, the value will be replaced with the `created_at` data indicating when the Cost is created. If the cost data collected is based on USD, the Cost is created without the currency exchange.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost||float|True|\n |project_id||string|True|\n |data_source_id||string|True|\n |billed_date||string|True|\n |usage_quantity||float||\n |usage_unit||float||\n |provider||string||\n |region_code||string||\n |product||string||\n |usage_type||string||\n |resource||string||\n |tags||Struct||\n |additional_info||Struct||\n |service_account_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"cost" : {"type": "float","title": "COST" },"usage_quantity" : {"type": "float","title": "USAGE_QUANTITY" },"usage_unit" : {"type": "float","title": "USAGE_UNIT" },"provider" : {"type": "string","title": "PROVIDER" },"region_code" : {"type": "string","title": "REGION_CODE" },"product" : {"type": "string","title": "PRODUCT" },"usage_type" : {"type": "string","title": "USAGE_TYPE" },"resource" : {"type": "string","title": "RESOURCE" },"tags" : {"type": "object","title": "TAGS" },"additional_info" : {"type": "object","title": "ADDITIONAL_INFO" },"project_id" : {"type": "string","title": "PROJECT_ID" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"billed_date" : {"type": "string","title": "BILLED_DATE" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n       \"cost\": 142,\n       \"usage_quantity\": 84532,\n       \"usage_unit\": \"GB\",\n       \"provider\": \"aws\",\n       \"region_code\": \"ap-northeast-1\",\n       \"product\": \"AWSDataTransfer\",\n       \"account\": \"722069360300\",\n       \"usage_type\": \"data-transfer.out\",\n       \"additional_info\": {\n           \"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n       },\n       \"tags\": {\n           \"Environment\": \"Dev\"\n       },\n       \"data_source_id\": \"ds-fcba92ca73b1\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostInfo"},"Default Example":{
-                     "value": "{\n       \"cost_id\": \"cost-c5aae7712ec9\",\n       \"cost\": 142,\n       \"usage_quantity\": 84532,\n       \"usage_unit\": \"GB\",\n       \"provider\": \"aws\",\n       \"region_code\": \"ap-northeast-1\",\n       \"product\": \"AWSDataTransfer\",\n       \"usage_type\": \"data-transfer.out\",\n       \"additional_info\": {\n           \"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n       },\n       \"tags\": {\n           \"Environment\": \"Dev\"\n       },\n       \"data_source_id\": \"ds-fcba92ca73b1\"\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"billed_year\": \"2022\",\n       \"billed_month\": \"2022-07\",\n       \"billed_date\": \"2022-07-19\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost/delete": {
-       "post": {
-         "tags": ["cost-analysis > cost"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \nDeletes a specific Cost. You must specify the `cost_id` of the Cost to delete.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"cost_id" : {"type": "string","title": "COST_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"cost_id\": \"cost-2ad052ed03d7\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost/get": {
-       "post": {
-         "tags": ["cost-analysis > cost"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \nGets a specific Cost. Prints detailed information about the Cost, including  `region_code` and `account`.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cost_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"cost_id" : {"type": "string","title": "COST_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"cost_id\": \"cost-2ad052ed03d7\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostInfo"},"Default Example":{
-                     "value": "{\n       \"cost_id\": \"cost-c5aae7712ec9\",\n       \"cost\": 142,\n       \"usage_quantity\": 84532,\n       \"usage_unit\": \"GB\",\n       \"provider\": \"aws\",\n       \"region_code\": \"ap-northeast-1\",\n       \"product\": \"AWSDataTransfer\",\n       \"usage_type\": \"data-transfer.out\",\n       \"additional_info\": {\n           \"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n       },\n       \"tags\": {\n           \"Environment\": \"Dev\"\n       },\n       \"data_source_id\": \"ds-fcba92ca73b1\"\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"billed_year\": \"2022\",\n       \"billed_month\": \"2022-07\",\n       \"billed_date\": \"2022-07-19\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost/list": {
-       "post": {
-         "tags": ["cost-analysis > cost"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all Costs. You can use a query to get a filtered list of Costs.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |query||Query||\n |cost_id||string||\n |provider||string||\n |region_code||string||\n |region_key||string||\n |product||string||\n |usage_type||string||\n |resource||string||\n |workspace_id||string||\n |project_id||string||\n |project_group_id||string||\n |service_account_id||string||\n |billed_year||string||\n |billed_month||string||\n |billed_date||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"cost_id" : {"type": "string","title": "COST_ID" },"provider" : {"type": "string","title": "PROVIDER" },"region_code" : {"type": "string","title": "REGION_CODE" },"region_key" : {"type": "string","title": "REGION_KEY" },"product" : {"type": "string","title": "PRODUCT" },"usage_type" : {"type": "string","title": "USAGE_TYPE" },"resource" : {"type": "string","title": "RESOURCE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"billed_year" : {"type": "string","title": "BILLED_YEAR" },"billed_month" : {"type": "string","title": "BILLED_MONTH" },"billed_date" : {"type": "string","title": "BILLED_DATE" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/CostsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/CostsInfo"},"Default Example":{
-                     "value": "{\n       \"results\": [\n           {\n               \"cost_id\": \"cost-c5aae7712ec9\",\n               \"cost\": 142,\n               \"usage_quantity\": 84532,\n               \"usage_unit\": \"GB\",\n               \"provider\": \"aws\",\n               \"region_code\": \"ap-northeast-1\",\n               \"product\": \"AWSDataTransfer\",\n               \"usage_type\": \"data-transfer.out\",\n               \"additional_info\": {\n               \"raw_usage_type\": \"APN1-DataTransfer-Out-Bytes\"\n               },\n               \"tags\": {\n               \"Environment\": \"Dev\"\n               },\n               \"data_source_id\": \"ds-fcba92ca73b1\"\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"billed_year\": \"2022\",\n               \"billed_month\": \"2022-07\",\n               \"billed_date\": \"2022-07-19\"\n           },\n           {\n               \"cost_id\": \"cost-1d5e1b0dbf82\",\n               \"cost\": 78,\n               \"usage_quantity\": 34523,\n               \"usage_unit\": \"Count\",\n               \"provider\": \"aws\",\n               \"region_code\": \"ap-northeast-1\",\n               \"product\": \"AWSQueueService\"\n               \"additional_info\": {\n                   \"raw_usage_type\": \"APN1-Requests-Tier1\"\n               },\n               \"tags\": {},\n               \"data_source_id\": \"ds-fcba92ca73b1\",\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"billed_year\": \"2022\",\n               \"billed_month\": \"2022-07\",\n               \"billed_date\": \"2022-07-20\"\n           }\n       ],\n       \"total_count\": 307066\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost/analyze": {
-       "post": {
-         "tags": ["cost-analysis > cost"],
-         "summary": "Analyze",
-         "operationId" : "",
-         "description": "### Description \nGets the Cost information of specific `product`s based on the time granularity: `DAILY`, `MONTHLY`, or `ACCUMULATED`. For `DAILY` granularity, this method can get the Cost data of at most 31 days. For `MONTHLY` or `ACCUMULATED` granularity, this method can get the Cost data of at most 12 months.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||TimeSeriesAnalyzeQuery|True|\n |data_source_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/cost-analysis/cost/stat": {
-       "post": {
-         "tags": ["cost-analysis > cost"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |data_source_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
+                   "Schema": {"$ref": "#/components/schemas/CostReportConfigsInfo"}}
                }
              }}
          }
@@ -1905,79 +1905,48 @@
    },
    "components":{
      "schemas": {
-     "BudgetInfo": {
-         "properties" : {"budget_id" : {"type": "string","title": "BUDGET_ID"},"name" : {"type": "string","title": "NAME"},"limit" : {"type": "float","title": "LIMIT"},"planned_limits" : {"items": {"$ref": "#/components/schemas/PlannedLimit"},
-               "type": "array","$ref": "#/components/schemas/PlannedLimit","title": "PLANNED_LIMITS"},"currency" : {"type": "string","title": "CURRENCY"},"provider_filter" : {"$ref": "#/components/schemas/ProviderFilter","title": "PROVIDER_FILTER"},"time_unit" : {"type": "string","title": "TIME_UNIT"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"notifications" : {"items": {"$ref": "#/components/schemas/BudgetNotification"},
-               "type": "array","$ref": "#/components/schemas/BudgetNotification","title": "NOTIFICATIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+     "CostAnalyzeQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
          "type": "object",
-         "required": ["budget_id","name","limit","planned_limits","currency","provider_filter","time_unit","start","end","notifications","tags","resource_group","domain_id","workspace_id","project_id","data_source_id","created_at","updated_at"],
-                "title": "BudgetInfo"
+         "required": ["query","data_source_id"],
+                "title": "CostAnalyzeQuery"
            }
-           ,        "BudgetNotification": {
-         "properties" : {"threshold" : {"type": "float","title": "THRESHOLD"},"unit" : {"type": "string","title": "UNIT"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"}},
+           ,        "CostInfo": {
+         "properties" : {"cost_id" : {"type": "string","title": "COST_ID"},"cost" : {"type": "float","title": "COST"},"usage_quantity" : {"type": "float","title": "USAGE_QUANTITY"},"usage_unit" : {"type": "string","title": "USAGE_UNIT"},"provider" : {"type": "string","title": "PROVIDER"},"region_code" : {"type": "string","title": "REGION_CODE"},"region_key" : {"type": "string","title": "REGION_KEY"},"product" : {"type": "string","title": "PRODUCT"},"usage_type" : {"type": "string","title": "USAGE_TYPE"},"resource" : {"type": "string","title": "RESOURCE"},"tags" : {"type": "object","title": "TAGS"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"data" : {"type": "object","title": "DATA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"billed_year" : {"type": "string","title": "BILLED_YEAR"},"billed_month" : {"type": "string","title": "BILLED_MONTH"},"billed_date" : {"type": "string","title": "BILLED_DATE"}},
          "type": "object",
-         "required": ["threshold","unit","notification_type"],
-                "title": "BudgetNotification"
+         "required": ["cost_id","cost","usage_quantity","usage_unit","provider","region_code","region_key","product","usage_type","resource","tags","additional_info","data","domain_id","workspace_id","project_id","service_account_id","data_source_id","billed_year","billed_month","billed_date"],
+                "title": "CostInfo"
            }
-           ,        "BudgetQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"budget_id" : {"type": "string","title": "BUDGET_ID"},"name" : {"type": "string","title": "NAME"},"time_unit" : {"type": "string","title": "TIME_UNIT"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
+           ,        "CostQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"cost_id" : {"type": "string","title": "COST_ID"},"provider" : {"type": "string","title": "PROVIDER"},"region_code" : {"type": "string","title": "REGION_CODE"},"region_key" : {"type": "string","title": "REGION_KEY"},"product" : {"type": "string","title": "PRODUCT"},"usage_type" : {"type": "string","title": "USAGE_TYPE"},"resource" : {"type": "string","title": "RESOURCE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"billed_year" : {"type": "string","title": "BILLED_YEAR"},"billed_month" : {"type": "string","title": "BILLED_MONTH"},"billed_date" : {"type": "string","title": "BILLED_DATE"}},
          "type": "object",
-         "required": [],
-                "title": "BudgetQuery"
+         "required": ["data_source_id"],
+                "title": "CostQuery"
            }
-           ,        "BudgetRequest": {
-         "properties" : {"budget_id" : {"type": "string","title": "BUDGET_ID"}},
+           ,        "CostRequest": {
+         "properties" : {"cost_id" : {"type": "string","title": "COST_ID"}},
          "type": "object",
-         "required": ["budget_id"],
-                "title": "BudgetRequest"
+         "required": ["cost_id"],
+                "title": "CostRequest"
            }
-           ,        "BudgetStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+           ,        "CostStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
          "type": "object",
          "required": ["query"],
-                "title": "BudgetStatQuery"
+                "title": "CostStatQuery"
            }
-           ,        "BudgetsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/BudgetInfo"},
-               "type": "array","$ref": "#/components/schemas/BudgetInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "CostsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CostInfo"},
+               "type": "array","$ref": "#/components/schemas/CostInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "BudgetsInfo"
+                "title": "CostsInfo"
            }
-           ,        "CreateBudgetRequest": {
-         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"limit" : {"type": "float","title": "LIMIT"},"planned_limits" : {"items": {"$ref": "#/components/schemas/PlannedLimit"},
-               "type": "array","$ref": "#/components/schemas/PlannedLimit","title": "PLANNED_LIMITS"},"provider_filter" : {"$ref": "#/components/schemas/ProviderFilter","title": "PROVIDER_FILTER"},"time_unit" : {"type": "string","title": "TIME_UNIT"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"notifications" : {"items": {"$ref": "#/components/schemas/BudgetNotification"},
-               "type": "array","$ref": "#/components/schemas/BudgetNotification","title": "NOTIFICATIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+           ,        "CreateCostRequest": {
+         "properties" : {"cost" : {"type": "float","title": "COST"},"usage_quantity" : {"type": "float","title": "USAGE_QUANTITY"},"usage_unit" : {"type": "float","title": "USAGE_UNIT"},"provider" : {"type": "string","title": "PROVIDER"},"region_code" : {"type": "string","title": "REGION_CODE"},"product" : {"type": "string","title": "PRODUCT"},"usage_type" : {"type": "string","title": "USAGE_TYPE"},"resource" : {"type": "string","title": "RESOURCE"},"tags" : {"type": "object","title": "TAGS"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"project_id" : {"type": "string","title": "PROJECT_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"billed_date" : {"type": "string","title": "BILLED_DATE"}},
          "type": "object",
-         "required": ["data_source_id","time_unit","start","end","resource_group"],
-                "title": "CreateBudgetRequest"
-           }
-           ,        "PlannedLimit": {
-         "properties" : {"date" : {"type": "string","title": "DATE"},"limit" : {"type": "float","title": "LIMIT"}},
-         "type": "object",
-         "required": ["date","limit"],
-                "title": "PlannedLimit"
-           }
-           ,        "ProviderFilter": {
-         "properties" : {"state" : {"type": "string","title": "STATE"},"providers" : {"items": {"type": "string"},
-               "type": "array","title": "PROVIDERS"}},
-         "type": "object",
-         "required": ["state","providers"],
-                "title": "ProviderFilter"
-           }
-           ,        "SetBudgetNotificationRequest": {
-         "properties" : {"budget_id" : {"type": "string","title": "BUDGET_ID"},"notifications" : {"items": {"$ref": "#/components/schemas/BudgetNotification"},
-               "type": "array","$ref": "#/components/schemas/BudgetNotification","title": "NOTIFICATIONS"}},
-         "type": "object",
-         "required": ["budget_id","notifications"],
-                "title": "SetBudgetNotificationRequest"
-           }
-           ,        "UpdateBudgetRequest": {
-         "properties" : {"budget_id" : {"type": "string","title": "BUDGET_ID"},"name" : {"type": "string","title": "NAME"},"limit" : {"type": "float","title": "LIMIT"},"planned_limits" : {"items": {"$ref": "#/components/schemas/PlannedLimit"},
-               "type": "array","$ref": "#/components/schemas/PlannedLimit","title": "PLANNED_LIMITS"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["budget_id"],
-                "title": "UpdateBudgetRequest"
+         "required": ["cost","project_id","data_source_id","billed_date"],
+                "title": "CreateCostRequest"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -2148,12 +2117,6 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
-         "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
-           }
            ,        "AuthenticationRequest": {
          "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
@@ -2186,48 +2149,116 @@
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
            }
-           ,        "CostQuerySetInfo": {
-         "properties" : {"cost_query_set_id" : {"type": "string","title": "COST_QUERY_SET_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_id" : {"type": "string","title": "USER_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
          "type": "object",
-         "required": ["cost_query_set_id","name","options","tags","domain_id","workspace_id","user_id","data_source_id","created_at","updated_at"],
-                "title": "CostQuerySetInfo"
+         "required": ["version"],
+                "title": "VersionInfo"
            }
-           ,        "CostQuerySetQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"}},
+           ,        "BudgetInfo": {
+         "properties" : {"budget_id" : {"type": "string","title": "BUDGET_ID"},"name" : {"type": "string","title": "NAME"},"limit" : {"type": "float","title": "LIMIT"},"planned_limits" : {"items": {"$ref": "#/components/schemas/PlannedLimit"},
+               "type": "array","$ref": "#/components/schemas/PlannedLimit","title": "PLANNED_LIMITS"},"currency" : {"type": "string","title": "CURRENCY"},"provider_filter" : {"$ref": "#/components/schemas/ProviderFilter","title": "PROVIDER_FILTER"},"time_unit" : {"type": "string","title": "TIME_UNIT"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"notifications" : {"items": {"$ref": "#/components/schemas/BudgetNotification"},
+               "type": "array","$ref": "#/components/schemas/BudgetNotification","title": "NOTIFICATIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["data_source_id"],
-                "title": "CostQuerySetQuery"
+         "required": ["budget_id","name","limit","planned_limits","currency","provider_filter","time_unit","start","end","notifications","tags","resource_group","domain_id","workspace_id","project_id","data_source_id","created_at","updated_at"],
+                "title": "BudgetInfo"
            }
-           ,        "CostQuerySetRequest": {
-         "properties" : {"cost_query_set_id" : {"type": "string","title": "COST_QUERY_SET_ID"}},
+           ,        "BudgetNotification": {
+         "properties" : {"threshold" : {"type": "float","title": "THRESHOLD"},"unit" : {"type": "string","title": "UNIT"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"}},
          "type": "object",
-         "required": ["cost_query_set_id"],
-                "title": "CostQuerySetRequest"
+         "required": ["threshold","unit","notification_type"],
+                "title": "BudgetNotification"
            }
-           ,        "CostQuerySetStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
+           ,        "BudgetQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"budget_id" : {"type": "string","title": "BUDGET_ID"},"name" : {"type": "string","title": "NAME"},"time_unit" : {"type": "string","title": "TIME_UNIT"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
          "type": "object",
-         "required": ["query","data_source_id"],
-                "title": "CostQuerySetStatQuery"
+         "required": [],
+                "title": "BudgetQuery"
            }
-           ,        "CostQuerySetsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CostQuerySetInfo"},
-               "type": "array","$ref": "#/components/schemas/CostQuerySetInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "BudgetRequest": {
+         "properties" : {"budget_id" : {"type": "string","title": "BUDGET_ID"}},
+         "type": "object",
+         "required": ["budget_id"],
+                "title": "BudgetRequest"
+           }
+           ,        "BudgetStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "BudgetStatQuery"
+           }
+           ,        "BudgetsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/BudgetInfo"},
+               "type": "array","$ref": "#/components/schemas/BudgetInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "CostQuerySetsInfo"
+                "title": "BudgetsInfo"
            }
-           ,        "CreateCostQuerySetRequest": {
-         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "CreateBudgetRequest": {
+         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"limit" : {"type": "float","title": "LIMIT"},"planned_limits" : {"items": {"$ref": "#/components/schemas/PlannedLimit"},
+               "type": "array","$ref": "#/components/schemas/PlannedLimit","title": "PLANNED_LIMITS"},"provider_filter" : {"$ref": "#/components/schemas/ProviderFilter","title": "PROVIDER_FILTER"},"time_unit" : {"type": "string","title": "TIME_UNIT"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"notifications" : {"items": {"$ref": "#/components/schemas/BudgetNotification"},
+               "type": "array","$ref": "#/components/schemas/BudgetNotification","title": "NOTIFICATIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
-         "required": ["data_source_id","name","options"],
-                "title": "CreateCostQuerySetRequest"
+         "required": ["data_source_id","time_unit","start","end","resource_group"],
+                "title": "CreateBudgetRequest"
            }
-           ,        "UpdateCostQuerySetRequest": {
-         "properties" : {"cost_query_set_id" : {"type": "string","title": "COST_QUERY_SET_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "PlannedLimit": {
+         "properties" : {"date" : {"type": "string","title": "DATE"},"limit" : {"type": "float","title": "LIMIT"}},
          "type": "object",
-         "required": ["cost_query_set_id"],
-                "title": "UpdateCostQuerySetRequest"
+         "required": ["date","limit"],
+                "title": "PlannedLimit"
+           }
+           ,        "ProviderFilter": {
+         "properties" : {"state" : {"type": "string","title": "STATE"},"providers" : {"items": {"type": "string"},
+               "type": "array","title": "PROVIDERS"}},
+         "type": "object",
+         "required": ["state","providers"],
+                "title": "ProviderFilter"
+           }
+           ,        "SetBudgetNotificationRequest": {
+         "properties" : {"budget_id" : {"type": "string","title": "BUDGET_ID"},"notifications" : {"items": {"$ref": "#/components/schemas/BudgetNotification"},
+               "type": "array","$ref": "#/components/schemas/BudgetNotification","title": "NOTIFICATIONS"}},
+         "type": "object",
+         "required": ["budget_id","notifications"],
+                "title": "SetBudgetNotificationRequest"
+           }
+           ,        "UpdateBudgetRequest": {
+         "properties" : {"budget_id" : {"type": "string","title": "BUDGET_ID"},"name" : {"type": "string","title": "NAME"},"limit" : {"type": "float","title": "LIMIT"},"planned_limits" : {"items": {"$ref": "#/components/schemas/PlannedLimit"},
+               "type": "array","$ref": "#/components/schemas/PlannedLimit","title": "PLANNED_LIMITS"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["budget_id"],
+                "title": "UpdateBudgetRequest"
+           }
+           ,        "JobTaskInfo": {
+         "properties" : {"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"status" : {"type": "string","title": "STATUS"},"options" : {"type": "object","title": "OPTIONS"},"created_count" : {"type": "integer","title": "CREATED_COUNT"},"error_code" : {"type": "string","title": "ERROR_CODE"},"error_message" : {"type": "string","title": "ERROR_MESSAGE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"job_id" : {"type": "string","title": "JOB_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"started_at" : {"type": "string","title": "STARTED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"finished_at" : {"type": "string","title": "FINISHED_AT"}},
+         "type": "object",
+         "required": ["job_task_id","status","options","created_count","error_code","error_message","resource_group","domain_id","workspace_id","job_id","data_source_id","created_at","started_at","updated_at","finished_at"],
+                "title": "JobTaskInfo"
+           }
+           ,        "JobTaskQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"status" : {"type": "string","title": "STATUS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"job_id" : {"type": "string","title": "JOB_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "JobTaskQuery"
+           }
+           ,        "JobTaskRequest": {
+         "properties" : {"job_task_id" : {"type": "string","title": "JOB_TASK_ID"}},
+         "type": "object",
+         "required": ["job_task_id"],
+                "title": "JobTaskRequest"
+           }
+           ,        "JobTaskStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "JobTaskStatQuery"
+           }
+           ,        "JobTasksInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/JobTaskInfo"},
+               "type": "array","$ref": "#/components/schemas/JobTaskInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "JobTasksInfo"
            }
            ,        "BudgetUsageAnalyzeQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"budget_id" : {"type": "string","title": "BUDGET_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
@@ -2267,85 +2298,42 @@
          "required": ["results","total_count"],
                 "title": "BudgetUsagesInfo"
            }
-           ,        "CostReportDataAnalyzeQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"product" : {"type": "string","title": "PRODUCT"},"provider" : {"type": "string","title": "PROVIDER"},"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
+           ,        "CostReportInfo": {
+         "properties" : {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"cost" : {"type": "object","title": "COST"},"status" : {"type": "string","title": "STATUS"},"report_number" : {"type": "string","title": "REPORT_NUMBER"},"currency" : {"type": "string","title": "CURRENCY"},"currency_date" : {"type": "string","title": "CURRENCY_DATE"},"issue_date" : {"type": "string","title": "ISSUE_DATE"},"report_year" : {"type": "string","title": "REPORT_YEAR"},"report_month" : {"type": "string","title": "REPORT_MONTH"},"workspace_name" : {"type": "string","title": "WORKSPACE_NAME"},"bank_name" : {"type": "string","title": "BANK_NAME"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["cost_report_id","cost","status","report_number","currency","currency_date","issue_date","report_year","report_month","workspace_name","bank_name","cost_report_config_id","workspace_id","domain_id","created_at"],
+                "title": "CostReportInfo"
+           }
+           ,        "CostReportQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"status" : {"type": "string","title": "STATUS"},"issue_date" : {"type": "string","title": "ISSUE_DATE"},"workspace_name" : {"type": "string","title": "WORKSPACE_NAME"}},
          "type": "object",
          "required": [],
-                "title": "CostReportDataAnalyzeQuery"
+                "title": "CostReportQuery"
            }
-           ,        "CostReportDataInfo": {
-         "properties" : {"cost_report_data_id" : {"type": "string","title": "COST_REPORT_DATA_ID"},"cost" : {"type": "object","title": "COST"},"cost_report_name" : {"type": "string","title": "COST_REPORT_NAME"},"issue_date" : {"type": "string","title": "ISSUE_DATE"},"report_year" : {"type": "string","title": "REPORT_YEAR"},"report_month" : {"type": "string","title": "REPORT_MONTH"},"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED"},"provider" : {"type": "string","title": "PROVIDER"},"product" : {"type": "string","title": "PRODUCT"},"service_account_name" : {"type": "string","title": "SERVICE_ACCOUNT_NAME"},"data_source_name" : {"type": "string","title": "DATA_SOURCE_NAME"},"project_name" : {"type": "string","title": "PROJECT_NAME"},"workspace_name" : {"type": "string","title": "WORKSPACE_NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+           ,        "CostReportRequest": {
+         "properties" : {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"}},
          "type": "object",
-         "required": ["cost_report_data_id","cost","cost_report_name","issue_date","report_year","report_month","is_confirmed","provider","product","service_account_name","data_source_name","project_name","workspace_name","domain_id","workspace_id","project_id","cost_report_config_id","cost_report_id","data_source_id","service_account_id","created_at"],
-                "title": "CostReportDataInfo"
+         "required": ["cost_report_id"],
+                "title": "CostReportRequest"
            }
-           ,        "CostReportDataQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"cost_report_data_id" : {"type": "string","title": "COST_REPORT_DATA_ID"},"product" : {"type": "string","title": "PRODUCT"},"provider" : {"type": "string","title": "PROVIDER"},"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
-         "type": "object",
-         "required": [],
-                "title": "CostReportDataQuery"
-           }
-           ,        "CostReportDataStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"}},
+           ,        "CostReportStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"}},
          "type": "object",
          "required": ["query"],
-                "title": "CostReportDataStatQuery"
+                "title": "CostReportStatQuery"
            }
-           ,        "CostReportsDataInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CostReportDataInfo"},
-               "type": "array","$ref": "#/components/schemas/CostReportDataInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "CostReportsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CostReportInfo"},
+               "type": "array","$ref": "#/components/schemas/CostReportInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "CostReportsDataInfo"
+                "title": "CostReportsInfo"
            }
-           ,        "CostReportConfigInfo": {
-         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"state" : {"type": "string","title": "STATE"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"currency" : {"type": "string","title": "CURRENCY"},"recipients" : {"type": "object","title": "RECIPIENTS"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "GetUrlCostReportRequest": {
+         "properties" : {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"}},
          "type": "object",
-         "required": ["cost_report_config_id","state","issue_day","is_last_day","currency","recipients","data_source_filter","language","domain_id","created_at","updated_at"],
-                "title": "CostReportConfigInfo"
-           }
-           ,        "CostReportConfigQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"state" : {"type": "string","title": "STATE"}},
-         "type": "object",
-         "required": [],
-                "title": "CostReportConfigQuery"
-           }
-           ,        "CostReportConfigRequest": {
-         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"}},
-         "type": "object",
-         "required": ["cost_report_config_id"],
-                "title": "CostReportConfigRequest"
-           }
-           ,        "CostReportConfigStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "CostReportConfigStatQuery"
-           }
-           ,        "CostReportConfigsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CostReportConfigInfo"},
-               "type": "array","$ref": "#/components/schemas/CostReportConfigInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "CostReportConfigsInfo"
-           }
-           ,        "CreateCostReportConfigRequest": {
-         "properties" : {"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"currency" : {"type": "string","title": "CURRENCY"},"recipients" : {"type": "object","title": "RECIPIENTS"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"}},
-         "type": "object",
-         "required": ["recipients"],
-                "title": "CreateCostReportConfigRequest"
-           }
-           ,        "UpdateCostReportConfigRecipientsRequest": {
-         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"recipients" : {"type": "object","title": "RECIPIENTS"}},
-         "type": "object",
-         "required": ["cost_report_config_id"],
-                "title": "UpdateCostReportConfigRecipientsRequest"
-           }
-           ,        "UpdateCostReportConfigRequest": {
-         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"currency" : {"type": "string","title": "CURRENCY"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"}},
-         "type": "object",
-         "required": ["cost_report_config_id"],
-                "title": "UpdateCostReportConfigRequest"
+         "required": ["cost_report_id"],
+                "title": "GetUrlCostReportRequest"
            }
            ,        "ChangeDataSourceRuleOrderRequest": {
          "properties" : {"data_source_rule_id" : {"type": "string","title": "DATA_SOURCE_RULE_ID"},"order" : {"type": "integer","title": "ORDER"}},
@@ -2502,116 +2490,128 @@
          "required": ["data_source_id"],
                 "title": "UpdateDataSourceRequest"
            }
-           ,        "CostReportInfo": {
-         "properties" : {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"cost" : {"type": "object","title": "COST"},"status" : {"type": "string","title": "STATUS"},"report_number" : {"type": "string","title": "REPORT_NUMBER"},"currency" : {"type": "string","title": "CURRENCY"},"currency_date" : {"type": "string","title": "CURRENCY_DATE"},"issue_date" : {"type": "string","title": "ISSUE_DATE"},"report_year" : {"type": "string","title": "REPORT_YEAR"},"report_month" : {"type": "string","title": "REPORT_MONTH"},"workspace_name" : {"type": "string","title": "WORKSPACE_NAME"},"bank_name" : {"type": "string","title": "BANK_NAME"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+           ,        "CostQuerySetInfo": {
+         "properties" : {"cost_query_set_id" : {"type": "string","title": "COST_QUERY_SET_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_id" : {"type": "string","title": "USER_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["cost_report_id","cost","status","report_number","currency","currency_date","issue_date","report_year","report_month","workspace_name","bank_name","cost_report_config_id","workspace_id","domain_id","created_at"],
-                "title": "CostReportInfo"
+         "required": ["cost_query_set_id","name","options","tags","domain_id","workspace_id","user_id","data_source_id","created_at","updated_at"],
+                "title": "CostQuerySetInfo"
            }
-           ,        "CostReportQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"status" : {"type": "string","title": "STATUS"},"issue_date" : {"type": "string","title": "ISSUE_DATE"},"workspace_name" : {"type": "string","title": "WORKSPACE_NAME"}},
+           ,        "CostQuerySetQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"}},
          "type": "object",
-         "required": [],
-                "title": "CostReportQuery"
+         "required": ["data_source_id"],
+                "title": "CostQuerySetQuery"
            }
-           ,        "CostReportRequest": {
-         "properties" : {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"}},
+           ,        "CostQuerySetRequest": {
+         "properties" : {"cost_query_set_id" : {"type": "string","title": "COST_QUERY_SET_ID"}},
          "type": "object",
-         "required": ["cost_report_id"],
-                "title": "CostReportRequest"
+         "required": ["cost_query_set_id"],
+                "title": "CostQuerySetRequest"
            }
-           ,        "CostReportStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"}},
+           ,        "CostQuerySetStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
          "type": "object",
-         "required": ["query"],
-                "title": "CostReportStatQuery"
+         "required": ["query","data_source_id"],
+                "title": "CostQuerySetStatQuery"
            }
-           ,        "CostReportsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CostReportInfo"},
-               "type": "array","$ref": "#/components/schemas/CostReportInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "CostQuerySetsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CostQuerySetInfo"},
+               "type": "array","$ref": "#/components/schemas/CostQuerySetInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "CostReportsInfo"
+                "title": "CostQuerySetsInfo"
            }
-           ,        "GetUrlCostReportRequest": {
-         "properties" : {"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"}},
+           ,        "CreateCostQuerySetRequest": {
+         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["cost_report_id"],
-                "title": "GetUrlCostReportRequest"
+         "required": ["data_source_id","name","options"],
+                "title": "CreateCostQuerySetRequest"
            }
-           ,        "JobTaskInfo": {
-         "properties" : {"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"status" : {"type": "string","title": "STATUS"},"options" : {"type": "object","title": "OPTIONS"},"created_count" : {"type": "integer","title": "CREATED_COUNT"},"error_code" : {"type": "string","title": "ERROR_CODE"},"error_message" : {"type": "string","title": "ERROR_MESSAGE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"job_id" : {"type": "string","title": "JOB_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"started_at" : {"type": "string","title": "STARTED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"finished_at" : {"type": "string","title": "FINISHED_AT"}},
+           ,        "UpdateCostQuerySetRequest": {
+         "properties" : {"cost_query_set_id" : {"type": "string","title": "COST_QUERY_SET_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["job_task_id","status","options","created_count","error_code","error_message","resource_group","domain_id","workspace_id","job_id","data_source_id","created_at","started_at","updated_at","finished_at"],
-                "title": "JobTaskInfo"
+         "required": ["cost_query_set_id"],
+                "title": "UpdateCostQuerySetRequest"
            }
-           ,        "JobTaskQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"status" : {"type": "string","title": "STATUS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"job_id" : {"type": "string","title": "JOB_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
+           ,        "CostReportDataAnalyzeQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"product" : {"type": "string","title": "PRODUCT"},"provider" : {"type": "string","title": "PROVIDER"},"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
          "type": "object",
          "required": [],
-                "title": "JobTaskQuery"
+                "title": "CostReportDataAnalyzeQuery"
            }
-           ,        "JobTaskRequest": {
-         "properties" : {"job_task_id" : {"type": "string","title": "JOB_TASK_ID"}},
+           ,        "CostReportDataInfo": {
+         "properties" : {"cost_report_data_id" : {"type": "string","title": "COST_REPORT_DATA_ID"},"cost" : {"type": "object","title": "COST"},"cost_report_name" : {"type": "string","title": "COST_REPORT_NAME"},"issue_date" : {"type": "string","title": "ISSUE_DATE"},"report_year" : {"type": "string","title": "REPORT_YEAR"},"report_month" : {"type": "string","title": "REPORT_MONTH"},"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED"},"provider" : {"type": "string","title": "PROVIDER"},"product" : {"type": "string","title": "PRODUCT"},"service_account_name" : {"type": "string","title": "SERVICE_ACCOUNT_NAME"},"data_source_name" : {"type": "string","title": "DATA_SOURCE_NAME"},"project_name" : {"type": "string","title": "PROJECT_NAME"},"workspace_name" : {"type": "string","title": "WORKSPACE_NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["job_task_id"],
-                "title": "JobTaskRequest"
+         "required": ["cost_report_data_id","cost","cost_report_name","issue_date","report_year","report_month","is_confirmed","provider","product","service_account_name","data_source_name","project_name","workspace_name","domain_id","workspace_id","project_id","cost_report_config_id","cost_report_id","data_source_id","service_account_id","created_at"],
+                "title": "CostReportDataInfo"
            }
-           ,        "JobTaskStatQuery": {
+           ,        "CostReportDataQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"cost_report_data_id" : {"type": "string","title": "COST_REPORT_DATA_ID"},"product" : {"type": "string","title": "PRODUCT"},"provider" : {"type": "string","title": "PROVIDER"},"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "CostReportDataQuery"
+           }
+           ,        "CostReportDataStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "CostReportDataStatQuery"
+           }
+           ,        "CostReportsDataInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CostReportDataInfo"},
+               "type": "array","$ref": "#/components/schemas/CostReportDataInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "CostReportsDataInfo"
+           }
+           ,        "CostReportConfigInfo": {
+         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"state" : {"type": "string","title": "STATE"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"currency" : {"type": "string","title": "CURRENCY"},"recipients" : {"type": "object","title": "RECIPIENTS"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["cost_report_config_id","state","issue_day","is_last_day","currency","recipients","data_source_filter","language","domain_id","created_at","updated_at"],
+                "title": "CostReportConfigInfo"
+           }
+           ,        "CostReportConfigQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"state" : {"type": "string","title": "STATE"}},
+         "type": "object",
+         "required": [],
+                "title": "CostReportConfigQuery"
+           }
+           ,        "CostReportConfigRequest": {
+         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"}},
+         "type": "object",
+         "required": ["cost_report_config_id"],
+                "title": "CostReportConfigRequest"
+           }
+           ,        "CostReportConfigStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "JobTaskStatQuery"
+                "title": "CostReportConfigStatQuery"
            }
-           ,        "JobTasksInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/JobTaskInfo"},
-               "type": "array","$ref": "#/components/schemas/JobTaskInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "CostReportConfigsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CostReportConfigInfo"},
+               "type": "array","$ref": "#/components/schemas/CostReportConfigInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "JobTasksInfo"
+                "title": "CostReportConfigsInfo"
            }
-           ,        "CostAnalyzeQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
+           ,        "CreateCostReportConfigRequest": {
+         "properties" : {"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"currency" : {"type": "string","title": "CURRENCY"},"recipients" : {"type": "object","title": "RECIPIENTS"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"}},
          "type": "object",
-         "required": ["query","data_source_id"],
-                "title": "CostAnalyzeQuery"
+         "required": ["recipients"],
+                "title": "CreateCostReportConfigRequest"
            }
-           ,        "CostInfo": {
-         "properties" : {"cost_id" : {"type": "string","title": "COST_ID"},"cost" : {"type": "float","title": "COST"},"usage_quantity" : {"type": "float","title": "USAGE_QUANTITY"},"usage_unit" : {"type": "string","title": "USAGE_UNIT"},"provider" : {"type": "string","title": "PROVIDER"},"region_code" : {"type": "string","title": "REGION_CODE"},"region_key" : {"type": "string","title": "REGION_KEY"},"product" : {"type": "string","title": "PRODUCT"},"usage_type" : {"type": "string","title": "USAGE_TYPE"},"resource" : {"type": "string","title": "RESOURCE"},"tags" : {"type": "object","title": "TAGS"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"billed_year" : {"type": "string","title": "BILLED_YEAR"},"billed_month" : {"type": "string","title": "BILLED_MONTH"},"billed_date" : {"type": "string","title": "BILLED_DATE"}},
+           ,        "UpdateCostReportConfigRecipientsRequest": {
+         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"recipients" : {"type": "object","title": "RECIPIENTS"}},
          "type": "object",
-         "required": ["cost_id","cost","usage_quantity","usage_unit","provider","region_code","region_key","product","usage_type","resource","tags","additional_info","domain_id","workspace_id","project_id","service_account_id","data_source_id","billed_year","billed_month","billed_date"],
-                "title": "CostInfo"
+         "required": ["cost_report_config_id"],
+                "title": "UpdateCostReportConfigRecipientsRequest"
            }
-           ,        "CostQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"cost_id" : {"type": "string","title": "COST_ID"},"provider" : {"type": "string","title": "PROVIDER"},"region_code" : {"type": "string","title": "REGION_CODE"},"region_key" : {"type": "string","title": "REGION_KEY"},"product" : {"type": "string","title": "PRODUCT"},"usage_type" : {"type": "string","title": "USAGE_TYPE"},"resource" : {"type": "string","title": "RESOURCE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"billed_year" : {"type": "string","title": "BILLED_YEAR"},"billed_month" : {"type": "string","title": "BILLED_MONTH"},"billed_date" : {"type": "string","title": "BILLED_DATE"}},
+           ,        "UpdateCostReportConfigRequest": {
+         "properties" : {"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"issue_day" : {"type": "integer","title": "ISSUE_DAY"},"is_last_day" : {"type": "boolean","title": "IS_LAST_DAY"},"currency" : {"type": "string","title": "CURRENCY"},"data_source_filter" : {"type": "object","title": "DATA_SOURCE_FILTER"},"language" : {"type": "string","title": "LANGUAGE"}},
          "type": "object",
-         "required": ["data_source_id"],
-                "title": "CostQuery"
-           }
-           ,        "CostRequest": {
-         "properties" : {"cost_id" : {"type": "string","title": "COST_ID"}},
-         "type": "object",
-         "required": ["cost_id"],
-                "title": "CostRequest"
-           }
-           ,        "CostStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "CostStatQuery"
-           }
-           ,        "CostsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/CostInfo"},
-               "type": "array","$ref": "#/components/schemas/CostInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "CostsInfo"
-           }
-           ,        "CreateCostRequest": {
-         "properties" : {"cost" : {"type": "float","title": "COST"},"usage_quantity" : {"type": "float","title": "USAGE_QUANTITY"},"usage_unit" : {"type": "float","title": "USAGE_UNIT"},"provider" : {"type": "string","title": "PROVIDER"},"region_code" : {"type": "string","title": "REGION_CODE"},"product" : {"type": "string","title": "PRODUCT"},"usage_type" : {"type": "string","title": "USAGE_TYPE"},"resource" : {"type": "string","title": "RESOURCE"},"tags" : {"type": "object","title": "TAGS"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"project_id" : {"type": "string","title": "PROJECT_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"billed_date" : {"type": "string","title": "BILLED_DATE"}},
-         "type": "object",
-         "required": ["cost","project_id","data_source_id","billed_date"],
-                "title": "CreateCostRequest"
+         "required": ["cost_report_config_id"],
+                "title": "UpdateCostReportConfigRequest"
            }
            ,        "ChangedInfo": {
          "properties" : {"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"filter" : {"type": "object","title": "FILTER"}},
