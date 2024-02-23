@@ -615,6 +615,10 @@ func (x *UpdateUserRequest) GetResetPassword() bool {
 	return false
 }
 
+//	{
+//	 "user_id": "example@cloudforet.com",
+//	 "email": "example@cloudforet.com",
+//	}
 type VerifyUserEmailRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -672,9 +676,7 @@ func (x *VerifyUserEmailRequest) GetEmail() string {
 }
 
 //	{
-//	 "user_id": "example@cloudforet.com",
-//	 "force": false,
-//	 "domain_id": "domain-a1b2c3d4e5f6"
+//	 "user_id": "example@cloudforet.com"
 //	}
 type DisableUserMFARequest struct {
 	state         protoimpl.MessageState
@@ -723,6 +725,10 @@ func (x *DisableUserMFARequest) GetUserId() string {
 	return ""
 }
 
+//	{
+//	 "user_id": "example@cloudforet.com",
+//	 "required_actions": ["UPDATE_PASSWORD"]
+//	}
 type SetRequiredActionsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -778,6 +784,9 @@ func (x *SetRequiredActionsRequest) GetRequiredActions() []UserRequiredAction {
 	return nil
 }
 
+//	{
+//	 "user_id": "example@cloudforet.com"
+//	}
 type UserRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

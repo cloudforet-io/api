@@ -1,0 +1,305 @@
+{
+   "openapi": "3.1.0",
+   "externalDocs":{
+       "description": "Home",
+       "url": "/docs"
+   },
+   "info": {
+     "title": "Search API",
+     "version": "3.1.0"
+   },
+   "paths":{"/search/resource/search": {
+       "post": {
+         "tags": ["search > resource"],
+         "summary": "Search",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |resource_type|identity.ServiceAccount|string|True|\n |keyword||string||\n |limit|Result limit is default 15 and max 100 |int||\n |workspaces|List of workspace_id to search, limit of workspaces is 5 |array||\n |all_workspaces|If true, search all workspaces that user has access |boolean||\n |next_token|If you request with next_token, it will return next result. resource_type must be same with previous request. |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"keyword" : {"type": "string","title": "KEYWORD" },"limit" : {"type": "integer","title": "LIMIT" },"workspaces" : {"items": {}, "type": "array","title": "WORKSPACES" },"all_workspaces" : {"type": "boolean","title": "ALL_WORKSPACES" },"next_token" : {"type": "string","title": "NEXT_TOKEN" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ResourcesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ResourcesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
+   },
+   "components":{
+     "schemas": {
+     "ResourceInfo": {
+         "properties" : {"resource_id" : {"type": "string","title": "RESOURCE_ID"},"name" : {"type": "string","title": "NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": ["resource_id","name","domain_id","workspace_id","project_id"],
+                "title": "ResourceInfo"
+           }
+           ,        "ResourcesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ResourceInfo"},
+               "type": "array","$ref": "#/components/schemas/ResourceInfo","title": "RESULTS"},"next_token" : {"type": "string","title": "NEXT_TOKEN"}},
+         "type": "object",
+         "required": ["results","next_token"],
+                "title": "ResourcesInfo"
+           }
+           ,        "SearchResourceRequest": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"keyword" : {"type": "string","title": "KEYWORD"},"limit" : {"type": "integer","title": "LIMIT"},"workspaces" : {"items": {"type": "string"},
+               "type": "array","title": "WORKSPACES"},"all_workspaces" : {"type": "boolean","title": "ALL_WORKSPACES"},"next_token" : {"type": "string","title": "NEXT_TOKEN"}},
+         "type": "object",
+         "required": ["resource_type"],
+                "title": "SearchResourceRequest"
+           }
+           ,        "AggregateCount": {
+         "properties" : {"name" : {"type": "string","title": "NAME"}},
+         "type": "object",
+         "required": ["name"],
+                "title": "AggregateCount"
+           }
+           ,        "AggregateGroup": {
+         "properties" : {"keys" : {"items": {"$ref": "#/components/schemas/AggregateGroupKey"},
+               "type": "array","$ref": "#/components/schemas/AggregateGroupKey","title": "KEYS"},"fields" : {"items": {"$ref": "#/components/schemas/AggregateGroupField"},
+               "type": "array","$ref": "#/components/schemas/AggregateGroupField","title": "FIELDS"}},
+         "type": "object",
+         "required": ["keys","fields"],
+                "title": "AggregateGroup"
+           }
+           ,        "AggregateGroupField": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"k" : {"type": "string","title": "K"},"name" : {"type": "string","title": "NAME"},"n" : {"type": "string","title": "N"},"operator" : {"type": "string","title": "OPERATOR"},"o" : {"type": "string","title": "O"},"fields" : {"items": {"$ref": "#/components/schemas/AggregateGroupSubField"},
+               "type": "array","$ref": "#/components/schemas/AggregateGroupSubField","title": "FIELDS"},"conditions" : {"items": {"$ref": "#/components/schemas/AggregateSubCondition"},
+               "type": "array","$ref": "#/components/schemas/AggregateSubCondition","title": "CONDITIONS"}},
+         "type": "object",
+         "required": ["key","k","name","n","operator","o","fields","conditions"],
+                "title": "AggregateGroupField"
+           }
+           ,        "AggregateGroupKey": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"k" : {"type": "string","title": "K"},"name" : {"type": "string","title": "NAME"},"n" : {"type": "string","title": "N"},"date_format" : {"type": "string","title": "DATE_FORMAT"}},
+         "type": "object",
+         "required": ["key","k","name","n","date_format"],
+                "title": "AggregateGroupKey"
+           }
+           ,        "AggregateGroupSubField": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"k" : {"type": "string","title": "K"},"name" : {"type": "string","title": "NAME"},"n" : {"type": "string","title": "N"}},
+         "type": "object",
+         "required": ["key","k","name","n"],
+                "title": "AggregateGroupSubField"
+           }
+           ,        "AggregateProject": {
+         "properties" : {"fields" : {"items": {"$ref": "#/components/schemas/AggregateProjectField"},
+               "type": "array","$ref": "#/components/schemas/AggregateProjectField","title": "FIELDS"},"exclude_keys" : {"type": "boolean","title": "EXCLUDE_KEYS"}},
+         "type": "object",
+         "required": ["fields","exclude_keys"],
+                "title": "AggregateProject"
+           }
+           ,        "AggregateProjectField": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"k" : {"type": "string","title": "K"},"name" : {"type": "string","title": "NAME"},"n" : {"type": "string","title": "N"},"operator" : {"type": "string","title": "OPERATOR"},"o" : {"type": "string","title": "O"}},
+         "type": "object",
+         "required": ["key","k","name","n","operator","o"],
+                "title": "AggregateProjectField"
+           }
+           ,        "AggregateSort": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"desc" : {"type": "boolean","title": "DESC"},"keys" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "KEYS"}},
+         "type": "object",
+         "required": ["key","desc","keys"],
+                "title": "AggregateSort"
+           }
+           ,        "AggregateSubCondition": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"k" : {"type": "string","title": "K"},"value" : {"type": "Value","title": "VALUE"},"v" : {"type": "Value","title": "V"},"operator" : {"type": "string","title": "OPERATOR"},"o" : {"type": "string","title": "O"}},
+         "type": "object",
+         "required": ["key","k","value","v","operator","o"],
+                "title": "AggregateSubCondition"
+           }
+           ,        "AggregateUnwind": {
+         "properties" : {"path" : {"type": "string","title": "PATH"}},
+         "type": "object",
+         "required": ["path"],
+                "title": "AggregateUnwind"
+           }
+           ,        "AnalyzeQuery": {
+         "properties" : {"group_by" : {"items": {"type": "string"},
+               "type": "array","title": "GROUP_BY"},"field_group" : {"items": {"type": "string"},
+               "type": "array","title": "FIELD_GROUP"},"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "object","title": "FIELDS"},"select" : {"type": "object","title": "SELECT"},"keyword" : {"type": "string","title": "KEYWORD"}},
+         "type": "object",
+         "required": ["group_by","field_group","filter","filter_or","page","sort","fields","select","keyword"],
+                "title": "AnalyzeQuery"
+           }
+           ,        "ExportAnalyzeQuery": {
+         "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"keyword" : {"type": "string","title": "KEYWORD"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"group_by" : {"items": {"type": "string"},
+               "type": "array","title": "GROUP_BY"},"fields" : {"type": "object","title": "FIELDS"},"select" : {"type": "object","title": "SELECT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
+         "type": "object",
+         "required": ["filter","filter_or","keyword","sort","group_by","fields","select","page"],
+                "title": "ExportAnalyzeQuery"
+           }
+           ,        "ExportOption": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"title" : {"type": "string","title": "TITLE"},"query_type" : {"type": "QueryType","title": "QUERY_TYPE"},"search_query" : {"$ref": "#/components/schemas/ExportSearchQuery","title": "SEARCH_QUERY"},"analyze_query" : {"$ref": "#/components/schemas/ExportAnalyzeQuery","title": "ANALYZE_QUERY"}},
+         "type": "object",
+         "required": ["name","title","query_type","search_query","analyze_query"],
+                "title": "ExportOption"
+           }
+           ,        "ExportSearchQuery": {
+         "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"keyword" : {"type": "string","title": "KEYWORD"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "array","title": "FIELDS"},"unwind" : {"$ref": "#/components/schemas/Unwind","title": "UNWIND"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
+         "type": "object",
+         "required": ["filter","filter_or","keyword","sort","fields","unwind","page"],
+                "title": "ExportSearchQuery"
+           }
+           ,        "Filter": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"k" : {"type": "string","title": "K"},"value" : {"type": "Value","title": "VALUE"},"v" : {"type": "Value","title": "V"},"operator" : {"type": "string","title": "OPERATOR"},"o" : {"type": "string","title": "O"}},
+         "type": "object",
+         "required": ["key","k","value","v","operator","o"],
+                "title": "Filter"
+           }
+           ,        "Page": {
+         "properties" : {"start" : {"type": "integer/long","title": "START"},"limit" : {"type": "integer/long","title": "LIMIT"}},
+         "type": "object",
+         "required": ["start","limit"],
+                "title": "Page"
+           }
+           ,        "Query": {
+         "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"sort" : {"$ref": "#/components/schemas/Sort","title": "SORT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"minimal" : {"type": "boolean","title": "MINIMAL"},"count_only" : {"type": "boolean","title": "COUNT_ONLY"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"},"keyword" : {"type": "string","title": "KEYWORD"},"unwind" : {"$ref": "#/components/schemas/Unwind","title": "UNWIND"}},
+         "type": "object",
+         "required": ["filter","filter_or","sort","page","minimal","count_only","only","keyword","unwind"],
+                "title": "Query"
+           }
+           ,        "Sort": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"desc" : {"type": "boolean","title": "DESC"},"keys" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "KEYS"}},
+         "type": "object",
+         "required": ["key","desc","keys"],
+                "title": "Sort"
+           }
+           ,        "SortKey": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"desc" : {"type": "boolean","title": "DESC"}},
+         "type": "object",
+         "required": ["key","desc"],
+                "title": "SortKey"
+           }
+           ,        "StatisticsAggregate": {
+         "properties" : {"unwind" : {"$ref": "#/components/schemas/AggregateUnwind","title": "UNWIND"},"group" : {"$ref": "#/components/schemas/AggregateGroup","title": "GROUP"},"count" : {"$ref": "#/components/schemas/AggregateCount","title": "COUNT"},"sort" : {"$ref": "#/components/schemas/AggregateSort","title": "SORT"},"project" : {"$ref": "#/components/schemas/AggregateProject","title": "PROJECT"},"limit" : {"type": "integer","title": "LIMIT"},"skip" : {"type": "integer","title": "SKIP"}},
+         "type": "object",
+         "required": ["unwind","group","count","sort","project","limit","skip"],
+                "title": "StatisticsAggregate"
+           }
+           ,        "StatisticsQuery": {
+         "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"aggregate" : {"items": {"$ref": "#/components/schemas/StatisticsAggregate"},
+               "type": "array","$ref": "#/components/schemas/StatisticsAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"distinct" : {"type": "string","title": "DISTINCT"},"keyword" : {"type": "string","title": "KEYWORD"}},
+         "type": "object",
+         "required": ["filter","filter_or","aggregate","page","distinct","keyword"],
+                "title": "StatisticsQuery"
+           }
+           ,        "TimeSeriesAnalyzeQuery": {
+         "properties" : {"granularity" : {"type": "Granularity","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"group_by" : {"items": {"type": "string"},
+               "type": "array","title": "GROUP_BY"},"field_group" : {"items": {"type": "string"},
+               "type": "array","title": "FIELD_GROUP"},"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "object","title": "FIELDS"},"select" : {"type": "object","title": "SELECT"},"keyword" : {"type": "string","title": "KEYWORD"}},
+         "type": "object",
+         "required": ["granularity","start","end","group_by","field_group","filter","filter_or","page","sort","fields","select","keyword"],
+                "title": "TimeSeriesAnalyzeQuery"
+           }
+           ,        "Unwind": {
+         "properties" : {"path" : {"type": "string","title": "PATH"},"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"}},
+         "type": "object",
+         "required": ["path","filter"],
+                "title": "Unwind"
+           }
+           ,        "AuthenticationRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["domain_id"],
+                "title": "AuthenticationRequest"
+           }
+           ,        "AuthenticationResponse": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
+         "type": "object",
+         "required": ["domain_id","public_key"],
+                "title": "AuthenticationResponse"
+           }
+           ,        "AuthorizationRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
+         "type": "object",
+         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
+                "title": "AuthorizationRequest"
+           }
+           ,        "AuthorizationResponse": {
+         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_GROUPS"}},
+         "type": "object",
+         "required": ["role_type","projects","project_groups"],
+                "title": "AuthorizationResponse"
+           }
+           ,        "EventRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
+         "type": "object",
+         "required": ["service","resource","verb","status","message"],
+                "title": "EventRequest"
+           }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
+           }
+                   },
+      "Struct": {"properties": {"type": "object","title": "Struct"}},
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+       },
+       "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [{"type": "string"}, {"type": "integer"}]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {"type": "string","title": "Message"},
+          "type": {"type": "string","title": "Error Type"}
+        },
+        "type": "object",
+        "required": ["loc","msg","type"],
+        "title": "ValidationError"
+      },
+      "securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer"}
+      }
+   }
+}
