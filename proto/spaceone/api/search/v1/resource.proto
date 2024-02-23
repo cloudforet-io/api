@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package spaceone.api.search.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/search/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+
+service Resource {
+  rpc search (SearchResourceRequest) returns (ResourcesInfo) {
+    option (google.api.http) = {
+      post: "/search/v1/resource/search"
+      body: "*"
+    };
+  }
+}
+
+message SearchResourceRequest {
+  // identity.ServiceAccount
+  string resource_type = 1;
+  // +optional
+  string keyword = 2;
+  // Result limit is default 15 and max 100
+  // +optional
+  int32 limit = 3;
+  // List of workspace_id to search, limit of workspaces is 5
+  // +optional
+  repeated string workspaces = 4;
+  // If true, search all workspaces that user has access
+  // +optional
+  bool all_workspaces = 5;
+  // If you request with next_token, it will return next result.
+  // resource_type must be same with previous request.
+  // +optional
+  string next_token = 6;
+}
+
+
+message ResourceInfo {
+  string resource_id = 1;
+  string name = 2;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string project_id = 23;
+}
+
+
+message ResourcesInfo {
+  repeated ResourceInfo results = 1;
+  string next_token = 2;
+}
