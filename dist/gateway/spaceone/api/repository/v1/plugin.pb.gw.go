@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_Plugin_Register_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PluginClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.CreatePluginRequest
+	var protoReq extV1.RegisterPluginRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -46,7 +46,7 @@ func request_Plugin_Register_0(ctx context.Context, marshaler runtime.Marshaler,
 }
 
 func local_request_Plugin_Register_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PluginServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.CreatePluginRequest
+	var protoReq extV1.RegisterPluginRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {

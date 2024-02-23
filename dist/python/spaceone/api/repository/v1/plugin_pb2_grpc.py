@@ -17,7 +17,7 @@ class PluginStub(object):
         """
         self.register = channel.unary_unary(
                 '/spaceone.api.repository.v1.Plugin/register',
-                request_serializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.CreatePluginRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.RegisterPluginRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginInfo.FromString,
                 )
         self.update = channel.unary_unary(
@@ -121,7 +121,7 @@ def add_PluginServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'register': grpc.unary_unary_rpc_method_handler(
                     servicer.register,
-                    request_deserializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.CreatePluginRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.RegisterPluginRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
@@ -181,7 +181,7 @@ class Plugin(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.repository.v1.Plugin/register',
-            spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.CreatePluginRequest.SerializeToString,
+            spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.RegisterPluginRequest.SerializeToString,
             spaceone_dot_api_dot_repository_dot_v1_dot_plugin__pb2.PluginInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

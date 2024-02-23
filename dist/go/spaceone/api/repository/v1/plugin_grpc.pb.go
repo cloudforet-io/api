@@ -37,7 +37,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PluginClient interface {
 	// Registers a Plugin. The parameter `registry_type`, meaning container registry type, can be either `DOCKER_HUB` or `AWS_PRIVATE_ECR`. The default value of the `registry_type` is `DOCKER_HUB`. The parameter `registry_url` is required if the `registry_type` is not `DOCKER_HUB`. The parameter `image` is limited to 40 characters.
-	Register(ctx context.Context, in *CreatePluginRequest, opts ...grpc.CallOption) (*PluginInfo, error)
+	Register(ctx context.Context, in *RegisterPluginRequest, opts ...grpc.CallOption) (*PluginInfo, error)
 	// Updates a specific Plugin registered. A Plugin can be updated only if its Repository's `repository_type` is `local`. You can make changes in Plugin settings, including `template` and its options, `schema`.
 	Update(ctx context.Context, in *UpdatePluginRequest, opts ...grpc.CallOption) (*PluginInfo, error)
 	// Deregisters and deletes a specific Plugin. You must specify the `plugin_id` of the Plugin to deregister.
@@ -62,7 +62,7 @@ func NewPluginClient(cc grpc.ClientConnInterface) PluginClient {
 	return &pluginClient{cc}
 }
 
-func (c *pluginClient) Register(ctx context.Context, in *CreatePluginRequest, opts ...grpc.CallOption) (*PluginInfo, error) {
+func (c *pluginClient) Register(ctx context.Context, in *RegisterPluginRequest, opts ...grpc.CallOption) (*PluginInfo, error) {
 	out := new(PluginInfo)
 	err := c.cc.Invoke(ctx, Plugin_Register_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -139,7 +139,7 @@ func (c *pluginClient) List(ctx context.Context, in *PluginQuery, opts ...grpc.C
 // for forward compatibility
 type PluginServer interface {
 	// Registers a Plugin. The parameter `registry_type`, meaning container registry type, can be either `DOCKER_HUB` or `AWS_PRIVATE_ECR`. The default value of the `registry_type` is `DOCKER_HUB`. The parameter `registry_url` is required if the `registry_type` is not `DOCKER_HUB`. The parameter `image` is limited to 40 characters.
-	Register(context.Context, *CreatePluginRequest) (*PluginInfo, error)
+	Register(context.Context, *RegisterPluginRequest) (*PluginInfo, error)
 	// Updates a specific Plugin registered. A Plugin can be updated only if its Repository's `repository_type` is `local`. You can make changes in Plugin settings, including `template` and its options, `schema`.
 	Update(context.Context, *UpdatePluginRequest) (*PluginInfo, error)
 	// Deregisters and deletes a specific Plugin. You must specify the `plugin_id` of the Plugin to deregister.
@@ -161,7 +161,7 @@ type PluginServer interface {
 type UnimplementedPluginServer struct {
 }
 
-func (UnimplementedPluginServer) Register(context.Context, *CreatePluginRequest) (*PluginInfo, error) {
+func (UnimplementedPluginServer) Register(context.Context, *RegisterPluginRequest) (*PluginInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
 }
 func (UnimplementedPluginServer) Update(context.Context, *UpdatePluginRequest) (*PluginInfo, error) {
@@ -199,7 +199,7 @@ func RegisterPluginServer(s grpc.ServiceRegistrar, srv PluginServer) {
 }
 
 func _Plugin_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePluginRequest)
+	in := new(RegisterPluginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -211,7 +211,7 @@ func _Plugin_Register_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: Plugin_Register_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PluginServer).Register(ctx, req.(*CreatePluginRequest))
+		return srv.(PluginServer).Register(ctx, req.(*RegisterPluginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
