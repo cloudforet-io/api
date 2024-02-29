@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package spaceone.api.identity.plugin;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/plugin";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+
+service AccountCollector {
+  rpc init (InitRequest) returns (PluginInfo) {}
+  rpc sync (SyncRequest) returns (AccountsInfo) {}
+}
+
+message InitRequest {
+  google.protobuf.Struct options = 1;
+  string domain_id = 21;
+}
+
+message SyncRequest {
+  google.protobuf.Struct options = 1;
+  // +optional
+  string schema_id = 2;
+  // +optional
+  google.protobuf.Struct secret_data = 3;
+  string domain_id = 21;
+}
+
+
+message AccountInfo {
+  string name = 1;
+  google.protobuf.Struct data = 2;
+  string secret_schema_id = 3;
+  string secret_data = 4;
+  google.protobuf.Struct tags = 5;
+  repeated string location = 6;
+}
+
+message AccountsInfo {
+  repeated AccountInfo results = 1;
+}
+
+message PluginInfo {
+  google.protobuf.Struct metadata = 1;
+}
+
