@@ -11,138 +11,180 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service TrustedAccount {
-    rpc create (CreateTrustedAccountRequest) returns (TrustedAccountInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/trusted-account/create"
-            body: "*"
-        };
-    }
-    rpc update (UpdateTrustedAccountRequest) returns (TrustedAccountInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/trusted-account/update"
-            body: "*"
-        };
-    }
-    rpc update_secret_data (UpdateTrustedAccountSecretRequest) returns (TrustedAccountInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/trusted-account/update-secret-data"
-            body: "*"
-        };
-    }
-    rpc delete (TrustedAccountRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v2/trusted-account/delete"
-            body: "*"
-        };
-    }
-    rpc get (TrustedAccountRequest) returns (TrustedAccountInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/trusted-account/get"
-            body: "*"
-        };
-    }
-    rpc list (TrustedAccountSearchQuery) returns (TrustedAccountsInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/trusted-account/list"
-            body: "*"
-        };
-    }
-    rpc stat (TrustedAccountStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/identity/v2/trusted-account/stat"
-            body: "*"
-        };
-    }
+  rpc create (CreateTrustedAccountRequest) returns (TrustedAccountInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/trusted-account/create"
+      body: "*"
+    };
+  }
+  rpc update (UpdateTrustedAccountRequest) returns (TrustedAccountInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/trusted-account/update"
+      body: "*"
+    };
+  }
+  rpc update_secret_data (UpdateTrustedAccountSecretRequest) returns (TrustedAccountInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/trusted-account/update-secret-data"
+      body: "*"
+    };
+  }
+  rpc delete (TrustedAccountRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/identity/v2/trusted-account/delete"
+      body: "*"
+    };
+  }
+  rpc sync (TrustedAccountRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/identity/v2/trusted-account/sync"
+      body: "*"
+    };
+  }
+  rpc get (TrustedAccountRequest) returns (TrustedAccountInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/trusted-account/get"
+      body: "*"
+    };
+  }
+  rpc list (TrustedAccountSearchQuery) returns (TrustedAccountsInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/trusted-account/list"
+      body: "*"
+    };
+  }
+  rpc stat (TrustedAccountStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/identity/v2/trusted-account/stat"
+      body: "*"
+    };
+  }
 }
 
-message CreateTrustedAccountRequest {
-    enum ResourceGroup {
-        NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
+message Scheduled {
+  enum ScheduledState {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
 
-    string name = 1;
-    google.protobuf.Struct data = 2;
-    string provider = 3;
-    string secret_schema_id = 4;
-    google.protobuf.Struct secret_data = 5;
-    // +optional
-    google.protobuf.Struct tags = 6;
-    ResourceGroup resource_group = 20;
-    // +optional
-    string workspace_id = 21;
+  ScheduledState state = 1;
+  repeated int32 hours = 2;
+}
+
+//{
+//  "name": "Trusted Account",
+//  "data": {
+//    "account_id": "123456789",
+//   }
+//  "provider": "aws",
+//  "secret_schema_id": "aws-secret-access-key",
+//  "schedule": {
+//    "state": "ENABLED",
+//    "hours": [3, 15]
+//  },
+//  "resource_group": "DOMAIN",
+//  "workspace_id": "*"
+//}
+message CreateTrustedAccountRequest {
+  enum ResourceGroup {
+    NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
+
+  string name = 1;
+  // Base Information of Trusted Account. It depends on provider.
+  google.protobuf.Struct data = 2;
+  string provider = 3;
+  string secret_schema_id = 4;
+  google.protobuf.Struct secret_data = 5;
+  // +optional
+  Scheduled schedule = 6;
+  //+optional
+  google.protobuf.Struct sync_options = 7;
+  // +optional
+  google.protobuf.Struct tags = 8;
+  ResourceGroup resource_group = 20;
+  // +optional
+  string workspace_id = 21;
 }
 
 message UpdateTrustedAccountRequest {
-    string trusted_account_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    google.protobuf.Struct data = 3;
-    // +optional
-    google.protobuf.Struct tags = 4;
+  string trusted_account_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  google.protobuf.Struct data = 3;
+  // +optional
+  Scheduled schedule = 4;
+  // +optional
+  google.protobuf.Struct sync_options = 5;
+  // +optional
+  google.protobuf.Struct tags = 6;
 }
 
 message UpdateTrustedAccountSecretRequest {
-    string trusted_account_id = 1;
-    string secret_schema_id = 2;
-    google.protobuf.Struct secret_data = 3;
+  string trusted_account_id = 1;
+  string secret_schema_id = 2;
+  google.protobuf.Struct secret_data = 3;
 }
 
 
 message TrustedAccountRequest {
-    string trusted_account_id = 1;
+  string trusted_account_id = 1;
 }
 
 message TrustedAccountInfo {
-    enum ResourceGroup {
-        NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
+  enum ResourceGroup {
+    NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
 
-    string trusted_account_id = 1;
-    string name = 2;
-    google.protobuf.Struct data = 3;
-    string provider = 4;
-    google.protobuf.Struct tags = 5;
-    ResourceGroup resource_group = 20;
-    string domain_id = 21;
-    string workspace_id = 22;
-    string secret_schema_id = 23;
-    string trusted_secret_id = 24;
-    string created_at = 31;
+  string trusted_account_id = 1;
+  string name = 2;
+  google.protobuf.Struct data = 3;
+  string provider = 4;
+  Scheduled schedule = 5;
+  google.protobuf.Struct sync_options = 6;
+  google.protobuf.Struct tags = 7;
+  ResourceGroup resource_group = 20;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string secret_schema_id = 23;
+  string trusted_secret_id = 24;
+  string created_at = 31;
 }
 
 message TrustedAccountSearchQuery {
-    enum ResourceGroup {
-        NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
+  enum ResourceGroup {
+    NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
 
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string trusted_account_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    string provider = 4;
-    // +optional
-    string workspace_id = 21;
-    // +optional
-    string secret_schema_id = 22;
-    // +optional
-    string trusted_secret_id = 23;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string trusted_account_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  string provider = 4;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string secret_schema_id = 22;
+  // +optional
+  string trusted_secret_id = 23;
 }
 
 message TrustedAccountsInfo {
-    repeated TrustedAccountInfo results = 1;
-    int32 total_count = 2;
+  repeated TrustedAccountInfo results = 1;
+  int32 total_count = 2;
 }
 
 message TrustedAccountStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }

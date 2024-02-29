@@ -11,117 +11,160 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service Provider {
-    rpc create (CreateProviderRequest) returns (ProviderInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/provider/create"
-            body: "*"
-        };
-    }
-    rpc update (UpdateProviderRequest) returns (ProviderInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/provider/update"
-            body: "*"
-        };
-    }
-    rpc delete (ProviderRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v2/provider/delete"
-            body: "*"
-        };
-    }
-    rpc get (ProviderRequest) returns (ProviderInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/provider/get"
-            body: "*"
-        };
-    }
-    rpc list (ProviderSearchQuery) returns (ProvidersInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/provider/list"
-            body: "*"
-        };
-    }
-    rpc stat (ProviderStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/identity/v2/provider/stat"
-            body: "*"
-        };
-    }
+  rpc create (CreateProviderRequest) returns (ProviderInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/provider/create"
+      body: "*"
+    };
+  }
+  rpc update (UpdateProviderRequest) returns (ProviderInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/provider/update"
+      body: "*"
+    };
+  }
+  rpc delete (ProviderRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/identity/v2/provider/delete"
+      body: "*"
+    };
+  }
+  rpc get (ProviderRequest) returns (ProviderInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/provider/get"
+      body: "*"
+    };
+  }
+  rpc list (ProviderSearchQuery) returns (ProvidersInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/provider/list"
+      body: "*"
+    };
+  }
+  rpc stat (ProviderStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/identity/v2/provider/stat"
+      body: "*"
+    };
+  }
 }
 
+message PluginInfo {
+  enum UpgradeMode {
+    NONE = 0;
+    MANUAL = 1;
+    AUTO = 2;
+  }
+
+  string plugin_id = 1;
+  string version = 2;
+  UpgradeMode upgrade_mode = 3;
+  google.protobuf.Struct options = 4;
+}
+
+//{
+//  "provider": "aws",
+//  "name": "AWS",
+//  "alias": "AWS",
+//  "color": "#FF9900",
+//  "icon": "https://cloudforet.io/icons/aws.svg",
+//  "order": 1,
+//  "options": {
+//       "supported_trusted_account": false
+//  },
+//}
 message CreateProviderRequest {
-    string provider = 1;
-    string name = 2;
-    // +optional
-    string alias = 3;
-    // +optional
-    string color = 4;
-    // +optional
-    string icon = 5;
-    // +optional
-    int32 order = 6;
-    // +optional
-    google.protobuf.Struct options = 7;
-    // +optional
-    google.protobuf.Struct tags = 8;
+  string provider = 1;
+  string name = 2;
+  // +optional
+  string alias = 3;
+  // If plugin_info is not empty, your provider support trusted account and support auto sync for Cloudforet.
+  // These two options are located in options field. not in plugin_info.
+  // +optional
+  PluginInfo plugin_info = 4;
+  // +optional
+  string color = 5;
+  // +optional
+  string icon = 6;
+  // +optional
+  int32 order = 7;
+  // +optional
+  google.protobuf.Struct options = 8;
+  // +optional
+  google.protobuf.Struct tags = 9;
 }
 
+//{
+//  "provider": "aws",
+//  "name": "AWS",
+//  "alias": "AWS",
+//  "color": "#FF9900",
+//  "icon": "https://cloudforet.io/icons/aws.svg",
+//  "order": 2,
+//  "options": {
+//       "supported_trusted_account": false
+//  },
+//}
 message UpdateProviderRequest {
-    string provider = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    string alias = 3;
-    // +optional
-    string color = 4;
-    // +optional
-    string icon = 5;
-    // +optional
-    int32 order = 6;
-    // +optional
-    google.protobuf.Struct options = 7;
-    // +optional
-    google.protobuf.Struct tags = 8;
+  string provider = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  string alias = 3;
+  // +optional
+  PluginInfo plugin_info = 4;
+  // +optional
+  string color = 5;
+  // +optional
+  string icon = 6;
+  // +optional
+  int32 order = 7;
+  // +optional
+  google.protobuf.Struct options = 8;
+  // +optional
+  google.protobuf.Struct tags = 9;
 }
 
+//{
+//  "provider": "aws"
+//}
 message ProviderRequest {
-    string provider = 1;
-    string domain_id = 21;
+  string provider = 1;
 }
 
 message ProviderInfo {
-    string provider = 1;
-    string name = 2;
-    string alias = 3;
-    string color = 4;
-    string icon = 5;
-    int32 order = 6;
-    google.protobuf.Struct options = 7;
-    google.protobuf.Struct tags = 8;
-    bool is_managed = 9;
-    string domain_id = 21;
-    string created_at = 31;
-    string updated_at = 32;
+  string provider = 1;
+  string name = 2;
+  string alias = 3;
+  string color = 4;
+  string icon = 5;
+  int32 order = 6;
+  google.protobuf.Struct options = 7;
+  google.protobuf.Struct tags = 8;
+  bool is_managed = 9;
+  string domain_id = 21;
+  string created_at = 31;
+  string updated_at = 32;
 }
 
 message ProviderSearchQuery {
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string provider = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    string alias = 4;
-    // +optional
-    bool is_managed = 5;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string provider = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  string alias = 4;
+  // +optional
+  bool is_managed = 5;
 }
 
 message ProvidersInfo {
-    repeated ProviderInfo results = 1;
-    int32 total_count = 2;
+  repeated ProviderInfo results = 1;
+  int32 total_count = 2;
 }
 
 message ProviderStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
