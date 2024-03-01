@@ -71,7 +71,7 @@ message PluginInfo {
 //  "order": 1,
 //  "options": {
 //       "supported_trusted_account": false
-//  },
+//  }
 //}
 message CreateProviderRequest {
   string provider = 1;
@@ -136,12 +136,13 @@ message ProviderInfo {
   string provider = 1;
   string name = 2;
   string alias = 3;
-  string color = 4;
-  string icon = 5;
-  int32 order = 6;
-  google.protobuf.Struct options = 7;
-  google.protobuf.Struct tags = 8;
-  bool is_managed = 9;
+  PluginInfo plugin_info = 4;
+  string color = 5;
+  string icon = 6;
+  int32 order = 7;
+  google.protobuf.Struct options = 8;
+  google.protobuf.Struct tags = 9;
+  bool is_managed = 10;
   string domain_id = 21;
   string created_at = 31;
   string updated_at = 32;
