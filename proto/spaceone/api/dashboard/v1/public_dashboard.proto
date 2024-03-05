@@ -101,9 +101,11 @@ message CreatePublicDashboardRequest {
   // +optional
   google.protobuf.Struct variables_schema = 7;
   // +optional
-  google.protobuf.ListValue labels = 8;
+  google.protobuf.Struct display_info = 8;
   // +optional
-  google.protobuf.Struct tags = 9;
+  google.protobuf.ListValue labels = 9;
+  // +optional
+  google.protobuf.Struct tags = 10;
   ResourceGroup resource_group = 20;
   // +optional
   string workspace_id = 21;
@@ -124,9 +126,11 @@ message UpdatePublicDashboardRequest {
   // +optional
   google.protobuf.Struct variables_schema = 7;
   // +optional
-  google.protobuf.ListValue labels = 8;
+  google.protobuf.Struct display_info = 8;
   // +optional
-  google.protobuf.Struct tags = 9;
+  google.protobuf.ListValue labels = 9;
+  // +optional
+  google.protobuf.Struct tags = 10;
 }
 
 message PublicDashboardRequest {
@@ -174,8 +178,9 @@ message PublicDashboardInfo {
   google.protobuf.Struct variables = 6;
   google.protobuf.Struct settings = 7;
   google.protobuf.Struct variables_schema = 8;
-  google.protobuf.ListValue labels = 9;
-  google.protobuf.Struct tags = 10;
+  google.protobuf.Struct display_info = 9;
+  google.protobuf.ListValue labels = 10;
+  google.protobuf.Struct tags = 11;
 
   ResourceGroup resource_group = 20;
   string domain_id = 21;
