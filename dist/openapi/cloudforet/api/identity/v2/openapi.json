@@ -270,7 +270,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schema_id||string|True|\n |name||string|True|\n |schema_type|SERVICE_ACCOUNT, TRUSTED_ACCOUNT, SECRET, TRUSTING_SECRET |string|True|\n |schema||Struct|True|\n |provider||string|True|\n |related_schemas||array||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schema_id||string|True|\n |name||string|True|\n |schema_type|SERVICE_ACCOUNT, TRUSTED_ACCOUNT, SECRET, TRUSTING_SECRET |string|True|\n |provider||string|True|\n |schema||Struct||\n |related_schemas||array||\n |options||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -715,6 +715,120 @@
              }}
          }
                 }
+     },"/identity/job/delete": {
+       "post": {
+         "tags": ["identity > job"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific Job. You must specify the `job_id` of the Job to delete.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"job_id" : {"type": "string","title": "JOB_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"job_id\": \"job-123456789012\",\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/job/get": {
+       "post": {
+         "tags": ["identity > job"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific Job. Prints detailed information about the Job, including its state.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"job_id" : {"type": "string","title": "JOB_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"job_id\": \"job-123456789012\",\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/JobInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/JobInfo"},"Default Example":{
+                     "value": "{\n     \"job_id\": \"job-123456789012\",\n     \"status\": \"ERROR\",\n     \"resource_group\": \"DOMAIN\",\n     \"plugin_id\": \"plugin-aws-cloud-service-inven-collector\",\n     \"trusted_account_id\": \"ta-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T10:00:01.389Z\",\n     \"updated_at\": \"2022-01-01T10:00:01.389Z\",\n     \"finished_at\": \"2022-01-01T10:02:11.270Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/job/list": {
+       "post": {
+         "tags": ["identity > job"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Jobs. You can use a query to get a filtered list of Jobs.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |job_id||string||\n |status|PENDING, IN_PROGRESS, FAILURE, SUCCESS, CANCELED |string||\n |workspace_id||string||\n |trusted_account_id||string||\n |plugin_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"job_id" : {"type": "string","title": "JOB_ID" },"status" : {"type": "string","title": "STATUS" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID" },"plugin_id" : {"type": "string","title": "PLUGIN_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/JobsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/JobsInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"job_id\": \"job-3b124006c2d2\",\n           \"status\": \"SUCCESS\",\n           \"resource_group\": \"DOMAIN\",\n           \"plugin_id\": \"plugin-aws-cloud-service-inven-collector\",\n           \"trusted_account_id\": \"ta-3b124006c2d2\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:01.225Z\",\n           \"updated_at\": \"2022-06-17T08:00:01.225Z\",\n           \"finished_at\": \"2022-06-17T08:00:15.197Z\"\n       },\n       {\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"status\": \"SUCCESS\",\n           \"resource_group\": \"DOMAIN\",\n           \"plugin_id\": \"plugin-aws-cloud-service-inven-collector\",\n           \"trusted_account_id\": \"ta-587a3d3b4db3\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.407Z\",\n           \"updated_at\": \"2022-06-17T08:00:00.407Z\",\n           \"finished_at\": \"2022-06-17T08:07:32.023Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/job/stat": {
+       "post": {
+         "tags": ["identity > job"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/project/create": {
        "post": {
          "tags": ["identity > project"],
@@ -1064,13 +1178,13 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |name||string|True|\n |alias||string||\n |color||string||\n |icon||string||\n |order||int||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |name||string|True|\n |alias||string||\n |plugin_info|If plugin_info is not empty, your provider support trusted account and support auto sync for Cloudforet. These two options are located in options field. not in plugin_info. |PluginInfo||\n |color||string||\n |icon||string||\n |order||int||\n |options||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"name" : {"type": "string","title": "NAME" },"alias" : {"type": "string","title": "ALIAS" },"color" : {"type": "string","title": "COLOR" },"icon" : {"type": "string","title": "ICON" },"order" : {"type": "integer","title": "ORDER" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"name" : {"type": "string","title": "NAME" },"alias" : {"type": "string","title": "ALIAS" },"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO" },"color" : {"type": "string","title": "COLOR" },"icon" : {"type": "string","title": "ICON" },"order" : {"type": "integer","title": "ORDER" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"provider\": \"aws\",\n \"name\": \"AWS\",\n \"alias\": \"AWS\",\n \"color\": \"#FF9900\",\n \"icon\": \"https://cloudforet.io/icons/aws.svg\",\n \"order\": 1,\n \"options\": {\n      \"supported_trusted_account\": false\n }\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1093,13 +1207,13 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |name||string||\n |alias||string||\n |color||string||\n |icon||string||\n |order||int||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |name||string||\n |alias||string||\n |plugin_info||PluginInfo||\n |color||string||\n |icon||string||\n |order||int||\n |options||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"name" : {"type": "string","title": "NAME" },"alias" : {"type": "string","title": "ALIAS" },"color" : {"type": "string","title": "COLOR" },"icon" : {"type": "string","title": "ICON" },"order" : {"type": "integer","title": "ORDER" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"name" : {"type": "string","title": "NAME" },"alias" : {"type": "string","title": "ALIAS" },"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO" },"color" : {"type": "string","title": "COLOR" },"icon" : {"type": "string","title": "ICON" },"order" : {"type": "integer","title": "ORDER" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"provider\": \"aws\",\n \"name\": \"AWS\",\n \"alias\": \"AWS\",\n \"color\": \"#FF9900\",\n \"icon\": \"https://cloudforet.io/icons/aws.svg\",\n \"order\": 2,\n \"options\": {\n      \"supported_trusted_account\": false\n },\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1122,13 +1236,13 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"provider" : {"type": "string","title": "PROVIDER" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"provider\": \"aws\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1145,13 +1259,13 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n |domain_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"provider" : {"type": "string","title": "PROVIDER" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"provider\": \"aws\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1974,7 +2088,7 @@
                "schema": {
                  "properties": {"user_id" : {"type": "string","title": "USER_ID" },"password" : {"type": "string","title": "PASSWORD" },"name" : {"type": "string","title": "NAME" },"email" : {"type": "string","title": "EMAIL" },"auth_type" : {"type": "string","title": "AUTH_TYPE" },"language" : {"type": "string","title": "LANGUAGE" },"timezone" : {"type": "string","title": "TIMEZONE" },"tags" : {"type": "object","title": "TAGS" },"reset_password" : {"type": "boolean","title": "RESET_PASSWORD" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"user_id\": \"wonny@cloudforet.io\",\n \"password\": \"Password1234!\",\n \"name\": \"Wonny\",\n \"email\": \"wonny@cloudforet.io\",\n \"auth_type\": \"LOCAL\",\n \"language\": \"en\",\n \"timezone\": \"UTC\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -2617,13 +2731,13 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |provider||string|True|\n |secret_schema_id||string|True|\n |secret_data||Struct|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |tags||Struct||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data|Base Information of Trusted Account. It depends on provider.|Struct|True|\n |provider||string|True|\n |secret_schema_id||string|True|\n |secret_data||Struct|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |schedule||Scheduled||\n |sync_options||Struct||\n |tags||Struct||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"provider" : {"type": "string","title": "PROVIDER" },"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID" },"secret_data" : {"type": "object","title": "SECRET_DATA" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"provider" : {"type": "string","title": "PROVIDER" },"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID" },"secret_data" : {"type": "object","title": "SECRET_DATA" },"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE" },"sync_options" : {"type": "object","title": "SYNC_OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"name\": \"Trusted Account\",\n \"data\": {\n   \"account_id\": \"123456789\",\n  }\n \"provider\": \"aws\",\n \"secret_schema_id\": \"aws-secret-access-key\",\n \"schedule\": {\n   \"state\": \"ENABLED\",\n   \"hours\": [3, 15]\n },\n \"resource_group\": \"DOMAIN\",\n \"workspace_id\": \"*\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -2646,11 +2760,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |trusted_account_id||string|True|\n |name||string||\n |data||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |trusted_account_id||string|True|\n |name||string||\n |data||Struct||\n |schedule||Scheduled||\n |sync_options||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE" },"sync_options" : {"type": "object","title": "SYNC_OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2701,6 +2815,29 @@
        "post": {
          "tags": ["identity > trusted-account"],
          "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |trusted_account_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/trusted-account/sync": {
+       "post": {
+         "tags": ["identity > trusted-account"],
+         "summary": "Sync",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
@@ -3674,7 +3811,7 @@
                 "title": "VersionInfo"
            }
            ,        "ExternalAuthInfo": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"state" : {"type": "string","title": "STATE"},"plugin_info" : {"type": "PluginInfo","title": "PLUGIN_INFO"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"state" : {"type": "string","title": "STATE"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
          "required": ["domain_id","state","plugin_info","updated_at"],
                 "title": "ExternalAuthInfo"
@@ -3744,7 +3881,7 @@
          "properties" : {"schema_id" : {"type": "string","title": "SCHEMA_ID"},"name" : {"type": "string","title": "NAME"},"schema_type" : {"type": "string","title": "SCHEMA_TYPE"},"schema" : {"type": "object","title": "SCHEMA"},"provider" : {"type": "string","title": "PROVIDER"},"related_schemas" : {"items": {"type": "string"},
                "type": "array","title": "RELATED_SCHEMAS"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["schema_id","name","schema_type","schema","provider"],
+         "required": ["schema_id","name","schema_type","provider"],
                 "title": "CreateSchemaRequest"
            }
            ,        "SchemaInfo": {
@@ -3867,6 +4004,37 @@
          "required": ["results","total_count"],
                 "title": "EndpointsInfo"
            }
+           ,        "JobInfo": {
+         "properties" : {"job_id" : {"type": "string","title": "JOB_ID"},"status" : {"type": "string","title": "STATUS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"finished_at" : {"type": "string","title": "FINISHED_AT"}},
+         "type": "object",
+         "required": ["job_id","status","resource_group","domain_id","workspace_id","trusted_account_id","plugin_id","created_at","updated_at","finished_at"],
+                "title": "JobInfo"
+           }
+           ,        "JobRequest": {
+         "properties" : {"job_id" : {"type": "string","title": "JOB_ID"}},
+         "type": "object",
+         "required": ["job_id"],
+                "title": "JobRequest"
+           }
+           ,        "JobStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "JobStatQuery"
+           }
+           ,        "JobsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/JobInfo"},
+               "type": "array","$ref": "#/components/schemas/JobInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "JobsInfo"
+           }
+           ,        "JobsQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"job_id" : {"type": "string","title": "JOB_ID"},"status" : {"type": "string","title": "STATUS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "JobsQuery"
+           }
            ,        "ChangeProjectGroupRequest": {
          "properties" : {"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"}},
          "type": "object",
@@ -3939,21 +4107,27 @@
                 "title": "UsersProjectRequest"
            }
            ,        "CreateProviderRequest": {
-         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["provider","name"],
                 "title": "CreateProviderRequest"
            }
-           ,        "ProviderInfo": {
-         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "PluginInfo": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"},"options" : {"type": "object","title": "OPTIONS"}},
          "type": "object",
-         "required": ["provider","name","alias","color","icon","order","options","tags","is_managed","domain_id","created_at","updated_at"],
+         "required": ["plugin_id","version","upgrade_mode","options"],
+                "title": "PluginInfo"
+           }
+           ,        "ProviderInfo": {
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["provider","name","alias","plugin_info","color","icon","order","options","tags","is_managed","domain_id","created_at","updated_at"],
                 "title": "ProviderInfo"
            }
            ,        "ProviderRequest": {
-         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"}},
          "type": "object",
-         "required": ["provider","domain_id"],
+         "required": ["provider"],
                 "title": "ProviderRequest"
            }
            ,        "ProviderSearchQuery": {
@@ -3976,7 +4150,7 @@
                 "title": "ProvidersInfo"
            }
            ,        "UpdateProviderRequest": {
-         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["provider"],
                 "title": "UpdateProviderRequest"
@@ -4340,15 +4514,22 @@
                 "title": "WorkspaceUsersInfo"
            }
            ,        "CreateTrustedAccountRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_data" : {"type": "object","title": "SECRET_DATA"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_data" : {"type": "object","title": "SECRET_DATA"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"sync_options" : {"type": "object","title": "SYNC_OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": ["name","data","provider","secret_schema_id","secret_data","resource_group"],
                 "title": "CreateTrustedAccountRequest"
            }
-           ,        "TrustedAccountInfo": {
-         "properties" : {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"trusted_secret_id" : {"type": "string","title": "TRUSTED_SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+           ,        "Scheduled": {
+         "properties" : {"state" : {"type": "string","title": "STATE"},"hours" : {"items": {"type": "integer"},
+               "type": "array","title": "HOURS"}},
          "type": "object",
-         "required": ["trusted_account_id","name","data","provider","tags","resource_group","domain_id","workspace_id","secret_schema_id","trusted_secret_id","created_at"],
+         "required": ["state","hours"],
+                "title": "Scheduled"
+           }
+           ,        "TrustedAccountInfo": {
+         "properties" : {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"sync_options" : {"type": "object","title": "SYNC_OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"trusted_secret_id" : {"type": "string","title": "TRUSTED_SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["trusted_account_id","name","data","provider","schedule","sync_options","tags","resource_group","domain_id","workspace_id","secret_schema_id","trusted_secret_id","created_at"],
                 "title": "TrustedAccountInfo"
            }
            ,        "TrustedAccountRequest": {
@@ -4377,7 +4558,7 @@
                 "title": "TrustedAccountsInfo"
            }
            ,        "UpdateTrustedAccountRequest": {
-         "properties" : {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"sync_options" : {"type": "object","title": "SYNC_OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["trusted_account_id"],
                 "title": "UpdateTrustedAccountRequest"

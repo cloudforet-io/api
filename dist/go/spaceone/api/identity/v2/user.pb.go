@@ -384,6 +384,15 @@ func (x *MFA) GetOptions() *_struct.Struct {
 	return nil
 }
 
+//	{
+//	 "user_id": "wonny@cloudforet.io",
+//	 "password": "Password1234!",
+//	 "name": "Wonny",
+//	 "email": "wonny@cloudforet.io",
+//	 "auth_type": "LOCAL",
+//	 "language": "en",
+//	 "timezone": "UTC"
+//	}
 type CreateUserRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

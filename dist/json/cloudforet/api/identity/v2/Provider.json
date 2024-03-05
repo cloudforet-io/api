@@ -8,14 +8,38 @@
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
-      "enums": [],
+      "enums": [
+        {
+          "name": "UpgradeMode",
+          "longName": "PluginInfo.UpgradeMode",
+          "fullName": "spaceone.api.identity.v2.PluginInfo.UpgradeMode",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "AUTO",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        }
+      ],
       "extensions": [],
       "messages": [
         {
           "name": "CreateProviderRequest",
           "longName": "CreateProviderRequest",
           "fullName": "spaceone.api.identity.v2.CreateProviderRequest",
-          "description": "",
+          "description": "{\n \"provider\": \"aws\",\n \"name\": \"AWS\",\n \"alias\": \"AWS\",\n \"color\": \"#FF9900\",\n \"icon\": \"https://cloudforet.io/icons/aws.svg\",\n \"order\": 1,\n \"options\": {\n      \"supported_trusted_account\": false\n }\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -52,6 +76,18 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "If plugin_info is not empty, your provider support trusted account and support auto sync for Cloudforet.\nThese two options are located in options field. not in plugin_info.\n+optional",
+              "label": "",
+              "type": "PluginInfo",
+              "longType": "PluginInfo",
+              "fullType": "spaceone.api.identity.v2.PluginInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -120,6 +156,66 @@
           ]
         },
         {
+          "name": "PluginInfo",
+          "longName": "PluginInfo",
+          "fullName": "spaceone.api.identity.v2.PluginInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "plugin_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "upgrade_mode",
+              "description": "",
+              "label": "",
+              "type": "UpgradeMode",
+              "longType": "PluginInfo.UpgradeMode",
+              "fullType": "spaceone.api.identity.v2.PluginInfo.UpgradeMode",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "ProviderInfo",
           "longName": "ProviderInfo",
           "fullName": "spaceone.api.identity.v2.ProviderInfo",
@@ -160,6 +256,18 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "",
+              "label": "",
+              "type": "PluginInfo",
+              "longType": "PluginInfo",
+              "fullType": "spaceone.api.identity.v2.PluginInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -279,7 +387,7 @@
           "name": "ProviderRequest",
           "longName": "ProviderRequest",
           "fullName": "spaceone.api.identity.v2.ProviderRequest",
-          "description": "",
+          "description": "{\n \"provider\": \"aws\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -287,18 +395,6 @@
           "fields": [
             {
               "name": "provider",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -447,7 +543,7 @@
           "name": "UpdateProviderRequest",
           "longName": "UpdateProviderRequest",
           "fullName": "spaceone.api.identity.v2.UpdateProviderRequest",
-          "description": "",
+          "description": "{\n \"provider\": \"aws\",\n \"name\": \"AWS\",\n \"alias\": \"AWS\",\n \"color\": \"#FF9900\",\n \"icon\": \"https://cloudforet.io/icons/aws.svg\",\n \"order\": 2,\n \"options\": {\n      \"supported_trusted_account\": false\n },\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -484,6 +580,18 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "+optional",
+              "label": "",
+              "type": "PluginInfo",
+              "longType": "PluginInfo",
+              "fullType": "spaceone.api.identity.v2.PluginInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

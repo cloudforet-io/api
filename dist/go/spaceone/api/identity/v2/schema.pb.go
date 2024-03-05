@@ -84,11 +84,12 @@ type CreateSchemaRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SchemaId   string          `protobuf:"bytes,1,opt,name=schema_id,json=schemaId,proto3" json:"schema_id,omitempty"`
-	Name       string          `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	SchemaType SchemaType      `protobuf:"varint,3,opt,name=schema_type,json=schemaType,proto3,enum=spaceone.api.identity.v2.SchemaType" json:"schema_type,omitempty"`
-	Schema     *_struct.Struct `protobuf:"bytes,4,opt,name=schema,proto3" json:"schema,omitempty"`
-	Provider   string          `protobuf:"bytes,5,opt,name=provider,proto3" json:"provider,omitempty"`
+	SchemaId   string     `protobuf:"bytes,1,opt,name=schema_id,json=schemaId,proto3" json:"schema_id,omitempty"`
+	Name       string     `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	SchemaType SchemaType `protobuf:"varint,3,opt,name=schema_type,json=schemaType,proto3,enum=spaceone.api.identity.v2.SchemaType" json:"schema_type,omitempty"`
+	// +optional
+	Schema   *_struct.Struct `protobuf:"bytes,4,opt,name=schema,proto3" json:"schema,omitempty"`
+	Provider string          `protobuf:"bytes,5,opt,name=provider,proto3" json:"provider,omitempty"`
 	// +optional
 	RelatedSchemas []string `protobuf:"bytes,6,rep,name=related_schemas,json=relatedSchemas,proto3" json:"related_schemas,omitempty"`
 	// +optional

@@ -1,9 +1,9 @@
 {
   "files": [
     {
-      "name": "spaceone/api/search/v1/resource.proto",
+      "name": "spaceone/api/identity/plugin/account_collector.proto",
       "description": "",
-      "package": "spaceone.api.search.v1",
+      "package": "spaceone.api.identity.plugin",
       "hasEnums": false,
       "hasExtensions": false,
       "hasMessages": true,
@@ -12,27 +12,15 @@
       "extensions": [],
       "messages": [
         {
-          "name": "ResourceInfo",
-          "longName": "ResourceInfo",
-          "fullName": "spaceone.api.search.v1.ResourceInfo",
+          "name": "AccountInfo",
+          "longName": "AccountInfo",
+          "fullName": "spaceone.api.identity.plugin.AccountInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
-            {
-              "name": "resource_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
             {
               "name": "name",
               "description": "",
@@ -46,12 +34,108 @@
               "defaultValue": ""
             },
             {
-              "name": "description",
+              "name": "data",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_schema_id",
               "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_data",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "location",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "AccountsInfo",
+          "longName": "AccountsInfo",
+          "fullName": "spaceone.api.identity.plugin.AccountsInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "AccountInfo",
+              "longType": "AccountInfo",
+              "fullType": "spaceone.api.identity.plugin.AccountInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "InitRequest",
+          "longName": "InitRequest",
+          "fullName": "spaceone.api.identity.plugin.InitRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -68,26 +152,26 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
+            }
+          ]
+        },
+        {
+          "name": "PluginInfo",
+          "longName": "PluginInfo",
+          "fullName": "spaceone.api.identity.plugin.PluginInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
             {
-              "name": "workspace_id",
+              "name": "metadata",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -96,9 +180,9 @@
           ]
         },
         {
-          "name": "ResourcesInfo",
-          "longName": "ResourcesInfo",
-          "fullName": "spaceone.api.search.v1.ResourcesInfo",
+          "name": "SyncRequest",
+          "longName": "SyncRequest",
+          "fullName": "spaceone.api.identity.plugin.SyncRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -106,55 +190,19 @@
           "extensions": [],
           "fields": [
             {
-              "name": "results",
+              "name": "options",
               "description": "",
-              "label": "repeated",
-              "type": "ResourceInfo",
-              "longType": "ResourceInfo",
-              "fullType": "spaceone.api.search.v1.ResourceInfo",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "next_token",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "SearchResourceRequest",
-          "longName": "SearchResourceRequest",
-          "fullName": "spaceone.api.search.v1.SearchResourceRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "resource_type",
-              "description": "identity.ServiceAccount",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "keyword",
+              "name": "schema_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -166,44 +214,20 @@
               "defaultValue": ""
             },
             {
-              "name": "limit",
-              "description": "Result limit is default 15 and max 100\n+optional",
+              "name": "secret_data",
+              "description": "+optional",
               "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "workspaces",
-              "description": "List of workspace_id to search, limit of workspaces is 5\n+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "all_workspaces",
-              "description": "If true, search all workspaces that user has access\n+optional",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "next_token",
-              "description": "If you request with next_token, it will return next result.\nresource_type must be same with previous request.\n+optional",
+              "name": "domain_id",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -218,33 +242,34 @@
       ],
       "services": [
         {
-          "name": "Resource",
-          "longName": "Resource",
-          "fullName": "spaceone.api.search.v1.Resource",
+          "name": "AccountCollector",
+          "longName": "AccountCollector",
+          "fullName": "spaceone.api.identity.plugin.AccountCollector",
           "description": "",
           "methods": [
             {
-              "name": "search",
+              "name": "init",
               "description": "",
-              "requestType": "SearchResourceRequest",
-              "requestLongType": "SearchResourceRequest",
-              "requestFullType": "spaceone.api.search.v1.SearchResourceRequest",
+              "requestType": "InitRequest",
+              "requestLongType": "InitRequest",
+              "requestFullType": "spaceone.api.identity.plugin.InitRequest",
               "requestStreaming": false,
-              "responseType": "ResourcesInfo",
-              "responseLongType": "ResourcesInfo",
-              "responseFullType": "spaceone.api.search.v1.ResourcesInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/search/v1/resource/search",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
+              "responseType": "PluginInfo",
+              "responseLongType": "PluginInfo",
+              "responseFullType": "spaceone.api.identity.plugin.PluginInfo",
+              "responseStreaming": false
+            },
+            {
+              "name": "sync",
+              "description": "",
+              "requestType": "SyncRequest",
+              "requestLongType": "SyncRequest",
+              "requestFullType": "spaceone.api.identity.plugin.SyncRequest",
+              "requestStreaming": false,
+              "responseType": "AccountsInfo",
+              "responseLongType": "AccountsInfo",
+              "responseFullType": "spaceone.api.identity.plugin.AccountsInfo",
+              "responseStreaming": false
             }
           ]
         }

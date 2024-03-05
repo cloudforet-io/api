@@ -36,6 +36,11 @@ class TrustedAccountStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
+        self.sync = channel.unary_unary(
+                '/spaceone.api.identity.v2.TrustedAccount/sync',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
         self.get = channel.unary_unary(
                 '/spaceone.api.identity.v2.TrustedAccount/get',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountRequest.SerializeToString,
@@ -80,6 +85,12 @@ class TrustedAccountServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def sync(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def get(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -118,6 +129,11 @@ def add_TrustedAccountServicer_to_server(servicer, server):
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'sync': grpc.unary_unary_rpc_method_handler(
+                    servicer.sync,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
@@ -209,6 +225,23 @@ class TrustedAccount(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedAccount/delete',
+            spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def sync(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedAccount/sync',
             spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,

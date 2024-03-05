@@ -18,7 +18,7 @@ from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from spaceone.api.core.v2 import query_pb2 as spaceone_dot_api_dot_core_dot_v2_dot_query__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%spaceone/api/search/v1/resource.proto\x12\x16spaceone.api.search.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"\x8e\x01\n\x15SearchResourceRequest\x12\x15\n\rresource_type\x18\x01 \x01(\t\x12\x0f\n\x07keyword\x18\x02 \x01(\t\x12\r\n\x05limit\x18\x03 \x01(\x05\x12\x12\n\nworkspaces\x18\x04 \x03(\t\x12\x16\n\x0e\x61ll_workspaces\x18\x05 \x01(\x08\x12\x12\n\nnext_token\x18\x06 \x01(\t\"n\n\x0cResourceInfo\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\x12\x12\n\nproject_id\x18\x17 \x01(\t\"Z\n\rResourcesInfo\x12\x35\n\x07results\x18\x01 \x03(\x0b\x32$.spaceone.api.search.v1.ResourceInfo\x12\x12\n\nnext_token\x18\x02 \x01(\t2\x92\x01\n\x08Resource\x12\x85\x01\n\x06search\x12-.spaceone.api.search.v1.SearchResourceRequest\x1a%.spaceone.api.search.v1.ResourcesInfo\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/search/v1/resource/search:\x01*B=Z;github.com/cloudforet-io/api/dist/go/spaceone/api/search/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n%spaceone/api/search/v1/resource.proto\x12\x16spaceone.api.search.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"\x8e\x01\n\x15SearchResourceRequest\x12\x15\n\rresource_type\x18\x01 \x01(\t\x12\x0f\n\x07keyword\x18\x02 \x01(\t\x12\r\n\x05limit\x18\x03 \x01(\x05\x12\x12\n\nworkspaces\x18\x04 \x03(\t\x12\x16\n\x0e\x61ll_workspaces\x18\x05 \x01(\x08\x12\x12\n\nnext_token\x18\x06 \x01(\t\"\x83\x01\n\x0cResourceInfo\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\x12\x12\n\nproject_id\x18\x17 \x01(\t\"Z\n\rResourcesInfo\x12\x35\n\x07results\x18\x01 \x03(\x0b\x32$.spaceone.api.search.v1.ResourceInfo\x12\x12\n\nnext_token\x18\x02 \x01(\t2\x92\x01\n\x08Resource\x12\x85\x01\n\x06search\x12-.spaceone.api.search.v1.SearchResourceRequest\x1a%.spaceone.api.search.v1.ResourcesInfo\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/search/v1/resource/search:\x01*B=Z;github.com/cloudforet-io/api/dist/go/spaceone/api/search/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -30,10 +30,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_RESOURCE'].methods_by_name['search']._serialized_options = b'\202\323\344\223\002\037\"\032/search/v1/resource/search:\001*'
   _globals['_SEARCHRESOURCEREQUEST']._serialized_start=189
   _globals['_SEARCHRESOURCEREQUEST']._serialized_end=331
-  _globals['_RESOURCEINFO']._serialized_start=333
-  _globals['_RESOURCEINFO']._serialized_end=443
-  _globals['_RESOURCESINFO']._serialized_start=445
-  _globals['_RESOURCESINFO']._serialized_end=535
-  _globals['_RESOURCE']._serialized_start=538
-  _globals['_RESOURCE']._serialized_end=684
+  _globals['_RESOURCEINFO']._serialized_start=334
+  _globals['_RESOURCEINFO']._serialized_end=465
+  _globals['_RESOURCESINFO']._serialized_start=467
+  _globals['_RESOURCESINFO']._serialized_end=557
+  _globals['_RESOURCE']._serialized_start=560
+  _globals['_RESOURCE']._serialized_end=706
 # @@protoc_insertion_point(module_scope)

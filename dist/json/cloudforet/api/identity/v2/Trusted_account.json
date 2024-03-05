@@ -33,6 +33,29 @@
           ]
         },
         {
+          "name": "ScheduledState",
+          "longName": "Scheduled.ScheduledState",
+          "fullName": "spaceone.api.identity.v2.Scheduled.ScheduledState",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "ResourceGroup",
           "longName": "TrustedAccountInfo.ResourceGroup",
           "fullName": "spaceone.api.identity.v2.TrustedAccountInfo.ResourceGroup",
@@ -85,7 +108,7 @@
           "name": "CreateTrustedAccountRequest",
           "longName": "CreateTrustedAccountRequest",
           "fullName": "spaceone.api.identity.v2.CreateTrustedAccountRequest",
-          "description": "",
+          "description": "{\n \"name\": \"Trusted Account\",\n \"data\": {\n   \"account_id\": \"123456789\",\n  }\n \"provider\": \"aws\",\n \"secret_schema_id\": \"aws-secret-access-key\",\n \"schedule\": {\n   \"state\": \"ENABLED\",\n   \"hours\": [3, 15]\n },\n \"resource_group\": \"DOMAIN\",\n \"workspace_id\": \"*\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -105,7 +128,7 @@
             },
             {
               "name": "data",
-              "description": "",
+              "description": "Base Information of Trusted Account. It depends on provider.",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
@@ -152,6 +175,30 @@
               "defaultValue": ""
             },
             {
+              "name": "schedule",
+              "description": "+optional",
+              "label": "",
+              "type": "Scheduled",
+              "longType": "Scheduled",
+              "fullType": "spaceone.api.identity.v2.Scheduled",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sync_options",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "tags",
               "description": "+optional",
               "label": "",
@@ -182,6 +229,42 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "Scheduled",
+          "longName": "Scheduled",
+          "fullName": "spaceone.api.identity.v2.Scheduled",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "ScheduledState",
+              "longType": "Scheduled.ScheduledState",
+              "fullType": "spaceone.api.identity.v2.Scheduled.ScheduledState",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "hours",
+              "description": "",
+              "label": "repeated",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -242,6 +325,30 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schedule",
+              "description": "",
+              "label": "",
+              "type": "Scheduled",
+              "longType": "Scheduled",
+              "fullType": "spaceone.api.identity.v2.Scheduled",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sync_options",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -560,6 +667,30 @@
               "defaultValue": ""
             },
             {
+              "name": "schedule",
+              "description": "+optional",
+              "label": "",
+              "type": "Scheduled",
+              "longType": "Scheduled",
+              "fullType": "spaceone.api.identity.v2.Scheduled",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sync_options",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "tags",
               "description": "+optional",
               "label": "",
@@ -715,6 +846,29 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/trusted-account/delete",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "sync",
+              "description": "",
+              "requestType": "TrustedAccountRequest",
+              "requestLongType": "TrustedAccountRequest",
+              "requestFullType": "spaceone.api.identity.v2.TrustedAccountRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/trusted-account/sync",
                       "body": "*"
                     }
                   ]
