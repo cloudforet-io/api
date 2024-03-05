@@ -1,0 +1,158 @@
+// A Job is an act of collecting external cloud resources through plugins.
+syntax = "proto3";
+
+package spaceone.api.identity.v2;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+service Job {
+
+  // Deletes a specific Job. You must specify the `job_id` of the Job to delete.
+  rpc delete (JobRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/identity/v2/job/delete"
+      body: "*"
+    };
+  }
+
+  // Gets a specific Job. Prints detailed information about the Job, including its state.
+  rpc get (JobRequest) returns (JobInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/job/get"
+      body: "*"
+    };
+  }
+
+  // Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.
+  rpc list (JobsQuery) returns (JobsInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/job/list"
+      body: "*"
+    };
+  }
+
+  rpc stat (JobStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/identity/v2/job/stat"
+      body: "*"
+    };
+  }
+}
+
+//{
+//    "job_id": "job-123456789012",
+//}
+message JobRequest {
+  string job_id = 1;
+}
+
+//{
+//    "query": {}
+//}
+message JobsQuery {
+  enum JobStatus {
+    NONE = 0;
+    PENDING = 1;
+    IN_PROGRESS = 2;
+    FAILURE = 3;
+    SUCCESS = 4;
+    CANCELED = 5;
+  }
+
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string job_id = 2;
+  // +optional
+  JobStatus status = 3;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string trusted_account_id = 22;
+  // +optional
+  string plugin_id = 23;
+}
+
+
+//{
+//      "job_id": "job-123456789012",
+//      "status": "ERROR",
+//      "resource_group": "DOMAIN",
+//      "plugin_id": "plugin-aws-cloud-service-inven-collector",
+//      "trusted_account_id": "ta-123456789012",
+//      "domain_id": "domain-123456789012",
+//      "created_at": "2022-01-01T10:00:01.389Z",
+//      "updated_at": "2022-01-01T10:00:01.389Z",
+//      "finished_at": "2022-01-01T10:02:11.270Z"
+//}
+message JobInfo {
+  enum Status {
+    NONE = 0;
+    PENDING = 1;
+    IN_PROGRESS = 2;
+    FAILURE = 3;
+    SUCCESS = 4;
+    CANCELED = 5;
+  }
+
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
+
+  string job_id = 1;
+  Status status = 2;
+  ResourceGroup resource_group = 3;
+
+  string domain_id = 21;
+  string workspace_id = 22;
+  string trusted_account_id = 23;
+  string plugin_id = 24;
+
+  string created_at = 31;
+  string updated_at = 32;
+  string finished_at = 33;
+}
+
+//{
+//    "results": [
+//        {
+//            "job_id": "job-3b124006c2d2",
+//            "status": "SUCCESS",
+//            "resource_group": "DOMAIN",
+//            "plugin_id": "plugin-aws-cloud-service-inven-collector",
+//            "trusted_account_id": "ta-3b124006c2d2",
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2022-06-17T08:00:01.225Z",
+//            "updated_at": "2022-06-17T08:00:01.225Z",
+//            "finished_at": "2022-06-17T08:00:15.197Z"
+//        },
+//        {
+//            "job_id": "job-587a3d3b4db3",
+//            "status": "SUCCESS",
+//            "resource_group": "DOMAIN",
+//            "plugin_id": "plugin-aws-cloud-service-inven-collector",
+//            "trusted_account_id": "ta-587a3d3b4db3",
+//            "domain_id": "domain-58010aa2e451",
+//            "created_at": "2022-06-17T08:00:00.407Z",
+//            "updated_at": "2022-06-17T08:00:00.407Z",
+//            "finished_at": "2022-06-17T08:07:32.023Z"
+//        }
+//    ],
+//    "total_count": 2
+//}
+message JobsInfo {
+  repeated JobInfo results = 1;
+  int32 total_count = 2;
+}
+
+
+message JobStatQuery {
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+}
