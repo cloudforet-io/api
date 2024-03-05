@@ -84,9 +84,19 @@ service PrivateDashboard{
 }
 
 message PrivateCreateDashboardRequest {
+
+  enum TemplateType {
+    TEMPLATE_TYPE_NONE = 0;
+    MANAGED = 1;
+    CUSTOM = 2;
+    EXTENSION = 3;
+  }
+
   string name = 1;
+  string template_id = 2;
+  TemplateType template_type = 3;
   // +optional
-  google.protobuf.ListValue layouts = 3;
+  google.protobuf.ListValue layouts = 4;
   // +optional
   google.protobuf.Struct variables = 5;
   // +optional
@@ -102,23 +112,34 @@ message PrivateCreateDashboardRequest {
 }
 
 message PrivateUpdateDashboardRequest {
+  enum TemplateType {
+    TEMPLATE_TYPE_NONE = 0;
+    MANAGED = 1;
+    CUSTOM = 2;
+    EXTENSION = 3;
+  }
+
   string private_dashboard_id = 1;
   // +optional
   string name = 2;
   // +optional
-  google.protobuf.ListValue layouts = 3;
+  string template_id = 3;
   // +optional
-  google.protobuf.Struct variables = 5;
+  TemplateType template_type = 4;
   // +optional
-  google.protobuf.Struct settings = 6;
+  google.protobuf.ListValue layouts = 5;
   // +optional
-  google.protobuf.Struct variables_schema = 7;
+  google.protobuf.Struct variables = 6;
   // +optional
-  google.protobuf.Struct display_info = 8;
+  google.protobuf.Struct settings = 7;
   // +optional
-  google.protobuf.ListValue labels = 9;
+  google.protobuf.Struct variables_schema = 8;
   // +optional
-  google.protobuf.Struct tags = 10;
+  google.protobuf.Struct display_info = 9;
+  // +optional
+  google.protobuf.ListValue labels = 10;
+  // +optional
+  google.protobuf.Struct tags = 11;
 }
 
 message PrivateDashboardRequest {
@@ -152,16 +173,25 @@ message PrivateDashboardQuery {
 }
 
 message PrivateDashboardInfo {
+
+  enum TemplateType {
+    TEMPLATE_TYPE_NONE = 0;
+    MANAGED = 1;
+    CUSTOM = 2;
+    EXTENSION = 3;
+  }
   string private_dashboard_id = 1;
   string name = 2;
-  int32 version = 4;
-  google.protobuf.ListValue layouts = 5;
-  google.protobuf.Struct variables = 6;
-  google.protobuf.Struct settings = 7;
-  google.protobuf.Struct variables_schema = 8;
-  google.protobuf.Struct display_info = 9;
-  google.protobuf.ListValue labels = 10;
-  google.protobuf.Struct tags = 11;
+  int32 version = 3;
+  string template_id = 4;
+  TemplateType template_type = 5;
+  google.protobuf.ListValue layouts = 6;
+  google.protobuf.Struct variables = 7;
+  google.protobuf.Struct settings = 8;
+  google.protobuf.Struct variables_schema = 9;
+  google.protobuf.Struct display_info = 10;
+  google.protobuf.ListValue labels = 11;
+  google.protobuf.Struct tags = 12;
 
   string domain_id = 21;
   string workspace_id = 22;
