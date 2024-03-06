@@ -8,6 +8,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/identity/v2/job.proto";
 
 
 service TrustedAccount {
@@ -35,7 +36,7 @@ service TrustedAccount {
       body: "*"
     };
   }
-  rpc sync (TrustedAccountRequest) returns (google.protobuf.Empty) {
+  rpc sync (TrustedAccountRequest) returns (spaceone.api.identity.v2.JobInfo) {
     option (google.api.http) = {
       post: "/identity/v2/trusted-account/sync"
       body: "*"
