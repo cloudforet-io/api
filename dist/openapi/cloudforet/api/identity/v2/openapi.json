@@ -2854,7 +2854,15 @@
          },
          "responses": {
            "200": {
-             "description": "Successfull Response"}
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/JobInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/JobInfo"},"Default Example":{
+                     "value": "{\n     \"job_id\": \"job-123456789012\",\n     \"status\": \"ERROR\",\n     \"resource_group\": \"DOMAIN\",\n     \"plugin_id\": \"plugin-aws-cloud-service-inven-collector\",\n     \"trusted_account_id\": \"ta-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T10:00:01.389Z\",\n     \"updated_at\": \"2022-01-01T10:00:01.389Z\",\n     \"finished_at\": \"2022-01-01T10:02:11.270Z\"\n}"
+                   }}
+               }
+             }}
          }
           ,"security": [{"HTTPBearer": []}]        }
      },"/identity/trusted-account/get": {

@@ -4,6 +4,7 @@ import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
+from spaceone.api.identity.v2 import job_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_job__pb2
 from spaceone.api.identity.v2 import trusted_account_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2
 
 
@@ -39,7 +40,7 @@ class TrustedAccountStub(object):
         self.sync = channel.unary_unary(
                 '/spaceone.api.identity.v2.TrustedAccount/sync',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_job__pb2.JobInfo.FromString,
                 )
         self.get = channel.unary_unary(
                 '/spaceone.api.identity.v2.TrustedAccount/get',
@@ -135,7 +136,7 @@ def add_TrustedAccountServicer_to_server(servicer, server):
             'sync': grpc.unary_unary_rpc_method_handler(
                     servicer.sync,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_job__pb2.JobInfo.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
@@ -243,7 +244,7 @@ class TrustedAccount(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.TrustedAccount/sync',
             spaceone_dot_api_dot_identity_dot_v2_dot_trusted__account__pb2.TrustedAccountRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_job__pb2.JobInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

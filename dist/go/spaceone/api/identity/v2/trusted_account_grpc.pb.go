@@ -39,7 +39,7 @@ type TrustedAccountClient interface {
 	Update(ctx context.Context, in *UpdateTrustedAccountRequest, opts ...grpc.CallOption) (*TrustedAccountInfo, error)
 	UpdateSecretData(ctx context.Context, in *UpdateTrustedAccountSecretRequest, opts ...grpc.CallOption) (*TrustedAccountInfo, error)
 	Delete(ctx context.Context, in *TrustedAccountRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Sync(ctx context.Context, in *TrustedAccountRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Sync(ctx context.Context, in *TrustedAccountRequest, opts ...grpc.CallOption) (*JobInfo, error)
 	Get(ctx context.Context, in *TrustedAccountRequest, opts ...grpc.CallOption) (*TrustedAccountInfo, error)
 	List(ctx context.Context, in *TrustedAccountSearchQuery, opts ...grpc.CallOption) (*TrustedAccountsInfo, error)
 	Stat(ctx context.Context, in *TrustedAccountStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -89,8 +89,8 @@ func (c *trustedAccountClient) Delete(ctx context.Context, in *TrustedAccountReq
 	return out, nil
 }
 
-func (c *trustedAccountClient) Sync(ctx context.Context, in *TrustedAccountRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
+func (c *trustedAccountClient) Sync(ctx context.Context, in *TrustedAccountRequest, opts ...grpc.CallOption) (*JobInfo, error) {
+	out := new(JobInfo)
 	err := c.cc.Invoke(ctx, TrustedAccount_Sync_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -133,7 +133,7 @@ type TrustedAccountServer interface {
 	Update(context.Context, *UpdateTrustedAccountRequest) (*TrustedAccountInfo, error)
 	UpdateSecretData(context.Context, *UpdateTrustedAccountSecretRequest) (*TrustedAccountInfo, error)
 	Delete(context.Context, *TrustedAccountRequest) (*empty.Empty, error)
-	Sync(context.Context, *TrustedAccountRequest) (*empty.Empty, error)
+	Sync(context.Context, *TrustedAccountRequest) (*JobInfo, error)
 	Get(context.Context, *TrustedAccountRequest) (*TrustedAccountInfo, error)
 	List(context.Context, *TrustedAccountSearchQuery) (*TrustedAccountsInfo, error)
 	Stat(context.Context, *TrustedAccountStatQuery) (*_struct.Struct, error)
@@ -156,7 +156,7 @@ func (UnimplementedTrustedAccountServer) UpdateSecretData(context.Context, *Upda
 func (UnimplementedTrustedAccountServer) Delete(context.Context, *TrustedAccountRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedTrustedAccountServer) Sync(context.Context, *TrustedAccountRequest) (*empty.Empty, error) {
+func (UnimplementedTrustedAccountServer) Sync(context.Context, *TrustedAccountRequest) (*JobInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Sync not implemented")
 }
 func (UnimplementedTrustedAccountServer) Get(context.Context, *TrustedAccountRequest) (*TrustedAccountInfo, error) {
