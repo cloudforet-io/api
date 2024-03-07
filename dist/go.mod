@@ -1,11 +1,11 @@
 module github.com/cloudforet-io/api/dist
 
-go 1.21.8
+go 1.22.1
 
 replace github.com/cloudforet-io/api => ./
 
 require (
-	github.com/golang/protobuf v1.5.3
+	github.com/golang/protobuf v1.5.4
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.19.1
 	google.golang.org/genproto/googleapis/api v0.0.0-20240304212257-790db918fca8
 	google.golang.org/grpc v1.62.1
