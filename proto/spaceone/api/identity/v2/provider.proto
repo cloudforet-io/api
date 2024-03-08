@@ -23,6 +23,12 @@ service Provider {
       body: "*"
     };
   }
+  rpc update_plugin (UpdatePluginProviderRequest) returns (ProviderInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/provider/update-plugin"
+      body: "*"
+    };
+  }
   rpc delete (ProviderRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/identity/v2/provider/delete"
@@ -123,6 +129,30 @@ message UpdateProviderRequest {
   google.protobuf.Struct options = 8;
   // +optional
   google.protobuf.Struct tags = 9;
+}
+
+
+//{
+//  "provider": "aws",
+//  "version": "1.0.0",
+//  "options": {},
+//  "upgrade_mode": "AUTO"
+//}
+message UpdatePluginProviderRequest {
+  enum UpgradeMode {
+    NONE = 0;
+    MANUAL = 1;
+    AUTO = 2;
+  }
+
+  // Managed provider are aws, azure, google_cloud and kubernetes. Maybe more in the future.
+  string provider = 1;
+  // +optional
+  string version = 2;
+  // +optional
+  google.protobuf.Struct options = 3;
+  // +optional
+  UpgradeMode upgrade_mode = 4;
 }
 
 //{
