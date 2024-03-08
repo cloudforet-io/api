@@ -26,6 +26,11 @@ class ProviderStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_provider__pb2.UpdateProviderRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_provider__pb2.ProviderInfo.FromString,
                 )
+        self.update_plugin = channel.unary_unary(
+                '/spaceone.api.identity.v2.Provider/update_plugin',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_provider__pb2.UpdatePluginProviderRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_provider__pb2.ProviderInfo.FromString,
+                )
         self.delete = channel.unary_unary(
                 '/spaceone.api.identity.v2.Provider/delete',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_provider__pb2.ProviderRequest.SerializeToString,
@@ -58,6 +63,12 @@ class ProviderServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def update_plugin(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -98,6 +109,11 @@ def add_ProviderServicer_to_server(servicer, server):
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_provider__pb2.UpdateProviderRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_provider__pb2.ProviderInfo.SerializeToString,
+            ),
+            'update_plugin': grpc.unary_unary_rpc_method_handler(
+                    servicer.update_plugin,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_provider__pb2.UpdatePluginProviderRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_provider__pb2.ProviderInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
@@ -160,6 +176,23 @@ class Provider(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Provider/update',
             spaceone_dot_api_dot_identity_dot_v2_dot_provider__pb2.UpdateProviderRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_provider__pb2.ProviderInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def update_plugin(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Provider/update_plugin',
+            spaceone_dot_api_dot_identity_dot_v2_dot_provider__pb2.UpdatePluginProviderRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_provider__pb2.ProviderInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

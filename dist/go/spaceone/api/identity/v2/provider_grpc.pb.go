@@ -21,12 +21,13 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Provider_Create_FullMethodName = "/spaceone.api.identity.v2.Provider/create"
-	Provider_Update_FullMethodName = "/spaceone.api.identity.v2.Provider/update"
-	Provider_Delete_FullMethodName = "/spaceone.api.identity.v2.Provider/delete"
-	Provider_Get_FullMethodName    = "/spaceone.api.identity.v2.Provider/get"
-	Provider_List_FullMethodName   = "/spaceone.api.identity.v2.Provider/list"
-	Provider_Stat_FullMethodName   = "/spaceone.api.identity.v2.Provider/stat"
+	Provider_Create_FullMethodName       = "/spaceone.api.identity.v2.Provider/create"
+	Provider_Update_FullMethodName       = "/spaceone.api.identity.v2.Provider/update"
+	Provider_UpdatePlugin_FullMethodName = "/spaceone.api.identity.v2.Provider/update_plugin"
+	Provider_Delete_FullMethodName       = "/spaceone.api.identity.v2.Provider/delete"
+	Provider_Get_FullMethodName          = "/spaceone.api.identity.v2.Provider/get"
+	Provider_List_FullMethodName         = "/spaceone.api.identity.v2.Provider/list"
+	Provider_Stat_FullMethodName         = "/spaceone.api.identity.v2.Provider/stat"
 )
 
 // ProviderClient is the client API for Provider service.
@@ -35,6 +36,7 @@ const (
 type ProviderClient interface {
 	Create(ctx context.Context, in *CreateProviderRequest, opts ...grpc.CallOption) (*ProviderInfo, error)
 	Update(ctx context.Context, in *UpdateProviderRequest, opts ...grpc.CallOption) (*ProviderInfo, error)
+	UpdatePlugin(ctx context.Context, in *UpdatePluginProviderRequest, opts ...grpc.CallOption) (*ProviderInfo, error)
 	Delete(ctx context.Context, in *ProviderRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *ProviderRequest, opts ...grpc.CallOption) (*ProviderInfo, error)
 	List(ctx context.Context, in *ProviderSearchQuery, opts ...grpc.CallOption) (*ProvidersInfo, error)
@@ -61,6 +63,15 @@ func (c *providerClient) Create(ctx context.Context, in *CreateProviderRequest, 
 func (c *providerClient) Update(ctx context.Context, in *UpdateProviderRequest, opts ...grpc.CallOption) (*ProviderInfo, error) {
 	out := new(ProviderInfo)
 	err := c.cc.Invoke(ctx, Provider_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *providerClient) UpdatePlugin(ctx context.Context, in *UpdatePluginProviderRequest, opts ...grpc.CallOption) (*ProviderInfo, error) {
+	out := new(ProviderInfo)
+	err := c.cc.Invoke(ctx, Provider_UpdatePlugin_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -109,6 +120,7 @@ func (c *providerClient) Stat(ctx context.Context, in *ProviderStatQuery, opts .
 type ProviderServer interface {
 	Create(context.Context, *CreateProviderRequest) (*ProviderInfo, error)
 	Update(context.Context, *UpdateProviderRequest) (*ProviderInfo, error)
+	UpdatePlugin(context.Context, *UpdatePluginProviderRequest) (*ProviderInfo, error)
 	Delete(context.Context, *ProviderRequest) (*empty.Empty, error)
 	Get(context.Context, *ProviderRequest) (*ProviderInfo, error)
 	List(context.Context, *ProviderSearchQuery) (*ProvidersInfo, error)
@@ -125,6 +137,9 @@ func (UnimplementedProviderServer) Create(context.Context, *CreateProviderReques
 }
 func (UnimplementedProviderServer) Update(context.Context, *UpdateProviderRequest) (*ProviderInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedProviderServer) UpdatePlugin(context.Context, *UpdatePluginProviderRequest) (*ProviderInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePlugin not implemented")
 }
 func (UnimplementedProviderServer) Delete(context.Context, *ProviderRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -183,6 +198,24 @@ func _Provider_Update_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProviderServer).Update(ctx, req.(*UpdateProviderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Provider_UpdatePlugin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePluginProviderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProviderServer).UpdatePlugin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Provider_UpdatePlugin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProviderServer).UpdatePlugin(ctx, req.(*UpdatePluginProviderRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -273,6 +306,10 @@ var Provider_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _Provider_Update_Handler,
+		},
+		{
+			MethodName: "update_plugin",
+			Handler:    _Provider_UpdatePlugin_Handler,
 		},
 		{
 			MethodName: "delete",

@@ -2975,6 +2975,35 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/provider/update-plugin": {
+       "post": {
+         "tags": ["identity > provider"],
+         "summary": "Update Plugin",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |provider|Managed provider are aws, azure, google_cloud and kubernetes. Maybe more in the future.|string|True|\n |version||string||\n |options||Struct||\n |upgrade_mode|MANUAL, AUTO |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"provider" : {"type": "string","title": "PROVIDER" },"version" : {"type": "string","title": "VERSION" },"options" : {"type": "object","title": "OPTIONS" },"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n \"provider\": \"aws\",\n \"version\": \"1.0.0\",\n \"options\": {},\n \"upgrade_mode\": \"AUTO\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ProviderInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ProviderInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/provider/delete": {
        "post": {
          "tags": ["identity > provider"],
@@ -4576,6 +4605,12 @@
          "type": "object",
          "required": ["results","total_count"],
                 "title": "ProvidersInfo"
+           }
+           ,        "UpdatePluginProviderRequest": {
+         "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+         "type": "object",
+         "required": ["provider"],
+                "title": "UpdatePluginProviderRequest"
            }
            ,        "UpdateProviderRequest": {
          "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},

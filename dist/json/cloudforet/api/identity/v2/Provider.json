@@ -31,6 +31,29 @@
               "description": ""
             }
           ]
+        },
+        {
+          "name": "UpgradeMode",
+          "longName": "UpdatePluginProviderRequest.UpgradeMode",
+          "fullName": "spaceone.api.identity.v2.UpdatePluginProviderRequest.UpgradeMode",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "AUTO",
+              "number": "2",
+              "description": ""
+            }
+          ]
         }
       ],
       "extensions": [],
@@ -540,6 +563,66 @@
           ]
         },
         {
+          "name": "UpdatePluginProviderRequest",
+          "longName": "UpdatePluginProviderRequest",
+          "fullName": "spaceone.api.identity.v2.UpdatePluginProviderRequest",
+          "description": "{\n \"provider\": \"aws\",\n \"version\": \"1.0.0\",\n \"options\": {},\n \"upgrade_mode\": \"AUTO\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "provider",
+              "description": "Managed provider are aws, azure, google_cloud and kubernetes. Maybe more in the future.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "upgrade_mode",
+              "description": "+optional",
+              "label": "",
+              "type": "UpgradeMode",
+              "longType": "UpdatePluginProviderRequest.UpgradeMode",
+              "fullType": "spaceone.api.identity.v2.UpdatePluginProviderRequest.UpgradeMode",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "UpdateProviderRequest",
           "longName": "UpdateProviderRequest",
           "fullName": "spaceone.api.identity.v2.UpdateProviderRequest",
@@ -707,6 +790,29 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/provider/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update_plugin",
+              "description": "",
+              "requestType": "UpdatePluginProviderRequest",
+              "requestLongType": "UpdatePluginProviderRequest",
+              "requestFullType": "spaceone.api.identity.v2.UpdatePluginProviderRequest",
+              "requestStreaming": false,
+              "responseType": "ProviderInfo",
+              "responseLongType": "ProviderInfo",
+              "responseFullType": "spaceone.api.identity.v2.ProviderInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/provider/update-plugin",
                       "body": "*"
                     }
                   ]
