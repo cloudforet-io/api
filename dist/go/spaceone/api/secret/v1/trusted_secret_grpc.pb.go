@@ -28,6 +28,7 @@ const (
 	TrustedSecret_Update_FullMethodName     = "/spaceone.api.secret.v1.TrustedSecret/update"
 	TrustedSecret_Delete_FullMethodName     = "/spaceone.api.secret.v1.TrustedSecret/delete"
 	TrustedSecret_UpdateData_FullMethodName = "/spaceone.api.secret.v1.TrustedSecret/update_data"
+	TrustedSecret_GetData_FullMethodName    = "/spaceone.api.secret.v1.TrustedSecret/get_data"
 	TrustedSecret_Get_FullMethodName        = "/spaceone.api.secret.v1.TrustedSecret/get"
 	TrustedSecret_List_FullMethodName       = "/spaceone.api.secret.v1.TrustedSecret/list"
 	TrustedSecret_Stat_FullMethodName       = "/spaceone.api.secret.v1.TrustedSecret/stat"
@@ -49,6 +50,9 @@ type TrustedSecretClient interface {
 	// Updates a specific trusted secret's data.
 	// Updated trusted secret is encrypted and stored securely.
 	UpdateData(ctx context.Context, in *UpdateTrustedSecretDataRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Get a specific secret's data.
+	// This API is for internal system use only.
+	GetData(ctx context.Context, in *GetTrustedSecretDataRequest, opts ...grpc.CallOption) (*TrustedSecretDataInfo, error)
 	// Get a specific trusted secret's information.
 	Get(ctx context.Context, in *TrustedSecretRequest, opts ...grpc.CallOption) (*TrustedSecretInfo, error)
 	// Queries a list of trusted secrets.
@@ -101,6 +105,15 @@ func (c *trustedSecretClient) UpdateData(ctx context.Context, in *UpdateTrustedS
 	return out, nil
 }
 
+func (c *trustedSecretClient) GetData(ctx context.Context, in *GetTrustedSecretDataRequest, opts ...grpc.CallOption) (*TrustedSecretDataInfo, error) {
+	out := new(TrustedSecretDataInfo)
+	err := c.cc.Invoke(ctx, TrustedSecret_GetData_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *trustedSecretClient) Get(ctx context.Context, in *TrustedSecretRequest, opts ...grpc.CallOption) (*TrustedSecretInfo, error) {
 	out := new(TrustedSecretInfo)
 	err := c.cc.Invoke(ctx, TrustedSecret_Get_FullMethodName, in, out, opts...)
@@ -144,6 +157,9 @@ type TrustedSecretServer interface {
 	// Updates a specific trusted secret's data.
 	// Updated trusted secret is encrypted and stored securely.
 	UpdateData(context.Context, *UpdateTrustedSecretDataRequest) (*empty.Empty, error)
+	// Get a specific secret's data.
+	// This API is for internal system use only.
+	GetData(context.Context, *GetTrustedSecretDataRequest) (*TrustedSecretDataInfo, error)
 	// Get a specific trusted secret's information.
 	Get(context.Context, *TrustedSecretRequest) (*TrustedSecretInfo, error)
 	// Queries a list of trusted secrets.
@@ -168,6 +184,9 @@ func (UnimplementedTrustedSecretServer) Delete(context.Context, *TrustedSecretRe
 }
 func (UnimplementedTrustedSecretServer) UpdateData(context.Context, *UpdateTrustedSecretDataRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateData not implemented")
+}
+func (UnimplementedTrustedSecretServer) GetData(context.Context, *GetTrustedSecretDataRequest) (*TrustedSecretDataInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetData not implemented")
 }
 func (UnimplementedTrustedSecretServer) Get(context.Context, *TrustedSecretRequest) (*TrustedSecretInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -263,6 +282,24 @@ func _TrustedSecret_UpdateData_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TrustedSecret_GetData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTrustedSecretDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrustedSecretServer).GetData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrustedSecret_GetData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrustedSecretServer).GetData(ctx, req.(*GetTrustedSecretDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TrustedSecret_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TrustedSecretRequest)
 	if err := dec(in); err != nil {
@@ -339,6 +376,10 @@ var TrustedSecret_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update_data",
 			Handler:    _TrustedSecret_UpdateData_Handler,
+		},
+		{
+			MethodName: "get_data",
+			Handler:    _TrustedSecret_GetData_Handler,
 		},
 		{
 			MethodName: "get",
