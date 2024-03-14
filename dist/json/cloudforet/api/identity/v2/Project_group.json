@@ -142,6 +142,18 @@
               "defaultValue": ""
             },
             {
+              "name": "users",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "domain_id",
               "description": "",
               "label": "",
@@ -394,6 +406,42 @@
               "defaultValue": ""
             }
           ]
+        },
+        {
+          "name": "UsersProjectGroupRequest",
+          "longName": "UsersProjectGroupRequest",
+          "fullName": "spaceone.api.identity.v2.UsersProjectGroupRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "project_group_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "users",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
         }
       ],
       "services": [
@@ -489,6 +537,52 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/project-group/delete",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "add_users",
+              "description": "",
+              "requestType": "UsersProjectGroupRequest",
+              "requestLongType": "UsersProjectGroupRequest",
+              "requestFullType": "spaceone.api.identity.v2.UsersProjectGroupRequest",
+              "requestStreaming": false,
+              "responseType": "ProjectGroupInfo",
+              "responseLongType": "ProjectGroupInfo",
+              "responseFullType": "spaceone.api.identity.v2.ProjectGroupInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/project-group/add-users",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "remove_users",
+              "description": "",
+              "requestType": "UsersProjectGroupRequest",
+              "requestLongType": "UsersProjectGroupRequest",
+              "requestFullType": "spaceone.api.identity.v2.UsersProjectGroupRequest",
+              "requestStreaming": false,
+              "responseType": "ProjectGroupInfo",
+              "responseLongType": "ProjectGroupInfo",
+              "responseFullType": "spaceone.api.identity.v2.ProjectGroupInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/project-group/remove-users",
                       "body": "*"
                     }
                   ]

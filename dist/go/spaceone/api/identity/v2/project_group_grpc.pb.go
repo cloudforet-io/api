@@ -25,6 +25,8 @@ const (
 	ProjectGroup_Update_FullMethodName            = "/spaceone.api.identity.v2.ProjectGroup/update"
 	ProjectGroup_ChangeParentGroup_FullMethodName = "/spaceone.api.identity.v2.ProjectGroup/change_parent_group"
 	ProjectGroup_Delete_FullMethodName            = "/spaceone.api.identity.v2.ProjectGroup/delete"
+	ProjectGroup_AddUsers_FullMethodName          = "/spaceone.api.identity.v2.ProjectGroup/add_users"
+	ProjectGroup_RemoveUsers_FullMethodName       = "/spaceone.api.identity.v2.ProjectGroup/remove_users"
 	ProjectGroup_Get_FullMethodName               = "/spaceone.api.identity.v2.ProjectGroup/get"
 	ProjectGroup_List_FullMethodName              = "/spaceone.api.identity.v2.ProjectGroup/list"
 	ProjectGroup_Stat_FullMethodName              = "/spaceone.api.identity.v2.ProjectGroup/stat"
@@ -38,6 +40,8 @@ type ProjectGroupClient interface {
 	Update(ctx context.Context, in *UpdateProjectGroupRequest, opts ...grpc.CallOption) (*ProjectGroupInfo, error)
 	ChangeParentGroup(ctx context.Context, in *ChangeParentGroupRequest, opts ...grpc.CallOption) (*ProjectGroupInfo, error)
 	Delete(ctx context.Context, in *ProjectGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	AddUsers(ctx context.Context, in *UsersProjectGroupRequest, opts ...grpc.CallOption) (*ProjectGroupInfo, error)
+	RemoveUsers(ctx context.Context, in *UsersProjectGroupRequest, opts ...grpc.CallOption) (*ProjectGroupInfo, error)
 	Get(ctx context.Context, in *ProjectGroupRequest, opts ...grpc.CallOption) (*ProjectGroupInfo, error)
 	List(ctx context.Context, in *ProjectGroupSearchQuery, opts ...grpc.CallOption) (*ProjectGroupsInfo, error)
 	Stat(ctx context.Context, in *ProjectGroupStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -87,6 +91,24 @@ func (c *projectGroupClient) Delete(ctx context.Context, in *ProjectGroupRequest
 	return out, nil
 }
 
+func (c *projectGroupClient) AddUsers(ctx context.Context, in *UsersProjectGroupRequest, opts ...grpc.CallOption) (*ProjectGroupInfo, error) {
+	out := new(ProjectGroupInfo)
+	err := c.cc.Invoke(ctx, ProjectGroup_AddUsers_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *projectGroupClient) RemoveUsers(ctx context.Context, in *UsersProjectGroupRequest, opts ...grpc.CallOption) (*ProjectGroupInfo, error) {
+	out := new(ProjectGroupInfo)
+	err := c.cc.Invoke(ctx, ProjectGroup_RemoveUsers_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *projectGroupClient) Get(ctx context.Context, in *ProjectGroupRequest, opts ...grpc.CallOption) (*ProjectGroupInfo, error) {
 	out := new(ProjectGroupInfo)
 	err := c.cc.Invoke(ctx, ProjectGroup_Get_FullMethodName, in, out, opts...)
@@ -122,6 +144,8 @@ type ProjectGroupServer interface {
 	Update(context.Context, *UpdateProjectGroupRequest) (*ProjectGroupInfo, error)
 	ChangeParentGroup(context.Context, *ChangeParentGroupRequest) (*ProjectGroupInfo, error)
 	Delete(context.Context, *ProjectGroupRequest) (*empty.Empty, error)
+	AddUsers(context.Context, *UsersProjectGroupRequest) (*ProjectGroupInfo, error)
+	RemoveUsers(context.Context, *UsersProjectGroupRequest) (*ProjectGroupInfo, error)
 	Get(context.Context, *ProjectGroupRequest) (*ProjectGroupInfo, error)
 	List(context.Context, *ProjectGroupSearchQuery) (*ProjectGroupsInfo, error)
 	Stat(context.Context, *ProjectGroupStatQuery) (*_struct.Struct, error)
@@ -143,6 +167,12 @@ func (UnimplementedProjectGroupServer) ChangeParentGroup(context.Context, *Chang
 }
 func (UnimplementedProjectGroupServer) Delete(context.Context, *ProjectGroupRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedProjectGroupServer) AddUsers(context.Context, *UsersProjectGroupRequest) (*ProjectGroupInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddUsers not implemented")
+}
+func (UnimplementedProjectGroupServer) RemoveUsers(context.Context, *UsersProjectGroupRequest) (*ProjectGroupInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveUsers not implemented")
 }
 func (UnimplementedProjectGroupServer) Get(context.Context, *ProjectGroupRequest) (*ProjectGroupInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -238,6 +268,42 @@ func _ProjectGroup_Delete_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProjectGroup_AddUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UsersProjectGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectGroupServer).AddUsers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProjectGroup_AddUsers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectGroupServer).AddUsers(ctx, req.(*UsersProjectGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProjectGroup_RemoveUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UsersProjectGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProjectGroupServer).RemoveUsers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProjectGroup_RemoveUsers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProjectGroupServer).RemoveUsers(ctx, req.(*UsersProjectGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ProjectGroup_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ProjectGroupRequest)
 	if err := dec(in); err != nil {
@@ -314,6 +380,14 @@ var ProjectGroup_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "delete",
 			Handler:    _ProjectGroup_Delete_Handler,
+		},
+		{
+			MethodName: "add_users",
+			Handler:    _ProjectGroup_AddUsers_Handler,
+		},
+		{
+			MethodName: "remove_users",
+			Handler:    _ProjectGroup_RemoveUsers_Handler,
 		},
 		{
 			MethodName: "get",

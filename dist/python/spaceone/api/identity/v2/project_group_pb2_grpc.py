@@ -36,6 +36,16 @@ class ProjectGroupStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.ProjectGroupRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
+        self.add_users = channel.unary_unary(
+                '/spaceone.api.identity.v2.ProjectGroup/add_users',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.UsersProjectGroupRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.ProjectGroupInfo.FromString,
+                )
+        self.remove_users = channel.unary_unary(
+                '/spaceone.api.identity.v2.ProjectGroup/remove_users',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.UsersProjectGroupRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.ProjectGroupInfo.FromString,
+                )
         self.get = channel.unary_unary(
                 '/spaceone.api.identity.v2.ProjectGroup/get',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.ProjectGroupRequest.SerializeToString,
@@ -75,6 +85,18 @@ class ProjectGroupServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def add_users(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def remove_users(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -120,6 +142,16 @@ def add_ProjectGroupServicer_to_server(servicer, server):
                     servicer.delete,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.ProjectGroupRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'add_users': grpc.unary_unary_rpc_method_handler(
+                    servicer.add_users,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.UsersProjectGroupRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.ProjectGroupInfo.SerializeToString,
+            ),
+            'remove_users': grpc.unary_unary_rpc_method_handler(
+                    servicer.remove_users,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.UsersProjectGroupRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.ProjectGroupInfo.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
@@ -211,6 +243,40 @@ class ProjectGroup(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ProjectGroup/delete',
             spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.ProjectGroupRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def add_users(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ProjectGroup/add_users',
+            spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.UsersProjectGroupRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.ProjectGroupInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def remove_users(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ProjectGroup/remove_users',
+            spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.UsersProjectGroupRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_project__group__pb2.ProjectGroupInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
