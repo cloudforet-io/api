@@ -11,105 +11,127 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service ProjectGroup {
-    rpc create (CreateProjectGroupRequest) returns (ProjectGroupInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project-group/create"
-            body: "*"
-        };
-    }
-    rpc update (UpdateProjectGroupRequest) returns (ProjectGroupInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project-group/update"
-            body: "*"
-        };
-    }
+  rpc create (CreateProjectGroupRequest) returns (ProjectGroupInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project-group/create"
+      body: "*"
+    };
+  }
+  rpc update (UpdateProjectGroupRequest) returns (ProjectGroupInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project-group/update"
+      body: "*"
+    };
+  }
 
-    rpc change_parent_group (ChangeParentGroupRequest) returns (ProjectGroupInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project-group/change-parent-group"
-            body: "*"
-        };
-    }
+  rpc change_parent_group (ChangeParentGroupRequest) returns (ProjectGroupInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project-group/change-parent-group"
+      body: "*"
+    };
+  }
 
-    rpc delete (ProjectGroupRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v2/project-group/delete"
-            body: "*"
-        };
-    }
-    rpc get (ProjectGroupRequest) returns (ProjectGroupInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project-group/get"
-            body: "*"
-        };
-    }
-    rpc list (ProjectGroupSearchQuery) returns (ProjectGroupsInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project-group/list"
-            body: "*"
-        };
-    }
-    rpc stat (ProjectGroupStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/identity/v2/project-group/stat"
-            body: "*"
-        };
-    }
+  rpc delete (ProjectGroupRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/identity/v2/project-group/delete"
+      body: "*"
+    };
+  }
+
+  rpc add_users (UsersProjectGroupRequest) returns (ProjectGroupInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project-group/add-users"
+      body: "*"
+    };
+  }
+
+  rpc remove_users (UsersProjectGroupRequest) returns (ProjectGroupInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project-group/remove-users"
+      body: "*"
+    };
+  }
+
+  rpc get (ProjectGroupRequest) returns (ProjectGroupInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project-group/get"
+      body: "*"
+    };
+  }
+  rpc list (ProjectGroupSearchQuery) returns (ProjectGroupsInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project-group/list"
+      body: "*"
+    };
+  }
+  rpc stat (ProjectGroupStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/identity/v2/project-group/stat"
+      body: "*"
+    };
+  }
 }
 
 message CreateProjectGroupRequest {
-    string name = 1;
-    // +optional
-    google.protobuf.Struct tags = 2;
-    // +optional
-    string parent_group_id = 3;
+  string name = 1;
+  // +optional
+  google.protobuf.Struct tags = 2;
+  // +optional
+  string parent_group_id = 3;
 }
 
 message UpdateProjectGroupRequest {
-    string project_group_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    google.protobuf.Struct tags = 3;
+  string project_group_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  google.protobuf.Struct tags = 3;
 }
 
 message ChangeParentGroupRequest {
-    string project_group_id = 1;
-    string parent_group_id = 2;
+  string project_group_id = 1;
+  string parent_group_id = 2;
 }
 
 message ProjectGroupRequest {
-    string project_group_id = 1;
+  string project_group_id = 1;
 }
 
+message UsersProjectGroupRequest {
+  string project_group_id = 1;
+  repeated string users = 2;
+}
+
+
 message ProjectGroupInfo {
-    string project_group_id = 1;
-    string name = 2;
-    google.protobuf.Struct tags = 3;
-    string domain_id = 21;
-    string workspace_id = 22;
-    string parent_group_id = 23;
-    string created_at = 31;
+  string project_group_id = 1;
+  string name = 2;
+  google.protobuf.Struct tags = 3;
+  repeated string users = 4;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string parent_group_id = 23;
+  string created_at = 31;
 }
 
 message ProjectGroupSearchQuery {
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string project_group_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    string workspace_id = 21;
-    // +optional
-    string parent_group_id = 22;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string project_group_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string parent_group_id = 22;
 }
 
 message ProjectGroupsInfo {
-    repeated ProjectGroupInfo results = 1;
-    int32 total_count = 2;
+  repeated ProjectGroupInfo results = 1;
+  int32 total_count = 2;
 }
 
 message ProjectGroupStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
