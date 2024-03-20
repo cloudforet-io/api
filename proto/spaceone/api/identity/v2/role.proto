@@ -11,107 +11,140 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service Role {
-    rpc create (CreateRoleRequest) returns (RoleInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/role/create"
-            body: "*"
-        };
-    }
-    rpc update (UpdateRoleRequest) returns (RoleInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/role/update"
-            body: "*"
-        };
-    }
-    rpc delete (RoleRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v2/role/delete"
-            body: "*"
-        };
-    }
-    rpc get (RoleRequest) returns (RoleInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/role/get"
-            body: "*"
-        };
-    }
-    rpc list (RoleSearchQuery) returns (RolesInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/role/list"
-            body: "*"
-        };
-    }
-    rpc stat (RoleStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/identity/v2/role/stat"
-            body: "*"
-        };
-    }
+  rpc create (CreateRoleRequest) returns (RoleInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/role/create"
+      body: "*"
+    };
+  }
+
+  rpc update (UpdateRoleRequest) returns (RoleInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/role/update"
+      body: "*"
+    };
+  }
+
+  rpc enable (RoleRequest) returns (RoleInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/role/enable"
+      body: "*"
+    };
+  }
+
+  rpc disable (RoleRequest) returns (RoleInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/role/disable"
+      body: "*"
+    };
+  }
+
+  rpc delete (RoleRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/identity/v2/role/delete"
+      body: "*"
+    };
+  }
+  rpc get (RoleRequest) returns (RoleInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/role/get"
+      body: "*"
+    };
+  }
+  rpc list (RoleSearchQuery) returns (RolesInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/role/list"
+      body: "*"
+    };
+  }
+  rpc stat (RoleStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/identity/v2/role/stat"
+      body: "*"
+    };
+  }
 }
 
 enum RoleType {
-    NONE = 0;
-    DOMAIN_ADMIN = 1;
-    WORKSPACE_OWNER = 2;
-    WORKSPACE_MEMBER = 3;
+  NONE = 0;
+  DOMAIN_ADMIN = 1;
+  WORKSPACE_OWNER = 2;
+  WORKSPACE_MEMBER = 3;
 }
 
 message CreateRoleRequest {
-    string name = 1;
-    RoleType role_type = 2;
-    // +optional
-    repeated string permissions = 3;
-    // +optional
-    repeated string page_access = 4;
-    // +optional
-    google.protobuf.Struct tags = 5;
+  string name = 1;
+  RoleType role_type = 2;
+  // +optional
+  repeated string permissions = 3;
+  // +optional
+  repeated string page_access = 4;
+  // +optional
+  google.protobuf.Struct tags = 5;
 }
 
 message UpdateRoleRequest {
-    string role_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    repeated string permissions = 3;
-    // +optional
-    repeated string page_access = 4;
-    // +optional
-    google.protobuf.Struct tags = 5;
+  string role_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  repeated string permissions = 3;
+  // +optional
+  repeated string page_access = 4;
+  // +optional
+  google.protobuf.Struct tags = 5;
 }
 
+
+//{
+//  "role_id": "role-a12335a6a4fe"
+//}
 message RoleRequest {
-    string role_id = 1;
+  string role_id = 1;
 }
 
 message RoleInfo {
-    string role_id = 1;
-    string name = 2;
-    RoleType role_type = 3;
-    repeated string permissions = 4;
-    repeated string page_access = 5;
-    google.protobuf.Struct tags = 6;
-    bool is_managed = 7;
-    string domain_id = 21;
-    string created_at = 31;
-    string updated_at = 32;
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
+  string role_id = 1;
+  string name = 2;
+  RoleType role_type = 3;
+  repeated string permissions = 4;
+  repeated string page_access = 5;
+  google.protobuf.Struct tags = 6;
+  bool is_managed = 7;
+  State state = 8;
+  string domain_id = 21;
+  string created_at = 31;
+  string updated_at = 32;
 }
 
 message RoleSearchQuery {
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string role_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    RoleType role_type = 4;
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string role_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  RoleType role_type = 4;
+  // +optional
+  State state = 5;
 }
 
 message RolesInfo {
-    repeated RoleInfo results = 1;
-    int32 total_count = 2;
+  repeated RoleInfo results = 1;
+  int32 total_count = 2;
 }
 
 message RoleStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
