@@ -26,6 +26,16 @@ class RoleStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.UpdateRoleRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleInfo.FromString,
                 )
+        self.enable = channel.unary_unary(
+                '/spaceone.api.identity.v2.Role/enable',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleInfo.FromString,
+                )
+        self.disable = channel.unary_unary(
+                '/spaceone.api.identity.v2.Role/disable',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleInfo.FromString,
+                )
         self.delete = channel.unary_unary(
                 '/spaceone.api.identity.v2.Role/delete',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleRequest.SerializeToString,
@@ -58,6 +68,18 @@ class RoleServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def enable(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def disable(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -98,6 +120,16 @@ def add_RoleServicer_to_server(servicer, server):
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.UpdateRoleRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleInfo.SerializeToString,
+            ),
+            'enable': grpc.unary_unary_rpc_method_handler(
+                    servicer.enable,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleInfo.SerializeToString,
+            ),
+            'disable': grpc.unary_unary_rpc_method_handler(
+                    servicer.disable,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
@@ -160,6 +192,40 @@ class Role(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Role/update',
             spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.UpdateRoleRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def enable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Role/enable',
+            spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def disable(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Role/disable',
+            spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

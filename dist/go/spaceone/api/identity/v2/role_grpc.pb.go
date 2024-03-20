@@ -21,12 +21,14 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Role_Create_FullMethodName = "/spaceone.api.identity.v2.Role/create"
-	Role_Update_FullMethodName = "/spaceone.api.identity.v2.Role/update"
-	Role_Delete_FullMethodName = "/spaceone.api.identity.v2.Role/delete"
-	Role_Get_FullMethodName    = "/spaceone.api.identity.v2.Role/get"
-	Role_List_FullMethodName   = "/spaceone.api.identity.v2.Role/list"
-	Role_Stat_FullMethodName   = "/spaceone.api.identity.v2.Role/stat"
+	Role_Create_FullMethodName  = "/spaceone.api.identity.v2.Role/create"
+	Role_Update_FullMethodName  = "/spaceone.api.identity.v2.Role/update"
+	Role_Enable_FullMethodName  = "/spaceone.api.identity.v2.Role/enable"
+	Role_Disable_FullMethodName = "/spaceone.api.identity.v2.Role/disable"
+	Role_Delete_FullMethodName  = "/spaceone.api.identity.v2.Role/delete"
+	Role_Get_FullMethodName     = "/spaceone.api.identity.v2.Role/get"
+	Role_List_FullMethodName    = "/spaceone.api.identity.v2.Role/list"
+	Role_Stat_FullMethodName    = "/spaceone.api.identity.v2.Role/stat"
 )
 
 // RoleClient is the client API for Role service.
@@ -35,6 +37,8 @@ const (
 type RoleClient interface {
 	Create(ctx context.Context, in *CreateRoleRequest, opts ...grpc.CallOption) (*RoleInfo, error)
 	Update(ctx context.Context, in *UpdateRoleRequest, opts ...grpc.CallOption) (*RoleInfo, error)
+	Enable(ctx context.Context, in *RoleRequest, opts ...grpc.CallOption) (*RoleInfo, error)
+	Disable(ctx context.Context, in *RoleRequest, opts ...grpc.CallOption) (*RoleInfo, error)
 	Delete(ctx context.Context, in *RoleRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *RoleRequest, opts ...grpc.CallOption) (*RoleInfo, error)
 	List(ctx context.Context, in *RoleSearchQuery, opts ...grpc.CallOption) (*RolesInfo, error)
@@ -61,6 +65,24 @@ func (c *roleClient) Create(ctx context.Context, in *CreateRoleRequest, opts ...
 func (c *roleClient) Update(ctx context.Context, in *UpdateRoleRequest, opts ...grpc.CallOption) (*RoleInfo, error) {
 	out := new(RoleInfo)
 	err := c.cc.Invoke(ctx, Role_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roleClient) Enable(ctx context.Context, in *RoleRequest, opts ...grpc.CallOption) (*RoleInfo, error) {
+	out := new(RoleInfo)
+	err := c.cc.Invoke(ctx, Role_Enable_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *roleClient) Disable(ctx context.Context, in *RoleRequest, opts ...grpc.CallOption) (*RoleInfo, error) {
+	out := new(RoleInfo)
+	err := c.cc.Invoke(ctx, Role_Disable_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -109,6 +131,8 @@ func (c *roleClient) Stat(ctx context.Context, in *RoleStatQuery, opts ...grpc.C
 type RoleServer interface {
 	Create(context.Context, *CreateRoleRequest) (*RoleInfo, error)
 	Update(context.Context, *UpdateRoleRequest) (*RoleInfo, error)
+	Enable(context.Context, *RoleRequest) (*RoleInfo, error)
+	Disable(context.Context, *RoleRequest) (*RoleInfo, error)
 	Delete(context.Context, *RoleRequest) (*empty.Empty, error)
 	Get(context.Context, *RoleRequest) (*RoleInfo, error)
 	List(context.Context, *RoleSearchQuery) (*RolesInfo, error)
@@ -125,6 +149,12 @@ func (UnimplementedRoleServer) Create(context.Context, *CreateRoleRequest) (*Rol
 }
 func (UnimplementedRoleServer) Update(context.Context, *UpdateRoleRequest) (*RoleInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedRoleServer) Enable(context.Context, *RoleRequest) (*RoleInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
+}
+func (UnimplementedRoleServer) Disable(context.Context, *RoleRequest) (*RoleInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
 }
 func (UnimplementedRoleServer) Delete(context.Context, *RoleRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -183,6 +213,42 @@ func _Role_Update_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RoleServer).Update(ctx, req.(*UpdateRoleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Role_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RoleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoleServer).Enable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Role_Enable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoleServer).Enable(ctx, req.(*RoleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Role_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RoleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoleServer).Disable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Role_Disable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoleServer).Disable(ctx, req.(*RoleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -273,6 +339,14 @@ var Role_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _Role_Update_Handler,
+		},
+		{
+			MethodName: "enable",
+			Handler:    _Role_Enable_Handler,
+		},
+		{
+			MethodName: "disable",
+			Handler:    _Role_Disable_Handler,
 		},
 		{
 			MethodName: "delete",

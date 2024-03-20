@@ -10,6 +10,52 @@
       "hasServices": true,
       "enums": [
         {
+          "name": "State",
+          "longName": "RoleInfo.State",
+          "fullName": "spaceone.api.identity.v2.RoleInfo.State",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "State",
+          "longName": "RoleSearchQuery.State",
+          "fullName": "spaceone.api.identity.v2.RoleSearchQuery.State",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "RoleType",
           "longName": "RoleType",
           "fullName": "spaceone.api.identity.v2.RoleType",
@@ -207,6 +253,18 @@
               "defaultValue": ""
             },
             {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "State",
+              "longType": "RoleInfo.State",
+              "fullType": "spaceone.api.identity.v2.RoleInfo.State",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "domain_id",
               "description": "",
               "label": "",
@@ -248,7 +306,7 @@
           "name": "RoleRequest",
           "longName": "RoleRequest",
           "fullName": "spaceone.api.identity.v2.RoleRequest",
-          "description": "",
+          "description": "{\n \"role_id\": \"role-a12335a6a4fe\"\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -321,6 +379,18 @@
               "type": "RoleType",
               "longType": "RoleType",
               "fullType": "spaceone.api.identity.v2.RoleType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "+optional",
+              "label": "",
+              "type": "State",
+              "longType": "RoleSearchQuery.State",
+              "fullType": "spaceone.api.identity.v2.RoleSearchQuery.State",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -508,6 +578,52 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/role/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "enable",
+              "description": "",
+              "requestType": "RoleRequest",
+              "requestLongType": "RoleRequest",
+              "requestFullType": "spaceone.api.identity.v2.RoleRequest",
+              "requestStreaming": false,
+              "responseType": "RoleInfo",
+              "responseLongType": "RoleInfo",
+              "responseFullType": "spaceone.api.identity.v2.RoleInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/role/enable",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "disable",
+              "description": "",
+              "requestType": "RoleRequest",
+              "requestLongType": "RoleRequest",
+              "requestFullType": "spaceone.api.identity.v2.RoleRequest",
+              "requestStreaming": false,
+              "responseType": "RoleInfo",
+              "responseLongType": "RoleInfo",
+              "responseFullType": "spaceone.api.identity.v2.RoleInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/role/disable",
                       "body": "*"
                     }
                   ]
