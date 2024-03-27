@@ -1,0 +1,1482 @@
+{
+  "files": [
+    {
+      "name": "spaceone/api/inventory/v1/cloud_service.proto",
+      "description": "A CloudService is data of an `instance` of a `resource`. A CloudService follows the pre-created classification system of a CloudServiceType and indicates the property value of the `resource`.",
+      "package": "spaceone.api.inventory.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [
+        {
+          "name": "FileFormat",
+          "longName": "CloudServiceExportRequest.FileFormat",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceExportRequest.FileFormat",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE_FILE_FORMAT",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "EXCEL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "CSV",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "CloudServiceAnalyzeQuery",
+          "longName": "CloudServiceAnalyzeQuery",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceAnalyzeQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "",
+              "label": "",
+              "type": "AnalyzeQuery",
+              "longType": "spaceone.api.core.v2.AnalyzeQuery",
+              "fullType": "spaceone.api.core.v2.AnalyzeQuery",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CloudServiceExportRequest",
+          "longName": "CloudServiceExportRequest",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceExportRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "options",
+              "description": "",
+              "label": "repeated",
+              "type": "ExportOption",
+              "longType": "spaceone.api.core.v2.ExportOption",
+              "fullType": "spaceone.api.core.v2.ExportOption",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "file_format",
+              "description": "+optional",
+              "label": "",
+              "type": "FileFormat",
+              "longType": "CloudServiceExportRequest.FileFormat",
+              "fullType": "spaceone.api.inventory.v1.CloudServiceExportRequest.FileFormat",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "file_name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "timezone",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CloudServiceInfo",
+          "longName": "CloudServiceInfo",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceInfo",
+          "description": "{\n   \"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n   \"name\": \"cloud_service_test\",\n   \"state\": \"ACTIVE\",\n   \"account\": \"251340636361\",\n   \"cloud_service_type\": \"Key\",\n   \"cloud_service_group\": \"KMS\",\n   \"provider\": \"aws\",\n   \"data\": {\n       \"alias_arn\": null,\n       \"origin\": \"AWS_KMS\",\n       \"cloudwatch\": {\n           \"region_name\": \"ap-northeast-1\",\n           \"namespace\": \"AWS/KMS\",\n           \"dimensions\": [\n               {\n                   \"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n                   \"Name\": \"KeyId\"\n               }\n           ]\n       },\n       \"aws_account_id\": \"251340636361\",\n       \"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n       \"encryption_algorithms\": [\n           \"SYMMETRIC_DEFAULT\"\n       ],\n       \"key_usage\": \"ENCRYPT_DECRYPT\",\n       \"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_type_path\": \"defaultKeys\",\n       \"key_rotated\": false,\n       \"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n       \"key_state\": \"Enabled\",\n       \"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n       \"enabled\": true,\n       \"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_manager\": \"AWS\"\n   },\n   \"metadata\": {\n       \"manual\": {}\n   },\n   \"reference\": {\n       \"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"collection_info\": {\n       \"collectors\": [],\n       \"service_accounts\": [],\n       \"secrets\": []\n   },\n   \"ip_addresses\": [],\n   \"region_code\": \"ap-northeast-1\",\n   \"workspace_id\": \"workspace-58010aa2e451\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T06:38:48.989Z\",\n   \"updated_at\": \"2022-06-22T06:38:48.989Z\",\n   \"launched_at\": \"2020-08-03T15:00:54.000Z\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "cloud_service_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ip_addresses",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "account",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "instance_type",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "instance_size",
+              "description": "",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cloud_service_type",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cloud_service_group",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "reference",
+              "description": "",
+              "label": "",
+              "type": "CloudServiceReference",
+              "longType": "CloudServiceReference",
+              "fullType": "spaceone.api.inventory.v1.CloudServiceReference",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tag_keys",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "collection_info",
+              "description": "",
+              "label": "repeated",
+              "type": "CollectionInfo",
+              "longType": "CollectionInfo",
+              "fullType": "spaceone.api.inventory.v1.CollectionInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "region_code",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "created_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updated_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "deleted_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CloudServiceQuery",
+          "longName": "CloudServiceQuery",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceQuery",
+          "description": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"cloud_service_type\",\n               \"value\": \"Key\",\n               \"operator\": \"eq\"\n           }\n       ]\n   }\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "+optional",
+              "label": "",
+              "type": "Query",
+              "longType": "spaceone.api.core.v2.Query",
+              "fullType": "spaceone.api.core.v2.Query",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cloud_service_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ip_address",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "account",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "instance_type",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cloud_service_type",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cloud_service_group",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "region_code",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_group_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CloudServiceReference",
+          "longName": "CloudServiceReference",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceReference",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "resource_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "external_link",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CloudServiceRequest",
+          "longName": "CloudServiceRequest",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceRequest",
+          "description": "{\n   \"cloud_service_id\": \"cloud-svc-fea2b0d32141\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "cloud_service_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CloudServiceStatQuery",
+          "longName": "CloudServiceStatQuery",
+          "fullName": "spaceone.api.inventory.v1.CloudServiceStatQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "",
+              "label": "",
+              "type": "StatisticsQuery",
+              "longType": "spaceone.api.core.v2.StatisticsQuery",
+              "fullType": "spaceone.api.core.v2.StatisticsQuery",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CloudServicesInfo",
+          "longName": "CloudServicesInfo",
+          "fullName": "spaceone.api.inventory.v1.CloudServicesInfo",
+          "description": "{\n   \"results\": [{\n       \"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n       \"name\": \"cloud_service_test2\",\n       \"state\": \"ACTIVE\",\n       \"account\": \"251340636361\",\n       \"cloud_service_type\": \"Key\",\n       \"cloud_service_group\": \"KMS\",\n       \"provider\": \"aws\",\n       \"data\": {\n           \"alias_arn\": null,\n           \"origin\": \"AWS_KMS\",\n           \"cloudwatch\": {\n               \"region_name\": \"ap-northeast-1\",\n               \"namespace\": \"AWS/KMS\",\n               \"dimensions\": [\n                   {\n                       \"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n                       \"Name\": \"KeyId\"\n                   }\n               ]\n           },\n           \"aws_account_id\": \"251340636361\",\n           \"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n           \"encryption_algorithms\": [\n               \"SYMMETRIC_DEFAULT\"\n           ],\n           \"key_usage\": \"ENCRYPT_DECRYPT\",\n           \"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n           \"key_type_path\": \"defaultKeys\",\n           \"key_rotated\": false,\n           \"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n           \"key_state\": \"Enabled\",\n           \"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n           \"enabled\": true,\n           \"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n           \"key_manager\": \"AWS\"\n       },\n       \"metadata\": {\n           \"manual\": {}\n       },\n       \"reference\": {\n           \"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n           \"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n       },\n       \"tags\": {\n           \"description\": \"spaceone\"\n       },\n       \"collection_info\": {\n           \"collectors\": [],\n           \"service_accounts\": [],\n           \"secrets\": []\n       },\n       \"ip_addresses\": [\n           \"1.1.1.1\",\n           \"2.2.2.2\"\n       ],\n       \"region_code\": \"ap-northeast-1\",\n       \"workspace_id\": \"workspace-58010aa2e451\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-06-22T06:38:48.989Z\",\n       \"updated_at\": \"2022-06-22T06:38:48.989Z\",\n       \"launched_at\": \"2020-08-03T15:00:54.000Z\"\n   }],\n   \"total_count\": 1\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "CloudServiceInfo",
+              "longType": "CloudServiceInfo",
+              "fullType": "spaceone.api.inventory.v1.CloudServiceInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CollectionInfo",
+          "longName": "CollectionInfo",
+          "fullName": "spaceone.api.inventory.v1.CollectionInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "provider",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "service_account_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "collector_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_collected_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CreateServiceRequest",
+          "longName": "CreateServiceRequest",
+          "fullName": "spaceone.api.inventory.v1.CreateServiceRequest",
+          "description": "{\n   \"cloud_service_type\": \"Key\",\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"KMS\",\n   \"name\": \"cloud_service_test\",\n   \"account\": \"251340636361\",\n   \"launched_at\": \"2020-08-03T15:00:54.000Z\",\n   \"ip_addresses\": [],\n   \"data\": {\n       \"alias_arn\": null,\n       \"origin\": \"AWS_KMS\",\n       \"cloudwatch\": {\n           \"region_name\": \"ap-northeast-1\",\n           \"namespace\": \"AWS/KMS\",\n           \"dimensions\": [\n               {\n                   \"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n                   \"Name\": \"KeyId\"\n               }\n           ]\n       },\n       \"aws_account_id\": \"251340636361\",\n       \"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n       \"encryption_algorithms\": [\n           \"SYMMETRIC_DEFAULT\"\n       ],\n       \"key_usage\": \"ENCRYPT_DECRYPT\",\n       \"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_type_path\": \"defaultKeys\",\n       \"key_rotated\": false,\n       \"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n       \"key_state\": \"Enabled\",\n       \"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n       \"enabled\": true,\n       \"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_manager\": \"AWS\"\n   },\n   \"metadata\": {},\n   \"reference\": {\n       \"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"region_code\": \"ap-northeast-1\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "cloud_service_type",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cloud_service_group",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "account",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "instance_type",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "instance_size",
+              "description": "+optional",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ip_addresses",
+              "description": "+optional",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "reference",
+              "description": "+optional",
+              "label": "",
+              "type": "CloudServiceReference",
+              "longType": "CloudServiceReference",
+              "fullType": "spaceone.api.inventory.v1.CloudServiceReference",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "region_code",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateCloudServiceRequest",
+          "longName": "UpdateCloudServiceRequest",
+          "fullName": "spaceone.api.inventory.v1.UpdateCloudServiceRequest",
+          "description": "{\n   \"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n   \"name\": \"cloud_service_test2\",\n   \"ip_addresses\": [\n       \"1.1.1.1\",\n       \"2.2.2.2\"\n   ],\n   \"tags\": {\n       \"description\": \"spaceone\"\n   },\n   \"region_code\": \"ap-northeast-2\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "cloud_service_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "account",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "instance_type",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "instance_size",
+              "description": "+optional",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ip_addresses",
+              "description": "+optional",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "reference",
+              "description": "+optional",
+              "label": "",
+              "type": "CloudServiceReference",
+              "longType": "CloudServiceReference",
+              "fullType": "spaceone.api.inventory.v1.CloudServiceReference",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "region_code",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "CloudService",
+          "longName": "CloudService",
+          "fullName": "spaceone.api.inventory.v1.CloudService",
+          "description": "",
+          "methods": [
+            {
+              "name": "create",
+              "description": "Creates a new CloudService. A CloudService instance is created based on data including the `resource`'s attribute values. When creating, the classification information defined by CloudServiceType is also needed. The created CloudService has collection information which is the collection history for the `resource` by plugin.",
+              "requestType": "CreateServiceRequest",
+              "requestLongType": "CreateServiceRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CreateServiceRequest",
+              "requestStreaming": false,
+              "responseType": "CloudServiceInfo",
+              "responseLongType": "CloudServiceInfo",
+              "responseFullType": "spaceone.api.inventory.v1.CloudServiceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/cloud-service/create",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update",
+              "description": "Updates a specific CloudService. You can make changes in CloudService settings, except for the classification system of CloudService and the information about the `resource` attribute value.",
+              "requestType": "UpdateCloudServiceRequest",
+              "requestLongType": "UpdateCloudServiceRequest",
+              "requestFullType": "spaceone.api.inventory.v1.UpdateCloudServiceRequest",
+              "requestStreaming": false,
+              "responseType": "CloudServiceInfo",
+              "responseLongType": "CloudServiceInfo",
+              "responseFullType": "spaceone.api.inventory.v1.CloudServiceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/cloud-service/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "delete",
+              "description": "Deletes a specific CloudService. You must specify the `cloud_service_id` of the CloudService to delete.",
+              "requestType": "CloudServiceRequest",
+              "requestLongType": "CloudServiceRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CloudServiceRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/cloud-service/delete",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get",
+              "description": "Gets a specific CloudService. Prints detailed information about the CloudService, including its state, classification information, and attribute values.",
+              "requestType": "CloudServiceRequest",
+              "requestLongType": "CloudServiceRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CloudServiceRequest",
+              "requestStreaming": false,
+              "responseType": "CloudServiceInfo",
+              "responseLongType": "CloudServiceInfo",
+              "responseFullType": "spaceone.api.inventory.v1.CloudServiceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/cloud-service/get",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "list",
+              "description": "Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.",
+              "requestType": "CloudServiceQuery",
+              "requestLongType": "CloudServiceQuery",
+              "requestFullType": "spaceone.api.inventory.v1.CloudServiceQuery",
+              "requestStreaming": false,
+              "responseType": "CloudServicesInfo",
+              "responseLongType": "CloudServicesInfo",
+              "responseFullType": "spaceone.api.inventory.v1.CloudServicesInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/cloud-service/list",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "export",
+              "description": "",
+              "requestType": "CloudServiceExportRequest",
+              "requestLongType": "CloudServiceExportRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CloudServiceExportRequest",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/cloud-service/export",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "analyze",
+              "description": "",
+              "requestType": "CloudServiceAnalyzeQuery",
+              "requestLongType": "CloudServiceAnalyzeQuery",
+              "requestFullType": "spaceone.api.inventory.v1.CloudServiceAnalyzeQuery",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/cloud-service/analyze",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "stat",
+              "description": "",
+              "requestType": "CloudServiceStatQuery",
+              "requestLongType": "CloudServiceStatQuery",
+              "requestFullType": "spaceone.api.inventory.v1.CloudServiceStatQuery",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/cloud-service/stat",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}

@@ -1,0 +1,1625 @@
+{
+  "files": [
+    {
+      "name": "spaceone/api/cost_analysis/v1/data_source.proto",
+      "description": "A DataSource is a plugin instance collecting external cost data. External cost data consists of `raw data` and the plugin information used for collection.",
+      "package": "spaceone.api.cost_analysis.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [
+        {
+          "name": "DataSourceType",
+          "longName": "DataSourceInfo.DataSourceType",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceInfo.DataSourceType",
+          "description": "",
+          "values": [
+            {
+              "name": "TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "LOCAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "EXTERNAL",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ResourceGroup",
+          "longName": "DataSourceInfo.ResourceGroup",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceInfo.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "SecretType",
+          "longName": "DataSourceInfo.SecretType",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceInfo.SecretType",
+          "description": "",
+          "values": [
+            {
+              "name": "SECRET_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "USE_SERVICE_ACCOUNT_SECRET",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "State",
+          "longName": "DataSourceInfo.State",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceInfo.State",
+          "description": "",
+          "values": [
+            {
+              "name": "STATE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "DataSourceType",
+          "longName": "DataSourceQuery.DataSourceType",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceQuery.DataSourceType",
+          "description": "",
+          "values": [
+            {
+              "name": "TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "LOCAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "EXTERNAL",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "UpgradeMode",
+          "longName": "PluginInfo.UpgradeMode",
+          "fullName": "spaceone.api.cost_analysis.v1.PluginInfo.UpgradeMode",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "AUTO",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "DataSourceType",
+          "longName": "RegisterDataSourceRequest.DataSourceType",
+          "fullName": "spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.DataSourceType",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "LOCAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "EXTERNAL",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ResourceGroup",
+          "longName": "RegisterDataSourceRequest.ResourceGroup",
+          "fullName": "spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "SecretType",
+          "longName": "RegisterDataSourceRequest.SecretType",
+          "fullName": "spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.SecretType",
+          "description": "",
+          "values": [
+            {
+              "name": "SECRET_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "USE_SERVICE_ACCOUNT_SECRET",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "SecretFilterState",
+          "longName": "SecretFilter.SecretFilterState",
+          "fullName": "spaceone.api.cost_analysis.v1.SecretFilter.SecretFilterState",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "UpgradeMode",
+          "longName": "UpdateDataSourcePluginRequest.UpgradeMode",
+          "fullName": "spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest.UpgradeMode",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "AUTO",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "DataSourceInfo",
+          "longName": "DataSourceInfo",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceInfo",
+          "description": "{\n       \"data_source_id\": \"ds-085d1e872789\",\n       \"name\": \"AWS HyperBilling Data Source test\",\n       \"state\": \"ENABLED\",\n       \"data_source_type\": \"EXTERNAL\",\n       \"plugin_info\": {\n           \"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n           \"version\": \"1.0.4\",\n           \"options\": {},\n           \"metadata\": {\n               \"data_source_rules\": [\n                   {\n                       \"options\": {\n                           \"stop_processing\": true\n                       },\n                       \"actions\": {\n                           \"match_service_account\": {\n                               \"source\": \"account\",\n                               \"target\": \"data.account_id\"\n                           }\n                       },\n                       \"domain_id\": \"domain-58010aa2e451\",\n                       \"conditions\": [],\n                       \"name\": \"match_service_account\",\n                       \"tags\": {},\n                       \"data_source_id\": \"ds-085d1e872789\",\n                       \"conditions_policy\": \"ALWAYS\"\n                   }\n               ]\n           },\n           \"secret_id\": \"secret-ca134639483\",\n           \"upgrade_mode\": \"AUTO\"\n       },\n       \"template\": {},\n       \"tags\": {\n           \"a\": \"b\"\n       },\n       \"cost_tag_keys\": [\n           \"Name\",\n           \"Environment\",\n           \"Role\",\n           \"Service\"\n       ],\n       \"cost_additional_info_keys\": [\n           \"Instance Type\",\n           \"Usage Type Details\"\n       ],\n       \"cost_data_keys\": [\n           \"AmortizedCost\",\n           \"BlendedCost\",\n       ]\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-07-19T10:58:36.080Z\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_source_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "State",
+              "longType": "DataSourceInfo.State",
+              "fullType": "spaceone.api.cost_analysis.v1.DataSourceInfo.State",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data_source_type",
+              "description": "",
+              "label": "",
+              "type": "DataSourceType",
+              "longType": "DataSourceInfo.DataSourceType",
+              "fullType": "spaceone.api.cost_analysis.v1.DataSourceInfo.DataSourceType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_type",
+              "description": "",
+              "label": "",
+              "type": "SecretType",
+              "longType": "DataSourceInfo.SecretType",
+              "fullType": "spaceone.api.cost_analysis.v1.DataSourceInfo.SecretType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_filter",
+              "description": "",
+              "label": "",
+              "type": "SecretFilter",
+              "longType": "SecretFilter",
+              "fullType": "spaceone.api.cost_analysis.v1.SecretFilter",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "",
+              "label": "",
+              "type": "PluginInfo",
+              "longType": "PluginInfo",
+              "fullType": "spaceone.api.cost_analysis.v1.PluginInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "template",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cost_tag_keys",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cost_additional_info_keys",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cost_data_keys",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "DataSourceInfo.ResourceGroup",
+              "fullType": "spaceone.api.cost_analysis.v1.DataSourceInfo.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "created_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_synchronized_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DataSourceQuery",
+          "longName": "DataSourceQuery",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceQuery",
+          "description": "{\n   \"query\": {}\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "+optional",
+              "label": "",
+              "type": "Query",
+              "longType": "spaceone.api.core.v2.Query",
+              "fullType": "spaceone.api.core.v2.Query",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data_source_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data_source_type",
+              "description": "+optional",
+              "label": "",
+              "type": "DataSourceType",
+              "longType": "DataSourceQuery.DataSourceType",
+              "fullType": "spaceone.api.cost_analysis.v1.DataSourceQuery.DataSourceType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DataSourceRequest",
+          "longName": "DataSourceRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceRequest",
+          "description": "{\n   \"data_source_id\": \"ds-085d1e872789\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_source_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DataSourceStatQuery",
+          "longName": "DataSourceStatQuery",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceStatQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "",
+              "label": "",
+              "type": "StatisticsQuery",
+              "longType": "spaceone.api.core.v2.StatisticsQuery",
+              "fullType": "spaceone.api.core.v2.StatisticsQuery",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DataSourcesInfo",
+          "longName": "DataSourcesInfo",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourcesInfo",
+          "description": "{\n       \"results\": [\n           {\n               \"data_source_id\": \"ds-085d1e872789\",\n               \"name\": \"AWS HyperBilling Data Source test\",\n               \"state\": \"ENABLED\",\n               \"data_source_type\": \"EXTERNAL\",\n               \"plugin_info\": {\n                   \"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n                   \"version\": \"1.0.4\",\n                   \"options\": {},\n                   \"metadata\": {\n                       \"data_source_rules\": [\n                           {\n                               \"options\": {\n                                   \"stop_processing\": true\n                               },\n                               \"actions\": {\n                                   \"match_service_account\": {\n                                       \"source\": \"account\",\n                                       \"target\": \"data.account_id\"\n                                   }\n                               },\n                               \"domain_id\": \"domain-58010aa2e451\",\n                               \"conditions\": [],\n                               \"name\": \"match_service_account\",\n                               \"tags\": {},\n                               \"data_source_id\": \"ds-085d1e872789\",\n                               \"conditions_policy\": \"ALWAYS\"\n                           }\n                       ]\n                   },\n                   \"secret_id\": \"secret-ca134639483\",\n                   \"upgrade_mode\": \"AUTO\"\n               },\n               \"template\": {},\n               \"tags\": {\n                   \"a\": \"b\"\n               },\n               \"cost_tag_keys\": [\n                   \"Name\",\n                   \"Environment\",\n                   \"Role\",\n                   \"Service\"\n               ],\n               \"cost_additional_info_keys\": [\n                   \"Instance Type\",\n                   \"Usage Type Details\"\n               ],\n               \"cost_data_keys\": [\n                   \"AmortizedCost\",\n                   \"BlendedCost\",\n               ]\n               \"domain_id\": \"domain-58010aa2e451\",\n               \"created_at\": \"2022-07-19T10:58:36.080Z\"\n           }\n       ],\n       \"total_count\": 2\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "DataSourceInfo",
+              "longType": "DataSourceInfo",
+              "fullType": "spaceone.api.cost_analysis.v1.DataSourceInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DeregisterDataSourceRequest",
+          "longName": "DeregisterDataSourceRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.DeregisterDataSourceRequest",
+          "description": "{\n   \"data_source_id\": \"ds-085d1e872789\",\n   \"cascade_delete_cost\": true,\n   \"domain_id\": \"domain-085d1e872789\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_source_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cascade_delete_cost",
+              "description": "Default value is true. If true delete all cost data related to data_source_id\n+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PluginInfo",
+          "longName": "PluginInfo",
+          "fullName": "spaceone.api.cost_analysis.v1.PluginInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "plugin_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_data",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schema_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "upgrade_mode",
+              "description": "",
+              "label": "",
+              "type": "UpgradeMode",
+              "longType": "PluginInfo.UpgradeMode",
+              "fullType": "spaceone.api.cost_analysis.v1.PluginInfo.UpgradeMode",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "RegisterDataSourceRequest",
+          "longName": "RegisterDataSourceRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.RegisterDataSourceRequest",
+          "description": "{\n   \"name\": \"AWS HyperBilling Data Source test\",\n   \"data_source_type\": \"EXTERNAL\",\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n       \"version\": \"1.0.4\",\n       \"options\": {},\n       \"metadata\": {\n           \"data_source_rules\": [\n               {\n                   \"conditions_policy\": \"ALWAYS\",\n                   \"options\": {\n                       \"stop_processing\": true\n                   },\n                   \"actions\": {\n                       \"match_service_account\": {\n                           \"source\": \"account\",\n                           \"target\": \"data.account_id\"\n                       }\n                   },\n                   \"conditions\": [],\n                   \"tags\": {},\n                   \"name\": \"match_service_account\"\n               }\n           ]\n       },\n       \"secret_id\": \"secret-ca134639483\",\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\"a\": \"b\"}\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data_source_type",
+              "description": "",
+              "label": "",
+              "type": "DataSourceType",
+              "longType": "RegisterDataSourceRequest.DataSourceType",
+              "fullType": "spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.DataSourceType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_type",
+              "description": "+optional",
+              "label": "",
+              "type": "SecretType",
+              "longType": "RegisterDataSourceRequest.SecretType",
+              "fullType": "spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.SecretType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_filter",
+              "description": "+optional",
+              "label": "",
+              "type": "SecretFilter",
+              "longType": "SecretFilter",
+              "fullType": "spaceone.api.cost_analysis.v1.SecretFilter",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "template",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "+optional",
+              "label": "",
+              "type": "PluginInfo",
+              "longType": "PluginInfo",
+              "fullType": "spaceone.api.cost_analysis.v1.PluginInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "RegisterDataSourceRequest.ResourceGroup",
+              "fullType": "spaceone.api.cost_analysis.v1.RegisterDataSourceRequest.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SecretFilter",
+          "longName": "SecretFilter",
+          "fullName": "spaceone.api.cost_analysis.v1.SecretFilter",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "SecretFilterState",
+              "longType": "SecretFilter.SecretFilterState",
+              "fullType": "spaceone.api.cost_analysis.v1.SecretFilter.SecretFilterState",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secrets",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "service_accounts",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schemas",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SyncDataSourceRequest",
+          "longName": "SyncDataSourceRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.SyncDataSourceRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_source_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "start",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "no_preload_cache",
+              "description": "+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateDataSourcePluginRequest",
+          "longName": "UpdateDataSourcePluginRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest",
+          "description": "{\n   \"data_source_id\": \"ds-085d1e872789\",\n   \"version\": \"1.0.4\",\n   \"options\": {},\n   \"upgrade_mode\": \"AUTO\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_source_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "upgrade_mode",
+              "description": "+optional",
+              "label": "",
+              "type": "UpgradeMode",
+              "longType": "UpdateDataSourcePluginRequest.UpgradeMode",
+              "fullType": "spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest.UpgradeMode",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateDataSourceRequest",
+          "longName": "UpdateDataSourceRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.UpdateDataSourceRequest",
+          "description": "{\n       \"data_source_id\": \"ds-085d1e872789\",\n       \"name\": \"AWS HyperBilling Data Source test2\",\n       \"tags\": {\n           \"type\": \"test\"\n       }\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_source_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_filter",
+              "description": "+optional",
+              "label": "",
+              "type": "SecretFilter",
+              "longType": "SecretFilter",
+              "fullType": "spaceone.api.cost_analysis.v1.SecretFilter",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "template",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "DataSource",
+          "longName": "DataSource",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSource",
+          "description": "",
+          "methods": [
+            {
+              "name": "register",
+              "description": "Registers a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, and `upgrade_mode`.",
+              "requestType": "RegisterDataSourceRequest",
+              "requestLongType": "RegisterDataSourceRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.RegisterDataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "DataSourceInfo",
+              "responseLongType": "DataSourceInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.DataSourceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/data-source/register",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update",
+              "description": "Updates a specific DataSource. You can make changes in DataSource settings, including `name` and `tags`.",
+              "requestType": "UpdateDataSourceRequest",
+              "requestLongType": "UpdateDataSourceRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.UpdateDataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "DataSourceInfo",
+              "responseLongType": "DataSourceInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.DataSourceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/data-source/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update_plugin",
+              "description": "Updates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.",
+              "requestType": "UpdateDataSourcePluginRequest",
+              "requestLongType": "UpdateDataSourcePluginRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest",
+              "requestStreaming": false,
+              "responseType": "DataSourceInfo",
+              "responseLongType": "DataSourceInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.DataSourceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/data-source/update-plugin",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "verify_plugin",
+              "description": "Verifies the plugin of a specific DataSource. This method validates the plugin data, `version` and `endpoint`.",
+              "requestType": "DataSourceRequest",
+              "requestLongType": "DataSourceRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/data-source/verify-plugin",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "enable",
+              "description": "Enables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.",
+              "requestType": "DataSourceRequest",
+              "requestLongType": "DataSourceRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "DataSourceInfo",
+              "responseLongType": "DataSourceInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.DataSourceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/data-source/enable",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "disable",
+              "description": "Disables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.",
+              "requestType": "DataSourceRequest",
+              "requestLongType": "DataSourceRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "DataSourceInfo",
+              "responseLongType": "DataSourceInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.DataSourceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/data-source/disable",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "deregister",
+              "description": "Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.",
+              "requestType": "DeregisterDataSourceRequest",
+              "requestLongType": "DeregisterDataSourceRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.DeregisterDataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/data-source/deregister",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "sync",
+              "description": "Manually runs a specific DataSource to collect the cost data. This method is to get up-to-date cost data.",
+              "requestType": "SyncDataSourceRequest",
+              "requestLongType": "SyncDataSourceRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.SyncDataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "JobInfo",
+              "responseLongType": "JobInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.JobInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/data-source/sync",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get",
+              "description": "Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.",
+              "requestType": "DataSourceRequest",
+              "requestLongType": "DataSourceRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "DataSourceInfo",
+              "responseLongType": "DataSourceInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.DataSourceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/data-source/get",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "list",
+              "description": "Gets a list of all DataSources. You can use a query to get a filtered list of DataSources.",
+              "requestType": "DataSourceQuery",
+              "requestLongType": "DataSourceQuery",
+              "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceQuery",
+              "requestStreaming": false,
+              "responseType": "DataSourcesInfo",
+              "responseLongType": "DataSourcesInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.DataSourcesInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/data-source/list",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "stat",
+              "description": "",
+              "requestType": "DataSourceStatQuery",
+              "requestLongType": "DataSourceStatQuery",
+              "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceStatQuery",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/data-source/stat",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}

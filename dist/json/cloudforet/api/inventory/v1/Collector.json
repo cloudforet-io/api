@@ -1,0 +1,1450 @@
+{
+  "files": [
+    {
+      "name": "spaceone/api/inventory/v1/collector.proto",
+      "description": "A Collector is a plugin instance collecting cloud resources. A Collector can collect the resource data manually or by a pre-set schedule.",
+      "package": "spaceone.api.inventory.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [
+        {
+          "name": "ResourceGroup",
+          "longName": "CollectorInfo.ResourceGroup",
+          "fullName": "spaceone.api.inventory.v1.CollectorInfo.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "State",
+          "longName": "CollectorInfo.State",
+          "fullName": "spaceone.api.inventory.v1.CollectorInfo.State",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "State",
+          "longName": "CollectorQuery.State",
+          "fullName": "spaceone.api.inventory.v1.CollectorQuery.State",
+          "description": "",
+          "values": [
+            {
+              "name": "STATE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ResourceGroup",
+          "longName": "CreateCollectorRequest.ResourceGroup",
+          "fullName": "spaceone.api.inventory.v1.CreateCollectorRequest.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "UpgradeMode",
+          "longName": "PluginInfo.UpgradeMode",
+          "fullName": "spaceone.api.inventory.v1.PluginInfo.UpgradeMode",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "AUTO",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ScheduledState",
+          "longName": "Scheduled.ScheduledState",
+          "fullName": "spaceone.api.inventory.v1.Scheduled.ScheduledState",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "SecretFilterState",
+          "longName": "SecretFilter.SecretFilterState",
+          "fullName": "spaceone.api.inventory.v1.SecretFilter.SecretFilterState",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "UpgradeMode",
+          "longName": "UpdatePluginRequest.UpgradeMode",
+          "fullName": "spaceone.api.inventory.v1.UpdatePluginRequest.UpgradeMode",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "AUTO",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "CollectRequest",
+          "longName": "CollectRequest",
+          "fullName": "spaceone.api.inventory.v1.CollectRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "collector_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CollectorInfo",
+          "longName": "CollectorInfo",
+          "fullName": "spaceone.api.inventory.v1.CollectorInfo",
+          "description": "{\n   \"collector_id\": \"collector-2c0847644f39\",\n   \"name\": \"AWS Collector\",\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-30d21ef75a5d\",\n       \"version\": \"1.13.13\",\n       \"options\": {},\n       \"metadata\": {\n           \"supported_schedules\": [\n               \"hours\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.CloudService\",\n               \"inventory.CloudServiceType\",\n               \"inventory.Region\"\n           ],\n           \"filter_format\": [],\n           \"supported_features\": [\n               \"garbage_collection\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"type\": \"test\"\n   },\n   \"created_at\": \"2022-06-17T06:33:27.195Z\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\"\n       ]\n   },\n   \"schedule\": {\n       \"state\": \"ENABLED\",\n       \"hours\": [0, 6, 12, 18]\n   },\n   \"secret_filter\": {\n       \"state\": \"ENABLED\",\n       \"secrets\": [\"secret-xxx\", \"secret-yyy\"],\n       \"service_accounts\": [\"sa-xxx\", \"sa-yyy\"],\n       \"schemas\": [\"schema-xxx\", \"schema-yyy\"]\n   },\n   \"last_collected_at\": \"2022-06-17T06:33:27.195Z\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "collector_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "capability",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_filter",
+              "description": "",
+              "label": "",
+              "type": "SecretFilter",
+              "longType": "SecretFilter",
+              "fullType": "spaceone.api.inventory.v1.SecretFilter",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "",
+              "label": "",
+              "type": "PluginInfo",
+              "longType": "PluginInfo",
+              "fullType": "spaceone.api.inventory.v1.PluginInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schedule",
+              "description": "",
+              "label": "",
+              "type": "Scheduled",
+              "longType": "Scheduled",
+              "fullType": "spaceone.api.inventory.v1.Scheduled",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "CollectorInfo.ResourceGroup",
+              "fullType": "spaceone.api.inventory.v1.CollectorInfo.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "created_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_collected_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CollectorQuery",
+          "longName": "CollectorQuery",
+          "fullName": "spaceone.api.inventory.v1.CollectorQuery",
+          "description": "{\n   \"query\": {}\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "",
+              "label": "",
+              "type": "Query",
+              "longType": "spaceone.api.core.v2.Query",
+              "fullType": "spaceone.api.core.v2.Query",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "collector_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_filter_state",
+              "description": "",
+              "label": "",
+              "type": "State",
+              "longType": "CollectorQuery.State",
+              "fullType": "spaceone.api.inventory.v1.CollectorQuery.State",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schedule_state",
+              "description": "",
+              "label": "",
+              "type": "State",
+              "longType": "CollectorQuery.State",
+              "fullType": "spaceone.api.inventory.v1.CollectorQuery.State",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CollectorRequest",
+          "longName": "CollectorRequest",
+          "fullName": "spaceone.api.inventory.v1.CollectorRequest",
+          "description": "{\n   \"collector_id\": \"collector-f2e4e9cc7f21\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "collector_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CollectorStatQuery",
+          "longName": "CollectorStatQuery",
+          "fullName": "spaceone.api.inventory.v1.CollectorStatQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "",
+              "label": "",
+              "type": "StatisticsQuery",
+              "longType": "spaceone.api.core.v2.StatisticsQuery",
+              "fullType": "spaceone.api.core.v2.StatisticsQuery",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CollectorsInfo",
+          "longName": "CollectorsInfo",
+          "fullName": "spaceone.api.inventory.v1.CollectorsInfo",
+          "description": "{\n    \"results\": [\n       {\n         \"collector_id\": \"collector-2c0847644f39\",\n         \"name\": \"AWS Collector\",\n         \"plugin_info\": {\n             \"plugin_id\": \"plugin-30d21ef75a5d\",\n             \"version\": \"1.13.13\",\n             \"options\": {},\n             \"metadata\": {\n                 \"supported_schedules\": [\n                     \"hours\"\n                 ],\n             \"supported_resource_type\": [\n               \"inventory.CloudService\",\n               \"inventory.CloudServiceType\",\n               \"inventory.Region\"\n             ],\n             \"filter_format\": [],\n             \"supported_features\": [\n               \"garbage_collection\"\n             ]\n         },\n         \"upgrade_mode\": \"AUTO\"\n     },\n     \"tags\": {\n         \"type\": \"test\"\n     },\n     \"created_at\": \"2022-06-17T06:33:27.195Z\",\n     \"domain_id\": \"domain-58010aa2e451\",\n     \"provider\": \"aws\",\n     \"capability\": {\n         \"supported_schema\": [\n             \"aws_access_key\"\n         ]\n     },\n     \"schedule\": {\n         \"state\": \"ENABLED\",\n         \"hours\": [0, 6, 12, 18]\n     },\n     \"secret_filter\": {\n         \"state\": \"ENABLED\",\n         \"secrets\": [\"secret-xxx\", \"secret-yyy\"],\n         \"service_accounts\": [\"sa-xxx\", \"sa-yyy\"],\n         \"schemas\": [\"schema-xxx\", \"schema-yyy\"]\n     },\n     \"last_collected_at\": \"2022-06-17T06:33:27.195Z\"\n   },\n   {\n     \"collector_id\": \"collector-2c0847644f39\",\n     \"name\": \"AWS Collector\",\n     \"plugin_info\": {\n         \"plugin_id\": \"plugin-30d21ef75a5d\",\n         \"version\": \"1.13.13\",\n         \"options\": {},\n         \"metadata\": {\n             \"supported_schedules\": [\n                 \"hours\"\n             ],\n             \"supported_resource_type\": [\n                 \"inventory.CloudService\",\n                 \"inventory.CloudServiceType\",\n                 \"inventory.Region\"\n             ],\n             \"filter_format\": [],\n             \"supported_features\": [\n               \"garbage_collection\"\n             ]\n         },\n         \"upgrade_mode\": \"AUTO\"\n     },\n     \"tags\": {\n         \"type\": \"test\"\n     },\n     \"created_at\": \"2022-06-17T06:33:27.195Z\",\n     \"domain_id\": \"domain-58010aa2e451\",\n     \"provider\": \"aws\",\n     \"capability\": {\n         \"supported_schema\": [\n             \"aws_access_key\"\n         ]\n     },\n     \"schedule\": {\n         \"state\": \"ENABLED\",\n         \"hours\": [0, 6, 12, 18]\n     },\n     \"secret_filter\": {\n         \"state\": \"ENABLED\",\n         \"secrets\": [\"secret-xxx\", \"secret-yyy\"],\n         \"service_accounts\": [\"sa-xxx\", \"sa-yyy\"],\n         \"schemas\": [\"schema-xxx\", \"schema-yyy\"]\n     },\n     \"last_collected_at\": \"2022-06-17T06:33:27.195Z\"\n   }\n   ],\n   \"total_count\": 2\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "CollectorInfo",
+              "longType": "CollectorInfo",
+              "fullType": "spaceone.api.inventory.v1.CollectorInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CreateCollectorRequest",
+          "longName": "CreateCollectorRequest",
+          "fullName": "spaceone.api.inventory.v1.CreateCollectorRequest",
+          "description": "{\n   \"name\": \"AWS Collector\",\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-30d21ef75a5d\",\n       \"version\": \"1.13.13\",\n       \"options\": {},\n       \"metadata\": {\n           \"filter_format\": [],\n           \"supported_schedules\": [\n               \"hours\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.CloudService\",\n               \"inventory.CloudServiceType\",\n               \"inventory.Region\"\n           ],\n           \"supported_features\": [\n               \"garbage_collection\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"schedule\": {\n       \"state\": \"ENABLED\",\n       \"hours\": [0, 6, 12, 18]\n   },\n   \"secret_filter\": {\n       \"state\": \"ENABLED\",\n       \"secrets\": [\"secret-xxx\", \"secret-yyy\"],\n       \"service_accounts\": [\"sa-xxx\", \"sa-yyy\"],\n       \"schemas\": [\"schema-xxx\", \"schema-yyy\"]\n   },\n   \"tags\": {\n       \"type\": \"test\"\n   },\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "",
+              "label": "",
+              "type": "PluginInfo",
+              "longType": "PluginInfo",
+              "fullType": "spaceone.api.inventory.v1.PluginInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schedule",
+              "description": "+optional",
+              "label": "",
+              "type": "Scheduled",
+              "longType": "Scheduled",
+              "fullType": "spaceone.api.inventory.v1.Scheduled",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_filter",
+              "description": "+optional",
+              "label": "",
+              "type": "SecretFilter",
+              "longType": "SecretFilter",
+              "fullType": "spaceone.api.inventory.v1.SecretFilter",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "CreateCollectorRequest.ResourceGroup",
+              "fullType": "spaceone.api.inventory.v1.CreateCollectorRequest.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PluginInfo",
+          "longName": "PluginInfo",
+          "fullName": "spaceone.api.inventory.v1.PluginInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "plugin_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "upgrade_mode",
+              "description": "",
+              "label": "",
+              "type": "UpgradeMode",
+              "longType": "PluginInfo.UpgradeMode",
+              "fullType": "spaceone.api.inventory.v1.PluginInfo.UpgradeMode",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "Scheduled",
+          "longName": "Scheduled",
+          "fullName": "spaceone.api.inventory.v1.Scheduled",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "ScheduledState",
+              "longType": "Scheduled.ScheduledState",
+              "fullType": "spaceone.api.inventory.v1.Scheduled.ScheduledState",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "hours",
+              "description": "",
+              "label": "repeated",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SecretFilter",
+          "longName": "SecretFilter",
+          "fullName": "spaceone.api.inventory.v1.SecretFilter",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "SecretFilterState",
+              "longType": "SecretFilter.SecretFilterState",
+              "fullType": "spaceone.api.inventory.v1.SecretFilter.SecretFilterState",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secrets",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "service_accounts",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schemas",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "exclude_secrets",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "exclude_service_accounts",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "exclude_schemas",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateCollectorRequest",
+          "longName": "UpdateCollectorRequest",
+          "fullName": "spaceone.api.inventory.v1.UpdateCollectorRequest",
+          "description": "{\n   \"collector_id\": \"collector-2c0847644f39\",\n   \"name\": \"New AWS Collector\",\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-30d21ef75a5d\",\n       \"version\": \"1.14.0\",\n       \"provider\": \"aws\",\n       \"upgrade_mode\": \"MANUAL\"\n   },\n   \"schedule\": {\n       \"state\": \"ENABLED\",\n       \"hours\": [0, 6, 12, 18]\n   },\n   \"secret_filter\": {\n       \"state\": \"ENABLED\",\n       \"secrets\": [\"secret-xxx\", \"secret-yyy\"],\n       \"service_accounts\": [\"sa-xxx\", \"sa-yyy\"],\n       \"schemas\": [\"schema-xxx\", \"schema-yyy\"]\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   }\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "collector_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schedule",
+              "description": "+optional",
+              "label": "",
+              "type": "Scheduled",
+              "longType": "Scheduled",
+              "fullType": "spaceone.api.inventory.v1.Scheduled",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_filter",
+              "description": "+optional",
+              "label": "",
+              "type": "SecretFilter",
+              "longType": "SecretFilter",
+              "fullType": "spaceone.api.inventory.v1.SecretFilter",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdatePluginRequest",
+          "longName": "UpdatePluginRequest",
+          "fullName": "spaceone.api.inventory.v1.UpdatePluginRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "collector_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "upgrade_mode",
+              "description": "+optional",
+              "label": "",
+              "type": "UpgradeMode",
+              "longType": "UpdatePluginRequest.UpgradeMode",
+              "fullType": "spaceone.api.inventory.v1.UpdatePluginRequest.UpgradeMode",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "VerifyPluginRequest",
+          "longName": "VerifyPluginRequest",
+          "fullName": "spaceone.api.inventory.v1.VerifyPluginRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "collector_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "Collector",
+          "longName": "Collector",
+          "fullName": "spaceone.api.inventory.v1.Collector",
+          "description": "",
+          "methods": [
+            {
+              "name": "create",
+              "description": "Creates a new Collector with information of the plugin to use. Information of the plugin includes `version`, `provider`, and `upgrade_mode`.",
+              "requestType": "CreateCollectorRequest",
+              "requestLongType": "CreateCollectorRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CreateCollectorRequest",
+              "requestStreaming": false,
+              "responseType": "CollectorInfo",
+              "responseLongType": "CollectorInfo",
+              "responseFullType": "spaceone.api.inventory.v1.CollectorInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/collector/create",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update",
+              "description": "Updates a specific Collector. You can make changes in Collector settings, including `name` and `tags`.",
+              "requestType": "UpdateCollectorRequest",
+              "requestLongType": "UpdateCollectorRequest",
+              "requestFullType": "spaceone.api.inventory.v1.UpdateCollectorRequest",
+              "requestStreaming": false,
+              "responseType": "CollectorInfo",
+              "responseLongType": "CollectorInfo",
+              "responseFullType": "spaceone.api.inventory.v1.CollectorInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/collector/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update_plugin",
+              "description": "Updates the plugin of a specific Collector. This method resets the plugin data in the Collector to update the `metadata`.",
+              "requestType": "UpdatePluginRequest",
+              "requestLongType": "UpdatePluginRequest",
+              "requestFullType": "spaceone.api.inventory.v1.UpdatePluginRequest",
+              "requestStreaming": false,
+              "responseType": "CollectorInfo",
+              "responseLongType": "CollectorInfo",
+              "responseFullType": "spaceone.api.inventory.v1.CollectorInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/collector/update-plugin",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "verify_plugin",
+              "description": "Verifies the plugin of a specific Collector. This method validates the plugin data, `version` and `endpoint`.",
+              "requestType": "VerifyPluginRequest",
+              "requestLongType": "VerifyPluginRequest",
+              "requestFullType": "spaceone.api.inventory.v1.VerifyPluginRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/collector/verify-plugin",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "delete",
+              "description": "Deletes a specific Collector. You must specify the `collector_id` of the Collector to delete.",
+              "requestType": "CollectorRequest",
+              "requestLongType": "CollectorRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CollectorRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/collector/delete",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get",
+              "description": "Gets a specific Collector. Prints detailed information about the Collector, including its state, basic information, and the plugin information used for cloud resource collection.",
+              "requestType": "CollectorRequest",
+              "requestLongType": "CollectorRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CollectorRequest",
+              "requestStreaming": false,
+              "responseType": "CollectorInfo",
+              "responseLongType": "CollectorInfo",
+              "responseFullType": "spaceone.api.inventory.v1.CollectorInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/collector/get",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "list",
+              "description": "Gets a list of all Collectors. You can use a query to get a filtered list of Collectors.",
+              "requestType": "CollectorQuery",
+              "requestLongType": "CollectorQuery",
+              "requestFullType": "spaceone.api.inventory.v1.CollectorQuery",
+              "requestStreaming": false,
+              "responseType": "CollectorsInfo",
+              "responseLongType": "CollectorsInfo",
+              "responseFullType": "spaceone.api.inventory.v1.CollectorsInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/collector/list",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "stat",
+              "description": "",
+              "requestType": "CollectorStatQuery",
+              "requestLongType": "CollectorStatQuery",
+              "requestFullType": "spaceone.api.inventory.v1.CollectorStatQuery",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/collector/stat",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "collect",
+              "description": "",
+              "requestType": "CollectRequest",
+              "requestLongType": "CollectRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CollectRequest",
+              "requestStreaming": false,
+              "responseType": "JobInfo",
+              "responseLongType": "JobInfo",
+              "responseFullType": "spaceone.api.inventory.v1.JobInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/inventory/v1/collector/collect",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}

@@ -1,0 +1,1069 @@
+{
+  "files": [
+    {
+      "name": "spaceone/api/monitoring/v1/data_source.proto",
+      "description": "A DataSource is a plugin instance collecting `metric` and `log` data from Cloudforet.",
+      "package": "spaceone.api.monitoring.v1",
+      "hasEnums": true,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [
+        {
+          "name": "State",
+          "longName": "DataSourceInfo.State",
+          "fullName": "spaceone.api.monitoring.v1.DataSourceInfo.State",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "UpgradeMode",
+          "longName": "DataSourcePluginInfo.UpgradeMode",
+          "fullName": "spaceone.api.monitoring.v1.DataSourcePluginInfo.UpgradeMode",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "AUTO",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "MonitoringType",
+          "longName": "MonitoringType",
+          "fullName": "spaceone.api.monitoring.v1.MonitoringType",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "METRIC",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "LOG",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "UpgradeMode",
+          "longName": "UpdateDataSourcePluginRequest.UpgradeMode",
+          "fullName": "spaceone.api.monitoring.v1.UpdateDataSourcePluginRequest.UpgradeMode",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "AUTO",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "DataSourceInfo",
+          "longName": "DataSourceInfo",
+          "fullName": "spaceone.api.monitoring.v1.DataSourceInfo",
+          "description": "{\n   \"data_source_id\": \"ds-123456789012\",\n   \"name\": \"datasource-test\",\n   \"state\": \"ENABLED\",\n   \"monitoring_type\": \"METRIC\",\n   \"provider\": \"aws\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"aws_access_key\",\n           \"aws_assume_role\"\n       ],\n       \"use_resource_secret\": true,\n       \"monitoring_type\": \"METRIC\"\n   },\n   \"plugin_info\": {\n       \"plugin_id\": \"plugin-123456789012\",\n       \"version\": \"1.1.4.20220617.135934\",\n       \"options\": {},\n       \"provider\": \"aws\",\n       \"metadata\": {\n           \"supported_stat\": [\n               \"AVERAGE\",\n               \"MAX\",\n               \"MIN\",\n               \"SUM\"\n           ],\n           \"supported_resource_type\": [\n               \"inventory.Server\",\n               \"inventory.CloudService\"\n           ],\n           \"required_keys\": [\n               \"data.cloudwatch\"\n           ]\n       },\n       \"upgrade_mode\": \"AUTO\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-06-21T01:17:12.144Z\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_source_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "State",
+              "longType": "DataSourceInfo.State",
+              "fullType": "spaceone.api.monitoring.v1.DataSourceInfo.State",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "monitoring_type",
+              "description": "",
+              "label": "",
+              "type": "MonitoringType",
+              "longType": "MonitoringType",
+              "fullType": "spaceone.api.monitoring.v1.MonitoringType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "capability",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "",
+              "label": "",
+              "type": "DataSourcePluginInfo",
+              "longType": "DataSourcePluginInfo",
+              "fullType": "spaceone.api.monitoring.v1.DataSourcePluginInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "created_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DataSourcePluginInfo",
+          "longName": "DataSourcePluginInfo",
+          "fullName": "spaceone.api.monitoring.v1.DataSourcePluginInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "plugin_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "metadata",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "upgrade_mode",
+              "description": "",
+              "label": "",
+              "type": "UpgradeMode",
+              "longType": "DataSourcePluginInfo.UpgradeMode",
+              "fullType": "spaceone.api.monitoring.v1.DataSourcePluginInfo.UpgradeMode",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "plugin_secret",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "plugin_secret",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DataSourceQuery",
+          "longName": "DataSourceQuery",
+          "fullName": "spaceone.api.monitoring.v1.DataSourceQuery",
+          "description": "{\n   \"query\": {},\n   \"domain_id\": \"domain-123456789012\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "+optional",
+              "label": "",
+              "type": "Query",
+              "longType": "spaceone.api.core.v2.Query",
+              "fullType": "spaceone.api.core.v2.Query",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data_source_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "monitoring_type",
+              "description": "+optional",
+              "label": "",
+              "type": "MonitoringType",
+              "longType": "MonitoringType",
+              "fullType": "spaceone.api.monitoring.v1.MonitoringType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "provider",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DataSourceRequest",
+          "longName": "DataSourceRequest",
+          "fullName": "spaceone.api.monitoring.v1.DataSourceRequest",
+          "description": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"domain_id\": \"domain-123456789012\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_source_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DataSourceStatQuery",
+          "longName": "DataSourceStatQuery",
+          "fullName": "spaceone.api.monitoring.v1.DataSourceStatQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "",
+              "label": "",
+              "type": "StatisticsQuery",
+              "longType": "spaceone.api.core.v2.StatisticsQuery",
+              "fullType": "spaceone.api.core.v2.StatisticsQuery",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DataSourcesInfo",
+          "longName": "DataSourcesInfo",
+          "fullName": "spaceone.api.monitoring.v1.DataSourcesInfo",
+          "description": "{\n   \"results\": [\n       {\n           \"data_source_id\": \"ds-89f1e81528e9\",\n           \"name\": \"AWS CloudTrail\",\n           \"state\": \"ENABLED\",\n           \"monitoring_type\": \"LOG\",\n           \"provider\": \"aws\",\n           \"capability\": {\n               \"use_resource_secret\": true,\n               \"monitoring_type\": \"LOG\",\n               \"supported_schema\": [\n                   \"aws_access_key\",\n                   \"aws_assume_role\"\n               ]\n           },\n           \"plugin_info\": {\n               \"plugin_id\": \"plugin-9881b9b440a4\",\n               \"version\": \"1.0-dev2\",\n               \"options\": {},\n               \"provider\": \"aws\",\n               \"metadata\": {\n                   \"required_keys\": [\n                       \"reference.resource_id\"\n                   ],\n                   \"supported_resource_type\": [\n                       \"inventory.Server\",\n                       \"inventory.CloudService\"\n                   ]\n               },\n               \"upgrade_mode\": \"AUTO\"\n           },\n           \"tags\": {},\n           \"domain_id\": \"domain-123456789012\",\n           \"created_at\": \"2021-03-31T08:39:45.532Z\"\n       }\n   ],\n   \"total_count\": 2\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "DataSourceInfo",
+              "longType": "DataSourceInfo",
+              "fullType": "spaceone.api.monitoring.v1.DataSourceInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "RegisterDataSourceRequest",
+          "longName": "RegisterDataSourceRequest",
+          "fullName": "spaceone.api.monitoring.v1.RegisterDataSourceRequest",
+          "description": "{\n       \"name\": \"datasource-test\",\n       \"plugin_info\": {\"plugin_id\": \"plugin-123456789012\",\n                       \"version\": \"1.1.4.20220617.135934\",\n                       \"options\": {},\n                       \"provider\": \"aws\",\n                       \"metadata\": {\n                           \"supported_resource_type\": [\"inventory.Server\", \"inventory.CloudService\"],\n                           \"required_keys\": [\"data.cloudwatch\"],\n                           \"supported_stat\": [\"AVERAGE\", \"MAX\", \"MIN\", \"SUM\"]},\n                       \"upgrade_mode\": \"AUTO\"\n                       },\n       \"tags\": {\"a\": \"b\"},\n       \"domain_id\": \"domain-123456789012\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "plugin_info",
+              "description": "",
+              "label": "",
+              "type": "DataSourcePluginInfo",
+              "longType": "DataSourcePluginInfo",
+              "fullType": "spaceone.api.monitoring.v1.DataSourcePluginInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateDataSourcePluginRequest",
+          "longName": "UpdateDataSourcePluginRequest",
+          "fullName": "spaceone.api.monitoring.v1.UpdateDataSourcePluginRequest",
+          "description": "{\n   \"data_source_id\": \"ds-6167ed6b42f4\",\n   \"version\": \"1.1.3\",\n   \"options\": {},\n   \"upgrade_mode\": \"MANUAL\",\n   \"domain_id\": \"domain-123456789012\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_source_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "upgrade_mode",
+              "description": "+optional",
+              "label": "",
+              "type": "UpgradeMode",
+              "longType": "UpdateDataSourcePluginRequest.UpgradeMode",
+              "fullType": "spaceone.api.monitoring.v1.UpdateDataSourcePluginRequest.UpgradeMode",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateDataSourceRequest",
+          "longName": "UpdateDataSourceRequest",
+          "fullName": "spaceone.api.monitoring.v1.UpdateDataSourceRequest",
+          "description": "{\n       \"data_source_id\": \"ds-123456789012\",\n       \"name\": \"tmp-datasource_test\",\n       \"tags\": {\"b\": \"c\"},\n       \"domain_id\": \"domain-123456789012\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_source_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "DataSource",
+          "longName": "DataSource",
+          "fullName": "spaceone.api.monitoring.v1.DataSource",
+          "description": "",
+          "methods": [
+            {
+              "name": "register",
+              "description": "Registers a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, `upgrade_mode`.",
+              "requestType": "RegisterDataSourceRequest",
+              "requestLongType": "RegisterDataSourceRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.RegisterDataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "DataSourceInfo",
+              "responseLongType": "DataSourceInfo",
+              "responseFullType": "spaceone.api.monitoring.v1.DataSourceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/monitoring/v1/data-source/register",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update",
+              "description": "Updates a specific DataSource. You can make changes in DataSource settings, including `name` and `tags`.",
+              "requestType": "UpdateDataSourceRequest",
+              "requestLongType": "UpdateDataSourceRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.UpdateDataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "DataSourceInfo",
+              "responseLongType": "DataSourceInfo",
+              "responseFullType": "spaceone.api.monitoring.v1.DataSourceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/monitoring/v1/data-source/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "enable",
+              "description": "Enables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.",
+              "requestType": "DataSourceRequest",
+              "requestLongType": "DataSourceRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.DataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "DataSourceInfo",
+              "responseLongType": "DataSourceInfo",
+              "responseFullType": "spaceone.api.monitoring.v1.DataSourceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/monitoring/v1/data-source/enable",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "disable",
+              "description": "Disables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.",
+              "requestType": "DataSourceRequest",
+              "requestLongType": "DataSourceRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.DataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "DataSourceInfo",
+              "responseLongType": "DataSourceInfo",
+              "responseFullType": "spaceone.api.monitoring.v1.DataSourceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/monitoring/v1/data-source/disable",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "deregister",
+              "description": "Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.",
+              "requestType": "DataSourceRequest",
+              "requestLongType": "DataSourceRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.DataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/monitoring/v1/data-source/deregister",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update_plugin",
+              "description": "Updates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.",
+              "requestType": "UpdateDataSourcePluginRequest",
+              "requestLongType": "UpdateDataSourcePluginRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.UpdateDataSourcePluginRequest",
+              "requestStreaming": false,
+              "responseType": "DataSourceInfo",
+              "responseLongType": "DataSourceInfo",
+              "responseFullType": "spaceone.api.monitoring.v1.DataSourceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/monitoring/v1/data-source/update-plugin",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "verify_plugin",
+              "description": "Verifies the plugin of a specific DataSource. This method validates the plugin data, `version` and `endpoint`.",
+              "requestType": "DataSourceRequest",
+              "requestLongType": "DataSourceRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.DataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "Empty",
+              "responseLongType": ".google.protobuf.Empty",
+              "responseFullType": "google.protobuf.Empty",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/monitoring/v1/data-source/verify-plugin",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get",
+              "description": "Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.",
+              "requestType": "DataSourceRequest",
+              "requestLongType": "DataSourceRequest",
+              "requestFullType": "spaceone.api.monitoring.v1.DataSourceRequest",
+              "requestStreaming": false,
+              "responseType": "DataSourceInfo",
+              "responseLongType": "DataSourceInfo",
+              "responseFullType": "spaceone.api.monitoring.v1.DataSourceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/monitoring/v1/data-source/get",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "list",
+              "description": "Gets a list of all DataSources. You can use a query to get a filtered list of DataSources.",
+              "requestType": "DataSourceQuery",
+              "requestLongType": "DataSourceQuery",
+              "requestFullType": "spaceone.api.monitoring.v1.DataSourceQuery",
+              "requestStreaming": false,
+              "responseType": "DataSourcesInfo",
+              "responseLongType": "DataSourcesInfo",
+              "responseFullType": "spaceone.api.monitoring.v1.DataSourcesInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/monitoring/v1/data-source/list",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "stat",
+              "description": "",
+              "requestType": "DataSourceStatQuery",
+              "requestLongType": "DataSourceStatQuery",
+              "requestFullType": "spaceone.api.monitoring.v1.DataSourceStatQuery",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/monitoring/v1/data-source/stat",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scalarValueTypes": [
+    {
+      "protoType": "double",
+      "notes": "",
+      "cppType": "double",
+      "csType": "double",
+      "goType": "float64",
+      "javaType": "double",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "float",
+      "notes": "",
+      "cppType": "float",
+      "csType": "float",
+      "goType": "float32",
+      "javaType": "float",
+      "phpType": "float",
+      "pythonType": "float",
+      "rubyType": "Float"
+    },
+    {
+      "protoType": "int32",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "int64",
+      "notes": "Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "uint32",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "uint64",
+      "notes": "Uses variable-length encoding.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint32",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sint64",
+      "notes": "Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "fixed32",
+      "notes": "Always four bytes. More efficient than uint32 if values are often greater than 2^28.",
+      "cppType": "uint32",
+      "csType": "uint",
+      "goType": "uint32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "fixed64",
+      "notes": "Always eight bytes. More efficient than uint64 if values are often greater than 2^56.",
+      "cppType": "uint64",
+      "csType": "ulong",
+      "goType": "uint64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "sfixed32",
+      "notes": "Always four bytes.",
+      "cppType": "int32",
+      "csType": "int",
+      "goType": "int32",
+      "javaType": "int",
+      "phpType": "integer",
+      "pythonType": "int",
+      "rubyType": "Bignum or Fixnum (as required)"
+    },
+    {
+      "protoType": "sfixed64",
+      "notes": "Always eight bytes.",
+      "cppType": "int64",
+      "csType": "long",
+      "goType": "int64",
+      "javaType": "long",
+      "phpType": "integer/string",
+      "pythonType": "int/long",
+      "rubyType": "Bignum"
+    },
+    {
+      "protoType": "bool",
+      "notes": "",
+      "cppType": "bool",
+      "csType": "bool",
+      "goType": "bool",
+      "javaType": "boolean",
+      "phpType": "boolean",
+      "pythonType": "boolean",
+      "rubyType": "TrueClass/FalseClass"
+    },
+    {
+      "protoType": "string",
+      "notes": "A string must always contain UTF-8 encoded or 7-bit ASCII text.",
+      "cppType": "string",
+      "csType": "string",
+      "goType": "string",
+      "javaType": "String",
+      "phpType": "string",
+      "pythonType": "str/unicode",
+      "rubyType": "String (UTF-8)"
+    },
+    {
+      "protoType": "bytes",
+      "notes": "May contain any arbitrary sequence of bytes.",
+      "cppType": "string",
+      "csType": "ByteString",
+      "goType": "[]byte",
+      "javaType": "ByteString",
+      "phpType": "string",
+      "pythonType": "str",
+      "rubyType": "String (ASCII-8BIT)"
+    }
+  ]
+}
