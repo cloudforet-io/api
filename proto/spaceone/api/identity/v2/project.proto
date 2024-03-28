@@ -13,177 +13,180 @@ import "spaceone/api/identity/v2/project_group.proto";
 
 
 service Project {
-    rpc create (CreateProjectRequest) returns (ProjectInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project/create"
-            body: "*"
-        };
-    }
-    rpc update (UpdateProjectRequest) returns (ProjectInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project/update"
-            body: "*"
-        };
-    }
+  rpc create (CreateProjectRequest) returns (ProjectInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project/create"
+      body: "*"
+    };
+  }
+  rpc update (UpdateProjectRequest) returns (ProjectInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project/update"
+      body: "*"
+    };
+  }
 
-    rpc update_project_type (UpdateProjectTypeRequest) returns (ProjectInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project/update-project-type"
-            body: "*"
-        };
-    }
-    rpc change_project_group (ChangeProjectGroupRequest) returns (ProjectInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project/change-project-group"
-            body: "*"
-        };
-    }
+  rpc update_project_type (UpdateProjectTypeRequest) returns (ProjectInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project/update-project-type"
+      body: "*"
+    };
+  }
+  rpc change_project_group (ChangeProjectGroupRequest) returns (ProjectInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project/change-project-group"
+      body: "*"
+    };
+  }
 
-    rpc delete (ProjectRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v2/project/delete"
-            body: "*"
-        };
-    }
+  rpc delete (ProjectRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/identity/v2/project/delete"
+      body: "*"
+    };
+  }
 
-    rpc add_users (UsersProjectRequest) returns (ProjectInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project/add-users"
-            body: "*"
-        };
-    }
+  rpc add_users (UsersProjectRequest) returns (ProjectInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project/add-users"
+      body: "*"
+    };
+  }
 
-    rpc remove_users (UsersProjectRequest) returns (ProjectInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project/remove-users"
-            body: "*"
-        };
-    }
+  rpc remove_users (UsersProjectRequest) returns (ProjectInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project/remove-users"
+      body: "*"
+    };
+  }
 
-    rpc add_user_groups (UserGroupsProjectRequest) returns (ProjectInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project/add-user-groups"
-            body: "*"
-        };
-    }
+  rpc add_user_groups (UserGroupsProjectRequest) returns (ProjectInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project/add-user-groups"
+      body: "*"
+    };
+  }
 
-    rpc remove_user_groups (UserGroupsProjectRequest) returns (ProjectInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project/remove-user-groups"
-            body: "*"
-        };
-    }
+  rpc remove_user_groups (UserGroupsProjectRequest) returns (ProjectInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project/remove-user-groups"
+      body: "*"
+    };
+  }
 
-    rpc get (ProjectRequest) returns (ProjectInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project/get"
-            body: "*"
-        };
-    }
+  rpc get (ProjectRequest) returns (ProjectInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project/get"
+      body: "*"
+    };
+  }
 
-    rpc list (ProjectSearchQuery) returns (ProjectsInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/project/list"
-            body: "*"
-        };
-    }
-    rpc stat (ProjectStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/identity/v2/project/stat"
-            body: "*"
-        };
-    }
+  rpc list (ProjectSearchQuery) returns (ProjectsInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/project/list"
+      body: "*"
+    };
+  }
+  rpc stat (ProjectStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/identity/v2/project/stat"
+      body: "*"
+    };
+  }
 }
 
 enum ProjectType {
-    PROJECT_TYPE_NONE = 0;
-    PRIVATE = 1;
-    PUBLIC = 2;
+  PROJECT_TYPE_NONE = 0;
+  PRIVATE = 1;
+  PUBLIC = 2;
 }
 
 message CreateProjectRequest {
-    string name = 1;
-    ProjectType project_type  = 2;
-    // +optional
-    google.protobuf.Struct tags = 3;
-    // +optional
-    string project_group_id = 4;
+  string name = 1;
+  ProjectType project_type = 2;
+  // +optional
+  google.protobuf.Struct tags = 3;
+  // +optional
+  string project_group_id = 4;
 }
 
 message UpdateProjectRequest {
-    string project_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    google.protobuf.Struct tags = 3;
+  string project_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  google.protobuf.Struct tags = 3;
 }
 
 message UpdateProjectTypeRequest {
-    string project_id = 1;
-    ProjectType project_type  = 2;
+  string project_id = 1;
+  ProjectType project_type = 2;
 }
 
 message ChangeProjectGroupRequest {
-    string project_id = 1;
-    string project_group_id = 2;
+  string project_id = 1;
+  string project_group_id = 2;
 }
 
 message ProjectRequest {
-    string project_id = 1;
+  string project_id = 1;
 }
 
 message UsersProjectRequest {
-    string project_id = 1;
-    repeated string users = 2;
+  string project_id = 1;
+  repeated string users = 2;
 }
 
 message UserGroupsProjectRequest {
-    string project_id = 1;
-    repeated string user_groups = 2;
+  string project_id = 1;
+  repeated string user_groups = 2;
 }
 
 message ProjectInfo {
-    string project_id = 1;
-    string name = 2;
-    ProjectType project_type = 3;
-    google.protobuf.Struct tags = 4;
-    repeated string users = 5;
-    repeated string user_groups = 6;
-    string created_by = 7;
-    string domain_id = 21;
-    string workspace_id = 22;
-    string project_group_id = 23;
-    string created_at = 31;
+  string project_id = 1;
+  string name = 2;
+  ProjectType project_type = 3;
+  google.protobuf.Struct tags = 4;
+  repeated string users = 5;
+  repeated string user_groups = 6;
+  string created_by = 7;
+  string reference_id = 8;
+  bool is_managed = 9;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string project_group_id = 23;
+  string created_at = 31;
+  string last_synced_at = 32;
 }
 
 message ProjectSearchQuery {
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string project_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    ProjectType project_type = 4;
-    // +optional
-    string created_by = 5;
-    // +optional
-    bool include_children = 6;
-    // +optional
-    string workspace_id = 21;
-    // +optional
-    string project_group_id = 23;
-    // +optional
-    string user_group_id = 24;
-    // +optional
-    string user_id = 25;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string project_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  ProjectType project_type = 4;
+  // +optional
+  string created_by = 5;
+  // +optional
+  bool include_children = 6;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string project_group_id = 23;
+  // +optional
+  string user_group_id = 24;
+  // +optional
+  string user_id = 25;
 }
 
 message ProjectsInfo {
-    repeated ProjectInfo results = 1;
-    int32 total_count = 2;
+  repeated ProjectInfo results = 1;
+  int32 total_count = 2;
 }
 
 message ProjectStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
