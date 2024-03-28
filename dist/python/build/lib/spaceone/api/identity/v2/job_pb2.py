@@ -18,7 +18,7 @@ from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from spaceone.api.core.v2 import query_pb2 as spaceone_dot_api_dot_core_dot_v2_dot_query__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\"spaceone/api/identity/v2/job.proto\x12\x18spaceone.api.identity.v2\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"\x1c\n\nJobRequest\x12\x0e\n\x06job_id\x18\x01 \x01(\t\"\xa8\x02\n\tJobsQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x0e\n\x06job_id\x18\x02 \x01(\t\x12=\n\x06status\x18\x03 \x01(\x0e\x32-.spaceone.api.identity.v2.JobsQuery.JobStatus\x12\x14\n\x0cworkspace_id\x18\x15 \x01(\t\x12\x1a\n\x12trusted_account_id\x18\x16 \x01(\t\x12\x11\n\tplugin_id\x18\x17 \x01(\t\"[\n\tJobStatus\x12\x08\n\x04NONE\x10\x00\x12\x0b\n\x07PENDING\x10\x01\x12\x0f\n\x0bIN_PROGRESS\x10\x02\x12\x0b\n\x07\x46\x41ILURE\x10\x03\x12\x0b\n\x07SUCCESS\x10\x04\x12\x0c\n\x08\x43\x41NCELED\x10\x05\"\xd0\x03\n\x07JobInfo\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x38\n\x06status\x18\x02 \x01(\x0e\x32(.spaceone.api.identity.v2.JobInfo.Status\x12G\n\x0eresource_group\x18\x03 \x01(\x0e\x32/.spaceone.api.identity.v2.JobInfo.ResourceGroup\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\x12\x1a\n\x12trusted_account_id\x18\x17 \x01(\t\x12\x11\n\tplugin_id\x18\x18 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\x12\x12\n\nupdated_at\x18  \x01(\t\x12\x13\n\x0b\x66inished_at\x18! \x01(\t\"X\n\x06Status\x12\x08\n\x04NONE\x10\x00\x12\x0b\n\x07PENDING\x10\x01\x12\x0f\n\x0bIN_PROGRESS\x10\x02\x12\x0b\n\x07\x46\x41ILURE\x10\x03\x12\x0b\n\x07SUCCESS\x10\x04\x12\x0c\n\x08\x43\x41NCELED\x10\x05\"C\n\rResourceGroup\x12\x17\n\x13RESOURCE_GROUP_NONE\x10\x00\x12\n\n\x06\x44OMAIN\x10\x01\x12\r\n\tWORKSPACE\x10\x02\"S\n\x08JobsInfo\x12\x32\n\x07results\x18\x01 \x03(\x0b\x32!.spaceone.api.identity.v2.JobInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"D\n\x0cJobStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v2.StatisticsQuery2\xc0\x03\n\x03Job\x12j\n\x06\x64\x65lete\x12$.spaceone.api.identity.v2.JobRequest\x1a\x16.google.protobuf.Empty\"\"\x82\xd3\xe4\x93\x02\x1c\"\x17/identity/v2/job/delete:\x01*\x12o\n\x03get\x12$.spaceone.api.identity.v2.JobRequest\x1a!.spaceone.api.identity.v2.JobInfo\"\x1f\x82\xd3\xe4\x93\x02\x19\"\x14/identity/v2/job/get:\x01*\x12q\n\x04list\x12#.spaceone.api.identity.v2.JobsQuery\x1a\".spaceone.api.identity.v2.JobsInfo\" \x82\xd3\xe4\x93\x02\x1a\"\x15/identity/v2/job/list:\x01*\x12i\n\x04stat\x12&.spaceone.api.identity.v2.JobStatQuery\x1a\x17.google.protobuf.Struct\" \x82\xd3\xe4\x93\x02\x1a\"\x15/identity/v2/job/stat:\x01*B?Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\"spaceone/api/identity/v2/job.proto\x12\x18spaceone.api.identity.v2\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"\x1c\n\nJobRequest\x12\x0e\n\x06job_id\x18\x01 \x01(\t\"\xa8\x02\n\tJobsQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x0e\n\x06job_id\x18\x02 \x01(\t\x12=\n\x06status\x18\x03 \x01(\x0e\x32-.spaceone.api.identity.v2.JobsQuery.JobStatus\x12\x14\n\x0cworkspace_id\x18\x15 \x01(\t\x12\x1a\n\x12trusted_account_id\x18\x16 \x01(\t\x12\x11\n\tplugin_id\x18\x17 \x01(\t\"[\n\tJobStatus\x12\x08\n\x04NONE\x10\x00\x12\x0b\n\x07PENDING\x10\x01\x12\x0f\n\x0bIN_PROGRESS\x10\x02\x12\x0b\n\x07\x46\x41ILURE\x10\x03\x12\x0b\n\x07SUCCESS\x10\x04\x12\x0c\n\x08\x43\x41NCELED\x10\x05\"\xe7\x03\n\x07JobInfo\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x38\n\x06status\x18\x02 \x01(\x0e\x32(.spaceone.api.identity.v2.JobInfo.Status\x12G\n\x0eresource_group\x18\x03 \x01(\x0e\x32/.spaceone.api.identity.v2.JobInfo.ResourceGroup\x12\x15\n\rerror_message\x18\x04 \x01(\t\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\x12\x1a\n\x12trusted_account_id\x18\x17 \x01(\t\x12\x11\n\tplugin_id\x18\x18 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\x12\x12\n\nupdated_at\x18  \x01(\t\x12\x13\n\x0b\x66inished_at\x18! \x01(\t\"X\n\x06Status\x12\x08\n\x04NONE\x10\x00\x12\x0b\n\x07PENDING\x10\x01\x12\x0f\n\x0bIN_PROGRESS\x10\x02\x12\x0b\n\x07\x46\x41ILURE\x10\x03\x12\x0b\n\x07SUCCESS\x10\x04\x12\x0c\n\x08\x43\x41NCELED\x10\x05\"C\n\rResourceGroup\x12\x17\n\x13RESOURCE_GROUP_NONE\x10\x00\x12\n\n\x06\x44OMAIN\x10\x01\x12\r\n\tWORKSPACE\x10\x02\"S\n\x08JobsInfo\x12\x32\n\x07results\x18\x01 \x03(\x0b\x32!.spaceone.api.identity.v2.JobInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"D\n\x0cJobStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v2.StatisticsQuery2\xc0\x03\n\x03Job\x12j\n\x06\x64\x65lete\x12$.spaceone.api.identity.v2.JobRequest\x1a\x16.google.protobuf.Empty\"\"\x82\xd3\xe4\x93\x02\x1c\"\x17/identity/v2/job/delete:\x01*\x12o\n\x03get\x12$.spaceone.api.identity.v2.JobRequest\x1a!.spaceone.api.identity.v2.JobInfo\"\x1f\x82\xd3\xe4\x93\x02\x19\"\x14/identity/v2/job/get:\x01*\x12q\n\x04list\x12#.spaceone.api.identity.v2.JobsQuery\x1a\".spaceone.api.identity.v2.JobsInfo\" \x82\xd3\xe4\x93\x02\x1a\"\x15/identity/v2/job/list:\x01*\x12i\n\x04stat\x12&.spaceone.api.identity.v2.JobStatQuery\x1a\x17.google.protobuf.Struct\" \x82\xd3\xe4\x93\x02\x1a\"\x15/identity/v2/job/stat:\x01*B?Z=github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -41,15 +41,15 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_JOBSQUERY_JOBSTATUS']._serialized_start=423
   _globals['_JOBSQUERY_JOBSTATUS']._serialized_end=514
   _globals['_JOBINFO']._serialized_start=517
-  _globals['_JOBINFO']._serialized_end=981
-  _globals['_JOBINFO_STATUS']._serialized_start=824
-  _globals['_JOBINFO_STATUS']._serialized_end=912
-  _globals['_JOBINFO_RESOURCEGROUP']._serialized_start=914
-  _globals['_JOBINFO_RESOURCEGROUP']._serialized_end=981
-  _globals['_JOBSINFO']._serialized_start=983
-  _globals['_JOBSINFO']._serialized_end=1066
-  _globals['_JOBSTATQUERY']._serialized_start=1068
-  _globals['_JOBSTATQUERY']._serialized_end=1136
-  _globals['_JOB']._serialized_start=1139
-  _globals['_JOB']._serialized_end=1587
+  _globals['_JOBINFO']._serialized_end=1004
+  _globals['_JOBINFO_STATUS']._serialized_start=847
+  _globals['_JOBINFO_STATUS']._serialized_end=935
+  _globals['_JOBINFO_RESOURCEGROUP']._serialized_start=937
+  _globals['_JOBINFO_RESOURCEGROUP']._serialized_end=1004
+  _globals['_JOBSINFO']._serialized_start=1006
+  _globals['_JOBSINFO']._serialized_end=1089
+  _globals['_JOBSTATQUERY']._serialized_start=1091
+  _globals['_JOBSTATQUERY']._serialized_end=1159
+  _globals['_JOB']._serialized_start=1162
+  _globals['_JOB']._serialized_end=1610
 # @@protoc_insertion_point(module_scope)
