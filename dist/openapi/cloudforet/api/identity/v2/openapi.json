@@ -3902,9 +3902,9 @@
                 "title": "WorkspaceCheckRequest"
            }
            ,        "WorkspaceInfo": {
-         "properties" : {"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synced_at" : {"type": "string","title": "LAST_SYNCED_AT"}},
          "type": "object",
-         "required": ["workspace_id","name","state","tags","created_by","domain_id","created_at"],
+         "required": ["workspace_id","name","state","tags","created_by","reference_id","is_managed","domain_id","created_at","last_synced_at"],
                 "title": "WorkspaceInfo"
            }
            ,        "WorkspaceRequest": {
@@ -4344,9 +4344,9 @@
            ,        "ProjectInfo": {
          "properties" : {"project_id" : {"type": "string","title": "PROJECT_ID"},"name" : {"type": "string","title": "NAME"},"project_type" : {"type": "string","title": "PROJECT_TYPE"},"tags" : {"type": "object","title": "TAGS"},"users" : {"items": {"type": "string"},
                "type": "array","title": "USERS"},"user_groups" : {"items": {"type": "string"},
-               "type": "array","title": "USER_GROUPS"},"created_by" : {"type": "string","title": "CREATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+               "type": "array","title": "USER_GROUPS"},"created_by" : {"type": "string","title": "CREATED_BY"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synced_at" : {"type": "string","title": "LAST_SYNCED_AT"}},
          "type": "object",
-         "required": ["project_id","name","project_type","tags","users","user_groups","created_by","domain_id","workspace_id","project_group_id","created_at"],
+         "required": ["project_id","name","project_type","tags","users","user_groups","created_by","reference_id","is_managed","domain_id","workspace_id","project_group_id","created_at","last_synced_at"],
                 "title": "ProjectInfo"
            }
            ,        "ProjectRequest": {
@@ -4499,9 +4499,9 @@
                 "title": "CreateServiceAccountRequest"
            }
            ,        "ServiceAccountInfo": {
-         "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"app_id" : {"type": "string","title": "APP_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"app_id" : {"type": "string","title": "APP_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synced_at" : {"type": "string","title": "LAST_SYNCED_AT"}},
          "type": "object",
-         "required": ["service_account_id","name","data","provider","options","tags","domain_id","workspace_id","project_id","trusted_account_id","secret_schema_id","secret_id","app_id","created_at"],
+         "required": ["service_account_id","name","data","provider","options","tags","reference_id","is_managed","domain_id","workspace_id","project_id","trusted_account_id","secret_schema_id","secret_id","app_id","created_at","last_synced_at"],
                 "title": "ServiceAccountInfo"
            }
            ,        "ServiceAccountRequest": {
@@ -4835,9 +4835,9 @@
            }
            ,        "ProjectGroupInfo": {
          "properties" : {"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"users" : {"items": {"type": "string"},
-               "type": "array","title": "USERS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"parent_group_id" : {"type": "string","title": "PARENT_GROUP_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+               "type": "array","title": "USERS"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"parent_group_id" : {"type": "string","title": "PARENT_GROUP_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synced_at" : {"type": "string","title": "LAST_SYNCED_AT"}},
          "type": "object",
-         "required": ["project_group_id","name","tags","users","domain_id","workspace_id","parent_group_id","created_at"],
+         "required": ["project_group_id","name","tags","users","reference_id","is_managed","domain_id","workspace_id","parent_group_id","created_at","last_synced_at"],
                 "title": "ProjectGroupInfo"
            }
            ,        "ProjectGroupRequest": {
