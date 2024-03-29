@@ -11,119 +11,122 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service Workspace {
-    rpc create (CreateWorkSpaceRequest) returns (WorkspaceInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/workspace/create"
-            body: "*"
-        };
-    }
+  rpc create (CreateWorkSpaceRequest) returns (WorkspaceInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace/create"
+      body: "*"
+    };
+  }
 
-    rpc update (UpdateWorkSpaceRequest) returns (WorkspaceInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/workspace/update"
-            body: "*"
-        };
-    }
+  rpc update (UpdateWorkSpaceRequest) returns (WorkspaceInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace/update"
+      body: "*"
+    };
+  }
 
-    rpc delete (WorkspaceRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v2/workspace/delete"
-            body: "*"
-        };
-    }
+  rpc delete (WorkspaceRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace/delete"
+      body: "*"
+    };
+  }
 
-    rpc enable (WorkspaceRequest) returns (WorkspaceInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/workspace/enable"
-            body: "*"
-        };
-    }
+  rpc enable (WorkspaceRequest) returns (WorkspaceInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace/enable"
+      body: "*"
+    };
+  }
 
-    rpc disable (WorkspaceRequest) returns (WorkspaceInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/workspace/disable"
-            body: "*"
-        };
-    }
+  rpc disable (WorkspaceRequest) returns (WorkspaceInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace/disable"
+      body: "*"
+    };
+  }
 
-    rpc get (WorkspaceRequest) returns (WorkspaceInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/workspace/get"
-            body: "*"
-        };
-    }
+  rpc get (WorkspaceRequest) returns (WorkspaceInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace/get"
+      body: "*"
+    };
+  }
 
-    rpc check (WorkspaceCheckRequest) returns (google.protobuf.Empty) {}
+  rpc check (WorkspaceCheckRequest) returns (google.protobuf.Empty) {}
 
-    rpc list (WorkspaceSearchQuery) returns (WorkspacesInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/workspace/list"
-            body: "*"
-        };
-    }
+  rpc list (WorkspaceSearchQuery) returns (WorkspacesInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace/list"
+      body: "*"
+    };
+  }
 
-    rpc stat (WorkspaceStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/identity/v2/workspace/stat"
-            body: "*"
-        };
-    }
+  rpc stat (WorkspaceStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace/stat"
+      body: "*"
+    };
+  }
 }
 
 
 message CreateWorkSpaceRequest {
-    string name = 1;
-    google.protobuf.Struct tags = 2;
+  string name = 1;
+  google.protobuf.Struct tags = 2;
 }
 
 message UpdateWorkSpaceRequest {
-    string workspace_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    google.protobuf.Struct tags = 3;
+  string workspace_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  google.protobuf.Struct tags = 3;
 }
 
 message WorkspaceRequest {
-    string workspace_id = 1;
+  string workspace_id = 1;
 }
 
 message WorkspaceCheckRequest {
-    string workspace_id = 1;
-    string domain_id = 21;
+  string workspace_id = 1;
+  string domain_id = 21;
 }
 
 message WorkspaceInfo {
-    enum State {
-        NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-    }
-    string workspace_id = 1;
-    string name = 2;
-    State state = 3;
-    google.protobuf.Struct tags = 4;
-    string created_by = 5;
-    string domain_id = 21;
-    string created_at = 31;
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
+  string workspace_id = 1;
+  string name = 2;
+  State state = 3;
+  google.protobuf.Struct tags = 4;
+  string created_by = 5;
+  string reference_id = 6;
+  bool is_managed = 7;
+  string domain_id = 21;
+  string created_at = 31;
+  string last_synced_at = 32;
 }
 
 message WorkspaceSearchQuery {
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string workspace_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    string created_by = 4;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string workspace_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  string created_by = 4;
 }
 
 message WorkspacesInfo {
-    repeated WorkspaceInfo results = 1;
-    int32 total_count = 2;
+  repeated WorkspaceInfo results = 1;
+  int32 total_count = 2;
 }
 
 message WorkspaceStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
