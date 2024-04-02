@@ -791,9 +791,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspacesInfo"},
+                 "schema": {"$ref": "#/components/schemas/MyWorkspacesInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspacesInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/MyWorkspacesInfo"}}
                }
              }}
          }
@@ -4236,6 +4236,19 @@
          "type": "object",
          "required": ["mfa_type","options"],
                 "title": "EnableMFARequest"
+           }
+           ,        "MyWorkspaceInfo": {
+         "properties" : {"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synced_at" : {"type": "string","title": "LAST_SYNCED_AT"}},
+         "type": "object",
+         "required": ["workspace_id","name","state","role_type","tags","created_by","reference_id","is_managed","domain_id","role_id","created_at","last_synced_at"],
+                "title": "MyWorkspaceInfo"
+           }
+           ,        "MyWorkspacesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/MyWorkspaceInfo"},
+               "type": "array","$ref": "#/components/schemas/MyWorkspaceInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "MyWorkspacesInfo"
            }
            ,        "UpdateUserProfileRequest": {
          "properties" : {"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"}},

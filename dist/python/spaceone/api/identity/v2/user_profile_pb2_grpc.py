@@ -5,7 +5,6 @@ import grpc
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from spaceone.api.identity.v2 import user_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2
 from spaceone.api.identity.v2 import user_profile_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2
-from spaceone.api.identity.v2 import workspace_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2
 
 
 class UserProfileStub(object):
@@ -60,7 +59,7 @@ class UserProfileStub(object):
         self.get_workspaces = channel.unary_unary(
                 '/spaceone.api.identity.v2.UserProfile/get_workspaces',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UserProfileRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacesInfo.FromString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.MyWorkspacesInfo.FromString,
                 )
 
 
@@ -171,7 +170,7 @@ def add_UserProfileServicer_to_server(servicer, server):
             'get_workspaces': grpc.unary_unary_rpc_method_handler(
                     servicer.get_workspaces,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UserProfileRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacesInfo.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.MyWorkspacesInfo.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -332,6 +331,6 @@ class UserProfile(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.UserProfile/get_workspaces',
             spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UserProfileRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacesInfo.FromString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.MyWorkspacesInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

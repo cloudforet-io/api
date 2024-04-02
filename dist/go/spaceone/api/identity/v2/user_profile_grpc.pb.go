@@ -47,7 +47,7 @@ type UserProfileClient interface {
 	// Confirm MFA for user by given verify_code which is sent by your authentication method.
 	ConfirmMfa(ctx context.Context, in *ConfirmMFARequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Get(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*UserInfo, error)
-	GetWorkspaces(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*WorkspacesInfo, error)
+	GetWorkspaces(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*MyWorkspacesInfo, error)
 }
 
 type userProfileClient struct {
@@ -130,8 +130,8 @@ func (c *userProfileClient) Get(ctx context.Context, in *UserProfileRequest, opt
 	return out, nil
 }
 
-func (c *userProfileClient) GetWorkspaces(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*WorkspacesInfo, error) {
-	out := new(WorkspacesInfo)
+func (c *userProfileClient) GetWorkspaces(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*MyWorkspacesInfo, error) {
+	out := new(MyWorkspacesInfo)
 	err := c.cc.Invoke(ctx, UserProfile_GetWorkspaces_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -155,7 +155,7 @@ type UserProfileServer interface {
 	// Confirm MFA for user by given verify_code which is sent by your authentication method.
 	ConfirmMfa(context.Context, *ConfirmMFARequest) (*UserInfo, error)
 	Get(context.Context, *UserProfileRequest) (*UserInfo, error)
-	GetWorkspaces(context.Context, *UserProfileRequest) (*WorkspacesInfo, error)
+	GetWorkspaces(context.Context, *UserProfileRequest) (*MyWorkspacesInfo, error)
 	mustEmbedUnimplementedUserProfileServer()
 }
 
@@ -187,7 +187,7 @@ func (UnimplementedUserProfileServer) ConfirmMfa(context.Context, *ConfirmMFAReq
 func (UnimplementedUserProfileServer) Get(context.Context, *UserProfileRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedUserProfileServer) GetWorkspaces(context.Context, *UserProfileRequest) (*WorkspacesInfo, error) {
+func (UnimplementedUserProfileServer) GetWorkspaces(context.Context, *UserProfileRequest) (*MyWorkspacesInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWorkspaces not implemented")
 }
 func (UnimplementedUserProfileServer) mustEmbedUnimplementedUserProfileServer() {}
