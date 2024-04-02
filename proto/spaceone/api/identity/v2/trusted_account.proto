@@ -104,8 +104,10 @@ message CreateTrustedAccountRequest {
   Scheduled schedule = 6;
   //+optional
   google.protobuf.Struct sync_options = 7;
+  //+optional
+  google.protobuf.Struct plugin_options = 8;
   // +optional
-  google.protobuf.Struct tags = 8;
+  google.protobuf.Struct tags = 9;
   ResourceGroup resource_group = 20;
   // +optional
   string workspace_id = 21;
@@ -122,7 +124,8 @@ message UpdateTrustedAccountRequest {
   // +optional
   google.protobuf.Struct sync_options = 5;
   // +optional
-  google.protobuf.Struct tags = 6;
+  google.protobuf.Struct plugin_options = 6;
+  google.protobuf.Struct tags = 7;
 }
 
 message UpdateTrustedAccountSecretRequest {
@@ -149,7 +152,8 @@ message TrustedAccountInfo {
   string provider = 4;
   Scheduled schedule = 5;
   google.protobuf.Struct sync_options = 6;
-  google.protobuf.Struct tags = 7;
+  google.protobuf.Struct plugin_options = 7;
+  google.protobuf.Struct tags = 8;
   ResourceGroup resource_group = 20;
   string domain_id = 21;
   string workspace_id = 22;
