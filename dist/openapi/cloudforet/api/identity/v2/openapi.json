@@ -328,11 +328,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data|Base Information of Trusted Account. It depends on provider.|Struct|True|\n |provider||string|True|\n |secret_schema_id||string|True|\n |secret_data||Struct|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |schedule||Scheduled||\n |sync_options||Struct||\n |tags||Struct||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data|Base Information of Trusted Account. It depends on provider.|Struct|True|\n |provider||string|True|\n |secret_schema_id||string|True|\n |secret_data||Struct|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |schedule||Scheduled||\n |sync_options||Struct||\n |plugin_options||Struct||\n |tags||Struct||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"provider" : {"type": "string","title": "PROVIDER" },"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID" },"secret_data" : {"type": "object","title": "SECRET_DATA" },"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE" },"sync_options" : {"type": "object","title": "SYNC_OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"provider" : {"type": "string","title": "PROVIDER" },"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID" },"secret_data" : {"type": "object","title": "SECRET_DATA" },"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE" },"sync_options" : {"type": "object","title": "SYNC_OPTIONS" },"plugin_options" : {"type": "object","title": "PLUGIN_OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n \"name\": \"Trusted Account\",\n \"data\": {\n   \"account_id\": \"123456789\",\n  }\n \"provider\": \"aws\",\n \"secret_schema_id\": \"aws-secret-access-key\",\n \"schedule\": {\n   \"state\": \"ENABLED\",\n   \"hours\": [3, 15]\n },\n \"resource_group\": \"DOMAIN\",\n \"workspace_id\": \"*\"\n}"},"Schema":{}
                }
@@ -357,11 +357,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |trusted_account_id||string|True|\n |name||string||\n |data||Struct||\n |schedule||Scheduled||\n |sync_options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |trusted_account_id||string|True|\n |tags||Struct|True|\n |name||string||\n |data||Struct||\n |schedule||Scheduled||\n |sync_options||Struct||\n |plugin_options||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE" },"sync_options" : {"type": "object","title": "SYNC_OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID" },"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE" },"sync_options" : {"type": "object","title": "SYNC_OPTIONS" },"plugin_options" : {"type": "object","title": "PLUGIN_OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -4158,7 +4158,7 @@
                 "title": "SetExternalAuthRequest"
            }
            ,        "CreateTrustedAccountRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_data" : {"type": "object","title": "SECRET_DATA"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"sync_options" : {"type": "object","title": "SYNC_OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_data" : {"type": "object","title": "SECRET_DATA"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"sync_options" : {"type": "object","title": "SYNC_OPTIONS"},"plugin_options" : {"type": "object","title": "PLUGIN_OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": ["name","data","provider","secret_schema_id","secret_data","resource_group"],
                 "title": "CreateTrustedAccountRequest"
@@ -4171,9 +4171,9 @@
                 "title": "Scheduled"
            }
            ,        "TrustedAccountInfo": {
-         "properties" : {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"sync_options" : {"type": "object","title": "SYNC_OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"trusted_secret_id" : {"type": "string","title": "TRUSTED_SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"sync_options" : {"type": "object","title": "SYNC_OPTIONS"},"plugin_options" : {"type": "object","title": "PLUGIN_OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"trusted_secret_id" : {"type": "string","title": "TRUSTED_SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["trusted_account_id","name","data","provider","schedule","sync_options","tags","resource_group","domain_id","workspace_id","secret_schema_id","trusted_secret_id","created_at"],
+         "required": ["trusted_account_id","name","data","provider","schedule","sync_options","plugin_options","tags","resource_group","domain_id","workspace_id","secret_schema_id","trusted_secret_id","created_at"],
                 "title": "TrustedAccountInfo"
            }
            ,        "TrustedAccountRequest": {
@@ -4202,9 +4202,9 @@
                 "title": "TrustedAccountsInfo"
            }
            ,        "UpdateTrustedAccountRequest": {
-         "properties" : {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"sync_options" : {"type": "object","title": "SYNC_OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"sync_options" : {"type": "object","title": "SYNC_OPTIONS"},"plugin_options" : {"type": "object","title": "PLUGIN_OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["trusted_account_id"],
+         "required": ["trusted_account_id","tags"],
                 "title": "UpdateTrustedAccountRequest"
            }
            ,        "UpdateTrustedAccountSecretRequest": {
@@ -4624,9 +4624,9 @@
                 "title": "VerifyUserEmailRequest"
            }
            ,        "JobInfo": {
-         "properties" : {"job_id" : {"type": "string","title": "JOB_ID"},"status" : {"type": "string","title": "STATUS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"error_message" : {"type": "string","title": "ERROR_MESSAGE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"finished_at" : {"type": "string","title": "FINISHED_AT"}},
+         "properties" : {"job_id" : {"type": "string","title": "JOB_ID"},"status" : {"type": "string","title": "STATUS"},"options" : {"type": "object","title": "OPTIONS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"error_message" : {"type": "string","title": "ERROR_MESSAGE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"finished_at" : {"type": "string","title": "FINISHED_AT"}},
          "type": "object",
-         "required": ["job_id","status","resource_group","error_message","domain_id","workspace_id","trusted_account_id","plugin_id","created_at","updated_at","finished_at"],
+         "required": ["job_id","status","options","resource_group","error_message","domain_id","workspace_id","trusted_account_id","plugin_id","created_at","updated_at","finished_at"],
                 "title": "JobInfo"
            }
            ,        "JobRequest": {
@@ -4724,9 +4724,9 @@
                 "title": "CreateProviderRequest"
            }
            ,        "PluginInfo": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"},"options" : {"type": "object","title": "OPTIONS"}},
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"},"options" : {"type": "object","title": "OPTIONS"},"metadata" : {"type": "object","title": "METADATA"}},
          "type": "object",
-         "required": ["plugin_id","version","upgrade_mode","options"],
+         "required": ["plugin_id","version","upgrade_mode","options","metadata"],
                 "title": "PluginInfo"
            }
            ,        "ProviderInfo": {
