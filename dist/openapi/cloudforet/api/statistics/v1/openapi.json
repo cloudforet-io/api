@@ -8,7 +8,88 @@
      "title": "Statistics API",
      "version": "3.1.0"
    },
-   "paths":{"/statistics/schedule/add": {
+   "paths":{"/statistics/history/create": {
+       "post": {
+         "tags": ["statistics > history"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \nCreates a new History. Gets a Schedule as an input and creates a History as an output. You can use this method to manually run a specific Schedule.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schedule_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"schedule_id" : {"type": "string","title": "SCHEDULE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/statistics/history/list": {
+       "post": {
+         "tags": ["statistics > history"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Histories. You can use a query to get a filtered list of Histories.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |topic||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/HistoryInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/HistoryInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/statistics/history/stat": {
+       "post": {
+         "tags": ["statistics > history"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |topic||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/statistics/schedule/add": {
        "post": {
          "tags": ["statistics > schedule"],
          "summary": "Add",
@@ -263,147 +344,72 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/history/create": {
-       "post": {
-         "tags": ["statistics > history"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new History. Gets a Schedule as an input and creates a History as an output. You can use this method to manually run a specific Schedule.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schedule_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"schedule_id" : {"type": "string","title": "SCHEDULE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/history/list": {
-       "post": {
-         "tags": ["statistics > history"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all Histories. You can use a query to get a filtered list of Histories.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |topic||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/HistoryInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/HistoryInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/history/stat": {
-       "post": {
-         "tags": ["statistics > history"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |topic||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
      "schemas": {
-     "AddScheduleRequest": {
-         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["topic","options","schedule"],
-                "title": "AddScheduleRequest"
-           }
-           ,        "QueryOption": {
-         "properties" : {"aggregate" : {"$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"}},
-         "type": "object",
-         "required": ["aggregate"],
-                "title": "QueryOption"
-           }
-           ,        "ScheduleInfo": {
-         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"topic" : {"type": "string","title": "TOPIC"},"state" : {"type": "string","title": "STATE"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_scheduled_at" : {"type": "string","title": "LAST_SCHEDULED_AT"}},
-         "type": "object",
-         "required": ["schedule_id","topic","state","options","schedule","tags","domain_id","created_at","last_scheduled_at"],
-                "title": "ScheduleInfo"
-           }
-           ,        "ScheduleQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"topic" : {"type": "string","title": "TOPIC"},"state" : {"type": "string","title": "STATE"}},
-         "type": "object",
-         "required": [],
-                "title": "ScheduleQuery"
-           }
-           ,        "ScheduleRequest": {
+     "CreateHistoryRequest": {
          "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"}},
          "type": "object",
          "required": ["schedule_id"],
-                "title": "ScheduleRequest"
+                "title": "CreateHistoryRequest"
            }
-           ,        "ScheduleStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "ScheduleStatQuery"
-           }
-           ,        "Scheduled": {
-         "properties" : {"cron" : {"type": "string","title": "CRON"},"interval" : {"type": "integer","title": "INTERVAL"},"minutes" : {"items": {"type": "integer"},
-               "type": "array","title": "MINUTES"},"hours" : {"items": {"type": "integer"},
-               "type": "array","title": "HOURS"}},
-         "type": "object",
-         "required": ["cron","interval","minutes","hours"],
-                "title": "Scheduled"
-           }
-           ,        "SchedulesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ScheduleInfo"},
-               "type": "array","$ref": "#/components/schemas/ScheduleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "HistoryInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/HistoryValueInfo"},
+               "type": "array","$ref": "#/components/schemas/HistoryValueInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "SchedulesInfo"
+                "title": "HistoryInfo"
            }
-           ,        "UpdateScheduleRequest": {
-         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "HistoryStatRequest": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
          "type": "object",
-         "required": ["schedule_id"],
-                "title": "UpdateScheduleRequest"
+         "required": ["query"],
+                "title": "HistoryStatRequest"
+           }
+           ,        "HistoryValueInfo": {
+         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"values" : {"type": "object","title": "VALUES"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["topic","values","domain_id","created_at"],
+                "title": "HistoryValueInfo"
+           }
+           ,        "QueryHistoryRequest": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
+         "type": "object",
+         "required": [],
+                "title": "QueryHistoryRequest"
+           }
+           ,        "AuthenticationRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["domain_id"],
+                "title": "AuthenticationRequest"
+           }
+           ,        "AuthenticationResponse": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
+         "type": "object",
+         "required": ["domain_id","public_key"],
+                "title": "AuthenticationResponse"
+           }
+           ,        "AuthorizationRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
+         "type": "object",
+         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
+                "title": "AuthorizationRequest"
+           }
+           ,        "AuthorizationResponse": {
+         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_GROUPS"}},
+         "type": "object",
+         "required": ["role_type","projects","project_groups"],
+                "title": "AuthorizationResponse"
+           }
+           ,        "EventRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
+         "type": "object",
+         "required": ["service","resource","verb","status","message"],
+                "title": "EventRequest"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -580,37 +586,62 @@
          "required": ["version"],
                 "title": "VersionInfo"
            }
-           ,        "AuthenticationRequest": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "AddScheduleRequest": {
+         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["domain_id"],
-                "title": "AuthenticationRequest"
+         "required": ["topic","options","schedule"],
+                "title": "AddScheduleRequest"
            }
-           ,        "AuthenticationResponse": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
+           ,        "QueryOption": {
+         "properties" : {"aggregate" : {"$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"}},
          "type": "object",
-         "required": ["domain_id","public_key"],
-                "title": "AuthenticationResponse"
+         "required": ["aggregate"],
+                "title": "QueryOption"
            }
-           ,        "AuthorizationRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
+           ,        "ScheduleInfo": {
+         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"topic" : {"type": "string","title": "TOPIC"},"state" : {"type": "string","title": "STATE"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_scheduled_at" : {"type": "string","title": "LAST_SCHEDULED_AT"}},
          "type": "object",
-         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
-                "title": "AuthorizationRequest"
+         "required": ["schedule_id","topic","state","options","schedule","tags","domain_id","created_at","last_scheduled_at"],
+                "title": "ScheduleInfo"
            }
-           ,        "AuthorizationResponse": {
-         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECT_GROUPS"}},
+           ,        "ScheduleQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"topic" : {"type": "string","title": "TOPIC"},"state" : {"type": "string","title": "STATE"}},
          "type": "object",
-         "required": ["role_type","projects","project_groups"],
-                "title": "AuthorizationResponse"
+         "required": [],
+                "title": "ScheduleQuery"
            }
-           ,        "EventRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
+           ,        "ScheduleRequest": {
+         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"}},
          "type": "object",
-         "required": ["service","resource","verb","status","message"],
-                "title": "EventRequest"
+         "required": ["schedule_id"],
+                "title": "ScheduleRequest"
+           }
+           ,        "ScheduleStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "ScheduleStatQuery"
+           }
+           ,        "Scheduled": {
+         "properties" : {"cron" : {"type": "string","title": "CRON"},"interval" : {"type": "integer","title": "INTERVAL"},"minutes" : {"items": {"type": "integer"},
+               "type": "array","title": "MINUTES"},"hours" : {"items": {"type": "integer"},
+               "type": "array","title": "HOURS"}},
+         "type": "object",
+         "required": ["cron","interval","minutes","hours"],
+                "title": "Scheduled"
+           }
+           ,        "SchedulesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ScheduleInfo"},
+               "type": "array","$ref": "#/components/schemas/ScheduleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "SchedulesInfo"
+           }
+           ,        "UpdateScheduleRequest": {
+         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["schedule_id"],
+                "title": "UpdateScheduleRequest"
            }
            ,        "ResourceStatRequest": {
          "properties" : {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"},
@@ -661,37 +692,6 @@
          "type": "object",
          "required": ["limit"],
                 "title": "StatPage"
-           }
-           ,        "CreateHistoryRequest": {
-         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"}},
-         "type": "object",
-         "required": ["schedule_id"],
-                "title": "CreateHistoryRequest"
-           }
-           ,        "HistoryInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/HistoryValueInfo"},
-               "type": "array","$ref": "#/components/schemas/HistoryValueInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "HistoryInfo"
-           }
-           ,        "HistoryStatRequest": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "HistoryStatRequest"
-           }
-           ,        "HistoryValueInfo": {
-         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"values" : {"type": "object","title": "VALUES"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["topic","values","domain_id","created_at"],
-                "title": "HistoryValueInfo"
-           }
-           ,        "QueryHistoryRequest": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
-         "type": "object",
-         "required": [],
-                "title": "QueryHistoryRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
