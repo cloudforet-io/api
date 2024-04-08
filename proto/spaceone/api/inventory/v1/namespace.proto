@@ -57,12 +57,14 @@ service Namespace {
 //
 //}
 message CreateNamespaceRequest {
-    string name = 1;
-    string category = 2;
     // +optional
-    string provider = 3;
+    string namespace_id = 1;
+    string name = 2;
+    string category = 3;
     // +optional
-    google.protobuf.Struct tags = 4;
+    string provider = 4;
+    // +optional
+    google.protobuf.Struct tags = 5;
 }
 
 //{
@@ -115,7 +117,6 @@ message NamespaceInfo {
     bool is_managed = 6;
 
     string domain_id = 21;
-    string workspace_id = 22;
 
     string created_at = 31;
     string updated_at = 32;

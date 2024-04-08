@@ -63,15 +63,17 @@ enum MetricType {
 //
 //}
 message CreateMetricRequest {
-    string name = 1;
-    MetricType metric_type = 2;
-    string resource_type = 3;
-    spaceone.api.core.v2.AnalyzeQuery query_options = 4;
     // +optional
-    string unit = 5;
+    string metric_id = 1;
+    string name = 2;
+    MetricType metric_type = 3;
+    string resource_type = 4;
+    spaceone.api.core.v2.AnalyzeQuery query_options = 5;
     // +optional
-    google.protobuf.Struct tags = 6;
-    string namespace_id = 7;
+    string unit = 6;
+    // +optional
+    google.protobuf.Struct tags = 7;
+    string namespace_id = 8;
 }
 
 //{
@@ -134,8 +136,7 @@ message MetricInfo {
     bool is_managed = 10;
 
     string domain_id = 21;
-    string workspace_id = 22;
-    string namespace_id = 23;
+    string namespace_id = 22;
 
     string created_at = 31;
     string updated_at = 32;
