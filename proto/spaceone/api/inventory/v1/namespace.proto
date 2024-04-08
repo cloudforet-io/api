@@ -1,0 +1,131 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v1";
+
+service Namespace {
+    rpc create (CreateNamespaceRequest) returns (NamespaceInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v1/namespace/create"
+            body: "*"
+        };
+    }
+
+    rpc update (UpdateNamespaceRequest) returns (NamespaceInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v1/namespace/update"
+            body: "*"
+        };
+    }
+
+    rpc delete (NamespaceRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/inventory/v1/namespace/delete"
+            body: "*"
+        };
+    }
+
+    rpc get (NamespaceRequest) returns (NamespaceInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v1/namespace/get"
+            body: "*"
+        };
+    }
+
+    rpc list (NamespaceQuery) returns (NamespacesInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v1/namespace/list"
+            body: "*"
+        };
+    }
+
+    rpc stat (NamespaceStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/inventory/v1/namespace/stat"
+            body: "*"
+        };
+    }
+}
+
+//{
+//
+//}
+message CreateNamespaceRequest {
+    string name = 1;
+    string category = 2;
+    // +optional
+    string provider = 3;
+    // +optional
+    google.protobuf.Struct tags = 4;
+}
+
+//{
+//
+//}
+message UpdateNamespaceRequest {
+    string namespace_id = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    string category = 3;
+    // +optional
+    google.protobuf.Struct tags = 4;
+}
+
+//{
+//
+//}
+message NamespaceRequest {
+    string namespace_id = 1;
+}
+
+//{
+//
+//}
+message NamespaceQuery {
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string namespace_id = 2;
+    // +optional
+    string category = 3;
+    // +optional
+    string provider = 4;
+    // +optional
+    string is_managed = 5;
+    // +optional
+    string workspace_id = 21;
+}
+
+//{
+//
+//}
+message NamespaceInfo {
+    string namespace_id = 1;
+    string name = 2;
+    string category = 3;
+    string provider = 4;
+    google.protobuf.Struct tags = 5;
+    bool is_managed = 6;
+
+    string domain_id = 21;
+    string workspace_id = 22;
+
+    string created_at = 31;
+    string updated_at = 32;
+}
+
+message NamespacesInfo {
+    repeated NamespaceInfo results = 1;
+    int32 total_count = 2;
+}
+
+message NamespaceStatQuery {
+    spaceone.api.core.v2.StatisticsQuery query = 1;
+}
