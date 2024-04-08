@@ -385,6 +385,180 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric/create": {
+       "post": {
+         "tags": ["inventory > metric"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |metric_type|COUNTER, GAUGE |string|True|\n |resource_type||string|True|\n |query_options||AnalyzeQuery|True|\n |namespace_id||string|True|\n |unit||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"metric_type" : {"type": "string","title": "METRIC_TYPE" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"unit" : {"type": "string","title": "UNIT" },"tags" : {"type": "object","title": "TAGS" },"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/MetricInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/MetricInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric/update": {
+       "post": {
+         "tags": ["inventory > metric"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n |name||string||\n |query_options||AnalyzeQuery||\n |unit||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" },"name" : {"type": "string","title": "NAME" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"unit" : {"type": "string","title": "UNIT" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/MetricInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/MetricInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric/delete": {
+       "post": {
+         "tags": ["inventory > metric"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric/get": {
+       "post": {
+         "tags": ["inventory > metric"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/MetricInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/MetricInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric/list": {
+       "post": {
+         "tags": ["inventory > metric"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |metric_id||string||\n |metric_type|COUNTER, GAUGE |string||\n |resource_type||string||\n |category||string||\n |is_managed||string||\n |workspace_id||string||\n |namespace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"metric_id" : {"type": "string","title": "METRIC_ID" },"metric_type" : {"type": "string","title": "METRIC_TYPE" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"category" : {"type": "string","title": "CATEGORY" },"is_managed" : {"type": "string","title": "IS_MANAGED" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/MetricsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/MetricsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric/stat": {
+       "post": {
+         "tags": ["inventory > metric"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/inventory/cloud-service-report/create": {
        "post": {
          "tags": ["inventory > cloud-service-report"],
@@ -1276,6 +1450,180 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/namespace/create": {
+       "post": {
+         "tags": ["inventory > namespace"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category||string|True|\n |provider||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"category" : {"type": "string","title": "CATEGORY" },"provider" : {"type": "string","title": "PROVIDER" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NamespaceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NamespaceInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/namespace/update": {
+       "post": {
+         "tags": ["inventory > namespace"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n |name||string||\n |category||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"name" : {"type": "string","title": "NAME" },"category" : {"type": "string","title": "CATEGORY" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NamespaceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NamespaceInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/namespace/delete": {
+       "post": {
+         "tags": ["inventory > namespace"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/namespace/get": {
+       "post": {
+         "tags": ["inventory > namespace"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NamespaceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NamespaceInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/namespace/list": {
+       "post": {
+         "tags": ["inventory > namespace"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |namespace_id||string||\n |category||string||\n |provider||string||\n |is_managed||string||\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"category" : {"type": "string","title": "CATEGORY" },"provider" : {"type": "string","title": "PROVIDER" },"is_managed" : {"type": "string","title": "IS_MANAGED" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NamespacesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NamespacesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/namespace/stat": {
+       "post": {
+         "tags": ["inventory > namespace"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/inventory/region/create": {
        "post": {
          "tags": ["inventory > region"],
@@ -2007,6 +2355,93 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric-data/list": {
+       "post": {
+         "tags": ["inventory > metric-data"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n |query||Query||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"metric_id" : {"type": "string","title": "METRIC_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/MetricDatasInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/MetricDatasInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric-data/stat": {
+       "post": {
+         "tags": ["inventory > metric-data"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |metric_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"metric_id" : {"type": "string","title": "METRIC_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric-data/analyze": {
+       "post": {
+         "tags": ["inventory > metric-data"],
+         "summary": "Analyze",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||TimeSeriesAnalyzeQuery|True|\n |metric_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"metric_id" : {"type": "string","title": "METRIC_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/inventory/job-task/delete": {
        "post": {
          "tags": ["inventory > job-task"],
@@ -2441,6 +2876,50 @@
          "required": ["cloud_service_id"],
                 "title": "UpdateCloudServiceRequest"
            }
+           ,        "CreateMetricRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"}},
+         "type": "object",
+         "required": ["name","metric_type","resource_type","query_options","namespace_id"],
+                "title": "CreateMetricRequest"
+           }
+           ,        "MetricInfo": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"category" : {"type": "string","title": "CATEGORY"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"label_keys" : {"items": {"type": "string"},
+               "type": "array","title": "LABEL_KEYS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["metric_id","name","metric_type","resource_type","category","query_options","unit","tags","label_keys","is_managed","domain_id","workspace_id","namespace_id","created_at","updated_at"],
+                "title": "MetricInfo"
+           }
+           ,        "MetricQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"metric_id" : {"type": "string","title": "METRIC_ID"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"category" : {"type": "string","title": "CATEGORY"},"is_managed" : {"type": "string","title": "IS_MANAGED"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "MetricQuery"
+           }
+           ,        "MetricRequest": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"}},
+         "type": "object",
+         "required": ["metric_id"],
+                "title": "MetricRequest"
+           }
+           ,        "MetricStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "MetricStatQuery"
+           }
+           ,        "MetricsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/MetricInfo"},
+               "type": "array","$ref": "#/components/schemas/MetricInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "MetricsInfo"
+           }
+           ,        "UpdateMetricRequest": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["metric_id"],
+                "title": "UpdateMetricRequest"
+           }
            ,        "CloudServiceReportInfo": {
          "properties" : {"report_id" : {"type": "string","title": "REPORT_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
                "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"timezone" : {"type": "string","title": "TIMEZONE"},"language" : {"type": "string","title": "LANGUAGE"},"schedule" : {"$ref": "#/components/schemas/ReportSchedule","title": "SCHEDULE"},"target" : {"type": "object","title": "TARGET"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_sent_at" : {"type": "string","title": "LAST_SENT_AT"}},
@@ -2698,6 +3177,49 @@
          "required": ["cloud_service_type_id"],
                 "title": "UpdateCloudServiceTypeRequest"
            }
+           ,        "CreateNamespaceRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["name","category"],
+                "title": "CreateNamespaceRequest"
+           }
+           ,        "NamespaceInfo": {
+         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["namespace_id","name","category","provider","tags","is_managed","domain_id","workspace_id","created_at","updated_at"],
+                "title": "NamespaceInfo"
+           }
+           ,        "NamespaceQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"category" : {"type": "string","title": "CATEGORY"},"provider" : {"type": "string","title": "PROVIDER"},"is_managed" : {"type": "string","title": "IS_MANAGED"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "NamespaceQuery"
+           }
+           ,        "NamespaceRequest": {
+         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"}},
+         "type": "object",
+         "required": ["namespace_id"],
+                "title": "NamespaceRequest"
+           }
+           ,        "NamespaceStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "NamespaceStatQuery"
+           }
+           ,        "NamespacesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NamespaceInfo"},
+               "type": "array","$ref": "#/components/schemas/NamespaceInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "NamespacesInfo"
+           }
+           ,        "UpdateNamespaceRequest": {
+         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["namespace_id"],
+                "title": "UpdateNamespaceRequest"
+           }
            ,        "CreateRegionRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"region_code" : {"type": "string","title": "REGION_CODE"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
@@ -2886,6 +3408,37 @@
          "type": "object",
          "required": ["query_set_id"],
                 "title": "UpdateCloudServiceQuerySetRequest"
+           }
+           ,        "MetricDataAnalyzeQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"metric_id" : {"type": "string","title": "METRIC_ID"}},
+         "type": "object",
+         "required": ["query","metric_id"],
+                "title": "MetricDataAnalyzeQuery"
+           }
+           ,        "MetricDataInfo": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"value" : {"type": "float","title": "VALUE"},"unit" : {"type": "string","title": "UNIT"},"labels" : {"type": "object","title": "LABELS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"created_year" : {"type": "string","title": "CREATED_YEAR"},"created_month" : {"type": "string","title": "CREATED_MONTH"},"created_date" : {"type": "string","title": "CREATED_DATE"}},
+         "type": "object",
+         "required": ["metric_id","value","unit","labels","domain_id","workspace_id","project_id","namespace_id","created_at","created_year","created_month","created_date"],
+                "title": "MetricDataInfo"
+           }
+           ,        "MetricDataQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"metric_id" : {"type": "string","title": "METRIC_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": ["metric_id"],
+                "title": "MetricDataQuery"
+           }
+           ,        "MetricDataStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"metric_id" : {"type": "string","title": "METRIC_ID"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "MetricDataStatQuery"
+           }
+           ,        "MetricDatasInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/MetricDataInfo"},
+               "type": "array","$ref": "#/components/schemas/MetricDataInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "MetricDatasInfo"
            }
            ,        "ErrorInfo": {
          "properties" : {"error_code" : {"type": "string","title": "ERROR_CODE"},"message" : {"type": "string","title": "MESSAGE"},"additional" : {"type": "object","title": "ADDITIONAL"}},
