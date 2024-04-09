@@ -4,7 +4,6 @@ import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.identity.v2 import app_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2
 from spaceone.api.identity.v2 import service_account_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2
 
 
@@ -21,11 +20,6 @@ class ServiceAccountStub(object):
                 '/spaceone.api.identity.v2.ServiceAccount/create',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.CreateServiceAccountRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.FromString,
-                )
-        self.create_app = channel.unary_unary(
-                '/spaceone.api.identity.v2.ServiceAccount/create_app',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.CreateAppServiceAccountRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
                 )
         self.update = channel.unary_unary(
                 '/spaceone.api.identity.v2.ServiceAccount/update',
@@ -44,26 +38,6 @@ class ServiceAccountStub(object):
                 )
         self.delete = channel.unary_unary(
                 '/spaceone.api.identity.v2.ServiceAccount/delete',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                )
-        self.enable_app = channel.unary_unary(
-                '/spaceone.api.identity.v2.ServiceAccount/enable_app',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
-                )
-        self.disable_app = channel.unary_unary(
-                '/spaceone.api.identity.v2.ServiceAccount/disable_app',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
-                )
-        self.regenerate_app = channel.unary_unary(
-                '/spaceone.api.identity.v2.ServiceAccount/regenerate_app',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
-                )
-        self.delete_app = channel.unary_unary(
-                '/spaceone.api.identity.v2.ServiceAccount/delete_app',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
@@ -93,12 +67,6 @@ class ServiceAccountServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def create_app(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def update(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -118,30 +86,6 @@ class ServiceAccountServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def enable_app(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def disable_app(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def regenerate_app(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def delete_app(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -173,11 +117,6 @@ def add_ServiceAccountServicer_to_server(servicer, server):
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.CreateServiceAccountRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.SerializeToString,
             ),
-            'create_app': grpc.unary_unary_rpc_method_handler(
-                    servicer.create_app,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.CreateAppServiceAccountRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.SerializeToString,
-            ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.UpdateServiceAccountRequest.FromString,
@@ -195,26 +134,6 @@ def add_ServiceAccountServicer_to_server(servicer, server):
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'enable_app': grpc.unary_unary_rpc_method_handler(
-                    servicer.enable_app,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.SerializeToString,
-            ),
-            'disable_app': grpc.unary_unary_rpc_method_handler(
-                    servicer.disable_app,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.SerializeToString,
-            ),
-            'regenerate_app': grpc.unary_unary_rpc_method_handler(
-                    servicer.regenerate_app,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.SerializeToString,
-            ),
-            'delete_app': grpc.unary_unary_rpc_method_handler(
-                    servicer.delete_app,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
@@ -257,23 +176,6 @@ class ServiceAccount(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ServiceAccount/create',
             spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.CreateServiceAccountRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def create_app(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ServiceAccount/create_app',
-            spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.CreateAppServiceAccountRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -340,74 +242,6 @@ class ServiceAccount(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ServiceAccount/delete',
-            spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def enable_app(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ServiceAccount/enable_app',
-            spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def disable_app(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ServiceAccount/disable_app',
-            spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def regenerate_app(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ServiceAccount/regenerate_app',
-            spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_app__pb2.AppInfo.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def delete_app(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.ServiceAccount/delete_app',
             spaceone_dot_api_dot_identity_dot_v2_dot_service__account__pb2.ServiceAccountRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,

@@ -22,15 +22,10 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	ServiceAccount_Create_FullMethodName           = "/spaceone.api.identity.v2.ServiceAccount/create"
-	ServiceAccount_CreateApp_FullMethodName        = "/spaceone.api.identity.v2.ServiceAccount/create_app"
 	ServiceAccount_Update_FullMethodName           = "/spaceone.api.identity.v2.ServiceAccount/update"
 	ServiceAccount_UpdateSecretData_FullMethodName = "/spaceone.api.identity.v2.ServiceAccount/update_secret_data"
 	ServiceAccount_DeleteSecretData_FullMethodName = "/spaceone.api.identity.v2.ServiceAccount/delete_secret_data"
 	ServiceAccount_Delete_FullMethodName           = "/spaceone.api.identity.v2.ServiceAccount/delete"
-	ServiceAccount_EnableApp_FullMethodName        = "/spaceone.api.identity.v2.ServiceAccount/enable_app"
-	ServiceAccount_DisableApp_FullMethodName       = "/spaceone.api.identity.v2.ServiceAccount/disable_app"
-	ServiceAccount_RegenerateApp_FullMethodName    = "/spaceone.api.identity.v2.ServiceAccount/regenerate_app"
-	ServiceAccount_DeleteApp_FullMethodName        = "/spaceone.api.identity.v2.ServiceAccount/delete_app"
 	ServiceAccount_Get_FullMethodName              = "/spaceone.api.identity.v2.ServiceAccount/get"
 	ServiceAccount_List_FullMethodName             = "/spaceone.api.identity.v2.ServiceAccount/list"
 	ServiceAccount_Stat_FullMethodName             = "/spaceone.api.identity.v2.ServiceAccount/stat"
@@ -41,15 +36,10 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServiceAccountClient interface {
 	Create(ctx context.Context, in *CreateServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
-	CreateApp(ctx context.Context, in *CreateAppServiceAccountRequest, opts ...grpc.CallOption) (*AppInfo, error)
 	Update(ctx context.Context, in *UpdateServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
 	UpdateSecretData(ctx context.Context, in *UpdateServiceAccountSecretRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
 	DeleteSecretData(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
 	Delete(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	EnableApp(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*AppInfo, error)
-	DisableApp(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*AppInfo, error)
-	RegenerateApp(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*AppInfo, error)
-	DeleteApp(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
 	List(ctx context.Context, in *ServiceAccountSearchQuery, opts ...grpc.CallOption) (*ServiceAccountsInfo, error)
 	Stat(ctx context.Context, in *ServiceAccountStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -66,15 +56,6 @@ func NewServiceAccountClient(cc grpc.ClientConnInterface) ServiceAccountClient {
 func (c *serviceAccountClient) Create(ctx context.Context, in *CreateServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error) {
 	out := new(ServiceAccountInfo)
 	err := c.cc.Invoke(ctx, ServiceAccount_Create_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *serviceAccountClient) CreateApp(ctx context.Context, in *CreateAppServiceAccountRequest, opts ...grpc.CallOption) (*AppInfo, error) {
-	out := new(AppInfo)
-	err := c.cc.Invoke(ctx, ServiceAccount_CreateApp_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -117,42 +98,6 @@ func (c *serviceAccountClient) Delete(ctx context.Context, in *ServiceAccountReq
 	return out, nil
 }
 
-func (c *serviceAccountClient) EnableApp(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*AppInfo, error) {
-	out := new(AppInfo)
-	err := c.cc.Invoke(ctx, ServiceAccount_EnableApp_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *serviceAccountClient) DisableApp(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*AppInfo, error) {
-	out := new(AppInfo)
-	err := c.cc.Invoke(ctx, ServiceAccount_DisableApp_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *serviceAccountClient) RegenerateApp(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*AppInfo, error) {
-	out := new(AppInfo)
-	err := c.cc.Invoke(ctx, ServiceAccount_RegenerateApp_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *serviceAccountClient) DeleteApp(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, ServiceAccount_DeleteApp_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *serviceAccountClient) Get(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error) {
 	out := new(ServiceAccountInfo)
 	err := c.cc.Invoke(ctx, ServiceAccount_Get_FullMethodName, in, out, opts...)
@@ -185,15 +130,10 @@ func (c *serviceAccountClient) Stat(ctx context.Context, in *ServiceAccountStatQ
 // for forward compatibility
 type ServiceAccountServer interface {
 	Create(context.Context, *CreateServiceAccountRequest) (*ServiceAccountInfo, error)
-	CreateApp(context.Context, *CreateAppServiceAccountRequest) (*AppInfo, error)
 	Update(context.Context, *UpdateServiceAccountRequest) (*ServiceAccountInfo, error)
 	UpdateSecretData(context.Context, *UpdateServiceAccountSecretRequest) (*ServiceAccountInfo, error)
 	DeleteSecretData(context.Context, *ServiceAccountRequest) (*ServiceAccountInfo, error)
 	Delete(context.Context, *ServiceAccountRequest) (*empty.Empty, error)
-	EnableApp(context.Context, *ServiceAccountRequest) (*AppInfo, error)
-	DisableApp(context.Context, *ServiceAccountRequest) (*AppInfo, error)
-	RegenerateApp(context.Context, *ServiceAccountRequest) (*AppInfo, error)
-	DeleteApp(context.Context, *ServiceAccountRequest) (*empty.Empty, error)
 	Get(context.Context, *ServiceAccountRequest) (*ServiceAccountInfo, error)
 	List(context.Context, *ServiceAccountSearchQuery) (*ServiceAccountsInfo, error)
 	Stat(context.Context, *ServiceAccountStatQuery) (*_struct.Struct, error)
@@ -207,9 +147,6 @@ type UnimplementedServiceAccountServer struct {
 func (UnimplementedServiceAccountServer) Create(context.Context, *CreateServiceAccountRequest) (*ServiceAccountInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedServiceAccountServer) CreateApp(context.Context, *CreateAppServiceAccountRequest) (*AppInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateApp not implemented")
-}
 func (UnimplementedServiceAccountServer) Update(context.Context, *UpdateServiceAccountRequest) (*ServiceAccountInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
@@ -221,18 +158,6 @@ func (UnimplementedServiceAccountServer) DeleteSecretData(context.Context, *Serv
 }
 func (UnimplementedServiceAccountServer) Delete(context.Context, *ServiceAccountRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
-}
-func (UnimplementedServiceAccountServer) EnableApp(context.Context, *ServiceAccountRequest) (*AppInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method EnableApp not implemented")
-}
-func (UnimplementedServiceAccountServer) DisableApp(context.Context, *ServiceAccountRequest) (*AppInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DisableApp not implemented")
-}
-func (UnimplementedServiceAccountServer) RegenerateApp(context.Context, *ServiceAccountRequest) (*AppInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RegenerateApp not implemented")
-}
-func (UnimplementedServiceAccountServer) DeleteApp(context.Context, *ServiceAccountRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteApp not implemented")
 }
 func (UnimplementedServiceAccountServer) Get(context.Context, *ServiceAccountRequest) (*ServiceAccountInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -270,24 +195,6 @@ func _ServiceAccount_Create_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ServiceAccountServer).Create(ctx, req.(*CreateServiceAccountRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ServiceAccount_CreateApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateAppServiceAccountRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ServiceAccountServer).CreateApp(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ServiceAccount_CreateApp_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAccountServer).CreateApp(ctx, req.(*CreateAppServiceAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -364,78 +271,6 @@ func _ServiceAccount_Delete_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServiceAccount_EnableApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ServiceAccountRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ServiceAccountServer).EnableApp(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ServiceAccount_EnableApp_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAccountServer).EnableApp(ctx, req.(*ServiceAccountRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ServiceAccount_DisableApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ServiceAccountRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ServiceAccountServer).DisableApp(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ServiceAccount_DisableApp_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAccountServer).DisableApp(ctx, req.(*ServiceAccountRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ServiceAccount_RegenerateApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ServiceAccountRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ServiceAccountServer).RegenerateApp(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ServiceAccount_RegenerateApp_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAccountServer).RegenerateApp(ctx, req.(*ServiceAccountRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ServiceAccount_DeleteApp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ServiceAccountRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ServiceAccountServer).DeleteApp(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ServiceAccount_DeleteApp_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAccountServer).DeleteApp(ctx, req.(*ServiceAccountRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ServiceAccount_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ServiceAccountRequest)
 	if err := dec(in); err != nil {
@@ -502,10 +337,6 @@ var ServiceAccount_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ServiceAccount_Create_Handler,
 		},
 		{
-			MethodName: "create_app",
-			Handler:    _ServiceAccount_CreateApp_Handler,
-		},
-		{
 			MethodName: "update",
 			Handler:    _ServiceAccount_Update_Handler,
 		},
@@ -520,22 +351,6 @@ var ServiceAccount_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "delete",
 			Handler:    _ServiceAccount_Delete_Handler,
-		},
-		{
-			MethodName: "enable_app",
-			Handler:    _ServiceAccount_EnableApp_Handler,
-		},
-		{
-			MethodName: "disable_app",
-			Handler:    _ServiceAccount_DisableApp_Handler,
-		},
-		{
-			MethodName: "regenerate_app",
-			Handler:    _ServiceAccount_RegenerateApp_Handler,
-		},
-		{
-			MethodName: "delete_app",
-			Handler:    _ServiceAccount_DeleteApp_Handler,
 		},
 		{
 			MethodName: "get",

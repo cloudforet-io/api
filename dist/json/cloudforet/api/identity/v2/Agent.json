@@ -1,128 +1,123 @@
 {
   "files": [
     {
-      "name": "spaceone/api/identity/v2/service_account.proto",
+      "name": "spaceone/api/identity/v2/agent.proto",
       "description": "",
       "package": "spaceone.api.identity.v2",
       "hasEnums": false,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
-      "enums": [],
-      "extensions": [],
-      "messages": [
+      "enums": [
         {
-          "name": "CreateServiceAccountRequest",
-          "longName": "CreateServiceAccountRequest",
-          "fullName": "spaceone.api.identity.v2.CreateServiceAccountRequest",
+          "name": "ResourceGroup",
+          "longName": "AgentInfo.ResourceGroup",
+          "fullName": "spaceone.api.identity.v2.AgentInfo.ResourceGroup",
           "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
+          "values": [
             {
-              "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
+              "name": "GROUP_NONE",
+              "number": "0",
+              "description": ""
             },
             {
-              "name": "data",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
             },
             {
-              "name": "provider",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "secret_schema_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "secret_data",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "tags",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "trusted_account_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
             }
           ]
         },
         {
-          "name": "ServiceAccountInfo",
-          "longName": "ServiceAccountInfo",
-          "fullName": "spaceone.api.identity.v2.ServiceAccountInfo",
+          "name": "RoleType",
+          "longName": "AgentInfo.RoleType",
+          "fullName": "spaceone.api.identity.v2.AgentInfo.RoleType",
+          "description": "",
+          "values": [
+            {
+              "name": "ROLE_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN_ADMIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE_OWNER",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "State",
+          "longName": "AgentInfo.State",
+          "fullName": "spaceone.api.identity.v2.AgentInfo.State",
+          "description": "",
+          "values": [
+            {
+              "name": "STATE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "EXPIRED",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "State",
+          "longName": "AgentSearchQuery.State",
+          "fullName": "spaceone.api.identity.v2.AgentSearchQuery.State",
+          "description": "",
+          "values": [
+            {
+              "name": "STATE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "EXPIRED",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "AgentInfo",
+          "longName": "AgentInfo",
+          "fullName": "spaceone.api.identity.v2.AgentInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -130,7 +125,31 @@
           "extensions": [],
           "fields": [
             {
-              "name": "service_account_id",
+              "name": "agent_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "client_secret",
               "description": "",
               "label": "",
               "type": "string",
@@ -154,48 +173,12 @@
               "defaultValue": ""
             },
             {
-              "name": "data",
+              "name": "state",
               "description": "",
               "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "provider",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "tags",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "reference_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "State",
+              "longType": "AgentInfo.State",
+              "fullType": "spaceone.api.identity.v2.AgentInfo.State",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -208,6 +191,42 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "role_type",
+              "description": "",
+              "label": "",
+              "type": "RoleType",
+              "longType": "AgentInfo.RoleType",
+              "fullType": "spaceone.api.identity.v2.AgentInfo.RoleType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "AgentInfo.ResourceGroup",
+              "fullType": "spaceone.api.identity.v2.AgentInfo.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -238,7 +257,7 @@
               "defaultValue": ""
             },
             {
-              "name": "project_id",
+              "name": "app_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -250,7 +269,7 @@
               "defaultValue": ""
             },
             {
-              "name": "trusted_account_id",
+              "name": "role_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -262,7 +281,7 @@
               "defaultValue": ""
             },
             {
-              "name": "secret_schema_id",
+              "name": "client_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -274,7 +293,7 @@
               "defaultValue": ""
             },
             {
-              "name": "secret_id",
+              "name": "service_account_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -298,7 +317,19 @@
               "defaultValue": ""
             },
             {
-              "name": "last_synced_at",
+              "name": "expired_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_accessed_at",
               "description": "",
               "label": "",
               "type": "string",
@@ -312,9 +343,9 @@
           ]
         },
         {
-          "name": "ServiceAccountRequest",
-          "longName": "ServiceAccountRequest",
-          "fullName": "spaceone.api.identity.v2.ServiceAccountRequest",
+          "name": "AgentRequest",
+          "longName": "AgentRequest",
+          "fullName": "spaceone.api.identity.v2.AgentRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -336,9 +367,9 @@
           ]
         },
         {
-          "name": "ServiceAccountSearchQuery",
-          "longName": "ServiceAccountSearchQuery",
-          "fullName": "spaceone.api.identity.v2.ServiceAccountSearchQuery",
+          "name": "AgentSearchQuery",
+          "longName": "AgentSearchQuery",
+          "fullName": "spaceone.api.identity.v2.AgentSearchQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -370,84 +401,12 @@
               "defaultValue": ""
             },
             {
-              "name": "name",
+              "name": "state",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "provider",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "trusted_account_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "secret_schema_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "secret_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "State",
+              "longType": "AgentSearchQuery.State",
+              "fullType": "spaceone.api.identity.v2.AgentSearchQuery.State",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -456,33 +415,9 @@
           ]
         },
         {
-          "name": "ServiceAccountStatQuery",
-          "longName": "ServiceAccountStatQuery",
-          "fullName": "spaceone.api.identity.v2.ServiceAccountStatQuery",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "query",
-              "description": "",
-              "label": "",
-              "type": "StatisticsQuery",
-              "longType": "spaceone.api.core.v2.StatisticsQuery",
-              "fullType": "spaceone.api.core.v2.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "ServiceAccountsInfo",
-          "longName": "ServiceAccountsInfo",
-          "fullName": "spaceone.api.identity.v2.ServiceAccountsInfo",
+          "name": "AgentsInfo",
+          "longName": "AgentsInfo",
+          "fullName": "spaceone.api.identity.v2.AgentsInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -493,9 +428,9 @@
               "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "ServiceAccountInfo",
-              "longType": "ServiceAccountInfo",
-              "fullType": "spaceone.api.identity.v2.ServiceAccountInfo",
+              "type": "AgentInfo",
+              "longType": "AgentInfo",
+              "fullType": "spaceone.api.identity.v2.AgentInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -516,9 +451,9 @@
           ]
         },
         {
-          "name": "UpdateServiceAccountRequest",
-          "longName": "UpdateServiceAccountRequest",
-          "fullName": "spaceone.api.identity.v2.UpdateServiceAccountRequest",
+          "name": "CreateAgentRequest",
+          "longName": "CreateAgentRequest",
+          "fullName": "spaceone.api.identity.v2.CreateAgentRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -538,108 +473,12 @@
               "defaultValue": ""
             },
             {
-              "name": "name",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "data",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "tags",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "UpdateServiceAccountSecretRequest",
-          "longName": "UpdateServiceAccountSecretRequest",
-          "fullName": "spaceone.api.identity.v2.UpdateServiceAccountSecretRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "service_account_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "secret_schema_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "secret_data",
+              "name": "options",
               "description": "",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "trusted_account_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -650,28 +489,28 @@
       ],
       "services": [
         {
-          "name": "ServiceAccount",
-          "longName": "ServiceAccount",
-          "fullName": "spaceone.api.identity.v2.ServiceAccount",
+          "name": "Agent",
+          "longName": "Agent",
+          "fullName": "spaceone.api.identity.v2.Agent",
           "description": "",
           "methods": [
             {
               "name": "create",
               "description": "",
-              "requestType": "CreateServiceAccountRequest",
-              "requestLongType": "CreateServiceAccountRequest",
-              "requestFullType": "spaceone.api.identity.v2.CreateServiceAccountRequest",
+              "requestType": "CreateAgentRequest",
+              "requestLongType": "CreateAgentRequest",
+              "requestFullType": "spaceone.api.identity.v2.CreateAgentRequest",
               "requestStreaming": false,
-              "responseType": "ServiceAccountInfo",
-              "responseLongType": "ServiceAccountInfo",
-              "responseFullType": "spaceone.api.identity.v2.ServiceAccountInfo",
+              "responseType": "AgentInfo",
+              "responseLongType": "AgentInfo",
+              "responseFullType": "spaceone.api.identity.v2.AgentInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/service-account/create",
+                      "pattern": "/identity/v2/agent/create",
                       "body": "*"
                     }
                   ]
@@ -679,22 +518,22 @@
               }
             },
             {
-              "name": "update",
+              "name": "enable",
               "description": "",
-              "requestType": "UpdateServiceAccountRequest",
-              "requestLongType": "UpdateServiceAccountRequest",
-              "requestFullType": "spaceone.api.identity.v2.UpdateServiceAccountRequest",
+              "requestType": "AgentRequest",
+              "requestLongType": "AgentRequest",
+              "requestFullType": "spaceone.api.identity.v2.AgentRequest",
               "requestStreaming": false,
-              "responseType": "ServiceAccountInfo",
-              "responseLongType": "ServiceAccountInfo",
-              "responseFullType": "spaceone.api.identity.v2.ServiceAccountInfo",
+              "responseType": "AgentInfo",
+              "responseLongType": "AgentInfo",
+              "responseFullType": "spaceone.api.identity.v2.AgentInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/service-account/update",
+                      "pattern": "/identity/v2/agent/enable",
                       "body": "*"
                     }
                   ]
@@ -702,22 +541,22 @@
               }
             },
             {
-              "name": "update_secret_data",
+              "name": "disable",
               "description": "",
-              "requestType": "UpdateServiceAccountSecretRequest",
-              "requestLongType": "UpdateServiceAccountSecretRequest",
-              "requestFullType": "spaceone.api.identity.v2.UpdateServiceAccountSecretRequest",
+              "requestType": "AgentRequest",
+              "requestLongType": "AgentRequest",
+              "requestFullType": "spaceone.api.identity.v2.AgentRequest",
               "requestStreaming": false,
-              "responseType": "ServiceAccountInfo",
-              "responseLongType": "ServiceAccountInfo",
-              "responseFullType": "spaceone.api.identity.v2.ServiceAccountInfo",
+              "responseType": "AgentInfo",
+              "responseLongType": "AgentInfo",
+              "responseFullType": "spaceone.api.identity.v2.AgentInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/service-account/update-secret-data",
+                      "pattern": "/identity/v2/agent/disable",
                       "body": "*"
                     }
                   ]
@@ -725,22 +564,22 @@
               }
             },
             {
-              "name": "delete_secret_data",
+              "name": "regenerate",
               "description": "",
-              "requestType": "ServiceAccountRequest",
-              "requestLongType": "ServiceAccountRequest",
-              "requestFullType": "spaceone.api.identity.v2.ServiceAccountRequest",
+              "requestType": "AgentRequest",
+              "requestLongType": "AgentRequest",
+              "requestFullType": "spaceone.api.identity.v2.AgentRequest",
               "requestStreaming": false,
-              "responseType": "ServiceAccountInfo",
-              "responseLongType": "ServiceAccountInfo",
-              "responseFullType": "spaceone.api.identity.v2.ServiceAccountInfo",
+              "responseType": "AgentInfo",
+              "responseLongType": "AgentInfo",
+              "responseFullType": "spaceone.api.identity.v2.AgentInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/service-account/delete-secret-data",
+                      "pattern": "/identity/v2/agent/regenerate",
                       "body": "*"
                     }
                   ]
@@ -750,9 +589,9 @@
             {
               "name": "delete",
               "description": "",
-              "requestType": "ServiceAccountRequest",
-              "requestLongType": "ServiceAccountRequest",
-              "requestFullType": "spaceone.api.identity.v2.ServiceAccountRequest",
+              "requestType": "AgentRequest",
+              "requestLongType": "AgentRequest",
+              "requestFullType": "spaceone.api.identity.v2.AgentRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -763,7 +602,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/service-account/delete",
+                      "pattern": "/identity/v2/agent/delete",
                       "body": "*"
                     }
                   ]
@@ -773,20 +612,20 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "ServiceAccountRequest",
-              "requestLongType": "ServiceAccountRequest",
-              "requestFullType": "spaceone.api.identity.v2.ServiceAccountRequest",
+              "requestType": "AgentRequest",
+              "requestLongType": "AgentRequest",
+              "requestFullType": "spaceone.api.identity.v2.AgentRequest",
               "requestStreaming": false,
-              "responseType": "ServiceAccountInfo",
-              "responseLongType": "ServiceAccountInfo",
-              "responseFullType": "spaceone.api.identity.v2.ServiceAccountInfo",
+              "responseType": "AgentInfo",
+              "responseLongType": "AgentInfo",
+              "responseFullType": "spaceone.api.identity.v2.AgentInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/service-account/get",
+                      "pattern": "/identity/v2/agent/get",
                       "body": "*"
                     }
                   ]
@@ -796,43 +635,20 @@
             {
               "name": "list",
               "description": "",
-              "requestType": "ServiceAccountSearchQuery",
-              "requestLongType": "ServiceAccountSearchQuery",
-              "requestFullType": "spaceone.api.identity.v2.ServiceAccountSearchQuery",
+              "requestType": "AgentSearchQuery",
+              "requestLongType": "AgentSearchQuery",
+              "requestFullType": "spaceone.api.identity.v2.AgentSearchQuery",
               "requestStreaming": false,
-              "responseType": "ServiceAccountsInfo",
-              "responseLongType": "ServiceAccountsInfo",
-              "responseFullType": "spaceone.api.identity.v2.ServiceAccountsInfo",
+              "responseType": "AgentsInfo",
+              "responseLongType": "AgentsInfo",
+              "responseFullType": "spaceone.api.identity.v2.AgentsInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/service-account/list",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "stat",
-              "description": "",
-              "requestType": "ServiceAccountStatQuery",
-              "requestLongType": "ServiceAccountStatQuery",
-              "requestFullType": "spaceone.api.identity.v2.ServiceAccountStatQuery",
-              "requestStreaming": false,
-              "responseType": "Struct",
-              "responseLongType": ".google.protobuf.Struct",
-              "responseFullType": "google.protobuf.Struct",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/identity/v2/service-account/stat",
+                      "pattern": "/identity/v2/agent/list",
                       "body": "*"
                     }
                   ]

@@ -122,6 +122,203 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/agent/create": {
+       "post": {
+         "tags": ["identity > agent"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n |options||Struct|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"options" : {"type": "object","title": "OPTIONS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/AgentInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/AgentInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/agent/enable": {
+       "post": {
+         "tags": ["identity > agent"],
+         "summary": "Enable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/AgentInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/AgentInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/agent/disable": {
+       "post": {
+         "tags": ["identity > agent"],
+         "summary": "Disable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/AgentInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/AgentInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/agent/regenerate": {
+       "post": {
+         "tags": ["identity > agent"],
+         "summary": "Regenerate",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/AgentInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/AgentInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/agent/delete": {
+       "post": {
+         "tags": ["identity > agent"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/agent/get": {
+       "post": {
+         "tags": ["identity > agent"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/AgentInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/AgentInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/agent/list": {
+       "post": {
+         "tags": ["identity > agent"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_account_id||string||\n |state|ENABLED, DISABLED, EXPIRED |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"state" : {"type": "string","title": "STATE" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/AgentsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/AgentsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/role-binding/create": {
        "post": {
          "tags": ["identity > role-binding"],
@@ -3543,35 +3740,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/service-account/create-app": {
-       "post": {
-         "tags": ["identity > service-account"],
-         "summary": "Create App",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n |options||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"options" : {"type": "object","title": "OPTIONS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/AppInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/AppInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/service-account/update": {
        "post": {
          "tags": ["identity > service-account"],
@@ -3663,116 +3831,6 @@
        "post": {
          "tags": ["identity > service-account"],
          "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/service-account/enable-app": {
-       "post": {
-         "tags": ["identity > service-account"],
-         "summary": "Enable App",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/AppInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/AppInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/service-account/disable-app": {
-       "post": {
-         "tags": ["identity > service-account"],
-         "summary": "Disable App",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/AppInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/AppInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/service-account/regenerate-app": {
-       "post": {
-         "tags": ["identity > service-account"],
-         "summary": "Regenerate App",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_account_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/AppInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/AppInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/service-account/delete-app": {
-       "post": {
-         "tags": ["identity > service-account"],
-         "summary": "Delete App",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
@@ -4120,6 +4178,37 @@
          "type": "object",
          "required": ["version"],
                 "title": "VersionInfo"
+           }
+           ,        "AgentInfo": {
+         "properties" : {"agent_id" : {"type": "string","title": "AGENT_ID"},"options" : {"type": "object","title": "OPTIONS"},"client_secret" : {"type": "string","title": "CLIENT_SECRET"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"tags" : {"type": "object","title": "TAGS"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"app_id" : {"type": "string","title": "APP_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"client_id" : {"type": "string","title": "CLIENT_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"expired_at" : {"type": "string","title": "EXPIRED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
+         "type": "object",
+         "required": ["agent_id","options","client_secret","name","state","is_managed","tags","role_type","resource_group","domain_id","workspace_id","app_id","role_id","client_id","service_account_id","created_at","expired_at","last_accessed_at"],
+                "title": "AgentInfo"
+           }
+           ,        "AgentRequest": {
+         "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"}},
+         "type": "object",
+         "required": ["service_account_id"],
+                "title": "AgentRequest"
+           }
+           ,        "AgentSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"state" : {"type": "string","title": "STATE"}},
+         "type": "object",
+         "required": [],
+                "title": "AgentSearchQuery"
+           }
+           ,        "AgentsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/AgentInfo"},
+               "type": "array","$ref": "#/components/schemas/AgentInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "AgentsInfo"
+           }
+           ,        "CreateAgentRequest": {
+         "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"options" : {"type": "object","title": "OPTIONS"}},
+         "type": "object",
+         "required": ["service_account_id","options"],
+                "title": "CreateAgentRequest"
            }
            ,        "CreateRoleBindingRequest": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
@@ -4981,12 +5070,6 @@
          "required": ["trusted_account_id","secret_schema_id","secret_data"],
                 "title": "UpdateTrustedAccountSecretRequest"
            }
-           ,        "CreateAppServiceAccountRequest": {
-         "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"options" : {"type": "object","title": "OPTIONS"}},
-         "type": "object",
-         "required": ["service_account_id"],
-                "title": "CreateAppServiceAccountRequest"
-           }
            ,        "CreateServiceAccountRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_data" : {"type": "object","title": "SECRET_DATA"},"tags" : {"type": "object","title": "TAGS"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
@@ -4994,9 +5077,9 @@
                 "title": "CreateServiceAccountRequest"
            }
            ,        "ServiceAccountInfo": {
-         "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"app_id" : {"type": "string","title": "APP_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synced_at" : {"type": "string","title": "LAST_SYNCED_AT"}},
+         "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synced_at" : {"type": "string","title": "LAST_SYNCED_AT"}},
          "type": "object",
-         "required": ["service_account_id","name","data","provider","options","tags","reference_id","is_managed","domain_id","workspace_id","project_id","trusted_account_id","secret_schema_id","secret_id","app_id","created_at","last_synced_at"],
+         "required": ["service_account_id","name","data","provider","tags","reference_id","is_managed","domain_id","workspace_id","project_id","trusted_account_id","secret_schema_id","secret_id","created_at","last_synced_at"],
                 "title": "ServiceAccountInfo"
            }
            ,        "ServiceAccountRequest": {
