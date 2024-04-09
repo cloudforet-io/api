@@ -8,34 +8,34 @@ import "google/protobuf/struct.proto";
 
 
 service Cost {
-    rpc get_data (GetDataRequest) returns (stream CostsInfo) {}
+  rpc get_data (GetDataRequest) returns (stream CostsInfo) {}
 }
 
 message GetDataRequest {
-    google.protobuf.Struct options = 1;
-    google.protobuf.Struct secret_data = 2;
-    // +optional
-    string schema = 3;
-    // +optional
-    google.protobuf.Struct task_options = 4;
-    string domain_id = 5;
+  google.protobuf.Struct options = 1;
+  google.protobuf.Struct secret_data = 2;
+  // +optional
+  string schema = 3;
+  // +optional
+  google.protobuf.Struct task_options = 4;
+  string domain_id = 5;
 }
 
 message CostInfo {
-    float cost = 1;
-    float usage_quantity = 2;
-    string usage_unit = 3;
-    string provider = 4;
-    string region_code = 5;
-    string product = 6;
-    string usage_type = 7;
-    string resource = 8;
-    google.protobuf.Struct tags = 12;
-    google.protobuf.Struct additional_info = 13;
-    google.protobuf.Struct data = 14;
-    string billed_date = 21;
+  double cost = 1;
+  double usage_quantity = 2;
+  string usage_unit = 3;
+  string provider = 4;
+  string region_code = 5;
+  string product = 6;
+  string usage_type = 7;
+  string resource = 8;
+  google.protobuf.Struct tags = 12;
+  google.protobuf.Struct additional_info = 13;
+  google.protobuf.Struct data = 14;
+  string billed_date = 21;
 }
 
 message CostsInfo {
-    repeated CostInfo results = 1;
+  repeated CostInfo results = 1;
 }
