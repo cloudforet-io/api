@@ -31,6 +31,20 @@ service Metric {
         };
     }
 
+    rpc run (MetricRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/inventory/v1/metric/run"
+            body: "*"
+        };
+    }
+
+    rpc test (MetricRequest) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/inventory/v1/metric/test"
+            body: "*"
+        };
+    }
+
     rpc get (MetricRequest) returns (MetricInfo) {
         option (google.api.http) = {
             post: "/inventory/v1/metric/get"
