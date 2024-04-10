@@ -31,6 +31,16 @@ class MetricStub(object):
                 request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
+        self.run = channel.unary_unary(
+                '/spaceone.api.inventory.v1.Metric/run',
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
+        self.test = channel.unary_unary(
+                '/spaceone.api.inventory.v1.Metric/test',
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
+                )
         self.get = channel.unary_unary(
                 '/spaceone.api.inventory.v1.Metric/get',
                 request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricRequest.SerializeToString,
@@ -64,6 +74,18 @@ class MetricServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def run(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def test(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -104,6 +126,16 @@ def add_MetricServicer_to_server(servicer, server):
                     servicer.delete,
                     request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'run': grpc.unary_unary_rpc_method_handler(
+                    servicer.run,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'test': grpc.unary_unary_rpc_method_handler(
+                    servicer.test,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
@@ -178,6 +210,40 @@ class Metric(object):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Metric/delete',
             spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def run(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Metric/run',
+            spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def test(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Metric/test',
+            spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricRequest.SerializeToString,
+            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

@@ -24,6 +24,8 @@ const (
 	Metric_Create_FullMethodName = "/spaceone.api.inventory.v1.Metric/create"
 	Metric_Update_FullMethodName = "/spaceone.api.inventory.v1.Metric/update"
 	Metric_Delete_FullMethodName = "/spaceone.api.inventory.v1.Metric/delete"
+	Metric_Run_FullMethodName    = "/spaceone.api.inventory.v1.Metric/run"
+	Metric_Test_FullMethodName   = "/spaceone.api.inventory.v1.Metric/test"
 	Metric_Get_FullMethodName    = "/spaceone.api.inventory.v1.Metric/get"
 	Metric_List_FullMethodName   = "/spaceone.api.inventory.v1.Metric/list"
 	Metric_Stat_FullMethodName   = "/spaceone.api.inventory.v1.Metric/stat"
@@ -36,6 +38,8 @@ type MetricClient interface {
 	Create(ctx context.Context, in *CreateMetricRequest, opts ...grpc.CallOption) (*MetricInfo, error)
 	Update(ctx context.Context, in *UpdateMetricRequest, opts ...grpc.CallOption) (*MetricInfo, error)
 	Delete(ctx context.Context, in *MetricRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Run(ctx context.Context, in *MetricRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Test(ctx context.Context, in *MetricRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Get(ctx context.Context, in *MetricRequest, opts ...grpc.CallOption) (*MetricInfo, error)
 	List(ctx context.Context, in *MetricQuery, opts ...grpc.CallOption) (*MetricsInfo, error)
 	Stat(ctx context.Context, in *MetricStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -76,6 +80,24 @@ func (c *metricClient) Delete(ctx context.Context, in *MetricRequest, opts ...gr
 	return out, nil
 }
 
+func (c *metricClient) Run(ctx context.Context, in *MetricRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, Metric_Run_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *metricClient) Test(ctx context.Context, in *MetricRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
+	out := new(_struct.Struct)
+	err := c.cc.Invoke(ctx, Metric_Test_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *metricClient) Get(ctx context.Context, in *MetricRequest, opts ...grpc.CallOption) (*MetricInfo, error) {
 	out := new(MetricInfo)
 	err := c.cc.Invoke(ctx, Metric_Get_FullMethodName, in, out, opts...)
@@ -110,6 +132,8 @@ type MetricServer interface {
 	Create(context.Context, *CreateMetricRequest) (*MetricInfo, error)
 	Update(context.Context, *UpdateMetricRequest) (*MetricInfo, error)
 	Delete(context.Context, *MetricRequest) (*empty.Empty, error)
+	Run(context.Context, *MetricRequest) (*empty.Empty, error)
+	Test(context.Context, *MetricRequest) (*_struct.Struct, error)
 	Get(context.Context, *MetricRequest) (*MetricInfo, error)
 	List(context.Context, *MetricQuery) (*MetricsInfo, error)
 	Stat(context.Context, *MetricStatQuery) (*_struct.Struct, error)
@@ -128,6 +152,12 @@ func (UnimplementedMetricServer) Update(context.Context, *UpdateMetricRequest) (
 }
 func (UnimplementedMetricServer) Delete(context.Context, *MetricRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedMetricServer) Run(context.Context, *MetricRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Run not implemented")
+}
+func (UnimplementedMetricServer) Test(context.Context, *MetricRequest) (*_struct.Struct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Test not implemented")
 }
 func (UnimplementedMetricServer) Get(context.Context, *MetricRequest) (*MetricInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -205,6 +235,42 @@ func _Metric_Delete_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Metric_Run_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MetricRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MetricServer).Run(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Metric_Run_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MetricServer).Run(ctx, req.(*MetricRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Metric_Test_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MetricRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MetricServer).Test(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Metric_Test_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MetricServer).Test(ctx, req.(*MetricRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Metric_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MetricRequest)
 	if err := dec(in); err != nil {
@@ -277,6 +343,14 @@ var Metric_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "delete",
 			Handler:    _Metric_Delete_Handler,
+		},
+		{
+			MethodName: "run",
+			Handler:    _Metric_Run_Handler,
+		},
+		{
+			MethodName: "test",
+			Handler:    _Metric_Test_Handler,
 		},
 		{
 			MethodName: "get",

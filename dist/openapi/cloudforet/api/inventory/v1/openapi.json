@@ -470,6 +470,58 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric/run": {
+       "post": {
+         "tags": ["inventory > metric"],
+         "summary": "Run",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric/test": {
+       "post": {
+         "tags": ["inventory > metric"],
+         "summary": "Test",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/inventory/metric/get": {
        "post": {
          "tags": ["inventory > metric"],
