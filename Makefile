@@ -15,7 +15,7 @@ endef
 define set_build_env
 	git submodule init
 	git submodule update
-	docker build -t ${DOCKER_NAME} .
+	docker build --platform=linux/x86_64 -t ${DOCKER_NAME} .
 endef
 
 define build
