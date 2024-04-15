@@ -500,11 +500,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n |query_options||AnalyzeQuery|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" }                 }
+                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
@@ -2958,6 +2958,12 @@
          "type": "object",
          "required": ["query"],
                 "title": "MetricStatQuery"
+           }
+           ,        "MetricTestRequest": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"}},
+         "type": "object",
+         "required": ["metric_id","query_options"],
+                "title": "MetricTestRequest"
            }
            ,        "MetricsInfo": {
          "properties" : {"results" : {"items": {"$ref": "#/components/schemas/MetricInfo"},

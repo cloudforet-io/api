@@ -38,7 +38,7 @@ class MetricStub(object):
                 )
         self.test = channel.unary_unary(
                 '/spaceone.api.inventory.v1.Metric/test',
-                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricTestRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 )
         self.get = channel.unary_unary(
@@ -134,7 +134,7 @@ def add_MetricServicer_to_server(servicer, server):
             ),
             'test': grpc.unary_unary_rpc_method_handler(
                     servicer.test,
-                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricTestRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
@@ -242,7 +242,7 @@ class Metric(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.inventory.v1.Metric/test',
-            spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory_dot_v1_dot_metric__pb2.MetricTestRequest.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

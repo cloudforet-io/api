@@ -39,7 +39,7 @@ type MetricClient interface {
 	Update(ctx context.Context, in *UpdateMetricRequest, opts ...grpc.CallOption) (*MetricInfo, error)
 	Delete(ctx context.Context, in *MetricRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Run(ctx context.Context, in *MetricRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Test(ctx context.Context, in *MetricRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
+	Test(ctx context.Context, in *MetricTestRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Get(ctx context.Context, in *MetricRequest, opts ...grpc.CallOption) (*MetricInfo, error)
 	List(ctx context.Context, in *MetricQuery, opts ...grpc.CallOption) (*MetricsInfo, error)
 	Stat(ctx context.Context, in *MetricStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -89,7 +89,7 @@ func (c *metricClient) Run(ctx context.Context, in *MetricRequest, opts ...grpc.
 	return out, nil
 }
 
-func (c *metricClient) Test(ctx context.Context, in *MetricRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
+func (c *metricClient) Test(ctx context.Context, in *MetricTestRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	out := new(_struct.Struct)
 	err := c.cc.Invoke(ctx, Metric_Test_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -133,7 +133,7 @@ type MetricServer interface {
 	Update(context.Context, *UpdateMetricRequest) (*MetricInfo, error)
 	Delete(context.Context, *MetricRequest) (*empty.Empty, error)
 	Run(context.Context, *MetricRequest) (*empty.Empty, error)
-	Test(context.Context, *MetricRequest) (*_struct.Struct, error)
+	Test(context.Context, *MetricTestRequest) (*_struct.Struct, error)
 	Get(context.Context, *MetricRequest) (*MetricInfo, error)
 	List(context.Context, *MetricQuery) (*MetricsInfo, error)
 	Stat(context.Context, *MetricStatQuery) (*_struct.Struct, error)
@@ -156,7 +156,7 @@ func (UnimplementedMetricServer) Delete(context.Context, *MetricRequest) (*empty
 func (UnimplementedMetricServer) Run(context.Context, *MetricRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Run not implemented")
 }
-func (UnimplementedMetricServer) Test(context.Context, *MetricRequest) (*_struct.Struct, error) {
+func (UnimplementedMetricServer) Test(context.Context, *MetricTestRequest) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Test not implemented")
 }
 func (UnimplementedMetricServer) Get(context.Context, *MetricRequest) (*MetricInfo, error) {
@@ -254,7 +254,7 @@ func _Metric_Run_Handler(srv interface{}, ctx context.Context, dec func(interfac
 }
 
 func _Metric_Test_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MetricRequest)
+	in := new(MetricTestRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -266,7 +266,7 @@ func _Metric_Test_Handler(srv interface{}, ctx context.Context, dec func(interfa
 		FullMethod: Metric_Test_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MetricServer).Test(ctx, req.(*MetricRequest))
+		return srv.(MetricServer).Test(ctx, req.(*MetricTestRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

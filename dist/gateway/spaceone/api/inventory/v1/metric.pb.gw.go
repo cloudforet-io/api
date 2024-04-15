@@ -137,7 +137,7 @@ func local_request_Metric_Run_0(ctx context.Context, marshaler runtime.Marshaler
 }
 
 func request_Metric_Test_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.MetricClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.MetricRequest
+	var protoReq extV1.MetricTestRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -150,7 +150,7 @@ func request_Metric_Test_0(ctx context.Context, marshaler runtime.Marshaler, cli
 }
 
 func local_request_Metric_Test_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.MetricServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.MetricRequest
+	var protoReq extV1.MetricTestRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
