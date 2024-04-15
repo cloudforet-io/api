@@ -38,7 +38,7 @@ service Metric {
         };
     }
 
-    rpc test (MetricRequest) returns (google.protobuf.Struct) {
+    rpc test (MetricTestRequest) returns (google.protobuf.Struct) {
         option (google.api.http) = {
             post: "/inventory/v1/metric/test"
             body: "*"
@@ -110,6 +110,14 @@ message UpdateMetricRequest {
 //}
 message MetricRequest {
     string metric_id = 1;
+}
+
+//{
+//
+//}
+message MetricTestRequest {
+    string metric_id = 1;
+    spaceone.api.core.v2.AnalyzeQuery query_options = 2;
 }
 
 //{
