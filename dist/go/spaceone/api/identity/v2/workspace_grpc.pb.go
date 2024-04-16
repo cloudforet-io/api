@@ -38,7 +38,7 @@ const (
 type WorkspaceClient interface {
 	Create(ctx context.Context, in *CreateWorkSpaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Update(ctx context.Context, in *UpdateWorkSpaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
-	Delete(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Delete(ctx context.Context, in *WorkspaceDeleteRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Enable(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Disable(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Get(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
@@ -73,7 +73,7 @@ func (c *workspaceClient) Update(ctx context.Context, in *UpdateWorkSpaceRequest
 	return out, nil
 }
 
-func (c *workspaceClient) Delete(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *workspaceClient) Delete(ctx context.Context, in *WorkspaceDeleteRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, Workspace_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -142,7 +142,7 @@ func (c *workspaceClient) Stat(ctx context.Context, in *WorkspaceStatQuery, opts
 type WorkspaceServer interface {
 	Create(context.Context, *CreateWorkSpaceRequest) (*WorkspaceInfo, error)
 	Update(context.Context, *UpdateWorkSpaceRequest) (*WorkspaceInfo, error)
-	Delete(context.Context, *WorkspaceRequest) (*empty.Empty, error)
+	Delete(context.Context, *WorkspaceDeleteRequest) (*empty.Empty, error)
 	Enable(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
 	Disable(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
 	Get(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
@@ -162,7 +162,7 @@ func (UnimplementedWorkspaceServer) Create(context.Context, *CreateWorkSpaceRequ
 func (UnimplementedWorkspaceServer) Update(context.Context, *UpdateWorkSpaceRequest) (*WorkspaceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedWorkspaceServer) Delete(context.Context, *WorkspaceRequest) (*empty.Empty, error) {
+func (UnimplementedWorkspaceServer) Delete(context.Context, *WorkspaceDeleteRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedWorkspaceServer) Enable(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error) {
@@ -233,7 +233,7 @@ func _Workspace_Update_Handler(srv interface{}, ctx context.Context, dec func(in
 }
 
 func _Workspace_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WorkspaceRequest)
+	in := new(WorkspaceDeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -245,7 +245,7 @@ func _Workspace_Delete_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: Workspace_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WorkspaceServer).Delete(ctx, req.(*WorkspaceRequest))
+		return srv.(WorkspaceServer).Delete(ctx, req.(*WorkspaceDeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

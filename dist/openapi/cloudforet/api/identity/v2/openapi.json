@@ -830,11 +830,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_id||string|True|\n |force||boolean|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"force" : {"type": "boolean","title": "FORCE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -4350,6 +4350,12 @@
          "type": "object",
          "required": ["workspace_id","domain_id"],
                 "title": "WorkspaceCheckRequest"
+           }
+           ,        "WorkspaceDeleteRequest": {
+         "properties" : {"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"force" : {"type": "boolean","title": "FORCE"}},
+         "type": "object",
+         "required": ["workspace_id","force"],
+                "title": "WorkspaceDeleteRequest"
            }
            ,        "WorkspaceInfo": {
          "properties" : {"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synced_at" : {"type": "string","title": "LAST_SYNCED_AT"}},

@@ -28,7 +28,7 @@ class WorkspaceStub(object):
                 )
         self.delete = channel.unary_unary(
                 '/spaceone.api.identity.v2.Workspace/delete',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceDeleteRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.enable = channel.unary_unary(
@@ -135,7 +135,7 @@ def add_WorkspaceServicer_to_server(servicer, server):
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceDeleteRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'enable': grpc.unary_unary_rpc_method_handler(
@@ -224,7 +224,7 @@ class Workspace(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.identity.v2.Workspace/delete',
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceDeleteRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

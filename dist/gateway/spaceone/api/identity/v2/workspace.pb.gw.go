@@ -85,7 +85,7 @@ func local_request_Workspace_Update_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func request_Workspace_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.WorkspaceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.WorkspaceRequest
+	var protoReq v2_0.WorkspaceDeleteRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -98,7 +98,7 @@ func request_Workspace_Delete_0(ctx context.Context, marshaler runtime.Marshaler
 }
 
 func local_request_Workspace_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.WorkspaceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.WorkspaceRequest
+	var protoReq v2_0.WorkspaceDeleteRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
