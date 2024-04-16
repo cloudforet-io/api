@@ -392,11 +392,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |metric_type|COUNTER, GAUGE |string|True|\n |resource_type||string|True|\n |query_options||AnalyzeQuery|True|\n |namespace_id||string|True|\n |metric_id||string||\n |unit||string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |metric_type|COUNTER, GAUGE |string|True|\n |resource_type||string|True|\n |query_options||AnalyzeQuery|True|\n |namespace_id||string|True|\n |metric_id||string||\n |date_field||string||\n |unit||string||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" },"name" : {"type": "string","title": "NAME" },"metric_type" : {"type": "string","title": "METRIC_TYPE" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"unit" : {"type": "string","title": "UNIT" },"tags" : {"type": "object","title": "TAGS" },"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
+                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" },"name" : {"type": "string","title": "NAME" },"metric_type" : {"type": "string","title": "METRIC_TYPE" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"date_field" : {"type": "string","title": "DATE_FIELD" },"unit" : {"type": "string","title": "UNIT" },"tags" : {"type": "object","title": "TAGS" },"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
@@ -423,11 +423,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n |name||string||\n |query_options||AnalyzeQuery||\n |unit||string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n |name||string||\n |query_options||AnalyzeQuery||\n |date_field||string||\n |unit||string||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" },"name" : {"type": "string","title": "NAME" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"unit" : {"type": "string","title": "UNIT" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" },"name" : {"type": "string","title": "NAME" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"date_field" : {"type": "string","title": "DATE_FIELD" },"unit" : {"type": "string","title": "UNIT" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
@@ -2929,16 +2929,16 @@
                 "title": "UpdateCloudServiceRequest"
            }
            ,        "CreateMetricRequest": {
-         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"}},
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"date_field" : {"type": "string","title": "DATE_FIELD"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"}},
          "type": "object",
          "required": ["name","metric_type","resource_type","query_options","namespace_id"],
                 "title": "CreateMetricRequest"
            }
            ,        "MetricInfo": {
-         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"label_keys" : {"items": {"type": "string"},
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"date_field" : {"type": "string","title": "DATE_FIELD"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"label_keys" : {"items": {"type": "string"},
                "type": "array","title": "LABEL_KEYS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["metric_id","name","metric_type","resource_type","query_options","unit","tags","label_keys","is_managed","domain_id","namespace_id","created_at","updated_at"],
+         "required": ["metric_id","name","metric_type","resource_type","query_options","date_field","unit","tags","label_keys","is_managed","domain_id","namespace_id","created_at","updated_at"],
                 "title": "MetricInfo"
            }
            ,        "MetricQuery": {
@@ -2973,7 +2973,7 @@
                 "title": "MetricsInfo"
            }
            ,        "UpdateMetricRequest": {
-         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"date_field" : {"type": "string","title": "DATE_FIELD"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["metric_id"],
                 "title": "UpdateMetricRequest"
