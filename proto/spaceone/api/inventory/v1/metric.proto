@@ -84,10 +84,12 @@ message CreateMetricRequest {
     string resource_type = 4;
     spaceone.api.core.v2.AnalyzeQuery query_options = 5;
     // +optional
-    string unit = 6;
+    string date_field = 6;
     // +optional
-    google.protobuf.Struct tags = 7;
-    string namespace_id = 8;
+    string unit = 7;
+    // +optional
+    google.protobuf.Struct tags = 8;
+    string namespace_id = 9;
 }
 
 //{
@@ -100,9 +102,11 @@ message UpdateMetricRequest {
     // +optional
     spaceone.api.core.v2.AnalyzeQuery query_options = 3;
     // +optional
-    string unit = 4;
+    string date_field = 4;
     // +optional
-    google.protobuf.Struct tags = 5;
+    string unit = 5;
+    // +optional
+    google.protobuf.Struct tags = 6;
 }
 
 //{
@@ -149,10 +153,11 @@ message MetricInfo {
     MetricType metric_type = 3;
     string resource_type = 4;
     spaceone.api.core.v2.AnalyzeQuery query_options = 5;
-    string unit = 6;
-    google.protobuf.Struct tags = 7;
-    repeated string label_keys = 8;
-    bool is_managed = 9;
+    string date_field = 6;
+    string unit = 7;
+    google.protobuf.Struct tags = 8;
+    repeated string label_keys = 9;
+    bool is_managed = 10;
 
     string domain_id = 21;
     string namespace_id = 22;
