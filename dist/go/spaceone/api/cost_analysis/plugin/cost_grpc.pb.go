@@ -19,13 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Cost_GetData_FullMethodName = "/spaceone.api.cost_analysis.plugin.Cost/get_data"
+	Cost_GetLinkedAccounts_FullMethodName = "/spaceone.api.cost_analysis.plugin.Cost/get_linked_accounts"
+	Cost_GetData_FullMethodName           = "/spaceone.api.cost_analysis.plugin.Cost/get_data"
 )
 
 // CostClient is the client API for Cost service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CostClient interface {
+	GetLinkedAccounts(ctx context.Context, in *GetLinkedAccountsRequest, opts ...grpc.CallOption) (*AccountsInfo, error)
 	GetData(ctx context.Context, in *GetDataRequest, opts ...grpc.CallOption) (Cost_GetDataClient, error)
 }
 
@@ -35,6 +37,15 @@ type costClient struct {
 
 func NewCostClient(cc grpc.ClientConnInterface) CostClient {
 	return &costClient{cc}
+}
+
+func (c *costClient) GetLinkedAccounts(ctx context.Context, in *GetLinkedAccountsRequest, opts ...grpc.CallOption) (*AccountsInfo, error) {
+	out := new(AccountsInfo)
+	err := c.cc.Invoke(ctx, Cost_GetLinkedAccounts_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *costClient) GetData(ctx context.Context, in *GetDataRequest, opts ...grpc.CallOption) (Cost_GetDataClient, error) {
@@ -73,6 +84,7 @@ func (x *costGetDataClient) Recv() (*CostsInfo, error) {
 // All implementations must embed UnimplementedCostServer
 // for forward compatibility
 type CostServer interface {
+	GetLinkedAccounts(context.Context, *GetLinkedAccountsRequest) (*AccountsInfo, error)
 	GetData(*GetDataRequest, Cost_GetDataServer) error
 	mustEmbedUnimplementedCostServer()
 }
@@ -81,6 +93,9 @@ type CostServer interface {
 type UnimplementedCostServer struct {
 }
 
+func (UnimplementedCostServer) GetLinkedAccounts(context.Context, *GetLinkedAccountsRequest) (*AccountsInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLinkedAccounts not implemented")
+}
 func (UnimplementedCostServer) GetData(*GetDataRequest, Cost_GetDataServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetData not implemented")
 }
@@ -95,6 +110,24 @@ type UnsafeCostServer interface {
 
 func RegisterCostServer(s grpc.ServiceRegistrar, srv CostServer) {
 	s.RegisterService(&Cost_ServiceDesc, srv)
+}
+
+func _Cost_GetLinkedAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLinkedAccountsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CostServer).GetLinkedAccounts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cost_GetLinkedAccounts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CostServer).GetLinkedAccounts(ctx, req.(*GetLinkedAccountsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Cost_GetData_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -124,7 +157,12 @@ func (x *costGetDataServer) Send(m *CostsInfo) error {
 var Cost_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "spaceone.api.cost_analysis.plugin.Cost",
 	HandlerType: (*CostServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "get_linked_accounts",
+			Handler:    _Cost_GetLinkedAccounts_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "get_data",

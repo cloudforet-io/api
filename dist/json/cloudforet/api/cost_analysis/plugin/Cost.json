@@ -12,6 +12,66 @@
       "extensions": [],
       "messages": [
         {
+          "name": "AccountInfo",
+          "longName": "AccountInfo",
+          "fullName": "spaceone.api.cost_analysis.plugin.AccountInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "account_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "AccountsInfo",
+          "longName": "AccountsInfo",
+          "fullName": "spaceone.api.cost_analysis.plugin.AccountsInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "AccountInfo",
+              "longType": "AccountInfo",
+              "fullType": "spaceone.api.cost_analysis.plugin.AccountInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "CostInfo",
           "longName": "CostInfo",
           "fullName": "spaceone.api.cost_analysis.plugin.CostInfo",
@@ -262,6 +322,66 @@
               "defaultValue": ""
             }
           ]
+        },
+        {
+          "name": "GetLinkedAccountsRequest",
+          "longName": "GetLinkedAccountsRequest",
+          "fullName": "spaceone.api.cost_analysis.plugin.GetLinkedAccountsRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schema",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret_data",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
         }
       ],
       "services": [
@@ -271,6 +391,18 @@
           "fullName": "spaceone.api.cost_analysis.plugin.Cost",
           "description": "",
           "methods": [
+            {
+              "name": "get_linked_accounts",
+              "description": "",
+              "requestType": "GetLinkedAccountsRequest",
+              "requestLongType": "GetLinkedAccountsRequest",
+              "requestFullType": "spaceone.api.cost_analysis.plugin.GetLinkedAccountsRequest",
+              "requestStreaming": false,
+              "responseType": "AccountsInfo",
+              "responseLongType": "AccountsInfo",
+              "responseFullType": "spaceone.api.cost_analysis.plugin.AccountsInfo",
+              "responseStreaming": false
+            },
             {
               "name": "get_data",
               "description": "",
