@@ -8,38 +8,39 @@ import "google/protobuf/struct.proto";
 
 
 service Job {
-    rpc get_tasks (GetTasksRequest) returns (TasksInfo) {}
+  rpc get_tasks (GetTasksRequest) returns (TasksInfo) {}
 }
 
 //{
 //
 //}
 message GetTasksRequest {
-    google.protobuf.Struct options = 1;
-    google.protobuf.Struct secret_data = 2;
-    // +optional
-    string schema = 3;
-    // +optional
-    string start = 4;
-    // +optional
-    string last_synchronized_at = 5;
-    string domain_id = 6;
+  google.protobuf.Struct options = 1;
+  google.protobuf.Struct secret_data = 2;
+  // +optional
+  string schema = 3;
+  // +optional
+  string start = 4;
+  // +optional
+  string last_synchronized_at = 5;
+  string domain_id = 6;
+  repeated google.protobuf.Struct linked_accounts = 7;
 }
 
 message TaskInfo {
-    google.protobuf.Struct task_options = 1;
+  google.protobuf.Struct task_options = 1;
 }
 
 message ChangedInfo {
-    string start = 1;
-    string end = 2;
-    google.protobuf.Struct filter = 3;
+  string start = 1;
+  string end = 2;
+  google.protobuf.Struct filter = 3;
 }
 
 //{
 //
 //}
 message TasksInfo {
-    repeated TaskInfo tasks = 1;
-    repeated ChangedInfo changed = 2;
+  repeated TaskInfo tasks = 1;
+  repeated ChangedInfo changed = 2;
 }
