@@ -13,122 +13,130 @@ import "spaceone/api/cost_analysis/v1/job.proto";
 
 
 service DataSource {
-    // Registers a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, and `upgrade_mode`.
-    rpc register (RegisterDataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source/register"
-            body: "*"
-        };
-    }
+  // Registers a DataSource with information of the plugin to use. Information of the plugin includes `version`, `provider`, and `upgrade_mode`.
+  rpc register (RegisterDataSourceRequest) returns (DataSourceInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/register"
+      body: "*"
+    };
+  }
 
-    // Updates a specific DataSource. You can make changes in DataSource settings, including `name` and `tags`.
-    rpc update (UpdateDataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source/update"
-            body: "*"
-        };
-    }
+  // Updates a specific DataSource. You can make changes in DataSource settings, including `name` and `tags`.
+  rpc update (UpdateDataSourceRequest) returns (DataSourceInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/update"
+      body: "*"
+    };
+  }
 
-    // Updates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.
-    rpc update_plugin (UpdateDataSourcePluginRequest) returns (DataSourceInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source/update-plugin"
-            body: "*"
-        };
-    }
+  // Updates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.
+  rpc update_plugin (UpdateDataSourcePluginRequest) returns (DataSourceInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/update-plugin"
+      body: "*"
+    };
+  }
 
-    // Verifies the plugin of a specific DataSource. This method validates the plugin data, `version` and `endpoint`.
-    rpc verify_plugin (DataSourceRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source/verify-plugin"
-            body: "*"
-        };
-    }
+  // Updates the secret data of plugin for DataSource. This method updates the secret data in the DataSource to update the `secret_data`.
+  rpc update_secret_data (UpdateSecretDataSourceRequest) returns (DataSourceInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/update-secret-data"
+      body: "*"
+    };
+  }
 
-    // Enables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.
-    rpc enable (DataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source/enable"
-            body: "*"
-        };
-    }
+  // Verifies the plugin of a specific DataSource. This method validates the plugin data, `version` and `endpoint`.
+  rpc verify_plugin (DataSourceRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/verify-plugin"
+      body: "*"
+    };
+  }
 
-    // Disables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.
-    rpc disable (DataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source/disable"
-            body: "*"
-        };
-    }
+  // Enables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.
+  rpc enable (DataSourceRequest) returns (DataSourceInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/enable"
+      body: "*"
+    };
+  }
 
-    // Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.
-    rpc deregister (DeregisterDataSourceRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source/deregister"
-            body: "*"
-        };
-    }
+  // Disables a specific DataSource. By disabling a DataSource, you can block communication with an external cloud service via the plugin.
+  rpc disable (DataSourceRequest) returns (DataSourceInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/disable"
+      body: "*"
+    };
+  }
 
-    // Manually runs a specific DataSource to collect the cost data. This method is to get up-to-date cost data.
-    rpc sync (SyncDataSourceRequest) returns (spaceone.api.cost_analysis.v1.JobInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source/sync"
-            body: "*"
-        };
-    }
+  // Deregisters and deletes a specific DataSource. You must specify the `data_source_id` of the DataSource to deregister.
+  rpc deregister (DeregisterDataSourceRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/deregister"
+      body: "*"
+    };
+  }
 
-    // Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.
-    rpc get (DataSourceRequest) returns (DataSourceInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source/get"
-            body: "*"
-        };
-    }
+  // Manually runs a specific DataSource to collect the cost data. This method is to get up-to-date cost data.
+  rpc sync (SyncDataSourceRequest) returns (spaceone.api.cost_analysis.v1.JobInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/sync"
+      body: "*"
+    };
+  }
 
-    // Gets a list of all DataSources. You can use a query to get a filtered list of DataSources.
-    rpc list (DataSourceQuery) returns (DataSourcesInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source/list"
-            body: "*"
-        };
-    }
+  // Gets a specific DataSource. Prints detailed information about the DataSource, including `name`, `state`, and `plugin_info`.
+  rpc get (DataSourceRequest) returns (DataSourceInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/get"
+      body: "*"
+    };
+  }
 
-    rpc stat (DataSourceStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source/stat"
-            body: "*"
-        };
-    }
+  // Gets a list of all DataSources. You can use a query to get a filtered list of DataSources.
+  rpc list (DataSourceQuery) returns (DataSourcesInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/list"
+      body: "*"
+    };
+  }
+
+  rpc stat (DataSourceStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/stat"
+      body: "*"
+    };
+  }
 }
 
 message SecretFilter {
-    enum SecretFilterState {
-        NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-    }
+  enum SecretFilterState {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
 
-    SecretFilterState state = 1;
-    repeated string secrets = 2;
-    repeated string service_accounts = 3;
-    repeated string schemas = 4;
+  SecretFilterState state = 1;
+  repeated string secrets = 2;
+  repeated string service_accounts = 3;
+  repeated string schemas = 4;
 }
 
 message PluginInfo {
-    enum UpgradeMode {
-        NONE = 0;
-        MANUAL = 1;
-        AUTO = 2;
-    }
+  enum UpgradeMode {
+    NONE = 0;
+    MANUAL = 1;
+    AUTO = 2;
+  }
 
-    string plugin_id = 1;
-    string version = 2;
-    google.protobuf.Struct options = 3;
-    google.protobuf.Struct metadata = 4;
-    google.protobuf.Struct secret_data = 5;
-    string schema_id = 6;
-    string secret_id = 7;
-    UpgradeMode upgrade_mode = 8;
+  string plugin_id = 1;
+  string version = 2;
+  google.protobuf.Struct options = 3;
+  google.protobuf.Struct metadata = 4;
+  google.protobuf.Struct secret_data = 5;
+  string schema_id = 6;
+  string secret_id = 7;
+  UpgradeMode upgrade_mode = 8;
 }
 
 //{
@@ -163,41 +171,41 @@ message PluginInfo {
 //    "tags": {"a": "b"}
 //}
 message RegisterDataSourceRequest {
-    enum DataSourceType {
-        NONE = 0;
-        LOCAL = 1;
-        EXTERNAL = 2;
-    }
+  enum DataSourceType {
+    NONE = 0;
+    LOCAL = 1;
+    EXTERNAL = 2;
+  }
 
-    enum SecretType {
-        SECRET_TYPE_NONE = 0;
-        MANUAL = 1;
-        USE_SERVICE_ACCOUNT_SECRET = 2;
-    }
+  enum SecretType {
+    SECRET_TYPE_NONE = 0;
+    MANUAL = 1;
+    USE_SERVICE_ACCOUNT_SECRET = 2;
+  }
 
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
 
-    string name = 1;
-    DataSourceType data_source_type = 2;
-    // +optional
-    string provider = 3;
-    // +optional
-    SecretType secret_type = 4;
-    // +optional
-    SecretFilter secret_filter = 5;
-    // +optional
-    google.protobuf.Struct template = 6;
-    // +optional
-    PluginInfo plugin_info = 7;
-    // +optional
-    google.protobuf.Struct tags = 8;
-    ResourceGroup resource_group = 20;
-    // +optional
-    string workspace_id = 21;
+  string name = 1;
+  DataSourceType data_source_type = 2;
+  // +optional
+  string provider = 3;
+  // +optional
+  SecretType secret_type = 4;
+  // +optional
+  SecretFilter secret_filter = 5;
+  // +optional
+  google.protobuf.Struct template = 6;
+  // +optional
+  PluginInfo plugin_info = 7;
+  // +optional
+  google.protobuf.Struct tags = 8;
+  ResourceGroup resource_group = 20;
+  // +optional
+  string workspace_id = 21;
 }
 
 //{
@@ -208,15 +216,15 @@ message RegisterDataSourceRequest {
 //        }
 //}
 message UpdateDataSourceRequest {
-    string data_source_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    SecretFilter secret_filter = 3;
-    // +optional
-    google.protobuf.Struct template = 4;
-    // +optional
-    google.protobuf.Struct tags = 5;
+  string data_source_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  SecretFilter secret_filter = 3;
+  // +optional
+  google.protobuf.Struct template = 4;
+  // +optional
+  google.protobuf.Struct tags = 5;
 }
 
 //{
@@ -226,19 +234,25 @@ message UpdateDataSourceRequest {
 //    "upgrade_mode": "AUTO"
 //}
 message UpdateDataSourcePluginRequest {
-    enum UpgradeMode {
-        NONE = 0;
-        MANUAL = 1;
-        AUTO = 2;
-    }
+  enum UpgradeMode {
+    NONE = 0;
+    MANUAL = 1;
+    AUTO = 2;
+  }
 
-    string data_source_id = 1;
-    // +optional
-    string version = 2;
-    // +optional
-    google.protobuf.Struct options = 3;
-    // +optional
-    UpgradeMode upgrade_mode = 4;
+  string data_source_id = 1;
+  // +optional
+  string version = 2;
+  // +optional
+  google.protobuf.Struct options = 3;
+  // +optional
+  UpgradeMode upgrade_mode = 4;
+}
+
+message UpdateSecretDataSourceRequest {
+  string data_source_id = 1;
+  string secret_schema_id = 2;
+  google.protobuf.Struct secret_data = 3;
 }
 
 //{
@@ -247,51 +261,51 @@ message UpdateDataSourcePluginRequest {
 //    "domain_id": "domain-085d1e872789"
 //}
 message DeregisterDataSourceRequest {
-    string data_source_id = 1;
-    // Default value is true. If true delete all cost data related to data_source_id
-    // +optional
-    bool cascade_delete_cost = 2;
+  string data_source_id = 1;
+  // Default value is true. If true delete all cost data related to data_source_id
+  // +optional
+  bool cascade_delete_cost = 2;
 }
 
 message SyncDataSourceRequest {
-    string data_source_id = 1;
-    // +optional
-    string start = 2;
-    // +optional
-    bool no_preload_cache = 3;
+  string data_source_id = 1;
+  // +optional
+  string start = 2;
+  // +optional
+  bool no_preload_cache = 3;
 }
 
 //{
 //    "data_source_id": "ds-085d1e872789"
 //}
 message DataSourceRequest {
-    string data_source_id = 1;
+  string data_source_id = 1;
 }
 
 //{
 //    "query": {}
 //}
 message DataSourceQuery {
-    enum DataSourceType {
-        TYPE_NONE = 0;
-        LOCAL = 1;
-        EXTERNAL = 2;
-    }
+  enum DataSourceType {
+    TYPE_NONE = 0;
+    LOCAL = 1;
+    EXTERNAL = 2;
+  }
 
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string data_source_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    string state = 4;
-    // +optional
-    DataSourceType data_source_type = 5;
-    // +optional
-    string provider = 6;
-    // +optional
-    string workspace_id = 21;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string data_source_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  string state = 4;
+  // +optional
+  DataSourceType data_source_type = 5;
+  // +optional
+  string provider = 6;
+  // +optional
+  string workspace_id = 21;
 }
 
 //{
@@ -349,50 +363,50 @@ message DataSourceQuery {
 //        "created_at": "2022-07-19T10:58:36.080Z"
 //}
 message DataSourceInfo {
-    enum State {
-        STATE_NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-    }
+  enum State {
+    STATE_NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
 
-    enum DataSourceType {
-        TYPE_NONE = 0;
-        LOCAL = 1;
-        EXTERNAL = 2;
-    }
+  enum DataSourceType {
+    TYPE_NONE = 0;
+    LOCAL = 1;
+    EXTERNAL = 2;
+  }
 
-    enum SecretType {
-        SECRET_TYPE_NONE = 0;
-        MANUAL = 1;
-        USE_SERVICE_ACCOUNT_SECRET = 2;
-    }
+  enum SecretType {
+    SECRET_TYPE_NONE = 0;
+    MANUAL = 1;
+    USE_SERVICE_ACCOUNT_SECRET = 2;
+  }
 
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
 
-    string data_source_id = 1;
-    string name = 2;
-    State state = 3;
-    DataSourceType data_source_type = 4;
-    string provider = 5;
-    SecretType secret_type = 6;
-    SecretFilter secret_filter = 7;
-    PluginInfo plugin_info = 8;
-    google.protobuf.Struct template = 9;
-    google.protobuf.Struct tags = 10;
-    repeated string cost_tag_keys = 11;
-    repeated string cost_additional_info_keys = 12;
-    repeated string cost_data_keys = 13;
+  string data_source_id = 1;
+  string name = 2;
+  State state = 3;
+  DataSourceType data_source_type = 4;
+  string provider = 5;
+  SecretType secret_type = 6;
+  SecretFilter secret_filter = 7;
+  PluginInfo plugin_info = 8;
+  google.protobuf.Struct template = 9;
+  google.protobuf.Struct tags = 10;
+  repeated string cost_tag_keys = 11;
+  repeated string cost_additional_info_keys = 12;
+  repeated string cost_data_keys = 13;
 
-    ResourceGroup resource_group = 20;
-    string domain_id = 21;
-    string workspace_id = 22;
+  ResourceGroup resource_group = 20;
+  string domain_id = 21;
+  string workspace_id = 22;
 
-    string created_at = 31;
-    string last_synchronized_at = 32;
+  string created_at = 31;
+  string last_synchronized_at = 32;
 }
 
 //{
@@ -455,10 +469,10 @@ message DataSourceInfo {
 //        "total_count": 2
 //}
 message DataSourcesInfo {
-    repeated DataSourceInfo results = 1;
-    int32 total_count = 2;
+  repeated DataSourceInfo results = 1;
+  int32 total_count = 2;
 }
 
 message DataSourceStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
