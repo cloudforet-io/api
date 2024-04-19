@@ -32,6 +32,11 @@ class DataSourceStub(object):
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.UpdateDataSourcePluginRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
                 )
+        self.update_secret_data = channel.unary_unary(
+                '/spaceone.api.cost_analysis.v1.DataSource/update_secret_data',
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.UpdateSecretDataSourceRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
+                )
         self.verify_plugin = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.DataSource/verify_plugin',
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceRequest.SerializeToString,
@@ -93,6 +98,13 @@ class DataSourceServicer(object):
 
     def update_plugin(self, request, context):
         """Updates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def update_secret_data(self, request, context):
+        """Updates the secret data of plugin for DataSource. This method updates the secret data in the DataSource to update the `secret_data`.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -169,6 +181,11 @@ def add_DataSourceServicer_to_server(servicer, server):
             'update_plugin': grpc.unary_unary_rpc_method_handler(
                     servicer.update_plugin,
                     request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.UpdateDataSourcePluginRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.SerializeToString,
+            ),
+            'update_secret_data': grpc.unary_unary_rpc_method_handler(
+                    servicer.update_secret_data,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.UpdateSecretDataSourceRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.SerializeToString,
             ),
             'verify_plugin': grpc.unary_unary_rpc_method_handler(
@@ -268,6 +285,23 @@ class DataSource(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.DataSource/update_plugin',
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.UpdateDataSourcePluginRequest.SerializeToString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def update_secret_data(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/spaceone.api.cost_analysis.v1.DataSource/update_secret_data',
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.UpdateSecretDataSourceRequest.SerializeToString,
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

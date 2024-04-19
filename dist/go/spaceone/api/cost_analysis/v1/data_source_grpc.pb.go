@@ -23,17 +23,18 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	DataSource_Register_FullMethodName     = "/spaceone.api.cost_analysis.v1.DataSource/register"
-	DataSource_Update_FullMethodName       = "/spaceone.api.cost_analysis.v1.DataSource/update"
-	DataSource_UpdatePlugin_FullMethodName = "/spaceone.api.cost_analysis.v1.DataSource/update_plugin"
-	DataSource_VerifyPlugin_FullMethodName = "/spaceone.api.cost_analysis.v1.DataSource/verify_plugin"
-	DataSource_Enable_FullMethodName       = "/spaceone.api.cost_analysis.v1.DataSource/enable"
-	DataSource_Disable_FullMethodName      = "/spaceone.api.cost_analysis.v1.DataSource/disable"
-	DataSource_Deregister_FullMethodName   = "/spaceone.api.cost_analysis.v1.DataSource/deregister"
-	DataSource_Sync_FullMethodName         = "/spaceone.api.cost_analysis.v1.DataSource/sync"
-	DataSource_Get_FullMethodName          = "/spaceone.api.cost_analysis.v1.DataSource/get"
-	DataSource_List_FullMethodName         = "/spaceone.api.cost_analysis.v1.DataSource/list"
-	DataSource_Stat_FullMethodName         = "/spaceone.api.cost_analysis.v1.DataSource/stat"
+	DataSource_Register_FullMethodName         = "/spaceone.api.cost_analysis.v1.DataSource/register"
+	DataSource_Update_FullMethodName           = "/spaceone.api.cost_analysis.v1.DataSource/update"
+	DataSource_UpdatePlugin_FullMethodName     = "/spaceone.api.cost_analysis.v1.DataSource/update_plugin"
+	DataSource_UpdateSecretData_FullMethodName = "/spaceone.api.cost_analysis.v1.DataSource/update_secret_data"
+	DataSource_VerifyPlugin_FullMethodName     = "/spaceone.api.cost_analysis.v1.DataSource/verify_plugin"
+	DataSource_Enable_FullMethodName           = "/spaceone.api.cost_analysis.v1.DataSource/enable"
+	DataSource_Disable_FullMethodName          = "/spaceone.api.cost_analysis.v1.DataSource/disable"
+	DataSource_Deregister_FullMethodName       = "/spaceone.api.cost_analysis.v1.DataSource/deregister"
+	DataSource_Sync_FullMethodName             = "/spaceone.api.cost_analysis.v1.DataSource/sync"
+	DataSource_Get_FullMethodName              = "/spaceone.api.cost_analysis.v1.DataSource/get"
+	DataSource_List_FullMethodName             = "/spaceone.api.cost_analysis.v1.DataSource/list"
+	DataSource_Stat_FullMethodName             = "/spaceone.api.cost_analysis.v1.DataSource/stat"
 )
 
 // DataSourceClient is the client API for DataSource service.
@@ -46,6 +47,8 @@ type DataSourceClient interface {
 	Update(ctx context.Context, in *UpdateDataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
 	// Updates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.
 	UpdatePlugin(ctx context.Context, in *UpdateDataSourcePluginRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
+	// Updates the secret data of plugin for DataSource. This method updates the secret data in the DataSource to update the `secret_data`.
+	UpdateSecretData(ctx context.Context, in *UpdateSecretDataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
 	// Verifies the plugin of a specific DataSource. This method validates the plugin data, `version` and `endpoint`.
 	VerifyPlugin(ctx context.Context, in *DataSourceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Enables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.
@@ -92,6 +95,15 @@ func (c *dataSourceClient) Update(ctx context.Context, in *UpdateDataSourceReque
 func (c *dataSourceClient) UpdatePlugin(ctx context.Context, in *UpdateDataSourcePluginRequest, opts ...grpc.CallOption) (*DataSourceInfo, error) {
 	out := new(DataSourceInfo)
 	err := c.cc.Invoke(ctx, DataSource_UpdatePlugin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourceClient) UpdateSecretData(ctx context.Context, in *UpdateSecretDataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error) {
+	out := new(DataSourceInfo)
+	err := c.cc.Invoke(ctx, DataSource_UpdateSecretData_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -180,6 +192,8 @@ type DataSourceServer interface {
 	Update(context.Context, *UpdateDataSourceRequest) (*DataSourceInfo, error)
 	// Updates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.
 	UpdatePlugin(context.Context, *UpdateDataSourcePluginRequest) (*DataSourceInfo, error)
+	// Updates the secret data of plugin for DataSource. This method updates the secret data in the DataSource to update the `secret_data`.
+	UpdateSecretData(context.Context, *UpdateSecretDataSourceRequest) (*DataSourceInfo, error)
 	// Verifies the plugin of a specific DataSource. This method validates the plugin data, `version` and `endpoint`.
 	VerifyPlugin(context.Context, *DataSourceRequest) (*empty.Empty, error)
 	// Enables a specific DataSource. By enabling a DataSource, you can communicate with an external cloud service via the plugin.
@@ -210,6 +224,9 @@ func (UnimplementedDataSourceServer) Update(context.Context, *UpdateDataSourceRe
 }
 func (UnimplementedDataSourceServer) UpdatePlugin(context.Context, *UpdateDataSourcePluginRequest) (*DataSourceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePlugin not implemented")
+}
+func (UnimplementedDataSourceServer) UpdateSecretData(context.Context, *UpdateSecretDataSourceRequest) (*DataSourceInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSecretData not implemented")
 }
 func (UnimplementedDataSourceServer) VerifyPlugin(context.Context, *DataSourceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyPlugin not implemented")
@@ -298,6 +315,24 @@ func _DataSource_UpdatePlugin_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataSourceServer).UpdatePlugin(ctx, req.(*UpdateDataSourcePluginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSource_UpdateSecretData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateSecretDataSourceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourceServer).UpdateSecretData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSource_UpdateSecretData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourceServer).UpdateSecretData(ctx, req.(*UpdateSecretDataSourceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -464,6 +499,10 @@ var DataSource_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update_plugin",
 			Handler:    _DataSource_UpdatePlugin_Handler,
+		},
+		{
+			MethodName: "update_secret_data",
+			Handler:    _DataSource_UpdateSecretData_Handler,
 		},
 		{
 			MethodName: "verify_plugin",
