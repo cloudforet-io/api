@@ -8,8 +8,17 @@ import "google/protobuf/struct.proto";
 
 
 service Cost {
+  rpc get_linked_accounts (GetLinkedAccountsRequest) returns (AccountsInfo) {}
   rpc get_data (GetDataRequest) returns (stream CostsInfo) {}
 }
+
+message GetLinkedAccountsRequest {
+  google.protobuf.Struct options = 1;
+  google.protobuf.Struct schema = 2;
+  google.protobuf.Struct secret_data = 3;
+  string domain_id = 21;
+}
+
 
 message GetDataRequest {
   google.protobuf.Struct options = 1;
@@ -19,6 +28,12 @@ message GetDataRequest {
   // +optional
   google.protobuf.Struct task_options = 4;
   string domain_id = 5;
+}
+
+
+message AccountInfo {
+  string account_id = 1;
+  string name = 2;
 }
 
 message CostInfo {
@@ -36,6 +51,10 @@ message CostInfo {
   string billed_date = 21;
 }
 
+
+message AccountsInfo {
+  repeated AccountInfo results = 1;
+}
 message CostsInfo {
   repeated CostInfo results = 1;
 }
