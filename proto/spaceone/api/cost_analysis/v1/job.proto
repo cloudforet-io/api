@@ -11,73 +11,77 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service Job {
-    // Cancels a specific Job. You can manually cease a Job in run with this method.
-    rpc cancel (JobRequest) returns (JobInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/job/cancel"
-            body: "*"
-        };
-    }
-    
-    // Gets a specific Job. Prints detailed information about the Job, including the plugin used, operation time, and `status`.
-    rpc get (JobRequest) returns (JobInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/job/get"
-            body: "*"
-        };
-    }
-    
-    // Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.
-    rpc list (JobQuery) returns (JobsInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/job/list"
-            body: "*"
-        };
-    }
-    rpc stat (JobStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/job/stat"
-            body: "*"
-        };
-    }
+  // Cancels a specific Job. You can manually cease a Job in run with this method.
+  rpc cancel (JobRequest) returns (JobInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/job/cancel"
+      body: "*"
+    };
+  }
+
+  // Gets a specific Job. Prints detailed information about the Job, including the plugin used, operation time, and `status`.
+  rpc get (JobRequest) returns (JobInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/job/get"
+      body: "*"
+    };
+  }
+
+  // Gets a list of all Jobs. You can use a query to get a filtered list of Jobs.
+  rpc list (JobQuery) returns (JobsInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/job/list"
+      body: "*"
+    };
+  }
+  rpc stat (JobStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/job/stat"
+      body: "*"
+    };
+  }
 }
 
 //{
 //    "job_id": "job-07994c7c9021"
 //}
 message JobRequest {
-    string job_id = 1;
+  string job_id = 1;
 }
 
 //{
 //    "query": {}
 //}
 message JobQuery {
-    enum Status {
-        SCOPE_NONE = 0;
-        IN_PROGRESS = 1;
-        SUCCESS = 2;
-        FAILURE = 3;
-        TIMEOUT = 4;
-        CANCELED = 5;
-    }
+  enum Status {
+    SCOPE_NONE = 0;
+    IN_PROGRESS = 1;
+    SUCCESS = 2;
+    FAILURE = 3;
+    TIMEOUT = 4;
+    CANCELED = 5;
+  }
 
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string job_id = 2;
-    // +optional
-    Status status = 3;
-    // +optional
-    string workspace_id = 21;
-    // +optional
-    string data_source_id = 22;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string job_id = 2;
+  // +optional
+  Status status = 3;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string data_source_id = 22;
 }
 
 message ChangedInfo {
-    string start = 1;
-    string end = 2;
-    google.protobuf.Struct filter = 3;
+  string start = 1;
+  string end = 2;
+  google.protobuf.Struct filter = 3;
+}
+
+message SyncedAccountInfo{
+  string account_id = 1;
 }
 
 //{
@@ -101,39 +105,40 @@ message ChangedInfo {
 //    ]
 //}
 message JobInfo {
-    enum Status {
-        SCOPE_NONE = 0;
-        IN_PROGRESS = 1;
-        SUCCESS = 2;
-        FAILURE = 3;
-        TIMEOUT = 4;
-        CANCELED = 5;
-    }
+  enum Status {
+    SCOPE_NONE = 0;
+    IN_PROGRESS = 1;
+    SUCCESS = 2;
+    FAILURE = 3;
+    TIMEOUT = 4;
+    CANCELED = 5;
+  }
 
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
 
-    string job_id = 1;
-    Status status = 2;
-    google.protobuf.Struct options = 3;
-    string error_code = 4;
-    string error_message = 5;
-    int32 total_tasks = 6;
-    int32 remained_tasks = 7;
-    repeated ChangedInfo changed = 8;
+  string job_id = 1;
+  Status status = 2;
+  google.protobuf.Struct options = 3;
+  string error_code = 4;
+  string error_message = 5;
+  int32 total_tasks = 6;
+  int32 remained_tasks = 7;
+  repeated ChangedInfo changed = 8;
+  repeated SyncedAccountInfo synced_accounts = 9;
 
-    ResourceGroup resource_group = 20;
-    string domain_id = 21;
-    string workspace_id = 22;
-    string data_source_id = 23;
+  ResourceGroup resource_group = 20;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string data_source_id = 23;
 
 
-    string created_at = 31;
-    string updated_at = 32;
-    string finished_at = 33;
+  string created_at = 31;
+  string updated_at = 32;
+  string finished_at = 33;
 }
 
 //{
@@ -180,10 +185,10 @@ message JobInfo {
 //        "total_count": 372
 //}
 message JobsInfo {
-    repeated JobInfo results = 1;
-    int32 total_count = 2;
+  repeated JobInfo results = 1;
+  int32 total_count = 2;
 }
 
 message JobStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
