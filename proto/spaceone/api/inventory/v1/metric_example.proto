@@ -58,7 +58,6 @@ service MetricExample {
 //}
 message CreateMetricExampleRequest {
     string metric_id = 1;
-    // +optional
     string name = 2;
     google.protobuf.Struct options = 3;
     // +optional
@@ -109,8 +108,9 @@ message MetricExampleInfo {
     google.protobuf.Struct tags = 4;
 
     string domain_id = 21;
-    string user_id = 22;
-    string metric_id = 23;
+    string workspace_id = 22;
+    string user_id = 23;
+    string metric_id = 24;
 
     string created_at = 31;
     string updated_at = 32;
