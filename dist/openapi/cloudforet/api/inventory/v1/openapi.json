@@ -1435,6 +1435,180 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric-example/create": {
+       "post": {
+         "tags": ["inventory > metric-example"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |metric_id||string|True|\n |options||Struct|True|\n |name||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/MetricExampleInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/MetricExampleInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric-example/update": {
+       "post": {
+         "tags": ["inventory > metric-example"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |example_id||string|True|\n |name||string||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"example_id" : {"type": "string","title": "EXAMPLE_ID" },"name" : {"type": "string","title": "NAME" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/MetricExampleInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/MetricExampleInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric-example/delete": {
+       "post": {
+         "tags": ["inventory > metric-example"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |example_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"example_id" : {"type": "string","title": "EXAMPLE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric-example/get": {
+       "post": {
+         "tags": ["inventory > metric-example"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |example_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"example_id" : {"type": "string","title": "EXAMPLE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/MetricExampleInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/MetricExampleInfo"},"Default Example":{
+                     "value": "{\n\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric-example/list": {
+       "post": {
+         "tags": ["inventory > metric-example"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |example_id||string||\n |name||string||\n |metric_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"example_id" : {"type": "string","title": "EXAMPLE_ID" },"name" : {"type": "string","title": "NAME" },"metric_id" : {"type": "string","title": "METRIC_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/MetricExamplesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/MetricExamplesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory/metric-example/stat": {
+       "post": {
+         "tags": ["inventory > metric-example"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/inventory/cloud-service-query-set/create": {
        "post": {
          "tags": ["inventory > cloud-service-query-set"],
@@ -2441,11 +2615,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category||string|True|\n |namespace_id||string||\n |provider||string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category||string|True|\n |namespace_id||string||\n |provider||string||\n |icon||string||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"name" : {"type": "string","title": "NAME" },"category" : {"type": "string","title": "CATEGORY" },"provider" : {"type": "string","title": "PROVIDER" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"name" : {"type": "string","title": "NAME" },"category" : {"type": "string","title": "CATEGORY" },"provider" : {"type": "string","title": "PROVIDER" },"icon" : {"type": "string","title": "ICON" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
@@ -2472,11 +2646,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n |name||string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |namespace_id||string|True|\n |name||string||\n |icon||string||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"name" : {"type": "string","title": "NAME" },"icon" : {"type": "string","title": "ICON" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
@@ -3245,6 +3419,49 @@
          "required": ["metric_id"],
                 "title": "UpdateMetricRequest"
            }
+           ,        "CreateMetricExampleRequest": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["metric_id","options"],
+                "title": "CreateMetricExampleRequest"
+           }
+           ,        "MetricExampleInfo": {
+         "properties" : {"example_id" : {"type": "string","title": "EXAMPLE_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"metric_id" : {"type": "string","title": "METRIC_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["example_id","name","options","tags","domain_id","user_id","metric_id","created_at","updated_at"],
+                "title": "MetricExampleInfo"
+           }
+           ,        "MetricExampleQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"example_id" : {"type": "string","title": "EXAMPLE_ID"},"name" : {"type": "string","title": "NAME"},"metric_id" : {"type": "string","title": "METRIC_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "MetricExampleQuery"
+           }
+           ,        "MetricExampleRequest": {
+         "properties" : {"example_id" : {"type": "string","title": "EXAMPLE_ID"}},
+         "type": "object",
+         "required": ["example_id"],
+                "title": "MetricExampleRequest"
+           }
+           ,        "MetricExampleStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "MetricExampleStatQuery"
+           }
+           ,        "MetricExamplesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/MetricExampleInfo"},
+               "type": "array","$ref": "#/components/schemas/MetricExampleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "MetricExamplesInfo"
+           }
+           ,        "UpdateMetricExampleRequest": {
+         "properties" : {"example_id" : {"type": "string","title": "EXAMPLE_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["example_id"],
+                "title": "UpdateMetricExampleRequest"
+           }
            ,        "CloudServiceQuerySetInfo": {
          "properties" : {"query_set_id" : {"type": "string","title": "QUERY_SET_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"query_type" : {"type": "string","title": "QUERY_TYPE"},"unit" : {"type": "object","title": "UNIT"},"data_keys" : {"items": {"type": "string"},
                "type": "array","title": "DATA_KEYS"},"additional_info_keys" : {"items": {"type": "string"},
@@ -3494,15 +3711,15 @@
                 "title": "UpdateNoteRequest"
            }
            ,        "CreateNamespaceRequest": {
-         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"provider" : {"type": "string","title": "PROVIDER"},"icon" : {"type": "string","title": "ICON"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["name","category"],
                 "title": "CreateNamespaceRequest"
            }
            ,        "NamespaceInfo": {
-         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"provider" : {"type": "string","title": "PROVIDER"},"icon" : {"type": "string","title": "ICON"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["namespace_id","name","category","provider","tags","is_managed","domain_id","created_at","updated_at"],
+         "required": ["namespace_id","name","category","provider","icon","tags","is_managed","domain_id","created_at","updated_at"],
                 "title": "NamespaceInfo"
            }
            ,        "NamespaceQuery": {
@@ -3531,7 +3748,7 @@
                 "title": "NamespacesInfo"
            }
            ,        "UpdateNamespaceRequest": {
-         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"icon" : {"type": "string","title": "ICON"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["namespace_id"],
                 "title": "UpdateNamespaceRequest"

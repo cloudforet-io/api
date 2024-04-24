@@ -1,7 +1,7 @@
 {
   "files": [
     {
-      "name": "spaceone/api/inventory/v1/namespace.proto",
+      "name": "spaceone/api/inventory/v1/metric_example.proto",
       "description": "",
       "package": "spaceone.api.inventory.v1",
       "hasEnums": false,
@@ -12,9 +12,9 @@
       "extensions": [],
       "messages": [
         {
-          "name": "CreateNamespaceRequest",
-          "longName": "CreateNamespaceRequest",
-          "fullName": "spaceone.api.inventory.v1.CreateNamespaceRequest",
+          "name": "CreateMetricExampleRequest",
+          "longName": "CreateMetricExampleRequest",
+          "fullName": "spaceone.api.inventory.v1.CreateMetricExampleRequest",
           "description": "{\n\n}",
           "hasExtensions": false,
           "hasFields": true,
@@ -22,8 +22,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "namespace_id",
-              "description": "+optional",
+              "name": "metric_id",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -35,30 +35,6 @@
             },
             {
               "name": "name",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "category",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "provider",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -70,12 +46,12 @@
               "defaultValue": ""
             },
             {
-              "name": "icon",
-              "description": "+optional",
+              "name": "options",
+              "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -96,9 +72,9 @@
           ]
         },
         {
-          "name": "NamespaceInfo",
-          "longName": "NamespaceInfo",
-          "fullName": "spaceone.api.inventory.v1.NamespaceInfo",
+          "name": "MetricExampleInfo",
+          "longName": "MetricExampleInfo",
+          "fullName": "spaceone.api.inventory.v1.MetricExampleInfo",
           "description": "{\n\n}",
           "hasExtensions": false,
           "hasFields": true,
@@ -106,7 +82,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "namespace_id",
+              "name": "example_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -130,36 +106,12 @@
               "defaultValue": ""
             },
             {
-              "name": "category",
+              "name": "options",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "provider",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "icon",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -178,19 +130,31 @@
               "defaultValue": ""
             },
             {
-              "name": "is_managed",
+              "name": "domain_id",
               "description": "",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "user_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "metric_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -228,9 +192,9 @@
           ]
         },
         {
-          "name": "NamespaceQuery",
-          "longName": "NamespaceQuery",
-          "fullName": "spaceone.api.inventory.v1.NamespaceQuery",
+          "name": "MetricExampleQuery",
+          "longName": "MetricExampleQuery",
+          "fullName": "spaceone.api.inventory.v1.MetricExampleQuery",
           "description": "{\n\n}",
           "hasExtensions": false,
           "hasFields": true,
@@ -250,7 +214,7 @@
               "defaultValue": ""
             },
             {
-              "name": "namespace_id",
+              "name": "example_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -262,7 +226,7 @@
               "defaultValue": ""
             },
             {
-              "name": "category",
+              "name": "name",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -274,31 +238,7 @@
               "defaultValue": ""
             },
             {
-              "name": "provider",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "is_managed",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
+              "name": "metric_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -312,9 +252,9 @@
           ]
         },
         {
-          "name": "NamespaceRequest",
-          "longName": "NamespaceRequest",
-          "fullName": "spaceone.api.inventory.v1.NamespaceRequest",
+          "name": "MetricExampleRequest",
+          "longName": "MetricExampleRequest",
+          "fullName": "spaceone.api.inventory.v1.MetricExampleRequest",
           "description": "{\n\n}",
           "hasExtensions": false,
           "hasFields": true,
@@ -322,7 +262,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "namespace_id",
+              "name": "example_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -336,9 +276,9 @@
           ]
         },
         {
-          "name": "NamespaceStatQuery",
-          "longName": "NamespaceStatQuery",
-          "fullName": "spaceone.api.inventory.v1.NamespaceStatQuery",
+          "name": "MetricExampleStatQuery",
+          "longName": "MetricExampleStatQuery",
+          "fullName": "spaceone.api.inventory.v1.MetricExampleStatQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -360,9 +300,9 @@
           ]
         },
         {
-          "name": "NamespacesInfo",
-          "longName": "NamespacesInfo",
-          "fullName": "spaceone.api.inventory.v1.NamespacesInfo",
+          "name": "MetricExamplesInfo",
+          "longName": "MetricExamplesInfo",
+          "fullName": "spaceone.api.inventory.v1.MetricExamplesInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -373,9 +313,9 @@
               "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "NamespaceInfo",
-              "longType": "NamespaceInfo",
-              "fullType": "spaceone.api.inventory.v1.NamespaceInfo",
+              "type": "MetricExampleInfo",
+              "longType": "MetricExampleInfo",
+              "fullType": "spaceone.api.inventory.v1.MetricExampleInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -396,9 +336,9 @@
           ]
         },
         {
-          "name": "UpdateNamespaceRequest",
-          "longName": "UpdateNamespaceRequest",
-          "fullName": "spaceone.api.inventory.v1.UpdateNamespaceRequest",
+          "name": "UpdateMetricExampleRequest",
+          "longName": "UpdateMetricExampleRequest",
+          "fullName": "spaceone.api.inventory.v1.UpdateMetricExampleRequest",
           "description": "{\n\n}",
           "hasExtensions": false,
           "hasFields": true,
@@ -406,7 +346,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "namespace_id",
+              "name": "example_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -430,12 +370,12 @@
               "defaultValue": ""
             },
             {
-              "name": "icon",
+              "name": "options",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -458,28 +398,28 @@
       ],
       "services": [
         {
-          "name": "Namespace",
-          "longName": "Namespace",
-          "fullName": "spaceone.api.inventory.v1.Namespace",
+          "name": "MetricExample",
+          "longName": "MetricExample",
+          "fullName": "spaceone.api.inventory.v1.MetricExample",
           "description": "",
           "methods": [
             {
               "name": "create",
               "description": "",
-              "requestType": "CreateNamespaceRequest",
-              "requestLongType": "CreateNamespaceRequest",
-              "requestFullType": "spaceone.api.inventory.v1.CreateNamespaceRequest",
+              "requestType": "CreateMetricExampleRequest",
+              "requestLongType": "CreateMetricExampleRequest",
+              "requestFullType": "spaceone.api.inventory.v1.CreateMetricExampleRequest",
               "requestStreaming": false,
-              "responseType": "NamespaceInfo",
-              "responseLongType": "NamespaceInfo",
-              "responseFullType": "spaceone.api.inventory.v1.NamespaceInfo",
+              "responseType": "MetricExampleInfo",
+              "responseLongType": "MetricExampleInfo",
+              "responseFullType": "spaceone.api.inventory.v1.MetricExampleInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v1/namespace/create",
+                      "pattern": "/inventory/v1/metric-example/create",
                       "body": "*"
                     }
                   ]
@@ -489,20 +429,20 @@
             {
               "name": "update",
               "description": "",
-              "requestType": "UpdateNamespaceRequest",
-              "requestLongType": "UpdateNamespaceRequest",
-              "requestFullType": "spaceone.api.inventory.v1.UpdateNamespaceRequest",
+              "requestType": "UpdateMetricExampleRequest",
+              "requestLongType": "UpdateMetricExampleRequest",
+              "requestFullType": "spaceone.api.inventory.v1.UpdateMetricExampleRequest",
               "requestStreaming": false,
-              "responseType": "NamespaceInfo",
-              "responseLongType": "NamespaceInfo",
-              "responseFullType": "spaceone.api.inventory.v1.NamespaceInfo",
+              "responseType": "MetricExampleInfo",
+              "responseLongType": "MetricExampleInfo",
+              "responseFullType": "spaceone.api.inventory.v1.MetricExampleInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v1/namespace/update",
+                      "pattern": "/inventory/v1/metric-example/update",
                       "body": "*"
                     }
                   ]
@@ -512,9 +452,9 @@
             {
               "name": "delete",
               "description": "",
-              "requestType": "NamespaceRequest",
-              "requestLongType": "NamespaceRequest",
-              "requestFullType": "spaceone.api.inventory.v1.NamespaceRequest",
+              "requestType": "MetricExampleRequest",
+              "requestLongType": "MetricExampleRequest",
+              "requestFullType": "spaceone.api.inventory.v1.MetricExampleRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -525,7 +465,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v1/namespace/delete",
+                      "pattern": "/inventory/v1/metric-example/delete",
                       "body": "*"
                     }
                   ]
@@ -535,20 +475,20 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "NamespaceRequest",
-              "requestLongType": "NamespaceRequest",
-              "requestFullType": "spaceone.api.inventory.v1.NamespaceRequest",
+              "requestType": "MetricExampleRequest",
+              "requestLongType": "MetricExampleRequest",
+              "requestFullType": "spaceone.api.inventory.v1.MetricExampleRequest",
               "requestStreaming": false,
-              "responseType": "NamespaceInfo",
-              "responseLongType": "NamespaceInfo",
-              "responseFullType": "spaceone.api.inventory.v1.NamespaceInfo",
+              "responseType": "MetricExampleInfo",
+              "responseLongType": "MetricExampleInfo",
+              "responseFullType": "spaceone.api.inventory.v1.MetricExampleInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v1/namespace/get",
+                      "pattern": "/inventory/v1/metric-example/get",
                       "body": "*"
                     }
                   ]
@@ -558,20 +498,20 @@
             {
               "name": "list",
               "description": "",
-              "requestType": "NamespaceQuery",
-              "requestLongType": "NamespaceQuery",
-              "requestFullType": "spaceone.api.inventory.v1.NamespaceQuery",
+              "requestType": "MetricExampleQuery",
+              "requestLongType": "MetricExampleQuery",
+              "requestFullType": "spaceone.api.inventory.v1.MetricExampleQuery",
               "requestStreaming": false,
-              "responseType": "NamespacesInfo",
-              "responseLongType": "NamespacesInfo",
-              "responseFullType": "spaceone.api.inventory.v1.NamespacesInfo",
+              "responseType": "MetricExamplesInfo",
+              "responseLongType": "MetricExamplesInfo",
+              "responseFullType": "spaceone.api.inventory.v1.MetricExamplesInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v1/namespace/list",
+                      "pattern": "/inventory/v1/metric-example/list",
                       "body": "*"
                     }
                   ]
@@ -581,9 +521,9 @@
             {
               "name": "stat",
               "description": "",
-              "requestType": "NamespaceStatQuery",
-              "requestLongType": "NamespaceStatQuery",
-              "requestFullType": "spaceone.api.inventory.v1.NamespaceStatQuery",
+              "requestType": "MetricExampleStatQuery",
+              "requestLongType": "MetricExampleStatQuery",
+              "requestFullType": "spaceone.api.inventory.v1.MetricExampleStatQuery",
               "requestStreaming": false,
               "responseType": "Struct",
               "responseLongType": ".google.protobuf.Struct",
@@ -594,7 +534,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v1/namespace/stat",
+                      "pattern": "/inventory/v1/metric-example/stat",
                       "body": "*"
                     }
                   ]
