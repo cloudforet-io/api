@@ -2024,11 +2024,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all DataSources. You can use a query to get a filtered list of DataSources.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |data_source_id||string||\n |name||string||\n |state||string||\n |data_source_type|LOCAL, EXTERNAL |string||\n |provider||string||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_id||string|True|\n |query||Query||\n |data_source_id||string||\n |name||string||\n |state||string||\n |data_source_type|LOCAL, EXTERNAL |string||\n |provider||string||\n |connected_workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"data_source_type" : {"type": "string","title": "DATA_SOURCE_TYPE" },"provider" : {"type": "string","title": "PROVIDER" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"data_source_type" : {"type": "string","title": "DATA_SOURCE_TYPE" },"provider" : {"type": "string","title": "PROVIDER" },"connected_workspace_id" : {"type": "string","title": "CONNECTED_WORKSPACE_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
                }
@@ -2802,15 +2802,15 @@
          "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data_source_type" : {"type": "string","title": "DATA_SOURCE_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"secret_type" : {"type": "string","title": "SECRET_TYPE"},"secret_filter" : {"$ref": "#/components/schemas/SecretFilter","title": "SECRET_FILTER"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"template" : {"type": "object","title": "TEMPLATE"},"tags" : {"type": "object","title": "TAGS"},"cost_tag_keys" : {"items": {"type": "string"},
                "type": "array","title": "COST_TAG_KEYS"},"cost_additional_info_keys" : {"items": {"type": "string"},
                "type": "array","title": "COST_ADDITIONAL_INFO_KEYS"},"cost_data_keys" : {"items": {"type": "string"},
-               "type": "array","title": "COST_DATA_KEYS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synchronized_at" : {"type": "string","title": "LAST_SYNCHRONIZED_AT"}},
+               "type": "array","title": "COST_DATA_KEYS"},"data_source_account_count" : {"type": "integer","title": "DATA_SOURCE_ACCOUNT_COUNT"},"connected_workspace_count" : {"type": "integer","title": "CONNECTED_WORKSPACE_COUNT"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synchronized_at" : {"type": "string","title": "LAST_SYNCHRONIZED_AT"}},
          "type": "object",
-         "required": ["data_source_id","name","state","data_source_type","provider","secret_type","secret_filter","plugin_info","template","tags","cost_tag_keys","cost_additional_info_keys","cost_data_keys","resource_group","domain_id","workspace_id","created_at","last_synchronized_at"],
+         "required": ["data_source_id","name","state","data_source_type","provider","secret_type","secret_filter","plugin_info","template","tags","cost_tag_keys","cost_additional_info_keys","cost_data_keys","data_source_account_count","connected_workspace_count","resource_group","domain_id","workspace_id","created_at","last_synchronized_at"],
                 "title": "DataSourceInfo"
            }
            ,        "DataSourceQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data_source_type" : {"type": "string","title": "DATA_SOURCE_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data_source_type" : {"type": "string","title": "DATA_SOURCE_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"connected_workspace_id" : {"type": "string","title": "CONNECTED_WORKSPACE_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": [],
+         "required": ["workspace_id"],
                 "title": "DataSourceQuery"
            }
            ,        "DataSourceRequest": {
