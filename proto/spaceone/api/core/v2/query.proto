@@ -180,7 +180,7 @@ message TimeSeriesAnalyzeQuery {
     Granularity granularity = 1;
     string start = 2;
     string end = 3;
-    repeated string group_by = 4;
+    google.protobuf.ListValue group_by = 4;
     repeated string field_group = 5;
     repeated Filter filter = 6;
     repeated Filter filter_or = 7;
@@ -192,7 +192,7 @@ message TimeSeriesAnalyzeQuery {
 }
 
 message AnalyzeQuery {
-    repeated string group_by = 1;
+    google.protobuf.ListValue group_by = 1;
     repeated string field_group = 2;
     repeated Filter filter = 3;
     repeated Filter filter_or = 4;
@@ -218,7 +218,7 @@ message ExportAnalyzeQuery {
     repeated Filter filter_or = 2;
     string keyword = 3;
     repeated Sort sort = 4;
-    repeated string group_by = 5;
+    google.protobuf.ListValue group_by = 5;
     google.protobuf.Struct fields = 6;
     google.protobuf.Struct select = 7;
     Page page = 8;
