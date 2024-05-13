@@ -1055,11 +1055,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_account_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |account_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"data_source_account_id" : {"type": "string","title": "DATA_SOURCE_ACCOUNT_ID" }                 }
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"account_id" : {"type": "string","title": "ACCOUNT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1068,13 +1068,7 @@
          },
          "responses": {
            "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DataSourceAccountsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DataSourceAccountsInfo"}}
-               }
-             }}
+             "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
      },"/cost-analysis/data-source-account/get": {
@@ -2600,9 +2594,9 @@
                 "title": "DataSourceAccountsInfo"
            }
            ,        "ResetDataSourceAccountRequest": {
-         "properties" : {"data_source_account_id" : {"type": "string","title": "DATA_SOURCE_ACCOUNT_ID"}},
+         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"account_id" : {"type": "string","title": "ACCOUNT_ID"}},
          "type": "object",
-         "required": ["data_source_account_id"],
+         "required": ["data_source_id"],
                 "title": "ResetDataSourceAccountRequest"
            }
            ,        "UpdateDataSourceAccountRequest": {

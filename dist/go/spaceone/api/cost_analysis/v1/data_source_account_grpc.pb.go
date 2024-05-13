@@ -10,6 +10,7 @@ package v1
 
 import (
 	context "context"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -35,7 +36,7 @@ const (
 type DataSourceAccountClient interface {
 	// Update a DataSourceAccount with the specified DataSourceAccount ID related to the DataSource.
 	Update(ctx context.Context, in *UpdateDataSourceAccountRequest, opts ...grpc.CallOption) (*DataSourceAccountInfo, error)
-	Reset(ctx context.Context, in *ResetDataSourceAccountRequest, opts ...grpc.CallOption) (*DataSourceAccountsInfo, error)
+	Reset(ctx context.Context, in *ResetDataSourceAccountRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Get a DataSourceAccount with the specified DataSourceAccount ID related to the DataSource.
 	Get(ctx context.Context, in *DataSourceAccountRequest, opts ...grpc.CallOption) (*DataSourceAccountInfo, error)
 	List(ctx context.Context, in *DataSourceAccountQuery, opts ...grpc.CallOption) (*DataSourceAccountsInfo, error)
@@ -59,8 +60,8 @@ func (c *dataSourceAccountClient) Update(ctx context.Context, in *UpdateDataSour
 	return out, nil
 }
 
-func (c *dataSourceAccountClient) Reset(ctx context.Context, in *ResetDataSourceAccountRequest, opts ...grpc.CallOption) (*DataSourceAccountsInfo, error) {
-	out := new(DataSourceAccountsInfo)
+func (c *dataSourceAccountClient) Reset(ctx context.Context, in *ResetDataSourceAccountRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, DataSourceAccount_Reset_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -101,7 +102,7 @@ func (c *dataSourceAccountClient) Stat(ctx context.Context, in *DataSourceAccoun
 type DataSourceAccountServer interface {
 	// Update a DataSourceAccount with the specified DataSourceAccount ID related to the DataSource.
 	Update(context.Context, *UpdateDataSourceAccountRequest) (*DataSourceAccountInfo, error)
-	Reset(context.Context, *ResetDataSourceAccountRequest) (*DataSourceAccountsInfo, error)
+	Reset(context.Context, *ResetDataSourceAccountRequest) (*empty.Empty, error)
 	// Get a DataSourceAccount with the specified DataSourceAccount ID related to the DataSource.
 	Get(context.Context, *DataSourceAccountRequest) (*DataSourceAccountInfo, error)
 	List(context.Context, *DataSourceAccountQuery) (*DataSourceAccountsInfo, error)
@@ -116,7 +117,7 @@ type UnimplementedDataSourceAccountServer struct {
 func (UnimplementedDataSourceAccountServer) Update(context.Context, *UpdateDataSourceAccountRequest) (*DataSourceAccountInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedDataSourceAccountServer) Reset(context.Context, *ResetDataSourceAccountRequest) (*DataSourceAccountsInfo, error) {
+func (UnimplementedDataSourceAccountServer) Reset(context.Context, *ResetDataSourceAccountRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Reset not implemented")
 }
 func (UnimplementedDataSourceAccountServer) Get(context.Context, *DataSourceAccountRequest) (*DataSourceAccountInfo, error) {

@@ -3,6 +3,7 @@
 import grpc
 import warnings
 
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.cost_analysis.v1 import data_source_account_pb2 as spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2
 
@@ -48,7 +49,7 @@ class DataSourceAccountStub(object):
         self.reset = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.DataSourceAccount/reset',
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.ResetDataSourceAccountRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.DataSourceAccountsInfo.FromString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.DataSourceAccount/get',
@@ -113,7 +114,7 @@ def add_DataSourceAccountServicer_to_server(servicer, server):
             'reset': grpc.unary_unary_rpc_method_handler(
                     servicer.reset,
                     request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.ResetDataSourceAccountRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.DataSourceAccountsInfo.SerializeToString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
@@ -183,7 +184,7 @@ class DataSourceAccount(object):
             target,
             '/spaceone.api.cost_analysis.v1.DataSourceAccount/reset',
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.ResetDataSourceAccountRequest.SerializeToString,
-            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.DataSourceAccountsInfo.FromString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
