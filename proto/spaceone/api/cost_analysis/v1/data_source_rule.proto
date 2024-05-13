@@ -12,90 +12,91 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service DataSourceRule {
-    
-    // Creates a new DataSourceRule. When creating the resource, this method can apply two types of conditions: mapping projects where the cost incurred to the Cost, and mapping cloud service accounts to the Cost. By adjusting the `condition_policy` parameter, the DataSourceRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.
-    rpc create (CreateDataSourceRuleRequest) returns (DataSourceRuleInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source-rule/create"
-            body: "*"
-        };
-    }
-    
-    // Updates a specific DataSourceRule. You can make changes in DataSourceRule settings, including filtering conditions. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
-    rpc update (UpdateDataSourceRuleRequest) returns (DataSourceRuleInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source-rule/update"
-            body: "*"
-        };
-    }
-    
-    // Changes the priority order of the DataSourceRules to apply. If there are multiple DataSourceRules applied in a specific service account, the priority order of the resources is requried. This method changes the priority order to apply DataSourceRules.
-    rpc change_order (ChangeDataSourceRuleOrderRequest) returns (DataSourceRuleInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source-rule/change-order"
-            body: "*"
-        };
-    }
-    
-    // Deletes a specific DataSourceRule. You must specify the `data_source_rule_id` of the DataSourceRule to delete. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
-    rpc delete (DataSourceRuleRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source-rule/delete"
-            body: "*"
-        };
-    }
-    
-    // Gets a specific DataSourceRule. Prints detailed information about the DataSourceRule, including  `conditions_policy` and conditions applied to DataSources.
-    rpc get (DataSourceRuleRequest) returns (DataSourceRuleInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source-rule/get"
-            body: "*"
-        };
-    }
-    
-    // Gets a list of all DataSourceRules. You can use a query to get a filtered list of DataSourceRules.
-    rpc list (DataSourceRuleQuery) returns (DataSourceRulesInfo) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source-rule/list"
-            body: "*"
-        };
-    }
 
-    rpc stat (DataSourceRuleStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/cost-analysis/v1/data-source-rule/stat"
-            body: "*"
-        };
-    }
+  // Creates a new DataSourceRule. When creating the resource, this method can apply two types of conditions: mapping projects where the cost incurred to the Cost, and mapping cloud service accounts to the Cost. By adjusting the `condition_policy` parameter, the DataSourceRule can be applied when all conditions are met, applied when any of the conditions are met, or always applied regardless of whether the conditions are met.
+  rpc create (CreateDataSourceRuleRequest) returns (DataSourceRuleInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source-rule/create"
+      body: "*"
+    };
+  }
+
+  // Updates a specific DataSourceRule. You can make changes in DataSourceRule settings, including filtering conditions. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
+  rpc update (UpdateDataSourceRuleRequest) returns (DataSourceRuleInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source-rule/update"
+      body: "*"
+    };
+  }
+
+  // Changes the priority order of the DataSourceRules to apply. If there are multiple DataSourceRules applied in a specific service account, the priority order of the resources is requried. This method changes the priority order to apply DataSourceRules.
+  rpc change_order (ChangeDataSourceRuleOrderRequest) returns (DataSourceRuleInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source-rule/change-order"
+      body: "*"
+    };
+  }
+
+  // Deletes a specific DataSourceRule. You must specify the `data_source_rule_id` of the DataSourceRule to delete. If the parameter `is_default` is `true`, only `Admin` type User can use this method.
+  rpc delete (DataSourceRuleRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source-rule/delete"
+      body: "*"
+    };
+  }
+
+  // Gets a specific DataSourceRule. Prints detailed information about the DataSourceRule, including  `conditions_policy` and conditions applied to DataSources.
+  rpc get (DataSourceRuleRequest) returns (DataSourceRuleInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source-rule/get"
+      body: "*"
+    };
+  }
+
+  // Gets a list of all DataSourceRules. You can use a query to get a filtered list of DataSourceRules.
+  rpc list (DataSourceRuleQuery) returns (DataSourceRulesInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source-rule/list"
+      body: "*"
+    };
+  }
+
+  rpc stat (DataSourceRuleStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source-rule/stat"
+      body: "*"
+    };
+  }
 }
 
 enum ConditionsPolicy {
-    NONE = 0;
-    ALL = 1;
-    ANY = 2;
-    ALWAYS = 3;
+  NONE = 0;
+  ALL = 1;
+  ANY = 2;
+  ALWAYS = 3;
 }
 
 message DataSourceRuleCondition {
-    string key = 1;
-    string value = 2;
-    string operator = 3;
+  string key = 1;
+  string value = 2;
+  string operator = 3;
 }
 
 message MatchRule {
-    string source = 1;
-    string target = 2;
+  string source = 1;
+  string target = 2;
+  bool all_workspaces = 3;
 }
 
 message DataSourceRuleActions {
-    string change_project = 1;
-    MatchRule match_project = 2;
-    MatchRule match_service_account = 3;
-    google.protobuf.Struct add_additional_info = 4;
+  string change_project = 1;
+  MatchRule match_project = 2;
+  MatchRule match_service_account = 3;
+  google.protobuf.Struct add_additional_info = 4;
 }
 
 message DataSourceRuleOptions {
-    bool stop_processing = 1;
+  bool stop_processing = 1;
 }
 
 //{
@@ -109,25 +110,25 @@ message DataSourceRuleOptions {
 //    "tags": {"b": "c", "a": "b"}
 //}
 message CreateDataSourceRuleRequest {
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
 
-    string data_source_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    repeated DataSourceRuleCondition conditions = 3;
-    ConditionsPolicy conditions_policy = 4;
-    DataSourceRuleActions actions = 5;
-    // +optional
-    DataSourceRuleOptions options = 6;
-    // +optional
-    google.protobuf.Struct tags = 7;
-    ResourceGroup resource_group = 20;
-    string workspace_id = 21;
+  string data_source_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  repeated DataSourceRuleCondition conditions = 3;
+  ConditionsPolicy conditions_policy = 4;
+  DataSourceRuleActions actions = 5;
+  // +optional
+  DataSourceRuleOptions options = 6;
+  // +optional
+  google.protobuf.Struct tags = 7;
+  ResourceGroup resource_group = 20;
+  string workspace_id = 21;
 }
 
 //{
@@ -146,19 +147,19 @@ message CreateDataSourceRuleRequest {
 //    "tags": {"b": "c", "a": "b"}
 //}
 message UpdateDataSourceRuleRequest {
-    string data_source_rule_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    repeated DataSourceRuleCondition conditions = 3;
-    // +optional
-    ConditionsPolicy conditions_policy = 4;
-    // +optional
-    DataSourceRuleActions actions = 5;
-    // +optional
-    DataSourceRuleOptions options = 6;
-    // +optional
-    google.protobuf.Struct tags = 7;
+  string data_source_rule_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  repeated DataSourceRuleCondition conditions = 3;
+  // +optional
+  ConditionsPolicy conditions_policy = 4;
+  // +optional
+  DataSourceRuleActions actions = 5;
+  // +optional
+  DataSourceRuleOptions options = 6;
+  // +optional
+  google.protobuf.Struct tags = 7;
 }
 
 //{
@@ -166,39 +167,39 @@ message UpdateDataSourceRuleRequest {
 //    "order": 2
 //}
 message ChangeDataSourceRuleOrderRequest {
-    string data_source_rule_id = 1;
-    int32 order = 2;
+  string data_source_rule_id = 1;
+  int32 order = 2;
 }
 
 //{
 //    "data_source_rule_id": "rule-22fab02f6b51"
 //}
 message DataSourceRuleRequest {
-    string data_source_rule_id = 1;
+  string data_source_rule_id = 1;
 }
 
 //{
 //  "query": {}
 //}
 message DataSourceRuleQuery {
-    enum RuleType {
-        RULE_TYPE_NONE = 0;
-        MANAGED = 1;
-        CUSTOM = 2;
-    }
+  enum RuleType {
+    RULE_TYPE_NONE = 0;
+    MANAGED = 1;
+    CUSTOM = 2;
+  }
 
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string data_source_rule_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    RuleType rule_type = 4;
-    // +optional
-    string workspace_id = 21;
-    // +optional
-    string data_source_id = 22;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string data_source_rule_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  RuleType rule_type = 4;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string data_source_id = 22;
 }
 
 //{
@@ -224,33 +225,33 @@ message DataSourceRuleQuery {
 //    "created_at": "2022-07-19T10:13:28.335Z"
 //}
 message DataSourceRuleInfo {
-    enum ResourceGroup {
-        RESOURCE_GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-    enum RuleType {
-        RULE_TYPE_NONE = 0;
-        MANAGED = 1;
-        CUSTOM = 2;
-    }
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
+  enum RuleType {
+    RULE_TYPE_NONE = 0;
+    MANAGED = 1;
+    CUSTOM = 2;
+  }
 
-    string data_source_rule_id = 1;
-    string name = 2;
-    RuleType rule_type = 3;
-    int32 order = 4;
-    repeated DataSourceRuleCondition conditions = 5;
-    ConditionsPolicy conditions_policy = 6;
-    DataSourceRuleActions actions = 7;
-    DataSourceRuleOptions options = 8;
-    google.protobuf.Struct tags = 9;
+  string data_source_rule_id = 1;
+  string name = 2;
+  RuleType rule_type = 3;
+  int32 order = 4;
+  repeated DataSourceRuleCondition conditions = 5;
+  ConditionsPolicy conditions_policy = 6;
+  DataSourceRuleActions actions = 7;
+  DataSourceRuleOptions options = 8;
+  google.protobuf.Struct tags = 9;
 
-    ResourceGroup resource_group = 20;
-    string domain_id = 21;
-    string workspace_id = 22;
-    string data_source_id = 23;
+  ResourceGroup resource_group = 20;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string data_source_id = 23;
 
-    string created_at = 31;
+  string created_at = 31;
 }
 
 //{
@@ -297,10 +298,10 @@ message DataSourceRuleInfo {
 //        "total_count": 2
 //}
 message DataSourceRulesInfo {
-    repeated DataSourceRuleInfo results = 1;
-    int32 total_count = 2;
+  repeated DataSourceRuleInfo results = 1;
+  int32 total_count = 2;
 }
 
 message DataSourceRuleStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
