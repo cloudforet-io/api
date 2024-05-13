@@ -20,7 +20,7 @@ service DataSourceAccount {
     };
   }
 
-  rpc reset (ResetDataSourceAccountRequest) returns (DataSourceAccountsInfo) {
+  rpc reset (ResetDataSourceAccountRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/cost-analysis/v1/data-source-account/reset"
       body: "*"
@@ -63,7 +63,9 @@ message UpdateDataSourceAccountRequest{
 }
 
 message ResetDataSourceAccountRequest {
-  string data_source_account_id = 1;
+  string data_source_id = 1;
+  // +optional
+  string account_id = 2;
 }
 
 message DataSourceAccountRequest {
