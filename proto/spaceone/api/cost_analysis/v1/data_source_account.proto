@@ -42,6 +42,13 @@ service DataSourceAccount {
     };
   }
 
+  rpc analyze (DataSourceAccountAnalyzeQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source-account/analyze"
+      body: "*"
+    };
+  }
+
   rpc stat (DataSourceAccountStatQuery) returns (google.protobuf.Struct) {
     option (google.api.http) = {
       post: "/cost-analysis/v1/data-source-account/stat"
@@ -106,6 +113,13 @@ message DataSourceAccountsInfo {
   repeated DataSourceAccountInfo results = 1;
   int32 total_count = 2;
 
+}
+
+message DataSourceAccountAnalyzeQuery {
+  spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 1;
+  string data_source_id = 2;
+  string account_id = 3;
+  string workspace_id = 21;
 }
 
 message DataSourceAccountStatQuery {
