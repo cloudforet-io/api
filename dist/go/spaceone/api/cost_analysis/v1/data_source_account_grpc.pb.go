@@ -23,11 +23,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	DataSourceAccount_Update_FullMethodName = "/spaceone.api.cost_analysis.v1.DataSourceAccount/update"
-	DataSourceAccount_Reset_FullMethodName  = "/spaceone.api.cost_analysis.v1.DataSourceAccount/reset"
-	DataSourceAccount_Get_FullMethodName    = "/spaceone.api.cost_analysis.v1.DataSourceAccount/get"
-	DataSourceAccount_List_FullMethodName   = "/spaceone.api.cost_analysis.v1.DataSourceAccount/list"
-	DataSourceAccount_Stat_FullMethodName   = "/spaceone.api.cost_analysis.v1.DataSourceAccount/stat"
+	DataSourceAccount_Update_FullMethodName  = "/spaceone.api.cost_analysis.v1.DataSourceAccount/update"
+	DataSourceAccount_Reset_FullMethodName   = "/spaceone.api.cost_analysis.v1.DataSourceAccount/reset"
+	DataSourceAccount_Get_FullMethodName     = "/spaceone.api.cost_analysis.v1.DataSourceAccount/get"
+	DataSourceAccount_List_FullMethodName    = "/spaceone.api.cost_analysis.v1.DataSourceAccount/list"
+	DataSourceAccount_Analyze_FullMethodName = "/spaceone.api.cost_analysis.v1.DataSourceAccount/analyze"
+	DataSourceAccount_Stat_FullMethodName    = "/spaceone.api.cost_analysis.v1.DataSourceAccount/stat"
 )
 
 // DataSourceAccountClient is the client API for DataSourceAccount service.
@@ -40,6 +41,7 @@ type DataSourceAccountClient interface {
 	// Get a DataSourceAccount with the specified DataSourceAccount ID related to the DataSource.
 	Get(ctx context.Context, in *DataSourceAccountRequest, opts ...grpc.CallOption) (*DataSourceAccountInfo, error)
 	List(ctx context.Context, in *DataSourceAccountQuery, opts ...grpc.CallOption) (*DataSourceAccountsInfo, error)
+	Analyze(ctx context.Context, in *DataSourceAccountAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Stat(ctx context.Context, in *DataSourceAccountStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
@@ -87,6 +89,15 @@ func (c *dataSourceAccountClient) List(ctx context.Context, in *DataSourceAccoun
 	return out, nil
 }
 
+func (c *dataSourceAccountClient) Analyze(ctx context.Context, in *DataSourceAccountAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
+	out := new(_struct.Struct)
+	err := c.cc.Invoke(ctx, DataSourceAccount_Analyze_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dataSourceAccountClient) Stat(ctx context.Context, in *DataSourceAccountStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	out := new(_struct.Struct)
 	err := c.cc.Invoke(ctx, DataSourceAccount_Stat_FullMethodName, in, out, opts...)
@@ -106,6 +117,7 @@ type DataSourceAccountServer interface {
 	// Get a DataSourceAccount with the specified DataSourceAccount ID related to the DataSource.
 	Get(context.Context, *DataSourceAccountRequest) (*DataSourceAccountInfo, error)
 	List(context.Context, *DataSourceAccountQuery) (*DataSourceAccountsInfo, error)
+	Analyze(context.Context, *DataSourceAccountAnalyzeQuery) (*_struct.Struct, error)
 	Stat(context.Context, *DataSourceAccountStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedDataSourceAccountServer()
 }
@@ -125,6 +137,9 @@ func (UnimplementedDataSourceAccountServer) Get(context.Context, *DataSourceAcco
 }
 func (UnimplementedDataSourceAccountServer) List(context.Context, *DataSourceAccountQuery) (*DataSourceAccountsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedDataSourceAccountServer) Analyze(context.Context, *DataSourceAccountAnalyzeQuery) (*_struct.Struct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Analyze not implemented")
 }
 func (UnimplementedDataSourceAccountServer) Stat(context.Context, *DataSourceAccountStatQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
@@ -214,6 +229,24 @@ func _DataSourceAccount_List_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DataSourceAccount_Analyze_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DataSourceAccountAnalyzeQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourceAccountServer).Analyze(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSourceAccount_Analyze_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourceAccountServer).Analyze(ctx, req.(*DataSourceAccountAnalyzeQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DataSourceAccount_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DataSourceAccountStatQuery)
 	if err := dec(in); err != nil {
@@ -254,6 +287,10 @@ var DataSourceAccount_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "list",
 			Handler:    _DataSourceAccount_List_Handler,
+		},
+		{
+			MethodName: "analyze",
+			Handler:    _DataSourceAccount_Analyze_Handler,
 		},
 		{
 			MethodName: "stat",

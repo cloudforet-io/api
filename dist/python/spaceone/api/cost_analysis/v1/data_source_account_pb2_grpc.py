@@ -61,6 +61,11 @@ class DataSourceAccountStub(object):
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.DataSourceAccountQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.DataSourceAccountsInfo.FromString,
                 _registered_method=True)
+        self.analyze = channel.unary_unary(
+                '/spaceone.api.cost_analysis.v1.DataSourceAccount/analyze',
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.DataSourceAccountAnalyzeQuery.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
+                _registered_method=True)
         self.stat = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.DataSourceAccount/stat',
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.DataSourceAccountStatQuery.SerializeToString,
@@ -97,6 +102,12 @@ class DataSourceAccountServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def analyze(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def stat(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -125,6 +136,11 @@ def add_DataSourceAccountServicer_to_server(servicer, server):
                     servicer.list,
                     request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.DataSourceAccountQuery.FromString,
                     response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.DataSourceAccountsInfo.SerializeToString,
+            ),
+            'analyze': grpc.unary_unary_rpc_method_handler(
+                    servicer.analyze,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.DataSourceAccountAnalyzeQuery.FromString,
+                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
@@ -239,6 +255,33 @@ class DataSourceAccount(object):
             '/spaceone.api.cost_analysis.v1.DataSourceAccount/list',
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.DataSourceAccountQuery.SerializeToString,
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.DataSourceAccountsInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def analyze(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.cost_analysis.v1.DataSourceAccount/analyze',
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__account__pb2.DataSourceAccountAnalyzeQuery.SerializeToString,
+            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,
             insecure,

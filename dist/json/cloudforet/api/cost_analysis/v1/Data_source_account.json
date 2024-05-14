@@ -12,6 +12,66 @@
       "extensions": [],
       "messages": [
         {
+          "name": "DataSourceAccountAnalyzeQuery",
+          "longName": "DataSourceAccountAnalyzeQuery",
+          "fullName": "spaceone.api.cost_analysis.v1.DataSourceAccountAnalyzeQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "",
+              "label": "",
+              "type": "TimeSeriesAnalyzeQuery",
+              "longType": "spaceone.api.core.v2.TimeSeriesAnalyzeQuery",
+              "fullType": "spaceone.api.core.v2.TimeSeriesAnalyzeQuery",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data_source_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "account_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "DataSourceAccountInfo",
           "longName": "DataSourceAccountInfo",
           "fullName": "spaceone.api.cost_analysis.v1.DataSourceAccountInfo",
@@ -525,6 +585,29 @@
                     {
                       "method": "POST",
                       "pattern": "/cost-analysis/v1/data-source-account/list",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "analyze",
+              "description": "",
+              "requestType": "DataSourceAccountAnalyzeQuery",
+              "requestLongType": "DataSourceAccountAnalyzeQuery",
+              "requestFullType": "spaceone.api.cost_analysis.v1.DataSourceAccountAnalyzeQuery",
+              "requestStreaming": false,
+              "responseType": "Struct",
+              "responseLongType": ".google.protobuf.Struct",
+              "responseFullType": "google.protobuf.Struct",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/data-source-account/analyze",
                       "body": "*"
                     }
                   ]
