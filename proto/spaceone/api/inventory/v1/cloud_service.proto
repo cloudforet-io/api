@@ -82,7 +82,6 @@ message CloudServiceReference {
 }
 
 message CollectionInfo {
-    string provider = 1;
     string service_account_id = 2;
     string secret_id = 3;
     string collector_id = 4;
@@ -298,9 +297,10 @@ message CloudServiceQuery {
 //        "a": "b"
 //    },
 //    "collection_info": {
-//        "collectors": [],
-//        "service_accounts": [],
-//        "secrets": []
+//        "service_account_id": "sa-abcd1234",
+//        "secret_id": "secret-abcd1234",
+//        "collector_id": "collector-abcd1234",
+//        "last_collected_at": "2022-06-22T06:38:48.989Z"
 //    },
 //    "ip_addresses": [],
 //    "region_code": "ap-northeast-1",
@@ -327,7 +327,7 @@ message CloudServiceInfo {
     CloudServiceReference reference = 13;
     google.protobuf.Struct tags = 14;
     google.protobuf.Struct tag_keys = 15;
-    repeated CollectionInfo collection_info = 16;
+    CollectionInfo collection_info = 16;
     string region_code = 17;
 
     string domain_id = 21;
@@ -388,9 +388,10 @@ message CloudServiceInfo {
 //            "description": "spaceone"
 //        },
 //        "collection_info": {
-//            "collectors": [],
-//            "service_accounts": [],
-//            "secrets": []
+//             "service_account_id": "sa-abcd1234",
+//             "secret_id": "secret-abcd1234",
+//             "collector_id": "collector-abcd1234",
+//             "last_collected_at": "2022-06-22T06:38:48.989Z"
 //        },
 //        "ip_addresses": [
 //            "1.1.1.1",
