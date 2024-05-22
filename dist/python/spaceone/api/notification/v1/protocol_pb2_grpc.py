@@ -7,7 +7,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.notification.v1 import protocol_pb2 as spaceone_dot_api_dot_notification_dot_v1_dot_protocol__pb2
 
-GRPC_GENERATED_VERSION = '1.63.0'
+GRPC_GENERATED_VERSION = '1.64.0'
 GRPC_VERSION = grpc.__version__
 EXPECTED_ERROR_RELEASE = '1.65.0'
 SCHEDULED_RELEASE_DATE = 'June 25, 2024'
@@ -205,6 +205,7 @@ def add_ProtocolServicer_to_server(servicer, server):
     generic_handler = grpc.method_handlers_generic_handler(
             'spaceone.api.notification.v1.Protocol', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('spaceone.api.notification.v1.Protocol', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
