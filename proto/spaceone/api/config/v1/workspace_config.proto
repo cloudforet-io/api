@@ -1,0 +1,103 @@
+// DomainConfig API which configure environments for domain
+syntax = "proto3";
+
+package spaceone.api.config.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/config/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+
+service WorkspaceConfig {
+  rpc create (CreateWorkspaceConfigRequest) returns (WorkspaceConfigInfo) {
+    option (google.api.http) = {
+      post: "/config/v1/workspace-config/create"
+      body: "*"
+    };
+  }
+  rpc update (CreateWorkspaceConfigRequest) returns (WorkspaceConfigInfo) {
+    option (google.api.http) = {
+      post: "/config/v1/workspace-config/update"
+      body: "*"
+    };
+  }
+  rpc set (CreateWorkspaceConfigRequest) returns (WorkspaceConfigInfo) {
+    option (google.api.http) = {
+      post: "/config/v1/workspace-config/set"
+      body: "*"
+    };
+  }
+  rpc delete (WorkspaceConfigRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/config/v1/workspace-config/delete"
+      body: "*"
+    };
+  }
+  rpc get (WorkspaceConfigRequest) returns (WorkspaceConfigInfo) {
+    option (google.api.http) = {
+      post: "/config/v1/workspace-config/get"
+      body: "*"
+    };
+  }
+  rpc list (WorkspaceConfigSearchQuery) returns (WorkspaceConfigsInfo) {
+    option (google.api.http) = {
+      post: "/config/v1/workspace-config/list"
+      body: "*"
+    };
+  }
+  rpc stat (WorkspaceConfigStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/config/v1/workspace-config/stat"
+      body: "*"
+    };
+  }
+}
+
+
+message CreateWorkspaceConfigRequest {
+  string name = 1;
+  google.protobuf.Struct data = 2;
+  // +optional
+  google.protobuf.Struct tags = 3;
+}
+
+message UpdateWorkspaceConfigRequest {
+  string name = 1;
+  google.protobuf.Struct data = 2;
+  // +optional
+  google.protobuf.Struct tags = 3;
+}
+
+message WorkspaceConfigRequest {
+  string name = 1;
+}
+
+message WorkspaceConfigSearchQuery {
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string name = 2;
+}
+
+message WorkspaceConfigInfo {
+  string name = 1;
+  google.protobuf.Struct data = 2;
+  google.protobuf.Struct tags = 3;
+
+  string domain_id = 21;
+
+  string created_at = 31;
+  string updated_at = 32;
+}
+
+message WorkspaceConfigsInfo {
+  repeated WorkspaceConfigInfo results = 1;
+  int32 total_count = 2;
+}
+
+message WorkspaceConfigStatQuery {
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+}
