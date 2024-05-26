@@ -23,30 +23,22 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PrivateDashboard_Create_FullMethodName        = "/spaceone.api.dashboard.v1.PrivateDashboard/create"
-	PrivateDashboard_Update_FullMethodName        = "/spaceone.api.dashboard.v1.PrivateDashboard/update"
-	PrivateDashboard_Delete_FullMethodName        = "/spaceone.api.dashboard.v1.PrivateDashboard/delete"
-	PrivateDashboard_Get_FullMethodName           = "/spaceone.api.dashboard.v1.PrivateDashboard/get"
-	PrivateDashboard_DeleteVersion_FullMethodName = "/spaceone.api.dashboard.v1.PrivateDashboard/delete_version"
-	PrivateDashboard_RevertVersion_FullMethodName = "/spaceone.api.dashboard.v1.PrivateDashboard/revert_version"
-	PrivateDashboard_GetVersion_FullMethodName    = "/spaceone.api.dashboard.v1.PrivateDashboard/get_version"
-	PrivateDashboard_ListVersions_FullMethodName  = "/spaceone.api.dashboard.v1.PrivateDashboard/list_versions"
-	PrivateDashboard_List_FullMethodName          = "/spaceone.api.dashboard.v1.PrivateDashboard/list"
-	PrivateDashboard_Stat_FullMethodName          = "/spaceone.api.dashboard.v1.PrivateDashboard/stat"
+	PrivateDashboard_Create_FullMethodName = "/spaceone.api.dashboard.v1.PrivateDashboard/create"
+	PrivateDashboard_Update_FullMethodName = "/spaceone.api.dashboard.v1.PrivateDashboard/update"
+	PrivateDashboard_Delete_FullMethodName = "/spaceone.api.dashboard.v1.PrivateDashboard/delete"
+	PrivateDashboard_Get_FullMethodName    = "/spaceone.api.dashboard.v1.PrivateDashboard/get"
+	PrivateDashboard_List_FullMethodName   = "/spaceone.api.dashboard.v1.PrivateDashboard/list"
+	PrivateDashboard_Stat_FullMethodName   = "/spaceone.api.dashboard.v1.PrivateDashboard/stat"
 )
 
 // PrivateDashboardClient is the client API for PrivateDashboard service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PrivateDashboardClient interface {
-	Create(ctx context.Context, in *PrivateCreateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error)
-	Update(ctx context.Context, in *PrivateUpdateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error)
+	Create(ctx context.Context, in *CreatePrivateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error)
+	Update(ctx context.Context, in *UpdatePrivateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error)
 	Delete(ctx context.Context, in *PrivateDashboardRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *PrivateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error)
-	DeleteVersion(ctx context.Context, in *PrivateDashboardVersionRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	RevertVersion(ctx context.Context, in *PrivateDashboardVersionRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error)
-	GetVersion(ctx context.Context, in *PrivateDashboardVersionRequest, opts ...grpc.CallOption) (*PrivateDashboardVersionInfo, error)
-	ListVersions(ctx context.Context, in *PrivateDashboardVersionSearchQuery, opts ...grpc.CallOption) (*PrivateDashboardVersionsInfo, error)
 	List(ctx context.Context, in *PrivateDashboardQuery, opts ...grpc.CallOption) (*PrivateDashboardsInfo, error)
 	Stat(ctx context.Context, in *PrivateDashboardStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -59,7 +51,7 @@ func NewPrivateDashboardClient(cc grpc.ClientConnInterface) PrivateDashboardClie
 	return &privateDashboardClient{cc}
 }
 
-func (c *privateDashboardClient) Create(ctx context.Context, in *PrivateCreateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error) {
+func (c *privateDashboardClient) Create(ctx context.Context, in *CreatePrivateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error) {
 	out := new(PrivateDashboardInfo)
 	err := c.cc.Invoke(ctx, PrivateDashboard_Create_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -68,7 +60,7 @@ func (c *privateDashboardClient) Create(ctx context.Context, in *PrivateCreateDa
 	return out, nil
 }
 
-func (c *privateDashboardClient) Update(ctx context.Context, in *PrivateUpdateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error) {
+func (c *privateDashboardClient) Update(ctx context.Context, in *UpdatePrivateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error) {
 	out := new(PrivateDashboardInfo)
 	err := c.cc.Invoke(ctx, PrivateDashboard_Update_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -89,42 +81,6 @@ func (c *privateDashboardClient) Delete(ctx context.Context, in *PrivateDashboar
 func (c *privateDashboardClient) Get(ctx context.Context, in *PrivateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error) {
 	out := new(PrivateDashboardInfo)
 	err := c.cc.Invoke(ctx, PrivateDashboard_Get_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *privateDashboardClient) DeleteVersion(ctx context.Context, in *PrivateDashboardVersionRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, PrivateDashboard_DeleteVersion_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *privateDashboardClient) RevertVersion(ctx context.Context, in *PrivateDashboardVersionRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error) {
-	out := new(PrivateDashboardInfo)
-	err := c.cc.Invoke(ctx, PrivateDashboard_RevertVersion_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *privateDashboardClient) GetVersion(ctx context.Context, in *PrivateDashboardVersionRequest, opts ...grpc.CallOption) (*PrivateDashboardVersionInfo, error) {
-	out := new(PrivateDashboardVersionInfo)
-	err := c.cc.Invoke(ctx, PrivateDashboard_GetVersion_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *privateDashboardClient) ListVersions(ctx context.Context, in *PrivateDashboardVersionSearchQuery, opts ...grpc.CallOption) (*PrivateDashboardVersionsInfo, error) {
-	out := new(PrivateDashboardVersionsInfo)
-	err := c.cc.Invoke(ctx, PrivateDashboard_ListVersions_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -153,14 +109,10 @@ func (c *privateDashboardClient) Stat(ctx context.Context, in *PrivateDashboardS
 // All implementations must embed UnimplementedPrivateDashboardServer
 // for forward compatibility
 type PrivateDashboardServer interface {
-	Create(context.Context, *PrivateCreateDashboardRequest) (*PrivateDashboardInfo, error)
-	Update(context.Context, *PrivateUpdateDashboardRequest) (*PrivateDashboardInfo, error)
+	Create(context.Context, *CreatePrivateDashboardRequest) (*PrivateDashboardInfo, error)
+	Update(context.Context, *UpdatePrivateDashboardRequest) (*PrivateDashboardInfo, error)
 	Delete(context.Context, *PrivateDashboardRequest) (*empty.Empty, error)
 	Get(context.Context, *PrivateDashboardRequest) (*PrivateDashboardInfo, error)
-	DeleteVersion(context.Context, *PrivateDashboardVersionRequest) (*empty.Empty, error)
-	RevertVersion(context.Context, *PrivateDashboardVersionRequest) (*PrivateDashboardInfo, error)
-	GetVersion(context.Context, *PrivateDashboardVersionRequest) (*PrivateDashboardVersionInfo, error)
-	ListVersions(context.Context, *PrivateDashboardVersionSearchQuery) (*PrivateDashboardVersionsInfo, error)
 	List(context.Context, *PrivateDashboardQuery) (*PrivateDashboardsInfo, error)
 	Stat(context.Context, *PrivateDashboardStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedPrivateDashboardServer()
@@ -170,10 +122,10 @@ type PrivateDashboardServer interface {
 type UnimplementedPrivateDashboardServer struct {
 }
 
-func (UnimplementedPrivateDashboardServer) Create(context.Context, *PrivateCreateDashboardRequest) (*PrivateDashboardInfo, error) {
+func (UnimplementedPrivateDashboardServer) Create(context.Context, *CreatePrivateDashboardRequest) (*PrivateDashboardInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedPrivateDashboardServer) Update(context.Context, *PrivateUpdateDashboardRequest) (*PrivateDashboardInfo, error) {
+func (UnimplementedPrivateDashboardServer) Update(context.Context, *UpdatePrivateDashboardRequest) (*PrivateDashboardInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedPrivateDashboardServer) Delete(context.Context, *PrivateDashboardRequest) (*empty.Empty, error) {
@@ -181,18 +133,6 @@ func (UnimplementedPrivateDashboardServer) Delete(context.Context, *PrivateDashb
 }
 func (UnimplementedPrivateDashboardServer) Get(context.Context, *PrivateDashboardRequest) (*PrivateDashboardInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
-}
-func (UnimplementedPrivateDashboardServer) DeleteVersion(context.Context, *PrivateDashboardVersionRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteVersion not implemented")
-}
-func (UnimplementedPrivateDashboardServer) RevertVersion(context.Context, *PrivateDashboardVersionRequest) (*PrivateDashboardInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RevertVersion not implemented")
-}
-func (UnimplementedPrivateDashboardServer) GetVersion(context.Context, *PrivateDashboardVersionRequest) (*PrivateDashboardVersionInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetVersion not implemented")
-}
-func (UnimplementedPrivateDashboardServer) ListVersions(context.Context, *PrivateDashboardVersionSearchQuery) (*PrivateDashboardVersionsInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListVersions not implemented")
 }
 func (UnimplementedPrivateDashboardServer) List(context.Context, *PrivateDashboardQuery) (*PrivateDashboardsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
@@ -214,7 +154,7 @@ func RegisterPrivateDashboardServer(s grpc.ServiceRegistrar, srv PrivateDashboar
 }
 
 func _PrivateDashboard_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PrivateCreateDashboardRequest)
+	in := new(CreatePrivateDashboardRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -226,13 +166,13 @@ func _PrivateDashboard_Create_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: PrivateDashboard_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrivateDashboardServer).Create(ctx, req.(*PrivateCreateDashboardRequest))
+		return srv.(PrivateDashboardServer).Create(ctx, req.(*CreatePrivateDashboardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PrivateDashboard_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PrivateUpdateDashboardRequest)
+	in := new(UpdatePrivateDashboardRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -244,7 +184,7 @@ func _PrivateDashboard_Update_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: PrivateDashboard_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrivateDashboardServer).Update(ctx, req.(*PrivateUpdateDashboardRequest))
+		return srv.(PrivateDashboardServer).Update(ctx, req.(*UpdatePrivateDashboardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -281,78 +221,6 @@ func _PrivateDashboard_Get_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PrivateDashboardServer).Get(ctx, req.(*PrivateDashboardRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PrivateDashboard_DeleteVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PrivateDashboardVersionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PrivateDashboardServer).DeleteVersion(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PrivateDashboard_DeleteVersion_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrivateDashboardServer).DeleteVersion(ctx, req.(*PrivateDashboardVersionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PrivateDashboard_RevertVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PrivateDashboardVersionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PrivateDashboardServer).RevertVersion(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PrivateDashboard_RevertVersion_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrivateDashboardServer).RevertVersion(ctx, req.(*PrivateDashboardVersionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PrivateDashboard_GetVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PrivateDashboardVersionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PrivateDashboardServer).GetVersion(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PrivateDashboard_GetVersion_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrivateDashboardServer).GetVersion(ctx, req.(*PrivateDashboardVersionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PrivateDashboard_ListVersions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PrivateDashboardVersionSearchQuery)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PrivateDashboardServer).ListVersions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PrivateDashboard_ListVersions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrivateDashboardServer).ListVersions(ctx, req.(*PrivateDashboardVersionSearchQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -415,22 +283,6 @@ var PrivateDashboard_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "get",
 			Handler:    _PrivateDashboard_Get_Handler,
-		},
-		{
-			MethodName: "delete_version",
-			Handler:    _PrivateDashboard_DeleteVersion_Handler,
-		},
-		{
-			MethodName: "revert_version",
-			Handler:    _PrivateDashboard_RevertVersion_Handler,
-		},
-		{
-			MethodName: "get_version",
-			Handler:    _PrivateDashboard_GetVersion_Handler,
-		},
-		{
-			MethodName: "list_versions",
-			Handler:    _PrivateDashboard_ListVersions_Handler,
 		},
 		{
 			MethodName: "list",

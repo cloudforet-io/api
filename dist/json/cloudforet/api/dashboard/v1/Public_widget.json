@@ -1,9 +1,9 @@
 {
   "files": [
     {
-      "name": "spaceone/api/dashboard/v1/private_dashboard.proto",
-      "description": "description of dashboard",
-      "package": "spaceone.api.dashboard.v1",
+      "name": "spaceone/api/dashboard/v1/public_widget.proto",
+      "description": "description of widget",
+      "package": "spaceone.api.widget.v1",
       "hasEnums": false,
       "hasExtensions": false,
       "hasMessages": true,
@@ -11,8 +11,8 @@
       "enums": [
         {
           "name": "ResourceGroup",
-          "longName": "PrivateDashboardInfo.ResourceGroup",
-          "fullName": "spaceone.api.dashboard.v1.PrivateDashboardInfo.ResourceGroup",
+          "longName": "PublicWidgetInfo.ResourceGroup",
+          "fullName": "spaceone.api.widget.v1.PublicWidgetInfo.ResourceGroup",
           "description": "",
           "values": [
             {
@@ -41,9 +41,9 @@
       "extensions": [],
       "messages": [
         {
-          "name": "CreatePrivateDashboardRequest",
-          "longName": "CreatePrivateDashboardRequest",
-          "fullName": "spaceone.api.dashboard.v1.CreatePrivateDashboardRequest",
+          "name": "CreatePublicWidgetRequest",
+          "longName": "CreatePublicWidgetRequest",
+          "fullName": "spaceone.api.widget.v1.CreatePublicWidgetRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -51,7 +51,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "name",
+              "name": "public_dashboard_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -63,72 +63,48 @@
               "defaultValue": ""
             },
             {
-              "name": "layouts",
+              "name": "name",
               "description": "+optional",
               "label": "",
-              "type": "ListValue",
-              "longType": "google.protobuf.ListValue",
-              "fullType": "google.protobuf.ListValue",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "vars",
+              "name": "description",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "widget_type",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
               "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "settings",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "variables",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "variables_schema",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "labels",
-              "description": "+optional",
-              "label": "",
-              "type": "ListValue",
-              "longType": "google.protobuf.ListValue",
-              "fullType": "google.protobuf.ListValue",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -141,18 +117,6 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -161,9 +125,9 @@
           ]
         },
         {
-          "name": "PrivateDashboardInfo",
-          "longName": "PrivateDashboardInfo",
-          "fullName": "spaceone.api.dashboard.v1.PrivateDashboardInfo",
+          "name": "LoadPublicWidgetRequest",
+          "longName": "LoadPublicWidgetRequest",
+          "fullName": "spaceone.api.widget.v1.LoadPublicWidgetRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -171,7 +135,67 @@
           "extensions": [],
           "fields": [
             {
-              "name": "private_dashboard_id",
+              "name": "widget_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sort",
+              "description": "+optional",
+              "label": "repeated",
+              "type": "Sort",
+              "longType": "spaceone.api.core.v2.Sort",
+              "fullType": "spaceone.api.core.v2.Sort",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "page",
+              "description": "+optional",
+              "label": "",
+              "type": "Page",
+              "longType": "spaceone.api.core.v2.Page",
+              "fullType": "spaceone.api.core.v2.Page",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "vars",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PublicWidgetInfo",
+          "longName": "PublicWidgetInfo",
+          "fullName": "spaceone.api.widget.v1.PublicWidgetInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "widget_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -195,7 +219,7 @@
               "defaultValue": ""
             },
             {
-              "name": "version",
+              "name": "description",
               "description": "",
               "label": "",
               "type": "string",
@@ -207,72 +231,24 @@
               "defaultValue": ""
             },
             {
-              "name": "layouts",
+              "name": "widget_type",
               "description": "",
               "label": "",
-              "type": "ListValue",
-              "longType": "google.protobuf.ListValue",
-              "fullType": "google.protobuf.ListValue",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "vars",
+              "name": "options",
               "description": "",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "settings",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "variables",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "variables_schema",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "labels",
-              "description": "",
-              "label": "",
-              "type": "ListValue",
-              "longType": "google.protobuf.ListValue",
-              "fullType": "google.protobuf.ListValue",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -285,6 +261,18 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "PublicWidgetInfo.ResourceGroup",
+              "fullType": "spaceone.api.widget.v1.PublicWidgetInfo.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -315,7 +303,19 @@
               "defaultValue": ""
             },
             {
-              "name": "user_id",
+              "name": "project_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "public_dashboard_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -353,9 +353,9 @@
           ]
         },
         {
-          "name": "PrivateDashboardQuery",
-          "longName": "PrivateDashboardQuery",
-          "fullName": "spaceone.api.dashboard.v1.PrivateDashboardQuery",
+          "name": "PublicWidgetQuery",
+          "longName": "PublicWidgetQuery",
+          "fullName": "spaceone.api.widget.v1.PublicWidgetQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -375,7 +375,19 @@
               "defaultValue": ""
             },
             {
-              "name": "private_dashboard_id",
+              "name": "public_dashboard_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "widget_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -397,25 +409,13 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            },
-            {
-              "name": "workspace_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             }
           ]
         },
         {
-          "name": "PrivateDashboardRequest",
-          "longName": "PrivateDashboardRequest",
-          "fullName": "spaceone.api.dashboard.v1.PrivateDashboardRequest",
+          "name": "PublicWidgetRequest",
+          "longName": "PublicWidgetRequest",
+          "fullName": "spaceone.api.widget.v1.PublicWidgetRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -423,7 +423,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "private_dashboard_id",
+              "name": "widget_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -437,33 +437,9 @@
           ]
         },
         {
-          "name": "PrivateDashboardStatQuery",
-          "longName": "PrivateDashboardStatQuery",
-          "fullName": "spaceone.api.dashboard.v1.PrivateDashboardStatQuery",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "query",
-              "description": "",
-              "label": "",
-              "type": "StatisticsQuery",
-              "longType": "spaceone.api.core.v2.StatisticsQuery",
-              "fullType": "spaceone.api.core.v2.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "PrivateDashboardsInfo",
-          "longName": "PrivateDashboardsInfo",
-          "fullName": "spaceone.api.dashboard.v1.PrivateDashboardsInfo",
+          "name": "PublicWidgetsInfo",
+          "longName": "PublicWidgetsInfo",
+          "fullName": "spaceone.api.widget.v1.PublicWidgetsInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -474,9 +450,9 @@
               "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "PrivateDashboardInfo",
-              "longType": "PrivateDashboardInfo",
-              "fullType": "spaceone.api.dashboard.v1.PrivateDashboardInfo",
+              "type": "PublicWidgetInfo",
+              "longType": "PublicWidgetInfo",
+              "fullType": "spaceone.api.widget.v1.PublicWidgetInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -497,9 +473,9 @@
           ]
         },
         {
-          "name": "UpdatePrivateDashboardRequest",
-          "longName": "UpdatePrivateDashboardRequest",
-          "fullName": "spaceone.api.dashboard.v1.UpdatePrivateDashboardRequest",
+          "name": "UpdatePublicWidgetRequest",
+          "longName": "UpdatePublicWidgetRequest",
+          "fullName": "spaceone.api.widget.v1.UpdatePublicWidgetRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -507,7 +483,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "private_dashboard_id",
+              "name": "widget_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -531,72 +507,36 @@
               "defaultValue": ""
             },
             {
-              "name": "layouts",
+              "name": "description",
               "description": "+optional",
               "label": "",
-              "type": "ListValue",
-              "longType": "google.protobuf.ListValue",
-              "fullType": "google.protobuf.ListValue",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "vars",
+              "name": "widget_type",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
               "description": "+optional",
               "label": "",
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "settings",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "variables",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "variables_schema",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "labels",
-              "description": "+optional",
-              "label": "",
-              "type": "ListValue",
-              "longType": "google.protobuf.ListValue",
-              "fullType": "google.protobuf.ListValue",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -619,28 +559,28 @@
       ],
       "services": [
         {
-          "name": "PrivateDashboard",
-          "longName": "PrivateDashboard",
-          "fullName": "spaceone.api.dashboard.v1.PrivateDashboard",
+          "name": "PublicWidget",
+          "longName": "PublicWidget",
+          "fullName": "spaceone.api.widget.v1.PublicWidget",
           "description": "",
           "methods": [
             {
               "name": "create",
               "description": "",
-              "requestType": "CreatePrivateDashboardRequest",
-              "requestLongType": "CreatePrivateDashboardRequest",
-              "requestFullType": "spaceone.api.dashboard.v1.CreatePrivateDashboardRequest",
+              "requestType": "CreatePublicWidgetRequest",
+              "requestLongType": "CreatePublicWidgetRequest",
+              "requestFullType": "spaceone.api.widget.v1.CreatePublicWidgetRequest",
               "requestStreaming": false,
-              "responseType": "PrivateDashboardInfo",
-              "responseLongType": "PrivateDashboardInfo",
-              "responseFullType": "spaceone.api.dashboard.v1.PrivateDashboardInfo",
+              "responseType": "PublicWidgetInfo",
+              "responseLongType": "PublicWidgetInfo",
+              "responseFullType": "spaceone.api.widget.v1.PublicWidgetInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/private-dashboard/create",
+                      "pattern": "/widget/v1/public-widget/create",
                       "body": "*"
                     }
                   ]
@@ -650,20 +590,20 @@
             {
               "name": "update",
               "description": "",
-              "requestType": "UpdatePrivateDashboardRequest",
-              "requestLongType": "UpdatePrivateDashboardRequest",
-              "requestFullType": "spaceone.api.dashboard.v1.UpdatePrivateDashboardRequest",
+              "requestType": "UpdatePublicWidgetRequest",
+              "requestLongType": "UpdatePublicWidgetRequest",
+              "requestFullType": "spaceone.api.widget.v1.UpdatePublicWidgetRequest",
               "requestStreaming": false,
-              "responseType": "PrivateDashboardInfo",
-              "responseLongType": "PrivateDashboardInfo",
-              "responseFullType": "spaceone.api.dashboard.v1.PrivateDashboardInfo",
+              "responseType": "PublicWidgetInfo",
+              "responseLongType": "PublicWidgetInfo",
+              "responseFullType": "spaceone.api.widget.v1.PublicWidgetInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/private-dashboard/update",
+                      "pattern": "/widget/v1/public-widget/update",
                       "body": "*"
                     }
                   ]
@@ -673,9 +613,9 @@
             {
               "name": "delete",
               "description": "",
-              "requestType": "PrivateDashboardRequest",
-              "requestLongType": "PrivateDashboardRequest",
-              "requestFullType": "spaceone.api.dashboard.v1.PrivateDashboardRequest",
+              "requestType": "PublicWidgetRequest",
+              "requestLongType": "PublicWidgetRequest",
+              "requestFullType": "spaceone.api.widget.v1.PublicWidgetRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -686,7 +626,30 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/private-dashboard/delete",
+                      "pattern": "/widget/v1/public-widget/delete",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "load",
+              "description": "",
+              "requestType": "LoadPublicWidgetRequest",
+              "requestLongType": "LoadPublicWidgetRequest",
+              "requestFullType": "spaceone.api.widget.v1.LoadPublicWidgetRequest",
+              "requestStreaming": false,
+              "responseType": "PublicWidgetInfo",
+              "responseLongType": "PublicWidgetInfo",
+              "responseFullType": "spaceone.api.widget.v1.PublicWidgetInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/widget/v1/public-widget/load",
                       "body": "*"
                     }
                   ]
@@ -696,20 +659,20 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "PrivateDashboardRequest",
-              "requestLongType": "PrivateDashboardRequest",
-              "requestFullType": "spaceone.api.dashboard.v1.PrivateDashboardRequest",
+              "requestType": "PublicWidgetRequest",
+              "requestLongType": "PublicWidgetRequest",
+              "requestFullType": "spaceone.api.widget.v1.PublicWidgetRequest",
               "requestStreaming": false,
-              "responseType": "PrivateDashboardInfo",
-              "responseLongType": "PrivateDashboardInfo",
-              "responseFullType": "spaceone.api.dashboard.v1.PrivateDashboardInfo",
+              "responseType": "PublicWidgetInfo",
+              "responseLongType": "PublicWidgetInfo",
+              "responseFullType": "spaceone.api.widget.v1.PublicWidgetInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/private-dashboard/get",
+                      "pattern": "/widget/v1/public-widget/get",
                       "body": "*"
                     }
                   ]
@@ -719,43 +682,20 @@
             {
               "name": "list",
               "description": "",
-              "requestType": "PrivateDashboardQuery",
-              "requestLongType": "PrivateDashboardQuery",
-              "requestFullType": "spaceone.api.dashboard.v1.PrivateDashboardQuery",
+              "requestType": "PublicWidgetQuery",
+              "requestLongType": "PublicWidgetQuery",
+              "requestFullType": "spaceone.api.widget.v1.PublicWidgetQuery",
               "requestStreaming": false,
-              "responseType": "PrivateDashboardsInfo",
-              "responseLongType": "PrivateDashboardsInfo",
-              "responseFullType": "spaceone.api.dashboard.v1.PrivateDashboardsInfo",
+              "responseType": "PublicWidgetsInfo",
+              "responseLongType": "PublicWidgetsInfo",
+              "responseFullType": "spaceone.api.widget.v1.PublicWidgetsInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/dashboard/v1/private-dashboard/list",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "stat",
-              "description": "",
-              "requestType": "PrivateDashboardStatQuery",
-              "requestLongType": "PrivateDashboardStatQuery",
-              "requestFullType": "spaceone.api.dashboard.v1.PrivateDashboardStatQuery",
-              "requestStreaming": false,
-              "responseType": "Struct",
-              "responseLongType": ".google.protobuf.Struct",
-              "responseFullType": "google.protobuf.Struct",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/dashboard/v1/private-dashboard/stat",
+                      "pattern": "/widget/v1/public-widget/list",
                       "body": "*"
                     }
                   ]

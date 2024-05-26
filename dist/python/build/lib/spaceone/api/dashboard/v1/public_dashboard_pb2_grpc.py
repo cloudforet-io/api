@@ -61,26 +61,6 @@ class PublicDashboardStub(object):
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.FromString,
                 _registered_method=True)
-        self.delete_version = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.PublicDashboard/delete_version',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
-        self.revert_version = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.PublicDashboard/revert_version',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.FromString,
-                _registered_method=True)
-        self.get_version = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.PublicDashboard/get_version',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionInfo.FromString,
-                _registered_method=True)
-        self.list_versions = channel.unary_unary(
-                '/spaceone.api.dashboard.v1.PublicDashboard/list_versions',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionSearchQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionsInfo.FromString,
-                _registered_method=True)
         self.list = channel.unary_unary(
                 '/spaceone.api.dashboard.v1.PublicDashboard/list',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardQuery.SerializeToString,
@@ -120,30 +100,6 @@ class PublicDashboardServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def delete_version(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def revert_version(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def get_version(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def list_versions(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def list(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -178,26 +134,6 @@ def add_PublicDashboardServicer_to_server(servicer, server):
                     servicer.get,
                     request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.SerializeToString,
-            ),
-            'delete_version': grpc.unary_unary_rpc_method_handler(
-                    servicer.delete_version,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'revert_version': grpc.unary_unary_rpc_method_handler(
-                    servicer.revert_version,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.SerializeToString,
-            ),
-            'get_version': grpc.unary_unary_rpc_method_handler(
-                    servicer.get_version,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionInfo.SerializeToString,
-            ),
-            'list_versions': grpc.unary_unary_rpc_method_handler(
-                    servicer.list_versions,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionSearchQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionsInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
@@ -318,114 +254,6 @@ class PublicDashboard(object):
             '/spaceone.api.dashboard.v1.PublicDashboard/get',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardRequest.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def delete_version(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.dashboard.v1.PublicDashboard/delete_version',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def revert_version(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.dashboard.v1.PublicDashboard/revert_version',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionRequest.SerializeToString,
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def get_version(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.dashboard.v1.PublicDashboard/get_version',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionRequest.SerializeToString,
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def list_versions(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.dashboard.v1.PublicDashboard/list_versions',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionSearchQuery.SerializeToString,
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardVersionsInfo.FromString,
             options,
             channel_credentials,
             insecure,

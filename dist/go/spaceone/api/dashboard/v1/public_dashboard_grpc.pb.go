@@ -23,16 +23,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PublicDashboard_Create_FullMethodName        = "/spaceone.api.dashboard.v1.PublicDashboard/create"
-	PublicDashboard_Update_FullMethodName        = "/spaceone.api.dashboard.v1.PublicDashboard/update"
-	PublicDashboard_Delete_FullMethodName        = "/spaceone.api.dashboard.v1.PublicDashboard/delete"
-	PublicDashboard_Get_FullMethodName           = "/spaceone.api.dashboard.v1.PublicDashboard/get"
-	PublicDashboard_DeleteVersion_FullMethodName = "/spaceone.api.dashboard.v1.PublicDashboard/delete_version"
-	PublicDashboard_RevertVersion_FullMethodName = "/spaceone.api.dashboard.v1.PublicDashboard/revert_version"
-	PublicDashboard_GetVersion_FullMethodName    = "/spaceone.api.dashboard.v1.PublicDashboard/get_version"
-	PublicDashboard_ListVersions_FullMethodName  = "/spaceone.api.dashboard.v1.PublicDashboard/list_versions"
-	PublicDashboard_List_FullMethodName          = "/spaceone.api.dashboard.v1.PublicDashboard/list"
-	PublicDashboard_Stat_FullMethodName          = "/spaceone.api.dashboard.v1.PublicDashboard/stat"
+	PublicDashboard_Create_FullMethodName = "/spaceone.api.dashboard.v1.PublicDashboard/create"
+	PublicDashboard_Update_FullMethodName = "/spaceone.api.dashboard.v1.PublicDashboard/update"
+	PublicDashboard_Delete_FullMethodName = "/spaceone.api.dashboard.v1.PublicDashboard/delete"
+	PublicDashboard_Get_FullMethodName    = "/spaceone.api.dashboard.v1.PublicDashboard/get"
+	PublicDashboard_List_FullMethodName   = "/spaceone.api.dashboard.v1.PublicDashboard/list"
+	PublicDashboard_Stat_FullMethodName   = "/spaceone.api.dashboard.v1.PublicDashboard/stat"
 )
 
 // PublicDashboardClient is the client API for PublicDashboard service.
@@ -43,10 +39,6 @@ type PublicDashboardClient interface {
 	Update(ctx context.Context, in *UpdatePublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
 	Delete(ctx context.Context, in *PublicDashboardRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *PublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
-	DeleteVersion(ctx context.Context, in *PublicDashboardVersionRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	RevertVersion(ctx context.Context, in *PublicDashboardVersionRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
-	GetVersion(ctx context.Context, in *PublicDashboardVersionRequest, opts ...grpc.CallOption) (*PublicDashboardVersionInfo, error)
-	ListVersions(ctx context.Context, in *PublicDashboardVersionSearchQuery, opts ...grpc.CallOption) (*PublicDashboardVersionsInfo, error)
 	List(ctx context.Context, in *PublicDashboardQuery, opts ...grpc.CallOption) (*PublicDashboardsInfo, error)
 	Stat(ctx context.Context, in *PublicDashboardStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -95,42 +87,6 @@ func (c *publicDashboardClient) Get(ctx context.Context, in *PublicDashboardRequ
 	return out, nil
 }
 
-func (c *publicDashboardClient) DeleteVersion(ctx context.Context, in *PublicDashboardVersionRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, PublicDashboard_DeleteVersion_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *publicDashboardClient) RevertVersion(ctx context.Context, in *PublicDashboardVersionRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error) {
-	out := new(PublicDashboardInfo)
-	err := c.cc.Invoke(ctx, PublicDashboard_RevertVersion_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *publicDashboardClient) GetVersion(ctx context.Context, in *PublicDashboardVersionRequest, opts ...grpc.CallOption) (*PublicDashboardVersionInfo, error) {
-	out := new(PublicDashboardVersionInfo)
-	err := c.cc.Invoke(ctx, PublicDashboard_GetVersion_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *publicDashboardClient) ListVersions(ctx context.Context, in *PublicDashboardVersionSearchQuery, opts ...grpc.CallOption) (*PublicDashboardVersionsInfo, error) {
-	out := new(PublicDashboardVersionsInfo)
-	err := c.cc.Invoke(ctx, PublicDashboard_ListVersions_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *publicDashboardClient) List(ctx context.Context, in *PublicDashboardQuery, opts ...grpc.CallOption) (*PublicDashboardsInfo, error) {
 	out := new(PublicDashboardsInfo)
 	err := c.cc.Invoke(ctx, PublicDashboard_List_FullMethodName, in, out, opts...)
@@ -157,10 +113,6 @@ type PublicDashboardServer interface {
 	Update(context.Context, *UpdatePublicDashboardRequest) (*PublicDashboardInfo, error)
 	Delete(context.Context, *PublicDashboardRequest) (*empty.Empty, error)
 	Get(context.Context, *PublicDashboardRequest) (*PublicDashboardInfo, error)
-	DeleteVersion(context.Context, *PublicDashboardVersionRequest) (*empty.Empty, error)
-	RevertVersion(context.Context, *PublicDashboardVersionRequest) (*PublicDashboardInfo, error)
-	GetVersion(context.Context, *PublicDashboardVersionRequest) (*PublicDashboardVersionInfo, error)
-	ListVersions(context.Context, *PublicDashboardVersionSearchQuery) (*PublicDashboardVersionsInfo, error)
 	List(context.Context, *PublicDashboardQuery) (*PublicDashboardsInfo, error)
 	Stat(context.Context, *PublicDashboardStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedPublicDashboardServer()
@@ -181,18 +133,6 @@ func (UnimplementedPublicDashboardServer) Delete(context.Context, *PublicDashboa
 }
 func (UnimplementedPublicDashboardServer) Get(context.Context, *PublicDashboardRequest) (*PublicDashboardInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
-}
-func (UnimplementedPublicDashboardServer) DeleteVersion(context.Context, *PublicDashboardVersionRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteVersion not implemented")
-}
-func (UnimplementedPublicDashboardServer) RevertVersion(context.Context, *PublicDashboardVersionRequest) (*PublicDashboardInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RevertVersion not implemented")
-}
-func (UnimplementedPublicDashboardServer) GetVersion(context.Context, *PublicDashboardVersionRequest) (*PublicDashboardVersionInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetVersion not implemented")
-}
-func (UnimplementedPublicDashboardServer) ListVersions(context.Context, *PublicDashboardVersionSearchQuery) (*PublicDashboardVersionsInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListVersions not implemented")
 }
 func (UnimplementedPublicDashboardServer) List(context.Context, *PublicDashboardQuery) (*PublicDashboardsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
@@ -285,78 +225,6 @@ func _PublicDashboard_Get_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PublicDashboard_DeleteVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PublicDashboardVersionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PublicDashboardServer).DeleteVersion(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PublicDashboard_DeleteVersion_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublicDashboardServer).DeleteVersion(ctx, req.(*PublicDashboardVersionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PublicDashboard_RevertVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PublicDashboardVersionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PublicDashboardServer).RevertVersion(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PublicDashboard_RevertVersion_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublicDashboardServer).RevertVersion(ctx, req.(*PublicDashboardVersionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PublicDashboard_GetVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PublicDashboardVersionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PublicDashboardServer).GetVersion(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PublicDashboard_GetVersion_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublicDashboardServer).GetVersion(ctx, req.(*PublicDashboardVersionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PublicDashboard_ListVersions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PublicDashboardVersionSearchQuery)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PublicDashboardServer).ListVersions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PublicDashboard_ListVersions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublicDashboardServer).ListVersions(ctx, req.(*PublicDashboardVersionSearchQuery))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PublicDashboard_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PublicDashboardQuery)
 	if err := dec(in); err != nil {
@@ -415,22 +283,6 @@ var PublicDashboard_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "get",
 			Handler:    _PublicDashboard_Get_Handler,
-		},
-		{
-			MethodName: "delete_version",
-			Handler:    _PublicDashboard_DeleteVersion_Handler,
-		},
-		{
-			MethodName: "revert_version",
-			Handler:    _PublicDashboard_RevertVersion_Handler,
-		},
-		{
-			MethodName: "get_version",
-			Handler:    _PublicDashboard_GetVersion_Handler,
-		},
-		{
-			MethodName: "list_versions",
-			Handler:    _PublicDashboard_ListVersions_Handler,
 		},
 		{
 			MethodName: "list",
