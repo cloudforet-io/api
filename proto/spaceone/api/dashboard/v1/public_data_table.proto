@@ -1,0 +1,151 @@
+// description of data table
+syntax = "proto3";
+
+package spaceone.api.data_table.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/dashboard/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+service PublicDataTable{
+
+  rpc create(CreatePublicDataTableRequest) returns (PublicDataTableInfo) {
+    option (google.api.http) = {
+      post: "/data_table/v1/public-data-table/create"
+      body: "*"
+    };
+  }
+
+  rpc update (UpdatePublicDataTableRequest) returns (PublicDataTableInfo) {
+    option (google.api.http) = {
+      post: "/data_table/v1/public-data-table/update"
+      body: "*"
+    };
+  }
+
+  rpc delete (PublicDataTableRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/data_table/v1/public-data-table/delete"
+      body: "*"
+    };
+  }
+
+  rpc load (LoadPublicDataTableRequest) returns (PublicDataTableInfo) {
+    option (google.api.http) = {
+      post: "/data_table/v1/public-data-table/load"
+      body: "*"
+    };
+  }
+
+  rpc get (PublicDataTableRequest) returns (PublicDataTableInfo) {
+    option (google.api.http) = {
+      post: "/data_table/v1/public-data-table/get"
+      body: "*"
+    };
+  }
+
+  rpc list (PublicDataTableQuery) returns (PublicDataTablesInfo) {
+    option (google.api.http) = {
+      post: "/data_table/v1/public-data-table/list"
+      body: "*"
+    };
+  }
+}
+
+message CreatePublicDataTableRequest {
+  enum SourceType {
+    SOURCE_TYPE_NONE = 0;
+    DATA_SOURCE = 1;
+    DATA_TABLE = 2;
+  }
+
+  string widget_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  SourceType source_type = 3;
+  // +optional
+  google.protobuf.Struct options = 4;
+  // +optional
+  google.protobuf.Struct tags = 5;
+}
+
+message UpdatePublicDataTableRequest {
+  string data_table_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  google.protobuf.Struct options = 3;
+  // +optional
+  google.protobuf.Struct tags = 4;
+}
+
+message PublicDataTableRequest {
+  string data_table_id = 1;
+}
+
+message LoadPublicDataTableRequest {
+  string data_table_id = 1;
+  // +optional
+  repeated spaceone.api.core.v2.Sort sort = 3;
+  // +optional
+  spaceone.api.core.v2.Page page = 4;
+}
+
+message PublicDataTableQuery {
+  enum SourceType {
+    SOURCE_TYPE_NONE = 0;
+    DATA_SOURCE = 1;
+    DATA_TABLE = 2;
+  }
+
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  string widget_id = 2;
+  // +optional
+  string data_table_id = 3;
+  // +optional
+  string name = 4;
+  // +optional
+  SourceType source_type = 5;
+}
+
+message PublicDataTableInfo {
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+    PROJECT = 3;
+  }
+
+  enum SourceType {
+    SOURCE_TYPE_NONE = 0;
+    DATA_SOURCE = 1;
+    DATA_TABLE = 2;
+  }
+
+  string data_table_id = 1;
+  string name = 2;
+  SourceType source_type = 3;
+  google.protobuf.Struct options = 4;
+  google.protobuf.Struct tags = 5;
+  google.protobuf.Struct labels_info = 6;
+
+  ResourceGroup resource_group = 20;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string project_id = 23;
+  string public_dashboard_id = 24;
+  string widget_id = 25;
+
+  string created_at = 31;
+  string updated_at = 32;
+}
+
+message PublicDataTablesInfo {
+  repeated PublicDataTableInfo results = 1;
+  int32 total_count = 2;
+}

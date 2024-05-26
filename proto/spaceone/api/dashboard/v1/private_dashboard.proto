@@ -12,14 +12,14 @@ import "spaceone/api/core/v2/query.proto";
 
 service PrivateDashboard{
 
-  rpc create(PrivateCreateDashboardRequest) returns (PrivateDashboardInfo) {
+  rpc create(CreatePrivateDashboardRequest) returns (PrivateDashboardInfo) {
     option (google.api.http) = {
       post: "/dashboard/v1/private-dashboard/create"
       body: "*"
     };
   }
 
-  rpc update (PrivateUpdateDashboardRequest) returns (PrivateDashboardInfo) {
+  rpc update (UpdatePrivateDashboardRequest) returns (PrivateDashboardInfo) {
     option (google.api.http) = {
       post: "/dashboard/v1/private-dashboard/update"
       body: "*"
@@ -40,34 +40,6 @@ service PrivateDashboard{
     };
   }
 
-  rpc delete_version (PrivateDashboardVersionRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/dashboard/v1/private-dashboard/delete-version"
-      body: "*"
-    };
-  }
-
-  rpc revert_version (PrivateDashboardVersionRequest) returns (PrivateDashboardInfo) {
-    option (google.api.http) = {
-      post: "/dashboard/v1/private-dashboard/revert-version"
-      body: "*"
-    };
-  }
-
-  rpc get_version (PrivateDashboardVersionRequest) returns (PrivateDashboardVersionInfo) {
-    option (google.api.http) = {
-      post: "/dashboard/v1/private-dashboard/get-version"
-      body: "*"
-    };
-  }
-
-  rpc list_versions (PrivateDashboardVersionSearchQuery) returns (PrivateDashboardVersionsInfo) {
-    option (google.api.http) = {
-      post: "/dashboard/v1/private-dashboard/list-versions"
-      body: "*"
-    };
-  }
-
   rpc list (PrivateDashboardQuery) returns (PrivateDashboardsInfo) {
     option (google.api.http) = {
       post: "/dashboard/v1/private-dashboard/list"
@@ -83,80 +55,47 @@ service PrivateDashboard{
   }
 }
 
-message PrivateCreateDashboardRequest {
-
-  enum TemplateType {
-    TEMPLATE_TYPE_NONE = 0;
-    MANAGED = 1;
-    CUSTOM = 2;
-    EXTENSION = 3;
-  }
-
+message CreatePrivateDashboardRequest {
   string name = 1;
-  string template_id = 2;
-  TemplateType template_type = 3;
   // +optional
-  google.protobuf.ListValue layouts = 4;
+  google.protobuf.ListValue layouts = 2;
+  // +optional
+  google.protobuf.Struct vars = 3;
+  // +optional
+  google.protobuf.Struct settings = 4;
   // +optional
   google.protobuf.Struct variables = 5;
   // +optional
-  google.protobuf.Struct settings = 6;
+  google.protobuf.Struct variables_schema = 6;
   // +optional
-  google.protobuf.Struct variables_schema = 7;
+  google.protobuf.ListValue labels = 7;
   // +optional
-  google.protobuf.Struct display_info = 8;
-  // +optional
-  google.protobuf.ListValue labels = 9;
-  // +optional
-  google.protobuf.Struct tags = 10;
+  google.protobuf.Struct tags = 8;
+  string workspace_id = 20;
 }
 
-message PrivateUpdateDashboardRequest {
-  enum TemplateType {
-    TEMPLATE_TYPE_NONE = 0;
-    MANAGED = 1;
-    CUSTOM = 2;
-    EXTENSION = 3;
-  }
-
+message UpdatePrivateDashboardRequest {
   string private_dashboard_id = 1;
   // +optional
   string name = 2;
   // +optional
-  string template_id = 3;
+  google.protobuf.ListValue layouts = 3;
   // +optional
-  TemplateType template_type = 4;
+  google.protobuf.Struct vars = 4;
   // +optional
-  google.protobuf.ListValue layouts = 5;
+  google.protobuf.Struct settings = 5;
   // +optional
   google.protobuf.Struct variables = 6;
   // +optional
-  google.protobuf.Struct settings = 7;
+  google.protobuf.Struct variables_schema = 7;
   // +optional
-  google.protobuf.Struct variables_schema = 8;
+  google.protobuf.ListValue labels = 8;
   // +optional
-  google.protobuf.Struct display_info = 9;
-  // +optional
-  google.protobuf.ListValue labels = 10;
-  // +optional
-  google.protobuf.Struct tags = 11;
+  google.protobuf.Struct tags = 9;
 }
 
 message PrivateDashboardRequest {
   string private_dashboard_id = 1;
-}
-
-message PrivateDashboardVersionRequest {
-  string private_dashboard_id = 1;
-  int32 version = 4;
-}
-
-message PrivateDashboardVersionSearchQuery {
-  // +optional
-  spaceone.api.core.v2.Query query = 1;
-  string private_dashboard_id = 2;
-  // +optional
-  int32 version = 3;
 }
 
 message PrivateDashboardQuery {
@@ -168,34 +107,30 @@ message PrivateDashboardQuery {
   string name = 3;
   // +optional
   string workspace_id = 21;
-  // +optional
-  string project_id = 22;
 }
 
 message PrivateDashboardInfo {
-
-  enum TemplateType {
-    TEMPLATE_TYPE_NONE = 0;
-    MANAGED = 1;
-    CUSTOM = 2;
-    EXTENSION = 3;
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+    PROJECT = 3;
   }
+
   string private_dashboard_id = 1;
   string name = 2;
-  int32 version = 3;
-  string template_id = 4;
-  TemplateType template_type = 5;
-  google.protobuf.ListValue layouts = 6;
+  string version = 3;
+  google.protobuf.ListValue layouts = 4;
+  google.protobuf.Struct vars = 5;
+  google.protobuf.Struct settings = 6;
   google.protobuf.Struct variables = 7;
-  google.protobuf.Struct settings = 8;
-  google.protobuf.Struct variables_schema = 9;
-  google.protobuf.Struct display_info = 10;
-  google.protobuf.ListValue labels = 11;
-  google.protobuf.Struct tags = 12;
+  google.protobuf.Struct variables_schema = 8;
+  google.protobuf.ListValue labels = 9;
+  google.protobuf.Struct tags = 10;
 
-  string domain_id = 21;
-  string workspace_id = 22;
-  string user_id = 23;
+  string domain_id = 20;
+  string workspace_id = 21;
+  string user_id = 22;
 
   string created_at = 31;
   string updated_at = 32;
@@ -208,24 +143,4 @@ message PrivateDashboardsInfo {
 
 message PrivateDashboardStatQuery {
   spaceone.api.core.v2.StatisticsQuery query = 1;
-}
-
-
-message PrivateDashboardVersionInfo {
-  string private_dashboard_id = 1;
-  int32 version = 2;
-  bool latest = 3;
-  google.protobuf.ListValue layouts = 4;
-  google.protobuf.Struct variables = 5;
-  google.protobuf.Struct settings = 6;
-  google.protobuf.Struct variables_schema = 7;
-
-  string domain_id = 21;
-
-  string created_at = 31;
-}
-
-message PrivateDashboardVersionsInfo {
-  repeated PrivateDashboardVersionInfo results = 1;
-  int32 total_count = 2;
 }
