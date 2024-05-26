@@ -40,34 +40,6 @@ service PublicDashboard{
     };
   }
 
-  rpc delete_version (PublicDashboardVersionRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/dashboard/v1/public-dashboard/delete-version"
-      body: "*"
-    };
-  }
-
-  rpc revert_version (PublicDashboardVersionRequest) returns (PublicDashboardInfo) {
-    option (google.api.http) = {
-      post: "/dashboard/v1/public-dashboard/revert-version"
-      body: "*"
-    };
-  }
-
-  rpc get_version (PublicDashboardVersionRequest) returns (PublicDashboardVersionInfo) {
-    option (google.api.http) = {
-      post: "/dashboard/v1/public-dashboard/get-version"
-      body: "*"
-    };
-  }
-
-  rpc list_versions (PublicDashboardVersionSearchQuery) returns (PublicDashboardVersionsInfo) {
-    option (google.api.http) = {
-      post: "/dashboard/v1/public-dashboard/list-versions"
-      body: "*"
-    };
-  }
-
   rpc list (PublicDashboardQuery) returns (PublicDashboardsInfo) {
     option (google.api.http) = {
       post: "/dashboard/v1/public-dashboard/list"
@@ -91,30 +63,21 @@ message CreatePublicDashboardRequest {
     PROJECT = 3;
   }
 
-  enum TemplateType {
-    TEMPLATE_TYPE_NONE = 0;
-    MANAGED = 1;
-    CUSTOM = 2;
-    EXTENSION = 3;
-  }
-
   string name = 1;
-  string template_id = 2;
-  TemplateType template_type = 3;
   // +optional
-  google.protobuf.ListValue layouts = 4;
+  google.protobuf.ListValue layouts = 2;
+  // +optional
+  google.protobuf.Struct vars = 3;
+  // +optional
+  google.protobuf.Struct settings = 4;
   // +optional
   google.protobuf.Struct variables = 5;
   // +optional
-  google.protobuf.Struct settings = 6;
+  google.protobuf.Struct variables_schema = 6;
   // +optional
-  google.protobuf.Struct variables_schema = 7;
+  google.protobuf.ListValue labels = 7;
   // +optional
-  google.protobuf.Struct display_info = 8;
-  // +optional
-  google.protobuf.ListValue labels = 9;
-  // +optional
-  google.protobuf.Struct tags = 10;
+  google.protobuf.Struct tags = 8;
   ResourceGroup resource_group = 20;
   // +optional
   string workspace_id = 21;
@@ -123,51 +86,27 @@ message CreatePublicDashboardRequest {
 }
 
 message UpdatePublicDashboardRequest {
-  enum TemplateType {
-    TEMPLATE_TYPE_NONE = 0;
-    MANAGED = 1;
-    CUSTOM = 2;
-    EXTENSION = 3;
-  }
-
   string public_dashboard_id = 1;
   // +optional
   string name = 2;
   // +optional
-  string template_id = 3;
+  google.protobuf.ListValue layouts = 3;
   // +optional
-  TemplateType template_type = 4;
+  google.protobuf.Struct vars = 4;
   // +optional
-  google.protobuf.ListValue layouts = 5;
+  google.protobuf.Struct settings = 5;
   // +optional
   google.protobuf.Struct variables = 6;
   // +optional
-  google.protobuf.Struct settings = 7;
+  google.protobuf.Struct variables_schema = 7;
   // +optional
-  google.protobuf.Struct variables_schema = 8;
+  google.protobuf.ListValue labels = 8;
   // +optional
-  google.protobuf.Struct display_info = 9;
-  // +optional
-  google.protobuf.ListValue labels = 10;
-  // +optional
-  google.protobuf.Struct tags = 11;
+  google.protobuf.Struct tags = 9;
 }
 
 message PublicDashboardRequest {
   string public_dashboard_id = 1;
-}
-
-message PublicDashboardVersionRequest {
-  string public_dashboard_id = 1;
-  int32 version = 4;
-}
-
-message PublicDashboardVersionSearchQuery {
-  // +optional
-  spaceone.api.core.v2.Query query = 1;
-  string public_dashboard_id = 2;
-  // +optional
-  int32 version = 3;
 }
 
 message PublicDashboardQuery {
@@ -191,25 +130,16 @@ message PublicDashboardInfo {
     PROJECT = 3;
   }
 
-  enum TemplateType {
-    TEMPLATE_TYPE_NONE = 0;
-    MANAGED = 1;
-    CUSTOM = 2;
-    EXTENSION = 3;
-  }
-
   string public_dashboard_id = 1;
   string name = 2;
-  string template_id = 3;
-  TemplateType template_type = 4;
-  int32 version = 5;
-  google.protobuf.ListValue layouts = 6;
+  string version = 3;
+  google.protobuf.ListValue layouts = 4;
+  google.protobuf.Struct vars = 5;
+  google.protobuf.Struct settings = 6;
   google.protobuf.Struct variables = 7;
-  google.protobuf.Struct settings = 8;
-  google.protobuf.Struct variables_schema = 9;
-  google.protobuf.Struct display_info = 10;
-  google.protobuf.ListValue labels = 11;
-  google.protobuf.Struct tags = 12;
+  google.protobuf.Struct variables_schema = 8;
+  google.protobuf.ListValue labels = 9;
+  google.protobuf.Struct tags = 10;
 
   ResourceGroup resource_group = 20;
   string domain_id = 21;
@@ -227,24 +157,4 @@ message PublicDashboardsInfo {
 
 message PublicDashboardStatQuery {
   spaceone.api.core.v2.StatisticsQuery query = 1;
-}
-
-
-message PublicDashboardVersionInfo {
-  string public_dashboard_id = 1;
-  int32 version = 2;
-  bool latest = 3;
-  google.protobuf.ListValue layouts = 4;
-  google.protobuf.Struct variables = 5;
-  google.protobuf.Struct settings = 6;
-  google.protobuf.Struct variables_schema = 7;
-
-  string domain_id = 21;
-
-  string created_at = 31;
-}
-
-message PublicDashboardVersionsInfo {
-  repeated PublicDashboardVersionInfo results = 1;
-  int32 total_count = 2;
 }
