@@ -77,6 +77,12 @@ enum MetricType {
 //
 //}
 message CreateMetricRequest {
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     // +optional
     string metric_id = 1;
     string name = 2;
@@ -90,6 +96,9 @@ message CreateMetricRequest {
     // +optional
     google.protobuf.Struct tags = 8;
     string namespace_id = 9;
+    ResourceGroup resource_group = 20;
+    // +optional
+    string workspace_id = 21;
 }
 
 //{
@@ -148,6 +157,12 @@ message MetricQuery {
 //
 //}
 message MetricInfo {
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string metric_id = 1;
     string name = 2;
     MetricType metric_type = 3;
@@ -159,8 +174,10 @@ message MetricInfo {
     repeated google.protobuf.Struct labels_info = 9;
     bool is_managed = 10;
 
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
-    string namespace_id = 22;
+    string workspace_id = 22;
+    string namespace_id = 23;
 
     string created_at = 31;
     string updated_at = 32;
