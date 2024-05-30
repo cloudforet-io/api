@@ -1386,11 +1386,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |metric_type|COUNTER, GAUGE |string|True|\n |resource_type||string|True|\n |query_options||AnalyzeQuery|True|\n |namespace_id||string|True|\n |metric_id||string||\n |date_field||string||\n |unit||string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |metric_type|COUNTER, GAUGE |string|True|\n |resource_type||string|True|\n |query_options||AnalyzeQuery|True|\n |namespace_id||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |metric_id||string||\n |date_field||string||\n |unit||string||\n |tags||Struct||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" },"name" : {"type": "string","title": "NAME" },"metric_type" : {"type": "string","title": "METRIC_TYPE" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"date_field" : {"type": "string","title": "DATE_FIELD" },"unit" : {"type": "string","title": "UNIT" },"tags" : {"type": "object","title": "TAGS" },"namespace_id" : {"type": "string","title": "NAMESPACE_ID" }                 }
+                 "properties": {"metric_id" : {"type": "string","title": "METRIC_ID" },"name" : {"type": "string","title": "NAME" },"metric_type" : {"type": "string","title": "METRIC_TYPE" },"resource_type" : {"type": "string","title": "RESOURCE_TYPE" },"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS" },"date_field" : {"type": "string","title": "DATE_FIELD" },"unit" : {"type": "string","title": "UNIT" },"tags" : {"type": "object","title": "TAGS" },"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
@@ -2615,11 +2615,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category||string|True|\n |namespace_id||string||\n |provider||string||\n |icon||string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |namespace_id||string||\n |provider||string||\n |icon||string||\n |tags||Struct||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"name" : {"type": "string","title": "NAME" },"category" : {"type": "string","title": "CATEGORY" },"provider" : {"type": "string","title": "PROVIDER" },"icon" : {"type": "string","title": "ICON" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"namespace_id" : {"type": "string","title": "NAMESPACE_ID" },"name" : {"type": "string","title": "NAME" },"category" : {"type": "string","title": "CATEGORY" },"provider" : {"type": "string","title": "PROVIDER" },"icon" : {"type": "string","title": "ICON" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n\n}"},"Schema":{}
                }
@@ -3409,16 +3409,16 @@
                 "title": "RecordInfo"
            }
            ,        "CreateMetricRequest": {
-         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"date_field" : {"type": "string","title": "DATE_FIELD"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"}},
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"date_field" : {"type": "string","title": "DATE_FIELD"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": ["name","metric_type","resource_type","query_options","namespace_id"],
+         "required": ["name","metric_type","resource_type","query_options","namespace_id","resource_group"],
                 "title": "CreateMetricRequest"
            }
            ,        "MetricInfo": {
          "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"metric_type" : {"type": "string","title": "METRIC_TYPE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query_options" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY_OPTIONS"},"date_field" : {"type": "string","title": "DATE_FIELD"},"unit" : {"type": "string","title": "UNIT"},"tags" : {"type": "object","title": "TAGS"},"labels_info" : {"items": {"type": "object"},
-               "type": "array","title": "LABELS_INFO"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+               "type": "array","title": "LABELS_INFO"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["metric_id","name","metric_type","resource_type","query_options","date_field","unit","tags","labels_info","is_managed","domain_id","namespace_id","created_at","updated_at"],
+         "required": ["metric_id","name","metric_type","resource_type","query_options","date_field","unit","tags","labels_info","is_managed","resource_group","domain_id","workspace_id","namespace_id","created_at","updated_at"],
                 "title": "MetricInfo"
            }
            ,        "MetricQuery": {
@@ -3710,15 +3710,15 @@
                 "title": "UpdateCloudServiceReportRequest"
            }
            ,        "CreateNamespaceRequest": {
-         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"provider" : {"type": "string","title": "PROVIDER"},"icon" : {"type": "string","title": "ICON"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"provider" : {"type": "string","title": "PROVIDER"},"icon" : {"type": "string","title": "ICON"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
-         "required": ["name","category"],
+         "required": ["name","category","resource_group"],
                 "title": "CreateNamespaceRequest"
            }
            ,        "NamespaceInfo": {
-         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"provider" : {"type": "string","title": "PROVIDER"},"icon" : {"type": "string","title": "ICON"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"namespace_id" : {"type": "string","title": "NAMESPACE_ID"},"name" : {"type": "string","title": "NAME"},"category" : {"type": "string","title": "CATEGORY"},"provider" : {"type": "string","title": "PROVIDER"},"icon" : {"type": "string","title": "ICON"},"tags" : {"type": "object","title": "TAGS"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["namespace_id","name","category","provider","icon","tags","is_managed","domain_id","created_at","updated_at"],
+         "required": ["namespace_id","name","category","provider","icon","tags","is_managed","resource_group","domain_id","workspace_id","created_at","updated_at"],
                 "title": "NamespaceInfo"
            }
            ,        "NamespaceQuery": {
