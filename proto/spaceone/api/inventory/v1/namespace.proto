@@ -67,12 +67,13 @@ message CreateNamespaceRequest {
     string namespace_id = 1;
     string name = 2;
     string category = 3;
+    string resource_type = 4;
     // +optional
-    string provider = 4;
+    string group = 5;
     // +optional
-    string icon = 5;
+    string icon = 6;
     // +optional
-    google.protobuf.Struct tags = 6;
+    google.protobuf.Struct tags = 7;
     ResourceGroup resource_group = 20;
     // +optional
     string workspace_id = 21;
@@ -109,9 +110,11 @@ message NamespaceQuery {
     // +optional
     string category = 3;
     // +optional
-    string provider = 4;
+    string resource_type = 4;
     // +optional
-    string is_managed = 5;
+    string group = 5;
+    // +optional
+    string is_managed = 6;
     // +optional
     string workspace_id = 21;
 }
@@ -129,10 +132,11 @@ message NamespaceInfo {
     string namespace_id = 1;
     string name = 2;
     string category = 3;
-    string provider = 4;
-    string icon = 5;
-    google.protobuf.Struct tags = 6;
-    bool is_managed = 7;
+    string resource_type = 4;
+    string group = 5;
+    string icon = 6;
+    google.protobuf.Struct tags = 7;
+    bool is_managed = 8;
 
     ResourceGroup resource_group = 20;
     string domain_id = 21;
