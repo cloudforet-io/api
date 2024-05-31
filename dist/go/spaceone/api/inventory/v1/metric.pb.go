@@ -180,9 +180,10 @@ type CreateMetricRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// +optional
-	MetricId     string           `protobuf:"bytes,1,opt,name=metric_id,json=metricId,proto3" json:"metric_id,omitempty"`
-	Name         string           `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	MetricType   MetricType       `protobuf:"varint,3,opt,name=metric_type,json=metricType,proto3,enum=spaceone.api.inventory.v1.MetricType" json:"metric_type,omitempty"`
+	MetricId   string     `protobuf:"bytes,1,opt,name=metric_id,json=metricId,proto3" json:"metric_id,omitempty"`
+	Name       string     `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	MetricType MetricType `protobuf:"varint,3,opt,name=metric_type,json=metricType,proto3,enum=spaceone.api.inventory.v1.MetricType" json:"metric_type,omitempty"`
+	// +optional
 	ResourceType string           `protobuf:"bytes,4,opt,name=resource_type,json=resourceType,proto3" json:"resource_type,omitempty"`
 	QueryOptions *v2.AnalyzeQuery `protobuf:"bytes,5,opt,name=query_options,json=queryOptions,proto3" json:"query_options,omitempty"`
 	// +optional
