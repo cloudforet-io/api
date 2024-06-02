@@ -40,7 +40,7 @@ service PublicDataTable{
     };
   }
 
-  rpc load (LoadPublicDataTableRequest) returns (PublicDataTableInfo) {
+  rpc load (LoadPublicDataTableRequest) returns (google.protobuf.Struct) {
     option (google.api.http) = {
       post: "/data_table/v1/public-data-table/load"
       body: "*"

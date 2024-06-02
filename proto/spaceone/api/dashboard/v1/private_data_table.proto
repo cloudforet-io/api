@@ -41,7 +41,7 @@ service PrivateDataTable{
     };
   }
 
-  rpc load (LoadPrivateDataTableRequest) returns (PrivateDataTableInfo) {
+  rpc load (LoadPrivateDataTableRequest) returns (google.protobuf.Struct) {
     option (google.api.http) = {
       post: "/data_table/v1/private-data-table/load"
       body: "*"

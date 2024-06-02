@@ -33,7 +33,7 @@ service PublicWidget{
     };
   }
 
-  rpc load (LoadPublicWidgetRequest) returns (PublicWidgetInfo) {
+  rpc load (LoadPublicWidgetRequest) returns (google.protobuf.Struct) {
     option (google.api.http) = {
       post: "/widget/v1/public-widget/load"
       body: "*"
