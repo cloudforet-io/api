@@ -1,0 +1,113 @@
+// description of dashboard
+syntax = "proto3";
+
+package spaceone.api.dashboard.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/dashboard/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+service PrivateFolder{
+
+  rpc create(CreatePrivateFolderRequest) returns (PrivateFolderInfo) {
+    option (google.api.http) = {
+      post: "/dashboard/v1/private-folder/create"
+      body: "*"
+    };
+  }
+
+  rpc update (UpdatePrivateFolderRequest) returns (PrivateFolderInfo) {
+    option (google.api.http) = {
+      post: "/dashboard/v1/private-folder/update"
+      body: "*"
+    };
+  }
+
+  rpc delete (PrivateFolderRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/dashboard/v1/private-folder/delete"
+      body: "*"
+    };
+  }
+
+  rpc get (PrivateFolderRequest) returns (PrivateFolderInfo) {
+    option (google.api.http) = {
+      post: "/dashboard/v1/private-folder/get"
+      body: "*"
+    };
+  }
+
+  rpc list (PrivateFolderQuery) returns (PrivateFoldersInfo) {
+    option (google.api.http) = {
+      post: "/dashboard/v1/private-folder/list"
+      body: "*"
+    };
+  }
+
+  rpc stat (PrivateFolderStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/dashboard/v1/private-folder/stat"
+      body: "*"
+    };
+  }
+}
+
+message CreatePrivateFolderRequest {
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+    PROJECT = 3;
+  }
+
+  string name = 1;
+  // +optional
+  google.protobuf.Struct tags = 2;
+  // +optional
+  repeated google.protobuf.Struct dashboards = 3;
+}
+
+message UpdatePrivateFolderRequest {
+  string folder_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  google.protobuf.Struct tags = 3;
+}
+
+message PrivateFolderRequest {
+  string folder_id = 1;
+}
+
+message PrivateFolderQuery {
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string folder_id = 2;
+  // +optional
+  string name = 3;
+}
+
+message PrivateFolderInfo {
+  string folder_id = 1;
+  string name = 2;
+  google.protobuf.Struct tags = 3;
+
+  string domain_id = 21;
+  string user_id = 22;
+
+  string created_at = 31;
+  string updated_at = 32;
+}
+
+message PrivateFoldersInfo {
+  repeated PrivateFolderInfo results = 1;
+  int32 total_count = 2;
+}
+
+message PrivateFolderStatQuery {
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+}

@@ -65,36 +65,13 @@ message CreatePublicDashboardRequest {
 
   string name = 1;
   // +optional
-  google.protobuf.ListValue layouts = 2;
-  // +optional
-  google.protobuf.Struct vars = 3;
-  // +optional
-  google.protobuf.Struct settings = 4;
-  // +optional
-  google.protobuf.Struct variables = 5;
-  // +optional
-  google.protobuf.Struct variables_schema = 6;
-  // +optional
-  google.protobuf.ListValue labels = 7;
-  // +optional
-  google.protobuf.Struct tags = 8;
-  ResourceGroup resource_group = 20;
-  // +optional
-  string workspace_id = 21;
-  // +optional
-  string project_id = 22;
-}
-
-message UpdatePublicDashboardRequest {
-  string public_dashboard_id = 1;
-  // +optional
-  string name = 2;
+  string description = 2;
   // +optional
   google.protobuf.ListValue layouts = 3;
   // +optional
   google.protobuf.Struct vars = 4;
   // +optional
-  google.protobuf.Struct settings = 5;
+  google.protobuf.Struct options = 5;
   // +optional
   google.protobuf.Struct variables = 6;
   // +optional
@@ -103,23 +80,56 @@ message UpdatePublicDashboardRequest {
   google.protobuf.ListValue labels = 8;
   // +optional
   google.protobuf.Struct tags = 9;
+  ResourceGroup resource_group = 20;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string project_id = 22;
+  // +optional
+  string folder_id = 23;
+}
+
+message UpdatePublicDashboardRequest {
+  string dashboard_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  string description = 3;
+  // +optional
+  google.protobuf.ListValue layouts = 4;
+  // +optional
+  google.protobuf.Struct vars = 5;
+  // +optional
+  google.protobuf.Struct options = 6;
+  // +optional
+  google.protobuf.Struct variables = 7;
+  // +optional
+  google.protobuf.Struct variables_schema = 8;
+  // +optional
+  google.protobuf.ListValue labels = 9;
+  // +optional
+  google.protobuf.Struct tags = 10;
+  // +optional
+  string folder_id = 21;
 }
 
 message PublicDashboardRequest {
-  string public_dashboard_id = 1;
+  string dashboard_id = 1;
 }
 
 message PublicDashboardQuery {
   // +optional
   spaceone.api.core.v2.Query query = 1;
   // +optional
-  string public_dashboard_id = 2;
+  string dashboard_id = 2;
   // +optional
   string name = 3;
   // +optional
   string workspace_id = 21;
   // +optional
   string project_id = 22;
+  // +optional
+  string folder_id = 23;
 }
 
 message PublicDashboardInfo {
@@ -130,21 +140,23 @@ message PublicDashboardInfo {
     PROJECT = 3;
   }
 
-  string public_dashboard_id = 1;
+  string dashboard_id = 1;
   string name = 2;
-  string version = 3;
-  google.protobuf.ListValue layouts = 4;
-  google.protobuf.Struct vars = 5;
-  google.protobuf.Struct settings = 6;
-  google.protobuf.Struct variables = 7;
-  google.protobuf.Struct variables_schema = 8;
-  google.protobuf.ListValue labels = 9;
-  google.protobuf.Struct tags = 10;
+  string description = 3;
+  string version = 4;
+  google.protobuf.ListValue layouts = 5;
+  google.protobuf.Struct vars = 6;
+  google.protobuf.Struct options = 7;
+  google.protobuf.Struct variables = 8;
+  google.protobuf.Struct variables_schema = 9;
+  google.protobuf.ListValue labels = 10;
+  google.protobuf.Struct tags = 11;
 
   ResourceGroup resource_group = 20;
   string domain_id = 21;
   string workspace_id = 22;
   string project_id = 23;
+  string folder_id = 24;
 
   string created_at = 31;
   string updated_at = 32;
