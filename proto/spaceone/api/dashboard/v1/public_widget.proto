@@ -33,7 +33,7 @@ service PublicWidget{
     };
   }
 
-  rpc load (LoadPublicWidgetRequest) returns (PublicWidgetInfo) {
+  rpc load (LoadPublicWidgetRequest) returns (google.protobuf.Struct) {
     option (google.api.http) = {
       post: "/widget/v1/public-widget/load"
       body: "*"
@@ -89,7 +89,6 @@ message PublicWidgetRequest {
 
 message LoadPublicWidgetRequest {
   string widget_id = 1;
-  // +optional
   spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 2;
   // +optional
   google.protobuf.Struct vars = 3;
