@@ -11,6 +11,7 @@ package v1
 import (
 	context "context"
 	empty "github.com/golang/protobuf/ptypes/empty"
+	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -39,7 +40,7 @@ type PublicDataTableClient interface {
 	Transform(ctx context.Context, in *TransformPublicDataTableRequest, opts ...grpc.CallOption) (*PublicDataTableInfo, error)
 	Update(ctx context.Context, in *UpdatePublicDataTableRequest, opts ...grpc.CallOption) (*PublicDataTableInfo, error)
 	Delete(ctx context.Context, in *PublicDataTableRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Load(ctx context.Context, in *LoadPublicDataTableRequest, opts ...grpc.CallOption) (*PublicDataTableInfo, error)
+	Load(ctx context.Context, in *LoadPublicDataTableRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Get(ctx context.Context, in *PublicDataTableRequest, opts ...grpc.CallOption) (*PublicDataTableInfo, error)
 	List(ctx context.Context, in *PublicDataTableQuery, opts ...grpc.CallOption) (*PublicDataTablesInfo, error)
 }
@@ -92,9 +93,9 @@ func (c *publicDataTableClient) Delete(ctx context.Context, in *PublicDataTableR
 	return out, nil
 }
 
-func (c *publicDataTableClient) Load(ctx context.Context, in *LoadPublicDataTableRequest, opts ...grpc.CallOption) (*PublicDataTableInfo, error) {
+func (c *publicDataTableClient) Load(ctx context.Context, in *LoadPublicDataTableRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PublicDataTableInfo)
+	out := new(_struct.Struct)
 	err := c.cc.Invoke(ctx, PublicDataTable_Load_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -130,7 +131,7 @@ type PublicDataTableServer interface {
 	Transform(context.Context, *TransformPublicDataTableRequest) (*PublicDataTableInfo, error)
 	Update(context.Context, *UpdatePublicDataTableRequest) (*PublicDataTableInfo, error)
 	Delete(context.Context, *PublicDataTableRequest) (*empty.Empty, error)
-	Load(context.Context, *LoadPublicDataTableRequest) (*PublicDataTableInfo, error)
+	Load(context.Context, *LoadPublicDataTableRequest) (*_struct.Struct, error)
 	Get(context.Context, *PublicDataTableRequest) (*PublicDataTableInfo, error)
 	List(context.Context, *PublicDataTableQuery) (*PublicDataTablesInfo, error)
 	mustEmbedUnimplementedPublicDataTableServer()
@@ -152,7 +153,7 @@ func (UnimplementedPublicDataTableServer) Update(context.Context, *UpdatePublicD
 func (UnimplementedPublicDataTableServer) Delete(context.Context, *PublicDataTableRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedPublicDataTableServer) Load(context.Context, *LoadPublicDataTableRequest) (*PublicDataTableInfo, error) {
+func (UnimplementedPublicDataTableServer) Load(context.Context, *LoadPublicDataTableRequest) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Load not implemented")
 }
 func (UnimplementedPublicDataTableServer) Get(context.Context, *PublicDataTableRequest) (*PublicDataTableInfo, error) {

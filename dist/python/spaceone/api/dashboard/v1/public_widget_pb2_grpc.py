@@ -4,6 +4,7 @@ import grpc
 import warnings
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
+from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.dashboard.v1 import public_widget_pb2 as spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2
 
 GRPC_GENERATED_VERSION = '1.64.0'
@@ -58,7 +59,7 @@ class PublicWidgetStub(object):
         self.load = channel.unary_unary(
                 '/spaceone.api.dashboard.v1.PublicWidget/load',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.LoadPublicWidgetRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetInfo.FromString,
+                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
                 '/spaceone.api.dashboard.v1.PublicWidget/get',
@@ -132,7 +133,7 @@ def add_PublicWidgetServicer_to_server(servicer, server):
             'load': grpc.unary_unary_rpc_method_handler(
                     servicer.load,
                     request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.LoadPublicWidgetRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetInfo.SerializeToString,
+                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
@@ -252,7 +253,7 @@ class PublicWidget(object):
             target,
             '/spaceone.api.dashboard.v1.PublicWidget/load',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.LoadPublicWidgetRequest.SerializeToString,
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetInfo.FromString,
+            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,
             insecure,

@@ -11,6 +11,7 @@ package v1
 import (
 	context "context"
 	empty "github.com/golang/protobuf/ptypes/empty"
+	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -39,7 +40,7 @@ type PrivateDataTableClient interface {
 	Transform(ctx context.Context, in *TransformPrivateDataTableRequest, opts ...grpc.CallOption) (*PrivateDataTableInfo, error)
 	Update(ctx context.Context, in *UpdatePrivateDataTableRequest, opts ...grpc.CallOption) (*PrivateDataTableInfo, error)
 	Delete(ctx context.Context, in *PrivateDataTableRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Load(ctx context.Context, in *LoadPrivateDataTableRequest, opts ...grpc.CallOption) (*PrivateDataTableInfo, error)
+	Load(ctx context.Context, in *LoadPrivateDataTableRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Get(ctx context.Context, in *PrivateDataTableRequest, opts ...grpc.CallOption) (*PrivateDataTableInfo, error)
 	List(ctx context.Context, in *PrivateDataTableQuery, opts ...grpc.CallOption) (*PrivateDataTablesInfo, error)
 }
@@ -92,9 +93,9 @@ func (c *privateDataTableClient) Delete(ctx context.Context, in *PrivateDataTabl
 	return out, nil
 }
 
-func (c *privateDataTableClient) Load(ctx context.Context, in *LoadPrivateDataTableRequest, opts ...grpc.CallOption) (*PrivateDataTableInfo, error) {
+func (c *privateDataTableClient) Load(ctx context.Context, in *LoadPrivateDataTableRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PrivateDataTableInfo)
+	out := new(_struct.Struct)
 	err := c.cc.Invoke(ctx, PrivateDataTable_Load_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -130,7 +131,7 @@ type PrivateDataTableServer interface {
 	Transform(context.Context, *TransformPrivateDataTableRequest) (*PrivateDataTableInfo, error)
 	Update(context.Context, *UpdatePrivateDataTableRequest) (*PrivateDataTableInfo, error)
 	Delete(context.Context, *PrivateDataTableRequest) (*empty.Empty, error)
-	Load(context.Context, *LoadPrivateDataTableRequest) (*PrivateDataTableInfo, error)
+	Load(context.Context, *LoadPrivateDataTableRequest) (*_struct.Struct, error)
 	Get(context.Context, *PrivateDataTableRequest) (*PrivateDataTableInfo, error)
 	List(context.Context, *PrivateDataTableQuery) (*PrivateDataTablesInfo, error)
 	mustEmbedUnimplementedPrivateDataTableServer()
@@ -152,7 +153,7 @@ func (UnimplementedPrivateDataTableServer) Update(context.Context, *UpdatePrivat
 func (UnimplementedPrivateDataTableServer) Delete(context.Context, *PrivateDataTableRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedPrivateDataTableServer) Load(context.Context, *LoadPrivateDataTableRequest) (*PrivateDataTableInfo, error) {
+func (UnimplementedPrivateDataTableServer) Load(context.Context, *LoadPrivateDataTableRequest) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Load not implemented")
 }
 func (UnimplementedPrivateDataTableServer) Get(context.Context, *PrivateDataTableRequest) (*PrivateDataTableInfo, error) {

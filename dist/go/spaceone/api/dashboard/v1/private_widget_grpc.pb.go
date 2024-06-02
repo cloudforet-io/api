@@ -11,6 +11,7 @@ package v1
 import (
 	context "context"
 	empty "github.com/golang/protobuf/ptypes/empty"
+	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -37,7 +38,7 @@ type PrivateWidgetClient interface {
 	Create(ctx context.Context, in *CreatePrivateWidgetRequest, opts ...grpc.CallOption) (*PrivateWidgetInfo, error)
 	Update(ctx context.Context, in *UpdatePrivateWidgetRequest, opts ...grpc.CallOption) (*PrivateWidgetInfo, error)
 	Delete(ctx context.Context, in *PrivateWidgetRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Load(ctx context.Context, in *LoadPrivateWidgetRequest, opts ...grpc.CallOption) (*PrivateWidgetInfo, error)
+	Load(ctx context.Context, in *LoadPrivateWidgetRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Get(ctx context.Context, in *PrivateWidgetRequest, opts ...grpc.CallOption) (*PrivateWidgetInfo, error)
 	List(ctx context.Context, in *PrivateWidgetQuery, opts ...grpc.CallOption) (*PrivateWidgetsInfo, error)
 }
@@ -80,9 +81,9 @@ func (c *privateWidgetClient) Delete(ctx context.Context, in *PrivateWidgetReque
 	return out, nil
 }
 
-func (c *privateWidgetClient) Load(ctx context.Context, in *LoadPrivateWidgetRequest, opts ...grpc.CallOption) (*PrivateWidgetInfo, error) {
+func (c *privateWidgetClient) Load(ctx context.Context, in *LoadPrivateWidgetRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PrivateWidgetInfo)
+	out := new(_struct.Struct)
 	err := c.cc.Invoke(ctx, PrivateWidget_Load_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -117,7 +118,7 @@ type PrivateWidgetServer interface {
 	Create(context.Context, *CreatePrivateWidgetRequest) (*PrivateWidgetInfo, error)
 	Update(context.Context, *UpdatePrivateWidgetRequest) (*PrivateWidgetInfo, error)
 	Delete(context.Context, *PrivateWidgetRequest) (*empty.Empty, error)
-	Load(context.Context, *LoadPrivateWidgetRequest) (*PrivateWidgetInfo, error)
+	Load(context.Context, *LoadPrivateWidgetRequest) (*_struct.Struct, error)
 	Get(context.Context, *PrivateWidgetRequest) (*PrivateWidgetInfo, error)
 	List(context.Context, *PrivateWidgetQuery) (*PrivateWidgetsInfo, error)
 	mustEmbedUnimplementedPrivateWidgetServer()
@@ -136,7 +137,7 @@ func (UnimplementedPrivateWidgetServer) Update(context.Context, *UpdatePrivateWi
 func (UnimplementedPrivateWidgetServer) Delete(context.Context, *PrivateWidgetRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedPrivateWidgetServer) Load(context.Context, *LoadPrivateWidgetRequest) (*PrivateWidgetInfo, error) {
+func (UnimplementedPrivateWidgetServer) Load(context.Context, *LoadPrivateWidgetRequest) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Load not implemented")
 }
 func (UnimplementedPrivateWidgetServer) Get(context.Context, *PrivateWidgetRequest) (*PrivateWidgetInfo, error) {
