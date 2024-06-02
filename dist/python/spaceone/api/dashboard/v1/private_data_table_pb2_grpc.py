@@ -40,33 +40,38 @@ class PrivateDataTableStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.create = channel.unary_unary(
-                '/spaceone.api.data_table.v1.PrivateDataTable/create',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.CreatePrivateDataTableRequest.SerializeToString,
+        self.add = channel.unary_unary(
+                '/spaceone.api.dashboard.v1.PrivateDataTable/add',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.AddPrivateDataTableRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableInfo.FromString,
+                _registered_method=True)
+        self.transform = channel.unary_unary(
+                '/spaceone.api.dashboard.v1.PrivateDataTable/transform',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.TransformPrivateDataTableRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableInfo.FromString,
                 _registered_method=True)
         self.update = channel.unary_unary(
-                '/spaceone.api.data_table.v1.PrivateDataTable/update',
+                '/spaceone.api.dashboard.v1.PrivateDataTable/update',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.UpdatePrivateDataTableRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableInfo.FromString,
                 _registered_method=True)
         self.delete = channel.unary_unary(
-                '/spaceone.api.data_table.v1.PrivateDataTable/delete',
+                '/spaceone.api.dashboard.v1.PrivateDataTable/delete',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.load = channel.unary_unary(
-                '/spaceone.api.data_table.v1.PrivateDataTable/load',
+                '/spaceone.api.dashboard.v1.PrivateDataTable/load',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.LoadPrivateDataTableRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableInfo.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
-                '/spaceone.api.data_table.v1.PrivateDataTable/get',
+                '/spaceone.api.dashboard.v1.PrivateDataTable/get',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableInfo.FromString,
                 _registered_method=True)
         self.list = channel.unary_unary(
-                '/spaceone.api.data_table.v1.PrivateDataTable/list',
+                '/spaceone.api.dashboard.v1.PrivateDataTable/list',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTablesInfo.FromString,
                 _registered_method=True)
@@ -75,7 +80,13 @@ class PrivateDataTableStub(object):
 class PrivateDataTableServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def create(self, request, context):
+    def add(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def transform(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -114,9 +125,14 @@ class PrivateDataTableServicer(object):
 
 def add_PrivateDataTableServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'create': grpc.unary_unary_rpc_method_handler(
-                    servicer.create,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.CreatePrivateDataTableRequest.FromString,
+            'add': grpc.unary_unary_rpc_method_handler(
+                    servicer.add,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.AddPrivateDataTableRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableInfo.SerializeToString,
+            ),
+            'transform': grpc.unary_unary_rpc_method_handler(
+                    servicer.transform,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.TransformPrivateDataTableRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
@@ -146,9 +162,9 @@ def add_PrivateDataTableServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'spaceone.api.data_table.v1.PrivateDataTable', rpc_method_handlers)
+            'spaceone.api.dashboard.v1.PrivateDataTable', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('spaceone.api.data_table.v1.PrivateDataTable', rpc_method_handlers)
+    server.add_registered_method_handlers('spaceone.api.dashboard.v1.PrivateDataTable', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -156,7 +172,7 @@ class PrivateDataTable(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def create(request,
+    def add(request,
             target,
             options=(),
             channel_credentials=None,
@@ -169,8 +185,35 @@ class PrivateDataTable(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.data_table.v1.PrivateDataTable/create',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.CreatePrivateDataTableRequest.SerializeToString,
+            '/spaceone.api.dashboard.v1.PrivateDataTable/add',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.AddPrivateDataTableRequest.SerializeToString,
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def transform(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.dashboard.v1.PrivateDataTable/transform',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.TransformPrivateDataTableRequest.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableInfo.FromString,
             options,
             channel_credentials,
@@ -196,7 +239,7 @@ class PrivateDataTable(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.data_table.v1.PrivateDataTable/update',
+            '/spaceone.api.dashboard.v1.PrivateDataTable/update',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.UpdatePrivateDataTableRequest.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableInfo.FromString,
             options,
@@ -223,7 +266,7 @@ class PrivateDataTable(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.data_table.v1.PrivateDataTable/delete',
+            '/spaceone.api.dashboard.v1.PrivateDataTable/delete',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
@@ -250,7 +293,7 @@ class PrivateDataTable(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.data_table.v1.PrivateDataTable/load',
+            '/spaceone.api.dashboard.v1.PrivateDataTable/load',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.LoadPrivateDataTableRequest.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableInfo.FromString,
             options,
@@ -277,7 +320,7 @@ class PrivateDataTable(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.data_table.v1.PrivateDataTable/get',
+            '/spaceone.api.dashboard.v1.PrivateDataTable/get',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableRequest.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableInfo.FromString,
             options,
@@ -304,7 +347,7 @@ class PrivateDataTable(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.data_table.v1.PrivateDataTable/list',
+            '/spaceone.api.dashboard.v1.PrivateDataTable/list',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTableQuery.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_private__data__table__pb2.PrivateDataTablesInfo.FromString,
             options,

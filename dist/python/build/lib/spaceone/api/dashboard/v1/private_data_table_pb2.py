@@ -16,9 +16,10 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from spaceone.api.core.v2 import query_pb2 as spaceone_dot_api_dot_core_dot_v2_dot_query__pb2
+from spaceone.api.dashboard.v1 import public_data_table_pb2 as spaceone_dot_api_dot_dashboard_dot_v1_dot_public__data__table__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n2spaceone/api/dashboard/v1/private_data_table.proto\x12\x1aspaceone.api.data_table.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"\xb1\x02\n\x1d\x43reatePrivateDataTableRequest\x12\x11\n\twidget_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12Y\n\x0bsource_type\x18\x03 \x01(\x0e\x32\x44.spaceone.api.data_table.v1.CreatePrivateDataTableRequest.SourceType\x12(\n\x07options\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\"C\n\nSourceType\x12\x14\n\x10SOURCE_TYPE_NONE\x10\x00\x12\x0f\n\x0b\x44\x41TA_SOURCE\x10\x01\x12\x0e\n\nDATA_TABLE\x10\x02\"\x95\x01\n\x1dUpdatePrivateDataTableRequest\x12\x15\n\rdata_table_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12(\n\x07options\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\"0\n\x17PrivateDataTableRequest\x12\x15\n\rdata_table_id\x18\x01 \x01(\t\"\x88\x01\n\x1bLoadPrivateDataTableRequest\x12\x15\n\rdata_table_id\x18\x01 \x01(\t\x12(\n\x04sort\x18\x03 \x03(\x0b\x32\x1a.spaceone.api.core.v2.Sort\x12(\n\x04page\x18\x04 \x01(\x0b\x32\x1a.spaceone.api.core.v2.Page\"\x93\x02\n\x15PrivateDataTableQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x11\n\twidget_id\x18\x02 \x01(\t\x12\x15\n\rdata_table_id\x18\x03 \x01(\t\x12\x0c\n\x04name\x18\x04 \x01(\t\x12Q\n\x0bsource_type\x18\x05 \x01(\x0e\x32<.spaceone.api.data_table.v1.PrivateDataTableQuery.SourceType\"C\n\nSourceType\x12\x14\n\x10SOURCE_TYPE_NONE\x10\x00\x12\x0f\n\x0b\x44\x41TA_SOURCE\x10\x01\x12\x0e\n\nDATA_TABLE\x10\x02\"\xe4\x03\n\x14PrivateDataTableInfo\x12\x15\n\rdata_table_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12P\n\x0bsource_type\x18\x03 \x01(\x0e\x32;.spaceone.api.data_table.v1.PrivateDataTableInfo.SourceType\x12(\n\x07options\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\x12,\n\x0blabels_info\x18\x06 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x14 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x15 \x01(\t\x12\x0f\n\x07user_id\x18\x16 \x01(\t\x12\x1c\n\x14private_dashboard_id\x18\x17 \x01(\t\x12\x11\n\twidget_id\x18\x18 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\x12\x12\n\nupdated_at\x18  \x01(\t\"C\n\nSourceType\x12\x14\n\x10SOURCE_TYPE_NONE\x10\x00\x12\x0f\n\x0b\x44\x41TA_SOURCE\x10\x01\x12\x0e\n\nDATA_TABLE\x10\x02\"o\n\x15PrivateDataTablesInfo\x12\x41\n\x07results\x18\x01 \x03(\x0b\x32\x30.spaceone.api.data_table.v1.PrivateDataTableInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\x32\xe3\x07\n\x10PrivateDataTable\x12\xaa\x01\n\x06\x63reate\x12\x39.spaceone.api.data_table.v1.CreatePrivateDataTableRequest\x1a\x30.spaceone.api.data_table.v1.PrivateDataTableInfo\"3\x82\xd3\xe4\x93\x02-\"(/data_table/v1/private-data-table/create:\x01*\x12\xaa\x01\n\x06update\x12\x39.spaceone.api.data_table.v1.UpdatePrivateDataTableRequest\x1a\x30.spaceone.api.data_table.v1.PrivateDataTableInfo\"3\x82\xd3\xe4\x93\x02-\"(/data_table/v1/private-data-table/update:\x01*\x12\x8a\x01\n\x06\x64\x65lete\x12\x33.spaceone.api.data_table.v1.PrivateDataTableRequest\x1a\x16.google.protobuf.Empty\"3\x82\xd3\xe4\x93\x02-\"(/data_table/v1/private-data-table/delete:\x01*\x12\xa4\x01\n\x04load\x12\x37.spaceone.api.data_table.v1.LoadPrivateDataTableRequest\x1a\x30.spaceone.api.data_table.v1.PrivateDataTableInfo\"1\x82\xd3\xe4\x93\x02+\"&/data_table/v1/private-data-table/load:\x01*\x12\x9e\x01\n\x03get\x12\x33.spaceone.api.data_table.v1.PrivateDataTableRequest\x1a\x30.spaceone.api.data_table.v1.PrivateDataTableInfo\"0\x82\xd3\xe4\x93\x02*\"%/data_table/v1/private-data-table/get:\x01*\x12\x9f\x01\n\x04list\x12\x31.spaceone.api.data_table.v1.PrivateDataTableQuery\x1a\x31.spaceone.api.data_table.v1.PrivateDataTablesInfo\"1\x82\xd3\xe4\x93\x02+\"&/data_table/v1/private-data-table/list:\x01*B@Z>github.com/cloudforet-io/api/dist/go/spaceone/api/dashboard/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n2spaceone/api/dashboard/v1/private_data_table.proto\x12\x19spaceone.api.dashboard.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\x1a\x31spaceone/api/dashboard/v1/public_data_table.proto\"\xd8\x01\n\x1a\x41\x64\x64PrivateDataTableRequest\x12\x11\n\twidget_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12:\n\x0bsource_type\x18\x03 \x01(\x0e\x32%.spaceone.api.dashboard.v1.SourceType\x12\x36\n\x07options\x18\x04 \x01(\x0b\x32%.spaceone.api.dashboard.v1.AddOptions\x12%\n\x04tags\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\"\xdf\x01\n TransformPrivateDataTableRequest\x12\x11\n\twidget_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x35\n\x08operator\x18\x03 \x01(\x0e\x32#.spaceone.api.dashboard.v1.Operator\x12<\n\x07options\x18\x04 \x01(\x0b\x32+.spaceone.api.dashboard.v1.TransformOptions\x12%\n\x04tags\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\"\x95\x01\n\x1dUpdatePrivateDataTableRequest\x12\x15\n\rdata_table_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12(\n\x07options\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\"0\n\x17PrivateDataTableRequest\x12\x15\n\rdata_table_id\x18\x01 \x01(\t\"\xc6\x02\n\x1bLoadPrivateDataTableRequest\x12\x15\n\rdata_table_id\x18\x01 \x01(\t\x12W\n\x0bgranularity\x18\x02 \x01(\x0e\x32\x42.spaceone.api.dashboard.v1.LoadPrivateDataTableRequest.Granularity\x12\r\n\x05start\x18\x03 \x01(\t\x12\x0b\n\x03\x65nd\x18\x04 \x01(\t\x12(\n\x04sort\x18\x05 \x03(\x0b\x32\x1a.spaceone.api.core.v2.Sort\x12(\n\x04page\x18\x06 \x01(\x0b\x32\x1a.spaceone.api.core.v2.Page\"G\n\x0bGranularity\x12\x14\n\x10GRANULARITY_NONE\x10\x00\x12\t\n\x05\x44\x41ILY\x10\x01\x12\x0b\n\x07MONTHLY\x10\x02\x12\n\n\x06YEARLY\x10\x03\"\xa6\x02\n\x15PrivateDataTableQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x11\n\twidget_id\x18\x02 \x01(\t\x12\x15\n\rdata_table_id\x18\x03 \x01(\t\x12\x0c\n\x04name\x18\x04 \x01(\t\x12\x36\n\tdata_type\x18\x05 \x01(\x0e\x32#.spaceone.api.dashboard.v1.DataType\x12:\n\x0bsource_type\x18\x06 \x01(\x0e\x32%.spaceone.api.dashboard.v1.SourceType\x12\x35\n\x08operator\x18\x07 \x01(\x0e\x32#.spaceone.api.dashboard.v1.Operator\"\xd8\x04\n\x14PrivateDataTableInfo\x12\x15\n\rdata_table_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x36\n\tdata_type\x18\x03 \x01(\x0e\x32#.spaceone.api.dashboard.v1.DataType\x12:\n\x0bsource_type\x18\x04 \x01(\x0e\x32%.spaceone.api.dashboard.v1.SourceType\x12\x35\n\x08operator\x18\x05 \x01(\x0e\x32#.spaceone.api.dashboard.v1.Operator\x12(\n\x07options\x18\x06 \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12,\n\x0blabels_info\x18\x08 \x01(\x0b\x32\x17.google.protobuf.Struct\x12*\n\tdata_info\x18\t \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x0f\n\x07user_id\x18\x16 \x01(\t\x12\x14\n\x0c\x64\x61shboard_id\x18\x17 \x01(\t\x12\x11\n\twidget_id\x18\x18 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\x12\x12\n\nupdated_at\x18  \x01(\t\"P\n\rResourceGroup\x12\x17\n\x13RESOURCE_GROUP_NONE\x10\x00\x12\n\n\x06\x44OMAIN\x10\x01\x12\r\n\tWORKSPACE\x10\x02\x12\x0b\n\x07PROJECT\x10\x03\"n\n\x15PrivateDataTablesInfo\x12@\n\x07results\x18\x01 \x03(\x0b\x32/.spaceone.api.dashboard.v1.PrivateDataTableInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\x32\x83\t\n\x10PrivateDataTable\x12\x9f\x01\n\x03\x61\x64\x64\x12\x35.spaceone.api.dashboard.v1.AddPrivateDataTableRequest\x1a/.spaceone.api.dashboard.v1.PrivateDataTableInfo\"0\x82\xd3\xe4\x93\x02*\"%/data_table/v1/private-data-table/add:\x01*\x12\xb1\x01\n\ttransform\x12;.spaceone.api.dashboard.v1.TransformPrivateDataTableRequest\x1a/.spaceone.api.dashboard.v1.PrivateDataTableInfo\"6\x82\xd3\xe4\x93\x02\x30\"+/data_table/v1/private-data-table/transform:\x01*\x12\xa8\x01\n\x06update\x12\x38.spaceone.api.dashboard.v1.UpdatePrivateDataTableRequest\x1a/.spaceone.api.dashboard.v1.PrivateDataTableInfo\"3\x82\xd3\xe4\x93\x02-\"(/data_table/v1/private-data-table/update:\x01*\x12\x89\x01\n\x06\x64\x65lete\x12\x32.spaceone.api.dashboard.v1.PrivateDataTableRequest\x1a\x16.google.protobuf.Empty\"3\x82\xd3\xe4\x93\x02-\"(/data_table/v1/private-data-table/delete:\x01*\x12\xa2\x01\n\x04load\x12\x36.spaceone.api.dashboard.v1.LoadPrivateDataTableRequest\x1a/.spaceone.api.dashboard.v1.PrivateDataTableInfo\"1\x82\xd3\xe4\x93\x02+\"&/data_table/v1/private-data-table/load:\x01*\x12\x9c\x01\n\x03get\x12\x32.spaceone.api.dashboard.v1.PrivateDataTableRequest\x1a/.spaceone.api.dashboard.v1.PrivateDataTableInfo\"0\x82\xd3\xe4\x93\x02*\"%/data_table/v1/private-data-table/get:\x01*\x12\x9d\x01\n\x04list\x12\x30.spaceone.api.dashboard.v1.PrivateDataTableQuery\x1a\x30.spaceone.api.dashboard.v1.PrivateDataTablesInfo\"1\x82\xd3\xe4\x93\x02+\"&/data_table/v1/private-data-table/list:\x01*B@Z>github.com/cloudforet-io/api/dist/go/spaceone/api/dashboard/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -26,8 +27,10 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'spaceone.api.dashboard.v1.p
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z>github.com/cloudforet-io/api/dist/go/spaceone/api/dashboard/v1'
-  _globals['_PRIVATEDATATABLE'].methods_by_name['create']._loaded_options = None
-  _globals['_PRIVATEDATATABLE'].methods_by_name['create']._serialized_options = b'\202\323\344\223\002-\"(/data_table/v1/private-data-table/create:\001*'
+  _globals['_PRIVATEDATATABLE'].methods_by_name['add']._loaded_options = None
+  _globals['_PRIVATEDATATABLE'].methods_by_name['add']._serialized_options = b'\202\323\344\223\002*\"%/data_table/v1/private-data-table/add:\001*'
+  _globals['_PRIVATEDATATABLE'].methods_by_name['transform']._loaded_options = None
+  _globals['_PRIVATEDATATABLE'].methods_by_name['transform']._serialized_options = b'\202\323\344\223\0020\"+/data_table/v1/private-data-table/transform:\001*'
   _globals['_PRIVATEDATATABLE'].methods_by_name['update']._loaded_options = None
   _globals['_PRIVATEDATATABLE'].methods_by_name['update']._serialized_options = b'\202\323\344\223\002-\"(/data_table/v1/private-data-table/update:\001*'
   _globals['_PRIVATEDATATABLE'].methods_by_name['delete']._loaded_options = None
@@ -38,26 +41,26 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_PRIVATEDATATABLE'].methods_by_name['get']._serialized_options = b'\202\323\344\223\002*\"%/data_table/v1/private-data-table/get:\001*'
   _globals['_PRIVATEDATATABLE'].methods_by_name['list']._loaded_options = None
   _globals['_PRIVATEDATATABLE'].methods_by_name['list']._serialized_options = b'\202\323\344\223\002+\"&/data_table/v1/private-data-table/list:\001*'
-  _globals['_CREATEPRIVATEDATATABLEREQUEST']._serialized_start=206
-  _globals['_CREATEPRIVATEDATATABLEREQUEST']._serialized_end=511
-  _globals['_CREATEPRIVATEDATATABLEREQUEST_SOURCETYPE']._serialized_start=444
-  _globals['_CREATEPRIVATEDATATABLEREQUEST_SOURCETYPE']._serialized_end=511
-  _globals['_UPDATEPRIVATEDATATABLEREQUEST']._serialized_start=514
-  _globals['_UPDATEPRIVATEDATATABLEREQUEST']._serialized_end=663
-  _globals['_PRIVATEDATATABLEREQUEST']._serialized_start=665
-  _globals['_PRIVATEDATATABLEREQUEST']._serialized_end=713
-  _globals['_LOADPRIVATEDATATABLEREQUEST']._serialized_start=716
-  _globals['_LOADPRIVATEDATATABLEREQUEST']._serialized_end=852
-  _globals['_PRIVATEDATATABLEQUERY']._serialized_start=855
-  _globals['_PRIVATEDATATABLEQUERY']._serialized_end=1130
-  _globals['_PRIVATEDATATABLEQUERY_SOURCETYPE']._serialized_start=444
-  _globals['_PRIVATEDATATABLEQUERY_SOURCETYPE']._serialized_end=511
-  _globals['_PRIVATEDATATABLEINFO']._serialized_start=1133
-  _globals['_PRIVATEDATATABLEINFO']._serialized_end=1617
-  _globals['_PRIVATEDATATABLEINFO_SOURCETYPE']._serialized_start=444
-  _globals['_PRIVATEDATATABLEINFO_SOURCETYPE']._serialized_end=511
-  _globals['_PRIVATEDATATABLESINFO']._serialized_start=1619
-  _globals['_PRIVATEDATATABLESINFO']._serialized_end=1730
-  _globals['_PRIVATEDATATABLE']._serialized_start=1733
-  _globals['_PRIVATEDATATABLE']._serialized_end=2728
+  _globals['_ADDPRIVATEDATATABLEREQUEST']._serialized_start=256
+  _globals['_ADDPRIVATEDATATABLEREQUEST']._serialized_end=472
+  _globals['_TRANSFORMPRIVATEDATATABLEREQUEST']._serialized_start=475
+  _globals['_TRANSFORMPRIVATEDATATABLEREQUEST']._serialized_end=698
+  _globals['_UPDATEPRIVATEDATATABLEREQUEST']._serialized_start=701
+  _globals['_UPDATEPRIVATEDATATABLEREQUEST']._serialized_end=850
+  _globals['_PRIVATEDATATABLEREQUEST']._serialized_start=852
+  _globals['_PRIVATEDATATABLEREQUEST']._serialized_end=900
+  _globals['_LOADPRIVATEDATATABLEREQUEST']._serialized_start=903
+  _globals['_LOADPRIVATEDATATABLEREQUEST']._serialized_end=1229
+  _globals['_LOADPRIVATEDATATABLEREQUEST_GRANULARITY']._serialized_start=1158
+  _globals['_LOADPRIVATEDATATABLEREQUEST_GRANULARITY']._serialized_end=1229
+  _globals['_PRIVATEDATATABLEQUERY']._serialized_start=1232
+  _globals['_PRIVATEDATATABLEQUERY']._serialized_end=1526
+  _globals['_PRIVATEDATATABLEINFO']._serialized_start=1529
+  _globals['_PRIVATEDATATABLEINFO']._serialized_end=2129
+  _globals['_PRIVATEDATATABLEINFO_RESOURCEGROUP']._serialized_start=2049
+  _globals['_PRIVATEDATATABLEINFO_RESOURCEGROUP']._serialized_end=2129
+  _globals['_PRIVATEDATATABLESINFO']._serialized_start=2131
+  _globals['_PRIVATEDATATABLESINFO']._serialized_end=2241
+  _globals['_PRIVATEDATATABLE']._serialized_start=2244
+  _globals['_PRIVATEDATATABLE']._serialized_end=3399
 # @@protoc_insertion_point(module_scope)

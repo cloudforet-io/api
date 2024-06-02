@@ -3,7 +3,7 @@
     {
       "name": "spaceone/api/dashboard/v1/public_widget.proto",
       "description": "description of widget",
-      "package": "spaceone.api.widget.v1",
+      "package": "spaceone.api.dashboard.v1",
       "hasEnums": false,
       "hasExtensions": false,
       "hasMessages": true,
@@ -12,7 +12,7 @@
         {
           "name": "ResourceGroup",
           "longName": "PublicWidgetInfo.ResourceGroup",
-          "fullName": "spaceone.api.widget.v1.PublicWidgetInfo.ResourceGroup",
+          "fullName": "spaceone.api.dashboard.v1.PublicWidgetInfo.ResourceGroup",
           "description": "",
           "values": [
             {
@@ -43,7 +43,7 @@
         {
           "name": "CreatePublicWidgetRequest",
           "longName": "CreatePublicWidgetRequest",
-          "fullName": "spaceone.api.widget.v1.CreatePublicWidgetRequest",
+          "fullName": "spaceone.api.dashboard.v1.CreatePublicWidgetRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -51,7 +51,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "public_dashboard_id",
+              "name": "dashboard_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -127,7 +127,7 @@
         {
           "name": "LoadPublicWidgetRequest",
           "longName": "LoadPublicWidgetRequest",
-          "fullName": "spaceone.api.widget.v1.LoadPublicWidgetRequest",
+          "fullName": "spaceone.api.dashboard.v1.LoadPublicWidgetRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -147,24 +147,12 @@
               "defaultValue": ""
             },
             {
-              "name": "sort",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "Sort",
-              "longType": "spaceone.api.core.v2.Sort",
-              "fullType": "spaceone.api.core.v2.Sort",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "page",
+              "name": "query",
               "description": "+optional",
               "label": "",
-              "type": "Page",
-              "longType": "spaceone.api.core.v2.Page",
-              "fullType": "spaceone.api.core.v2.Page",
+              "type": "TimeSeriesAnalyzeQuery",
+              "longType": "spaceone.api.core.v2.TimeSeriesAnalyzeQuery",
+              "fullType": "spaceone.api.core.v2.TimeSeriesAnalyzeQuery",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -187,7 +175,7 @@
         {
           "name": "PublicWidgetInfo",
           "longName": "PublicWidgetInfo",
-          "fullName": "spaceone.api.widget.v1.PublicWidgetInfo",
+          "fullName": "spaceone.api.dashboard.v1.PublicWidgetInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -272,7 +260,7 @@
               "label": "",
               "type": "ResourceGroup",
               "longType": "PublicWidgetInfo.ResourceGroup",
-              "fullType": "spaceone.api.widget.v1.PublicWidgetInfo.ResourceGroup",
+              "fullType": "spaceone.api.dashboard.v1.PublicWidgetInfo.ResourceGroup",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -315,7 +303,7 @@
               "defaultValue": ""
             },
             {
-              "name": "public_dashboard_id",
+              "name": "dashboard_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -355,7 +343,7 @@
         {
           "name": "PublicWidgetQuery",
           "longName": "PublicWidgetQuery",
-          "fullName": "spaceone.api.widget.v1.PublicWidgetQuery",
+          "fullName": "spaceone.api.dashboard.v1.PublicWidgetQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -375,7 +363,7 @@
               "defaultValue": ""
             },
             {
-              "name": "public_dashboard_id",
+              "name": "dashboard_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -415,7 +403,7 @@
         {
           "name": "PublicWidgetRequest",
           "longName": "PublicWidgetRequest",
-          "fullName": "spaceone.api.widget.v1.PublicWidgetRequest",
+          "fullName": "spaceone.api.dashboard.v1.PublicWidgetRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -439,7 +427,7 @@
         {
           "name": "PublicWidgetsInfo",
           "longName": "PublicWidgetsInfo",
-          "fullName": "spaceone.api.widget.v1.PublicWidgetsInfo",
+          "fullName": "spaceone.api.dashboard.v1.PublicWidgetsInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -452,7 +440,7 @@
               "label": "repeated",
               "type": "PublicWidgetInfo",
               "longType": "PublicWidgetInfo",
-              "fullType": "spaceone.api.widget.v1.PublicWidgetInfo",
+              "fullType": "spaceone.api.dashboard.v1.PublicWidgetInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -475,7 +463,7 @@
         {
           "name": "UpdatePublicWidgetRequest",
           "longName": "UpdatePublicWidgetRequest",
-          "fullName": "spaceone.api.widget.v1.UpdatePublicWidgetRequest",
+          "fullName": "spaceone.api.dashboard.v1.UpdatePublicWidgetRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -561,7 +549,7 @@
         {
           "name": "PublicWidget",
           "longName": "PublicWidget",
-          "fullName": "spaceone.api.widget.v1.PublicWidget",
+          "fullName": "spaceone.api.dashboard.v1.PublicWidget",
           "description": "",
           "methods": [
             {
@@ -569,11 +557,11 @@
               "description": "",
               "requestType": "CreatePublicWidgetRequest",
               "requestLongType": "CreatePublicWidgetRequest",
-              "requestFullType": "spaceone.api.widget.v1.CreatePublicWidgetRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.CreatePublicWidgetRequest",
               "requestStreaming": false,
               "responseType": "PublicWidgetInfo",
               "responseLongType": "PublicWidgetInfo",
-              "responseFullType": "spaceone.api.widget.v1.PublicWidgetInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicWidgetInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
@@ -592,11 +580,11 @@
               "description": "",
               "requestType": "UpdatePublicWidgetRequest",
               "requestLongType": "UpdatePublicWidgetRequest",
-              "requestFullType": "spaceone.api.widget.v1.UpdatePublicWidgetRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.UpdatePublicWidgetRequest",
               "requestStreaming": false,
               "responseType": "PublicWidgetInfo",
               "responseLongType": "PublicWidgetInfo",
-              "responseFullType": "spaceone.api.widget.v1.PublicWidgetInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicWidgetInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
@@ -615,7 +603,7 @@
               "description": "",
               "requestType": "PublicWidgetRequest",
               "requestLongType": "PublicWidgetRequest",
-              "requestFullType": "spaceone.api.widget.v1.PublicWidgetRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.PublicWidgetRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -638,11 +626,11 @@
               "description": "",
               "requestType": "LoadPublicWidgetRequest",
               "requestLongType": "LoadPublicWidgetRequest",
-              "requestFullType": "spaceone.api.widget.v1.LoadPublicWidgetRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.LoadPublicWidgetRequest",
               "requestStreaming": false,
               "responseType": "PublicWidgetInfo",
               "responseLongType": "PublicWidgetInfo",
-              "responseFullType": "spaceone.api.widget.v1.PublicWidgetInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicWidgetInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
@@ -661,11 +649,11 @@
               "description": "",
               "requestType": "PublicWidgetRequest",
               "requestLongType": "PublicWidgetRequest",
-              "requestFullType": "spaceone.api.widget.v1.PublicWidgetRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.PublicWidgetRequest",
               "requestStreaming": false,
               "responseType": "PublicWidgetInfo",
               "responseLongType": "PublicWidgetInfo",
-              "responseFullType": "spaceone.api.widget.v1.PublicWidgetInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicWidgetInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
@@ -684,11 +672,11 @@
               "description": "",
               "requestType": "PublicWidgetQuery",
               "requestLongType": "PublicWidgetQuery",
-              "requestFullType": "spaceone.api.widget.v1.PublicWidgetQuery",
+              "requestFullType": "spaceone.api.dashboard.v1.PublicWidgetQuery",
               "requestStreaming": false,
               "responseType": "PublicWidgetsInfo",
               "responseLongType": "PublicWidgetsInfo",
-              "responseFullType": "spaceone.api.widget.v1.PublicWidgetsInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicWidgetsInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {

@@ -3,77 +3,64 @@
     {
       "name": "spaceone/api/dashboard/v1/private_data_table.proto",
       "description": "description of data table",
-      "package": "spaceone.api.data_table.v1",
+      "package": "spaceone.api.dashboard.v1",
       "hasEnums": false,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
       "enums": [
         {
-          "name": "SourceType",
-          "longName": "CreatePrivateDataTableRequest.SourceType",
-          "fullName": "spaceone.api.data_table.v1.CreatePrivateDataTableRequest.SourceType",
+          "name": "Granularity",
+          "longName": "LoadPrivateDataTableRequest.Granularity",
+          "fullName": "spaceone.api.dashboard.v1.LoadPrivateDataTableRequest.Granularity",
           "description": "",
           "values": [
             {
-              "name": "SOURCE_TYPE_NONE",
+              "name": "GRANULARITY_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "DATA_SOURCE",
+              "name": "DAILY",
               "number": "1",
               "description": ""
             },
             {
-              "name": "DATA_TABLE",
+              "name": "MONTHLY",
               "number": "2",
+              "description": ""
+            },
+            {
+              "name": "YEARLY",
+              "number": "3",
               "description": ""
             }
           ]
         },
         {
-          "name": "SourceType",
-          "longName": "PrivateDataTableInfo.SourceType",
-          "fullName": "spaceone.api.data_table.v1.PrivateDataTableInfo.SourceType",
+          "name": "ResourceGroup",
+          "longName": "PrivateDataTableInfo.ResourceGroup",
+          "fullName": "spaceone.api.dashboard.v1.PrivateDataTableInfo.ResourceGroup",
           "description": "",
           "values": [
             {
-              "name": "SOURCE_TYPE_NONE",
+              "name": "RESOURCE_GROUP_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "DATA_SOURCE",
+              "name": "DOMAIN",
               "number": "1",
               "description": ""
             },
             {
-              "name": "DATA_TABLE",
+              "name": "WORKSPACE",
               "number": "2",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "SourceType",
-          "longName": "PrivateDataTableQuery.SourceType",
-          "fullName": "spaceone.api.data_table.v1.PrivateDataTableQuery.SourceType",
-          "description": "",
-          "values": [
-            {
-              "name": "SOURCE_TYPE_NONE",
-              "number": "0",
               "description": ""
             },
             {
-              "name": "DATA_SOURCE",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "DATA_TABLE",
-              "number": "2",
+              "name": "PROJECT",
+              "number": "3",
               "description": ""
             }
           ]
@@ -82,9 +69,9 @@
       "extensions": [],
       "messages": [
         {
-          "name": "CreatePrivateDataTableRequest",
-          "longName": "CreatePrivateDataTableRequest",
-          "fullName": "spaceone.api.data_table.v1.CreatePrivateDataTableRequest",
+          "name": "AddPrivateDataTableRequest",
+          "longName": "AddPrivateDataTableRequest",
+          "fullName": "spaceone.api.dashboard.v1.AddPrivateDataTableRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -117,11 +104,11 @@
             },
             {
               "name": "source_type",
-              "description": "+optional",
+              "description": "",
               "label": "",
               "type": "SourceType",
-              "longType": "CreatePrivateDataTableRequest.SourceType",
-              "fullType": "spaceone.api.data_table.v1.CreatePrivateDataTableRequest.SourceType",
+              "longType": "SourceType",
+              "fullType": "spaceone.api.dashboard.v1.SourceType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -129,11 +116,11 @@
             },
             {
               "name": "options",
-              "description": "+optional",
+              "description": "",
               "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "type": "AddOptions",
+              "longType": "AddOptions",
+              "fullType": "spaceone.api.dashboard.v1.AddOptions",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -156,7 +143,7 @@
         {
           "name": "LoadPrivateDataTableRequest",
           "longName": "LoadPrivateDataTableRequest",
-          "fullName": "spaceone.api.data_table.v1.LoadPrivateDataTableRequest",
+          "fullName": "spaceone.api.dashboard.v1.LoadPrivateDataTableRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -166,6 +153,42 @@
             {
               "name": "data_table_id",
               "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "granularity",
+              "description": "",
+              "label": "",
+              "type": "Granularity",
+              "longType": "LoadPrivateDataTableRequest.Granularity",
+              "fullType": "spaceone.api.dashboard.v1.LoadPrivateDataTableRequest.Granularity",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "start",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "end",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -204,7 +227,7 @@
         {
           "name": "PrivateDataTableInfo",
           "longName": "PrivateDataTableInfo",
-          "fullName": "spaceone.api.data_table.v1.PrivateDataTableInfo",
+          "fullName": "spaceone.api.dashboard.v1.PrivateDataTableInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -236,12 +259,36 @@
               "defaultValue": ""
             },
             {
+              "name": "data_type",
+              "description": "",
+              "label": "",
+              "type": "DataType",
+              "longType": "DataType",
+              "fullType": "spaceone.api.dashboard.v1.DataType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "source_type",
               "description": "",
               "label": "",
               "type": "SourceType",
-              "longType": "PrivateDataTableInfo.SourceType",
-              "fullType": "spaceone.api.data_table.v1.PrivateDataTableInfo.SourceType",
+              "longType": "SourceType",
+              "fullType": "spaceone.api.dashboard.v1.SourceType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "operator",
+              "description": "",
+              "label": "",
+              "type": "Operator",
+              "longType": "Operator",
+              "fullType": "spaceone.api.dashboard.v1.Operator",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -284,19 +331,19 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "data_info",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "workspace_id",
+              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -320,7 +367,7 @@
               "defaultValue": ""
             },
             {
-              "name": "private_dashboard_id",
+              "name": "dashboard_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -372,7 +419,7 @@
         {
           "name": "PrivateDataTableQuery",
           "longName": "PrivateDataTableQuery",
-          "fullName": "spaceone.api.data_table.v1.PrivateDataTableQuery",
+          "fullName": "spaceone.api.dashboard.v1.PrivateDataTableQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -428,12 +475,36 @@
               "defaultValue": ""
             },
             {
+              "name": "data_type",
+              "description": "+optional",
+              "label": "",
+              "type": "DataType",
+              "longType": "DataType",
+              "fullType": "spaceone.api.dashboard.v1.DataType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "source_type",
               "description": "+optional",
               "label": "",
               "type": "SourceType",
-              "longType": "PrivateDataTableQuery.SourceType",
-              "fullType": "spaceone.api.data_table.v1.PrivateDataTableQuery.SourceType",
+              "longType": "SourceType",
+              "fullType": "spaceone.api.dashboard.v1.SourceType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "operator",
+              "description": "+optional",
+              "label": "",
+              "type": "Operator",
+              "longType": "Operator",
+              "fullType": "spaceone.api.dashboard.v1.Operator",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -444,7 +515,7 @@
         {
           "name": "PrivateDataTableRequest",
           "longName": "PrivateDataTableRequest",
-          "fullName": "spaceone.api.data_table.v1.PrivateDataTableRequest",
+          "fullName": "spaceone.api.dashboard.v1.PrivateDataTableRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -468,7 +539,7 @@
         {
           "name": "PrivateDataTablesInfo",
           "longName": "PrivateDataTablesInfo",
-          "fullName": "spaceone.api.data_table.v1.PrivateDataTablesInfo",
+          "fullName": "spaceone.api.dashboard.v1.PrivateDataTablesInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -481,7 +552,7 @@
               "label": "repeated",
               "type": "PrivateDataTableInfo",
               "longType": "PrivateDataTableInfo",
-              "fullType": "spaceone.api.data_table.v1.PrivateDataTableInfo",
+              "fullType": "spaceone.api.dashboard.v1.PrivateDataTableInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -502,9 +573,81 @@
           ]
         },
         {
+          "name": "TransformPrivateDataTableRequest",
+          "longName": "TransformPrivateDataTableRequest",
+          "fullName": "spaceone.api.dashboard.v1.TransformPrivateDataTableRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "widget_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "operator",
+              "description": "",
+              "label": "",
+              "type": "Operator",
+              "longType": "Operator",
+              "fullType": "spaceone.api.dashboard.v1.Operator",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "TransformOptions",
+              "longType": "TransformOptions",
+              "fullType": "spaceone.api.dashboard.v1.TransformOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "UpdatePrivateDataTableRequest",
           "longName": "UpdatePrivateDataTableRequest",
-          "fullName": "spaceone.api.data_table.v1.UpdatePrivateDataTableRequest",
+          "fullName": "spaceone.api.dashboard.v1.UpdatePrivateDataTableRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -566,26 +709,49 @@
         {
           "name": "PrivateDataTable",
           "longName": "PrivateDataTable",
-          "fullName": "spaceone.api.data_table.v1.PrivateDataTable",
+          "fullName": "spaceone.api.dashboard.v1.PrivateDataTable",
           "description": "",
           "methods": [
             {
-              "name": "create",
+              "name": "add",
               "description": "",
-              "requestType": "CreatePrivateDataTableRequest",
-              "requestLongType": "CreatePrivateDataTableRequest",
-              "requestFullType": "spaceone.api.data_table.v1.CreatePrivateDataTableRequest",
+              "requestType": "AddPrivateDataTableRequest",
+              "requestLongType": "AddPrivateDataTableRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.AddPrivateDataTableRequest",
               "requestStreaming": false,
               "responseType": "PrivateDataTableInfo",
               "responseLongType": "PrivateDataTableInfo",
-              "responseFullType": "spaceone.api.data_table.v1.PrivateDataTableInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PrivateDataTableInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/data_table/v1/private-data-table/create",
+                      "pattern": "/data_table/v1/private-data-table/add",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "transform",
+              "description": "",
+              "requestType": "TransformPrivateDataTableRequest",
+              "requestLongType": "TransformPrivateDataTableRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.TransformPrivateDataTableRequest",
+              "requestStreaming": false,
+              "responseType": "PrivateDataTableInfo",
+              "responseLongType": "PrivateDataTableInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PrivateDataTableInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/data_table/v1/private-data-table/transform",
                       "body": "*"
                     }
                   ]
@@ -597,11 +763,11 @@
               "description": "",
               "requestType": "UpdatePrivateDataTableRequest",
               "requestLongType": "UpdatePrivateDataTableRequest",
-              "requestFullType": "spaceone.api.data_table.v1.UpdatePrivateDataTableRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.UpdatePrivateDataTableRequest",
               "requestStreaming": false,
               "responseType": "PrivateDataTableInfo",
               "responseLongType": "PrivateDataTableInfo",
-              "responseFullType": "spaceone.api.data_table.v1.PrivateDataTableInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PrivateDataTableInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
@@ -620,7 +786,7 @@
               "description": "",
               "requestType": "PrivateDataTableRequest",
               "requestLongType": "PrivateDataTableRequest",
-              "requestFullType": "spaceone.api.data_table.v1.PrivateDataTableRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.PrivateDataTableRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -643,11 +809,11 @@
               "description": "",
               "requestType": "LoadPrivateDataTableRequest",
               "requestLongType": "LoadPrivateDataTableRequest",
-              "requestFullType": "spaceone.api.data_table.v1.LoadPrivateDataTableRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.LoadPrivateDataTableRequest",
               "requestStreaming": false,
               "responseType": "PrivateDataTableInfo",
               "responseLongType": "PrivateDataTableInfo",
-              "responseFullType": "spaceone.api.data_table.v1.PrivateDataTableInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PrivateDataTableInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
@@ -666,11 +832,11 @@
               "description": "",
               "requestType": "PrivateDataTableRequest",
               "requestLongType": "PrivateDataTableRequest",
-              "requestFullType": "spaceone.api.data_table.v1.PrivateDataTableRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.PrivateDataTableRequest",
               "requestStreaming": false,
               "responseType": "PrivateDataTableInfo",
               "responseLongType": "PrivateDataTableInfo",
-              "responseFullType": "spaceone.api.data_table.v1.PrivateDataTableInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PrivateDataTableInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
@@ -689,11 +855,11 @@
               "description": "",
               "requestType": "PrivateDataTableQuery",
               "requestLongType": "PrivateDataTableQuery",
-              "requestFullType": "spaceone.api.data_table.v1.PrivateDataTableQuery",
+              "requestFullType": "spaceone.api.dashboard.v1.PrivateDataTableQuery",
               "requestStreaming": false,
               "responseType": "PrivateDataTablesInfo",
               "responseLongType": "PrivateDataTablesInfo",
-              "responseFullType": "spaceone.api.data_table.v1.PrivateDataTablesInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PrivateDataTablesInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {

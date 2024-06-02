@@ -32,28 +32,54 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_PrivateDataTable_Create_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateDataTableClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.CreatePrivateDataTableRequest
+func request_PrivateDataTable_Add_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateDataTableClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AddPrivateDataTableRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.Create(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Add(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_PrivateDataTable_Create_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateDataTableServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.CreatePrivateDataTableRequest
+func local_request_PrivateDataTable_Add_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateDataTableServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.AddPrivateDataTableRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.Create(ctx, &protoReq)
+	msg, err := server.Add(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_PrivateDataTable_Transform_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateDataTableClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.TransformPrivateDataTableRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.Transform(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_PrivateDataTable_Transform_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateDataTableServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq extV1.TransformPrivateDataTableRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.Transform(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -194,7 +220,7 @@ func local_request_PrivateDataTable_List_0(ctx context.Context, marshaler runtim
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterPrivateDataTableHandlerFromEndpoint instead.
 func RegisterPrivateDataTableHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.PrivateDataTableServer) error {
 
-	mux.Handle("POST", pattern_PrivateDataTable_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_PrivateDataTable_Add_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -202,12 +228,12 @@ func RegisterPrivateDataTableHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.data_table.v1.PrivateDataTable/Create", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/create"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/Add", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/add"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PrivateDataTable_Create_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PrivateDataTable_Add_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -215,7 +241,32 @@ func RegisterPrivateDataTableHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_PrivateDataTable_Create_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PrivateDataTable_Add_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_PrivateDataTable_Transform_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/Transform", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/transform"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PrivateDataTable_Transform_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_PrivateDataTable_Transform_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -227,7 +278,7 @@ func RegisterPrivateDataTableHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.data_table.v1.PrivateDataTable/Update", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/update"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/Update", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -252,7 +303,7 @@ func RegisterPrivateDataTableHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.data_table.v1.PrivateDataTable/Delete", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/delete"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/Delete", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -277,7 +328,7 @@ func RegisterPrivateDataTableHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.data_table.v1.PrivateDataTable/Load", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/load"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/Load", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -302,7 +353,7 @@ func RegisterPrivateDataTableHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.data_table.v1.PrivateDataTable/Get", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/get"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/Get", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -327,7 +378,7 @@ func RegisterPrivateDataTableHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.data_table.v1.PrivateDataTable/List", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/list"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/List", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -385,25 +436,47 @@ func RegisterPrivateDataTableHandler(ctx context.Context, mux *runtime.ServeMux,
 // "extV1.PrivateDataTableClient" to call the correct interceptors.
 func RegisterPrivateDataTableHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.PrivateDataTableClient) error {
 
-	mux.Handle("POST", pattern_PrivateDataTable_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_PrivateDataTable_Add_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.data_table.v1.PrivateDataTable/Create", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/create"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/Add", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/add"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PrivateDataTable_Create_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PrivateDataTable_Add_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_PrivateDataTable_Create_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PrivateDataTable_Add_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_PrivateDataTable_Transform_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/Transform", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/transform"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PrivateDataTable_Transform_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_PrivateDataTable_Transform_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -413,7 +486,7 @@ func RegisterPrivateDataTableHandlerClient(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.data_table.v1.PrivateDataTable/Update", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/update"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/Update", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -435,7 +508,7 @@ func RegisterPrivateDataTableHandlerClient(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.data_table.v1.PrivateDataTable/Delete", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/delete"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/Delete", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -457,7 +530,7 @@ func RegisterPrivateDataTableHandlerClient(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.data_table.v1.PrivateDataTable/Load", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/load"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/Load", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -479,7 +552,7 @@ func RegisterPrivateDataTableHandlerClient(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.data_table.v1.PrivateDataTable/Get", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/get"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/Get", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -501,7 +574,7 @@ func RegisterPrivateDataTableHandlerClient(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.data_table.v1.PrivateDataTable/List", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/list"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateDataTable/List", runtime.WithHTTPPathPattern("/data_table/v1/private-data-table/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -521,7 +594,9 @@ func RegisterPrivateDataTableHandlerClient(ctx context.Context, mux *runtime.Ser
 }
 
 var (
-	pattern_PrivateDataTable_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"data_table", "v1", "private-data-table", "create"}, ""))
+	pattern_PrivateDataTable_Add_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"data_table", "v1", "private-data-table", "add"}, ""))
+
+	pattern_PrivateDataTable_Transform_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"data_table", "v1", "private-data-table", "transform"}, ""))
 
 	pattern_PrivateDataTable_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"data_table", "v1", "private-data-table", "update"}, ""))
 
@@ -535,7 +610,9 @@ var (
 )
 
 var (
-	forward_PrivateDataTable_Create_0 = runtime.ForwardResponseMessage
+	forward_PrivateDataTable_Add_0 = runtime.ForwardResponseMessage
+
+	forward_PrivateDataTable_Transform_0 = runtime.ForwardResponseMessage
 
 	forward_PrivateDataTable_Update_0 = runtime.ForwardResponseMessage
 

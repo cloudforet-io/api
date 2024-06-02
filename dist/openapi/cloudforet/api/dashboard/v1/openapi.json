@@ -15,11 +15,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_dashboard_id||string|True|\n |name||string||\n |description||string||\n |widget_type||string||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |name||string||\n |description||string||\n |widget_type||string||\n |options||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"widget_type" : {"type": "string","title": "WIDGET_TYPE" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"widget_type" : {"type": "string","title": "WIDGET_TYPE" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -96,11 +96,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |sort||array||\n |page||Page||\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery||\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"sort" : {"items": {"$ref": "#/components/schemas/Sort"}, "type": "array","title": "SORT" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" },"vars" : {"type": "object","title": "VARS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -154,11 +154,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_dashboard_id||string|True|\n |query||Query||\n |widget_id||string||\n |name||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |query||Query||\n |widget_id||string||\n |name||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" },"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -183,11 +183,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |resource_group|DOMAIN, WORKSPACE, PROJECT |string|True|\n |layouts||array||\n |vars||Struct||\n |settings||Struct||\n |variables||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |resource_group|DOMAIN, WORKSPACE, PROJECT |string|True|\n |description||string||\n |layouts||array||\n |vars||Struct||\n |options||Struct||\n |variables||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n |workspace_id||string||\n |project_id||string||\n |folder_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"layouts" : {"type": "array","title": "LAYOUTS" },"vars" : {"type": "object","title": "VARS" },"settings" : {"type": "object","title": "SETTINGS" },"variables" : {"type": "object","title": "VARIABLES" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"layouts" : {"type": "array","title": "LAYOUTS" },"vars" : {"type": "object","title": "VARS" },"options" : {"type": "object","title": "OPTIONS" },"variables" : {"type": "object","title": "VARIABLES" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"folder_id" : {"type": "string","title": "FOLDER_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -212,11 +212,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_dashboard_id||string|True|\n |name||string||\n |layouts||array||\n |vars||Struct||\n |settings||Struct||\n |variables||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |name||string||\n |description||string||\n |layouts||array||\n |vars||Struct||\n |options||Struct||\n |variables||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n |folder_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"layouts" : {"type": "array","title": "LAYOUTS" },"vars" : {"type": "object","title": "VARS" },"settings" : {"type": "object","title": "SETTINGS" },"variables" : {"type": "object","title": "VARIABLES" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"layouts" : {"type": "array","title": "LAYOUTS" },"vars" : {"type": "object","title": "VARS" },"options" : {"type": "object","title": "OPTIONS" },"variables" : {"type": "object","title": "VARIABLES" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"folder_id" : {"type": "string","title": "FOLDER_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -241,11 +241,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_dashboard_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" }                 }
+                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -264,11 +264,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |public_dashboard_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" }                 }
+                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -293,11 +293,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |public_dashboard_id||string||\n |name||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |dashboard_id||string||\n |name||string||\n |workspace_id||string||\n |project_id||string||\n |folder_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"folder_id" : {"type": "string","title": "FOLDER_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -344,18 +344,47 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/data_table/public-data-table/create": {
+     },"/data_table/public-data-table/add": {
        "post": {
          "tags": ["data_table > public-data-table"],
-         "summary": "Create",
+         "summary": "Add",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |name||string||\n |source_type|DATA_SOURCE, DATA_TABLE |string||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |source_type|ASSET, COST |string|True|\n |options||AddOptions|True|\n |name||string||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" },"source_type" : {"type": "string","title": "SOURCE_TYPE" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" },"source_type" : {"type": "string","title": "SOURCE_TYPE" },"options" : {"$ref": "#/components/schemas/AddOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicDataTableInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicDataTableInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/data_table/public-data-table/transform": {
+       "post": {
+         "tags": ["data_table > public-data-table"],
+         "summary": "Transform",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |operator|JOIN, CONCAT, AGGREGATE, WHERE, EVALUATE |string|True|\n |options||TransformOptions|True|\n |name||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" },"operator" : {"type": "string","title": "OPERATOR" },"options" : {"$ref": "#/components/schemas/TransformOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -432,11 +461,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_table_id||string|True|\n |sort||array||\n |page||Page||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_table_id||string|True|\n |granularity|DAILY, MONTHLY, YEARLY |string|True|\n |start||string||\n |end||string||\n |sort||array||\n |page||Page||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"sort" : {"items": {"$ref": "#/components/schemas/Sort"}, "type": "array","title": "SORT" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" }                 }
+                 "properties": {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"granularity" : {"type": "string","title": "GRANULARITY" },"start" : {"type": "string","title": "START" },"end" : {"type": "string","title": "END" },"sort" : {"items": {"$ref": "#/components/schemas/Sort"}, "type": "array","title": "SORT" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -490,11 +519,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||Query||\n |data_table_id||string||\n |name||string||\n |source_type|DATA_SOURCE, DATA_TABLE |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||Query||\n |data_table_id||string||\n |name||string||\n |data_type|ADD, TRANSFORM |string||\n |source_type|ASSET, COST |string||\n |operator|JOIN, CONCAT, AGGREGATE, WHERE, EVALUATE |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"widget_id" : {"type": "string","title": "WIDGET_ID" },"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"name" : {"type": "string","title": "NAME" },"source_type" : {"type": "string","title": "SOURCE_TYPE" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"widget_id" : {"type": "string","title": "WIDGET_ID" },"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"name" : {"type": "string","title": "NAME" },"data_type" : {"type": "string","title": "DATA_TYPE" },"source_type" : {"type": "string","title": "SOURCE_TYPE" },"operator" : {"type": "string","title": "OPERATOR" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -519,11 +548,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |workspace_id||string|True|\n |layouts||array||\n |vars||Struct||\n |settings||Struct||\n |variables||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |description||string||\n |layouts||array||\n |vars||Struct||\n |options||Struct||\n |variables||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n |user_id||string||\n |folder_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"layouts" : {"type": "array","title": "LAYOUTS" },"vars" : {"type": "object","title": "VARS" },"settings" : {"type": "object","title": "SETTINGS" },"variables" : {"type": "object","title": "VARIABLES" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"layouts" : {"type": "array","title": "LAYOUTS" },"vars" : {"type": "object","title": "VARS" },"options" : {"type": "object","title": "OPTIONS" },"variables" : {"type": "object","title": "VARIABLES" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"user_id" : {"type": "string","title": "USER_ID" },"folder_id" : {"type": "string","title": "FOLDER_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -548,11 +577,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |private_dashboard_id||string|True|\n |name||string||\n |layouts||array||\n |vars||Struct||\n |settings||Struct||\n |variables||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |name||string||\n |description||string||\n |layouts||array||\n |vars||Struct||\n |options||Struct||\n |variables||Struct||\n |variables_schema||Struct||\n |labels||array||\n |tags||Struct||\n |folder_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"layouts" : {"type": "array","title": "LAYOUTS" },"vars" : {"type": "object","title": "VARS" },"settings" : {"type": "object","title": "SETTINGS" },"variables" : {"type": "object","title": "VARIABLES" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"layouts" : {"type": "array","title": "LAYOUTS" },"vars" : {"type": "object","title": "VARS" },"options" : {"type": "object","title": "OPTIONS" },"variables" : {"type": "object","title": "VARIABLES" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"folder_id" : {"type": "string","title": "FOLDER_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -577,11 +606,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |private_dashboard_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" }                 }
+                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -600,11 +629,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |private_dashboard_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" }                 }
+                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -629,11 +658,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |private_dashboard_id||string||\n |name||string||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |dashboard_id||string||\n |name||string||\n |folder_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"folder_id" : {"type": "string","title": "FOLDER_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -680,18 +709,215 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/data_table/private-data-table/create": {
+     },"/dashboard/public-folder/create": {
        "post": {
-         "tags": ["data_table > private-data-table"],
+         "tags": ["dashboard > public-folder"],
          "summary": "Create",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |name||string||\n |source_type|DATA_SOURCE, DATA_TABLE |string||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |tags||Struct||\n |dashboards||array||\n |resource_group|DOMAIN, WORKSPACE, PROJECT |string||\n |workspace_id||string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" },"source_type" : {"type": "string","title": "SOURCE_TYPE" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" },"dashboards" : {"items": {}, "type": "array","title": "DASHBOARDS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicFolderInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicFolderInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-folder/update": {
+       "post": {
+         "tags": ["dashboard > public-folder"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |folder_id||string|True|\n |name||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"folder_id" : {"type": "string","title": "FOLDER_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicFolderInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicFolderInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-folder/delete": {
+       "post": {
+         "tags": ["dashboard > public-folder"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |folder_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"folder_id" : {"type": "string","title": "FOLDER_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-folder/get": {
+       "post": {
+         "tags": ["dashboard > public-folder"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |folder_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"folder_id" : {"type": "string","title": "FOLDER_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicFolderInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicFolderInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-folder/list": {
+       "post": {
+         "tags": ["dashboard > public-folder"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |folder_id||string||\n |name||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"folder_id" : {"type": "string","title": "FOLDER_ID" },"name" : {"type": "string","title": "NAME" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicFoldersInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicFoldersInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-folder/stat": {
+       "post": {
+         "tags": ["dashboard > public-folder"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/data_table/private-data-table/add": {
+       "post": {
+         "tags": ["data_table > private-data-table"],
+         "summary": "Add",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |source_type||SourceType|True|\n |options||AddOptions|True|\n |name||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" },"source_type" : {"type": "SourceType","title": "SOURCE_TYPE" },"options" : {"$ref": "#/components/schemas/AddOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PrivateDataTableInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PrivateDataTableInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/data_table/private-data-table/transform": {
+       "post": {
+         "tags": ["data_table > private-data-table"],
+         "summary": "Transform",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |operator||Operator|True|\n |options||TransformOptions|True|\n |name||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" },"operator" : {"type": "Operator","title": "OPERATOR" },"options" : {"$ref": "#/components/schemas/TransformOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -768,11 +994,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_table_id||string|True|\n |sort||array||\n |page||Page||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_table_id||string|True|\n |granularity|DAILY, MONTHLY, YEARLY |string|True|\n |start||string||\n |end||string||\n |sort||array||\n |page||Page||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"sort" : {"items": {"$ref": "#/components/schemas/Sort"}, "type": "array","title": "SORT" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" }                 }
+                 "properties": {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"granularity" : {"type": "string","title": "GRANULARITY" },"start" : {"type": "string","title": "START" },"end" : {"type": "string","title": "END" },"sort" : {"items": {"$ref": "#/components/schemas/Sort"}, "type": "array","title": "SORT" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -826,11 +1052,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||Query||\n |data_table_id||string||\n |name||string||\n |source_type|DATA_SOURCE, DATA_TABLE |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||Query||\n |data_table_id||string||\n |name||string||\n |data_type||DataType||\n |source_type||SourceType||\n |operator||Operator||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"widget_id" : {"type": "string","title": "WIDGET_ID" },"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"name" : {"type": "string","title": "NAME" },"source_type" : {"type": "string","title": "SOURCE_TYPE" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"widget_id" : {"type": "string","title": "WIDGET_ID" },"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"name" : {"type": "string","title": "NAME" },"data_type" : {"type": "DataType","title": "DATA_TYPE" },"source_type" : {"type": "SourceType","title": "SOURCE_TYPE" },"operator" : {"type": "Operator","title": "OPERATOR" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -848,6 +1074,174 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/private-folder/create": {
+       "post": {
+         "tags": ["dashboard > private-folder"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |tags||Struct||\n |dashboards||array||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" },"dashboards" : {"items": {}, "type": "array","title": "DASHBOARDS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PrivateFolderInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PrivateFolderInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/private-folder/update": {
+       "post": {
+         "tags": ["dashboard > private-folder"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |folder_id||string|True|\n |name||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"folder_id" : {"type": "string","title": "FOLDER_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PrivateFolderInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PrivateFolderInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/private-folder/delete": {
+       "post": {
+         "tags": ["dashboard > private-folder"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |folder_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"folder_id" : {"type": "string","title": "FOLDER_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/private-folder/get": {
+       "post": {
+         "tags": ["dashboard > private-folder"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |folder_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"folder_id" : {"type": "string","title": "FOLDER_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PrivateFolderInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PrivateFolderInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/private-folder/list": {
+       "post": {
+         "tags": ["dashboard > private-folder"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |folder_id||string||\n |name||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"folder_id" : {"type": "string","title": "FOLDER_ID" },"name" : {"type": "string","title": "NAME" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PrivateFoldersInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PrivateFoldersInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/private-folder/stat": {
+       "post": {
+         "tags": ["dashboard > private-folder"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/widget/private-widget/create": {
        "post": {
          "tags": ["widget > private-widget"],
@@ -855,11 +1249,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |private_dashboard_id||string|True|\n |name||string||\n |description||string||\n |widget_type||string||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |name||string||\n |description||string||\n |widget_type||string||\n |options||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"widget_type" : {"type": "string","title": "WIDGET_TYPE" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"widget_type" : {"type": "string","title": "WIDGET_TYPE" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -936,11 +1330,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |sort||array||\n |page||Page||\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery||\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"sort" : {"items": {"$ref": "#/components/schemas/Sort"}, "type": "array","title": "SORT" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" },"vars" : {"type": "object","title": "VARS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -994,11 +1388,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |private_dashboard_id||string|True|\n |query||Query||\n |widget_id||string||\n |name||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |query||Query||\n |widget_id||string||\n |name||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID" },"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1021,28 +1415,27 @@
    "components":{
      "schemas": {
      "CreatePublicWidgetRequest": {
-         "properties" : {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["public_dashboard_id"],
+         "required": ["dashboard_id"],
                 "title": "CreatePublicWidgetRequest"
            }
            ,        "LoadPublicWidgetRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"sort" : {"items": {"$ref": "#/components/schemas/Sort"},
-               "type": "array","$ref": "#/components/schemas/Sort","title": "SORT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"vars" : {"type": "object","title": "VARS"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
          "type": "object",
          "required": ["widget_id"],
                 "title": "LoadPublicWidgetRequest"
            }
            ,        "PublicWidgetInfo": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["widget_id","name","description","widget_type","options","tags","resource_group","domain_id","workspace_id","project_id","public_dashboard_id","created_at","updated_at"],
+         "required": ["widget_id","name","description","widget_type","options","tags","resource_group","domain_id","workspace_id","project_id","dashboard_id","created_at","updated_at"],
                 "title": "PublicWidgetInfo"
            }
            ,        "PublicWidgetQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"}},
          "type": "object",
-         "required": ["public_dashboard_id"],
+         "required": ["dashboard_id"],
                 "title": "PublicWidgetQuery"
            }
            ,        "PublicWidgetRequest": {
@@ -1254,7 +1647,7 @@
                 "title": "StatisticsQuery"
            }
            ,        "TimeSeriesAnalyzeQuery": {
-         "properties" : {"granularity" : {"type": "Granularity","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"group_by" : {"items": {"type": "string"},
+         "properties" : {"granularity" : {"type": "string","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"group_by" : {"items": {"type": "string"},
                "type": "array","title": "GROUP_BY"},"field_group" : {"items": {"type": "string"},
                "type": "array","title": "FIELD_GROUP"},"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
@@ -1272,27 +1665,27 @@
                 "title": "Unwind"
            }
            ,        "CreatePublicDashboardRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"settings" : {"type": "object","title": "SETTINGS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"layouts" : {"type": "array","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"options" : {"type": "object","title": "OPTIONS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"folder_id" : {"type": "string","title": "FOLDER_ID"}},
          "type": "object",
          "required": ["name","resource_group"],
                 "title": "CreatePublicDashboardRequest"
            }
            ,        "PublicDashboardInfo": {
-         "properties" : {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"version" : {"type": "string","title": "VERSION"},"layouts" : {"type": "array","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"settings" : {"type": "object","title": "SETTINGS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"version" : {"type": "string","title": "VERSION"},"layouts" : {"type": "array","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"options" : {"type": "object","title": "OPTIONS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"folder_id" : {"type": "string","title": "FOLDER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["public_dashboard_id","name","version","layouts","vars","settings","variables","variables_schema","labels","tags","resource_group","domain_id","workspace_id","project_id","created_at","updated_at"],
+         "required": ["dashboard_id","name","description","version","layouts","vars","options","variables","variables_schema","labels","tags","resource_group","domain_id","workspace_id","project_id","folder_id","created_at","updated_at"],
                 "title": "PublicDashboardInfo"
            }
            ,        "PublicDashboardQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"folder_id" : {"type": "string","title": "FOLDER_ID"}},
          "type": "object",
          "required": [],
                 "title": "PublicDashboardQuery"
            }
            ,        "PublicDashboardRequest": {
-         "properties" : {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"}},
+         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"}},
          "type": "object",
-         "required": ["public_dashboard_id"],
+         "required": ["dashboard_id"],
                 "title": "PublicDashboardRequest"
            }
            ,        "PublicDashboardStatQuery": {
@@ -1309,32 +1702,78 @@
                 "title": "PublicDashboardsInfo"
            }
            ,        "UpdatePublicDashboardRequest": {
-         "properties" : {"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"settings" : {"type": "object","title": "SETTINGS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"layouts" : {"type": "array","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"options" : {"type": "object","title": "OPTIONS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"folder_id" : {"type": "string","title": "FOLDER_ID"}},
          "type": "object",
-         "required": ["public_dashboard_id"],
+         "required": ["dashboard_id"],
                 "title": "UpdatePublicDashboardRequest"
            }
-           ,        "CreatePublicDataTableRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"source_type" : {"type": "string","title": "SOURCE_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "AddOptions": {
+         "properties" : {"ASSET" : {"$ref": "#/components/schemas/AssetSource","title": "ASSET"},"COST" : {"$ref": "#/components/schemas/CostSource","title": "COST"},"group_by" : {"items": {"type": "string"},
+               "type": "array","title": "GROUP_BY"},"data_name" : {"type": "string","title": "DATA_NAME"},"date_format" : {"type": "string","title": "DATE_FORMAT"},"additional_labels" : {"type": "object","title": "ADDITIONAL_LABELS"},"time_diff" : {"$ref": "#/components/schemas/TimeDiff","title": "TIME_DIFF"}},
          "type": "object",
-         "required": ["widget_id"],
-                "title": "CreatePublicDataTableRequest"
+         "required": ["ASSET","COST"],
+                "title": "AddOptions"
+           }
+           ,        "AddPublicDataTableRequest": {
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"source_type" : {"type": "string","title": "SOURCE_TYPE"},"options" : {"$ref": "#/components/schemas/AddOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["widget_id","source_type","options"],
+                "title": "AddPublicDataTableRequest"
+           }
+           ,        "AggregateOperator": {
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"operator" : {"type": "string","title": "OPERATOR"},"group_by" : {"type": "string","title": "GROUP_BY"}},
+         "type": "object",
+         "required": ["data_table_id","operator"],
+                "title": "AggregateOperator"
+           }
+           ,        "AssetSource": {
+         "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"}},
+         "type": "object",
+         "required": ["metric_id"],
+                "title": "AssetSource"
+           }
+           ,        "ConcatOperator": {
+         "properties" : {"data_tables" : {"items": {"type": "string"},
+               "type": "array","title": "DATA_TABLES"}},
+         "type": "object",
+         "required": ["data_tables"],
+                "title": "ConcatOperator"
+           }
+           ,        "CostSource": {
+         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"data_key" : {"type": "string","title": "DATA_KEY"}},
+         "type": "object",
+         "required": ["data_source_id","data_key"],
+                "title": "CostSource"
+           }
+           ,        "EvaluateOperator": {
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"expressions" : {"items": {"type": "string"},
+               "type": "array","title": "EXPRESSIONS"}},
+         "type": "object",
+         "required": ["data_table_id","expressions"],
+                "title": "EvaluateOperator"
+           }
+           ,        "JoinOperator": {
+         "properties" : {"data_tables" : {"items": {"type": "string"},
+               "type": "array","title": "DATA_TABLES"},"on" : {"type": "string","title": "ON"}},
+         "type": "object",
+         "required": ["data_tables"],
+                "title": "JoinOperator"
            }
            ,        "LoadPublicDataTableRequest": {
-         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"sort" : {"items": {"$ref": "#/components/schemas/Sort"},
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"granularity" : {"type": "string","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"sort" : {"items": {"$ref": "#/components/schemas/Sort"},
                "type": "array","$ref": "#/components/schemas/Sort","title": "SORT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
          "type": "object",
-         "required": ["data_table_id"],
+         "required": ["data_table_id","granularity"],
                 "title": "LoadPublicDataTableRequest"
            }
            ,        "PublicDataTableInfo": {
-         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"source_type" : {"type": "string","title": "SOURCE_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"labels_info" : {"type": "object","title": "LABELS_INFO"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"public_dashboard_id" : {"type": "string","title": "PUBLIC_DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"data_type" : {"type": "string","title": "DATA_TYPE"},"source_type" : {"type": "string","title": "SOURCE_TYPE"},"operator" : {"type": "string","title": "OPERATOR"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"labels_info" : {"type": "object","title": "LABELS_INFO"},"data_info" : {"type": "object","title": "DATA_INFO"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["data_table_id","name","source_type","options","tags","labels_info","resource_group","domain_id","workspace_id","project_id","public_dashboard_id","widget_id","created_at","updated_at"],
+         "required": ["data_table_id","name","data_type","source_type","operator","options","tags","labels_info","data_info","resource_group","domain_id","workspace_id","project_id","dashboard_id","widget_id","created_at","updated_at"],
                 "title": "PublicDataTableInfo"
            }
            ,        "PublicDataTableQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"source_type" : {"type": "string","title": "SOURCE_TYPE"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"data_type" : {"type": "string","title": "DATA_TYPE"},"source_type" : {"type": "string","title": "SOURCE_TYPE"},"operator" : {"type": "string","title": "OPERATOR"}},
          "type": "object",
          "required": ["widget_id"],
                 "title": "PublicDataTableQuery"
@@ -1352,34 +1791,59 @@
          "required": ["results","total_count"],
                 "title": "PublicDataTablesInfo"
            }
+           ,        "TimeDiff": {
+         "properties" : {"years" : {"type": "integer","title": "YEARS"},"months" : {"type": "integer","title": "MONTHS"},"days" : {"type": "integer","title": "DAYS"}},
+         "type": "object",
+         "required": ["years","months","days"],
+                "title": "TimeDiff"
+           }
+           ,        "TransformOptions": {
+         "properties" : {"JOIN" : {"$ref": "#/components/schemas/JoinOperator","title": "JOIN"},"CONCAT" : {"$ref": "#/components/schemas/ConcatOperator","title": "CONCAT"},"AGGREGATE" : {"$ref": "#/components/schemas/AggregateOperator","title": "AGGREGATE"},"WHERE" : {"$ref": "#/components/schemas/WhereOperator","title": "WHERE"},"EVALUATE" : {"$ref": "#/components/schemas/EvaluateOperator","title": "EVALUATE"}},
+         "type": "object",
+         "required": ["JOIN","CONCAT","AGGREGATE","WHERE","EVALUATE"],
+                "title": "TransformOptions"
+           }
+           ,        "TransformPublicDataTableRequest": {
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"operator" : {"type": "string","title": "OPERATOR"},"options" : {"$ref": "#/components/schemas/TransformOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["widget_id","operator","options"],
+                "title": "TransformPublicDataTableRequest"
+           }
            ,        "UpdatePublicDataTableRequest": {
          "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["data_table_id"],
                 "title": "UpdatePublicDataTableRequest"
            }
-           ,        "CreatePrivateDashboardRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"settings" : {"type": "object","title": "SETTINGS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+           ,        "WhereOperator": {
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"conditions" : {"items": {"type": "string"},
+               "type": "array","title": "CONDITIONS"}},
          "type": "object",
-         "required": ["name","workspace_id"],
+         "required": ["data_table_id","conditions"],
+                "title": "WhereOperator"
+           }
+           ,        "CreatePrivateDashboardRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"layouts" : {"type": "array","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"options" : {"type": "object","title": "OPTIONS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"user_id" : {"type": "string","title": "USER_ID"},"folder_id" : {"type": "string","title": "FOLDER_ID"}},
+         "type": "object",
+         "required": ["name"],
                 "title": "CreatePrivateDashboardRequest"
            }
            ,        "PrivateDashboardInfo": {
-         "properties" : {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"version" : {"type": "string","title": "VERSION"},"layouts" : {"type": "array","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"settings" : {"type": "object","title": "SETTINGS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"version" : {"type": "string","title": "VERSION"},"layouts" : {"type": "array","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"options" : {"type": "object","title": "OPTIONS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"folder_id" : {"type": "string","title": "FOLDER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["private_dashboard_id","name","version","layouts","vars","settings","variables","variables_schema","labels","tags","domain_id","workspace_id","user_id","created_at","updated_at"],
+         "required": ["dashboard_id","name","description","version","layouts","vars","options","variables","variables_schema","labels","tags","domain_id","user_id","folder_id","created_at","updated_at"],
                 "title": "PrivateDashboardInfo"
            }
            ,        "PrivateDashboardQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"folder_id" : {"type": "string","title": "FOLDER_ID"}},
          "type": "object",
          "required": [],
                 "title": "PrivateDashboardQuery"
            }
            ,        "PrivateDashboardRequest": {
-         "properties" : {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"}},
+         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"}},
          "type": "object",
-         "required": ["private_dashboard_id"],
+         "required": ["dashboard_id"],
                 "title": "PrivateDashboardRequest"
            }
            ,        "PrivateDashboardStatQuery": {
@@ -1396,32 +1860,76 @@
                 "title": "PrivateDashboardsInfo"
            }
            ,        "UpdatePrivateDashboardRequest": {
-         "properties" : {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"layouts" : {"type": "array","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"settings" : {"type": "object","title": "SETTINGS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"layouts" : {"type": "array","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"options" : {"type": "object","title": "OPTIONS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"folder_id" : {"type": "string","title": "FOLDER_ID"}},
          "type": "object",
-         "required": ["private_dashboard_id"],
+         "required": ["dashboard_id"],
                 "title": "UpdatePrivateDashboardRequest"
            }
-           ,        "CreatePrivateDataTableRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"source_type" : {"type": "string","title": "SOURCE_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "CreatePublicFolderRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"dashboards" : {"items": {"type": "object"},
+               "type": "array","title": "DASHBOARDS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
-         "required": ["widget_id"],
-                "title": "CreatePrivateDataTableRequest"
+         "required": ["name"],
+                "title": "CreatePublicFolderRequest"
+           }
+           ,        "PublicFolderInfo": {
+         "properties" : {"folder_id" : {"type": "string","title": "FOLDER_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["folder_id","name","tags","resource_group","domain_id","workspace_id","project_id","created_at","updated_at"],
+                "title": "PublicFolderInfo"
+           }
+           ,        "PublicFolderQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"folder_id" : {"type": "string","title": "FOLDER_ID"},"name" : {"type": "string","title": "NAME"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "PublicFolderQuery"
+           }
+           ,        "PublicFolderRequest": {
+         "properties" : {"folder_id" : {"type": "string","title": "FOLDER_ID"}},
+         "type": "object",
+         "required": ["folder_id"],
+                "title": "PublicFolderRequest"
+           }
+           ,        "PublicFolderStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "PublicFolderStatQuery"
+           }
+           ,        "PublicFoldersInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PublicFolderInfo"},
+               "type": "array","$ref": "#/components/schemas/PublicFolderInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "PublicFoldersInfo"
+           }
+           ,        "UpdatePublicFolderRequest": {
+         "properties" : {"folder_id" : {"type": "string","title": "FOLDER_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["folder_id"],
+                "title": "UpdatePublicFolderRequest"
+           }
+           ,        "AddPrivateDataTableRequest": {
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"source_type" : {"type": "SourceType","title": "SOURCE_TYPE"},"options" : {"$ref": "#/components/schemas/AddOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["widget_id","source_type","options"],
+                "title": "AddPrivateDataTableRequest"
            }
            ,        "LoadPrivateDataTableRequest": {
-         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"sort" : {"items": {"$ref": "#/components/schemas/Sort"},
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"granularity" : {"type": "string","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"sort" : {"items": {"$ref": "#/components/schemas/Sort"},
                "type": "array","$ref": "#/components/schemas/Sort","title": "SORT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
          "type": "object",
-         "required": ["data_table_id"],
+         "required": ["data_table_id","granularity"],
                 "title": "LoadPrivateDataTableRequest"
            }
            ,        "PrivateDataTableInfo": {
-         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"source_type" : {"type": "string","title": "SOURCE_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"labels_info" : {"type": "object","title": "LABELS_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_id" : {"type": "string","title": "USER_ID"},"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"data_type" : {"type": "DataType","title": "DATA_TYPE"},"source_type" : {"type": "SourceType","title": "SOURCE_TYPE"},"operator" : {"type": "Operator","title": "OPERATOR"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"labels_info" : {"type": "object","title": "LABELS_INFO"},"data_info" : {"type": "object","title": "DATA_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["data_table_id","name","source_type","options","tags","labels_info","domain_id","workspace_id","user_id","private_dashboard_id","widget_id","created_at","updated_at"],
+         "required": ["data_table_id","name","data_type","source_type","operator","options","tags","labels_info","data_info","domain_id","user_id","dashboard_id","widget_id","created_at","updated_at"],
                 "title": "PrivateDataTableInfo"
            }
            ,        "PrivateDataTableQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"source_type" : {"type": "string","title": "SOURCE_TYPE"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"data_type" : {"type": "DataType","title": "DATA_TYPE"},"source_type" : {"type": "SourceType","title": "SOURCE_TYPE"},"operator" : {"type": "Operator","title": "OPERATOR"}},
          "type": "object",
          "required": ["widget_id"],
                 "title": "PrivateDataTableQuery"
@@ -1439,35 +1947,84 @@
          "required": ["results","total_count"],
                 "title": "PrivateDataTablesInfo"
            }
+           ,        "TransformPrivateDataTableRequest": {
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"operator" : {"type": "Operator","title": "OPERATOR"},"options" : {"$ref": "#/components/schemas/TransformOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["widget_id","operator","options"],
+                "title": "TransformPrivateDataTableRequest"
+           }
            ,        "UpdatePrivateDataTableRequest": {
          "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["data_table_id"],
                 "title": "UpdatePrivateDataTableRequest"
            }
-           ,        "CreatePrivateWidgetRequest": {
-         "properties" : {"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "CreatePrivateFolderRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"dashboards" : {"items": {"type": "object"},
+               "type": "array","title": "DASHBOARDS"}},
          "type": "object",
-         "required": ["private_dashboard_id"],
+         "required": ["name"],
+                "title": "CreatePrivateFolderRequest"
+           }
+           ,        "PrivateFolderInfo": {
+         "properties" : {"folder_id" : {"type": "string","title": "FOLDER_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["folder_id","name","tags","domain_id","user_id","created_at","updated_at"],
+                "title": "PrivateFolderInfo"
+           }
+           ,        "PrivateFolderQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"folder_id" : {"type": "string","title": "FOLDER_ID"},"name" : {"type": "string","title": "NAME"}},
+         "type": "object",
+         "required": [],
+                "title": "PrivateFolderQuery"
+           }
+           ,        "PrivateFolderRequest": {
+         "properties" : {"folder_id" : {"type": "string","title": "FOLDER_ID"}},
+         "type": "object",
+         "required": ["folder_id"],
+                "title": "PrivateFolderRequest"
+           }
+           ,        "PrivateFolderStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "PrivateFolderStatQuery"
+           }
+           ,        "PrivateFoldersInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PrivateFolderInfo"},
+               "type": "array","$ref": "#/components/schemas/PrivateFolderInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "PrivateFoldersInfo"
+           }
+           ,        "UpdatePrivateFolderRequest": {
+         "properties" : {"folder_id" : {"type": "string","title": "FOLDER_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["folder_id"],
+                "title": "UpdatePrivateFolderRequest"
+           }
+           ,        "CreatePrivateWidgetRequest": {
+         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["dashboard_id"],
                 "title": "CreatePrivateWidgetRequest"
            }
            ,        "LoadPrivateWidgetRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"sort" : {"items": {"$ref": "#/components/schemas/Sort"},
-               "type": "array","$ref": "#/components/schemas/Sort","title": "SORT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"vars" : {"type": "object","title": "VARS"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
          "type": "object",
          "required": ["widget_id"],
                 "title": "LoadPrivateWidgetRequest"
            }
            ,        "PrivateWidgetInfo": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_id" : {"type": "string","title": "USER_ID"},"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["widget_id","name","description","widget_type","options","tags","domain_id","workspace_id","user_id","private_dashboard_id","created_at","updated_at"],
+         "required": ["widget_id","name","description","widget_type","options","tags","domain_id","user_id","dashboard_id","created_at","updated_at"],
                 "title": "PrivateWidgetInfo"
            }
            ,        "PrivateWidgetQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"private_dashboard_id" : {"type": "string","title": "PRIVATE_DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"}},
          "type": "object",
-         "required": ["private_dashboard_id"],
+         "required": ["dashboard_id"],
                 "title": "PrivateWidgetQuery"
            }
            ,        "PrivateWidgetRequest": {

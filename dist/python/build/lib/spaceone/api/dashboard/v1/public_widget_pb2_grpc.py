@@ -41,32 +41,32 @@ class PublicWidgetStub(object):
             channel: A grpc.Channel.
         """
         self.create = channel.unary_unary(
-                '/spaceone.api.widget.v1.PublicWidget/create',
+                '/spaceone.api.dashboard.v1.PublicWidget/create',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.CreatePublicWidgetRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetInfo.FromString,
                 _registered_method=True)
         self.update = channel.unary_unary(
-                '/spaceone.api.widget.v1.PublicWidget/update',
+                '/spaceone.api.dashboard.v1.PublicWidget/update',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.UpdatePublicWidgetRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetInfo.FromString,
                 _registered_method=True)
         self.delete = channel.unary_unary(
-                '/spaceone.api.widget.v1.PublicWidget/delete',
+                '/spaceone.api.dashboard.v1.PublicWidget/delete',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.load = channel.unary_unary(
-                '/spaceone.api.widget.v1.PublicWidget/load',
+                '/spaceone.api.dashboard.v1.PublicWidget/load',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.LoadPublicWidgetRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetInfo.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
-                '/spaceone.api.widget.v1.PublicWidget/get',
+                '/spaceone.api.dashboard.v1.PublicWidget/get',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetInfo.FromString,
                 _registered_method=True)
         self.list = channel.unary_unary(
-                '/spaceone.api.widget.v1.PublicWidget/list',
+                '/spaceone.api.dashboard.v1.PublicWidget/list',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetsInfo.FromString,
                 _registered_method=True)
@@ -146,9 +146,9 @@ def add_PublicWidgetServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'spaceone.api.widget.v1.PublicWidget', rpc_method_handlers)
+            'spaceone.api.dashboard.v1.PublicWidget', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('spaceone.api.widget.v1.PublicWidget', rpc_method_handlers)
+    server.add_registered_method_handlers('spaceone.api.dashboard.v1.PublicWidget', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -169,7 +169,7 @@ class PublicWidget(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.widget.v1.PublicWidget/create',
+            '/spaceone.api.dashboard.v1.PublicWidget/create',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.CreatePublicWidgetRequest.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetInfo.FromString,
             options,
@@ -196,7 +196,7 @@ class PublicWidget(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.widget.v1.PublicWidget/update',
+            '/spaceone.api.dashboard.v1.PublicWidget/update',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.UpdatePublicWidgetRequest.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetInfo.FromString,
             options,
@@ -223,7 +223,7 @@ class PublicWidget(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.widget.v1.PublicWidget/delete',
+            '/spaceone.api.dashboard.v1.PublicWidget/delete',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
@@ -250,7 +250,7 @@ class PublicWidget(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.widget.v1.PublicWidget/load',
+            '/spaceone.api.dashboard.v1.PublicWidget/load',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.LoadPublicWidgetRequest.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetInfo.FromString,
             options,
@@ -277,7 +277,7 @@ class PublicWidget(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.widget.v1.PublicWidget/get',
+            '/spaceone.api.dashboard.v1.PublicWidget/get',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetRequest.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetInfo.FromString,
             options,
@@ -304,7 +304,7 @@ class PublicWidget(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.widget.v1.PublicWidget/list',
+            '/spaceone.api.dashboard.v1.PublicWidget/list',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetQuery.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetsInfo.FromString,
             options,
