@@ -1,7 +1,7 @@
 // description of data table
 syntax = "proto3";
 
-package spaceone.api.data_table.v1;
+package spaceone.api.dashboard.v1;
 
 option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/dashboard/v1";
 
@@ -9,12 +9,20 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/dashboard/v1/public_data_table.proto";
 
 service PrivateDataTable{
 
-  rpc create(CreatePrivateDataTableRequest) returns (PrivateDataTableInfo) {
+  rpc add(AddPrivateDataTableRequest) returns (PrivateDataTableInfo) {
     option (google.api.http) = {
-      post: "/data_table/v1/private-data-table/create"
+      post: "/data_table/v1/private-data-table/add"
+      body: "*"
+    };
+  }
+
+  rpc transform(TransformPrivateDataTableRequest) returns (PrivateDataTableInfo) {
+    option (google.api.http) = {
+      post: "/data_table/v1/private-data-table/transform"
       body: "*"
     };
   }
@@ -55,20 +63,22 @@ service PrivateDataTable{
   }
 }
 
-message CreatePrivateDataTableRequest {
-  enum SourceType {
-    SOURCE_TYPE_NONE = 0;
-    DATA_SOURCE = 1;
-    DATA_TABLE = 2;
-  }
-
+message AddPrivateDataTableRequest {
   string widget_id = 1;
   // +optional
   string name = 2;
+  spaceone.api.dashboard.v1.SourceType source_type = 3;
+  spaceone.api.dashboard.v1.AddOptions options = 4;
   // +optional
-  SourceType source_type = 3;
+  google.protobuf.Struct tags = 5;
+}
+
+message TransformPrivateDataTableRequest {
+  string widget_id = 1;
   // +optional
-  google.protobuf.Struct options = 4;
+  string name = 2;
+  spaceone.api.dashboard.v1.Operator operator = 3;
+  spaceone.api.dashboard.v1.TransformOptions options = 4;
   // +optional
   google.protobuf.Struct tags = 5;
 }
@@ -88,20 +98,26 @@ message PrivateDataTableRequest {
 }
 
 message LoadPrivateDataTableRequest {
+  enum Granularity{
+    GRANULARITY_NONE = 0;
+    DAILY = 1;
+    MONTHLY = 2;
+    YEARLY = 3;
+  }
+
   string data_table_id = 1;
+  Granularity granularity = 2;
   // +optional
-  repeated spaceone.api.core.v2.Sort sort = 3;
+  string start = 3;
   // +optional
-  spaceone.api.core.v2.Page page = 4;
+  string end = 4;
+  // +optional
+  repeated spaceone.api.core.v2.Sort sort = 5;
+  // +optional
+  spaceone.api.core.v2.Page page = 6;
 }
 
 message PrivateDataTableQuery {
-  enum SourceType {
-    SOURCE_TYPE_NONE = 0;
-    DATA_SOURCE = 1;
-    DATA_TABLE = 2;
-  }
-
   // +optional
   spaceone.api.core.v2.Query query = 1;
   string widget_id = 2;
@@ -110,27 +126,34 @@ message PrivateDataTableQuery {
   // +optional
   string name = 4;
   // +optional
-  SourceType source_type = 5;
+  spaceone.api.dashboard.v1.DataType data_type = 5;
+  // +optional
+  spaceone.api.dashboard.v1.SourceType source_type = 6;
+  // +optional
+  spaceone.api.dashboard.v1.Operator operator = 7;
 }
 
 message PrivateDataTableInfo {
-  enum SourceType {
-    SOURCE_TYPE_NONE = 0;
-    DATA_SOURCE = 1;
-    DATA_TABLE = 2;
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+    PROJECT = 3;
   }
 
   string data_table_id = 1;
   string name = 2;
-  SourceType source_type = 3;
-  google.protobuf.Struct options = 4;
-  google.protobuf.Struct tags = 5;
-  google.protobuf.Struct labels_info = 6;
+  spaceone.api.dashboard.v1.DataType data_type = 3;
+  spaceone.api.dashboard.v1.SourceType source_type = 4;
+  spaceone.api.dashboard.v1.Operator operator = 5;
+  google.protobuf.Struct options = 6;
+  google.protobuf.Struct tags = 7;
+  google.protobuf.Struct labels_info = 8;
+  google.protobuf.Struct data_info = 9;
 
-  string domain_id = 20;
-  string workspace_id = 21;
+  string domain_id = 21;
   string user_id = 22;
-  string private_dashboard_id = 23;
+  string dashboard_id = 23;
   string widget_id = 24;
 
   string created_at = 31;
