@@ -11,6 +11,7 @@ package v1
 import (
 	context "context"
 	empty "github.com/golang/protobuf/ptypes/empty"
+	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -37,7 +38,7 @@ type PublicWidgetClient interface {
 	Create(ctx context.Context, in *CreatePublicWidgetRequest, opts ...grpc.CallOption) (*PublicWidgetInfo, error)
 	Update(ctx context.Context, in *UpdatePublicWidgetRequest, opts ...grpc.CallOption) (*PublicWidgetInfo, error)
 	Delete(ctx context.Context, in *PublicWidgetRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Load(ctx context.Context, in *LoadPublicWidgetRequest, opts ...grpc.CallOption) (*PublicWidgetInfo, error)
+	Load(ctx context.Context, in *LoadPublicWidgetRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Get(ctx context.Context, in *PublicWidgetRequest, opts ...grpc.CallOption) (*PublicWidgetInfo, error)
 	List(ctx context.Context, in *PublicWidgetQuery, opts ...grpc.CallOption) (*PublicWidgetsInfo, error)
 }
@@ -80,9 +81,9 @@ func (c *publicWidgetClient) Delete(ctx context.Context, in *PublicWidgetRequest
 	return out, nil
 }
 
-func (c *publicWidgetClient) Load(ctx context.Context, in *LoadPublicWidgetRequest, opts ...grpc.CallOption) (*PublicWidgetInfo, error) {
+func (c *publicWidgetClient) Load(ctx context.Context, in *LoadPublicWidgetRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PublicWidgetInfo)
+	out := new(_struct.Struct)
 	err := c.cc.Invoke(ctx, PublicWidget_Load_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -117,7 +118,7 @@ type PublicWidgetServer interface {
 	Create(context.Context, *CreatePublicWidgetRequest) (*PublicWidgetInfo, error)
 	Update(context.Context, *UpdatePublicWidgetRequest) (*PublicWidgetInfo, error)
 	Delete(context.Context, *PublicWidgetRequest) (*empty.Empty, error)
-	Load(context.Context, *LoadPublicWidgetRequest) (*PublicWidgetInfo, error)
+	Load(context.Context, *LoadPublicWidgetRequest) (*_struct.Struct, error)
 	Get(context.Context, *PublicWidgetRequest) (*PublicWidgetInfo, error)
 	List(context.Context, *PublicWidgetQuery) (*PublicWidgetsInfo, error)
 	mustEmbedUnimplementedPublicWidgetServer()
@@ -136,7 +137,7 @@ func (UnimplementedPublicWidgetServer) Update(context.Context, *UpdatePublicWidg
 func (UnimplementedPublicWidgetServer) Delete(context.Context, *PublicWidgetRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedPublicWidgetServer) Load(context.Context, *LoadPublicWidgetRequest) (*PublicWidgetInfo, error) {
+func (UnimplementedPublicWidgetServer) Load(context.Context, *LoadPublicWidgetRequest) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Load not implemented")
 }
 func (UnimplementedPublicWidgetServer) Get(context.Context, *PublicWidgetRequest) (*PublicWidgetInfo, error) {

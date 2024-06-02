@@ -4,6 +4,7 @@ import grpc
 import warnings
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
+from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.dashboard.v1 import public_data_table_pb2 as spaceone_dot_api_dot_dashboard_dot_v1_dot_public__data__table__pb2
 
 GRPC_GENERATED_VERSION = '1.64.0'
@@ -63,7 +64,7 @@ class PublicDataTableStub(object):
         self.load = channel.unary_unary(
                 '/spaceone.api.dashboard.v1.PublicDataTable/load',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__data__table__pb2.LoadPublicDataTableRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__data__table__pb2.PublicDataTableInfo.FromString,
+                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
                 '/spaceone.api.dashboard.v1.PublicDataTable/get',
@@ -148,7 +149,7 @@ def add_PublicDataTableServicer_to_server(servicer, server):
             'load': grpc.unary_unary_rpc_method_handler(
                     servicer.load,
                     request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__data__table__pb2.LoadPublicDataTableRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__data__table__pb2.PublicDataTableInfo.SerializeToString,
+                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
@@ -295,7 +296,7 @@ class PublicDataTable(object):
             target,
             '/spaceone.api.dashboard.v1.PublicDataTable/load',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__data__table__pb2.LoadPublicDataTableRequest.SerializeToString,
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__data__table__pb2.PublicDataTableInfo.FromString,
+            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,
             insecure,

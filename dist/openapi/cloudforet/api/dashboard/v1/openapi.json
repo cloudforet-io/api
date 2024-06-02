@@ -96,7 +96,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery||\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -111,9 +111,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicWidgetInfo"},
+                 "schema": {"type": "object"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicWidgetInfo"}}
+                   "Schema": {"type": "object"}}
                }
              }}
          }
@@ -476,9 +476,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicDataTableInfo"},
+                 "schema": {"type": "object"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicDataTableInfo"}}
+                   "Schema": {"type": "object"}}
                }
              }}
          }
@@ -1009,9 +1009,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PrivateDataTableInfo"},
+                 "schema": {"type": "object"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PrivateDataTableInfo"}}
+                   "Schema": {"type": "object"}}
                }
              }}
          }
@@ -1330,7 +1330,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery||\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -1345,9 +1345,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PrivateWidgetInfo"},
+                 "schema": {"type": "object"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PrivateWidgetInfo"}}
+                   "Schema": {"type": "object"}}
                }
              }}
          }
@@ -1423,7 +1423,7 @@
            ,        "LoadPublicWidgetRequest": {
          "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
          "type": "object",
-         "required": ["widget_id"],
+         "required": ["widget_id","query"],
                 "title": "LoadPublicWidgetRequest"
            }
            ,        "PublicWidgetInfo": {
@@ -2012,7 +2012,7 @@
            ,        "LoadPrivateWidgetRequest": {
          "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
          "type": "object",
-         "required": ["widget_id"],
+         "required": ["widget_id","query"],
                 "title": "LoadPrivateWidgetRequest"
            }
            ,        "PrivateWidgetInfo": {
