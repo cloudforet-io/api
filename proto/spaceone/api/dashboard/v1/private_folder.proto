@@ -56,18 +56,13 @@ service PrivateFolder{
 }
 
 message CreatePrivateFolderRequest {
-  enum ResourceGroup {
-    RESOURCE_GROUP_NONE = 0;
-    DOMAIN = 1;
-    WORKSPACE = 2;
-    PROJECT = 3;
-  }
-
   string name = 1;
   // +optional
   google.protobuf.Struct tags = 2;
   // +optional
   repeated google.protobuf.Struct dashboards = 3;
+  // +optional
+  string workspace_id = 4;
 }
 
 message UpdatePrivateFolderRequest {
@@ -89,6 +84,8 @@ message PrivateFolderQuery {
   string folder_id = 2;
   // +optional
   string name = 3;
+  // +optional
+  string workspace_id = 4;
 }
 
 message PrivateFolderInfo {
@@ -97,7 +94,8 @@ message PrivateFolderInfo {
   google.protobuf.Struct tags = 3;
 
   string domain_id = 21;
-  string user_id = 22;
+  string workspace_id = 22;
+  string user_id = 23;
 
   string created_at = 31;
   string updated_at = 32;
