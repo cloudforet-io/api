@@ -228,7 +228,7 @@ func RegisterPublicDataTableHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Add", runtime.WithHTTPPathPattern("/data_table/v1/public-data-table/add"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Add", runtime.WithHTTPPathPattern("/dashboard/v1/public-data-table/add"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -253,7 +253,7 @@ func RegisterPublicDataTableHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Transform", runtime.WithHTTPPathPattern("/data_table/v1/public-data-table/transform"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Transform", runtime.WithHTTPPathPattern("/dashboard/v1/public-data-table/transform"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -278,7 +278,7 @@ func RegisterPublicDataTableHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Update", runtime.WithHTTPPathPattern("/data_table/v1/public-data-table/update"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Update", runtime.WithHTTPPathPattern("/dashboard/v1/public-data-table/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -303,7 +303,7 @@ func RegisterPublicDataTableHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Delete", runtime.WithHTTPPathPattern("/data_table/v1/public-data-table/delete"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Delete", runtime.WithHTTPPathPattern("/dashboard/v1/public-data-table/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -328,7 +328,7 @@ func RegisterPublicDataTableHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Load", runtime.WithHTTPPathPattern("/data_table/v1/public-data-table/load"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Load", runtime.WithHTTPPathPattern("/dashboard/v1/public-data-table/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -353,7 +353,7 @@ func RegisterPublicDataTableHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Get", runtime.WithHTTPPathPattern("/data_table/v1/public-data-table/get"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Get", runtime.WithHTTPPathPattern("/dashboard/v1/public-data-table/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -442,7 +442,7 @@ func RegisterPublicDataTableHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Add", runtime.WithHTTPPathPattern("/data_table/v1/public-data-table/add"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Add", runtime.WithHTTPPathPattern("/dashboard/v1/public-data-table/add"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -464,7 +464,7 @@ func RegisterPublicDataTableHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Transform", runtime.WithHTTPPathPattern("/data_table/v1/public-data-table/transform"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Transform", runtime.WithHTTPPathPattern("/dashboard/v1/public-data-table/transform"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -486,7 +486,7 @@ func RegisterPublicDataTableHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Update", runtime.WithHTTPPathPattern("/data_table/v1/public-data-table/update"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Update", runtime.WithHTTPPathPattern("/dashboard/v1/public-data-table/update"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -508,7 +508,7 @@ func RegisterPublicDataTableHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Delete", runtime.WithHTTPPathPattern("/data_table/v1/public-data-table/delete"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Delete", runtime.WithHTTPPathPattern("/dashboard/v1/public-data-table/delete"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -530,7 +530,7 @@ func RegisterPublicDataTableHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Load", runtime.WithHTTPPathPattern("/data_table/v1/public-data-table/load"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Load", runtime.WithHTTPPathPattern("/dashboard/v1/public-data-table/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -552,7 +552,7 @@ func RegisterPublicDataTableHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Get", runtime.WithHTTPPathPattern("/data_table/v1/public-data-table/get"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PublicDataTable/Get", runtime.WithHTTPPathPattern("/dashboard/v1/public-data-table/get"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -594,17 +594,17 @@ func RegisterPublicDataTableHandlerClient(ctx context.Context, mux *runtime.Serv
 }
 
 var (
-	pattern_PublicDataTable_Add_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"data_table", "v1", "public-data-table", "add"}, ""))
+	pattern_PublicDataTable_Add_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "public-data-table", "add"}, ""))
 
-	pattern_PublicDataTable_Transform_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"data_table", "v1", "public-data-table", "transform"}, ""))
+	pattern_PublicDataTable_Transform_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "public-data-table", "transform"}, ""))
 
-	pattern_PublicDataTable_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"data_table", "v1", "public-data-table", "update"}, ""))
+	pattern_PublicDataTable_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "public-data-table", "update"}, ""))
 
-	pattern_PublicDataTable_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"data_table", "v1", "public-data-table", "delete"}, ""))
+	pattern_PublicDataTable_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "public-data-table", "delete"}, ""))
 
-	pattern_PublicDataTable_Load_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"data_table", "v1", "public-data-table", "load"}, ""))
+	pattern_PublicDataTable_Load_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "public-data-table", "load"}, ""))
 
-	pattern_PublicDataTable_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"data_table", "v1", "public-data-table", "get"}, ""))
+	pattern_PublicDataTable_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "public-data-table", "get"}, ""))
 
 	pattern_PublicDataTable_List_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"data_table", "v1", "public-data-table", "list"}, ""))
 )
