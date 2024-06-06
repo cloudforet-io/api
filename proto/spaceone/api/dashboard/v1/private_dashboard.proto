@@ -9,6 +9,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/dashboard/v1/public_dashboard.proto";
 
 service PrivateDashboard{
 
@@ -60,7 +61,7 @@ message CreatePrivateDashboardRequest {
   // +optional
   string description = 2;
   // +optional
-  google.protobuf.ListValue layouts = 3;
+  repeated spaceone.api.dashboard.v1.Layout layouts = 3;
   // +optional
   google.protobuf.Struct vars = 4;
   // +optional
@@ -86,7 +87,7 @@ message UpdatePrivateDashboardRequest {
   // +optional
   string description = 3;
   // +optional
-  google.protobuf.ListValue layouts = 4;
+  repeated spaceone.api.dashboard.v1.Layout layouts = 4;
   // +optional
   google.protobuf.Struct vars = 5;
   // +optional
@@ -125,7 +126,7 @@ message PrivateDashboardInfo {
   string name = 2;
   string description = 3;
   string version = 4;
-  google.protobuf.ListValue layouts = 5;
+  repeated spaceone.api.dashboard.v1.Layout layouts = 5;
   google.protobuf.Struct vars = 6;
   google.protobuf.Struct options = 7;
   google.protobuf.Struct variables = 8;
