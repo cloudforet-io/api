@@ -154,20 +154,21 @@ message AddOptions {
     AssetSource ASSET = 1;
     CostSource COST = 2;
   }
+  string data_name = 3;
   // +optional
-  google.protobuf.ListValue group_by = 3;
+  string data_unit = 4;
   // +optional
-  string data_name = 4;
+  google.protobuf.ListValue group_by = 5;
   // +optional
-  DateFormat date_format = 5;
+  repeated spaceone.api.core.v2.Filter filter = 6;
   // +optional
-  google.protobuf.Struct additional_labels = 6;
+  repeated spaceone.api.core.v2.Filter filter_or = 7;
   // +optional
-  TimeDiff timediff = 7;
+  DateFormat date_format = 8;
   // +optional
-  repeated spaceone.api.core.v2.Filter filter = 8;
+  google.protobuf.Struct additional_labels = 9;
   // +optional
-  repeated spaceone.api.core.v2.Filter filter_or = 9;
+  TimeDiff timediff = 10;
 }
 
 message TransformOptions {
