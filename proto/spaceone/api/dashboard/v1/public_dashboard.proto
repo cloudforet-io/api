@@ -55,6 +55,12 @@ service PublicDashboard{
   }
 }
 
+message Layout {
+  string name = 1;
+  google.protobuf.Struct options = 2;
+  repeated google.protobuf.Struct widgets = 3;
+}
+
 message CreatePublicDashboardRequest {
   enum ResourceGroup {
     RESOURCE_GROUP_NONE = 0;
@@ -67,7 +73,7 @@ message CreatePublicDashboardRequest {
   // +optional
   string description = 2;
   // +optional
-  google.protobuf.ListValue layouts = 3;
+  repeated Layout layouts = 3;
   // +optional
   google.protobuf.Struct vars = 4;
   // +optional
@@ -96,7 +102,7 @@ message UpdatePublicDashboardRequest {
   // +optional
   string description = 3;
   // +optional
-  google.protobuf.ListValue layouts = 4;
+  repeated Layout layouts = 4;
   // +optional
   google.protobuf.Struct vars = 5;
   // +optional
@@ -144,7 +150,7 @@ message PublicDashboardInfo {
   string name = 2;
   string description = 3;
   string version = 4;
-  google.protobuf.ListValue layouts = 5;
+  repeated Layout layouts = 5;
   google.protobuf.Struct vars = 6;
   google.protobuf.Struct options = 7;
   google.protobuf.Struct variables = 8;
