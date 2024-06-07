@@ -89,9 +89,10 @@ message PrivateWidgetRequest {
 
 message LoadPrivateWidgetRequest {
   string widget_id = 1;
-  spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 2;
+  string data_table_id = 2;
+  spaceone.api.core.v2.AnalyzeQuery query = 3;
   // +optional
-  google.protobuf.Struct vars = 3;
+  google.protobuf.Struct vars = 4;
 }
 
 message PrivateWidgetQuery {
