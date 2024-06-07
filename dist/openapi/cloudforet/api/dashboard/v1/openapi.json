@@ -96,11 +96,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |data_table_id||string|True|\n |query||AnalyzeQuery|True|\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1330,11 +1330,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |data_table_id||string|True|\n |query||AnalyzeQuery|True|\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1421,9 +1421,9 @@
                 "title": "CreatePublicWidgetRequest"
            }
            ,        "LoadPublicWidgetRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
          "type": "object",
-         "required": ["widget_id","query"],
+         "required": ["widget_id","data_table_id","query"],
                 "title": "LoadPublicWidgetRequest"
            }
            ,        "PublicWidgetInfo": {
@@ -2024,9 +2024,9 @@
                 "title": "CreatePrivateWidgetRequest"
            }
            ,        "LoadPrivateWidgetRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
          "type": "object",
-         "required": ["widget_id","query"],
+         "required": ["widget_id","data_table_id","query"],
                 "title": "LoadPrivateWidgetRequest"
            }
            ,        "PrivateWidgetInfo": {
