@@ -80,7 +80,9 @@ message UpdatePublicWidgetRequest {
   // +optional
   google.protobuf.Struct options = 5;
   // +optional
-  google.protobuf.Struct tags = 6;
+  string data_table_id = 6;
+  // +optional
+  google.protobuf.Struct tags = 7;
 }
 
 message PublicWidgetRequest {
@@ -89,10 +91,9 @@ message PublicWidgetRequest {
 
 message LoadPublicWidgetRequest {
   string widget_id = 1;
-  string data_table_id = 2;
-  spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 3;
+  spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 2;
   // +optional
-  google.protobuf.Struct vars = 4;
+  google.protobuf.Struct vars = 3;
 }
 
 message PublicWidgetQuery {
@@ -118,7 +119,8 @@ message PublicWidgetInfo {
   string description = 3;
   string widget_type = 4;
   google.protobuf.Struct options = 5;
-  google.protobuf.Struct tags = 6;
+  string data_table_id = 6;
+  google.protobuf.Struct tags = 7;
 
   ResourceGroup resource_group = 20;
   string domain_id = 21;
