@@ -44,11 +44,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |name||string||\n |description||string||\n |widget_type||string||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |name||string||\n |description||string||\n |widget_type||string||\n |options||Struct||\n |data_table_id||string||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"widget_type" : {"type": "string","title": "WIDGET_TYPE" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"widget_type" : {"type": "string","title": "WIDGET_TYPE" },"options" : {"type": "object","title": "OPTIONS" },"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -96,11 +96,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |data_table_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1278,11 +1278,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |name||string||\n |description||string||\n |widget_type||string||\n |options||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |name||string||\n |description||string||\n |widget_type||string||\n |options||Struct||\n |data_table_id||string||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"widget_type" : {"type": "string","title": "WIDGET_TYPE" },"options" : {"type": "object","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"widget_type" : {"type": "string","title": "WIDGET_TYPE" },"options" : {"type": "object","title": "OPTIONS" },"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1330,11 +1330,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |data_table_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"data_table_id" : {"type": "string","title": "DATA_TABLE_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1421,15 +1421,15 @@
                 "title": "CreatePublicWidgetRequest"
            }
            ,        "LoadPublicWidgetRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
          "type": "object",
-         "required": ["widget_id","data_table_id","query"],
+         "required": ["widget_id","query"],
                 "title": "LoadPublicWidgetRequest"
            }
            ,        "PublicWidgetInfo": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["widget_id","name","description","widget_type","options","tags","resource_group","domain_id","workspace_id","project_id","dashboard_id","created_at","updated_at"],
+         "required": ["widget_id","name","description","widget_type","options","data_table_id","tags","resource_group","domain_id","workspace_id","project_id","dashboard_id","created_at","updated_at"],
                 "title": "PublicWidgetInfo"
            }
            ,        "PublicWidgetQuery": {
@@ -1452,7 +1452,7 @@
                 "title": "PublicWidgetsInfo"
            }
            ,        "UpdatePublicWidgetRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["widget_id"],
                 "title": "UpdatePublicWidgetRequest"
@@ -2024,15 +2024,15 @@
                 "title": "CreatePrivateWidgetRequest"
            }
            ,        "LoadPrivateWidgetRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"vars" : {"type": "object","title": "VARS"}},
          "type": "object",
-         "required": ["widget_id","data_table_id","query"],
+         "required": ["widget_id","query"],
                 "title": "LoadPrivateWidgetRequest"
            }
            ,        "PrivateWidgetInfo": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["widget_id","name","description","widget_type","options","tags","domain_id","user_id","dashboard_id","created_at","updated_at"],
+         "required": ["widget_id","name","description","widget_type","options","data_table_id","tags","domain_id","user_id","dashboard_id","created_at","updated_at"],
                 "title": "PrivateWidgetInfo"
            }
            ,        "PrivateWidgetQuery": {
@@ -2055,7 +2055,7 @@
                 "title": "PrivateWidgetsInfo"
            }
            ,        "UpdatePrivateWidgetRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"options" : {"type": "object","title": "OPTIONS"},"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["widget_id"],
                 "title": "UpdatePrivateWidgetRequest"
