@@ -64,9 +64,11 @@ message CreatePrivateWidgetRequest {
   // +optional
   string widget_type = 4;
   // +optional
-  google.protobuf.Struct options = 5;
+  string size = 5;
   // +optional
-  google.protobuf.Struct tags = 6;
+  google.protobuf.Struct options = 6;
+  // +optional
+  google.protobuf.Struct tags = 7;
 }
 
 message UpdatePrivateWidgetRequest {
@@ -78,11 +80,13 @@ message UpdatePrivateWidgetRequest {
   // +optional
   string widget_type = 4;
   // +optional
-  google.protobuf.Struct options = 5;
+  string size = 5;
   // +optional
-  string data_table_id = 6;
+  google.protobuf.Struct options = 6;
   // +optional
-  google.protobuf.Struct tags = 7;
+  string data_table_id = 7;
+  // +optional
+  google.protobuf.Struct tags = 8;
 }
 
 message PrivateWidgetRequest {
@@ -111,13 +115,14 @@ message PrivateWidgetInfo {
   string name = 2;
   string description = 3;
   string widget_type = 4;
-  google.protobuf.Struct options = 5;
-  string data_table_id = 6;
+  string size = 5;
+  google.protobuf.Struct options = 6;
   google.protobuf.Struct tags = 7;
 
   string domain_id = 21;
   string user_id = 22;
   string dashboard_id = 23;
+  string data_table_id = 24;
 
   string created_at = 31;
   string updated_at = 32;

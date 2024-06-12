@@ -64,9 +64,11 @@ message CreatePublicWidgetRequest {
   // +optional
   string widget_type = 4;
   // +optional
-  google.protobuf.Struct options = 5;
+  string size = 5;
   // +optional
-  google.protobuf.Struct tags = 6;
+  google.protobuf.Struct options = 6;
+  // +optional
+  google.protobuf.Struct tags = 7;
 }
 
 message UpdatePublicWidgetRequest {
@@ -78,11 +80,13 @@ message UpdatePublicWidgetRequest {
   // +optional
   string widget_type = 4;
   // +optional
-  google.protobuf.Struct options = 5;
+  string size = 5;
   // +optional
-  string data_table_id = 6;
+  google.protobuf.Struct options = 6;
   // +optional
-  google.protobuf.Struct tags = 7;
+  string data_table_id = 7;
+  // +optional
+  google.protobuf.Struct tags = 8;
 }
 
 message PublicWidgetRequest {
@@ -118,8 +122,8 @@ message PublicWidgetInfo {
   string name = 2;
   string description = 3;
   string widget_type = 4;
-  google.protobuf.Struct options = 5;
-  string data_table_id = 6;
+  string size = 5;
+  google.protobuf.Struct options = 6;
   google.protobuf.Struct tags = 7;
 
   ResourceGroup resource_group = 20;
@@ -127,6 +131,7 @@ message PublicWidgetInfo {
   string workspace_id = 22;
   string project_id = 23;
   string dashboard_id = 24;
+  string data_table_id = 25;
 
   string created_at = 31;
   string updated_at = 32;
