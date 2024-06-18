@@ -25,7 +25,6 @@ const _ = grpc.SupportPackageIsVersion8
 const (
 	PublicConfig_Create_FullMethodName = "/spaceone.api.config.v1.PublicConfig/create"
 	PublicConfig_Update_FullMethodName = "/spaceone.api.config.v1.PublicConfig/update"
-	PublicConfig_Set_FullMethodName    = "/spaceone.api.config.v1.PublicConfig/set"
 	PublicConfig_Delete_FullMethodName = "/spaceone.api.config.v1.PublicConfig/delete"
 	PublicConfig_Get_FullMethodName    = "/spaceone.api.config.v1.PublicConfig/get"
 	PublicConfig_List_FullMethodName   = "/spaceone.api.config.v1.PublicConfig/list"
@@ -37,8 +36,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PublicConfigClient interface {
 	Create(ctx context.Context, in *CreatePublicConfigRequest, opts ...grpc.CallOption) (*PublicConfigInfo, error)
-	Update(ctx context.Context, in *CreatePublicConfigRequest, opts ...grpc.CallOption) (*PublicConfigInfo, error)
-	Set(ctx context.Context, in *CreatePublicConfigRequest, opts ...grpc.CallOption) (*PublicConfigInfo, error)
+	Update(ctx context.Context, in *UpdatePublicConfigRequest, opts ...grpc.CallOption) (*PublicConfigInfo, error)
 	Delete(ctx context.Context, in *PublicConfigRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *PublicConfigRequest, opts ...grpc.CallOption) (*PublicConfigInfo, error)
 	List(ctx context.Context, in *PublicConfigSearchQuery, opts ...grpc.CallOption) (*PublicConfigsInfo, error)
@@ -63,20 +61,10 @@ func (c *publicConfigClient) Create(ctx context.Context, in *CreatePublicConfigR
 	return out, nil
 }
 
-func (c *publicConfigClient) Update(ctx context.Context, in *CreatePublicConfigRequest, opts ...grpc.CallOption) (*PublicConfigInfo, error) {
+func (c *publicConfigClient) Update(ctx context.Context, in *UpdatePublicConfigRequest, opts ...grpc.CallOption) (*PublicConfigInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PublicConfigInfo)
 	err := c.cc.Invoke(ctx, PublicConfig_Update_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *publicConfigClient) Set(ctx context.Context, in *CreatePublicConfigRequest, opts ...grpc.CallOption) (*PublicConfigInfo, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PublicConfigInfo)
-	err := c.cc.Invoke(ctx, PublicConfig_Set_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -128,8 +116,7 @@ func (c *publicConfigClient) Stat(ctx context.Context, in *PublicConfigStatQuery
 // for forward compatibility
 type PublicConfigServer interface {
 	Create(context.Context, *CreatePublicConfigRequest) (*PublicConfigInfo, error)
-	Update(context.Context, *CreatePublicConfigRequest) (*PublicConfigInfo, error)
-	Set(context.Context, *CreatePublicConfigRequest) (*PublicConfigInfo, error)
+	Update(context.Context, *UpdatePublicConfigRequest) (*PublicConfigInfo, error)
 	Delete(context.Context, *PublicConfigRequest) (*empty.Empty, error)
 	Get(context.Context, *PublicConfigRequest) (*PublicConfigInfo, error)
 	List(context.Context, *PublicConfigSearchQuery) (*PublicConfigsInfo, error)
@@ -144,11 +131,8 @@ type UnimplementedPublicConfigServer struct {
 func (UnimplementedPublicConfigServer) Create(context.Context, *CreatePublicConfigRequest) (*PublicConfigInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedPublicConfigServer) Update(context.Context, *CreatePublicConfigRequest) (*PublicConfigInfo, error) {
+func (UnimplementedPublicConfigServer) Update(context.Context, *UpdatePublicConfigRequest) (*PublicConfigInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
-}
-func (UnimplementedPublicConfigServer) Set(context.Context, *CreatePublicConfigRequest) (*PublicConfigInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Set not implemented")
 }
 func (UnimplementedPublicConfigServer) Delete(context.Context, *PublicConfigRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -194,7 +178,7 @@ func _PublicConfig_Create_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _PublicConfig_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePublicConfigRequest)
+	in := new(UpdatePublicConfigRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -206,25 +190,7 @@ func _PublicConfig_Update_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: PublicConfig_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublicConfigServer).Update(ctx, req.(*CreatePublicConfigRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PublicConfig_Set_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePublicConfigRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PublicConfigServer).Set(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PublicConfig_Set_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublicConfigServer).Set(ctx, req.(*CreatePublicConfigRequest))
+		return srv.(PublicConfigServer).Update(ctx, req.(*UpdatePublicConfigRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -315,10 +281,6 @@ var PublicConfig_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _PublicConfig_Update_Handler,
-		},
-		{
-			MethodName: "set",
-			Handler:    _PublicConfig_Set_Handler,
 		},
 		{
 			MethodName: "delete",
