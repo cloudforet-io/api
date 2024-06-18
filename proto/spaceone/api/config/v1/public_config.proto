@@ -18,18 +18,13 @@ service PublicConfig {
       body: "*"
     };
   }
-  rpc update (CreatePublicConfigRequest) returns (PublicConfigInfo) {
+  rpc update (UpdatePublicConfigRequest) returns (PublicConfigInfo) {
     option (google.api.http) = {
       post: "/config/v1/public-config/update"
       body: "*"
     };
   }
-  rpc set (CreatePublicConfigRequest) returns (PublicConfigInfo) {
-    option (google.api.http) = {
-      post: "/config/v1/public-config/set"
-      body: "*"
-    };
-  }
+
   rpc delete (PublicConfigRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/config/v1/public-config/delete"
@@ -70,6 +65,10 @@ message CreatePublicConfigRequest {
   // +optional
   google.protobuf.Struct tags = 3;
   ResourceGroup resource_group = 20;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string project_id = 22;
 }
 
 message UpdatePublicConfigRequest {
@@ -77,10 +76,19 @@ message UpdatePublicConfigRequest {
   google.protobuf.Struct data = 2;
   // +optional
   google.protobuf.Struct tags = 3;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string project_id = 22;
+
 }
 
 message PublicConfigRequest {
   string name = 1;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string project_id = 22;
 }
 
 message PublicConfigSearchQuery {
