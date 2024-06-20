@@ -29,6 +29,13 @@ service DataSource {
     };
   }
 
+  rpc update_permissions (UpdateDataSourcePermissionsRequest) returns (DataSourceInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/data-source/update-permissions"
+      body: "*"
+    };
+  }
+
   // Updates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.
   rpc update_plugin (UpdateDataSourcePluginRequest) returns (DataSourceInfo) {
     option (google.api.http) = {
@@ -228,6 +235,15 @@ message UpdateDataSourceRequest {
 }
 
 //{
+//  "data_source_id" : "ds-12331222",
+//  "permissions" : {"deny": ["data.PayAsYouGo", "data.ActualCost"]}
+//}
+message UpdateDataSourcePermissionsRequest {
+  string data_source_id = 1;
+  google.protobuf.Struct permissions = 2;
+}
+
+//{
 //    "data_source_id": "ds-085d1e872789",
 //    "version": "1.0.4",
 //    "options": {},
@@ -392,24 +408,26 @@ message DataSourceInfo {
   string name = 2;
   State state = 3;
   DataSourceType data_source_type = 4;
-  string provider = 5;
-  SecretType secret_type = 6;
-  SecretFilter secret_filter = 7;
-  PluginInfo plugin_info = 8;
-  google.protobuf.Struct template = 9;
-  google.protobuf.Struct tags = 10;
-  repeated string cost_tag_keys = 11;
-  repeated string cost_additional_info_keys = 12;
-  repeated string cost_data_keys = 13;
-  int32 data_source_account_count = 14;
-  int32 connected_workspace_count = 15;
+  google.protobuf.Struct permissions = 5;
+  string provider = 6;
+  SecretType secret_type = 7;
+  SecretFilter secret_filter = 8;
+  PluginInfo plugin_info = 9;
+  google.protobuf.Struct template = 10;
+  google.protobuf.Struct tags = 11;
+  repeated string cost_tag_keys = 12;
+  repeated string cost_additional_info_keys = 13;
+  repeated string cost_data_keys = 14;
+  int32 data_source_account_count = 15;
+  int32 connected_workspace_count = 16;
 
   ResourceGroup resource_group = 20;
   string domain_id = 21;
   string workspace_id = 22;
 
   string created_at = 31;
-  string last_synchronized_at = 32;
+  string updated_at = 32;
+  string last_synchronized_at = 33;
 }
 
 //{
