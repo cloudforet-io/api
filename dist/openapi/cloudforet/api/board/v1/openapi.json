@@ -15,11 +15,11 @@
          "operationId" : "",
          "description": "### Description \nCreates a new Post under a specific Board. You must specify the `board_id`, `title`, and `contents`. The parameter `category` is not required but can be set in the scope of `categories` specified in the parent Board. You can make the new Post pinned or pop up by adjusting the parameters.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |board_type||string|True|\n |title||string|True|\n |contents||string|True|\n |resource_group|SYSTEM, DOMAIN |string|True|\n |category||string||\n |files||array||\n |options||Struct||\n |writer||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |board_type||string|True|\n |title||string|True|\n |contents||string|True|\n |resource_group|SYSTEM, DOMAIN |string|True|\n |category||string||\n |files||array||\n |options||Struct||\n |writer||string||\n |workspaces||array||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"board_type" : {"type": "string","title": "BOARD_TYPE" },"title" : {"type": "string","title": "TITLE" },"contents" : {"type": "string","title": "CONTENTS" },"category" : {"type": "string","title": "CATEGORY" },"files" : {"items": {}, "type": "array","title": "FILES" },"options" : {"type": "object","title": "OPTIONS" },"writer" : {"type": "string","title": "WRITER" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" }                 }
+                 "properties": {"board_type" : {"type": "string","title": "BOARD_TYPE" },"title" : {"type": "string","title": "TITLE" },"contents" : {"type": "string","title": "CONTENTS" },"category" : {"type": "string","title": "CATEGORY" },"files" : {"items": {}, "type": "array","title": "FILES" },"options" : {"type": "object","title": "OPTIONS" },"writer" : {"type": "string","title": "WRITER" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspaces" : {"items": {}, "type": "array","title": "WORKSPACES" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"board_type\": \"NOTICE\",\n   \"category\": \"developer\",\n   \"title\": \"title\",\n   \"contents\": \"This is contents.\",\n   \"files\": [\"file-123456789012\"],\n   \"options\": {\"is_popup\": true},\n   \"writer\": \"user1\",\n   \"resource_group\": \"DOMAIN\",\n}"},"Schema":{}
                }
@@ -46,11 +46,11 @@
          "operationId" : "",
          "description": "### Description \nUpdates a specific Post. You can make changes in Post settings, except `board_id`, `post_id`, and `domain_id`.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |post_id||string|True|\n |title||string||\n |contents||string||\n |category||string||\n |files||array||\n |options||Struct||\n |writer||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |post_id||string|True|\n |title||string||\n |contents||string||\n |category||string||\n |files||array||\n |options||Struct||\n |writer||string||\n |workspaces||array||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"post_id" : {"type": "string","title": "POST_ID" },"title" : {"type": "string","title": "TITLE" },"contents" : {"type": "string","title": "CONTENTS" },"category" : {"type": "string","title": "CATEGORY" },"files" : {"items": {}, "type": "array","title": "FILES" },"options" : {"type": "object","title": "OPTIONS" },"writer" : {"type": "string","title": "WRITER" }                 }
+                 "properties": {"post_id" : {"type": "string","title": "POST_ID" },"title" : {"type": "string","title": "TITLE" },"contents" : {"type": "string","title": "CONTENTS" },"category" : {"type": "string","title": "CATEGORY" },"files" : {"items": {}, "type": "array","title": "FILES" },"options" : {"type": "object","title": "OPTIONS" },"writer" : {"type": "string","title": "WRITER" },"workspaces" : {"items": {}, "type": "array","title": "WORKSPACES" }                 }
                },
                "examples":{"Default Example":{"value": "{\n     \"post_id\": \"post-2118473ce15e\",\n     \"title\": \"title2\",\n     \"contents\": \"this is contents2.\",\n     \"category\": \"developer\",\n     \"options\": {\n         \"is_popup\": false,\n         \"is_pinned\": true\n     },\n     \"writer\": \"user1\"\n}"},"Schema":{}
                }
@@ -70,10 +70,10 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/board/post/send-notification": {
+     },"/board/post/send": {
        "post": {
          "tags": ["board > post"],
-         "summary": "Send Notification",
+         "summary": "Send",
          "operationId" : "",
          "description": "### Description \nNot Implemented",
          "requestBody": {
@@ -154,11 +154,11 @@
          "operationId" : "",
          "description": "### Description \nGets a list of all Posts. You can use a query to get a filtered list of Posts.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |board_type||string||\n |post_id||string||\n |category||string||\n |writer||string||\n |is_pinned||boolean||\n |is_popup||boolean||\n |domain_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |board_type||string||\n |post_id||string||\n |category||string||\n |writer||string||\n |is_pinned||boolean||\n |is_popup||boolean||\n |domain_id||string||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"board_type" : {"type": "string","title": "BOARD_TYPE" },"post_id" : {"type": "string","title": "POST_ID" },"category" : {"type": "string","title": "CATEGORY" },"writer" : {"type": "string","title": "WRITER" },"is_pinned" : {"type": "boolean","title": "IS_PINNED" },"is_popup" : {"type": "boolean","title": "IS_POPUP" },"domain_id" : {"type": "string","title": "DOMAIN_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"board_type" : {"type": "string","title": "BOARD_TYPE" },"post_id" : {"type": "string","title": "POST_ID" },"category" : {"type": "string","title": "CATEGORY" },"writer" : {"type": "string","title": "WRITER" },"is_pinned" : {"type": "boolean","title": "IS_PINNED" },"is_popup" : {"type": "boolean","title": "IS_POPUP" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
                }
@@ -213,15 +213,17 @@
      "schemas": {
      "CreatePostRequest": {
          "properties" : {"board_type" : {"type": "string","title": "BOARD_TYPE"},"title" : {"type": "string","title": "TITLE"},"contents" : {"type": "string","title": "CONTENTS"},"category" : {"type": "string","title": "CATEGORY"},"files" : {"items": {"type": "string"},
-               "type": "array","title": "FILES"},"options" : {"type": "object","title": "OPTIONS"},"writer" : {"type": "string","title": "WRITER"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"}},
+               "type": "array","title": "FILES"},"options" : {"type": "object","title": "OPTIONS"},"writer" : {"type": "string","title": "WRITER"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspaces" : {"items": {"type": "string"},
+               "type": "array","title": "WORKSPACES"}},
          "type": "object",
          "required": ["board_type","title","contents","resource_group"],
                 "title": "CreatePostRequest"
            }
            ,        "PostInfo": {
-         "properties" : {"board_type" : {"type": "string","title": "BOARD_TYPE"},"post_id" : {"type": "string","title": "POST_ID"},"category" : {"type": "string","title": "CATEGORY"},"title" : {"type": "string","title": "TITLE"},"contents" : {"type": "string","title": "CONTENTS"},"options" : {"type": "object","title": "OPTIONS"},"view_count" : {"type": "integer","title": "VIEW_COUNT"},"writer" : {"type": "string","title": "WRITER"},"files" : {"type": "array","title": "FILES"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"board_type" : {"type": "string","title": "BOARD_TYPE"},"post_id" : {"type": "string","title": "POST_ID"},"category" : {"type": "string","title": "CATEGORY"},"title" : {"type": "string","title": "TITLE"},"contents" : {"type": "string","title": "CONTENTS"},"options" : {"type": "object","title": "OPTIONS"},"view_count" : {"type": "integer","title": "VIEW_COUNT"},"writer" : {"type": "string","title": "WRITER"},"files" : {"type": "array","title": "FILES"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspaces" : {"items": {"type": "string"},
+               "type": "array","title": "WORKSPACES"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["board_type","post_id","category","title","contents","options","view_count","writer","files","resource_group","domain_id","user_id","created_at","updated_at"],
+         "required": ["board_type","post_id","category","title","contents","options","view_count","writer","files","resource_group","domain_id","workspaces","user_id","created_at","updated_at"],
                 "title": "PostInfo"
            }
            ,        "PostRequest": {
@@ -231,7 +233,7 @@
                 "title": "PostRequest"
            }
            ,        "PostSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"board_type" : {"type": "string","title": "BOARD_TYPE"},"post_id" : {"type": "string","title": "POST_ID"},"category" : {"type": "string","title": "CATEGORY"},"writer" : {"type": "string","title": "WRITER"},"is_pinned" : {"type": "boolean","title": "IS_PINNED"},"is_popup" : {"type": "boolean","title": "IS_POPUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"board_type" : {"type": "string","title": "BOARD_TYPE"},"post_id" : {"type": "string","title": "POST_ID"},"category" : {"type": "string","title": "CATEGORY"},"writer" : {"type": "string","title": "WRITER"},"is_pinned" : {"type": "boolean","title": "IS_PINNED"},"is_popup" : {"type": "boolean","title": "IS_POPUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": [],
                 "title": "PostSearchQuery"
@@ -251,7 +253,8 @@
            }
            ,        "UpdatePostRequest": {
          "properties" : {"post_id" : {"type": "string","title": "POST_ID"},"title" : {"type": "string","title": "TITLE"},"contents" : {"type": "string","title": "CONTENTS"},"category" : {"type": "string","title": "CATEGORY"},"files" : {"items": {"type": "string"},
-               "type": "array","title": "FILES"},"options" : {"type": "object","title": "OPTIONS"},"writer" : {"type": "string","title": "WRITER"}},
+               "type": "array","title": "FILES"},"options" : {"type": "object","title": "OPTIONS"},"writer" : {"type": "string","title": "WRITER"},"workspaces" : {"items": {"type": "string"},
+               "type": "array","title": "WORKSPACES"}},
          "type": "object",
          "required": ["post_id"],
                 "title": "UpdatePostRequest"

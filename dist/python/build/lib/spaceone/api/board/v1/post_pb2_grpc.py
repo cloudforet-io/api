@@ -51,8 +51,8 @@ class PostStub(object):
                 request_serializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.UpdatePostRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostInfo.FromString,
                 _registered_method=True)
-        self.send_notification = channel.unary_unary(
-                '/spaceone.api.board.v1.Post/send_notification',
+        self.send = channel.unary_unary(
+                '/spaceone.api.board.v1.Post/send',
                 request_serializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
@@ -95,7 +95,7 @@ class PostServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def send_notification(self, request, context):
+    def send(self, request, context):
         """Not Implemented
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -142,8 +142,8 @@ def add_PostServicer_to_server(servicer, server):
                     request_deserializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.UpdatePostRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostInfo.SerializeToString,
             ),
-            'send_notification': grpc.unary_unary_rpc_method_handler(
-                    servicer.send_notification,
+            'send': grpc.unary_unary_rpc_method_handler(
+                    servicer.send,
                     request_deserializer=spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
@@ -233,7 +233,7 @@ class Post(object):
             _registered_method=True)
 
     @staticmethod
-    def send_notification(request,
+    def send(request,
             target,
             options=(),
             channel_credentials=None,
@@ -246,7 +246,7 @@ class Post(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.board.v1.Post/send_notification',
+            '/spaceone.api.board.v1.Post/send',
             spaceone_dot_api_dot_board_dot_v1_dot_post__pb2.PostRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,

@@ -84,7 +84,7 @@ func local_request_Post_Update_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_Post_SendNotification_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PostClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Post_Send_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PostClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq extV1.PostRequest
 	var metadata runtime.ServerMetadata
 
@@ -92,12 +92,12 @@ func request_Post_SendNotification_0(ctx context.Context, marshaler runtime.Mars
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.SendNotification(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.Send(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_Post_SendNotification_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PostServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Post_Send_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PostServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq extV1.PostRequest
 	var metadata runtime.ServerMetadata
 
@@ -105,7 +105,7 @@ func local_request_Post_SendNotification_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.SendNotification(ctx, &protoReq)
+	msg, err := server.Send(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -270,7 +270,7 @@ func RegisterPostHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 
 	})
 
-	mux.Handle("POST", pattern_Post_SendNotification_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Post_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -278,12 +278,12 @@ func RegisterPostHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.board.v1.Post/SendNotification", runtime.WithHTTPPathPattern("/board/v1/post/send-notification"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.board.v1.Post/Send", runtime.WithHTTPPathPattern("/board/v1/post/send"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Post_SendNotification_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Post_Send_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -291,7 +291,7 @@ func RegisterPostHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 			return
 		}
 
-		forward_Post_SendNotification_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Post_Send_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -480,25 +480,25 @@ func RegisterPostHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 
 	})
 
-	mux.Handle("POST", pattern_Post_SendNotification_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Post_Send_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.board.v1.Post/SendNotification", runtime.WithHTTPPathPattern("/board/v1/post/send-notification"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.board.v1.Post/Send", runtime.WithHTTPPathPattern("/board/v1/post/send"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Post_SendNotification_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Post_Send_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Post_SendNotification_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Post_Send_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -598,7 +598,7 @@ var (
 
 	pattern_Post_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"board", "v1", "post", "update"}, ""))
 
-	pattern_Post_SendNotification_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"board", "v1", "post", "send-notification"}, ""))
+	pattern_Post_Send_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"board", "v1", "post", "send"}, ""))
 
 	pattern_Post_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"board", "v1", "post", "delete"}, ""))
 
@@ -614,7 +614,7 @@ var (
 
 	forward_Post_Update_0 = runtime.ForwardResponseMessage
 
-	forward_Post_SendNotification_0 = runtime.ForwardResponseMessage
+	forward_Post_Send_0 = runtime.ForwardResponseMessage
 
 	forward_Post_Delete_0 = runtime.ForwardResponseMessage
 
