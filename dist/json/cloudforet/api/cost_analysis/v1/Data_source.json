@@ -324,6 +324,18 @@
               "defaultValue": ""
             },
             {
+              "name": "permissions",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "provider",
               "description": "",
               "label": "",
@@ -493,6 +505,18 @@
             },
             {
               "name": "created_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updated_at",
               "description": "",
               "label": "",
               "type": "string",
@@ -1094,6 +1118,42 @@
           ]
         },
         {
+          "name": "UpdateDataSourcePermissionsRequest",
+          "longName": "UpdateDataSourcePermissionsRequest",
+          "fullName": "spaceone.api.cost_analysis.v1.UpdateDataSourcePermissionsRequest",
+          "description": "{\n \"data_source_id\" : \"ds-12331222\",\n \"permissions\" : {\"deny\": [\"data.PayAsYouGo\", \"data.ActualCost\"]}\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_source_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "permissions",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "UpdateDataSourcePluginRequest",
           "longName": "UpdateDataSourcePluginRequest",
           "fullName": "spaceone.api.cost_analysis.v1.UpdateDataSourcePluginRequest",
@@ -1321,6 +1381,29 @@
                     {
                       "method": "POST",
                       "pattern": "/cost-analysis/v1/data-source/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update_permissions",
+              "description": "",
+              "requestType": "UpdateDataSourcePermissionsRequest",
+              "requestLongType": "UpdateDataSourcePermissionsRequest",
+              "requestFullType": "spaceone.api.cost_analysis.v1.UpdateDataSourcePermissionsRequest",
+              "requestStreaming": false,
+              "responseType": "DataSourceInfo",
+              "responseLongType": "DataSourceInfo",
+              "responseFullType": "spaceone.api.cost_analysis.v1.DataSourceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/cost-analysis/v1/data-source/update-permissions",
                       "body": "*"
                     }
                   ]

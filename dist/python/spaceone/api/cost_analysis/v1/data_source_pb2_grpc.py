@@ -52,6 +52,11 @@ class DataSourceStub(object):
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.UpdateDataSourceRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
                 _registered_method=True)
+        self.update_permissions = channel.unary_unary(
+                '/spaceone.api.cost_analysis.v1.DataSource/update_permissions',
+                request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.UpdateDataSourcePermissionsRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
+                _registered_method=True)
         self.update_plugin = channel.unary_unary(
                 '/spaceone.api.cost_analysis.v1.DataSource/update_plugin',
                 request_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.UpdateDataSourcePluginRequest.SerializeToString,
@@ -117,6 +122,12 @@ class DataSourceServicer(object):
     def update(self, request, context):
         """Updates a specific DataSource. You can make changes in DataSource settings, including `name` and `tags`.
         """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def update_permissions(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -201,6 +212,11 @@ def add_DataSourceServicer_to_server(servicer, server):
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.UpdateDataSourceRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.SerializeToString,
+            ),
+            'update_permissions': grpc.unary_unary_rpc_method_handler(
+                    servicer.update_permissions,
+                    request_deserializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.UpdateDataSourcePermissionsRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.SerializeToString,
             ),
             'update_plugin': grpc.unary_unary_rpc_method_handler(
@@ -307,6 +323,33 @@ class DataSource(object):
             target,
             '/spaceone.api.cost_analysis.v1.DataSource/update',
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.UpdateDataSourceRequest.SerializeToString,
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def update_permissions(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.cost_analysis.v1.DataSource/update_permissions',
+            spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.UpdateDataSourcePermissionsRequest.SerializeToString,
             spaceone_dot_api_dot_cost__analysis_dot_v1_dot_data__source__pb2.DataSourceInfo.FromString,
             options,
             channel_credentials,

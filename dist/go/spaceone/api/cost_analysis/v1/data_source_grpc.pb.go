@@ -23,18 +23,19 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	DataSource_Register_FullMethodName         = "/spaceone.api.cost_analysis.v1.DataSource/register"
-	DataSource_Update_FullMethodName           = "/spaceone.api.cost_analysis.v1.DataSource/update"
-	DataSource_UpdatePlugin_FullMethodName     = "/spaceone.api.cost_analysis.v1.DataSource/update_plugin"
-	DataSource_UpdateSecretData_FullMethodName = "/spaceone.api.cost_analysis.v1.DataSource/update_secret_data"
-	DataSource_VerifyPlugin_FullMethodName     = "/spaceone.api.cost_analysis.v1.DataSource/verify_plugin"
-	DataSource_Enable_FullMethodName           = "/spaceone.api.cost_analysis.v1.DataSource/enable"
-	DataSource_Disable_FullMethodName          = "/spaceone.api.cost_analysis.v1.DataSource/disable"
-	DataSource_Deregister_FullMethodName       = "/spaceone.api.cost_analysis.v1.DataSource/deregister"
-	DataSource_Sync_FullMethodName             = "/spaceone.api.cost_analysis.v1.DataSource/sync"
-	DataSource_Get_FullMethodName              = "/spaceone.api.cost_analysis.v1.DataSource/get"
-	DataSource_List_FullMethodName             = "/spaceone.api.cost_analysis.v1.DataSource/list"
-	DataSource_Stat_FullMethodName             = "/spaceone.api.cost_analysis.v1.DataSource/stat"
+	DataSource_Register_FullMethodName          = "/spaceone.api.cost_analysis.v1.DataSource/register"
+	DataSource_Update_FullMethodName            = "/spaceone.api.cost_analysis.v1.DataSource/update"
+	DataSource_UpdatePermissions_FullMethodName = "/spaceone.api.cost_analysis.v1.DataSource/update_permissions"
+	DataSource_UpdatePlugin_FullMethodName      = "/spaceone.api.cost_analysis.v1.DataSource/update_plugin"
+	DataSource_UpdateSecretData_FullMethodName  = "/spaceone.api.cost_analysis.v1.DataSource/update_secret_data"
+	DataSource_VerifyPlugin_FullMethodName      = "/spaceone.api.cost_analysis.v1.DataSource/verify_plugin"
+	DataSource_Enable_FullMethodName            = "/spaceone.api.cost_analysis.v1.DataSource/enable"
+	DataSource_Disable_FullMethodName           = "/spaceone.api.cost_analysis.v1.DataSource/disable"
+	DataSource_Deregister_FullMethodName        = "/spaceone.api.cost_analysis.v1.DataSource/deregister"
+	DataSource_Sync_FullMethodName              = "/spaceone.api.cost_analysis.v1.DataSource/sync"
+	DataSource_Get_FullMethodName               = "/spaceone.api.cost_analysis.v1.DataSource/get"
+	DataSource_List_FullMethodName              = "/spaceone.api.cost_analysis.v1.DataSource/list"
+	DataSource_Stat_FullMethodName              = "/spaceone.api.cost_analysis.v1.DataSource/stat"
 )
 
 // DataSourceClient is the client API for DataSource service.
@@ -45,6 +46,7 @@ type DataSourceClient interface {
 	Register(ctx context.Context, in *RegisterDataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
 	// Updates a specific DataSource. You can make changes in DataSource settings, including `name` and `tags`.
 	Update(ctx context.Context, in *UpdateDataSourceRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
+	UpdatePermissions(ctx context.Context, in *UpdateDataSourcePermissionsRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
 	// Updates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.
 	UpdatePlugin(ctx context.Context, in *UpdateDataSourcePluginRequest, opts ...grpc.CallOption) (*DataSourceInfo, error)
 	// Updates the secret data of plugin for DataSource. This method updates the secret data in the DataSource to update the `secret_data`.
@@ -88,6 +90,16 @@ func (c *dataSourceClient) Update(ctx context.Context, in *UpdateDataSourceReque
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DataSourceInfo)
 	err := c.cc.Invoke(ctx, DataSource_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dataSourceClient) UpdatePermissions(ctx context.Context, in *UpdateDataSourcePermissionsRequest, opts ...grpc.CallOption) (*DataSourceInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DataSourceInfo)
+	err := c.cc.Invoke(ctx, DataSource_UpdatePermissions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -202,6 +214,7 @@ type DataSourceServer interface {
 	Register(context.Context, *RegisterDataSourceRequest) (*DataSourceInfo, error)
 	// Updates a specific DataSource. You can make changes in DataSource settings, including `name` and `tags`.
 	Update(context.Context, *UpdateDataSourceRequest) (*DataSourceInfo, error)
+	UpdatePermissions(context.Context, *UpdateDataSourcePermissionsRequest) (*DataSourceInfo, error)
 	// Updates the plugin of a specific DataSource. This method resets the plugin data in the DataSource to update the `metadata`.
 	UpdatePlugin(context.Context, *UpdateDataSourcePluginRequest) (*DataSourceInfo, error)
 	// Updates the secret data of plugin for DataSource. This method updates the secret data in the DataSource to update the `secret_data`.
@@ -233,6 +246,9 @@ func (UnimplementedDataSourceServer) Register(context.Context, *RegisterDataSour
 }
 func (UnimplementedDataSourceServer) Update(context.Context, *UpdateDataSourceRequest) (*DataSourceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedDataSourceServer) UpdatePermissions(context.Context, *UpdateDataSourcePermissionsRequest) (*DataSourceInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePermissions not implemented")
 }
 func (UnimplementedDataSourceServer) UpdatePlugin(context.Context, *UpdateDataSourcePluginRequest) (*DataSourceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePlugin not implemented")
@@ -309,6 +325,24 @@ func _DataSource_Update_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataSourceServer).Update(ctx, req.(*UpdateDataSourceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DataSource_UpdatePermissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateDataSourcePermissionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataSourceServer).UpdatePermissions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataSource_UpdatePermissions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataSourceServer).UpdatePermissions(ctx, req.(*UpdateDataSourcePermissionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -507,6 +541,10 @@ var DataSource_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _DataSource_Update_Handler,
+		},
+		{
+			MethodName: "update_permissions",
+			Handler:    _DataSource_UpdatePermissions_Handler,
 		},
 		{
 			MethodName: "update_plugin",
