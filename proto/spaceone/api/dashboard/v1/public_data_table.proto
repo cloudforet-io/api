@@ -95,10 +95,10 @@ message CostSource {
 message JoinOperator {
   enum JoinType {
     JOIN_TYPE_NONE = 0;
-    INNER = 1;
-    LEFT = 2;
-    RIGHT = 3;
-    OUTER = 4;
+    inner = 1;
+    left = 2;
+    right = 3;
+    outer = 4;
   }
 
   repeated string data_tables = 1;
@@ -111,21 +111,13 @@ message ConcatOperator {
 }
 
 message AggregateOperator {
-  enum AggregateType {
-    AGGREGATE_TYPE_NONE = 0;
-    SUM = 1;
-    AVG = 2;
-    MAX = 3;
-    MIN = 4;
-  }
-
   string data_table_id = 1;
-  AggregateType operator = 2;
+  google.protobuf.Struct function = 2;
   // +optional
   string group_by = 3;
 }
 
-message WhereOperator {
+message QueryOperator {
   string data_table_id = 1;
   repeated string conditions = 2;
 }
@@ -176,8 +168,8 @@ message TransformOptions {
     JoinOperator JOIN = 1;
     ConcatOperator CONCAT = 2;
     AggregateOperator AGGREGATE = 3;
-    WhereOperator WHERE = 4;
-    EvaluateOperator EVALUATE = 5;
+    QueryOperator QUERY = 4;
+    EvaluateOperator EVAL = 5;
   }
 }
 
