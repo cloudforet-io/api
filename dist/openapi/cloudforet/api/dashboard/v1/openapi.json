@@ -1958,9 +1958,9 @@
                 "title": "AddPublicDataTableRequest"
            }
            ,        "AggregateOperator": {
-         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"operator" : {"type": "string","title": "OPERATOR"},"group_by" : {"type": "string","title": "GROUP_BY"}},
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"function" : {"type": "object","title": "FUNCTION"},"group_by" : {"type": "string","title": "GROUP_BY"}},
          "type": "object",
-         "required": ["data_table_id","operator"],
+         "required": ["data_table_id","function"],
                 "title": "AggregateOperator"
            }
            ,        "AssetSource": {
@@ -2028,6 +2028,13 @@
          "required": ["results","total_count"],
                 "title": "PublicDataTablesInfo"
            }
+           ,        "QueryOperator": {
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"conditions" : {"items": {"type": "string"},
+               "type": "array","title": "CONDITIONS"}},
+         "type": "object",
+         "required": ["data_table_id","conditions"],
+                "title": "QueryOperator"
+           }
            ,        "TimeDiff": {
          "properties" : {"years" : {"type": "integer","title": "YEARS"},"months" : {"type": "integer","title": "MONTHS"},"days" : {"type": "integer","title": "DAYS"}},
          "type": "object",
@@ -2035,9 +2042,9 @@
                 "title": "TimeDiff"
            }
            ,        "TransformOptions": {
-         "properties" : {"JOIN" : {"$ref": "#/components/schemas/JoinOperator","title": "JOIN"},"CONCAT" : {"$ref": "#/components/schemas/ConcatOperator","title": "CONCAT"},"AGGREGATE" : {"$ref": "#/components/schemas/AggregateOperator","title": "AGGREGATE"},"WHERE" : {"$ref": "#/components/schemas/WhereOperator","title": "WHERE"},"EVALUATE" : {"$ref": "#/components/schemas/EvaluateOperator","title": "EVALUATE"}},
+         "properties" : {"JOIN" : {"$ref": "#/components/schemas/JoinOperator","title": "JOIN"},"CONCAT" : {"$ref": "#/components/schemas/ConcatOperator","title": "CONCAT"},"AGGREGATE" : {"$ref": "#/components/schemas/AggregateOperator","title": "AGGREGATE"},"QUERY" : {"$ref": "#/components/schemas/QueryOperator","title": "QUERY"},"EVAL" : {"$ref": "#/components/schemas/EvaluateOperator","title": "EVAL"}},
          "type": "object",
-         "required": ["JOIN","CONCAT","AGGREGATE","WHERE","EVALUATE"],
+         "required": ["JOIN","CONCAT","AGGREGATE","QUERY","EVAL"],
                 "title": "TransformOptions"
            }
            ,        "TransformPublicDataTableRequest": {
@@ -2051,13 +2058,6 @@
          "type": "object",
          "required": ["data_table_id"],
                 "title": "UpdatePublicDataTableRequest"
-           }
-           ,        "WhereOperator": {
-         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"conditions" : {"items": {"type": "string"},
-               "type": "array","title": "CONDITIONS"}},
-         "type": "object",
-         "required": ["data_table_id","conditions"],
-                "title": "WhereOperator"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},

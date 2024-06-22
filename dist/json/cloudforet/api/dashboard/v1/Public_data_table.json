@@ -33,39 +33,6 @@
           ]
         },
         {
-          "name": "AggregateType",
-          "longName": "AggregateOperator.AggregateType",
-          "fullName": "spaceone.api.dashboard.v1.AggregateOperator.AggregateType",
-          "description": "",
-          "values": [
-            {
-              "name": "AGGREGATE_TYPE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "SUM",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "AVG",
-              "number": "2",
-              "description": ""
-            },
-            {
-              "name": "MAX",
-              "number": "3",
-              "description": ""
-            },
-            {
-              "name": "MIN",
-              "number": "4",
-              "description": ""
-            }
-          ]
-        },
-        {
           "name": "DataType",
           "longName": "DataType",
           "fullName": "spaceone.api.dashboard.v1.DataType",
@@ -100,22 +67,22 @@
               "description": ""
             },
             {
-              "name": "INNER",
+              "name": "inner",
               "number": "1",
               "description": ""
             },
             {
-              "name": "LEFT",
+              "name": "left",
               "number": "2",
               "description": ""
             },
             {
-              "name": "RIGHT",
+              "name": "right",
               "number": "3",
               "description": ""
             },
             {
-              "name": "OUTER",
+              "name": "outer",
               "number": "4",
               "description": ""
             }
@@ -468,12 +435,12 @@
               "defaultValue": ""
             },
             {
-              "name": "operator",
+              "name": "function",
               "description": "",
               "label": "",
-              "type": "AggregateType",
-              "longType": "AggregateOperator.AggregateType",
-              "fullType": "spaceone.api.dashboard.v1.AggregateOperator.AggregateType",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1106,6 +1073,42 @@
           ]
         },
         {
+          "name": "QueryOperator",
+          "longName": "QueryOperator",
+          "fullName": "spaceone.api.dashboard.v1.QueryOperator",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_table_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "conditions",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "TimeDiff",
           "longName": "TimeDiff",
           "fullName": "spaceone.api.dashboard.v1.TimeDiff",
@@ -1200,19 +1203,19 @@
               "defaultValue": ""
             },
             {
-              "name": "WHERE",
+              "name": "QUERY",
               "description": "",
               "label": "",
-              "type": "WhereOperator",
-              "longType": "WhereOperator",
-              "fullType": "spaceone.api.dashboard.v1.WhereOperator",
+              "type": "QueryOperator",
+              "longType": "QueryOperator",
+              "fullType": "spaceone.api.dashboard.v1.QueryOperator",
               "ismap": false,
               "isoneof": true,
               "oneofdecl": "operator",
               "defaultValue": ""
             },
             {
-              "name": "EVALUATE",
+              "name": "EVAL",
               "description": "",
               "label": "",
               "type": "EvaluateOperator",
@@ -1350,42 +1353,6 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "WhereOperator",
-          "longName": "WhereOperator",
-          "fullName": "spaceone.api.dashboard.v1.WhereOperator",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "data_table_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "conditions",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
