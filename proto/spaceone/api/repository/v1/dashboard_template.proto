@@ -1,0 +1,156 @@
+syntax = "proto3";
+
+package spaceone.api.repository.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/repository/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/repository/v1/repository.proto";
+
+
+service DashboardTemplate {
+  rpc register (RegisterDashboardTemplateRequest) returns (DashboardTemplateInfo) {
+    option (google.api.http) = {
+      post: "/repository/v1/dashboard-template/register"
+      body: "*"
+    };
+  }
+
+  rpc update (UpdateDashboardTemplateRequest) returns (DashboardTemplateInfo) {
+    option (google.api.http) = {
+      post: "/repository/v1/dashboard-template/update"
+      body: "*"
+    };
+  }
+
+  rpc deregister (DashboardTemplateRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/repository/v1/dashboard-template/deregister"
+      body: "*"
+    };
+  }
+
+  rpc enable (DashboardTemplateRequest) returns (DashboardTemplateInfo) {
+    option (google.api.http) = {
+      post: "/repository/v1/dashboard-template/enable"
+      body: "*"
+    };
+  }
+
+  rpc disable (DashboardTemplateRequest) returns (DashboardTemplateInfo) {
+    option (google.api.http) = {
+      post: "/repository/v1/dashboard-template/disable"
+      body: "*"
+    };
+  }
+
+  rpc get (RepositoryDashboardTemplateRequest) returns (DashboardTemplateInfo) {
+    option (google.api.http) = {
+      post: "/repository/v1/dashboard-template/get"
+      body: "*"
+    };
+  }
+
+  rpc list (DashboardTemplateQuery) returns (DashboardTemplatesInfo) {
+    option (google.api.http) = {
+      post: "/repository/v1/dashboard-template/list"
+      body: "*"
+    };
+  }
+}
+
+enum DashboardTemplateType {
+  NONE = 0;
+  MULTI = 1;
+  SINGLE = 2;
+}
+
+message RegisterDashboardTemplateRequest {
+  // +optional
+  string template_id = 1;
+  string name = 2;
+  // +optional
+  DashboardTemplateType template_type = 3;
+  // +optional
+  google.protobuf.ListValue dashboards = 4;
+  // +optional
+  google.protobuf.ListValue labels = 5;
+  // +optional
+  google.protobuf.Struct tags = 6;
+}
+
+message UpdateDashboardTemplateRequest {
+  string template_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  DashboardTemplateType template_type = 3;
+  // +optional
+  google.protobuf.ListValue dashboards = 4;
+  // +optional
+  google.protobuf.ListValue labels = 5;
+  // +optional
+  google.protobuf.Struct tags = 6;
+}
+
+message DashboardTemplateRequest {
+  string template_id = 1;
+}
+
+message RepositoryDashboardTemplateRequest {
+  string template_id = 1;
+  // +optional
+  string repository_id = 21;
+}
+
+message DashboardTemplateQuery {
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
+
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string template_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  State state = 4;
+  // +optional
+  DashboardTemplateType template_type = 5;
+  // +optional
+  string repository_id = 21;
+
+}
+
+message DashboardTemplateInfo {
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
+
+  string template_id = 1;
+  string name = 2;
+  State  state = 3;
+  DashboardTemplateType template_type = 4;
+  google.protobuf.ListValue dashboards = 5;
+  google.protobuf.ListValue labels = 6;
+  google.protobuf.Struct tags = 7;
+
+  string domain_id = 21;
+  RepositoryInfo repository_info = 22;
+
+  string created_at = 31;
+  string updated_at = 32;
+}
+
+message DashboardTemplatesInfo {
+  repeated DashboardTemplateInfo results = 1;
+  int32 total_count = 2;
+}
