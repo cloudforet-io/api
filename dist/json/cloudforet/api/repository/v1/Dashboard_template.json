@@ -1,8 +1,8 @@
 {
   "files": [
     {
-      "name": "spaceone/api/repository/v1/plugin.proto",
-      "description": "A Plugin is a resource containing data of deployable plugins such as container image and registry URL.",
+      "name": "spaceone/api/repository/v1/dashboard_template.proto",
+      "description": "",
       "package": "spaceone.api.repository.v1",
       "hasEnums": true,
       "hasExtensions": false,
@@ -11,8 +11,8 @@
       "enums": [
         {
           "name": "State",
-          "longName": "PluginInfo.State",
-          "fullName": "spaceone.api.repository.v1.PluginInfo.State",
+          "longName": "DashboardTemplateInfo.State",
+          "fullName": "spaceone.api.repository.v1.DashboardTemplateInfo.State",
           "description": "",
           "values": [
             {
@@ -34,8 +34,8 @@
         },
         {
           "name": "State",
-          "longName": "PluginQuery.State",
-          "fullName": "spaceone.api.repository.v1.PluginQuery.State",
+          "longName": "DashboardTemplateQuery.State",
+          "fullName": "spaceone.api.repository.v1.DashboardTemplateQuery.State",
           "description": "",
           "values": [
             {
@@ -56,34 +56,24 @@
           ]
         },
         {
-          "name": "PublicRegistryType",
-          "longName": "PublicRegistryType",
-          "fullName": "spaceone.api.repository.v1.PublicRegistryType",
+          "name": "DashboardTemplateType",
+          "longName": "DashboardTemplateType",
+          "fullName": "spaceone.api.repository.v1.DashboardTemplateType",
           "description": "",
           "values": [
             {
-              "name": "NONE_REGISTRY_TYPE",
+              "name": "NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "DOCKER_HUB",
+              "name": "MULTI",
               "number": "1",
               "description": ""
             },
             {
-              "name": "AWS_PRIVATE_ECR",
+              "name": "SINGLE",
               "number": "2",
-              "description": ""
-            },
-            {
-              "name": "HARBOR",
-              "number": "3",
-              "description": ""
-            },
-            {
-              "name": "GITHUB",
-              "number": "4",
               "description": ""
             }
           ]
@@ -92,17 +82,17 @@
       "extensions": [],
       "messages": [
         {
-          "name": "PluginInfo",
-          "longName": "PluginInfo",
-          "fullName": "spaceone.api.repository.v1.PluginInfo",
-          "description": "{\n   \"plugin_id\": \"plugin-jira-noti-protocol\",\n   \"name\": \"JIRA Issue notification\",\n   \"image\": \"pyengine/plugin-jira-noti-protocol\",\n   \"registry_url\": \"registry.hub.docker.com\",\n   \"state\": \"ENABLED\",\n   \"service_type\": \"notification.Procotol\",\n   \"provider\": \"atlassian\",\n   \"registry_type\": \"DOCKER_HUB\",\n   \"registry_config\": {},\n   \"capability\": {\n       \"supported_schema\": [\n           \"atlassian_jira\"\n       ]\n   },\n   \"template\": {\n       \"options\": {\n           \"schema\": {\n               \"type\": \"object\",\n               \"required\": [],\n               \"properties\": {\n                   \"project_id\": {\n                       \"type\": \"string\",\n                       \"title\": \"Project ID\",\n                       \"minLength\": 4.0\n                   },\n                   \"sa_name\": {\n                       \"title\": \"Service Account\",\n                       \"type\": \"string\",\n                       \"minLength\": 4.0\n                   }\n               }\n           }\n       }\n   },\n   \"labels\": [\n       \"jira\",\n       \"atlassian\",\n       \"notification\"\n   ],\n   \"tags\": {\n       \"description\": \"Atlassian JIRA Issue notification\",\n       \"icon\": \"https://icon-path/jira-icon.png\"\n   },\n   \"repository_info\": {\n       \"repository_id\": \"repo-123456789012\",\n       \"name\": \"Marketplace\",\n       \"repository_type\": \"remote\"\n   },\n   \"domain_id\": \"domain-123456789012\",\n   \"created_at\": \"2022-01-01T08:02:38.094Z\",\n   \"updated_at\": \"2022-01-01T08:02:38.094Z\"\n}",
+          "name": "DashboardTemplateInfo",
+          "longName": "DashboardTemplateInfo",
+          "fullName": "spaceone.api.repository.v1.DashboardTemplateInfo",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "plugin_id",
+              "name": "template_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -130,92 +120,32 @@
               "description": "",
               "label": "",
               "type": "State",
-              "longType": "PluginInfo.State",
-              "fullType": "spaceone.api.repository.v1.PluginInfo.State",
+              "longType": "DashboardTemplateInfo.State",
+              "fullType": "spaceone.api.repository.v1.DashboardTemplateInfo.State",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "resource_type",
+              "name": "template_type",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "DashboardTemplateType",
+              "longType": "DashboardTemplateType",
+              "fullType": "spaceone.api.repository.v1.DashboardTemplateType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "image",
+              "name": "dashboards",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "provider",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "registry_type",
-              "description": "",
-              "label": "",
-              "type": "PublicRegistryType",
-              "longType": "PublicRegistryType",
-              "fullType": "spaceone.api.repository.v1.PublicRegistryType",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "registry_url",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "registry_config",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "capability",
-              "description": "",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "type": "ListValue",
+              "longType": "google.protobuf.ListValue",
+              "fullType": "google.protobuf.ListValue",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -296,10 +226,10 @@
           ]
         },
         {
-          "name": "PluginQuery",
-          "longName": "PluginQuery",
-          "fullName": "spaceone.api.repository.v1.PluginQuery",
-          "description": "{\n   \"query\": {},\n   \"repository_id\": \"repo-123456789012\"\n}",
+          "name": "DashboardTemplateQuery",
+          "longName": "DashboardTemplateQuery",
+          "fullName": "spaceone.api.repository.v1.DashboardTemplateQuery",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -318,7 +248,7 @@
               "defaultValue": ""
             },
             {
-              "name": "plugin_id",
+              "name": "template_id",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -346,44 +276,20 @@
               "description": "+optional",
               "label": "",
               "type": "State",
-              "longType": "PluginQuery.State",
-              "fullType": "spaceone.api.repository.v1.PluginQuery.State",
+              "longType": "DashboardTemplateQuery.State",
+              "fullType": "spaceone.api.repository.v1.DashboardTemplateQuery.State",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "resource_type",
+              "name": "template_type",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "provider",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "registry_type",
-              "description": "+optional",
-              "label": "",
-              "type": "PublicRegistryType",
-              "longType": "PublicRegistryType",
-              "fullType": "spaceone.api.repository.v1.PublicRegistryType",
+              "type": "DashboardTemplateType",
+              "longType": "DashboardTemplateType",
+              "fullType": "spaceone.api.repository.v1.DashboardTemplateType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -404,17 +310,17 @@
           ]
         },
         {
-          "name": "PluginRequest",
-          "longName": "PluginRequest",
-          "fullName": "spaceone.api.repository.v1.PluginRequest",
-          "description": "{\n   \"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n}",
+          "name": "DashboardTemplateRequest",
+          "longName": "DashboardTemplateRequest",
+          "fullName": "spaceone.api.repository.v1.DashboardTemplateRequest",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "plugin_id",
+              "name": "template_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -428,10 +334,10 @@
           ]
         },
         {
-          "name": "PluginsInfo",
-          "longName": "PluginsInfo",
-          "fullName": "spaceone.api.repository.v1.PluginsInfo",
-          "description": "{\n   \"results\": [\n       {\n           \"plugin_id\": \"plugin-api-direct-mon-webhook\",\n           \"name\": \"API Direct Webhook\",\n           \"image\": \"pyengine/plugin-api-direct-mon-webhook\",\n           \"registry_url\": \"registry.hub.docker.com\",\n           \"state\": \"ENABLED\",\n           \"service_type\": \"monitoring.Webhook\",\n           \"registry_type\": \"DOCKER_HUB\",\n           \"registry_config\": {},\n           \"capability\": {},\n           \"template\": {},\n           \"labels\": [],\n           \"tags\": {\n               \"icon\": \"https://icon-url/icon.svg\"\n           },\n           \"repository_info\": {\n               \"repository_id\": \"repo-123456789012\",\n               \"name\": \"Marketplace\",\n               \"repository_type\": \"remote\"\n           },\n           \"domain_id\": \"domain-987654321098\",\n           \"created_at\": \"2022-01-01T03:25:10.408Z\",\n           \"updated_at\": \"2022-01-01T03:25:10.408Z\"\n       },\n       {\n           \"plugin_id\": \"plugin-aws-hyperbilling-cost-datasource\",\n           \"name\": \"AWS HyperBilling Cost Analysis Data Source\",\n           \"image\": \"pyengine/plugin-aws-hyperbilling-cost-datasource\",\n           \"registry_url\": \"registry.hub.docker.com\",\n           \"state\": \"ENABLED\",\n           \"service_type\": \"cost_analysis.DataSoruce\",\n           \"registry_type\": \"DOCKER_HUB\",\n           \"registry_config\": {},\n           \"capability\": {},\n           \"template\": {},\n           \"labels\": [],\n           \"tags\": {},\n           \"repository_info\": {\n               \"repository_id\": \"repo-123456789012\",\n               \"name\": \"Marketplace\",\n               \"repository_type\": \"remote\"\n           },\n           \"domain_id\": \"domain-987654321098\",\n           \"created_at\": \"2022-01-01T04:56:55.082Z\",\n           \"updated_at\": \"2022-01-01T04:56:55.082Z\"\n       }\n   ],\n   \"total_count\": 2\n}",
+          "name": "DashboardTemplatesInfo",
+          "longName": "DashboardTemplatesInfo",
+          "fullName": "spaceone.api.repository.v1.DashboardTemplatesInfo",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -441,9 +347,9 @@
               "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "PluginInfo",
-              "longType": "PluginInfo",
-              "fullType": "spaceone.api.repository.v1.PluginInfo",
+              "type": "DashboardTemplateInfo",
+              "longType": "DashboardTemplateInfo",
+              "fullType": "spaceone.api.repository.v1.DashboardTemplateInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -464,15 +370,27 @@
           ]
         },
         {
-          "name": "RegisterPluginRequest",
-          "longName": "RegisterPluginRequest",
-          "fullName": "spaceone.api.repository.v1.RegisterPluginRequest",
-          "description": "{\n   \"name\": \"JIRA Software Collector\",\n   \"service_type\": \"inventory.Collector\",\n   \"image\": \"cloudforet/plugin-jira-noti-protocol\",\n   \"registry_type\": \"DOCKER_HUB\",\n   \"registry_config\": {},\n   \"provider\": \"jira\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"jira-software-secret-api-token\"\n       ]\n   },\n   \"labels\": [\n       \"jira\",\n       \"atlassian\",\n       \"notification\"\n   ],\n   \"tags\": {\n       \"description\": \"Atlassian JIRA Issue notification\",\n       \"icon\": \"https://icon-path/jira-icon.png\"\n   }\n}",
+          "name": "RegisterDashboardTemplateRequest",
+          "longName": "RegisterDashboardTemplateRequest",
+          "fullName": "spaceone.api.repository.v1.RegisterDashboardTemplateRequest",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
+            {
+              "name": "template_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
             {
               "name": "name",
               "description": "",
@@ -486,192 +404,24 @@
               "defaultValue": ""
             },
             {
-              "name": "resource_type",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "image",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "provider",
+              "name": "template_type",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "DashboardTemplateType",
+              "longType": "DashboardTemplateType",
+              "fullType": "spaceone.api.repository.v1.DashboardTemplateType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "registry_type",
-              "description": "+optional",
-              "label": "",
-              "type": "PublicRegistryType",
-              "longType": "PublicRegistryType",
-              "fullType": "spaceone.api.repository.v1.PublicRegistryType",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "registry_config",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "capability",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "labels",
+              "name": "dashboards",
               "description": "+optional",
               "label": "",
               "type": "ListValue",
               "longType": "google.protobuf.ListValue",
               "fullType": "google.protobuf.ListValue",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "tags",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "plugin_id",
-              "description": "if plugin_id is not provided, it will be generated by image name\n+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "RepositoryPluginRequest",
-          "longName": "RepositoryPluginRequest",
-          "fullName": "spaceone.api.repository.v1.RepositoryPluginRequest",
-          "description": "{\n   \"plugin_id\": \"plugin-aws-sns-mon-webhook\",\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "plugin_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "repository_id",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "UpdatePluginRequest",
-          "longName": "UpdatePluginRequest",
-          "fullName": "spaceone.api.repository.v1.UpdatePluginRequest",
-          "description": "{\n   \"name\": \"JIRA Software Collector\",\n   \"capability\": {\n       \"supported_schema\": [\n           \"jira-software-secret-api-token\"\n       ]\n   },\n   \"labels\": [\n       \"jira\",\n       \"atlassian\",\n       \"notification\"\n   ],\n   \"tags\": {\n       \"description\": \"Atlassian JIRA Issue notification\",\n       \"icon\": \"https://icon-path/jira-icon.png\"\n   }\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "plugin_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "capability",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -704,46 +454,118 @@
           ]
         },
         {
-          "name": "VersionsInfo",
-          "longName": "VersionsInfo",
-          "fullName": "spaceone.api.repository.v1.VersionsInfo",
-          "description": "{\n   \"total_count\": 1,\n   \"results\": [\n       \"1.2.2\",\n       \"1.2.1.20220429.104002\",\n       \"1.2.1.20220422.161421\",\n       \"1.2.1.20220411.113807\",\n       \"1.2.1\"\n   ]\n}",
+          "name": "RepositoryDashboardTemplateRequest",
+          "longName": "RepositoryDashboardTemplateRequest",
+          "fullName": "spaceone.api.repository.v1.RepositoryDashboardTemplateRequest",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "version",
-              "description": "deprecated field",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "total_count",
+              "name": "template_id",
               "description": "",
               "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "results",
-              "description": "",
-              "label": "repeated",
+              "name": "repository_id",
+              "description": "+optional",
+              "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateDashboardTemplateRequest",
+          "longName": "UpdateDashboardTemplateRequest",
+          "fullName": "spaceone.api.repository.v1.UpdateDashboardTemplateRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "template_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "template_type",
+              "description": "+optional",
+              "label": "",
+              "type": "DashboardTemplateType",
+              "longType": "DashboardTemplateType",
+              "fullType": "spaceone.api.repository.v1.DashboardTemplateType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "dashboards",
+              "description": "+optional",
+              "label": "",
+              "type": "ListValue",
+              "longType": "google.protobuf.ListValue",
+              "fullType": "google.protobuf.ListValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "labels",
+              "description": "+optional",
+              "label": "",
+              "type": "ListValue",
+              "longType": "google.protobuf.ListValue",
+              "fullType": "google.protobuf.ListValue",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -754,28 +576,28 @@
       ],
       "services": [
         {
-          "name": "Plugin",
-          "longName": "Plugin",
-          "fullName": "spaceone.api.repository.v1.Plugin",
+          "name": "DashboardTemplate",
+          "longName": "DashboardTemplate",
+          "fullName": "spaceone.api.repository.v1.DashboardTemplate",
           "description": "",
           "methods": [
             {
               "name": "register",
-              "description": "Registers a Plugin. The parameter `registry_type`, meaning container registry type, can be either `DOCKER_HUB` or `AWS_PRIVATE_ECR`. The default value of the `registry_type` is `DOCKER_HUB`. The parameter `registry_url` is required if the `registry_type` is not `DOCKER_HUB`. The parameter `image` is limited to 40 characters.",
-              "requestType": "RegisterPluginRequest",
-              "requestLongType": "RegisterPluginRequest",
-              "requestFullType": "spaceone.api.repository.v1.RegisterPluginRequest",
+              "description": "",
+              "requestType": "RegisterDashboardTemplateRequest",
+              "requestLongType": "RegisterDashboardTemplateRequest",
+              "requestFullType": "spaceone.api.repository.v1.RegisterDashboardTemplateRequest",
               "requestStreaming": false,
-              "responseType": "PluginInfo",
-              "responseLongType": "PluginInfo",
-              "responseFullType": "spaceone.api.repository.v1.PluginInfo",
+              "responseType": "DashboardTemplateInfo",
+              "responseLongType": "DashboardTemplateInfo",
+              "responseFullType": "spaceone.api.repository.v1.DashboardTemplateInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/repository/v1/plugin/register",
+                      "pattern": "/repository/v1/dashboard-template/register",
                       "body": "*"
                     }
                   ]
@@ -784,21 +606,21 @@
             },
             {
               "name": "update",
-              "description": "Updates a specific Plugin registered. A Plugin can be updated only if its Repository's `repository_type` is `local`. You can make changes in Plugin settings, including `template` and its options, `schema`.",
-              "requestType": "UpdatePluginRequest",
-              "requestLongType": "UpdatePluginRequest",
-              "requestFullType": "spaceone.api.repository.v1.UpdatePluginRequest",
+              "description": "",
+              "requestType": "UpdateDashboardTemplateRequest",
+              "requestLongType": "UpdateDashboardTemplateRequest",
+              "requestFullType": "spaceone.api.repository.v1.UpdateDashboardTemplateRequest",
               "requestStreaming": false,
-              "responseType": "PluginInfo",
-              "responseLongType": "PluginInfo",
-              "responseFullType": "spaceone.api.repository.v1.PluginInfo",
+              "responseType": "DashboardTemplateInfo",
+              "responseLongType": "DashboardTemplateInfo",
+              "responseFullType": "spaceone.api.repository.v1.DashboardTemplateInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/repository/v1/plugin/update",
+                      "pattern": "/repository/v1/dashboard-template/update",
                       "body": "*"
                     }
                   ]
@@ -807,10 +629,10 @@
             },
             {
               "name": "deregister",
-              "description": "Deregisters and deletes a specific Plugin. You must specify the `plugin_id` of the Plugin to deregister.",
-              "requestType": "PluginRequest",
-              "requestLongType": "PluginRequest",
-              "requestFullType": "spaceone.api.repository.v1.PluginRequest",
+              "description": "",
+              "requestType": "DashboardTemplateRequest",
+              "requestLongType": "DashboardTemplateRequest",
+              "requestFullType": "spaceone.api.repository.v1.DashboardTemplateRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -821,7 +643,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/repository/v1/plugin/deregister",
+                      "pattern": "/repository/v1/dashboard-template/deregister",
                       "body": "*"
                     }
                   ]
@@ -830,21 +652,21 @@
             },
             {
               "name": "enable",
-              "description": "Enables a specific Plugin. If the Plugin is enabled, the Plugin can be used as its parameter `state` becomes `ENABLED`.",
-              "requestType": "PluginRequest",
-              "requestLongType": "PluginRequest",
-              "requestFullType": "spaceone.api.repository.v1.PluginRequest",
+              "description": "",
+              "requestType": "DashboardTemplateRequest",
+              "requestLongType": "DashboardTemplateRequest",
+              "requestFullType": "spaceone.api.repository.v1.DashboardTemplateRequest",
               "requestStreaming": false,
-              "responseType": "PluginInfo",
-              "responseLongType": "PluginInfo",
-              "responseFullType": "spaceone.api.repository.v1.PluginInfo",
+              "responseType": "DashboardTemplateInfo",
+              "responseLongType": "DashboardTemplateInfo",
+              "responseFullType": "spaceone.api.repository.v1.DashboardTemplateInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/repository/v1/plugin/enable",
+                      "pattern": "/repository/v1/dashboard-template/enable",
                       "body": "*"
                     }
                   ]
@@ -853,44 +675,21 @@
             },
             {
               "name": "disable",
-              "description": "Disables a specific Plugin. If the Plugin is disabled, the Plugin cannot be used as its parameter `state` becomes `DISABLED`.",
-              "requestType": "PluginRequest",
-              "requestLongType": "PluginRequest",
-              "requestFullType": "spaceone.api.repository.v1.PluginRequest",
+              "description": "",
+              "requestType": "DashboardTemplateRequest",
+              "requestLongType": "DashboardTemplateRequest",
+              "requestFullType": "spaceone.api.repository.v1.DashboardTemplateRequest",
               "requestStreaming": false,
-              "responseType": "PluginInfo",
-              "responseLongType": "PluginInfo",
-              "responseFullType": "spaceone.api.repository.v1.PluginInfo",
+              "responseType": "DashboardTemplateInfo",
+              "responseLongType": "DashboardTemplateInfo",
+              "responseFullType": "spaceone.api.repository.v1.DashboardTemplateInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/repository/v1/plugin/disable",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "get_versions",
-              "description": "Gets all version data of a specific Plugin from its Repository. The parameter `plugin_id` is used as an identifier of a Plugin to get version data.",
-              "requestType": "RepositoryPluginRequest",
-              "requestLongType": "RepositoryPluginRequest",
-              "requestFullType": "spaceone.api.repository.v1.RepositoryPluginRequest",
-              "requestStreaming": false,
-              "responseType": "VersionsInfo",
-              "responseLongType": "VersionsInfo",
-              "responseFullType": "spaceone.api.repository.v1.VersionsInfo",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/repository/v1/plugin/get-versions",
+                      "pattern": "/repository/v1/dashboard-template/disable",
                       "body": "*"
                     }
                   ]
@@ -899,21 +698,21 @@
             },
             {
               "name": "get",
-              "description": "Gets a specific Plugin. Prints detailed information about the Plugin, including  `image`, `registry_url`, and `state`.",
-              "requestType": "RepositoryPluginRequest",
-              "requestLongType": "RepositoryPluginRequest",
-              "requestFullType": "spaceone.api.repository.v1.RepositoryPluginRequest",
+              "description": "",
+              "requestType": "RepositoryDashboardTemplateRequest",
+              "requestLongType": "RepositoryDashboardTemplateRequest",
+              "requestFullType": "spaceone.api.repository.v1.RepositoryDashboardTemplateRequest",
               "requestStreaming": false,
-              "responseType": "PluginInfo",
-              "responseLongType": "PluginInfo",
-              "responseFullType": "spaceone.api.repository.v1.PluginInfo",
+              "responseType": "DashboardTemplateInfo",
+              "responseLongType": "DashboardTemplateInfo",
+              "responseFullType": "spaceone.api.repository.v1.DashboardTemplateInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/repository/v1/plugin/get",
+                      "pattern": "/repository/v1/dashboard-template/get",
                       "body": "*"
                     }
                   ]
@@ -922,21 +721,21 @@
             },
             {
               "name": "list",
-              "description": "Gets a list of all Plugins registered in a specific Repository. The parameter `repository_id` is used as an identifier of a Repository to get its list of Plugins. You can use a query to get a filtered list of Plugins.",
-              "requestType": "PluginQuery",
-              "requestLongType": "PluginQuery",
-              "requestFullType": "spaceone.api.repository.v1.PluginQuery",
+              "description": "",
+              "requestType": "DashboardTemplateQuery",
+              "requestLongType": "DashboardTemplateQuery",
+              "requestFullType": "spaceone.api.repository.v1.DashboardTemplateQuery",
               "requestStreaming": false,
-              "responseType": "PluginsInfo",
-              "responseLongType": "PluginsInfo",
-              "responseFullType": "spaceone.api.repository.v1.PluginsInfo",
+              "responseType": "DashboardTemplatesInfo",
+              "responseLongType": "DashboardTemplatesInfo",
+              "responseFullType": "spaceone.api.repository.v1.DashboardTemplatesInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/repository/v1/plugin/list",
+                      "pattern": "/repository/v1/dashboard-template/list",
                       "body": "*"
                     }
                   ]
