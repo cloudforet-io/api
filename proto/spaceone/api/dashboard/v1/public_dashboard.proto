@@ -26,9 +26,16 @@ service PublicDashboard{
     };
   }
 
-  rpc share (SharePublicDashboardRequest) returns (PublicDashboardInfo) {
+  rpc share (PublicDashboardRequest) returns (PublicDashboardInfo) {
     option (google.api.http) = {
       post: "/dashboard/v1/public-dashboard/share"
+      body: "*"
+    };
+  }
+
+  rpc unshare (PublicDashboardRequest) returns (PublicDashboardInfo) {
+    option (google.api.http) = {
+      post: "/dashboard/v1/public-dashboard/unshare"
       body: "*"
     };
   }
@@ -60,11 +67,6 @@ service PublicDashboard{
       body: "*"
     };
   }
-}
-
-message SharedDashboard {
-  bool workspace = 1;
-  bool project = 2;
 }
 
 message Layout {
@@ -131,12 +133,6 @@ message UpdatePublicDashboardRequest {
   string folder_id = 21;
 }
 
-message SharePublicDashboardRequest {
-  string dashboard_id = 1;
-  bool workspace = 2;
-  bool project = 3;
-}
-
 message PublicDashboardRequest {
   string dashboard_id = 1;
 }
@@ -176,7 +172,7 @@ message PublicDashboardInfo {
   google.protobuf.ListValue labels = 10;
   google.protobuf.Struct tags = 11;
 
-  SharedDashboard shared = 19;
+  bool shared = 19;
   ResourceGroup resource_group = 20;
   string domain_id = 21;
   string workspace_id = 22;

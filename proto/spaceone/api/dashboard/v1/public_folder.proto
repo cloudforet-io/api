@@ -26,9 +26,16 @@ service PublicFolder{
     };
   }
 
-  rpc share (SharePublicFolderRequest) returns (PublicFolderInfo) {
+  rpc share (PublicFolderRequest) returns (PublicFolderInfo) {
     option (google.api.http) = {
       post: "/dashboard/v1/public-folder/share"
+      body: "*"
+    };
+  }
+
+  rpc unshare (PublicFolderRequest) returns (PublicFolderInfo) {
+    option (google.api.http) = {
+      post: "/dashboard/v1/public-folder/unshare"
       body: "*"
     };
   }
@@ -60,11 +67,6 @@ service PublicFolder{
       body: "*"
     };
   }
-}
-
-message SharedFolder {
-  bool workspace = 1;
-  bool project = 2;
 }
 
 message CreatePublicFolderRequest {
@@ -100,12 +102,6 @@ message PublicFolderRequest {
   string folder_id = 1;
 }
 
-message SharePublicFolderRequest {
-  string folder_id = 1;
-  bool workspace = 2;
-  bool project = 3;
-}
-
 message PublicFolderQuery {
   // +optional
   spaceone.api.core.v2.Query query = 1;
@@ -131,7 +127,7 @@ message PublicFolderInfo {
   string name = 2;
   google.protobuf.Struct tags = 3;
 
-  SharedFolder shared = 19;
+  bool shared = 19;
   ResourceGroup resource_group = 20;
   string domain_id = 21;
   string workspace_id = 22;
