@@ -88,8 +88,11 @@ message AssetSource {
 }
 
 message CostSource {
-  string data_source_id = 1;
-  string data_key = 2;
+  oneof source {
+    string data_source_id = 1;
+    string plugin_id = 2;
+  }
+  string data_key = 3;
 }
 
 message JoinOperator {
