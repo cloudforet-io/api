@@ -26,6 +26,13 @@ service PublicDashboard{
     };
   }
 
+  rpc share (SharePublicDashboardRequest) returns (PublicDashboardInfo) {
+    option (google.api.http) = {
+      post: "/dashboard/v1/public-dashboard/share"
+      body: "*"
+    };
+  }
+
   rpc delete (PublicDashboardRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/dashboard/v1/public-dashboard/delete"
@@ -53,6 +60,11 @@ service PublicDashboard{
       body: "*"
     };
   }
+}
+
+message SharedDashboard {
+  bool workspace = 1;
+  bool project = 2;
 }
 
 message Layout {
@@ -119,6 +131,12 @@ message UpdatePublicDashboardRequest {
   string folder_id = 21;
 }
 
+message SharePublicDashboardRequest {
+  string dashboard_id = 1;
+  bool workspace = 2;
+  bool project = 3;
+}
+
 message PublicDashboardRequest {
   string dashboard_id = 1;
 }
@@ -158,6 +176,7 @@ message PublicDashboardInfo {
   google.protobuf.ListValue labels = 10;
   google.protobuf.Struct tags = 11;
 
+  SharedDashboard shared = 19;
   ResourceGroup resource_group = 20;
   string domain_id = 21;
   string workspace_id = 22;
