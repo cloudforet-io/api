@@ -202,9 +202,9 @@
               "name": "shared",
               "description": "",
               "label": "",
-              "type": "SharedFolder",
-              "longType": "SharedFolder",
-              "fullType": "spaceone.api.dashboard.v1.SharedFolder",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -441,90 +441,6 @@
           ]
         },
         {
-          "name": "SharePublicFolderRequest",
-          "longName": "SharePublicFolderRequest",
-          "fullName": "spaceone.api.dashboard.v1.SharePublicFolderRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "folder_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "workspace",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "SharedFolder",
-          "longName": "SharedFolder",
-          "fullName": "spaceone.api.dashboard.v1.SharedFolder",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "workspace",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "project",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "UpdatePublicFolderRequest",
           "longName": "UpdatePublicFolderRequest",
           "fullName": "spaceone.api.dashboard.v1.UpdatePublicFolderRequest",
@@ -629,9 +545,9 @@
             {
               "name": "share",
               "description": "",
-              "requestType": "SharePublicFolderRequest",
-              "requestLongType": "SharePublicFolderRequest",
-              "requestFullType": "spaceone.api.dashboard.v1.SharePublicFolderRequest",
+              "requestType": "PublicFolderRequest",
+              "requestLongType": "PublicFolderRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.PublicFolderRequest",
               "requestStreaming": false,
               "responseType": "PublicFolderInfo",
               "responseLongType": "PublicFolderInfo",
@@ -643,6 +559,29 @@
                     {
                       "method": "POST",
                       "pattern": "/dashboard/v1/public-folder/share",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "unshare",
+              "description": "",
+              "requestType": "PublicFolderRequest",
+              "requestLongType": "PublicFolderRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.PublicFolderRequest",
+              "requestStreaming": false,
+              "responseType": "PublicFolderInfo",
+              "responseLongType": "PublicFolderInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicFolderInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/dashboard/v1/public-folder/unshare",
                       "body": "*"
                     }
                   ]

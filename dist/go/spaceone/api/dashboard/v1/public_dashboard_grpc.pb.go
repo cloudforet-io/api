@@ -23,13 +23,14 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	PublicDashboard_Create_FullMethodName = "/spaceone.api.dashboard.v1.PublicDashboard/create"
-	PublicDashboard_Update_FullMethodName = "/spaceone.api.dashboard.v1.PublicDashboard/update"
-	PublicDashboard_Share_FullMethodName  = "/spaceone.api.dashboard.v1.PublicDashboard/share"
-	PublicDashboard_Delete_FullMethodName = "/spaceone.api.dashboard.v1.PublicDashboard/delete"
-	PublicDashboard_Get_FullMethodName    = "/spaceone.api.dashboard.v1.PublicDashboard/get"
-	PublicDashboard_List_FullMethodName   = "/spaceone.api.dashboard.v1.PublicDashboard/list"
-	PublicDashboard_Stat_FullMethodName   = "/spaceone.api.dashboard.v1.PublicDashboard/stat"
+	PublicDashboard_Create_FullMethodName  = "/spaceone.api.dashboard.v1.PublicDashboard/create"
+	PublicDashboard_Update_FullMethodName  = "/spaceone.api.dashboard.v1.PublicDashboard/update"
+	PublicDashboard_Share_FullMethodName   = "/spaceone.api.dashboard.v1.PublicDashboard/share"
+	PublicDashboard_Unshare_FullMethodName = "/spaceone.api.dashboard.v1.PublicDashboard/unshare"
+	PublicDashboard_Delete_FullMethodName  = "/spaceone.api.dashboard.v1.PublicDashboard/delete"
+	PublicDashboard_Get_FullMethodName     = "/spaceone.api.dashboard.v1.PublicDashboard/get"
+	PublicDashboard_List_FullMethodName    = "/spaceone.api.dashboard.v1.PublicDashboard/list"
+	PublicDashboard_Stat_FullMethodName    = "/spaceone.api.dashboard.v1.PublicDashboard/stat"
 )
 
 // PublicDashboardClient is the client API for PublicDashboard service.
@@ -38,7 +39,8 @@ const (
 type PublicDashboardClient interface {
 	Create(ctx context.Context, in *CreatePublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
 	Update(ctx context.Context, in *UpdatePublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
-	Share(ctx context.Context, in *SharePublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
+	Share(ctx context.Context, in *PublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
+	Unshare(ctx context.Context, in *PublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
 	Delete(ctx context.Context, in *PublicDashboardRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *PublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
 	List(ctx context.Context, in *PublicDashboardQuery, opts ...grpc.CallOption) (*PublicDashboardsInfo, error)
@@ -73,10 +75,20 @@ func (c *publicDashboardClient) Update(ctx context.Context, in *UpdatePublicDash
 	return out, nil
 }
 
-func (c *publicDashboardClient) Share(ctx context.Context, in *SharePublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error) {
+func (c *publicDashboardClient) Share(ctx context.Context, in *PublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PublicDashboardInfo)
 	err := c.cc.Invoke(ctx, PublicDashboard_Share_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *publicDashboardClient) Unshare(ctx context.Context, in *PublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PublicDashboardInfo)
+	err := c.cc.Invoke(ctx, PublicDashboard_Unshare_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -129,7 +141,8 @@ func (c *publicDashboardClient) Stat(ctx context.Context, in *PublicDashboardSta
 type PublicDashboardServer interface {
 	Create(context.Context, *CreatePublicDashboardRequest) (*PublicDashboardInfo, error)
 	Update(context.Context, *UpdatePublicDashboardRequest) (*PublicDashboardInfo, error)
-	Share(context.Context, *SharePublicDashboardRequest) (*PublicDashboardInfo, error)
+	Share(context.Context, *PublicDashboardRequest) (*PublicDashboardInfo, error)
+	Unshare(context.Context, *PublicDashboardRequest) (*PublicDashboardInfo, error)
 	Delete(context.Context, *PublicDashboardRequest) (*empty.Empty, error)
 	Get(context.Context, *PublicDashboardRequest) (*PublicDashboardInfo, error)
 	List(context.Context, *PublicDashboardQuery) (*PublicDashboardsInfo, error)
@@ -147,8 +160,11 @@ func (UnimplementedPublicDashboardServer) Create(context.Context, *CreatePublicD
 func (UnimplementedPublicDashboardServer) Update(context.Context, *UpdatePublicDashboardRequest) (*PublicDashboardInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedPublicDashboardServer) Share(context.Context, *SharePublicDashboardRequest) (*PublicDashboardInfo, error) {
+func (UnimplementedPublicDashboardServer) Share(context.Context, *PublicDashboardRequest) (*PublicDashboardInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Share not implemented")
+}
+func (UnimplementedPublicDashboardServer) Unshare(context.Context, *PublicDashboardRequest) (*PublicDashboardInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unshare not implemented")
 }
 func (UnimplementedPublicDashboardServer) Delete(context.Context, *PublicDashboardRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -212,7 +228,7 @@ func _PublicDashboard_Update_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 func _PublicDashboard_Share_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SharePublicDashboardRequest)
+	in := new(PublicDashboardRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -224,7 +240,25 @@ func _PublicDashboard_Share_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: PublicDashboard_Share_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublicDashboardServer).Share(ctx, req.(*SharePublicDashboardRequest))
+		return srv.(PublicDashboardServer).Share(ctx, req.(*PublicDashboardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PublicDashboard_Unshare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublicDashboardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PublicDashboardServer).Unshare(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PublicDashboard_Unshare_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PublicDashboardServer).Unshare(ctx, req.(*PublicDashboardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -319,6 +353,10 @@ var PublicDashboard_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "share",
 			Handler:    _PublicDashboard_Share_Handler,
+		},
+		{
+			MethodName: "unshare",
+			Handler:    _PublicDashboard_Unshare_Handler,
 		},
 		{
 			MethodName: "delete",
