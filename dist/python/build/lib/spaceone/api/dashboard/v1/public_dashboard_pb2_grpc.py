@@ -51,6 +51,11 @@ class PublicDashboardStub(object):
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.UpdatePublicDashboardRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.FromString,
                 _registered_method=True)
+        self.share = channel.unary_unary(
+                '/spaceone.api.dashboard.v1.PublicDashboard/share',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.SharePublicDashboardRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.FromString,
+                _registered_method=True)
         self.delete = channel.unary_unary(
                 '/spaceone.api.dashboard.v1.PublicDashboard/delete',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardRequest.SerializeToString,
@@ -83,6 +88,12 @@ class PublicDashboardServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def share(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -123,6 +134,11 @@ def add_PublicDashboardServicer_to_server(servicer, server):
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.UpdatePublicDashboardRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.SerializeToString,
+            ),
+            'share': grpc.unary_unary_rpc_method_handler(
+                    servicer.share,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.SharePublicDashboardRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
@@ -199,6 +215,33 @@ class PublicDashboard(object):
             target,
             '/spaceone.api.dashboard.v1.PublicDashboard/update',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.UpdatePublicDashboardRequest.SerializeToString,
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def share(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.dashboard.v1.PublicDashboard/share',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.SharePublicDashboardRequest.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.FromString,
             options,
             channel_credentials,

@@ -427,6 +427,18 @@
               "defaultValue": ""
             },
             {
+              "name": "shared",
+              "description": "",
+              "label": "",
+              "type": "SharedDashboard",
+              "longType": "SharedDashboard",
+              "fullType": "spaceone.api.dashboard.v1.SharedDashboard",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "resource_group",
               "description": "",
               "label": "",
@@ -681,6 +693,90 @@
           ]
         },
         {
+          "name": "SharePublicDashboardRequest",
+          "longName": "SharePublicDashboardRequest",
+          "fullName": "spaceone.api.dashboard.v1.SharePublicDashboardRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "dashboard_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SharedDashboard",
+          "longName": "SharedDashboard",
+          "fullName": "spaceone.api.dashboard.v1.SharedDashboard",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "workspace",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "UpdatePublicDashboardRequest",
           "longName": "UpdatePublicDashboardRequest",
           "fullName": "spaceone.api.dashboard.v1.UpdatePublicDashboardRequest",
@@ -872,6 +968,29 @@
                     {
                       "method": "POST",
                       "pattern": "/dashboard/v1/public-dashboard/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "share",
+              "description": "",
+              "requestType": "SharePublicDashboardRequest",
+              "requestLongType": "SharePublicDashboardRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.SharePublicDashboardRequest",
+              "requestStreaming": false,
+              "responseType": "PublicDashboardInfo",
+              "responseLongType": "PublicDashboardInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicDashboardInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/dashboard/v1/public-dashboard/share",
                       "body": "*"
                     }
                   ]

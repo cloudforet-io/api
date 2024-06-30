@@ -25,6 +25,7 @@ const _ = grpc.SupportPackageIsVersion8
 const (
 	PublicFolder_Create_FullMethodName = "/spaceone.api.dashboard.v1.PublicFolder/create"
 	PublicFolder_Update_FullMethodName = "/spaceone.api.dashboard.v1.PublicFolder/update"
+	PublicFolder_Share_FullMethodName  = "/spaceone.api.dashboard.v1.PublicFolder/share"
 	PublicFolder_Delete_FullMethodName = "/spaceone.api.dashboard.v1.PublicFolder/delete"
 	PublicFolder_Get_FullMethodName    = "/spaceone.api.dashboard.v1.PublicFolder/get"
 	PublicFolder_List_FullMethodName   = "/spaceone.api.dashboard.v1.PublicFolder/list"
@@ -37,6 +38,7 @@ const (
 type PublicFolderClient interface {
 	Create(ctx context.Context, in *CreatePublicFolderRequest, opts ...grpc.CallOption) (*PublicFolderInfo, error)
 	Update(ctx context.Context, in *UpdatePublicFolderRequest, opts ...grpc.CallOption) (*PublicFolderInfo, error)
+	Share(ctx context.Context, in *SharePublicFolderRequest, opts ...grpc.CallOption) (*PublicFolderInfo, error)
 	Delete(ctx context.Context, in *PublicFolderRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *PublicFolderRequest, opts ...grpc.CallOption) (*PublicFolderInfo, error)
 	List(ctx context.Context, in *PublicFolderQuery, opts ...grpc.CallOption) (*PublicFoldersInfo, error)
@@ -65,6 +67,16 @@ func (c *publicFolderClient) Update(ctx context.Context, in *UpdatePublicFolderR
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PublicFolderInfo)
 	err := c.cc.Invoke(ctx, PublicFolder_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *publicFolderClient) Share(ctx context.Context, in *SharePublicFolderRequest, opts ...grpc.CallOption) (*PublicFolderInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PublicFolderInfo)
+	err := c.cc.Invoke(ctx, PublicFolder_Share_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -117,6 +129,7 @@ func (c *publicFolderClient) Stat(ctx context.Context, in *PublicFolderStatQuery
 type PublicFolderServer interface {
 	Create(context.Context, *CreatePublicFolderRequest) (*PublicFolderInfo, error)
 	Update(context.Context, *UpdatePublicFolderRequest) (*PublicFolderInfo, error)
+	Share(context.Context, *SharePublicFolderRequest) (*PublicFolderInfo, error)
 	Delete(context.Context, *PublicFolderRequest) (*empty.Empty, error)
 	Get(context.Context, *PublicFolderRequest) (*PublicFolderInfo, error)
 	List(context.Context, *PublicFolderQuery) (*PublicFoldersInfo, error)
@@ -133,6 +146,9 @@ func (UnimplementedPublicFolderServer) Create(context.Context, *CreatePublicFold
 }
 func (UnimplementedPublicFolderServer) Update(context.Context, *UpdatePublicFolderRequest) (*PublicFolderInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedPublicFolderServer) Share(context.Context, *SharePublicFolderRequest) (*PublicFolderInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Share not implemented")
 }
 func (UnimplementedPublicFolderServer) Delete(context.Context, *PublicFolderRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -191,6 +207,24 @@ func _PublicFolder_Update_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PublicFolderServer).Update(ctx, req.(*UpdatePublicFolderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PublicFolder_Share_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SharePublicFolderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PublicFolderServer).Share(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PublicFolder_Share_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PublicFolderServer).Share(ctx, req.(*SharePublicFolderRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -281,6 +315,10 @@ var PublicFolder_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _PublicFolder_Update_Handler,
+		},
+		{
+			MethodName: "share",
+			Handler:    _PublicFolder_Share_Handler,
 		},
 		{
 			MethodName: "delete",

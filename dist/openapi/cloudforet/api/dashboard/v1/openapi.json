@@ -431,6 +431,35 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-folder/share": {
+       "post": {
+         "tags": ["dashboard > public-folder"],
+         "summary": "Share",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |folder_id||string|True|\n |workspace||boolean|True|\n |project||boolean|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"folder_id" : {"type": "string","title": "FOLDER_ID" },"workspace" : {"type": "boolean","title": "WORKSPACE" },"project" : {"type": "boolean","title": "PROJECT" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicFolderInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicFolderInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/dashboard/public-folder/delete": {
        "post": {
          "tags": ["dashboard > public-folder"],
@@ -750,6 +779,35 @@
              "application/json": {
                "schema": {
                  "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"layouts" : {"items": {"$ref": "#/components/schemas/Layout"}, "type": "array","title": "LAYOUTS" },"vars" : {"type": "object","title": "VARS" },"options" : {"type": "object","title": "OPTIONS" },"variables" : {"type": "object","title": "VARIABLES" },"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" },"folder_id" : {"type": "string","title": "FOLDER_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/PublicDashboardInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/PublicDashboardInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-dashboard/share": {
+       "post": {
+         "tags": ["dashboard > public-dashboard"],
+         "summary": "Share",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |workspace||boolean|True|\n |project||boolean|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"workspace" : {"type": "boolean","title": "WORKSPACE" },"project" : {"type": "boolean","title": "PROJECT" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1722,9 +1780,9 @@
                 "title": "CreatePublicFolderRequest"
            }
            ,        "PublicFolderInfo": {
-         "properties" : {"folder_id" : {"type": "string","title": "FOLDER_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "properties" : {"folder_id" : {"type": "string","title": "FOLDER_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"shared" : {"$ref": "#/components/schemas/SharedFolder","title": "SHARED"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["folder_id","name","tags","resource_group","domain_id","workspace_id","project_id","created_at","updated_at"],
+         "required": ["folder_id","name","tags","shared","resource_group","domain_id","workspace_id","project_id","created_at","updated_at"],
                 "title": "PublicFolderInfo"
            }
            ,        "PublicFolderQuery": {
@@ -1751,6 +1809,18 @@
          "type": "object",
          "required": ["results","total_count"],
                 "title": "PublicFoldersInfo"
+           }
+           ,        "SharePublicFolderRequest": {
+         "properties" : {"folder_id" : {"type": "string","title": "FOLDER_ID"},"workspace" : {"type": "boolean","title": "WORKSPACE"},"project" : {"type": "boolean","title": "PROJECT"}},
+         "type": "object",
+         "required": ["folder_id","workspace","project"],
+                "title": "SharePublicFolderRequest"
+           }
+           ,        "SharedFolder": {
+         "properties" : {"workspace" : {"type": "boolean","title": "WORKSPACE"},"project" : {"type": "boolean","title": "PROJECT"}},
+         "type": "object",
+         "required": ["workspace","project"],
+                "title": "SharedFolder"
            }
            ,        "UpdatePublicFolderRequest": {
          "properties" : {"folder_id" : {"type": "string","title": "FOLDER_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
@@ -1819,9 +1889,9 @@
            }
            ,        "PublicDashboardInfo": {
          "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"version" : {"type": "string","title": "VERSION"},"layouts" : {"items": {"$ref": "#/components/schemas/Layout"},
-               "type": "array","$ref": "#/components/schemas/Layout","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"options" : {"type": "object","title": "OPTIONS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"folder_id" : {"type": "string","title": "FOLDER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+               "type": "array","$ref": "#/components/schemas/Layout","title": "LAYOUTS"},"vars" : {"type": "object","title": "VARS"},"options" : {"type": "object","title": "OPTIONS"},"variables" : {"type": "object","title": "VARIABLES"},"variables_schema" : {"type": "object","title": "VARIABLES_SCHEMA"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"shared" : {"$ref": "#/components/schemas/SharedDashboard","title": "SHARED"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"folder_id" : {"type": "string","title": "FOLDER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["dashboard_id","name","description","version","layouts","vars","options","variables","variables_schema","labels","tags","resource_group","domain_id","workspace_id","project_id","folder_id","created_at","updated_at"],
+         "required": ["dashboard_id","name","description","version","layouts","vars","options","variables","variables_schema","labels","tags","shared","resource_group","domain_id","workspace_id","project_id","folder_id","created_at","updated_at"],
                 "title": "PublicDashboardInfo"
            }
            ,        "PublicDashboardQuery": {
@@ -1848,6 +1918,18 @@
          "type": "object",
          "required": ["results","total_count"],
                 "title": "PublicDashboardsInfo"
+           }
+           ,        "SharePublicDashboardRequest": {
+         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"workspace" : {"type": "boolean","title": "WORKSPACE"},"project" : {"type": "boolean","title": "PROJECT"}},
+         "type": "object",
+         "required": ["dashboard_id","workspace","project"],
+                "title": "SharePublicDashboardRequest"
+           }
+           ,        "SharedDashboard": {
+         "properties" : {"workspace" : {"type": "boolean","title": "WORKSPACE"},"project" : {"type": "boolean","title": "PROJECT"}},
+         "type": "object",
+         "required": ["workspace","project"],
+                "title": "SharedDashboard"
            }
            ,        "UpdatePublicDashboardRequest": {
          "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"layouts" : {"items": {"$ref": "#/components/schemas/Layout"},
