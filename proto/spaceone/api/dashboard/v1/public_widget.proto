@@ -56,37 +56,54 @@ service PublicWidget{
 }
 
 message CreatePublicWidgetRequest {
+  enum State {
+    STATE_NONE = 0;
+    CREATING = 1;
+    ACTIVE = 2;
+    INACTIVE = 3;
+  }
+
   string dashboard_id = 1;
   // +optional
   string name = 2;
   // +optional
-  string description = 3;
+  State state = 3;
   // +optional
-  string widget_type = 4;
+  string description = 4;
   // +optional
-  string size = 5;
+  string widget_type = 5;
   // +optional
-  google.protobuf.Struct options = 6;
+  string size = 6;
   // +optional
-  google.protobuf.Struct tags = 7;
+  google.protobuf.Struct options = 7;
+  // +optional
+  google.protobuf.Struct tags = 8;
 }
 
 message UpdatePublicWidgetRequest {
+  enum State {
+    STATE_NONE = 0;
+    ACTIVE = 1;
+    INACTIVE = 2;
+  }
+
   string widget_id = 1;
   // +optional
   string name = 2;
   // +optional
-  string description = 3;
+  State state = 3;
   // +optional
-  string widget_type = 4;
+  string description = 4;
   // +optional
-  string size = 5;
+  string widget_type = 5;
   // +optional
-  google.protobuf.Struct options = 6;
+  string size = 6;
   // +optional
-  string data_table_id = 7;
+  google.protobuf.Struct options = 7;
   // +optional
-  google.protobuf.Struct tags = 8;
+  string data_table_id = 8;
+  // +optional
+  google.protobuf.Struct tags = 9;
 }
 
 message PublicWidgetRequest {
@@ -117,14 +134,21 @@ message PublicWidgetInfo {
     WORKSPACE = 2;
     PROJECT = 3;
   }
+  enum State {
+    STATE_NONE = 0;
+    CREATING = 1;
+    ACTIVE = 2;
+    INACTIVE = 3;
+  }
 
   string widget_id = 1;
   string name = 2;
-  string description = 3;
-  string widget_type = 4;
-  string size = 5;
-  google.protobuf.Struct options = 6;
-  google.protobuf.Struct tags = 7;
+  State state = 3;
+  string description = 4;
+  string widget_type = 5;
+  string size = 6;
+  google.protobuf.Struct options = 7;
+  google.protobuf.Struct tags = 8;
 
   ResourceGroup resource_group = 20;
   string domain_id = 21;
