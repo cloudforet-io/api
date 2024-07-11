@@ -70,6 +70,10 @@ service Workspace {
   }
 }
 
+message WorkspaceCostInfo {
+  float day = 1;
+  float month = 2;
+}
 
 message CreateWorkSpaceRequest {
   string name = 1;
@@ -104,6 +108,7 @@ message WorkspaceInfo {
     ENABLED = 1;
     DISABLED = 2;
   }
+
   string workspace_id = 1;
   string name = 2;
   State state = 3;
@@ -111,13 +116,26 @@ message WorkspaceInfo {
   string created_by = 5;
   repeated string references = 6;
   bool is_managed = 7;
+
+  bool is_dormant = 11;
+  int32 dormant_ttl = 12;
+  int32 service_account_count = 13;
+  WorkspaceCostInfo cost_info = 14;
+
   string domain_id = 21;
   string trusted_account_id = 22;
   string created_at = 31;
   string last_synced_at = 32;
+  string dormant_updated_at = 33;
 }
 
 message WorkspaceSearchQuery {
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
+
   // +optional
   spaceone.api.core.v2.Query query = 1;
   // +optional
@@ -125,7 +143,13 @@ message WorkspaceSearchQuery {
   // +optional
   string name = 3;
   // +optional
-  string created_by = 4;
+  State state = 4;
+  // +optional
+  string created_by = 5;
+  // +optional
+  bool is_managed = 6;
+  // +optional
+  bool is_dormant = 7;
 }
 
 message WorkspacesInfo {
