@@ -11,7 +11,7 @@ ENV LANG=C.UTF-8
 COPY pkg/* ${PKG_DIR}/
 
 RUN apt-get update && apt-get install -y software-properties-common
-RUN add-apt-repository ppa:longsleep/golang-backports
+RUN add-apt-repository -y ppa:longsleep/golang-backports
 
 RUN apt-get -y upgrade && apt-get install -y \
     $(cat ${PKG_DIR}/apt_packages.txt)
