@@ -60,20 +60,6 @@ service Project {
     };
   }
 
-  rpc add_user_groups (UserGroupsProjectRequest) returns (ProjectInfo) {
-    option (google.api.http) = {
-      post: "/identity/v2/project/add-user-groups"
-      body: "*"
-    };
-  }
-
-  rpc remove_user_groups (UserGroupsProjectRequest) returns (ProjectInfo) {
-    option (google.api.http) = {
-      post: "/identity/v2/project/remove-user-groups"
-      body: "*"
-    };
-  }
-
   rpc get (ProjectRequest) returns (ProjectInfo) {
     option (google.api.http) = {
       post: "/identity/v2/project/get"
@@ -137,21 +123,15 @@ message UsersProjectRequest {
   repeated string users = 2;
 }
 
-message UserGroupsProjectRequest {
-  string project_id = 1;
-  repeated string user_groups = 2;
-}
-
 message ProjectInfo {
   string project_id = 1;
   string name = 2;
   ProjectType project_type = 3;
   google.protobuf.Struct tags = 4;
   repeated string users = 5;
-  repeated string user_groups = 6;
-  string created_by = 7;
-  string reference_id = 8;
-  bool is_managed = 9;
+  string created_by = 6;
+  string reference_id = 7;
+  bool is_managed = 8;
   string domain_id = 21;
   string workspace_id = 22;
   string project_group_id = 23;
@@ -178,9 +158,7 @@ message ProjectSearchQuery {
   // +optional
   string project_group_id = 23;
   // +optional
-  string user_group_id = 24;
-  // +optional
-  string user_id = 25;
+  string user_id = 24;
 }
 
 message ProjectsInfo {
