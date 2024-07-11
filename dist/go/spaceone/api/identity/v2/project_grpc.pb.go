@@ -28,8 +28,6 @@ const (
 	Project_Delete_FullMethodName             = "/spaceone.api.identity.v2.Project/delete"
 	Project_AddUsers_FullMethodName           = "/spaceone.api.identity.v2.Project/add_users"
 	Project_RemoveUsers_FullMethodName        = "/spaceone.api.identity.v2.Project/remove_users"
-	Project_AddUserGroups_FullMethodName      = "/spaceone.api.identity.v2.Project/add_user_groups"
-	Project_RemoveUserGroups_FullMethodName   = "/spaceone.api.identity.v2.Project/remove_user_groups"
 	Project_Get_FullMethodName                = "/spaceone.api.identity.v2.Project/get"
 	Project_List_FullMethodName               = "/spaceone.api.identity.v2.Project/list"
 	Project_Stat_FullMethodName               = "/spaceone.api.identity.v2.Project/stat"
@@ -46,8 +44,6 @@ type ProjectClient interface {
 	Delete(ctx context.Context, in *ProjectRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	AddUsers(ctx context.Context, in *UsersProjectRequest, opts ...grpc.CallOption) (*ProjectInfo, error)
 	RemoveUsers(ctx context.Context, in *UsersProjectRequest, opts ...grpc.CallOption) (*ProjectInfo, error)
-	AddUserGroups(ctx context.Context, in *UserGroupsProjectRequest, opts ...grpc.CallOption) (*ProjectInfo, error)
-	RemoveUserGroups(ctx context.Context, in *UserGroupsProjectRequest, opts ...grpc.CallOption) (*ProjectInfo, error)
 	Get(ctx context.Context, in *ProjectRequest, opts ...grpc.CallOption) (*ProjectInfo, error)
 	List(ctx context.Context, in *ProjectSearchQuery, opts ...grpc.CallOption) (*ProjectsInfo, error)
 	Stat(ctx context.Context, in *ProjectStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -131,26 +127,6 @@ func (c *projectClient) RemoveUsers(ctx context.Context, in *UsersProjectRequest
 	return out, nil
 }
 
-func (c *projectClient) AddUserGroups(ctx context.Context, in *UserGroupsProjectRequest, opts ...grpc.CallOption) (*ProjectInfo, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ProjectInfo)
-	err := c.cc.Invoke(ctx, Project_AddUserGroups_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *projectClient) RemoveUserGroups(ctx context.Context, in *UserGroupsProjectRequest, opts ...grpc.CallOption) (*ProjectInfo, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ProjectInfo)
-	err := c.cc.Invoke(ctx, Project_RemoveUserGroups_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *projectClient) Get(ctx context.Context, in *ProjectRequest, opts ...grpc.CallOption) (*ProjectInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ProjectInfo)
@@ -192,8 +168,6 @@ type ProjectServer interface {
 	Delete(context.Context, *ProjectRequest) (*empty.Empty, error)
 	AddUsers(context.Context, *UsersProjectRequest) (*ProjectInfo, error)
 	RemoveUsers(context.Context, *UsersProjectRequest) (*ProjectInfo, error)
-	AddUserGroups(context.Context, *UserGroupsProjectRequest) (*ProjectInfo, error)
-	RemoveUserGroups(context.Context, *UserGroupsProjectRequest) (*ProjectInfo, error)
 	Get(context.Context, *ProjectRequest) (*ProjectInfo, error)
 	List(context.Context, *ProjectSearchQuery) (*ProjectsInfo, error)
 	Stat(context.Context, *ProjectStatQuery) (*_struct.Struct, error)
@@ -224,12 +198,6 @@ func (UnimplementedProjectServer) AddUsers(context.Context, *UsersProjectRequest
 }
 func (UnimplementedProjectServer) RemoveUsers(context.Context, *UsersProjectRequest) (*ProjectInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveUsers not implemented")
-}
-func (UnimplementedProjectServer) AddUserGroups(context.Context, *UserGroupsProjectRequest) (*ProjectInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddUserGroups not implemented")
-}
-func (UnimplementedProjectServer) RemoveUserGroups(context.Context, *UserGroupsProjectRequest) (*ProjectInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveUserGroups not implemented")
 }
 func (UnimplementedProjectServer) Get(context.Context, *ProjectRequest) (*ProjectInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -379,42 +347,6 @@ func _Project_RemoveUsers_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Project_AddUserGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserGroupsProjectRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProjectServer).AddUserGroups(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Project_AddUserGroups_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProjectServer).AddUserGroups(ctx, req.(*UserGroupsProjectRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Project_RemoveUserGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserGroupsProjectRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProjectServer).RemoveUserGroups(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Project_RemoveUserGroups_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProjectServer).RemoveUserGroups(ctx, req.(*UserGroupsProjectRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Project_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ProjectRequest)
 	if err := dec(in); err != nil {
@@ -503,14 +435,6 @@ var Project_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "remove_users",
 			Handler:    _Project_RemoveUsers_Handler,
-		},
-		{
-			MethodName: "add_user_groups",
-			Handler:    _Project_AddUserGroups_Handler,
-		},
-		{
-			MethodName: "remove_user_groups",
-			Handler:    _Project_RemoveUserGroups_Handler,
 		},
 		{
 			MethodName: "get",

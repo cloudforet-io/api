@@ -8,204 +8,7 @@
      "title": "Repository API",
      "version": "3.1.0"
    },
-   "paths":{"/repository/dashboard-template/register": {
-       "post": {
-         "tags": ["repository > dashboard-template"],
-         "summary": "Register",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |template_id||string||\n |template_type|MULTI, SINGLE |string||\n |dashboards||array||\n |labels||array||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"template_id" : {"type": "string","title": "TEMPLATE_ID" },"name" : {"type": "string","title": "NAME" },"template_type" : {"type": "string","title": "TEMPLATE_TYPE" },"dashboards" : {"type": "array","title": "DASHBOARDS" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/dashboard-template/update": {
-       "post": {
-         "tags": ["repository > dashboard-template"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |template_id||string|True|\n |name||string||\n |template_type|MULTI, SINGLE |string||\n |dashboards||array||\n |labels||array||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"template_id" : {"type": "string","title": "TEMPLATE_ID" },"name" : {"type": "string","title": "NAME" },"template_type" : {"type": "string","title": "TEMPLATE_TYPE" },"dashboards" : {"type": "array","title": "DASHBOARDS" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/dashboard-template/deregister": {
-       "post": {
-         "tags": ["repository > dashboard-template"],
-         "summary": "Deregister",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |template_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"template_id" : {"type": "string","title": "TEMPLATE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/dashboard-template/enable": {
-       "post": {
-         "tags": ["repository > dashboard-template"],
-         "summary": "Enable",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |template_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"template_id" : {"type": "string","title": "TEMPLATE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/dashboard-template/disable": {
-       "post": {
-         "tags": ["repository > dashboard-template"],
-         "summary": "Disable",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |template_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"template_id" : {"type": "string","title": "TEMPLATE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/dashboard-template/get": {
-       "post": {
-         "tags": ["repository > dashboard-template"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |template_id||string|True|\n |repository_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"template_id" : {"type": "string","title": "TEMPLATE_ID" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/dashboard-template/list": {
-       "post": {
-         "tags": ["repository > dashboard-template"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |template_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |template_type|MULTI, SINGLE |string||\n |repository_id||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"template_id" : {"type": "string","title": "TEMPLATE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"template_type" : {"type": "string","title": "TEMPLATE_TYPE" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DashboardTemplatesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DashboardTemplatesInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/repository/plugin/register": {
+   "paths":{"/repository/plugin/register": {
        "post": {
          "tags": ["repository > plugin"],
          "summary": "Register",
@@ -445,6 +248,203 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/dashboard-template/register": {
+       "post": {
+         "tags": ["repository > dashboard-template"],
+         "summary": "Register",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |template_id||string||\n |template_type|MULTI, SINGLE |string||\n |dashboards||array||\n |labels||array||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"template_id" : {"type": "string","title": "TEMPLATE_ID" },"name" : {"type": "string","title": "NAME" },"template_type" : {"type": "string","title": "TEMPLATE_TYPE" },"dashboards" : {"type": "array","title": "DASHBOARDS" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/dashboard-template/update": {
+       "post": {
+         "tags": ["repository > dashboard-template"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |template_id||string|True|\n |name||string||\n |template_type|MULTI, SINGLE |string||\n |dashboards||array||\n |labels||array||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"template_id" : {"type": "string","title": "TEMPLATE_ID" },"name" : {"type": "string","title": "NAME" },"template_type" : {"type": "string","title": "TEMPLATE_TYPE" },"dashboards" : {"type": "array","title": "DASHBOARDS" },"labels" : {"type": "array","title": "LABELS" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/dashboard-template/deregister": {
+       "post": {
+         "tags": ["repository > dashboard-template"],
+         "summary": "Deregister",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |template_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"template_id" : {"type": "string","title": "TEMPLATE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/dashboard-template/enable": {
+       "post": {
+         "tags": ["repository > dashboard-template"],
+         "summary": "Enable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |template_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"template_id" : {"type": "string","title": "TEMPLATE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/dashboard-template/disable": {
+       "post": {
+         "tags": ["repository > dashboard-template"],
+         "summary": "Disable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |template_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"template_id" : {"type": "string","title": "TEMPLATE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/dashboard-template/get": {
+       "post": {
+         "tags": ["repository > dashboard-template"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |template_id||string|True|\n |repository_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"template_id" : {"type": "string","title": "TEMPLATE_ID" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DashboardTemplateInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/repository/dashboard-template/list": {
+       "post": {
+         "tags": ["repository > dashboard-template"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |template_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |template_type|MULTI, SINGLE |string||\n |repository_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"template_id" : {"type": "string","title": "TEMPLATE_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"template_type" : {"type": "string","title": "TEMPLATE_TYPE" },"repository_id" : {"type": "string","title": "REPOSITORY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DashboardTemplatesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DashboardTemplatesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/repository/repository/list": {
        "post": {
          "tags": ["repository > repository"],
@@ -480,48 +480,56 @@
    },
    "components":{
      "schemas": {
-     "DashboardTemplateInfo": {
-         "properties" : {"template_id" : {"type": "string","title": "TEMPLATE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"template_type" : {"type": "string","title": "TEMPLATE_TYPE"},"dashboards" : {"type": "array","title": "DASHBOARDS"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"repository_info" : {"$ref": "#/components/schemas/RepositoryInfo","title": "REPOSITORY_INFO"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+     "PluginInfo": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"image" : {"type": "string","title": "IMAGE"},"provider" : {"type": "string","title": "PROVIDER"},"registry_type" : {"type": "string","title": "REGISTRY_TYPE"},"registry_url" : {"type": "string","title": "REGISTRY_URL"},"registry_config" : {"type": "object","title": "REGISTRY_CONFIG"},"capability" : {"type": "object","title": "CAPABILITY"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"repository_info" : {"$ref": "#/components/schemas/RepositoryInfo","title": "REPOSITORY_INFO"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["template_id","name","state","template_type","dashboards","labels","tags","domain_id","repository_info","created_at","updated_at"],
-                "title": "DashboardTemplateInfo"
+         "required": ["plugin_id","name","state","resource_type","image","provider","registry_type","registry_url","registry_config","capability","labels","tags","domain_id","repository_info","created_at","updated_at"],
+                "title": "PluginInfo"
            }
-           ,        "DashboardTemplateQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"template_id" : {"type": "string","title": "TEMPLATE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"template_type" : {"type": "string","title": "TEMPLATE_TYPE"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"}},
+           ,        "PluginQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"registry_type" : {"type": "string","title": "REGISTRY_TYPE"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"}},
          "type": "object",
          "required": [],
-                "title": "DashboardTemplateQuery"
+                "title": "PluginQuery"
            }
-           ,        "DashboardTemplateRequest": {
-         "properties" : {"template_id" : {"type": "string","title": "TEMPLATE_ID"}},
+           ,        "PluginRequest": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
          "type": "object",
-         "required": ["template_id"],
-                "title": "DashboardTemplateRequest"
+         "required": ["plugin_id"],
+                "title": "PluginRequest"
            }
-           ,        "DashboardTemplatesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/DashboardTemplateInfo"},
-               "type": "array","$ref": "#/components/schemas/DashboardTemplateInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "PluginsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PluginInfo"},
+               "type": "array","$ref": "#/components/schemas/PluginInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "DashboardTemplatesInfo"
+                "title": "PluginsInfo"
            }
-           ,        "RegisterDashboardTemplateRequest": {
-         "properties" : {"template_id" : {"type": "string","title": "TEMPLATE_ID"},"name" : {"type": "string","title": "NAME"},"template_type" : {"type": "string","title": "TEMPLATE_TYPE"},"dashboards" : {"type": "array","title": "DASHBOARDS"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "RegisterPluginRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"image" : {"type": "string","title": "IMAGE"},"provider" : {"type": "string","title": "PROVIDER"},"registry_type" : {"type": "string","title": "REGISTRY_TYPE"},"registry_config" : {"type": "object","title": "REGISTRY_CONFIG"},"capability" : {"type": "object","title": "CAPABILITY"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
          "type": "object",
-         "required": ["name"],
-                "title": "RegisterDashboardTemplateRequest"
+         "required": ["name","resource_type","image"],
+                "title": "RegisterPluginRequest"
            }
-           ,        "RepositoryDashboardTemplateRequest": {
-         "properties" : {"template_id" : {"type": "string","title": "TEMPLATE_ID"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"}},
+           ,        "RepositoryPluginRequest": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"}},
          "type": "object",
-         "required": ["template_id"],
-                "title": "RepositoryDashboardTemplateRequest"
+         "required": ["plugin_id"],
+                "title": "RepositoryPluginRequest"
            }
-           ,        "UpdateDashboardTemplateRequest": {
-         "properties" : {"template_id" : {"type": "string","title": "TEMPLATE_ID"},"name" : {"type": "string","title": "NAME"},"template_type" : {"type": "string","title": "TEMPLATE_TYPE"},"dashboards" : {"type": "array","title": "DASHBOARDS"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "UpdatePluginRequest": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"name" : {"type": "string","title": "NAME"},"capability" : {"type": "object","title": "CAPABILITY"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["template_id"],
-                "title": "UpdateDashboardTemplateRequest"
+         "required": ["plugin_id"],
+                "title": "UpdatePluginRequest"
+           }
+           ,        "VersionsInfo": {
+         "properties" : {"version" : {"items": {"type": "string"},
+               "type": "array","title": "VERSION"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"},"results" : {"items": {"type": "string"},
+               "type": "array","title": "RESULTS"}},
+         "type": "object",
+         "required": ["version","total_count","results"],
+                "title": "VersionsInfo"
            }
            ,        "AuthenticationRequest": {
          "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
@@ -730,56 +738,48 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "PluginInfo": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"image" : {"type": "string","title": "IMAGE"},"provider" : {"type": "string","title": "PROVIDER"},"registry_type" : {"type": "string","title": "REGISTRY_TYPE"},"registry_url" : {"type": "string","title": "REGISTRY_URL"},"registry_config" : {"type": "object","title": "REGISTRY_CONFIG"},"capability" : {"type": "object","title": "CAPABILITY"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"repository_info" : {"$ref": "#/components/schemas/RepositoryInfo","title": "REPOSITORY_INFO"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+           ,        "DashboardTemplateInfo": {
+         "properties" : {"template_id" : {"type": "string","title": "TEMPLATE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"template_type" : {"type": "string","title": "TEMPLATE_TYPE"},"dashboards" : {"type": "array","title": "DASHBOARDS"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"repository_info" : {"$ref": "#/components/schemas/RepositoryInfo","title": "REPOSITORY_INFO"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["plugin_id","name","state","resource_type","image","provider","registry_type","registry_url","registry_config","capability","labels","tags","domain_id","repository_info","created_at","updated_at"],
-                "title": "PluginInfo"
+         "required": ["template_id","name","state","template_type","dashboards","labels","tags","domain_id","repository_info","created_at","updated_at"],
+                "title": "DashboardTemplateInfo"
            }
-           ,        "PluginQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"provider" : {"type": "string","title": "PROVIDER"},"registry_type" : {"type": "string","title": "REGISTRY_TYPE"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"}},
+           ,        "DashboardTemplateQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"template_id" : {"type": "string","title": "TEMPLATE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"template_type" : {"type": "string","title": "TEMPLATE_TYPE"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"}},
          "type": "object",
          "required": [],
-                "title": "PluginQuery"
+                "title": "DashboardTemplateQuery"
            }
-           ,        "PluginRequest": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
+           ,        "DashboardTemplateRequest": {
+         "properties" : {"template_id" : {"type": "string","title": "TEMPLATE_ID"}},
          "type": "object",
-         "required": ["plugin_id"],
-                "title": "PluginRequest"
+         "required": ["template_id"],
+                "title": "DashboardTemplateRequest"
            }
-           ,        "PluginsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PluginInfo"},
-               "type": "array","$ref": "#/components/schemas/PluginInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "DashboardTemplatesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/DashboardTemplateInfo"},
+               "type": "array","$ref": "#/components/schemas/DashboardTemplateInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "PluginsInfo"
+                "title": "DashboardTemplatesInfo"
            }
-           ,        "RegisterPluginRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"image" : {"type": "string","title": "IMAGE"},"provider" : {"type": "string","title": "PROVIDER"},"registry_type" : {"type": "string","title": "REGISTRY_TYPE"},"registry_config" : {"type": "object","title": "REGISTRY_CONFIG"},"capability" : {"type": "object","title": "CAPABILITY"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"},"plugin_id" : {"type": "string","title": "PLUGIN_ID"}},
+           ,        "RegisterDashboardTemplateRequest": {
+         "properties" : {"template_id" : {"type": "string","title": "TEMPLATE_ID"},"name" : {"type": "string","title": "NAME"},"template_type" : {"type": "string","title": "TEMPLATE_TYPE"},"dashboards" : {"type": "array","title": "DASHBOARDS"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["name","resource_type","image"],
-                "title": "RegisterPluginRequest"
+         "required": ["name"],
+                "title": "RegisterDashboardTemplateRequest"
            }
-           ,        "RepositoryPluginRequest": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"}},
+           ,        "RepositoryDashboardTemplateRequest": {
+         "properties" : {"template_id" : {"type": "string","title": "TEMPLATE_ID"},"repository_id" : {"type": "string","title": "REPOSITORY_ID"}},
          "type": "object",
-         "required": ["plugin_id"],
-                "title": "RepositoryPluginRequest"
+         "required": ["template_id"],
+                "title": "RepositoryDashboardTemplateRequest"
            }
-           ,        "UpdatePluginRequest": {
-         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"name" : {"type": "string","title": "NAME"},"capability" : {"type": "object","title": "CAPABILITY"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "UpdateDashboardTemplateRequest": {
+         "properties" : {"template_id" : {"type": "string","title": "TEMPLATE_ID"},"name" : {"type": "string","title": "NAME"},"template_type" : {"type": "string","title": "TEMPLATE_TYPE"},"dashboards" : {"type": "array","title": "DASHBOARDS"},"labels" : {"type": "array","title": "LABELS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
-         "required": ["plugin_id"],
-                "title": "UpdatePluginRequest"
-           }
-           ,        "VersionsInfo": {
-         "properties" : {"version" : {"items": {"type": "string"},
-               "type": "array","title": "VERSION"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"},"results" : {"items": {"type": "string"},
-               "type": "array","title": "RESULTS"}},
-         "type": "object",
-         "required": ["version","total_count","results"],
-                "title": "VersionsInfo"
+         "required": ["template_id"],
+                "title": "UpdateDashboardTemplateRequest"
            }
            ,        "RepositoriesInfo": {
          "properties" : {"results" : {"items": {"$ref": "#/components/schemas/RepositoryInfo"},

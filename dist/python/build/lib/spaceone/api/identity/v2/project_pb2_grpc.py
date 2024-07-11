@@ -7,7 +7,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.identity.v2 import project_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2
 
-GRPC_GENERATED_VERSION = '1.64.1'
+GRPC_GENERATED_VERSION = '1.65.0'
 GRPC_VERSION = grpc.__version__
 EXPECTED_ERROR_RELEASE = '1.65.0'
 SCHEDULED_RELEASE_DATE = 'June 25, 2024'
@@ -76,16 +76,6 @@ class ProjectStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.UsersProjectRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.ProjectInfo.FromString,
                 _registered_method=True)
-        self.add_user_groups = channel.unary_unary(
-                '/spaceone.api.identity.v2.Project/add_user_groups',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.UserGroupsProjectRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.ProjectInfo.FromString,
-                _registered_method=True)
-        self.remove_user_groups = channel.unary_unary(
-                '/spaceone.api.identity.v2.Project/remove_user_groups',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.UserGroupsProjectRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.ProjectInfo.FromString,
-                _registered_method=True)
         self.get = channel.unary_unary(
                 '/spaceone.api.identity.v2.Project/get',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.ProjectRequest.SerializeToString,
@@ -148,18 +138,6 @@ class ProjectServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def add_user_groups(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def remove_user_groups(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def get(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -214,16 +192,6 @@ def add_ProjectServicer_to_server(servicer, server):
             'remove_users': grpc.unary_unary_rpc_method_handler(
                     servicer.remove_users,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.UsersProjectRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.ProjectInfo.SerializeToString,
-            ),
-            'add_user_groups': grpc.unary_unary_rpc_method_handler(
-                    servicer.add_user_groups,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.UserGroupsProjectRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.ProjectInfo.SerializeToString,
-            ),
-            'remove_user_groups': grpc.unary_unary_rpc_method_handler(
-                    servicer.remove_user_groups,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.UserGroupsProjectRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.ProjectInfo.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
@@ -430,60 +398,6 @@ class Project(object):
             target,
             '/spaceone.api.identity.v2.Project/remove_users',
             spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.UsersProjectRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.ProjectInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def add_user_groups(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.identity.v2.Project/add_user_groups',
-            spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.UserGroupsProjectRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.ProjectInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def remove_user_groups(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.identity.v2.Project/remove_user_groups',
-            spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.UserGroupsProjectRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_project__pb2.ProjectInfo.FromString,
             options,
             channel_credentials,

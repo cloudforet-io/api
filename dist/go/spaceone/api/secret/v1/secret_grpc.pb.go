@@ -27,6 +27,8 @@ const (
 	Secret_Create_FullMethodName     = "/spaceone.api.secret.v1.Secret/create"
 	Secret_Update_FullMethodName     = "/spaceone.api.secret.v1.Secret/update"
 	Secret_Delete_FullMethodName     = "/spaceone.api.secret.v1.Secret/delete"
+	Secret_Enable_FullMethodName     = "/spaceone.api.secret.v1.Secret/enable"
+	Secret_Disable_FullMethodName    = "/spaceone.api.secret.v1.Secret/disable"
 	Secret_UpdateData_FullMethodName = "/spaceone.api.secret.v1.Secret/update_data"
 	Secret_GetData_FullMethodName    = "/spaceone.api.secret.v1.Secret/get_data"
 	Secret_Get_FullMethodName        = "/spaceone.api.secret.v1.Secret/get"
@@ -47,6 +49,10 @@ type SecretClient interface {
 	Update(ctx context.Context, in *UpdateSecretRequest, opts ...grpc.CallOption) (*SecretInfo, error)
 	// Deletes a specific secret.
 	Delete(ctx context.Context, in *SecretRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	// Enables a specific secret.
+	Enable(ctx context.Context, in *SecretRequest, opts ...grpc.CallOption) (*SecretInfo, error)
+	// Disables a specific secret.
+	Disable(ctx context.Context, in *SecretRequest, opts ...grpc.CallOption) (*SecretInfo, error)
 	// Updates a specific secret's data.
 	// Updated secret is encrypted and stored securely.
 	UpdateData(ctx context.Context, in *UpdateSecretDataRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -93,6 +99,26 @@ func (c *secretClient) Delete(ctx context.Context, in *SecretRequest, opts ...gr
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, Secret_Delete_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *secretClient) Enable(ctx context.Context, in *SecretRequest, opts ...grpc.CallOption) (*SecretInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SecretInfo)
+	err := c.cc.Invoke(ctx, Secret_Enable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *secretClient) Disable(ctx context.Context, in *SecretRequest, opts ...grpc.CallOption) (*SecretInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SecretInfo)
+	err := c.cc.Invoke(ctx, Secret_Disable_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -162,6 +188,10 @@ type SecretServer interface {
 	Update(context.Context, *UpdateSecretRequest) (*SecretInfo, error)
 	// Deletes a specific secret.
 	Delete(context.Context, *SecretRequest) (*empty.Empty, error)
+	// Enables a specific secret.
+	Enable(context.Context, *SecretRequest) (*SecretInfo, error)
+	// Disables a specific secret.
+	Disable(context.Context, *SecretRequest) (*SecretInfo, error)
 	// Updates a specific secret's data.
 	// Updated secret is encrypted and stored securely.
 	UpdateData(context.Context, *UpdateSecretDataRequest) (*empty.Empty, error)
@@ -189,6 +219,12 @@ func (UnimplementedSecretServer) Update(context.Context, *UpdateSecretRequest) (
 }
 func (UnimplementedSecretServer) Delete(context.Context, *SecretRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedSecretServer) Enable(context.Context, *SecretRequest) (*SecretInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
+}
+func (UnimplementedSecretServer) Disable(context.Context, *SecretRequest) (*SecretInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
 }
 func (UnimplementedSecretServer) UpdateData(context.Context, *UpdateSecretDataRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateData not implemented")
@@ -268,6 +304,42 @@ func _Secret_Delete_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SecretServer).Delete(ctx, req.(*SecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Secret_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecretServer).Enable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Secret_Enable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecretServer).Enable(ctx, req.(*SecretRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Secret_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SecretRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecretServer).Disable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Secret_Disable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecretServer).Disable(ctx, req.(*SecretRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -380,6 +452,14 @@ var Secret_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "delete",
 			Handler:    _Secret_Delete_Handler,
+		},
+		{
+			MethodName: "enable",
+			Handler:    _Secret_Enable_Handler,
+		},
+		{
+			MethodName: "disable",
+			Handler:    _Secret_Disable_Handler,
 		},
 		{
 			MethodName: "update_data",
