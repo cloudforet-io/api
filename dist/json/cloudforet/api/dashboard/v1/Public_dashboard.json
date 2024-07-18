@@ -4,7 +4,7 @@
       "name": "spaceone/api/dashboard/v1/public_dashboard.proto",
       "description": "description of dashboard",
       "package": "spaceone.api.dashboard.v1",
-      "hasEnums": false,
+      "hasEnums": true,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
@@ -38,6 +38,29 @@
           ]
         },
         {
+          "name": "DashboardScope",
+          "longName": "DashboardScope",
+          "fullName": "spaceone.api.dashboard.v1.DashboardScope",
+          "description": "",
+          "values": [
+            {
+              "name": "SCOPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PROJECT",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "ResourceGroup",
           "longName": "PublicDashboardInfo.ResourceGroup",
           "fullName": "spaceone.api.dashboard.v1.PublicDashboardInfo.ResourceGroup",
@@ -61,29 +84,6 @@
             {
               "name": "PROJECT",
               "number": "3",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "Scope",
-          "longName": "PublicDashboardRequest.Scope",
-          "fullName": "spaceone.api.dashboard.v1.PublicDashboardRequest.Scope",
-          "description": "",
-          "values": [
-            {
-              "name": "SCOPE_NONE",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "WORKSPACE",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "PROJECT",
-              "number": "2",
               "description": ""
             }
           ]
@@ -462,6 +462,18 @@
               "defaultValue": ""
             },
             {
+              "name": "scope",
+              "description": "",
+              "label": "",
+              "type": "DashboardScope",
+              "longType": "DashboardScope",
+              "fullType": "spaceone.api.dashboard.v1.DashboardScope",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "resource_group",
               "description": "",
               "label": "",
@@ -594,6 +606,30 @@
               "defaultValue": ""
             },
             {
+              "name": "shared",
+              "description": "+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "scope",
+              "description": "+optional",
+              "label": "",
+              "type": "DashboardScope",
+              "longType": "DashboardScope",
+              "fullType": "spaceone.api.dashboard.v1.DashboardScope",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "workspace_id",
               "description": "+optional",
               "label": "",
@@ -657,9 +693,9 @@
               "name": "scope",
               "description": "+optional",
               "label": "",
-              "type": "Scope",
-              "longType": "PublicDashboardRequest.Scope",
-              "fullType": "spaceone.api.dashboard.v1.PublicDashboardRequest.Scope",
+              "type": "DashboardScope",
+              "longType": "DashboardScope",
+              "fullType": "spaceone.api.dashboard.v1.DashboardScope",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
