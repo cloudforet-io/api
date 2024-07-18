@@ -134,7 +134,15 @@ message UpdatePublicDashboardRequest {
 }
 
 message PublicDashboardRequest {
+  enum Scope {
+    SCOPE_NONE = 0;
+    WORKSPACE = 1;
+    PROJECT = 2;
+  }
+
   string dashboard_id = 1;
+  // +optional
+  Scope scope = 2;
 }
 
 message PublicDashboardQuery {
