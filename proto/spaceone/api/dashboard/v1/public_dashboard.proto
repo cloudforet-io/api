@@ -69,6 +69,13 @@ service PublicDashboard{
   }
 }
 
+enum DashboardScope {
+  SCOPE_NONE = 0;
+  WORKSPACE = 1;
+  PROJECT = 2;
+}
+
+
 message Layout {
   string name = 1;
   google.protobuf.Struct options = 2;
@@ -134,15 +141,9 @@ message UpdatePublicDashboardRequest {
 }
 
 message PublicDashboardRequest {
-  enum Scope {
-    SCOPE_NONE = 0;
-    WORKSPACE = 1;
-    PROJECT = 2;
-  }
-
   string dashboard_id = 1;
   // +optional
-  Scope scope = 2;
+  DashboardScope scope = 2;
 }
 
 message PublicDashboardQuery {
@@ -152,6 +153,10 @@ message PublicDashboardQuery {
   string dashboard_id = 2;
   // +optional
   string name = 3;
+  // +optional
+  bool shared = 4;
+  // +optional
+  DashboardScope scope = 5;
   // +optional
   string workspace_id = 21;
   // +optional
@@ -180,7 +185,9 @@ message PublicDashboardInfo {
   google.protobuf.ListValue labels = 10;
   google.protobuf.Struct tags = 11;
 
-  bool shared = 19;
+  bool shared = 18;
+  DashboardScope scope = 19;
+
   ResourceGroup resource_group = 20;
   string domain_id = 21;
   string workspace_id = 22;
