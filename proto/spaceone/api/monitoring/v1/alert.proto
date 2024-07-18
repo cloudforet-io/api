@@ -175,9 +175,11 @@ message AlertQuery {
     // +optional
     string assignee = 6;
     // +optional
-    AlertUrgency urgency = 7;
+    string responder = 7;
     // +optional
-    string severity = 8;
+    AlertUrgency urgency = 8;
+    // +optional
+    string severity = 9;
     // +optional
     string resource_id = 10;
     // +optional
@@ -221,17 +223,18 @@ message AlertInfo {
     AlertState state = 4;
     string description = 5;
     string assignee = 6;
-    AlertUrgency urgency = 7;
-    string severity = 8;
-    string rule = 9;
-    string image_url = 10;
-    AlertResource resource = 11;
-    string provider = 12;
-    string account = 13;
-    google.protobuf.Struct additional_info = 14;
-    int32 escalation_step = 15;
-    int32 escalation_ttl = 16;
-    string triggered_by = 17;
+    string responder = 7;
+    AlertUrgency urgency = 8;
+    string severity = 9;
+    string rule = 10;
+    string image_url = 11;
+    AlertResource resource = 12;
+    string provider = 13;
+    string account = 14;
+    google.protobuf.Struct additional_info = 15;
+    int32 escalation_step = 16;
+    int32 escalation_ttl = 17;
+    string triggered_by = 18;
 
     string domain_id = 21;
     string workspace_id = 22;
