@@ -803,11 +803,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |name||string||\n |state|ACTIVE, INACTIVE |string||\n |description||string||\n |widget_type||string||\n |size||string||\n |options||Struct||\n |data_tables||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |name||string||\n |state|ACTIVE, INACTIVE |string||\n |description||string||\n |widget_type||string||\n |size||string||\n |options||Struct||\n |data_table_id||int||\n |data_tables||array||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"description" : {"type": "string","title": "DESCRIPTION" },"widget_type" : {"type": "string","title": "WIDGET_TYPE" },"size" : {"type": "string","title": "SIZE" },"options" : {"type": "object","title": "OPTIONS" },"data_tables" : {"items": {}, "type": "array","title": "DATA_TABLES" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"description" : {"type": "string","title": "DESCRIPTION" },"widget_type" : {"type": "string","title": "WIDGET_TYPE" },"size" : {"type": "string","title": "SIZE" },"options" : {"type": "object","title": "OPTIONS" },"data_table_id" : {"type": "integer","title": "DATA_TABLE_ID" },"data_tables" : {"items": {}, "type": "array","title": "DATA_TABLES" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -971,11 +971,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |name||string||\n |state|ACTIVE, INACTIVE |string||\n |description||string||\n |widget_type||string||\n |size||string||\n |options||Struct||\n |data_tables||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |dashboard_id||string|True|\n |name||string||\n |state|ACTIVE, INACTIVE |string||\n |description||string||\n |widget_type||string||\n |size||string||\n |options||Struct||\n |data_table_id||int||\n |data_tables||array||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"description" : {"type": "string","title": "DESCRIPTION" },"widget_type" : {"type": "string","title": "WIDGET_TYPE" },"size" : {"type": "string","title": "SIZE" },"options" : {"type": "object","title": "OPTIONS" },"data_tables" : {"items": {}, "type": "array","title": "DATA_TABLES" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"description" : {"type": "string","title": "DESCRIPTION" },"widget_type" : {"type": "string","title": "WIDGET_TYPE" },"size" : {"type": "string","title": "SIZE" },"options" : {"type": "object","title": "OPTIONS" },"data_table_id" : {"type": "integer","title": "DATA_TABLE_ID" },"data_tables" : {"items": {}, "type": "array","title": "DATA_TABLES" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1992,7 +1992,7 @@
                 "title": "UpdatePublicFolderRequest"
            }
            ,        "CreatePrivateWidgetRequest": {
-         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"size" : {"type": "string","title": "SIZE"},"options" : {"type": "object","title": "OPTIONS"},"data_tables" : {"items": {"type": "object"},
+         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"size" : {"type": "string","title": "SIZE"},"options" : {"type": "object","title": "OPTIONS"},"data_table_id" : {"type": "integer","title": "DATA_TABLE_ID"},"data_tables" : {"items": {"type": "object"},
                "type": "array","title": "DATA_TABLES"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["dashboard_id"],
@@ -2036,7 +2036,7 @@
                 "title": "UpdatePrivateWidgetRequest"
            }
            ,        "CreatePublicWidgetRequest": {
-         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"size" : {"type": "string","title": "SIZE"},"options" : {"type": "object","title": "OPTIONS"},"data_tables" : {"items": {"type": "object"},
+         "properties" : {"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"widget_type" : {"type": "string","title": "WIDGET_TYPE"},"size" : {"type": "string","title": "SIZE"},"options" : {"type": "object","title": "OPTIONS"},"data_table_id" : {"type": "integer","title": "DATA_TABLE_ID"},"data_tables" : {"items": {"type": "object"},
                "type": "array","title": "DATA_TABLES"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["dashboard_id"],
