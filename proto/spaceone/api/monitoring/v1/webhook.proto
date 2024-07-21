@@ -92,6 +92,11 @@ service Webhook {
     }
 }
 
+message WebhookRequests {
+    int64 total = 1;
+    int64 error = 2;
+}
+
 message WebhookPluginInfo{
     enum UpgradeMode {
         NONE = 0;
@@ -228,6 +233,7 @@ message WebhookInfo {
     google.protobuf.Struct capability = 6;
     WebhookPluginInfo plugin_info = 7;
     google.protobuf.Struct tags = 8;
+    WebhookRequests requests = 9;
 
     string domain_id = 21;
     string workspace_id = 22;
