@@ -142,7 +142,8 @@ message UpdateAlertRequest {
 message UpdateAlertStateRequest {
     string alert_id = 1;
     string access_key = 2;
-    string state = 3;
+    // +optional
+    string responder = 3;
 }
 
 message AssignUserRequest {
@@ -181,7 +182,7 @@ message AlertQuery {
     // +optional
     string severity = 9;
     // +optional
-    string resource_id = 10;
+    string resource = 10;
     // +optional
     string provider = 11;
     // +optional
@@ -228,7 +229,7 @@ message AlertInfo {
     string severity = 9;
     string rule = 10;
     string image_url = 11;
-    AlertResource resource = 12;
+    repeated AlertResource resources = 12;
     string provider = 13;
     string account = 14;
     google.protobuf.Struct additional_info = 15;
@@ -259,16 +260,16 @@ message AlertInfo {
 //      "description": "SSH Access to stargate-dev from adm",
 //      "urgency": "LOW",
 //      "severity": "INFO",
-//      "resource": {
-//      "resource_id": "server-123456789012",
-//      "resource_type": "inventory.Server",
-//      "name": "stargate-dev"
-//      },
+//      "resources": [{
+//            "resource_id": "server-123456789012",
+//            "resource_type": "inventory.Server",
+//            "name": "stargate-dev"
+//      }],
 //      "escalation_step": 1,
 //      "escalation_ttl": 1,
 //      "additional_info": {
-//      "host": "[]",
-//      "user": "user1"
+//          "user": "user1"
+//          "host": "['2.2.2.2']"
 //      },
 //      "triggered_by": "webhook-123456789012",
 //      "webhook_id": "webhook-123456789012",
@@ -287,16 +288,16 @@ message AlertInfo {
 //      "description": "SSH Access to stargate-dev from user3@email.com",
 //      "urgency": "LOW",
 //      "severity": "INFO",
-//      "resource": {
-//      "resource_id": "server-123456789012",
-//      "resource_type": "inventory.Server",
-//      "name": "stargate-dev"
-//      },
+//      "resource": [{
+//            "resource_id": "server-123456789012",
+//            "resource_type": "inventory.Server",
+//            "name": "stargate-dev"
+//      }],
 //      "escalation_step": 1,
 //      "escalation_ttl": 1,
 //      "additional_info": {
-//      "user": "user3@email.com",
-//      "host": "['111.111.111.11']"
+//          "user": "user3@email.com",
+//          "host": "['1.1.1.1']"
 //      },
 //      "triggered_by": "webhook-123456789012",
 //      "webhook_id": "webhook-123456789012",

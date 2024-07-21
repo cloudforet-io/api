@@ -39,12 +39,6 @@ service Event {
     }
 }
 
-message EventResource {
-    string resource_id = 1;
-    string resource_type = 2;
-    string name = 3;
-}
-
 message CreateEventRequest {
     string webhook_id = 1;
     string access_key = 2;
@@ -74,7 +68,7 @@ message EventQuery {
     // +optional
     string severity = 5;
     // +optional
-    string resource_id = 6;
+    string resource = 6;
     // +optional
     string provider = 7;
     // +optional
@@ -136,7 +130,7 @@ message EventInfo {
     string severity = 6;
     string rule = 7;
     string image_url = 8;
-    EventResource resource = 9;
+    repeated string resource = 9;
     string provider = 10;
     string account = 11;
     google.protobuf.Struct additional_info = 12;
