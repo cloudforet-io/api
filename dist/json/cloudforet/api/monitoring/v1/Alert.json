@@ -211,9 +211,9 @@
               "defaultValue": ""
             },
             {
-              "name": "resource",
+              "name": "resources",
               "description": "",
-              "label": "",
+              "label": "repeated",
               "type": "AlertResource",
               "longType": "AlertResource",
               "fullType": "spaceone.api.monitoring.v1.AlertResource",
@@ -535,7 +535,7 @@
               "defaultValue": ""
             },
             {
-              "name": "resource_id",
+              "name": "resource",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -732,7 +732,7 @@
           "name": "AlertsInfo",
           "longName": "AlertsInfo",
           "fullName": "spaceone.api.monitoring.v1.AlertsInfo",
-          "description": "{\n     \"results\": [\n     {\n     \"alert_number\": 104057,\n     \"alert_id\": \"alert-987654321098\",\n     \"title\": \"Notification of access to the bastion Host\",\n     \"state\": \"TRIGGERED\",\n     \"description\": \"SSH Access to stargate-dev from adm\",\n     \"urgency\": \"LOW\",\n     \"severity\": \"INFO\",\n     \"resource\": {\n     \"resource_id\": \"server-123456789012\",\n     \"resource_type\": \"inventory.Server\",\n     \"name\": \"stargate-dev\"\n     },\n     \"escalation_step\": 1,\n     \"escalation_ttl\": 1,\n     \"additional_info\": {\n     \"host\": \"[]\",\n     \"user\": \"user1\"\n     },\n     \"triggered_by\": \"webhook-123456789012\",\n     \"webhook_id\": \"webhook-123456789012\",\n     \"escalation_policy_id\": \"ep-123456789012\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T02:46:35.934Z\",\n     \"updated_at\": \"2022-01-01T02:46:35.934Z\",\n     \"escalated_at\": \"2022-01-01T02:46:35.979Z\"\n     },\n     {\n     \"alert_number\": 104056,\n     \"alert_id\": \"alert-123456789999\",\n     \"title\": \"Notification of access to the bastion Host\",\n     \"state\": \"TRIGGERED\",\n     \"description\": \"SSH Access to stargate-dev from user3@email.com\",\n     \"urgency\": \"LOW\",\n     \"severity\": \"INFO\",\n     \"resource\": {\n     \"resource_id\": \"server-123456789012\",\n     \"resource_type\": \"inventory.Server\",\n     \"name\": \"stargate-dev\"\n     },\n     \"escalation_step\": 1,\n     \"escalation_ttl\": 1,\n     \"additional_info\": {\n     \"user\": \"user3@email.com\",\n     \"host\": \"['111.111.111.11']\"\n     },\n     \"triggered_by\": \"webhook-123456789012\",\n     \"webhook_id\": \"webhook-123456789012\",\n     \"escalation_policy_id\": \"ep-123456789012\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T02:46:31.391Z\",\n     \"updated_at\": \"2022-01-01T02:46:31.391Z\",\n     \"escalated_at\": \"2022-01-01T02:46:31.553Z\"\n     }\n     ],\n     \"total_count\": 21283\n}",
+          "description": "{\n     \"results\": [\n     {\n     \"alert_number\": 104057,\n     \"alert_id\": \"alert-987654321098\",\n     \"title\": \"Notification of access to the bastion Host\",\n     \"state\": \"TRIGGERED\",\n     \"description\": \"SSH Access to stargate-dev from adm\",\n     \"urgency\": \"LOW\",\n     \"severity\": \"INFO\",\n     \"resources\": [{\n           \"resource_id\": \"server-123456789012\",\n           \"resource_type\": \"inventory.Server\",\n           \"name\": \"stargate-dev\"\n     }],\n     \"escalation_step\": 1,\n     \"escalation_ttl\": 1,\n     \"additional_info\": {\n         \"user\": \"user1\"\n         \"host\": \"['2.2.2.2']\"\n     },\n     \"triggered_by\": \"webhook-123456789012\",\n     \"webhook_id\": \"webhook-123456789012\",\n     \"escalation_policy_id\": \"ep-123456789012\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T02:46:35.934Z\",\n     \"updated_at\": \"2022-01-01T02:46:35.934Z\",\n     \"escalated_at\": \"2022-01-01T02:46:35.979Z\"\n     },\n     {\n     \"alert_number\": 104056,\n     \"alert_id\": \"alert-123456789999\",\n     \"title\": \"Notification of access to the bastion Host\",\n     \"state\": \"TRIGGERED\",\n     \"description\": \"SSH Access to stargate-dev from user3@email.com\",\n     \"urgency\": \"LOW\",\n     \"severity\": \"INFO\",\n     \"resource\": [{\n           \"resource_id\": \"server-123456789012\",\n           \"resource_type\": \"inventory.Server\",\n           \"name\": \"stargate-dev\"\n     }],\n     \"escalation_step\": 1,\n     \"escalation_ttl\": 1,\n     \"additional_info\": {\n         \"user\": \"user3@email.com\",\n         \"host\": \"['1.1.1.1']\"\n     },\n     \"triggered_by\": \"webhook-123456789012\",\n     \"webhook_id\": \"webhook-123456789012\",\n     \"escalation_policy_id\": \"ep-123456789012\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T02:46:31.391Z\",\n     \"updated_at\": \"2022-01-01T02:46:31.391Z\",\n     \"escalated_at\": \"2022-01-01T02:46:31.553Z\"\n     }\n     ],\n     \"total_count\": 21283\n}",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -1003,8 +1003,8 @@
               "defaultValue": ""
             },
             {
-              "name": "state",
-              "description": "",
+              "name": "responder",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
