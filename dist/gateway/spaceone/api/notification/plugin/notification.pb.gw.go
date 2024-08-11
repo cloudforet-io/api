@@ -62,6 +62,7 @@ func local_request_Notification_Dispatch_0(ctx context.Context, marshaler runtim
 // UnaryRPC     :call NotificationServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterNotificationHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterNotificationHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extPlugin.NotificationServer) error {
 
 	mux.Handle("POST", pattern_Notification_Dispatch_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -127,7 +128,7 @@ func RegisterNotificationHandler(ctx context.Context, mux *runtime.ServeMux, con
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extPlugin.NotificationClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extPlugin.NotificationClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extPlugin.NotificationClient" to call the correct interceptors.
+// "extPlugin.NotificationClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterNotificationHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extPlugin.NotificationClient) error {
 
 	mux.Handle("POST", pattern_Notification_Dispatch_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {

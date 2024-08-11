@@ -244,6 +244,7 @@ func local_request_TrustedAccount_Stat_0(ctx context.Context, marshaler runtime.
 // UnaryRPC     :call TrustedAccountServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterTrustedAccountHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterTrustedAccountHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.TrustedAccountServer) error {
 
 	mux.Handle("POST", pattern_TrustedAccount_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -484,7 +485,7 @@ func RegisterTrustedAccountHandler(ctx context.Context, mux *runtime.ServeMux, c
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.TrustedAccountClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.TrustedAccountClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v2_0.TrustedAccountClient" to call the correct interceptors.
+// "v2_0.TrustedAccountClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterTrustedAccountHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.TrustedAccountClient) error {
 
 	mux.Handle("POST", pattern_TrustedAccount_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {

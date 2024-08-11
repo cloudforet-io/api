@@ -140,6 +140,7 @@ func local_request_DomainOwner_Get_0(ctx context.Context, marshaler runtime.Mars
 // UnaryRPC     :call DomainOwnerServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterDomainOwnerHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterDomainOwnerHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.DomainOwnerServer) error {
 
 	mux.Handle("POST", pattern_DomainOwner_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -280,7 +281,7 @@ func RegisterDomainOwnerHandler(ctx context.Context, mux *runtime.ServeMux, conn
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.DomainOwnerClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.DomainOwnerClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV1.DomainOwnerClient" to call the correct interceptors.
+// "extV1.DomainOwnerClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterDomainOwnerHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.DomainOwnerClient) error {
 
 	mux.Handle("POST", pattern_DomainOwner_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {

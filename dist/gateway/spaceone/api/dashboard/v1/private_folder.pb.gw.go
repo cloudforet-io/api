@@ -192,6 +192,7 @@ func local_request_PrivateFolder_Stat_0(ctx context.Context, marshaler runtime.M
 // UnaryRPC     :call PrivateFolderServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterPrivateFolderHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterPrivateFolderHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.PrivateFolderServer) error {
 
 	mux.Handle("POST", pattern_PrivateFolder_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -382,7 +383,7 @@ func RegisterPrivateFolderHandler(ctx context.Context, mux *runtime.ServeMux, co
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.PrivateFolderClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.PrivateFolderClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV1.PrivateFolderClient" to call the correct interceptors.
+// "extV1.PrivateFolderClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterPrivateFolderHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.PrivateFolderClient) error {
 
 	mux.Handle("POST", pattern_PrivateFolder_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {

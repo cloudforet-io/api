@@ -218,6 +218,7 @@ func local_request_DashboardTemplate_List_0(ctx context.Context, marshaler runti
 // UnaryRPC     :call DashboardTemplateServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterDashboardTemplateHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterDashboardTemplateHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.DashboardTemplateServer) error {
 
 	mux.Handle("POST", pattern_DashboardTemplate_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -433,7 +434,7 @@ func RegisterDashboardTemplateHandler(ctx context.Context, mux *runtime.ServeMux
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.DashboardTemplateClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.DashboardTemplateClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV1.DashboardTemplateClient" to call the correct interceptors.
+// "extV1.DashboardTemplateClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterDashboardTemplateHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.DashboardTemplateClient) error {
 
 	mux.Handle("POST", pattern_DashboardTemplate_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {

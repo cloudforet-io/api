@@ -270,6 +270,7 @@ func local_request_UserProfile_GetWorkspaces_0(ctx context.Context, marshaler ru
 // UnaryRPC     :call UserProfileServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUserProfileHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterUserProfileHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v2_0.UserProfileServer) error {
 
 	mux.Handle("POST", pattern_UserProfile_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -535,7 +536,7 @@ func RegisterUserProfileHandler(ctx context.Context, mux *runtime.ServeMux, conn
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v2_0.UserProfileClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v2_0.UserProfileClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v2_0.UserProfileClient" to call the correct interceptors.
+// "v2_0.UserProfileClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterUserProfileHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v2_0.UserProfileClient) error {
 
 	mux.Handle("POST", pattern_UserProfile_Update_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {

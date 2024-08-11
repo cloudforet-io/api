@@ -296,6 +296,7 @@ func local_request_Webhook_Stat_0(ctx context.Context, marshaler runtime.Marshal
 // UnaryRPC     :call WebhookServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterWebhookHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterWebhookHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.WebhookServer) error {
 
 	mux.Handle("POST", pattern_Webhook_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -586,7 +587,7 @@ func RegisterWebhookHandler(ctx context.Context, mux *runtime.ServeMux, conn *gr
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.WebhookClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.WebhookClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV1.WebhookClient" to call the correct interceptors.
+// "extV1.WebhookClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterWebhookHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.WebhookClient) error {
 
 	mux.Handle("POST", pattern_Webhook_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {

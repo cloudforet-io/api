@@ -296,6 +296,7 @@ func local_request_UserChannel_Stat_0(ctx context.Context, marshaler runtime.Mar
 // UnaryRPC     :call UserChannelServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUserChannelHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterUserChannelHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.UserChannelServer) error {
 
 	mux.Handle("POST", pattern_UserChannel_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -586,7 +587,7 @@ func RegisterUserChannelHandler(ctx context.Context, mux *runtime.ServeMux, conn
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.UserChannelClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.UserChannelClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV1.UserChannelClient" to call the correct interceptors.
+// "extV1.UserChannelClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterUserChannelHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.UserChannelClient) error {
 
 	mux.Handle("POST", pattern_UserChannel_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {

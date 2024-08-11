@@ -192,6 +192,7 @@ func local_request_Policy_Stat_0(ctx context.Context, marshaler runtime.Marshale
 // UnaryRPC     :call PolicyServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterPolicyHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterPolicyHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.PolicyServer) error {
 
 	mux.Handle("POST", pattern_Policy_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -382,7 +383,7 @@ func RegisterPolicyHandler(ctx context.Context, mux *runtime.ServeMux, conn *grp
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.PolicyClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.PolicyClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.PolicyClient" to call the correct interceptors.
+// "v1_0.PolicyClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterPolicyHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.PolicyClient) error {
 
 	mux.Handle("POST", pattern_Policy_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {

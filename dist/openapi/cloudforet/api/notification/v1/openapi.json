@@ -608,6 +608,143 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/notification/delete": {
+       "post": {
+         "tags": ["notification > notification"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notifications|ID list of Notifications.|array|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"notifications" : {"items": {}, "type": "array","title": "NOTIFICATIONS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"notifications\": [\n       \"notification-4025c1b61225\",\n       \"notification-13hk3fh32534\",\n       \"notification-4kth40jth5jy\"\n   ]\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/notification/set-read": {
+       "post": {
+         "tags": ["notification > notification"],
+         "summary": "Set Read",
+         "operationId" : "",
+         "description": "### Description \nMarks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notifications|ID list of Notifications.|array|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"notifications" : {"items": {}, "type": "array","title": "NOTIFICATIONS" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"notifications\": [\n       \"notification-4025c1b61225\",\n       \"notification-13hk3fh32534\",\n       \"notification-4kth40jth5jy\"\n   ]\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/notification/get": {
+       "post": {
+         "tags": ["notification > notification"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific Notification. Prints detailed information about the Notification, including not only the message contents(`title`, `description`) but also related data such as created time and urgency.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notification_id|The ID of Notification.|string|True|\n |set_read| Check whether read or not|boolean|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"notification_id" : {"type": "string","title": "NOTIFICATION_ID" },"set_read" : {"type": "boolean","title": "SET_READ" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"notification_id\": \"notification-4025c1b61225\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NotificationInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NotificationInfo"},"Default Example":{
+                     "value": "{\n   \"notification_id\": \"notification-4025c1b61225\",\n   \"topic\": \"monitoring.Alert\",\n   \"message\": {\n       \"tags\": {\n           \"project_id\": \"project-18655561c535\",\n           \"created_at\": null,\n           \"urgency\": \"LOW\",\n           \"state\": \"TRIGGERED\",\n           \"resource_id\": \"AWS/NetworkELB\",\n           \"resource_name\": \"[Asia Pacific (Seoul)]:[AWS/NetworkELB]: net/af83f347171a044af46453ebb34c8225/743a23562a96c595\"\n       },\n       \"title\": \"[Asia Pacific (Seoul)]: NLB-TCP_Target_Reset_Count-Alert\",\n       \"description\": \"Threshold Crossed: 1 out of the last 1 datapoints [200.0 (25/06/21 06:38:00)] was not greater than the threshold (200.0)\"\n   },\n   \"notification_type\": \"INFO\",\n   \"notification_level\": \"ALL\",\n   \"is_read\": true,\n   \"user_id\": \"user1@spaceone.dev\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2021-06-25T06:42:05.867Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/notification/list": {
+       "post": {
+         "tags": ["notification > notification"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Notifications. You can use a query to get a filtered list of Notifications.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |notification_id|The ID of notification. |string||\n |topic|The topic of notification. |string||\n |notification_type|INFO, ERROR, SUCCESS, WARNING The type of notification. |string||\n |notification_level|ALL, LV1, LV2, LV3, LV4, LV5 The level of notification. |string||\n |is_read|Whether or not to check the notification. If is_read is False, the user has not checked the notification yet. |boolean||\n |project_id|The project ID to which the notification will be dispatched. |string||\n |parent_notification_id|The ID of parent notification. Not used yet. |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"notification_id" : {"type": "string","title": "NOTIFICATION_ID" },"topic" : {"type": "string","title": "TOPIC" },"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"is_read" : {"type": "boolean","title": "IS_READ" },"project_id" : {"type": "string","title": "PROJECT_ID" },"parent_notification_id" : {"type": "string","title": "PARENT_NOTIFICATION_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"notification_type\",\n               \"value\": \"INFO\",\n               \"operator\": \"eq\"\n           }\n       ]\n   }\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NotificationsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NotificationsInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"notification_id\": \"notification-9f1476af11b7\",\n           \"topic\": \"monitoring.Alert\",\n           \"message\": {\n               \"tags\": {\n                   \"state\": \"ACKNOWLEDGED\",\n                   \"resource_id\": \"pod\",\n                   \"project_id\": \"project-18655561c535\",\n                   \"urgency\": \"LOW\",\n                   \"created_at\": null,\n                   \"assignee\": \"yuda@test.co\"\n               },\n               \"title\": \"[Alerting] Not Running Pods 0:OK alert\",\n               \"description\": \"[cloudone-dev-v1-eks-cluster] Not Running Pods 0 is OK\"\n           },\n           \"notification_type\": \"INFO\",\n           \"notification_level\": \"LV2\",\n           \"is_read\": true,\n           \"user_id\": \"user33@spaceone.dev\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2021-06-21T17:13:39.570Z\"\n       },\n       {\n           \"notification_id\": \"notification-4025c1b61225\",\n           \"topic\": \"monitoring.Alert\",\n           \"message\": {\n               \"title\": \"[Asia Pacific (Seoul)]: NLB-TCP_Target_Reset_Count-Alert\",\n               \"description\": \"Threshold Crossed: 1 out of the last 1 datapoints [200.0 (25/06/21 06:38:00)] was not greater than the threshold (200.0)\",\n               \"tags\": {\n                   \"resource_id\": \"AWS/NetworkELB\",\n                   \"resource_name\": \"[Asia Pacific (Seoul)]:[AWS/NetworkELB]: net/dfsbvs/advdr32rwqdsvzc\",\n                   \"created_at\": null,\n                   \"state\": \"TRIGGERED\",\n                   \"project_id\": \"project-18655561c535\",\n                   \"urgency\": \"LOW\"\n               }\n           },\n           \"notification_type\": \"INFO\",\n           \"notification_level\": \"ALL\",\n           \"is_read\": true,\n           \"user_id\": \"user1@cloudforet.io\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2021-06-25T06:42:05.867Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/notification/notification/stat": {
+       "post": {
+         "tags": ["notification > notification"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|is_required: true Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/notification/protocol/create": {
        "post": {
          "tags": ["notification > protocol"],
@@ -877,143 +1014,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/notification/delete": {
-       "post": {
-         "tags": ["notification > notification"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \nDeletes multiple Notifications. You must specify `notifications` of the list of Notifications to delete.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notifications|ID list of Notifications.|array|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"notifications" : {"items": {}, "type": "array","title": "NOTIFICATIONS" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"notifications\": [\n       \"notification-4025c1b61225\",\n       \"notification-13hk3fh32534\",\n       \"notification-4kth40jth5jy\"\n   ]\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/notification/set-read": {
-       "post": {
-         "tags": ["notification > notification"],
-         "summary": "Set Read",
-         "operationId" : "",
-         "description": "### Description \nMarks a Notification as read. When a Notification is raised and if the Notification has been acknowledged, it can be marked as read with the method.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notifications|ID list of Notifications.|array|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"notifications" : {"items": {}, "type": "array","title": "NOTIFICATIONS" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"notifications\": [\n       \"notification-4025c1b61225\",\n       \"notification-13hk3fh32534\",\n       \"notification-4kth40jth5jy\"\n   ]\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/notification/get": {
-       "post": {
-         "tags": ["notification > notification"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \nGets a specific Notification. Prints detailed information about the Notification, including not only the message contents(`title`, `description`) but also related data such as created time and urgency.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |notification_id|The ID of Notification.|string|True|\n |set_read| Check whether read or not|boolean|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"notification_id" : {"type": "string","title": "NOTIFICATION_ID" },"set_read" : {"type": "boolean","title": "SET_READ" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"notification_id\": \"notification-4025c1b61225\"\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NotificationInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NotificationInfo"},"Default Example":{
-                     "value": "{\n   \"notification_id\": \"notification-4025c1b61225\",\n   \"topic\": \"monitoring.Alert\",\n   \"message\": {\n       \"tags\": {\n           \"project_id\": \"project-18655561c535\",\n           \"created_at\": null,\n           \"urgency\": \"LOW\",\n           \"state\": \"TRIGGERED\",\n           \"resource_id\": \"AWS/NetworkELB\",\n           \"resource_name\": \"[Asia Pacific (Seoul)]:[AWS/NetworkELB]: net/af83f347171a044af46453ebb34c8225/743a23562a96c595\"\n       },\n       \"title\": \"[Asia Pacific (Seoul)]: NLB-TCP_Target_Reset_Count-Alert\",\n       \"description\": \"Threshold Crossed: 1 out of the last 1 datapoints [200.0 (25/06/21 06:38:00)] was not greater than the threshold (200.0)\"\n   },\n   \"notification_type\": \"INFO\",\n   \"notification_level\": \"ALL\",\n   \"is_read\": true,\n   \"user_id\": \"user1@spaceone.dev\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2021-06-25T06:42:05.867Z\"\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/notification/list": {
-       "post": {
-         "tags": ["notification > notification"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all Notifications. You can use a query to get a filtered list of Notifications.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|Query format provided by SpaceONE. Please check the link for more information. |Query||\n |notification_id|The ID of notification. |string||\n |topic|The topic of notification. |string||\n |notification_type|INFO, ERROR, SUCCESS, WARNING The type of notification. |string||\n |notification_level|ALL, LV1, LV2, LV3, LV4, LV5 The level of notification. |string||\n |is_read|Whether or not to check the notification. If is_read is False, the user has not checked the notification yet. |boolean||\n |project_id|The project ID to which the notification will be dispatched. |string||\n |parent_notification_id|The ID of parent notification. Not used yet. |string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"notification_id" : {"type": "string","title": "NOTIFICATION_ID" },"topic" : {"type": "string","title": "TOPIC" },"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE" },"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL" },"is_read" : {"type": "boolean","title": "IS_READ" },"project_id" : {"type": "string","title": "PROJECT_ID" },"parent_notification_id" : {"type": "string","title": "PARENT_NOTIFICATION_ID" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"notification_type\",\n               \"value\": \"INFO\",\n               \"operator\": \"eq\"\n           }\n       ]\n   }\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/NotificationsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/NotificationsInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"notification_id\": \"notification-9f1476af11b7\",\n           \"topic\": \"monitoring.Alert\",\n           \"message\": {\n               \"tags\": {\n                   \"state\": \"ACKNOWLEDGED\",\n                   \"resource_id\": \"pod\",\n                   \"project_id\": \"project-18655561c535\",\n                   \"urgency\": \"LOW\",\n                   \"created_at\": null,\n                   \"assignee\": \"yuda@test.co\"\n               },\n               \"title\": \"[Alerting] Not Running Pods 0:OK alert\",\n               \"description\": \"[cloudone-dev-v1-eks-cluster] Not Running Pods 0 is OK\"\n           },\n           \"notification_type\": \"INFO\",\n           \"notification_level\": \"LV2\",\n           \"is_read\": true,\n           \"user_id\": \"user33@spaceone.dev\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2021-06-21T17:13:39.570Z\"\n       },\n       {\n           \"notification_id\": \"notification-4025c1b61225\",\n           \"topic\": \"monitoring.Alert\",\n           \"message\": {\n               \"title\": \"[Asia Pacific (Seoul)]: NLB-TCP_Target_Reset_Count-Alert\",\n               \"description\": \"Threshold Crossed: 1 out of the last 1 datapoints [200.0 (25/06/21 06:38:00)] was not greater than the threshold (200.0)\",\n               \"tags\": {\n                   \"resource_id\": \"AWS/NetworkELB\",\n                   \"resource_name\": \"[Asia Pacific (Seoul)]:[AWS/NetworkELB]: net/dfsbvs/advdr32rwqdsvzc\",\n                   \"created_at\": null,\n                   \"state\": \"TRIGGERED\",\n                   \"project_id\": \"project-18655561c535\",\n                   \"urgency\": \"LOW\"\n               }\n           },\n           \"notification_type\": \"INFO\",\n           \"notification_level\": \"ALL\",\n           \"is_read\": true,\n           \"user_id\": \"user1@cloudforet.io\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2021-06-25T06:42:05.867Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
-                   }}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/notification/notification/stat": {
-       "post": {
-         "tags": ["notification > notification"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query|is_required: true Statistics Query format provided by SpaceONE. Please check the link for more information.|StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
@@ -1252,6 +1252,12 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
+           }
            ,        "AuthenticationRequest": {
          "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
@@ -1283,12 +1289,6 @@
          "type": "object",
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
-           }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
-         "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
            }
            ,        "CreateProjectChannelRequest": {
          "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"is_subscribe" : {"type": "boolean","title": "IS_SUBSCRIBE"},"subscriptions" : {"items": {"type": "string"},
@@ -1355,6 +1355,56 @@
          "required": ["project_channel_id","is_subscribe"],
                 "title": "UpdateProjectChannelSubscriptionRequest"
            }
+           ,        "CreateNotificationRequest": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"topic" : {"type": "string","title": "TOPIC"},"message" : {"type": "object","title": "MESSAGE"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"}},
+         "type": "object",
+         "required": ["resource_type","resource_id","topic","message"],
+                "title": "CreateNotificationRequest"
+           }
+           ,        "GetNotificationRequest": {
+         "properties" : {"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"set_read" : {"type": "boolean","title": "SET_READ"}},
+         "type": "object",
+         "required": ["notification_id","set_read"],
+                "title": "GetNotificationRequest"
+           }
+           ,        "NotificationInfo": {
+         "properties" : {"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"topic" : {"type": "string","title": "TOPIC"},"message" : {"type": "object","title": "MESSAGE"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_read" : {"type": "boolean","title": "IS_READ"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["notification_id","topic","message","notification_type","notification_level","is_read","domain_id","user_id","created_at"],
+                "title": "NotificationInfo"
+           }
+           ,        "NotificationQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"topic" : {"type": "string","title": "TOPIC"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_read" : {"type": "boolean","title": "IS_READ"},"project_id" : {"type": "string","title": "PROJECT_ID"},"parent_notification_id" : {"type": "string","title": "PARENT_NOTIFICATION_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "NotificationQuery"
+           }
+           ,        "NotificationStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "NotificationStatQuery"
+           }
+           ,        "NotificationsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NotificationInfo"},
+               "type": "array","$ref": "#/components/schemas/NotificationInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "NotificationsInfo"
+           }
+           ,        "NotificationsRequest": {
+         "properties" : {"notifications" : {"items": {"type": "string"},
+               "type": "array","title": "NOTIFICATIONS"}},
+         "type": "object",
+         "required": ["notifications"],
+                "title": "NotificationsRequest"
+           }
+           ,        "PushNotificationRequest": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"data" : {"type": "string","title": "DATA"},"message" : {"type": "object","title": "MESSAGE"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"topic" : {"type": "string","title": "TOPIC"}},
+         "type": "object",
+         "required": ["protocol_id","data","message"],
+                "title": "PushNotificationRequest"
+           }
            ,        "CreateProtocolRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/PluginRequest","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
@@ -1415,56 +1465,6 @@
          "type": "object",
          "required": ["protocol_id"],
                 "title": "UpdateProtocolRequest"
-           }
-           ,        "CreateNotificationRequest": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"resource_id" : {"type": "string","title": "RESOURCE_ID"},"topic" : {"type": "string","title": "TOPIC"},"message" : {"type": "object","title": "MESSAGE"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"}},
-         "type": "object",
-         "required": ["resource_type","resource_id","topic","message"],
-                "title": "CreateNotificationRequest"
-           }
-           ,        "GetNotificationRequest": {
-         "properties" : {"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"set_read" : {"type": "boolean","title": "SET_READ"}},
-         "type": "object",
-         "required": ["notification_id","set_read"],
-                "title": "GetNotificationRequest"
-           }
-           ,        "NotificationInfo": {
-         "properties" : {"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"topic" : {"type": "string","title": "TOPIC"},"message" : {"type": "object","title": "MESSAGE"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_read" : {"type": "boolean","title": "IS_READ"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["notification_id","topic","message","notification_type","notification_level","is_read","domain_id","user_id","created_at"],
-                "title": "NotificationInfo"
-           }
-           ,        "NotificationQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"notification_id" : {"type": "string","title": "NOTIFICATION_ID"},"topic" : {"type": "string","title": "TOPIC"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"is_read" : {"type": "boolean","title": "IS_READ"},"project_id" : {"type": "string","title": "PROJECT_ID"},"parent_notification_id" : {"type": "string","title": "PARENT_NOTIFICATION_ID"}},
-         "type": "object",
-         "required": [],
-                "title": "NotificationQuery"
-           }
-           ,        "NotificationStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "NotificationStatQuery"
-           }
-           ,        "NotificationsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NotificationInfo"},
-               "type": "array","$ref": "#/components/schemas/NotificationInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "NotificationsInfo"
-           }
-           ,        "NotificationsRequest": {
-         "properties" : {"notifications" : {"items": {"type": "string"},
-               "type": "array","title": "NOTIFICATIONS"}},
-         "type": "object",
-         "required": ["notifications"],
-                "title": "NotificationsRequest"
-           }
-           ,        "PushNotificationRequest": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"data" : {"type": "string","title": "DATA"},"message" : {"type": "object","title": "MESSAGE"},"notification_type" : {"type": "string","title": "NOTIFICATION_TYPE"},"notification_level" : {"type": "string","title": "NOTIFICATION_LEVEL"},"topic" : {"type": "string","title": "TOPIC"}},
-         "type": "object",
-         "required": ["protocol_id","data","message"],
-                "title": "PushNotificationRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},

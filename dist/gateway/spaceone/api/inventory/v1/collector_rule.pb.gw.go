@@ -218,6 +218,7 @@ func local_request_CollectorRule_Stat_0(ctx context.Context, marshaler runtime.M
 // UnaryRPC     :call CollectorRuleServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterCollectorRuleHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterCollectorRuleHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.CollectorRuleServer) error {
 
 	mux.Handle("POST", pattern_CollectorRule_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -433,7 +434,7 @@ func RegisterCollectorRuleHandler(ctx context.Context, mux *runtime.ServeMux, co
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.CollectorRuleClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.CollectorRuleClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "extV1.CollectorRuleClient" to call the correct interceptors.
+// "extV1.CollectorRuleClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterCollectorRuleHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.CollectorRuleClient) error {
 
 	mux.Handle("POST", pattern_CollectorRule_Create_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
