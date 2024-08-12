@@ -4622,9 +4622,10 @@
                 "title": "UpdateUserRequest"
            }
            ,        "UserInfo": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"role_type" : {"type": "string","title": "ROLE_TYPE"}},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"email_verified" : {"type": "boolean","title": "EMAIL_VERIFIED"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"role_id" : {"type": "string","title": "ROLE_ID"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"mfa" : {"$ref": "#/components/schemas/MFA","title": "MFA"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"required_actions" : {"items": {"type": "string"},
+               "type": "array","title": "REQUIRED_ACTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
          "type": "object",
-         "required": ["user_id","role_id","role_type"],
+         "required": ["user_id","name","state","email","email_verified","auth_type","role_id","role_type","mfa","language","timezone","required_actions","tags","domain_id","created_at","last_accessed_at"],
                 "title": "UserInfo"
            }
            ,        "UserRequest": {
@@ -4879,8 +4880,8 @@
            }
            ,        "WorkspaceGroupInfo": {
          "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"workspaces" : {"items": {"type": "string"},
-               "type": "array","title": "WORKSPACES"},"users" : {"items": {"$ref": "#/components/schemas/UserInfo"},
-               "type": "array","$ref": "#/components/schemas/UserInfo","title": "USERS"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+               "type": "array","title": "WORKSPACES"},"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"},
+               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUserInfo","title": "USERS"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
          "required": ["workspace_group_id","name","workspaces","users","tags","created_by","updated_by","domain_id","created_at","updated_at"],
                 "title": "WorkspaceGroupInfo"
@@ -4902,6 +4903,12 @@
          "type": "object",
          "required": ["query"],
                 "title": "WorkspaceGroupStatQuery"
+           }
+           ,        "WorkspaceGroupUserInfo": {
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"role_type" : {"type": "string","title": "ROLE_TYPE"}},
+         "type": "object",
+         "required": ["user_id","role_id","role_type"],
+                "title": "WorkspaceGroupUserInfo"
            }
            ,        "WorkspaceGroupsInfo": {
          "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupInfo"},
