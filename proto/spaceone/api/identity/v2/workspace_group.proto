@@ -46,6 +46,13 @@ service WorkspaceGroup {
     };
   }
 
+  rpc find_users (WorkspaceGroupFindRequest) returns (WorkspaceGroupUsersSummaryInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace-group/find-users"
+      body: "*"
+    };
+  }
+
   rpc add_users (UsersWorkspaceGroupRequest) returns (WorkspaceGroupInfo) {
     option (google.api.http) = {
       post: "/identity/v2/workspace-group/add-users"
@@ -101,6 +108,22 @@ message WorkspacesWorkspaceGroupRequest {
   repeated string workspaces = 2;
 }
 
+message WorkspaceGroupFindRequest {
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    PENDING = 3;
+  }
+
+  string keyword = 1;
+  // +optional
+  State state = 2;
+  // +optional
+  spaceone.api.core.v2.Page page = 3;
+  string workspace_group_id = 21;
+}
+
 message UsersWorkspaceGroupRequest {
   string workspace_group_id = 1;
   repeated google.protobuf.Struct users = 2;
@@ -144,6 +167,24 @@ message WorkspaceGroupSearchQuery {
 
 message WorkspaceGroupsInfo {
   repeated WorkspaceGroupInfo results = 1;
+  int32 total_count = 2;
+}
+
+message WorkspaceGroupUserSummaryInfo {
+  enum State {
+    STATE_NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    PENDING = 3;
+  }
+
+  string user_id = 1;
+  string name = 2;
+  State state = 3;
+}
+
+message WorkspaceGroupUsersSummaryInfo {
+  repeated WorkspaceGroupUserSummaryInfo results = 1;
   int32 total_count = 2;
 }
 
