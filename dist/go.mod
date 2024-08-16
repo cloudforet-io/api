@@ -7,7 +7,7 @@ replace github.com/cloudforet-io/api => ./
 require (
 	github.com/golang/protobuf v1.5.4
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.21.0
-	google.golang.org/genproto/googleapis/api v0.0.0-20240808171019-573a1156607a
+	google.golang.org/genproto/googleapis/api v0.0.0-20240814211410-ddb44dafa142
 	google.golang.org/grpc v1.65.0
 	google.golang.org/protobuf v1.34.2
 )

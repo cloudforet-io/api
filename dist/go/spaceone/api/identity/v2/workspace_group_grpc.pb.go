@@ -26,6 +26,7 @@ const (
 	WorkspaceGroup_Delete_FullMethodName           = "/spaceone.api.identity.v2.WorkspaceGroup/delete"
 	WorkspaceGroup_AddWorkspaces_FullMethodName    = "/spaceone.api.identity.v2.WorkspaceGroup/add_workspaces"
 	WorkspaceGroup_RemoveWorkspaces_FullMethodName = "/spaceone.api.identity.v2.WorkspaceGroup/remove_workspaces"
+	WorkspaceGroup_FindUsers_FullMethodName        = "/spaceone.api.identity.v2.WorkspaceGroup/find_users"
 	WorkspaceGroup_AddUsers_FullMethodName         = "/spaceone.api.identity.v2.WorkspaceGroup/add_users"
 	WorkspaceGroup_RemoveUsers_FullMethodName      = "/spaceone.api.identity.v2.WorkspaceGroup/remove_users"
 	WorkspaceGroup_Get_FullMethodName              = "/spaceone.api.identity.v2.WorkspaceGroup/get"
@@ -42,6 +43,7 @@ type WorkspaceGroupClient interface {
 	Delete(ctx context.Context, in *WorkspaceGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	AddWorkspaces(ctx context.Context, in *WorkspacesWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
 	RemoveWorkspaces(ctx context.Context, in *WorkspacesWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
+	FindUsers(ctx context.Context, in *WorkspaceGroupFindRequest, opts ...grpc.CallOption) (*WorkspaceGroupUsersSummaryInfo, error)
 	AddUsers(ctx context.Context, in *UsersWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
 	RemoveUsers(ctx context.Context, in *UsersWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
 	Get(ctx context.Context, in *WorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
@@ -107,6 +109,16 @@ func (c *workspaceGroupClient) RemoveWorkspaces(ctx context.Context, in *Workspa
 	return out, nil
 }
 
+func (c *workspaceGroupClient) FindUsers(ctx context.Context, in *WorkspaceGroupFindRequest, opts ...grpc.CallOption) (*WorkspaceGroupUsersSummaryInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WorkspaceGroupUsersSummaryInfo)
+	err := c.cc.Invoke(ctx, WorkspaceGroup_FindUsers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *workspaceGroupClient) AddUsers(ctx context.Context, in *UsersWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(WorkspaceGroupInfo)
@@ -166,6 +178,7 @@ type WorkspaceGroupServer interface {
 	Delete(context.Context, *WorkspaceGroupRequest) (*empty.Empty, error)
 	AddWorkspaces(context.Context, *WorkspacesWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
 	RemoveWorkspaces(context.Context, *WorkspacesWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
+	FindUsers(context.Context, *WorkspaceGroupFindRequest) (*WorkspaceGroupUsersSummaryInfo, error)
 	AddUsers(context.Context, *UsersWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
 	RemoveUsers(context.Context, *UsersWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
 	Get(context.Context, *WorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
@@ -195,6 +208,9 @@ func (UnimplementedWorkspaceGroupServer) AddWorkspaces(context.Context, *Workspa
 }
 func (UnimplementedWorkspaceGroupServer) RemoveWorkspaces(context.Context, *WorkspacesWorkspaceGroupRequest) (*WorkspaceGroupInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveWorkspaces not implemented")
+}
+func (UnimplementedWorkspaceGroupServer) FindUsers(context.Context, *WorkspaceGroupFindRequest) (*WorkspaceGroupUsersSummaryInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindUsers not implemented")
 }
 func (UnimplementedWorkspaceGroupServer) AddUsers(context.Context, *UsersWorkspaceGroupRequest) (*WorkspaceGroupInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddUsers not implemented")
@@ -322,6 +338,24 @@ func _WorkspaceGroup_RemoveWorkspaces_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WorkspaceGroup_FindUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkspaceGroupFindRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkspaceGroupServer).FindUsers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WorkspaceGroup_FindUsers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkspaceGroupServer).FindUsers(ctx, req.(*WorkspaceGroupFindRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _WorkspaceGroup_AddUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UsersWorkspaceGroupRequest)
 	if err := dec(in); err != nil {
@@ -438,6 +472,10 @@ var WorkspaceGroup_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "remove_workspaces",
 			Handler:    _WorkspaceGroup_RemoveWorkspaces_Handler,
+		},
+		{
+			MethodName: "find_users",
+			Handler:    _WorkspaceGroup_FindUsers_Handler,
 		},
 		{
 			MethodName: "add_users",
