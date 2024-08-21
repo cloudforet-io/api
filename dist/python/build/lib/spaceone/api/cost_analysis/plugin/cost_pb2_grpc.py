@@ -5,7 +5,7 @@ import warnings
 
 from spaceone.api.cost_analysis.plugin import cost_pb2 as spaceone_dot_api_dot_cost__analysis_dot_plugin_dot_cost__pb2
 
-GRPC_GENERATED_VERSION = '1.65.4'
+GRPC_GENERATED_VERSION = '1.65.5'
 GRPC_VERSION = grpc.__version__
 EXPECTED_ERROR_RELEASE = '1.66.0'
 SCHEDULED_RELEASE_DATE = 'August 6, 2024'
