@@ -4888,24 +4888,31 @@
          "required": ["project_id","users"],
                 "title": "UsersProjectRequest"
            }
+           ,        "AddUsersWorkspaceGroupRequest": {
+         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"type": "object"},
+               "type": "array","title": "USERS"}},
+         "type": "object",
+         "required": ["workspace_group_id","users"],
+                "title": "AddUsersWorkspaceGroupRequest"
+           }
            ,        "CreateWorkspaceGroupRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["name"],
                 "title": "CreateWorkspaceGroupRequest"
            }
+           ,        "RemoveUsersWorkspaceGroupRequest": {
+         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"type": "string"},
+               "type": "array","title": "USERS"}},
+         "type": "object",
+         "required": ["workspace_group_id","users"],
+                "title": "RemoveUsersWorkspaceGroupRequest"
+           }
            ,        "UpdateWorkspaceGroupRequest": {
          "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["workspace_group_id"],
                 "title": "UpdateWorkspaceGroupRequest"
-           }
-           ,        "UsersWorkspaceGroupRequest": {
-         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"type": "object"},
-               "type": "array","title": "USERS"}},
-         "type": "object",
-         "required": ["workspace_group_id","users"],
-                "title": "UsersWorkspaceGroupRequest"
            }
            ,        "WorkspaceGroupFindRequest": {
          "properties" : {"keyword" : {"type": "string","title": "KEYWORD"},"state" : {"type": "string","title": "STATE"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"}},
