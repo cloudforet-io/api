@@ -53,14 +53,14 @@ service WorkspaceGroup {
     };
   }
 
-  rpc add_users (UsersWorkspaceGroupRequest) returns (WorkspaceGroupInfo) {
+  rpc add_users (AddUsersWorkspaceGroupRequest) returns (WorkspaceGroupInfo) {
     option (google.api.http) = {
       post: "/identity/v2/workspace-group/add-users"
       body: "*"
     };
   }
 
-  rpc remove_users (UsersWorkspaceGroupRequest) returns (WorkspaceGroupInfo) {
+  rpc remove_users (RemoveUsersWorkspaceGroupRequest) returns (WorkspaceGroupInfo) {
     option (google.api.http) = {
       post: "/identity/v2/workspace-group/remove-users"
       body: "*"
@@ -124,9 +124,14 @@ message WorkspaceGroupFindRequest {
   string workspace_group_id = 21;
 }
 
-message UsersWorkspaceGroupRequest {
+message AddUsersWorkspaceGroupRequest {
   string workspace_group_id = 1;
   repeated google.protobuf.Struct users = 2;
+}
+
+message RemoveUsersWorkspaceGroupRequest {
+  string workspace_group_id = 1;
+  repeated string users = 2;
 }
 
 message WorkspaceGroupRequest {
