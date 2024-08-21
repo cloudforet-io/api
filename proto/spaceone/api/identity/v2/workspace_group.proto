@@ -126,7 +126,7 @@ message WorkspaceGroupFindRequest {
 
 message AddUsersWorkspaceGroupRequest {
   string workspace_group_id = 1;
-  repeated google.protobuf.Struct users = 2;
+  repeated WorkspaceGroupUser users = 2;
 }
 
 message RemoveUsersWorkspaceGroupRequest {
@@ -138,7 +138,7 @@ message WorkspaceGroupRequest {
   string workspace_group_id = 1;
 }
 
-message WorkspaceGroupUserInfo {
+message WorkspaceGroupUser {
   string user_id = 1;
   string role_id = 2;
   string role_type = 3;
@@ -148,7 +148,7 @@ message WorkspaceGroupInfo {
   string workspace_group_id = 1;
   string name = 2;
   repeated string workspaces = 3;
-  repeated WorkspaceGroupUserInfo users = 4;
+  repeated string users = 4;
   google.protobuf.Struct tags = 5;
   string created_by = 6;
   string updated_by = 7;
