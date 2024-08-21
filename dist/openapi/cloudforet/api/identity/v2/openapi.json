@@ -2071,6 +2071,35 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace-group/find-users": {
+       "post": {
+         "tags": ["identity > workspace-group"],
+         "summary": "Find Users",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |keyword||string|True|\n |workspace_group_id||string|True|\n |state|ENABLED, DISABLED, PENDING |string||\n |page||Page||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"keyword" : {"type": "string","title": "KEYWORD" },"state" : {"type": "string","title": "STATE" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" },"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupUsersSummaryInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupUsersSummaryInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/workspace-group/add-users": {
        "post": {
          "tags": ["identity > workspace-group"],
@@ -4878,6 +4907,12 @@
          "required": ["workspace_group_id","users"],
                 "title": "UsersWorkspaceGroupRequest"
            }
+           ,        "WorkspaceGroupFindRequest": {
+         "properties" : {"keyword" : {"type": "string","title": "KEYWORD"},"state" : {"type": "string","title": "STATE"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"}},
+         "type": "object",
+         "required": ["keyword","workspace_group_id"],
+                "title": "WorkspaceGroupFindRequest"
+           }
            ,        "WorkspaceGroupInfo": {
          "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"workspaces" : {"items": {"type": "string"},
                "type": "array","title": "WORKSPACES"},"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"},
@@ -4909,6 +4944,19 @@
          "type": "object",
          "required": ["user_id","role_id","role_type"],
                 "title": "WorkspaceGroupUserInfo"
+           }
+           ,        "WorkspaceGroupUserSummaryInfo": {
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"}},
+         "type": "object",
+         "required": ["user_id","name","state"],
+                "title": "WorkspaceGroupUserSummaryInfo"
+           }
+           ,        "WorkspaceGroupUsersSummaryInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUserSummaryInfo"},
+               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUserSummaryInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "WorkspaceGroupUsersSummaryInfo"
            }
            ,        "WorkspaceGroupsInfo": {
          "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupInfo"},

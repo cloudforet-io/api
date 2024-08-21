@@ -8,7 +8,64 @@
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
-      "enums": [],
+      "enums": [
+        {
+          "name": "State",
+          "longName": "WorkspaceGroupFindRequest.State",
+          "fullName": "spaceone.api.identity.v2.WorkspaceGroupFindRequest.State",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "PENDING",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "State",
+          "longName": "WorkspaceGroupUserSummaryInfo.State",
+          "fullName": "spaceone.api.identity.v2.WorkspaceGroupUserSummaryInfo.State",
+          "description": "",
+          "values": [
+            {
+              "name": "STATE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "PENDING",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        }
+      ],
       "extensions": [],
       "messages": [
         {
@@ -124,6 +181,66 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "WorkspaceGroupFindRequest",
+          "longName": "WorkspaceGroupFindRequest",
+          "fullName": "spaceone.api.identity.v2.WorkspaceGroupFindRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "keyword",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "+optional",
+              "label": "",
+              "type": "State",
+              "longType": "WorkspaceGroupFindRequest.State",
+              "fullType": "spaceone.api.identity.v2.WorkspaceGroupFindRequest.State",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "page",
+              "description": "+optional",
+              "label": "",
+              "type": "Page",
+              "longType": "spaceone.api.core.v2.Page",
+              "fullType": "spaceone.api.core.v2.Page",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_group_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -432,6 +549,90 @@
           ]
         },
         {
+          "name": "WorkspaceGroupUserSummaryInfo",
+          "longName": "WorkspaceGroupUserSummaryInfo",
+          "fullName": "spaceone.api.identity.v2.WorkspaceGroupUserSummaryInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "user_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "State",
+              "longType": "WorkspaceGroupUserSummaryInfo.State",
+              "fullType": "spaceone.api.identity.v2.WorkspaceGroupUserSummaryInfo.State",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "WorkspaceGroupUsersSummaryInfo",
+          "longName": "WorkspaceGroupUsersSummaryInfo",
+          "fullName": "spaceone.api.identity.v2.WorkspaceGroupUsersSummaryInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "WorkspaceGroupUserSummaryInfo",
+              "longType": "WorkspaceGroupUserSummaryInfo",
+              "fullType": "spaceone.api.identity.v2.WorkspaceGroupUserSummaryInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "WorkspaceGroupsInfo",
           "longName": "WorkspaceGroupsInfo",
           "fullName": "spaceone.api.identity.v2.WorkspaceGroupsInfo",
@@ -620,6 +821,29 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/workspace-group/remove-workspaces",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "find_users",
+              "description": "",
+              "requestType": "WorkspaceGroupFindRequest",
+              "requestLongType": "WorkspaceGroupFindRequest",
+              "requestFullType": "spaceone.api.identity.v2.WorkspaceGroupFindRequest",
+              "requestStreaming": false,
+              "responseType": "WorkspaceGroupUsersSummaryInfo",
+              "responseLongType": "WorkspaceGroupUsersSummaryInfo",
+              "responseFullType": "spaceone.api.identity.v2.WorkspaceGroupUsersSummaryInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/workspace-group/find-users",
                       "body": "*"
                     }
                   ]
