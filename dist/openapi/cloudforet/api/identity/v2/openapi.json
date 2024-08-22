@@ -2733,11 +2733,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |role_id||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |tags||Struct||\n |expired_at||string||\n |workspace_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |role_id||string|True|\n |resource_group|DOMAIN, WORKSPACE, PROJECT |string|True|\n |project_group_id||string|True|\n |project_id||string|True|\n |tags||Struct||\n |expired_at||string||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"role_id" : {"type": "string","title": "ROLE_ID" },"tags" : {"type": "object","title": "TAGS" },"expired_at" : {"type": "string","title": "EXPIRED_AT" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"role_id" : {"type": "string","title": "ROLE_ID" },"tags" : {"type": "object","title": "TAGS" },"expired_at" : {"type": "string","title": "EXPIRED_AT" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -5098,9 +5098,9 @@
                 "title": "AppCheckRequest"
            }
            ,        "AppInfo": {
-         "properties" : {"app_id" : {"type": "string","title": "APP_ID"},"client_secret" : {"type": "string","title": "CLIENT_SECRET"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"tags" : {"type": "object","title": "TAGS"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"client_id" : {"type": "string","title": "CLIENT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"expired_at" : {"type": "string","title": "EXPIRED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
+         "properties" : {"app_id" : {"type": "string","title": "APP_ID"},"client_secret" : {"type": "string","title": "CLIENT_SECRET"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"tags" : {"type": "object","title": "TAGS"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"client_id" : {"type": "string","title": "CLIENT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"expired_at" : {"type": "string","title": "EXPIRED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
          "type": "object",
-         "required": ["app_id","client_secret","name","state","is_managed","tags","role_type","resource_group","domain_id","workspace_id","role_id","client_id","created_at","expired_at","last_accessed_at"],
+         "required": ["app_id","client_secret","name","state","is_managed","tags","role_type","resource_group","domain_id","workspace_id","role_id","client_id","project_group_id","project_id","created_at","expired_at","last_accessed_at"],
                 "title": "AppInfo"
            }
            ,        "AppRequest": {
@@ -5130,15 +5130,16 @@
            }
            ,        "CheckAppInfo": {
          "properties" : {"permissions" : {"items": {"type": "string"},
-               "type": "array","title": "PERMISSIONS"}},
+               "type": "array","title": "PERMISSIONS"},"projects" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECTS"}},
          "type": "object",
-         "required": ["permissions"],
+         "required": ["permissions","projects"],
                 "title": "CheckAppInfo"
            }
            ,        "CreateAppRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"role_id" : {"type": "string","title": "ROLE_ID"},"tags" : {"type": "object","title": "TAGS"},"expired_at" : {"type": "string","title": "EXPIRED_AT"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"role_id" : {"type": "string","title": "ROLE_ID"},"tags" : {"type": "object","title": "TAGS"},"expired_at" : {"type": "string","title": "EXPIRED_AT"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
-         "required": ["name","role_id","resource_group"],
+         "required": ["name","role_id","resource_group","project_group_id","project_id"],
                 "title": "CreateAppRequest"
            }
            ,        "GenerateAPIKeyAppRequest": {
