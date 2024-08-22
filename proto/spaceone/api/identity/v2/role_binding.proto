@@ -14,122 +14,123 @@ import "spaceone/api/identity/v2/role.proto";
 
 
 service RoleBinding {
-    rpc create (CreateRoleBindingRequest) returns (RoleBindingInfo) {
-        option (google.api.http) = {
-            post: "/identity/v1/role-binding/create"
-            body: "*"
-        };
-    }
-    rpc update_role (UpdateRoleBindingRequest) returns (RoleBindingInfo) {
-        option (google.api.http) = {
-            post: "/identity/v1/role-binding/update-role"
-            body: "*"
-        };
-    }
-    rpc delete (RoleBindingRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/identity/v1/role-binding/delete"
-            body: "*"
-        };
-    }
-    rpc get (RoleBindingRequest) returns (RoleBindingInfo) {
-        option (google.api.http) = {
-            post: "/identity/v1/role-binding/get"
-            body: "*"
-        };
-    }
-    rpc list (RoleBindingSearchQuery) returns (RoleBindingsInfo) {
-        option (google.api.http) = {
-            post: "/identity/v1/role-binding/list"
-            body: "*"
-        };
-    }
-    rpc stat (RoleBindingStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/identity/v1/role-binding/stat"
-            body: "*"
-        };
-    }
+  rpc create (CreateRoleBindingRequest) returns (RoleBindingInfo) {
+    option (google.api.http) = {
+      post: "/identity/v1/role-binding/create"
+      body: "*"
+    };
+  }
+  rpc update_role (UpdateRoleBindingRequest) returns (RoleBindingInfo) {
+    option (google.api.http) = {
+      post: "/identity/v1/role-binding/update-role"
+      body: "*"
+    };
+  }
+  rpc delete (RoleBindingRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/identity/v1/role-binding/delete"
+      body: "*"
+    };
+  }
+  rpc get (RoleBindingRequest) returns (RoleBindingInfo) {
+    option (google.api.http) = {
+      post: "/identity/v1/role-binding/get"
+      body: "*"
+    };
+  }
+  rpc list (RoleBindingSearchQuery) returns (RoleBindingsInfo) {
+    option (google.api.http) = {
+      post: "/identity/v1/role-binding/list"
+      body: "*"
+    };
+  }
+  rpc stat (RoleBindingStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/identity/v1/role-binding/stat"
+      body: "*"
+    };
+  }
 }
 
 message CreateRoleBindingRequest {
-    enum ResourceGroup {
-        NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
+  enum ResourceGroup {
+    NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
 
-    string user_id = 1;
-    string role_id = 2;
-    ResourceGroup resource_group = 20;
-    // +optional
-    string workspace_id = 21;
+  string user_id = 1;
+  string role_id = 2;
+  ResourceGroup resource_group = 20;
+  // +optional
+  string workspace_id = 21;
 }
 
 message UpdateRoleBindingRequest {
-    string role_binding_id = 1;
-    string role_id = 2;
+  string role_binding_id = 1;
+  string role_id = 2;
 }
 
 message RoleBindingRequest {
-    string role_binding_id = 1;
+  string role_binding_id = 1;
 }
 
 message RoleBindingSearchQuery {
-    enum ResourceGroup {
-        GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-    enum RoleType {
-        ROLE_TYPE_NONE = 0;
-        DOMAIN_ADMIN = 1;
-        WORKSPACE_OWNER = 2;
-        WORKSPACE_MEMBER = 3;
-    }
+  enum ResourceGroup {
+    GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
+  enum RoleType {
+    ROLE_TYPE_NONE = 0;
+    DOMAIN_ADMIN = 1;
+    WORKSPACE_OWNER = 2;
+    WORKSPACE_MEMBER = 3;
+  }
 
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string role_binding_id = 2;
-    // +optional
-    RoleType role_type = 3;
-    // +optional
-    string workspace_id = 21;
-    // +optional
-    string role_id = 22;
-    // +optional
-    string user_id = 23;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string role_binding_id = 2;
+  // +optional
+  RoleType role_type = 3;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string role_id = 22;
+  // +optional
+  string user_id = 23;
 }
 
 message RoleBindingInfo {
-    enum ResourceGroup {
-        GROUP_NONE = 0;
-        DOMAIN = 1;
-        WORKSPACE = 2;
-    }
-    enum RoleType {
-        ROLE_TYPE_NONE = 0;
-        DOMAIN_ADMIN = 1;
-        WORKSPACE_OWNER = 2;
-        WORKSPACE_MEMBER = 3;
-    }
+  enum ResourceGroup {
+    GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
+  enum RoleType {
+    ROLE_TYPE_NONE = 0;
+    DOMAIN_ADMIN = 1;
+    WORKSPACE_OWNER = 2;
+    WORKSPACE_MEMBER = 3;
+  }
 
-    string role_binding_id = 1;
-    RoleType role_type = 2;
-    ResourceGroup resource_group = 20;
-    string domain_id = 21;
-    string workspace_id = 22;
-    string role_id = 23;
-    string user_id = 24;
-    string created_at = 31;
+  string role_binding_id = 1;
+  RoleType role_type = 2;
+  ResourceGroup resource_group = 20;
+  string domain_id = 21;
+  string workspace_group_id = 22;
+  string workspace_id = 23;
+  string role_id = 24;
+  string user_id = 25;
+  string created_at = 31;
 }
 
 message RoleBindingsInfo {
-    repeated RoleBindingInfo results = 1;
-    int32 total_count = 2;
+  repeated RoleBindingInfo results = 1;
+  int32 total_count = 2;
 }
 
 message RoleBindingStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
