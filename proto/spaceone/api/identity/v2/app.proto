@@ -82,6 +82,7 @@ message CreateAppRequest {
     NONE = 0;
     DOMAIN = 1;
     WORKSPACE = 2;
+    PROJECT = 3;
   }
 
   string name = 1;
@@ -93,6 +94,8 @@ message CreateAppRequest {
   ResourceGroup resource_group = 20;
   // +optional
   string workspace_id = 21;
+  string project_group_id = 22;
+  string project_id = 23;
 }
 
 message UpdateAppRequest {
@@ -120,6 +123,7 @@ message AppCheckRequest {
 
 message CheckAppInfo {
   repeated string permissions = 1;
+  repeated string projects = 2;
 }
 
 message AppInfo {
@@ -133,11 +137,13 @@ message AppInfo {
     ROLE_TYPE_NONE = 0;
     DOMAIN_ADMIN = 1;
     WORKSPACE_OWNER = 2;
+    WORKSPACE_MEMBER = 3;
   }
   enum ResourceGroup {
     GROUP_NONE = 0;
     DOMAIN = 1;
     WORKSPACE = 2;
+    PROJECT = 3;
   }
 
   string app_id = 1;
@@ -152,6 +158,8 @@ message AppInfo {
   string workspace_id = 22;
   string role_id = 23;
   string client_id = 24;
+  string project_group_id = 25;
+  string project_id = 26;
   string created_at = 31;
   string expired_at = 32;
   string last_accessed_at = 33;
