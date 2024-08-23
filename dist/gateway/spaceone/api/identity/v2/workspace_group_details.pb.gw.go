@@ -430,7 +430,7 @@ func RegisterWorkspaceGroupDetailsHandlerServer(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.WorkspaceGroupDetails/GetWorkspaceGroups", runtime.WithHTTPPathPattern("/identity/v2/workspace-group-details/get-workspace-group-details"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.identity.v2.WorkspaceGroupDetails/GetWorkspaceGroups", runtime.WithHTTPPathPattern("/identity/v2/workspace-group-details/get-workspace-groups"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -648,7 +648,7 @@ func RegisterWorkspaceGroupDetailsHandlerClient(ctx context.Context, mux *runtim
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.WorkspaceGroupDetails/GetWorkspaceGroups", runtime.WithHTTPPathPattern("/identity/v2/workspace-group-details/get-workspace-group-details"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.identity.v2.WorkspaceGroupDetails/GetWorkspaceGroups", runtime.WithHTTPPathPattern("/identity/v2/workspace-group-details/get-workspace-groups"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -682,7 +682,7 @@ var (
 
 	pattern_WorkspaceGroupDetails_RemoveUsers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "workspace-group-details", "remove-users"}, ""))
 
-	pattern_WorkspaceGroupDetails_GetWorkspaceGroups_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "workspace-group-details", "get-workspace-group-details"}, ""))
+	pattern_WorkspaceGroupDetails_GetWorkspaceGroups_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"identity", "v2", "workspace-group-details", "get-workspace-groups"}, ""))
 )
 
 var (
