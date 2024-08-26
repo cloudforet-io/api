@@ -10,6 +10,7 @@ import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
 import "spaceone/api/identity/v2/workspace.proto";
 import "spaceone/api/identity/v2/user.proto";
+import "spaceone/api/identity/v2/workspace_group.proto";
 
 
 service UserProfile {
@@ -79,7 +80,15 @@ service UserProfile {
       body: "*"
     };
   }
+
+  rpc get_workspace_groups (UserProfileRequest) returns (MyWorkspaceGroupsInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/user-profile/get-workspace-groups"
+      body: "*"
+    };
+  }
 }
+
 
 message UpdateUserProfileRequest {
   // +optional
@@ -136,6 +145,8 @@ message ConfirmMFARequest {
 }
 
 message UserProfileRequest {
+  // +optional
+  string workspace_group_id = 1;
 }
 
 message UserPasswordResetRequest {
@@ -178,6 +189,11 @@ message MyWorkspaceInfo {
 
 message MyWorkspacesInfo {
   repeated MyWorkspaceInfo results = 1;
+  int32 total_count = 2;
+}
+
+message MyWorkspaceGroupsInfo {
+  repeated WorkspaceGroupInfo results = 1;
   int32 total_count = 2;
 }
 

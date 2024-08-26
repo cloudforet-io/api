@@ -1,0 +1,152 @@
+syntax = "proto3";
+
+package spaceone.api.identity.v2;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/identity/v2";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+service WorkspaceGroupUser {
+  rpc add (WorkspaceGroupUsersRequest) returns (WorkspaceGroupUserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace-group-user/add"
+      body: "*"
+    };
+  }
+
+  rpc remove (WorkspaceGroupUsersRequest) returns (WorkspaceGroupUserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace-group-user/remove"
+      body: "*"
+    };
+  }
+
+  rpc update_role (WorkspaceGroupUserUpdateRoleRequest) returns (WorkspaceGroupUserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace-group-user/update-role"
+      body: "*"
+    };
+  }
+
+  rpc find (WorkspaceGroupUserFindRequest) returns (WorkspaceGroupUsersSummaryInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace-group-user/find"
+      body: "*"
+    };
+  }
+
+  rpc get (WorkspaceGroupUserRequest) returns (WorkspaceGroupUserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace-group-user/get"
+      body: "*"
+    };
+  }
+
+  rpc list (WorkspaceGroupUserSearchQuery) returns (WorkspaceGroupUsersInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace-group-user/list"
+      body: "*"
+    };
+  }
+
+  rpc stat (WorkspaceGroupUserStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/identity/v1/workspace-group-user/stat"
+      body: "*"
+    };
+  }
+}
+
+message WorkspaceGroupUsers {
+  string user_id = 1;
+  string role_id = 2;
+  string role_type = 3;
+  string user_name = 4;
+  string state = 5;
+}
+
+message WorkspaceGroupUsersRequest {
+  string workspace_group_id = 1;
+  repeated WorkspaceGroupUsers users = 2;
+}
+
+message WorkspaceGroupUserUpdateRoleRequest {
+  string workspace_group_id = 1;
+  string user_id = 2;
+  string role_id = 3;
+}
+
+message WorkspaceGroupUserFindRequest {
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    PENDING = 3;
+  }
+  string workspace_group_id = 1;
+  string keyword = 2;
+  // +optional
+  State state = 3;
+  // +optional
+  spaceone.api.core.v2.Page page = 4;
+}
+
+message WorkspaceGroupUserRequest {
+  string workspace_group_id = 1;
+}
+
+message WorkspaceGroupUserInfo {
+  string workspace_group_id = 1;
+  string name = 2;
+  repeated string workspaces = 3;
+  repeated WorkspaceGroupUsers users = 4;
+  google.protobuf.Struct tags = 5;
+  string created_by = 6;
+  string updated_by = 7;
+  string domain_id = 21;
+  string created_at = 31;
+  string updated_at = 32;
+}
+
+message WorkspaceGroupUserSearchQuery {
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string workspace_group_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  string created_by = 4;
+  // +optional
+  string updated_by = 5;
+}
+
+message WorkspaceGroupUsersInfo {
+  repeated WorkspaceGroupUserInfo results = 1;
+  int32 total_count = 2;
+}
+
+message WorkspaceGroupUserSummaryInfo {
+  enum State {
+    STATE_NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+    PENDING = 3;
+  }
+
+  string user_id = 1;
+  string name = 2;
+  State state = 3;
+}
+
+message WorkspaceGroupUsersSummaryInfo {
+  repeated WorkspaceGroupUserSummaryInfo results = 1;
+  int32 total_count = 2;
+}
+
+message WorkspaceGroupUserStatQuery {
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+}
