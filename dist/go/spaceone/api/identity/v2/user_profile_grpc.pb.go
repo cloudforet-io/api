@@ -20,15 +20,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserProfile_Update_FullMethodName        = "/spaceone.api.identity.v2.UserProfile/update"
-	UserProfile_VerifyEmail_FullMethodName   = "/spaceone.api.identity.v2.UserProfile/verify_email"
-	UserProfile_ConfirmEmail_FullMethodName  = "/spaceone.api.identity.v2.UserProfile/confirm_email"
-	UserProfile_ResetPassword_FullMethodName = "/spaceone.api.identity.v2.UserProfile/reset_password"
-	UserProfile_EnableMfa_FullMethodName     = "/spaceone.api.identity.v2.UserProfile/enable_mfa"
-	UserProfile_DisableMfa_FullMethodName    = "/spaceone.api.identity.v2.UserProfile/disable_mfa"
-	UserProfile_ConfirmMfa_FullMethodName    = "/spaceone.api.identity.v2.UserProfile/confirm_mfa"
-	UserProfile_Get_FullMethodName           = "/spaceone.api.identity.v2.UserProfile/get"
-	UserProfile_GetWorkspaces_FullMethodName = "/spaceone.api.identity.v2.UserProfile/get_workspaces"
+	UserProfile_Update_FullMethodName             = "/spaceone.api.identity.v2.UserProfile/update"
+	UserProfile_VerifyEmail_FullMethodName        = "/spaceone.api.identity.v2.UserProfile/verify_email"
+	UserProfile_ConfirmEmail_FullMethodName       = "/spaceone.api.identity.v2.UserProfile/confirm_email"
+	UserProfile_ResetPassword_FullMethodName      = "/spaceone.api.identity.v2.UserProfile/reset_password"
+	UserProfile_EnableMfa_FullMethodName          = "/spaceone.api.identity.v2.UserProfile/enable_mfa"
+	UserProfile_DisableMfa_FullMethodName         = "/spaceone.api.identity.v2.UserProfile/disable_mfa"
+	UserProfile_ConfirmMfa_FullMethodName         = "/spaceone.api.identity.v2.UserProfile/confirm_mfa"
+	UserProfile_Get_FullMethodName                = "/spaceone.api.identity.v2.UserProfile/get"
+	UserProfile_GetWorkspaces_FullMethodName      = "/spaceone.api.identity.v2.UserProfile/get_workspaces"
+	UserProfile_GetWorkspaceGroups_FullMethodName = "/spaceone.api.identity.v2.UserProfile/get_workspace_groups"
 )
 
 // UserProfileClient is the client API for UserProfile service.
@@ -48,6 +49,7 @@ type UserProfileClient interface {
 	ConfirmMfa(ctx context.Context, in *ConfirmMFARequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Get(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	GetWorkspaces(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*MyWorkspacesInfo, error)
+	GetWorkspaceGroups(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*MyWorkspaceGroupsInfo, error)
 }
 
 type userProfileClient struct {
@@ -148,6 +150,16 @@ func (c *userProfileClient) GetWorkspaces(ctx context.Context, in *UserProfileRe
 	return out, nil
 }
 
+func (c *userProfileClient) GetWorkspaceGroups(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*MyWorkspaceGroupsInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MyWorkspaceGroupsInfo)
+	err := c.cc.Invoke(ctx, UserProfile_GetWorkspaceGroups_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserProfileServer is the server API for UserProfile service.
 // All implementations must embed UnimplementedUserProfileServer
 // for forward compatibility.
@@ -165,6 +177,7 @@ type UserProfileServer interface {
 	ConfirmMfa(context.Context, *ConfirmMFARequest) (*UserInfo, error)
 	Get(context.Context, *UserProfileRequest) (*UserInfo, error)
 	GetWorkspaces(context.Context, *UserProfileRequest) (*MyWorkspacesInfo, error)
+	GetWorkspaceGroups(context.Context, *UserProfileRequest) (*MyWorkspaceGroupsInfo, error)
 	mustEmbedUnimplementedUserProfileServer()
 }
 
@@ -201,6 +214,9 @@ func (UnimplementedUserProfileServer) Get(context.Context, *UserProfileRequest) 
 }
 func (UnimplementedUserProfileServer) GetWorkspaces(context.Context, *UserProfileRequest) (*MyWorkspacesInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWorkspaces not implemented")
+}
+func (UnimplementedUserProfileServer) GetWorkspaceGroups(context.Context, *UserProfileRequest) (*MyWorkspaceGroupsInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWorkspaceGroups not implemented")
 }
 func (UnimplementedUserProfileServer) mustEmbedUnimplementedUserProfileServer() {}
 func (UnimplementedUserProfileServer) testEmbeddedByValue()                     {}
@@ -385,6 +401,24 @@ func _UserProfile_GetWorkspaces_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserProfile_GetWorkspaceGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserProfileServer).GetWorkspaceGroups(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserProfile_GetWorkspaceGroups_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserProfileServer).GetWorkspaceGroups(ctx, req.(*UserProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserProfile_ServiceDesc is the grpc.ServiceDesc for UserProfile service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -427,6 +461,10 @@ var UserProfile_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "get_workspaces",
 			Handler:    _UserProfile_GetWorkspaces_Handler,
+		},
+		{
+			MethodName: "get_workspace_groups",
+			Handler:    _UserProfile_GetWorkspaceGroups_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

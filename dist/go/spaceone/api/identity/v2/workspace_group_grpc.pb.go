@@ -26,9 +26,9 @@ const (
 	WorkspaceGroup_Delete_FullMethodName           = "/spaceone.api.identity.v2.WorkspaceGroup/delete"
 	WorkspaceGroup_AddWorkspaces_FullMethodName    = "/spaceone.api.identity.v2.WorkspaceGroup/add_workspaces"
 	WorkspaceGroup_RemoveWorkspaces_FullMethodName = "/spaceone.api.identity.v2.WorkspaceGroup/remove_workspaces"
-	WorkspaceGroup_FindUsers_FullMethodName        = "/spaceone.api.identity.v2.WorkspaceGroup/find_users"
 	WorkspaceGroup_AddUsers_FullMethodName         = "/spaceone.api.identity.v2.WorkspaceGroup/add_users"
 	WorkspaceGroup_RemoveUsers_FullMethodName      = "/spaceone.api.identity.v2.WorkspaceGroup/remove_users"
+	WorkspaceGroup_UpdateRole_FullMethodName       = "/spaceone.api.identity.v2.WorkspaceGroup/update_role"
 	WorkspaceGroup_Get_FullMethodName              = "/spaceone.api.identity.v2.WorkspaceGroup/get"
 	WorkspaceGroup_List_FullMethodName             = "/spaceone.api.identity.v2.WorkspaceGroup/list"
 	WorkspaceGroup_Stat_FullMethodName             = "/spaceone.api.identity.v2.WorkspaceGroup/stat"
@@ -43,9 +43,9 @@ type WorkspaceGroupClient interface {
 	Delete(ctx context.Context, in *WorkspaceGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	AddWorkspaces(ctx context.Context, in *WorkspacesWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
 	RemoveWorkspaces(ctx context.Context, in *WorkspacesWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
-	FindUsers(ctx context.Context, in *WorkspaceGroupFindRequest, opts ...grpc.CallOption) (*WorkspaceGroupUsersSummaryInfo, error)
 	AddUsers(ctx context.Context, in *UsersWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
 	RemoveUsers(ctx context.Context, in *UsersWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
+	UpdateRole(ctx context.Context, in *WorkspaceGroupUpdateRoleRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
 	Get(ctx context.Context, in *WorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
 	List(ctx context.Context, in *WorkspaceGroupSearchQuery, opts ...grpc.CallOption) (*WorkspaceGroupsInfo, error)
 	Stat(ctx context.Context, in *WorkspaceGroupStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -109,16 +109,6 @@ func (c *workspaceGroupClient) RemoveWorkspaces(ctx context.Context, in *Workspa
 	return out, nil
 }
 
-func (c *workspaceGroupClient) FindUsers(ctx context.Context, in *WorkspaceGroupFindRequest, opts ...grpc.CallOption) (*WorkspaceGroupUsersSummaryInfo, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(WorkspaceGroupUsersSummaryInfo)
-	err := c.cc.Invoke(ctx, WorkspaceGroup_FindUsers_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *workspaceGroupClient) AddUsers(ctx context.Context, in *UsersWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(WorkspaceGroupInfo)
@@ -133,6 +123,16 @@ func (c *workspaceGroupClient) RemoveUsers(ctx context.Context, in *UsersWorkspa
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(WorkspaceGroupInfo)
 	err := c.cc.Invoke(ctx, WorkspaceGroup_RemoveUsers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *workspaceGroupClient) UpdateRole(ctx context.Context, in *WorkspaceGroupUpdateRoleRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WorkspaceGroupInfo)
+	err := c.cc.Invoke(ctx, WorkspaceGroup_UpdateRole_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -178,9 +178,9 @@ type WorkspaceGroupServer interface {
 	Delete(context.Context, *WorkspaceGroupRequest) (*empty.Empty, error)
 	AddWorkspaces(context.Context, *WorkspacesWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
 	RemoveWorkspaces(context.Context, *WorkspacesWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
-	FindUsers(context.Context, *WorkspaceGroupFindRequest) (*WorkspaceGroupUsersSummaryInfo, error)
 	AddUsers(context.Context, *UsersWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
 	RemoveUsers(context.Context, *UsersWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
+	UpdateRole(context.Context, *WorkspaceGroupUpdateRoleRequest) (*WorkspaceGroupInfo, error)
 	Get(context.Context, *WorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
 	List(context.Context, *WorkspaceGroupSearchQuery) (*WorkspaceGroupsInfo, error)
 	Stat(context.Context, *WorkspaceGroupStatQuery) (*_struct.Struct, error)
@@ -209,14 +209,14 @@ func (UnimplementedWorkspaceGroupServer) AddWorkspaces(context.Context, *Workspa
 func (UnimplementedWorkspaceGroupServer) RemoveWorkspaces(context.Context, *WorkspacesWorkspaceGroupRequest) (*WorkspaceGroupInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveWorkspaces not implemented")
 }
-func (UnimplementedWorkspaceGroupServer) FindUsers(context.Context, *WorkspaceGroupFindRequest) (*WorkspaceGroupUsersSummaryInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindUsers not implemented")
-}
 func (UnimplementedWorkspaceGroupServer) AddUsers(context.Context, *UsersWorkspaceGroupRequest) (*WorkspaceGroupInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddUsers not implemented")
 }
 func (UnimplementedWorkspaceGroupServer) RemoveUsers(context.Context, *UsersWorkspaceGroupRequest) (*WorkspaceGroupInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveUsers not implemented")
+}
+func (UnimplementedWorkspaceGroupServer) UpdateRole(context.Context, *WorkspaceGroupUpdateRoleRequest) (*WorkspaceGroupInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRole not implemented")
 }
 func (UnimplementedWorkspaceGroupServer) Get(context.Context, *WorkspaceGroupRequest) (*WorkspaceGroupInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -338,24 +338,6 @@ func _WorkspaceGroup_RemoveWorkspaces_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _WorkspaceGroup_FindUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WorkspaceGroupFindRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WorkspaceGroupServer).FindUsers(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: WorkspaceGroup_FindUsers_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WorkspaceGroupServer).FindUsers(ctx, req.(*WorkspaceGroupFindRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _WorkspaceGroup_AddUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UsersWorkspaceGroupRequest)
 	if err := dec(in); err != nil {
@@ -388,6 +370,24 @@ func _WorkspaceGroup_RemoveUsers_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WorkspaceGroupServer).RemoveUsers(ctx, req.(*UsersWorkspaceGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WorkspaceGroup_UpdateRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkspaceGroupUpdateRoleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkspaceGroupServer).UpdateRole(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WorkspaceGroup_UpdateRole_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkspaceGroupServer).UpdateRole(ctx, req.(*WorkspaceGroupUpdateRoleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -474,16 +474,16 @@ var WorkspaceGroup_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _WorkspaceGroup_RemoveWorkspaces_Handler,
 		},
 		{
-			MethodName: "find_users",
-			Handler:    _WorkspaceGroup_FindUsers_Handler,
-		},
-		{
 			MethodName: "add_users",
 			Handler:    _WorkspaceGroup_AddUsers_Handler,
 		},
 		{
 			MethodName: "remove_users",
 			Handler:    _WorkspaceGroup_RemoveUsers_Handler,
+		},
+		{
+			MethodName: "update_role",
+			Handler:    _WorkspaceGroup_UpdateRole_Handler,
 		},
 		{
 			MethodName: "get",
