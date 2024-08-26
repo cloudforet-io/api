@@ -189,7 +189,7 @@ func local_request_WorkspaceGroup_FindUsers_0(ctx context.Context, marshaler run
 }
 
 func request_WorkspaceGroup_AddUsers_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.WorkspaceGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.AddUsersWorkspaceGroupRequest
+	var protoReq v2_0.UsersWorkspaceGroupRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -202,7 +202,7 @@ func request_WorkspaceGroup_AddUsers_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func local_request_WorkspaceGroup_AddUsers_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.WorkspaceGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.AddUsersWorkspaceGroupRequest
+	var protoReq v2_0.UsersWorkspaceGroupRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -215,7 +215,7 @@ func local_request_WorkspaceGroup_AddUsers_0(ctx context.Context, marshaler runt
 }
 
 func request_WorkspaceGroup_RemoveUsers_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.WorkspaceGroupClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.RemoveUsersWorkspaceGroupRequest
+	var protoReq v2_0.UsersWorkspaceGroupRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -228,7 +228,7 @@ func request_WorkspaceGroup_RemoveUsers_0(ctx context.Context, marshaler runtime
 }
 
 func local_request_WorkspaceGroup_RemoveUsers_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.WorkspaceGroupServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.RemoveUsersWorkspaceGroupRequest
+	var protoReq v2_0.UsersWorkspaceGroupRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {

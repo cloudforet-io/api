@@ -2140,7 +2140,7 @@
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {}, "type": "array","title": "USERS" }                 }
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUser"}, "type": "array","title": "USERS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -5114,31 +5114,24 @@
          "required": ["project_id","users"],
                 "title": "UsersProjectRequest"
            }
-           ,        "AddUsersWorkspaceGroupRequest": {
-         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUser"},
-               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUser","title": "USERS"}},
-         "type": "object",
-         "required": ["workspace_group_id","users"],
-                "title": "AddUsersWorkspaceGroupRequest"
-           }
            ,        "CreateWorkspaceGroupRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["name"],
                 "title": "CreateWorkspaceGroupRequest"
            }
-           ,        "RemoveUsersWorkspaceGroupRequest": {
-         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"type": "string"},
-               "type": "array","title": "USERS"}},
-         "type": "object",
-         "required": ["workspace_group_id","users"],
-                "title": "RemoveUsersWorkspaceGroupRequest"
-           }
            ,        "UpdateWorkspaceGroupRequest": {
          "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["workspace_group_id"],
                 "title": "UpdateWorkspaceGroupRequest"
+           }
+           ,        "UsersWorkspaceGroupRequest": {
+         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUser"},
+               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUser","title": "USERS"}},
+         "type": "object",
+         "required": ["workspace_group_id","users"],
+                "title": "UsersWorkspaceGroupRequest"
            }
            ,        "WorkspaceGroupFindRequest": {
          "properties" : {"keyword" : {"type": "string","title": "KEYWORD"},"state" : {"type": "string","title": "STATE"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"}},
@@ -5148,10 +5141,10 @@
            }
            ,        "WorkspaceGroupInfo": {
          "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"workspaces" : {"items": {"type": "string"},
-               "type": "array","title": "WORKSPACES"},"users" : {"items": {"type": "string"},
-               "type": "array","title": "USERS"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+               "type": "array","title": "WORKSPACES"},"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUser"},
+               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUser","title": "USERS"},"tags" : {"type": "object","title": "TAGS"},"role_binding_info" : {"type": "object","title": "ROLE_BINDING_INFO"},"created_by" : {"type": "string","title": "CREATED_BY"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["workspace_group_id","name","workspaces","users","tags","created_by","updated_by","domain_id","created_at","updated_at"],
+         "required": ["workspace_group_id","name","workspaces","users","tags","role_binding_info","created_by","updated_by","domain_id","created_at","updated_at"],
                 "title": "WorkspaceGroupInfo"
            }
            ,        "WorkspaceGroupRequest": {
