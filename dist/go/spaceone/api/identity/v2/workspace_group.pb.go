@@ -200,7 +200,7 @@ func (x *WorkspacesWorkspaceGroupRequest) GetWorkspaces() []string {
 	return nil
 }
 
-type WorkspaceGroupUser struct {
+type UserWorkspaceGroup struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -212,8 +212,8 @@ type WorkspaceGroupUser struct {
 	State    string `protobuf:"bytes,5,opt,name=state,proto3" json:"state,omitempty"`
 }
 
-func (x *WorkspaceGroupUser) Reset() {
-	*x = WorkspaceGroupUser{}
+func (x *UserWorkspaceGroup) Reset() {
+	*x = UserWorkspaceGroup{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_spaceone_api_identity_v2_workspace_group_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -221,13 +221,13 @@ func (x *WorkspaceGroupUser) Reset() {
 	}
 }
 
-func (x *WorkspaceGroupUser) String() string {
+func (x *UserWorkspaceGroup) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*WorkspaceGroupUser) ProtoMessage() {}
+func (*UserWorkspaceGroup) ProtoMessage() {}
 
-func (x *WorkspaceGroupUser) ProtoReflect() protoreflect.Message {
+func (x *UserWorkspaceGroup) ProtoReflect() protoreflect.Message {
 	mi := &file_spaceone_api_identity_v2_workspace_group_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -239,40 +239,40 @@ func (x *WorkspaceGroupUser) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use WorkspaceGroupUser.ProtoReflect.Descriptor instead.
-func (*WorkspaceGroupUser) Descriptor() ([]byte, []int) {
+// Deprecated: Use UserWorkspaceGroup.ProtoReflect.Descriptor instead.
+func (*UserWorkspaceGroup) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_identity_v2_workspace_group_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *WorkspaceGroupUser) GetUserId() string {
+func (x *UserWorkspaceGroup) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *WorkspaceGroupUser) GetRoleId() string {
+func (x *UserWorkspaceGroup) GetRoleId() string {
 	if x != nil {
 		return x.RoleId
 	}
 	return ""
 }
 
-func (x *WorkspaceGroupUser) GetRoleType() string {
+func (x *UserWorkspaceGroup) GetRoleType() string {
 	if x != nil {
 		return x.RoleType
 	}
 	return ""
 }
 
-func (x *WorkspaceGroupUser) GetUserName() string {
+func (x *UserWorkspaceGroup) GetUserName() string {
 	if x != nil {
 		return x.UserName
 	}
 	return ""
 }
 
-func (x *WorkspaceGroupUser) GetState() string {
+func (x *UserWorkspaceGroup) GetState() string {
 	if x != nil {
 		return x.State
 	}
@@ -285,7 +285,7 @@ type UsersWorkspaceGroupRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	WorkspaceGroupId string                `protobuf:"bytes,1,opt,name=workspace_group_id,json=workspaceGroupId,proto3" json:"workspace_group_id,omitempty"`
-	Users            []*WorkspaceGroupUser `protobuf:"bytes,2,rep,name=users,proto3" json:"users,omitempty"`
+	Users            []*UserWorkspaceGroup `protobuf:"bytes,2,rep,name=users,proto3" json:"users,omitempty"`
 }
 
 func (x *UsersWorkspaceGroupRequest) Reset() {
@@ -327,7 +327,7 @@ func (x *UsersWorkspaceGroupRequest) GetWorkspaceGroupId() string {
 	return ""
 }
 
-func (x *UsersWorkspaceGroupRequest) GetUsers() []*WorkspaceGroupUser {
+func (x *UsersWorkspaceGroupRequest) GetUsers() []*UserWorkspaceGroup {
 	if x != nil {
 		return x.Users
 	}
@@ -452,7 +452,7 @@ type WorkspaceGroupInfo struct {
 	WorkspaceGroupId string                `protobuf:"bytes,1,opt,name=workspace_group_id,json=workspaceGroupId,proto3" json:"workspace_group_id,omitempty"`
 	Name             string                `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Workspaces       []string              `protobuf:"bytes,3,rep,name=workspaces,proto3" json:"workspaces,omitempty"`
-	Users            []*WorkspaceGroupUser `protobuf:"bytes,4,rep,name=users,proto3" json:"users,omitempty"`
+	Users            []*UserWorkspaceGroup `protobuf:"bytes,4,rep,name=users,proto3" json:"users,omitempty"`
 	Tags             *_struct.Struct       `protobuf:"bytes,5,opt,name=tags,proto3" json:"tags,omitempty"`
 	CreatedBy        string                `protobuf:"bytes,6,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
 	UpdatedBy        string                `protobuf:"bytes,7,opt,name=updated_by,json=updatedBy,proto3" json:"updated_by,omitempty"`
@@ -514,7 +514,7 @@ func (x *WorkspaceGroupInfo) GetWorkspaces() []string {
 	return nil
 }
 
-func (x *WorkspaceGroupInfo) GetUsers() []*WorkspaceGroupUser {
+func (x *WorkspaceGroupInfo) GetUsers() []*UserWorkspaceGroup {
 	if x != nil {
 		return x.Users
 	}
@@ -789,8 +789,8 @@ var file_spaceone_api_identity_v2_workspace_group_proto_rawDesc = []byte{
 	0x52, 0x10, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70,
 	0x49, 0x64, 0x12, 0x1e, 0x0a, 0x0a, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x73,
 	0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0a, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63,
-	0x65, 0x73, 0x22, 0x96, 0x01, 0x0a, 0x12, 0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65,
-	0x47, 0x72, 0x6f, 0x75, 0x70, 0x55, 0x73, 0x65, 0x72, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65,
+	0x65, 0x73, 0x22, 0x96, 0x01, 0x0a, 0x12, 0x55, 0x73, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x73,
+	0x70, 0x61, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65,
 	0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72,
 	0x49, 0x64, 0x12, 0x17, 0x0a, 0x07, 0x72, 0x6f, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x09, 0x52, 0x06, 0x72, 0x6f, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x72,
@@ -806,8 +806,8 @@ var file_spaceone_api_identity_v2_workspace_group_proto_rawDesc = []byte{
 	0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x12, 0x42, 0x0a, 0x05, 0x75, 0x73, 0x65, 0x72,
 	0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2c, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f,
 	0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x2e,
-	0x76, 0x32, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75,
-	0x70, 0x55, 0x73, 0x65, 0x72, 0x52, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x22, 0x81, 0x01, 0x0a,
+	0x76, 0x32, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x22, 0x81, 0x01, 0x0a,
 	0x1f, 0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x55,
 	0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x12, 0x2c, 0x0a, 0x12, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f, 0x67, 0x72,
@@ -830,8 +830,8 @@ var file_spaceone_api_identity_v2_workspace_group_proto_rawDesc = []byte{
 	0x20, 0x03, 0x28, 0x09, 0x52, 0x0a, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x73,
 	0x12, 0x42, 0x0a, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32,
 	0x2c, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x69,
-	0x64, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x57, 0x6f, 0x72, 0x6b, 0x73,
-	0x70, 0x61, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x55, 0x73, 0x65, 0x72, 0x52, 0x05, 0x75,
+	0x64, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x2e, 0x76, 0x32, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x57,
+	0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x05, 0x75,
 	0x73, 0x65, 0x72, 0x73, 0x12, 0x2b, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18, 0x05, 0x20, 0x01,
 	0x28, 0x0b, 0x32, 0x17, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x52, 0x04, 0x74, 0x61, 0x67,
@@ -1007,7 +1007,7 @@ var file_spaceone_api_identity_v2_workspace_group_proto_goTypes = []any{
 	(*CreateWorkspaceGroupRequest)(nil),     // 0: spaceone.api.identity.v2.CreateWorkspaceGroupRequest
 	(*UpdateWorkspaceGroupRequest)(nil),     // 1: spaceone.api.identity.v2.UpdateWorkspaceGroupRequest
 	(*WorkspacesWorkspaceGroupRequest)(nil), // 2: spaceone.api.identity.v2.WorkspacesWorkspaceGroupRequest
-	(*WorkspaceGroupUser)(nil),              // 3: spaceone.api.identity.v2.WorkspaceGroupUser
+	(*UserWorkspaceGroup)(nil),              // 3: spaceone.api.identity.v2.UserWorkspaceGroup
 	(*UsersWorkspaceGroupRequest)(nil),      // 4: spaceone.api.identity.v2.UsersWorkspaceGroupRequest
 	(*WorkspaceGroupUpdateRoleRequest)(nil), // 5: spaceone.api.identity.v2.WorkspaceGroupUpdateRoleRequest
 	(*WorkspaceGroupRequest)(nil),           // 6: spaceone.api.identity.v2.WorkspaceGroupRequest
@@ -1023,8 +1023,8 @@ var file_spaceone_api_identity_v2_workspace_group_proto_goTypes = []any{
 var file_spaceone_api_identity_v2_workspace_group_proto_depIdxs = []int32{
 	11, // 0: spaceone.api.identity.v2.CreateWorkspaceGroupRequest.tags:type_name -> google.protobuf.Struct
 	11, // 1: spaceone.api.identity.v2.UpdateWorkspaceGroupRequest.tags:type_name -> google.protobuf.Struct
-	3,  // 2: spaceone.api.identity.v2.UsersWorkspaceGroupRequest.users:type_name -> spaceone.api.identity.v2.WorkspaceGroupUser
-	3,  // 3: spaceone.api.identity.v2.WorkspaceGroupInfo.users:type_name -> spaceone.api.identity.v2.WorkspaceGroupUser
+	3,  // 2: spaceone.api.identity.v2.UsersWorkspaceGroupRequest.users:type_name -> spaceone.api.identity.v2.UserWorkspaceGroup
+	3,  // 3: spaceone.api.identity.v2.WorkspaceGroupInfo.users:type_name -> spaceone.api.identity.v2.UserWorkspaceGroup
 	11, // 4: spaceone.api.identity.v2.WorkspaceGroupInfo.tags:type_name -> google.protobuf.Struct
 	12, // 5: spaceone.api.identity.v2.WorkspaceGroupSearchQuery.query:type_name -> spaceone.api.core.v2.Query
 	7,  // 6: spaceone.api.identity.v2.WorkspaceGroupsInfo.results:type_name -> spaceone.api.identity.v2.WorkspaceGroupInfo
@@ -1102,7 +1102,7 @@ func file_spaceone_api_identity_v2_workspace_group_proto_init() {
 			}
 		}
 		file_spaceone_api_identity_v2_workspace_group_proto_msgTypes[3].Exporter = func(v any, i int) any {
-			switch v := v.(*WorkspaceGroupUser); i {
+			switch v := v.(*UserWorkspaceGroup); i {
 			case 0:
 				return &v.state
 			case 1:

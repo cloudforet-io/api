@@ -502,7 +502,7 @@
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUsers"}, "type": "array","title": "USERS" }                 }
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {"$ref": "#/components/schemas/UserWorkspaceGroup"}, "type": "array","title": "USERS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -531,7 +531,7 @@
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUsers"}, "type": "array","title": "USERS" }                 }
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {"$ref": "#/components/schemas/UserWorkspaceGroup"}, "type": "array","title": "USERS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2285,7 +2285,7 @@
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUser"}, "type": "array","title": "USERS" }                 }
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {"$ref": "#/components/schemas/UserWorkspaceGroup"}, "type": "array","title": "USERS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2314,7 +2314,7 @@
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUser"}, "type": "array","title": "USERS" }                 }
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {"$ref": "#/components/schemas/UserWorkspaceGroup"}, "type": "array","title": "USERS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -4796,8 +4796,8 @@
            }
            ,        "WorkspaceGroupUserInfo": {
          "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"workspaces" : {"items": {"type": "string"},
-               "type": "array","title": "WORKSPACES"},"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUsers"},
-               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUsers","title": "USERS"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+               "type": "array","title": "WORKSPACES"},"users" : {"items": {"$ref": "#/components/schemas/UserWorkspaceGroup"},
+               "type": "array","$ref": "#/components/schemas/UserWorkspaceGroup","title": "USERS"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
          "required": ["workspace_group_id","name","workspaces","users","tags","created_by","updated_by","domain_id","created_at","updated_at"],
                 "title": "WorkspaceGroupUserInfo"
@@ -4832,12 +4832,6 @@
          "required": ["workspace_group_id","user_id","role_id"],
                 "title": "WorkspaceGroupUserUpdateRoleRequest"
            }
-           ,        "WorkspaceGroupUsers": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"user_name" : {"type": "string","title": "USER_NAME"},"state" : {"type": "string","title": "STATE"}},
-         "type": "object",
-         "required": ["user_id","role_id","role_type","user_name","state"],
-                "title": "WorkspaceGroupUsers"
-           }
            ,        "WorkspaceGroupUsersInfo": {
          "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"},
                "type": "array","$ref": "#/components/schemas/WorkspaceGroupUserInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
@@ -4846,8 +4840,8 @@
                 "title": "WorkspaceGroupUsersInfo"
            }
            ,        "WorkspaceGroupUsersRequest": {
-         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUsers"},
-               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUsers","title": "USERS"}},
+         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"$ref": "#/components/schemas/UserWorkspaceGroup"},
+               "type": "array","$ref": "#/components/schemas/UserWorkspaceGroup","title": "USERS"}},
          "type": "object",
          "required": ["workspace_group_id","users"],
                 "title": "WorkspaceGroupUsersRequest"
@@ -5232,17 +5226,23 @@
          "required": ["workspace_group_id"],
                 "title": "UpdateWorkspaceGroupRequest"
            }
+           ,        "UserWorkspaceGroup": {
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"user_name" : {"type": "string","title": "USER_NAME"},"state" : {"type": "string","title": "STATE"}},
+         "type": "object",
+         "required": ["user_id","role_id","role_type","user_name","state"],
+                "title": "UserWorkspaceGroup"
+           }
            ,        "UsersWorkspaceGroupRequest": {
-         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUser"},
-               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUser","title": "USERS"}},
+         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"$ref": "#/components/schemas/UserWorkspaceGroup"},
+               "type": "array","$ref": "#/components/schemas/UserWorkspaceGroup","title": "USERS"}},
          "type": "object",
          "required": ["workspace_group_id","users"],
                 "title": "UsersWorkspaceGroupRequest"
            }
            ,        "WorkspaceGroupInfo": {
          "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"workspaces" : {"items": {"type": "string"},
-               "type": "array","title": "WORKSPACES"},"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUser"},
-               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUser","title": "USERS"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+               "type": "array","title": "WORKSPACES"},"users" : {"items": {"$ref": "#/components/schemas/UserWorkspaceGroup"},
+               "type": "array","$ref": "#/components/schemas/UserWorkspaceGroup","title": "USERS"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
          "required": ["workspace_group_id","name","workspaces","users","tags","created_by","updated_by","domain_id","created_at","updated_at"],
                 "title": "WorkspaceGroupInfo"
@@ -5270,12 +5270,6 @@
          "type": "object",
          "required": ["workspace_group_id","user_id","role_id"],
                 "title": "WorkspaceGroupUpdateRoleRequest"
-           }
-           ,        "WorkspaceGroupUser": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"user_name" : {"type": "string","title": "USER_NAME"},"state" : {"type": "string","title": "STATE"}},
-         "type": "object",
-         "required": ["user_id","role_id","role_type","user_name","state"],
-                "title": "WorkspaceGroupUser"
            }
            ,        "WorkspaceGroupsInfo": {
          "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupInfo"},
