@@ -109,7 +109,7 @@ message WorkspacesWorkspaceGroupRequest {
   repeated string workspaces = 2;
 }
 
-message WorkspaceGroupUser {
+message UserWorkspaceGroup {
   string user_id = 1;
   string role_id = 2;
   string role_type = 3;
@@ -119,7 +119,7 @@ message WorkspaceGroupUser {
 
 message UsersWorkspaceGroupRequest {
   string workspace_group_id = 1;
-  repeated WorkspaceGroupUser users = 2;
+  repeated UserWorkspaceGroup users = 2;
 }
 
 message WorkspaceGroupUpdateRoleRequest {
@@ -136,7 +136,7 @@ message WorkspaceGroupInfo {
   string workspace_group_id = 1;
   string name = 2;
   repeated string workspaces = 3;
-  repeated WorkspaceGroupUser users = 4;
+  repeated UserWorkspaceGroup users = 4;
   google.protobuf.Struct tags = 5;
   string created_by = 6;
   string updated_by = 7;

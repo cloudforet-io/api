@@ -8,6 +8,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/identity/v2/workspace_group.proto";
 
 service WorkspaceGroupUser {
   rpc add (WorkspaceGroupUsersRequest) returns (WorkspaceGroupUserInfo) {
@@ -60,17 +61,9 @@ service WorkspaceGroupUser {
   }
 }
 
-message WorkspaceGroupUsers {
-  string user_id = 1;
-  string role_id = 2;
-  string role_type = 3;
-  string user_name = 4;
-  string state = 5;
-}
-
 message WorkspaceGroupUsersRequest {
   string workspace_group_id = 1;
-  repeated WorkspaceGroupUsers users = 2;
+  repeated UserWorkspaceGroup users = 2;
 }
 
 message WorkspaceGroupUserUpdateRoleRequest {
@@ -102,7 +95,7 @@ message WorkspaceGroupUserInfo {
   string workspace_group_id = 1;
   string name = 2;
   repeated string workspaces = 3;
-  repeated WorkspaceGroupUsers users = 4;
+  repeated UserWorkspaceGroup users = 4;
   google.protobuf.Struct tags = 5;
   string created_by = 6;
   string updated_by = 7;
