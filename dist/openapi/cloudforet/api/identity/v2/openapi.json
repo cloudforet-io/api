@@ -491,6 +491,209 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace-group-user/add": {
+       "post": {
+         "tags": ["identity > workspace-group-user"],
+         "summary": "Add",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string|True|\n |users||array|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUsers"}, "type": "array","title": "USERS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace-group-user/remove": {
+       "post": {
+         "tags": ["identity > workspace-group-user"],
+         "summary": "Remove",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string|True|\n |users||array|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUsers"}, "type": "array","title": "USERS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace-group-user/update-role": {
+       "post": {
+         "tags": ["identity > workspace-group-user"],
+         "summary": "Update Role",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string|True|\n |user_id||string|True|\n |role_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"user_id" : {"type": "string","title": "USER_ID" },"role_id" : {"type": "string","title": "ROLE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace-group-user/find": {
+       "post": {
+         "tags": ["identity > workspace-group-user"],
+         "summary": "Find",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string|True|\n |keyword||string|True|\n |state|ENABLED, DISABLED, PENDING |string||\n |page||Page||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"keyword" : {"type": "string","title": "KEYWORD" },"state" : {"type": "string","title": "STATE" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupUsersSummaryInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupUsersSummaryInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace-group-user/get": {
+       "post": {
+         "tags": ["identity > workspace-group-user"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace-group-user/list": {
+       "post": {
+         "tags": ["identity > workspace-group-user"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |workspace_group_id||string||\n |name||string||\n |created_by||string||\n |updated_by||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"name" : {"type": "string","title": "NAME" },"created_by" : {"type": "string","title": "CREATED_BY" },"updated_by" : {"type": "string","title": "UPDATED_BY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupUsersInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupUsersInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace-group-user/stat": {
+       "post": {
+         "tags": ["identity > workspace-group-user"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/domain/create": {
        "post": {
          "tags": ["identity > domain"],
@@ -2071,35 +2274,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/workspace-group/find-users": {
-       "post": {
-         "tags": ["identity > workspace-group"],
-         "summary": "Find Users",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |keyword||string|True|\n |workspace_group_id||string|True|\n |state|ENABLED, DISABLED, PENDING |string||\n |page||Page||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"keyword" : {"type": "string","title": "KEYWORD" },"state" : {"type": "string","title": "STATE" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" },"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupUsersSummaryInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupUsersSummaryInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/workspace-group/add-users": {
        "post": {
          "tags": ["identity > workspace-group"],
@@ -2141,6 +2315,35 @@
              "application/json": {
                "schema": {
                  "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUser"}, "type": "array","title": "USERS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/workspace-group/update-role": {
+       "post": {
+         "tags": ["identity > workspace-group"],
+         "summary": "Update Role",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string|True|\n |user_id||string|True|\n |role_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"user_id" : {"type": "string","title": "USER_ID" },"role_id" : {"type": "string","title": "ROLE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -3491,232 +3694,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/workspace-group-details/update": {
-       "post": {
-         "tags": ["identity > workspace-group-details"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string|True|\n |name||string||\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupDetailsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupDetailsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/workspace-group-details/delete": {
-       "post": {
-         "tags": ["identity > workspace-group-details"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/workspace-group-details/add-workspaces": {
-       "post": {
-         "tags": ["identity > workspace-group-details"],
-         "summary": "Add Workspaces",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string|True|\n |workspaces||array|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"workspaces" : {"items": {}, "type": "array","title": "WORKSPACES" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupDetailsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupDetailsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/workspace-group-details/remove-workspaces": {
-       "post": {
-         "tags": ["identity > workspace-group-details"],
-         "summary": "Remove Workspaces",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string|True|\n |workspaces||array|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"workspaces" : {"items": {}, "type": "array","title": "WORKSPACES" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupDetailsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupDetailsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/workspace-group-details/find-users": {
-       "post": {
-         "tags": ["identity > workspace-group-details"],
-         "summary": "Find Users",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |keyword||string|True|\n |workspace_group_id||string|True|\n |state|ENABLED, DISABLED, PENDING |string||\n |page||Page||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"keyword" : {"type": "string","title": "KEYWORD" },"state" : {"type": "string","title": "STATE" },"page" : {"$ref": "#/components/schemas/Page","title": "PAGE" },"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupDetailsUsersSummaryInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupDetailsUsersSummaryInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/workspace-group-details/add-users": {
-       "post": {
-         "tags": ["identity > workspace-group-details"],
-         "summary": "Add Users",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string|True|\n |users||array|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupDetailsUser"}, "type": "array","title": "USERS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupDetailsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupDetailsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/workspace-group-details/remove-users": {
-       "post": {
-         "tags": ["identity > workspace-group-details"],
-         "summary": "Remove Users",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string|True|\n |users||array|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" },"users" : {"items": {}, "type": "array","title": "USERS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupDetailsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupDetailsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/workspace-group-details/get-workspace-groups": {
-       "post": {
-         "tags": ["identity > workspace-group-details"],
-         "summary": "Get Workspace Groups",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupsDetailsInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupsDetailsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/workspace/create": {
        "post": {
          "tags": ["identity > workspace"],
@@ -4141,11 +4118,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {                 }
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -4170,11 +4147,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {                 }
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -4188,6 +4165,35 @@
                  "schema": {"$ref": "#/components/schemas/MyWorkspacesInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/MyWorkspacesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/user-profile/get-workspace-groups": {
+       "post": {
+         "tags": ["identity > user-profile"],
+         "summary": "Get Workspace Groups",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |workspace_group_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/MyWorkspaceGroupsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/MyWorkspaceGroupsInfo"}}
                }
              }}
          }
@@ -4385,6 +4391,35 @@
                  "schema": {"$ref": "#/components/schemas/RolesInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/RolesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/role/list-basic-role": {
+       "post": {
+         "tags": ["identity > role"],
+         "summary": "List Basic Role",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |role_id||string||\n |name||string||\n |role_type|DOMAIN_ADMIN, WORKSPACE_OWNER, WORKSPACE_MEMBER |string||\n |state|ENABLED, DISABLED |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"role_id" : {"type": "string","title": "ROLE_ID" },"name" : {"type": "string","title": "NAME" },"role_type" : {"type": "string","title": "ROLE_TYPE" },"state" : {"type": "string","title": "STATE" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/BasicRolesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/BasicRolesInfo"}}
                }
              }}
          }
@@ -4752,6 +4787,77 @@
          "type": "object",
          "required": ["trusted_account_id","secret_schema_id","secret_data"],
                 "title": "UpdateTrustedAccountSecretRequest"
+           }
+           ,        "WorkspaceGroupUserFindRequest": {
+         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"keyword" : {"type": "string","title": "KEYWORD"},"state" : {"type": "string","title": "STATE"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
+         "type": "object",
+         "required": ["workspace_group_id","keyword"],
+                "title": "WorkspaceGroupUserFindRequest"
+           }
+           ,        "WorkspaceGroupUserInfo": {
+         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"workspaces" : {"items": {"type": "string"},
+               "type": "array","title": "WORKSPACES"},"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUsers"},
+               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUsers","title": "USERS"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["workspace_group_id","name","workspaces","users","tags","created_by","updated_by","domain_id","created_at","updated_at"],
+                "title": "WorkspaceGroupUserInfo"
+           }
+           ,        "WorkspaceGroupUserRequest": {
+         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"}},
+         "type": "object",
+         "required": ["workspace_group_id"],
+                "title": "WorkspaceGroupUserRequest"
+           }
+           ,        "WorkspaceGroupUserSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"created_by" : {"type": "string","title": "CREATED_BY"},"updated_by" : {"type": "string","title": "UPDATED_BY"}},
+         "type": "object",
+         "required": [],
+                "title": "WorkspaceGroupUserSearchQuery"
+           }
+           ,        "WorkspaceGroupUserStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "WorkspaceGroupUserStatQuery"
+           }
+           ,        "WorkspaceGroupUserSummaryInfo": {
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"}},
+         "type": "object",
+         "required": ["user_id","name","state"],
+                "title": "WorkspaceGroupUserSummaryInfo"
+           }
+           ,        "WorkspaceGroupUserUpdateRoleRequest": {
+         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"}},
+         "type": "object",
+         "required": ["workspace_group_id","user_id","role_id"],
+                "title": "WorkspaceGroupUserUpdateRoleRequest"
+           }
+           ,        "WorkspaceGroupUsers": {
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"user_name" : {"type": "string","title": "USER_NAME"},"state" : {"type": "string","title": "STATE"}},
+         "type": "object",
+         "required": ["user_id","role_id","role_type","user_name","state"],
+                "title": "WorkspaceGroupUsers"
+           }
+           ,        "WorkspaceGroupUsersInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"},
+               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUserInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "WorkspaceGroupUsersInfo"
+           }
+           ,        "WorkspaceGroupUsersRequest": {
+         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUsers"},
+               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUsers","title": "USERS"}},
+         "type": "object",
+         "required": ["workspace_group_id","users"],
+                "title": "WorkspaceGroupUsersRequest"
+           }
+           ,        "WorkspaceGroupUsersSummaryInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUserSummaryInfo"},
+               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUserSummaryInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "WorkspaceGroupUsersSummaryInfo"
            }
            ,        "Admin": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"password" : {"type": "string","title": "PASSWORD"},"email" : {"type": "string","title": "EMAIL"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"},"reset_password" : {"type": "boolean","title": "RESET_PASSWORD"}},
@@ -5133,12 +5239,6 @@
          "required": ["workspace_group_id","users"],
                 "title": "UsersWorkspaceGroupRequest"
            }
-           ,        "WorkspaceGroupFindRequest": {
-         "properties" : {"keyword" : {"type": "string","title": "KEYWORD"},"state" : {"type": "string","title": "STATE"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"}},
-         "type": "object",
-         "required": ["keyword","workspace_group_id"],
-                "title": "WorkspaceGroupFindRequest"
-           }
            ,        "WorkspaceGroupInfo": {
          "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"workspaces" : {"items": {"type": "string"},
                "type": "array","title": "WORKSPACES"},"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUser"},
@@ -5165,24 +5265,17 @@
          "required": ["query"],
                 "title": "WorkspaceGroupStatQuery"
            }
+           ,        "WorkspaceGroupUpdateRoleRequest": {
+         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"}},
+         "type": "object",
+         "required": ["workspace_group_id","user_id","role_id"],
+                "title": "WorkspaceGroupUpdateRoleRequest"
+           }
            ,        "WorkspaceGroupUser": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"role_binding_info" : {"$ref": "#/components/schemas/RoleBindingInfo","title": "ROLE_BINDING_INFO"}},
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"user_name" : {"type": "string","title": "USER_NAME"},"state" : {"type": "string","title": "STATE"}},
          "type": "object",
-         "required": ["user_id","role_id","role_type","role_binding_info"],
+         "required": ["user_id","role_id","role_type","user_name","state"],
                 "title": "WorkspaceGroupUser"
-           }
-           ,        "WorkspaceGroupUserSummaryInfo": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"}},
-         "type": "object",
-         "required": ["user_id","name","state"],
-                "title": "WorkspaceGroupUserSummaryInfo"
-           }
-           ,        "WorkspaceGroupUsersSummaryInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUserSummaryInfo"},
-               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUserSummaryInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "WorkspaceGroupUsersSummaryInfo"
            }
            ,        "WorkspaceGroupsInfo": {
          "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupInfo"},
@@ -5519,85 +5612,6 @@
          "required": ["schema_id"],
                 "title": "UpdateSchemaRequest"
            }
-           ,        "AddUsersWorkspaceGroupDetailsRequest": {
-         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupDetailsUser"},
-               "type": "array","$ref": "#/components/schemas/WorkspaceGroupDetailsUser","title": "USERS"}},
-         "type": "object",
-         "required": ["workspace_group_id","users"],
-                "title": "AddUsersWorkspaceGroupDetailsRequest"
-           }
-           ,        "DeleteWorkspaceGroupDetailsRequest": {
-         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"}},
-         "type": "object",
-         "required": ["workspace_group_id"],
-                "title": "DeleteWorkspaceGroupDetailsRequest"
-           }
-           ,        "RemoveUsersWorkspaceGroupDetailsRequest": {
-         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"type": "string"},
-               "type": "array","title": "USERS"}},
-         "type": "object",
-         "required": ["workspace_group_id","users"],
-                "title": "RemoveUsersWorkspaceGroupDetailsRequest"
-           }
-           ,        "UpdateWorkspaceGroupDetailsRequest": {
-         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["workspace_group_id"],
-                "title": "UpdateWorkspaceGroupDetailsRequest"
-           }
-           ,        "WorkspaceGroupDetailsFindRequest": {
-         "properties" : {"keyword" : {"type": "string","title": "KEYWORD"},"state" : {"type": "string","title": "STATE"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"}},
-         "type": "object",
-         "required": ["keyword","workspace_group_id"],
-                "title": "WorkspaceGroupDetailsFindRequest"
-           }
-           ,        "WorkspaceGroupDetailsInfo": {
-         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"workspaces" : {"items": {"type": "string"},
-               "type": "array","title": "WORKSPACES"},"users" : {"items": {"type": "string"},
-               "type": "array","title": "USERS"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
-         "type": "object",
-         "required": ["workspace_group_id","name","workspaces","users","tags","created_by","updated_by","domain_id","created_at","updated_at"],
-                "title": "WorkspaceGroupDetailsInfo"
-           }
-           ,        "WorkspaceGroupDetailsRequest": {
-         "properties" : {},
-         "type": "object",
-         "required": [],
-                "title": "WorkspaceGroupDetailsRequest"
-           }
-           ,        "WorkspaceGroupDetailsUser": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"role_type" : {"type": "string","title": "ROLE_TYPE"}},
-         "type": "object",
-         "required": ["user_id","role_id","role_type"],
-                "title": "WorkspaceGroupDetailsUser"
-           }
-           ,        "WorkspaceGroupDetailsUserSummaryInfo": {
-         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"}},
-         "type": "object",
-         "required": ["user_id","name","state"],
-                "title": "WorkspaceGroupDetailsUserSummaryInfo"
-           }
-           ,        "WorkspaceGroupDetailsUsersSummaryInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupDetailsUserSummaryInfo"},
-               "type": "array","$ref": "#/components/schemas/WorkspaceGroupDetailsUserSummaryInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "WorkspaceGroupDetailsUsersSummaryInfo"
-           }
-           ,        "WorkspaceGroupsDetailsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupDetailsInfo"},
-               "type": "array","$ref": "#/components/schemas/WorkspaceGroupDetailsInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "WorkspaceGroupsDetailsInfo"
-           }
-           ,        "WorkspacesWorkspaceGroupDetailsRequest": {
-         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"workspaces" : {"items": {"type": "string"},
-               "type": "array","title": "WORKSPACES"}},
-         "type": "object",
-         "required": ["workspace_group_id","workspaces"],
-                "title": "WorkspacesWorkspaceGroupDetailsRequest"
-           }
            ,        "CreateWorkSpaceRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
@@ -5684,6 +5698,13 @@
          "required": ["mfa_type","options"],
                 "title": "EnableMFARequest"
            }
+           ,        "MyWorkspaceGroupsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupInfo"},
+               "type": "array","$ref": "#/components/schemas/WorkspaceGroupInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "MyWorkspaceGroupsInfo"
+           }
            ,        "MyWorkspaceInfo": {
          "properties" : {"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"role_name" : {"type": "string","title": "ROLE_NAME"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"is_dormant" : {"type": "boolean","title": "IS_DORMANT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synced_at" : {"type": "string","title": "LAST_SYNCED_AT"},"dormant_updated_at" : {"type": "string","title": "DORMANT_UPDATED_AT"}},
          "type": "object",
@@ -5710,7 +5731,7 @@
                 "title": "UserPasswordResetRequest"
            }
            ,        "UserProfileRequest": {
-         "properties" : {},
+         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"}},
          "type": "object",
          "required": [],
                 "title": "UserProfileRequest"
@@ -5720,6 +5741,19 @@
          "type": "object",
          "required": [],
                 "title": "VerifyEmailRequest"
+           }
+           ,        "BasicRoleInfo": {
+         "properties" : {"role_id" : {"type": "string","title": "ROLE_ID"},"name" : {"type": "string","title": "NAME"},"role_type" : {"type": "string","title": "ROLE_TYPE"}},
+         "type": "object",
+         "required": ["role_id","name","role_type"],
+                "title": "BasicRoleInfo"
+           }
+           ,        "BasicRolesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/BasicRoleInfo"},
+               "type": "array","$ref": "#/components/schemas/BasicRoleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "BasicRolesInfo"
            }
            ,        "CreateRoleRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"permissions" : {"items": {"type": "string"},

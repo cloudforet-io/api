@@ -66,11 +66,6 @@ class WorkspaceGroupStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspacesWorkspaceGroupRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
                 _registered_method=True)
-        self.find_users = channel.unary_unary(
-                '/spaceone.api.identity.v2.WorkspaceGroup/find_users',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupFindRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupUsersSummaryInfo.FromString,
-                _registered_method=True)
         self.add_users = channel.unary_unary(
                 '/spaceone.api.identity.v2.WorkspaceGroup/add_users',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.UsersWorkspaceGroupRequest.SerializeToString,
@@ -79,6 +74,11 @@ class WorkspaceGroupStub(object):
         self.remove_users = channel.unary_unary(
                 '/spaceone.api.identity.v2.WorkspaceGroup/remove_users',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.UsersWorkspaceGroupRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
+                _registered_method=True)
+        self.update_role = channel.unary_unary(
+                '/spaceone.api.identity.v2.WorkspaceGroup/update_role',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupUpdateRoleRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
@@ -131,12 +131,6 @@ class WorkspaceGroupServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def find_users(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def add_users(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -144,6 +138,12 @@ class WorkspaceGroupServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def remove_users(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def update_role(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -195,11 +195,6 @@ def add_WorkspaceGroupServicer_to_server(servicer, server):
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspacesWorkspaceGroupRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.SerializeToString,
             ),
-            'find_users': grpc.unary_unary_rpc_method_handler(
-                    servicer.find_users,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupFindRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupUsersSummaryInfo.SerializeToString,
-            ),
             'add_users': grpc.unary_unary_rpc_method_handler(
                     servicer.add_users,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.UsersWorkspaceGroupRequest.FromString,
@@ -208,6 +203,11 @@ def add_WorkspaceGroupServicer_to_server(servicer, server):
             'remove_users': grpc.unary_unary_rpc_method_handler(
                     servicer.remove_users,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.UsersWorkspaceGroupRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.SerializeToString,
+            ),
+            'update_role': grpc.unary_unary_rpc_method_handler(
+                    servicer.update_role,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupUpdateRoleRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
@@ -372,33 +372,6 @@ class WorkspaceGroup(object):
             _registered_method=True)
 
     @staticmethod
-    def find_users(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.identity.v2.WorkspaceGroup/find_users',
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupFindRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupUsersSummaryInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
     def add_users(request,
             target,
             options=(),
@@ -441,6 +414,33 @@ class WorkspaceGroup(object):
             target,
             '/spaceone.api.identity.v2.WorkspaceGroup/remove_users',
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.UsersWorkspaceGroupRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def update_role(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.identity.v2.WorkspaceGroup/update_role',
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupUpdateRoleRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
             options,
             channel_credentials,

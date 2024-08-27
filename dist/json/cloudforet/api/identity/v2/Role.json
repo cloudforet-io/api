@@ -11,6 +11,29 @@
       "enums": [
         {
           "name": "State",
+          "longName": "BasicRoleInfo.State",
+          "fullName": "spaceone.api.identity.v2.BasicRoleInfo.State",
+          "description": "",
+          "values": [
+            {
+              "name": "NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "State",
           "longName": "RoleInfo.State",
           "fullName": "spaceone.api.identity.v2.RoleInfo.State",
           "description": "",
@@ -86,6 +109,90 @@
       ],
       "extensions": [],
       "messages": [
+        {
+          "name": "BasicRoleInfo",
+          "longName": "BasicRoleInfo",
+          "fullName": "spaceone.api.identity.v2.BasicRoleInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "role_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "role_type",
+              "description": "",
+              "label": "",
+              "type": "RoleType",
+              "longType": "RoleType",
+              "fullType": "spaceone.api.identity.v2.RoleType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "BasicRolesInfo",
+          "longName": "BasicRolesInfo",
+          "fullName": "spaceone.api.identity.v2.BasicRolesInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "BasicRoleInfo",
+              "longType": "BasicRoleInfo",
+              "fullType": "spaceone.api.identity.v2.BasicRoleInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
         {
           "name": "CreateRoleRequest",
           "longName": "CreateRoleRequest",
@@ -693,6 +800,29 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/role/list",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "list_basic_role",
+              "description": "",
+              "requestType": "RoleSearchQuery",
+              "requestLongType": "RoleSearchQuery",
+              "requestFullType": "spaceone.api.identity.v2.RoleSearchQuery",
+              "requestStreaming": false,
+              "responseType": "BasicRolesInfo",
+              "responseLongType": "BasicRolesInfo",
+              "responseFullType": "spaceone.api.identity.v2.BasicRolesInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/role/list-basic-role",
                       "body": "*"
                     }
                   ]

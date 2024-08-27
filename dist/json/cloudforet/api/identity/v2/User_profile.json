@@ -159,6 +159,42 @@
           ]
         },
         {
+          "name": "MyWorkspaceGroupsInfo",
+          "longName": "MyWorkspaceGroupsInfo",
+          "fullName": "spaceone.api.identity.v2.MyWorkspaceGroupsInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "WorkspaceGroupInfo",
+              "longType": "WorkspaceGroupInfo",
+              "fullType": "spaceone.api.identity.v2.WorkspaceGroupInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "MyWorkspaceInfo",
           "longName": "MyWorkspaceInfo",
           "fullName": "spaceone.api.identity.v2.MyWorkspaceInfo",
@@ -512,10 +548,23 @@
           "fullName": "spaceone.api.identity.v2.UserProfileRequest",
           "description": "",
           "hasExtensions": false,
-          "hasFields": false,
+          "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
-          "fields": []
+          "fields": [
+            {
+              "name": "workspace_group_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
         },
         {
           "name": "VerifyEmailRequest",
@@ -750,6 +799,29 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/user-profile/get-workspaces",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get_workspace_groups",
+              "description": "",
+              "requestType": "UserProfileRequest",
+              "requestLongType": "UserProfileRequest",
+              "requestFullType": "spaceone.api.identity.v2.UserProfileRequest",
+              "requestStreaming": false,
+              "responseType": "MyWorkspaceGroupsInfo",
+              "responseLongType": "MyWorkspaceGroupsInfo",
+              "responseFullType": "spaceone.api.identity.v2.MyWorkspaceGroupsInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/user-profile/get-workspace-groups",
                       "body": "*"
                     }
                   ]

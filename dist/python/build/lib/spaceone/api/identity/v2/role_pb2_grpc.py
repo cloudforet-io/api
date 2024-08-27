@@ -76,6 +76,11 @@ class RoleStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleSearchQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RolesInfo.FromString,
                 _registered_method=True)
+        self.list_basic_role = channel.unary_unary(
+                '/spaceone.api.identity.v2.Role/list_basic_role',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleSearchQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.BasicRolesInfo.FromString,
+                _registered_method=True)
         self.stat = channel.unary_unary(
                 '/spaceone.api.identity.v2.Role/stat',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleStatQuery.SerializeToString,
@@ -128,6 +133,12 @@ class RoleServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def list_basic_role(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def stat(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -171,6 +182,11 @@ def add_RoleServicer_to_server(servicer, server):
                     servicer.list,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleSearchQuery.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RolesInfo.SerializeToString,
+            ),
+            'list_basic_role': grpc.unary_unary_rpc_method_handler(
+                    servicer.list_basic_role,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleSearchQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.BasicRolesInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
@@ -367,6 +383,33 @@ class Role(object):
             '/spaceone.api.identity.v2.Role/list',
             spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleSearchQuery.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RolesInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def list_basic_role(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.identity.v2.Role/list_basic_role',
+            spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleSearchQuery.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.BasicRolesInfo.FromString,
             options,
             channel_credentials,
             insecure,

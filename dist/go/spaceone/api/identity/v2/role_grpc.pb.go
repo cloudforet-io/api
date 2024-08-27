@@ -21,14 +21,15 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Role_Create_FullMethodName  = "/spaceone.api.identity.v2.Role/create"
-	Role_Update_FullMethodName  = "/spaceone.api.identity.v2.Role/update"
-	Role_Enable_FullMethodName  = "/spaceone.api.identity.v2.Role/enable"
-	Role_Disable_FullMethodName = "/spaceone.api.identity.v2.Role/disable"
-	Role_Delete_FullMethodName  = "/spaceone.api.identity.v2.Role/delete"
-	Role_Get_FullMethodName     = "/spaceone.api.identity.v2.Role/get"
-	Role_List_FullMethodName    = "/spaceone.api.identity.v2.Role/list"
-	Role_Stat_FullMethodName    = "/spaceone.api.identity.v2.Role/stat"
+	Role_Create_FullMethodName        = "/spaceone.api.identity.v2.Role/create"
+	Role_Update_FullMethodName        = "/spaceone.api.identity.v2.Role/update"
+	Role_Enable_FullMethodName        = "/spaceone.api.identity.v2.Role/enable"
+	Role_Disable_FullMethodName       = "/spaceone.api.identity.v2.Role/disable"
+	Role_Delete_FullMethodName        = "/spaceone.api.identity.v2.Role/delete"
+	Role_Get_FullMethodName           = "/spaceone.api.identity.v2.Role/get"
+	Role_List_FullMethodName          = "/spaceone.api.identity.v2.Role/list"
+	Role_ListBasicRole_FullMethodName = "/spaceone.api.identity.v2.Role/list_basic_role"
+	Role_Stat_FullMethodName          = "/spaceone.api.identity.v2.Role/stat"
 )
 
 // RoleClient is the client API for Role service.
@@ -42,6 +43,7 @@ type RoleClient interface {
 	Delete(ctx context.Context, in *RoleRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *RoleRequest, opts ...grpc.CallOption) (*RoleInfo, error)
 	List(ctx context.Context, in *RoleSearchQuery, opts ...grpc.CallOption) (*RolesInfo, error)
+	ListBasicRole(ctx context.Context, in *RoleSearchQuery, opts ...grpc.CallOption) (*BasicRolesInfo, error)
 	Stat(ctx context.Context, in *RoleStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
@@ -123,6 +125,16 @@ func (c *roleClient) List(ctx context.Context, in *RoleSearchQuery, opts ...grpc
 	return out, nil
 }
 
+func (c *roleClient) ListBasicRole(ctx context.Context, in *RoleSearchQuery, opts ...grpc.CallOption) (*BasicRolesInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BasicRolesInfo)
+	err := c.cc.Invoke(ctx, Role_ListBasicRole_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *roleClient) Stat(ctx context.Context, in *RoleStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(_struct.Struct)
@@ -144,6 +156,7 @@ type RoleServer interface {
 	Delete(context.Context, *RoleRequest) (*empty.Empty, error)
 	Get(context.Context, *RoleRequest) (*RoleInfo, error)
 	List(context.Context, *RoleSearchQuery) (*RolesInfo, error)
+	ListBasicRole(context.Context, *RoleSearchQuery) (*BasicRolesInfo, error)
 	Stat(context.Context, *RoleStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedRoleServer()
 }
@@ -175,6 +188,9 @@ func (UnimplementedRoleServer) Get(context.Context, *RoleRequest) (*RoleInfo, er
 }
 func (UnimplementedRoleServer) List(context.Context, *RoleSearchQuery) (*RolesInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedRoleServer) ListBasicRole(context.Context, *RoleSearchQuery) (*BasicRolesInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBasicRole not implemented")
 }
 func (UnimplementedRoleServer) Stat(context.Context, *RoleStatQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
@@ -326,6 +342,24 @@ func _Role_List_Handler(srv interface{}, ctx context.Context, dec func(interface
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Role_ListBasicRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RoleSearchQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoleServer).ListBasicRole(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Role_ListBasicRole_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoleServer).ListBasicRole(ctx, req.(*RoleSearchQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Role_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RoleStatQuery)
 	if err := dec(in); err != nil {
@@ -378,6 +412,10 @@ var Role_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "list",
 			Handler:    _Role_List_Handler,
+		},
+		{
+			MethodName: "list_basic_role",
+			Handler:    _Role_ListBasicRole_Handler,
 		},
 		{
 			MethodName: "stat",
