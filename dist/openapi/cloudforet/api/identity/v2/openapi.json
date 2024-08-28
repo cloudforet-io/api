@@ -672,11 +672,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |workspace_group_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -4815,9 +4815,9 @@
                 "title": "WorkspaceGroupUserSearchQuery"
            }
            ,        "WorkspaceGroupUserStatQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"}},
          "type": "object",
-         "required": ["query"],
+         "required": ["query","workspace_group_id"],
                 "title": "WorkspaceGroupUserStatQuery"
            }
            ,        "WorkspaceGroupUserSummaryInfo": {
