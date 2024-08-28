@@ -11,7 +11,7 @@ import "spaceone/api/core/v2/query.proto";
 import "spaceone/api/identity/v2/workspace.proto";
 import "spaceone/api/identity/v2/user.proto";
 import "spaceone/api/identity/v2/workspace_group.proto";
-import "role_binding.proto";
+import "spaceone/api/identity/v2/role_binding.proto";
 
 
 service UserProfile {
@@ -82,7 +82,7 @@ service UserProfile {
     };
   }
 
-  rpc get_workspace_groups (UserProfileRequest) returns (MyWorkspaceGroupsInfo) {
+  rpc get_workspace_groups (WorkspaceGroupUserProfileRequest) returns (MyWorkspaceGroupsInfo) {
     option (google.api.http) = {
       post: "/identity/v2/user-profile/get-workspace-groups"
       body: "*"
@@ -150,6 +150,10 @@ message UserProfileRequest {
   string workspace_group_id = 1;
 }
 
+message WorkspaceGroupUserProfileRequest {
+
+}
+
 message UserPasswordResetRequest {
   string user_id = 1;
   string domain_id = 21;
@@ -199,7 +203,7 @@ message MyWorkspaceGroupInfo {
   repeated string workspaces = 3;
   repeated UserWorkspaceGroup users = 4;
   google.protobuf.Struct tags = 5;
-  RoleBindingInfo role_binding_info = 6;
+  spaceone.api.identity.v2.RoleBindingInfo role_binding_info = 6;
   string created_by = 7;
   string updated_by = 8;
   string domain_id = 21;
