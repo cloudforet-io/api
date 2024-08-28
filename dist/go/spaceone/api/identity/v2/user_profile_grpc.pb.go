@@ -49,7 +49,7 @@ type UserProfileClient interface {
 	ConfirmMfa(ctx context.Context, in *ConfirmMFARequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Get(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	GetWorkspaces(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*MyWorkspacesInfo, error)
-	GetWorkspaceGroups(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*MyWorkspaceGroupsInfo, error)
+	GetWorkspaceGroups(ctx context.Context, in *WorkspaceGroupUserProfileRequest, opts ...grpc.CallOption) (*MyWorkspaceGroupsInfo, error)
 }
 
 type userProfileClient struct {
@@ -150,7 +150,7 @@ func (c *userProfileClient) GetWorkspaces(ctx context.Context, in *UserProfileRe
 	return out, nil
 }
 
-func (c *userProfileClient) GetWorkspaceGroups(ctx context.Context, in *UserProfileRequest, opts ...grpc.CallOption) (*MyWorkspaceGroupsInfo, error) {
+func (c *userProfileClient) GetWorkspaceGroups(ctx context.Context, in *WorkspaceGroupUserProfileRequest, opts ...grpc.CallOption) (*MyWorkspaceGroupsInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(MyWorkspaceGroupsInfo)
 	err := c.cc.Invoke(ctx, UserProfile_GetWorkspaceGroups_FullMethodName, in, out, cOpts...)
@@ -177,7 +177,7 @@ type UserProfileServer interface {
 	ConfirmMfa(context.Context, *ConfirmMFARequest) (*UserInfo, error)
 	Get(context.Context, *UserProfileRequest) (*UserInfo, error)
 	GetWorkspaces(context.Context, *UserProfileRequest) (*MyWorkspacesInfo, error)
-	GetWorkspaceGroups(context.Context, *UserProfileRequest) (*MyWorkspaceGroupsInfo, error)
+	GetWorkspaceGroups(context.Context, *WorkspaceGroupUserProfileRequest) (*MyWorkspaceGroupsInfo, error)
 	mustEmbedUnimplementedUserProfileServer()
 }
 
@@ -215,7 +215,7 @@ func (UnimplementedUserProfileServer) Get(context.Context, *UserProfileRequest) 
 func (UnimplementedUserProfileServer) GetWorkspaces(context.Context, *UserProfileRequest) (*MyWorkspacesInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWorkspaces not implemented")
 }
-func (UnimplementedUserProfileServer) GetWorkspaceGroups(context.Context, *UserProfileRequest) (*MyWorkspaceGroupsInfo, error) {
+func (UnimplementedUserProfileServer) GetWorkspaceGroups(context.Context, *WorkspaceGroupUserProfileRequest) (*MyWorkspaceGroupsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWorkspaceGroups not implemented")
 }
 func (UnimplementedUserProfileServer) mustEmbedUnimplementedUserProfileServer() {}
@@ -402,7 +402,7 @@ func _UserProfile_GetWorkspaces_Handler(srv interface{}, ctx context.Context, de
 }
 
 func _UserProfile_GetWorkspaceGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserProfileRequest)
+	in := new(WorkspaceGroupUserProfileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -414,7 +414,7 @@ func _UserProfile_GetWorkspaceGroups_Handler(srv interface{}, ctx context.Contex
 		FullMethod: UserProfile_GetWorkspaceGroups_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserProfileServer).GetWorkspaceGroups(ctx, req.(*UserProfileRequest))
+		return srv.(UserProfileServer).GetWorkspaceGroups(ctx, req.(*WorkspaceGroupUserProfileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

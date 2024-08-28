@@ -88,7 +88,7 @@ class UserProfileStub(object):
                 _registered_method=True)
         self.get_workspace_groups = channel.unary_unary(
                 '/spaceone.api.identity.v2.UserProfile/get_workspace_groups',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UserProfileRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.WorkspaceGroupUserProfileRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.MyWorkspaceGroupsInfo.FromString,
                 _registered_method=True)
 
@@ -210,7 +210,7 @@ def add_UserProfileServicer_to_server(servicer, server):
             ),
             'get_workspace_groups': grpc.unary_unary_rpc_method_handler(
                     servicer.get_workspace_groups,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UserProfileRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.WorkspaceGroupUserProfileRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.MyWorkspaceGroupsInfo.SerializeToString,
             ),
     }
@@ -482,7 +482,7 @@ class UserProfile(object):
             request,
             target,
             '/spaceone.api.identity.v2.UserProfile/get_workspace_groups',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UserProfileRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.WorkspaceGroupUserProfileRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.MyWorkspaceGroupsInfo.FromString,
             options,
             channel_credentials,

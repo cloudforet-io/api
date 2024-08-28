@@ -267,7 +267,7 @@ func local_request_UserProfile_GetWorkspaces_0(ctx context.Context, marshaler ru
 }
 
 func request_UserProfile_GetWorkspaceGroups_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserProfileClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.UserProfileRequest
+	var protoReq v2_0.WorkspaceGroupUserProfileRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -280,7 +280,7 @@ func request_UserProfile_GetWorkspaceGroups_0(ctx context.Context, marshaler run
 }
 
 func local_request_UserProfile_GetWorkspaceGroups_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserProfileServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.UserProfileRequest
+	var protoReq v2_0.WorkspaceGroupUserProfileRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
