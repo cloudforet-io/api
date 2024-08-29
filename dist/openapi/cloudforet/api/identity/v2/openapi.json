@@ -1377,11 +1377,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |grant_type|REFRESH_TOKEN, SYSTEM_TOKEN |string|True|\n |token||string|True|\n |scope|SYSTEM, DOMAIN, WORKSPACE, PROJECT, USER |string|True|\n |timeout||int||\n |workspace_id||string||\n |domain_id||string||\n |permissions||array||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |grant_type|REFRESH_TOKEN, SYSTEM_TOKEN |string|True|\n |token||string|True|\n |scope|SYSTEM, DOMAIN, WORKSPACE, PROJECT, USER |string|True|\n |timeout||int||\n |permissions||array||\n |domain_id||string||\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"grant_type" : {"type": "string","title": "GRANT_TYPE" },"token" : {"type": "string","title": "TOKEN" },"scope" : {"type": "string","title": "SCOPE" },"timeout" : {"type": "integer","title": "TIMEOUT" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"permissions" : {"items": {}, "type": "array","title": "PERMISSIONS" }                 }
+                 "properties": {"grant_type" : {"type": "string","title": "GRANT_TYPE" },"token" : {"type": "string","title": "TOKEN" },"scope" : {"type": "string","title": "SCOPE" },"timeout" : {"type": "integer","title": "TIMEOUT" },"permissions" : {"items": {}, "type": "array","title": "PERMISSIONS" },"domain_id" : {"type": "string","title": "DOMAIN_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -5015,14 +5015,15 @@
                 "title": "VerifyUserEmailRequest"
            }
            ,        "GrantTokenInfo": {
-         "properties" : {"access_token" : {"type": "string","title": "ACCESS_TOKEN"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"role_id" : {"type": "string","title": "ROLE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "properties" : {"access_token" : {"type": "string","title": "ACCESS_TOKEN"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"page_access" : {"items": {"type": "string"},
+               "type": "array","title": "PAGE_ACCESS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"role_id" : {"type": "string","title": "ROLE_ID"}},
          "type": "object",
-         "required": ["access_token","role_type","role_id","domain_id","workspace_id"],
+         "required": ["access_token","role_type","page_access","domain_id","workspace_id","role_id"],
                 "title": "GrantTokenInfo"
            }
            ,        "GrantTokenRequest": {
-         "properties" : {"grant_type" : {"type": "string","title": "GRANT_TYPE"},"token" : {"type": "string","title": "TOKEN"},"scope" : {"type": "string","title": "SCOPE"},"timeout" : {"type": "integer","title": "TIMEOUT"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"permissions" : {"items": {"type": "string"},
-               "type": "array","title": "PERMISSIONS"}},
+         "properties" : {"grant_type" : {"type": "string","title": "GRANT_TYPE"},"token" : {"type": "string","title": "TOKEN"},"scope" : {"type": "string","title": "SCOPE"},"timeout" : {"type": "integer","title": "TIMEOUT"},"permissions" : {"items": {"type": "string"},
+               "type": "array","title": "PERMISSIONS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": ["grant_type","token","scope"],
                 "title": "GrantTokenRequest"
