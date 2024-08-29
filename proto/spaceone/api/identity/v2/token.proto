@@ -73,11 +73,11 @@ message GrantTokenRequest {
   // +optional
   int32 timeout = 4;
   // +optional
-  string workspace_id = 5;
+  repeated string permissions = 5;
   // +optional
-  string domain_id = 6;
+  string domain_id = 21;
   // +optional
-  repeated string permissions = 7;
+  string workspace_id = 22;
 }
 
 message GrantTokenInfo {
@@ -91,7 +91,9 @@ message GrantTokenInfo {
 
   string access_token = 1;
   RoleType role_type = 2;
-  string role_id = 3;
-  string domain_id = 4;
-  string workspace_id = 5;
+  repeated string page_access = 3;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string role_id = 23;
+
 }
