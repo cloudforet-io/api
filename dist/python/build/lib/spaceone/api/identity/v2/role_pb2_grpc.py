@@ -79,7 +79,7 @@ class RoleStub(object):
         self.list_basic_role = channel.unary_unary(
                 '/spaceone.api.identity.v2.Role/list_basic_role',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleSearchQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.BasicRolesInfo.FromString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RolesInfo.FromString,
                 _registered_method=True)
         self.stat = channel.unary_unary(
                 '/spaceone.api.identity.v2.Role/stat',
@@ -186,7 +186,7 @@ def add_RoleServicer_to_server(servicer, server):
             'list_basic_role': grpc.unary_unary_rpc_method_handler(
                     servicer.list_basic_role,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleSearchQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.BasicRolesInfo.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RolesInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
@@ -409,7 +409,7 @@ class Role(object):
             target,
             '/spaceone.api.identity.v2.Role/list_basic_role',
             spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RoleSearchQuery.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.BasicRolesInfo.FromString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_role__pb2.RolesInfo.FromString,
             options,
             channel_credentials,
             insecure,

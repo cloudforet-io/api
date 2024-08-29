@@ -4417,9 +4417,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/BasicRolesInfo"},
+                 "schema": {"$ref": "#/components/schemas/RolesInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/BasicRolesInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/RolesInfo"}}
                }
              }}
          }
@@ -5639,9 +5639,9 @@
            }
            ,        "WorkspaceInfo": {
          "properties" : {"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"references" : {"items": {"type": "string"},
-               "type": "array","title": "REFERENCES"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"is_dormant" : {"type": "boolean","title": "IS_DORMANT"},"dormant_ttl" : {"type": "integer","title": "DORMANT_TTL"},"service_account_count" : {"type": "integer","title": "SERVICE_ACCOUNT_COUNT"},"cost_info" : {"$ref": "#/components/schemas/WorkspaceCostInfo","title": "COST_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synced_at" : {"type": "string","title": "LAST_SYNCED_AT"},"dormant_updated_at" : {"type": "string","title": "DORMANT_UPDATED_AT"}},
+               "type": "array","title": "REFERENCES"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"is_dormant" : {"type": "boolean","title": "IS_DORMANT"},"dormant_ttl" : {"type": "integer","title": "DORMANT_TTL"},"service_account_count" : {"type": "integer","title": "SERVICE_ACCOUNT_COUNT"},"user_count" : {"type": "integer","title": "USER_COUNT"},"cost_info" : {"$ref": "#/components/schemas/WorkspaceCostInfo","title": "COST_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synced_at" : {"type": "string","title": "LAST_SYNCED_AT"},"dormant_updated_at" : {"type": "string","title": "DORMANT_UPDATED_AT"}},
          "type": "object",
-         "required": ["workspace_id","name","state","tags","created_by","references","is_managed","is_dormant","dormant_ttl","service_account_count","cost_info","domain_id","trusted_account_id","created_at","last_synced_at","dormant_updated_at"],
+         "required": ["workspace_id","name","state","tags","created_by","references","is_managed","is_dormant","dormant_ttl","service_account_count","user_count","cost_info","domain_id","trusted_account_id","created_at","last_synced_at","dormant_updated_at"],
                 "title": "WorkspaceInfo"
            }
            ,        "WorkspaceRequest": {
@@ -5750,19 +5750,6 @@
          "type": "object",
          "required": [],
                 "title": "WorkspaceGroupUserProfileRequest"
-           }
-           ,        "BasicRoleInfo": {
-         "properties" : {"role_id" : {"type": "string","title": "ROLE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
-         "type": "object",
-         "required": ["role_id","name","state","role_type","domain_id","created_at","updated_at"],
-                "title": "BasicRoleInfo"
-           }
-           ,        "BasicRolesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/BasicRoleInfo"},
-               "type": "array","$ref": "#/components/schemas/BasicRoleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "BasicRolesInfo"
            }
            ,        "CreateRoleRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"permissions" : {"items": {"type": "string"},

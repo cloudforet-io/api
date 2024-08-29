@@ -43,7 +43,7 @@ type RoleClient interface {
 	Delete(ctx context.Context, in *RoleRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *RoleRequest, opts ...grpc.CallOption) (*RoleInfo, error)
 	List(ctx context.Context, in *RoleSearchQuery, opts ...grpc.CallOption) (*RolesInfo, error)
-	ListBasicRole(ctx context.Context, in *RoleSearchQuery, opts ...grpc.CallOption) (*BasicRolesInfo, error)
+	ListBasicRole(ctx context.Context, in *RoleSearchQuery, opts ...grpc.CallOption) (*RolesInfo, error)
 	Stat(ctx context.Context, in *RoleStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
@@ -125,9 +125,9 @@ func (c *roleClient) List(ctx context.Context, in *RoleSearchQuery, opts ...grpc
 	return out, nil
 }
 
-func (c *roleClient) ListBasicRole(ctx context.Context, in *RoleSearchQuery, opts ...grpc.CallOption) (*BasicRolesInfo, error) {
+func (c *roleClient) ListBasicRole(ctx context.Context, in *RoleSearchQuery, opts ...grpc.CallOption) (*RolesInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BasicRolesInfo)
+	out := new(RolesInfo)
 	err := c.cc.Invoke(ctx, Role_ListBasicRole_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -156,7 +156,7 @@ type RoleServer interface {
 	Delete(context.Context, *RoleRequest) (*empty.Empty, error)
 	Get(context.Context, *RoleRequest) (*RoleInfo, error)
 	List(context.Context, *RoleSearchQuery) (*RolesInfo, error)
-	ListBasicRole(context.Context, *RoleSearchQuery) (*BasicRolesInfo, error)
+	ListBasicRole(context.Context, *RoleSearchQuery) (*RolesInfo, error)
 	Stat(context.Context, *RoleStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedRoleServer()
 }
@@ -189,7 +189,7 @@ func (UnimplementedRoleServer) Get(context.Context, *RoleRequest) (*RoleInfo, er
 func (UnimplementedRoleServer) List(context.Context, *RoleSearchQuery) (*RolesInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedRoleServer) ListBasicRole(context.Context, *RoleSearchQuery) (*BasicRolesInfo, error) {
+func (UnimplementedRoleServer) ListBasicRole(context.Context, *RoleSearchQuery) (*RolesInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListBasicRole not implemented")
 }
 func (UnimplementedRoleServer) Stat(context.Context, *RoleStatQuery) (*_struct.Struct, error) {
