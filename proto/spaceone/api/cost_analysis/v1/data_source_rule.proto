@@ -89,10 +89,11 @@ message MatchRule {
 }
 
 message DataSourceRuleActions {
-  string change_project = 1;
+  MatchRule match_service_account = 1;
   MatchRule match_project = 2;
-  MatchRule match_service_account = 3;
-  google.protobuf.Struct add_additional_info = 4;
+  string change_project = 3;
+  MatchRule match_workspace = 4;
+  google.protobuf.Struct add_additional_info = 5;
 }
 
 message DataSourceRuleOptions {
