@@ -8,7 +8,88 @@
      "title": "Statistics API",
      "version": "3.1.0"
    },
-   "paths":{"/statistics/resource/stat": {
+   "paths":{"/statistics/history/create": {
+       "post": {
+         "tags": ["statistics > history"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \nCreates a new History. Gets a Schedule as an input and creates a History as an output. You can use this method to manually run a specific Schedule.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schedule_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"schedule_id" : {"type": "string","title": "SCHEDULE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/statistics/history/list": {
+       "post": {
+         "tags": ["statistics > history"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Histories. You can use a query to get a filtered list of Histories.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |topic||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/HistoryInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/HistoryInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/statistics/history/stat": {
+       "post": {
+         "tags": ["statistics > history"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |topic||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/statistics/resource/stat": {
        "post": {
          "tags": ["statistics > resource"],
          "summary": "Stat",
@@ -263,147 +344,46 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/history/create": {
-       "post": {
-         "tags": ["statistics > history"],
-         "summary": "Create",
-         "operationId" : "",
-         "description": "### Description \nCreates a new History. Gets a Schedule as an input and creates a History as an output. You can use this method to manually run a specific Schedule.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |schedule_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"schedule_id" : {"type": "string","title": "SCHEDULE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response"}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/history/list": {
-       "post": {
-         "tags": ["statistics > history"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \nGets a list of all Histories. You can use a query to get a filtered list of Histories.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |topic||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/HistoryInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/HistoryInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/history/stat": {
-       "post": {
-         "tags": ["statistics > history"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n |topic||string||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" },"topic" : {"type": "string","title": "TOPIC" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
      "schemas": {
-     "ResourceStatRequest": {
-         "properties" : {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"},
-               "type": "array","$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"}},
+     "CreateHistoryRequest": {
+         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"}},
          "type": "object",
-         "required": ["aggregate"],
-                "title": "ResourceStatRequest"
+         "required": ["schedule_id"],
+                "title": "CreateHistoryRequest"
            }
-           ,        "Sort": {
-         "properties" : {"key" : {"type": "string","title": "KEY"},"desc" : {"type": "boolean","title": "DESC"},"keys" : {"items": {"$ref": "#/components/schemas/SortKey"},
-               "type": "array","$ref": "#/components/schemas/SortKey","title": "KEYS"}},
+           ,        "HistoryInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/HistoryValueInfo"},
+               "type": "array","$ref": "#/components/schemas/HistoryValueInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
-         "required": ["key","desc","keys"],
-                "title": "Sort"
+         "required": ["results","total_count"],
+                "title": "HistoryInfo"
            }
-           ,        "StatAggregate": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatAggregateQuery","title": "QUERY"},"join" : {"$ref": "#/components/schemas/StatAggregateJoin","title": "JOIN"},"concat" : {"$ref": "#/components/schemas/StatAggregateConcat","title": "CONCAT"},"sort" : {"type": "array","title": "SORT"},"formula" : {"$ref": "#/components/schemas/StatAggregateFormula","title": "FORMULA"},"fill_na" : {"$ref": "#/components/schemas/StatAggregateFillNA","title": "FILL_NA"}},
+           ,        "HistoryStatRequest": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
          "type": "object",
-         "required": ["query","join","concat","sort","formula","fill_na"],
-                "title": "StatAggregate"
+         "required": ["query"],
+                "title": "HistoryStatRequest"
            }
-           ,        "StatAggregateConcat": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"}},
+           ,        "HistoryValueInfo": {
+         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"values" : {"type": "object","title": "VALUES"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["resource_type","query"],
-                "title": "StatAggregateConcat"
+         "required": ["topic","values","domain_id","created_at"],
+                "title": "HistoryValueInfo"
            }
-           ,        "StatAggregateFillNA": {
-         "properties" : {"data" : {"type": "object","title": "DATA"}},
+           ,        "QueryHistoryRequest": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
          "type": "object",
-         "required": ["data"],
-                "title": "StatAggregateFillNA"
+         "required": [],
+                "title": "QueryHistoryRequest"
            }
-           ,        "StatAggregateFormula": {
-         "properties" : {"eval" : {"type": "string","title": "EVAL"},"query" : {"type": "string","title": "QUERY"}},
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
          "type": "object",
-         "required": ["eval","query"],
-                "title": "StatAggregateFormula"
-           }
-           ,        "StatAggregateJoin": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"},"type" : {"type": "string","title": "TYPE"},"keys" : {"items": {"type": "string"},
-               "type": "array","title": "KEYS"}},
-         "type": "object",
-         "required": ["resource_type","query"],
-                "title": "StatAggregateJoin"
-           }
-           ,        "StatAggregateQuery": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"}},
-         "type": "object",
-         "required": ["resource_type","query"],
-                "title": "StatAggregateQuery"
-           }
-           ,        "StatPage": {
-         "properties" : {"start" : {"type": "integer/long","title": "START"},"limit" : {"type": "integer/long","title": "LIMIT"}},
-         "type": "object",
-         "required": ["limit"],
-                "title": "StatPage"
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -528,6 +508,13 @@
          "required": ["filter","filter_or","sort","page","minimal","count_only","only","keyword","unwind"],
                 "title": "Query"
            }
+           ,        "Sort": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"desc" : {"type": "boolean","title": "DESC"},"keys" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "KEYS"}},
+         "type": "object",
+         "required": ["key","desc","keys"],
+                "title": "Sort"
+           }
            ,        "SortKey": {
          "properties" : {"key" : {"type": "string","title": "KEY"},"desc" : {"type": "boolean","title": "DESC"}},
          "type": "object",
@@ -567,12 +554,6 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
-         "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
-           }
            ,        "AuthenticationRequest": {
          "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
@@ -604,6 +585,56 @@
          "type": "object",
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
+           }
+           ,        "ResourceStatRequest": {
+         "properties" : {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"},
+               "type": "array","$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"}},
+         "type": "object",
+         "required": ["aggregate"],
+                "title": "ResourceStatRequest"
+           }
+           ,        "StatAggregate": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatAggregateQuery","title": "QUERY"},"join" : {"$ref": "#/components/schemas/StatAggregateJoin","title": "JOIN"},"concat" : {"$ref": "#/components/schemas/StatAggregateConcat","title": "CONCAT"},"sort" : {"type": "array","title": "SORT"},"formula" : {"$ref": "#/components/schemas/StatAggregateFormula","title": "FORMULA"},"fill_na" : {"$ref": "#/components/schemas/StatAggregateFillNA","title": "FILL_NA"}},
+         "type": "object",
+         "required": ["query","join","concat","sort","formula","fill_na"],
+                "title": "StatAggregate"
+           }
+           ,        "StatAggregateConcat": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"}},
+         "type": "object",
+         "required": ["resource_type","query"],
+                "title": "StatAggregateConcat"
+           }
+           ,        "StatAggregateFillNA": {
+         "properties" : {"data" : {"type": "object","title": "DATA"}},
+         "type": "object",
+         "required": ["data"],
+                "title": "StatAggregateFillNA"
+           }
+           ,        "StatAggregateFormula": {
+         "properties" : {"eval" : {"type": "string","title": "EVAL"},"query" : {"type": "string","title": "QUERY"}},
+         "type": "object",
+         "required": ["eval","query"],
+                "title": "StatAggregateFormula"
+           }
+           ,        "StatAggregateJoin": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"},"type" : {"type": "string","title": "TYPE"},"keys" : {"items": {"type": "string"},
+               "type": "array","title": "KEYS"}},
+         "type": "object",
+         "required": ["resource_type","query"],
+                "title": "StatAggregateJoin"
+           }
+           ,        "StatAggregateQuery": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"}},
+         "type": "object",
+         "required": ["resource_type","query"],
+                "title": "StatAggregateQuery"
+           }
+           ,        "StatPage": {
+         "properties" : {"start" : {"type": "integer/long","title": "START"},"limit" : {"type": "integer/long","title": "LIMIT"}},
+         "type": "object",
+         "required": ["limit"],
+                "title": "StatPage"
            }
            ,        "AddScheduleRequest": {
          "properties" : {"topic" : {"type": "string","title": "TOPIC"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
@@ -661,37 +692,6 @@
          "type": "object",
          "required": ["schedule_id"],
                 "title": "UpdateScheduleRequest"
-           }
-           ,        "CreateHistoryRequest": {
-         "properties" : {"schedule_id" : {"type": "string","title": "SCHEDULE_ID"}},
-         "type": "object",
-         "required": ["schedule_id"],
-                "title": "CreateHistoryRequest"
-           }
-           ,        "HistoryInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/HistoryValueInfo"},
-               "type": "array","$ref": "#/components/schemas/HistoryValueInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "HistoryInfo"
-           }
-           ,        "HistoryStatRequest": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
-         "type": "object",
-         "required": ["query"],
-                "title": "HistoryStatRequest"
-           }
-           ,        "HistoryValueInfo": {
-         "properties" : {"topic" : {"type": "string","title": "TOPIC"},"values" : {"type": "object","title": "VALUES"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["topic","values","domain_id","created_at"],
-                "title": "HistoryValueInfo"
-           }
-           ,        "QueryHistoryRequest": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"topic" : {"type": "string","title": "TOPIC"}},
-         "type": "object",
-         "required": [],
-                "title": "QueryHistoryRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
