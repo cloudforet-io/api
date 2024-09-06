@@ -25,6 +25,13 @@ service Workspace {
     };
   }
 
+  rpc change_workspace_group(ChangeWorkspaceGroupRequest) returns (WorkspaceInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace/change-workspace-group"
+      body: "*"
+    };
+  }
+
   rpc delete (WorkspaceDeleteRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/identity/v2/workspace/delete"
@@ -88,6 +95,12 @@ message UpdateWorkSpaceRequest {
   google.protobuf.Struct tags = 3;
 }
 
+message ChangeWorkspaceGroupRequest {
+  string workspace_id = 1;
+  // +optional
+  string workspace_group_id = 2;
+}
+
 message WorkspaceDeleteRequest {
   string workspace_id = 1;
   bool force = 2;
@@ -123,8 +136,9 @@ message WorkspaceInfo {
   int32 user_count = 14;
   WorkspaceCostInfo cost_info = 15;
 
-  string domain_id = 21;
-  string trusted_account_id = 22;
+  string workspace_group_id = 21;
+  string domain_id = 22;
+  string trusted_account_id = 23;
   string created_at = 31;
   string last_synced_at = 32;
   string dormant_updated_at = 33;
@@ -151,6 +165,8 @@ message WorkspaceSearchQuery {
   bool is_managed = 6;
   // +optional
   bool is_dormant = 7;
+  // +optional
+  string workspace_group_id = 8;
 }
 
 message WorkspacesInfo {
