@@ -51,6 +51,11 @@ class WorkspaceStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.UpdateWorkSpaceRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.FromString,
                 _registered_method=True)
+        self.change_workspace_group = channel.unary_unary(
+                '/spaceone.api.identity.v2.Workspace/change_workspace_group',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.ChangeWorkspaceGroupRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.FromString,
+                _registered_method=True)
         self.delete = channel.unary_unary(
                 '/spaceone.api.identity.v2.Workspace/delete',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceDeleteRequest.SerializeToString,
@@ -98,6 +103,12 @@ class WorkspaceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def change_workspace_group(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -156,6 +167,11 @@ def add_WorkspaceServicer_to_server(servicer, server):
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.UpdateWorkSpaceRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.SerializeToString,
+            ),
+            'change_workspace_group': grpc.unary_unary_rpc_method_handler(
+                    servicer.change_workspace_group,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.ChangeWorkspaceGroupRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
@@ -247,6 +263,33 @@ class Workspace(object):
             target,
             '/spaceone.api.identity.v2.Workspace/update',
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.UpdateWorkSpaceRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def change_workspace_group(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.identity.v2.Workspace/change_workspace_group',
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.ChangeWorkspaceGroupRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.FromString,
             options,
             channel_credentials,

@@ -1,6 +1,6 @@
 module github.com/cloudforet-io/api/dist
 
-go 1.22.6
+go 1.22.7
 
 replace github.com/cloudforet-io/api => ./
 

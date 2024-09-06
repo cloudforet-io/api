@@ -21,17 +21,15 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	WorkspaceGroup_Create_FullMethodName           = "/spaceone.api.identity.v2.WorkspaceGroup/create"
-	WorkspaceGroup_Update_FullMethodName           = "/spaceone.api.identity.v2.WorkspaceGroup/update"
-	WorkspaceGroup_Delete_FullMethodName           = "/spaceone.api.identity.v2.WorkspaceGroup/delete"
-	WorkspaceGroup_AddWorkspaces_FullMethodName    = "/spaceone.api.identity.v2.WorkspaceGroup/add_workspaces"
-	WorkspaceGroup_RemoveWorkspaces_FullMethodName = "/spaceone.api.identity.v2.WorkspaceGroup/remove_workspaces"
-	WorkspaceGroup_AddUsers_FullMethodName         = "/spaceone.api.identity.v2.WorkspaceGroup/add_users"
-	WorkspaceGroup_RemoveUsers_FullMethodName      = "/spaceone.api.identity.v2.WorkspaceGroup/remove_users"
-	WorkspaceGroup_UpdateRole_FullMethodName       = "/spaceone.api.identity.v2.WorkspaceGroup/update_role"
-	WorkspaceGroup_Get_FullMethodName              = "/spaceone.api.identity.v2.WorkspaceGroup/get"
-	WorkspaceGroup_List_FullMethodName             = "/spaceone.api.identity.v2.WorkspaceGroup/list"
-	WorkspaceGroup_Stat_FullMethodName             = "/spaceone.api.identity.v2.WorkspaceGroup/stat"
+	WorkspaceGroup_Create_FullMethodName      = "/spaceone.api.identity.v2.WorkspaceGroup/create"
+	WorkspaceGroup_Update_FullMethodName      = "/spaceone.api.identity.v2.WorkspaceGroup/update"
+	WorkspaceGroup_Delete_FullMethodName      = "/spaceone.api.identity.v2.WorkspaceGroup/delete"
+	WorkspaceGroup_AddUsers_FullMethodName    = "/spaceone.api.identity.v2.WorkspaceGroup/add_users"
+	WorkspaceGroup_RemoveUsers_FullMethodName = "/spaceone.api.identity.v2.WorkspaceGroup/remove_users"
+	WorkspaceGroup_UpdateRole_FullMethodName  = "/spaceone.api.identity.v2.WorkspaceGroup/update_role"
+	WorkspaceGroup_Get_FullMethodName         = "/spaceone.api.identity.v2.WorkspaceGroup/get"
+	WorkspaceGroup_List_FullMethodName        = "/spaceone.api.identity.v2.WorkspaceGroup/list"
+	WorkspaceGroup_Stat_FullMethodName        = "/spaceone.api.identity.v2.WorkspaceGroup/stat"
 )
 
 // WorkspaceGroupClient is the client API for WorkspaceGroup service.
@@ -41,8 +39,6 @@ type WorkspaceGroupClient interface {
 	Create(ctx context.Context, in *CreateWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
 	Update(ctx context.Context, in *UpdateWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
 	Delete(ctx context.Context, in *WorkspaceGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	AddWorkspaces(ctx context.Context, in *WorkspacesWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
-	RemoveWorkspaces(ctx context.Context, in *WorkspacesWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
 	AddUsers(ctx context.Context, in *UsersWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
 	RemoveUsers(ctx context.Context, in *UsersWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
 	UpdateRole(ctx context.Context, in *WorkspaceGroupUpdateRoleRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
@@ -83,26 +79,6 @@ func (c *workspaceGroupClient) Delete(ctx context.Context, in *WorkspaceGroupReq
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, WorkspaceGroup_Delete_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *workspaceGroupClient) AddWorkspaces(ctx context.Context, in *WorkspacesWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(WorkspaceGroupInfo)
-	err := c.cc.Invoke(ctx, WorkspaceGroup_AddWorkspaces_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *workspaceGroupClient) RemoveWorkspaces(ctx context.Context, in *WorkspacesWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(WorkspaceGroupInfo)
-	err := c.cc.Invoke(ctx, WorkspaceGroup_RemoveWorkspaces_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -176,8 +152,6 @@ type WorkspaceGroupServer interface {
 	Create(context.Context, *CreateWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
 	Update(context.Context, *UpdateWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
 	Delete(context.Context, *WorkspaceGroupRequest) (*empty.Empty, error)
-	AddWorkspaces(context.Context, *WorkspacesWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
-	RemoveWorkspaces(context.Context, *WorkspacesWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
 	AddUsers(context.Context, *UsersWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
 	RemoveUsers(context.Context, *UsersWorkspaceGroupRequest) (*WorkspaceGroupInfo, error)
 	UpdateRole(context.Context, *WorkspaceGroupUpdateRoleRequest) (*WorkspaceGroupInfo, error)
@@ -202,12 +176,6 @@ func (UnimplementedWorkspaceGroupServer) Update(context.Context, *UpdateWorkspac
 }
 func (UnimplementedWorkspaceGroupServer) Delete(context.Context, *WorkspaceGroupRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
-}
-func (UnimplementedWorkspaceGroupServer) AddWorkspaces(context.Context, *WorkspacesWorkspaceGroupRequest) (*WorkspaceGroupInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddWorkspaces not implemented")
-}
-func (UnimplementedWorkspaceGroupServer) RemoveWorkspaces(context.Context, *WorkspacesWorkspaceGroupRequest) (*WorkspaceGroupInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveWorkspaces not implemented")
 }
 func (UnimplementedWorkspaceGroupServer) AddUsers(context.Context, *UsersWorkspaceGroupRequest) (*WorkspaceGroupInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddUsers not implemented")
@@ -298,42 +266,6 @@ func _WorkspaceGroup_Delete_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WorkspaceGroupServer).Delete(ctx, req.(*WorkspaceGroupRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _WorkspaceGroup_AddWorkspaces_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WorkspacesWorkspaceGroupRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WorkspaceGroupServer).AddWorkspaces(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: WorkspaceGroup_AddWorkspaces_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WorkspaceGroupServer).AddWorkspaces(ctx, req.(*WorkspacesWorkspaceGroupRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _WorkspaceGroup_RemoveWorkspaces_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WorkspacesWorkspaceGroupRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WorkspaceGroupServer).RemoveWorkspaces(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: WorkspaceGroup_RemoveWorkspaces_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WorkspaceGroupServer).RemoveWorkspaces(ctx, req.(*WorkspacesWorkspaceGroupRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -464,14 +396,6 @@ var WorkspaceGroup_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "delete",
 			Handler:    _WorkspaceGroup_Delete_Handler,
-		},
-		{
-			MethodName: "add_workspaces",
-			Handler:    _WorkspaceGroup_AddWorkspaces_Handler,
-		},
-		{
-			MethodName: "remove_workspaces",
-			Handler:    _WorkspaceGroup_RemoveWorkspaces_Handler,
 		},
 		{
 			MethodName: "add_users",

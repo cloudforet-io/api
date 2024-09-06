@@ -59,6 +59,42 @@
       "extensions": [],
       "messages": [
         {
+          "name": "ChangeWorkspaceGroupRequest",
+          "longName": "ChangeWorkspaceGroupRequest",
+          "fullName": "spaceone.api.identity.v2.ChangeWorkspaceGroupRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_group_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "CreateWorkSpaceRequest",
           "longName": "CreateWorkSpaceRequest",
           "fullName": "spaceone.api.identity.v2.CreateWorkSpaceRequest",
@@ -405,6 +441,18 @@
               "defaultValue": ""
             },
             {
+              "name": "workspace_group_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "domain_id",
               "description": "",
               "label": "",
@@ -583,6 +631,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "workspace_group_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -694,6 +754,29 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/workspace/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "change_workspace_group",
+              "description": "",
+              "requestType": "ChangeWorkspaceGroupRequest",
+              "requestLongType": "ChangeWorkspaceGroupRequest",
+              "requestFullType": "spaceone.api.identity.v2.ChangeWorkspaceGroupRequest",
+              "requestStreaming": false,
+              "responseType": "WorkspaceInfo",
+              "responseLongType": "WorkspaceInfo",
+              "responseFullType": "spaceone.api.identity.v2.WorkspaceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/workspace/change-workspace-group",
                       "body": "*"
                     }
                   ]

@@ -21,15 +21,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Workspace_Create_FullMethodName  = "/spaceone.api.identity.v2.Workspace/create"
-	Workspace_Update_FullMethodName  = "/spaceone.api.identity.v2.Workspace/update"
-	Workspace_Delete_FullMethodName  = "/spaceone.api.identity.v2.Workspace/delete"
-	Workspace_Enable_FullMethodName  = "/spaceone.api.identity.v2.Workspace/enable"
-	Workspace_Disable_FullMethodName = "/spaceone.api.identity.v2.Workspace/disable"
-	Workspace_Get_FullMethodName     = "/spaceone.api.identity.v2.Workspace/get"
-	Workspace_Check_FullMethodName   = "/spaceone.api.identity.v2.Workspace/check"
-	Workspace_List_FullMethodName    = "/spaceone.api.identity.v2.Workspace/list"
-	Workspace_Stat_FullMethodName    = "/spaceone.api.identity.v2.Workspace/stat"
+	Workspace_Create_FullMethodName               = "/spaceone.api.identity.v2.Workspace/create"
+	Workspace_Update_FullMethodName               = "/spaceone.api.identity.v2.Workspace/update"
+	Workspace_ChangeWorkspaceGroup_FullMethodName = "/spaceone.api.identity.v2.Workspace/change_workspace_group"
+	Workspace_Delete_FullMethodName               = "/spaceone.api.identity.v2.Workspace/delete"
+	Workspace_Enable_FullMethodName               = "/spaceone.api.identity.v2.Workspace/enable"
+	Workspace_Disable_FullMethodName              = "/spaceone.api.identity.v2.Workspace/disable"
+	Workspace_Get_FullMethodName                  = "/spaceone.api.identity.v2.Workspace/get"
+	Workspace_Check_FullMethodName                = "/spaceone.api.identity.v2.Workspace/check"
+	Workspace_List_FullMethodName                 = "/spaceone.api.identity.v2.Workspace/list"
+	Workspace_Stat_FullMethodName                 = "/spaceone.api.identity.v2.Workspace/stat"
 )
 
 // WorkspaceClient is the client API for Workspace service.
@@ -38,6 +39,7 @@ const (
 type WorkspaceClient interface {
 	Create(ctx context.Context, in *CreateWorkSpaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Update(ctx context.Context, in *UpdateWorkSpaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
+	ChangeWorkspaceGroup(ctx context.Context, in *ChangeWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Delete(ctx context.Context, in *WorkspaceDeleteRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Enable(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Disable(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
@@ -69,6 +71,16 @@ func (c *workspaceClient) Update(ctx context.Context, in *UpdateWorkSpaceRequest
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(WorkspaceInfo)
 	err := c.cc.Invoke(ctx, Workspace_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *workspaceClient) ChangeWorkspaceGroup(ctx context.Context, in *ChangeWorkspaceGroupRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WorkspaceInfo)
+	err := c.cc.Invoke(ctx, Workspace_ChangeWorkspaceGroup_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -151,6 +163,7 @@ func (c *workspaceClient) Stat(ctx context.Context, in *WorkspaceStatQuery, opts
 type WorkspaceServer interface {
 	Create(context.Context, *CreateWorkSpaceRequest) (*WorkspaceInfo, error)
 	Update(context.Context, *UpdateWorkSpaceRequest) (*WorkspaceInfo, error)
+	ChangeWorkspaceGroup(context.Context, *ChangeWorkspaceGroupRequest) (*WorkspaceInfo, error)
 	Delete(context.Context, *WorkspaceDeleteRequest) (*empty.Empty, error)
 	Enable(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
 	Disable(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
@@ -173,6 +186,9 @@ func (UnimplementedWorkspaceServer) Create(context.Context, *CreateWorkSpaceRequ
 }
 func (UnimplementedWorkspaceServer) Update(context.Context, *UpdateWorkSpaceRequest) (*WorkspaceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedWorkspaceServer) ChangeWorkspaceGroup(context.Context, *ChangeWorkspaceGroupRequest) (*WorkspaceInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeWorkspaceGroup not implemented")
 }
 func (UnimplementedWorkspaceServer) Delete(context.Context, *WorkspaceDeleteRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -248,6 +264,24 @@ func _Workspace_Update_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WorkspaceServer).Update(ctx, req.(*UpdateWorkSpaceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Workspace_ChangeWorkspaceGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeWorkspaceGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkspaceServer).ChangeWorkspaceGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Workspace_ChangeWorkspaceGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkspaceServer).ChangeWorkspaceGroup(ctx, req.(*ChangeWorkspaceGroupRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -392,6 +426,10 @@ var Workspace_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _Workspace_Update_Handler,
+		},
+		{
+			MethodName: "change_workspace_group",
+			Handler:    _Workspace_ChangeWorkspaceGroup_Handler,
 		},
 		{
 			MethodName: "delete",

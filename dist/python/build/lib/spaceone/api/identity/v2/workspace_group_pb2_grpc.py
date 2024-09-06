@@ -56,16 +56,6 @@ class WorkspaceGroupStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.add_workspaces = channel.unary_unary(
-                '/spaceone.api.identity.v2.WorkspaceGroup/add_workspaces',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspacesWorkspaceGroupRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
-                _registered_method=True)
-        self.remove_workspaces = channel.unary_unary(
-                '/spaceone.api.identity.v2.WorkspaceGroup/remove_workspaces',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspacesWorkspaceGroupRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
-                _registered_method=True)
         self.add_users = channel.unary_unary(
                 '/spaceone.api.identity.v2.WorkspaceGroup/add_users',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.UsersWorkspaceGroupRequest.SerializeToString,
@@ -114,18 +104,6 @@ class WorkspaceGroupServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def delete(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def add_workspaces(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def remove_workspaces(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -184,16 +162,6 @@ def add_WorkspaceGroupServicer_to_server(servicer, server):
                     servicer.delete,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'add_workspaces': grpc.unary_unary_rpc_method_handler(
-                    servicer.add_workspaces,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspacesWorkspaceGroupRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.SerializeToString,
-            ),
-            'remove_workspaces': grpc.unary_unary_rpc_method_handler(
-                    servicer.remove_workspaces,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspacesWorkspaceGroupRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.SerializeToString,
             ),
             'add_users': grpc.unary_unary_rpc_method_handler(
                     servicer.add_users,
@@ -307,60 +275,6 @@ class WorkspaceGroup(object):
             '/spaceone.api.identity.v2.WorkspaceGroup/delete',
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def add_workspaces(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.identity.v2.WorkspaceGroup/add_workspaces',
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspacesWorkspaceGroupRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def remove_workspaces(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.identity.v2.WorkspaceGroup/remove_workspaces',
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspacesWorkspaceGroupRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
             options,
             channel_credentials,
             insecure,
