@@ -33,12 +33,12 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WorkspaceGroupUserClient interface {
-	Add(ctx context.Context, in *WorkspaceGroupUsersRequest, opts ...grpc.CallOption) (*WorkspaceGroupUserInfo, error)
-	Remove(ctx context.Context, in *WorkspaceGroupUsersRequest, opts ...grpc.CallOption) (*WorkspaceGroupUserInfo, error)
-	UpdateRole(ctx context.Context, in *WorkspaceGroupUserUpdateRoleRequest, opts ...grpc.CallOption) (*WorkspaceGroupUserInfo, error)
+	Add(ctx context.Context, in *WorkspaceGroupUsersRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
+	Remove(ctx context.Context, in *WorkspaceGroupUsersRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
+	UpdateRole(ctx context.Context, in *WorkspaceGroupUserUpdateRoleRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
 	Find(ctx context.Context, in *WorkspaceGroupUserFindRequest, opts ...grpc.CallOption) (*WorkspaceGroupUsersSummaryInfo, error)
-	Get(ctx context.Context, in *WorkspaceGroupUserRequest, opts ...grpc.CallOption) (*WorkspaceGroupUserInfo, error)
-	List(ctx context.Context, in *WorkspaceGroupUserSearchQuery, opts ...grpc.CallOption) (*WorkspaceGroupUsersInfo, error)
+	Get(ctx context.Context, in *WorkspaceGroupUserRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error)
+	List(ctx context.Context, in *WorkspaceGroupUserSearchQuery, opts ...grpc.CallOption) (*WorkspaceGroupsInfo, error)
 	Stat(ctx context.Context, in *WorkspaceGroupUserStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
@@ -50,9 +50,9 @@ func NewWorkspaceGroupUserClient(cc grpc.ClientConnInterface) WorkspaceGroupUser
 	return &workspaceGroupUserClient{cc}
 }
 
-func (c *workspaceGroupUserClient) Add(ctx context.Context, in *WorkspaceGroupUsersRequest, opts ...grpc.CallOption) (*WorkspaceGroupUserInfo, error) {
+func (c *workspaceGroupUserClient) Add(ctx context.Context, in *WorkspaceGroupUsersRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(WorkspaceGroupUserInfo)
+	out := new(WorkspaceGroupInfo)
 	err := c.cc.Invoke(ctx, WorkspaceGroupUser_Add_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -60,9 +60,9 @@ func (c *workspaceGroupUserClient) Add(ctx context.Context, in *WorkspaceGroupUs
 	return out, nil
 }
 
-func (c *workspaceGroupUserClient) Remove(ctx context.Context, in *WorkspaceGroupUsersRequest, opts ...grpc.CallOption) (*WorkspaceGroupUserInfo, error) {
+func (c *workspaceGroupUserClient) Remove(ctx context.Context, in *WorkspaceGroupUsersRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(WorkspaceGroupUserInfo)
+	out := new(WorkspaceGroupInfo)
 	err := c.cc.Invoke(ctx, WorkspaceGroupUser_Remove_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -70,9 +70,9 @@ func (c *workspaceGroupUserClient) Remove(ctx context.Context, in *WorkspaceGrou
 	return out, nil
 }
 
-func (c *workspaceGroupUserClient) UpdateRole(ctx context.Context, in *WorkspaceGroupUserUpdateRoleRequest, opts ...grpc.CallOption) (*WorkspaceGroupUserInfo, error) {
+func (c *workspaceGroupUserClient) UpdateRole(ctx context.Context, in *WorkspaceGroupUserUpdateRoleRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(WorkspaceGroupUserInfo)
+	out := new(WorkspaceGroupInfo)
 	err := c.cc.Invoke(ctx, WorkspaceGroupUser_UpdateRole_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -90,9 +90,9 @@ func (c *workspaceGroupUserClient) Find(ctx context.Context, in *WorkspaceGroupU
 	return out, nil
 }
 
-func (c *workspaceGroupUserClient) Get(ctx context.Context, in *WorkspaceGroupUserRequest, opts ...grpc.CallOption) (*WorkspaceGroupUserInfo, error) {
+func (c *workspaceGroupUserClient) Get(ctx context.Context, in *WorkspaceGroupUserRequest, opts ...grpc.CallOption) (*WorkspaceGroupInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(WorkspaceGroupUserInfo)
+	out := new(WorkspaceGroupInfo)
 	err := c.cc.Invoke(ctx, WorkspaceGroupUser_Get_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -100,9 +100,9 @@ func (c *workspaceGroupUserClient) Get(ctx context.Context, in *WorkspaceGroupUs
 	return out, nil
 }
 
-func (c *workspaceGroupUserClient) List(ctx context.Context, in *WorkspaceGroupUserSearchQuery, opts ...grpc.CallOption) (*WorkspaceGroupUsersInfo, error) {
+func (c *workspaceGroupUserClient) List(ctx context.Context, in *WorkspaceGroupUserSearchQuery, opts ...grpc.CallOption) (*WorkspaceGroupsInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(WorkspaceGroupUsersInfo)
+	out := new(WorkspaceGroupsInfo)
 	err := c.cc.Invoke(ctx, WorkspaceGroupUser_List_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -124,12 +124,12 @@ func (c *workspaceGroupUserClient) Stat(ctx context.Context, in *WorkspaceGroupU
 // All implementations must embed UnimplementedWorkspaceGroupUserServer
 // for forward compatibility.
 type WorkspaceGroupUserServer interface {
-	Add(context.Context, *WorkspaceGroupUsersRequest) (*WorkspaceGroupUserInfo, error)
-	Remove(context.Context, *WorkspaceGroupUsersRequest) (*WorkspaceGroupUserInfo, error)
-	UpdateRole(context.Context, *WorkspaceGroupUserUpdateRoleRequest) (*WorkspaceGroupUserInfo, error)
+	Add(context.Context, *WorkspaceGroupUsersRequest) (*WorkspaceGroupInfo, error)
+	Remove(context.Context, *WorkspaceGroupUsersRequest) (*WorkspaceGroupInfo, error)
+	UpdateRole(context.Context, *WorkspaceGroupUserUpdateRoleRequest) (*WorkspaceGroupInfo, error)
 	Find(context.Context, *WorkspaceGroupUserFindRequest) (*WorkspaceGroupUsersSummaryInfo, error)
-	Get(context.Context, *WorkspaceGroupUserRequest) (*WorkspaceGroupUserInfo, error)
-	List(context.Context, *WorkspaceGroupUserSearchQuery) (*WorkspaceGroupUsersInfo, error)
+	Get(context.Context, *WorkspaceGroupUserRequest) (*WorkspaceGroupInfo, error)
+	List(context.Context, *WorkspaceGroupUserSearchQuery) (*WorkspaceGroupsInfo, error)
 	Stat(context.Context, *WorkspaceGroupUserStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedWorkspaceGroupUserServer()
 }
@@ -141,22 +141,22 @@ type WorkspaceGroupUserServer interface {
 // pointer dereference when methods are called.
 type UnimplementedWorkspaceGroupUserServer struct{}
 
-func (UnimplementedWorkspaceGroupUserServer) Add(context.Context, *WorkspaceGroupUsersRequest) (*WorkspaceGroupUserInfo, error) {
+func (UnimplementedWorkspaceGroupUserServer) Add(context.Context, *WorkspaceGroupUsersRequest) (*WorkspaceGroupInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
 }
-func (UnimplementedWorkspaceGroupUserServer) Remove(context.Context, *WorkspaceGroupUsersRequest) (*WorkspaceGroupUserInfo, error) {
+func (UnimplementedWorkspaceGroupUserServer) Remove(context.Context, *WorkspaceGroupUsersRequest) (*WorkspaceGroupInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Remove not implemented")
 }
-func (UnimplementedWorkspaceGroupUserServer) UpdateRole(context.Context, *WorkspaceGroupUserUpdateRoleRequest) (*WorkspaceGroupUserInfo, error) {
+func (UnimplementedWorkspaceGroupUserServer) UpdateRole(context.Context, *WorkspaceGroupUserUpdateRoleRequest) (*WorkspaceGroupInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateRole not implemented")
 }
 func (UnimplementedWorkspaceGroupUserServer) Find(context.Context, *WorkspaceGroupUserFindRequest) (*WorkspaceGroupUsersSummaryInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Find not implemented")
 }
-func (UnimplementedWorkspaceGroupUserServer) Get(context.Context, *WorkspaceGroupUserRequest) (*WorkspaceGroupUserInfo, error) {
+func (UnimplementedWorkspaceGroupUserServer) Get(context.Context, *WorkspaceGroupUserRequest) (*WorkspaceGroupInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedWorkspaceGroupUserServer) List(context.Context, *WorkspaceGroupUserSearchQuery) (*WorkspaceGroupUsersInfo, error) {
+func (UnimplementedWorkspaceGroupUserServer) List(context.Context, *WorkspaceGroupUserSearchQuery) (*WorkspaceGroupsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 func (UnimplementedWorkspaceGroupUserServer) Stat(context.Context, *WorkspaceGroupUserStatQuery) (*_struct.Struct, error) {

@@ -150,11 +150,14 @@ type UserWorkspaceGroup struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId   string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	RoleId   string `protobuf:"bytes,2,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
+	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	RoleId string `protobuf:"bytes,2,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
+	// +optional
 	RoleType string `protobuf:"bytes,3,opt,name=role_type,json=roleType,proto3" json:"role_type,omitempty"`
+	// +optional
 	UserName string `protobuf:"bytes,4,opt,name=user_name,json=userName,proto3" json:"user_name,omitempty"`
-	State    string `protobuf:"bytes,5,opt,name=state,proto3" json:"state,omitempty"`
+	// +optional
+	State string `protobuf:"bytes,5,opt,name=state,proto3" json:"state,omitempty"`
 }
 
 func (x *UserWorkspaceGroup) Reset() {

@@ -4,6 +4,7 @@ import grpc
 import warnings
 
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
+from spaceone.api.identity.v2 import workspace_group_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2
 from spaceone.api.identity.v2 import workspace_group_user_pb2 as spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2
 
 GRPC_GENERATED_VERSION = '1.64.1'
@@ -43,17 +44,17 @@ class WorkspaceGroupUserStub(object):
         self.add = channel.unary_unary(
                 '/spaceone.api.identity.v2.WorkspaceGroupUser/add',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUsersRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserInfo.FromString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
                 _registered_method=True)
         self.remove = channel.unary_unary(
                 '/spaceone.api.identity.v2.WorkspaceGroupUser/remove',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUsersRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserInfo.FromString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
                 _registered_method=True)
         self.update_role = channel.unary_unary(
                 '/spaceone.api.identity.v2.WorkspaceGroupUser/update_role',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserUpdateRoleRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserInfo.FromString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
                 _registered_method=True)
         self.find = channel.unary_unary(
                 '/spaceone.api.identity.v2.WorkspaceGroupUser/find',
@@ -63,12 +64,12 @@ class WorkspaceGroupUserStub(object):
         self.get = channel.unary_unary(
                 '/spaceone.api.identity.v2.WorkspaceGroupUser/get',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserInfo.FromString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
                 _registered_method=True)
         self.list = channel.unary_unary(
                 '/spaceone.api.identity.v2.WorkspaceGroupUser/list',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserSearchQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUsersInfo.FromString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupsInfo.FromString,
                 _registered_method=True)
         self.stat = channel.unary_unary(
                 '/spaceone.api.identity.v2.WorkspaceGroupUser/stat',
@@ -128,17 +129,17 @@ def add_WorkspaceGroupUserServicer_to_server(servicer, server):
             'add': grpc.unary_unary_rpc_method_handler(
                     servicer.add,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUsersRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserInfo.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.SerializeToString,
             ),
             'remove': grpc.unary_unary_rpc_method_handler(
                     servicer.remove,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUsersRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserInfo.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.SerializeToString,
             ),
             'update_role': grpc.unary_unary_rpc_method_handler(
                     servicer.update_role,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserUpdateRoleRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserInfo.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.SerializeToString,
             ),
             'find': grpc.unary_unary_rpc_method_handler(
                     servicer.find,
@@ -148,12 +149,12 @@ def add_WorkspaceGroupUserServicer_to_server(servicer, server):
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserInfo.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserSearchQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUsersInfo.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupsInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
@@ -187,7 +188,7 @@ class WorkspaceGroupUser(object):
             target,
             '/spaceone.api.identity.v2.WorkspaceGroupUser/add',
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUsersRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserInfo.FromString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -214,7 +215,7 @@ class WorkspaceGroupUser(object):
             target,
             '/spaceone.api.identity.v2.WorkspaceGroupUser/remove',
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUsersRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserInfo.FromString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -241,7 +242,7 @@ class WorkspaceGroupUser(object):
             target,
             '/spaceone.api.identity.v2.WorkspaceGroupUser/update_role',
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserUpdateRoleRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserInfo.FromString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -295,7 +296,7 @@ class WorkspaceGroupUser(object):
             target,
             '/spaceone.api.identity.v2.WorkspaceGroupUser/get',
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserInfo.FromString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -322,7 +323,7 @@ class WorkspaceGroupUser(object):
             target,
             '/spaceone.api.identity.v2.WorkspaceGroupUser/list',
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUserSearchQuery.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__user__pb2.WorkspaceGroupUsersInfo.FromString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__group__pb2.WorkspaceGroupsInfo.FromString,
             options,
             channel_credentials,
             insecure,

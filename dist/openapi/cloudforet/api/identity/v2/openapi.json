@@ -1904,9 +1904,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"},
+                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupInfo"}}
                }
              }}
          }
@@ -1933,9 +1933,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"},
+                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupInfo"}}
                }
              }}
          }
@@ -1962,9 +1962,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"},
+                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupInfo"}}
                }
              }}
          }
@@ -2020,9 +2020,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"},
+                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupInfo"}}
                }
              }}
          }
@@ -2049,9 +2049,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupUsersInfo"},
+                 "schema": {"$ref": "#/components/schemas/WorkspaceGroupsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupUsersInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/WorkspaceGroupsInfo"}}
                }
              }}
          }
@@ -5112,13 +5112,6 @@
          "required": ["workspace_group_id","keyword"],
                 "title": "WorkspaceGroupUserFindRequest"
            }
-           ,        "WorkspaceGroupUserInfo": {
-         "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"name" : {"type": "string","title": "NAME"},"users" : {"items": {"$ref": "#/components/schemas/UserWorkspaceGroup"},
-               "type": "array","$ref": "#/components/schemas/UserWorkspaceGroup","title": "USERS"},"tags" : {"type": "object","title": "TAGS"},"created_by" : {"type": "string","title": "CREATED_BY"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
-         "type": "object",
-         "required": ["workspace_group_id","name","users","tags","created_by","updated_by","domain_id","created_at","updated_at"],
-                "title": "WorkspaceGroupUserInfo"
-           }
            ,        "WorkspaceGroupUserRequest": {
          "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"}},
          "type": "object",
@@ -5148,13 +5141,6 @@
          "type": "object",
          "required": ["workspace_group_id","target_user_id","role_id"],
                 "title": "WorkspaceGroupUserUpdateRoleRequest"
-           }
-           ,        "WorkspaceGroupUsersInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WorkspaceGroupUserInfo"},
-               "type": "array","$ref": "#/components/schemas/WorkspaceGroupUserInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
-         "type": "object",
-         "required": ["results","total_count"],
-                "title": "WorkspaceGroupUsersInfo"
            }
            ,        "WorkspaceGroupUsersRequest": {
          "properties" : {"workspace_group_id" : {"type": "string","title": "WORKSPACE_GROUP_ID"},"users" : {"items": {"$ref": "#/components/schemas/UserWorkspaceGroup"},
@@ -5291,7 +5277,7 @@
            ,        "UserWorkspaceGroup": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"role_id" : {"type": "string","title": "ROLE_ID"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"user_name" : {"type": "string","title": "USER_NAME"},"state" : {"type": "string","title": "STATE"}},
          "type": "object",
-         "required": ["user_id","role_id","role_type","user_name","state"],
+         "required": ["user_id","role_id"],
                 "title": "UserWorkspaceGroup"
            }
            ,        "UsersWorkspaceGroupRequest": {
