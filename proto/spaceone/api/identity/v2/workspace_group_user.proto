@@ -11,21 +11,21 @@ import "spaceone/api/core/v2/query.proto";
 import "spaceone/api/identity/v2/workspace_group.proto";
 
 service WorkspaceGroupUser {
-  rpc add (WorkspaceGroupUsersRequest) returns (WorkspaceGroupUserInfo) {
+  rpc add (WorkspaceGroupUsersRequest) returns (WorkspaceGroupInfo) {
     option (google.api.http) = {
       post: "/identity/v2/workspace-group-user/add"
       body: "*"
     };
   }
 
-  rpc remove (WorkspaceGroupUsersRequest) returns (WorkspaceGroupUserInfo) {
+  rpc remove (WorkspaceGroupUsersRequest) returns (WorkspaceGroupInfo) {
     option (google.api.http) = {
       post: "/identity/v2/workspace-group-user/remove"
       body: "*"
     };
   }
 
-  rpc update_role (WorkspaceGroupUserUpdateRoleRequest) returns (WorkspaceGroupUserInfo) {
+  rpc update_role (WorkspaceGroupUserUpdateRoleRequest) returns (WorkspaceGroupInfo) {
     option (google.api.http) = {
       post: "/identity/v2/workspace-group-user/update-role"
       body: "*"
@@ -39,14 +39,14 @@ service WorkspaceGroupUser {
     };
   }
 
-  rpc get (WorkspaceGroupUserRequest) returns (WorkspaceGroupUserInfo) {
+  rpc get (WorkspaceGroupUserRequest) returns (WorkspaceGroupInfo) {
     option (google.api.http) = {
       post: "/identity/v2/workspace-group-user/get"
       body: "*"
     };
   }
 
-  rpc list (WorkspaceGroupUserSearchQuery) returns (WorkspaceGroupUsersInfo) {
+  rpc list (WorkspaceGroupUserSearchQuery) returns (WorkspaceGroupsInfo) {
     option (google.api.http) = {
       post: "/identity/v2/workspace-group-user/list"
       body: "*"
@@ -91,36 +91,6 @@ message WorkspaceGroupUserRequest {
   string workspace_group_id = 1;
 }
 
-message WorkspaceGroupUserInfo {
-  string workspace_group_id = 1;
-  string name = 2;
-  repeated UserWorkspaceGroup users = 3;
-  google.protobuf.Struct tags = 4;
-  string created_by = 5;
-  string updated_by = 6;
-  string domain_id = 21;
-  string created_at = 31;
-  string updated_at = 32;
-}
-
-message WorkspaceGroupUserSearchQuery {
-  // +optional
-  spaceone.api.core.v2.Query query = 1;
-  // +optional
-  string workspace_group_id = 2;
-  // +optional
-  string name = 3;
-  // +optional
-  string created_by = 4;
-  // +optional
-  string updated_by = 5;
-}
-
-message WorkspaceGroupUsersInfo {
-  repeated WorkspaceGroupUserInfo results = 1;
-  int32 total_count = 2;
-}
-
 message WorkspaceGroupUserSummaryInfo {
   enum State {
     STATE_NONE = 0;
@@ -137,6 +107,19 @@ message WorkspaceGroupUserSummaryInfo {
 message WorkspaceGroupUsersSummaryInfo {
   repeated WorkspaceGroupUserSummaryInfo results = 1;
   int32 total_count = 2;
+}
+
+message WorkspaceGroupUserSearchQuery {
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string workspace_group_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  string created_by = 4;
+  // +optional
+  string updated_by = 5;
 }
 
 message WorkspaceGroupUserStatQuery {
