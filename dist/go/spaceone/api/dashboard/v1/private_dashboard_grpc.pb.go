@@ -23,12 +23,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PrivateDashboard_Create_FullMethodName = "/spaceone.api.dashboard.v1.PrivateDashboard/create"
-	PrivateDashboard_Update_FullMethodName = "/spaceone.api.dashboard.v1.PrivateDashboard/update"
-	PrivateDashboard_Delete_FullMethodName = "/spaceone.api.dashboard.v1.PrivateDashboard/delete"
-	PrivateDashboard_Get_FullMethodName    = "/spaceone.api.dashboard.v1.PrivateDashboard/get"
-	PrivateDashboard_List_FullMethodName   = "/spaceone.api.dashboard.v1.PrivateDashboard/list"
-	PrivateDashboard_Stat_FullMethodName   = "/spaceone.api.dashboard.v1.PrivateDashboard/stat"
+	PrivateDashboard_Create_FullMethodName       = "/spaceone.api.dashboard.v1.PrivateDashboard/create"
+	PrivateDashboard_Update_FullMethodName       = "/spaceone.api.dashboard.v1.PrivateDashboard/update"
+	PrivateDashboard_ChangeFolder_FullMethodName = "/spaceone.api.dashboard.v1.PrivateDashboard/change_folder"
+	PrivateDashboard_Delete_FullMethodName       = "/spaceone.api.dashboard.v1.PrivateDashboard/delete"
+	PrivateDashboard_Get_FullMethodName          = "/spaceone.api.dashboard.v1.PrivateDashboard/get"
+	PrivateDashboard_List_FullMethodName         = "/spaceone.api.dashboard.v1.PrivateDashboard/list"
+	PrivateDashboard_Stat_FullMethodName         = "/spaceone.api.dashboard.v1.PrivateDashboard/stat"
 )
 
 // PrivateDashboardClient is the client API for PrivateDashboard service.
@@ -37,6 +38,7 @@ const (
 type PrivateDashboardClient interface {
 	Create(ctx context.Context, in *CreatePrivateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error)
 	Update(ctx context.Context, in *UpdatePrivateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error)
+	ChangeFolder(ctx context.Context, in *ChangeFolderPrivateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error)
 	Delete(ctx context.Context, in *PrivateDashboardRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *PrivateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error)
 	List(ctx context.Context, in *PrivateDashboardQuery, opts ...grpc.CallOption) (*PrivateDashboardsInfo, error)
@@ -65,6 +67,16 @@ func (c *privateDashboardClient) Update(ctx context.Context, in *UpdatePrivateDa
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PrivateDashboardInfo)
 	err := c.cc.Invoke(ctx, PrivateDashboard_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *privateDashboardClient) ChangeFolder(ctx context.Context, in *ChangeFolderPrivateDashboardRequest, opts ...grpc.CallOption) (*PrivateDashboardInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PrivateDashboardInfo)
+	err := c.cc.Invoke(ctx, PrivateDashboard_ChangeFolder_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -117,6 +129,7 @@ func (c *privateDashboardClient) Stat(ctx context.Context, in *PrivateDashboardS
 type PrivateDashboardServer interface {
 	Create(context.Context, *CreatePrivateDashboardRequest) (*PrivateDashboardInfo, error)
 	Update(context.Context, *UpdatePrivateDashboardRequest) (*PrivateDashboardInfo, error)
+	ChangeFolder(context.Context, *ChangeFolderPrivateDashboardRequest) (*PrivateDashboardInfo, error)
 	Delete(context.Context, *PrivateDashboardRequest) (*empty.Empty, error)
 	Get(context.Context, *PrivateDashboardRequest) (*PrivateDashboardInfo, error)
 	List(context.Context, *PrivateDashboardQuery) (*PrivateDashboardsInfo, error)
@@ -136,6 +149,9 @@ func (UnimplementedPrivateDashboardServer) Create(context.Context, *CreatePrivat
 }
 func (UnimplementedPrivateDashboardServer) Update(context.Context, *UpdatePrivateDashboardRequest) (*PrivateDashboardInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedPrivateDashboardServer) ChangeFolder(context.Context, *ChangeFolderPrivateDashboardRequest) (*PrivateDashboardInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeFolder not implemented")
 }
 func (UnimplementedPrivateDashboardServer) Delete(context.Context, *PrivateDashboardRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -202,6 +218,24 @@ func _PrivateDashboard_Update_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PrivateDashboardServer).Update(ctx, req.(*UpdatePrivateDashboardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PrivateDashboard_ChangeFolder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeFolderPrivateDashboardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PrivateDashboardServer).ChangeFolder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PrivateDashboard_ChangeFolder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PrivateDashboardServer).ChangeFolder(ctx, req.(*ChangeFolderPrivateDashboardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -292,6 +326,10 @@ var PrivateDashboard_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _PrivateDashboard_Update_Handler,
+		},
+		{
+			MethodName: "change_folder",
+			Handler:    _PrivateDashboard_ChangeFolder_Handler,
 		},
 		{
 			MethodName: "delete",

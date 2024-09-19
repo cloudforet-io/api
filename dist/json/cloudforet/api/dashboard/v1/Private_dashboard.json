@@ -12,6 +12,42 @@
       "extensions": [],
       "messages": [
         {
+          "name": "ChangeFolderPrivateDashboardRequest",
+          "longName": "ChangeFolderPrivateDashboardRequest",
+          "fullName": "spaceone.api.dashboard.v1.ChangeFolderPrivateDashboardRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "dashboard_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "folder_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "CreatePrivateDashboardRequest",
           "longName": "CreatePrivateDashboardRequest",
           "fullName": "spaceone.api.dashboard.v1.CreatePrivateDashboardRequest",
@@ -719,6 +755,29 @@
                     {
                       "method": "POST",
                       "pattern": "/dashboard/v1/private-dashboard/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "change_folder",
+              "description": "",
+              "requestType": "ChangeFolderPrivateDashboardRequest",
+              "requestLongType": "ChangeFolderPrivateDashboardRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.ChangeFolderPrivateDashboardRequest",
+              "requestStreaming": false,
+              "responseType": "PrivateDashboardInfo",
+              "responseLongType": "PrivateDashboardInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PrivateDashboardInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/dashboard/v1/private-dashboard/change-folder",
                       "body": "*"
                     }
                   ]

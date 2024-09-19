@@ -92,6 +92,42 @@
       "extensions": [],
       "messages": [
         {
+          "name": "ChangeFolderPublicDashboardRequest",
+          "longName": "ChangeFolderPublicDashboardRequest",
+          "fullName": "spaceone.api.dashboard.v1.ChangeFolderPublicDashboardRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "dashboard_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "folder_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "CreatePublicDashboardRequest",
           "longName": "CreatePublicDashboardRequest",
           "fullName": "spaceone.api.dashboard.v1.CreatePublicDashboardRequest",
@@ -955,6 +991,29 @@
                     {
                       "method": "POST",
                       "pattern": "/dashboard/v1/public-dashboard/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "change_folder",
+              "description": "",
+              "requestType": "ChangeFolderPublicDashboardRequest",
+              "requestLongType": "ChangeFolderPublicDashboardRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.ChangeFolderPublicDashboardRequest",
+              "requestStreaming": false,
+              "responseType": "PublicDashboardInfo",
+              "responseLongType": "PublicDashboardInfo",
+              "responseFullType": "spaceone.api.dashboard.v1.PublicDashboardInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/dashboard/v1/public-dashboard/change-folder",
                       "body": "*"
                     }
                   ]

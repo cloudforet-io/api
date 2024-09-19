@@ -51,6 +51,11 @@ class PrivateDashboardStub(object):
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__dashboard__pb2.UpdatePrivateDashboardRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__dashboard__pb2.PrivateDashboardInfo.FromString,
                 _registered_method=True)
+        self.change_folder = channel.unary_unary(
+                '/spaceone.api.dashboard.v1.PrivateDashboard/change_folder',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__dashboard__pb2.ChangeFolderPrivateDashboardRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__dashboard__pb2.PrivateDashboardInfo.FromString,
+                _registered_method=True)
         self.delete = channel.unary_unary(
                 '/spaceone.api.dashboard.v1.PrivateDashboard/delete',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__dashboard__pb2.PrivateDashboardRequest.SerializeToString,
@@ -83,6 +88,12 @@ class PrivateDashboardServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def change_folder(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -123,6 +134,11 @@ def add_PrivateDashboardServicer_to_server(servicer, server):
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__dashboard__pb2.UpdatePrivateDashboardRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__dashboard__pb2.PrivateDashboardInfo.SerializeToString,
+            ),
+            'change_folder': grpc.unary_unary_rpc_method_handler(
+                    servicer.change_folder,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__dashboard__pb2.ChangeFolderPrivateDashboardRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__dashboard__pb2.PrivateDashboardInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
@@ -199,6 +215,33 @@ class PrivateDashboard(object):
             target,
             '/spaceone.api.dashboard.v1.PrivateDashboard/update',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_private__dashboard__pb2.UpdatePrivateDashboardRequest.SerializeToString,
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_private__dashboard__pb2.PrivateDashboardInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def change_folder(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.dashboard.v1.PrivateDashboard/change_folder',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_private__dashboard__pb2.ChangeFolderPrivateDashboardRequest.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_private__dashboard__pb2.PrivateDashboardInfo.FromString,
             options,
             channel_credentials,

@@ -89,35 +89,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/statistics/resource/stat": {
-       "post": {
-         "tags": ["statistics > resource"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \nEnables data preprocessing of different services. Although limited, it is possible to create not only basic queries but also data suitable for users' needs, such as joins between two tables created by the query, handling missing values, and sorting.",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |aggregate||array|True|\n |page||StatPage||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"}, "type": "array","title": "AGGREGATE" },"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/statistics/schedule/add": {
        "post": {
          "tags": ["statistics > schedule"],
@@ -344,6 +315,35 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/statistics/resource/stat": {
+       "post": {
+         "tags": ["statistics > resource"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \nEnables data preprocessing of different services. Although limited, it is possible to create not only basic queries but also data suitable for users' needs, such as joins between two tables created by the query, handling missing values, and sorting.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |aggregate||array|True|\n |page||StatPage||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"}, "type": "array","title": "AGGREGATE" },"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
@@ -379,11 +379,37 @@
          "required": [],
                 "title": "QueryHistoryRequest"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+           ,        "AuthenticationRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
          "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
+         "required": ["domain_id"],
+                "title": "AuthenticationRequest"
+           }
+           ,        "AuthenticationResponse": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
+         "type": "object",
+         "required": ["domain_id","public_key"],
+                "title": "AuthenticationResponse"
+           }
+           ,        "AuthorizationRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
+         "type": "object",
+         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
+                "title": "AuthorizationRequest"
+           }
+           ,        "AuthorizationResponse": {
+         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_GROUPS"}},
+         "type": "object",
+         "required": ["role_type","projects","project_groups"],
+                "title": "AuthorizationResponse"
+           }
+           ,        "EventRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
+         "type": "object",
+         "required": ["service","resource","verb","status","message"],
+                "title": "EventRequest"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -554,87 +580,11 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "AuthenticationRequest": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
          "type": "object",
-         "required": ["domain_id"],
-                "title": "AuthenticationRequest"
-           }
-           ,        "AuthenticationResponse": {
-         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
-         "type": "object",
-         "required": ["domain_id","public_key"],
-                "title": "AuthenticationResponse"
-           }
-           ,        "AuthorizationRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
-         "type": "object",
-         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
-                "title": "AuthorizationRequest"
-           }
-           ,        "AuthorizationResponse": {
-         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
-               "type": "array","title": "PROJECT_GROUPS"}},
-         "type": "object",
-         "required": ["role_type","projects","project_groups"],
-                "title": "AuthorizationResponse"
-           }
-           ,        "EventRequest": {
-         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
-         "type": "object",
-         "required": ["service","resource","verb","status","message"],
-                "title": "EventRequest"
-           }
-           ,        "ResourceStatRequest": {
-         "properties" : {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"},
-               "type": "array","$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"}},
-         "type": "object",
-         "required": ["aggregate"],
-                "title": "ResourceStatRequest"
-           }
-           ,        "StatAggregate": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/StatAggregateQuery","title": "QUERY"},"join" : {"$ref": "#/components/schemas/StatAggregateJoin","title": "JOIN"},"concat" : {"$ref": "#/components/schemas/StatAggregateConcat","title": "CONCAT"},"sort" : {"type": "array","title": "SORT"},"formula" : {"$ref": "#/components/schemas/StatAggregateFormula","title": "FORMULA"},"fill_na" : {"$ref": "#/components/schemas/StatAggregateFillNA","title": "FILL_NA"}},
-         "type": "object",
-         "required": ["query","join","concat","sort","formula","fill_na"],
-                "title": "StatAggregate"
-           }
-           ,        "StatAggregateConcat": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"}},
-         "type": "object",
-         "required": ["resource_type","query"],
-                "title": "StatAggregateConcat"
-           }
-           ,        "StatAggregateFillNA": {
-         "properties" : {"data" : {"type": "object","title": "DATA"}},
-         "type": "object",
-         "required": ["data"],
-                "title": "StatAggregateFillNA"
-           }
-           ,        "StatAggregateFormula": {
-         "properties" : {"eval" : {"type": "string","title": "EVAL"},"query" : {"type": "string","title": "QUERY"}},
-         "type": "object",
-         "required": ["eval","query"],
-                "title": "StatAggregateFormula"
-           }
-           ,        "StatAggregateJoin": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"},"type" : {"type": "string","title": "TYPE"},"keys" : {"items": {"type": "string"},
-               "type": "array","title": "KEYS"}},
-         "type": "object",
-         "required": ["resource_type","query"],
-                "title": "StatAggregateJoin"
-           }
-           ,        "StatAggregateQuery": {
-         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"}},
-         "type": "object",
-         "required": ["resource_type","query"],
-                "title": "StatAggregateQuery"
-           }
-           ,        "StatPage": {
-         "properties" : {"start" : {"type": "integer/long","title": "START"},"limit" : {"type": "integer/long","title": "LIMIT"}},
-         "type": "object",
-         "required": ["limit"],
-                "title": "StatPage"
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "AddScheduleRequest": {
          "properties" : {"topic" : {"type": "string","title": "TOPIC"},"options" : {"type": "object","title": "OPTIONS"},"schedule" : {"$ref": "#/components/schemas/Scheduled","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"}},
@@ -692,6 +642,56 @@
          "type": "object",
          "required": ["schedule_id"],
                 "title": "UpdateScheduleRequest"
+           }
+           ,        "ResourceStatRequest": {
+         "properties" : {"aggregate" : {"items": {"$ref": "#/components/schemas/StatAggregate"},
+               "type": "array","$ref": "#/components/schemas/StatAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/StatPage","title": "PAGE"}},
+         "type": "object",
+         "required": ["aggregate"],
+                "title": "ResourceStatRequest"
+           }
+           ,        "StatAggregate": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatAggregateQuery","title": "QUERY"},"join" : {"$ref": "#/components/schemas/StatAggregateJoin","title": "JOIN"},"concat" : {"$ref": "#/components/schemas/StatAggregateConcat","title": "CONCAT"},"sort" : {"type": "array","title": "SORT"},"formula" : {"$ref": "#/components/schemas/StatAggregateFormula","title": "FORMULA"},"fill_na" : {"$ref": "#/components/schemas/StatAggregateFillNA","title": "FILL_NA"}},
+         "type": "object",
+         "required": ["query","join","concat","sort","formula","fill_na"],
+                "title": "StatAggregate"
+           }
+           ,        "StatAggregateConcat": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"}},
+         "type": "object",
+         "required": ["resource_type","query"],
+                "title": "StatAggregateConcat"
+           }
+           ,        "StatAggregateFillNA": {
+         "properties" : {"data" : {"type": "object","title": "DATA"}},
+         "type": "object",
+         "required": ["data"],
+                "title": "StatAggregateFillNA"
+           }
+           ,        "StatAggregateFormula": {
+         "properties" : {"eval" : {"type": "string","title": "EVAL"},"query" : {"type": "string","title": "QUERY"}},
+         "type": "object",
+         "required": ["eval","query"],
+                "title": "StatAggregateFormula"
+           }
+           ,        "StatAggregateJoin": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"},"type" : {"type": "string","title": "TYPE"},"keys" : {"items": {"type": "string"},
+               "type": "array","title": "KEYS"}},
+         "type": "object",
+         "required": ["resource_type","query"],
+                "title": "StatAggregateJoin"
+           }
+           ,        "StatAggregateQuery": {
+         "properties" : {"resource_type" : {"type": "string","title": "RESOURCE_TYPE"},"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"},"extend_data" : {"type": "object","title": "EXTEND_DATA"}},
+         "type": "object",
+         "required": ["resource_type","query"],
+                "title": "StatAggregateQuery"
+           }
+           ,        "StatPage": {
+         "properties" : {"start" : {"type": "integer/long","title": "START"},"limit" : {"type": "integer/long","title": "LIMIT"}},
+         "type": "object",
+         "required": ["limit"],
+                "title": "StatPage"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
