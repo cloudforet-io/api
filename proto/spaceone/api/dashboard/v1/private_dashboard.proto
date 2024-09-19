@@ -27,6 +27,13 @@ service PrivateDashboard{
     };
   }
 
+  rpc change_folder (ChangeFolderPrivateDashboardRequest) returns (PrivateDashboardInfo) {
+    option (google.api.http) = {
+      post: "/dashboard/v1/private-dashboard/change-folder"
+      body: "*"
+    };
+  }
+
   rpc delete (PrivateDashboardRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/dashboard/v1/private-dashboard/delete"
@@ -100,6 +107,12 @@ message UpdatePrivateDashboardRequest {
   google.protobuf.ListValue labels = 9;
   // +optional
   google.protobuf.Struct tags = 10;
+  // +optional
+  string folder_id = 21;
+}
+
+message ChangeFolderPrivateDashboardRequest {
+  string dashboard_id = 1;
   // +optional
   string folder_id = 21;
 }

@@ -26,6 +26,13 @@ service PublicDashboard{
     };
   }
 
+  rpc change_folder (ChangeFolderPublicDashboardRequest) returns (PublicDashboardInfo) {
+    option (google.api.http) = {
+      post: "/dashboard/v1/public-dashboard/change-folder"
+      body: "*"
+    };
+  }
+
   rpc share (PublicDashboardRequest) returns (PublicDashboardInfo) {
     option (google.api.http) = {
       post: "/dashboard/v1/public-dashboard/share"
@@ -136,6 +143,12 @@ message UpdatePublicDashboardRequest {
   google.protobuf.ListValue labels = 9;
   // +optional
   google.protobuf.Struct tags = 10;
+  // +optional
+  string folder_id = 21;
+}
+
+message ChangeFolderPublicDashboardRequest {
+  string dashboard_id = 1;
   // +optional
   string folder_id = 21;
 }
