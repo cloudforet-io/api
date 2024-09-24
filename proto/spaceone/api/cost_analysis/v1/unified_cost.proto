@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package spaceone.api.cost_analysis.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/cost_analysis/v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "spaceone/api/core/v2/query.proto";
+
+service UnifiedCost {
+
+  rpc get (UnifiedCostRequest) returns (UnifiedCostInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/unified-cost/get"
+      body: "*"
+    };
+  }
+
+  rpc list (UnifiedCostQuery) returns (UnifiedCostsInfo) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/unified-cost/list",
+      body: "*"
+    };
+  }
+
+  rpc analyze (UnifiedCostAnalyzeQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/unified-cost/analyze"
+      body: "*"
+    };
+  }
+
+  rpc stat (UnifiedCostStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/cost-analysis/v1/unified-cost/stat"
+      body: "*"
+    };
+  }
+}
+
+message UnifiedCostRequest {
+  string unified_cost_id = 1;
+}
+
+message UnifiedCostQuery {
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string unified_cost_id = 2;
+}
+
+message UnifiedCostAnalyzeQuery {
+  spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 1;
+  bool is_confirmed = 2;
+}
+
+
+message UnifiedCostInfo {
+  string unified_cost_id = 1;
+  google.protobuf.Struct cost = 2;
+  // ex). 2021-01
+  string billed_month = 3;
+  // ex). 2021
+  string billed_year = 4;
+  string aggregation_date = 5;
+  string exchange_date = 6;
+  // ex). Yahoo Finance
+  string exchange_source = 7;
+  string currency = 8;
+  bool is_confirmed = 9;
+  string provider = 10;
+  string region_code = 11;
+  string region_key = 12;
+  string product = 13;
+  string usage_type = 14;
+  string usage_unit = 15;
+  string service_account_name = 16;
+  string data_source_name = 17;
+  string project_name = 18;
+  string workspace_name = 19;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string project_id = 23;
+  string data_source_id = 26;
+  string service_account_id = 27;
+  string created_at = 31;
+}
+
+message UnifiedCostsInfo {
+  repeated UnifiedCostInfo results = 1;
+  int32 total_count = 2;
+}
+
+message UnifiedCostStatQuery {
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+}
