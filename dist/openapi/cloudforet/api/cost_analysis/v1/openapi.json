@@ -2044,6 +2044,122 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/unified-cost/get": {
+       "post": {
+         "tags": ["cost-analysis > unified-cost"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |unified_cost_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"unified_cost_id" : {"type": "string","title": "UNIFIED_COST_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UnifiedCostInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UnifiedCostInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/unified-cost/list": {
+       "post": {
+         "tags": ["cost-analysis > unified-cost"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |unified_cost_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"unified_cost_id" : {"type": "string","title": "UNIFIED_COST_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UnifiedCostsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UnifiedCostsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/unified-cost/analyze": {
+       "post": {
+         "tags": ["cost-analysis > unified-cost"],
+         "summary": "Analyze",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||TimeSeriesAnalyzeQuery|True|\n |is_confirmed||boolean|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/cost-analysis/unified-cost/stat": {
+       "post": {
+         "tags": ["cost-analysis > unified-cost"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/cost-analysis/cost-report-data/list": {
        "post": {
          "tags": ["cost-analysis > cost-report-data"],
@@ -2917,6 +3033,43 @@
          "type": "object",
          "required": ["cost","project_id","data_source_id","billed_date"],
                 "title": "CreateCostRequest"
+           }
+           ,        "UnifiedCostAnalyzeQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED"}},
+         "type": "object",
+         "required": ["query","is_confirmed"],
+                "title": "UnifiedCostAnalyzeQuery"
+           }
+           ,        "UnifiedCostInfo": {
+         "properties" : {"unified_cost_id" : {"type": "string","title": "UNIFIED_COST_ID"},"cost" : {"type": "object","title": "COST"},"billed_month" : {"type": "string","title": "BILLED_MONTH"},"billed_year" : {"type": "string","title": "BILLED_YEAR"},"aggregation_date" : {"type": "string","title": "AGGREGATION_DATE"},"exchange_date" : {"type": "string","title": "EXCHANGE_DATE"},"exchange_source" : {"type": "string","title": "EXCHANGE_SOURCE"},"currency" : {"type": "string","title": "CURRENCY"},"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED"},"provider" : {"type": "string","title": "PROVIDER"},"region_code" : {"type": "string","title": "REGION_CODE"},"region_key" : {"type": "string","title": "REGION_KEY"},"product" : {"type": "string","title": "PRODUCT"},"usage_type" : {"type": "string","title": "USAGE_TYPE"},"usage_unit" : {"type": "string","title": "USAGE_UNIT"},"service_account_name" : {"type": "string","title": "SERVICE_ACCOUNT_NAME"},"data_source_name" : {"type": "string","title": "DATA_SOURCE_NAME"},"project_name" : {"type": "string","title": "PROJECT_NAME"},"workspace_name" : {"type": "string","title": "WORKSPACE_NAME"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["unified_cost_id","cost","billed_month","billed_year","aggregation_date","exchange_date","exchange_source","currency","is_confirmed","provider","region_code","region_key","product","usage_type","usage_unit","service_account_name","data_source_name","project_name","workspace_name","domain_id","workspace_id","project_id","data_source_id","service_account_id","created_at"],
+                "title": "UnifiedCostInfo"
+           }
+           ,        "UnifiedCostQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"unified_cost_id" : {"type": "string","title": "UNIFIED_COST_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "UnifiedCostQuery"
+           }
+           ,        "UnifiedCostRequest": {
+         "properties" : {"unified_cost_id" : {"type": "string","title": "UNIFIED_COST_ID"}},
+         "type": "object",
+         "required": ["unified_cost_id"],
+                "title": "UnifiedCostRequest"
+           }
+           ,        "UnifiedCostStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "UnifiedCostStatQuery"
+           }
+           ,        "UnifiedCostsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/UnifiedCostInfo"},
+               "type": "array","$ref": "#/components/schemas/UnifiedCostInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "UnifiedCostsInfo"
            }
            ,        "CostReportDataAnalyzeQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY"},"product" : {"type": "string","title": "PRODUCT"},"provider" : {"type": "string","title": "PROVIDER"},"is_confirmed" : {"type": "boolean","title": "IS_CONFIRMED"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"cost_report_config_id" : {"type": "string","title": "COST_REPORT_CONFIG_ID"},"cost_report_id" : {"type": "string","title": "COST_REPORT_ID"},"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"}},
