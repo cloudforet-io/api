@@ -9,6 +9,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/dashboard/v1/public_dashboard.proto";
 
 service PublicFolder{
 
@@ -69,12 +70,6 @@ service PublicFolder{
   }
 }
 
-enum FolderScope {
-  FOLDER_SCOPE_NONE = 0;
-  WORKSPACE = 1;
-  PROJECT = 2;
-}
-
 message CreatePublicFolderRequest {
   enum ResourceGroup {
     RESOURCE_GROUP_NONE = 0;
@@ -107,7 +102,7 @@ message UpdatePublicFolderRequest {
 message SharePublicFolderRequest {
   string dashboard_id = 1;
   // +optional
-  FolderScope scope = 2;
+  DashboardScope scope = 2;
 }
 
 message PublicFolderRequest {
@@ -124,7 +119,7 @@ message PublicFolderQuery {
   // +optional
   bool shared = 4;
   // +optional
-  FolderScope scope = 5;
+  DashboardScope scope = 5;
   // +optional
   string workspace_id = 21;
   // +optional
@@ -144,7 +139,7 @@ message PublicFolderInfo {
   google.protobuf.Struct tags = 3;
 
   bool shared = 18;
-  FolderScope scope = 19;
+  DashboardScope scope = 19;
 
   ResourceGroup resource_group = 20;
   string domain_id = 21;
