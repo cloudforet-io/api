@@ -4,7 +4,7 @@
       "name": "spaceone/api/dashboard/v1/public_folder.proto",
       "description": "description of dashboard",
       "package": "spaceone.api.dashboard.v1",
-      "hasEnums": false,
+      "hasEnums": true,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
@@ -33,6 +33,29 @@
             {
               "name": "PROJECT",
               "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "FolderScope",
+          "longName": "FolderScope",
+          "fullName": "spaceone.api.dashboard.v1.FolderScope",
+          "description": "",
+          "values": [
+            {
+              "name": "SCOPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PROJECT",
+              "number": "2",
               "description": ""
             }
           ]
@@ -211,6 +234,18 @@
               "defaultValue": ""
             },
             {
+              "name": "scope",
+              "description": "",
+              "label": "",
+              "type": "FolderScope",
+              "longType": "FolderScope",
+              "fullType": "spaceone.api.dashboard.v1.FolderScope",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "resource_group",
               "description": "",
               "label": "",
@@ -331,6 +366,30 @@
               "defaultValue": ""
             },
             {
+              "name": "shared",
+              "description": "+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "scope",
+              "description": "+optional",
+              "label": "",
+              "type": "FolderScope",
+              "longType": "FolderScope",
+              "fullType": "spaceone.api.dashboard.v1.FolderScope",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "workspace_id",
               "description": "+optional",
               "label": "",
@@ -433,6 +492,42 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SharePublicFolderRequest",
+          "longName": "SharePublicFolderRequest",
+          "fullName": "spaceone.api.dashboard.v1.SharePublicFolderRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "dashboard_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "scope",
+              "description": "+optional",
+              "label": "",
+              "type": "FolderScope",
+              "longType": "FolderScope",
+              "fullType": "spaceone.api.dashboard.v1.FolderScope",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -545,9 +640,9 @@
             {
               "name": "share",
               "description": "",
-              "requestType": "PublicFolderRequest",
-              "requestLongType": "PublicFolderRequest",
-              "requestFullType": "spaceone.api.dashboard.v1.PublicFolderRequest",
+              "requestType": "SharePublicFolderRequest",
+              "requestLongType": "SharePublicFolderRequest",
+              "requestFullType": "spaceone.api.dashboard.v1.SharePublicFolderRequest",
               "requestStreaming": false,
               "responseType": "PublicFolderInfo",
               "responseLongType": "PublicFolderInfo",

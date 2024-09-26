@@ -85,7 +85,7 @@ func local_request_PublicFolder_Update_0(ctx context.Context, marshaler runtime.
 }
 
 func request_PublicFolder_Share_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PublicFolderClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.PublicFolderRequest
+	var protoReq extV1.SharePublicFolderRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -98,7 +98,7 @@ func request_PublicFolder_Share_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func local_request_PublicFolder_Share_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PublicFolderServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.PublicFolderRequest
+	var protoReq extV1.SharePublicFolderRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {

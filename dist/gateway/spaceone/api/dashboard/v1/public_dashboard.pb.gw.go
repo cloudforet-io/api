@@ -111,7 +111,7 @@ func local_request_PublicDashboard_ChangeFolder_0(ctx context.Context, marshaler
 }
 
 func request_PublicDashboard_Share_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PublicDashboardClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.PublicDashboardRequest
+	var protoReq extV1.SharePublicDashboardRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -124,7 +124,7 @@ func request_PublicDashboard_Share_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func local_request_PublicDashboard_Share_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PublicDashboardServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq extV1.PublicDashboardRequest
+	var protoReq extV1.SharePublicDashboardRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {

@@ -53,7 +53,7 @@ class PublicFolderStub(object):
                 _registered_method=True)
         self.share = channel.unary_unary(
                 '/spaceone.api.dashboard.v1.PublicFolder/share',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__folder__pb2.PublicFolderRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__folder__pb2.SharePublicFolderRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__folder__pb2.PublicFolderInfo.FromString,
                 _registered_method=True)
         self.unshare = channel.unary_unary(
@@ -149,7 +149,7 @@ def add_PublicFolderServicer_to_server(servicer, server):
             ),
             'share': grpc.unary_unary_rpc_method_handler(
                     servicer.share,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__folder__pb2.PublicFolderRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__folder__pb2.SharePublicFolderRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__folder__pb2.PublicFolderInfo.SerializeToString,
             ),
             'unshare': grpc.unary_unary_rpc_method_handler(
@@ -257,7 +257,7 @@ class PublicFolder(object):
             request,
             target,
             '/spaceone.api.dashboard.v1.PublicFolder/share',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__folder__pb2.PublicFolderRequest.SerializeToString,
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__folder__pb2.SharePublicFolderRequest.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__folder__pb2.PublicFolderInfo.FromString,
             options,
             channel_credentials,

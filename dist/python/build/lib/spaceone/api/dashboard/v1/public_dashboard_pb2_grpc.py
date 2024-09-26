@@ -58,7 +58,7 @@ class PublicDashboardStub(object):
                 _registered_method=True)
         self.share = channel.unary_unary(
                 '/spaceone.api.dashboard.v1.PublicDashboard/share',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.SharePublicDashboardRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.FromString,
                 _registered_method=True)
         self.unshare = channel.unary_unary(
@@ -165,7 +165,7 @@ def add_PublicDashboardServicer_to_server(servicer, server):
             ),
             'share': grpc.unary_unary_rpc_method_handler(
                     servicer.share,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.SharePublicDashboardRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.SerializeToString,
             ),
             'unshare': grpc.unary_unary_rpc_method_handler(
@@ -300,7 +300,7 @@ class PublicDashboard(object):
             request,
             target,
             '/spaceone.api.dashboard.v1.PublicDashboard/share',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardRequest.SerializeToString,
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.SharePublicDashboardRequest.SerializeToString,
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__dashboard__pb2.PublicDashboardInfo.FromString,
             options,
             channel_credentials,

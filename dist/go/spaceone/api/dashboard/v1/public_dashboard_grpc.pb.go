@@ -41,7 +41,7 @@ type PublicDashboardClient interface {
 	Create(ctx context.Context, in *CreatePublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
 	Update(ctx context.Context, in *UpdatePublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
 	ChangeFolder(ctx context.Context, in *ChangeFolderPublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
-	Share(ctx context.Context, in *PublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
+	Share(ctx context.Context, in *SharePublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
 	Unshare(ctx context.Context, in *PublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
 	Delete(ctx context.Context, in *PublicDashboardRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *PublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error)
@@ -87,7 +87,7 @@ func (c *publicDashboardClient) ChangeFolder(ctx context.Context, in *ChangeFold
 	return out, nil
 }
 
-func (c *publicDashboardClient) Share(ctx context.Context, in *PublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error) {
+func (c *publicDashboardClient) Share(ctx context.Context, in *SharePublicDashboardRequest, opts ...grpc.CallOption) (*PublicDashboardInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PublicDashboardInfo)
 	err := c.cc.Invoke(ctx, PublicDashboard_Share_FullMethodName, in, out, cOpts...)
@@ -154,7 +154,7 @@ type PublicDashboardServer interface {
 	Create(context.Context, *CreatePublicDashboardRequest) (*PublicDashboardInfo, error)
 	Update(context.Context, *UpdatePublicDashboardRequest) (*PublicDashboardInfo, error)
 	ChangeFolder(context.Context, *ChangeFolderPublicDashboardRequest) (*PublicDashboardInfo, error)
-	Share(context.Context, *PublicDashboardRequest) (*PublicDashboardInfo, error)
+	Share(context.Context, *SharePublicDashboardRequest) (*PublicDashboardInfo, error)
 	Unshare(context.Context, *PublicDashboardRequest) (*PublicDashboardInfo, error)
 	Delete(context.Context, *PublicDashboardRequest) (*empty.Empty, error)
 	Get(context.Context, *PublicDashboardRequest) (*PublicDashboardInfo, error)
@@ -179,7 +179,7 @@ func (UnimplementedPublicDashboardServer) Update(context.Context, *UpdatePublicD
 func (UnimplementedPublicDashboardServer) ChangeFolder(context.Context, *ChangeFolderPublicDashboardRequest) (*PublicDashboardInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeFolder not implemented")
 }
-func (UnimplementedPublicDashboardServer) Share(context.Context, *PublicDashboardRequest) (*PublicDashboardInfo, error) {
+func (UnimplementedPublicDashboardServer) Share(context.Context, *SharePublicDashboardRequest) (*PublicDashboardInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Share not implemented")
 }
 func (UnimplementedPublicDashboardServer) Unshare(context.Context, *PublicDashboardRequest) (*PublicDashboardInfo, error) {
@@ -273,7 +273,7 @@ func _PublicDashboard_ChangeFolder_Handler(srv interface{}, ctx context.Context,
 }
 
 func _PublicDashboard_Share_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PublicDashboardRequest)
+	in := new(SharePublicDashboardRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -285,7 +285,7 @@ func _PublicDashboard_Share_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: PublicDashboard_Share_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublicDashboardServer).Share(ctx, req.(*PublicDashboardRequest))
+		return srv.(PublicDashboardServer).Share(ctx, req.(*SharePublicDashboardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
