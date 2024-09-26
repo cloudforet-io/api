@@ -33,7 +33,7 @@ service PublicDashboard{
     };
   }
 
-  rpc share (PublicDashboardRequest) returns (PublicDashboardInfo) {
+  rpc share (SharePublicDashboardRequest) returns (PublicDashboardInfo) {
     option (google.api.http) = {
       post: "/dashboard/v1/public-dashboard/share"
       body: "*"
@@ -81,7 +81,6 @@ enum DashboardScope {
   WORKSPACE = 1;
   PROJECT = 2;
 }
-
 
 message Layout {
   string name = 1;
@@ -153,10 +152,14 @@ message ChangeFolderPublicDashboardRequest {
   string folder_id = 21;
 }
 
-message PublicDashboardRequest {
+message SharePublicDashboardRequest {
   string dashboard_id = 1;
   // +optional
   DashboardScope scope = 2;
+}
+
+message PublicDashboardRequest {
+  string dashboard_id = 1;
 }
 
 message PublicDashboardQuery {
