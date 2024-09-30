@@ -12,80 +12,80 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service CloudService {
-    
-    // Creates a new CloudService. A CloudService instance is created based on data including the `resource`'s attribute values. When creating, the classification information defined by CloudServiceType is also needed. The created CloudService has collection information which is the collection history for the `resource` by plugin.
-    rpc create (CreateServiceRequest) returns (CloudServiceInfo) {
-        option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/create"
-            body: "*"
-        };
-    }
-    
-    // Updates a specific CloudService. You can make changes in CloudService settings, except for the classification system of CloudService and the information about the `resource` attribute value.
-    rpc update (UpdateCloudServiceRequest) returns (CloudServiceInfo) {
-        option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/update"
-            body: "*"
-        };
-    }
-    
-    // Deletes a specific CloudService. You must specify the `cloud_service_id` of the CloudService to delete.
-    rpc delete (CloudServiceRequest) returns (google.protobuf.Empty) {
-        option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/delete"
-            body: "*"
-        };
-    }
-    
-    // Gets a specific CloudService. Prints detailed information about the CloudService, including its state, classification information, and attribute values.
-    rpc get (CloudServiceRequest) returns (CloudServiceInfo) {
-        option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/get"
-            body: "*"
-        };
-    }
-    
-    // Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.
-    rpc list (CloudServiceQuery) returns (CloudServicesInfo) {
-        option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/list"
-            body: "*"
-        };
-    }
 
-    rpc export (CloudServiceExportRequest) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/export"
-            body: "*"
-        };
-    }
+  // Creates a new CloudService. A CloudService instance is created based on data including the `resource`'s attribute values. When creating, the classification information defined by CloudServiceType is also needed. The created CloudService has collection information which is the collection history for the `resource` by plugin.
+  rpc create (CreateServiceRequest) returns (CloudServiceInfo) {
+    option (google.api.http) = {
+      post: "/inventory/v1/cloud-service/create"
+      body: "*"
+    };
+  }
 
-    rpc analyze (CloudServiceAnalyzeQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/analyze"
-            body: "*"
-        };
-    }
+  // Updates a specific CloudService. You can make changes in CloudService settings, except for the classification system of CloudService and the information about the `resource` attribute value.
+  rpc update (UpdateCloudServiceRequest) returns (CloudServiceInfo) {
+    option (google.api.http) = {
+      post: "/inventory/v1/cloud-service/update"
+      body: "*"
+    };
+  }
 
-    rpc stat (CloudServiceStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/inventory/v1/cloud-service/stat"
-            body: "*"
-        };
-    }
+  // Deletes a specific CloudService. You must specify the `cloud_service_id` of the CloudService to delete.
+  rpc delete (CloudServiceRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/inventory/v1/cloud-service/delete"
+      body: "*"
+    };
+  }
+
+  // Gets a specific CloudService. Prints detailed information about the CloudService, including its state, classification information, and attribute values.
+  rpc get (CloudServiceRequest) returns (CloudServiceInfo) {
+    option (google.api.http) = {
+      post: "/inventory/v1/cloud-service/get"
+      body: "*"
+    };
+  }
+
+  // Gets a list of all CloudServices. You can use a query to get a filtered list of CloudServices.
+  rpc list (CloudServiceQuery) returns (CloudServicesInfo) {
+    option (google.api.http) = {
+      post: "/inventory/v1/cloud-service/list"
+      body: "*"
+    };
+  }
+
+  rpc export (CloudServiceExportRequest) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/inventory/v1/cloud-service/export"
+      body: "*"
+    };
+  }
+
+  rpc analyze (CloudServiceAnalyzeQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/inventory/v1/cloud-service/analyze"
+      body: "*"
+    };
+  }
+
+  rpc stat (CloudServiceStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/inventory/v1/cloud-service/stat"
+      body: "*"
+    };
+  }
 }
 
 
 message CloudServiceReference {
-    string resource_id = 1;
-    string external_link = 2;
+  string resource_id = 1;
+  string external_link = 2;
 }
 
 message CollectionInfo {
-    string service_account_id = 2;
-    string secret_id = 3;
-    string collector_id = 4;
-    string last_collected_at = 5;
+  string service_account_id = 2;
+  string secret_id = 3;
+  string collector_id = 4;
+  string last_collected_at = 5;
 }
 
 //{
@@ -136,30 +136,30 @@ message CollectionInfo {
 //    "region_code": "ap-northeast-1"
 //}
 message CreateServiceRequest {
-    string cloud_service_type = 1;
-    string provider = 2;
-    string cloud_service_group = 3;
-    // +optional
-    string name = 4;
-    // +optional
-    string account = 5;
-    // +optional
-    string instance_type = 6;
-    // +optional
-    float instance_size = 7;
-    // +optional
-    repeated string ip_addresses = 10;
-    google.protobuf.Struct data = 11;
-    // +optional
-    google.protobuf.Struct metadata = 12;
-    // +optional
-    CloudServiceReference reference = 13;
-    // +optional
-    google.protobuf.Struct tags = 14;
-    // +optional
-    string region_code = 15;
-    // +optional
-    string project_id = 21;
+  string cloud_service_type = 1;
+  string provider = 2;
+  string cloud_service_group = 3;
+  // +optional
+  string name = 4;
+  // +optional
+  string account = 5;
+  // +optional
+  string instance_type = 6;
+  // +optional
+  float instance_size = 7;
+  // +optional
+  repeated string ip_addresses = 10;
+  google.protobuf.Struct data = 11;
+  // +optional
+  google.protobuf.Struct metadata = 12;
+  // +optional
+  CloudServiceReference reference = 13;
+  // +optional
+  google.protobuf.Struct tags = 14;
+  // +optional
+  string region_code = 15;
+  // +optional
+  string project_id = 21;
 }
 
 //{
@@ -175,36 +175,36 @@ message CreateServiceRequest {
 //    "region_code": "ap-northeast-2"
 //}
 message UpdateCloudServiceRequest {
-    string cloud_service_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    string account = 3;
-    // +optional
-    string instance_type = 4;
-    // +optional
-    float instance_size = 5;
-    // +optional
-    repeated string ip_addresses = 6;
-    // +optional
-    google.protobuf.Struct data = 11;
-    // +optional
-    google.protobuf.Struct metadata = 12;
-    // +optional
-    CloudServiceReference reference = 13;
-    // +optional
-    google.protobuf.Struct tags = 14;
-    // +optional
-    string region_code = 15;
-    // +optional
-    string project_id = 21;
+  string cloud_service_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  string account = 3;
+  // +optional
+  string instance_type = 4;
+  // +optional
+  float instance_size = 5;
+  // +optional
+  repeated string ip_addresses = 6;
+  // +optional
+  google.protobuf.Struct data = 11;
+  // +optional
+  google.protobuf.Struct metadata = 12;
+  // +optional
+  CloudServiceReference reference = 13;
+  // +optional
+  google.protobuf.Struct tags = 14;
+  // +optional
+  string region_code = 15;
+  // +optional
+  string project_id = 21;
 }
 
 //{
 //    "cloud_service_id": "cloud-svc-fea2b0d32141"
 //}
 message CloudServiceRequest {
-    string cloud_service_id = 1;
+  string cloud_service_id = 1;
 }
 
 //{
@@ -219,34 +219,34 @@ message CloudServiceRequest {
 //    }
 //}
 message CloudServiceQuery {
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string cloud_service_id = 2;
-    // +optional
-    string name = 3;
-    // +optional
-    string state = 4;
-    // +optional
-    string ip_address = 5;
-    // +optional
-    string account = 6;
-    // +optional
-    string instance_type = 7;
-    // +optional
-    string cloud_service_type = 8;
-    // +optional
-    string cloud_service_group = 9;
-    // +optional
-    string provider = 10;
-    // +optional
-    string region_code = 11;
-    // +optional
-    string workspace_id = 21;
-    // +optional
-    string project_id = 22;
-    // +optional
-    string project_group_id = 23;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string cloud_service_id = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  string state = 4;
+  // +optional
+  string ip_address = 5;
+  // +optional
+  string account = 6;
+  // +optional
+  string instance_type = 7;
+  // +optional
+  string cloud_service_type = 8;
+  // +optional
+  string cloud_service_group = 9;
+  // +optional
+  string provider = 10;
+  // +optional
+  string region_code = 11;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string project_id = 22;
+  // +optional
+  string project_group_id = 23;
 }
 
 //{
@@ -294,7 +294,12 @@ message CloudServiceQuery {
 //        "external_link": "https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/"
 //    },
 //    "tags": {
-//        "a": "b"
+//        "custom": {
+//              "b" : "c"
+//        },
+//        "aws" : {
+//              "env": "dev"
+//        }
 //    },
 //    "collection_info": {
 //        "service_account_id": "sa-abcd1234",
@@ -311,32 +316,47 @@ message CloudServiceQuery {
 //    "launched_at": "2020-08-03T15:00:54.000Z"
 //}
 message CloudServiceInfo {
-    string cloud_service_id = 1;
-    string name = 2;
-    string state = 3;
-    repeated string ip_addresses = 4;
-    string account = 5;
-    string instance_type = 6;
-    float instance_size = 7;
-    string cloud_service_type = 8;
-    string cloud_service_group = 9;
-    string provider = 10;
+  // This id value is unique at each domain.
+  string cloud_service_id = 1;
+  // Name of cloud resource from CSP like AWS, Azure, GCP
+  string name = 2;
+  // State of cloud resource
+  string state = 3;
+  // IP addresses of cloud resource having public IP
+  repeated string ip_addresses = 4;
+  // Account ID of cloud resource
+  string account = 5;
+  // Instance type of cloud resource
+  string instance_type = 6;
+  // Instance size of cloud resource
+  float instance_size = 7;
+  // Classification of cloud resource
+  string cloud_service_type = 8;
+  // Group of cloud resource that is parent of cloud_service_type
+  string cloud_service_group = 9;
+  // Cloud Service provider like AWS, Azure, GCP
+  string provider = 10;
+  // Original data from CSP
+  google.protobuf.Struct data = 11;
+  // Metadata for Dynamic UI converting at SpaceONE
+  google.protobuf.Struct metadata = 12;
+  CloudServiceReference reference = 13;
+  // Tags from CSP
+  google.protobuf.Struct tags = 14;
+  google.protobuf.Struct tag_keys = 15;
+  // Collection information
+  CollectionInfo collection_info = 16;
+  string region_code = 17;
+  // Domain Id
+  string domain_id = 21;
+  // Workspace Id
+  string workspace_id = 22;
+  // Project Id
+  string project_id = 23;
 
-    google.protobuf.Struct data = 11;
-    google.protobuf.Struct metadata = 12;
-    CloudServiceReference reference = 13;
-    google.protobuf.Struct tags = 14;
-    google.protobuf.Struct tag_keys = 15;
-    CollectionInfo collection_info = 16;
-    string region_code = 17;
-
-    string domain_id = 21;
-    string workspace_id = 22;
-    string project_id = 23;
-
-    string created_at = 31;
-    string updated_at = 32;
-    string deleted_at = 33;
+  string created_at = 31;
+  string updated_at = 32;
+  string deleted_at = 33;
 }
 
 //{
@@ -407,30 +427,30 @@ message CloudServiceInfo {
 //    "total_count": 1
 //}
 message CloudServicesInfo {
-    repeated CloudServiceInfo results = 1;
-    int32 total_count = 2;
+  repeated CloudServiceInfo results = 1;
+  int32 total_count = 2;
 }
 
 message CloudServiceExportRequest {
-    enum FileFormat {
-        NONE_FILE_FORMAT = 0;
-        EXCEL = 1;
-        CSV = 2;
-    }
+  enum FileFormat {
+    NONE_FILE_FORMAT = 0;
+    EXCEL = 1;
+    CSV = 2;
+  }
 
-    repeated spaceone.api.core.v2.ExportOption options = 1;
-    // +optional
-    FileFormat file_format = 2;
-    // +optional
-    string file_name = 3;
-    // +optional
-    string timezone = 4;
+  repeated spaceone.api.core.v2.ExportOption options = 1;
+  // +optional
+  FileFormat file_format = 2;
+  // +optional
+  string file_name = 3;
+  // +optional
+  string timezone = 4;
 }
 
 message CloudServiceAnalyzeQuery {
-    spaceone.api.core.v2.AnalyzeQuery query = 1;
+  spaceone.api.core.v2.AnalyzeQuery query = 1;
 }
 
 message CloudServiceStatQuery {
-    spaceone.api.core.v2.StatisticsQuery query = 1;
+  spaceone.api.core.v2.StatisticsQuery query = 1;
 }
