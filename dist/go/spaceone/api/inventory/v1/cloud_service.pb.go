@@ -838,7 +838,12 @@ func (x *CloudServiceQuery) GetProjectGroupId() string {
 //	       "external_link": "https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/"
 //	   },
 //	   "tags": {
-//	       "a": "b"
+//	       "custom": {
+//	             "b" : "c"
+//	       },
+//	       "aws" : {
+//	             "env": "dev"
+//	       }
 //	   },
 //	   "collection_info": {
 //	       "service_account_id": "sa-abcd1234",
@@ -859,29 +864,46 @@ type CloudServiceInfo struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CloudServiceId    string                 `protobuf:"bytes,1,opt,name=cloud_service_id,json=cloudServiceId,proto3" json:"cloud_service_id,omitempty"`
-	Name              string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	State             string                 `protobuf:"bytes,3,opt,name=state,proto3" json:"state,omitempty"`
-	IpAddresses       []string               `protobuf:"bytes,4,rep,name=ip_addresses,json=ipAddresses,proto3" json:"ip_addresses,omitempty"`
-	Account           string                 `protobuf:"bytes,5,opt,name=account,proto3" json:"account,omitempty"`
-	InstanceType      string                 `protobuf:"bytes,6,opt,name=instance_type,json=instanceType,proto3" json:"instance_type,omitempty"`
-	InstanceSize      float32                `protobuf:"fixed32,7,opt,name=instance_size,json=instanceSize,proto3" json:"instance_size,omitempty"`
-	CloudServiceType  string                 `protobuf:"bytes,8,opt,name=cloud_service_type,json=cloudServiceType,proto3" json:"cloud_service_type,omitempty"`
-	CloudServiceGroup string                 `protobuf:"bytes,9,opt,name=cloud_service_group,json=cloudServiceGroup,proto3" json:"cloud_service_group,omitempty"`
-	Provider          string                 `protobuf:"bytes,10,opt,name=provider,proto3" json:"provider,omitempty"`
-	Data              *_struct.Struct        `protobuf:"bytes,11,opt,name=data,proto3" json:"data,omitempty"`
-	Metadata          *_struct.Struct        `protobuf:"bytes,12,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	Reference         *CloudServiceReference `protobuf:"bytes,13,opt,name=reference,proto3" json:"reference,omitempty"`
-	Tags              *_struct.Struct        `protobuf:"bytes,14,opt,name=tags,proto3" json:"tags,omitempty"`
-	TagKeys           *_struct.Struct        `protobuf:"bytes,15,opt,name=tag_keys,json=tagKeys,proto3" json:"tag_keys,omitempty"`
-	CollectionInfo    *CollectionInfo        `protobuf:"bytes,16,opt,name=collection_info,json=collectionInfo,proto3" json:"collection_info,omitempty"`
-	RegionCode        string                 `protobuf:"bytes,17,opt,name=region_code,json=regionCode,proto3" json:"region_code,omitempty"`
-	DomainId          string                 `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	WorkspaceId       string                 `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
-	ProjectId         string                 `protobuf:"bytes,23,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	CreatedAt         string                 `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt         string                 `protobuf:"bytes,32,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	DeletedAt         string                 `protobuf:"bytes,33,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
+	// This id value is unique at each domain.
+	CloudServiceId string `protobuf:"bytes,1,opt,name=cloud_service_id,json=cloudServiceId,proto3" json:"cloud_service_id,omitempty"`
+	// Name of cloud resource from CSP like AWS, Azure, GCP
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// State of cloud resource
+	State string `protobuf:"bytes,3,opt,name=state,proto3" json:"state,omitempty"`
+	// IP addresses of cloud resource having public IP
+	IpAddresses []string `protobuf:"bytes,4,rep,name=ip_addresses,json=ipAddresses,proto3" json:"ip_addresses,omitempty"`
+	// Account ID of cloud resource
+	Account string `protobuf:"bytes,5,opt,name=account,proto3" json:"account,omitempty"`
+	// Instance type of cloud resource
+	InstanceType string `protobuf:"bytes,6,opt,name=instance_type,json=instanceType,proto3" json:"instance_type,omitempty"`
+	// Instance size of cloud resource
+	InstanceSize float32 `protobuf:"fixed32,7,opt,name=instance_size,json=instanceSize,proto3" json:"instance_size,omitempty"`
+	// Classification of cloud resource
+	CloudServiceType string `protobuf:"bytes,8,opt,name=cloud_service_type,json=cloudServiceType,proto3" json:"cloud_service_type,omitempty"`
+	// Group of cloud resource that is parent of cloud_service_type
+	CloudServiceGroup string `protobuf:"bytes,9,opt,name=cloud_service_group,json=cloudServiceGroup,proto3" json:"cloud_service_group,omitempty"`
+	// Cloud Service provider like AWS, Azure, GCP
+	Provider string `protobuf:"bytes,10,opt,name=provider,proto3" json:"provider,omitempty"`
+	// Original data from CSP
+	Data *_struct.Struct `protobuf:"bytes,11,opt,name=data,proto3" json:"data,omitempty"`
+	// Metadata for Dynamic UI converting at SpaceONE
+	Metadata  *_struct.Struct        `protobuf:"bytes,12,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Reference *CloudServiceReference `protobuf:"bytes,13,opt,name=reference,proto3" json:"reference,omitempty"`
+	// Tags from CSP
+	Tags    *_struct.Struct `protobuf:"bytes,14,opt,name=tags,proto3" json:"tags,omitempty"`
+	TagKeys *_struct.Struct `protobuf:"bytes,15,opt,name=tag_keys,json=tagKeys,proto3" json:"tag_keys,omitempty"`
+	// Collection information
+	CollectionInfo *CollectionInfo `protobuf:"bytes,16,opt,name=collection_info,json=collectionInfo,proto3" json:"collection_info,omitempty"`
+	RegionCode     string          `protobuf:"bytes,17,opt,name=region_code,json=regionCode,proto3" json:"region_code,omitempty"`
+	// Domain Id
+	DomainId string `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
+	// Workspace Id
+	WorkspaceId string `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	// Project Id
+	ProjectId string `protobuf:"bytes,23,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	CreatedAt string `protobuf:"bytes,31,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt string `protobuf:"bytes,32,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	DeletedAt string `protobuf:"bytes,33,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
 }
 
 func (x *CloudServiceInfo) Reset() {
