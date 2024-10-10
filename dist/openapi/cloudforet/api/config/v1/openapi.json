@@ -8,18 +8,18 @@
      "title": "Config API",
      "version": "3.1.0"
    },
-   "paths":{"/config/domain-config/create": {
+   "paths":{"/config/public-config/create": {
        "post": {
-         "tags": ["config > domain-config"],
+         "tags": ["config > public-config"],
          "summary": "Create",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |resource_group|DOMAIN, WORKSPACE, PROJECT |string|True|\n |tags||Struct||\n |workspace_id||string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -30,25 +30,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/domain-config/update": {
+     },"/config/public-config/update": {
        "post": {
-         "tags": ["config > domain-config"],
+         "tags": ["config > public-config"],
          "summary": "Update",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |tags||Struct||\n |workspace_id||string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -59,54 +59,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/domain-config/set": {
+     },"/config/public-config/delete": {
        "post": {
-         "tags": ["config > domain-config"],
-         "summary": "Set",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainConfigInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainConfigInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/config/domain-config/delete": {
-       "post": {
-         "tags": ["config > domain-config"],
+         "tags": ["config > public-config"],
          "summary": "Delete",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |workspace_id||string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -118,18 +89,18 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/domain-config/get": {
+     },"/config/public-config/get": {
        "post": {
-         "tags": ["config > domain-config"],
+         "tags": ["config > public-config"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |workspace_id||string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -140,16 +111,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/domain-config/list": {
+     },"/config/public-config/list": {
        "post": {
-         "tags": ["config > domain-config"],
+         "tags": ["config > public-config"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
@@ -169,16 +140,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/DomainConfigsInfo"},
+                 "schema": {"$ref": "#/components/schemas/PublicConfigsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/DomainConfigsInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/PublicConfigsInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/domain-config/stat": {
+     },"/config/public-config/stat": {
        "post": {
-         "tags": ["config > domain-config"],
+         "tags": ["config > public-config"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -402,18 +373,18 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/public-config/create": {
+     },"/config/domain-config/create": {
        "post": {
-         "tags": ["config > public-config"],
+         "tags": ["config > domain-config"],
          "summary": "Create",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |resource_group|DOMAIN, WORKSPACE, PROJECT |string|True|\n |tags||Struct||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -424,25 +395,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/DomainConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/DomainConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/public-config/update": {
+     },"/config/domain-config/update": {
        "post": {
-         "tags": ["config > public-config"],
+         "tags": ["config > domain-config"],
          "summary": "Update",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |tags||Struct||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -453,25 +424,54 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/DomainConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/DomainConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/public-config/delete": {
+     },"/config/domain-config/set": {
        "post": {
-         "tags": ["config > public-config"],
+         "tags": ["config > domain-config"],
+         "summary": "Set",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/DomainConfigInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/DomainConfigInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/config/domain-config/delete": {
+       "post": {
+         "tags": ["config > domain-config"],
          "summary": "Delete",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -483,18 +483,18 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/public-config/get": {
+     },"/config/domain-config/get": {
        "post": {
-         "tags": ["config > public-config"],
+         "tags": ["config > domain-config"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -505,16 +505,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicConfigInfo"},
+                 "schema": {"$ref": "#/components/schemas/DomainConfigInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicConfigInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/DomainConfigInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/public-config/list": {
+     },"/config/domain-config/list": {
        "post": {
-         "tags": ["config > public-config"],
+         "tags": ["config > domain-config"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
@@ -534,16 +534,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/PublicConfigsInfo"},
+                 "schema": {"$ref": "#/components/schemas/DomainConfigsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/PublicConfigsInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/DomainConfigsInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/public-config/stat": {
+     },"/config/domain-config/stat": {
        "post": {
-         "tags": ["config > public-config"],
+         "tags": ["config > domain-config"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -771,42 +771,48 @@
    },
    "components":{
      "schemas": {
-     "DomainConfigInfo": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+     "CreatePublicConfigRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
-         "required": ["name","data","tags","domain_id","created_at","updated_at"],
-                "title": "DomainConfigInfo"
+         "required": ["name","data","resource_group"],
+                "title": "CreatePublicConfigRequest"
            }
-           ,        "DomainConfigRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"}},
+           ,        "PublicConfigInfo": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["name","data","tags","resource_group","domain_id","workspace_id","project_id","created_at","updated_at"],
+                "title": "PublicConfigInfo"
+           }
+           ,        "PublicConfigRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": ["name"],
-                "title": "DomainConfigRequest"
+                "title": "PublicConfigRequest"
            }
-           ,        "DomainConfigSearchQuery": {
+           ,        "PublicConfigSearchQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"}},
          "type": "object",
          "required": [],
-                "title": "DomainConfigSearchQuery"
+                "title": "PublicConfigSearchQuery"
            }
-           ,        "DomainConfigStatQuery": {
+           ,        "PublicConfigStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "DomainConfigStatQuery"
+                "title": "PublicConfigStatQuery"
            }
-           ,        "DomainConfigsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/DomainConfigInfo"},
-               "type": "array","$ref": "#/components/schemas/DomainConfigInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "PublicConfigsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PublicConfigInfo"},
+               "type": "array","$ref": "#/components/schemas/PublicConfigInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "DomainConfigsInfo"
+                "title": "PublicConfigsInfo"
            }
-           ,        "SetDomainConfigRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"}},
+           ,        "UpdatePublicConfigRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": ["name","data"],
-                "title": "SetDomainConfigRequest"
+                "title": "UpdatePublicConfigRequest"
            }
            ,        "AuthenticationRequest": {
          "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
@@ -839,6 +845,12 @@
          "type": "object",
          "required": ["service","resource","verb","status","message"],
                 "title": "EventRequest"
+           }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
            }
            ,        "AggregateCount": {
          "properties" : {"name" : {"type": "string","title": "NAME"}},
@@ -1009,12 +1021,6 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "VersionInfo": {
-         "properties" : {"version" : {"type": "string","title": "VERSION"}},
-         "type": "object",
-         "required": ["version"],
-                "title": "VersionInfo"
-           }
            ,        "SetUserConfigRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
@@ -1052,48 +1058,42 @@
          "required": ["results","total_count"],
                 "title": "UserConfigsInfo"
            }
-           ,        "CreatePublicConfigRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+           ,        "DomainConfigInfo": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["name","data","resource_group"],
-                "title": "CreatePublicConfigRequest"
+         "required": ["name","data","tags","domain_id","created_at","updated_at"],
+                "title": "DomainConfigInfo"
            }
-           ,        "PublicConfigInfo": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
-         "type": "object",
-         "required": ["name","data","tags","resource_group","domain_id","workspace_id","project_id","created_at","updated_at"],
-                "title": "PublicConfigInfo"
-           }
-           ,        "PublicConfigRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+           ,        "DomainConfigRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"}},
          "type": "object",
          "required": ["name"],
-                "title": "PublicConfigRequest"
+                "title": "DomainConfigRequest"
            }
-           ,        "PublicConfigSearchQuery": {
+           ,        "DomainConfigSearchQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"name" : {"type": "string","title": "NAME"}},
          "type": "object",
          "required": [],
-                "title": "PublicConfigSearchQuery"
+                "title": "DomainConfigSearchQuery"
            }
-           ,        "PublicConfigStatQuery": {
+           ,        "DomainConfigStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "PublicConfigStatQuery"
+                "title": "DomainConfigStatQuery"
            }
-           ,        "PublicConfigsInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/PublicConfigInfo"},
-               "type": "array","$ref": "#/components/schemas/PublicConfigInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "DomainConfigsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/DomainConfigInfo"},
+               "type": "array","$ref": "#/components/schemas/DomainConfigInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "PublicConfigsInfo"
+                "title": "DomainConfigsInfo"
            }
-           ,        "UpdatePublicConfigRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+           ,        "SetDomainConfigRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["name","data"],
-                "title": "UpdatePublicConfigRequest"
+                "title": "SetDomainConfigRequest"
            }
            ,        "CreateWorkspaceConfigRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"}},
