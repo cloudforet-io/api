@@ -26,6 +26,9 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+//	{
+//	 "unified_cost_id": "unified-cost-11153fceca11"
+//	}
 type UnifiedCostRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -71,6 +74,9 @@ func (x *UnifiedCostRequest) GetUnifiedCostId() string {
 	return ""
 }
 
+//	{
+//	 "query": {}
+//	}
 type UnifiedCostQuery struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -126,6 +132,9 @@ func (x *UnifiedCostQuery) GetUnifiedCostId() string {
 	return ""
 }
 
+//	{
+//	 "query": {}
+//	}
 type UnifiedCostAnalyzeQuery struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -447,6 +456,37 @@ func (x *UnifiedCostInfo) GetCreatedAt() string {
 	return ""
 }
 
+//	{
+//	 "results": [
+//	 {
+//	   "unified_cost_id": "unified-cost-11153fceca11",
+//	   "cost": {
+//	     "KRW": 13000,
+//	     "USD": 1,
+//	     "JPY": 100
+//	   },
+//	  "billed_month": "2024-08",
+//	  "billed_year": "2024",
+//	  "exchange_date": "2024-08-14",
+//	  "exchange_source": "Yahoo Finance!",
+//	  "aggregation_date": "2024-08-15",
+//	  "currency": "USD",
+//	  "is_confirmed": true,
+//	  "provider": "aws",
+//	  "region_code": "AP2",
+//	  "region_key": "aws.AP2",
+//	  "product": "AmazonS3",
+//	  "data_source_name": "AWS",
+//	  "workspace_name": "SpaceONE",
+//	  "data_source_id": "ds-1acca85666c1",
+//	  "project_id": project-1acca85666c1,
+//	  "workspace_id": "workspace-1acca85666c1",
+//	  "domain_id": "domain-1acca85666c1",
+//	  "created_at": "2024-09-30T08:00:03.945Z"
+//	   }
+//	 ],
+//	 "total_count": 1
+//	}
 type UnifiedCostsInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -500,6 +540,9 @@ func (x *UnifiedCostsInfo) GetTotalCount() int32 {
 	return 0
 }
 
+//	{
+//	 "query": {}
+//	}
 type UnifiedCostStatQuery struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
