@@ -20,6 +20,7 @@ service DataSourceAccount {
     };
   }
 
+  // Reset a DataSourceAccount state and linked workspace with the specified DataSourceAccount ID related to the DataSource.
   rpc reset (ResetDataSourceAccountRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/cost-analysis/v1/data-source-account/reset"
@@ -57,22 +58,33 @@ service DataSourceAccount {
   }
 }
 
+
+//{
+//    "data_source_id": "ds-faaa11aa1111",
+//    "account_id": "111069360300",
+//    "workspace_id": "ws-aaaa11aa1111"
+//}
 message UpdateDataSourceAccountRequest{
   string data_source_id = 1;
   // account_id is the unique identifier of each CSP account.(e.g. Azure Tenant ID)
   string account_id = 2;
   // +optional
   string workspace_id = 21;
-  // +optional
-  string project_id = 22;
-  // +optional
-  string service_account_id = 23;
 }
 
+//{
+//    "data_source_id": "ds-faaa11aa1111",
+//    "account_id": "111069360300",
+//    "sync_state": true
+//}
 message ResetDataSourceAccountRequest {
+  // data_source_id is the unique identifier of each data source.
   string data_source_id = 1;
   // +optional
   string account_id = 2;
+  // if sync_state is true, it will reset the sync state of the data source account.
+  // +optional
+  bool reset_sync = 3;
 }
 
 message DataSourceAccountRequest {
@@ -81,6 +93,9 @@ message DataSourceAccountRequest {
 }
 
 
+//{
+//    "query": {}
+//}
 message DataSourceAccountQuery {
   // +optional
   spaceone.api.core.v2.Query query = 1;
