@@ -84,7 +84,8 @@ class DataSourceAccountServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def reset(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Reset a DataSourceAccount state and linked workspace with the specified DataSourceAccount ID related to the DataSource.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')

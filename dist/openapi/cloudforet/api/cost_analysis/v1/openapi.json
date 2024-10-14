@@ -363,13 +363,13 @@
          "operationId" : "",
          "description": "### Description \nUpdate a DataSourceAccount with the specified DataSourceAccount ID related to the DataSource.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |account_id|account_id is the unique identifier of each CSP account.(e.g. Azure Tenant ID)|string|True|\n |workspace_id||string||\n |project_id||string||\n |service_account_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |account_id|account_id is the unique identifier of each CSP account.(e.g. Azure Tenant ID)|string|True|\n |workspace_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"account_id" : {"type": "string","title": "ACCOUNT_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"account_id" : {"type": "string","title": "ACCOUNT_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-faaa11aa1111\",\n   \"account_id\": \"111069360300\",\n   \"workspace_id\": \"ws-aaaa11aa1111\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -390,15 +390,15 @@
          "tags": ["cost-analysis > data-source-account"],
          "summary": "Reset",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nReset a DataSourceAccount state and linked workspace with the specified DataSourceAccount ID related to the DataSource.",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id||string|True|\n |account_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |data_source_id|data_source_id is the unique identifier of each data source.|string|True|\n |account_id||string||\n |reset_sync|if sync_state is true, it will reset the sync state of the data source account. |boolean||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"account_id" : {"type": "string","title": "ACCOUNT_ID" }                 }
+                 "properties": {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"account_id" : {"type": "string","title": "ACCOUNT_ID" },"reset_sync" : {"type": "boolean","title": "RESET_SYNC" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"data_source_id\": \"ds-faaa11aa1111\",\n   \"account_id\": \"111069360300\",\n   \"sync_state\": true\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -450,7 +450,7 @@
                "schema": {
                  "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID" },"account_id" : {"type": "string","title": "ACCOUNT_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -2612,13 +2612,13 @@
                 "title": "DataSourceAccountsInfo"
            }
            ,        "ResetDataSourceAccountRequest": {
-         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"account_id" : {"type": "string","title": "ACCOUNT_ID"}},
+         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"account_id" : {"type": "string","title": "ACCOUNT_ID"},"reset_sync" : {"type": "boolean","title": "RESET_SYNC"}},
          "type": "object",
          "required": ["data_source_id"],
                 "title": "ResetDataSourceAccountRequest"
            }
            ,        "UpdateDataSourceAccountRequest": {
-         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"account_id" : {"type": "string","title": "ACCOUNT_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"}},
+         "properties" : {"data_source_id" : {"type": "string","title": "DATA_SOURCE_ID"},"account_id" : {"type": "string","title": "ACCOUNT_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
          "type": "object",
          "required": ["data_source_id","account_id"],
                 "title": "UpdateDataSourceAccountRequest"

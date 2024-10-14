@@ -37,6 +37,7 @@ const (
 type DataSourceAccountClient interface {
 	// Update a DataSourceAccount with the specified DataSourceAccount ID related to the DataSource.
 	Update(ctx context.Context, in *UpdateDataSourceAccountRequest, opts ...grpc.CallOption) (*DataSourceAccountInfo, error)
+	// Reset a DataSourceAccount state and linked workspace with the specified DataSourceAccount ID related to the DataSource.
 	Reset(ctx context.Context, in *ResetDataSourceAccountRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Get a DataSourceAccount with the specified DataSourceAccount ID related to the DataSource.
 	Get(ctx context.Context, in *DataSourceAccountRequest, opts ...grpc.CallOption) (*DataSourceAccountInfo, error)
@@ -119,6 +120,7 @@ func (c *dataSourceAccountClient) Stat(ctx context.Context, in *DataSourceAccoun
 type DataSourceAccountServer interface {
 	// Update a DataSourceAccount with the specified DataSourceAccount ID related to the DataSource.
 	Update(context.Context, *UpdateDataSourceAccountRequest) (*DataSourceAccountInfo, error)
+	// Reset a DataSourceAccount state and linked workspace with the specified DataSourceAccount ID related to the DataSource.
 	Reset(context.Context, *ResetDataSourceAccountRequest) (*empty.Empty, error)
 	// Get a DataSourceAccount with the specified DataSourceAccount ID related to the DataSource.
 	Get(context.Context, *DataSourceAccountRequest) (*DataSourceAccountInfo, error)
