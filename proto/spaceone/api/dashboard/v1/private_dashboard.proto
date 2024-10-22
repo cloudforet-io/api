@@ -72,15 +72,17 @@ message CreatePrivateDashboardRequest {
   // +optional
   google.protobuf.Struct vars = 4;
   // +optional
-  google.protobuf.Struct options = 5;
+  google.protobuf.Struct vars_schema = 5;
   // +optional
-  google.protobuf.Struct variables = 6;
+  google.protobuf.Struct options = 6;
   // +optional
-  google.protobuf.Struct variables_schema = 7;
+  google.protobuf.Struct variables = 7;
   // +optional
-  google.protobuf.ListValue labels = 8;
+  google.protobuf.Struct variables_schema = 8;
   // +optional
-  google.protobuf.Struct tags = 9;
+  google.protobuf.ListValue labels = 9;
+  // +optional
+  google.protobuf.Struct tags = 10;
   // +optional
   string workspace_id = 21;
   // +optional
@@ -98,15 +100,17 @@ message UpdatePrivateDashboardRequest {
   // +optional
   google.protobuf.Struct vars = 5;
   // +optional
-  google.protobuf.Struct options = 6;
+  google.protobuf.Struct vars_schema = 6;
   // +optional
-  google.protobuf.Struct variables = 7;
+  google.protobuf.Struct options = 7;
   // +optional
-  google.protobuf.Struct variables_schema = 8;
+  google.protobuf.Struct variables = 8;
   // +optional
-  google.protobuf.ListValue labels = 9;
+  google.protobuf.Struct variables_schema = 9;
   // +optional
-  google.protobuf.Struct tags = 10;
+  google.protobuf.ListValue labels = 10;
+  // +optional
+  google.protobuf.Struct tags = 11;
   // +optional
   string folder_id = 21;
 }
@@ -141,11 +145,12 @@ message PrivateDashboardInfo {
   string version = 4;
   repeated spaceone.api.dashboard.v1.Layout layouts = 5;
   google.protobuf.Struct vars = 6;
-  google.protobuf.Struct options = 7;
-  google.protobuf.Struct variables = 8;
-  google.protobuf.Struct variables_schema = 9;
-  google.protobuf.ListValue labels = 10;
-  google.protobuf.Struct tags = 11;
+  google.protobuf.Struct vars_schema = 7;
+  google.protobuf.Struct options = 8;
+  google.protobuf.Struct variables = 9;
+  google.protobuf.Struct variables_schema = 10;
+  google.protobuf.ListValue labels = 11;
+  google.protobuf.Struct tags = 12;
 
   string domain_id = 21;
   string workspace_id = 22;

@@ -104,15 +104,17 @@ message CreatePublicDashboardRequest {
   // +optional
   google.protobuf.Struct vars = 4;
   // +optional
-  google.protobuf.Struct options = 5;
+  google.protobuf.Struct vars_schema = 5;
   // +optional
-  google.protobuf.Struct variables = 6;
+  google.protobuf.Struct options = 6;
   // +optional
-  google.protobuf.Struct variables_schema = 7;
+  google.protobuf.Struct variables = 7;
   // +optional
-  google.protobuf.ListValue labels = 8;
+  google.protobuf.Struct variables_schema = 8;
   // +optional
-  google.protobuf.Struct tags = 9;
+  google.protobuf.ListValue labels = 9;
+  // +optional
+  google.protobuf.Struct tags = 10;
   ResourceGroup resource_group = 20;
   // +optional
   string workspace_id = 21;
@@ -133,15 +135,17 @@ message UpdatePublicDashboardRequest {
   // +optional
   google.protobuf.Struct vars = 5;
   // +optional
-  google.protobuf.Struct options = 6;
+  google.protobuf.Struct vars_schema = 6;
   // +optional
-  google.protobuf.Struct variables = 7;
+  google.protobuf.Struct options = 7;
   // +optional
-  google.protobuf.Struct variables_schema = 8;
+  google.protobuf.Struct variables = 8;
   // +optional
-  google.protobuf.ListValue labels = 9;
+  google.protobuf.Struct variables_schema = 9;
   // +optional
-  google.protobuf.Struct tags = 10;
+  google.protobuf.ListValue labels = 10;
+  // +optional
+  google.protobuf.Struct tags = 11;
   // +optional
   string folder_id = 21;
 }
@@ -195,11 +199,12 @@ message PublicDashboardInfo {
   string version = 4;
   repeated Layout layouts = 5;
   google.protobuf.Struct vars = 6;
-  google.protobuf.Struct options = 7;
-  google.protobuf.Struct variables = 8;
-  google.protobuf.Struct variables_schema = 9;
-  google.protobuf.ListValue labels = 10;
-  google.protobuf.Struct tags = 11;
+  google.protobuf.Struct vars_schema = 7;
+  google.protobuf.Struct options = 8;
+  google.protobuf.Struct variables = 9;
+  google.protobuf.Struct variables_schema = 10;
+  google.protobuf.ListValue labels = 11;
+  google.protobuf.Struct tags = 12;
 
   bool shared = 18;
   DashboardScope scope = 19;
