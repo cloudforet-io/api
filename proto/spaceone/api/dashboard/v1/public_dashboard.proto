@@ -112,9 +112,11 @@ message CreatePublicDashboardRequest {
   // +optional
   google.protobuf.Struct variables_schema = 8;
   // +optional
-  google.protobuf.ListValue labels = 9;
+  bool domain_only = 9;
   // +optional
-  google.protobuf.Struct tags = 10;
+  google.protobuf.ListValue labels = 10;
+  // +optional
+  google.protobuf.Struct tags = 11;
   ResourceGroup resource_group = 20;
   // +optional
   string workspace_id = 21;
@@ -203,8 +205,9 @@ message PublicDashboardInfo {
   google.protobuf.Struct options = 8;
   google.protobuf.Struct variables = 9;
   google.protobuf.Struct variables_schema = 10;
-  google.protobuf.ListValue labels = 11;
-  google.protobuf.Struct tags = 12;
+  bool domain_only = 11;
+  google.protobuf.ListValue labels = 12;
+  google.protobuf.Struct tags = 13;
 
   bool shared = 18;
   DashboardScope scope = 19;
