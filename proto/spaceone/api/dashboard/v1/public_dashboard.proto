@@ -108,11 +108,11 @@ message CreatePublicDashboardRequest {
   // +optional
   google.protobuf.Struct options = 6;
   // +optional
-  google.protobuf.Struct variables = 7;
+  google.protobuf.Struct domain_options = 7;
   // +optional
-  google.protobuf.Struct variables_schema = 8;
+  google.protobuf.Struct variables = 8;
   // +optional
-  bool domain_only = 9;
+  google.protobuf.Struct variables_schema = 9;
   // +optional
   google.protobuf.ListValue labels = 10;
   // +optional
@@ -141,13 +141,15 @@ message UpdatePublicDashboardRequest {
   // +optional
   google.protobuf.Struct options = 7;
   // +optional
-  google.protobuf.Struct variables = 8;
+  google.protobuf.Struct domain_options = 8;
   // +optional
-  google.protobuf.Struct variables_schema = 9;
+  google.protobuf.Struct variables = 9;
   // +optional
-  google.protobuf.ListValue labels = 10;
+  google.protobuf.Struct variables_schema = 10;
   // +optional
-  google.protobuf.Struct tags = 11;
+  google.protobuf.ListValue labels = 11;
+  // +optional
+  google.protobuf.Struct tags = 12;
   // +optional
   string folder_id = 21;
 }
@@ -203,9 +205,9 @@ message PublicDashboardInfo {
   google.protobuf.Struct vars = 6;
   google.protobuf.Struct vars_schema = 7;
   google.protobuf.Struct options = 8;
-  google.protobuf.Struct variables = 9;
-  google.protobuf.Struct variables_schema = 10;
-  bool domain_only = 11;
+  google.protobuf.Struct domain_options = 9;
+  google.protobuf.Struct variables = 10;
+  google.protobuf.Struct variables_schema = 11;
   google.protobuf.ListValue labels = 12;
   google.protobuf.Struct tags = 13;
 
