@@ -32,7 +32,7 @@ service User {
     };
   }
 
-  rpc verify_email (VerifyUserEmailRequest) returns (google.protobuf.Empty) {
+  rpc verify_email (VerifyEmailUserRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/identity/v2/user/verify-email"
       body: "*"
@@ -40,14 +40,14 @@ service User {
   }
 
   // Disable MFA for user. If this api is called, send email to user.
-  rpc disable_mfa (DisableUserMFARequest) returns (UserInfo) {
+  rpc disable_mfa (DisableMFAUserRequest) returns (UserInfo) {
     option (google.api.http) = {
       post: "/identity/v2/user/disable-mfa"
       body: "*"
     };
   }
 
-  rpc set_required_actions (SetRequiredActionsRequest) returns (UserInfo) {
+  rpc set_required_actions (SetRequiredActionsUserRequest) returns (UserInfo) {
     option (google.api.http) = {
       post: "/identity/v2/user/set-required-actions"
       body: "*"
@@ -174,7 +174,7 @@ message UpdateUserRequest {
 //  "user_id": "example@cloudforet.com",
 //  "email": "example@cloudforet.com",
 //}
-message VerifyUserEmailRequest {
+message VerifyEmailUserRequest {
   string user_id = 1;
   // +optional
   string email = 2;
@@ -183,7 +183,7 @@ message VerifyUserEmailRequest {
 //{
 //  "user_id": "example@cloudforet.com"
 //}
-message DisableUserMFARequest {
+message DisableMFAUserRequest {
   string user_id = 1;
 }
 
@@ -191,7 +191,7 @@ message DisableUserMFARequest {
 //  "user_id": "example@cloudforet.com",
 //  "required_actions": ["UPDATE_PASSWORD"]
 //}
-message SetRequiredActionsRequest {
+message SetRequiredActionsUserRequest {
   string user_id = 1;
   repeated UserRequiredAction required_actions = 2;
 }
@@ -250,7 +250,8 @@ message UserInfo {
   string language = 11;
   string timezone = 12;
   repeated UserRequiredAction required_actions = 13;
-  google.protobuf.Struct tags = 14;
+  int32 refresh_timeout = 14;
+  google.protobuf.Struct tags = 15;
   string domain_id = 21;
   string created_at = 31;
   string last_accessed_at = 32;

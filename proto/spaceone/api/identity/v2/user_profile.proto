@@ -22,6 +22,15 @@ service UserProfile {
     };
   }
 
+  // Sets the user's refresh token timeout. This API can only be used by users with the `DOMAIN_ADMIN` role.
+  // Min value is `1800` seconds and max value is `2592000` seconds
+  rpc set_refresh_timeout (SetRefreshTimeout) returns (UserInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/user-profile/set-refresh-timeout"
+      body: "*"
+    };
+  }
+
   rpc verify_email (VerifyEmailRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       post: "/identity/v2/user-profile/verify-email"
@@ -106,11 +115,26 @@ message UpdateUserProfileRequest {
   google.protobuf.Struct tags = 6;
 }
 
+//{
+//   "refresh_token_timout": 604800
+//}
+message SetRefreshTimeout {
+  int32 refresh_timeout = 1;
+}
+
+
+//{
+//   "email": "wonny@cloudforet.io"
+//}
 message VerifyEmailRequest {
   // +optional
   string email = 1;
 }
 
+
+//{
+//   "verify_code": "12346"
+//}
 message ConfirmEmailRequest {
   string verify_code = 1;
 }
