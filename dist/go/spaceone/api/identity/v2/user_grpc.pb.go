@@ -29,6 +29,7 @@ const (
 	User_VerifyEmail_FullMethodName        = "/spaceone.api.identity.v2.User/verify_email"
 	User_DisableMfa_FullMethodName         = "/spaceone.api.identity.v2.User/disable_mfa"
 	User_SetRequiredActions_FullMethodName = "/spaceone.api.identity.v2.User/set_required_actions"
+	User_SetRefreshTimeout_FullMethodName  = "/spaceone.api.identity.v2.User/set_refresh_timeout"
 	User_Enable_FullMethodName             = "/spaceone.api.identity.v2.User/enable"
 	User_Disable_FullMethodName            = "/spaceone.api.identity.v2.User/disable"
 	User_Delete_FullMethodName             = "/spaceone.api.identity.v2.User/delete"
@@ -51,6 +52,9 @@ type UserClient interface {
 	// Disable MFA for user. If this api is called, send email to user.
 	DisableMfa(ctx context.Context, in *DisableMFAUserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	SetRequiredActions(ctx context.Context, in *SetRequiredActionsUserRequest, opts ...grpc.CallOption) (*UserInfo, error)
+	// Sets the user's refresh token timeout. This API can only be used by users with the `DOMAIN_ADMIN` role.
+	// Min value is `1800` seconds and max value is `2592000` seconds
+	SetRefreshTimeout(ctx context.Context, in *SetRefreshTimeout, opts ...grpc.CallOption) (*UserInfo, error)
 	Enable(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Disable(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	Delete(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -111,6 +115,16 @@ func (c *userClient) SetRequiredActions(ctx context.Context, in *SetRequiredActi
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UserInfo)
 	err := c.cc.Invoke(ctx, User_SetRequiredActions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SetRefreshTimeout(ctx context.Context, in *SetRefreshTimeout, opts ...grpc.CallOption) (*UserInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserInfo)
+	err := c.cc.Invoke(ctx, User_SetRefreshTimeout_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -191,6 +205,9 @@ type UserServer interface {
 	// Disable MFA for user. If this api is called, send email to user.
 	DisableMfa(context.Context, *DisableMFAUserRequest) (*UserInfo, error)
 	SetRequiredActions(context.Context, *SetRequiredActionsUserRequest) (*UserInfo, error)
+	// Sets the user's refresh token timeout. This API can only be used by users with the `DOMAIN_ADMIN` role.
+	// Min value is `1800` seconds and max value is `2592000` seconds
+	SetRefreshTimeout(context.Context, *SetRefreshTimeout) (*UserInfo, error)
 	Enable(context.Context, *UserRequest) (*UserInfo, error)
 	Disable(context.Context, *UserRequest) (*UserInfo, error)
 	Delete(context.Context, *UserRequest) (*empty.Empty, error)
@@ -221,6 +238,9 @@ func (UnimplementedUserServer) DisableMfa(context.Context, *DisableMFAUserReques
 }
 func (UnimplementedUserServer) SetRequiredActions(context.Context, *SetRequiredActionsUserRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetRequiredActions not implemented")
+}
+func (UnimplementedUserServer) SetRefreshTimeout(context.Context, *SetRefreshTimeout) (*UserInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetRefreshTimeout not implemented")
 }
 func (UnimplementedUserServer) Enable(context.Context, *UserRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
@@ -347,6 +367,24 @@ func _User_SetRequiredActions_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).SetRequiredActions(ctx, req.(*SetRequiredActionsUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetRefreshTimeout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetRefreshTimeout)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetRefreshTimeout(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetRefreshTimeout_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetRefreshTimeout(ctx, req.(*SetRefreshTimeout))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -485,6 +523,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "set_required_actions",
 			Handler:    _User_SetRequiredActions_Handler,
+		},
+		{
+			MethodName: "set_refresh_timeout",
+			Handler:    _User_SetRefreshTimeout_Handler,
 		},
 		{
 			MethodName: "enable",

@@ -1084,35 +1084,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/identity/user-profile/set-refresh-timeout": {
-       "post": {
-         "tags": ["identity > user-profile"],
-         "summary": "Set Refresh Timeout",
-         "operationId" : "",
-         "description": "### Description \nSets the user's refresh token timeout. This API can only be used by users with the `DOMAIN_ADMIN` role.\nMin value is `1800` seconds and max value is `2592000` seconds",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |refresh_timeout||int|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"refresh_timeout" : {"type": "integer","title": "REFRESH_TIMEOUT" }                 }
-               },
-               "examples":{"Default Example":{"value": "{\n  \"refresh_token_timout\": 604800\n}"},"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/UserInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/UserInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/user-profile/verify-email": {
        "post": {
          "tags": ["identity > user-profile"],
@@ -1741,6 +1712,35 @@
                  "properties": {"user_id" : {"type": "string","title": "USER_ID" },"required_actions" : {"items": {}, "type": "array","title": "REQUIRED_ACTIONS" }                 }
                },
                "examples":{"Default Example":{"value": "{\n \"user_id\": \"example@cloudforet.com\",\n \"required_actions\": [\"UPDATE_PASSWORD\"]\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UserInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UserInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/user/set-refresh-timeout": {
+       "post": {
+         "tags": ["identity > user"],
+         "summary": "Set Refresh Timeout",
+         "operationId" : "",
+         "description": "### Description \nSets the user's refresh token timeout. This API can only be used by users with the `DOMAIN_ADMIN` role.\nMin value is `1800` seconds and max value is `2592000` seconds",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |user_id||string|True|\n |refresh_timeout||int|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"user_id" : {"type": "string","title": "USER_ID" },"refresh_timeout" : {"type": "integer","title": "REFRESH_TIMEOUT" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n  \"user_id\": \"wony@cloudforet.io\"\n  \"refresh_token_timout\": 10800\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -4979,12 +4979,6 @@
          "required": ["results","total_count"],
                 "title": "MyWorkspacesInfo"
            }
-           ,        "SetRefreshTimeout": {
-         "properties" : {"refresh_timeout" : {"type": "integer","title": "REFRESH_TIMEOUT"}},
-         "type": "object",
-         "required": ["refresh_timeout"],
-                "title": "SetRefreshTimeout"
-           }
            ,        "UpdateUserProfileRequest": {
          "properties" : {"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
@@ -5079,6 +5073,12 @@
          "type": "object",
          "required": ["state","mfa_type","options"],
                 "title": "MFA"
+           }
+           ,        "SetRefreshTimeout": {
+         "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"refresh_timeout" : {"type": "integer","title": "REFRESH_TIMEOUT"}},
+         "type": "object",
+         "required": ["user_id","refresh_timeout"],
+                "title": "SetRefreshTimeout"
            }
            ,        "SetRequiredActionsUserRequest": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"required_actions" : {"items": {"type": "string"},

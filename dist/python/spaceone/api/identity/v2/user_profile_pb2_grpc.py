@@ -46,11 +46,6 @@ class UserProfileStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UpdateUserProfileRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
                 _registered_method=True)
-        self.set_refresh_timeout = channel.unary_unary(
-                '/spaceone.api.identity.v2.UserProfile/set_refresh_timeout',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.SetRefreshTimeout.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
-                _registered_method=True)
         self.verify_email = channel.unary_unary(
                 '/spaceone.api.identity.v2.UserProfile/verify_email',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.VerifyEmailRequest.SerializeToString,
@@ -103,14 +98,6 @@ class UserProfileServicer(object):
 
     def update(self, request, context):
         """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def set_refresh_timeout(self, request, context):
-        """Sets the user's refresh token timeout. This API can only be used by users with the `DOMAIN_ADMIN` role.
-        Min value is `1800` seconds and max value is `2592000` seconds
-        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -179,11 +166,6 @@ def add_UserProfileServicer_to_server(servicer, server):
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UpdateUserProfileRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.SerializeToString,
-            ),
-            'set_refresh_timeout': grpc.unary_unary_rpc_method_handler(
-                    servicer.set_refresh_timeout,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.SetRefreshTimeout.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.SerializeToString,
             ),
             'verify_email': grpc.unary_unary_rpc_method_handler(
@@ -258,33 +240,6 @@ class UserProfile(object):
             target,
             '/spaceone.api.identity.v2.UserProfile/update',
             spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.UpdateUserProfileRequest.SerializeToString,
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def set_refresh_timeout(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.identity.v2.UserProfile/set_refresh_timeout',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__profile__pb2.SetRefreshTimeout.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
             options,
             channel_credentials,
