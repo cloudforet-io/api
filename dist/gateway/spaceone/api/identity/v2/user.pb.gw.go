@@ -85,7 +85,7 @@ func local_request_User_Update_0(ctx context.Context, marshaler runtime.Marshale
 }
 
 func request_User_VerifyEmail_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.VerifyUserEmailRequest
+	var protoReq v2_0.VerifyEmailUserRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -98,7 +98,7 @@ func request_User_VerifyEmail_0(ctx context.Context, marshaler runtime.Marshaler
 }
 
 func local_request_User_VerifyEmail_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.VerifyUserEmailRequest
+	var protoReq v2_0.VerifyEmailUserRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -111,7 +111,7 @@ func local_request_User_VerifyEmail_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func request_User_DisableMfa_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.DisableUserMFARequest
+	var protoReq v2_0.DisableMFAUserRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -124,7 +124,7 @@ func request_User_DisableMfa_0(ctx context.Context, marshaler runtime.Marshaler,
 }
 
 func local_request_User_DisableMfa_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.DisableUserMFARequest
+	var protoReq v2_0.DisableMFAUserRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -137,7 +137,7 @@ func local_request_User_DisableMfa_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func request_User_SetRequiredActions_0(ctx context.Context, marshaler runtime.Marshaler, client v2_0.UserClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.SetRequiredActionsRequest
+	var protoReq v2_0.SetRequiredActionsUserRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
@@ -150,7 +150,7 @@ func request_User_SetRequiredActions_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func local_request_User_SetRequiredActions_0(ctx context.Context, marshaler runtime.Marshaler, server v2_0.UserServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq v2_0.SetRequiredActionsRequest
+	var protoReq v2_0.SetRequiredActionsUserRequest
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {

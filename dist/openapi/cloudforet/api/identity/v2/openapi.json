@@ -1084,6 +1084,35 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/user-profile/set-refresh-timeout": {
+       "post": {
+         "tags": ["identity > user-profile"],
+         "summary": "Set Refresh Timeout",
+         "operationId" : "",
+         "description": "### Description \nSets the user's refresh token timeout. This API can only be used by users with the `DOMAIN_ADMIN` role.\nMin value is `1800` seconds and max value is `2592000` seconds",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |refresh_timeout||int|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"refresh_timeout" : {"type": "integer","title": "REFRESH_TIMEOUT" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n  \"refresh_token_timout\": 604800\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UserInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UserInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/user-profile/verify-email": {
        "post": {
          "tags": ["identity > user-profile"],
@@ -1097,7 +1126,7 @@
                "schema": {
                  "properties": {"email" : {"type": "string","title": "EMAIL" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n  \"email\": \"wonny@cloudforet.io\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -1120,7 +1149,7 @@
                "schema": {
                  "properties": {"verify_code" : {"type": "string","title": "VERIFY_CODE" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n  \"verify_code\": \"12346\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -4950,6 +4979,12 @@
          "required": ["results","total_count"],
                 "title": "MyWorkspacesInfo"
            }
+           ,        "SetRefreshTimeout": {
+         "properties" : {"refresh_timeout" : {"type": "integer","title": "REFRESH_TIMEOUT"}},
+         "type": "object",
+         "required": ["refresh_timeout"],
+                "title": "SetRefreshTimeout"
+           }
            ,        "UpdateUserProfileRequest": {
          "properties" : {"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
@@ -5033,11 +5068,11 @@
          "required": ["user_id","auth_type","reset_password"],
                 "title": "CreateUserRequest"
            }
-           ,        "DisableUserMFARequest": {
+           ,        "DisableMFAUserRequest": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"}},
          "type": "object",
          "required": ["user_id"],
-                "title": "DisableUserMFARequest"
+                "title": "DisableMFAUserRequest"
            }
            ,        "MFA": {
          "properties" : {"state" : {"type": "string","title": "STATE"},"mfa_type" : {"type": "string","title": "MFA_TYPE"},"options" : {"type": "object","title": "OPTIONS"}},
@@ -5045,12 +5080,12 @@
          "required": ["state","mfa_type","options"],
                 "title": "MFA"
            }
-           ,        "SetRequiredActionsRequest": {
+           ,        "SetRequiredActionsUserRequest": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"required_actions" : {"items": {"type": "string"},
                "type": "array","title": "REQUIRED_ACTIONS"}},
          "type": "object",
          "required": ["user_id","required_actions"],
-                "title": "SetRequiredActionsRequest"
+                "title": "SetRequiredActionsUserRequest"
            }
            ,        "UpdateUserRequest": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"password" : {"type": "string","title": "PASSWORD"},"name" : {"type": "string","title": "NAME"},"email" : {"type": "string","title": "EMAIL"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"tags" : {"type": "object","title": "TAGS"},"reset_password" : {"type": "boolean","title": "RESET_PASSWORD"}},
@@ -5060,9 +5095,9 @@
            }
            ,        "UserInfo": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"email" : {"type": "string","title": "EMAIL"},"email_verified" : {"type": "boolean","title": "EMAIL_VERIFIED"},"auth_type" : {"type": "string","title": "AUTH_TYPE"},"role_id" : {"type": "string","title": "ROLE_ID"},"role_type" : {"type": "string","title": "ROLE_TYPE"},"mfa" : {"$ref": "#/components/schemas/MFA","title": "MFA"},"language" : {"type": "string","title": "LANGUAGE"},"timezone" : {"type": "string","title": "TIMEZONE"},"required_actions" : {"items": {"type": "string"},
-               "type": "array","title": "REQUIRED_ACTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
+               "type": "array","title": "REQUIRED_ACTIONS"},"refresh_timeout" : {"type": "integer","title": "REFRESH_TIMEOUT"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_accessed_at" : {"type": "string","title": "LAST_ACCESSED_AT"}},
          "type": "object",
-         "required": ["user_id","name","state","email","email_verified","auth_type","role_id","role_type","mfa","language","timezone","required_actions","tags","domain_id","created_at","last_accessed_at"],
+         "required": ["user_id","name","state","email","email_verified","auth_type","role_id","role_type","mfa","language","timezone","required_actions","refresh_timeout","tags","domain_id","created_at","last_accessed_at"],
                 "title": "UserInfo"
            }
            ,        "UserRequest": {
@@ -5090,11 +5125,11 @@
          "required": ["results","total_count"],
                 "title": "UsersInfo"
            }
-           ,        "VerifyUserEmailRequest": {
+           ,        "VerifyEmailUserRequest": {
          "properties" : {"user_id" : {"type": "string","title": "USER_ID"},"email" : {"type": "string","title": "EMAIL"}},
          "type": "object",
          "required": ["user_id"],
-                "title": "VerifyUserEmailRequest"
+                "title": "VerifyEmailUserRequest"
            }
            ,        "CreateProviderRequest": {
          "properties" : {"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"alias" : {"type": "string","title": "ALIAS"},"plugin_info" : {"$ref": "#/components/schemas/PluginInfo","title": "PLUGIN_INFO"},"color" : {"type": "string","title": "COLOR"},"icon" : {"type": "string","title": "ICON"},"order" : {"type": "integer","title": "ORDER"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},

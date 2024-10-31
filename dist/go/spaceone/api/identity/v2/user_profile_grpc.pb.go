@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	UserProfile_Update_FullMethodName             = "/spaceone.api.identity.v2.UserProfile/update"
+	UserProfile_SetRefreshTimeout_FullMethodName  = "/spaceone.api.identity.v2.UserProfile/set_refresh_timeout"
 	UserProfile_VerifyEmail_FullMethodName        = "/spaceone.api.identity.v2.UserProfile/verify_email"
 	UserProfile_ConfirmEmail_FullMethodName       = "/spaceone.api.identity.v2.UserProfile/confirm_email"
 	UserProfile_ResetPassword_FullMethodName      = "/spaceone.api.identity.v2.UserProfile/reset_password"
@@ -37,6 +38,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserProfileClient interface {
 	Update(ctx context.Context, in *UpdateUserProfileRequest, opts ...grpc.CallOption) (*UserInfo, error)
+	// Sets the user's refresh token timeout. This API can only be used by users with the `DOMAIN_ADMIN` role.
+	// Min value is `1800` seconds and max value is `2592000` seconds
+	SetRefreshTimeout(ctx context.Context, in *SetRefreshTimeout, opts ...grpc.CallOption) (*UserInfo, error)
 	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	ConfirmEmail(ctx context.Context, in *ConfirmEmailRequest, opts ...grpc.CallOption) (*UserInfo, error)
 	// +noauth
@@ -64,6 +68,16 @@ func (c *userProfileClient) Update(ctx context.Context, in *UpdateUserProfileReq
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UserInfo)
 	err := c.cc.Invoke(ctx, UserProfile_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userProfileClient) SetRefreshTimeout(ctx context.Context, in *SetRefreshTimeout, opts ...grpc.CallOption) (*UserInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserInfo)
+	err := c.cc.Invoke(ctx, UserProfile_SetRefreshTimeout_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -165,6 +179,9 @@ func (c *userProfileClient) GetWorkspaceGroups(ctx context.Context, in *Workspac
 // for forward compatibility.
 type UserProfileServer interface {
 	Update(context.Context, *UpdateUserProfileRequest) (*UserInfo, error)
+	// Sets the user's refresh token timeout. This API can only be used by users with the `DOMAIN_ADMIN` role.
+	// Min value is `1800` seconds and max value is `2592000` seconds
+	SetRefreshTimeout(context.Context, *SetRefreshTimeout) (*UserInfo, error)
 	VerifyEmail(context.Context, *VerifyEmailRequest) (*empty.Empty, error)
 	ConfirmEmail(context.Context, *ConfirmEmailRequest) (*UserInfo, error)
 	// +noauth
@@ -190,6 +207,9 @@ type UnimplementedUserProfileServer struct{}
 
 func (UnimplementedUserProfileServer) Update(context.Context, *UpdateUserProfileRequest) (*UserInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedUserProfileServer) SetRefreshTimeout(context.Context, *SetRefreshTimeout) (*UserInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetRefreshTimeout not implemented")
 }
 func (UnimplementedUserProfileServer) VerifyEmail(context.Context, *VerifyEmailRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyEmail not implemented")
@@ -253,6 +273,24 @@ func _UserProfile_Update_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserProfileServer).Update(ctx, req.(*UpdateUserProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserProfile_SetRefreshTimeout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetRefreshTimeout)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserProfileServer).SetRefreshTimeout(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserProfile_SetRefreshTimeout_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserProfileServer).SetRefreshTimeout(ctx, req.(*SetRefreshTimeout))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -429,6 +467,10 @@ var UserProfile_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _UserProfile_Update_Handler,
+		},
+		{
+			MethodName: "set_refresh_timeout",
+			Handler:    _UserProfile_SetRefreshTimeout_Handler,
 		},
 		{
 			MethodName: "verify_email",

@@ -53,17 +53,17 @@ class UserStub(object):
                 _registered_method=True)
         self.verify_email = channel.unary_unary(
                 '/spaceone.api.identity.v2.User/verify_email',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.VerifyUserEmailRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.VerifyEmailUserRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.disable_mfa = channel.unary_unary(
                 '/spaceone.api.identity.v2.User/disable_mfa',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.DisableUserMFARequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.DisableMFAUserRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
                 _registered_method=True)
         self.set_required_actions = channel.unary_unary(
                 '/spaceone.api.identity.v2.User/set_required_actions',
-                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.SetRequiredActionsRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.SetRequiredActionsUserRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
                 _registered_method=True)
         self.enable = channel.unary_unary(
@@ -187,17 +187,17 @@ def add_UserServicer_to_server(servicer, server):
             ),
             'verify_email': grpc.unary_unary_rpc_method_handler(
                     servicer.verify_email,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.VerifyUserEmailRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.VerifyEmailUserRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'disable_mfa': grpc.unary_unary_rpc_method_handler(
                     servicer.disable_mfa,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.DisableUserMFARequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.DisableMFAUserRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.SerializeToString,
             ),
             'set_required_actions': grpc.unary_unary_rpc_method_handler(
                     servicer.set_required_actions,
-                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.SetRequiredActionsRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.SetRequiredActionsUserRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.SerializeToString,
             ),
             'enable': grpc.unary_unary_rpc_method_handler(
@@ -310,7 +310,7 @@ class User(object):
             request,
             target,
             '/spaceone.api.identity.v2.User/verify_email',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.VerifyUserEmailRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.VerifyEmailUserRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -337,7 +337,7 @@ class User(object):
             request,
             target,
             '/spaceone.api.identity.v2.User/disable_mfa',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.DisableUserMFARequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.DisableMFAUserRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
             options,
             channel_credentials,
@@ -364,7 +364,7 @@ class User(object):
             request,
             target,
             '/spaceone.api.identity.v2.User/set_required_actions',
-            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.SetRequiredActionsRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.SetRequiredActionsUserRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_user__pb2.UserInfo.FromString,
             options,
             channel_credentials,
