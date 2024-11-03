@@ -1,0 +1,158 @@
+syntax = "proto3";
+
+package spaceone.api.mzc_service_api.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/mzc-service-api/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+
+service Organization {
+    rpc create (OrganizationCreateRequest) returns (OrganizationInfo) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/organization/create"
+            body: "*"
+        };
+    }
+    rpc update (OrganizationUpdateRequest) returns (OrganizationInfo) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/organization/update"
+            body: "*"
+        };
+    }
+    rpc enable (OrganizationRequest) returns (OrganizationInfo) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/organization/enable"
+            body: "*"
+        };
+    }
+    rpc disable (OrganizationRequest) returns (OrganizationInfo) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/organization/disable"
+            body: "*"
+        };
+    }
+    rpc delete (OrganizationRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/organization/delete"
+            body: "*"
+        };
+    }
+    rpc get (OrganizationRequest) returns (OrganizationInfo) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/organization/get"
+            body: "*"
+        };
+    }
+    rpc list (OrganizationSearchQuery) returns (OrganizationsInfo) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/organization/list"
+            body: "*"
+        };
+    }
+    rpc stat (OrganizationStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/organization/stat"
+            body: "*"
+        };
+    }
+}
+
+enum OrganizationState {
+    ORGANIZATION_STATE_NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+}
+
+message OrganizationCreateRequest {
+    string name = 1;
+    // +optional
+    string description = 2;
+    // +optional
+    string industry = 3;
+    // +optional
+    string registration_number = 4;
+    // +optional
+    string country = 5;
+    // +optional
+    string address = 6;
+    // +optional
+    string contact_person = 7;
+    // +optional
+    string contact_email = 8;
+    // +optional
+    string contact_phone = 9;
+    // +optional
+    google.protobuf.Struct tags = 15;
+}
+
+message OrganizationUpdateRequest {
+    string org_id = 1;
+    string name = 2;
+    // +optional
+    string description = 3;
+    // +optional
+    string industry = 4;
+    // +optional
+    string registration_number = 5;
+    // +optional
+    string country = 6;
+    // +optional
+    string address = 7;
+    // +optional
+    string contact_person = 8;
+    // +optional
+    string contact_email = 9;
+    // +optional
+    string contact_phone = 10;
+    // +optional
+    google.protobuf.Struct tags = 15;
+}
+
+message OrganizationRequest {
+    string org_id = 1;
+}
+
+message OrganizationSearchQuery {
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string org_id = 2;
+    // +optional
+    string name = 3;
+    // +optional
+    OrganizationState state = 4;
+}
+
+message OrganizationInfo {
+    string org_id = 1;
+    string name = 2;
+    OrganizationState state = 3;
+    string description = 4;
+    string industry = 5;
+    string registration_number = 6;
+    string country = 7;
+    string address = 8;
+    string contact_person = 9;
+    string contact_email = 10;
+    string contact_phone = 11;
+
+    google.protobuf.Struct tags = 15;
+
+    string domain_id = 21;
+
+    string created_at = 31;
+    string updated_at = 32;
+}
+
+message OrganizationsInfo {
+    repeated OrganizationInfo results = 1;
+    int32 total_count = 2;
+}
+
+message OrganizationStatQuery {
+    spaceone.api.core.v2.StatisticsQuery query = 1;
+}

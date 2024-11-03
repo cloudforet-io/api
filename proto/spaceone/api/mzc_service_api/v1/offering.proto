@@ -1,0 +1,137 @@
+syntax = "proto3";
+
+package spaceone.api.mzc_service_api.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/mzc-service-api/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+
+service Offering {
+    rpc create (OfferingCreateRequest) returns (OfferingInfo) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/offering/create"
+            body: "*"
+        };
+    }
+    rpc update (OfferingUpdateRequest) returns (OfferingInfo) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/offering/update"
+            body: "*"
+        };
+    }
+    rpc delete (OfferingRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/offering/delete"
+            body: "*"
+        };
+    }
+    rpc get (OfferingRequest) returns (OfferingInfo) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/offering/get"
+            body: "*"
+        };
+    }
+    rpc list (OfferingSearchQuery) returns (OfferingsInfo) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/offering/list"
+            body: "*"
+        };
+    }
+    rpc stat (OfferingStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/mzc-service-api/v1/offering/stat"
+            body: "*"
+        };
+    }
+}
+
+enum OfferingStatus {
+    OFFERING_STATUS_NONE = 0;
+    AVAILABLE = 1;
+    UNAVAILABLE = 2;
+    DISCONTINUED = 3;
+}
+
+message OfferingCreateRequest {
+    string name = 1;
+    string category = 2;
+    // +optional
+    float price = 3;
+    // +optional
+    string currency = 4;
+    // +optional
+    string description = 5;
+    // +optional
+    string terms = 6;
+    // +optional
+    string website_url = 7;
+    // +optional
+    google.protobuf.Struct tags = 15;
+}
+
+message OfferingUpdateRequest {
+    string offering_id = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    OfferingStatus status = 3;
+    // +optional
+    float price = 4;
+    // +optional
+    string currency = 5;
+    // +optional
+    string description = 6;
+    // +optional
+    string terms = 7;
+    // +optional
+    string website_url = 8;
+    // +optional
+    google.protobuf.Struct tags = 15;
+}
+
+message OfferingRequest {
+    string offering_id = 1;
+}
+
+message OfferingSearchQuery {
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string offering_id = 2;
+    // +optional
+    string name = 3;
+    // +optional
+    OfferingStatus status = 4;
+}
+
+message OfferingInfo {
+    string offering_id = 1;
+    string name = 2;
+    string category = 3;
+    OfferingStatus status = 4;
+    float price = 5;
+    string currency = 6;
+    string description = 7;
+    string terms = 8;
+    string website_url = 9;
+
+    google.protobuf.Struct tags = 15;
+
+    string domain_id = 21;
+
+    string created_at = 31;
+    string updated_at = 32;
+}
+
+message OfferingsInfo {
+    repeated OfferingInfo results = 1;
+    int32 total_count = 2;
+}
+
+message OfferingStatQuery {
+    spaceone.api.core.v2.StatisticsQuery query = 1;
+}
