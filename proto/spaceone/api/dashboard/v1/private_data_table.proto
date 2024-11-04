@@ -70,7 +70,9 @@ message AddPrivateDataTableRequest {
   spaceone.api.dashboard.v1.SourceType source_type = 3;
   spaceone.api.dashboard.v1.AddOptions options = 4;
   // +optional
-  google.protobuf.Struct tags = 5;
+  google.protobuf.Struct vars = 5;
+  // +optional
+  google.protobuf.Struct tags = 6;
 }
 
 message TransformPrivateDataTableRequest {
@@ -80,7 +82,9 @@ message TransformPrivateDataTableRequest {
   spaceone.api.dashboard.v1.Operator operator = 3;
   spaceone.api.dashboard.v1.TransformOptions options = 4;
   // +optional
-  google.protobuf.Struct tags = 5;
+  google.protobuf.Struct vars = 5;
+  // +optional
+  google.protobuf.Struct tags = 6;
 }
 
 message UpdatePrivateDataTableRequest {
@@ -90,7 +94,9 @@ message UpdatePrivateDataTableRequest {
   // +optional
   google.protobuf.Struct options = 3;
   // +optional
-  google.protobuf.Struct tags = 4;
+  google.protobuf.Struct vars = 4;
+  // +optional
+  google.protobuf.Struct tags = 5;
 }
 
 message PrivateDataTableRequest {
@@ -115,6 +121,8 @@ message LoadPrivateDataTableRequest {
   repeated spaceone.api.core.v2.Sort sort = 5;
   // +optional
   spaceone.api.core.v2.Page page = 6;
+  // +optional
+  google.protobuf.Struct vars = 7;
 }
 
 message PrivateDataTableQuery {
