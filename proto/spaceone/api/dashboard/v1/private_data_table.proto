@@ -149,15 +149,23 @@ message PrivateDataTableInfo {
     PROJECT = 3;
   }
 
+  enum State {
+    STATE_NONE = 0;
+    AVAILABLE = 1;
+    UNAVAILABLE = 2;
+  }
+
   string data_table_id = 1;
   string name = 2;
-  spaceone.api.dashboard.v1.DataType data_type = 3;
-  spaceone.api.dashboard.v1.SourceType source_type = 4;
-  spaceone.api.dashboard.v1.Operator operator = 5;
-  google.protobuf.Struct options = 6;
-  google.protobuf.Struct tags = 7;
-  google.protobuf.Struct labels_info = 8;
-  google.protobuf.Struct data_info = 9;
+  State state = 3;
+  spaceone.api.dashboard.v1.DataType data_type = 4;
+  spaceone.api.dashboard.v1.SourceType source_type = 5;
+  spaceone.api.dashboard.v1.Operator operator = 6;
+  google.protobuf.Struct options = 7;
+  google.protobuf.Struct tags = 8;
+  google.protobuf.Struct labels_info = 9;
+  google.protobuf.Struct data_info = 10;
+  string error_message = 11;
 
   string domain_id = 21;
   string user_id = 22;
