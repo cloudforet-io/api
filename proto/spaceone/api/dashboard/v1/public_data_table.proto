@@ -183,7 +183,9 @@ message AddPublicDataTableRequest {
   SourceType source_type = 3;
   AddOptions options = 4;
   // +optional
-  google.protobuf.Struct tags = 5;
+  google.protobuf.Struct vars = 5;
+  // +optional
+  google.protobuf.Struct tags = 6;
 }
 
 message TransformPublicDataTableRequest {
@@ -193,7 +195,9 @@ message TransformPublicDataTableRequest {
   Operator operator = 3;
   TransformOptions options = 4;
   // +optional
-  google.protobuf.Struct tags = 5;
+  google.protobuf.Struct vars = 5;
+  // +optional
+  google.protobuf.Struct tags = 6;
 }
 
 message UpdatePublicDataTableRequest {
@@ -203,7 +207,9 @@ message UpdatePublicDataTableRequest {
   // +optional
   google.protobuf.Struct options = 3;
   // +optional
-  google.protobuf.Struct tags = 4;
+  google.protobuf.Struct vars = 4;
+  // +optional
+  google.protobuf.Struct tags = 5;
 }
 
 message PublicDataTableRequest {
@@ -228,6 +234,8 @@ message LoadPublicDataTableRequest {
   repeated spaceone.api.core.v2.Sort sort = 5;
   // +optional
   spaceone.api.core.v2.Page page = 6;
+  // +optional
+  google.protobuf.Struct vars = 7;
 }
 
 message PublicDataTableQuery {
