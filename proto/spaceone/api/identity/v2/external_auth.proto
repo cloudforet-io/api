@@ -11,43 +11,83 @@ import "spaceone/api/core/v2/plugin.proto";
 
 
 service ExternalAuth {
-    rpc set (SetExternalAuthRequest) returns (ExternalAuthInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/external-auth/set"
-            body: "*"
-        };
-    }
-    rpc unset (ExternalAuthRequest) returns (ExternalAuthInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/external-auth/unset"
-            body: "*"
-        };
+  // Google OAuth2, Keycloak OIDC, SAML are supported as external authentication.
+  rpc set (SetExternalAuthRequest) returns (ExternalAuthInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/external-auth/set"
+      body: "*"
+    };
+  }
 
-    }
-    rpc get (ExternalAuthRequest) returns (ExternalAuthInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/external-auth/get"
-            body: "*"
-        };
-    }
+  // Unset external authentication information.
+  rpc unset (ExternalAuthRequest) returns (ExternalAuthInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/external-auth/unset"
+      body: "*"
+    };
+  }
+
+  // Get external authentication information.
+  rpc get (ExternalAuthRequest) returns (ExternalAuthInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/external-auth/get"
+      body: "*"
+    };
+  }
 }
 
-
+//{
+//  "plugin_id": "plugin-googleoauth2-identity-auth",
+//  "upgrade_mode": "AUTO",
+//  "options": {
+//      "client_id": "client_id",
+//      "protocol": "oauth2",
+//      "identity_provider": "google",
+//      "validator": "gmail.com"
+//   }
+//}
 message SetExternalAuthRequest {
-    spaceone.api.core.v2.PluginRequest plugin_info = 2;
+  spaceone.api.core.v2.PluginRequest plugin_info = 2;
 }
 
+//{
+//}
 message ExternalAuthRequest {}
 
-message ExternalAuthInfo {
-    enum State {
-        NONE = 0;
-        ENABLED = 1;
-        DISABLED = 2;
-    }
 
-    string domain_id = 1;
-    State state = 2;
-    spaceone.api.core.v2.PluginInfo plugin_info = 3;
-    string updated_at = 31;
+
+
+//{
+//  "domain_id": "domain-123456",
+//  "plugin_info": {
+//      "metadata": {
+//          "authorization_endpoint": "https://www.googleapis.com",
+//          "client_id": "client_id",
+//          "identity_provider": "google",
+//          "protocol": "oauth2",
+//          "token_endpoint": "https://www.googleapis.com/oauth2/v2/tokeninfo",
+//          "userinfo_endpoint": "https://www.googleapis.com/oauth2/v3/userinfo",
+//          "validator": "gmail.com"
+//      },
+//      "options": {
+//          "client_id": "client_id",
+//          "identity_provider": "google",
+//          "protocol": "oauth2",
+//          "validator": "gmail.com"
+//      },
+//      "plugin_id": "plugin-googleoauth2-identity-auth",
+//      "upgrade_mode": "AUTO",
+//      "version": "1.1.3"
+//  }
+//}
+message ExternalAuthInfo {
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
+  string domain_id = 1;
+  State state = 2;
+  spaceone.api.core.v2.PluginInfo plugin_info = 3;
+  string updated_at = 31;
 }

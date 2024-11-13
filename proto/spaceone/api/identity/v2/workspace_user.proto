@@ -11,8 +11,10 @@ import "spaceone/api/core/v2/query.proto";
 import "spaceone/api/identity/v2/user.proto";
 import "spaceone/api/identity/v2/role_binding.proto";
 
-
+// WorkspaceUser service api are used to manage workspace users by the workspace owner.
 service WorkspaceUser {
+  // Create a workspace user. If the user does not exist in your domain, the user will be created in your domain and create a workspace user with the role.
+  // If you want to create a workspace user with the existing user, you can use role-binding create api.
   rpc create (CreateWorkspaceUserRequest) returns (WorkspaceUserInfo) {
     option (google.api.http) = {
       post: "/identity/v2/workspace-user/create"
@@ -49,6 +51,21 @@ service WorkspaceUser {
   }
 }
 
+
+//{
+//  "user_id": "wonny@cloudforet.io",
+//  "password": "Password0*",
+//  "name": "Wonny",
+//  "email": "wonny@cloudforet.io",
+//  "auth_type": "LOCAL",
+//  "language": "en",
+//  "timezone": "UTC",
+//  "tags": {
+//    "team": "cloudforet"
+//  },
+//  "reset_password": false,
+//  "role_id": "managed-workspace-member"
+//}
 message CreateWorkspaceUserRequest {
   string user_id = 1;
   // When auth_type is LOCAL, password is required.
@@ -58,6 +75,7 @@ message CreateWorkspaceUserRequest {
   string name = 3;
   // +optional
   string email = 4;
+  // LOCAL, EXTERNAL
   AuthType auth_type = 5;
   // en,ko
   // +optional
@@ -69,9 +87,18 @@ message CreateWorkspaceUserRequest {
   google.protobuf.Struct tags = 8;
   // If reset_password is true, send email
   bool reset_password = 9;
+  // You can use custom role or managed role something like `managed-workspace-member`, `managed-workspace-owner` ,...
   string role_id = 10;
 }
 
+//{
+//  "keyword": "cloudforet",
+//  "state": "ENABLED",
+//  "page": {
+//       "start": 1,
+//       "limit": 5
+//  }
+//}
 message WorkspaceUserFindRequest {
   enum State {
     NONE = 0;
@@ -88,11 +115,39 @@ message WorkspaceUserFindRequest {
   string workspace_id = 21;
 }
 
+//{
+//   "user_id": "wonny@cloudforet.io",
+//   "workspace_id": "workspace-ab12345"
+//}
 message WorkspaceUserRequest {
   string user_id = 1;
+  // For DOMAIN ADMIN this field is optional, but for WORKSPACE OWNER and WORKSPACE MEMBER this field is required.
+  // +optional
   string workspace_id = 21;
 }
 
+//{
+//  "user_id": "wonny@cloudforet.io",
+//  "name": "Wonny",
+//  "state": "PENDING",
+//  "email": "wonny@cloudforet.io",
+//  "auth_type": "LOCAL",
+//  "role_type": "USER",
+//  "language": "en",
+//  "timezone": "UTC",
+//  "api_key_count": 0,
+//  "role_binding_info": {
+//        "user_id": "wonny@cloudforet.io",
+//        "workspace_id": "workspace-99d4nn0c14ae",
+//        "domain_id": "domain-1234ee0c14ae",
+//        "role_binding_id": "rb-11d4eeaa1411",
+//        "role_id": "managed-workspace-member",
+//        "role_type": "MANAGED",
+//        "resource_group": "WORKSPACE",
+//        "created_at": "2024-11-12T06:06:04.999Z"
+//  },
+//  "created_at": "2024-11-12T06:06:04.999Z"
+//}
 message WorkspaceUserInfo {
   enum State {
     STATE_NONE = 0;
@@ -123,6 +178,18 @@ message WorkspaceUserInfo {
   string last_accessed_at = 32;
 }
 
+
+//{
+//  "query": {
+//    "filter": [
+//      {
+//        "k": "language",
+//        "v": "en",
+//        "o": "eq"
+//      }
+//    ]
+//  }
+//}
 message WorkspaceUserSearchQuery {
   enum State {
     NONE = 0;
@@ -148,12 +215,45 @@ message WorkspaceUserSearchQuery {
   string workspace_id = 21;
 }
 
+//{
+//  "results": [
+//      {
+//          "user_id": "wonny@cloudforet.io",
+//          "name": "Wonny",
+//          "state": "ENABLED",
+//          "email": "wonny@cloudforet.io",
+//          "auth_type": "LOCAL",
+//          "role_type": "USER",
+//          "language": "en",
+//          "timezone": "UTC",
+//          "api_key_count": 2,
+//          "role_binding_info": {
+//              "user_id": "wonny@cloudforet.io",
+//              "workspace_id": "workspace-99d4nn0c14ae",
+//              "domain_id": "domain-1234ee0c14ae",
+//              "role_binding_id": "rb-11d4eeaa1411",
+//              "role_id": "managed-workspace-member",
+//              "role_type": "MANAGED",
+//              "resource_group": "WORKSPACE",
+//              "created_at": "2024-11-12T06:06:04.999Z"
+//          },
+//          "domain_id": "domain-1234ee0c14ae",
+//          "created_at": "2024-11-12T06:06:04.999Z",
+//          "last_accessed_at": "2024-11-12T06:06:04.999Z"
+//      }
+//  ]
+//}
 message WorkspaceUsersInfo {
   repeated WorkspaceUserInfo results = 1;
   int32 total_count = 2;
 }
 
 
+//{
+//  "user_id": "wonny@cloudforet.io",
+//  "name": "Wonny",
+//  "state": "ENABLED"
+//}
 message UserSummaryInfo {
   enum State {
     STATE_NONE = 0;
@@ -167,6 +267,34 @@ message UserSummaryInfo {
   State state = 3;
 }
 
+
+//{
+//    "results": [
+//        {
+//           "user_id": "wonny@cloudforet.io",
+//           "name": "Wonny",
+//           "state": "ENABLED"
+//        },
+//        {
+//            "user_id": "belty@cloudforet.io",
+//            "name": "Belty",
+//            "state": "ENABLED"
+//        },
+//        {
+//            "user_id": "bolby@cloudforet.io",
+//            "state": "PENDING"
+//        },
+//        {
+//            "user_id": "cuby@cloudforet.io",
+//            "state": "PENDING"
+//        },
+//        {
+//            "user_id": "musly@cloudforet.io",
+//            "state": "PENDING"
+//        }
+//    ],
+//    "total_count": 21
+//}
 message UsersSummaryInfo {
   repeated UserSummaryInfo results = 1;
   int32 total_count = 2;

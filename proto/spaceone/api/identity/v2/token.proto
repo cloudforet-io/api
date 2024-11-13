@@ -26,6 +26,14 @@ service Token {
   }
 }
 
+//{
+//  "credentials": {
+//      "user_id": "wonny@cloudforet.io",
+//      "password": "Password0*"
+//  },
+//  "auth_type": "LOCAL",
+//  "domain_id": "domain-123123a"
+//}
 message IssueTokenRequest {
   enum AuthType {
     NONE = 0;
@@ -51,6 +59,12 @@ message TokenInfo {
   string refresh_token = 2;
 }
 
+//{
+//  "grant_type": "REFRESH_TOKEN",
+//  "token": "your_refresh_token_from_issue",
+//  "scope": "DOMAIN",
+//  "domain_id": "domain-123123a"
+//}
 message GrantTokenRequest {
   enum GrantType {
     GRANT_TYPE_NONE = 0;
