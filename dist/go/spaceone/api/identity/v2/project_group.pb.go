@@ -24,6 +24,11 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+//	{
+//	 "name": "Cloudforet Company",
+//	 "tags": {
+//	 }
+//	}
 type CreateProjectGroupRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -87,6 +92,10 @@ func (x *CreateProjectGroupRequest) GetParentGroupId() string {
 	return ""
 }
 
+//	{
+//	 "project_group_id": "pg-7120aabb662c",
+//	 "name": "Cloudforet Core Team"
+//	}
 type UpdateProjectGroupRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -150,6 +159,10 @@ func (x *UpdateProjectGroupRequest) GetTags() *_struct.Struct {
 	return nil
 }
 
+//	{
+//	 "project_group_id": "pg-7120aabb662c",
+//	 "parent_group_id": "pg-10efea238292"
+//	}
 type ChangeParentGroupRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -203,6 +216,9 @@ func (x *ChangeParentGroupRequest) GetParentGroupId() string {
 	return ""
 }
 
+//	{
+//	 "project_group_id": "pg-7120aabb662c"
+//	}
 type ProjectGroupRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -248,6 +264,10 @@ func (x *ProjectGroupRequest) GetProjectGroupId() string {
 	return ""
 }
 
+//	{
+//	   "project_group_id": "pg-7120aabb662c",
+//	   "users": ["wonny@cloudforet.io", "bolby@cloudforet.io"]
+//	}
 type UsersProjectGroupRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -301,6 +321,15 @@ func (x *UsersProjectGroupRequest) GetUsers() []string {
 	return nil
 }
 
+//	{
+//	   "project_group_id": "pg-7120aabb662c",
+//	   "name": "Cloudforet Core Team",
+//	   "tags": {},
+//	   "domain_id": "domain-186446b1516b",
+//	   "workspace_id": "workspace-1a02ebcb3eb2",
+//	   "parent_group_id": "pg-10efea238292",
+//	   "created_at": "2024-07-12T03:31:02.222Z"
+//	}
 type ProjectGroupInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -434,6 +463,14 @@ func (x *ProjectGroupInfo) GetLastSyncedAt() string {
 	return ""
 }
 
+//	{
+//	   "query": {
+//	       "page": {
+//	           "start":1,
+//	           "limit":10
+//	       }
+//	   }
+//	}
 type ProjectGroupSearchQuery struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -516,6 +553,20 @@ func (x *ProjectGroupSearchQuery) GetParentGroupId() string {
 	return ""
 }
 
+//	{
+//	   "results": [
+//	       {
+//	           "project_group_id": "pg-7120aabb662c",
+//	           "name": "Cloudforet Core Team",
+//	           "tags": {},
+//	           "domain_id": "domain-186446b1516b",
+//	           "workspace_id": "workspace-1a02ebcb3eb2",
+//	           "parent_group_id": "pg-10efea238292",
+//	           "created_at": "2024-07-12T03:31:02.222Z"
+//	       }
+//	   ],
+//	   "total_count": 1
+//	}
 type ProjectGroupsInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

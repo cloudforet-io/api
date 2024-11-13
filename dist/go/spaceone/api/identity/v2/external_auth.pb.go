@@ -73,6 +73,16 @@ func (ExternalAuthInfo_State) EnumDescriptor() ([]byte, []int) {
 	return file_spaceone_api_identity_v2_external_auth_proto_rawDescGZIP(), []int{2, 0}
 }
 
+//	{
+//	 "plugin_id": "plugin-googleoauth2-identity-auth",
+//	 "upgrade_mode": "AUTO",
+//	 "options": {
+//	     "client_id": "client_id",
+//	     "protocol": "oauth2",
+//	     "identity_provider": "google",
+//	     "validator": "gmail.com"
+//	  }
+//	}
 type SetExternalAuthRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -118,6 +128,8 @@ func (x *SetExternalAuthRequest) GetPluginInfo() *v2.PluginRequest {
 	return nil
 }
 
+// {
+// }
 type ExternalAuthRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -154,6 +166,29 @@ func (*ExternalAuthRequest) Descriptor() ([]byte, []int) {
 	return file_spaceone_api_identity_v2_external_auth_proto_rawDescGZIP(), []int{1}
 }
 
+//	{
+//	 "domain_id": "domain-123456",
+//	 "plugin_info": {
+//	     "metadata": {
+//	         "authorization_endpoint": "https://www.googleapis.com",
+//	         "client_id": "client_id",
+//	         "identity_provider": "google",
+//	         "protocol": "oauth2",
+//	         "token_endpoint": "https://www.googleapis.com/oauth2/v2/tokeninfo",
+//	         "userinfo_endpoint": "https://www.googleapis.com/oauth2/v3/userinfo",
+//	         "validator": "gmail.com"
+//	     },
+//	     "options": {
+//	         "client_id": "client_id",
+//	         "identity_provider": "google",
+//	         "protocol": "oauth2",
+//	         "validator": "gmail.com"
+//	     },
+//	     "plugin_id": "plugin-googleoauth2-identity-auth",
+//	     "upgrade_mode": "AUTO",
+//	     "version": "1.1.3"
+//	 }
+//	}
 type ExternalAuthInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

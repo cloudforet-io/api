@@ -281,6 +281,20 @@ func (UserSummaryInfo_State) EnumDescriptor() ([]byte, []int) {
 	return file_spaceone_api_identity_v2_workspace_user_proto_rawDescGZIP(), []int{6, 0}
 }
 
+//	{
+//	 "user_id": "wonny@cloudforet.io",
+//	 "password": "Password0*",
+//	 "name": "Wonny",
+//	 "email": "wonny@cloudforet.io",
+//	 "auth_type": "LOCAL",
+//	 "language": "en",
+//	 "timezone": "UTC",
+//	 "tags": {
+//	   "team": "cloudforet"
+//	 },
+//	 "reset_password": false,
+//	 "role_id": "managed-workspace-member"
+//	}
 type CreateWorkspaceUserRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -293,7 +307,8 @@ type CreateWorkspaceUserRequest struct {
 	// +optional
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	// +optional
-	Email    string   `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	// LOCAL, EXTERNAL
 	AuthType AuthType `protobuf:"varint,5,opt,name=auth_type,json=authType,proto3,enum=spaceone.api.identity.v2.AuthType" json:"auth_type,omitempty"`
 	// en,ko
 	// +optional
@@ -304,8 +319,9 @@ type CreateWorkspaceUserRequest struct {
 	// +optional
 	Tags *_struct.Struct `protobuf:"bytes,8,opt,name=tags,proto3" json:"tags,omitempty"`
 	// If reset_password is true, send email
-	ResetPassword bool   `protobuf:"varint,9,opt,name=reset_password,json=resetPassword,proto3" json:"reset_password,omitempty"`
-	RoleId        string `protobuf:"bytes,10,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
+	ResetPassword bool `protobuf:"varint,9,opt,name=reset_password,json=resetPassword,proto3" json:"reset_password,omitempty"`
+	// You can use custom role or managed role something like `managed-workspace-member`, `managed-workspace-owner` ,...
+	RoleId string `protobuf:"bytes,10,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
 }
 
 func (x *CreateWorkspaceUserRequest) Reset() {
@@ -408,6 +424,14 @@ func (x *CreateWorkspaceUserRequest) GetRoleId() string {
 	return ""
 }
 
+//	{
+//	 "keyword": "cloudforet",
+//	 "state": "ENABLED",
+//	 "page": {
+//	      "start": 1,
+//	      "limit": 5
+//	 }
+//	}
 type WorkspaceUserFindRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -479,12 +503,18 @@ func (x *WorkspaceUserFindRequest) GetWorkspaceId() string {
 	return ""
 }
 
+//	{
+//	  "user_id": "wonny@cloudforet.io",
+//	  "workspace_id": "workspace-ab12345"
+//	}
 type WorkspaceUserRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId      string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	// For DOMAIN ADMIN this field is optional, but for WORKSPACE OWNER and WORKSPACE MEMBER this field is required.
+	// +optional
 	WorkspaceId string `protobuf:"bytes,21,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 }
 
@@ -532,6 +562,28 @@ func (x *WorkspaceUserRequest) GetWorkspaceId() string {
 	return ""
 }
 
+//	{
+//	 "user_id": "wonny@cloudforet.io",
+//	 "name": "Wonny",
+//	 "state": "PENDING",
+//	 "email": "wonny@cloudforet.io",
+//	 "auth_type": "LOCAL",
+//	 "role_type": "USER",
+//	 "language": "en",
+//	 "timezone": "UTC",
+//	 "api_key_count": 0,
+//	 "role_binding_info": {
+//	       "user_id": "wonny@cloudforet.io",
+//	       "workspace_id": "workspace-99d4nn0c14ae",
+//	       "domain_id": "domain-1234ee0c14ae",
+//	       "role_binding_id": "rb-11d4eeaa1411",
+//	       "role_id": "managed-workspace-member",
+//	       "role_type": "MANAGED",
+//	       "resource_group": "WORKSPACE",
+//	       "created_at": "2024-11-12T06:06:04.999Z"
+//	 },
+//	 "created_at": "2024-11-12T06:06:04.999Z"
+//	}
 type WorkspaceUserInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -689,6 +741,17 @@ func (x *WorkspaceUserInfo) GetLastAccessedAt() string {
 	return ""
 }
 
+//	{
+//	 "query": {
+//	   "filter": [
+//	     {
+//	       "k": "language",
+//	       "v": "en",
+//	       "o": "eq"
+//	     }
+//	   ]
+//	 }
+//	}
 type WorkspaceUserSearchQuery struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -797,6 +860,34 @@ func (x *WorkspaceUserSearchQuery) GetWorkspaceId() string {
 	return ""
 }
 
+//	{
+//	 "results": [
+//	     {
+//	         "user_id": "wonny@cloudforet.io",
+//	         "name": "Wonny",
+//	         "state": "ENABLED",
+//	         "email": "wonny@cloudforet.io",
+//	         "auth_type": "LOCAL",
+//	         "role_type": "USER",
+//	         "language": "en",
+//	         "timezone": "UTC",
+//	         "api_key_count": 2,
+//	         "role_binding_info": {
+//	             "user_id": "wonny@cloudforet.io",
+//	             "workspace_id": "workspace-99d4nn0c14ae",
+//	             "domain_id": "domain-1234ee0c14ae",
+//	             "role_binding_id": "rb-11d4eeaa1411",
+//	             "role_id": "managed-workspace-member",
+//	             "role_type": "MANAGED",
+//	             "resource_group": "WORKSPACE",
+//	             "created_at": "2024-11-12T06:06:04.999Z"
+//	         },
+//	         "domain_id": "domain-1234ee0c14ae",
+//	         "created_at": "2024-11-12T06:06:04.999Z",
+//	         "last_accessed_at": "2024-11-12T06:06:04.999Z"
+//	     }
+//	 ]
+//	}
 type WorkspaceUsersInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -850,6 +941,11 @@ func (x *WorkspaceUsersInfo) GetTotalCount() int32 {
 	return 0
 }
 
+//	{
+//	 "user_id": "wonny@cloudforet.io",
+//	 "name": "Wonny",
+//	 "state": "ENABLED"
+//	}
 type UserSummaryInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -911,6 +1007,33 @@ func (x *UserSummaryInfo) GetState() UserSummaryInfo_State {
 	return UserSummaryInfo_STATE_NONE
 }
 
+//	{
+//	   "results": [
+//	       {
+//	          "user_id": "wonny@cloudforet.io",
+//	          "name": "Wonny",
+//	          "state": "ENABLED"
+//	       },
+//	       {
+//	           "user_id": "belty@cloudforet.io",
+//	           "name": "Belty",
+//	           "state": "ENABLED"
+//	       },
+//	       {
+//	           "user_id": "bolby@cloudforet.io",
+//	           "state": "PENDING"
+//	       },
+//	       {
+//	           "user_id": "cuby@cloudforet.io",
+//	           "state": "PENDING"
+//	       },
+//	       {
+//	           "user_id": "musly@cloudforet.io",
+//	           "state": "PENDING"
+//	       }
+//	   ],
+//	   "total_count": 21
+//	}
 type UsersSummaryInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

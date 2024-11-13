@@ -32,7 +32,8 @@ if _version_not_supported:
 
 
 class WorkspaceUserStub(object):
-    """Missing associated documentation comment in .proto file."""
+    """WorkspaceUser service api are used to manage workspace users by the workspace owner.
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -68,10 +69,13 @@ class WorkspaceUserStub(object):
 
 
 class WorkspaceUserServicer(object):
-    """Missing associated documentation comment in .proto file."""
+    """WorkspaceUser service api are used to manage workspace users by the workspace owner.
+    """
 
     def create(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Create a workspace user. If the user does not exist in your domain, the user will be created in your domain and create a workspace user with the role.
+        If you want to create a workspace user with the existing user, you can use role-binding create api.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -137,7 +141,8 @@ def add_WorkspaceUserServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class WorkspaceUser(object):
-    """Missing associated documentation comment in .proto file."""
+    """WorkspaceUser service api are used to manage workspace users by the workspace owner.
+    """
 
     @staticmethod
     def create(request,

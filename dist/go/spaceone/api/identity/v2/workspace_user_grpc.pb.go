@@ -30,7 +30,11 @@ const (
 // WorkspaceUserClient is the client API for WorkspaceUser service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// WorkspaceUser service api are used to manage workspace users by the workspace owner.
 type WorkspaceUserClient interface {
+	// Create a workspace user. If the user does not exist in your domain, the user will be created in your domain and create a workspace user with the role.
+	// If you want to create a workspace user with the existing user, you can use role-binding create api.
 	Create(ctx context.Context, in *CreateWorkspaceUserRequest, opts ...grpc.CallOption) (*WorkspaceUserInfo, error)
 	Get(ctx context.Context, in *WorkspaceUserRequest, opts ...grpc.CallOption) (*WorkspaceUserInfo, error)
 	Find(ctx context.Context, in *WorkspaceUserFindRequest, opts ...grpc.CallOption) (*UsersSummaryInfo, error)
@@ -99,7 +103,11 @@ func (c *workspaceUserClient) Stat(ctx context.Context, in *WorkspaceUserStatQue
 // WorkspaceUserServer is the server API for WorkspaceUser service.
 // All implementations must embed UnimplementedWorkspaceUserServer
 // for forward compatibility.
+//
+// WorkspaceUser service api are used to manage workspace users by the workspace owner.
 type WorkspaceUserServer interface {
+	// Create a workspace user. If the user does not exist in your domain, the user will be created in your domain and create a workspace user with the role.
+	// If you want to create a workspace user with the existing user, you can use role-binding create api.
 	Create(context.Context, *CreateWorkspaceUserRequest) (*WorkspaceUserInfo, error)
 	Get(context.Context, *WorkspaceUserRequest) (*WorkspaceUserInfo, error)
 	Find(context.Context, *WorkspaceUserFindRequest) (*UsersSummaryInfo, error)

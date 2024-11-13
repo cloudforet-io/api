@@ -192,7 +192,7 @@ func (JobInfo_ResourceGroup) EnumDescriptor() ([]byte, []int) {
 }
 
 //	{
-//	   "job_id": "job-123456789012",
+//	   "job_id": "job-123456789012"
 //	}
 type JobRequest struct {
 	state         protoimpl.MessageState
@@ -240,7 +240,13 @@ func (x *JobRequest) GetJobId() string {
 }
 
 //	{
-//	   "query": {}
+//	   "query": {
+//	       "page": {
+//	           "start": 1,
+//	           "limit": 10
+//	       }
+//	   },
+//	   "trusted_account_id": "ta-123456789012"
 //	}
 type JobsQuery struct {
 	state         protoimpl.MessageState
