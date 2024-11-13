@@ -10,7 +10,7 @@ import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
 import "spaceone/api/identity/v2/app.proto";
 
-
+// Create Agent with service account , Currently only Kubernetes service account is supported for OpenCost
 service Agent {
   rpc create(CreateAgentRequest) returns (AgentInfo) {
     option (google.api.http) = {
@@ -62,15 +62,48 @@ service Agent {
   }
 }
 
+
+//{
+//  "service_account_id": "sa-a120f6d21c4e",
+//  "options": {
+//    "cluster_name": "k8s-prd-cluster",
+//    "kube_state_metrics": "false",
+//    "prometheus_node_exporter": "false"
+//  }
+//}
 message CreateAgentRequest {
   string service_account_id = 1;
   google.protobuf.Struct options = 2;
 }
 
+//{
+//  "service_account_id": "sa-a120f6d21c4e"
+//}
 message AgentRequest {
   string service_account_id = 1;
 }
 
+//{
+//    "agent_id": "agent-5cb52dc61c70",
+//    "options": {
+//        "kube_state_metrics": false,
+//        "cluster_name": "k8s-prd-cluster",
+//        "prometheus_node_exporter": false
+//    },
+//    "client_secret": "client_secret_from_app",
+//    "state": "ENABLED",
+//    "is_managed": true,
+//    "role_type": "WORKSPACE_OWNER",
+//    "domain_id": "domain-116226a1516a",
+//    "workspace_id": "workspace-7a0aebcf4eb2",
+//    "project_id": "project-441975c8dfd8",
+//    "service_account_id": "sa-a120f6d21c4e",
+//    "app_id": "app-aa7bf47c98ea",
+//    "role_id": "managed-workspace-owner",
+//    "client_id": "client-36e1034b3512",
+//    "created_at": "2024-11-13T00:34:09.125Z",
+//    "expired_at": "2025-11-13T00:34:09.000Z"
+//}
 message AgentInfo {
   enum State {
     STATE_NONE = 0;
@@ -107,6 +140,14 @@ message AgentInfo {
   string last_accessed_at = 33;
 }
 
+//{
+//  "query": {
+//    "page": {
+//      "start":1,
+//      "limit": 10
+//    }
+//  }
+//}
 message AgentSearchQuery {
   enum State {
     STATE_NONE = 0;
@@ -126,6 +167,32 @@ message AgentSearchQuery {
 
 }
 
+//{
+//  "results": [
+//    {
+//      "agent_id": "agent-5cb52dc61c70",
+//      "options": {
+//        "kube_state_metrics": false,
+//        "cluster_name": "k8s-prd-cluster",
+//        "prometheus_node_exporter": false
+//      },
+//      "client_secret": "client_secret_from_app",
+//      "state": "ENABLED",
+//      "is_managed": true,
+//      "role_type": "WORKSPACE_OWNER",
+//      "domain_id": "domain-116226a1516a",
+//      "workspace_id": "workspace-7a0aebcf4eb2",
+//      "project_id": "project-441975c8dfd8",
+//      "service_account_id": "sa-a120f6d21c4e",
+//      "app_id": "app-aa7bf47c98ea",
+//      "role_id": "managed-workspace-owner",
+//      "client_id": "client-36e1034b3512",
+//      "created_at": "2024-11-13T00:34:09.125Z",
+//      "expired_at": "2025-11-13T00:34:09.000Z"
+//    }
+//  ],
+//  "total_count": 1
+//}
 message AgentsInfo {
   repeated AgentInfo results = 1;
   int32 total_count = 2;
