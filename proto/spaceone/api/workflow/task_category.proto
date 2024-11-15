@@ -1,0 +1,145 @@
+syntax = "proto3";
+
+package spaceone.api.workflow.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/workflow/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+
+service TaskCategory {
+    rpc create (TaskCategoryCreateRequest) returns (TaskCategoryInfo) {
+        option (google.api.http) = {
+            post: "/workflow/v1/task-category/create"
+            body: "*"
+        };
+    }
+    rpc update (TaskCategoryUpdateRequest) returns (TaskCategoryInfo) {
+        option (google.api.http) = {
+            post: "/workflow/v1/task-category/update"
+            body: "*"
+        };
+    }
+    rpc delete (TaskCategoryRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/workflow/v1/task-category/delete"
+            body: "*"
+        };
+    }
+    rpc get (TaskCategoryRequest) returns (TaskCategoryInfo) {
+        option (google.api.http) = {
+            post: "/workflow/v1/task-category/get"
+            body: "*"
+        };
+    }
+    rpc list (TaskCategorySearchQuery) returns (TaskCategoriesInfo) {
+        option (google.api.http) = {
+            post: "/workflow/v1/task-category/list"
+            body: "*"
+        };
+    }
+    rpc stat (TaskCategoryStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/workflow/v1/task-category/stat"
+            body: "*"
+        };
+    }
+}
+
+message StatusOption {
+    enum StatusType {
+        STATUS_NONE = 0;
+        TODO = 1;
+        IN_PROGRESS = 2;
+        COMPLETED = 3;
+    }
+
+    string name = 1;
+    string color = 2;
+    StatusType status_type = 3;
+}
+
+message TaskField {
+    enum SelectionType {
+        SELECTION_NONE = 0;
+        SINGLE = 1;
+        MULTI = 2;
+    }
+
+    string field_id = 1;
+    string name = 2;
+    string description = 3;
+    string field_type = 4;
+    google.protobuf.Struct options = 5;
+    SelectionType selection_type = 6;
+    bool is_required = 7;
+    bool is_primary = 8;
+}
+
+message TaskCategoryCreateRequest {
+    string name = 1;
+    // +optional
+    string description = 2;
+    repeated StatusOption status_option = 3;
+    // +optional
+    repeated TaskField fields = 4;
+    // +optional
+    google.protobuf.Struct tags = 11;
+    string package_id = 21;
+}
+
+message TaskCategoryUpdateRequest {
+    string category_id = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    string description = 3;
+    // +optional
+    repeated StatusOption status_option = 4;
+    // +optional
+    repeated TaskField fields = 5;
+    // +optional
+    google.protobuf.Struct tags = 11;
+    // +optional
+    string package_id = 21;
+}
+
+message TaskCategoryRequest {
+    string category_id = 1;
+}
+
+message TaskCategorySearchQuery {
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string category_id = 2;
+    // +optional
+    string name = 3;
+}
+
+message TaskCategoryInfo {
+    string category_id = 1;
+    string name = 2;
+    string description = 3;
+    repeated StatusOption status_option = 4;
+    repeated TaskField fields = 5;
+    google.protobuf.Struct tags = 11;
+
+    string domain_id = 21;
+    string package_id = 22;
+
+    string created_at = 31;
+    string updated_at = 32;
+}
+
+message TaskCategoriesInfo {
+    repeated TaskCategoryInfo results = 1;
+    int32 total_count = 2;
+}
+
+message TaskCategoryStatQuery {
+    spaceone.api.core.v2.StatisticsQuery query = 1;
+}
