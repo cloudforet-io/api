@@ -28,8 +28,11 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ExternalAuthClient interface {
+	// Google OAuth2, Keycloak OIDC, SAML are supported as external authentication.
 	Set(ctx context.Context, in *SetExternalAuthRequest, opts ...grpc.CallOption) (*ExternalAuthInfo, error)
+	// Unset external authentication information.
 	Unset(ctx context.Context, in *ExternalAuthRequest, opts ...grpc.CallOption) (*ExternalAuthInfo, error)
+	// Get external authentication information.
 	Get(ctx context.Context, in *ExternalAuthRequest, opts ...grpc.CallOption) (*ExternalAuthInfo, error)
 }
 
@@ -75,8 +78,11 @@ func (c *externalAuthClient) Get(ctx context.Context, in *ExternalAuthRequest, o
 // All implementations must embed UnimplementedExternalAuthServer
 // for forward compatibility.
 type ExternalAuthServer interface {
+	// Google OAuth2, Keycloak OIDC, SAML are supported as external authentication.
 	Set(context.Context, *SetExternalAuthRequest) (*ExternalAuthInfo, error)
+	// Unset external authentication information.
 	Unset(context.Context, *ExternalAuthRequest) (*ExternalAuthInfo, error)
+	// Get external authentication information.
 	Get(context.Context, *ExternalAuthRequest) (*ExternalAuthInfo, error)
 	mustEmbedUnimplementedExternalAuthServer()
 }

@@ -60,19 +60,22 @@ class ExternalAuthServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def set(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Google OAuth2, Keycloak OIDC, SAML are supported as external authentication.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def unset(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Unset external authentication information.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def get(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Get external authentication information.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')

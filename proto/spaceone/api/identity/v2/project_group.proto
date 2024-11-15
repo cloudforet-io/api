@@ -72,6 +72,11 @@ service ProjectGroup {
   }
 }
 
+//{
+//  "name": "Cloudforet Company",
+//  "tags": {
+//  }
+//}
 message CreateProjectGroupRequest {
   string name = 1;
   // +optional
@@ -80,6 +85,10 @@ message CreateProjectGroupRequest {
   string parent_group_id = 3;
 }
 
+//{
+//  "project_group_id": "pg-7120aabb662c",
+//  "name": "Cloudforet Core Team"
+//}
 message UpdateProjectGroupRequest {
   string project_group_id = 1;
   // +optional
@@ -88,21 +97,41 @@ message UpdateProjectGroupRequest {
   google.protobuf.Struct tags = 3;
 }
 
+//{
+//  "project_group_id": "pg-7120aabb662c",
+//  "parent_group_id": "pg-10efea238292"
+//}
 message ChangeParentGroupRequest {
   string project_group_id = 1;
   string parent_group_id = 2;
 }
 
+
+//{
+//  "project_group_id": "pg-7120aabb662c"
+//}
 message ProjectGroupRequest {
   string project_group_id = 1;
 }
 
+//{
+//    "project_group_id": "pg-7120aabb662c",
+//    "users": ["wonny@cloudforet.io", "bolby@cloudforet.io"]
+//}
 message UsersProjectGroupRequest {
   string project_group_id = 1;
   repeated string users = 2;
 }
 
-
+//{
+//    "project_group_id": "pg-7120aabb662c",
+//    "name": "Cloudforet Core Team",
+//    "tags": {},
+//    "domain_id": "domain-186446b1516b",
+//    "workspace_id": "workspace-1a02ebcb3eb2",
+//    "parent_group_id": "pg-10efea238292",
+//    "created_at": "2024-07-12T03:31:02.222Z"
+//}
 message ProjectGroupInfo {
   string project_group_id = 1;
   string name = 2;
@@ -118,6 +147,14 @@ message ProjectGroupInfo {
   string last_synced_at = 32;
 }
 
+//{
+//    "query": {
+//        "page": {
+//            "start":1,
+//            "limit":10
+//        }
+//    }
+//}
 message ProjectGroupSearchQuery {
   // +optional
   spaceone.api.core.v2.Query query = 1;
@@ -131,6 +168,20 @@ message ProjectGroupSearchQuery {
   string parent_group_id = 22;
 }
 
+//{
+//    "results": [
+//        {
+//            "project_group_id": "pg-7120aabb662c",
+//            "name": "Cloudforet Core Team",
+//            "tags": {},
+//            "domain_id": "domain-186446b1516b",
+//            "workspace_id": "workspace-1a02ebcb3eb2",
+//            "parent_group_id": "pg-10efea238292",
+//            "created_at": "2024-07-12T03:31:02.222Z"
+//        }
+//    ],
+//    "total_count": 1
+//}
 message ProjectGroupsInfo {
   repeated ProjectGroupInfo results = 1;
   int32 total_count = 2;

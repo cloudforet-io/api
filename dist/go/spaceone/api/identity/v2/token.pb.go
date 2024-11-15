@@ -237,6 +237,14 @@ func (GrantTokenInfo_RoleType) EnumDescriptor() ([]byte, []int) {
 	return file_spaceone_api_identity_v2_token_proto_rawDescGZIP(), []int{3, 0}
 }
 
+//	{
+//	 "credentials": {
+//	     "user_id": "wonny@cloudforet.io",
+//	     "password": "Password0*"
+//	 },
+//	 "auth_type": "LOCAL",
+//	 "domain_id": "domain-123123a"
+//	}
 type IssueTokenRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -372,6 +380,12 @@ func (x *TokenInfo) GetRefreshToken() string {
 	return ""
 }
 
+//	{
+//	 "grant_type": "REFRESH_TOKEN",
+//	 "token": "your_refresh_token_from_issue",
+//	 "scope": "DOMAIN",
+//	 "domain_id": "domain-123123a"
+//	}
 type GrantTokenRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
