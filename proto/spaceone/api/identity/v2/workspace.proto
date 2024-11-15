@@ -82,11 +82,18 @@ message WorkspaceCostInfo {
   float month = 2;
 }
 
+//{
+//  "name": "Cloudforet Workspace"
+//}
 message CreateWorkSpaceRequest {
   string name = 1;
   google.protobuf.Struct tags = 2;
 }
 
+//{
+//  "workspace_id": "workspace-a1b2c3d4e5f6",
+//  "name": "Cloudforet Workspace"
+//}
 message UpdateWorkSpaceRequest {
   string workspace_id = 1;
   // +optional
@@ -95,17 +102,28 @@ message UpdateWorkSpaceRequest {
   google.protobuf.Struct tags = 3;
 }
 
+//{
+//  "workspace_id": "workspace-a1b2c3d4e5f6",
+//  "workspace_group_id": "wg-a1b2c3d4e5f6"
+//}
 message ChangeWorkspaceGroupRequest {
   string workspace_id = 1;
   // +optional
   string workspace_group_id = 2;
 }
 
+//{
+//  "workspace_id": "workspace-a1b2c3d4e5f6",
+//  "force": true
+//}
 message WorkspaceDeleteRequest {
   string workspace_id = 1;
   bool force = 2;
 }
 
+//{
+//  "workspace_id": "workspace-a1b2c3d4e5f6"
+//}
 message WorkspaceRequest {
   string workspace_id = 1;
 }
@@ -115,6 +133,17 @@ message WorkspaceCheckRequest {
   string domain_id = 21;
 }
 
+//{
+//  "workspace_id": "workspace-a1b2c3d4e5f6",
+//  "name": "Cloudforet Workspace",
+//  "state": "ENABLED",
+//  "created_by": "cloudforet@cloudforet.io",
+//  "dormant_ttl": -1,
+//  "cost_info": {},
+//  "workspace_group_id": "wg-a1b2c3d4e5f6",
+//  "domain_id": "domain-a1b2c3d4e5f6",
+//  "created_at": "2024-11-12T08:14:04.011Z"
+//}
 message WorkspaceInfo {
   enum State {
     NONE = 0;
@@ -145,6 +174,14 @@ message WorkspaceInfo {
   string changed_at = 34;
 }
 
+//{
+//  "query": {
+//    "page": {
+//      "start": 1,
+//      "limit": 10
+//    }
+//  }
+//}
 message WorkspaceSearchQuery {
   enum State {
     NONE = 0;
@@ -170,6 +207,37 @@ message WorkspaceSearchQuery {
   string workspace_group_id = 8;
 }
 
+//{
+//  "results": [
+//  {
+//    "workspace_id": "workspace-a1b2c3d4e5f6",
+//    "name": "Cloudforet Workspace",
+//    "state": "ENABLED",
+//    "created_by": "wonny@cloudforet.io",
+//    "dormant_ttl": -1,
+//    "service_account_count": 0,
+//    "user_count": 0,
+//    "cost_info": {},
+//    "domain_id": "domain-a1b2c3d4e5f6",
+//    "created_at": "2024-11-12T08:25:08.762Z"
+//  },
+//  {
+//    "workspace_id": "workspace-g7h8i9j1k2l3",
+//    "name": "Wonny Workspace",
+//    "state": "ENABLED",
+//    "created_by": "cloudforet@cloudforet.io",
+//    "dormant_ttl": 0,
+//    "service_account_count": 0,
+//    "user_count": 0,
+//    "cost_info": {},
+//    "workspace_group_id": "wg-a1b2c3d4e5f6",
+//    "domain_id": "domain-g7h8i9j1k2l3",
+//    "created_at": "2024-11-12T08:14:04.011Z",
+//    "changed_at": "2024-11-12T08:43:39.945Z"
+//  }
+//  ],
+//  "total_count": 2
+//}
 message WorkspacesInfo {
   repeated WorkspaceInfo results = 1;
   int32 total_count = 2;

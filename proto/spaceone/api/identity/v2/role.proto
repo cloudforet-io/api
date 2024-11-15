@@ -82,6 +82,17 @@ enum RoleType {
   WORKSPACE_MEMBER = 3;
 }
 
+//{
+//  "name": "Cloudforet User",
+//  "role_type": "WORKSPACE_MEMBER",
+//  "page_access": [
+//    "dashboards:restricted.*",
+//    "project:writable.*",
+//    "asset_inventory:writable.*",
+//    "cost_explorer:readonly.*",
+//    "alert_manager:restricted.*"
+//  ]
+//}
 message CreateRoleRequest {
   string name = 1;
   RoleType role_type = 2;
@@ -93,6 +104,17 @@ message CreateRoleRequest {
   google.protobuf.Struct tags = 5;
 }
 
+//{
+//  "name": "Cloudforet User",
+//  "role_type": "WORKSPACE_MEMBER",
+//  "page_access": [
+//    "dashboards:restricted.*",
+//    "project:writable.*",
+//    "asset_inventory:writable.*",
+//    "cost_explorer:readonly.*",
+//    "alert_manager:restricted.*"
+//  ]
+//}
 message UpdateRoleRequest {
   string role_id = 1;
   // +optional
@@ -107,12 +129,28 @@ message UpdateRoleRequest {
 
 
 //{
-//  "role_id": "role-a12335a6a4fe"
+//  "role_id": "role-a1b2c3d4e5f6"
 //}
 message RoleRequest {
   string role_id = 1;
 }
 
+//{
+//  "created_at": "2024-11-14T02:44:56.211Z",
+//  "domain_id": "domain-a1b2c3d4e5f6",
+//  "name": "Cloudforet User",
+//  "page_access": [
+//    "dashboards:restricted.*",
+//    "project:writable.*",
+//    "asset_inventory:writable.*",
+//    "cost_explorer:readonly.*",
+//    "alert_manager:restricted.*"
+//  ],
+//  "role_id": "role-5ce484d4b750",
+//  "role_type": "WORKSPACE_MEMBER",
+//  "state": "ENABLED",
+//  "updated_at": "2024-11-14T02:44:56.211Z"
+//}
 message RoleInfo {
   enum State {
     NONE = 0;
@@ -132,6 +170,21 @@ message RoleInfo {
   string updated_at = 32;
 }
 
+//{
+//  "state": "ENABLED",
+//  "query": {
+//    "page": {
+//      "start": 1,
+//      "limit": 10
+//    },
+//    "sort": [
+//      {
+//        "key": "role_type",
+//        "desc": true
+//      }
+//    ]
+//  }
+//}
 message RoleSearchQuery {
   enum State {
     NONE = 0;
@@ -150,6 +203,101 @@ message RoleSearchQuery {
   State state = 5;
 }
 
+//{
+//  "results": [
+//    {
+//      "created_at": "2024-11-12T04:46:40.902Z",
+//      "domain_id": "domain-a1b2c3d4e5f6",
+//      "is_managed": true,
+//      "name": "Workspace Owner",
+//      "role_id": "managed-workspace-owner",
+//      "role_type": "WORKSPACE_OWNER",
+//      "state": "ENABLED",
+//      "updated_at": "2024-11-12T04:46:40.902Z"
+//    },
+//    {
+//      "created_at": "2024-11-14T02:47:08.065Z",
+//      "domain_id": "domain-a1b2c3d4e5f6",
+//      "name": "Cloudforet Onwer",
+//      "page_access": [
+//        "dashboards:restricted.*",
+//        "project:writable.*",
+//        "asset_inventory:writable.*",
+//        "cost_explorer:readonly.*",
+//        "alert_manager:restricted.*"
+//      ],
+//      "role_id": "role-93a6d387e7ed",
+//      "role_type": "WORKSPACE_OWNER",
+//      "state": "ENABLED",
+//      "updated_at": "2024-11-14T02:47:08.065Z"
+//    },
+//    {
+//      "created_at": "2024-11-12T04:46:40.894Z",
+//      "domain_id": "domain-a1b2c3d4e5f6",
+//      "is_managed": true,
+//      "name": "Workspace Member",
+//      "role_id": "managed-workspace-member",
+//      "role_type": "WORKSPACE_MEMBER",
+//      "state": "ENABLED",
+//      "updated_at": "2024-11-12T04:46:40.895Z"
+//    },
+//    {
+//      "created_at": "2024-11-14T02:44:56.211Z",
+//      "domain_id": "domain-a1b2c3d4e5f6",
+//      "name": "Cloudforet User",
+//      "page_access": [
+//        "dashboards:restricted.*",
+//        "project:writable.*",
+//        "asset_inventory:writable.*",
+//        "cost_explorer:readonly.*",
+//        "alert_manager:restricted.*"
+//      ],
+//      "role_id": "role-5ce484d4b750",
+//      "role_type": "WORKSPACE_MEMBER",
+//      "state": "ENABLED",
+//      "updated_at": "2024-11-14T02:44:56.211Z"
+//    },
+//    {
+//      "created_at": "2024-11-14T02:51:23.638Z",
+//      "domain_id": "domain-a1b2c3d4e5f6",
+//      "name": "Wonny Project Member",
+//      "page_access": [
+//        "dashboards:restricted.*",
+//        "project:writable.*",
+//        "asset_inventory:writable.*"
+//      ],
+//      "role_id": "role-4b8283a42890",
+//      "role_type": "WORKSPACE_MEMBER",
+//      "state": "ENABLED",
+//      "updated_at": "2024-11-14T02:51:23.638Z"
+//    },
+//    {
+//      "created_at": "2024-11-14T02:51:34.751Z",
+//      "domain_id": "domain-a1b2c3d4e5f6",
+//      "name": "SpaceONE Project Member",
+//      "page_access": [
+//        "dashboards:restricted.*",
+//        "project:writable.*",
+//        "asset_inventory:writable.*"
+//      ],
+//      "role_id": "role-3365600e3e0e",
+//      "role_type": "WORKSPACE_MEMBER",
+//      "state": "ENABLED",
+//      "updated_at": "2024-11-14T02:51:34.751Z"
+//    },
+//    {
+//      "created_at": "2024-11-12T04:46:40.885Z",
+//      "domain_id": "domain-a1b2c3d4e5f6",
+//      "is_managed": true,
+//      "name": "Domain Admin",
+//      "role_id": "managed-domain-admin",
+//      "role_type": "DOMAIN_ADMIN",
+//      "state": "ENABLED",
+//      "updated_at": "2024-11-12T04:46:40.885Z"
+//    }
+//  ],
+//  "total_count": 7
+//}
 message RolesInfo {
   repeated RoleInfo results = 1;
   int32 total_count = 2;
