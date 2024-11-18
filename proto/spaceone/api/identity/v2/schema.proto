@@ -56,6 +56,12 @@ enum SchemaType {
   TRUSTING_SECRET = 4;
 }
 
+//{
+//  "schema_id": "aws-secret-access-key",
+//  "name": "AWS Access Key",
+//  "schema_type": "SECRET",
+//  "provider": "aws"
+//}
 message CreateSchemaRequest {
   string schema_id = 1;
   string name = 2;
@@ -71,6 +77,34 @@ message CreateSchemaRequest {
   google.protobuf.Struct tags = 8;
 }
 
+//{
+//  "schema_id": "aws-secret-access-key1",
+//  "schema": {
+//    "order": [
+//      "aws_access_key_id",
+//      "aws_secret_access_key"
+//    ],
+//    "properties": {
+//      "aws_access_key_id": {
+//        "format": "password",
+//        "minLength": 4.0,
+//        "title": "AWS Access Key",
+//        "type": "string"
+//      },
+//      "aws_secret_access_key": {
+//        "format": "password",
+//        "minLength": 4.0,
+//        "title": "AWS Secret Key",
+//        "type": "string"
+//      }
+//    },
+//    "required": [
+//      "aws_access_key_id",
+//      "aws_secret_access_key"
+//    ],
+//    "type": "object"
+//  }
+//}
 message UpdateSchemaRequest {
   string schema_id = 1;
   // +optional
@@ -85,10 +119,47 @@ message UpdateSchemaRequest {
   google.protobuf.Struct tags = 6;
 }
 
+//{
+//  "schema_id": "aws-secret-access-key"
+//}
 message SchemaRequest {
   string schema_id = 1;
 }
 
+//{
+//  "created_at": "2024-11-18T01:59:00.407Z",
+//  "domain_id": "domain-a1b2c3d4e5f6",
+//  "name": "AWS Access Key",
+//  "provider": "aws",
+//  "schema": {
+//    "order": [
+//      "aws_access_key_id",
+//      "aws_secret_access_key"
+//    ],
+//    "properties": {
+//      "aws_access_key_id": {
+//        "format": "password",
+//        "minLength": 4.0,
+//        "title": "AWS Access Key",
+//        "type": "string"
+//      },
+//      "aws_secret_access_key": {
+//        "format": "password",
+//        "minLength": 4.0,
+//        "title": "AWS Secret Key",
+//        "type": "string"
+//      }
+//    },
+//    "required": [
+//      "aws_access_key_id",
+//      "aws_secret_access_key"
+//    ],
+//    "type": "object"
+//  },
+//  "schema_id": "aws-secret-access-key",
+//  "schema_type": "SECRET",
+//  "updated_at": "2024-11-18T02:00:45.792Z"
+//}
 message SchemaInfo {
   string schema_id = 1;
   string name = 2;
@@ -104,6 +175,21 @@ message SchemaInfo {
   string updated_at = 32;
 }
 
+//{
+//  "provider": "aws",
+//  "query": {
+//    "page": {
+//      "start": 1,
+//      "limit": 10
+//    },
+//    "sort": [
+//      {
+//        "key": "created_at",
+//        "desc": true
+//      }
+//    ]
+//  }
+//}
 message SchemaSearchQuery {
   // +optional
   spaceone.api.core.v2.Query query = 1;
@@ -121,6 +207,67 @@ message SchemaSearchQuery {
   bool is_managed = 7;
 }
 
+//{
+//  "results": [
+//    {
+//      "created_at": "2024-11-18T02:08:10.216Z",
+//      "domain_id": "domain-a1b2c3d4e5f6",
+//      "name": "AWS Trusted Account",
+//      "provider": "aws",
+//      "schema": {
+//        "properties": {
+//          "account_id": {
+//            "minLength": 4.0,
+//            "title": "Account ID",
+//            "type": "string"
+//          }
+//        },
+//        "required": [
+//          "account_id"
+//        ],
+//        "type": "object"
+//      },
+//      "schema_id": "aws-trusted-account",
+//      "schema_type": "TRUSTED_ACCOUNT",
+//      "updated_at": "2024-11-18T02:08:10.216Z"
+//    },
+//    {
+//      "created_at": "2024-11-18T01:59:00.407Z",
+//      "domain_id": "domain-a1b2c3d4e5f6",
+//      "name": "AWS Access Key",
+//      "provider": "aws",
+//      "schema": {
+//        "order": [
+//          "aws_access_key_id",
+//          "aws_secret_access_key"
+//        ],
+//        "properties": {
+//          "aws_access_key_id": {
+//            "format": "password",
+//            "minLength": 4.0,
+//            "title": "AWS Access Key",
+//            "type": "string"
+//          },
+//          "aws_secret_access_key": {
+//            "format": "password",
+//            "minLength": 4.0,
+//            "title": "AWS Secret Key",
+//            "type": "string"
+//          }
+//        },
+//        "required": [
+//          "aws_access_key_id",
+//          "aws_secret_access_key"
+//        ],
+//        "type": "object"
+//      },
+//      "schema_id": "aws-secret-access-key",
+//      "schema_type": "SECRET",
+//      "updated_at": "2024-11-18T02:00:45.792Z"
+//    }
+//  ],
+//  "total_count": 2
+//}
 message SchemasInfo {
   repeated SchemaInfo results = 1;
   int32 total_count = 2;
