@@ -52,6 +52,12 @@ service RoleBinding {
   }
 }
 
+//{
+//  "user_id": "wonny@cloudforet.io",
+//  "role_id": "managed-workspace-owner",
+//  "resource_group": "WORKSPACE",
+//  "workspace_id": "workspace-a1b2c3d4e5f6"
+//}
 message CreateRoleBindingRequest {
   enum ResourceGroup {
     NONE = 0;
@@ -66,15 +72,37 @@ message CreateRoleBindingRequest {
   string workspace_id = 21;
 }
 
+//{
+//  "roleBindingId": "rb-a1b2c3d4e5f6",
+//  "roleId": "managed-workspace-owner"
+//}
 message UpdateRoleBindingRequest {
   string role_binding_id = 1;
   string role_id = 2;
 }
 
+//{
+//  "roleBindingId": "rb-a1b2c3d4e5f6",
+//}
 message RoleBindingRequest {
   string role_binding_id = 1;
 }
 
+//{
+//  "roleType": "WORKSPACE_MEMBER",
+//  "query": {
+//    "page": {
+//      "start": 1,
+//      "limit": 10
+//    },
+//    "sort": [
+//      {
+//        "key": "created_at",
+//        "desc": true
+//      }
+//    ]
+//  }
+//}
 message RoleBindingSearchQuery {
   enum ResourceGroup {
     GROUP_NONE = 0;
@@ -102,6 +130,16 @@ message RoleBindingSearchQuery {
   string user_id = 23;
 }
 
+//{
+//  "created_at": "2024-11-18T04:23:18.121Z",
+//  "domain_id": "domain-a1b2c3d4e5f6",
+//  "resource_group": "WORKSPACE",
+//  "role_binding_id": "rb-a1b2c3d4e5f6",
+//  "role_id": "managed-workspace-owner",
+//  "role_type": "WORKSPACE_OWNER",
+//  "user_id": "wonny@cloudforet.io",
+//  "workspace_id": "workspace-a1b2c3d4e5f6"
+//}
 message RoleBindingInfo {
   enum ResourceGroup {
     GROUP_NONE = 0;
@@ -126,6 +164,31 @@ message RoleBindingInfo {
   string created_at = 31;
 }
 
+//{
+//  "results": [
+//    {
+//      "created_at": "2024-11-18T05:00:52.870Z",
+//      "domain_id": "domain-a1b2c3d4e5f6",
+//      "resource_group": "WORKSPACE",
+//      "role_binding_id": "rb-a1b2c3d4e5f6",
+//      "role_id": "managed-workspace-member",
+//      "role_type": "WORKSPACE_MEMBER",
+//      "user_id": "wonny@cloudforet.io",
+//      "workspace_id": "workspace-a1b2c3d4e5f6"
+//    },
+//    {
+//      "created_at": "2024-11-18T04:42:33.285Z",
+//      "domain_id": "domain-a1b2c3d4e5f6",
+//      "resource_group": "WORKSPACE",
+//      "role_binding_id": "rb-g7h8i9j1k2l3",
+//      "role_id": "managed-workspace-owner",
+//      "role_type": "WORKSPACE_OWNER",
+//      "user_id": "wonny@cloudforet.io",
+//      "workspace_id": "workspace-a1b2c3d4e5f6"
+//    }
+//  ],
+//  "total_count": 2
+//}
 message RoleBindingsInfo {
   repeated RoleBindingInfo results = 1;
   int32 total_count = 2;
