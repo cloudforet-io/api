@@ -1,0 +1,112 @@
+syntax = "proto3";
+
+package spaceone.api.workflow.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/workflow/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/workflow/task_category.proto";
+
+
+service TaskType {
+    rpc create (TaskTypeCreateRequest) returns (TaskTypeInfo) {
+        option (google.api.http) = {
+            post: "/workflow/v1/task-type/create"
+            body: "*"
+        };
+    }
+    rpc update (TaskTypeUpdateRequest) returns (TaskTypeInfo) {
+        option (google.api.http) = {
+            post: "/workflow/v1/task-type/update"
+            body: "*"
+        };
+    }
+    rpc delete (TaskTypeRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/workflow/v1/task-type/delete"
+            body: "*"
+        };
+    }
+    rpc get (TaskTypeRequest) returns (TaskTypeInfo) {
+        option (google.api.http) = {
+            post: "/workflow/v1/task-type/get"
+            body: "*"
+        };
+    }
+    rpc list (TaskTypeSearchQuery) returns (TaskTypesInfo) {
+        option (google.api.http) = {
+            post: "/workflow/v1/task-type/list"
+            body: "*"
+        };
+    }
+    rpc stat (TaskTypeStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/workflow/v1/task-type/stat"
+            body: "*"
+        };
+    }
+}
+
+message TaskTypeCreateRequest {
+    string name = 1;
+    // +optional
+    string description = 2;
+    // +optional
+    repeated spaceone.api.workflow.v1.TaskField fields = 3;
+    // +optional
+    google.protobuf.Struct tags = 11;
+    string category_id = 21;
+}
+
+message TaskTypeUpdateRequest {
+    string task_type_id = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    string description = 3;
+    // +optional
+    repeated spaceone.api.workflow.v1.TaskField fields = 4;
+    // +optional
+    google.protobuf.Struct tags = 11;
+    // +optional
+    string category_id = 21;
+}
+
+message TaskTypeRequest {
+    string task_type_id = 1;
+}
+
+message TaskTypeSearchQuery {
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string task_type_id = 2;
+    // +optional
+    string name = 3;
+}
+
+message TaskTypeInfo {
+    string task_type_id = 1;
+    string name = 2;
+    string description = 3;
+    repeated spaceone.api.workflow.v1.TaskField fields = 4;
+    google.protobuf.Struct tags = 11;
+
+    string domain_id = 21;
+    string category_id = 22;
+
+    string created_at = 31;
+    string updated_at = 32;
+}
+
+message TaskTypesInfo {
+    repeated TaskTypeInfo results = 1;
+    int32 total_count = 2;
+}
+
+message TaskTypeStatQuery {
+    spaceone.api.core.v2.StatisticsQuery query = 1;
+}

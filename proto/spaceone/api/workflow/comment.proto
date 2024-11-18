@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+package spaceone.api.workflow.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/workflow/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+
+service Comment {
+    rpc create (CommentCreateRequest) returns (CommentInfo) {
+        option (google.api.http) = {
+            post: "/workflow/v1/comment/create"
+            body: "*"
+        };
+    }
+    rpc update (CommentUpdateRequest) returns (CommentInfo) {
+        option (google.api.http) = {
+            post: "/workflow/v1/comment/update"
+            body: "*"
+        };
+    }
+    rpc delete (CommentRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/workflow/v1/comment/delete"
+            body: "*"
+        };
+    }
+    rpc get (CommentRequest) returns (CommentInfo) {
+        option (google.api.http) = {
+            post: "/workflow/v1/comment/get"
+            body: "*"
+        };
+    }
+    rpc list (CommentSearchQuery) returns (CommentsInfo) {
+        option (google.api.http) = {
+            post: "/workflow/v1/comment/list"
+            body: "*"
+        };
+    }
+    rpc stat (CommentStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/workflow/v1/comment/stat"
+            body: "*"
+        };
+    }
+}
+
+message Mentions {
+  repeated string USER = 1;
+  repeated string USER_GROUP = 2;
+}
+
+message CommentCreateRequest {
+    string task_id = 1;
+    string comment = 2;
+    // +optional
+    Mentions mentions = 3;
+}
+
+message CommentUpdateRequest {
+    string comment_id = 1;
+    string comment = 2;
+    // +optional
+    Mentions mentions = 3;
+}
+
+message CommentRequest {
+    string comment_id = 1;
+}
+
+message CommentSearchQuery {
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string task_id = 2;
+    // +optional
+    string comment_id = 3;
+    // +optional
+    CommentInfo.CommentType comment_type = 4;
+
+    // +optional
+    string workspace_id = 11;
+    // +optional
+    string project_id = 12;
+    // +optional
+    string user_group_id = 13;
+    // +optional
+    string user_id = 14;
+}
+
+message CommentInfo {
+    enum CommentType {
+        COMMENT_TYPE_NONE = 0;
+        TASK_DESCRIPTION = 1;
+        COMMENT = 2;
+    }
+
+    string comment_id = 1;
+    string comment = 2;
+    CommentType comment_type = 3;
+    bool is_edited = 4;
+    Mentions mentions = 5;
+
+    string domain_id = 21;
+    string workspace_id = 22;
+    string project_id = 23;
+    string task_id = 24;
+
+    string created_at = 31;
+    string updated_at = 32;
+}
+
+message CommentsInfo {
+    repeated CommentInfo results = 1;
+    int32 total_count = 2;
+}
+
+message CommentStatQuery {
+    spaceone.api.core.v2.StatisticsQuery query = 1;
+}

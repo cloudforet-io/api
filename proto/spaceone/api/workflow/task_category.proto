@@ -49,14 +49,14 @@ service TaskCategory {
     }
 }
 
-message StatusOption {
-    enum StatusType {
-        STATUS_NONE = 0;
-        TODO = 1;
-        IN_PROGRESS = 2;
-        COMPLETED = 3;
-    }
+enum StatusType {
+    STATUS_NONE = 0;
+    TODO = 1;
+    IN_PROGRESS = 2;
+    COMPLETED = 3;
+}
 
+message StatusOption {
     string name = 1;
     string color = 2;
     StatusType status_type = 3;
