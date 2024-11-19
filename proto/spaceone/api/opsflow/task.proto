@@ -67,7 +67,7 @@ enum TaskPriority {
 
 message TaskCreateRequest {
     string name = 1;
-    string status = 2;
+    string status_id = 2;
     // +optional
     TaskPriority priority = 3;
     // +optional
@@ -106,11 +106,9 @@ message TaskUpdateRequest {
 
 message TaskChangeStatusRequest {
     string task_id = 1;
-    string status = 2;
+    string status_id = 2;
     // +optional
     string assignee = 3;
-    // +optional
-    string comment = 4;
 }
 
 message TaskRequest {
@@ -125,9 +123,9 @@ message TaskSearchQuery {
     // +optional
     string name = 3;
     // +optional
-    string status = 4;
+    string status_id = 4;
     // +optional
-    spaceone.api.opsflow.v1.StatusType status_type = 5;
+    string status_type = 5;
     // +optional
     TaskPriority priority = 6;
     // +optional
@@ -144,11 +142,12 @@ message TaskInfo {
     string task_id = 1;
     string name = 2;
     string status = 3;
-    spaceone.api.opsflow.v1.StatusType status_type = 4;
+    string status_type = 4;
     TaskPriority priority = 5;
     string description = 6;
     google.protobuf.Struct data = 7;
     repeated spaceone.api.file_manager.v1.FileInfo files = 8;
+    string assignee = 9;
 
     string domain_id = 21;
     string workspace_id = 22;
