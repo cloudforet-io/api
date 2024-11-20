@@ -10,66 +10,66 @@ import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
 
 
-service UserGroup {
+service Package {
 
-    rpc create (CreateUserGroupRequest) returns (UserGroupInfo) {
+    rpc create (CreatePackageRequest) returns (PackageInfo) {
         option (google.api.http) = {
-            post: "/identity/v2/user-group/create"
+            post: "/identity/v2/package/create"
             body: "*"
         };
     }
 
-    rpc update (UpdateUserGroupRequest) returns (UserGroupInfo) {
+    rpc update (UpdatePackageRequest) returns (PackageInfo) {
         option (google.api.http) = {
-            post: "/identity/v2/user-group/update"
+            post: "/identity/v2/package/update"
             body: "*"
         };
     }
 
-    rpc delete (UserGroupRequest) returns (google.protobuf.Empty) {
+    rpc delete (PackageRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/identity/v2/user-group/delete"
+            post: "/identity/v2/package/delete"
             body: "*"
         };
     }
 
-    rpc add_users (UsersUserGroupRequest) returns (UserGroupInfo) {
+    rpc set_default (PackageRequest) returns (PackageInfo) {
         option (google.api.http) = {
-            post: "/identity/v2/user-group/add-users"
+            post: "/identity/v2/package/set-default"
             body: "*"
         };
     }
 
-    rpc remove_users (UsersUserGroupRequest) returns (UserGroupInfo) {
+    rpc change_order (ChangePackageOrderRequest) returns (PackageInfo) {
         option (google.api.http) = {
-            post: "/identity/v2/user-group/remove-users"
+            post: "/identity/v2/package/change-order"
             body: "*"
         };
     }
 
-    rpc get (UserGroupRequest) returns (UserGroupInfo) {
+    rpc get (PackageRequest) returns (PackageInfo) {
         option (google.api.http) = {
-            post: "/identity/v2/user-group/get"
+            post: "/identity/v2/package/get"
             body: "*"
         };
     }
 
-    rpc list (UserGroupSearchQuery) returns (UserGroupsInfo) {
+    rpc list (PackageSearchQuery) returns (PackagesInfo) {
         option (google.api.http) = {
-            post: "/identity/v2/user-group/list"
+            post: "/identity/v2/package/list"
             body: "*"
         };
     }
-    rpc stat (UserGroupStatQuery) returns (google.protobuf.Struct) {
+    rpc stat (PackageStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/identity/v1/user-group/stat"
+            post: "/identity/v1/package/stat"
             body: "*"
         };
     }
 }
 
 
-message CreateUserGroupRequest {
+message CreatePackageRequest {
     string name = 1;
     // +optional
     string description = 2;
@@ -77,8 +77,8 @@ message CreateUserGroupRequest {
     google.protobuf.Struct tags = 3;
 }
 
-message UpdateUserGroupRequest {
-    string user_group_id = 1;
+message UpdatePackageRequest {
+    string package_id = 1;
     // +optional
     string name = 2;
     // +optional
@@ -87,43 +87,42 @@ message UpdateUserGroupRequest {
     google.protobuf.Struct tags = 4;
 }
 
-message UserGroupRequest {
-    string user_group_id = 1;
+message PackageRequest {
+    string package_id = 1;
 }
 
-message UsersUserGroupRequest {
-    string user_group_id = 1;
-    repeated string users = 2;
+message ChangePackageOrderRequest {
+    string package_id = 1;
+    int32 order = 2;
 }
 
-message UserGroupInfo {
-    string user_group_id = 1;
+message PackageInfo {
+    string package_id = 1;
     string name = 2;
     string description = 3;
-    repeated string users = 4;
-    google.protobuf.Struct tags = 5;
+    int32 order = 4;
+    bool is_default = 5;
+    google.protobuf.Struct tags = 11;
     string domain_id = 21;
     string workspace_id = 22;
     string created_at = 31;
+    string updated_at = 32;
 }
 
-message UserGroupSearchQuery {
+message PackageSearchQuery {
     // +optional
     spaceone.api.core.v2.Query query = 1;
     // +optional
-    string user_group_id = 2;
+    string package_id = 2;
     // +optional
     string name = 3;
-    // +optional
-    string user_id = 21;
 }
 
-message UserGroupsInfo {
-    repeated UserGroupInfo results = 1;
+message PackagesInfo {
+    repeated PackageInfo results = 1;
     int32 total_count = 2;
 }
 
-message UserGroupStatQuery {
+message PackageStatQuery {
     spaceone.api.core.v2.StatisticsQuery query = 1;
 }
-
