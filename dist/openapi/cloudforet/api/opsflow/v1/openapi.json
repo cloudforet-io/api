@@ -606,11 +606,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category_id||string|True|\n |description||string||\n |fields||array||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |category_id||string|True|\n |description||string||\n |fields||array||\n |assignee_pool||array||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -635,11 +635,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |name||string||\n |description||string||\n |fields||array||\n |tags||Struct||\n |category_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |name||string||\n |description||string||\n |fields||array||\n |assignee_pool||array||\n |tags||Struct||\n |category_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
+                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -785,10 +785,10 @@
                 "title": "TaskCreateRequest"
            }
            ,        "TaskInfo": {
-         "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"name" : {"type": "string","title": "NAME"},"status" : {"type": "string","title": "STATUS"},"status_type" : {"type": "string","title": "STATUS_TYPE"},"priority" : {"type": "string","title": "PRIORITY"},"description" : {"type": "string","title": "DESCRIPTION"},"data" : {"type": "object","title": "DATA"},"files" : {"items": {"type": "FileInfo"},
+         "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"name" : {"type": "string","title": "NAME"},"status_id" : {"type": "string","title": "STATUS_ID"},"status_type" : {"type": "string","title": "STATUS_TYPE"},"priority" : {"type": "string","title": "PRIORITY"},"description" : {"type": "string","title": "DESCRIPTION"},"data" : {"type": "object","title": "DATA"},"files" : {"items": {"type": "FileInfo"},
                "type": "array","title": "FILES"},"assignee" : {"type": "string","title": "ASSIGNEE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"started_at" : {"type": "string","title": "STARTED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"completed_at" : {"type": "string","title": "COMPLETED_AT"}},
          "type": "object",
-         "required": ["task_id","name","status","status_type","priority","description","data","files","assignee","domain_id","workspace_id","project_id","category_id","task_type_id","created_at","started_at","updated_at","completed_at"],
+         "required": ["task_id","name","status_id","status_type","priority","description","data","files","assignee","domain_id","workspace_id","project_id","category_id","task_type_id","created_at","started_at","updated_at","completed_at"],
                 "title": "TaskInfo"
            }
            ,        "TaskRequest": {
@@ -1175,16 +1175,18 @@
            }
            ,        "TaskTypeCreateRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"assignee_pool" : {"items": {"type": "string"},
+               "type": "array","title": "ASSIGNEE_POOL"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
          "type": "object",
          "required": ["name","category_id"],
                 "title": "TaskTypeCreateRequest"
            }
            ,        "TaskTypeInfo": {
          "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"assignee_pool" : {"items": {"type": "string"},
+               "type": "array","title": "ASSIGNEE_POOL"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["task_type_id","name","description","fields","tags","domain_id","category_id","created_at","updated_at"],
+         "required": ["task_type_id","name","description","fields","assignee_pool","tags","domain_id","category_id","created_at","updated_at"],
                 "title": "TaskTypeInfo"
            }
            ,        "TaskTypeRequest": {
@@ -1207,7 +1209,8 @@
            }
            ,        "TaskTypeUpdateRequest": {
          "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"assignee_pool" : {"items": {"type": "string"},
+               "type": "array","title": "ASSIGNEE_POOL"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
          "type": "object",
          "required": ["task_type_id"],
                 "title": "TaskTypeUpdateRequest"

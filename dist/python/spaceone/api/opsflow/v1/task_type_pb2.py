@@ -19,7 +19,7 @@ from spaceone.api.core.v2 import query_pb2 as spaceone_dot_api_dot_core_dot_v2_d
 from spaceone.api.opsflow.v1 import task_category_pb2 as spaceone_dot_api_dot_opsflow_dot_v1_dot_task__category__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'spaceone/api/opsflow/v1/task_type.proto\x12\x17spaceone.api.opsflow.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\x1a+spaceone/api/opsflow/v1/task_category.proto\"\xaa\x01\n\x15TaskTypeCreateRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x32\n\x06\x66ields\x18\x03 \x03(\x0b\x32\".spaceone.api.opsflow.v1.TaskField\x12%\n\x04tags\x18\x0b \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x13\n\x0b\x63\x61tegory_id\x18\x15 \x01(\t\"\xc0\x01\n\x15TaskTypeUpdateRequest\x12\x14\n\x0ctask_type_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x32\n\x06\x66ields\x18\x04 \x03(\x0b\x32\".spaceone.api.opsflow.v1.TaskField\x12%\n\x04tags\x18\x0b \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x13\n\x0b\x63\x61tegory_id\x18\x15 \x01(\t\"\'\n\x0fTaskTypeRequest\x12\x14\n\x0ctask_type_id\x18\x01 \x01(\t\"e\n\x13TaskTypeSearchQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x14\n\x0ctask_type_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\"\xf2\x01\n\x0cTaskTypeInfo\x12\x14\n\x0ctask_type_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x32\n\x06\x66ields\x18\x04 \x03(\x0b\x32\".spaceone.api.opsflow.v1.TaskField\x12%\n\x04tags\x18\x0b \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x13\n\x0b\x63\x61tegory_id\x18\x16 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\x12\x12\n\nupdated_at\x18  \x01(\t\"\\\n\rTaskTypesInfo\x12\x36\n\x07results\x18\x01 \x03(\x0b\x32%.spaceone.api.opsflow.v1.TaskTypeInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"I\n\x11TaskTypeStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v2.StatisticsQuery2\x8d\x06\n\x08TaskType\x12\x88\x01\n\x06\x63reate\x12..spaceone.api.opsflow.v1.TaskTypeCreateRequest\x1a%.spaceone.api.opsflow.v1.TaskTypeInfo\"\'\x82\xd3\xe4\x93\x02!\"\x1c/opsflow/v1/task-type/create:\x01*\x12\x88\x01\n\x06update\x12..spaceone.api.opsflow.v1.TaskTypeUpdateRequest\x1a%.spaceone.api.opsflow.v1.TaskTypeInfo\"\'\x82\xd3\xe4\x93\x02!\"\x1c/opsflow/v1/task-type/update:\x01*\x12s\n\x06\x64\x65lete\x12(.spaceone.api.opsflow.v1.TaskTypeRequest\x1a\x16.google.protobuf.Empty\"\'\x82\xd3\xe4\x93\x02!\"\x1c/opsflow/v1/task-type/delete:\x01*\x12|\n\x03get\x12(.spaceone.api.opsflow.v1.TaskTypeRequest\x1a%.spaceone.api.opsflow.v1.TaskTypeInfo\"$\x82\xd3\xe4\x93\x02\x1e\"\x19/opsflow/v1/task-type/get:\x01*\x12\x83\x01\n\x04list\x12,.spaceone.api.opsflow.v1.TaskTypeSearchQuery\x1a&.spaceone.api.opsflow.v1.TaskTypesInfo\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/opsflow/v1/task-type/list:\x01*\x12r\n\x04stat\x12*.spaceone.api.opsflow.v1.TaskTypeStatQuery\x1a\x17.google.protobuf.Struct\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/opsflow/v1/task-type/stat:\x01*B>Z<github.com/cloudforet-io/api/dist/go/spaceone/api/opsflow/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'spaceone/api/opsflow/v1/task_type.proto\x12\x17spaceone.api.opsflow.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\x1a+spaceone/api/opsflow/v1/task_category.proto\"\xc1\x01\n\x15TaskTypeCreateRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x32\n\x06\x66ields\x18\x03 \x03(\x0b\x32\".spaceone.api.opsflow.v1.TaskField\x12\x15\n\rassignee_pool\x18\x04 \x03(\t\x12%\n\x04tags\x18\x0b \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x13\n\x0b\x63\x61tegory_id\x18\x15 \x01(\t\"\xd7\x01\n\x15TaskTypeUpdateRequest\x12\x14\n\x0ctask_type_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x32\n\x06\x66ields\x18\x04 \x03(\x0b\x32\".spaceone.api.opsflow.v1.TaskField\x12\x15\n\rassignee_pool\x18\x05 \x03(\t\x12%\n\x04tags\x18\x0b \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x13\n\x0b\x63\x61tegory_id\x18\x15 \x01(\t\"\'\n\x0fTaskTypeRequest\x12\x14\n\x0ctask_type_id\x18\x01 \x01(\t\"e\n\x13TaskTypeSearchQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x14\n\x0ctask_type_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\"\x89\x02\n\x0cTaskTypeInfo\x12\x14\n\x0ctask_type_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x32\n\x06\x66ields\x18\x04 \x03(\x0b\x32\".spaceone.api.opsflow.v1.TaskField\x12\x15\n\rassignee_pool\x18\x05 \x03(\t\x12%\n\x04tags\x18\x0b \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x13\n\x0b\x63\x61tegory_id\x18\x16 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\x12\x12\n\nupdated_at\x18  \x01(\t\"\\\n\rTaskTypesInfo\x12\x36\n\x07results\x18\x01 \x03(\x0b\x32%.spaceone.api.opsflow.v1.TaskTypeInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"I\n\x11TaskTypeStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v2.StatisticsQuery2\x8d\x06\n\x08TaskType\x12\x88\x01\n\x06\x63reate\x12..spaceone.api.opsflow.v1.TaskTypeCreateRequest\x1a%.spaceone.api.opsflow.v1.TaskTypeInfo\"\'\x82\xd3\xe4\x93\x02!\"\x1c/opsflow/v1/task-type/create:\x01*\x12\x88\x01\n\x06update\x12..spaceone.api.opsflow.v1.TaskTypeUpdateRequest\x1a%.spaceone.api.opsflow.v1.TaskTypeInfo\"\'\x82\xd3\xe4\x93\x02!\"\x1c/opsflow/v1/task-type/update:\x01*\x12s\n\x06\x64\x65lete\x12(.spaceone.api.opsflow.v1.TaskTypeRequest\x1a\x16.google.protobuf.Empty\"\'\x82\xd3\xe4\x93\x02!\"\x1c/opsflow/v1/task-type/delete:\x01*\x12|\n\x03get\x12(.spaceone.api.opsflow.v1.TaskTypeRequest\x1a%.spaceone.api.opsflow.v1.TaskTypeInfo\"$\x82\xd3\xe4\x93\x02\x1e\"\x19/opsflow/v1/task-type/get:\x01*\x12\x83\x01\n\x04list\x12,.spaceone.api.opsflow.v1.TaskTypeSearchQuery\x1a&.spaceone.api.opsflow.v1.TaskTypesInfo\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/opsflow/v1/task-type/list:\x01*\x12r\n\x04stat\x12*.spaceone.api.opsflow.v1.TaskTypeStatQuery\x1a\x17.google.protobuf.Struct\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/opsflow/v1/task-type/stat:\x01*B>Z<github.com/cloudforet-io/api/dist/go/spaceone/api/opsflow/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -40,19 +40,19 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_TASKTYPE'].methods_by_name['stat']._loaded_options = None
   _globals['_TASKTYPE'].methods_by_name['stat']._serialized_options = b'\202\323\344\223\002\037\"\032/opsflow/v1/task-type/stat:\001*'
   _globals['_TASKTYPECREATEREQUEST']._serialized_start=237
-  _globals['_TASKTYPECREATEREQUEST']._serialized_end=407
-  _globals['_TASKTYPEUPDATEREQUEST']._serialized_start=410
-  _globals['_TASKTYPEUPDATEREQUEST']._serialized_end=602
-  _globals['_TASKTYPEREQUEST']._serialized_start=604
-  _globals['_TASKTYPEREQUEST']._serialized_end=643
-  _globals['_TASKTYPESEARCHQUERY']._serialized_start=645
-  _globals['_TASKTYPESEARCHQUERY']._serialized_end=746
-  _globals['_TASKTYPEINFO']._serialized_start=749
-  _globals['_TASKTYPEINFO']._serialized_end=991
-  _globals['_TASKTYPESINFO']._serialized_start=993
-  _globals['_TASKTYPESINFO']._serialized_end=1085
-  _globals['_TASKTYPESTATQUERY']._serialized_start=1087
-  _globals['_TASKTYPESTATQUERY']._serialized_end=1160
-  _globals['_TASKTYPE']._serialized_start=1163
-  _globals['_TASKTYPE']._serialized_end=1944
+  _globals['_TASKTYPECREATEREQUEST']._serialized_end=430
+  _globals['_TASKTYPEUPDATEREQUEST']._serialized_start=433
+  _globals['_TASKTYPEUPDATEREQUEST']._serialized_end=648
+  _globals['_TASKTYPEREQUEST']._serialized_start=650
+  _globals['_TASKTYPEREQUEST']._serialized_end=689
+  _globals['_TASKTYPESEARCHQUERY']._serialized_start=691
+  _globals['_TASKTYPESEARCHQUERY']._serialized_end=792
+  _globals['_TASKTYPEINFO']._serialized_start=795
+  _globals['_TASKTYPEINFO']._serialized_end=1060
+  _globals['_TASKTYPESINFO']._serialized_start=1062
+  _globals['_TASKTYPESINFO']._serialized_end=1154
+  _globals['_TASKTYPESTATQUERY']._serialized_start=1156
+  _globals['_TASKTYPESTATQUERY']._serialized_end=1229
+  _globals['_TASKTYPE']._serialized_start=1232
+  _globals['_TASKTYPE']._serialized_end=2013
 # @@protoc_insertion_point(module_scope)
