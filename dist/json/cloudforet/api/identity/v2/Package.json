@@ -1,7 +1,7 @@
 {
   "files": [
     {
-      "name": "spaceone/api/identity/v2/user_group.proto",
+      "name": "spaceone/api/identity/v2/package.proto",
       "description": "",
       "package": "spaceone.api.identity.v2",
       "hasEnums": false,
@@ -12,9 +12,45 @@
       "extensions": [],
       "messages": [
         {
-          "name": "CreateUserGroupRequest",
-          "longName": "CreateUserGroupRequest",
-          "fullName": "spaceone.api.identity.v2.CreateUserGroupRequest",
+          "name": "ChangePackageOrderRequest",
+          "longName": "ChangePackageOrderRequest",
+          "fullName": "spaceone.api.identity.v2.ChangePackageOrderRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "package_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "order",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CreatePackageRequest",
+          "longName": "CreatePackageRequest",
+          "fullName": "spaceone.api.identity.v2.CreatePackageRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -60,9 +96,9 @@
           ]
         },
         {
-          "name": "UpdateUserGroupRequest",
-          "longName": "UpdateUserGroupRequest",
-          "fullName": "spaceone.api.identity.v2.UpdateUserGroupRequest",
+          "name": "PackageInfo",
+          "longName": "PackageInfo",
+          "fullName": "spaceone.api.identity.v2.PackageInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -70,67 +106,7 @@
           "extensions": [],
           "fields": [
             {
-              "name": "user_group_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "tags",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "UserGroupInfo",
-          "longName": "UserGroupInfo",
-          "fullName": "spaceone.api.identity.v2.UserGroupInfo",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "user_group_id",
+              "name": "package_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -166,12 +142,24 @@
               "defaultValue": ""
             },
             {
-              "name": "users",
+              "name": "order",
               "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "is_default",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -224,21 +212,9 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "UserGroupRequest",
-          "longName": "UserGroupRequest",
-          "fullName": "spaceone.api.identity.v2.UserGroupRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
+            },
             {
-              "name": "user_group_id",
+              "name": "updated_at",
               "description": "",
               "label": "",
               "type": "string",
@@ -252,9 +228,33 @@
           ]
         },
         {
-          "name": "UserGroupSearchQuery",
-          "longName": "UserGroupSearchQuery",
-          "fullName": "spaceone.api.identity.v2.UserGroupSearchQuery",
+          "name": "PackageRequest",
+          "longName": "PackageRequest",
+          "fullName": "spaceone.api.identity.v2.PackageRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "package_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PackageSearchQuery",
+          "longName": "PackageSearchQuery",
+          "fullName": "spaceone.api.identity.v2.PackageSearchQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -274,8 +274,104 @@
               "defaultValue": ""
             },
             {
-              "name": "user_group_id",
+              "name": "package_id",
               "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PackageStatQuery",
+          "longName": "PackageStatQuery",
+          "fullName": "spaceone.api.identity.v2.PackageStatQuery",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "query",
+              "description": "",
+              "label": "",
+              "type": "StatisticsQuery",
+              "longType": "spaceone.api.core.v2.StatisticsQuery",
+              "fullType": "spaceone.api.core.v2.StatisticsQuery",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PackagesInfo",
+          "longName": "PackagesInfo",
+          "fullName": "spaceone.api.identity.v2.PackagesInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "results",
+              "description": "",
+              "label": "repeated",
+              "type": "PackageInfo",
+              "longType": "PackageInfo",
+              "fullType": "spaceone.api.identity.v2.PackageInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "total_count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdatePackageRequest",
+          "longName": "UpdatePackageRequest",
+          "fullName": "spaceone.api.identity.v2.UpdatePackageRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "package_id",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -298,7 +394,7 @@
               "defaultValue": ""
             },
             {
-              "name": "user_id",
+              "name": "description",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -308,98 +404,14 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "UserGroupStatQuery",
-          "longName": "UserGroupStatQuery",
-          "fullName": "spaceone.api.identity.v2.UserGroupStatQuery",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "query",
-              "description": "",
-              "label": "",
-              "type": "StatisticsQuery",
-              "longType": "spaceone.api.core.v2.StatisticsQuery",
-              "fullType": "spaceone.api.core.v2.StatisticsQuery",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "UserGroupsInfo",
-          "longName": "UserGroupsInfo",
-          "fullName": "spaceone.api.identity.v2.UserGroupsInfo",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "results",
-              "description": "",
-              "label": "repeated",
-              "type": "UserGroupInfo",
-              "longType": "UserGroupInfo",
-              "fullType": "spaceone.api.identity.v2.UserGroupInfo",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
             },
             {
-              "name": "total_count",
-              "description": "",
+              "name": "tags",
+              "description": "+optional",
               "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "UsersUserGroupRequest",
-          "longName": "UsersUserGroupRequest",
-          "fullName": "spaceone.api.identity.v2.UsersUserGroupRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "user_group_id",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "users",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -410,28 +422,28 @@
       ],
       "services": [
         {
-          "name": "UserGroup",
-          "longName": "UserGroup",
-          "fullName": "spaceone.api.identity.v2.UserGroup",
+          "name": "Package",
+          "longName": "Package",
+          "fullName": "spaceone.api.identity.v2.Package",
           "description": "",
           "methods": [
             {
               "name": "create",
               "description": "",
-              "requestType": "CreateUserGroupRequest",
-              "requestLongType": "CreateUserGroupRequest",
-              "requestFullType": "spaceone.api.identity.v2.CreateUserGroupRequest",
+              "requestType": "CreatePackageRequest",
+              "requestLongType": "CreatePackageRequest",
+              "requestFullType": "spaceone.api.identity.v2.CreatePackageRequest",
               "requestStreaming": false,
-              "responseType": "UserGroupInfo",
-              "responseLongType": "UserGroupInfo",
-              "responseFullType": "spaceone.api.identity.v2.UserGroupInfo",
+              "responseType": "PackageInfo",
+              "responseLongType": "PackageInfo",
+              "responseFullType": "spaceone.api.identity.v2.PackageInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/user-group/create",
+                      "pattern": "/identity/v2/package/create",
                       "body": "*"
                     }
                   ]
@@ -441,20 +453,20 @@
             {
               "name": "update",
               "description": "",
-              "requestType": "UpdateUserGroupRequest",
-              "requestLongType": "UpdateUserGroupRequest",
-              "requestFullType": "spaceone.api.identity.v2.UpdateUserGroupRequest",
+              "requestType": "UpdatePackageRequest",
+              "requestLongType": "UpdatePackageRequest",
+              "requestFullType": "spaceone.api.identity.v2.UpdatePackageRequest",
               "requestStreaming": false,
-              "responseType": "UserGroupInfo",
-              "responseLongType": "UserGroupInfo",
-              "responseFullType": "spaceone.api.identity.v2.UserGroupInfo",
+              "responseType": "PackageInfo",
+              "responseLongType": "PackageInfo",
+              "responseFullType": "spaceone.api.identity.v2.PackageInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/user-group/update",
+                      "pattern": "/identity/v2/package/update",
                       "body": "*"
                     }
                   ]
@@ -464,9 +476,9 @@
             {
               "name": "delete",
               "description": "",
-              "requestType": "UserGroupRequest",
-              "requestLongType": "UserGroupRequest",
-              "requestFullType": "spaceone.api.identity.v2.UserGroupRequest",
+              "requestType": "PackageRequest",
+              "requestLongType": "PackageRequest",
+              "requestFullType": "spaceone.api.identity.v2.PackageRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -477,7 +489,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/user-group/delete",
+                      "pattern": "/identity/v2/package/delete",
                       "body": "*"
                     }
                   ]
@@ -485,22 +497,22 @@
               }
             },
             {
-              "name": "add_users",
+              "name": "set_default",
               "description": "",
-              "requestType": "UsersUserGroupRequest",
-              "requestLongType": "UsersUserGroupRequest",
-              "requestFullType": "spaceone.api.identity.v2.UsersUserGroupRequest",
+              "requestType": "PackageRequest",
+              "requestLongType": "PackageRequest",
+              "requestFullType": "spaceone.api.identity.v2.PackageRequest",
               "requestStreaming": false,
-              "responseType": "UserGroupInfo",
-              "responseLongType": "UserGroupInfo",
-              "responseFullType": "spaceone.api.identity.v2.UserGroupInfo",
+              "responseType": "PackageInfo",
+              "responseLongType": "PackageInfo",
+              "responseFullType": "spaceone.api.identity.v2.PackageInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/user-group/add-users",
+                      "pattern": "/identity/v2/package/set-default",
                       "body": "*"
                     }
                   ]
@@ -508,22 +520,22 @@
               }
             },
             {
-              "name": "remove_users",
+              "name": "change_order",
               "description": "",
-              "requestType": "UsersUserGroupRequest",
-              "requestLongType": "UsersUserGroupRequest",
-              "requestFullType": "spaceone.api.identity.v2.UsersUserGroupRequest",
+              "requestType": "ChangePackageOrderRequest",
+              "requestLongType": "ChangePackageOrderRequest",
+              "requestFullType": "spaceone.api.identity.v2.ChangePackageOrderRequest",
               "requestStreaming": false,
-              "responseType": "UserGroupInfo",
-              "responseLongType": "UserGroupInfo",
-              "responseFullType": "spaceone.api.identity.v2.UserGroupInfo",
+              "responseType": "PackageInfo",
+              "responseLongType": "PackageInfo",
+              "responseFullType": "spaceone.api.identity.v2.PackageInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/user-group/remove-users",
+                      "pattern": "/identity/v2/package/change-order",
                       "body": "*"
                     }
                   ]
@@ -533,20 +545,20 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "UserGroupRequest",
-              "requestLongType": "UserGroupRequest",
-              "requestFullType": "spaceone.api.identity.v2.UserGroupRequest",
+              "requestType": "PackageRequest",
+              "requestLongType": "PackageRequest",
+              "requestFullType": "spaceone.api.identity.v2.PackageRequest",
               "requestStreaming": false,
-              "responseType": "UserGroupInfo",
-              "responseLongType": "UserGroupInfo",
-              "responseFullType": "spaceone.api.identity.v2.UserGroupInfo",
+              "responseType": "PackageInfo",
+              "responseLongType": "PackageInfo",
+              "responseFullType": "spaceone.api.identity.v2.PackageInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/user-group/get",
+                      "pattern": "/identity/v2/package/get",
                       "body": "*"
                     }
                   ]
@@ -556,20 +568,20 @@
             {
               "name": "list",
               "description": "",
-              "requestType": "UserGroupSearchQuery",
-              "requestLongType": "UserGroupSearchQuery",
-              "requestFullType": "spaceone.api.identity.v2.UserGroupSearchQuery",
+              "requestType": "PackageSearchQuery",
+              "requestLongType": "PackageSearchQuery",
+              "requestFullType": "spaceone.api.identity.v2.PackageSearchQuery",
               "requestStreaming": false,
-              "responseType": "UserGroupsInfo",
-              "responseLongType": "UserGroupsInfo",
-              "responseFullType": "spaceone.api.identity.v2.UserGroupsInfo",
+              "responseType": "PackagesInfo",
+              "responseLongType": "PackagesInfo",
+              "responseFullType": "spaceone.api.identity.v2.PackagesInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v2/user-group/list",
+                      "pattern": "/identity/v2/package/list",
                       "body": "*"
                     }
                   ]
@@ -579,9 +591,9 @@
             {
               "name": "stat",
               "description": "",
-              "requestType": "UserGroupStatQuery",
-              "requestLongType": "UserGroupStatQuery",
-              "requestFullType": "spaceone.api.identity.v2.UserGroupStatQuery",
+              "requestType": "PackageStatQuery",
+              "requestLongType": "PackageStatQuery",
+              "requestFullType": "spaceone.api.identity.v2.PackageStatQuery",
               "requestStreaming": false,
               "responseType": "Struct",
               "responseLongType": ".google.protobuf.Struct",
@@ -592,7 +604,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/identity/v1/user-group/stat",
+                      "pattern": "/identity/v1/package/stat",
                       "body": "*"
                     }
                   ]
