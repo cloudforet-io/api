@@ -49,18 +49,20 @@ service TaskCategory {
     }
 }
 
-message StatusOptions {
-    repeated StatusOption TODO = 1;
-    repeated StatusOption IN_PROGRESS = 2;
-    repeated StatusOption COMPLETED = 3;
-}
-
 message StatusOption {
     string status_id = 1;
     string name = 2;
     string color = 3;
     bool is_default = 4;
 }
+
+
+message StatusOptions {
+    repeated StatusOption TODO = 1;
+    repeated StatusOption IN_PROGRESS = 2;
+    repeated StatusOption COMPLETED = 3;
+}
+
 
 message TaskField {
     enum SelectionType {
