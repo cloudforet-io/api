@@ -27,6 +27,8 @@ const (
 	Workspace_Delete_FullMethodName               = "/spaceone.api.identity.v2.Workspace/delete"
 	Workspace_Enable_FullMethodName               = "/spaceone.api.identity.v2.Workspace/enable"
 	Workspace_Disable_FullMethodName              = "/spaceone.api.identity.v2.Workspace/disable"
+	Workspace_AddPackage_FullMethodName           = "/spaceone.api.identity.v2.Workspace/add_package"
+	Workspace_RemovePackage_FullMethodName        = "/spaceone.api.identity.v2.Workspace/remove_package"
 	Workspace_Get_FullMethodName                  = "/spaceone.api.identity.v2.Workspace/get"
 	Workspace_Check_FullMethodName                = "/spaceone.api.identity.v2.Workspace/check"
 	Workspace_List_FullMethodName                 = "/spaceone.api.identity.v2.Workspace/list"
@@ -43,6 +45,8 @@ type WorkspaceClient interface {
 	Delete(ctx context.Context, in *WorkspaceDeleteRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Enable(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Disable(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
+	AddPackage(ctx context.Context, in *WorkspacePackageRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
+	RemovePackage(ctx context.Context, in *WorkspacePackageRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Get(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error)
 	Check(ctx context.Context, in *WorkspaceCheckRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	List(ctx context.Context, in *WorkspaceSearchQuery, opts ...grpc.CallOption) (*WorkspacesInfo, error)
@@ -117,6 +121,26 @@ func (c *workspaceClient) Disable(ctx context.Context, in *WorkspaceRequest, opt
 	return out, nil
 }
 
+func (c *workspaceClient) AddPackage(ctx context.Context, in *WorkspacePackageRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WorkspaceInfo)
+	err := c.cc.Invoke(ctx, Workspace_AddPackage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *workspaceClient) RemovePackage(ctx context.Context, in *WorkspacePackageRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WorkspaceInfo)
+	err := c.cc.Invoke(ctx, Workspace_RemovePackage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *workspaceClient) Get(ctx context.Context, in *WorkspaceRequest, opts ...grpc.CallOption) (*WorkspaceInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(WorkspaceInfo)
@@ -167,6 +191,8 @@ type WorkspaceServer interface {
 	Delete(context.Context, *WorkspaceDeleteRequest) (*empty.Empty, error)
 	Enable(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
 	Disable(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
+	AddPackage(context.Context, *WorkspacePackageRequest) (*WorkspaceInfo, error)
+	RemovePackage(context.Context, *WorkspacePackageRequest) (*WorkspaceInfo, error)
 	Get(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error)
 	Check(context.Context, *WorkspaceCheckRequest) (*empty.Empty, error)
 	List(context.Context, *WorkspaceSearchQuery) (*WorkspacesInfo, error)
@@ -198,6 +224,12 @@ func (UnimplementedWorkspaceServer) Enable(context.Context, *WorkspaceRequest) (
 }
 func (UnimplementedWorkspaceServer) Disable(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedWorkspaceServer) AddPackage(context.Context, *WorkspacePackageRequest) (*WorkspaceInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddPackage not implemented")
+}
+func (UnimplementedWorkspaceServer) RemovePackage(context.Context, *WorkspacePackageRequest) (*WorkspaceInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemovePackage not implemented")
 }
 func (UnimplementedWorkspaceServer) Get(context.Context, *WorkspaceRequest) (*WorkspaceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -340,6 +372,42 @@ func _Workspace_Disable_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Workspace_AddPackage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkspacePackageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkspaceServer).AddPackage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Workspace_AddPackage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkspaceServer).AddPackage(ctx, req.(*WorkspacePackageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Workspace_RemovePackage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkspacePackageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkspaceServer).RemovePackage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Workspace_RemovePackage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkspaceServer).RemovePackage(ctx, req.(*WorkspacePackageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Workspace_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WorkspaceRequest)
 	if err := dec(in); err != nil {
@@ -442,6 +510,14 @@ var Workspace_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "disable",
 			Handler:    _Workspace_Disable_Handler,
+		},
+		{
+			MethodName: "add_package",
+			Handler:    _Workspace_AddPackage_Handler,
+		},
+		{
+			MethodName: "remove_package",
+			Handler:    _Workspace_RemovePackage_Handler,
 		},
 		{
 			MethodName: "get",

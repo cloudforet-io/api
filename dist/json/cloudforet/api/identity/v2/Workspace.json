@@ -381,6 +381,18 @@
               "defaultValue": ""
             },
             {
+              "name": "packages",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "is_dormant",
               "description": "",
               "label": "",
@@ -514,6 +526,42 @@
             },
             {
               "name": "changed_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "WorkspacePackageRequest",
+          "longName": "WorkspacePackageRequest",
+          "fullName": "spaceone.api.identity.v2.WorkspacePackageRequest",
+          "description": "{\n \"workspace_id\": \"workspace-a1b2c3d4e5f6\",\n \"package_id\": \"package-a1b2c3d4e5f6\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "package_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -858,6 +906,52 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/workspace/disable",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "add_package",
+              "description": "",
+              "requestType": "WorkspacePackageRequest",
+              "requestLongType": "WorkspacePackageRequest",
+              "requestFullType": "spaceone.api.identity.v2.WorkspacePackageRequest",
+              "requestStreaming": false,
+              "responseType": "WorkspaceInfo",
+              "responseLongType": "WorkspaceInfo",
+              "responseFullType": "spaceone.api.identity.v2.WorkspaceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/workspace/add-package",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "remove_package",
+              "description": "",
+              "requestType": "WorkspacePackageRequest",
+              "requestLongType": "WorkspacePackageRequest",
+              "requestFullType": "spaceone.api.identity.v2.WorkspacePackageRequest",
+              "requestStreaming": false,
+              "responseType": "WorkspaceInfo",
+              "responseLongType": "WorkspaceInfo",
+              "responseFullType": "spaceone.api.identity.v2.WorkspaceInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/workspace/remove-package",
                       "body": "*"
                     }
                   ]
