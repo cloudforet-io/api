@@ -5,50 +5,50 @@ import "google/protobuf/struct.proto";
 
 
 service Cost {
-    /*
-    desc: ''
-    request_example: >-
-      {
+  /*
+  desc: ''
+  request_example: >-
+    {
 
-      }
-    response_example: >-
-      {
+    }
+  response_example: >-
+    {
 
-      }
-    */
-    rpc get_data (GetDataRequest) returns (stream CostsInfo) {}
+    }
+  */
+  rpc get_data (GetDataRequest) returns (stream CostsInfo) {}
 }
 
 message GetDataRequest {
-    // is_required: true
-    google.protobuf.Struct options = 1;
-    // is_required: true
-    google.protobuf.Struct secret_data = 2;
-    // is_required: false
-    string schema = 3;
-    // is_required: false
-    google.protobuf.Struct task_options = 4;
-    // is_required: true
-    string domain_id = 5;
+  // is_required: true
+  google.protobuf.Struct options = 1;
+  // is_required: true
+  google.protobuf.Struct secret_data = 2;
+  // is_required: false
+  string schema = 3;
+  // is_required: false
+  google.protobuf.Struct task_options = 4;
+  // is_required: true
+  string domain_id = 5;
 }
 
 message CostInfo {
-    float cost = 1;
-    string currency = 2;
-    float usage_quantity = 3;
-    string provider = 4;
-    string region_code = 5;
-    string category = 6;
-    string product = 7;
-    string account = 8;
-    string usage_type = 9;
-    string resource_group = 10;
-    string resource = 11;
-    google.protobuf.Struct tags = 12;
-    google.protobuf.Struct additional_info = 13;
-    string billed_at = 14;
+  double cost = 1;
+  string currency = 2;
+  double usage_quantity = 3;
+  string provider = 4;
+  string region_code = 5;
+  string category = 6;
+  string product = 7;
+  string account = 8;
+  string usage_type = 9;
+  string resource_group = 10;
+  string resource = 11;
+  google.protobuf.Struct tags = 12;
+  google.protobuf.Struct additional_info = 13;
+  string billed_at = 14;
 }
 
 message CostsInfo {
-    repeated CostInfo results = 1;
+  repeated CostInfo results = 1;
 }
