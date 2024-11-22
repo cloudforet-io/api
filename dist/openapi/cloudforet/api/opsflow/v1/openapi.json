@@ -467,11 +467,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |category_id||string|True|\n |name||string||\n |description||string||\n |status_options||StatusOptions||\n |fields||array||\n |tags||Struct||\n |package_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |category_id||string|True|\n |name||string||\n |description||string||\n |status_options||StatusOptions||\n |fields||array||\n |force||boolean||\n |tags||Struct||\n |package_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"category_id" : {"type": "string","title": "CATEGORY_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"tags" : {"type": "object","title": "TAGS" },"package_id" : {"type": "string","title": "PACKAGE_ID" }                 }
+                 "properties": {"category_id" : {"type": "string","title": "CATEGORY_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"force" : {"type": "boolean","title": "FORCE" },"tags" : {"type": "object","title": "TAGS" },"package_id" : {"type": "string","title": "PACKAGE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1162,7 +1162,7 @@
            }
            ,        "TaskCategoryUpdateRequest": {
          "properties" : {"category_id" : {"type": "string","title": "CATEGORY_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"tags" : {"type": "object","title": "TAGS"},"package_id" : {"type": "string","title": "PACKAGE_ID"}},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"force" : {"type": "boolean","title": "FORCE"},"tags" : {"type": "object","title": "TAGS"},"package_id" : {"type": "string","title": "PACKAGE_ID"}},
          "type": "object",
          "required": ["category_id"],
                 "title": "TaskCategoryUpdateRequest"
