@@ -49,18 +49,20 @@ service TaskCategory {
     }
 }
 
-enum StatusType {
-    STATUS_NONE = 0;
-    TODO = 1;
-    IN_PROGRESS = 2;
-    COMPLETED = 3;
+message StatusOption {
+    string status_id = 1;
+    string name = 2;
+    string color = 3;
+    bool is_default = 4;
 }
 
-message StatusOption {
-    string name = 1;
-    string color = 2;
-    StatusType status_type = 3;
+
+message StatusOptions {
+    repeated StatusOption TODO = 1;
+    repeated StatusOption IN_PROGRESS = 2;
+    repeated StatusOption COMPLETED = 3;
 }
+
 
 message TaskField {
     enum SelectionType {
@@ -83,7 +85,7 @@ message TaskCategoryCreateRequest {
     string name = 1;
     // +optional
     string description = 2;
-    repeated StatusOption status_option = 3;
+    StatusOptions status_options = 3;
     // +optional
     repeated TaskField fields = 4;
     // +optional
@@ -98,7 +100,7 @@ message TaskCategoryUpdateRequest {
     // +optional
     string description = 3;
     // +optional
-    repeated StatusOption status_option = 4;
+    StatusOptions status_options = 4;
     // +optional
     repeated TaskField fields = 5;
     // +optional
@@ -124,7 +126,7 @@ message TaskCategoryInfo {
     string category_id = 1;
     string name = 2;
     string description = 3;
-    repeated StatusOption status_option = 4;
+    StatusOptions status_options = 4;
     repeated TaskField fields = 5;
     google.protobuf.Struct tags = 11;
 

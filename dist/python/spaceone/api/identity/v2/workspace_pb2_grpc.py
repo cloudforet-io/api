@@ -71,6 +71,16 @@ class WorkspaceStub(object):
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.FromString,
                 _registered_method=True)
+        self.add_package = channel.unary_unary(
+                '/spaceone.api.identity.v2.Workspace/add_package',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacePackageRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.FromString,
+                _registered_method=True)
+        self.remove_package = channel.unary_unary(
+                '/spaceone.api.identity.v2.Workspace/remove_package',
+                request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacePackageRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.FromString,
+                _registered_method=True)
         self.get = channel.unary_unary(
                 '/spaceone.api.identity.v2.Workspace/get',
                 request_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceRequest.SerializeToString,
@@ -132,6 +142,18 @@ class WorkspaceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def add_package(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def remove_package(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def get(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -187,6 +209,16 @@ def add_WorkspaceServicer_to_server(servicer, server):
             'disable': grpc.unary_unary_rpc_method_handler(
                     servicer.disable,
                     request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.SerializeToString,
+            ),
+            'add_package': grpc.unary_unary_rpc_method_handler(
+                    servicer.add_package,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacePackageRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.SerializeToString,
+            ),
+            'remove_package': grpc.unary_unary_rpc_method_handler(
+                    servicer.remove_package,
+                    request_deserializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacePackageRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
@@ -371,6 +403,60 @@ class Workspace(object):
             target,
             '/spaceone.api.identity.v2.Workspace/disable',
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def add_package(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.identity.v2.Workspace/add_package',
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacePackageRequest.SerializeToString,
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def remove_package(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.identity.v2.Workspace/remove_package',
+            spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspacePackageRequest.SerializeToString,
             spaceone_dot_api_dot_identity_dot_v2_dot_workspace__pb2.WorkspaceInfo.FromString,
             options,
             channel_credentials,

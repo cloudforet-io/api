@@ -4,11 +4,9 @@ package spaceone.api.opsflow.v1;
 
 option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/opsflow/v1";
 
-import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
-import "spaceone/api/opsflow/comment.proto";
 
 
 service Event {
@@ -32,17 +30,17 @@ message EventSearchQuery {
     // +optional
     string task_id = 2;
     // +optional
-    string event_id = 3;
+    EventInfo.EventType event_type = 3;
     // +optional
-    string workspace_id = 4;
+    string user_type = 4;
     // +optional
-    string project_id = 5;
+    string event_id = 5;
     // +optional
-    string user_type = 6;
+    string user_id = 6;
     // +optional
-    string user_id = 7;
+    string workspace_id = 7;
     // +optional
-    EventInfo.EventType event_type = 8;
+    string project_id = 8;
 }
 
 message EventInfo {

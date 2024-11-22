@@ -8,8 +8,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
-import "spaceone/api/opsflow/task_category.proto";
-import "spaceone/api/opsflow/comment.proto";
+import "spaceone/api/opsflow/v1/comment.proto";
 import "spaceone/api/file_manager/v1/file.proto";
 
 
@@ -26,7 +25,7 @@ service Task {
             body: "*"
         };
     }
-    rpc change_status (TaskStatusRequest) returns (TaskInfo) {
+    rpc change_status (TaskChangeStatusRequest) returns (TaskInfo) {
         option (google.api.http) = {
             post: "/opsflow/v1/task/change_status"
             body: "*"
@@ -67,7 +66,7 @@ enum TaskPriority {
 
 message TaskCreateRequest {
     string name = 1;
-    string status = 2;
+    string status_id = 2;
     // +optional
     TaskPriority priority = 3;
     // +optional
@@ -104,13 +103,11 @@ message TaskUpdateRequest {
     string project_id = 21;
 }
 
-message TaskStatusRequest {
+message TaskChangeStatusRequest {
     string task_id = 1;
-    string status = 2;
+    string status_id = 2;
     // +optional
     string assignee = 3;
-    // +optional
-    string comment = 4;
 }
 
 message TaskRequest {
@@ -125,9 +122,9 @@ message TaskSearchQuery {
     // +optional
     string name = 3;
     // +optional
-    string status = 4;
+    string status_id = 4;
     // +optional
-    spaceone.api.opsflow.v1.StatusType status_type = 5;
+    string status_type = 5;
     // +optional
     TaskPriority priority = 6;
     // +optional
@@ -135,7 +132,7 @@ message TaskSearchQuery {
     // +optional
     string project_id = 12;
     // +optional
-    string task_category_id = 13;
+    string category_id = 13;
     // +optional
     string task_type_id = 14;
 }
@@ -143,17 +140,18 @@ message TaskSearchQuery {
 message TaskInfo {
     string task_id = 1;
     string name = 2;
-    string status = 3;
-    spaceone.api.opsflow.v1.StatusType status_type = 4;
+    string status_id = 3;
+    string status_type = 4;
     TaskPriority priority = 5;
     string description = 6;
     google.protobuf.Struct data = 7;
     repeated spaceone.api.file_manager.v1.FileInfo files = 8;
+    string assignee = 9;
 
     string domain_id = 21;
     string workspace_id = 22;
     string project_id = 23;
-    string task_category_id = 24;
+    string category_id = 24;
     string task_type_id = 25;
 
     string created_at = 31;

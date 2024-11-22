@@ -53,6 +53,20 @@ service Workspace {
     };
   }
 
+  rpc add_package (WorkspacePackageRequest) returns (WorkspaceInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace/add-package"
+      body: "*"
+    };
+  }
+
+  rpc remove_package (WorkspacePackageRequest) returns (WorkspaceInfo) {
+    option (google.api.http) = {
+      post: "/identity/v2/workspace/remove-package"
+      body: "*"
+    };
+  }
+
   rpc get (WorkspaceRequest) returns (WorkspaceInfo) {
     option (google.api.http) = {
       post: "/identity/v2/workspace/get"
@@ -122,6 +136,15 @@ message WorkspaceDeleteRequest {
 }
 
 //{
+//  "workspace_id": "workspace-a1b2c3d4e5f6",
+//  "package_id": "package-a1b2c3d4e5f6"
+//}
+message WorkspacePackageRequest {
+  string workspace_id = 1;
+  string package_id = 2;
+}
+
+//{
 //  "workspace_id": "workspace-a1b2c3d4e5f6"
 //}
 message WorkspaceRequest {
@@ -158,6 +181,7 @@ message WorkspaceInfo {
   string created_by = 5;
   repeated string references = 6;
   bool is_managed = 7;
+  repeated string packages = 8;
 
   bool is_dormant = 11;
   int32 dormant_ttl = 12;
