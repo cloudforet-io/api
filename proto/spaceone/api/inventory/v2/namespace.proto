@@ -1,0 +1,171 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v2;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v2";
+
+service Namespace {
+    rpc create (CreateNamespaceRequest) returns (NamespaceInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v2/namespace/create"
+            body: "*"
+        };
+    }
+
+    rpc update (UpdateNamespaceRequest) returns (NamespaceInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v2/namespace/update"
+            body: "*"
+        };
+    }
+
+    rpc delete (NamespaceRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/inventory/v2/namespace/delete"
+            body: "*"
+        };
+    }
+
+    rpc get (NamespaceRequest) returns (NamespaceInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v2/namespace/get"
+            body: "*"
+        };
+    }
+
+    rpc list (NamespaceQuery) returns (NamespacesInfo) {
+        option (google.api.http) = {
+            post: "/inventory/v2/namespace/list"
+            body: "*"
+        };
+    }
+
+    rpc stat (NamespaceStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/inventory/v2/namespace/stat"
+            body: "*"
+        };
+    }
+}
+
+//{
+//
+//}
+message CreateNamespaceRequest {
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
+    // +optional
+    string namespace_id = 1;
+    string name = 2;
+    string category = 3;
+    string resource_type = 4;
+    // +optional
+    string icon = 5;
+    // +optional
+    google.protobuf.Struct tags = 6;
+
+    // +optional
+    ResourceGroup resource_group = 20;
+    // +optional
+    string namespace_gruop_id = 21;
+    // +optional
+    string workspace_id = 22;
+}
+
+//{
+//
+//}
+message UpdateNamespaceRequest {
+    string namespace_id = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    string category = 3;
+    // +optional
+    string resource_type = 4;
+    // +optional
+    string icon = 5;
+    // +optional
+    google.protobuf.Struct tags = 6;
+
+    // +optional
+    string namespace_group_id = 21;
+    // +optional
+    string workspace_id = 22;
+}
+
+//{
+//
+//}
+message NamespaceRequest {
+    string namespace_id = 1;
+    // +optional
+    string name = 2;
+}
+
+//{
+//
+//}
+message NamespaceQuery {
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string namespace_id = 2;
+    // +optional
+    string category = 3;
+    // +optional
+    string resource_type = 4;
+    // +optional
+    string resource_group = 5;
+    // +optional
+    string is_managed = 6;
+    // +optional
+    string namespace_group_id = 21;
+    // +optional
+    string workspace_id = 22;
+}
+
+//{
+//
+//}
+message NamespaceInfo {
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
+    string namespace_id = 1;
+    string name = 2;
+    string category = 3;
+    string resource_type = 4;
+    string icon = 5;
+    google.protobuf.Struct tags = 6;
+    bool is_managed = 7;
+
+    ResourceGroup resource_group = 20;
+    string namespace_group_id = 21;
+    string domain_id = 22;
+    string workspace_id = 23;
+
+    string created_at = 31;
+    string updated_at = 32;
+}
+
+message NamespacesInfo {
+    repeated NamespaceInfo results = 1;
+    int32 total_count = 2;
+}
+
+message NamespaceStatQuery {
+    spaceone.api.core.v2.StatisticsQuery query = 1;
+}
