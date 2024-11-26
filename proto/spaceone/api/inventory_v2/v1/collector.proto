@@ -1,0 +1,457 @@
+// A Collector is a plugin instance collecting cloud resources. A Collector can collect the resource data manually or by a pre-set schedule.
+syntax = "proto3";
+
+package spaceone.api.inventory_v2.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory-v2/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/inventory_v2/v1/job.proto";
+
+
+service Collector {
+
+  // Creates a new Collector with information of the plugin to use. Information of the plugin includes `version`, `provider`, and `upgrade_mode`.
+  rpc create (CreateCollectorRequest) returns (CollectorInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v2/collector/create"
+      body: "*"
+    };
+  }
+
+  // Updates a specific Collector. You can make changes in Collector settings, including `name` and `tags`.
+  rpc update (UpdateCollectorRequest) returns (CollectorInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/collector/update"
+      body: "*"
+    };
+  }
+
+  // Updates the plugin of a specific Collector. This method resets the plugin data in the Collector to update the `metadata`.
+  rpc update_plugin (UpdatePluginRequest) returns (CollectorInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/collector/update-plugin"
+      body: "*"
+    };
+  }
+
+  // Verifies the plugin of a specific Collector. This method validates the plugin data, `version` and `endpoint`.
+  rpc verify_plugin (VerifyPluginRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/collector/verify-plugin"
+      body: "*"
+    };
+  }
+
+  // Deletes a specific Collector. You must specify the `collector_id` of the Collector to delete.
+  rpc delete (CollectorRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/collector/delete"
+      body: "*"
+    };
+  }
+
+  // Gets a specific Collector. Prints detailed information about the Collector, including its state, basic information, and the plugin information used for cloud resource collection.
+  rpc get (CollectorRequest) returns (CollectorInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/collector/get"
+      body: "*"
+    };
+  }
+
+  // Gets a list of all Collectors. You can use a query to get a filtered list of Collectors.
+  rpc list (CollectorQuery) returns (CollectorsInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/collector/list"
+      body: "*"
+    };
+  }
+
+  rpc stat (CollectorStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/collector/stat"
+      body: "*"
+    };
+  }
+
+  rpc collect (CollectRequest) returns (spaceone.api.inventory_v2.v1.JobInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/collector/collect"
+      body: "*"
+    };
+  }
+}
+
+message Scheduled {
+  enum ScheduledState {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
+
+  ScheduledState state = 1;
+  repeated int32 hours = 2;
+}
+
+message SecretFilter {
+  enum SecretFilterState {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
+
+  SecretFilterState state = 1;
+  repeated string secrets = 2;
+  repeated string service_accounts = 3;
+  repeated string schemas = 4;
+  repeated string exclude_secrets = 5;
+  repeated string exclude_service_accounts = 6;
+  repeated string exclude_schemas = 7;
+}
+
+message PluginInfo {
+  enum UpgradeMode {
+    NONE = 0;
+    MANUAL = 1;
+    AUTO = 2;
+  }
+
+  string plugin_id = 1;
+  string version = 2;
+  google.protobuf.Struct options = 3;
+  google.protobuf.Struct metadata = 10;
+  UpgradeMode upgrade_mode = 11;
+}
+
+//{
+//    "name": "AWS Collector",
+//    "plugin_info": {
+//        "plugin_id": "plugin-30d21ef75a5d",
+//        "version": "1.13.13",
+//        "options": {},
+//        "metadata": {
+//            "filter_format": [],
+//            "supported_schedules": [
+//                "hours"
+//            ],
+//            "supported_resource_type": [
+//                "inventory.CloudService",
+//                "inventory.CloudServiceType",
+//                "inventory.Region"
+//            ],
+//            "supported_features": [
+//                "garbage_collection"
+//            ]
+//        },
+//        "upgrade_mode": "AUTO"
+//    },
+//    "schedule": {
+//        "state": "ENABLED",
+//        "hours": [0, 6, 12, 18]
+//    },
+//    "secret_filter": {
+//        "state": "ENABLED",
+//        "secrets": ["secret-xxx", "secret-yyy"],
+//        "service_accounts": ["sa-xxx", "sa-yyy"],
+//        "schemas": ["schema-xxx", "schema-yyy"]
+//    },
+//    "tags": {
+//        "type": "test"
+//    },
+//}
+message CreateCollectorRequest {
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
+
+  string name = 1;
+  PluginInfo plugin_info = 2;
+  // +optional
+  Scheduled schedule = 3;
+  // +optional
+  string provider = 4;
+  // +optional
+  SecretFilter secret_filter = 5;
+  // +optional
+  google.protobuf.Struct tags = 6;
+  ResourceGroup resource_group = 20;
+  // +optional
+  string workspace_id = 21;
+}
+
+//{
+//    "collector_id": "collector-2c0847644f39",
+//    "name": "New AWS Collector",
+//    "plugin_info": {
+//        "plugin_id": "plugin-30d21ef75a5d",
+//        "version": "1.14.0",
+//        "provider": "aws",
+//        "upgrade_mode": "MANUAL"
+//    },
+//    "schedule": {
+//        "state": "ENABLED",
+//        "hours": [0, 6, 12, 18]
+//    },
+//    "secret_filter": {
+//        "state": "ENABLED",
+//        "secrets": ["secret-xxx", "secret-yyy"],
+//        "service_accounts": ["sa-xxx", "sa-yyy"],
+//        "schemas": ["schema-xxx", "schema-yyy"]
+//    },
+//    "tags": {
+//        "a": "b"
+//    }
+//}
+message UpdateCollectorRequest {
+  string collector_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  Scheduled schedule = 5;
+  // +optional
+  SecretFilter secret_filter = 6;
+  // +optional
+  google.protobuf.Struct tags = 7;
+}
+
+message UpdatePluginRequest {
+  enum UpgradeMode {
+    NONE = 0;
+    MANUAL = 1;
+    AUTO = 2;
+  }
+
+  string collector_id = 1;
+  // +optional
+  string version = 2;
+  // +optional
+  google.protobuf.Struct options = 3;
+  // +optional
+  UpgradeMode upgrade_mode = 5;
+}
+
+//{
+//    "collector_id": "collector-f2e4e9cc7f21"
+//}
+message CollectorRequest {
+  string collector_id = 1;
+}
+
+//{
+//    "query": {}
+//}
+message CollectorQuery {
+  enum State {
+    STATE_NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
+
+  spaceone.api.core.v2.Query query = 1;
+  string collector_id = 2;
+  string name = 3;
+  State secret_filter_state = 4;
+  State schedule_state = 5;
+  string workspace_id = 21;
+  string plugin_id = 22;
+}
+
+message CollectRequest {
+  string collector_id = 1;
+  // +optional
+  string secret_id = 2;
+}
+
+message VerifyPluginRequest {
+  string collector_id = 1;
+  // +optional
+  string secret_id = 2;
+}
+
+//{
+//    "collector_id": "collector-2c0847644f39",
+//    "name": "AWS Collector",
+//    "plugin_info": {
+//        "plugin_id": "plugin-30d21ef75a5d",
+//        "version": "1.13.13",
+//        "options": {},
+//        "metadata": {
+//            "supported_schedules": [
+//                "hours"
+//            ],
+//            "supported_resource_type": [
+//                "inventory.CloudService",
+//                "inventory.CloudServiceType",
+//                "inventory.Region"
+//            ],
+//            "filter_format": [],
+//            "supported_features": [
+//                "garbage_collection"
+//            ]
+//        },
+//        "upgrade_mode": "AUTO"
+//    },
+//    "tags": {
+//        "type": "test"
+//    },
+//    "created_at": "2022-06-17T06:33:27.195Z",
+//    "domain_id": "domain-58010aa2e451",
+//    "provider": "aws",
+//    "capability": {
+//        "supported_schema": [
+//            "aws_access_key"
+//        ]
+//    },
+//    "schedule": {
+//        "state": "ENABLED",
+//        "hours": [0, 6, 12, 18]
+//    },
+//    "secret_filter": {
+//        "state": "ENABLED",
+//        "secrets": ["secret-xxx", "secret-yyy"],
+//        "service_accounts": ["sa-xxx", "sa-yyy"],
+//        "schemas": ["schema-xxx", "schema-yyy"]
+//    },
+//    "last_collected_at": "2022-06-17T06:33:27.195Z"
+//}
+message CollectorInfo {
+  enum State {
+    NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+  }
+
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
+
+  string collector_id = 1;
+  string name = 2;
+  string provider = 3;
+  google.protobuf.Struct capability = 4;
+  SecretFilter secret_filter = 5;
+  PluginInfo plugin_info = 6;
+  Scheduled schedule = 7;
+  google.protobuf.Struct tags = 8;
+
+  ResourceGroup resource_group = 20;
+  string domain_id = 21;
+  string workspace_id = 22;
+
+  string created_at = 31;
+  string updated_at = 32;
+  string last_collected_at = 33;
+}
+
+//{
+//     "results": [
+//        {
+//          "collector_id": "collector-2c0847644f39",
+//          "name": "AWS Collector",
+//          "plugin_info": {
+//              "plugin_id": "plugin-30d21ef75a5d",
+//              "version": "1.13.13",
+//              "options": {},
+//              "metadata": {
+//                  "supported_schedules": [
+//                      "hours"
+//                  ],
+//              "supported_resource_type": [
+//                "inventory.CloudService",
+//                "inventory.CloudServiceType",
+//                "inventory.Region"
+//              ],
+//              "filter_format": [],
+//              "supported_features": [
+//                "garbage_collection"
+//              ]
+//          },
+//          "upgrade_mode": "AUTO"
+//      },
+//      "tags": {
+//          "type": "test"
+//      },
+//      "created_at": "2022-06-17T06:33:27.195Z",
+//      "domain_id": "domain-58010aa2e451",
+//      "provider": "aws",
+//      "capability": {
+//          "supported_schema": [
+//              "aws_access_key"
+//          ]
+//      },
+//      "schedule": {
+//          "state": "ENABLED",
+//          "hours": [0, 6, 12, 18]
+//      },
+//      "secret_filter": {
+//          "state": "ENABLED",
+//          "secrets": ["secret-xxx", "secret-yyy"],
+//          "service_accounts": ["sa-xxx", "sa-yyy"],
+//          "schemas": ["schema-xxx", "schema-yyy"]
+//      },
+//      "last_collected_at": "2022-06-17T06:33:27.195Z"
+//    },
+//    {
+//      "collector_id": "collector-2c0847644f39",
+//      "name": "AWS Collector",
+//      "plugin_info": {
+//          "plugin_id": "plugin-30d21ef75a5d",
+//          "version": "1.13.13",
+//          "options": {},
+//          "metadata": {
+//              "supported_schedules": [
+//                  "hours"
+//              ],
+//              "supported_resource_type": [
+//                  "inventory.CloudService",
+//                  "inventory.CloudServiceType",
+//                  "inventory.Region"
+//              ],
+//              "filter_format": [],
+//              "supported_features": [
+//                "garbage_collection"
+//              ]
+//          },
+//          "upgrade_mode": "AUTO"
+//      },
+//      "tags": {
+//          "type": "test"
+//      },
+//      "created_at": "2022-06-17T06:33:27.195Z",
+//      "domain_id": "domain-58010aa2e451",
+//      "provider": "aws",
+//      "capability": {
+//          "supported_schema": [
+//              "aws_access_key"
+//          ]
+//      },
+//      "schedule": {
+//          "state": "ENABLED",
+//          "hours": [0, 6, 12, 18]
+//      },
+//      "secret_filter": {
+//          "state": "ENABLED",
+//          "secrets": ["secret-xxx", "secret-yyy"],
+//          "service_accounts": ["sa-xxx", "sa-yyy"],
+//          "schemas": ["schema-xxx", "schema-yyy"]
+//      },
+//      "last_collected_at": "2022-06-17T06:33:27.195Z"
+//    }
+//    ],
+//    "total_count": 2
+//}
+message CollectorsInfo {
+  repeated CollectorInfo results = 1;
+  int32 total_count = 2;
+}
+
+message CollectorStatQuery {
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+}
