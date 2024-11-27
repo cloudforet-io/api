@@ -23,6 +23,12 @@ service TaskCategory {
             body: "*"
         };
     }
+    rpc update_fields (TaskCategoryUpdateFieldsRequest) returns (TaskCategoryInfo) {
+        option (google.api.http) = {
+            post: "/opsflow/v1/task-category/update_fields"
+            body: "*"
+        };
+    }
     rpc delete (TaskCategoryRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/opsflow/v1/task-category/delete"
@@ -102,13 +108,17 @@ message TaskCategoryUpdateRequest {
     // +optional
     StatusOptions status_options = 4;
     // +optional
-    repeated TaskField fields = 5;
-    // +optional
-    bool force = 6;
+    bool force = 5;
     // +optional
     google.protobuf.Struct tags = 11;
     // +optional
     string package_id = 21;
+}
+
+message TaskCategoryUpdateFieldsRequest {
+    string category_id = 1;
+    repeated TaskField fields = 2;
+    bool force = 3;
 }
 
 message TaskCategoryRequest {
