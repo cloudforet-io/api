@@ -50,25 +50,6 @@ jobs:
           packages-dir: dist/python/dist/
 
 
-      - name: Push artifacts to ${{ env.BRANCH_NAME }}
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "[CI] api has been built"
-          commit_user_name: cloudforet-admin
-          commit_user_email: admin@cloudforet.io
-          commit_author: cloudforet-admin <admin@cloudforet.io>
-          push_options: '--force'
-          tagging_message: ${{ env.VERSION }}
-
-      - name: Push json to api-doc repository
-        uses: andstor/copycat-action@v3
-        with:
-          personal_token: ${{ secrets.PAT_TOKEN }}
-          src_path: dist/json/.
-          dst_path: dist/json/.
-          dst_owner: cloudforet-io
-          dst_repo_name: api-doc
-
       - name: Notice when job fails
         if: failure()
         uses: 8398a7/action-slack@v3.15.0
@@ -76,19 +57,6 @@ jobs:
           status: ${{job.status}}
           fields: repo,workflow,job
           author_name: Github Action Slack
-
-  trigger_api_doc_release:
-    needs: build_and_push
-    runs-on: ubuntu-latest
-    steps:
-      - name: task
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          token: ${{ secrets.PAT_TOKEN }}
-          repo: cloudforet-io/api-doc
-          workflow: dispatch_release.yaml
-          ref: master
-          inputs: '{"version": "${{ env.VERSION }}"}'
 
   notification:
     needs: build_and_push
