@@ -9,37 +9,52 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service Endpoint {
+  // Get gRPC endpoint list.
   // +noauth
   rpc list (EndpointSearchQuery) returns (EndpointsInfo) {
-        option (google.api.http) = {
-            post: "/identity/v2/endpoint/list"
-            body: "*"
-        };
-    }
+    option (google.api.http) = {
+      post: "/identity/v2/endpoint/list"
+      body: "*"
+    };
+  }
 }
 
 message EndpointInfo {
-    enum EndpointState {
-        NONE = 0;
-        ACTIVE = 1;
-        INACTIVE = 2;
-    }
+  enum EndpointState {
+    NONE = 0;
+    ACTIVE = 1;
+    INACTIVE = 2;
+  }
 
-    string name = 1;
-    string service = 2;
-    string endpoint = 3;
-    EndpointState state = 4;
-    string version = 5;
+  string name = 1;
+  string service = 2;
+  string endpoint = 3;
+  EndpointState state = 4;
+  string version = 5;
 }
 
+//{
+//  "service": "inventory",
+//  "query": {}
+//}
 message EndpointSearchQuery {
-    // +optional
-    spaceone.api.core.v2.Query query = 1;
-    // +optional
-    string service = 2;
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string service = 2;
 }
 
+//{
+//    "results": [
+//        {
+//            "name": "Inventory Service",
+//            "service": "inventory",
+//            "endpoint": "grpc://localhost:50051",
+//        }
+//    ],
+//    "total_count": 1
+//}
 message EndpointsInfo {
-    repeated EndpointInfo results = 1;
-    int32 total_count = 2;
+  repeated EndpointInfo results = 1;
+  int32 total_count = 2;
 }
