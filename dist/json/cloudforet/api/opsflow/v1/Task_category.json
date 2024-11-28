@@ -492,6 +492,54 @@
           ]
         },
         {
+          "name": "TaskCategoryUpdateFieldsRequest",
+          "longName": "TaskCategoryUpdateFieldsRequest",
+          "fullName": "spaceone.api.opsflow.v1.TaskCategoryUpdateFieldsRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "category_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "fields",
+              "description": "",
+              "label": "repeated",
+              "type": "TaskField",
+              "longType": "TaskField",
+              "fullType": "spaceone.api.opsflow.v1.TaskField",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "force",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "TaskCategoryUpdateRequest",
           "longName": "TaskCategoryUpdateRequest",
           "fullName": "spaceone.api.opsflow.v1.TaskCategoryUpdateRequest",
@@ -544,18 +592,6 @@
               "type": "StatusOptions",
               "longType": "StatusOptions",
               "fullType": "spaceone.api.opsflow.v1.StatusOptions",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "fields",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "TaskField",
-              "longType": "TaskField",
-              "fullType": "spaceone.api.opsflow.v1.TaskField",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -755,6 +791,29 @@
                     {
                       "method": "POST",
                       "pattern": "/opsflow/v1/task-category/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update_fields",
+              "description": "",
+              "requestType": "TaskCategoryUpdateFieldsRequest",
+              "requestLongType": "TaskCategoryUpdateFieldsRequest",
+              "requestFullType": "spaceone.api.opsflow.v1.TaskCategoryUpdateFieldsRequest",
+              "requestStreaming": false,
+              "responseType": "TaskCategoryInfo",
+              "responseLongType": "TaskCategoryInfo",
+              "responseFullType": "spaceone.api.opsflow.v1.TaskCategoryInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/opsflow/v1/task-category/update_fields",
                       "body": "*"
                     }
                   ]

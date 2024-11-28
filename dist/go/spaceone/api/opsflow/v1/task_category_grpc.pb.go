@@ -21,12 +21,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TaskCategory_Create_FullMethodName = "/spaceone.api.opsflow.v1.TaskCategory/create"
-	TaskCategory_Update_FullMethodName = "/spaceone.api.opsflow.v1.TaskCategory/update"
-	TaskCategory_Delete_FullMethodName = "/spaceone.api.opsflow.v1.TaskCategory/delete"
-	TaskCategory_Get_FullMethodName    = "/spaceone.api.opsflow.v1.TaskCategory/get"
-	TaskCategory_List_FullMethodName   = "/spaceone.api.opsflow.v1.TaskCategory/list"
-	TaskCategory_Stat_FullMethodName   = "/spaceone.api.opsflow.v1.TaskCategory/stat"
+	TaskCategory_Create_FullMethodName       = "/spaceone.api.opsflow.v1.TaskCategory/create"
+	TaskCategory_Update_FullMethodName       = "/spaceone.api.opsflow.v1.TaskCategory/update"
+	TaskCategory_UpdateFields_FullMethodName = "/spaceone.api.opsflow.v1.TaskCategory/update_fields"
+	TaskCategory_Delete_FullMethodName       = "/spaceone.api.opsflow.v1.TaskCategory/delete"
+	TaskCategory_Get_FullMethodName          = "/spaceone.api.opsflow.v1.TaskCategory/get"
+	TaskCategory_List_FullMethodName         = "/spaceone.api.opsflow.v1.TaskCategory/list"
+	TaskCategory_Stat_FullMethodName         = "/spaceone.api.opsflow.v1.TaskCategory/stat"
 )
 
 // TaskCategoryClient is the client API for TaskCategory service.
@@ -35,6 +36,7 @@ const (
 type TaskCategoryClient interface {
 	Create(ctx context.Context, in *TaskCategoryCreateRequest, opts ...grpc.CallOption) (*TaskCategoryInfo, error)
 	Update(ctx context.Context, in *TaskCategoryUpdateRequest, opts ...grpc.CallOption) (*TaskCategoryInfo, error)
+	UpdateFields(ctx context.Context, in *TaskCategoryUpdateFieldsRequest, opts ...grpc.CallOption) (*TaskCategoryInfo, error)
 	Delete(ctx context.Context, in *TaskCategoryRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *TaskCategoryRequest, opts ...grpc.CallOption) (*TaskCategoryInfo, error)
 	List(ctx context.Context, in *TaskCategorySearchQuery, opts ...grpc.CallOption) (*TaskCategoriesInfo, error)
@@ -63,6 +65,16 @@ func (c *taskCategoryClient) Update(ctx context.Context, in *TaskCategoryUpdateR
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TaskCategoryInfo)
 	err := c.cc.Invoke(ctx, TaskCategory_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *taskCategoryClient) UpdateFields(ctx context.Context, in *TaskCategoryUpdateFieldsRequest, opts ...grpc.CallOption) (*TaskCategoryInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TaskCategoryInfo)
+	err := c.cc.Invoke(ctx, TaskCategory_UpdateFields_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -115,6 +127,7 @@ func (c *taskCategoryClient) Stat(ctx context.Context, in *TaskCategoryStatQuery
 type TaskCategoryServer interface {
 	Create(context.Context, *TaskCategoryCreateRequest) (*TaskCategoryInfo, error)
 	Update(context.Context, *TaskCategoryUpdateRequest) (*TaskCategoryInfo, error)
+	UpdateFields(context.Context, *TaskCategoryUpdateFieldsRequest) (*TaskCategoryInfo, error)
 	Delete(context.Context, *TaskCategoryRequest) (*empty.Empty, error)
 	Get(context.Context, *TaskCategoryRequest) (*TaskCategoryInfo, error)
 	List(context.Context, *TaskCategorySearchQuery) (*TaskCategoriesInfo, error)
@@ -134,6 +147,9 @@ func (UnimplementedTaskCategoryServer) Create(context.Context, *TaskCategoryCrea
 }
 func (UnimplementedTaskCategoryServer) Update(context.Context, *TaskCategoryUpdateRequest) (*TaskCategoryInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedTaskCategoryServer) UpdateFields(context.Context, *TaskCategoryUpdateFieldsRequest) (*TaskCategoryInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFields not implemented")
 }
 func (UnimplementedTaskCategoryServer) Delete(context.Context, *TaskCategoryRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -200,6 +216,24 @@ func _TaskCategory_Update_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskCategoryServer).Update(ctx, req.(*TaskCategoryUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TaskCategory_UpdateFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskCategoryUpdateFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskCategoryServer).UpdateFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TaskCategory_UpdateFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskCategoryServer).UpdateFields(ctx, req.(*TaskCategoryUpdateFieldsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -290,6 +324,10 @@ var TaskCategory_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _TaskCategory_Update_Handler,
+		},
+		{
+			MethodName: "update_fields",
+			Handler:    _TaskCategory_UpdateFields_Handler,
 		},
 		{
 			MethodName: "delete",

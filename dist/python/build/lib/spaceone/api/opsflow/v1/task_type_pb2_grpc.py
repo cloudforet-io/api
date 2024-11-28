@@ -51,6 +51,11 @@ class TaskTypeStub(object):
                 request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeUpdateRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.FromString,
                 _registered_method=True)
+        self.update_fields = channel.unary_unary(
+                '/spaceone.api.opsflow.v1.TaskType/update_fields',
+                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeUpdateFieldsRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.FromString,
+                _registered_method=True)
         self.delete = channel.unary_unary(
                 '/spaceone.api.opsflow.v1.TaskType/delete',
                 request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeRequest.SerializeToString,
@@ -83,6 +88,12 @@ class TaskTypeServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def update_fields(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -123,6 +134,11 @@ def add_TaskTypeServicer_to_server(servicer, server):
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeUpdateRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.SerializeToString,
+            ),
+            'update_fields': grpc.unary_unary_rpc_method_handler(
+                    servicer.update_fields,
+                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeUpdateFieldsRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
@@ -199,6 +215,33 @@ class TaskType(object):
             target,
             '/spaceone.api.opsflow.v1.TaskType/update',
             spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeUpdateRequest.SerializeToString,
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def update_fields(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.opsflow.v1.TaskType/update_fields',
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeUpdateFieldsRequest.SerializeToString,
             spaceone_dot_api_dot_opsflow_dot_v1_dot_task__type__pb2.TaskTypeInfo.FromString,
             options,
             channel_credentials,

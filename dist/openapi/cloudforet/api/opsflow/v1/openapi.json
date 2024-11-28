@@ -467,11 +467,40 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |category_id||string|True|\n |name||string||\n |description||string||\n |status_options||StatusOptions||\n |fields||array||\n |force||boolean||\n |tags||Struct||\n |package_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |category_id||string|True|\n |name||string||\n |description||string||\n |status_options||StatusOptions||\n |force||boolean||\n |tags||Struct||\n |package_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"category_id" : {"type": "string","title": "CATEGORY_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"force" : {"type": "boolean","title": "FORCE" },"tags" : {"type": "object","title": "TAGS" },"package_id" : {"type": "string","title": "PACKAGE_ID" }                 }
+                 "properties": {"category_id" : {"type": "string","title": "CATEGORY_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS" },"force" : {"type": "boolean","title": "FORCE" },"tags" : {"type": "object","title": "TAGS" },"package_id" : {"type": "string","title": "PACKAGE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TaskCategoryInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TaskCategoryInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/task-category/update_fields": {
+       "post": {
+         "tags": ["opsflow > task-category"],
+         "summary": "Update Fields",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |category_id||string|True|\n |fields||array|True|\n |force||boolean|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"category_id" : {"type": "string","title": "CATEGORY_ID" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"force" : {"type": "boolean","title": "FORCE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -635,11 +664,40 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |name||string||\n |description||string||\n |fields||array||\n |assignee_pool||array||\n |tags||Struct||\n |category_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |name||string||\n |description||string||\n |assignee_pool||array||\n |tags||Struct||\n |category_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
+                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"assignee_pool" : {"items": {}, "type": "array","title": "ASSIGNEE_POOL" },"tags" : {"type": "object","title": "TAGS" },"category_id" : {"type": "string","title": "CATEGORY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TaskTypeInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TaskTypeInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/task-type/update_fields": {
+       "post": {
+         "tags": ["opsflow > task-type"],
+         "summary": "Update Fields",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_type_id||string|True|\n |fields||array|True|\n |force||boolean|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID" },"fields" : {"items": {"$ref": "#/components/schemas/TaskField"}, "type": "array","title": "FIELDS" },"force" : {"type": "boolean","title": "FORCE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1160,9 +1218,15 @@
          "required": ["query"],
                 "title": "TaskCategoryStatQuery"
            }
+           ,        "TaskCategoryUpdateFieldsRequest": {
+         "properties" : {"category_id" : {"type": "string","title": "CATEGORY_ID"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"force" : {"type": "boolean","title": "FORCE"}},
+         "type": "object",
+         "required": ["category_id","fields","force"],
+                "title": "TaskCategoryUpdateFieldsRequest"
+           }
            ,        "TaskCategoryUpdateRequest": {
-         "properties" : {"category_id" : {"type": "string","title": "CATEGORY_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"force" : {"type": "boolean","title": "FORCE"},"tags" : {"type": "object","title": "TAGS"},"package_id" : {"type": "string","title": "PACKAGE_ID"}},
+         "properties" : {"category_id" : {"type": "string","title": "CATEGORY_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS"},"force" : {"type": "boolean","title": "FORCE"},"tags" : {"type": "object","title": "TAGS"},"package_id" : {"type": "string","title": "PACKAGE_ID"}},
          "type": "object",
          "required": ["category_id"],
                 "title": "TaskCategoryUpdateRequest"
@@ -1207,9 +1271,15 @@
          "required": ["query"],
                 "title": "TaskTypeStatQuery"
            }
+           ,        "TaskTypeUpdateFieldsRequest": {
+         "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"force" : {"type": "boolean","title": "FORCE"}},
+         "type": "object",
+         "required": ["task_type_id","fields","force"],
+                "title": "TaskTypeUpdateFieldsRequest"
+           }
            ,        "TaskTypeUpdateRequest": {
-         "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"assignee_pool" : {"items": {"type": "string"},
+         "properties" : {"task_type_id" : {"type": "string","title": "TASK_TYPE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"assignee_pool" : {"items": {"type": "string"},
                "type": "array","title": "ASSIGNEE_POOL"},"tags" : {"type": "object","title": "TAGS"},"category_id" : {"type": "string","title": "CATEGORY_ID"}},
          "type": "object",
          "required": ["task_type_id"],

@@ -21,12 +21,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TaskType_Create_FullMethodName = "/spaceone.api.opsflow.v1.TaskType/create"
-	TaskType_Update_FullMethodName = "/spaceone.api.opsflow.v1.TaskType/update"
-	TaskType_Delete_FullMethodName = "/spaceone.api.opsflow.v1.TaskType/delete"
-	TaskType_Get_FullMethodName    = "/spaceone.api.opsflow.v1.TaskType/get"
-	TaskType_List_FullMethodName   = "/spaceone.api.opsflow.v1.TaskType/list"
-	TaskType_Stat_FullMethodName   = "/spaceone.api.opsflow.v1.TaskType/stat"
+	TaskType_Create_FullMethodName       = "/spaceone.api.opsflow.v1.TaskType/create"
+	TaskType_Update_FullMethodName       = "/spaceone.api.opsflow.v1.TaskType/update"
+	TaskType_UpdateFields_FullMethodName = "/spaceone.api.opsflow.v1.TaskType/update_fields"
+	TaskType_Delete_FullMethodName       = "/spaceone.api.opsflow.v1.TaskType/delete"
+	TaskType_Get_FullMethodName          = "/spaceone.api.opsflow.v1.TaskType/get"
+	TaskType_List_FullMethodName         = "/spaceone.api.opsflow.v1.TaskType/list"
+	TaskType_Stat_FullMethodName         = "/spaceone.api.opsflow.v1.TaskType/stat"
 )
 
 // TaskTypeClient is the client API for TaskType service.
@@ -35,6 +36,7 @@ const (
 type TaskTypeClient interface {
 	Create(ctx context.Context, in *TaskTypeCreateRequest, opts ...grpc.CallOption) (*TaskTypeInfo, error)
 	Update(ctx context.Context, in *TaskTypeUpdateRequest, opts ...grpc.CallOption) (*TaskTypeInfo, error)
+	UpdateFields(ctx context.Context, in *TaskTypeUpdateFieldsRequest, opts ...grpc.CallOption) (*TaskTypeInfo, error)
 	Delete(ctx context.Context, in *TaskTypeRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *TaskTypeRequest, opts ...grpc.CallOption) (*TaskTypeInfo, error)
 	List(ctx context.Context, in *TaskTypeSearchQuery, opts ...grpc.CallOption) (*TaskTypesInfo, error)
@@ -63,6 +65,16 @@ func (c *taskTypeClient) Update(ctx context.Context, in *TaskTypeUpdateRequest, 
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TaskTypeInfo)
 	err := c.cc.Invoke(ctx, TaskType_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *taskTypeClient) UpdateFields(ctx context.Context, in *TaskTypeUpdateFieldsRequest, opts ...grpc.CallOption) (*TaskTypeInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TaskTypeInfo)
+	err := c.cc.Invoke(ctx, TaskType_UpdateFields_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -115,6 +127,7 @@ func (c *taskTypeClient) Stat(ctx context.Context, in *TaskTypeStatQuery, opts .
 type TaskTypeServer interface {
 	Create(context.Context, *TaskTypeCreateRequest) (*TaskTypeInfo, error)
 	Update(context.Context, *TaskTypeUpdateRequest) (*TaskTypeInfo, error)
+	UpdateFields(context.Context, *TaskTypeUpdateFieldsRequest) (*TaskTypeInfo, error)
 	Delete(context.Context, *TaskTypeRequest) (*empty.Empty, error)
 	Get(context.Context, *TaskTypeRequest) (*TaskTypeInfo, error)
 	List(context.Context, *TaskTypeSearchQuery) (*TaskTypesInfo, error)
@@ -134,6 +147,9 @@ func (UnimplementedTaskTypeServer) Create(context.Context, *TaskTypeCreateReques
 }
 func (UnimplementedTaskTypeServer) Update(context.Context, *TaskTypeUpdateRequest) (*TaskTypeInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedTaskTypeServer) UpdateFields(context.Context, *TaskTypeUpdateFieldsRequest) (*TaskTypeInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFields not implemented")
 }
 func (UnimplementedTaskTypeServer) Delete(context.Context, *TaskTypeRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -200,6 +216,24 @@ func _TaskType_Update_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskTypeServer).Update(ctx, req.(*TaskTypeUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TaskType_UpdateFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskTypeUpdateFieldsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskTypeServer).UpdateFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TaskType_UpdateFields_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskTypeServer).UpdateFields(ctx, req.(*TaskTypeUpdateFieldsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -290,6 +324,10 @@ var TaskType_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _TaskType_Update_Handler,
+		},
+		{
+			MethodName: "update_fields",
+			Handler:    _TaskType_UpdateFields_Handler,
 		},
 		{
 			MethodName: "delete",
