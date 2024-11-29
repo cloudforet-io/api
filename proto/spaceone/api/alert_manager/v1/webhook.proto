@@ -1,0 +1,177 @@
+syntax = "proto3";
+
+package spaceone.api.alert_manager.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/alert-manager/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+
+service Webhook {
+    rpc create (WebhookCreateRequest) returns (WebhookInfo) {
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/create"
+            body: "*"
+        };
+    }
+    rpc update (WebhookUpdateRequest) returns (WebhookInfo) {
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/update"
+            body: "*"
+        };
+    }
+    rpc update_plugin (WebhookUpdatePluginRequest) returns (WebhookInfo) {
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/update-plugin"
+            body: "*"
+        };
+    }
+    rpc verify_plugin (WebhookRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/verify-plugin"
+            body: "*"
+        };
+    }
+    rpc enable (WebhookRequest) returns (WebhookInfo) {
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/enable"
+            body: "*"
+        };
+    }
+    rpc disable (WebhookRequest) returns (WebhookInfo) {
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/disable"
+            body: "*"
+        };
+    }
+    rpc delete (WebhookRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/delete"
+            body: "*"
+        };
+    }
+    rpc get (WebhookRequest) returns (WebhookInfo) {
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/get"
+            body: "*"
+        };
+    }
+    rpc list (WebhookQuery) returns (WebhooksInfo) {
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/list"
+            body: "*"
+        };
+    }
+    rpc stat (WebhookStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/monitoring/v1/webhook/stat",
+            body: "*"
+        };
+    }
+}
+
+
+enum WebhookState {
+    WEBHOOK_NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
+}
+
+enum UpgradeMode {
+    UPGRADE_NONE = 0;
+    MANUAL = 1;
+    AUTO = 2;
+}
+
+message WebhookRequests {
+    int64 total = 1;
+    int64 error = 2;
+}
+
+message WebhookPluginInfo{
+    string plugin_id = 1;
+    string version = 2;
+    google.protobuf.Struct options = 3;
+    google.protobuf.Struct metadata = 4;
+    UpgradeMode upgrade_mode = 5;
+}
+
+message WebhookCreateRequest {
+    string name = 1;
+    WebhookPluginInfo plugin_info = 2;
+    // +optional
+    google.protobuf.Struct tags = 3;
+    string service_id = 11;
+}
+
+message WebhookUpdateRequest {
+    string webhook_id = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    google.protobuf.Struct tags = 3;
+}
+
+message WebhookUpdatePluginRequest {
+    enum UpgradeMode {
+        NONE = 0;
+        MANUAL = 1;
+        AUTO = 2;
+    }
+
+    string webhook_id = 1;
+    // +optional
+    string version = 2;
+    // +optional
+    google.protobuf.Struct options = 3;
+    // +optional
+    UpgradeMode upgrade_mode = 4;
+}
+
+message WebhookRequest {
+    string webhook_id = 1;
+}
+
+message WebhookQuery {
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string webhook_id = 2;
+    // +optional
+    string name = 3;
+    // +optional
+    WebhookState state = 4;
+    // +optional
+    string access_key = 5;
+    // +optional
+    string workspace_id = 6;
+    // +optional
+    string service_id = 7;
+}
+
+message WebhookStatQuery {
+    spaceone.api.core.v2.StatisticsQuery query = 1;
+}
+
+message WebhookInfo {
+    string webhook_id = 1;
+    string name = 2;
+    WebhookState state = 3;
+    string access_key = 4;
+    string webhook_url = 5;
+    WebhookPluginInfo plugin_info = 6;
+    google.protobuf.Struct tags = 7;
+    WebhookRequests requests = 8;
+    string service_id = 9;
+    string workspace_id = 10;
+    string domain_id = 11;
+    string created_at = 12;
+}
+
+message WebhooksInfo {
+    repeated WebhookInfo results = 1;
+    int32 total_count = 2;
+}
