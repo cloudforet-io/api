@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+package spaceone.api.alert_manager.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/alert-manager/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+service EscalationPolicy {
+    rpc create (EscalationPolicyCreateRequest) returns (EscalationPolicyInfo) {
+        option (google.api.http) = {
+            post: "/alert-manager/v1/escalation-policy/create"
+            body: "*"
+        };
+    }
+    rpc delete (EscalationPolicyRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/alert-manager/v1/escalation-policy/delete"
+            body: "*"
+        };
+    }
+    rpc get (EscalationPolicyRequest) returns (EscalationPolicyInfo) {
+        option (google.api.http) = {
+            post: "/alert-manager/v1/escalation-policy/get"
+            body: "*"
+        };
+    }
+    rpc list (EscalationPolicySearchQuery) returns (EscalationPoliciesInfo) {
+        option (google.api.http) = {
+            post: "/alert-manager/v1/escalation-policy/list"
+            body: "*"
+        };
+    }
+    rpc stat (EscalationPolicyStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/alert_manager/v1/escalation-policy/stat"
+            body: "*"
+        };
+    }
+}
+
+
+//////////
+//Receive
+//////////
+message EscalationPolicyCreateRequest {
+
+    enum FinishCondition {
+        FINISH_CONDITION_NONE = 0;
+        ACKNOWLEDGED = 1;
+        RESOLVED = 2;
+    }
+
+    string name = 1;
+    repeated google.protobuf.Struct rules = 2;
+    // +optional
+    int32 repeat_count = 3;
+    // +optional
+    FinishCondition finish_condition = 4;
+    // +optional
+    google.protobuf.Struct tags = 5;
+    string service_id = 6;
+}
+
+message EscalationPolicyRequest {
+    string escalation_policy_id = 1;
+}
+
+message EscalationPolicySearchQuery {
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string escalation_policy_id = 2;
+    // +optional
+    string name = 3;
+    // +optional
+    string finish_condition = 4;
+    // +optional
+    string service_id = 5;
+}
+
+message EscalationPolicyStatQuery {
+    spaceone.api.core.v2.StatisticsQuery query = 1;
+}
+
+
+//////////
+//Returns
+//////////
+
+message EscalationPolicyInfo {
+    string escalation_policy_id = 1;
+    string name = 2;
+    repeated google.protobuf.Struct rules = 3;
+    int32 repeat_count = 4;
+    string finish_condition = 5;
+    google.protobuf.Struct tags = 6;
+    string service_id = 7;
+    string workspace_id = 8;
+    string domain_id = 9;
+    string created_at = 10;
+}
+
+message EscalationPoliciesInfo {
+    repeated EscalationPolicyInfo results = 1;
+    int32 total_count = 2;
+}
