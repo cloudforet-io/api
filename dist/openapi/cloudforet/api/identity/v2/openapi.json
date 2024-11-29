@@ -494,7 +494,7 @@
          "tags": ["identity > endpoint"],
          "summary": "List",
          "operationId" : "",
-         "description": "### Description \n",
+         "description": "### Description \nGet gRPC endpoint list.\n",
          "requestBody": {
            "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service||string||\n<br>",
            "content": {
@@ -502,7 +502,7 @@
                "schema": {
                  "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service" : {"type": "string","title": "SERVICE" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"service\": \"inventory\",\n \"query\": {}\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -513,7 +513,9 @@
                "application/json": {
                  "schema": {"$ref": "#/components/schemas/EndpointsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/EndpointsInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/EndpointsInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [\n       {\n           \"name\": \"Inventory Service\",\n           \"service\": \"inventory\",\n           \"endpoint\": \"grpc://localhost:50051\",\n       }\n   ],\n   \"total_count\": 1\n}"
+                   }}
                }
              }}
          }
@@ -3001,7 +3003,7 @@
                "schema": {
                  "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"options" : {"type": "object","title": "OPTIONS" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"service_account_id\": \"sa-a120f6d21c4e\",\n \"options\": {\n   \"cluster_name\": \"k8s-prd-cluster\",\n   \"kube_state_metrics\": \"false\",\n   \"prometheus_node_exporter\": \"false\"\n }\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -3012,7 +3014,9 @@
                "application/json": {
                  "schema": {"$ref": "#/components/schemas/AgentInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/AgentInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/AgentInfo"},"Default Example":{
+                     "value": "{\n   \"agent_id\": \"agent-5cb52dc61c70\",\n   \"options\": {\n       \"kube_state_metrics\": false,\n       \"cluster_name\": \"k8s-prd-cluster\",\n       \"prometheus_node_exporter\": false\n   },\n   \"client_secret\": \"client_secret_from_app\",\n   \"state\": \"ENABLED\",\n   \"is_managed\": true,\n   \"role_type\": \"WORKSPACE_OWNER\",\n   \"domain_id\": \"domain-116226a1516a\",\n   \"workspace_id\": \"workspace-7a0aebcf4eb2\",\n   \"project_id\": \"project-441975c8dfd8\",\n   \"service_account_id\": \"sa-a120f6d21c4e\",\n   \"app_id\": \"app-aa7bf47c98ea\",\n   \"role_id\": \"managed-workspace-owner\",\n   \"client_id\": \"client-36e1034b3512\",\n   \"created_at\": \"2024-11-13T00:34:09.125Z\",\n   \"expired_at\": \"2025-11-13T00:34:09.000Z\"\n}"
+                   }}
                }
              }}
          }
@@ -3030,7 +3034,7 @@
                "schema": {
                  "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"service_account_id\": \"sa-a120f6d21c4e\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -3041,7 +3045,9 @@
                "application/json": {
                  "schema": {"$ref": "#/components/schemas/AgentInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/AgentInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/AgentInfo"},"Default Example":{
+                     "value": "{\n   \"agent_id\": \"agent-5cb52dc61c70\",\n   \"options\": {\n       \"kube_state_metrics\": false,\n       \"cluster_name\": \"k8s-prd-cluster\",\n       \"prometheus_node_exporter\": false\n   },\n   \"client_secret\": \"client_secret_from_app\",\n   \"state\": \"ENABLED\",\n   \"is_managed\": true,\n   \"role_type\": \"WORKSPACE_OWNER\",\n   \"domain_id\": \"domain-116226a1516a\",\n   \"workspace_id\": \"workspace-7a0aebcf4eb2\",\n   \"project_id\": \"project-441975c8dfd8\",\n   \"service_account_id\": \"sa-a120f6d21c4e\",\n   \"app_id\": \"app-aa7bf47c98ea\",\n   \"role_id\": \"managed-workspace-owner\",\n   \"client_id\": \"client-36e1034b3512\",\n   \"created_at\": \"2024-11-13T00:34:09.125Z\",\n   \"expired_at\": \"2025-11-13T00:34:09.000Z\"\n}"
+                   }}
                }
              }}
          }
@@ -3059,7 +3065,7 @@
                "schema": {
                  "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"service_account_id\": \"sa-a120f6d21c4e\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -3070,7 +3076,9 @@
                "application/json": {
                  "schema": {"$ref": "#/components/schemas/AgentInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/AgentInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/AgentInfo"},"Default Example":{
+                     "value": "{\n   \"agent_id\": \"agent-5cb52dc61c70\",\n   \"options\": {\n       \"kube_state_metrics\": false,\n       \"cluster_name\": \"k8s-prd-cluster\",\n       \"prometheus_node_exporter\": false\n   },\n   \"client_secret\": \"client_secret_from_app\",\n   \"state\": \"ENABLED\",\n   \"is_managed\": true,\n   \"role_type\": \"WORKSPACE_OWNER\",\n   \"domain_id\": \"domain-116226a1516a\",\n   \"workspace_id\": \"workspace-7a0aebcf4eb2\",\n   \"project_id\": \"project-441975c8dfd8\",\n   \"service_account_id\": \"sa-a120f6d21c4e\",\n   \"app_id\": \"app-aa7bf47c98ea\",\n   \"role_id\": \"managed-workspace-owner\",\n   \"client_id\": \"client-36e1034b3512\",\n   \"created_at\": \"2024-11-13T00:34:09.125Z\",\n   \"expired_at\": \"2025-11-13T00:34:09.000Z\"\n}"
+                   }}
                }
              }}
          }
@@ -3088,7 +3096,7 @@
                "schema": {
                  "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"service_account_id\": \"sa-a120f6d21c4e\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -3099,7 +3107,9 @@
                "application/json": {
                  "schema": {"$ref": "#/components/schemas/AgentInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/AgentInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/AgentInfo"},"Default Example":{
+                     "value": "{\n   \"agent_id\": \"agent-5cb52dc61c70\",\n   \"options\": {\n       \"kube_state_metrics\": false,\n       \"cluster_name\": \"k8s-prd-cluster\",\n       \"prometheus_node_exporter\": false\n   },\n   \"client_secret\": \"client_secret_from_app\",\n   \"state\": \"ENABLED\",\n   \"is_managed\": true,\n   \"role_type\": \"WORKSPACE_OWNER\",\n   \"domain_id\": \"domain-116226a1516a\",\n   \"workspace_id\": \"workspace-7a0aebcf4eb2\",\n   \"project_id\": \"project-441975c8dfd8\",\n   \"service_account_id\": \"sa-a120f6d21c4e\",\n   \"app_id\": \"app-aa7bf47c98ea\",\n   \"role_id\": \"managed-workspace-owner\",\n   \"client_id\": \"client-36e1034b3512\",\n   \"created_at\": \"2024-11-13T00:34:09.125Z\",\n   \"expired_at\": \"2025-11-13T00:34:09.000Z\"\n}"
+                   }}
                }
              }}
          }
@@ -3117,7 +3127,7 @@
                "schema": {
                  "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"service_account_id\": \"sa-a120f6d21c4e\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -3140,7 +3150,7 @@
                "schema": {
                  "properties": {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"service_account_id\": \"sa-a120f6d21c4e\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -3151,7 +3161,9 @@
                "application/json": {
                  "schema": {"$ref": "#/components/schemas/AgentInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/AgentInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/AgentInfo"},"Default Example":{
+                     "value": "{\n   \"agent_id\": \"agent-5cb52dc61c70\",\n   \"options\": {\n       \"kube_state_metrics\": false,\n       \"cluster_name\": \"k8s-prd-cluster\",\n       \"prometheus_node_exporter\": false\n   },\n   \"client_secret\": \"client_secret_from_app\",\n   \"state\": \"ENABLED\",\n   \"is_managed\": true,\n   \"role_type\": \"WORKSPACE_OWNER\",\n   \"domain_id\": \"domain-116226a1516a\",\n   \"workspace_id\": \"workspace-7a0aebcf4eb2\",\n   \"project_id\": \"project-441975c8dfd8\",\n   \"service_account_id\": \"sa-a120f6d21c4e\",\n   \"app_id\": \"app-aa7bf47c98ea\",\n   \"role_id\": \"managed-workspace-owner\",\n   \"client_id\": \"client-36e1034b3512\",\n   \"created_at\": \"2024-11-13T00:34:09.125Z\",\n   \"expired_at\": \"2025-11-13T00:34:09.000Z\"\n}"
+                   }}
                }
              }}
          }
@@ -3169,7 +3181,7 @@
                "schema": {
                  "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"agent_id" : {"type": "string","title": "AGENT_ID" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"state" : {"type": "string","title": "STATE" }                 }
                },
-               "examples":{"Schema":{}
+               "examples":{"Default Example":{"value": "{\n \"query\": {\n   \"page\": {\n     \"start\":1,\n     \"limit\": 10\n   }\n }\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -3180,7 +3192,9 @@
                "application/json": {
                  "schema": {"$ref": "#/components/schemas/AgentsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/AgentsInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/AgentsInfo"},"Default Example":{
+                     "value": "{\n \"results\": [\n   {\n     \"agent_id\": \"agent-5cb52dc61c70\",\n     \"options\": {\n       \"kube_state_metrics\": false,\n       \"cluster_name\": \"k8s-prd-cluster\",\n       \"prometheus_node_exporter\": false\n     },\n     \"client_secret\": \"client_secret_from_app\",\n     \"state\": \"ENABLED\",\n     \"is_managed\": true,\n     \"role_type\": \"WORKSPACE_OWNER\",\n     \"domain_id\": \"domain-116226a1516a\",\n     \"workspace_id\": \"workspace-7a0aebcf4eb2\",\n     \"project_id\": \"project-441975c8dfd8\",\n     \"service_account_id\": \"sa-a120f6d21c4e\",\n     \"app_id\": \"app-aa7bf47c98ea\",\n     \"role_id\": \"managed-workspace-owner\",\n     \"client_id\": \"client-36e1034b3512\",\n     \"created_at\": \"2024-11-13T00:34:09.125Z\",\n     \"expired_at\": \"2025-11-13T00:34:09.000Z\"\n   }\n ],\n \"total_count\": 1\n}"
+                   }}
                }
              }}
          }

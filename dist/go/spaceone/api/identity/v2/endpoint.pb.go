@@ -148,6 +148,10 @@ func (x *EndpointInfo) GetVersion() string {
 	return ""
 }
 
+//	{
+//	 "service": "inventory",
+//	 "query": {}
+//	}
 type EndpointSearchQuery struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -203,6 +207,16 @@ func (x *EndpointSearchQuery) GetService() string {
 	return ""
 }
 
+//	{
+//	   "results": [
+//	       {
+//	           "name": "Inventory Service",
+//	           "service": "inventory",
+//	           "endpoint": "grpc://localhost:50051",
+//	       }
+//	   ],
+//	   "total_count": 1
+//	}
 type EndpointsInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

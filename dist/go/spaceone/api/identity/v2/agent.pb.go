@@ -226,6 +226,14 @@ func (AgentSearchQuery_State) EnumDescriptor() ([]byte, []int) {
 	return file_spaceone_api_identity_v2_agent_proto_rawDescGZIP(), []int{3, 0}
 }
 
+//	{
+//	 "service_account_id": "sa-a120f6d21c4e",
+//	 "options": {
+//	   "cluster_name": "k8s-prd-cluster",
+//	   "kube_state_metrics": "false",
+//	   "prometheus_node_exporter": "false"
+//	 }
+//	}
 type CreateAgentRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -279,6 +287,9 @@ func (x *CreateAgentRequest) GetOptions() *_struct.Struct {
 	return nil
 }
 
+//	{
+//	 "service_account_id": "sa-a120f6d21c4e"
+//	}
 type AgentRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -324,6 +335,27 @@ func (x *AgentRequest) GetServiceAccountId() string {
 	return ""
 }
 
+//	{
+//	   "agent_id": "agent-5cb52dc61c70",
+//	   "options": {
+//	       "kube_state_metrics": false,
+//	       "cluster_name": "k8s-prd-cluster",
+//	       "prometheus_node_exporter": false
+//	   },
+//	   "client_secret": "client_secret_from_app",
+//	   "state": "ENABLED",
+//	   "is_managed": true,
+//	   "role_type": "WORKSPACE_OWNER",
+//	   "domain_id": "domain-116226a1516a",
+//	   "workspace_id": "workspace-7a0aebcf4eb2",
+//	   "project_id": "project-441975c8dfd8",
+//	   "service_account_id": "sa-a120f6d21c4e",
+//	   "app_id": "app-aa7bf47c98ea",
+//	   "role_id": "managed-workspace-owner",
+//	   "client_id": "client-36e1034b3512",
+//	   "created_at": "2024-11-13T00:34:09.125Z",
+//	   "expired_at": "2025-11-13T00:34:09.000Z"
+//	}
 type AgentInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -489,6 +521,14 @@ func (x *AgentInfo) GetLastAccessedAt() string {
 	return ""
 }
 
+//	{
+//	 "query": {
+//	   "page": {
+//	     "start":1,
+//	     "limit": 10
+//	   }
+//	 }
+//	}
 type AgentSearchQuery struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -562,6 +602,32 @@ func (x *AgentSearchQuery) GetState() AgentSearchQuery_State {
 	return AgentSearchQuery_STATE_NONE
 }
 
+//	{
+//	 "results": [
+//	   {
+//	     "agent_id": "agent-5cb52dc61c70",
+//	     "options": {
+//	       "kube_state_metrics": false,
+//	       "cluster_name": "k8s-prd-cluster",
+//	       "prometheus_node_exporter": false
+//	     },
+//	     "client_secret": "client_secret_from_app",
+//	     "state": "ENABLED",
+//	     "is_managed": true,
+//	     "role_type": "WORKSPACE_OWNER",
+//	     "domain_id": "domain-116226a1516a",
+//	     "workspace_id": "workspace-7a0aebcf4eb2",
+//	     "project_id": "project-441975c8dfd8",
+//	     "service_account_id": "sa-a120f6d21c4e",
+//	     "app_id": "app-aa7bf47c98ea",
+//	     "role_id": "managed-workspace-owner",
+//	     "client_id": "client-36e1034b3512",
+//	     "created_at": "2024-11-13T00:34:09.125Z",
+//	     "expired_at": "2025-11-13T00:34:09.000Z"
+//	   }
+//	 ],
+//	 "total_count": 1
+//	}
 type AgentsInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

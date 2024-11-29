@@ -26,6 +26,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EndpointClient interface {
+	// Get gRPC endpoint list.
 	// +noauth
 	List(ctx context.Context, in *EndpointSearchQuery, opts ...grpc.CallOption) (*EndpointsInfo, error)
 }
@@ -52,6 +53,7 @@ func (c *endpointClient) List(ctx context.Context, in *EndpointSearchQuery, opts
 // All implementations must embed UnimplementedEndpointServer
 // for forward compatibility.
 type EndpointServer interface {
+	// Get gRPC endpoint list.
 	// +noauth
 	List(context.Context, *EndpointSearchQuery) (*EndpointsInfo, error)
 	mustEmbedUnimplementedEndpointServer()

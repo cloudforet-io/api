@@ -50,7 +50,8 @@ class EndpointServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def list(self, request, context):
-        """+noauth
+        """Get gRPC endpoint list.
+        +noauth
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

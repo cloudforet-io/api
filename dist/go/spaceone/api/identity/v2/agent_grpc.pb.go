@@ -32,6 +32,8 @@ const (
 // AgentClient is the client API for Agent service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// Create Agent with service account , Currently only Kubernetes service account is supported for OpenCost
 type AgentClient interface {
 	Create(ctx context.Context, in *CreateAgentRequest, opts ...grpc.CallOption) (*AgentInfo, error)
 	Enable(ctx context.Context, in *AgentRequest, opts ...grpc.CallOption) (*AgentInfo, error)
@@ -123,6 +125,8 @@ func (c *agentClient) List(ctx context.Context, in *AgentSearchQuery, opts ...gr
 // AgentServer is the server API for Agent service.
 // All implementations must embed UnimplementedAgentServer
 // for forward compatibility.
+//
+// Create Agent with service account , Currently only Kubernetes service account is supported for OpenCost
 type AgentServer interface {
 	Create(context.Context, *CreateAgentRequest) (*AgentInfo, error)
 	Enable(context.Context, *AgentRequest) (*AgentInfo, error)

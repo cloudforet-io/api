@@ -1,0 +1,2794 @@
+{
+   "openapi": "3.1.0",
+   "externalDocs":{
+       "description": "Home",
+       "url": "/docs"
+   },
+   "info": {
+     "title": "Alert Manager API",
+     "version": "3.1.0"
+   },
+   "paths":{"/alert-manager/comment/create": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/update": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/change-member": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Change Member",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/delete": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/get": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/list": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert_manager/comment/stat": {
+       "post": {
+         "tags": ["alert_manager > comment"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/create": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/update": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/change-member": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Change Member",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/delete": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/get": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/list": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert_manager/comment/stat": {
+       "post": {
+         "tags": ["alert_manager > comment"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/create": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/update": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/change-member": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Change Member",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/delete": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/get": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/list": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert_manager/comment/stat": {
+       "post": {
+         "tags": ["alert_manager > comment"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/service/create": {
+       "post": {
+         "tags": ["alert-manager > service"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/service/update": {
+       "post": {
+         "tags": ["alert-manager > service"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/service/change-member": {
+       "post": {
+         "tags": ["alert-manager > service"],
+         "summary": "Change Member",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/service/delete": {
+       "post": {
+         "tags": ["alert-manager > service"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/service/get": {
+       "post": {
+         "tags": ["alert-manager > service"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/service/list": {
+       "post": {
+         "tags": ["alert-manager > service"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert_manager/service/stat": {
+       "post": {
+         "tags": ["alert_manager > service"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/alert/create": {
+       "post": {
+         "tags": ["alert-manager > alert"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/alert/update": {
+       "post": {
+         "tags": ["alert-manager > alert"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/alert/delete": {
+       "post": {
+         "tags": ["alert-manager > alert"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/alert/get": {
+       "post": {
+         "tags": ["alert-manager > alert"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/alert/list": {
+       "post": {
+         "tags": ["alert-manager > alert"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/alert/history": {
+       "post": {
+         "tags": ["alert-manager > alert"],
+         "summary": "History",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/alert/analyze": {
+       "post": {
+         "tags": ["alert-manager > alert"],
+         "summary": "Analyze",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert_manager/alert/stat": {
+       "post": {
+         "tags": ["alert_manager > alert"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/create": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |conditions||array|True|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||Struct|True|\n |service_id||string|True|\n |name||string||\n |options|True, False |string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"type": "object","title": "ACTIONS" },"options" : {"type": "string","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "Receive\n////////"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/EventRuleInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/EventRuleInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/change-order": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Change Order",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |event_rule_id||string|True|\n |order||int|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID" },"order" : {"type": "integer","title": "ORDER" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/EventRuleInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/EventRuleInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/update": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |event_rule_id||string|True|\n |name||string||\n |conditions||array||\n |conditions_policy|ALL, ANY, ALWAYS |string||\n |actions||Struct||\n |options|True, False |string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID" },"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"type": "object","title": "ACTIONS" },"options" : {"type": "string","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/EventRuleInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/EventRuleInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/delete": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |event_rule_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/get": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |event_rule_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/EventRuleInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/EventRuleInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/list": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |event_rule_id||string||\n |name||string||\n |resource_group||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID" },"name" : {"type": "string","title": "NAME" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/EventRulesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/EventRulesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert_manager/comment/stat": {
+       "post": {
+         "tags": ["alert_manager > comment"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/webhook/create": {
+       "post": {
+         "tags": ["monitoring > webhook"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |plugin_info||WebhookPluginInfo|True|\n |service_id||string|True|\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/WebhookPluginInfo","title": "PLUGIN_INFO" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WebhookInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WebhookInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/webhook/update": {
+       "post": {
+         "tags": ["monitoring > webhook"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |webhook_id||string|True|\n |name||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WebhookInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WebhookInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/webhook/update-plugin": {
+       "post": {
+         "tags": ["monitoring > webhook"],
+         "summary": "Update Plugin",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |webhook_id||string|True|\n |version||string||\n |options||Struct||\n |upgrade_mode|MANUAL, AUTO |string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"version" : {"type": "string","title": "VERSION" },"options" : {"type": "object","title": "OPTIONS" },"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WebhookInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WebhookInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/webhook/verify-plugin": {
+       "post": {
+         "tags": ["monitoring > webhook"],
+         "summary": "Verify Plugin",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |webhook_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"webhook_id" : {"type": "string","title": "WEBHOOK_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/webhook/enable": {
+       "post": {
+         "tags": ["monitoring > webhook"],
+         "summary": "Enable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |webhook_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"webhook_id" : {"type": "string","title": "WEBHOOK_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WebhookInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WebhookInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/webhook/disable": {
+       "post": {
+         "tags": ["monitoring > webhook"],
+         "summary": "Disable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |webhook_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"webhook_id" : {"type": "string","title": "WEBHOOK_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WebhookInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WebhookInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/webhook/delete": {
+       "post": {
+         "tags": ["monitoring > webhook"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |webhook_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"webhook_id" : {"type": "string","title": "WEBHOOK_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/webhook/get": {
+       "post": {
+         "tags": ["monitoring > webhook"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |webhook_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"webhook_id" : {"type": "string","title": "WEBHOOK_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WebhookInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WebhookInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/webhook/list": {
+       "post": {
+         "tags": ["monitoring > webhook"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |webhook_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |access_key||string||\n |workspace_id||string||\n |service_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"access_key" : {"type": "string","title": "ACCESS_KEY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/WebhooksInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/WebhooksInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/monitoring/webhook/stat": {
+       "post": {
+         "tags": ["monitoring > webhook"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/create": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/update": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/change-member": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Change Member",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/delete": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/get": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/list": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert_manager/comment/stat": {
+       "post": {
+         "tags": ["alert_manager > comment"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/escalation-policy/create": {
+       "post": {
+         "tags": ["alert-manager > escalation-policy"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |rules||array|True|\n |service_id||string|True|\n |repeat_count||int||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"rules" : {"items": {}, "type": "array","title": "RULES" },"repeat_count" : {"type": "integer","title": "REPEAT_COUNT" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "Receive\n////////"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/escalation-policy/delete": {
+       "post": {
+         "tags": ["alert-manager > escalation-policy"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |escalation_policy_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/escalation-policy/get": {
+       "post": {
+         "tags": ["alert-manager > escalation-policy"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |escalation_policy_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/escalation-policy/list": {
+       "post": {
+         "tags": ["alert-manager > escalation-policy"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |escalation_policy_id||string||\n |name||string||\n |finish_condition||string||\n |service_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"name" : {"type": "string","title": "NAME" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/EscalationPoliciesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/EscalationPoliciesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert_manager/escalation-policy/stat": {
+       "post": {
+         "tags": ["alert_manager > escalation-policy"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/create": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/update": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/change-member": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Change Member",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/delete": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/get": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/list": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert_manager/comment/stat": {
+       "post": {
+         "tags": ["alert_manager > comment"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/create": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/update": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/change-member": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Change Member",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/delete": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/get": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/comment/list": {
+       "post": {
+         "tags": ["alert-manager > comment"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert_manager/comment/stat": {
+       "post": {
+         "tags": ["alert_manager > comment"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
+   },
+   "components":{
+     "schemas": {
+     "AlertInfo": {
+         "properties" : {"high" : {"type": "integer","title": "HIGH"},"low" : {"type": "integer","title": "LOW"}},
+         "type": "object",
+         "required": ["high","low"],
+                "title": "AlertInfo"
+           }
+           ,        "Alerts": {
+         "properties" : {"TOTAL" : {"$ref": "#/components/schemas/AlertInfo","title": "TOTAL"},"TRIGGERRED" : {"$ref": "#/components/schemas/AlertInfo","title": "TRIGGERRED"},"ACKNOWLEDGED" : {"$ref": "#/components/schemas/AlertInfo","title": "ACKNOWLEDGED"}},
+         "type": "object",
+         "required": ["TOTAL","TRIGGERRED","ACKNOWLEDGED"],
+                "title": "Alerts"
+           }
+           ,        "Channels": {
+         "properties" : {"service_channel_info" : {"items": {"$ref": "#/components/schemas/ServiceChannelsInfo"},
+               "type": "array","$ref": "#/components/schemas/ServiceChannelsInfo","title": "SERVICE_CHANNEL_INFO"}},
+         "type": "object",
+         "required": ["service_channel_info"],
+                "title": "Channels"
+           }
+           ,        "CommentChangeMemberRequest": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS"}},
+         "type": "object",
+         "required": ["service_id","members"],
+                "title": "CommentChangeMemberRequest"
+           }
+           ,        "CommentCreateRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"service_key" : {"type": "string","title": "SERVICE_KEY"},"description" : {"type": "string","title": "DESCRIPTION"},"members" : {"type": "object","title": "MEMBERS"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"}},
+         "type": "object",
+         "required": ["name","service_key"],
+                "title": "CommentCreateRequest"
+           }
+           ,        "CommentRequest": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "type": "object",
+         "required": ["service_id"],
+                "title": "CommentRequest"
+           }
+           ,        "CommentSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_id" : {"type": "string","title": "SERVICE_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS"}},
+         "type": "object",
+         "required": [],
+                "title": "CommentSearchQuery"
+           }
+           ,        "CommentStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "CommentStatQuery"
+           }
+           ,        "CommentUpdateRequest": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
+         "type": "object",
+         "required": ["service_id","escalation_policy_id"],
+                "title": "CommentUpdateRequest"
+           }
+           ,        "Members": {
+         "properties" : {"USER" : {"items": {"type": "string"},
+               "type": "array","title": "USER"},"USER_GROUP" : {"items": {"type": "string"},
+               "type": "array","title": "USER_GROUP"}},
+         "type": "object",
+         "required": ["USER","USER_GROUP"],
+                "title": "Members"
+           }
+           ,        "Options": {
+         "properties" : {},
+         "type": "object",
+         "required": [],
+                "title": "Options"
+           }
+           ,        "ServiceChannelsInfo": {
+         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"channel_type" : {"type": "string","title": "CHANNEL_TYPE"},"data" : {"type": "object","title": "DATA"},"schedule" : {"type": "object","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"secret_id" : {"type": "string","title": "SECRET_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["channel_id","name","state","channel_type","data","schedule","tags","secret_id","protocol_id","service_id","workspace_id","domain_id","created_at"],
+                "title": "ServiceChannelsInfo"
+           }
+           ,        "ServiceInfo": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"service_key" : {"type": "string","title": "SERVICE_KEY"},"description" : {"type": "string","title": "DESCRIPTION"},"members" : {"type": "object","title": "MEMBERS"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"},"channels" : {"type": "object","title": "CHANNELS"},"webhooks" : {"type": "object","title": "WEBHOOKS"},"alerts" : {"type": "object","title": "ALERTS"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["service_id","name","service_key","description","members","options","escalation_policy_id","workspace_id","domain_id","created_at","updated_at"],
+                "title": "ServiceInfo"
+           }
+           ,        "ServicesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ServiceInfo"},
+               "type": "array","$ref": "#/components/schemas/ServiceInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "ServicesInfo"
+           }
+           ,        "WebhookInfo": {
+         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"}},
+         "type": "object",
+         "required": ["webhook_id"],
+                "title": "WebhookInfo"
+           }
+           ,        "Webhooks": {
+         "properties" : {"webhook_info" : {"items": {"$ref": "#/components/schemas/WebhookInfo"},
+               "type": "array","$ref": "#/components/schemas/WebhookInfo","title": "WEBHOOK_INFO"}},
+         "type": "object",
+         "required": ["webhook_info"],
+                "title": "Webhooks"
+           }
+           ,        "AuthenticationRequest": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
+         "type": "object",
+         "required": ["domain_id"],
+                "title": "AuthenticationRequest"
+           }
+           ,        "AuthenticationResponse": {
+         "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"},"public_key" : {"type": "string","title": "PUBLIC_KEY"}},
+         "type": "object",
+         "required": ["domain_id","public_key"],
+                "title": "AuthenticationResponse"
+           }
+           ,        "AuthorizationRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"scope" : {"type": "Scope","title": "SCOPE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"},"user_id" : {"type": "string","title": "USER_ID"},"require_project_id" : {"type": "boolean","title": "REQUIRE_PROJECT_ID"},"require_project_group_id" : {"type": "boolean","title": "REQUIRE_PROJECT_GROUP_ID"},"require_user_id" : {"type": "boolean","title": "REQUIRE_USER_ID"},"require_domain_id" : {"type": "boolean","title": "REQUIRE_DOMAIN_ID"}},
+         "type": "object",
+         "required": ["service","resource","verb","scope","domain_id","project_id","project_group_id","user_id","require_project_id","require_project_group_id","require_user_id","require_domain_id"],
+                "title": "AuthorizationRequest"
+           }
+           ,        "AuthorizationResponse": {
+         "properties" : {"role_type" : {"type": "string","title": "ROLE_TYPE"},"projects" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECTS"},"project_groups" : {"items": {"type": "string"},
+               "type": "array","title": "PROJECT_GROUPS"}},
+         "type": "object",
+         "required": ["role_type","projects","project_groups"],
+                "title": "AuthorizationResponse"
+           }
+           ,        "EventRequest": {
+         "properties" : {"service" : {"type": "string","title": "SERVICE"},"resource" : {"type": "string","title": "RESOURCE"},"verb" : {"type": "string","title": "VERB"},"status" : {"type": "string","title": "STATUS"},"message" : {"type": "object","title": "MESSAGE"}},
+         "type": "object",
+         "required": ["service","resource","verb","status","message"],
+                "title": "EventRequest"
+           }
+           ,        "VersionInfo": {
+         "properties" : {"version" : {"type": "string","title": "VERSION"}},
+         "type": "object",
+         "required": ["version"],
+                "title": "VersionInfo"
+           }
+           ,        "AggregateCount": {
+         "properties" : {"name" : {"type": "string","title": "NAME"}},
+         "type": "object",
+         "required": ["name"],
+                "title": "AggregateCount"
+           }
+           ,        "AggregateGroup": {
+         "properties" : {"keys" : {"items": {"$ref": "#/components/schemas/AggregateGroupKey"},
+               "type": "array","$ref": "#/components/schemas/AggregateGroupKey","title": "KEYS"},"fields" : {"items": {"$ref": "#/components/schemas/AggregateGroupField"},
+               "type": "array","$ref": "#/components/schemas/AggregateGroupField","title": "FIELDS"}},
+         "type": "object",
+         "required": ["keys","fields"],
+                "title": "AggregateGroup"
+           }
+           ,        "AggregateGroupField": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"k" : {"type": "string","title": "K"},"name" : {"type": "string","title": "NAME"},"n" : {"type": "string","title": "N"},"operator" : {"type": "string","title": "OPERATOR"},"o" : {"type": "string","title": "O"},"fields" : {"items": {"$ref": "#/components/schemas/AggregateGroupSubField"},
+               "type": "array","$ref": "#/components/schemas/AggregateGroupSubField","title": "FIELDS"},"conditions" : {"items": {"$ref": "#/components/schemas/AggregateSubCondition"},
+               "type": "array","$ref": "#/components/schemas/AggregateSubCondition","title": "CONDITIONS"}},
+         "type": "object",
+         "required": ["key","k","name","n","operator","o","fields","conditions"],
+                "title": "AggregateGroupField"
+           }
+           ,        "AggregateGroupKey": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"k" : {"type": "string","title": "K"},"name" : {"type": "string","title": "NAME"},"n" : {"type": "string","title": "N"},"date_format" : {"type": "string","title": "DATE_FORMAT"}},
+         "type": "object",
+         "required": ["key","k","name","n","date_format"],
+                "title": "AggregateGroupKey"
+           }
+           ,        "AggregateGroupSubField": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"k" : {"type": "string","title": "K"},"name" : {"type": "string","title": "NAME"},"n" : {"type": "string","title": "N"}},
+         "type": "object",
+         "required": ["key","k","name","n"],
+                "title": "AggregateGroupSubField"
+           }
+           ,        "AggregateProject": {
+         "properties" : {"fields" : {"items": {"$ref": "#/components/schemas/AggregateProjectField"},
+               "type": "array","$ref": "#/components/schemas/AggregateProjectField","title": "FIELDS"},"exclude_keys" : {"type": "boolean","title": "EXCLUDE_KEYS"}},
+         "type": "object",
+         "required": ["fields","exclude_keys"],
+                "title": "AggregateProject"
+           }
+           ,        "AggregateProjectField": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"k" : {"type": "string","title": "K"},"name" : {"type": "string","title": "NAME"},"n" : {"type": "string","title": "N"},"operator" : {"type": "string","title": "OPERATOR"},"o" : {"type": "string","title": "O"}},
+         "type": "object",
+         "required": ["key","k","name","n","operator","o"],
+                "title": "AggregateProjectField"
+           }
+           ,        "AggregateSort": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"desc" : {"type": "boolean","title": "DESC"},"keys" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "KEYS"}},
+         "type": "object",
+         "required": ["key","desc","keys"],
+                "title": "AggregateSort"
+           }
+           ,        "AggregateSubCondition": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"k" : {"type": "string","title": "K"},"value" : {"type": "Value","title": "VALUE"},"v" : {"type": "Value","title": "V"},"operator" : {"type": "string","title": "OPERATOR"},"o" : {"type": "string","title": "O"}},
+         "type": "object",
+         "required": ["key","k","value","v","operator","o"],
+                "title": "AggregateSubCondition"
+           }
+           ,        "AggregateUnwind": {
+         "properties" : {"path" : {"type": "string","title": "PATH"}},
+         "type": "object",
+         "required": ["path"],
+                "title": "AggregateUnwind"
+           }
+           ,        "AnalyzeQuery": {
+         "properties" : {"group_by" : {"items": {"type": "string"},
+               "type": "array","title": "GROUP_BY"},"field_group" : {"items": {"type": "string"},
+               "type": "array","title": "FIELD_GROUP"},"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "object","title": "FIELDS"},"select" : {"type": "object","title": "SELECT"},"keyword" : {"type": "string","title": "KEYWORD"}},
+         "type": "object",
+         "required": ["group_by","field_group","filter","filter_or","page","sort","fields","select","keyword"],
+                "title": "AnalyzeQuery"
+           }
+           ,        "ExportAnalyzeQuery": {
+         "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"keyword" : {"type": "string","title": "KEYWORD"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"group_by" : {"items": {"type": "string"},
+               "type": "array","title": "GROUP_BY"},"fields" : {"type": "object","title": "FIELDS"},"select" : {"type": "object","title": "SELECT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
+         "type": "object",
+         "required": ["filter","filter_or","keyword","sort","group_by","fields","select","page"],
+                "title": "ExportAnalyzeQuery"
+           }
+           ,        "ExportOption": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"title" : {"type": "string","title": "TITLE"},"query_type" : {"type": "QueryType","title": "QUERY_TYPE"},"search_query" : {"$ref": "#/components/schemas/ExportSearchQuery","title": "SEARCH_QUERY"},"analyze_query" : {"$ref": "#/components/schemas/ExportAnalyzeQuery","title": "ANALYZE_QUERY"}},
+         "type": "object",
+         "required": ["name","title","query_type","search_query","analyze_query"],
+                "title": "ExportOption"
+           }
+           ,        "ExportSearchQuery": {
+         "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"keyword" : {"type": "string","title": "KEYWORD"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "array","title": "FIELDS"},"unwind" : {"$ref": "#/components/schemas/Unwind","title": "UNWIND"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"}},
+         "type": "object",
+         "required": ["filter","filter_or","keyword","sort","fields","unwind","page"],
+                "title": "ExportSearchQuery"
+           }
+           ,        "Filter": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"k" : {"type": "string","title": "K"},"value" : {"type": "Value","title": "VALUE"},"v" : {"type": "Value","title": "V"},"operator" : {"type": "string","title": "OPERATOR"},"o" : {"type": "string","title": "O"}},
+         "type": "object",
+         "required": ["key","k","value","v","operator","o"],
+                "title": "Filter"
+           }
+           ,        "Page": {
+         "properties" : {"start" : {"type": "integer/long","title": "START"},"limit" : {"type": "integer/long","title": "LIMIT"}},
+         "type": "object",
+         "required": ["start","limit"],
+                "title": "Page"
+           }
+           ,        "Query": {
+         "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"sort" : {"$ref": "#/components/schemas/Sort","title": "SORT"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"minimal" : {"type": "boolean","title": "MINIMAL"},"count_only" : {"type": "boolean","title": "COUNT_ONLY"},"only" : {"items": {"type": "string"},
+               "type": "array","title": "ONLY"},"keyword" : {"type": "string","title": "KEYWORD"},"unwind" : {"$ref": "#/components/schemas/Unwind","title": "UNWIND"}},
+         "type": "object",
+         "required": ["filter","filter_or","sort","page","minimal","count_only","only","keyword","unwind"],
+                "title": "Query"
+           }
+           ,        "Sort": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"desc" : {"type": "boolean","title": "DESC"},"keys" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "KEYS"}},
+         "type": "object",
+         "required": ["key","desc","keys"],
+                "title": "Sort"
+           }
+           ,        "SortKey": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"desc" : {"type": "boolean","title": "DESC"}},
+         "type": "object",
+         "required": ["key","desc"],
+                "title": "SortKey"
+           }
+           ,        "StatisticsAggregate": {
+         "properties" : {"unwind" : {"$ref": "#/components/schemas/AggregateUnwind","title": "UNWIND"},"group" : {"$ref": "#/components/schemas/AggregateGroup","title": "GROUP"},"count" : {"$ref": "#/components/schemas/AggregateCount","title": "COUNT"},"sort" : {"$ref": "#/components/schemas/AggregateSort","title": "SORT"},"project" : {"$ref": "#/components/schemas/AggregateProject","title": "PROJECT"},"limit" : {"type": "integer","title": "LIMIT"},"skip" : {"type": "integer","title": "SKIP"}},
+         "type": "object",
+         "required": ["unwind","group","count","sort","project","limit","skip"],
+                "title": "StatisticsAggregate"
+           }
+           ,        "StatisticsQuery": {
+         "properties" : {"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"aggregate" : {"items": {"$ref": "#/components/schemas/StatisticsAggregate"},
+               "type": "array","$ref": "#/components/schemas/StatisticsAggregate","title": "AGGREGATE"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"distinct" : {"type": "string","title": "DISTINCT"},"keyword" : {"type": "string","title": "KEYWORD"}},
+         "type": "object",
+         "required": ["filter","filter_or","aggregate","page","distinct","keyword"],
+                "title": "StatisticsQuery"
+           }
+           ,        "TimeSeriesAnalyzeQuery": {
+         "properties" : {"granularity" : {"type": "Granularity","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"group_by" : {"items": {"type": "string"},
+               "type": "array","title": "GROUP_BY"},"field_group" : {"items": {"type": "string"},
+               "type": "array","title": "FIELD_GROUP"},"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER_OR"},"page" : {"$ref": "#/components/schemas/Page","title": "PAGE"},"sort" : {"items": {"$ref": "#/components/schemas/SortKey"},
+               "type": "array","$ref": "#/components/schemas/SortKey","title": "SORT"},"fields" : {"type": "object","title": "FIELDS"},"select" : {"type": "object","title": "SELECT"},"keyword" : {"type": "string","title": "KEYWORD"}},
+         "type": "object",
+         "required": ["granularity","start","end","group_by","field_group","filter","filter_or","page","sort","fields","select","keyword"],
+                "title": "TimeSeriesAnalyzeQuery"
+           }
+           ,        "Unwind": {
+         "properties" : {"path" : {"type": "string","title": "PATH"},"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
+               "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"}},
+         "type": "object",
+         "required": ["path","filter"],
+                "title": "Unwind"
+           }
+           ,        "ServiceChangeMemberRequest": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS"}},
+         "type": "object",
+         "required": ["service_id","members"],
+                "title": "ServiceChangeMemberRequest"
+           }
+           ,        "ServiceCreateRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"service_key" : {"type": "string","title": "SERVICE_KEY"},"description" : {"type": "string","title": "DESCRIPTION"},"members" : {"type": "object","title": "MEMBERS"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"}},
+         "type": "object",
+         "required": ["name","service_key"],
+                "title": "ServiceCreateRequest"
+           }
+           ,        "ServiceRequest": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "type": "object",
+         "required": ["service_id"],
+                "title": "ServiceRequest"
+           }
+           ,        "ServiceSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_id" : {"type": "string","title": "SERVICE_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS"}},
+         "type": "object",
+         "required": [],
+                "title": "ServiceSearchQuery"
+           }
+           ,        "ServiceStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "ServiceStatQuery"
+           }
+           ,        "ServiceUpdateRequest": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
+         "type": "object",
+         "required": ["service_id","escalation_policy_id"],
+                "title": "ServiceUpdateRequest"
+           }
+           ,        "AlertChangeMemberRequest": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS"}},
+         "type": "object",
+         "required": ["service_id","members"],
+                "title": "AlertChangeMemberRequest"
+           }
+           ,        "AlertCreateRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"service_key" : {"type": "string","title": "SERVICE_KEY"},"description" : {"type": "string","title": "DESCRIPTION"},"members" : {"type": "object","title": "MEMBERS"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"}},
+         "type": "object",
+         "required": ["name","service_key"],
+                "title": "AlertCreateRequest"
+           }
+           ,        "AlertRequest": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "type": "object",
+         "required": ["service_id"],
+                "title": "AlertRequest"
+           }
+           ,        "AlertSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_id" : {"type": "string","title": "SERVICE_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS"}},
+         "type": "object",
+         "required": [],
+                "title": "AlertSearchQuery"
+           }
+           ,        "AlertStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "AlertStatQuery"
+           }
+           ,        "AlertUpdateRequest": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
+         "type": "object",
+         "required": ["service_id","escalation_policy_id"],
+                "title": "AlertUpdateRequest"
+           }
+           ,        "EventRuleChangeMemberRequest": {
+         "properties" : {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"order" : {"type": "integer","title": "ORDER"}},
+         "type": "object",
+         "required": ["event_rule_id","order"],
+                "title": "EventRuleChangeMemberRequest"
+           }
+           ,        "EventRuleCreateRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"conditions" : {"items": {"type": "object"},
+               "type": "array","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"type": "string","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "type": "object",
+         "required": ["conditions","conditions_policy","actions","service_id"],
+                "title": "EventRuleCreateRequest"
+           }
+           ,        "EventRuleInfo": {
+         "properties" : {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"order" : {"type": "integer","title": "ORDER"},"conditions" : {"items": {"type": "object"},
+               "type": "array","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"type": "string","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["event_rule_id","name","order","conditions","conditions_policy","actions","options","tags","service_id","workspace_id","domain_id","created_at"],
+                "title": "EventRuleInfo"
+           }
+           ,        "EventRuleRequest": {
+         "properties" : {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"}},
+         "type": "object",
+         "required": ["event_rule_id"],
+                "title": "EventRuleRequest"
+           }
+           ,        "EventRuleSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "EventRuleSearchQuery"
+           }
+           ,        "EventRuleStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "EventRuleStatQuery"
+           }
+           ,        "EventRuleUpdateRequest": {
+         "properties" : {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"conditions" : {"items": {"type": "object"},
+               "type": "array","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"type": "string","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["event_rule_id"],
+                "title": "EventRuleUpdateRequest"
+           }
+           ,        "EventRulesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/EventRuleInfo"},
+               "type": "array","$ref": "#/components/schemas/EventRuleInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "EventRulesInfo"
+           }
+           ,        "WebhookCreateRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/WebhookPluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "type": "object",
+         "required": ["name","plugin_info","service_id"],
+                "title": "WebhookCreateRequest"
+           }
+           ,        "WebhookPluginInfo": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"metadata" : {"type": "object","title": "METADATA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+         "type": "object",
+         "required": ["plugin_id","version","options","metadata","upgrade_mode"],
+                "title": "WebhookPluginInfo"
+           }
+           ,        "WebhookQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "WebhookQuery"
+           }
+           ,        "WebhookRequest": {
+         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"}},
+         "type": "object",
+         "required": ["webhook_id"],
+                "title": "WebhookRequest"
+           }
+           ,        "WebhookRequests": {
+         "properties" : {"total" : {"type": "integer/long","title": "TOTAL"},"error" : {"type": "integer/long","title": "ERROR"}},
+         "type": "object",
+         "required": ["total","error"],
+                "title": "WebhookRequests"
+           }
+           ,        "WebhookStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "WebhookStatQuery"
+           }
+           ,        "WebhookUpdatePluginRequest": {
+         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+         "type": "object",
+         "required": ["webhook_id"],
+                "title": "WebhookUpdatePluginRequest"
+           }
+           ,        "WebhookUpdateRequest": {
+         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["webhook_id"],
+                "title": "WebhookUpdateRequest"
+           }
+           ,        "WebhooksInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/WebhookInfo"},
+               "type": "array","$ref": "#/components/schemas/WebhookInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "WebhooksInfo"
+           }
+           ,        "EscalationPoliciesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
+               "type": "array","$ref": "#/components/schemas/EscalationPolicyInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "EscalationPoliciesInfo"
+           }
+           ,        "EscalationPolicyCreateRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"rules" : {"items": {"type": "object"},
+               "type": "array","title": "RULES"},"repeat_count" : {"type": "integer","title": "REPEAT_COUNT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "type": "object",
+         "required": ["name","rules","service_id"],
+                "title": "EscalationPolicyCreateRequest"
+           }
+           ,        "EscalationPolicyInfo": {
+         "properties" : {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"rules" : {"items": {"type": "object"},
+               "type": "array","title": "RULES"},"repeat_count" : {"type": "integer","title": "REPEAT_COUNT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["escalation_policy_id","name","rules","repeat_count","finish_condition","tags","service_id","workspace_id","domain_id","created_at"],
+                "title": "EscalationPolicyInfo"
+           }
+           ,        "EscalationPolicyRequest": {
+         "properties" : {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
+         "type": "object",
+         "required": ["escalation_policy_id"],
+                "title": "EscalationPolicyRequest"
+           }
+           ,        "EscalationPolicySearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "EscalationPolicySearchQuery"
+           }
+           ,        "EscalationPolicyStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "EscalationPolicyStatQuery"
+           }
+                   },
+      "Struct": {"properties": {"type": "object","title": "Struct"}},
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+       },
+       "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [{"type": "string"}, {"type": "integer"}]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {"type": "string","title": "Message"},
+          "type": {"type": "string","title": "Error Type"}
+        },
+        "type": "object",
+        "required": ["loc","msg","type"],
+        "title": "ValidationError"
+      },
+      "securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer"}
+      }
+   }
+}
