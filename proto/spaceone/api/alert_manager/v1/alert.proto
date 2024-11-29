@@ -42,13 +42,13 @@ service Alert {
     }
     rpc history (AlertChangeMemberRequest) returns (ServiceInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/alert/update"
+            post: "/alert-manager/v1/alert/history"
             body: "*"
         };
     }
     rpc analyze (AlertChangeMemberRequest) returns (ServiceInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/alert/update"
+            post: "/alert-manager/v1/alert/analyze"
             body: "*"
         };
     }
