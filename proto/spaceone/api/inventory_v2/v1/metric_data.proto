@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package spaceone.api.inventory.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+import "spaceone/api/inventory_v2/v1/metric.proto";
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory_v2/v1";
+
+service MetricData {
+  rpc list (MetricDataQuery) returns (MetricDatasInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/metric-data/list"
+      body: "*"
+    };
+  }
+
+  rpc stat (MetricDataStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/metric-data/stat"
+      body: "*"
+    };
+  }
+
+  rpc analyze (MetricDataAnalyzeQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/metric-data/analyze"
+      body: "*"
+    };
+  }
+}
+
+//{
+//
+//}
+message MetricDataQuery {
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  string metric_id = 2;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string project_id = 22;
+}
+
+
+//{
+//
+//}
+message MetricDataInfo {
+  string metric_id = 1;
+  float value = 2;
+  string unit = 3;
+  google.protobuf.Struct labels = 4;
+
+  string domain_id = 21;
+  string workspace_id = 22;
+  string project_id = 23;
+  string service_account_id = 24;
+  string namespace_id = 25;
+
+  string created_year = 31;
+  string created_month = 32;
+  string created_date = 33;
+}
+
+message MetricDatasInfo {
+  repeated MetricDataInfo results = 1;
+  int32 total_count = 2;
+}
+
+message MetricDataAnalyzeQuery {
+  spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 1;
+  string metric_id = 2;
+}
+
+message MetricDataStatQuery {
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+  // +optional
+  string metric_id = 2;
+}

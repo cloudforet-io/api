@@ -1,0 +1,193 @@
+syntax = "proto3";
+
+package spaceone.api.inventory_v2.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory_v2/v1";
+
+service Metric {
+  rpc create (CreateMetricRequest) returns (MetricInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/metric/create"
+      body: "*"
+    };
+  }
+
+  rpc update (UpdateMetricRequest) returns (MetricInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/metric/update"
+      body: "*"
+    };
+  }
+
+  rpc delete (MetricRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/metric/delete"
+      body: "*"
+    };
+  }
+
+  rpc run (MetricRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/metric/run"
+      body: "*"
+    };
+  }
+
+  rpc test (MetricTestRequest) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/metric/test"
+      body: "*"
+    };
+  }
+
+  rpc get (MetricRequest) returns (MetricInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/metric/get"
+      body: "*"
+    };
+  }
+
+  rpc list (MetricQuery) returns (MetricsInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/metric/list"
+      body: "*"
+    };
+  }
+
+  rpc stat (MetricStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/metric/stat"
+      body: "*"
+    };
+  }
+}
+
+enum MetricType {
+  METRIC_TYPE_NONE = 0;
+  COUNTER = 1;
+  GAUGE = 2;
+}
+
+//{
+//
+//}
+message CreateMetricRequest {
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
+
+  // +optional
+  string metric_id = 1;
+  string name = 2;
+  MetricType metric_type = 3;
+  // +optional
+  string resource_type = 4;
+  spaceone.api.core.v2.AnalyzeQuery query_options = 5;
+  // +optional
+  string date_field = 6;
+  // +optional
+  string unit = 7;
+  // +optional
+  google.protobuf.Struct tags = 8;
+  string namespace_id = 9;
+  ResourceGroup resource_group = 20;
+  // +optional
+  string workspace_id = 21;
+}
+
+//{
+//
+//}
+message UpdateMetricRequest {
+  string metric_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  spaceone.api.core.v2.AnalyzeQuery query_options = 3;
+  // +optional
+  string date_field = 4;
+  // +optional
+  string unit = 5;
+  // +optional
+  google.protobuf.Struct tags = 6;
+}
+
+//{
+//
+//}
+message MetricRequest {
+  string metric_id = 1;
+}
+
+//{
+//
+//}
+message MetricTestRequest {
+  string metric_id = 1;
+  spaceone.api.core.v2.AnalyzeQuery query_options = 2;
+}
+
+//{
+//
+//}
+message MetricQuery {
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string metric_id = 2;
+  // +optional
+  MetricType metric_type = 3;
+  // +optional
+  string resource_type = 4;
+  // +optional
+  string is_managed = 5;
+  // +optional
+  string namespace_id = 21;
+}
+
+//{
+//
+//}
+message MetricInfo {
+  enum ResourceGroup {
+    RESOURCE_GROUP_NONE = 0;
+    DOMAIN = 1;
+    WORKSPACE = 2;
+  }
+
+  string metric_id = 1;
+  string name = 2;
+  MetricType metric_type = 3;
+  string resource_type = 4;
+  spaceone.api.core.v2.AnalyzeQuery query_options = 5;
+  string date_field = 6;
+  string unit = 7;
+  google.protobuf.Struct tags = 8;
+  repeated google.protobuf.Struct labels_info = 9;
+  bool is_managed = 10;
+
+  ResourceGroup resource_group = 20;
+  string domain_id = 21;
+  string workspace_id = 22;
+  string namespace_id = 23;
+
+  string created_at = 31;
+  string updated_at = 32;
+}
+
+
+message MetricsInfo {
+  repeated MetricInfo results = 1;
+  int32 total_count = 2;
+}
+
+message MetricStatQuery {
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+}
