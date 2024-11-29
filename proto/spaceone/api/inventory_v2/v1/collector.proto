@@ -17,7 +17,7 @@ service Collector {
   // Creates a new Collector with information of the plugin to use. Information of the plugin includes `version`, `provider`, and `upgrade_mode`.
   rpc create (CreateCollectorRequest) returns (CollectorInfo) {
     option (google.api.http) = {
-      post: "/inventory-v2/v2/collector/create"
+      post: "/inventory-v2/v1/collector/create"
       body: "*"
     };
   }
@@ -302,11 +302,6 @@ message VerifyPluginRequest {
 //    "created_at": "2022-06-17T06:33:27.195Z",
 //    "domain_id": "domain-58010aa2e451",
 //    "provider": "aws",
-//    "capability": {
-//        "supported_schema": [
-//            "aws_access_key"
-//        ]
-//    },
 //    "schedule": {
 //        "state": "ENABLED",
 //        "hours": [0, 6, 12, 18]
@@ -335,11 +330,10 @@ message CollectorInfo {
   string collector_id = 1;
   string name = 2;
   string provider = 3;
-  google.protobuf.Struct capability = 4;
-  SecretFilter secret_filter = 5;
-  PluginInfo plugin_info = 6;
-  Scheduled schedule = 7;
-  google.protobuf.Struct tags = 8;
+  SecretFilter secret_filter = 4;
+  PluginInfo plugin_info = 5;
+  Scheduled schedule = 6;
+  google.protobuf.Struct tags = 7;
 
   ResourceGroup resource_group = 20;
   string domain_id = 21;
@@ -381,11 +375,6 @@ message CollectorInfo {
 //      "created_at": "2022-06-17T06:33:27.195Z",
 //      "domain_id": "domain-58010aa2e451",
 //      "provider": "aws",
-//      "capability": {
-//          "supported_schema": [
-//              "aws_access_key"
-//          ]
-//      },
 //      "schedule": {
 //          "state": "ENABLED",
 //          "hours": [0, 6, 12, 18]
@@ -427,11 +416,6 @@ message CollectorInfo {
 //      "created_at": "2022-06-17T06:33:27.195Z",
 //      "domain_id": "domain-58010aa2e451",
 //      "provider": "aws",
-//      "capability": {
-//          "supported_schema": [
-//              "aws_access_key"
-//          ]
-//      },
 //      "schedule": {
 //          "state": "ENABLED",
 //          "hours": [0, 6, 12, 18]
