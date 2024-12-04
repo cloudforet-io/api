@@ -28,6 +28,7 @@ const (
 	ServiceAccount_Delete_FullMethodName           = "/spaceone.api.identity.v2.ServiceAccount/delete"
 	ServiceAccount_Get_FullMethodName              = "/spaceone.api.identity.v2.ServiceAccount/get"
 	ServiceAccount_List_FullMethodName             = "/spaceone.api.identity.v2.ServiceAccount/list"
+	ServiceAccount_Analyze_FullMethodName          = "/spaceone.api.identity.v2.ServiceAccount/analyze"
 	ServiceAccount_Stat_FullMethodName             = "/spaceone.api.identity.v2.ServiceAccount/stat"
 )
 
@@ -42,6 +43,7 @@ type ServiceAccountClient interface {
 	Delete(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *ServiceAccountRequest, opts ...grpc.CallOption) (*ServiceAccountInfo, error)
 	List(ctx context.Context, in *ServiceAccountSearchQuery, opts ...grpc.CallOption) (*ServiceAccountsInfo, error)
+	Analyze(ctx context.Context, in *ServiceAccountAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Stat(ctx context.Context, in *ServiceAccountStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
@@ -123,6 +125,16 @@ func (c *serviceAccountClient) List(ctx context.Context, in *ServiceAccountSearc
 	return out, nil
 }
 
+func (c *serviceAccountClient) Analyze(ctx context.Context, in *ServiceAccountAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(_struct.Struct)
+	err := c.cc.Invoke(ctx, ServiceAccount_Analyze_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *serviceAccountClient) Stat(ctx context.Context, in *ServiceAccountStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(_struct.Struct)
@@ -144,6 +156,7 @@ type ServiceAccountServer interface {
 	Delete(context.Context, *ServiceAccountRequest) (*empty.Empty, error)
 	Get(context.Context, *ServiceAccountRequest) (*ServiceAccountInfo, error)
 	List(context.Context, *ServiceAccountSearchQuery) (*ServiceAccountsInfo, error)
+	Analyze(context.Context, *ServiceAccountAnalyzeQuery) (*_struct.Struct, error)
 	Stat(context.Context, *ServiceAccountStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedServiceAccountServer()
 }
@@ -175,6 +188,9 @@ func (UnimplementedServiceAccountServer) Get(context.Context, *ServiceAccountReq
 }
 func (UnimplementedServiceAccountServer) List(context.Context, *ServiceAccountSearchQuery) (*ServiceAccountsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedServiceAccountServer) Analyze(context.Context, *ServiceAccountAnalyzeQuery) (*_struct.Struct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Analyze not implemented")
 }
 func (UnimplementedServiceAccountServer) Stat(context.Context, *ServiceAccountStatQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
@@ -326,6 +342,24 @@ func _ServiceAccount_List_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServiceAccount_Analyze_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ServiceAccountAnalyzeQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceAccountServer).Analyze(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ServiceAccount_Analyze_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceAccountServer).Analyze(ctx, req.(*ServiceAccountAnalyzeQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ServiceAccount_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ServiceAccountStatQuery)
 	if err := dec(in); err != nil {
@@ -378,6 +412,10 @@ var ServiceAccount_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "list",
 			Handler:    _ServiceAccount_List_Handler,
+		},
+		{
+			MethodName: "analyze",
+			Handler:    _ServiceAccount_Analyze_Handler,
 		},
 		{
 			MethodName: "stat",

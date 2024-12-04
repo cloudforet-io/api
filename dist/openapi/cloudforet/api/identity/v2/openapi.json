@@ -4447,6 +4447,35 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/identity/service-account/analyze": {
+       "post": {
+         "tags": ["identity > service-account"],
+         "summary": "Analyze",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||AnalyzeQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/identity/service-account/stat": {
        "post": {
          "tags": ["identity > service-account"],
@@ -6139,6 +6168,12 @@
          "type": "object",
          "required": ["name","data","provider","project_id"],
                 "title": "CreateServiceAccountRequest"
+           }
+           ,        "ServiceAccountAnalyzeQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "ServiceAccountAnalyzeQuery"
            }
            ,        "ServiceAccountInfo": {
          "properties" : {"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data" : {"type": "object","title": "DATA"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"reference_id" : {"type": "string","title": "REFERENCE_ID"},"is_managed" : {"type": "boolean","title": "IS_MANAGED"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"trusted_account_id" : {"type": "string","title": "TRUSTED_ACCOUNT_ID"},"secret_schema_id" : {"type": "string","title": "SECRET_SCHEMA_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"last_synced_at" : {"type": "string","title": "LAST_SYNCED_AT"},"deleted_at" : {"type": "string","title": "DELETED_AT"},"inactivated_at" : {"type": "string","title": "INACTIVATED_AT"}},
