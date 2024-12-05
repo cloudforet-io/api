@@ -16,6 +16,12 @@ service EscalationPolicy {
             body: "*"
         };
     }
+    rpc update (EscalationPolicyUpdateRequest) returns (EscalationPolicyInfo) {
+        option (google.api.http) = {
+            post: "/alert-manager/v1/escalation-policy/update"
+            body: "*"
+        };
+    }
     rpc delete (EscalationPolicyRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/alert-manager/v1/escalation-policy/delete"
@@ -36,33 +42,59 @@ service EscalationPolicy {
     }
     rpc stat (EscalationPolicyStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/alert_manager/v1/escalation-policy/stat"
+            post: "/alert-manager/v1/escalation-policy/stat"
             body: "*"
         };
     }
 }
 
+enum FinishCondition {
+    FINISH_CONDITION_NONE = 0;
+    ACKNOWLEDGED = 1;
+    RESOLVED = 2;
+}
 
-//////////
-//Receive
-//////////
-message EscalationPolicyCreateRequest {
+message EscalationRule {
+    repeated string channels = 1;
+    int32 escalate_minutes = 2;
+}
 
-    enum FinishCondition {
-        FINISH_CONDITION_NONE = 0;
-        ACKNOWLEDGED = 1;
-        RESOLVED = 2;
+message Repeat {
+    enum RepeatState {
+        REPEAT_STATE_NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
     }
 
+     RepeatState state = 1;
+     int32 count = 2;
+}
+
+message EscalationPolicyCreateRequest {
     string name = 1;
-    repeated google.protobuf.Struct rules = 2;
+    repeated EscalationRule rules = 2;
     // +optional
-    int32 repeat_count = 3;
+    Repeat repeat = 3;
     // +optional
     FinishCondition finish_condition = 4;
+
     // +optional
-    google.protobuf.Struct tags = 5;
-    string service_id = 6;
+    google.protobuf.Struct tags = 11;
+
+    string service_id = 21;
+}
+
+message EscalationPolicyUpdateRequest {
+    string escalation_policy_id = 1;
+    // +optional
+    string name = 2;
+    // +optional
+    repeated EscalationRule rules = 3;
+    // +optional
+    FinishCondition finish_condition = 4;
+
+    // +optional
+    google.protobuf.Struct tags = 11;
 }
 
 message EscalationPolicyRequest {
@@ -77,31 +109,31 @@ message EscalationPolicySearchQuery {
     // +optional
     string name = 3;
     // +optional
-    string finish_condition = 4;
+    FinishCondition finish_condition = 4;
+
     // +optional
-    string service_id = 5;
+    string service_id = 21;
 }
 
 message EscalationPolicyStatQuery {
     spaceone.api.core.v2.StatisticsQuery query = 1;
 }
 
-
-//////////
-//Returns
-//////////
-
 message EscalationPolicyInfo {
     string escalation_policy_id = 1;
     string name = 2;
-    repeated google.protobuf.Struct rules = 3;
+    repeated EscalationRule rules = 3;
     int32 repeat_count = 4;
-    string finish_condition = 5;
-    google.protobuf.Struct tags = 6;
-    string service_id = 7;
-    string workspace_id = 8;
-    string domain_id = 9;
-    string created_at = 10;
+    FinishCondition finish_condition = 5;
+
+    google.protobuf.Struct tags = 11;
+
+    string domain_id = 21;
+    string workspace_id = 22;
+    string service_id = 23;
+
+    string created_at = 31;
+    string updated_at = 32;
 }
 
 message EscalationPoliciesInfo {

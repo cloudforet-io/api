@@ -59,7 +59,7 @@ service Webhook {
             body: "*"
         };
     }
-    rpc list (WebhookQuery) returns (WebhooksInfo) {
+    rpc list (WebhookSearchQuery) returns (WebhooksInfo) {
         option (google.api.http) = {
             post: "/monitoring/v1/webhook/list"
             body: "*"
@@ -73,17 +73,16 @@ service Webhook {
     }
 }
 
-
 enum WebhookState {
-    WEBHOOK_NONE = 0;
+    WEBHOOK_STATE_NONE = 0;
     ENABLED = 1;
     DISABLED = 2;
 }
 
-enum UpgradeMode {
-    UPGRADE_NONE = 0;
-    MANUAL = 1;
-    AUTO = 2;
+enum WebhookUpgradeMode {
+    UPGRADE_MODE_NONE = 0;
+    AUTO = 1;
+    MANUAL = 2;
 }
 
 message WebhookRequests {
@@ -93,49 +92,49 @@ message WebhookRequests {
 
 message WebhookPluginInfo{
     string plugin_id = 1;
+    // +optional
     string version = 2;
+    // +optional
     google.protobuf.Struct options = 3;
     google.protobuf.Struct metadata = 4;
-    UpgradeMode upgrade_mode = 5;
+    // +optional
+    WebhookUpgradeMode upgrade_mode = 5;
 }
 
 message WebhookCreateRequest {
     string name = 1;
     WebhookPluginInfo plugin_info = 2;
+
     // +optional
-    google.protobuf.Struct tags = 3;
-    string service_id = 11;
+    google.protobuf.Struct tags = 11;
+
+    string service_id = 21;
 }
 
 message WebhookUpdateRequest {
     string webhook_id = 1;
     // +optional
     string name = 2;
+
     // +optional
-    google.protobuf.Struct tags = 3;
+    google.protobuf.Struct tags = 11;
 }
 
 message WebhookUpdatePluginRequest {
-    enum UpgradeMode {
-        NONE = 0;
-        MANUAL = 1;
-        AUTO = 2;
-    }
-
     string webhook_id = 1;
     // +optional
     string version = 2;
     // +optional
     google.protobuf.Struct options = 3;
     // +optional
-    UpgradeMode upgrade_mode = 4;
+    WebhookUpgradeMode upgrade_mode = 4;
 }
 
 message WebhookRequest {
     string webhook_id = 1;
 }
 
-message WebhookQuery {
+message WebhookSearchQuery {
     // +optional
     spaceone.api.core.v2.Query query = 1;
     // +optional
@@ -146,10 +145,11 @@ message WebhookQuery {
     WebhookState state = 4;
     // +optional
     string access_key = 5;
+
     // +optional
-    string workspace_id = 6;
+    string workspace_id = 21;
     // +optional
-    string service_id = 7;
+    string service_id = 22;
 }
 
 message WebhookStatQuery {
@@ -163,12 +163,15 @@ message WebhookInfo {
     string access_key = 4;
     string webhook_url = 5;
     WebhookPluginInfo plugin_info = 6;
-    google.protobuf.Struct tags = 7;
-    WebhookRequests requests = 8;
-    string service_id = 9;
-    string workspace_id = 10;
-    string domain_id = 11;
-    string created_at = 12;
+    WebhookRequests requests = 7;
+
+    google.protobuf.Struct tags = 11;
+
+    string domain_id = 21;
+    string workspace_id = 22;
+    string service_id = 23;
+
+    string created_at = 31;
 }
 
 message WebhooksInfo {

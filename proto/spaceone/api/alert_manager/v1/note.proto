@@ -9,191 +9,94 @@ import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
 
-service Service {
-    rpc create (CommentCreateRequest) returns (ServiceInfo) {
+service Note {
+    rpc create (NoteCreateRequest) returns (NoteInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/create"
+            post: "/alert-manager/v1/note/create"
             body: "*"
         };
     }
-    rpc update (CommentUpdateRequest) returns (ServiceInfo) {
+    rpc update (NoteUpdateRequest) returns (NoteInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/update"
+            post: "/alert-manager/v1/note/update"
             body: "*"
         };
     }
-    rpc change_member (CommentChangeMemberRequest) returns (ServiceInfo) {
+    rpc delete (NoteRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/change-member"
+            post: "/alert-manager/v1/note/delete"
             body: "*"
         };
     }
-    rpc delete (CommentRequest) returns (google.protobuf.Empty) {
+    rpc get (NoteRequest) returns (NoteInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/delete"
+            post: "/alert-manager/v1/note/get"
             body: "*"
         };
     }
-    rpc get (CommentRequest) returns (ServiceInfo) {
+    rpc list (NoteSearchQuery) returns (NotesInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/get"
+            post: "/alert-manager/v1/note/list"
             body: "*"
         };
     }
-    rpc list (CommentSearchQuery) returns (ServicesInfo) {
+    rpc stat (NoteStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/list"
-            body: "*"
-        };
-    }
-    rpc stat (CommentStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/alert_manager/v1/comment/stat"
+            post: "/alert_manager/v1/note/stat"
             body: "*"
         };
     }
 }
 
-
-//////////
-//Receive
-//////////
-
-message Members {
-    repeated string USER = 1;
-    repeated string USER_GROUP = 2;
+message NoteCreateRequest {
+    string alert_id = 1;
+    string note = 2;
 }
 
-message Options {
-    enum notification_urgency_ {
-        NOTIFICATION_NONE = 0;
-        ALL = 1;
-        HIGH_ONLY = 2;
-    }
-    enum recovery_mode {
-        RECOVERY_NONE = 0;
-        AUTO = 1;
-        MANUAL = 2;
-    }
-}
-
-message CommentCreateRequest {
-    string name = 1;
-    string service_key = 2;
+message NoteUpdateRequest {
+    string note_id = 1;
     // +optional
-    string description = 3;
-    // +optional
-    google.protobuf.Struct members = 4;
-    // +optional
-    Options options = 5;
+    string note = 2;
 }
 
-message CommentUpdateRequest {
-    string service_id = 1;
-    // +optional
-    string name = 2;
-    // +optional
-    string description = 3;
-    // +optional
-    Options options = 4;
-    string escalation_policy_id = 5;
+message NoteRequest {
+    string note_id = 1;
 }
 
-message CommentChangeMemberRequest {
-    string service_id = 1;
-    Members members = 2;
-}
-
-message CommentRequest {
-    string service_id = 1;
-}
-
-message CommentSearchQuery {
+message NoteSearchQuery {
     // +optional
     spaceone.api.core.v2.Query query = 1;
     // +optional
-    string service_id = 2;
+    string workspace_id = 2;
     // +optional
-    string escalation_policy_id = 3;
+    string service_id = 3;
     // +optional
-    bool include_details = 4;
+    string alert_id = 4;
+    // +optional
+    string note_id = 5;
+
+    // +optional
+    string created_by = 31;
 }
 
-message CommentStatQuery {
+message NoteStatQuery {
     spaceone.api.core.v2.StatisticsQuery query = 1;
 }
 
+message NoteInfo {
+    string note_id = 1;
+    string note = 2;
 
-//////////
-//Returns
-//////////
+    string domain_id = 21;
+    string workspace_id = 22;
+    string service_id = 23;
+    string alert_id = 24;
 
-message ServiceInfo {
-    string service_id = 1;
-    string name = 2;
-    string service_key = 3;
-    string description = 4;
-    google.protobuf.Struct members = 5;
-    Options options = 6;
-    // +optional
-    google.protobuf.Struct channels = 7;
-    // +optional
-    google.protobuf.Struct webhooks = 8;
-    // +optional
-    google.protobuf.Struct alerts = 9;
-    string escalation_policy_id = 10;
-    string workspace_id = 11;
-    string domain_id = 12;
-    string created_at = 13;
-    string updated_at = 14;
+    string created_at = 31;
+    string created_by = 32;
 }
 
-message ServicesInfo {
-    repeated ServiceInfo results = 1;
+message NotesInfo {
+    repeated NoteInfo results = 1;
     int32 total_count = 2;
-}
-
-
-///////////////
-//Data Formats
-///////////////
-
-//Channel
-message Channels {
-    repeated ServiceChannelsInfo service_channel_info = 1;
-}
-
-message ServiceChannelsInfo {
-    string channel_id = 1;
-    string name = 2;
-    string state = 3;
-    string channel_type = 4;
-    google.protobuf.Struct data = 5;
-    google.protobuf.Struct schedule = 6;
-    google.protobuf.Struct tags = 7;
-    string secret_id = 8;
-    string protocol_id = 9;
-    string service_id = 10;
-    string workspace_id = 11;
-    string domain_id = 12;
-    string created_at = 13;
-}
-
-//Webhooks
-message Webhooks {
-    repeated WebhookInfo webhook_info = 1;
-}
-message WebhookInfo {
-    string webhook_id = 1;
-}
-
-//Alerts
-message Alerts {
-    AlertInfo TOTAL = 1;
-    AlertInfo TRIGGERRED = 2;
-    AlertInfo ACKNOWLEDGED = 3;
-}
-message AlertInfo {
-    int32 high = 1;
-    int32 low = 2;
 }

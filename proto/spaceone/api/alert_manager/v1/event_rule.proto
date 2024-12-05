@@ -12,77 +12,96 @@ import "spaceone/api/core/v2/query.proto";
 service EventRule {
     rpc create (EventRuleCreateRequest) returns (EventRuleInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/create"
+            post: "/alert-manager/v1/event-rule/create"
             body: "*"
         };
     }
-    rpc change_order (EventRuleChangeMemberRequest) returns (EventRuleInfo) {
+    rpc change_order (EventRuleChangeOrderRequest) returns (EventRuleInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/change-order"
+            post: "/alert-manager/v1/event-rule/change-order"
             body: "*"
         };
     }
     rpc update (EventRuleUpdateRequest) returns (EventRuleInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/update"
+            post: "/alert-manager/v1/event-rule/update"
             body: "*"
         };
     }
     rpc delete (EventRuleRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/delete"
+            post: "/alert-manager/v1/event-rule/delete"
             body: "*"
         };
     }
     rpc get (EventRuleRequest) returns (EventRuleInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/get"
+            post: "/alert-manager/v1/event-rule/get"
             body: "*"
         };
     }
     rpc list (EventRuleSearchQuery) returns (EventRulesInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/list"
+            post: "/alert-manager/v1/event-rule/list"
             body: "*"
         };
     }
     rpc stat (EventRuleStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/alert_manager/v1/comment/stat"
+            post: "/alert_manager/v1/event-rule/stat"
             body: "*"
         };
     }
 }
 
-enum Options {
-    NONE = 0;
-    True = 1;
-    False = 2;
-}
 enum ConditionsPolicy {
-    CONDITION_POLICY_NONE = 0;
+    CONDITIONS_POLICY_NONE = 0;
     ALL = 1;
     ANY = 2;
     ALWAYS = 3;
 }
 
-//////////
-//Receive
-//////////
+enum EventRuleUrgency {
+    URGENCY_NONE = 0;
+    HIGH = 1;
+    LOW = 2;
+}
+
+message EventRuleOptions {
+    bool stop_processing = 1;
+}
+
+message Condition {
+    string key = 1;
+    string value = 2;
+    string operator = 3;
+}
+
+//message Actions {
+//    string change_service = 1;
+//    google.protobuf.Struct match_asset = 2;
+//    EventRuleUrgency change_urgency = 3;
+//    string change_escalation_policy = 4;
+//    google.protobuf.Struct add_additional_info = 5;
+//    bool no_notification = 6;
+//}
+
 message EventRuleCreateRequest {
     // +optional
     string name = 1;
-    repeated google.protobuf.Struct conditions = 2;
+    repeated Condition conditions = 2;
     ConditionsPolicy conditions_policy = 3;
     google.protobuf.Struct actions = 4;
     // +optional
-    Options options = 5;
+    EventRuleOptions options = 5;
+
     // +optional
-    google.protobuf.Struct tags = 6;
-    string service_id = 7;
+    google.protobuf.Struct tags = 11;
+
+    string service_id = 21;
 }
 
-message EventRuleChangeMemberRequest {
+message EventRuleChangeOrderRequest {
     string event_rule_id = 1;
     int32 order = 2;
 }
@@ -92,15 +111,16 @@ message EventRuleUpdateRequest {
     // +optional
     string name = 2;
     // +optional
-    repeated google.protobuf.Struct conditions = 3;
+    repeated Condition conditions = 3;
     // +optional
     ConditionsPolicy conditions_policy = 4;
     // +optional
     google.protobuf.Struct actions = 5;
     // +optional
-    Options options = 6;
+    EventRuleOptions options = 6;
+
     // +optional
-    google.protobuf.Struct tags = 7;
+    google.protobuf.Struct tags = 11;
 }
 
 message EventRuleRequest {
@@ -114,36 +134,34 @@ message EventRuleSearchQuery {
     string event_rule_id = 2;
     // +optional
     string name = 3;
+
     // +optional
-    string resource_group = 4;
+    string workspace_id = 21;
     // +optional
-    string workspace_id = 5;
-    // +optional
-    string project_id = 6;
+    string project_id = 22;
 }
 
 message EventRuleStatQuery {
     spaceone.api.core.v2.StatisticsQuery query = 1;
 }
 
-
-//////////
-//Returns
-//////////
-
 message EventRuleInfo {
     string event_rule_id = 1;
     string name = 2;
     int32 order = 3;
-    repeated google.protobuf.Struct conditions = 4;
+    repeated Condition conditions = 4;
     ConditionsPolicy conditions_policy = 5;
     google.protobuf.Struct actions = 6;
-    Options options = 7;
-    google.protobuf.Struct tags = 8;
-    string service_id = 10;
-    string workspace_id = 11;
-    string domain_id = 12;
-    string created_at = 13;
+    EventRuleOptions options = 7;
+
+    google.protobuf.Struct tags = 11;
+
+    string domain_id = 21;
+    string workspace_id = 22;
+    string service_id = 23;
+
+    string created_at = 31;
+    string updated_at = 32;
 }
 
 message EventRulesInfo {
