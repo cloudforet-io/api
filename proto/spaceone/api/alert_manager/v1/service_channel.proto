@@ -9,191 +9,183 @@ import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "spaceone/api/core/v2/query.proto";
 
-service Service {
-    rpc create (CommentCreateRequest) returns (ServiceInfo) {
+service ServiceChannel {
+    rpc create (ServiceChannelCreateRequest) returns (ServiceChannelInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/create"
+            post: "/alert-manager/v1/service-channel/create"
             body: "*"
         };
     }
-    rpc update (CommentUpdateRequest) returns (ServiceInfo) {
+    rpc create_forward_channel (ServiceChannelCreateForwardChannelRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/update"
+            post: "/alert-manager/v1/service-channel/create-forward-channel"
             body: "*"
         };
     }
-    rpc change_member (CommentChangeMemberRequest) returns (ServiceInfo) {
+    rpc update (ServiceChannelUpdateRequest) returns (ServiceChannelInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/change-member"
+            post: "/alert-manager/v1/service-channel/update"
             body: "*"
         };
     }
-    rpc delete (CommentRequest) returns (google.protobuf.Empty) {
+    rpc enable (ServiceChannelRequest) returns (ServiceChannelInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/delete"
+            post: "/alert-manager/v1/service-channel/enable"
             body: "*"
         };
     }
-    rpc get (CommentRequest) returns (ServiceInfo) {
+    rpc disable (ServiceChannelRequest) returns (ServiceChannelInfo) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/get"
+            post: "/alert-manager/v1/service-channel/disable"
             body: "*"
         };
     }
-    rpc list (CommentSearchQuery) returns (ServicesInfo) {
+    rpc delete (ServiceChannelRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/alert-manager/v1/comment/list"
+            post: "/alert-manager/v1/service-channel/delete"
             body: "*"
         };
     }
-    rpc stat (CommentStatQuery) returns (google.protobuf.Struct) {
+    rpc get (ServiceChannelRequest) returns (ServiceChannelInfo) {
         option (google.api.http) = {
-            post: "/alert_manager/v1/comment/stat"
+            post: "/alert-manager/v1/service-channel/get"
+            body: "*"
+        };
+    }
+    rpc list (ServiceChannelSearchQuery) returns (ServiceChannelsInfo) {
+        option (google.api.http) = {
+            post: "/alert-manager/v1/service-channel/list"
+            body: "*"
+        };
+    }
+    rpc stat (ServiceChannelStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/alert_manager/v1/service-channel/stat"
             body: "*"
         };
     }
 }
 
-
-//////////
-//Receive
-//////////
-
-message Members {
-    repeated string USER = 1;
-    repeated string USER_GROUP = 2;
+enum ChannelState {
+    CHANNEL_STATE_NONE = 0;
+    ENABLED = 1;
+    DISABLED = 2;
 }
 
-message Options {
-    enum notification_urgency_ {
-        NOTIFICATION_NONE = 0;
-        ALL = 1;
-        HIGH_ONLY = 2;
-    }
-    enum recovery_mode {
-        RECOVERY_NONE = 0;
-        AUTO = 1;
-        MANUAL = 2;
-    }
+message ChannelScheduleInfo {
+    bool is_scheduled = 1;
+    int32 start = 2;
+    int32 end = 3;
 }
 
-message CommentCreateRequest {
+message ChannelSchedule {
+    enum ChannelScheduleType {
+        CHANNEL_SCHEDULE_TYPE_NONE = 0;
+        DAILY = 1;
+        WEEKDAYS = 2;
+        CUSTOM = 3;
+    }
+
+    ChannelScheduleType SCHEDULE_TYPE = 1;
+    ChannelScheduleInfo SUN = 8;
+    ChannelScheduleInfo MON = 2;
+    ChannelScheduleInfo TUE = 3;
+    ChannelScheduleInfo WED = 4;
+    ChannelScheduleInfo THU = 5;
+    ChannelScheduleInfo FRI = 6;
+    ChannelScheduleInfo SAT = 7;
+}
+
+message ServiceChannelCreateRequest {
+    string protocol_id = 1;
+    string name = 2;
+    // +optional
+    ChannelSchedule schedule = 3;
+    
+    google.protobuf.Struct data = 11;
+    // +optional
+    google.protobuf.Struct tags = 12;
+
+    string service_id = 21;
+}
+
+message ServiceChannelCreateForwardChannelRequest {
     string name = 1;
-    string service_key = 2;
-    // +optional
-    string description = 3;
-    // +optional
-    google.protobuf.Struct members = 4;
-    // +optional
-    Options options = 5;
+    ChannelSchedule schedule = 2;
+
+    google.protobuf.Struct data = 11;
+    google.protobuf.Struct tags = 12;
+
+    string service_id = 21;
 }
 
-message CommentUpdateRequest {
-    string service_id = 1;
+message ServiceChannelUpdateRequest {
+    string channel_id = 1;
     // +optional
     string name = 2;
     // +optional
-    string description = 3;
+    ChannelSchedule schedule = 3;
+
     // +optional
-    Options options = 4;
-    string escalation_policy_id = 5;
+    google.protobuf.Struct data = 11;
+    // +optional
+    google.protobuf.Struct tags = 12;
 }
 
-message CommentChangeMemberRequest {
-    string service_id = 1;
-    Members members = 2;
+message ServiceChannelRequest {
+    string channel_id = 1;
 }
 
-message CommentRequest {
-    string service_id = 1;
-}
-
-message CommentSearchQuery {
+message ServiceChannelSearchQuery {
     // +optional
     spaceone.api.core.v2.Query query = 1;
     // +optional
-    string service_id = 2;
+    string channel_id = 2;
     // +optional
-    string escalation_policy_id = 3;
+    string name = 3;
     // +optional
-    bool include_details = 4;
+    ChannelState state = 4;
+    
+    // +optional
+    string workspace_id = 11;
+    // +optional
+    string service_id = 12;
+    // +optional
+    string protocol_id = 13;
+    // +optional
+    string secret_id = 14;
 }
 
-message CommentStatQuery {
+message ServiceChannelStatQuery {
     spaceone.api.core.v2.StatisticsQuery query = 1;
 }
 
+message ServiceChannelInfo {
+    enum ServiceChannelType {
+        CHANNEL_TYPE_NONE = 0;
+        DIRECT = 1;
+        FORWARD = 2;
+    }
 
-//////////
-//Returns
-//////////
-
-message ServiceInfo {
-    string service_id = 1;
+    string channel_id = 1;
     string name = 2;
-    string service_key = 3;
-    string description = 4;
-    google.protobuf.Struct members = 5;
-    Options options = 6;
-    // +optional
-    google.protobuf.Struct channels = 7;
-    // +optional
-    google.protobuf.Struct webhooks = 8;
-    // +optional
-    google.protobuf.Struct alerts = 9;
-    string escalation_policy_id = 10;
-    string workspace_id = 11;
-    string domain_id = 12;
-    string created_at = 13;
-    string updated_at = 14;
-}
+    ChannelState state = 3;
+    ServiceChannelType channel_type = 4;
+    ChannelSchedule schedule = 5;
 
-message ServicesInfo {
-    repeated ServiceInfo results = 1;
-    int32 total_count = 2;
-}
+    google.protobuf.Struct data = 11;
+    google.protobuf.Struct tags = 12;
 
+    string domain_id = 21;
+    string workspace_id = 22;
+    string service_id = 23;
+    string protocol_id = 24;
+    string secret_id = 25;
 
-///////////////
-//Data Formats
-///////////////
-
-//Channel
-message Channels {
-    repeated ServiceChannelsInfo service_channel_info = 1;
+    string created_at = 31;
 }
 
 message ServiceChannelsInfo {
-    string channel_id = 1;
-    string name = 2;
-    string state = 3;
-    string channel_type = 4;
-    google.protobuf.Struct data = 5;
-    google.protobuf.Struct schedule = 6;
-    google.protobuf.Struct tags = 7;
-    string secret_id = 8;
-    string protocol_id = 9;
-    string service_id = 10;
-    string workspace_id = 11;
-    string domain_id = 12;
-    string created_at = 13;
-}
-
-//Webhooks
-message Webhooks {
-    repeated WebhookInfo webhook_info = 1;
-}
-message WebhookInfo {
-    string webhook_id = 1;
-}
-
-//Alerts
-message Alerts {
-    AlertInfo TOTAL = 1;
-    AlertInfo TRIGGERRED = 2;
-    AlertInfo ACKNOWLEDGED = 3;
-}
-message AlertInfo {
-    int32 high = 1;
-    int32 low = 2;
+    repeated ServiceChannelInfo results = 1;
+    int32 total_count = 2;
 }

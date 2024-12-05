@@ -1,0 +1,31 @@
+// A Collector is a plugin collecting data of external infrastructure resources.
+syntax = "proto3";
+
+package spaceone.api.alert_manager.plugin;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/alert-manager/plugin";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+
+service Protocol {
+    rpc init (InitRequest) returns (PluginInfo) {}
+    rpc verify (VerifyRequest) returns (google.protobuf.Empty) {}
+}
+
+message InitRequest {
+    google.protobuf.Struct options = 1;
+
+    string domain_id = 21;
+}
+
+message VerifyRequest {
+    google.protobuf.Struct options = 1;
+    google.protobuf.Struct secret_data = 2;
+
+    string domain_id = 21;
+}
+
+message PluginInfo {
+    google.protobuf.Struct metadata = 1;
+}

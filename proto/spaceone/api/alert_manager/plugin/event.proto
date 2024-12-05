@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package spaceone.api.alert_manager.plugin;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/alert-manager/plugin";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "spaceone/api/alert_manager/v1/event.proto";
+
+service Event {
+  rpc parse (ParseRequest) returns (EventsInfo) {}
+}
+
+message ParseRequest {
+    google.protobuf.Struct options = 1;
+    google.protobuf.Struct data = 2;
+
+    string domain_id = 21;
+}
+
+enum EventType {
+  EVENT_TYPE_NONE = 0;
+  RECOVERY = 1;
+  ALERT = 2;
+}
+
+message EventResource {
+  // +optional
+  string resource_id = 1;
+  // +optional
+  string resource_type = 2;
+  // +optional
+  string name = 3;
+}
+
+message EventInfo {
+  string event_key = 1;
+  EventType event_type = 2;
+  string title = 3;
+  string description = 4;
+  spaceone.api.alert_manager.v1.EventSeverity severity = 5;
+  string rule = 6;
+  string image_url = 7;
+  repeated string resources = 8;
+  string provider = 9;
+  string account = 10;
+  google.protobuf.Struct additional_info = 11;
+
+  string occurred_at = 31;
+}
+
+message EventsInfo {
+  repeated EventInfo results = 1;
+}
+
