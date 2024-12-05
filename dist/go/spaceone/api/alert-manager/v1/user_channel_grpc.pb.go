@@ -21,329 +21,367 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_Create_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/create"
-	Service_Update_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/update"
-	Service_ChangeMember_FullMethodName = "/spaceone.api.alert_manager.v1.Service/change_member"
-	Service_Delete_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/delete"
-	Service_Get_FullMethodName          = "/spaceone.api.alert_manager.v1.Service/get"
-	Service_List_FullMethodName         = "/spaceone.api.alert_manager.v1.Service/list"
-	Service_Stat_FullMethodName         = "/spaceone.api.alert_manager.v1.Service/stat"
+	UserChannel_Create_FullMethodName  = "/spaceone.api.alert_manager.v1.UserChannel/create"
+	UserChannel_Update_FullMethodName  = "/spaceone.api.alert_manager.v1.UserChannel/update"
+	UserChannel_Enable_FullMethodName  = "/spaceone.api.alert_manager.v1.UserChannel/enable"
+	UserChannel_Disable_FullMethodName = "/spaceone.api.alert_manager.v1.UserChannel/disable"
+	UserChannel_Delete_FullMethodName  = "/spaceone.api.alert_manager.v1.UserChannel/delete"
+	UserChannel_Get_FullMethodName     = "/spaceone.api.alert_manager.v1.UserChannel/get"
+	UserChannel_List_FullMethodName    = "/spaceone.api.alert_manager.v1.UserChannel/list"
+	UserChannel_Stat_FullMethodName    = "/spaceone.api.alert_manager.v1.UserChannel/stat"
 )
 
-// ServiceClient is the client API for Service service.
+// UserChannelClient is the client API for UserChannel service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ServiceClient interface {
-	Create(ctx context.Context, in *CommentCreateRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	Update(ctx context.Context, in *CommentUpdateRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	ChangeMember(ctx context.Context, in *CommentChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	Delete(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Get(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	List(ctx context.Context, in *CommentSearchQuery, opts ...grpc.CallOption) (*ServicesInfo, error)
-	Stat(ctx context.Context, in *CommentStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
+type UserChannelClient interface {
+	Create(ctx context.Context, in *UserChannelCreateRequest, opts ...grpc.CallOption) (*UserChannelInfo, error)
+	Update(ctx context.Context, in *UserChannelUpdateRequest, opts ...grpc.CallOption) (*UserChannelInfo, error)
+	Enable(ctx context.Context, in *UserChannelRequest, opts ...grpc.CallOption) (*UserChannelInfo, error)
+	Disable(ctx context.Context, in *UserChannelRequest, opts ...grpc.CallOption) (*UserChannelInfo, error)
+	Delete(ctx context.Context, in *UserChannelRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Get(ctx context.Context, in *UserChannelRequest, opts ...grpc.CallOption) (*UserChannelInfo, error)
+	List(ctx context.Context, in *UserChannelSearchQuery, opts ...grpc.CallOption) (*UserChannelsInfo, error)
+	Stat(ctx context.Context, in *UserChannelStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
-type serviceClient struct {
+type userChannelClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewServiceClient(cc grpc.ClientConnInterface) ServiceClient {
-	return &serviceClient{cc}
+func NewUserChannelClient(cc grpc.ClientConnInterface) UserChannelClient {
+	return &userChannelClient{cc}
 }
 
-func (c *serviceClient) Create(ctx context.Context, in *CommentCreateRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *userChannelClient) Create(ctx context.Context, in *UserChannelCreateRequest, opts ...grpc.CallOption) (*UserChannelInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_Create_FullMethodName, in, out, cOpts...)
+	out := new(UserChannelInfo)
+	err := c.cc.Invoke(ctx, UserChannel_Create_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Update(ctx context.Context, in *CommentUpdateRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *userChannelClient) Update(ctx context.Context, in *UserChannelUpdateRequest, opts ...grpc.CallOption) (*UserChannelInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_Update_FullMethodName, in, out, cOpts...)
+	out := new(UserChannelInfo)
+	err := c.cc.Invoke(ctx, UserChannel_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) ChangeMember(ctx context.Context, in *CommentChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *userChannelClient) Enable(ctx context.Context, in *UserChannelRequest, opts ...grpc.CallOption) (*UserChannelInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_ChangeMember_FullMethodName, in, out, cOpts...)
+	out := new(UserChannelInfo)
+	err := c.cc.Invoke(ctx, UserChannel_Enable_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Delete(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *userChannelClient) Disable(ctx context.Context, in *UserChannelRequest, opts ...grpc.CallOption) (*UserChannelInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserChannelInfo)
+	err := c.cc.Invoke(ctx, UserChannel_Disable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userChannelClient) Delete(ctx context.Context, in *UserChannelRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, Service_Delete_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UserChannel_Delete_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Get(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *userChannelClient) Get(ctx context.Context, in *UserChannelRequest, opts ...grpc.CallOption) (*UserChannelInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_Get_FullMethodName, in, out, cOpts...)
+	out := new(UserChannelInfo)
+	err := c.cc.Invoke(ctx, UserChannel_Get_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) List(ctx context.Context, in *CommentSearchQuery, opts ...grpc.CallOption) (*ServicesInfo, error) {
+func (c *userChannelClient) List(ctx context.Context, in *UserChannelSearchQuery, opts ...grpc.CallOption) (*UserChannelsInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServicesInfo)
-	err := c.cc.Invoke(ctx, Service_List_FullMethodName, in, out, cOpts...)
+	out := new(UserChannelsInfo)
+	err := c.cc.Invoke(ctx, UserChannel_List_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Stat(ctx context.Context, in *CommentStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
+func (c *userChannelClient) Stat(ctx context.Context, in *UserChannelStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(_struct.Struct)
-	err := c.cc.Invoke(ctx, Service_Stat_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UserChannel_Stat_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ServiceServer is the server API for Service service.
-// All implementations must embed UnimplementedServiceServer
+// UserChannelServer is the server API for UserChannel service.
+// All implementations must embed UnimplementedUserChannelServer
 // for forward compatibility.
-type ServiceServer interface {
-	Create(context.Context, *CommentCreateRequest) (*ServiceInfo, error)
-	Update(context.Context, *CommentUpdateRequest) (*ServiceInfo, error)
-	ChangeMember(context.Context, *CommentChangeMemberRequest) (*ServiceInfo, error)
-	Delete(context.Context, *CommentRequest) (*empty.Empty, error)
-	Get(context.Context, *CommentRequest) (*ServiceInfo, error)
-	List(context.Context, *CommentSearchQuery) (*ServicesInfo, error)
-	Stat(context.Context, *CommentStatQuery) (*_struct.Struct, error)
-	mustEmbedUnimplementedServiceServer()
+type UserChannelServer interface {
+	Create(context.Context, *UserChannelCreateRequest) (*UserChannelInfo, error)
+	Update(context.Context, *UserChannelUpdateRequest) (*UserChannelInfo, error)
+	Enable(context.Context, *UserChannelRequest) (*UserChannelInfo, error)
+	Disable(context.Context, *UserChannelRequest) (*UserChannelInfo, error)
+	Delete(context.Context, *UserChannelRequest) (*empty.Empty, error)
+	Get(context.Context, *UserChannelRequest) (*UserChannelInfo, error)
+	List(context.Context, *UserChannelSearchQuery) (*UserChannelsInfo, error)
+	Stat(context.Context, *UserChannelStatQuery) (*_struct.Struct, error)
+	mustEmbedUnimplementedUserChannelServer()
 }
 
-// UnimplementedServiceServer must be embedded to have
+// UnimplementedUserChannelServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedServiceServer struct{}
+type UnimplementedUserChannelServer struct{}
 
-func (UnimplementedServiceServer) Create(context.Context, *CommentCreateRequest) (*ServiceInfo, error) {
+func (UnimplementedUserChannelServer) Create(context.Context, *UserChannelCreateRequest) (*UserChannelInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedServiceServer) Update(context.Context, *CommentUpdateRequest) (*ServiceInfo, error) {
+func (UnimplementedUserChannelServer) Update(context.Context, *UserChannelUpdateRequest) (*UserChannelInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedServiceServer) ChangeMember(context.Context, *CommentChangeMemberRequest) (*ServiceInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ChangeMember not implemented")
+func (UnimplementedUserChannelServer) Enable(context.Context, *UserChannelRequest) (*UserChannelInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
 }
-func (UnimplementedServiceServer) Delete(context.Context, *CommentRequest) (*empty.Empty, error) {
+func (UnimplementedUserChannelServer) Disable(context.Context, *UserChannelRequest) (*UserChannelInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedUserChannelServer) Delete(context.Context, *UserChannelRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedServiceServer) Get(context.Context, *CommentRequest) (*ServiceInfo, error) {
+func (UnimplementedUserChannelServer) Get(context.Context, *UserChannelRequest) (*UserChannelInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedServiceServer) List(context.Context, *CommentSearchQuery) (*ServicesInfo, error) {
+func (UnimplementedUserChannelServer) List(context.Context, *UserChannelSearchQuery) (*UserChannelsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedServiceServer) Stat(context.Context, *CommentStatQuery) (*_struct.Struct, error) {
+func (UnimplementedUserChannelServer) Stat(context.Context, *UserChannelStatQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
 }
-func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
-func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
+func (UnimplementedUserChannelServer) mustEmbedUnimplementedUserChannelServer() {}
+func (UnimplementedUserChannelServer) testEmbeddedByValue()                     {}
 
-// UnsafeServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ServiceServer will
+// UnsafeUserChannelServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UserChannelServer will
 // result in compilation errors.
-type UnsafeServiceServer interface {
-	mustEmbedUnimplementedServiceServer()
+type UnsafeUserChannelServer interface {
+	mustEmbedUnimplementedUserChannelServer()
 }
 
-func RegisterServiceServer(s grpc.ServiceRegistrar, srv ServiceServer) {
-	// If the following call pancis, it indicates UnimplementedServiceServer was
+func RegisterUserChannelServer(s grpc.ServiceRegistrar, srv UserChannelServer) {
+	// If the following call pancis, it indicates UnimplementedUserChannelServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Service_ServiceDesc, srv)
+	s.RegisterService(&UserChannel_ServiceDesc, srv)
 }
 
-func _Service_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentCreateRequest)
+func _UserChannel_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserChannelCreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Create(ctx, in)
+		return srv.(UserChannelServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Create_FullMethodName,
+		FullMethod: UserChannel_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Create(ctx, req.(*CommentCreateRequest))
+		return srv.(UserChannelServer).Create(ctx, req.(*UserChannelCreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentUpdateRequest)
+func _UserChannel_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserChannelUpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Update(ctx, in)
+		return srv.(UserChannelServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Update_FullMethodName,
+		FullMethod: UserChannel_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Update(ctx, req.(*CommentUpdateRequest))
+		return srv.(UserChannelServer).Update(ctx, req.(*UserChannelUpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_ChangeMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentChangeMemberRequest)
+func _UserChannel_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserChannelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).ChangeMember(ctx, in)
+		return srv.(UserChannelServer).Enable(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_ChangeMember_FullMethodName,
+		FullMethod: UserChannel_Enable_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).ChangeMember(ctx, req.(*CommentChangeMemberRequest))
+		return srv.(UserChannelServer).Enable(ctx, req.(*UserChannelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentRequest)
+func _UserChannel_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserChannelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Delete(ctx, in)
+		return srv.(UserChannelServer).Disable(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Delete_FullMethodName,
+		FullMethod: UserChannel_Disable_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Delete(ctx, req.(*CommentRequest))
+		return srv.(UserChannelServer).Disable(ctx, req.(*UserChannelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentRequest)
+func _UserChannel_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserChannelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Get(ctx, in)
+		return srv.(UserChannelServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Get_FullMethodName,
+		FullMethod: UserChannel_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Get(ctx, req.(*CommentRequest))
+		return srv.(UserChannelServer).Delete(ctx, req.(*UserChannelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentSearchQuery)
+func _UserChannel_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserChannelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).List(ctx, in)
+		return srv.(UserChannelServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_List_FullMethodName,
+		FullMethod: UserChannel_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).List(ctx, req.(*CommentSearchQuery))
+		return srv.(UserChannelServer).Get(ctx, req.(*UserChannelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentStatQuery)
+func _UserChannel_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserChannelSearchQuery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Stat(ctx, in)
+		return srv.(UserChannelServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Stat_FullMethodName,
+		FullMethod: UserChannel_List_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Stat(ctx, req.(*CommentStatQuery))
+		return srv.(UserChannelServer).List(ctx, req.(*UserChannelSearchQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Service_ServiceDesc is the grpc.ServiceDesc for Service service.
+func _UserChannel_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserChannelStatQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserChannelServer).Stat(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserChannel_Stat_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserChannelServer).Stat(ctx, req.(*UserChannelStatQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// UserChannel_ServiceDesc is the grpc.ServiceDesc for UserChannel service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Service_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "spaceone.api.alert_manager.v1.Service",
-	HandlerType: (*ServiceServer)(nil),
+var UserChannel_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "spaceone.api.alert_manager.v1.UserChannel",
+	HandlerType: (*UserChannelServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "create",
-			Handler:    _Service_Create_Handler,
+			Handler:    _UserChannel_Create_Handler,
 		},
 		{
 			MethodName: "update",
-			Handler:    _Service_Update_Handler,
+			Handler:    _UserChannel_Update_Handler,
 		},
 		{
-			MethodName: "change_member",
-			Handler:    _Service_ChangeMember_Handler,
+			MethodName: "enable",
+			Handler:    _UserChannel_Enable_Handler,
+		},
+		{
+			MethodName: "disable",
+			Handler:    _UserChannel_Disable_Handler,
 		},
 		{
 			MethodName: "delete",
-			Handler:    _Service_Delete_Handler,
+			Handler:    _UserChannel_Delete_Handler,
 		},
 		{
 			MethodName: "get",
-			Handler:    _Service_Get_Handler,
+			Handler:    _UserChannel_Get_Handler,
 		},
 		{
 			MethodName: "list",
-			Handler:    _Service_List_Handler,
+			Handler:    _UserChannel_List_Handler,
 		},
 		{
 			MethodName: "stat",
-			Handler:    _Service_Stat_Handler,
+			Handler:    _UserChannel_Stat_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -21,329 +21,405 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_Create_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/create"
-	Service_Update_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/update"
-	Service_ChangeMember_FullMethodName = "/spaceone.api.alert_manager.v1.Service/change_member"
-	Service_Delete_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/delete"
-	Service_Get_FullMethodName          = "/spaceone.api.alert_manager.v1.Service/get"
-	Service_List_FullMethodName         = "/spaceone.api.alert_manager.v1.Service/list"
-	Service_Stat_FullMethodName         = "/spaceone.api.alert_manager.v1.Service/stat"
+	NotificationProtocol_Create_FullMethodName       = "/spaceone.api.alert_manager.v1.NotificationProtocol/create"
+	NotificationProtocol_Update_FullMethodName       = "/spaceone.api.alert_manager.v1.NotificationProtocol/update"
+	NotificationProtocol_UpdatePlugin_FullMethodName = "/spaceone.api.alert_manager.v1.NotificationProtocol/update_plugin"
+	NotificationProtocol_Enable_FullMethodName       = "/spaceone.api.alert_manager.v1.NotificationProtocol/enable"
+	NotificationProtocol_Disable_FullMethodName      = "/spaceone.api.alert_manager.v1.NotificationProtocol/disable"
+	NotificationProtocol_Delete_FullMethodName       = "/spaceone.api.alert_manager.v1.NotificationProtocol/delete"
+	NotificationProtocol_Get_FullMethodName          = "/spaceone.api.alert_manager.v1.NotificationProtocol/get"
+	NotificationProtocol_List_FullMethodName         = "/spaceone.api.alert_manager.v1.NotificationProtocol/list"
+	NotificationProtocol_Stat_FullMethodName         = "/spaceone.api.alert_manager.v1.NotificationProtocol/stat"
 )
 
-// ServiceClient is the client API for Service service.
+// NotificationProtocolClient is the client API for NotificationProtocol service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ServiceClient interface {
-	Create(ctx context.Context, in *CommentCreateRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	Update(ctx context.Context, in *CommentUpdateRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	ChangeMember(ctx context.Context, in *CommentChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	Delete(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Get(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	List(ctx context.Context, in *CommentSearchQuery, opts ...grpc.CallOption) (*ServicesInfo, error)
-	Stat(ctx context.Context, in *CommentStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
+type NotificationProtocolClient interface {
+	Create(ctx context.Context, in *NotificationProtocolCreateRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error)
+	Update(ctx context.Context, in *NotificationProtocolUpdateRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error)
+	UpdatePlugin(ctx context.Context, in *NotificationProtocolUpdatePluginRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error)
+	Enable(ctx context.Context, in *NotificationProtocolRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error)
+	Disable(ctx context.Context, in *NotificationProtocolRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error)
+	Delete(ctx context.Context, in *NotificationProtocolRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Get(ctx context.Context, in *NotificationProtocolRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error)
+	List(ctx context.Context, in *NotificationProtocolSearchQuery, opts ...grpc.CallOption) (*NotificationProtocolsInfo, error)
+	Stat(ctx context.Context, in *NotificationProtocolStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
-type serviceClient struct {
+type notificationProtocolClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewServiceClient(cc grpc.ClientConnInterface) ServiceClient {
-	return &serviceClient{cc}
+func NewNotificationProtocolClient(cc grpc.ClientConnInterface) NotificationProtocolClient {
+	return &notificationProtocolClient{cc}
 }
 
-func (c *serviceClient) Create(ctx context.Context, in *CommentCreateRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *notificationProtocolClient) Create(ctx context.Context, in *NotificationProtocolCreateRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_Create_FullMethodName, in, out, cOpts...)
+	out := new(NotificationProtocolInfo)
+	err := c.cc.Invoke(ctx, NotificationProtocol_Create_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Update(ctx context.Context, in *CommentUpdateRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *notificationProtocolClient) Update(ctx context.Context, in *NotificationProtocolUpdateRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_Update_FullMethodName, in, out, cOpts...)
+	out := new(NotificationProtocolInfo)
+	err := c.cc.Invoke(ctx, NotificationProtocol_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) ChangeMember(ctx context.Context, in *CommentChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *notificationProtocolClient) UpdatePlugin(ctx context.Context, in *NotificationProtocolUpdatePluginRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_ChangeMember_FullMethodName, in, out, cOpts...)
+	out := new(NotificationProtocolInfo)
+	err := c.cc.Invoke(ctx, NotificationProtocol_UpdatePlugin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Delete(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *notificationProtocolClient) Enable(ctx context.Context, in *NotificationProtocolRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NotificationProtocolInfo)
+	err := c.cc.Invoke(ctx, NotificationProtocol_Enable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *notificationProtocolClient) Disable(ctx context.Context, in *NotificationProtocolRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NotificationProtocolInfo)
+	err := c.cc.Invoke(ctx, NotificationProtocol_Disable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *notificationProtocolClient) Delete(ctx context.Context, in *NotificationProtocolRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, Service_Delete_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, NotificationProtocol_Delete_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Get(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *notificationProtocolClient) Get(ctx context.Context, in *NotificationProtocolRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_Get_FullMethodName, in, out, cOpts...)
+	out := new(NotificationProtocolInfo)
+	err := c.cc.Invoke(ctx, NotificationProtocol_Get_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) List(ctx context.Context, in *CommentSearchQuery, opts ...grpc.CallOption) (*ServicesInfo, error) {
+func (c *notificationProtocolClient) List(ctx context.Context, in *NotificationProtocolSearchQuery, opts ...grpc.CallOption) (*NotificationProtocolsInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServicesInfo)
-	err := c.cc.Invoke(ctx, Service_List_FullMethodName, in, out, cOpts...)
+	out := new(NotificationProtocolsInfo)
+	err := c.cc.Invoke(ctx, NotificationProtocol_List_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Stat(ctx context.Context, in *CommentStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
+func (c *notificationProtocolClient) Stat(ctx context.Context, in *NotificationProtocolStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(_struct.Struct)
-	err := c.cc.Invoke(ctx, Service_Stat_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, NotificationProtocol_Stat_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ServiceServer is the server API for Service service.
-// All implementations must embed UnimplementedServiceServer
+// NotificationProtocolServer is the server API for NotificationProtocol service.
+// All implementations must embed UnimplementedNotificationProtocolServer
 // for forward compatibility.
-type ServiceServer interface {
-	Create(context.Context, *CommentCreateRequest) (*ServiceInfo, error)
-	Update(context.Context, *CommentUpdateRequest) (*ServiceInfo, error)
-	ChangeMember(context.Context, *CommentChangeMemberRequest) (*ServiceInfo, error)
-	Delete(context.Context, *CommentRequest) (*empty.Empty, error)
-	Get(context.Context, *CommentRequest) (*ServiceInfo, error)
-	List(context.Context, *CommentSearchQuery) (*ServicesInfo, error)
-	Stat(context.Context, *CommentStatQuery) (*_struct.Struct, error)
-	mustEmbedUnimplementedServiceServer()
+type NotificationProtocolServer interface {
+	Create(context.Context, *NotificationProtocolCreateRequest) (*NotificationProtocolInfo, error)
+	Update(context.Context, *NotificationProtocolUpdateRequest) (*NotificationProtocolInfo, error)
+	UpdatePlugin(context.Context, *NotificationProtocolUpdatePluginRequest) (*NotificationProtocolInfo, error)
+	Enable(context.Context, *NotificationProtocolRequest) (*NotificationProtocolInfo, error)
+	Disable(context.Context, *NotificationProtocolRequest) (*NotificationProtocolInfo, error)
+	Delete(context.Context, *NotificationProtocolRequest) (*empty.Empty, error)
+	Get(context.Context, *NotificationProtocolRequest) (*NotificationProtocolInfo, error)
+	List(context.Context, *NotificationProtocolSearchQuery) (*NotificationProtocolsInfo, error)
+	Stat(context.Context, *NotificationProtocolStatQuery) (*_struct.Struct, error)
+	mustEmbedUnimplementedNotificationProtocolServer()
 }
 
-// UnimplementedServiceServer must be embedded to have
+// UnimplementedNotificationProtocolServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedServiceServer struct{}
+type UnimplementedNotificationProtocolServer struct{}
 
-func (UnimplementedServiceServer) Create(context.Context, *CommentCreateRequest) (*ServiceInfo, error) {
+func (UnimplementedNotificationProtocolServer) Create(context.Context, *NotificationProtocolCreateRequest) (*NotificationProtocolInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedServiceServer) Update(context.Context, *CommentUpdateRequest) (*ServiceInfo, error) {
+func (UnimplementedNotificationProtocolServer) Update(context.Context, *NotificationProtocolUpdateRequest) (*NotificationProtocolInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedServiceServer) ChangeMember(context.Context, *CommentChangeMemberRequest) (*ServiceInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ChangeMember not implemented")
+func (UnimplementedNotificationProtocolServer) UpdatePlugin(context.Context, *NotificationProtocolUpdatePluginRequest) (*NotificationProtocolInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePlugin not implemented")
 }
-func (UnimplementedServiceServer) Delete(context.Context, *CommentRequest) (*empty.Empty, error) {
+func (UnimplementedNotificationProtocolServer) Enable(context.Context, *NotificationProtocolRequest) (*NotificationProtocolInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
+}
+func (UnimplementedNotificationProtocolServer) Disable(context.Context, *NotificationProtocolRequest) (*NotificationProtocolInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedNotificationProtocolServer) Delete(context.Context, *NotificationProtocolRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedServiceServer) Get(context.Context, *CommentRequest) (*ServiceInfo, error) {
+func (UnimplementedNotificationProtocolServer) Get(context.Context, *NotificationProtocolRequest) (*NotificationProtocolInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedServiceServer) List(context.Context, *CommentSearchQuery) (*ServicesInfo, error) {
+func (UnimplementedNotificationProtocolServer) List(context.Context, *NotificationProtocolSearchQuery) (*NotificationProtocolsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedServiceServer) Stat(context.Context, *CommentStatQuery) (*_struct.Struct, error) {
+func (UnimplementedNotificationProtocolServer) Stat(context.Context, *NotificationProtocolStatQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
 }
-func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
-func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
+func (UnimplementedNotificationProtocolServer) mustEmbedUnimplementedNotificationProtocolServer() {}
+func (UnimplementedNotificationProtocolServer) testEmbeddedByValue()                              {}
 
-// UnsafeServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ServiceServer will
+// UnsafeNotificationProtocolServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to NotificationProtocolServer will
 // result in compilation errors.
-type UnsafeServiceServer interface {
-	mustEmbedUnimplementedServiceServer()
+type UnsafeNotificationProtocolServer interface {
+	mustEmbedUnimplementedNotificationProtocolServer()
 }
 
-func RegisterServiceServer(s grpc.ServiceRegistrar, srv ServiceServer) {
-	// If the following call pancis, it indicates UnimplementedServiceServer was
+func RegisterNotificationProtocolServer(s grpc.ServiceRegistrar, srv NotificationProtocolServer) {
+	// If the following call pancis, it indicates UnimplementedNotificationProtocolServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Service_ServiceDesc, srv)
+	s.RegisterService(&NotificationProtocol_ServiceDesc, srv)
 }
 
-func _Service_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentCreateRequest)
+func _NotificationProtocol_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotificationProtocolCreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Create(ctx, in)
+		return srv.(NotificationProtocolServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Create_FullMethodName,
+		FullMethod: NotificationProtocol_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Create(ctx, req.(*CommentCreateRequest))
+		return srv.(NotificationProtocolServer).Create(ctx, req.(*NotificationProtocolCreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentUpdateRequest)
+func _NotificationProtocol_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotificationProtocolUpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Update(ctx, in)
+		return srv.(NotificationProtocolServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Update_FullMethodName,
+		FullMethod: NotificationProtocol_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Update(ctx, req.(*CommentUpdateRequest))
+		return srv.(NotificationProtocolServer).Update(ctx, req.(*NotificationProtocolUpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_ChangeMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentChangeMemberRequest)
+func _NotificationProtocol_UpdatePlugin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotificationProtocolUpdatePluginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).ChangeMember(ctx, in)
+		return srv.(NotificationProtocolServer).UpdatePlugin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_ChangeMember_FullMethodName,
+		FullMethod: NotificationProtocol_UpdatePlugin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).ChangeMember(ctx, req.(*CommentChangeMemberRequest))
+		return srv.(NotificationProtocolServer).UpdatePlugin(ctx, req.(*NotificationProtocolUpdatePluginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentRequest)
+func _NotificationProtocol_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotificationProtocolRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Delete(ctx, in)
+		return srv.(NotificationProtocolServer).Enable(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Delete_FullMethodName,
+		FullMethod: NotificationProtocol_Enable_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Delete(ctx, req.(*CommentRequest))
+		return srv.(NotificationProtocolServer).Enable(ctx, req.(*NotificationProtocolRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentRequest)
+func _NotificationProtocol_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotificationProtocolRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Get(ctx, in)
+		return srv.(NotificationProtocolServer).Disable(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Get_FullMethodName,
+		FullMethod: NotificationProtocol_Disable_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Get(ctx, req.(*CommentRequest))
+		return srv.(NotificationProtocolServer).Disable(ctx, req.(*NotificationProtocolRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentSearchQuery)
+func _NotificationProtocol_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotificationProtocolRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).List(ctx, in)
+		return srv.(NotificationProtocolServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_List_FullMethodName,
+		FullMethod: NotificationProtocol_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).List(ctx, req.(*CommentSearchQuery))
+		return srv.(NotificationProtocolServer).Delete(ctx, req.(*NotificationProtocolRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentStatQuery)
+func _NotificationProtocol_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotificationProtocolRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Stat(ctx, in)
+		return srv.(NotificationProtocolServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Stat_FullMethodName,
+		FullMethod: NotificationProtocol_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Stat(ctx, req.(*CommentStatQuery))
+		return srv.(NotificationProtocolServer).Get(ctx, req.(*NotificationProtocolRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Service_ServiceDesc is the grpc.ServiceDesc for Service service.
+func _NotificationProtocol_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotificationProtocolSearchQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotificationProtocolServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NotificationProtocol_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotificationProtocolServer).List(ctx, req.(*NotificationProtocolSearchQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NotificationProtocol_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotificationProtocolStatQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotificationProtocolServer).Stat(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NotificationProtocol_Stat_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotificationProtocolServer).Stat(ctx, req.(*NotificationProtocolStatQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// NotificationProtocol_ServiceDesc is the grpc.ServiceDesc for NotificationProtocol service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Service_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "spaceone.api.alert_manager.v1.Service",
-	HandlerType: (*ServiceServer)(nil),
+var NotificationProtocol_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "spaceone.api.alert_manager.v1.NotificationProtocol",
+	HandlerType: (*NotificationProtocolServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "create",
-			Handler:    _Service_Create_Handler,
+			Handler:    _NotificationProtocol_Create_Handler,
 		},
 		{
 			MethodName: "update",
-			Handler:    _Service_Update_Handler,
+			Handler:    _NotificationProtocol_Update_Handler,
 		},
 		{
-			MethodName: "change_member",
-			Handler:    _Service_ChangeMember_Handler,
+			MethodName: "update_plugin",
+			Handler:    _NotificationProtocol_UpdatePlugin_Handler,
+		},
+		{
+			MethodName: "enable",
+			Handler:    _NotificationProtocol_Enable_Handler,
+		},
+		{
+			MethodName: "disable",
+			Handler:    _NotificationProtocol_Disable_Handler,
 		},
 		{
 			MethodName: "delete",
-			Handler:    _Service_Delete_Handler,
+			Handler:    _NotificationProtocol_Delete_Handler,
 		},
 		{
 			MethodName: "get",
-			Handler:    _Service_Get_Handler,
+			Handler:    _NotificationProtocol_Get_Handler,
 		},
 		{
 			MethodName: "list",
-			Handler:    _Service_List_Handler,
+			Handler:    _NotificationProtocol_List_Handler,
 		},
 		{
 			MethodName: "stat",
-			Handler:    _Service_Stat_Handler,
+			Handler:    _NotificationProtocol_Stat_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

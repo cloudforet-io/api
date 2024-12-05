@@ -21,13 +21,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_Create_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/create"
-	Service_Update_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/update"
-	Service_ChangeMember_FullMethodName = "/spaceone.api.alert_manager.v1.Service/change_member"
-	Service_Delete_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/delete"
-	Service_Get_FullMethodName          = "/spaceone.api.alert_manager.v1.Service/get"
-	Service_List_FullMethodName         = "/spaceone.api.alert_manager.v1.Service/list"
-	Service_Stat_FullMethodName         = "/spaceone.api.alert_manager.v1.Service/stat"
+	Service_Create_FullMethodName        = "/spaceone.api.alert_manager.v1.Service/create"
+	Service_Update_FullMethodName        = "/spaceone.api.alert_manager.v1.Service/update"
+	Service_ChangeMembers_FullMethodName = "/spaceone.api.alert_manager.v1.Service/change_members"
+	Service_Delete_FullMethodName        = "/spaceone.api.alert_manager.v1.Service/delete"
+	Service_Get_FullMethodName           = "/spaceone.api.alert_manager.v1.Service/get"
+	Service_List_FullMethodName          = "/spaceone.api.alert_manager.v1.Service/list"
+	Service_Stat_FullMethodName          = "/spaceone.api.alert_manager.v1.Service/stat"
 )
 
 // ServiceClient is the client API for Service service.
@@ -36,7 +36,7 @@ const (
 type ServiceClient interface {
 	Create(ctx context.Context, in *ServiceCreateRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
 	Update(ctx context.Context, in *ServiceUpdateRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	ChangeMember(ctx context.Context, in *ServiceChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
+	ChangeMembers(ctx context.Context, in *ServiceChangeMembersRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
 	Delete(ctx context.Context, in *ServiceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *ServiceRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
 	List(ctx context.Context, in *ServiceSearchQuery, opts ...grpc.CallOption) (*ServicesInfo, error)
@@ -71,10 +71,10 @@ func (c *serviceClient) Update(ctx context.Context, in *ServiceUpdateRequest, op
 	return out, nil
 }
 
-func (c *serviceClient) ChangeMember(ctx context.Context, in *ServiceChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *serviceClient) ChangeMembers(ctx context.Context, in *ServiceChangeMembersRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_ChangeMember_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Service_ChangeMembers_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -127,7 +127,7 @@ func (c *serviceClient) Stat(ctx context.Context, in *ServiceStatQuery, opts ...
 type ServiceServer interface {
 	Create(context.Context, *ServiceCreateRequest) (*ServiceInfo, error)
 	Update(context.Context, *ServiceUpdateRequest) (*ServiceInfo, error)
-	ChangeMember(context.Context, *ServiceChangeMemberRequest) (*ServiceInfo, error)
+	ChangeMembers(context.Context, *ServiceChangeMembersRequest) (*ServiceInfo, error)
 	Delete(context.Context, *ServiceRequest) (*empty.Empty, error)
 	Get(context.Context, *ServiceRequest) (*ServiceInfo, error)
 	List(context.Context, *ServiceSearchQuery) (*ServicesInfo, error)
@@ -148,8 +148,8 @@ func (UnimplementedServiceServer) Create(context.Context, *ServiceCreateRequest)
 func (UnimplementedServiceServer) Update(context.Context, *ServiceUpdateRequest) (*ServiceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedServiceServer) ChangeMember(context.Context, *ServiceChangeMemberRequest) (*ServiceInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ChangeMember not implemented")
+func (UnimplementedServiceServer) ChangeMembers(context.Context, *ServiceChangeMembersRequest) (*ServiceInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeMembers not implemented")
 }
 func (UnimplementedServiceServer) Delete(context.Context, *ServiceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -220,20 +220,20 @@ func _Service_Update_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_ChangeMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ServiceChangeMemberRequest)
+func _Service_ChangeMembers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ServiceChangeMembersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).ChangeMember(ctx, in)
+		return srv.(ServiceServer).ChangeMembers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_ChangeMember_FullMethodName,
+		FullMethod: Service_ChangeMembers_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).ChangeMember(ctx, req.(*ServiceChangeMemberRequest))
+		return srv.(ServiceServer).ChangeMembers(ctx, req.(*ServiceChangeMembersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -326,8 +326,8 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Service_Update_Handler,
 		},
 		{
-			MethodName: "change_member",
-			Handler:    _Service_ChangeMember_Handler,
+			MethodName: "change_members",
+			Handler:    _Service_ChangeMembers_Handler,
 		},
 		{
 			MethodName: "delete",

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.6.1
-// source: spaceone/api/alert_manager/v1/plugin/webhook.proto
+// source: spaceone/api/alert_manager/v1/webhook.proto
 
 package v1
 
@@ -21,331 +21,445 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_Create_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/create"
-	Service_Update_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/update"
-	Service_ChangeMember_FullMethodName = "/spaceone.api.alert_manager.v1.Service/change_member"
-	Service_Delete_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/delete"
-	Service_Get_FullMethodName          = "/spaceone.api.alert_manager.v1.Service/get"
-	Service_List_FullMethodName         = "/spaceone.api.alert_manager.v1.Service/list"
-	Service_Stat_FullMethodName         = "/spaceone.api.alert_manager.v1.Service/stat"
+	Webhook_Create_FullMethodName       = "/spaceone.api.alert_manager.v1.Webhook/create"
+	Webhook_Update_FullMethodName       = "/spaceone.api.alert_manager.v1.Webhook/update"
+	Webhook_UpdatePlugin_FullMethodName = "/spaceone.api.alert_manager.v1.Webhook/update_plugin"
+	Webhook_VerifyPlugin_FullMethodName = "/spaceone.api.alert_manager.v1.Webhook/verify_plugin"
+	Webhook_Enable_FullMethodName       = "/spaceone.api.alert_manager.v1.Webhook/enable"
+	Webhook_Disable_FullMethodName      = "/spaceone.api.alert_manager.v1.Webhook/disable"
+	Webhook_Delete_FullMethodName       = "/spaceone.api.alert_manager.v1.Webhook/delete"
+	Webhook_Get_FullMethodName          = "/spaceone.api.alert_manager.v1.Webhook/get"
+	Webhook_List_FullMethodName         = "/spaceone.api.alert_manager.v1.Webhook/list"
+	Webhook_Stat_FullMethodName         = "/spaceone.api.alert_manager.v1.Webhook/stat"
 )
 
-// ServiceClient is the client API for Service service.
+// WebhookClient is the client API for Webhook service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ServiceClient interface {
-	Create(ctx context.Context, in *CommentCreateRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	Update(ctx context.Context, in *CommentUpdateRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	ChangeMember(ctx context.Context, in *CommentChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	Delete(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Get(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	List(ctx context.Context, in *CommentSearchQuery, opts ...grpc.CallOption) (*ServicesInfo, error)
-	Stat(ctx context.Context, in *CommentStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
+type WebhookClient interface {
+	Create(ctx context.Context, in *WebhookCreateRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
+	Update(ctx context.Context, in *WebhookUpdateRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
+	UpdatePlugin(ctx context.Context, in *WebhookUpdatePluginRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
+	VerifyPlugin(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Enable(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
+	Disable(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
+	Delete(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Get(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error)
+	List(ctx context.Context, in *WebhookSearchQuery, opts ...grpc.CallOption) (*WebhooksInfo, error)
+	Stat(ctx context.Context, in *WebhookStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
-type serviceClient struct {
+type webhookClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewServiceClient(cc grpc.ClientConnInterface) ServiceClient {
-	return &serviceClient{cc}
+func NewWebhookClient(cc grpc.ClientConnInterface) WebhookClient {
+	return &webhookClient{cc}
 }
 
-func (c *serviceClient) Create(ctx context.Context, in *CommentCreateRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *webhookClient) Create(ctx context.Context, in *WebhookCreateRequest, opts ...grpc.CallOption) (*WebhookInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_Create_FullMethodName, in, out, cOpts...)
+	out := new(WebhookInfo)
+	err := c.cc.Invoke(ctx, Webhook_Create_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Update(ctx context.Context, in *CommentUpdateRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *webhookClient) Update(ctx context.Context, in *WebhookUpdateRequest, opts ...grpc.CallOption) (*WebhookInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_Update_FullMethodName, in, out, cOpts...)
+	out := new(WebhookInfo)
+	err := c.cc.Invoke(ctx, Webhook_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) ChangeMember(ctx context.Context, in *CommentChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *webhookClient) UpdatePlugin(ctx context.Context, in *WebhookUpdatePluginRequest, opts ...grpc.CallOption) (*WebhookInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_ChangeMember_FullMethodName, in, out, cOpts...)
+	out := new(WebhookInfo)
+	err := c.cc.Invoke(ctx, Webhook_UpdatePlugin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Delete(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *webhookClient) VerifyPlugin(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, Service_Delete_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Webhook_VerifyPlugin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Get(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *webhookClient) Enable(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_Get_FullMethodName, in, out, cOpts...)
+	out := new(WebhookInfo)
+	err := c.cc.Invoke(ctx, Webhook_Enable_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) List(ctx context.Context, in *CommentSearchQuery, opts ...grpc.CallOption) (*ServicesInfo, error) {
+func (c *webhookClient) Disable(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServicesInfo)
-	err := c.cc.Invoke(ctx, Service_List_FullMethodName, in, out, cOpts...)
+	out := new(WebhookInfo)
+	err := c.cc.Invoke(ctx, Webhook_Disable_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Stat(ctx context.Context, in *CommentStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
+func (c *webhookClient) Delete(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, Webhook_Delete_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *webhookClient) Get(ctx context.Context, in *WebhookRequest, opts ...grpc.CallOption) (*WebhookInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WebhookInfo)
+	err := c.cc.Invoke(ctx, Webhook_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *webhookClient) List(ctx context.Context, in *WebhookSearchQuery, opts ...grpc.CallOption) (*WebhooksInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WebhooksInfo)
+	err := c.cc.Invoke(ctx, Webhook_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *webhookClient) Stat(ctx context.Context, in *WebhookStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(_struct.Struct)
-	err := c.cc.Invoke(ctx, Service_Stat_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Webhook_Stat_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ServiceServer is the server API for Service service.
-// All implementations must embed UnimplementedServiceServer
+// WebhookServer is the server API for Webhook service.
+// All implementations must embed UnimplementedWebhookServer
 // for forward compatibility.
-type ServiceServer interface {
-	Create(context.Context, *CommentCreateRequest) (*ServiceInfo, error)
-	Update(context.Context, *CommentUpdateRequest) (*ServiceInfo, error)
-	ChangeMember(context.Context, *CommentChangeMemberRequest) (*ServiceInfo, error)
-	Delete(context.Context, *CommentRequest) (*empty.Empty, error)
-	Get(context.Context, *CommentRequest) (*ServiceInfo, error)
-	List(context.Context, *CommentSearchQuery) (*ServicesInfo, error)
-	Stat(context.Context, *CommentStatQuery) (*_struct.Struct, error)
-	mustEmbedUnimplementedServiceServer()
+type WebhookServer interface {
+	Create(context.Context, *WebhookCreateRequest) (*WebhookInfo, error)
+	Update(context.Context, *WebhookUpdateRequest) (*WebhookInfo, error)
+	UpdatePlugin(context.Context, *WebhookUpdatePluginRequest) (*WebhookInfo, error)
+	VerifyPlugin(context.Context, *WebhookRequest) (*empty.Empty, error)
+	Enable(context.Context, *WebhookRequest) (*WebhookInfo, error)
+	Disable(context.Context, *WebhookRequest) (*WebhookInfo, error)
+	Delete(context.Context, *WebhookRequest) (*empty.Empty, error)
+	Get(context.Context, *WebhookRequest) (*WebhookInfo, error)
+	List(context.Context, *WebhookSearchQuery) (*WebhooksInfo, error)
+	Stat(context.Context, *WebhookStatQuery) (*_struct.Struct, error)
+	mustEmbedUnimplementedWebhookServer()
 }
 
-// UnimplementedServiceServer must be embedded to have
+// UnimplementedWebhookServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedServiceServer struct{}
+type UnimplementedWebhookServer struct{}
 
-func (UnimplementedServiceServer) Create(context.Context, *CommentCreateRequest) (*ServiceInfo, error) {
+func (UnimplementedWebhookServer) Create(context.Context, *WebhookCreateRequest) (*WebhookInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedServiceServer) Update(context.Context, *CommentUpdateRequest) (*ServiceInfo, error) {
+func (UnimplementedWebhookServer) Update(context.Context, *WebhookUpdateRequest) (*WebhookInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedServiceServer) ChangeMember(context.Context, *CommentChangeMemberRequest) (*ServiceInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ChangeMember not implemented")
+func (UnimplementedWebhookServer) UpdatePlugin(context.Context, *WebhookUpdatePluginRequest) (*WebhookInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePlugin not implemented")
 }
-func (UnimplementedServiceServer) Delete(context.Context, *CommentRequest) (*empty.Empty, error) {
+func (UnimplementedWebhookServer) VerifyPlugin(context.Context, *WebhookRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyPlugin not implemented")
+}
+func (UnimplementedWebhookServer) Enable(context.Context, *WebhookRequest) (*WebhookInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
+}
+func (UnimplementedWebhookServer) Disable(context.Context, *WebhookRequest) (*WebhookInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedWebhookServer) Delete(context.Context, *WebhookRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedServiceServer) Get(context.Context, *CommentRequest) (*ServiceInfo, error) {
+func (UnimplementedWebhookServer) Get(context.Context, *WebhookRequest) (*WebhookInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedServiceServer) List(context.Context, *CommentSearchQuery) (*ServicesInfo, error) {
+func (UnimplementedWebhookServer) List(context.Context, *WebhookSearchQuery) (*WebhooksInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedServiceServer) Stat(context.Context, *CommentStatQuery) (*_struct.Struct, error) {
+func (UnimplementedWebhookServer) Stat(context.Context, *WebhookStatQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
 }
-func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
-func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
+func (UnimplementedWebhookServer) mustEmbedUnimplementedWebhookServer() {}
+func (UnimplementedWebhookServer) testEmbeddedByValue()                 {}
 
-// UnsafeServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ServiceServer will
+// UnsafeWebhookServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to WebhookServer will
 // result in compilation errors.
-type UnsafeServiceServer interface {
-	mustEmbedUnimplementedServiceServer()
+type UnsafeWebhookServer interface {
+	mustEmbedUnimplementedWebhookServer()
 }
 
-func RegisterServiceServer(s grpc.ServiceRegistrar, srv ServiceServer) {
-	// If the following call pancis, it indicates UnimplementedServiceServer was
+func RegisterWebhookServer(s grpc.ServiceRegistrar, srv WebhookServer) {
+	// If the following call pancis, it indicates UnimplementedWebhookServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Service_ServiceDesc, srv)
+	s.RegisterService(&Webhook_ServiceDesc, srv)
 }
 
-func _Service_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentCreateRequest)
+func _Webhook_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WebhookCreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Create(ctx, in)
+		return srv.(WebhookServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Create_FullMethodName,
+		FullMethod: Webhook_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Create(ctx, req.(*CommentCreateRequest))
+		return srv.(WebhookServer).Create(ctx, req.(*WebhookCreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentUpdateRequest)
+func _Webhook_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WebhookUpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Update(ctx, in)
+		return srv.(WebhookServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Update_FullMethodName,
+		FullMethod: Webhook_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Update(ctx, req.(*CommentUpdateRequest))
+		return srv.(WebhookServer).Update(ctx, req.(*WebhookUpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_ChangeMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentChangeMemberRequest)
+func _Webhook_UpdatePlugin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WebhookUpdatePluginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).ChangeMember(ctx, in)
+		return srv.(WebhookServer).UpdatePlugin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_ChangeMember_FullMethodName,
+		FullMethod: Webhook_UpdatePlugin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).ChangeMember(ctx, req.(*CommentChangeMemberRequest))
+		return srv.(WebhookServer).UpdatePlugin(ctx, req.(*WebhookUpdatePluginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentRequest)
+func _Webhook_VerifyPlugin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WebhookRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Delete(ctx, in)
+		return srv.(WebhookServer).VerifyPlugin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Delete_FullMethodName,
+		FullMethod: Webhook_VerifyPlugin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Delete(ctx, req.(*CommentRequest))
+		return srv.(WebhookServer).VerifyPlugin(ctx, req.(*WebhookRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentRequest)
+func _Webhook_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WebhookRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Get(ctx, in)
+		return srv.(WebhookServer).Enable(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Get_FullMethodName,
+		FullMethod: Webhook_Enable_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Get(ctx, req.(*CommentRequest))
+		return srv.(WebhookServer).Enable(ctx, req.(*WebhookRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentSearchQuery)
+func _Webhook_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WebhookRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).List(ctx, in)
+		return srv.(WebhookServer).Disable(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_List_FullMethodName,
+		FullMethod: Webhook_Disable_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).List(ctx, req.(*CommentSearchQuery))
+		return srv.(WebhookServer).Disable(ctx, req.(*WebhookRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentStatQuery)
+func _Webhook_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WebhookRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Stat(ctx, in)
+		return srv.(WebhookServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Stat_FullMethodName,
+		FullMethod: Webhook_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Stat(ctx, req.(*CommentStatQuery))
+		return srv.(WebhookServer).Delete(ctx, req.(*WebhookRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Service_ServiceDesc is the grpc.ServiceDesc for Service service.
+func _Webhook_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WebhookRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WebhookServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Webhook_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WebhookServer).Get(ctx, req.(*WebhookRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Webhook_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WebhookSearchQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WebhookServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Webhook_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WebhookServer).List(ctx, req.(*WebhookSearchQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Webhook_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WebhookStatQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WebhookServer).Stat(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Webhook_Stat_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WebhookServer).Stat(ctx, req.(*WebhookStatQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Webhook_ServiceDesc is the grpc.ServiceDesc for Webhook service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Service_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "spaceone.api.alert_manager.v1.Service",
-	HandlerType: (*ServiceServer)(nil),
+var Webhook_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "spaceone.api.alert_manager.v1.Webhook",
+	HandlerType: (*WebhookServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "create",
-			Handler:    _Service_Create_Handler,
+			Handler:    _Webhook_Create_Handler,
 		},
 		{
 			MethodName: "update",
-			Handler:    _Service_Update_Handler,
+			Handler:    _Webhook_Update_Handler,
 		},
 		{
-			MethodName: "change_member",
-			Handler:    _Service_ChangeMember_Handler,
+			MethodName: "update_plugin",
+			Handler:    _Webhook_UpdatePlugin_Handler,
+		},
+		{
+			MethodName: "verify_plugin",
+			Handler:    _Webhook_VerifyPlugin_Handler,
+		},
+		{
+			MethodName: "enable",
+			Handler:    _Webhook_Enable_Handler,
+		},
+		{
+			MethodName: "disable",
+			Handler:    _Webhook_Disable_Handler,
 		},
 		{
 			MethodName: "delete",
-			Handler:    _Service_Delete_Handler,
+			Handler:    _Webhook_Delete_Handler,
 		},
 		{
 			MethodName: "get",
-			Handler:    _Service_Get_Handler,
+			Handler:    _Webhook_Get_Handler,
 		},
 		{
 			MethodName: "list",
-			Handler:    _Service_List_Handler,
+			Handler:    _Webhook_List_Handler,
 		},
 		{
 			MethodName: "stat",
-			Handler:    _Service_Stat_Handler,
+			Handler:    _Webhook_Stat_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "spaceone/api/alert_manager/v1/plugin/webhook.proto",
+	Metadata: "spaceone/api/alert_manager/v1/webhook.proto",
 }

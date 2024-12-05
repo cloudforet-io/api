@@ -46,6 +46,11 @@ class EscalationPolicyStub(object):
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_escalation__policy__pb2.EscalationPolicyCreateRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_escalation__policy__pb2.EscalationPolicyInfo.FromString,
                 _registered_method=True)
+        self.update = channel.unary_unary(
+                '/spaceone.api.alert_manager.v1.EscalationPolicy/update',
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_escalation__policy__pb2.EscalationPolicyUpdateRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_escalation__policy__pb2.EscalationPolicyInfo.FromString,
+                _registered_method=True)
         self.delete = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.EscalationPolicy/delete',
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_escalation__policy__pb2.EscalationPolicyRequest.SerializeToString,
@@ -72,6 +77,12 @@ class EscalationPolicyServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def update(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -107,6 +118,11 @@ def add_EscalationPolicyServicer_to_server(servicer, server):
             'create': grpc.unary_unary_rpc_method_handler(
                     servicer.create,
                     request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_escalation__policy__pb2.EscalationPolicyCreateRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_escalation__policy__pb2.EscalationPolicyInfo.SerializeToString,
+            ),
+            'update': grpc.unary_unary_rpc_method_handler(
+                    servicer.update,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_escalation__policy__pb2.EscalationPolicyUpdateRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_escalation__policy__pb2.EscalationPolicyInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
@@ -156,6 +172,33 @@ class EscalationPolicy(object):
             target,
             '/spaceone.api.alert_manager.v1.EscalationPolicy/create',
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_escalation__policy__pb2.EscalationPolicyCreateRequest.SerializeToString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_escalation__policy__pb2.EscalationPolicyInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def update(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.alert_manager.v1.EscalationPolicy/update',
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_escalation__policy__pb2.EscalationPolicyUpdateRequest.SerializeToString,
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_escalation__policy__pb2.EscalationPolicyInfo.FromString,
             options,
             channel_credentials,

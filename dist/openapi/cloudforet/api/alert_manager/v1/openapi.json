@@ -8,18 +8,18 @@
      "title": "Alert Manager API",
      "version": "3.1.0"
    },
-   "paths":{"/alert-manager/comment/create": {
+   "paths":{"/alert-manager/note/create": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > note"],
          "summary": "Create",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |note||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"note" : {"type": "string","title": "NOTE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -30,25 +30,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NoteInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/update": {
+     },"/alert-manager/note/update": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > note"],
          "summary": "Update",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id||string|True|\n |note||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" },"note" : {"type": "string","title": "NOTE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -59,54 +59,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NoteInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/change-member": {
+     },"/alert-manager/note/delete": {
        "post": {
-         "tags": ["alert-manager > comment"],
-         "summary": "Change Member",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/delete": {
-       "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > note"],
          "summary": "Delete",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -118,18 +89,18 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/get": {
+     },"/alert-manager/note/get": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > note"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |note_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"note_id" : {"type": "string","title": "NOTE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -140,25 +111,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/NoteInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NoteInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/list": {
+     },"/alert-manager/note/list": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > note"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |workspace_id||string||\n |service_id||string||\n |alert_id||string||\n |note_id||string||\n |created_by||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"service_id" : {"type": "string","title": "SERVICE_ID" },"alert_id" : {"type": "string","title": "ALERT_ID" },"note_id" : {"type": "string","title": "NOTE_ID" },"created_by" : {"type": "string","title": "CREATED_BY" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -169,16 +140,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "schema": {"$ref": "#/components/schemas/NotesInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NotesInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert_manager/comment/stat": {
+     },"/alert_manager/note/stat": {
        "post": {
-         "tags": ["alert_manager > comment"],
+         "tags": ["alert_manager > note"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -205,18 +176,18 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/create": {
+     },"/alert-manager/notification-protocol/create": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > notification-protocol"],
          "summary": "Create",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |plugin_info||NotificationProtocolRequestPluginInfo|True|\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"plugin_info" : {"$ref": "#/components/schemas/NotificationProtocolRequestPluginInfo","title": "PLUGIN_INFO" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -227,25 +198,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/update": {
+     },"/alert-manager/notification-protocol/update": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > notification-protocol"],
          "summary": "Update",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n |name||string||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -256,25 +227,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/change-member": {
+     },"/alert-manager/notification-protocol/update-plugin": {
        "post": {
-         "tags": ["alert-manager > comment"],
-         "summary": "Change Member",
+         "tags": ["alert-manager > notification-protocol"],
+         "summary": "Update Plugin",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n |version||string||\n |options||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"version" : {"type": "string","title": "VERSION" },"options" : {"type": "object","title": "OPTIONS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -285,25 +256,83 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/delete": {
+     },"/alert-manager/notification-protocol/enable": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > notification-protocol"],
+         "summary": "Enable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/notification-protocol/disable": {
+       "post": {
+         "tags": ["alert-manager > notification-protocol"],
+         "summary": "Disable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/notification-protocol/delete": {
+       "post": {
+         "tags": ["alert-manager > notification-protocol"],
          "summary": "Delete",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -315,18 +344,18 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/get": {
+     },"/alert-manager/notification-protocol/get": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > notification-protocol"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -337,25 +366,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NotificationProtocolInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/list": {
+     },"/alert-manager/notification-protocol/list": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > notification-protocol"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |protocol_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -366,16 +395,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "schema": {"$ref": "#/components/schemas/NotificationProtocolsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/NotificationProtocolsInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert_manager/comment/stat": {
+     },"/alert_manager/notification-protocol/stat": {
        "post": {
-         "tags": ["alert_manager > comment"],
+         "tags": ["alert_manager > notification-protocol"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -402,18 +431,18 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/create": {
+     },"/alert-manager/user-group-channel/create": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > user-group-channel"],
          "summary": "Create",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n |name||string|True|\n |data||Struct|True|\n |user_group_id||string|True|\n |schedule||ChannelSchedule||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" },"user_group_id" : {"type": "string","title": "USER_GROUP_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -424,25 +453,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserGroupChannelInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserGroupChannelInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/update": {
+     },"/alert-manager/user-group-channel/update": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > user-group-channel"],
          "summary": "Update",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n |name||string||\n |schedule||ChannelSchedule||\n |data||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -453,25 +482,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserGroupChannelInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserGroupChannelInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/change-member": {
+     },"/alert-manager/user-group-channel/enable": {
        "post": {
-         "tags": ["alert-manager > comment"],
-         "summary": "Change Member",
+         "tags": ["alert-manager > user-group-channel"],
+         "summary": "Enable",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -482,25 +511,54 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserGroupChannelInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserGroupChannelInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/delete": {
+     },"/alert-manager/user-group-channel/disable": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > user-group-channel"],
+         "summary": "Disable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UserGroupChannelInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UserGroupChannelInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/user-group-channel/delete": {
+       "post": {
+         "tags": ["alert-manager > user-group-channel"],
          "summary": "Delete",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -512,18 +570,18 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/get": {
+     },"/alert-manager/user-group-channel/get": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > user-group-channel"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -534,25 +592,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserGroupChannelInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserGroupChannelInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/list": {
+     },"/alert-manager/user-group-channel/list": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > user-group-channel"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |channel_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |workspace_id||string||\n |user_group_id||string||\n |protocol_id||string||\n |secret_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"channel_id" : {"type": "string","title": "CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"user_group_id" : {"type": "string","title": "USER_GROUP_ID" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -563,16 +621,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserGroupChannelsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserGroupChannelsInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert_manager/comment/stat": {
+     },"/alert_manager/user-group-channel/stat": {
        "post": {
-         "tags": ["alert_manager > comment"],
+         "tags": ["alert_manager > user-group-channel"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -606,11 +664,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||ServiceMembers||\n |options||ServiceOptions||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"$ref": "#/components/schemas/ServiceMembers","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/ServiceOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -635,11 +693,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |name||string||\n |description||string||\n |options||ServiceOptions||\n |tags||Struct||\n |escalation_policy_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/ServiceOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -660,15 +718,15 @@
      },"/alert-manager/service/change-member": {
        "post": {
          "tags": ["alert-manager > service"],
-         "summary": "Change Member",
+         "summary": "Change Members",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||ServiceMembers|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/ServiceMembers","title": "MEMBERS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -745,11 +803,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -767,9 +825,9 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert_manager/service/stat": {
+     },"/alert-manager/service/stat": {
        "post": {
-         "tags": ["alert_manager > service"],
+         "tags": ["alert-manager > service"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -803,11 +861,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |title||string|True|\n |service_id||string|True|\n |description||string||\n |urgency|HIGH, LOW |string||\n |severity||EventSeverity||\n |rule||string||\n |image_url||string||\n |resources||array||\n |provider||string||\n |account||string||\n |additional_info||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+                 "properties": {"title" : {"type": "string","title": "TITLE" },"description" : {"type": "string","title": "DESCRIPTION" },"urgency" : {"type": "string","title": "URGENCY" },"severity" : {"type": "EventSeverity","title": "SEVERITY" },"rule" : {"type": "string","title": "RULE" },"image_url" : {"type": "string","title": "IMAGE_URL" },"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"}, "type": "array","title": "RESOURCES" },"provider" : {"type": "string","title": "PROVIDER" },"account" : {"type": "string","title": "ACCOUNT" },"additional_info" : {"type": "object","title": "ADDITIONAL_INFO" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -818,9 +876,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/AlertInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/AlertInfo"}}
                }
              }}
          }
@@ -832,11 +890,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n |title||string||\n |state|TRIGGERED, ACKNOWLEDGED, RESOLVED, ERROR |string||\n |description||string||\n |urgency|HIGH, LOW |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" },"title" : {"type": "string","title": "TITLE" },"state" : {"type": "string","title": "STATE" },"description" : {"type": "string","title": "DESCRIPTION" },"urgency" : {"type": "string","title": "URGENCY" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -847,9 +905,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/AlertInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/AlertInfo"}}
                }
              }}
          }
@@ -861,11 +919,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -884,11 +942,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -899,9 +957,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/AlertInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/AlertInfo"}}
                }
              }}
          }
@@ -913,11 +971,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |alert_id||string||\n |title||string||\n |state|TRIGGERED, ACKNOWLEDGED, RESOLVED, ERROR |string||\n |urgency|HIGH, LOW |string||\n |severity||EventSeverity||\n |resources||array||\n |provider||string||\n |account||string||\n |triggered_by||string||\n |workspace_id||string||\n |service_id||string||\n |webhook_id||string||\n |escalation_policy_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"alert_id" : {"type": "string","title": "ALERT_ID" },"title" : {"type": "string","title": "TITLE" },"state" : {"type": "string","title": "STATE" },"urgency" : {"type": "string","title": "URGENCY" },"severity" : {"type": "EventSeverity","title": "SEVERITY" },"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"}, "type": "array","title": "RESOURCES" },"provider" : {"type": "string","title": "PROVIDER" },"account" : {"type": "string","title": "ACCOUNT" },"triggered_by" : {"type": "string","title": "TRIGGERED_BY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"service_id" : {"type": "string","title": "SERVICE_ID" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -928,9 +986,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "schema": {"$ref": "#/components/schemas/AlertsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/AlertsInfo"}}
                }
              }}
          }
@@ -942,11 +1000,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |alert_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+                 "properties": {"alert_id" : {"type": "string","title": "ALERT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -957,9 +1015,9 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/AlertHistoryInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/AlertHistoryInfo"}}
                }
              }}
          }
@@ -971,11 +1029,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||AnalyzeQuery|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -986,16 +1044,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"type": "object"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"type": "object"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert_manager/alert/stat": {
+     },"/alert-manager/alert/stat": {
        "post": {
-         "tags": ["alert_manager > alert"],
+         "tags": ["alert-manager > alert"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -1022,20 +1080,20 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/create": {
+     },"/alert-manager/event-rule/create": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > event-rule"],
          "summary": "Create",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |conditions||array|True|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||Struct|True|\n |service_id||string|True|\n |name||string||\n |options|True, False |string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |conditions||array|True|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||Struct|True|\n |service_id||string|True|\n |name||string||\n |options||EventRuleOptions||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"type": "object","title": "ACTIONS" },"options" : {"type": "string","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {"$ref": "#/components/schemas/Condition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"type": "object","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "Receive\n////////"},"Schema":{}
+               "examples":{"Schema":{}
                }
              }
            },"required": true
@@ -1051,9 +1109,9 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/change-order": {
+     },"/alert-manager/event-rule/change-order": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > event-rule"],
          "summary": "Change Order",
          "operationId" : "",
          "description": "### Description \n",
@@ -1080,18 +1138,18 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/update": {
+     },"/alert-manager/event-rule/update": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > event-rule"],
          "summary": "Update",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |event_rule_id||string|True|\n |name||string||\n |conditions||array||\n |conditions_policy|ALL, ANY, ALWAYS |string||\n |actions||Struct||\n |options|True, False |string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |event_rule_id||string|True|\n |name||string||\n |conditions||array||\n |conditions_policy|ALL, ANY, ALWAYS |string||\n |actions||Struct||\n |options||EventRuleOptions||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID" },"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"type": "object","title": "ACTIONS" },"options" : {"type": "string","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID" },"name" : {"type": "string","title": "NAME" },"conditions" : {"items": {"$ref": "#/components/schemas/Condition"}, "type": "array","title": "CONDITIONS" },"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY" },"actions" : {"type": "object","title": "ACTIONS" },"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1109,9 +1167,9 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/delete": {
+     },"/alert-manager/event-rule/delete": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > event-rule"],
          "summary": "Delete",
          "operationId" : "",
          "description": "### Description \n",
@@ -1132,9 +1190,9 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/get": {
+     },"/alert-manager/event-rule/get": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > event-rule"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
@@ -1161,18 +1219,18 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/list": {
+     },"/alert-manager/event-rule/list": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > event-rule"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |event_rule_id||string||\n |name||string||\n |resource_group||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |event_rule_id||string||\n |name||string||\n |workspace_id||string||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID" },"name" : {"type": "string","title": "NAME" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID" },"name" : {"type": "string","title": "NAME" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1190,9 +1248,9 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert_manager/comment/stat": {
+     },"/alert_manager/event-rule/stat": {
        "post": {
-         "tags": ["alert_manager > comment"],
+         "tags": ["alert_manager > event-rule"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -1284,7 +1342,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |webhook_id||string|True|\n |version||string||\n |options||Struct||\n |upgrade_mode|MANUAL, AUTO |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |webhook_id||string|True|\n |version||string||\n |options||Struct||\n |upgrade_mode|AUTO, MANUAL |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -1504,98 +1562,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |webhook_id||string|True|\n |access_key||string|True|\n |data||Struct|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/update": {
-       "post": {
-         "tags": ["alert-manager > comment"],
-         "summary": "Update",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/change-member": {
-       "post": {
-         "tags": ["alert-manager > comment"],
-         "summary": "Change Member",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/delete": {
-       "post": {
-         "tags": ["alert-manager > comment"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"access_key" : {"type": "string","title": "ACCESS_KEY" },"data" : {"type": "object","title": "DATA" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1607,93 +1578,6 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/get": {
-       "post": {
-         "tags": ["alert-manager > comment"],
-         "summary": "Get",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/list": {
-       "post": {
-         "tags": ["alert-manager > comment"],
-         "summary": "List",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/alert_manager/comment/stat": {
-       "post": {
-         "tags": ["alert_manager > comment"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/alert-manager/escalation-policy/create": {
        "post": {
          "tags": ["alert-manager > escalation-policy"],
@@ -1701,13 +1585,42 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |rules||array|True|\n |service_id||string|True|\n |repeat_count||int||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |rules||array|True|\n |service_id||string|True|\n |repeat||Repeat||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"rules" : {"items": {}, "type": "array","title": "RULES" },"repeat_count" : {"type": "integer","title": "REPEAT_COUNT" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"rules" : {"items": {"$ref": "#/components/schemas/EscalationRule"}, "type": "array","title": "RULES" },"repeat" : {"$ref": "#/components/schemas/Repeat","title": "REPEAT" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "Receive\n////////"},"Schema":{}
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/EscalationPolicyInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/escalation-policy/update": {
+       "post": {
+         "tags": ["alert-manager > escalation-policy"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |escalation_policy_id||string|True|\n |name||string||\n |rules||array||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"name" : {"type": "string","title": "NAME" },"rules" : {"items": {"$ref": "#/components/schemas/EscalationRule"}, "type": "array","title": "RULES" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
                }
              }
            },"required": true
@@ -1782,7 +1695,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |escalation_policy_id||string||\n |name||string||\n |finish_condition||string||\n |service_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |escalation_policy_id||string||\n |name||string||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |service_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -1804,9 +1717,9 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert_manager/escalation-policy/stat": {
+     },"/alert-manager/escalation-policy/stat": {
        "post": {
-         "tags": ["alert_manager > escalation-policy"],
+         "tags": ["alert-manager > escalation-policy"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -1833,18 +1746,18 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/create": {
+     },"/alert-manager/user-group/create": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > user-group"],
          "summary": "Create",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n |name||string|True|\n |data||Struct|True|\n |schedule||ChannelSchedule||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1855,25 +1768,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserChannelInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserChannelInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/update": {
+     },"/alert-manager/user-group/update": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > user-group"],
          "summary": "Update",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n |name||string||\n |schedule||ChannelSchedule||\n |data||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1884,25 +1797,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserChannelInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserChannelInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/change-member": {
+     },"/alert-manager/user-group/enable": {
        "post": {
-         "tags": ["alert-manager > comment"],
-         "summary": "Change Member",
+         "tags": ["alert-manager > user-group"],
+         "summary": "Enable",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1913,25 +1826,54 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserChannelInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserChannelInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/delete": {
+     },"/alert-manager/user-group/disable": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > user-group"],
+         "summary": "Disable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/UserChannelInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/UserChannelInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/user-group/delete": {
+       "post": {
+         "tags": ["alert-manager > user-group"],
          "summary": "Delete",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1943,18 +1885,18 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/get": {
+     },"/alert-manager/user-group/get": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > user-group"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1965,25 +1907,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserChannelInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserChannelInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/list": {
+     },"/alert-manager/user-group/list": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > user-group"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |channel_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |protocol_id||string||\n |user_secret_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"channel_id" : {"type": "string","title": "CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"user_secret_id" : {"type": "string","title": "USER_SECRET_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1994,16 +1936,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "schema": {"$ref": "#/components/schemas/UserChannelsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/UserChannelsInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert_manager/comment/stat": {
+     },"/alert_manager/user-group/stat": {
        "post": {
-         "tags": ["alert_manager > comment"],
+         "tags": ["alert_manager > user-group"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -2030,18 +1972,18 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/create": {
+     },"/alert-manager/service-channel/create": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > service-channel"],
          "summary": "Create",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |service_key||string|True|\n |description||string||\n |members||Struct||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n |name||string|True|\n |data||Struct|True|\n |service_id||string|True|\n |schedule||ChannelSchedule||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"service_key" : {"type": "string","title": "SERVICE_KEY" },"description" : {"type": "string","title": "DESCRIPTION" },"members" : {"type": "object","title": "MEMBERS" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"name" : {"type": "string","title": "NAME" },"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2052,83 +1994,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/ServiceChannelInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/ServiceChannelInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/update": {
+     },"/alert-manager/service-channel/create-forward-channel": {
        "post": {
-         "tags": ["alert-manager > comment"],
-         "summary": "Update",
+         "tags": ["alert-manager > service-channel"],
+         "summary": "Create Forward Channel",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |escalation_policy_id||string|True|\n |name||string||\n |description||string||\n |options||Options||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |schedule||ChannelSchedule|True|\n |data||Struct|True|\n |tags||Struct|True|\n |service_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"description" : {"type": "string","title": "DESCRIPTION" },"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/change-member": {
-       "post": {
-         "tags": ["alert-manager > comment"],
-         "summary": "Change Member",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n |members||Members|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" },"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/delete": {
-       "post": {
-         "tags": ["alert-manager > comment"],
-         "summary": "Delete",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"name" : {"type": "string","title": "NAME" },"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" },"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2140,18 +2024,128 @@
              "description": "Successfull Response"}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/get": {
+     },"/alert-manager/service-channel/update": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > service-channel"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n |name||string||\n |schedule||ChannelSchedule||\n |data||Struct||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceChannelInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceChannelInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/service-channel/enable": {
+       "post": {
+         "tags": ["alert-manager > service-channel"],
+         "summary": "Enable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceChannelInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceChannelInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/service-channel/disable": {
+       "post": {
+         "tags": ["alert-manager > service-channel"],
+         "summary": "Disable",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/ServiceChannelInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/ServiceChannelInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/service-channel/delete": {
+       "post": {
+         "tags": ["alert-manager > service-channel"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/alert-manager/service-channel/get": {
+       "post": {
+         "tags": ["alert-manager > service-channel"],
          "summary": "Get",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |service_id||string|True|\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |channel_id||string|True|\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"service_id" : {"type": "string","title": "SERVICE_ID" }                 }
+                 "properties": {"channel_id" : {"type": "string","title": "CHANNEL_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2162,25 +2156,25 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServiceInfo"},
+                 "schema": {"$ref": "#/components/schemas/ServiceChannelInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServiceInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/ServiceChannelInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert-manager/comment/list": {
+     },"/alert-manager/service-channel/list": {
        "post": {
-         "tags": ["alert-manager > comment"],
+         "tags": ["alert-manager > service-channel"],
          "summary": "List",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n |include_details||boolean||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |channel_id||string||\n |name||string||\n |state|ENABLED, DISABLED |string||\n |workspace_id||string||\n |service_id||string||\n |protocol_id||string||\n |secret_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"channel_id" : {"type": "string","title": "CHANNEL_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"service_id" : {"type": "string","title": "SERVICE_ID" },"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2191,16 +2185,16 @@
            "200": {
              "description": "Successfull Response","content":{
                "application/json": {
-                 "schema": {"$ref": "#/components/schemas/ServicesInfo"},
+                 "schema": {"$ref": "#/components/schemas/ServiceChannelsInfo"},
                  "examples": {
-                   "Schema": {"$ref": "#/components/schemas/ServicesInfo"}}
+                   "Schema": {"$ref": "#/components/schemas/ServiceChannelsInfo"}}
                }
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/alert_manager/comment/stat": {
+     },"/alert_manager/service-channel/stat": {
        "post": {
-         "tags": ["alert_manager > comment"],
+         "tags": ["alert_manager > service-channel"],
          "summary": "Stat",
          "operationId" : "",
          "description": "### Description \n",
@@ -2231,106 +2225,48 @@
    },
    "components":{
      "schemas": {
-     "AlertInfo": {
-         "properties" : {"high" : {"type": "integer","title": "HIGH"},"low" : {"type": "integer","title": "LOW"}},
+     "NoteCreateRequest": {
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"note" : {"type": "string","title": "NOTE"}},
          "type": "object",
-         "required": ["high","low"],
-                "title": "AlertInfo"
+         "required": ["alert_id","note"],
+                "title": "NoteCreateRequest"
            }
-           ,        "Alerts": {
-         "properties" : {"TOTAL" : {"$ref": "#/components/schemas/AlertInfo","title": "TOTAL"},"TRIGGERRED" : {"$ref": "#/components/schemas/AlertInfo","title": "TRIGGERRED"},"ACKNOWLEDGED" : {"$ref": "#/components/schemas/AlertInfo","title": "ACKNOWLEDGED"}},
+           ,        "NoteInfo": {
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"note" : {"type": "string","title": "NOTE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"created_by" : {"type": "string","title": "CREATED_BY"}},
          "type": "object",
-         "required": ["TOTAL","TRIGGERRED","ACKNOWLEDGED"],
-                "title": "Alerts"
+         "required": ["note_id","note","domain_id","workspace_id","service_id","alert_id","created_at","created_by"],
+                "title": "NoteInfo"
            }
-           ,        "Channels": {
-         "properties" : {"service_channel_info" : {"items": {"$ref": "#/components/schemas/ServiceChannelsInfo"},
-               "type": "array","$ref": "#/components/schemas/ServiceChannelsInfo","title": "SERVICE_CHANNEL_INFO"}},
+           ,        "NoteRequest": {
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"}},
          "type": "object",
-         "required": ["service_channel_info"],
-                "title": "Channels"
+         "required": ["note_id"],
+                "title": "NoteRequest"
            }
-           ,        "CommentChangeMemberRequest": {
-         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS"}},
-         "type": "object",
-         "required": ["service_id","members"],
-                "title": "CommentChangeMemberRequest"
-           }
-           ,        "CommentCreateRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"service_key" : {"type": "string","title": "SERVICE_KEY"},"description" : {"type": "string","title": "DESCRIPTION"},"members" : {"type": "object","title": "MEMBERS"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"}},
-         "type": "object",
-         "required": ["name","service_key"],
-                "title": "CommentCreateRequest"
-           }
-           ,        "CommentRequest": {
-         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"}},
-         "type": "object",
-         "required": ["service_id"],
-                "title": "CommentRequest"
-           }
-           ,        "CommentSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_id" : {"type": "string","title": "SERVICE_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS"}},
+           ,        "NoteSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"note_id" : {"type": "string","title": "NOTE_ID"},"created_by" : {"type": "string","title": "CREATED_BY"}},
          "type": "object",
          "required": [],
-                "title": "CommentSearchQuery"
+                "title": "NoteSearchQuery"
            }
-           ,        "CommentStatQuery": {
+           ,        "NoteStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
          "type": "object",
          "required": ["query"],
-                "title": "CommentStatQuery"
+                "title": "NoteStatQuery"
            }
-           ,        "CommentUpdateRequest": {
-         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
+           ,        "NoteUpdateRequest": {
+         "properties" : {"note_id" : {"type": "string","title": "NOTE_ID"},"note" : {"type": "string","title": "NOTE"}},
          "type": "object",
-         "required": ["service_id","escalation_policy_id"],
-                "title": "CommentUpdateRequest"
+         "required": ["note_id"],
+                "title": "NoteUpdateRequest"
            }
-           ,        "Members": {
-         "properties" : {"USER" : {"items": {"type": "string"},
-               "type": "array","title": "USER"},"USER_GROUP" : {"items": {"type": "string"},
-               "type": "array","title": "USER_GROUP"}},
-         "type": "object",
-         "required": ["USER","USER_GROUP"],
-                "title": "Members"
-           }
-           ,        "Options": {
-         "properties" : {},
-         "type": "object",
-         "required": [],
-                "title": "Options"
-           }
-           ,        "ServiceChannelsInfo": {
-         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"channel_type" : {"type": "string","title": "CHANNEL_TYPE"},"data" : {"type": "object","title": "DATA"},"schedule" : {"type": "object","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"secret_id" : {"type": "string","title": "SECRET_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
-         "type": "object",
-         "required": ["channel_id","name","state","channel_type","data","schedule","tags","secret_id","protocol_id","service_id","workspace_id","domain_id","created_at"],
-                "title": "ServiceChannelsInfo"
-           }
-           ,        "ServiceInfo": {
-         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"service_key" : {"type": "string","title": "SERVICE_KEY"},"description" : {"type": "string","title": "DESCRIPTION"},"members" : {"type": "object","title": "MEMBERS"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"},"channels" : {"type": "object","title": "CHANNELS"},"webhooks" : {"type": "object","title": "WEBHOOKS"},"alerts" : {"type": "object","title": "ALERTS"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
-         "type": "object",
-         "required": ["service_id","name","service_key","description","members","options","escalation_policy_id","workspace_id","domain_id","created_at","updated_at"],
-                "title": "ServiceInfo"
-           }
-           ,        "ServicesInfo": {
-         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ServiceInfo"},
-               "type": "array","$ref": "#/components/schemas/ServiceInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+           ,        "NotesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NoteInfo"},
+               "type": "array","$ref": "#/components/schemas/NoteInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
          "type": "object",
          "required": ["results","total_count"],
-                "title": "ServicesInfo"
-           }
-           ,        "WebhookInfo": {
-         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"}},
-         "type": "object",
-         "required": ["webhook_id"],
-                "title": "WebhookInfo"
-           }
-           ,        "Webhooks": {
-         "properties" : {"webhook_info" : {"items": {"$ref": "#/components/schemas/WebhookInfo"},
-               "type": "array","$ref": "#/components/schemas/WebhookInfo","title": "WEBHOOK_INFO"}},
-         "type": "object",
-         "required": ["webhook_info"],
-                "title": "Webhooks"
+                "title": "NotesInfo"
            }
            ,        "AuthenticationRequest": {
          "properties" : {"domain_id" : {"type": "string","title": "DOMAIN_ID"}},
@@ -2539,17 +2475,156 @@
          "required": ["path","filter"],
                 "title": "Unwind"
            }
-           ,        "ServiceChangeMemberRequest": {
-         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS"}},
+           ,        "NotificationProtocolCreateRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"plugin_info" : {"$ref": "#/components/schemas/NotificationProtocolRequestPluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["name","plugin_info"],
+                "title": "NotificationProtocolCreateRequest"
+           }
+           ,        "NotificationProtocolInfo": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"plugin_info" : {"$ref": "#/components/schemas/NotificationProtocolResponsePluginInfo","title": "PLUGIN_INFO"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["protocol_id","name","state","plugin_info","tags","domain_id","created_at"],
+                "title": "NotificationProtocolInfo"
+           }
+           ,        "NotificationProtocolRequest": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"}},
+         "type": "object",
+         "required": ["protocol_id"],
+                "title": "NotificationProtocolRequest"
+           }
+           ,        "NotificationProtocolRequestPluginInfo": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"secret_data" : {"type": "object","title": "SECRET_DATA"},"schema" : {"type": "object","title": "SCHEMA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
+         "type": "object",
+         "required": ["plugin_id","version","options","upgrade_mode"],
+                "title": "NotificationProtocolRequestPluginInfo"
+           }
+           ,        "NotificationProtocolResponsePluginInfo": {
+         "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"metadata" : {"type": "object","title": "METADATA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"},"secret_id" : {"type": "string","title": "SECRET_ID"}},
+         "type": "object",
+         "required": ["plugin_id","version","options","upgrade_mode"],
+                "title": "NotificationProtocolResponsePluginInfo"
+           }
+           ,        "NotificationProtocolSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"}},
+         "type": "object",
+         "required": [],
+                "title": "NotificationProtocolSearchQuery"
+           }
+           ,        "NotificationProtocolStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "NotificationProtocolStatQuery"
+           }
+           ,        "NotificationProtocolUpdatePluginRequest": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"}},
+         "type": "object",
+         "required": ["protocol_id"],
+                "title": "NotificationProtocolUpdatePluginRequest"
+           }
+           ,        "NotificationProtocolUpdateRequest": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["protocol_id"],
+                "title": "NotificationProtocolUpdateRequest"
+           }
+           ,        "NotificationProtocolsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/NotificationProtocolInfo"},
+               "type": "array","$ref": "#/components/schemas/NotificationProtocolInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "NotificationProtocolsInfo"
+           }
+           ,        "UserGroupChannelCreateRequest": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"user_group_id" : {"type": "string","title": "USER_GROUP_ID"}},
+         "type": "object",
+         "required": ["protocol_id","name","data","user_group_id"],
+                "title": "UserGroupChannelCreateRequest"
+           }
+           ,        "UserGroupChannelInfo": {
+         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_group_id" : {"type": "string","title": "USER_GROUP_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["channel_id","name","state","schedule","tags","domain_id","workspace_id","user_group_id","protocol_id","secret_id","created_at"],
+                "title": "UserGroupChannelInfo"
+           }
+           ,        "UserGroupChannelRequest": {
+         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"}},
+         "type": "object",
+         "required": ["channel_id"],
+                "title": "UserGroupChannelRequest"
+           }
+           ,        "UserGroupChannelSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"user_group_id" : {"type": "string","title": "USER_GROUP_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "UserGroupChannelSearchQuery"
+           }
+           ,        "UserGroupChannelStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "UserGroupChannelStatQuery"
+           }
+           ,        "UserGroupChannelUpdateRequest": {
+         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["channel_id"],
+                "title": "UserGroupChannelUpdateRequest"
+           }
+           ,        "UserGroupChannelsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/UserGroupChannelInfo"},
+               "type": "array","$ref": "#/components/schemas/UserGroupChannelInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "UserGroupChannelsInfo"
+           }
+           ,        "AlertInfo": {
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "EventSeverity","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"},
+               "type": "array","$ref": "#/components/schemas/AlertResource","title": "RESOURCES"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"triggerd_by" : {"type": "string","title": "TRIGGERD_BY"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"acknowledged_at" : {"type": "string","title": "ACKNOWLEDGED_AT"},"resolved_at" : {"type": "string","title": "RESOLVED_AT"}},
+         "type": "object",
+         "required": ["alert_id","title","state","description","urgency","severity","rule","image_url","resources","provider","account","triggerd_by","additional_info","domain_id","workspace_id","service_id","webhook_id","escalation_policy_id","created_at","updated_at","acknowledged_at","resolved_at"],
+                "title": "AlertInfo"
+           }
+           ,        "Alerts": {
+         "properties" : {"TOTAL" : {"$ref": "#/components/schemas/AlertInfo","title": "TOTAL"},"TRIGGERRED" : {"$ref": "#/components/schemas/AlertInfo","title": "TRIGGERRED"},"ACKNOWLEDGED" : {"$ref": "#/components/schemas/AlertInfo","title": "ACKNOWLEDGED"}},
+         "type": "object",
+         "required": ["TOTAL","TRIGGERRED","ACKNOWLEDGED"],
+                "title": "Alerts"
+           }
+           ,        "ServiceChangeMembersRequest": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"members" : {"$ref": "#/components/schemas/ServiceMembers","title": "MEMBERS"}},
          "type": "object",
          "required": ["service_id","members"],
-                "title": "ServiceChangeMemberRequest"
+                "title": "ServiceChangeMembersRequest"
            }
            ,        "ServiceCreateRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"service_key" : {"type": "string","title": "SERVICE_KEY"},"description" : {"type": "string","title": "DESCRIPTION"},"members" : {"type": "object","title": "MEMBERS"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"service_key" : {"type": "string","title": "SERVICE_KEY"},"description" : {"type": "string","title": "DESCRIPTION"},"members" : {"$ref": "#/components/schemas/ServiceMembers","title": "MEMBERS"},"options" : {"$ref": "#/components/schemas/ServiceOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["name","service_key"],
                 "title": "ServiceCreateRequest"
+           }
+           ,        "ServiceInfo": {
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"service_key" : {"type": "string","title": "SERVICE_KEY"},"description" : {"type": "string","title": "DESCRIPTION"},"members" : {"$ref": "#/components/schemas/ServiceMembers","title": "MEMBERS"},"options" : {"$ref": "#/components/schemas/ServiceOptions","title": "OPTIONS"},"channels" : {"items": {"type": "string"},
+               "type": "array","title": "CHANNELS"},"webhooks" : {"items": {"type": "string"},
+               "type": "array","title": "WEBHOOKS"},"alerts" : {"$ref": "#/components/schemas/Alerts","title": "ALERTS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["service_id","name","service_key","description","members","options","channels","webhooks","alerts","tags","domain_id","workspace_id","escalation_policy_id","created_at","updated_at"],
+                "title": "ServiceInfo"
+           }
+           ,        "ServiceMembers": {
+         "properties" : {"USER" : {"items": {"type": "string"},
+               "type": "array","title": "USER"},"USER_GROUP" : {"items": {"type": "string"},
+               "type": "array","title": "USER_GROUP"}},
+         "type": "object",
+         "required": ["USER","USER_GROUP"],
+                "title": "ServiceMembers"
+           }
+           ,        "ServiceOptions": {
+         "properties" : {"notification_urgency" : {"type": "string","title": "NOTIFICATION_URGENCY"},"recovery_mode" : {"type": "string","title": "RECOVERY_MODE"}},
+         "type": "object",
+         "required": ["notification_urgency","recovery_mode"],
+                "title": "ServiceOptions"
            }
            ,        "ServiceRequest": {
          "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"}},
@@ -2558,7 +2633,7 @@
                 "title": "ServiceRequest"
            }
            ,        "ServiceSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_id" : {"type": "string","title": "SERVICE_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_id" : {"type": "string","title": "SERVICE_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
          "type": "object",
          "required": [],
                 "title": "ServiceSearchQuery"
@@ -2570,31 +2645,59 @@
                 "title": "ServiceStatQuery"
            }
            ,        "ServiceUpdateRequest": {
-         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
-         "type": "object",
-         "required": ["service_id","escalation_policy_id"],
-                "title": "ServiceUpdateRequest"
-           }
-           ,        "AlertChangeMemberRequest": {
-         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"members" : {"$ref": "#/components/schemas/Members","title": "MEMBERS"}},
-         "type": "object",
-         "required": ["service_id","members"],
-                "title": "AlertChangeMemberRequest"
-           }
-           ,        "AlertCreateRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"service_key" : {"type": "string","title": "SERVICE_KEY"},"description" : {"type": "string","title": "DESCRIPTION"},"members" : {"type": "object","title": "MEMBERS"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"}},
-         "type": "object",
-         "required": ["name","service_key"],
-                "title": "AlertCreateRequest"
-           }
-           ,        "AlertRequest": {
-         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"options" : {"$ref": "#/components/schemas/ServiceOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
          "type": "object",
          "required": ["service_id"],
+                "title": "ServiceUpdateRequest"
+           }
+           ,        "ServicesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ServiceInfo"},
+               "type": "array","$ref": "#/components/schemas/ServiceInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "ServicesInfo"
+           }
+           ,        "AlertAnalyzeQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "AlertAnalyzeQuery"
+           }
+           ,        "AlertCreateRequest": {
+         "properties" : {"title" : {"type": "string","title": "TITLE"},"description" : {"type": "string","title": "DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "EventSeverity","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"},
+               "type": "array","$ref": "#/components/schemas/AlertResource","title": "RESOURCES"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "type": "object",
+         "required": ["title","service_id"],
+                "title": "AlertCreateRequest"
+           }
+           ,        "AlertEventInfo": {
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"action" : {"type": "string","title": "ACTION"},"description" : {"type": "string","title": "DESCRIPTION"},"event_info" : {"$ref": "#/components/schemas/EventInfo","title": "EVENT_INFO"},"created_at" : {"type": "string","title": "CREATED_AT"},"created_by" : {"type": "string","title": "CREATED_BY"}},
+         "type": "object",
+         "required": ["alert_id","action","description","event_info","created_at","created_by"],
+                "title": "AlertEventInfo"
+           }
+           ,        "AlertHistoryInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/AlertEventInfo"},
+               "type": "array","$ref": "#/components/schemas/AlertEventInfo","title": "RESULTS"}},
+         "type": "object",
+         "required": ["results"],
+                "title": "AlertHistoryInfo"
+           }
+           ,        "AlertRequest": {
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"}},
+         "type": "object",
+         "required": ["alert_id"],
                 "title": "AlertRequest"
            }
+           ,        "AlertResource": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"asset_id" : {"type": "string","title": "ASSET_ID"},"asset_type" : {"type": "string","title": "ASSET_TYPE"}},
+         "type": "object",
+         "required": ["name"],
+                "title": "AlertResource"
+           }
            ,        "AlertSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_id" : {"type": "string","title": "SERVICE_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"include_details" : {"type": "boolean","title": "INCLUDE_DETAILS"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "EventSeverity","title": "SEVERITY"},"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"},
+               "type": "array","$ref": "#/components/schemas/AlertResource","title": "RESOURCES"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
          "type": "object",
          "required": [],
                 "title": "AlertSearchQuery"
@@ -2606,30 +2709,49 @@
                 "title": "AlertStatQuery"
            }
            ,        "AlertUpdateRequest": {
-         "properties" : {"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"options" : {"$ref": "#/components/schemas/Options","title": "OPTIONS"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"}},
          "type": "object",
-         "required": ["service_id","escalation_policy_id"],
+         "required": ["alert_id"],
                 "title": "AlertUpdateRequest"
            }
-           ,        "EventRuleChangeMemberRequest": {
+           ,        "AlertsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/AlertInfo"},
+               "type": "array","$ref": "#/components/schemas/AlertInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "AlertsInfo"
+           }
+           ,        "Condition": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"value" : {"type": "string","title": "VALUE"},"operator" : {"type": "string","title": "OPERATOR"}},
+         "type": "object",
+         "required": ["key","value","operator"],
+                "title": "Condition"
+           }
+           ,        "EventRuleChangeOrderRequest": {
          "properties" : {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"order" : {"type": "integer","title": "ORDER"}},
          "type": "object",
          "required": ["event_rule_id","order"],
-                "title": "EventRuleChangeMemberRequest"
+                "title": "EventRuleChangeOrderRequest"
            }
            ,        "EventRuleCreateRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"conditions" : {"items": {"type": "object"},
-               "type": "array","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"type": "string","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"conditions" : {"items": {"$ref": "#/components/schemas/Condition"},
+               "type": "array","$ref": "#/components/schemas/Condition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
          "type": "object",
          "required": ["conditions","conditions_policy","actions","service_id"],
                 "title": "EventRuleCreateRequest"
            }
            ,        "EventRuleInfo": {
-         "properties" : {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"order" : {"type": "integer","title": "ORDER"},"conditions" : {"items": {"type": "object"},
-               "type": "array","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"type": "string","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"order" : {"type": "integer","title": "ORDER"},"conditions" : {"items": {"$ref": "#/components/schemas/Condition"},
+               "type": "array","$ref": "#/components/schemas/Condition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["event_rule_id","name","order","conditions","conditions_policy","actions","options","tags","service_id","workspace_id","domain_id","created_at"],
+         "required": ["event_rule_id","name","order","conditions","conditions_policy","actions","options","tags","domain_id","workspace_id","service_id","created_at","updated_at"],
                 "title": "EventRuleInfo"
+           }
+           ,        "EventRuleOptions": {
+         "properties" : {"stop_processing" : {"type": "boolean","title": "STOP_PROCESSING"}},
+         "type": "object",
+         "required": ["stop_processing"],
+                "title": "EventRuleOptions"
            }
            ,        "EventRuleRequest": {
          "properties" : {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"}},
@@ -2638,7 +2760,7 @@
                 "title": "EventRuleRequest"
            }
            ,        "EventRuleSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": [],
                 "title": "EventRuleSearchQuery"
@@ -2650,8 +2772,8 @@
                 "title": "EventRuleStatQuery"
            }
            ,        "EventRuleUpdateRequest": {
-         "properties" : {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"conditions" : {"items": {"type": "object"},
-               "type": "array","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"type": "string","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
+         "properties" : {"event_rule_id" : {"type": "string","title": "EVENT_RULE_ID"},"name" : {"type": "string","title": "NAME"},"conditions" : {"items": {"$ref": "#/components/schemas/Condition"},
+               "type": "array","$ref": "#/components/schemas/Condition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["event_rule_id"],
                 "title": "EventRuleUpdateRequest"
@@ -2669,17 +2791,17 @@
          "required": ["name","plugin_info","service_id"],
                 "title": "WebhookCreateRequest"
            }
+           ,        "WebhookInfo": {
+         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"webhook_url" : {"type": "string","title": "WEBHOOK_URL"},"plugin_info" : {"$ref": "#/components/schemas/WebhookPluginInfo","title": "PLUGIN_INFO"},"requests" : {"$ref": "#/components/schemas/WebhookRequests","title": "REQUESTS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["webhook_id","name","state","access_key","webhook_url","plugin_info","requests","tags","domain_id","workspace_id","service_id","created_at"],
+                "title": "WebhookInfo"
+           }
            ,        "WebhookPluginInfo": {
          "properties" : {"plugin_id" : {"type": "string","title": "PLUGIN_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"metadata" : {"type": "object","title": "METADATA"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
          "type": "object",
-         "required": ["plugin_id","version","options","metadata","upgrade_mode"],
+         "required": ["plugin_id","metadata"],
                 "title": "WebhookPluginInfo"
-           }
-           ,        "WebhookQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
-         "type": "object",
-         "required": [],
-                "title": "WebhookQuery"
            }
            ,        "WebhookRequest": {
          "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"}},
@@ -2692,6 +2814,12 @@
          "type": "object",
          "required": ["total","error"],
                 "title": "WebhookRequests"
+           }
+           ,        "WebhookSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "WebhookSearchQuery"
            }
            ,        "WebhookStatQuery": {
          "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
@@ -2718,6 +2846,19 @@
          "required": ["results","total_count"],
                 "title": "WebhooksInfo"
            }
+           ,        "EventCreateRequest": {
+         "properties" : {"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"access_key" : {"type": "string","title": "ACCESS_KEY"},"data" : {"type": "object","title": "DATA"}},
+         "type": "object",
+         "required": ["webhook_id","access_key","data"],
+                "title": "EventCreateRequest"
+           }
+           ,        "EventInfo": {
+         "properties" : {"event_id" : {"type": "string","title": "EVENT_ID"},"event_key" : {"type": "string","title": "EVENT_KEY"},"event_type" : {"type": "string","title": "EVENT_TYPE"},"title" : {"type": "string","title": "TITLE"},"description" : {"type": "string","title": "DESCRIPTION"},"severity" : {"type": "string","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resources" : {"items": {"type": "string"},
+               "type": "array","title": "RESOURCES"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"raw_data" : {"type": "object","title": "RAW_DATA"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"alert_id" : {"type": "string","title": "ALERT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"occurred_at" : {"type": "string","title": "OCCURRED_AT"}},
+         "type": "object",
+         "required": ["event_id","event_key","event_type","title","description","severity","rule","image_url","resources","provider","account","additional_info","raw_data","domain_id","workspace_id","service_id","webhook_id","alert_id","created_at","occurred_at"],
+                "title": "EventInfo"
+           }
            ,        "EscalationPoliciesInfo": {
          "properties" : {"results" : {"items": {"$ref": "#/components/schemas/EscalationPolicyInfo"},
                "type": "array","$ref": "#/components/schemas/EscalationPolicyInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
@@ -2726,17 +2867,17 @@
                 "title": "EscalationPoliciesInfo"
            }
            ,        "EscalationPolicyCreateRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"rules" : {"items": {"type": "object"},
-               "type": "array","title": "RULES"},"repeat_count" : {"type": "integer","title": "REPEAT_COUNT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "properties" : {"name" : {"type": "string","title": "NAME"},"rules" : {"items": {"$ref": "#/components/schemas/EscalationRule"},
+               "type": "array","$ref": "#/components/schemas/EscalationRule","title": "RULES"},"repeat" : {"$ref": "#/components/schemas/Repeat","title": "REPEAT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
          "type": "object",
          "required": ["name","rules","service_id"],
                 "title": "EscalationPolicyCreateRequest"
            }
            ,        "EscalationPolicyInfo": {
-         "properties" : {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"rules" : {"items": {"type": "object"},
-               "type": "array","title": "RULES"},"repeat_count" : {"type": "integer","title": "REPEAT_COUNT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "properties" : {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"rules" : {"items": {"$ref": "#/components/schemas/EscalationRule"},
+               "type": "array","$ref": "#/components/schemas/EscalationRule","title": "RULES"},"repeat_count" : {"type": "integer","title": "REPEAT_COUNT"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["escalation_policy_id","name","rules","repeat_count","finish_condition","tags","service_id","workspace_id","domain_id","created_at"],
+         "required": ["escalation_policy_id","name","rules","repeat_count","finish_condition","tags","domain_id","workspace_id","service_id","created_at","updated_at"],
                 "title": "EscalationPolicyInfo"
            }
            ,        "EscalationPolicyRequest": {
@@ -2756,6 +2897,130 @@
          "type": "object",
          "required": ["query"],
                 "title": "EscalationPolicyStatQuery"
+           }
+           ,        "EscalationPolicyUpdateRequest": {
+         "properties" : {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"rules" : {"items": {"$ref": "#/components/schemas/EscalationRule"},
+               "type": "array","$ref": "#/components/schemas/EscalationRule","title": "RULES"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["escalation_policy_id"],
+                "title": "EscalationPolicyUpdateRequest"
+           }
+           ,        "EscalationRule": {
+         "properties" : {"channels" : {"items": {"type": "string"},
+               "type": "array","title": "CHANNELS"},"escalate_minutes" : {"type": "integer","title": "ESCALATE_MINUTES"}},
+         "type": "object",
+         "required": ["channels","escalate_minutes"],
+                "title": "EscalationRule"
+           }
+           ,        "Repeat": {
+         "properties" : {"state" : {"type": "string","title": "STATE"},"count" : {"type": "integer","title": "COUNT"}},
+         "type": "object",
+         "required": ["state","count"],
+                "title": "Repeat"
+           }
+           ,        "UserChannelCreateRequest": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["protocol_id","name","data"],
+                "title": "UserChannelCreateRequest"
+           }
+           ,        "UserChannelInfo": {
+         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"user_id" : {"type": "string","title": "USER_ID"},"user_secret_id" : {"type": "string","title": "USER_SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["channel_id","name","state","schedule","data","tags","domain_id","protocol_id","user_id","user_secret_id","created_at"],
+                "title": "UserChannelInfo"
+           }
+           ,        "UserChannelRequest": {
+         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"}},
+         "type": "object",
+         "required": ["channel_id"],
+                "title": "UserChannelRequest"
+           }
+           ,        "UserChannelSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"user_secret_id" : {"type": "string","title": "USER_SECRET_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "UserChannelSearchQuery"
+           }
+           ,        "UserChannelStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "UserChannelStatQuery"
+           }
+           ,        "UserChannelUpdateRequest": {
+         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["channel_id"],
+                "title": "UserChannelUpdateRequest"
+           }
+           ,        "UserChannelsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/UserChannelInfo"},
+               "type": "array","$ref": "#/components/schemas/UserChannelInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "UserChannelsInfo"
+           }
+           ,        "ChannelSchedule": {
+         "properties" : {"SCHEDULE_TYPE" : {"type": "string","title": "SCHEDULE_TYPE"},"SUN" : {"$ref": "#/components/schemas/ChannelScheduleInfo","title": "SUN"},"MON" : {"$ref": "#/components/schemas/ChannelScheduleInfo","title": "MON"},"TUE" : {"$ref": "#/components/schemas/ChannelScheduleInfo","title": "TUE"},"WED" : {"$ref": "#/components/schemas/ChannelScheduleInfo","title": "WED"},"THU" : {"$ref": "#/components/schemas/ChannelScheduleInfo","title": "THU"},"FRI" : {"$ref": "#/components/schemas/ChannelScheduleInfo","title": "FRI"},"SAT" : {"$ref": "#/components/schemas/ChannelScheduleInfo","title": "SAT"}},
+         "type": "object",
+         "required": ["SCHEDULE_TYPE","SUN","MON","TUE","WED","THU","FRI","SAT"],
+                "title": "ChannelSchedule"
+           }
+           ,        "ChannelScheduleInfo": {
+         "properties" : {"is_scheduled" : {"type": "boolean","title": "IS_SCHEDULED"},"start" : {"type": "integer","title": "START"},"end" : {"type": "integer","title": "END"}},
+         "type": "object",
+         "required": ["is_scheduled","start","end"],
+                "title": "ChannelScheduleInfo"
+           }
+           ,        "ServiceChannelCreateForwardChannelRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "type": "object",
+         "required": ["name","schedule","data","tags","service_id"],
+                "title": "ServiceChannelCreateForwardChannelRequest"
+           }
+           ,        "ServiceChannelCreateRequest": {
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"name" : {"type": "string","title": "NAME"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
+         "type": "object",
+         "required": ["protocol_id","name","data","service_id"],
+                "title": "ServiceChannelCreateRequest"
+           }
+           ,        "ServiceChannelInfo": {
+         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"channel_type" : {"type": "string","title": "CHANNEL_TYPE"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["channel_id","name","state","channel_type","schedule","data","tags","domain_id","workspace_id","service_id","protocol_id","secret_id","created_at"],
+                "title": "ServiceChannelInfo"
+           }
+           ,        "ServiceChannelRequest": {
+         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"}},
+         "type": "object",
+         "required": ["channel_id"],
+                "title": "ServiceChannelRequest"
+           }
+           ,        "ServiceChannelSearchQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "ServiceChannelSearchQuery"
+           }
+           ,        "ServiceChannelStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "ServiceChannelStatQuery"
+           }
+           ,        "ServiceChannelUpdateRequest": {
+         "properties" : {"channel_id" : {"type": "string","title": "CHANNEL_ID"},"name" : {"type": "string","title": "NAME"},"schedule" : {"$ref": "#/components/schemas/ChannelSchedule","title": "SCHEDULE"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["channel_id"],
+                "title": "ServiceChannelUpdateRequest"
+           }
+           ,        "ServiceChannelsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/ServiceChannelInfo"},
+               "type": "array","$ref": "#/components/schemas/ServiceChannelInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "ServiceChannelsInfo"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},

@@ -16,7 +16,7 @@
           "description": "",
           "values": [
             {
-              "name": "CONDITION_POLICY_NONE",
+              "name": "CONDITIONS_POLICY_NONE",
               "number": "0",
               "description": ""
             },
@@ -38,23 +38,23 @@
           ]
         },
         {
-          "name": "Options",
-          "longName": "Options",
-          "fullName": "spaceone.api.alert_manager.v1.Options",
+          "name": "EventRuleUrgency",
+          "longName": "EventRuleUrgency",
+          "fullName": "spaceone.api.alert_manager.v1.EventRuleUrgency",
           "description": "",
           "values": [
             {
-              "name": "NONE",
+              "name": "URGENCY_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "True",
+              "name": "HIGH",
               "number": "1",
               "description": ""
             },
             {
-              "name": "False",
+              "name": "LOW",
               "number": "2",
               "description": ""
             }
@@ -64,9 +64,57 @@
       "extensions": [],
       "messages": [
         {
-          "name": "EventRuleChangeMemberRequest",
-          "longName": "EventRuleChangeMemberRequest",
-          "fullName": "spaceone.api.alert_manager.v1.EventRuleChangeMemberRequest",
+          "name": "Condition",
+          "longName": "Condition",
+          "fullName": "spaceone.api.alert_manager.v1.Condition",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "key",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "operator",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EventRuleChangeOrderRequest",
+          "longName": "EventRuleChangeOrderRequest",
+          "fullName": "spaceone.api.alert_manager.v1.EventRuleChangeOrderRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -103,7 +151,7 @@
           "name": "EventRuleCreateRequest",
           "longName": "EventRuleCreateRequest",
           "fullName": "spaceone.api.alert_manager.v1.EventRuleCreateRequest",
-          "description": "Receive\n////////",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -125,9 +173,9 @@
               "name": "conditions",
               "description": "",
               "label": "repeated",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "type": "Condition",
+              "longType": "Condition",
+              "fullType": "spaceone.api.alert_manager.v1.Condition",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -161,9 +209,9 @@
               "name": "options",
               "description": "+optional",
               "label": "",
-              "type": "Options",
-              "longType": "Options",
-              "fullType": "spaceone.api.alert_manager.v1.Options",
+              "type": "EventRuleOptions",
+              "longType": "EventRuleOptions",
+              "fullType": "spaceone.api.alert_manager.v1.EventRuleOptions",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -245,9 +293,9 @@
               "name": "conditions",
               "description": "",
               "label": "repeated",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "type": "Condition",
+              "longType": "Condition",
+              "fullType": "spaceone.api.alert_manager.v1.Condition",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -281,9 +329,9 @@
               "name": "options",
               "description": "",
               "label": "",
-              "type": "Options",
-              "longType": "Options",
-              "fullType": "spaceone.api.alert_manager.v1.Options",
+              "type": "EventRuleOptions",
+              "longType": "EventRuleOptions",
+              "fullType": "spaceone.api.alert_manager.v1.EventRuleOptions",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -302,7 +350,7 @@
               "defaultValue": ""
             },
             {
-              "name": "service_id",
+              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -326,7 +374,7 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "service_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -344,6 +392,42 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updated_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EventRuleOptions",
+          "longName": "EventRuleOptions",
+          "fullName": "spaceone.api.alert_manager.v1.EventRuleOptions",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "stop_processing",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -411,18 +495,6 @@
             },
             {
               "name": "name",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "resource_group",
               "description": "+optional",
               "label": "",
               "type": "string",
@@ -521,9 +593,9 @@
               "name": "conditions",
               "description": "+optional",
               "label": "repeated",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "type": "Condition",
+              "longType": "Condition",
+              "fullType": "spaceone.api.alert_manager.v1.Condition",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -557,9 +629,9 @@
               "name": "options",
               "description": "+optional",
               "label": "",
-              "type": "Options",
-              "longType": "Options",
-              "fullType": "spaceone.api.alert_manager.v1.Options",
+              "type": "EventRuleOptions",
+              "longType": "EventRuleOptions",
+              "fullType": "spaceone.api.alert_manager.v1.EventRuleOptions",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -639,7 +711,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/alert-manager/v1/comment/create",
+                      "pattern": "/alert-manager/v1/event-rule/create",
                       "body": "*"
                     }
                   ]
@@ -649,9 +721,9 @@
             {
               "name": "change_order",
               "description": "",
-              "requestType": "EventRuleChangeMemberRequest",
-              "requestLongType": "EventRuleChangeMemberRequest",
-              "requestFullType": "spaceone.api.alert_manager.v1.EventRuleChangeMemberRequest",
+              "requestType": "EventRuleChangeOrderRequest",
+              "requestLongType": "EventRuleChangeOrderRequest",
+              "requestFullType": "spaceone.api.alert_manager.v1.EventRuleChangeOrderRequest",
               "requestStreaming": false,
               "responseType": "EventRuleInfo",
               "responseLongType": "EventRuleInfo",
@@ -662,7 +734,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/alert-manager/v1/comment/change-order",
+                      "pattern": "/alert-manager/v1/event-rule/change-order",
                       "body": "*"
                     }
                   ]
@@ -685,7 +757,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/alert-manager/v1/comment/update",
+                      "pattern": "/alert-manager/v1/event-rule/update",
                       "body": "*"
                     }
                   ]
@@ -708,7 +780,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/alert-manager/v1/comment/delete",
+                      "pattern": "/alert-manager/v1/event-rule/delete",
                       "body": "*"
                     }
                   ]
@@ -731,7 +803,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/alert-manager/v1/comment/get",
+                      "pattern": "/alert-manager/v1/event-rule/get",
                       "body": "*"
                     }
                   ]
@@ -754,7 +826,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/alert-manager/v1/comment/list",
+                      "pattern": "/alert-manager/v1/event-rule/list",
                       "body": "*"
                     }
                   ]
@@ -777,7 +849,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/alert_manager/v1/comment/stat",
+                      "pattern": "/alert_manager/v1/event-rule/stat",
                       "body": "*"
                     }
                   ]

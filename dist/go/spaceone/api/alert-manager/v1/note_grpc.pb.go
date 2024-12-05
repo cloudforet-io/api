@@ -21,329 +21,291 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_Create_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/create"
-	Service_Update_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/update"
-	Service_ChangeMember_FullMethodName = "/spaceone.api.alert_manager.v1.Service/change_member"
-	Service_Delete_FullMethodName       = "/spaceone.api.alert_manager.v1.Service/delete"
-	Service_Get_FullMethodName          = "/spaceone.api.alert_manager.v1.Service/get"
-	Service_List_FullMethodName         = "/spaceone.api.alert_manager.v1.Service/list"
-	Service_Stat_FullMethodName         = "/spaceone.api.alert_manager.v1.Service/stat"
+	Note_Create_FullMethodName = "/spaceone.api.alert_manager.v1.Note/create"
+	Note_Update_FullMethodName = "/spaceone.api.alert_manager.v1.Note/update"
+	Note_Delete_FullMethodName = "/spaceone.api.alert_manager.v1.Note/delete"
+	Note_Get_FullMethodName    = "/spaceone.api.alert_manager.v1.Note/get"
+	Note_List_FullMethodName   = "/spaceone.api.alert_manager.v1.Note/list"
+	Note_Stat_FullMethodName   = "/spaceone.api.alert_manager.v1.Note/stat"
 )
 
-// ServiceClient is the client API for Service service.
+// NoteClient is the client API for Note service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ServiceClient interface {
-	Create(ctx context.Context, in *CommentCreateRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	Update(ctx context.Context, in *CommentUpdateRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	ChangeMember(ctx context.Context, in *CommentChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	Delete(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Get(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	List(ctx context.Context, in *CommentSearchQuery, opts ...grpc.CallOption) (*ServicesInfo, error)
-	Stat(ctx context.Context, in *CommentStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
+type NoteClient interface {
+	Create(ctx context.Context, in *NoteCreateRequest, opts ...grpc.CallOption) (*NoteInfo, error)
+	Update(ctx context.Context, in *NoteUpdateRequest, opts ...grpc.CallOption) (*NoteInfo, error)
+	Delete(ctx context.Context, in *NoteRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Get(ctx context.Context, in *NoteRequest, opts ...grpc.CallOption) (*NoteInfo, error)
+	List(ctx context.Context, in *NoteSearchQuery, opts ...grpc.CallOption) (*NotesInfo, error)
+	Stat(ctx context.Context, in *NoteStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
-type serviceClient struct {
+type noteClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewServiceClient(cc grpc.ClientConnInterface) ServiceClient {
-	return &serviceClient{cc}
+func NewNoteClient(cc grpc.ClientConnInterface) NoteClient {
+	return &noteClient{cc}
 }
 
-func (c *serviceClient) Create(ctx context.Context, in *CommentCreateRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *noteClient) Create(ctx context.Context, in *NoteCreateRequest, opts ...grpc.CallOption) (*NoteInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_Create_FullMethodName, in, out, cOpts...)
+	out := new(NoteInfo)
+	err := c.cc.Invoke(ctx, Note_Create_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Update(ctx context.Context, in *CommentUpdateRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *noteClient) Update(ctx context.Context, in *NoteUpdateRequest, opts ...grpc.CallOption) (*NoteInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_Update_FullMethodName, in, out, cOpts...)
+	out := new(NoteInfo)
+	err := c.cc.Invoke(ctx, Note_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) ChangeMember(ctx context.Context, in *CommentChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_ChangeMember_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *serviceClient) Delete(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *noteClient) Delete(ctx context.Context, in *NoteRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, Service_Delete_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Note_Delete_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Get(ctx context.Context, in *CommentRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *noteClient) Get(ctx context.Context, in *NoteRequest, opts ...grpc.CallOption) (*NoteInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
-	err := c.cc.Invoke(ctx, Service_Get_FullMethodName, in, out, cOpts...)
+	out := new(NoteInfo)
+	err := c.cc.Invoke(ctx, Note_Get_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) List(ctx context.Context, in *CommentSearchQuery, opts ...grpc.CallOption) (*ServicesInfo, error) {
+func (c *noteClient) List(ctx context.Context, in *NoteSearchQuery, opts ...grpc.CallOption) (*NotesInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServicesInfo)
-	err := c.cc.Invoke(ctx, Service_List_FullMethodName, in, out, cOpts...)
+	out := new(NotesInfo)
+	err := c.cc.Invoke(ctx, Note_List_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Stat(ctx context.Context, in *CommentStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
+func (c *noteClient) Stat(ctx context.Context, in *NoteStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(_struct.Struct)
-	err := c.cc.Invoke(ctx, Service_Stat_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Note_Stat_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ServiceServer is the server API for Service service.
-// All implementations must embed UnimplementedServiceServer
+// NoteServer is the server API for Note service.
+// All implementations must embed UnimplementedNoteServer
 // for forward compatibility.
-type ServiceServer interface {
-	Create(context.Context, *CommentCreateRequest) (*ServiceInfo, error)
-	Update(context.Context, *CommentUpdateRequest) (*ServiceInfo, error)
-	ChangeMember(context.Context, *CommentChangeMemberRequest) (*ServiceInfo, error)
-	Delete(context.Context, *CommentRequest) (*empty.Empty, error)
-	Get(context.Context, *CommentRequest) (*ServiceInfo, error)
-	List(context.Context, *CommentSearchQuery) (*ServicesInfo, error)
-	Stat(context.Context, *CommentStatQuery) (*_struct.Struct, error)
-	mustEmbedUnimplementedServiceServer()
+type NoteServer interface {
+	Create(context.Context, *NoteCreateRequest) (*NoteInfo, error)
+	Update(context.Context, *NoteUpdateRequest) (*NoteInfo, error)
+	Delete(context.Context, *NoteRequest) (*empty.Empty, error)
+	Get(context.Context, *NoteRequest) (*NoteInfo, error)
+	List(context.Context, *NoteSearchQuery) (*NotesInfo, error)
+	Stat(context.Context, *NoteStatQuery) (*_struct.Struct, error)
+	mustEmbedUnimplementedNoteServer()
 }
 
-// UnimplementedServiceServer must be embedded to have
+// UnimplementedNoteServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedServiceServer struct{}
+type UnimplementedNoteServer struct{}
 
-func (UnimplementedServiceServer) Create(context.Context, *CommentCreateRequest) (*ServiceInfo, error) {
+func (UnimplementedNoteServer) Create(context.Context, *NoteCreateRequest) (*NoteInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedServiceServer) Update(context.Context, *CommentUpdateRequest) (*ServiceInfo, error) {
+func (UnimplementedNoteServer) Update(context.Context, *NoteUpdateRequest) (*NoteInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedServiceServer) ChangeMember(context.Context, *CommentChangeMemberRequest) (*ServiceInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ChangeMember not implemented")
-}
-func (UnimplementedServiceServer) Delete(context.Context, *CommentRequest) (*empty.Empty, error) {
+func (UnimplementedNoteServer) Delete(context.Context, *NoteRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedServiceServer) Get(context.Context, *CommentRequest) (*ServiceInfo, error) {
+func (UnimplementedNoteServer) Get(context.Context, *NoteRequest) (*NoteInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedServiceServer) List(context.Context, *CommentSearchQuery) (*ServicesInfo, error) {
+func (UnimplementedNoteServer) List(context.Context, *NoteSearchQuery) (*NotesInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedServiceServer) Stat(context.Context, *CommentStatQuery) (*_struct.Struct, error) {
+func (UnimplementedNoteServer) Stat(context.Context, *NoteStatQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
 }
-func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
-func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
+func (UnimplementedNoteServer) mustEmbedUnimplementedNoteServer() {}
+func (UnimplementedNoteServer) testEmbeddedByValue()              {}
 
-// UnsafeServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ServiceServer will
+// UnsafeNoteServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to NoteServer will
 // result in compilation errors.
-type UnsafeServiceServer interface {
-	mustEmbedUnimplementedServiceServer()
+type UnsafeNoteServer interface {
+	mustEmbedUnimplementedNoteServer()
 }
 
-func RegisterServiceServer(s grpc.ServiceRegistrar, srv ServiceServer) {
-	// If the following call pancis, it indicates UnimplementedServiceServer was
+func RegisterNoteServer(s grpc.ServiceRegistrar, srv NoteServer) {
+	// If the following call pancis, it indicates UnimplementedNoteServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Service_ServiceDesc, srv)
+	s.RegisterService(&Note_ServiceDesc, srv)
 }
 
-func _Service_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentCreateRequest)
+func _Note_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NoteCreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Create(ctx, in)
+		return srv.(NoteServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Create_FullMethodName,
+		FullMethod: Note_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Create(ctx, req.(*CommentCreateRequest))
+		return srv.(NoteServer).Create(ctx, req.(*NoteCreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentUpdateRequest)
+func _Note_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NoteUpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Update(ctx, in)
+		return srv.(NoteServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Update_FullMethodName,
+		FullMethod: Note_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Update(ctx, req.(*CommentUpdateRequest))
+		return srv.(NoteServer).Update(ctx, req.(*NoteUpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_ChangeMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentChangeMemberRequest)
+func _Note_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).ChangeMember(ctx, in)
+		return srv.(NoteServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_ChangeMember_FullMethodName,
+		FullMethod: Note_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).ChangeMember(ctx, req.(*CommentChangeMemberRequest))
+		return srv.(NoteServer).Delete(ctx, req.(*NoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentRequest)
+func _Note_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Delete(ctx, in)
+		return srv.(NoteServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Delete_FullMethodName,
+		FullMethod: Note_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Delete(ctx, req.(*CommentRequest))
+		return srv.(NoteServer).Get(ctx, req.(*NoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentRequest)
+func _Note_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NoteSearchQuery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Get(ctx, in)
+		return srv.(NoteServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Get_FullMethodName,
+		FullMethod: Note_List_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Get(ctx, req.(*CommentRequest))
+		return srv.(NoteServer).List(ctx, req.(*NoteSearchQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentSearchQuery)
+func _Note_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NoteStatQuery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).List(ctx, in)
+		return srv.(NoteServer).Stat(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_List_FullMethodName,
+		FullMethod: Note_Stat_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).List(ctx, req.(*CommentSearchQuery))
+		return srv.(NoteServer).Stat(ctx, req.(*NoteStatQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CommentStatQuery)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ServiceServer).Stat(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Service_Stat_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Stat(ctx, req.(*CommentStatQuery))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// Service_ServiceDesc is the grpc.ServiceDesc for Service service.
+// Note_ServiceDesc is the grpc.ServiceDesc for Note service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Service_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "spaceone.api.alert_manager.v1.Service",
-	HandlerType: (*ServiceServer)(nil),
+var Note_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "spaceone.api.alert_manager.v1.Note",
+	HandlerType: (*NoteServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "create",
-			Handler:    _Service_Create_Handler,
+			Handler:    _Note_Create_Handler,
 		},
 		{
 			MethodName: "update",
-			Handler:    _Service_Update_Handler,
-		},
-		{
-			MethodName: "change_member",
-			Handler:    _Service_ChangeMember_Handler,
+			Handler:    _Note_Update_Handler,
 		},
 		{
 			MethodName: "delete",
-			Handler:    _Service_Delete_Handler,
+			Handler:    _Note_Delete_Handler,
 		},
 		{
 			MethodName: "get",
-			Handler:    _Service_Get_Handler,
+			Handler:    _Note_Get_Handler,
 		},
 		{
 			MethodName: "list",
-			Handler:    _Service_List_Handler,
+			Handler:    _Note_List_Handler,
 		},
 		{
 			MethodName: "stat",
-			Handler:    _Service_Stat_Handler,
+			Handler:    _Note_Stat_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -51,9 +51,9 @@ class ServiceStub(object):
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceUpdateRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceInfo.FromString,
                 _registered_method=True)
-        self.change_member = channel.unary_unary(
-                '/spaceone.api.alert_manager.v1.Service/change_member',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceChangeMemberRequest.SerializeToString,
+        self.change_members = channel.unary_unary(
+                '/spaceone.api.alert_manager.v1.Service/change_members',
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceChangeMembersRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceInfo.FromString,
                 _registered_method=True)
         self.delete = channel.unary_unary(
@@ -93,7 +93,7 @@ class ServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def change_member(self, request, context):
+    def change_members(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -136,9 +136,9 @@ def add_ServiceServicer_to_server(servicer, server):
                     request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceUpdateRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceInfo.SerializeToString,
             ),
-            'change_member': grpc.unary_unary_rpc_method_handler(
-                    servicer.change_member,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceChangeMemberRequest.FromString,
+            'change_members': grpc.unary_unary_rpc_method_handler(
+                    servicer.change_members,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceChangeMembersRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
@@ -227,7 +227,7 @@ class Service(object):
             _registered_method=True)
 
     @staticmethod
-    def change_member(request,
+    def change_members(request,
             target,
             options=(),
             channel_credentials=None,
@@ -240,8 +240,8 @@ class Service(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.alert_manager.v1.Service/change_member',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceChangeMemberRequest.SerializeToString,
+            '/spaceone.api.alert_manager.v1.Service/change_members',
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceChangeMembersRequest.SerializeToString,
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__pb2.ServiceInfo.FromString,
             options,
             channel_credentials,

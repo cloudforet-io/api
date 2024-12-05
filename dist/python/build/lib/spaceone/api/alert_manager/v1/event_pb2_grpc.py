@@ -4,7 +4,6 @@ import grpc
 import warnings
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
-from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.alert_manager.v1 import event_pb2 as spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2
 
 GRPC_GENERATED_VERSION = '1.64.1'
@@ -32,7 +31,7 @@ if _version_not_supported:
     )
 
 
-class ServiceStub(object):
+class EventStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -42,43 +41,13 @@ class ServiceStub(object):
             channel: A grpc.Channel.
         """
         self.create = channel.unary_unary(
-                '/spaceone.api.alert_manager.v1.Service/create',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceCreateRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceInfo.FromString,
-                _registered_method=True)
-        self.update = channel.unary_unary(
-                '/spaceone.api.alert_manager.v1.Service/update',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceUpdateRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceInfo.FromString,
-                _registered_method=True)
-        self.change_member = channel.unary_unary(
-                '/spaceone.api.alert_manager.v1.Service/change_member',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceChangeMemberRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceInfo.FromString,
-                _registered_method=True)
-        self.delete = channel.unary_unary(
-                '/spaceone.api.alert_manager.v1.Service/delete',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceRequest.SerializeToString,
+                '/spaceone.api.alert_manager.v1.Event/create',
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.EventCreateRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.get = channel.unary_unary(
-                '/spaceone.api.alert_manager.v1.Service/get',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceInfo.FromString,
-                _registered_method=True)
-        self.list = channel.unary_unary(
-                '/spaceone.api.alert_manager.v1.Service/list',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceSearchQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServicesInfo.FromString,
-                _registered_method=True)
-        self.stat = channel.unary_unary(
-                '/spaceone.api.alert_manager.v1.Service/stat',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceStatQuery.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
-                _registered_method=True)
 
 
-class ServiceServicer(object):
+class EventServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
@@ -87,89 +56,23 @@ class ServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def update(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
 
-    def change_member(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def delete(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def get(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def list(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def stat(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-
-def add_ServiceServicer_to_server(servicer, server):
+def add_EventServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'create': grpc.unary_unary_rpc_method_handler(
                     servicer.create,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceCreateRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceInfo.SerializeToString,
-            ),
-            'update': grpc.unary_unary_rpc_method_handler(
-                    servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceUpdateRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceInfo.SerializeToString,
-            ),
-            'change_member': grpc.unary_unary_rpc_method_handler(
-                    servicer.change_member,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceChangeMemberRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceInfo.SerializeToString,
-            ),
-            'delete': grpc.unary_unary_rpc_method_handler(
-                    servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.EventCreateRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'get': grpc.unary_unary_rpc_method_handler(
-                    servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceInfo.SerializeToString,
-            ),
-            'list': grpc.unary_unary_rpc_method_handler(
-                    servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceSearchQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServicesInfo.SerializeToString,
-            ),
-            'stat': grpc.unary_unary_rpc_method_handler(
-                    servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceStatQuery.FromString,
-                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'spaceone.api.alert_manager.v1.Service', rpc_method_handlers)
+            'spaceone.api.alert_manager.v1.Event', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('spaceone.api.alert_manager.v1.Service', rpc_method_handlers)
+    server.add_registered_method_handlers('spaceone.api.alert_manager.v1.Event', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class Service(object):
+class Event(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -186,171 +89,9 @@ class Service(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.alert_manager.v1.Service/create',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceCreateRequest.SerializeToString,
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def update(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.alert_manager.v1.Service/update',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceUpdateRequest.SerializeToString,
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def change_member(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.alert_manager.v1.Service/change_member',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceChangeMemberRequest.SerializeToString,
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def delete(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.alert_manager.v1.Service/delete',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceRequest.SerializeToString,
+            '/spaceone.api.alert_manager.v1.Event/create',
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.EventCreateRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def get(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.alert_manager.v1.Service/get',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceRequest.SerializeToString,
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def list(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.alert_manager.v1.Service/list',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceSearchQuery.SerializeToString,
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServicesInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def stat(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.alert_manager.v1.Service/stat',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__pb2.ServiceStatQuery.SerializeToString,
-            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,
             insecure,

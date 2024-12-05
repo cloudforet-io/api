@@ -10,13 +10,13 @@
       "hasServices": true,
       "enums": [
         {
-          "name": "notification_urgency",
-          "longName": "Options.notification_urgency",
-          "fullName": "spaceone.api.alert_manager.v1.Options.notification_urgency",
+          "name": "NotificationUrgency",
+          "longName": "ServiceOptions.NotificationUrgency",
+          "fullName": "spaceone.api.alert_manager.v1.ServiceOptions.NotificationUrgency",
           "description": "",
           "values": [
             {
-              "name": "NOTIFICATION_NONE",
+              "name": "URGENCY_NONE",
               "number": "0",
               "description": ""
             },
@@ -33,23 +33,23 @@
           ]
         },
         {
-          "name": "recovery_mode",
-          "longName": "Options.recovery_mode",
-          "fullName": "spaceone.api.alert_manager.v1.Options.recovery_mode",
+          "name": "RecoveryMode",
+          "longName": "ServiceOptions.RecoveryMode",
+          "fullName": "spaceone.api.alert_manager.v1.ServiceOptions.RecoveryMode",
           "description": "",
           "values": [
             {
-              "name": "RECOVERY_NONE",
+              "name": "RECOVERY_MODE_NONE",
               "number": "0",
               "description": ""
             },
             {
-              "name": "AUTO",
+              "name": "MANUAL",
               "number": "1",
               "description": ""
             },
             {
-              "name": "MANUAL",
+              "name": "AUTO",
               "number": "2",
               "description": ""
             }
@@ -143,56 +143,9 @@
           ]
         },
         {
-          "name": "Members",
-          "longName": "Members",
-          "fullName": "spaceone.api.alert_manager.v1.Members",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "USER",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "USER_GROUP",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "Options",
-          "longName": "Options",
-          "fullName": "spaceone.api.alert_manager.v1.Options",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": false,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": []
-        },
-        {
-          "name": "ServiceChangeMemberRequest",
-          "longName": "ServiceChangeMemberRequest",
-          "fullName": "spaceone.api.alert_manager.v1.ServiceChangeMemberRequest",
+          "name": "ServiceChangeMembersRequest",
+          "longName": "ServiceChangeMembersRequest",
+          "fullName": "spaceone.api.alert_manager.v1.ServiceChangeMembersRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -215,9 +168,9 @@
               "name": "members",
               "description": "",
               "label": "",
-              "type": "Members",
-              "longType": "Members",
-              "fullType": "spaceone.api.alert_manager.v1.Members",
+              "type": "ServiceMembers",
+              "longType": "ServiceMembers",
+              "fullType": "spaceone.api.alert_manager.v1.ServiceMembers",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -275,9 +228,9 @@
               "name": "members",
               "description": "+optional",
               "label": "",
-              "type": "Members",
-              "longType": "Members",
-              "fullType": "spaceone.api.alert_manager.v1.Members",
+              "type": "ServiceMembers",
+              "longType": "ServiceMembers",
+              "fullType": "spaceone.api.alert_manager.v1.ServiceMembers",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -287,9 +240,21 @@
               "name": "options",
               "description": "+optional",
               "label": "",
-              "type": "Options",
-              "longType": "Options",
-              "fullType": "spaceone.api.alert_manager.v1.Options",
+              "type": "ServiceOptions",
+              "longType": "ServiceOptions",
+              "fullType": "spaceone.api.alert_manager.v1.ServiceOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -359,9 +324,9 @@
               "name": "members",
               "description": "",
               "label": "",
-              "type": "Members",
-              "longType": "Members",
-              "fullType": "spaceone.api.alert_manager.v1.Members",
+              "type": "ServiceMembers",
+              "longType": "ServiceMembers",
+              "fullType": "spaceone.api.alert_manager.v1.ServiceMembers",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -371,9 +336,9 @@
               "name": "options",
               "description": "",
               "label": "",
-              "type": "Options",
-              "longType": "Options",
-              "fullType": "spaceone.api.alert_manager.v1.Options",
+              "type": "ServiceOptions",
+              "longType": "ServiceOptions",
+              "fullType": "spaceone.api.alert_manager.v1.ServiceOptions",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -381,11 +346,11 @@
             },
             {
               "name": "channels",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -393,11 +358,11 @@
             },
             {
               "name": "webhooks",
-              "description": "+optional",
-              "label": "",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -405,7 +370,7 @@
             },
             {
               "name": "alerts",
-              "description": "+optional",
+              "description": "",
               "label": "",
               "type": "Alerts",
               "longType": "Alerts",
@@ -416,7 +381,19 @@
               "defaultValue": ""
             },
             {
-              "name": "escalation_policy_id",
+              "name": "tags",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -440,7 +417,7 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "escalation_policy_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -470,6 +447,78 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ServiceMembers",
+          "longName": "ServiceMembers",
+          "fullName": "spaceone.api.alert_manager.v1.ServiceMembers",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "USER",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "USER_GROUP",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ServiceOptions",
+          "longName": "ServiceOptions",
+          "fullName": "spaceone.api.alert_manager.v1.ServiceOptions",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "notification_urgency",
+              "description": "",
+              "label": "",
+              "type": "NotificationUrgency",
+              "longType": "ServiceOptions.NotificationUrgency",
+              "fullType": "spaceone.api.alert_manager.v1.ServiceOptions.NotificationUrgency",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "recovery_mode",
+              "description": "",
+              "label": "",
+              "type": "RecoveryMode",
+              "longType": "ServiceOptions.RecoveryMode",
+              "fullType": "spaceone.api.alert_manager.v1.ServiceOptions.RecoveryMode",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -542,18 +591,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "include_details",
-              "description": "+optional",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -635,9 +672,21 @@
               "name": "options",
               "description": "+optional",
               "label": "",
-              "type": "Options",
-              "longType": "Options",
-              "fullType": "spaceone.api.alert_manager.v1.Options",
+              "type": "ServiceOptions",
+              "longType": "ServiceOptions",
+              "fullType": "spaceone.api.alert_manager.v1.ServiceOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -645,7 +694,7 @@
             },
             {
               "name": "escalation_policy_id",
-              "description": "",
+              "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -748,11 +797,11 @@
               }
             },
             {
-              "name": "change_member",
+              "name": "change_members",
               "description": "",
-              "requestType": "ServiceChangeMemberRequest",
-              "requestLongType": "ServiceChangeMemberRequest",
-              "requestFullType": "spaceone.api.alert_manager.v1.ServiceChangeMemberRequest",
+              "requestType": "ServiceChangeMembersRequest",
+              "requestLongType": "ServiceChangeMembersRequest",
+              "requestFullType": "spaceone.api.alert_manager.v1.ServiceChangeMembersRequest",
               "requestStreaming": false,
               "responseType": "ServiceInfo",
               "responseLongType": "ServiceInfo",
@@ -855,7 +904,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/alert_manager/v1/service/stat",
+                      "pattern": "/alert-manager/v1/service/stat",
                       "body": "*"
                     }
                   ]

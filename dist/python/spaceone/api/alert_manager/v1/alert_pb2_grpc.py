@@ -44,12 +44,12 @@ class AlertStub(object):
         self.create = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Alert/create',
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertCreateRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.FromString,
+                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertInfo.FromString,
                 _registered_method=True)
         self.update = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Alert/update',
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertUpdateRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.FromString,
+                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertInfo.FromString,
                 _registered_method=True)
         self.delete = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Alert/delete',
@@ -59,22 +59,22 @@ class AlertStub(object):
         self.get = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Alert/get',
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.FromString,
+                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertInfo.FromString,
                 _registered_method=True)
         self.list = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Alert/list',
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertSearchQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServicesInfo.FromString,
+                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertsInfo.FromString,
                 _registered_method=True)
         self.history = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Alert/history',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertChangeMemberRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.FromString,
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertHistoryInfo.FromString,
                 _registered_method=True)
         self.analyze = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Alert/analyze',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertChangeMemberRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.FromString,
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertAnalyzeQuery.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 _registered_method=True)
         self.stat = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Alert/stat',
@@ -140,12 +140,12 @@ def add_AlertServicer_to_server(servicer, server):
             'create': grpc.unary_unary_rpc_method_handler(
                     servicer.create,
                     request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertCreateRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertUpdateRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
@@ -155,22 +155,22 @@ def add_AlertServicer_to_server(servicer, server):
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
                     request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
                     request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertSearchQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServicesInfo.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertsInfo.SerializeToString,
             ),
             'history': grpc.unary_unary_rpc_method_handler(
                     servicer.history,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertChangeMemberRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertHistoryInfo.SerializeToString,
             ),
             'analyze': grpc.unary_unary_rpc_method_handler(
                     servicer.analyze,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertChangeMemberRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertAnalyzeQuery.FromString,
+                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
@@ -204,7 +204,7 @@ class Alert(object):
             target,
             '/spaceone.api.alert_manager.v1.Alert/create',
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertCreateRequest.SerializeToString,
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.FromString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -231,7 +231,7 @@ class Alert(object):
             target,
             '/spaceone.api.alert_manager.v1.Alert/update',
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertUpdateRequest.SerializeToString,
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.FromString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -285,7 +285,7 @@ class Alert(object):
             target,
             '/spaceone.api.alert_manager.v1.Alert/get',
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertRequest.SerializeToString,
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.FromString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -312,7 +312,7 @@ class Alert(object):
             target,
             '/spaceone.api.alert_manager.v1.Alert/list',
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertSearchQuery.SerializeToString,
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServicesInfo.FromString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertsInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -338,8 +338,8 @@ class Alert(object):
             request,
             target,
             '/spaceone.api.alert_manager.v1.Alert/history',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertChangeMemberRequest.SerializeToString,
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.FromString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertRequest.SerializeToString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertHistoryInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -365,8 +365,8 @@ class Alert(object):
             request,
             target,
             '/spaceone.api.alert_manager.v1.Alert/analyze',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertChangeMemberRequest.SerializeToString,
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.ServiceInfo.FromString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_alert__pb2.AlertAnalyzeQuery.SerializeToString,
+            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,
             insecure,

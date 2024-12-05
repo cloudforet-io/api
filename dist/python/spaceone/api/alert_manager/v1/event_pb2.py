@@ -18,7 +18,7 @@ from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from spaceone.api.core.v2 import query_pb2 as spaceone_dot_api_dot_core_dot_v2_dot_query__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)spaceone/api/alert_manager/v1/event.proto\x12\x1dspaceone.api.alert_manager.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"+\n\x07Members\x12\x0c\n\x04USER\x18\x01 \x03(\t\x12\x12\n\nUSER_GROUP\x18\x02 \x03(\t\"\x8b\x01\n\x07Options\"F\n\x15notification_urgency_\x12\x15\n\x11NOTIFICATION_NONE\x10\x00\x12\x07\n\x03\x41LL\x10\x01\x12\r\n\tHIGH_ONLY\x10\x02\"8\n\rrecovery_mode\x12\x11\n\rRECOVERY_NONE\x10\x00\x12\x08\n\x04\x41UTO\x10\x01\x12\n\n\x06MANUAL\x10\x02\"\xb1\x01\n\x14ServiceCreateRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0bservice_key\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12(\n\x07members\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x37\n\x07options\x18\x05 \x01(\x0b\x32&.spaceone.api.alert_manager.v1.Options\"\xa4\x01\n\x14ServiceUpdateRequest\x12\x12\n\nservice_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x37\n\x07options\x18\x04 \x01(\x0b\x32&.spaceone.api.alert_manager.v1.Options\x12\x1c\n\x14\x65scalation_policy_id\x18\x05 \x01(\t\"i\n\x1aServiceChangeMemberRequest\x12\x12\n\nservice_id\x18\x01 \x01(\t\x12\x37\n\x07members\x18\x02 \x01(\x0b\x32&.spaceone.api.alert_manager.v1.Members\"$\n\x0eServiceRequest\x12\x12\n\nservice_id\x18\x01 \x01(\t\"\x8b\x01\n\x12ServiceSearchQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x12\n\nservice_id\x18\x02 \x01(\t\x12\x1c\n\x14\x65scalation_policy_id\x18\x03 \x01(\t\x12\x17\n\x0finclude_details\x18\x04 \x01(\x08\"H\n\x10ServiceStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v2.StatisticsQuery\"\xaa\x03\n\x0bServiceInfo\x12\x12\n\nservice_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0bservice_key\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12(\n\x07members\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x37\n\x07options\x18\x06 \x01(\x0b\x32&.spaceone.api.alert_manager.v1.Options\x12)\n\x08\x63hannels\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12)\n\x08webhooks\x18\x08 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\'\n\x06\x61lerts\x18\t \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x1c\n\x14\x65scalation_policy_id\x18\n \x01(\t\x12\x14\n\x0cworkspace_id\x18\x0b \x01(\t\x12\x11\n\tdomain_id\x18\x0c \x01(\t\x12\x12\n\ncreated_at\x18\r \x01(\t\x12\x12\n\nupdated_at\x18\x0e \x01(\t\"`\n\x0cServicesInfo\x12;\n\x07results\x18\x01 \x03(\x0b\x32*.spaceone.api.alert_manager.v1.ServiceInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"\\\n\x08\x43hannels\x12P\n\x14service_channel_info\x18\x01 \x03(\x0b\x32\x32.spaceone.api.alert_manager.v1.ServiceChannelsInfo\"\xce\x02\n\x13ServiceChannelsInfo\x12\x12\n\nchannel_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05state\x18\x03 \x01(\t\x12\x14\n\x0c\x63hannel_type\x18\x04 \x01(\t\x12%\n\x04\x64\x61ta\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\x12)\n\x08schedule\x18\x06 \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tsecret_id\x18\x08 \x01(\t\x12\x13\n\x0bprotocol_id\x18\t \x01(\t\x12\x12\n\nservice_id\x18\n \x01(\t\x12\x14\n\x0cworkspace_id\x18\x0b \x01(\t\x12\x11\n\tdomain_id\x18\x0c \x01(\t\x12\x12\n\ncreated_at\x18\r \x01(\t\"L\n\x08Webhooks\x12@\n\x0cwebhook_info\x18\x01 \x03(\x0b\x32*.spaceone.api.alert_manager.v1.WebhookInfo\"!\n\x0bWebhookInfo\x12\x12\n\nwebhook_id\x18\x01 \x01(\t\"\xbf\x01\n\x06\x41lerts\x12\x37\n\x05TOTAL\x18\x01 \x01(\x0b\x32(.spaceone.api.alert_manager.v1.AlertInfo\x12<\n\nTRIGGERRED\x18\x02 \x01(\x0b\x32(.spaceone.api.alert_manager.v1.AlertInfo\x12>\n\x0c\x41\x43KNOWLEDGED\x18\x03 \x01(\x0b\x32(.spaceone.api.alert_manager.v1.AlertInfo\"&\n\tAlertInfo\x12\x0c\n\x04high\x18\x01 \x01(\x05\x12\x0b\n\x03low\x18\x02 \x01(\x05\x32\x84\x08\n\x07Service\x12\x96\x01\n\x06\x63reate\x12\x33.spaceone.api.alert_manager.v1.ServiceCreateRequest\x1a*.spaceone.api.alert_manager.v1.ServiceInfo\"+\x82\xd3\xe4\x93\x02%\" /alert-manager/v1/comment/create:\x01*\x12\x96\x01\n\x06update\x12\x33.spaceone.api.alert_manager.v1.ServiceUpdateRequest\x1a*.spaceone.api.alert_manager.v1.ServiceInfo\"+\x82\xd3\xe4\x93\x02%\" /alert-manager/v1/comment/update:\x01*\x12\xaa\x01\n\rchange_member\x12\x39.spaceone.api.alert_manager.v1.ServiceChangeMemberRequest\x1a*.spaceone.api.alert_manager.v1.ServiceInfo\"2\x82\xd3\xe4\x93\x02,\"\'/alert-manager/v1/comment/change-member:\x01*\x12|\n\x06\x64\x65lete\x12-.spaceone.api.alert_manager.v1.ServiceRequest\x1a\x16.google.protobuf.Empty\"+\x82\xd3\xe4\x93\x02%\" /alert-manager/v1/comment/delete:\x01*\x12\x8a\x01\n\x03get\x12-.spaceone.api.alert_manager.v1.ServiceRequest\x1a*.spaceone.api.alert_manager.v1.ServiceInfo\"(\x82\xd3\xe4\x93\x02\"\"\x1d/alert-manager/v1/comment/get:\x01*\x12\x91\x01\n\x04list\x12\x31.spaceone.api.alert_manager.v1.ServiceSearchQuery\x1a+.spaceone.api.alert_manager.v1.ServicesInfo\")\x82\xd3\xe4\x93\x02#\"\x1e/alert-manager/v1/comment/list:\x01*\x12{\n\x04stat\x12/.spaceone.api.alert_manager.v1.ServiceStatQuery\x1a\x17.google.protobuf.Struct\")\x82\xd3\xe4\x93\x02#\"\x1e/alert_manager/v1/comment/stat:\x01*BDZBgithub.com/cloudforet-io/api/dist/go/spaceone/api/alert-manager/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)spaceone/api/alert_manager/v1/event.proto\x12\x1dspaceone.api.alert_manager.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"c\n\x12\x45ventCreateRequest\x12\x12\n\nwebhook_id\x18\x01 \x01(\t\x12\x12\n\naccess_key\x18\x02 \x01(\t\x12%\n\x04\x64\x61ta\x18\x03 \x01(\x0b\x32\x17.google.protobuf.Struct\"\xe2\x04\n\tEventInfo\x12\x10\n\x08\x65vent_id\x18\x01 \x01(\t\x12\x11\n\tevent_key\x18\x02 \x01(\t\x12\x46\n\nevent_type\x18\x03 \x01(\x0e\x32\x32.spaceone.api.alert_manager.v1.EventInfo.EventType\x12\r\n\x05title\x18\x04 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x05 \x01(\t\x12>\n\x08severity\x18\x06 \x01(\x0e\x32,.spaceone.api.alert_manager.v1.EventSeverity\x12\x0c\n\x04rule\x18\x07 \x01(\t\x12\x11\n\timage_url\x18\x08 \x01(\t\x12\x11\n\tresources\x18\t \x03(\t\x12\x10\n\x08provider\x18\n \x01(\t\x12\x0f\n\x07\x61\x63\x63ount\x18\x0b \x01(\t\x12\x30\n\x0f\x61\x64\x64itional_info\x18\x0f \x01(\x0b\x32\x17.google.protobuf.Struct\x12)\n\x08raw_data\x18\x10 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\x12\x12\n\nservice_id\x18\x17 \x01(\t\x12\x12\n\nwebhook_id\x18\x18 \x01(\t\x12\x10\n\x08\x61lert_id\x18\x19 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\x12\x13\n\x0boccurred_at\x18  \x01(\t\"D\n\tEventType\x12\x13\n\x0f\x45VENT_TYPE_NONE\x10\x00\x12\t\n\x05\x41LERT\x10\x01\x12\x0c\n\x08RECOVERY\x10\x02\x12\t\n\x05\x45RROR\x10\x03*X\n\rEventSeverity\x12\x17\n\x13\x45VENT_SEVERITY_NONE\x10\x00\x12\x0c\n\x08\x43RITICAL\x10\x01\x12\t\n\x05\x45RROR\x10\x02\x12\x0b\n\x07WARNING\x10\x03\x12\x08\n\x04INFO\x10\x04\x32\x8a\x01\n\x05\x45vent\x12\x80\x01\n\x06\x63reate\x12\x31.spaceone.api.alert_manager.v1.EventCreateRequest\x1a\x16.google.protobuf.Empty\"+\x82\xd3\xe4\x93\x02%\" /alert-manager/v1/comment/create:\x01*BDZBgithub.com/cloudforet-io/api/dist/go/spaceone/api/alert-manager/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -26,56 +26,16 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'spaceone.api.alert_manager.
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'ZBgithub.com/cloudforet-io/api/dist/go/spaceone/api/alert-manager/v1'
-  _globals['_SERVICE'].methods_by_name['create']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['create']._serialized_options = b'\202\323\344\223\002%\" /alert-manager/v1/comment/create:\001*'
-  _globals['_SERVICE'].methods_by_name['update']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['update']._serialized_options = b'\202\323\344\223\002%\" /alert-manager/v1/comment/update:\001*'
-  _globals['_SERVICE'].methods_by_name['change_member']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['change_member']._serialized_options = b'\202\323\344\223\002,\"\'/alert-manager/v1/comment/change-member:\001*'
-  _globals['_SERVICE'].methods_by_name['delete']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['delete']._serialized_options = b'\202\323\344\223\002%\" /alert-manager/v1/comment/delete:\001*'
-  _globals['_SERVICE'].methods_by_name['get']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['get']._serialized_options = b'\202\323\344\223\002\"\"\035/alert-manager/v1/comment/get:\001*'
-  _globals['_SERVICE'].methods_by_name['list']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['list']._serialized_options = b'\202\323\344\223\002#\"\036/alert-manager/v1/comment/list:\001*'
-  _globals['_SERVICE'].methods_by_name['stat']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['stat']._serialized_options = b'\202\323\344\223\002#\"\036/alert_manager/v1/comment/stat:\001*'
-  _globals['_MEMBERS']._serialized_start=199
-  _globals['_MEMBERS']._serialized_end=242
-  _globals['_OPTIONS']._serialized_start=245
-  _globals['_OPTIONS']._serialized_end=384
-  _globals['_OPTIONS_NOTIFICATION_URGENCY_']._serialized_start=256
-  _globals['_OPTIONS_NOTIFICATION_URGENCY_']._serialized_end=326
-  _globals['_OPTIONS_RECOVERY_MODE']._serialized_start=328
-  _globals['_OPTIONS_RECOVERY_MODE']._serialized_end=384
-  _globals['_SERVICECREATEREQUEST']._serialized_start=387
-  _globals['_SERVICECREATEREQUEST']._serialized_end=564
-  _globals['_SERVICEUPDATEREQUEST']._serialized_start=567
-  _globals['_SERVICEUPDATEREQUEST']._serialized_end=731
-  _globals['_SERVICECHANGEMEMBERREQUEST']._serialized_start=733
-  _globals['_SERVICECHANGEMEMBERREQUEST']._serialized_end=838
-  _globals['_SERVICEREQUEST']._serialized_start=840
-  _globals['_SERVICEREQUEST']._serialized_end=876
-  _globals['_SERVICESEARCHQUERY']._serialized_start=879
-  _globals['_SERVICESEARCHQUERY']._serialized_end=1018
-  _globals['_SERVICESTATQUERY']._serialized_start=1020
-  _globals['_SERVICESTATQUERY']._serialized_end=1092
-  _globals['_SERVICEINFO']._serialized_start=1095
-  _globals['_SERVICEINFO']._serialized_end=1521
-  _globals['_SERVICESINFO']._serialized_start=1523
-  _globals['_SERVICESINFO']._serialized_end=1619
-  _globals['_CHANNELS']._serialized_start=1621
-  _globals['_CHANNELS']._serialized_end=1713
-  _globals['_SERVICECHANNELSINFO']._serialized_start=1716
-  _globals['_SERVICECHANNELSINFO']._serialized_end=2050
-  _globals['_WEBHOOKS']._serialized_start=2052
-  _globals['_WEBHOOKS']._serialized_end=2128
-  _globals['_WEBHOOKINFO']._serialized_start=2130
-  _globals['_WEBHOOKINFO']._serialized_end=2163
-  _globals['_ALERTS']._serialized_start=2166
-  _globals['_ALERTS']._serialized_end=2357
-  _globals['_ALERTINFO']._serialized_start=2359
-  _globals['_ALERTINFO']._serialized_end=2397
-  _globals['_SERVICE']._serialized_start=2400
-  _globals['_SERVICE']._serialized_end=3428
+  _globals['_EVENT'].methods_by_name['create']._loaded_options = None
+  _globals['_EVENT'].methods_by_name['create']._serialized_options = b'\202\323\344\223\002%\" /alert-manager/v1/comment/create:\001*'
+  _globals['_EVENTSEVERITY']._serialized_start=913
+  _globals['_EVENTSEVERITY']._serialized_end=1001
+  _globals['_EVENTCREATEREQUEST']._serialized_start=199
+  _globals['_EVENTCREATEREQUEST']._serialized_end=298
+  _globals['_EVENTINFO']._serialized_start=301
+  _globals['_EVENTINFO']._serialized_end=911
+  _globals['_EVENTINFO_EVENTTYPE']._serialized_start=843
+  _globals['_EVENTINFO_EVENTTYPE']._serialized_end=911
+  _globals['_EVENT']._serialized_start=1004
+  _globals['_EVENT']._serialized_end=1142
 # @@protoc_insertion_point(module_scope)

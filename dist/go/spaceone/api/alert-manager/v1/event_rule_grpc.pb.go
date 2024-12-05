@@ -35,7 +35,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EventRuleClient interface {
 	Create(ctx context.Context, in *EventRuleCreateRequest, opts ...grpc.CallOption) (*EventRuleInfo, error)
-	ChangeOrder(ctx context.Context, in *EventRuleChangeMemberRequest, opts ...grpc.CallOption) (*EventRuleInfo, error)
+	ChangeOrder(ctx context.Context, in *EventRuleChangeOrderRequest, opts ...grpc.CallOption) (*EventRuleInfo, error)
 	Update(ctx context.Context, in *EventRuleUpdateRequest, opts ...grpc.CallOption) (*EventRuleInfo, error)
 	Delete(ctx context.Context, in *EventRuleRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *EventRuleRequest, opts ...grpc.CallOption) (*EventRuleInfo, error)
@@ -61,7 +61,7 @@ func (c *eventRuleClient) Create(ctx context.Context, in *EventRuleCreateRequest
 	return out, nil
 }
 
-func (c *eventRuleClient) ChangeOrder(ctx context.Context, in *EventRuleChangeMemberRequest, opts ...grpc.CallOption) (*EventRuleInfo, error) {
+func (c *eventRuleClient) ChangeOrder(ctx context.Context, in *EventRuleChangeOrderRequest, opts ...grpc.CallOption) (*EventRuleInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(EventRuleInfo)
 	err := c.cc.Invoke(ctx, EventRule_ChangeOrder_FullMethodName, in, out, cOpts...)
@@ -126,7 +126,7 @@ func (c *eventRuleClient) Stat(ctx context.Context, in *EventRuleStatQuery, opts
 // for forward compatibility.
 type EventRuleServer interface {
 	Create(context.Context, *EventRuleCreateRequest) (*EventRuleInfo, error)
-	ChangeOrder(context.Context, *EventRuleChangeMemberRequest) (*EventRuleInfo, error)
+	ChangeOrder(context.Context, *EventRuleChangeOrderRequest) (*EventRuleInfo, error)
 	Update(context.Context, *EventRuleUpdateRequest) (*EventRuleInfo, error)
 	Delete(context.Context, *EventRuleRequest) (*empty.Empty, error)
 	Get(context.Context, *EventRuleRequest) (*EventRuleInfo, error)
@@ -145,7 +145,7 @@ type UnimplementedEventRuleServer struct{}
 func (UnimplementedEventRuleServer) Create(context.Context, *EventRuleCreateRequest) (*EventRuleInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedEventRuleServer) ChangeOrder(context.Context, *EventRuleChangeMemberRequest) (*EventRuleInfo, error) {
+func (UnimplementedEventRuleServer) ChangeOrder(context.Context, *EventRuleChangeOrderRequest) (*EventRuleInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeOrder not implemented")
 }
 func (UnimplementedEventRuleServer) Update(context.Context, *EventRuleUpdateRequest) (*EventRuleInfo, error) {
@@ -203,7 +203,7 @@ func _EventRule_Create_Handler(srv interface{}, ctx context.Context, dec func(in
 }
 
 func _EventRule_ChangeOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EventRuleChangeMemberRequest)
+	in := new(EventRuleChangeOrderRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -215,7 +215,7 @@ func _EventRule_ChangeOrder_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: EventRule_ChangeOrder_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventRuleServer).ChangeOrder(ctx, req.(*EventRuleChangeMemberRequest))
+		return srv.(EventRuleServer).ChangeOrder(ctx, req.(*EventRuleChangeOrderRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

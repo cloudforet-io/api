@@ -35,13 +35,13 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AlertClient interface {
-	Create(ctx context.Context, in *AlertCreateRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	Update(ctx context.Context, in *AlertUpdateRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
+	Create(ctx context.Context, in *AlertCreateRequest, opts ...grpc.CallOption) (*AlertInfo, error)
+	Update(ctx context.Context, in *AlertUpdateRequest, opts ...grpc.CallOption) (*AlertInfo, error)
 	Delete(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Get(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	List(ctx context.Context, in *AlertSearchQuery, opts ...grpc.CallOption) (*ServicesInfo, error)
-	History(ctx context.Context, in *AlertChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
-	Analyze(ctx context.Context, in *AlertChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error)
+	Get(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*AlertInfo, error)
+	List(ctx context.Context, in *AlertSearchQuery, opts ...grpc.CallOption) (*AlertsInfo, error)
+	History(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*AlertHistoryInfo, error)
+	Analyze(ctx context.Context, in *AlertAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Stat(ctx context.Context, in *AlertStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
@@ -53,9 +53,9 @@ func NewAlertClient(cc grpc.ClientConnInterface) AlertClient {
 	return &alertClient{cc}
 }
 
-func (c *alertClient) Create(ctx context.Context, in *AlertCreateRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *alertClient) Create(ctx context.Context, in *AlertCreateRequest, opts ...grpc.CallOption) (*AlertInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
+	out := new(AlertInfo)
 	err := c.cc.Invoke(ctx, Alert_Create_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -63,9 +63,9 @@ func (c *alertClient) Create(ctx context.Context, in *AlertCreateRequest, opts .
 	return out, nil
 }
 
-func (c *alertClient) Update(ctx context.Context, in *AlertUpdateRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *alertClient) Update(ctx context.Context, in *AlertUpdateRequest, opts ...grpc.CallOption) (*AlertInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
+	out := new(AlertInfo)
 	err := c.cc.Invoke(ctx, Alert_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -83,9 +83,9 @@ func (c *alertClient) Delete(ctx context.Context, in *AlertRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *alertClient) Get(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *alertClient) Get(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*AlertInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
+	out := new(AlertInfo)
 	err := c.cc.Invoke(ctx, Alert_Get_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -93,9 +93,9 @@ func (c *alertClient) Get(ctx context.Context, in *AlertRequest, opts ...grpc.Ca
 	return out, nil
 }
 
-func (c *alertClient) List(ctx context.Context, in *AlertSearchQuery, opts ...grpc.CallOption) (*ServicesInfo, error) {
+func (c *alertClient) List(ctx context.Context, in *AlertSearchQuery, opts ...grpc.CallOption) (*AlertsInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServicesInfo)
+	out := new(AlertsInfo)
 	err := c.cc.Invoke(ctx, Alert_List_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -103,9 +103,9 @@ func (c *alertClient) List(ctx context.Context, in *AlertSearchQuery, opts ...gr
 	return out, nil
 }
 
-func (c *alertClient) History(ctx context.Context, in *AlertChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *alertClient) History(ctx context.Context, in *AlertRequest, opts ...grpc.CallOption) (*AlertHistoryInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
+	out := new(AlertHistoryInfo)
 	err := c.cc.Invoke(ctx, Alert_History_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -113,9 +113,9 @@ func (c *alertClient) History(ctx context.Context, in *AlertChangeMemberRequest,
 	return out, nil
 }
 
-func (c *alertClient) Analyze(ctx context.Context, in *AlertChangeMemberRequest, opts ...grpc.CallOption) (*ServiceInfo, error) {
+func (c *alertClient) Analyze(ctx context.Context, in *AlertAnalyzeQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ServiceInfo)
+	out := new(_struct.Struct)
 	err := c.cc.Invoke(ctx, Alert_Analyze_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -137,13 +137,13 @@ func (c *alertClient) Stat(ctx context.Context, in *AlertStatQuery, opts ...grpc
 // All implementations must embed UnimplementedAlertServer
 // for forward compatibility.
 type AlertServer interface {
-	Create(context.Context, *AlertCreateRequest) (*ServiceInfo, error)
-	Update(context.Context, *AlertUpdateRequest) (*ServiceInfo, error)
+	Create(context.Context, *AlertCreateRequest) (*AlertInfo, error)
+	Update(context.Context, *AlertUpdateRequest) (*AlertInfo, error)
 	Delete(context.Context, *AlertRequest) (*empty.Empty, error)
-	Get(context.Context, *AlertRequest) (*ServiceInfo, error)
-	List(context.Context, *AlertSearchQuery) (*ServicesInfo, error)
-	History(context.Context, *AlertChangeMemberRequest) (*ServiceInfo, error)
-	Analyze(context.Context, *AlertChangeMemberRequest) (*ServiceInfo, error)
+	Get(context.Context, *AlertRequest) (*AlertInfo, error)
+	List(context.Context, *AlertSearchQuery) (*AlertsInfo, error)
+	History(context.Context, *AlertRequest) (*AlertHistoryInfo, error)
+	Analyze(context.Context, *AlertAnalyzeQuery) (*_struct.Struct, error)
 	Stat(context.Context, *AlertStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedAlertServer()
 }
@@ -155,25 +155,25 @@ type AlertServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAlertServer struct{}
 
-func (UnimplementedAlertServer) Create(context.Context, *AlertCreateRequest) (*ServiceInfo, error) {
+func (UnimplementedAlertServer) Create(context.Context, *AlertCreateRequest) (*AlertInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedAlertServer) Update(context.Context, *AlertUpdateRequest) (*ServiceInfo, error) {
+func (UnimplementedAlertServer) Update(context.Context, *AlertUpdateRequest) (*AlertInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedAlertServer) Delete(context.Context, *AlertRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedAlertServer) Get(context.Context, *AlertRequest) (*ServiceInfo, error) {
+func (UnimplementedAlertServer) Get(context.Context, *AlertRequest) (*AlertInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedAlertServer) List(context.Context, *AlertSearchQuery) (*ServicesInfo, error) {
+func (UnimplementedAlertServer) List(context.Context, *AlertSearchQuery) (*AlertsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedAlertServer) History(context.Context, *AlertChangeMemberRequest) (*ServiceInfo, error) {
+func (UnimplementedAlertServer) History(context.Context, *AlertRequest) (*AlertHistoryInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method History not implemented")
 }
-func (UnimplementedAlertServer) Analyze(context.Context, *AlertChangeMemberRequest) (*ServiceInfo, error) {
+func (UnimplementedAlertServer) Analyze(context.Context, *AlertAnalyzeQuery) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Analyze not implemented")
 }
 func (UnimplementedAlertServer) Stat(context.Context, *AlertStatQuery) (*_struct.Struct, error) {
@@ -291,7 +291,7 @@ func _Alert_List_Handler(srv interface{}, ctx context.Context, dec func(interfac
 }
 
 func _Alert_History_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AlertChangeMemberRequest)
+	in := new(AlertRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -303,13 +303,13 @@ func _Alert_History_Handler(srv interface{}, ctx context.Context, dec func(inter
 		FullMethod: Alert_History_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlertServer).History(ctx, req.(*AlertChangeMemberRequest))
+		return srv.(AlertServer).History(ctx, req.(*AlertRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Alert_Analyze_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AlertChangeMemberRequest)
+	in := new(AlertAnalyzeQuery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -321,7 +321,7 @@ func _Alert_Analyze_Handler(srv interface{}, ctx context.Context, dec func(inter
 		FullMethod: Alert_Analyze_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AlertServer).Analyze(ctx, req.(*AlertChangeMemberRequest))
+		return srv.(AlertServer).Analyze(ctx, req.(*AlertAnalyzeQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }

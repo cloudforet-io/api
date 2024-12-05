@@ -22,6 +22,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	EscalationPolicy_Create_FullMethodName = "/spaceone.api.alert_manager.v1.EscalationPolicy/create"
+	EscalationPolicy_Update_FullMethodName = "/spaceone.api.alert_manager.v1.EscalationPolicy/update"
 	EscalationPolicy_Delete_FullMethodName = "/spaceone.api.alert_manager.v1.EscalationPolicy/delete"
 	EscalationPolicy_Get_FullMethodName    = "/spaceone.api.alert_manager.v1.EscalationPolicy/get"
 	EscalationPolicy_List_FullMethodName   = "/spaceone.api.alert_manager.v1.EscalationPolicy/list"
@@ -33,6 +34,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EscalationPolicyClient interface {
 	Create(ctx context.Context, in *EscalationPolicyCreateRequest, opts ...grpc.CallOption) (*EscalationPolicyInfo, error)
+	Update(ctx context.Context, in *EscalationPolicyUpdateRequest, opts ...grpc.CallOption) (*EscalationPolicyInfo, error)
 	Delete(ctx context.Context, in *EscalationPolicyRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *EscalationPolicyRequest, opts ...grpc.CallOption) (*EscalationPolicyInfo, error)
 	List(ctx context.Context, in *EscalationPolicySearchQuery, opts ...grpc.CallOption) (*EscalationPoliciesInfo, error)
@@ -51,6 +53,16 @@ func (c *escalationPolicyClient) Create(ctx context.Context, in *EscalationPolic
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(EscalationPolicyInfo)
 	err := c.cc.Invoke(ctx, EscalationPolicy_Create_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *escalationPolicyClient) Update(ctx context.Context, in *EscalationPolicyUpdateRequest, opts ...grpc.CallOption) (*EscalationPolicyInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EscalationPolicyInfo)
+	err := c.cc.Invoke(ctx, EscalationPolicy_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -102,6 +114,7 @@ func (c *escalationPolicyClient) Stat(ctx context.Context, in *EscalationPolicyS
 // for forward compatibility.
 type EscalationPolicyServer interface {
 	Create(context.Context, *EscalationPolicyCreateRequest) (*EscalationPolicyInfo, error)
+	Update(context.Context, *EscalationPolicyUpdateRequest) (*EscalationPolicyInfo, error)
 	Delete(context.Context, *EscalationPolicyRequest) (*empty.Empty, error)
 	Get(context.Context, *EscalationPolicyRequest) (*EscalationPolicyInfo, error)
 	List(context.Context, *EscalationPolicySearchQuery) (*EscalationPoliciesInfo, error)
@@ -118,6 +131,9 @@ type UnimplementedEscalationPolicyServer struct{}
 
 func (UnimplementedEscalationPolicyServer) Create(context.Context, *EscalationPolicyCreateRequest) (*EscalationPolicyInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedEscalationPolicyServer) Update(context.Context, *EscalationPolicyUpdateRequest) (*EscalationPolicyInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedEscalationPolicyServer) Delete(context.Context, *EscalationPolicyRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -166,6 +182,24 @@ func _EscalationPolicy_Create_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EscalationPolicyServer).Create(ctx, req.(*EscalationPolicyCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EscalationPolicy_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EscalationPolicyUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EscalationPolicyServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EscalationPolicy_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EscalationPolicyServer).Update(ctx, req.(*EscalationPolicyUpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -252,6 +286,10 @@ var EscalationPolicy_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "create",
 			Handler:    _EscalationPolicy_Create_Handler,
+		},
+		{
+			MethodName: "update",
+			Handler:    _EscalationPolicy_Update_Handler,
 		},
 		{
 			MethodName: "delete",

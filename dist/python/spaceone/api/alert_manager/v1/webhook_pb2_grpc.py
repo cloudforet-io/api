@@ -83,7 +83,7 @@ class WebhookStub(object):
                 _registered_method=True)
         self.list = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.Webhook/list',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookQuery.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookSearchQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhooksInfo.FromString,
                 _registered_method=True)
         self.stat = channel.unary_unary(
@@ -201,7 +201,7 @@ def add_WebhookServicer_to_server(servicer, server):
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookQuery.FromString,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookSearchQuery.FromString,
                     response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhooksInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
@@ -451,7 +451,7 @@ class Webhook(object):
             request,
             target,
             '/spaceone.api.alert_manager.v1.Webhook/list',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookQuery.SerializeToString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhookSearchQuery.SerializeToString,
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_webhook__pb2.WebhooksInfo.FromString,
             options,
             channel_credentials,

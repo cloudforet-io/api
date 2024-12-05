@@ -16,9 +16,10 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from spaceone.api.core.v2 import query_pb2 as spaceone_dot_api_dot_core_dot_v2_dot_query__pb2
+from spaceone.api.alert_manager.v1 import service_channel_pb2 as spaceone_dot_api_dot_alert__manager_dot_v1_dot_service__channel__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n6spaceone/api/alert_manager/v1/user_group_channel.proto\x12\x1dspaceone.api.alert_manager.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\"+\n\x07Members\x12\x0c\n\x04USER\x18\x01 \x03(\t\x12\x12\n\nUSER_GROUP\x18\x02 \x03(\t\"\x8b\x01\n\x07Options\"F\n\x15notification_urgency_\x12\x15\n\x11NOTIFICATION_NONE\x10\x00\x12\x07\n\x03\x41LL\x10\x01\x12\r\n\tHIGH_ONLY\x10\x02\"8\n\rrecovery_mode\x12\x11\n\rRECOVERY_NONE\x10\x00\x12\x08\n\x04\x41UTO\x10\x01\x12\n\n\x06MANUAL\x10\x02\"\xb1\x01\n\x14\x43ommentCreateRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0bservice_key\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12(\n\x07members\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x37\n\x07options\x18\x05 \x01(\x0b\x32&.spaceone.api.alert_manager.v1.Options\"\xa4\x01\n\x14\x43ommentUpdateRequest\x12\x12\n\nservice_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x37\n\x07options\x18\x04 \x01(\x0b\x32&.spaceone.api.alert_manager.v1.Options\x12\x1c\n\x14\x65scalation_policy_id\x18\x05 \x01(\t\"i\n\x1a\x43ommentChangeMemberRequest\x12\x12\n\nservice_id\x18\x01 \x01(\t\x12\x37\n\x07members\x18\x02 \x01(\x0b\x32&.spaceone.api.alert_manager.v1.Members\"$\n\x0e\x43ommentRequest\x12\x12\n\nservice_id\x18\x01 \x01(\t\"\x8b\x01\n\x12\x43ommentSearchQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x12\n\nservice_id\x18\x02 \x01(\t\x12\x1c\n\x14\x65scalation_policy_id\x18\x03 \x01(\t\x12\x17\n\x0finclude_details\x18\x04 \x01(\x08\"H\n\x10\x43ommentStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v2.StatisticsQuery\"\xaa\x03\n\x0bServiceInfo\x12\x12\n\nservice_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0bservice_key\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12(\n\x07members\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x37\n\x07options\x18\x06 \x01(\x0b\x32&.spaceone.api.alert_manager.v1.Options\x12)\n\x08\x63hannels\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12)\n\x08webhooks\x18\x08 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\'\n\x06\x61lerts\x18\t \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x1c\n\x14\x65scalation_policy_id\x18\n \x01(\t\x12\x14\n\x0cworkspace_id\x18\x0b \x01(\t\x12\x11\n\tdomain_id\x18\x0c \x01(\t\x12\x12\n\ncreated_at\x18\r \x01(\t\x12\x12\n\nupdated_at\x18\x0e \x01(\t\"`\n\x0cServicesInfo\x12;\n\x07results\x18\x01 \x03(\x0b\x32*.spaceone.api.alert_manager.v1.ServiceInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\"\\\n\x08\x43hannels\x12P\n\x14service_channel_info\x18\x01 \x03(\x0b\x32\x32.spaceone.api.alert_manager.v1.ServiceChannelsInfo\"\xce\x02\n\x13ServiceChannelsInfo\x12\x12\n\nchannel_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05state\x18\x03 \x01(\t\x12\x14\n\x0c\x63hannel_type\x18\x04 \x01(\t\x12%\n\x04\x64\x61ta\x18\x05 \x01(\x0b\x32\x17.google.protobuf.Struct\x12)\n\x08schedule\x18\x06 \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tsecret_id\x18\x08 \x01(\t\x12\x13\n\x0bprotocol_id\x18\t \x01(\t\x12\x12\n\nservice_id\x18\n \x01(\t\x12\x14\n\x0cworkspace_id\x18\x0b \x01(\t\x12\x11\n\tdomain_id\x18\x0c \x01(\t\x12\x12\n\ncreated_at\x18\r \x01(\t\"L\n\x08Webhooks\x12@\n\x0cwebhook_info\x18\x01 \x03(\x0b\x32*.spaceone.api.alert_manager.v1.WebhookInfo\"!\n\x0bWebhookInfo\x12\x12\n\nwebhook_id\x18\x01 \x01(\t\"\xbf\x01\n\x06\x41lerts\x12\x37\n\x05TOTAL\x18\x01 \x01(\x0b\x32(.spaceone.api.alert_manager.v1.AlertInfo\x12<\n\nTRIGGERRED\x18\x02 \x01(\x0b\x32(.spaceone.api.alert_manager.v1.AlertInfo\x12>\n\x0c\x41\x43KNOWLEDGED\x18\x03 \x01(\x0b\x32(.spaceone.api.alert_manager.v1.AlertInfo\"&\n\tAlertInfo\x12\x0c\n\x04high\x18\x01 \x01(\x05\x12\x0b\n\x03low\x18\x02 \x01(\x05\x32\x84\x08\n\x07Service\x12\x96\x01\n\x06\x63reate\x12\x33.spaceone.api.alert_manager.v1.CommentCreateRequest\x1a*.spaceone.api.alert_manager.v1.ServiceInfo\"+\x82\xd3\xe4\x93\x02%\" /alert-manager/v1/comment/create:\x01*\x12\x96\x01\n\x06update\x12\x33.spaceone.api.alert_manager.v1.CommentUpdateRequest\x1a*.spaceone.api.alert_manager.v1.ServiceInfo\"+\x82\xd3\xe4\x93\x02%\" /alert-manager/v1/comment/update:\x01*\x12\xaa\x01\n\rchange_member\x12\x39.spaceone.api.alert_manager.v1.CommentChangeMemberRequest\x1a*.spaceone.api.alert_manager.v1.ServiceInfo\"2\x82\xd3\xe4\x93\x02,\"\'/alert-manager/v1/comment/change-member:\x01*\x12|\n\x06\x64\x65lete\x12-.spaceone.api.alert_manager.v1.CommentRequest\x1a\x16.google.protobuf.Empty\"+\x82\xd3\xe4\x93\x02%\" /alert-manager/v1/comment/delete:\x01*\x12\x8a\x01\n\x03get\x12-.spaceone.api.alert_manager.v1.CommentRequest\x1a*.spaceone.api.alert_manager.v1.ServiceInfo\"(\x82\xd3\xe4\x93\x02\"\"\x1d/alert-manager/v1/comment/get:\x01*\x12\x91\x01\n\x04list\x12\x31.spaceone.api.alert_manager.v1.CommentSearchQuery\x1a+.spaceone.api.alert_manager.v1.ServicesInfo\")\x82\xd3\xe4\x93\x02#\"\x1e/alert-manager/v1/comment/list:\x01*\x12{\n\x04stat\x12/.spaceone.api.alert_manager.v1.CommentStatQuery\x1a\x17.google.protobuf.Struct\")\x82\xd3\xe4\x93\x02#\"\x1e/alert_manager/v1/comment/stat:\x01*BDZBgithub.com/cloudforet-io/api/dist/go/spaceone/api/alert-manager/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n6spaceone/api/alert_manager/v1/user_group_channel.proto\x12\x1dspaceone.api.alert_manager.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a spaceone/api/core/v2/query.proto\x1a\x33spaceone/api/alert_manager/v1/service_channel.proto\"\xe9\x01\n\x1dUserGroupChannelCreateRequest\x12\x13\n\x0bprotocol_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12@\n\x08schedule\x18\x03 \x01(\x0b\x32..spaceone.api.alert_manager.v1.ChannelSchedule\x12%\n\x04\x64\x61ta\x18\x0b \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x0c \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x15\n\ruser_group_id\x18\x15 \x01(\t\"\xd1\x01\n\x1dUserGroupChannelUpdateRequest\x12\x12\n\nchannel_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12@\n\x08schedule\x18\x03 \x01(\x0b\x32..spaceone.api.alert_manager.v1.ChannelSchedule\x12%\n\x04\x64\x61ta\x18\x0b \x01(\x0b\x32\x17.google.protobuf.Struct\x12%\n\x04tags\x18\x0c \x01(\x0b\x32\x17.google.protobuf.Struct\"-\n\x17UserGroupChannelRequest\x12\x12\n\nchannel_id\x18\x01 \x01(\t\"\xed\x02\n\x1bUserGroupChannelSearchQuery\x12*\n\x05query\x18\x01 \x01(\x0b\x32\x1b.spaceone.api.core.v2.Query\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12_\n\x05state\x18\x04 \x01(\x0e\x32P.spaceone.api.alert_manager.v1.UserGroupChannelSearchQuery.UserGroupChannelState\x12\x14\n\x0cworkspace_id\x18\x15 \x01(\t\x12\x15\n\ruser_group_id\x18\x17 \x01(\t\x12\x13\n\x0bprotocol_id\x18\x18 \x01(\t\x12\x11\n\tsecret_id\x18\x19 \x01(\t\"J\n\x15UserGroupChannelState\x12\x16\n\x12\x43HANNEL_STATE_NONE\x10\x00\x12\x0b\n\x07\x45NABLED\x10\x01\x12\x0c\n\x08\x44ISABLED\x10\x02\"Q\n\x19UserGroupChannelStatQuery\x12\x34\n\x05query\x18\x01 \x01(\x0b\x32%.spaceone.api.core.v2.StatisticsQuery\"\xc3\x03\n\x14UserGroupChannelInfo\x12\x12\n\nchannel_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12X\n\x05state\x18\x03 \x01(\x0e\x32I.spaceone.api.alert_manager.v1.UserGroupChannelInfo.UserGroupChannelState\x12@\n\x08schedule\x18\x04 \x01(\x0b\x32..spaceone.api.alert_manager.v1.ChannelSchedule\x12%\n\x04tags\x18\x0b \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x11\n\tdomain_id\x18\x15 \x01(\t\x12\x14\n\x0cworkspace_id\x18\x16 \x01(\t\x12\x15\n\ruser_group_id\x18\x17 \x01(\t\x12\x13\n\x0bprotocol_id\x18\x18 \x01(\t\x12\x11\n\tsecret_id\x18\x19 \x01(\t\x12\x12\n\ncreated_at\x18\x1f \x01(\t\"J\n\x15UserGroupChannelState\x12\x16\n\x12\x43HANNEL_STATE_NONE\x10\x00\x12\x0b\n\x07\x45NABLED\x10\x01\x12\x0c\n\x08\x44ISABLED\x10\x02\"r\n\x15UserGroupChannelsInfo\x12\x44\n\x07results\x18\x01 \x03(\x0b\x32\x33.spaceone.api.alert_manager.v1.UserGroupChannelInfo\x12\x13\n\x0btotal_count\x18\x02 \x01(\x05\x32\xe0\n\n\x10UserGroupChannel\x12\xb3\x01\n\x06\x63reate\x12<.spaceone.api.alert_manager.v1.UserGroupChannelCreateRequest\x1a\x33.spaceone.api.alert_manager.v1.UserGroupChannelInfo\"6\x82\xd3\xe4\x93\x02\x30\"+/alert-manager/v1/user-group-channel/create:\x01*\x12\xb3\x01\n\x06update\x12<.spaceone.api.alert_manager.v1.UserGroupChannelUpdateRequest\x1a\x33.spaceone.api.alert_manager.v1.UserGroupChannelInfo\"6\x82\xd3\xe4\x93\x02\x30\"+/alert-manager/v1/user-group-channel/update:\x01*\x12\xad\x01\n\x06\x65nable\x12\x36.spaceone.api.alert_manager.v1.UserGroupChannelRequest\x1a\x33.spaceone.api.alert_manager.v1.UserGroupChannelInfo\"6\x82\xd3\xe4\x93\x02\x30\"+/alert-manager/v1/user-group-channel/enable:\x01*\x12\xaf\x01\n\x07\x64isable\x12\x36.spaceone.api.alert_manager.v1.UserGroupChannelRequest\x1a\x33.spaceone.api.alert_manager.v1.UserGroupChannelInfo\"7\x82\xd3\xe4\x93\x02\x31\",/alert-manager/v1/user-group-channel/disable:\x01*\x12\x90\x01\n\x06\x64\x65lete\x12\x36.spaceone.api.alert_manager.v1.UserGroupChannelRequest\x1a\x16.google.protobuf.Empty\"6\x82\xd3\xe4\x93\x02\x30\"+/alert-manager/v1/user-group-channel/delete:\x01*\x12\xa7\x01\n\x03get\x12\x36.spaceone.api.alert_manager.v1.UserGroupChannelRequest\x1a\x33.spaceone.api.alert_manager.v1.UserGroupChannelInfo\"3\x82\xd3\xe4\x93\x02-\"(/alert-manager/v1/user-group-channel/get:\x01*\x12\xae\x01\n\x04list\x12:.spaceone.api.alert_manager.v1.UserGroupChannelSearchQuery\x1a\x34.spaceone.api.alert_manager.v1.UserGroupChannelsInfo\"4\x82\xd3\xe4\x93\x02.\")/alert-manager/v1/user-group-channel/list:\x01*\x12\x8f\x01\n\x04stat\x12\x38.spaceone.api.alert_manager.v1.UserGroupChannelStatQuery\x1a\x17.google.protobuf.Struct\"4\x82\xd3\xe4\x93\x02.\")/alert_manager/v1/user-group-channel/stat:\x01*BDZBgithub.com/cloudforet-io/api/dist/go/spaceone/api/alert-manager/v1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -26,56 +27,40 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'spaceone.api.alert_manager.
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'ZBgithub.com/cloudforet-io/api/dist/go/spaceone/api/alert-manager/v1'
-  _globals['_SERVICE'].methods_by_name['create']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['create']._serialized_options = b'\202\323\344\223\002%\" /alert-manager/v1/comment/create:\001*'
-  _globals['_SERVICE'].methods_by_name['update']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['update']._serialized_options = b'\202\323\344\223\002%\" /alert-manager/v1/comment/update:\001*'
-  _globals['_SERVICE'].methods_by_name['change_member']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['change_member']._serialized_options = b'\202\323\344\223\002,\"\'/alert-manager/v1/comment/change-member:\001*'
-  _globals['_SERVICE'].methods_by_name['delete']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['delete']._serialized_options = b'\202\323\344\223\002%\" /alert-manager/v1/comment/delete:\001*'
-  _globals['_SERVICE'].methods_by_name['get']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['get']._serialized_options = b'\202\323\344\223\002\"\"\035/alert-manager/v1/comment/get:\001*'
-  _globals['_SERVICE'].methods_by_name['list']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['list']._serialized_options = b'\202\323\344\223\002#\"\036/alert-manager/v1/comment/list:\001*'
-  _globals['_SERVICE'].methods_by_name['stat']._loaded_options = None
-  _globals['_SERVICE'].methods_by_name['stat']._serialized_options = b'\202\323\344\223\002#\"\036/alert_manager/v1/comment/stat:\001*'
-  _globals['_MEMBERS']._serialized_start=212
-  _globals['_MEMBERS']._serialized_end=255
-  _globals['_OPTIONS']._serialized_start=258
-  _globals['_OPTIONS']._serialized_end=397
-  _globals['_OPTIONS_NOTIFICATION_URGENCY_']._serialized_start=269
-  _globals['_OPTIONS_NOTIFICATION_URGENCY_']._serialized_end=339
-  _globals['_OPTIONS_RECOVERY_MODE']._serialized_start=341
-  _globals['_OPTIONS_RECOVERY_MODE']._serialized_end=397
-  _globals['_COMMENTCREATEREQUEST']._serialized_start=400
-  _globals['_COMMENTCREATEREQUEST']._serialized_end=577
-  _globals['_COMMENTUPDATEREQUEST']._serialized_start=580
-  _globals['_COMMENTUPDATEREQUEST']._serialized_end=744
-  _globals['_COMMENTCHANGEMEMBERREQUEST']._serialized_start=746
-  _globals['_COMMENTCHANGEMEMBERREQUEST']._serialized_end=851
-  _globals['_COMMENTREQUEST']._serialized_start=853
-  _globals['_COMMENTREQUEST']._serialized_end=889
-  _globals['_COMMENTSEARCHQUERY']._serialized_start=892
-  _globals['_COMMENTSEARCHQUERY']._serialized_end=1031
-  _globals['_COMMENTSTATQUERY']._serialized_start=1033
-  _globals['_COMMENTSTATQUERY']._serialized_end=1105
-  _globals['_SERVICEINFO']._serialized_start=1108
-  _globals['_SERVICEINFO']._serialized_end=1534
-  _globals['_SERVICESINFO']._serialized_start=1536
-  _globals['_SERVICESINFO']._serialized_end=1632
-  _globals['_CHANNELS']._serialized_start=1634
-  _globals['_CHANNELS']._serialized_end=1726
-  _globals['_SERVICECHANNELSINFO']._serialized_start=1729
-  _globals['_SERVICECHANNELSINFO']._serialized_end=2063
-  _globals['_WEBHOOKS']._serialized_start=2065
-  _globals['_WEBHOOKS']._serialized_end=2141
-  _globals['_WEBHOOKINFO']._serialized_start=2143
-  _globals['_WEBHOOKINFO']._serialized_end=2176
-  _globals['_ALERTS']._serialized_start=2179
-  _globals['_ALERTS']._serialized_end=2370
-  _globals['_ALERTINFO']._serialized_start=2372
-  _globals['_ALERTINFO']._serialized_end=2410
-  _globals['_SERVICE']._serialized_start=2413
-  _globals['_SERVICE']._serialized_end=3441
+  _globals['_USERGROUPCHANNEL'].methods_by_name['create']._loaded_options = None
+  _globals['_USERGROUPCHANNEL'].methods_by_name['create']._serialized_options = b'\202\323\344\223\0020\"+/alert-manager/v1/user-group-channel/create:\001*'
+  _globals['_USERGROUPCHANNEL'].methods_by_name['update']._loaded_options = None
+  _globals['_USERGROUPCHANNEL'].methods_by_name['update']._serialized_options = b'\202\323\344\223\0020\"+/alert-manager/v1/user-group-channel/update:\001*'
+  _globals['_USERGROUPCHANNEL'].methods_by_name['enable']._loaded_options = None
+  _globals['_USERGROUPCHANNEL'].methods_by_name['enable']._serialized_options = b'\202\323\344\223\0020\"+/alert-manager/v1/user-group-channel/enable:\001*'
+  _globals['_USERGROUPCHANNEL'].methods_by_name['disable']._loaded_options = None
+  _globals['_USERGROUPCHANNEL'].methods_by_name['disable']._serialized_options = b'\202\323\344\223\0021\",/alert-manager/v1/user-group-channel/disable:\001*'
+  _globals['_USERGROUPCHANNEL'].methods_by_name['delete']._loaded_options = None
+  _globals['_USERGROUPCHANNEL'].methods_by_name['delete']._serialized_options = b'\202\323\344\223\0020\"+/alert-manager/v1/user-group-channel/delete:\001*'
+  _globals['_USERGROUPCHANNEL'].methods_by_name['get']._loaded_options = None
+  _globals['_USERGROUPCHANNEL'].methods_by_name['get']._serialized_options = b'\202\323\344\223\002-\"(/alert-manager/v1/user-group-channel/get:\001*'
+  _globals['_USERGROUPCHANNEL'].methods_by_name['list']._loaded_options = None
+  _globals['_USERGROUPCHANNEL'].methods_by_name['list']._serialized_options = b'\202\323\344\223\002.\")/alert-manager/v1/user-group-channel/list:\001*'
+  _globals['_USERGROUPCHANNEL'].methods_by_name['stat']._loaded_options = None
+  _globals['_USERGROUPCHANNEL'].methods_by_name['stat']._serialized_options = b'\202\323\344\223\002.\")/alert_manager/v1/user-group-channel/stat:\001*'
+  _globals['_USERGROUPCHANNELCREATEREQUEST']._serialized_start=266
+  _globals['_USERGROUPCHANNELCREATEREQUEST']._serialized_end=499
+  _globals['_USERGROUPCHANNELUPDATEREQUEST']._serialized_start=502
+  _globals['_USERGROUPCHANNELUPDATEREQUEST']._serialized_end=711
+  _globals['_USERGROUPCHANNELREQUEST']._serialized_start=713
+  _globals['_USERGROUPCHANNELREQUEST']._serialized_end=758
+  _globals['_USERGROUPCHANNELSEARCHQUERY']._serialized_start=761
+  _globals['_USERGROUPCHANNELSEARCHQUERY']._serialized_end=1126
+  _globals['_USERGROUPCHANNELSEARCHQUERY_USERGROUPCHANNELSTATE']._serialized_start=1052
+  _globals['_USERGROUPCHANNELSEARCHQUERY_USERGROUPCHANNELSTATE']._serialized_end=1126
+  _globals['_USERGROUPCHANNELSTATQUERY']._serialized_start=1128
+  _globals['_USERGROUPCHANNELSTATQUERY']._serialized_end=1209
+  _globals['_USERGROUPCHANNELINFO']._serialized_start=1212
+  _globals['_USERGROUPCHANNELINFO']._serialized_end=1663
+  _globals['_USERGROUPCHANNELINFO_USERGROUPCHANNELSTATE']._serialized_start=1052
+  _globals['_USERGROUPCHANNELINFO_USERGROUPCHANNELSTATE']._serialized_end=1126
+  _globals['_USERGROUPCHANNELSINFO']._serialized_start=1665
+  _globals['_USERGROUPCHANNELSINFO']._serialized_end=1779
+  _globals['_USERGROUPCHANNEL']._serialized_start=1782
+  _globals['_USERGROUPCHANNEL']._serialized_end=3158
 # @@protoc_insertion_point(module_scope)

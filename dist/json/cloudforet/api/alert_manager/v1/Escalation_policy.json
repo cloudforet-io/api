@@ -4,15 +4,15 @@
       "name": "spaceone/api/alert_manager/v1/escalation_policy.proto",
       "description": "",
       "package": "spaceone.api.alert_manager.v1",
-      "hasEnums": false,
+      "hasEnums": true,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
       "enums": [
         {
           "name": "FinishCondition",
-          "longName": "EscalationPolicyCreateRequest.FinishCondition",
-          "fullName": "spaceone.api.alert_manager.v1.EscalationPolicyCreateRequest.FinishCondition",
+          "longName": "FinishCondition",
+          "fullName": "spaceone.api.alert_manager.v1.FinishCondition",
           "description": "",
           "values": [
             {
@@ -27,6 +27,29 @@
             },
             {
               "name": "RESOLVED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "RepeatState",
+          "longName": "Repeat.RepeatState",
+          "fullName": "spaceone.api.alert_manager.v1.Repeat.RepeatState",
+          "description": "",
+          "values": [
+            {
+              "name": "REPEAT_STATE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
               "number": "2",
               "description": ""
             }
@@ -75,7 +98,7 @@
           "name": "EscalationPolicyCreateRequest",
           "longName": "EscalationPolicyCreateRequest",
           "fullName": "spaceone.api.alert_manager.v1.EscalationPolicyCreateRequest",
-          "description": "Receive\n////////",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -97,21 +120,21 @@
               "name": "rules",
               "description": "",
               "label": "repeated",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "type": "EscalationRule",
+              "longType": "EscalationRule",
+              "fullType": "spaceone.api.alert_manager.v1.EscalationRule",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "repeat_count",
+              "name": "repeat",
               "description": "+optional",
               "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
+              "type": "Repeat",
+              "longType": "Repeat",
+              "fullType": "spaceone.api.alert_manager.v1.Repeat",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -122,8 +145,8 @@
               "description": "+optional",
               "label": "",
               "type": "FinishCondition",
-              "longType": "EscalationPolicyCreateRequest.FinishCondition",
-              "fullType": "spaceone.api.alert_manager.v1.EscalationPolicyCreateRequest.FinishCondition",
+              "longType": "FinishCondition",
+              "fullType": "spaceone.api.alert_manager.v1.FinishCondition",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -193,9 +216,9 @@
               "name": "rules",
               "description": "",
               "label": "repeated",
-              "type": "Struct",
-              "longType": "google.protobuf.Struct",
-              "fullType": "google.protobuf.Struct",
+              "type": "EscalationRule",
+              "longType": "EscalationRule",
+              "fullType": "spaceone.api.alert_manager.v1.EscalationRule",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -217,9 +240,9 @@
               "name": "finish_condition",
               "description": "",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "FinishCondition",
+              "longType": "FinishCondition",
+              "fullType": "spaceone.api.alert_manager.v1.FinishCondition",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -238,7 +261,7 @@
               "defaultValue": ""
             },
             {
-              "name": "service_id",
+              "name": "domain_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -262,7 +285,7 @@
               "defaultValue": ""
             },
             {
-              "name": "domain_id",
+              "name": "service_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -275,6 +298,18 @@
             },
             {
               "name": "created_at",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updated_at",
               "description": "",
               "label": "",
               "type": "string",
@@ -361,9 +396,9 @@
               "name": "finish_condition",
               "description": "+optional",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "FinishCondition",
+              "longType": "FinishCondition",
+              "fullType": "spaceone.api.alert_manager.v1.FinishCondition",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -406,6 +441,150 @@
               "defaultValue": ""
             }
           ]
+        },
+        {
+          "name": "EscalationPolicyUpdateRequest",
+          "longName": "EscalationPolicyUpdateRequest",
+          "fullName": "spaceone.api.alert_manager.v1.EscalationPolicyUpdateRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "escalation_policy_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "rules",
+              "description": "+optional",
+              "label": "repeated",
+              "type": "EscalationRule",
+              "longType": "EscalationRule",
+              "fullType": "spaceone.api.alert_manager.v1.EscalationRule",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "finish_condition",
+              "description": "+optional",
+              "label": "",
+              "type": "FinishCondition",
+              "longType": "FinishCondition",
+              "fullType": "spaceone.api.alert_manager.v1.FinishCondition",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EscalationRule",
+          "longName": "EscalationRule",
+          "fullName": "spaceone.api.alert_manager.v1.EscalationRule",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "channels",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "escalate_minutes",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "Repeat",
+          "longName": "Repeat",
+          "fullName": "spaceone.api.alert_manager.v1.Repeat",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "state",
+              "description": "",
+              "label": "",
+              "type": "RepeatState",
+              "longType": "Repeat.RepeatState",
+              "fullType": "spaceone.api.alert_manager.v1.Repeat.RepeatState",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "count",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
         }
       ],
       "services": [
@@ -432,6 +611,29 @@
                     {
                       "method": "POST",
                       "pattern": "/alert-manager/v1/escalation-policy/create",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update",
+              "description": "",
+              "requestType": "EscalationPolicyUpdateRequest",
+              "requestLongType": "EscalationPolicyUpdateRequest",
+              "requestFullType": "spaceone.api.alert_manager.v1.EscalationPolicyUpdateRequest",
+              "requestStreaming": false,
+              "responseType": "EscalationPolicyInfo",
+              "responseLongType": "EscalationPolicyInfo",
+              "responseFullType": "spaceone.api.alert_manager.v1.EscalationPolicyInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/alert-manager/v1/escalation-policy/update",
                       "body": "*"
                     }
                   ]
@@ -523,7 +725,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/alert_manager/v1/escalation-policy/stat",
+                      "pattern": "/alert-manager/v1/escalation-policy/stat",
                       "body": "*"
                     }
                   ]

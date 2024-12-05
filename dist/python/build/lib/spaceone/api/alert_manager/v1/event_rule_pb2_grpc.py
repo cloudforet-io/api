@@ -48,7 +48,7 @@ class EventRuleStub(object):
                 _registered_method=True)
         self.change_order = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.EventRule/change_order',
-                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__rule__pb2.EventRuleChangeMemberRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__rule__pb2.EventRuleChangeOrderRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__rule__pb2.EventRuleInfo.FromString,
                 _registered_method=True)
         self.update = channel.unary_unary(
@@ -133,7 +133,7 @@ def add_EventRuleServicer_to_server(servicer, server):
             ),
             'change_order': grpc.unary_unary_rpc_method_handler(
                     servicer.change_order,
-                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__rule__pb2.EventRuleChangeMemberRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__rule__pb2.EventRuleChangeOrderRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__rule__pb2.EventRuleInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
@@ -214,7 +214,7 @@ class EventRule(object):
             request,
             target,
             '/spaceone.api.alert_manager.v1.EventRule/change_order',
-            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__rule__pb2.EventRuleChangeMemberRequest.SerializeToString,
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__rule__pb2.EventRuleChangeOrderRequest.SerializeToString,
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_event__rule__pb2.EventRuleInfo.FromString,
             options,
             channel_credentials,
