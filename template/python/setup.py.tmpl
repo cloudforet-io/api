@@ -18,7 +18,7 @@ import os
 from setuptools import setup, find_packages
 
 setup(
-    name='spaceone-api',
+    name='spaceone_api',
     version=os.environ.get('PACKAGE_VERSION'),
     description='Coreforet API Protobuf',
     long_description='',
