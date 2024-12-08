@@ -2602,15 +2602,14 @@
          "required": ["results","total_count"],
                 "title": "UserGroupChannelsInfo"
            }
-           ,        "AlertInfo": {
-         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "EventSeverity","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"},
-               "type": "array","$ref": "#/components/schemas/AlertResource","title": "RESOURCES"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"triggerd_type" : {"type": "string","title": "TRIGGERD_TYPE"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"acknowledged_at" : {"type": "string","title": "ACKNOWLEDGED_AT"},"resolved_at" : {"type": "string","title": "RESOLVED_AT"}},
+           ,        "AlertStats": {
+         "properties" : {"high" : {"type": "integer","title": "HIGH"},"low" : {"type": "integer","title": "LOW"}},
          "type": "object",
-         "required": ["alert_id","title","state","description","urgency","severity","rule","image_url","resources","provider","account","triggerd_type","triggered_by","additional_info","domain_id","workspace_id","service_id","webhook_id","escalation_policy_id","created_at","updated_at","acknowledged_at","resolved_at"],
-                "title": "AlertInfo"
+         "required": ["high","low"],
+                "title": "AlertStats"
            }
            ,        "Alerts": {
-         "properties" : {"TOTAL" : {"$ref": "#/components/schemas/AlertInfo","title": "TOTAL"},"TRIGGERRED" : {"$ref": "#/components/schemas/AlertInfo","title": "TRIGGERRED"},"ACKNOWLEDGED" : {"$ref": "#/components/schemas/AlertInfo","title": "ACKNOWLEDGED"}},
+         "properties" : {"TOTAL" : {"$ref": "#/components/schemas/AlertStats","title": "TOTAL"},"TRIGGERRED" : {"$ref": "#/components/schemas/AlertStats","title": "TRIGGERRED"},"ACKNOWLEDGED" : {"$ref": "#/components/schemas/AlertStats","title": "ACKNOWLEDGED"}},
          "type": "object",
          "required": ["TOTAL","TRIGGERRED","ACKNOWLEDGED"],
                 "title": "Alerts"
@@ -2705,6 +2704,13 @@
          "type": "object",
          "required": ["results"],
                 "title": "AlertHistoryInfo"
+           }
+           ,        "AlertInfo": {
+         "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"description" : {"type": "string","title": "DESCRIPTION"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "EventSeverity","title": "SEVERITY"},"rule" : {"type": "string","title": "RULE"},"image_url" : {"type": "string","title": "IMAGE_URL"},"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"},
+               "type": "array","$ref": "#/components/schemas/AlertResource","title": "RESOURCES"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"triggerd_type" : {"type": "string","title": "TRIGGERD_TYPE"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"additional_info" : {"type": "object","title": "ADDITIONAL_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"acknowledged_at" : {"type": "string","title": "ACKNOWLEDGED_AT"},"resolved_at" : {"type": "string","title": "RESOLVED_AT"}},
+         "type": "object",
+         "required": ["alert_id","title","state","description","urgency","severity","rule","image_url","resources","provider","account","triggerd_type","triggered_by","additional_info","domain_id","workspace_id","service_id","webhook_id","escalation_policy_id","created_at","updated_at","acknowledged_at","resolved_at"],
+                "title": "AlertInfo"
            }
            ,        "AlertRequest": {
          "properties" : {"alert_id" : {"type": "string","title": "ALERT_ID"}},
