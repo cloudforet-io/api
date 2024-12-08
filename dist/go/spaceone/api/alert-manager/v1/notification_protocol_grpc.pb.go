@@ -24,6 +24,7 @@ const (
 	NotificationProtocol_Create_FullMethodName       = "/spaceone.api.alert_manager.v1.NotificationProtocol/create"
 	NotificationProtocol_Update_FullMethodName       = "/spaceone.api.alert_manager.v1.NotificationProtocol/update"
 	NotificationProtocol_UpdatePlugin_FullMethodName = "/spaceone.api.alert_manager.v1.NotificationProtocol/update_plugin"
+	NotificationProtocol_VerifyPlugin_FullMethodName = "/spaceone.api.alert_manager.v1.NotificationProtocol/verify_plugin"
 	NotificationProtocol_Enable_FullMethodName       = "/spaceone.api.alert_manager.v1.NotificationProtocol/enable"
 	NotificationProtocol_Disable_FullMethodName      = "/spaceone.api.alert_manager.v1.NotificationProtocol/disable"
 	NotificationProtocol_Delete_FullMethodName       = "/spaceone.api.alert_manager.v1.NotificationProtocol/delete"
@@ -39,6 +40,7 @@ type NotificationProtocolClient interface {
 	Create(ctx context.Context, in *NotificationProtocolCreateRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error)
 	Update(ctx context.Context, in *NotificationProtocolUpdateRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error)
 	UpdatePlugin(ctx context.Context, in *NotificationProtocolUpdatePluginRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error)
+	VerifyPlugin(ctx context.Context, in *NotificationProtocolRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Enable(ctx context.Context, in *NotificationProtocolRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error)
 	Disable(ctx context.Context, in *NotificationProtocolRequest, opts ...grpc.CallOption) (*NotificationProtocolInfo, error)
 	Delete(ctx context.Context, in *NotificationProtocolRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -79,6 +81,16 @@ func (c *notificationProtocolClient) UpdatePlugin(ctx context.Context, in *Notif
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(NotificationProtocolInfo)
 	err := c.cc.Invoke(ctx, NotificationProtocol_UpdatePlugin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *notificationProtocolClient) VerifyPlugin(ctx context.Context, in *NotificationProtocolRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, NotificationProtocol_VerifyPlugin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -152,6 +164,7 @@ type NotificationProtocolServer interface {
 	Create(context.Context, *NotificationProtocolCreateRequest) (*NotificationProtocolInfo, error)
 	Update(context.Context, *NotificationProtocolUpdateRequest) (*NotificationProtocolInfo, error)
 	UpdatePlugin(context.Context, *NotificationProtocolUpdatePluginRequest) (*NotificationProtocolInfo, error)
+	VerifyPlugin(context.Context, *NotificationProtocolRequest) (*empty.Empty, error)
 	Enable(context.Context, *NotificationProtocolRequest) (*NotificationProtocolInfo, error)
 	Disable(context.Context, *NotificationProtocolRequest) (*NotificationProtocolInfo, error)
 	Delete(context.Context, *NotificationProtocolRequest) (*empty.Empty, error)
@@ -176,6 +189,9 @@ func (UnimplementedNotificationProtocolServer) Update(context.Context, *Notifica
 }
 func (UnimplementedNotificationProtocolServer) UpdatePlugin(context.Context, *NotificationProtocolUpdatePluginRequest) (*NotificationProtocolInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePlugin not implemented")
+}
+func (UnimplementedNotificationProtocolServer) VerifyPlugin(context.Context, *NotificationProtocolRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyPlugin not implemented")
 }
 func (UnimplementedNotificationProtocolServer) Enable(context.Context, *NotificationProtocolRequest) (*NotificationProtocolInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
@@ -266,6 +282,24 @@ func _NotificationProtocol_UpdatePlugin_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NotificationProtocolServer).UpdatePlugin(ctx, req.(*NotificationProtocolUpdatePluginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NotificationProtocol_VerifyPlugin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotificationProtocolRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotificationProtocolServer).VerifyPlugin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NotificationProtocol_VerifyPlugin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotificationProtocolServer).VerifyPlugin(ctx, req.(*NotificationProtocolRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -396,6 +430,10 @@ var NotificationProtocol_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update_plugin",
 			Handler:    _NotificationProtocol_UpdatePlugin_Handler,
+		},
+		{
+			MethodName: "verify_plugin",
+			Handler:    _NotificationProtocol_VerifyPlugin_Handler,
 		},
 		{
 			MethodName: "enable",

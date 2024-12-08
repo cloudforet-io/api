@@ -56,6 +56,11 @@ class NotificationProtocolStub(object):
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolUpdatePluginRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolInfo.FromString,
                 _registered_method=True)
+        self.verify_plugin = channel.unary_unary(
+                '/spaceone.api.alert_manager.v1.NotificationProtocol/verify_plugin',
+                request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
         self.enable = channel.unary_unary(
                 '/spaceone.api.alert_manager.v1.NotificationProtocol/enable',
                 request_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolRequest.SerializeToString,
@@ -104,6 +109,12 @@ class NotificationProtocolServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update_plugin(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def verify_plugin(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -162,6 +173,11 @@ def add_NotificationProtocolServicer_to_server(servicer, server):
                     servicer.update_plugin,
                     request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolUpdatePluginRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolInfo.SerializeToString,
+            ),
+            'verify_plugin': grpc.unary_unary_rpc_method_handler(
+                    servicer.verify_plugin,
+                    request_deserializer=spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'enable': grpc.unary_unary_rpc_method_handler(
                     servicer.enable,
@@ -275,6 +291,33 @@ class NotificationProtocol(object):
             '/spaceone.api.alert_manager.v1.NotificationProtocol/update_plugin',
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolUpdatePluginRequest.SerializeToString,
             spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def verify_plugin(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.alert_manager.v1.NotificationProtocol/verify_plugin',
+            spaceone_dot_api_dot_alert__manager_dot_v1_dot_notification__protocol__pb2.NotificationProtocolRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
