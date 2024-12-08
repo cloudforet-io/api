@@ -72,19 +72,13 @@ service NotificationProtocol {
     }
 }
 
-enum NotificationProtocolUpgradeMode {
-    UPGRADE_MODE_NONE = 0;
-    AUTO = 1;
-    MANUAL = 2;
-}
-
-enum NotificationProtocolState {
-    PROTOCOL_STATE_NONE = 0;
-    ENABLED = 1;
-    DISABLED = 2;
-}
-
 message NotificationProtocolRequestPluginInfo {
+    enum NotificationProtocolUpgradeMode {
+        UPGRADE_MODE_NONE = 0;
+        AUTO = 1;
+        MANUAL = 2;
+    }
+
     string plugin_id = 1;
     string version = 2;
     google.protobuf.Struct options = 3;
@@ -96,6 +90,12 @@ message NotificationProtocolRequestPluginInfo {
 }
 
 message NotificationProtocolResponsePluginInfo {
+    enum NotificationProtocolUpgradeMode {
+        UPGRADE_MODE_NONE = 0;
+        AUTO = 1;
+        MANUAL = 2;
+    }
+
     string plugin_id = 1;
     string version = 2;
     google.protobuf.Struct options = 3;
@@ -125,11 +125,19 @@ message NotificationProtocolUpdateRequest {
 }
 
 message NotificationProtocolUpdatePluginRequest {
+    enum NotificationProtocolUpgradeMode {
+        UPGRADE_MODE_NONE = 0;
+        AUTO = 1;
+        MANUAL = 2;
+    }
+
     string protocol_id = 1;
     // +optional
     string version = 2;
     // +optional
     google.protobuf.Struct options = 3;
+    // +optional
+    NotificationProtocolUpgradeMode upgrade_mode = 4;
 }
 
 message NotificationProtocolRequest {
@@ -137,6 +145,12 @@ message NotificationProtocolRequest {
 }
 
 message NotificationProtocolSearchQuery {
+    enum NotificationProtocolState {
+        PROTOCOL_STATE_NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
     // +optional
     spaceone.api.core.v2.Query query = 1;
     // +optional
@@ -152,6 +166,12 @@ message NotificationProtocolStatQuery {
 }
 
 message NotificationProtocolInfo {
+    enum NotificationProtocolState {
+        PROTOCOL_STATE_NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
     string protocol_id = 1;
     string name = 2;
     NotificationProtocolState state = 3;

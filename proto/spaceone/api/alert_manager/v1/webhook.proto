@@ -73,24 +73,18 @@ service Webhook {
     }
 }
 
-enum WebhookState {
-    WEBHOOK_STATE_NONE = 0;
-    ENABLED = 1;
-    DISABLED = 2;
-}
-
-enum WebhookUpgradeMode {
-    UPGRADE_MODE_NONE = 0;
-    AUTO = 1;
-    MANUAL = 2;
-}
-
 message WebhookRequests {
     int64 total = 1;
     int64 error = 2;
 }
 
 message WebhookPluginInfo{
+    enum WebhookUpgradeMode {
+        UPGRADE_MODE_NONE = 0;
+        AUTO = 1;
+        MANUAL = 2;
+    }
+
     string plugin_id = 1;
     // +optional
     string version = 2;
@@ -121,6 +115,12 @@ message WebhookUpdateRequest {
 }
 
 message WebhookUpdatePluginRequest {
+    enum WebhookUpgradeMode {
+        UPGRADE_MODE_NONE = 0;
+        AUTO = 1;
+        MANUAL = 2;
+    }
+
     string webhook_id = 1;
     // +optional
     string version = 2;
@@ -135,6 +135,12 @@ message WebhookRequest {
 }
 
 message WebhookSearchQuery {
+    enum WebhookState {
+        WEBHOOK_STATE_NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
     // +optional
     spaceone.api.core.v2.Query query = 1;
     // +optional
@@ -157,6 +163,12 @@ message WebhookStatQuery {
 }
 
 message WebhookInfo {
+    enum WebhookState {
+        WEBHOOK_STATE_NONE = 0;
+        ENABLED = 1;
+        DISABLED = 2;
+    }
+
     string webhook_id = 1;
     string name = 2;
     WebhookState state = 3;
