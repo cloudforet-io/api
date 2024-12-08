@@ -241,11 +241,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n |version||string||\n |options||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |protocol_id||string|True|\n |version||string||\n |options||Struct||\n |upgrade_mode|AUTO, MANUAL |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"version" : {"type": "string","title": "VERSION" },"options" : {"type": "object","title": "OPTIONS" }                 }
+                 "properties": {"protocol_id" : {"type": "string","title": "PROTOCOL_ID" },"version" : {"type": "string","title": "VERSION" },"options" : {"type": "object","title": "OPTIONS" },"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -826,11 +826,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |escalation_policy_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |service_id||string||\n |name||string||\n |escalation_policy_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"service_id" : {"type": "string","title": "SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -994,11 +994,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |alert_id||string||\n |title||string||\n |state|TRIGGERED, ACKNOWLEDGED, RESOLVED, ERROR |string||\n |urgency|HIGH, LOW |string||\n |severity||EventSeverity||\n |resources||array||\n |provider||string||\n |account||string||\n |triggered_type||string||\n |triggered_by||string||\n |workspace_id||string||\n |service_id||string||\n |webhook_id||string||\n |escalation_policy_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |alert_id||string||\n |state|TRIGGERED, ACKNOWLEDGED, RESOLVED, ERROR |string||\n |urgency|HIGH, LOW |string||\n |severity||EventSeverity||\n |resources||array||\n |provider||string||\n |account||string||\n |triggered_type||string||\n |triggered_by||string||\n |workspace_id||string||\n |service_id||string||\n |webhook_id||string||\n |escalation_policy_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"alert_id" : {"type": "string","title": "ALERT_ID" },"title" : {"type": "string","title": "TITLE" },"state" : {"type": "string","title": "STATE" },"urgency" : {"type": "string","title": "URGENCY" },"severity" : {"type": "EventSeverity","title": "SEVERITY" },"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"}, "type": "array","title": "RESOURCES" },"provider" : {"type": "string","title": "PROVIDER" },"account" : {"type": "string","title": "ACCOUNT" },"triggered_type" : {"type": "string","title": "TRIGGERED_TYPE" },"triggered_by" : {"type": "string","title": "TRIGGERED_BY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"service_id" : {"type": "string","title": "SERVICE_ID" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"alert_id" : {"type": "string","title": "ALERT_ID" },"state" : {"type": "string","title": "STATE" },"urgency" : {"type": "string","title": "URGENCY" },"severity" : {"type": "EventSeverity","title": "SEVERITY" },"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"}, "type": "array","title": "RESOURCES" },"provider" : {"type": "string","title": "PROVIDER" },"account" : {"type": "string","title": "ACCOUNT" },"triggered_type" : {"type": "string","title": "TRIGGERED_TYPE" },"triggered_by" : {"type": "string","title": "TRIGGERED_BY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"service_id" : {"type": "string","title": "SERVICE_ID" },"webhook_id" : {"type": "string","title": "WEBHOOK_ID" },"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1110,7 +1110,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |conditions||array|True|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||Struct|True|\n |service_id||string|True|\n |name||string||\n |options||EventRuleOptions||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |conditions_policy|ALL, ANY, ALWAYS |string|True|\n |actions||Struct|True|\n |service_id||string|True|\n |name||string||\n |conditions||array||\n |options||EventRuleOptions||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -2541,7 +2541,7 @@
                 "title": "NotificationProtocolStatQuery"
            }
            ,        "NotificationProtocolUpdatePluginRequest": {
-         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"}},
+         "properties" : {"protocol_id" : {"type": "string","title": "PROTOCOL_ID"},"version" : {"type": "string","title": "VERSION"},"options" : {"type": "object","title": "OPTIONS"},"upgrade_mode" : {"type": "string","title": "UPGRADE_MODE"}},
          "type": "object",
          "required": ["protocol_id"],
                 "title": "NotificationProtocolUpdatePluginRequest"
@@ -2655,7 +2655,7 @@
                 "title": "ServiceRequest"
            }
            ,        "ServiceSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_id" : {"type": "string","title": "SERVICE_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"service_id" : {"type": "string","title": "SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
          "type": "object",
          "required": [],
                 "title": "ServiceSearchQuery"
@@ -2725,7 +2725,7 @@
                 "title": "AlertResource"
            }
            ,        "AlertSearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"alert_id" : {"type": "string","title": "ALERT_ID"},"title" : {"type": "string","title": "TITLE"},"state" : {"type": "string","title": "STATE"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "EventSeverity","title": "SEVERITY"},"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"alert_id" : {"type": "string","title": "ALERT_ID"},"state" : {"type": "string","title": "STATE"},"urgency" : {"type": "string","title": "URGENCY"},"severity" : {"type": "EventSeverity","title": "SEVERITY"},"resources" : {"items": {"$ref": "#/components/schemas/AlertResource"},
                "type": "array","$ref": "#/components/schemas/AlertResource","title": "RESOURCES"},"provider" : {"type": "string","title": "PROVIDER"},"account" : {"type": "string","title": "ACCOUNT"},"triggered_type" : {"type": "string","title": "TRIGGERED_TYPE"},"triggered_by" : {"type": "string","title": "TRIGGERED_BY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"service_id" : {"type": "string","title": "SERVICE_ID"},"webhook_id" : {"type": "string","title": "WEBHOOK_ID"},"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"}},
          "type": "object",
          "required": [],
@@ -2766,7 +2766,7 @@
          "properties" : {"name" : {"type": "string","title": "NAME"},"conditions" : {"items": {"$ref": "#/components/schemas/Condition"},
                "type": "array","$ref": "#/components/schemas/Condition","title": "CONDITIONS"},"conditions_policy" : {"type": "string","title": "CONDITIONS_POLICY"},"actions" : {"type": "object","title": "ACTIONS"},"options" : {"$ref": "#/components/schemas/EventRuleOptions","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"service_id" : {"type": "string","title": "SERVICE_ID"}},
          "type": "object",
-         "required": ["conditions","conditions_policy","actions","service_id"],
+         "required": ["conditions_policy","actions","service_id"],
                 "title": "EventRuleCreateRequest"
            }
            ,        "EventRuleInfo": {

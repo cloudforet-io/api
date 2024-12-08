@@ -4,15 +4,15 @@
       "name": "spaceone/api/alert_manager/v1/notification_protocol.proto",
       "description": "",
       "package": "spaceone.api.alert_manager.v1",
-      "hasEnums": true,
+      "hasEnums": false,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
       "enums": [
         {
           "name": "NotificationProtocolState",
-          "longName": "NotificationProtocolState",
-          "fullName": "spaceone.api.alert_manager.v1.NotificationProtocolState",
+          "longName": "NotificationProtocolInfo.NotificationProtocolState",
+          "fullName": "spaceone.api.alert_manager.v1.NotificationProtocolInfo.NotificationProtocolState",
           "description": "",
           "values": [
             {
@@ -34,8 +34,77 @@
         },
         {
           "name": "NotificationProtocolUpgradeMode",
-          "longName": "NotificationProtocolUpgradeMode",
-          "fullName": "spaceone.api.alert_manager.v1.NotificationProtocolUpgradeMode",
+          "longName": "NotificationProtocolRequestPluginInfo.NotificationProtocolUpgradeMode",
+          "fullName": "spaceone.api.alert_manager.v1.NotificationProtocolRequestPluginInfo.NotificationProtocolUpgradeMode",
+          "description": "",
+          "values": [
+            {
+              "name": "UPGRADE_MODE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "AUTO",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "NotificationProtocolUpgradeMode",
+          "longName": "NotificationProtocolResponsePluginInfo.NotificationProtocolUpgradeMode",
+          "fullName": "spaceone.api.alert_manager.v1.NotificationProtocolResponsePluginInfo.NotificationProtocolUpgradeMode",
+          "description": "",
+          "values": [
+            {
+              "name": "UPGRADE_MODE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "AUTO",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "MANUAL",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "NotificationProtocolState",
+          "longName": "NotificationProtocolSearchQuery.NotificationProtocolState",
+          "fullName": "spaceone.api.alert_manager.v1.NotificationProtocolSearchQuery.NotificationProtocolState",
+          "description": "",
+          "values": [
+            {
+              "name": "PROTOCOL_STATE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ENABLED",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DISABLED",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "NotificationProtocolUpgradeMode",
+          "longName": "NotificationProtocolUpdatePluginRequest.NotificationProtocolUpgradeMode",
+          "fullName": "spaceone.api.alert_manager.v1.NotificationProtocolUpdatePluginRequest.NotificationProtocolUpgradeMode",
           "description": "",
           "values": [
             {
@@ -145,8 +214,8 @@
               "description": "",
               "label": "",
               "type": "NotificationProtocolState",
-              "longType": "NotificationProtocolState",
-              "fullType": "spaceone.api.alert_manager.v1.NotificationProtocolState",
+              "longType": "NotificationProtocolInfo.NotificationProtocolState",
+              "fullType": "spaceone.api.alert_manager.v1.NotificationProtocolInfo.NotificationProtocolState",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -301,8 +370,8 @@
               "description": "",
               "label": "",
               "type": "NotificationProtocolUpgradeMode",
-              "longType": "NotificationProtocolUpgradeMode",
-              "fullType": "spaceone.api.alert_manager.v1.NotificationProtocolUpgradeMode",
+              "longType": "NotificationProtocolRequestPluginInfo.NotificationProtocolUpgradeMode",
+              "fullType": "spaceone.api.alert_manager.v1.NotificationProtocolRequestPluginInfo.NotificationProtocolUpgradeMode",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -373,8 +442,8 @@
               "description": "",
               "label": "",
               "type": "NotificationProtocolUpgradeMode",
-              "longType": "NotificationProtocolUpgradeMode",
-              "fullType": "spaceone.api.alert_manager.v1.NotificationProtocolUpgradeMode",
+              "longType": "NotificationProtocolResponsePluginInfo.NotificationProtocolUpgradeMode",
+              "fullType": "spaceone.api.alert_manager.v1.NotificationProtocolResponsePluginInfo.NotificationProtocolUpgradeMode",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -445,8 +514,8 @@
               "description": "+optional",
               "label": "",
               "type": "NotificationProtocolState",
-              "longType": "NotificationProtocolState",
-              "fullType": "spaceone.api.alert_manager.v1.NotificationProtocolState",
+              "longType": "NotificationProtocolSearchQuery.NotificationProtocolState",
+              "fullType": "spaceone.api.alert_manager.v1.NotificationProtocolSearchQuery.NotificationProtocolState",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -519,6 +588,18 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "upgrade_mode",
+              "description": "+optional",
+              "label": "",
+              "type": "NotificationProtocolUpgradeMode",
+              "longType": "NotificationProtocolUpdatePluginRequest.NotificationProtocolUpgradeMode",
+              "fullType": "spaceone.api.alert_manager.v1.NotificationProtocolUpdatePluginRequest.NotificationProtocolUpgradeMode",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",

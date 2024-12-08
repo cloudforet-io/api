@@ -188,7 +188,8 @@ type EventRuleCreateRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// +optional
-	Name             string           `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// +optional
 	Conditions       []*Condition     `protobuf:"bytes,2,rep,name=conditions,proto3" json:"conditions,omitempty"`
 	ConditionsPolicy ConditionsPolicy `protobuf:"varint,3,opt,name=conditions_policy,json=conditionsPolicy,proto3,enum=spaceone.api.alert_manager.v1.ConditionsPolicy" json:"conditions_policy,omitempty"`
 	Actions          *_struct.Struct  `protobuf:"bytes,4,opt,name=actions,proto3" json:"actions,omitempty"`
