@@ -138,23 +138,21 @@ message AlertSearchQuery {
     // +optional
     string alert_id = 2;
     // +optional
-    string title = 3;
+    AlertState state = 3;
     // +optional
-    AlertState state = 4;
+    AlertUrgency urgency = 4;
     // +optional
-    AlertUrgency urgency = 5;
+    spaceone.api.alert_manager.v1.EventSeverity severity = 5;
     // +optional
-    spaceone.api.alert_manager.v1.EventSeverity severity = 6;
+    repeated AlertResource resources = 6;
     // +optional
-    repeated AlertResource resources = 7;
+    string provider = 7;
     // +optional
-    string provider = 8;
+    string account = 8;
     // +optional
-    string account = 9;
+    string triggered_type = 9;
     // +optional
-    string triggered_type = 10;
-    // +optional
-    string triggered_by = 11;
+    string triggered_by = 10;
 
     // +optional
     string workspace_id = 21;
