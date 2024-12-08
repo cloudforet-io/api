@@ -152,7 +152,9 @@ message AlertSearchQuery {
     // +optional
     string account = 9;
     // +optional
-    string triggered_by = 10;
+    string triggered_type = 10;
+    // +optional
+    string triggered_by = 11;
 
     // +optional
     string workspace_id = 21;
@@ -180,7 +182,7 @@ message AlertInfo {
         RESOLVED = 3;
         ERROR = 4;
     }
-    enum TriggeredBy {
+    enum TriggeredType {
         TRIGGERD_BY_NONE = 0;
         USER = 1;
         WEBHOOK = 2;
@@ -197,7 +199,8 @@ message AlertInfo {
     repeated AlertResource resources = 9;
     string provider = 10;
     string account = 11;
-    TriggeredBy triggerd_by = 12;
+    TriggeredType triggerd_type = 12;
+    string triggered_by = 13;
 
     google.protobuf.Struct additional_info = 15;
 
