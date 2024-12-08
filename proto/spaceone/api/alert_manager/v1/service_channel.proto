@@ -138,6 +138,12 @@ message ServiceChannelRequest {
 }
 
 message ServiceChannelSearchQuery {
+    enum ServiceChannelType {
+        CHANNEL_TYPE_NONE = 0;
+        DIRECT = 1;
+        FORWARD = 2;
+    }
+
     // +optional
     spaceone.api.core.v2.Query query = 1;
     // +optional
@@ -146,6 +152,8 @@ message ServiceChannelSearchQuery {
     string name = 3;
     // +optional
     ChannelState state = 4;
+    // +optional
+    ServiceChannelType channel_type = 5;
     
     // +optional
     string workspace_id = 11;
@@ -153,8 +161,6 @@ message ServiceChannelSearchQuery {
     string service_id = 12;
     // +optional
     string protocol_id = 13;
-    // +optional
-    string secret_id = 14;
 }
 
 message ServiceChannelStatQuery {

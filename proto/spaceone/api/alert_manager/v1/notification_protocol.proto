@@ -28,6 +28,12 @@ service NotificationProtocol {
             body: "*"
         };
     }
+    rpc verify_plugin (NotificationProtocolRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/alert-manager/v1/notification-protocol/verify-plugin"
+            body: "*"
+        };
+    }
     rpc enable (NotificationProtocolRequest) returns (NotificationProtocolInfo) {
         option (google.api.http) = {
             post: "/alert-manager/v1/notification-protocol/enable"
