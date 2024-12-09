@@ -642,9 +642,9 @@ func (x *PluginInfo) GetUpgradeMode() PluginInfo_UpgradeMode {
 }
 
 //	{
-//	   "name": "AWS Collector",
+//	   "name": "Azure Collector",
 //	   "plugin_info": {
-//	       "plugin_id": "plugin-30d21ef75a5d",
+//	       "plugin_id": "plugin-azure-inven-collector",
 //	       "version": "1.13.13",
 //	       "options": {},
 //	       "metadata": {
@@ -665,7 +665,7 @@ func (x *PluginInfo) GetUpgradeMode() PluginInfo_UpgradeMode {
 //	   },
 //	   "schedule": {
 //	       "state": "ENABLED",
-//	       "hours": [0, 6, 12, 18]
+//	       "hours": [10, 18]
 //	   },
 //	   "secret_filter": {
 //	       "state": "ENABLED",
@@ -676,6 +676,7 @@ func (x *PluginInfo) GetUpgradeMode() PluginInfo_UpgradeMode {
 //	   "tags": {
 //	       "type": "test"
 //	   },
+//	   "resource_group": "DOMAIN"
 //	}
 type CreateCollectorRequest struct {
 	state         protoimpl.MessageState
@@ -785,16 +786,10 @@ func (x *CreateCollectorRequest) GetWorkspaceId() string {
 
 //	{
 //	   "collector_id": "collector-2c0847644f39",
-//	   "name": "New AWS Collector",
-//	   "plugin_info": {
-//	       "plugin_id": "plugin-30d21ef75a5d",
-//	       "version": "1.14.0",
-//	       "provider": "aws",
-//	       "upgrade_mode": "MANUAL"
-//	   },
+//	   "name": "New Azure Collector",
 //	   "schedule": {
 //	       "state": "ENABLED",
-//	       "hours": [0, 6, 12, 18]
+//	       "hours": [10,18]
 //	   },
 //	   "secret_filter": {
 //	       "state": "ENABLED",
@@ -1215,7 +1210,7 @@ func (x *VerifyPluginRequest) GetSecretId() string {
 //	   "collector_id": "collector-2c0847644f39",
 //	   "name": "AWS Collector",
 //	   "plugin_info": {
-//	       "plugin_id": "plugin-30d21ef75a5d",
+//	       "plugin_id": "plugin-azure-inven-collector",
 //	       "version": "1.13.13",
 //	       "options": {},
 //	       "metadata": {
@@ -1237,9 +1232,7 @@ func (x *VerifyPluginRequest) GetSecretId() string {
 //	   "tags": {
 //	       "type": "test"
 //	   },
-//	   "created_by": "wonny@cloudforet.io"
-//	   "created_at": "2022-06-17T06:33:27.195Z",
-//	   "domain_id": "domain-58010aa2e451",
+//	   "created_by": "wonny@cloudforet.io",
 //	   "provider": "aws",
 //	   "schedule": {
 //	       "state": "ENABLED",
@@ -1251,6 +1244,8 @@ func (x *VerifyPluginRequest) GetSecretId() string {
 //	       "service_accounts": ["sa-xxx", "sa-yyy"],
 //	       "schemas": ["schema-xxx", "schema-yyy"]
 //	   },
+//	   "domain_id": "domain-58010aa2e451",
+//	   "created_at": "2022-06-17T06:33:27.195Z",
 //	   "last_collected_at": "2022-06-17T06:33:27.195Z"
 //	}
 type CollectorInfo struct {

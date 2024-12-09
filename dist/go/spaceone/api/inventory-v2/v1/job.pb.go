@@ -332,21 +332,13 @@ func (x *JobsQuery) GetPluginId() string {
 
 //	{
 //	     "job_id": "job-123456789012",
-//	     "status": "ERROR",
-//	     "filter": {},
+//	     "status": "SUCCESS",
 //	     "total_tasks": 2,
-//	     "collector_info": {
-//	         "collector_id": "collector-123456789012",
-//	         "name": "Jenkins Collector",
-//	         "state": "ENABLED",
-//	         "plugin_info": {
-//	             "plugin_id": "plugin-jenkins-inven-collector",
-//	             "version": "0.1.1"
-//	         },
-//	         "provider": "jenkins",
-//	         "capability": {},
-//	         "is_public": true
-//	     },
+//	     "success_tasks": 2,
+//	     "request_secret_id: "secret-123456789012",
+//	     "request_workspace_id": "workspace-123456789012",
+//	     "resource_group": "WORKSPACE"
+//	     "workspace_id": "workspace-123456789012",
 //	     "domain_id": "domain-123456789012",
 //	     "created_at": "2022-01-01T10:00:01.389Z",
 //	     "updated_at": "2022-01-01T10:00:01.389Z",
@@ -359,12 +351,12 @@ type JobInfo struct {
 
 	JobId              string                `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
 	Status             JobInfo_Status        `protobuf:"varint,2,opt,name=status,proto3,enum=spaceone.api.inventory_v2.v1.JobInfo_Status" json:"status,omitempty"`
-	TotalTasks         int32                 `protobuf:"varint,4,opt,name=total_tasks,json=totalTasks,proto3" json:"total_tasks,omitempty"`
-	RemainedTasks      int32                 `protobuf:"varint,5,opt,name=remained_tasks,json=remainedTasks,proto3" json:"remained_tasks,omitempty"`
-	SuccessTasks       int32                 `protobuf:"varint,6,opt,name=success_tasks,json=successTasks,proto3" json:"success_tasks,omitempty"`
-	FailureTasks       int32                 `protobuf:"varint,7,opt,name=failure_tasks,json=failureTasks,proto3" json:"failure_tasks,omitempty"`
-	RequestSecretId    string                `protobuf:"bytes,8,opt,name=request_secret_id,json=requestSecretId,proto3" json:"request_secret_id,omitempty"`
-	RequestWorkspaceId string                `protobuf:"bytes,9,opt,name=request_workspace_id,json=requestWorkspaceId,proto3" json:"request_workspace_id,omitempty"`
+	TotalTasks         int32                 `protobuf:"varint,3,opt,name=total_tasks,json=totalTasks,proto3" json:"total_tasks,omitempty"`
+	RemainedTasks      int32                 `protobuf:"varint,4,opt,name=remained_tasks,json=remainedTasks,proto3" json:"remained_tasks,omitempty"`
+	SuccessTasks       int32                 `protobuf:"varint,5,opt,name=success_tasks,json=successTasks,proto3" json:"success_tasks,omitempty"`
+	FailureTasks       int32                 `protobuf:"varint,6,opt,name=failure_tasks,json=failureTasks,proto3" json:"failure_tasks,omitempty"`
+	RequestSecretId    string                `protobuf:"bytes,7,opt,name=request_secret_id,json=requestSecretId,proto3" json:"request_secret_id,omitempty"`
+	RequestWorkspaceId string                `protobuf:"bytes,8,opt,name=request_workspace_id,json=requestWorkspaceId,proto3" json:"request_workspace_id,omitempty"`
 	ResourceGroup      JobInfo_ResourceGroup `protobuf:"varint,20,opt,name=resource_group,json=resourceGroup,proto3,enum=spaceone.api.inventory_v2.v1.JobInfo_ResourceGroup" json:"resource_group,omitempty"`
 	DomainId           string                `protobuf:"bytes,21,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 	WorkspaceId        string                `protobuf:"bytes,22,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
@@ -522,24 +514,8 @@ func (x *JobInfo) GetFinishedAt() string {
 //	       {
 //	           "job_id": "job-3b124006c2d2",
 //	           "status": "SUCCESS",
-//	           "filter": {},
 //	           "total_tasks": 2,
-//	           "collector_info": {
-//	               "collector_id": "collector-accd02663b3d",
-//	               "name": "openstack-collector",
-//	               "state": "ENABLED",
-//	               "plugin_info": {
-//	                   "plugin_id": "plugin-openstack-inven-collector",
-//	                   "version": "0.4.2.20220616.134758"
-//	               },
-//	               "provider": "openstack",
-//	               "capability": {
-//	                   "supported_schema": [
-//	                       "openstack_credentials"
-//	                   ]
-//	               },
-//	               "is_public": true
-//	           },
+//	           "success_tasks": 2,
 //	           "resource_group": "DOMAIN",
 //	           "domain_id": "domain-58010aa2e451",
 //	           "created_at": "2022-06-17T08:00:01.225Z",
@@ -548,33 +524,31 @@ func (x *JobInfo) GetFinishedAt() string {
 //	       },
 //	       {
 //	           "job_id": "job-587a3d3b4db3",
-//	           "status": "SUCCESS",
-//	           "filter": {},
+//	           "status": "IN_PROGRESS",
 //	           "total_tasks": 3,
-//	           "collector_info": {
-//	               "collector_id": "collector-2c0847644f39",
-//	               "name": "AWS stat-kwon Collector",
-//	               "state": "ENABLED",
-//	               "plugin_info": {
-//	                   "plugin_id": "plugin-30d21ef75a5d",
-//	                   "version": "1.13.13.20220610.143142"
-//	               },
-//	               "provider": "aws",
-//	               "capability": {
-//	                   "supported_schema": [
-//	                       "aws_access_key"
-//	                   ]
-//	               },
-//	               "is_public": true
-//	           },
+//	           "success_tasks": 1,
+//	           "remained_tasks": 1.
 //	           "resource_group": "DOMAIN",
 //	           "domain_id": "domain-58010aa2e451",
 //	           "created_at": "2022-06-17T08:00:00.407Z",
 //	           "updated_at": "2022-06-17T08:00:00.407Z",
 //	           "finished_at": "2022-06-17T08:07:32.023Z"
+//	       },
+//	       {
+//	          "job_id": "job-587a3d3b4db3",
+//	          "status": "FAILURE",
+//	          "total_tasks": 3,
+//	          "success_tasks": 1,
+//	          "failure_tasks": 1,
+//	          "resource_group": "DOMAIN",
+//	          "domain_id": "domain-58010aa2e451",
+//	          "created_at": "2022-06-17T08:00:00.407Z",
+//	          "updated_at": "2022-06-17T08:05:00.407Z",
+//	          "finished_at": "2022-06-17T08:10:00.407Z"
 //	       }
+//
 //	   ],
-//	   "total_count": 2
+//	   "total_count": 3
 //	}
 type JobsInfo struct {
 	state         protoimpl.MessageState
@@ -629,6 +603,28 @@ func (x *JobsInfo) GetTotalCount() int32 {
 	return 0
 }
 
+//	{
+//	 "query": {
+//	     "group_by": ["job_id", "status"],
+//	     "page": {
+//	       "start": 1, "limit": 5
+//	     },
+//	     "fields": {
+//	       "total_tasks_sum": {
+//	         "key": "total_tasks",
+//	         "operator": "sum"
+//	        },
+//	        "remain_tasks_sum": {
+//	           "key": "remain_tasks",
+//	           "operator": "sum"
+//	        },
+//	        "failure_tasks_sum": {
+//	           "key": "failure_tasks",
+//	           "operator": "sum"
+//	        }
+//	     }
+//	  }
+//	}
 type JobAnalyzeQuery struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -674,6 +670,10 @@ func (x *JobAnalyzeQuery) GetQuery() *v2.AnalyzeQuery {
 	return nil
 }
 
+//	{
+//	 "query": {
+//	     "distinct": "status"
+//	 }
 type JobStatQuery struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -766,20 +766,20 @@ var file_spaceone_api_inventory_v2_v1_job_proto_rawDesc = []byte{
 	0x65, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6e, 0x76, 0x65, 0x6e, 0x74, 0x6f, 0x72, 0x79, 0x5f,
 	0x76, 0x32, 0x2e, 0x76, 0x31, 0x2e, 0x4a, 0x6f, 0x62, 0x49, 0x6e, 0x66, 0x6f, 0x2e, 0x53, 0x74,
 	0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x1f, 0x0a, 0x0b,
-	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x74, 0x61, 0x73, 0x6b, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x74, 0x61, 0x73, 0x6b, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28,
 	0x05, 0x52, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x54, 0x61, 0x73, 0x6b, 0x73, 0x12, 0x25, 0x0a,
 	0x0e, 0x72, 0x65, 0x6d, 0x61, 0x69, 0x6e, 0x65, 0x64, 0x5f, 0x74, 0x61, 0x73, 0x6b, 0x73, 0x18,
-	0x05, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0d, 0x72, 0x65, 0x6d, 0x61, 0x69, 0x6e, 0x65, 0x64, 0x54,
+	0x04, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0d, 0x72, 0x65, 0x6d, 0x61, 0x69, 0x6e, 0x65, 0x64, 0x54,
 	0x61, 0x73, 0x6b, 0x73, 0x12, 0x23, 0x0a, 0x0d, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f,
-	0x74, 0x61, 0x73, 0x6b, 0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0c, 0x73, 0x75, 0x63,
+	0x74, 0x61, 0x73, 0x6b, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0c, 0x73, 0x75, 0x63,
 	0x63, 0x65, 0x73, 0x73, 0x54, 0x61, 0x73, 0x6b, 0x73, 0x12, 0x23, 0x0a, 0x0d, 0x66, 0x61, 0x69,
-	0x6c, 0x75, 0x72, 0x65, 0x5f, 0x74, 0x61, 0x73, 0x6b, 0x73, 0x18, 0x07, 0x20, 0x01, 0x28, 0x05,
+	0x6c, 0x75, 0x72, 0x65, 0x5f, 0x74, 0x61, 0x73, 0x6b, 0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x05,
 	0x52, 0x0c, 0x66, 0x61, 0x69, 0x6c, 0x75, 0x72, 0x65, 0x54, 0x61, 0x73, 0x6b, 0x73, 0x12, 0x2a,
 	0x0a, 0x11, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x5f, 0x73, 0x65, 0x63, 0x72, 0x65, 0x74,
-	0x5f, 0x69, 0x64, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x72, 0x65, 0x71, 0x75, 0x65,
+	0x5f, 0x69, 0x64, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x72, 0x65, 0x71, 0x75, 0x65,
 	0x73, 0x74, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x49, 0x64, 0x12, 0x30, 0x0a, 0x14, 0x72, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x5f, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f,
-	0x69, 0x64, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x69, 0x64, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73,
 	0x74, 0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x49, 0x64, 0x12, 0x5a, 0x0a, 0x0e,
 	0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x18, 0x14,
 	0x20, 0x01, 0x28, 0x0e, 0x32, 0x33, 0x2e, 0x73, 0x70, 0x61, 0x63, 0x65, 0x6f, 0x6e, 0x65, 0x2e,
