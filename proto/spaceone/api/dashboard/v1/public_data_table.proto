@@ -98,6 +98,17 @@ message CostSource {
   string data_key = 3;
 }
 
+message PivotFieldOptions{
+  repeated string labels = 1;
+  string column = 2;
+  string data = 3;
+}
+
+message PivotOrderBy {
+  string type = 1;
+  bool desc = 2;
+}
+
 message JoinOperator {
   enum JoinType {
     JOIN_TYPE_NONE = 0;
@@ -110,6 +121,8 @@ message JoinOperator {
   repeated string data_tables = 1;
   // +optional
   JoinType how = 2;
+  repeated string right_keys = 3;
+  repeated string left_keys = 4;
 }
 
 message ConcatOperator {
@@ -135,11 +148,15 @@ message EvaluateOperator {
 
 message PivotOperator {
   string data_table_id = 1;
-  repeated string index = 2;
-  repeated string columns = 3;
-  repeated string values = 4;
+  PivotFieldOptions fields = 2;
   // +optional
-  string aggregation = 5;
+  string function = 3;
+  // +optional
+  repeated string select = 4;
+  // +optional
+  PivotOrderBy order_by = 5;
+  // +optional
+  int32 limit = 6;
 }
 
 message TimeDiff {
