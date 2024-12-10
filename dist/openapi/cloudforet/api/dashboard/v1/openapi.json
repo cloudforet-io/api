@@ -861,7 +861,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |operator|JOIN, CONCAT, AGGREGATE, QUERY, EVAL, PIVOT |string|True|\n |options||TransformOptions|True|\n |name||string||\n |vars||Struct||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |operator|JOIN, CONCAT, AGGREGATE, QUERY, EVAL, PIVOT, ADD_LABELS, VALUE_MAPPING |string|True|\n |options||TransformOptions|True|\n |name||string||\n |vars||Struct||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -1000,7 +1000,7 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||Query||\n |data_table_id||string||\n |name||string||\n |data_type|ADDED, TRANSFORMED |string||\n |source_type|ASSET, COST |string||\n |operator|JOIN, CONCAT, AGGREGATE, QUERY, EVAL, PIVOT |string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||Query||\n |data_table_id||string||\n |name||string||\n |data_type|ADDED, TRANSFORMED |string||\n |source_type|ASSET, COST |string||\n |operator|JOIN, CONCAT, AGGREGATE, QUERY, EVAL, PIVOT, ADD_LABELS, VALUE_MAPPING |string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
@@ -2005,6 +2005,12 @@
          "required": ["data_table_id"],
                 "title": "UpdatePrivateDataTableRequest"
            }
+           ,        "AddLabelsOperator": {
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"labels" : {"type": "object","title": "LABELS"}},
+         "type": "object",
+         "required": ["data_table_id","labels"],
+                "title": "AddLabelsOperator"
+           }
            ,        "AddOptions": {
          "properties" : {"ASSET" : {"$ref": "#/components/schemas/AssetSource","title": "ASSET"},"COST" : {"$ref": "#/components/schemas/CostSource","title": "COST"},"data_name" : {"type": "string","title": "DATA_NAME"},"data_unit" : {"type": "string","title": "DATA_UNIT"},"group_by" : {"type": "array","title": "GROUP_BY"},"filter" : {"items": {"$ref": "#/components/schemas/Filter"},
                "type": "array","$ref": "#/components/schemas/Filter","title": "FILTER"},"filter_or" : {"items": {"$ref": "#/components/schemas/Filter"},
@@ -2052,9 +2058,11 @@
            }
            ,        "JoinOperator": {
          "properties" : {"data_tables" : {"items": {"type": "string"},
-               "type": "array","title": "DATA_TABLES"},"how" : {"type": "string","title": "HOW"}},
+               "type": "array","title": "DATA_TABLES"},"how" : {"type": "string","title": "HOW"},"right_keys" : {"items": {"type": "string"},
+               "type": "array","title": "RIGHT_KEYS"},"left_keys" : {"items": {"type": "string"},
+               "type": "array","title": "LEFT_KEYS"}},
          "type": "object",
-         "required": ["data_tables"],
+         "required": ["data_tables","right_keys","left_keys"],
                 "title": "JoinOperator"
            }
            ,        "LoadPublicDataTableRequest": {
@@ -2064,14 +2072,25 @@
          "required": ["data_table_id","granularity"],
                 "title": "LoadPublicDataTableRequest"
            }
-           ,        "PivotOperator": {
-         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"index" : {"items": {"type": "string"},
-               "type": "array","title": "INDEX"},"columns" : {"items": {"type": "string"},
-               "type": "array","title": "COLUMNS"},"values" : {"items": {"type": "string"},
-               "type": "array","title": "VALUES"},"aggregation" : {"type": "string","title": "AGGREGATION"}},
+           ,        "PivotFieldOptions": {
+         "properties" : {"labels" : {"items": {"type": "string"},
+               "type": "array","title": "LABELS"},"column" : {"type": "string","title": "COLUMN"},"data" : {"type": "string","title": "DATA"}},
          "type": "object",
-         "required": ["data_table_id","index","columns","values"],
+         "required": ["labels","column","data"],
+                "title": "PivotFieldOptions"
+           }
+           ,        "PivotOperator": {
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"fields" : {"$ref": "#/components/schemas/PivotFieldOptions","title": "FIELDS"},"function" : {"type": "string","title": "FUNCTION"},"select" : {"items": {"type": "string"},
+               "type": "array","title": "SELECT"},"order_by" : {"$ref": "#/components/schemas/PivotOrderBy","title": "ORDER_BY"},"limit" : {"type": "integer","title": "LIMIT"}},
+         "type": "object",
+         "required": ["data_table_id","fields"],
                 "title": "PivotOperator"
+           }
+           ,        "PivotOrderBy": {
+         "properties" : {"type" : {"type": "string","title": "TYPE"},"desc" : {"type": "boolean","title": "DESC"}},
+         "type": "object",
+         "required": ["type","desc"],
+                "title": "PivotOrderBy"
            }
            ,        "PublicDataTableInfo": {
          "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data_type" : {"type": "string","title": "DATA_TYPE"},"source_type" : {"type": "string","title": "SOURCE_TYPE"},"operator" : {"type": "string","title": "OPERATOR"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"labels_info" : {"type": "object","title": "LABELS_INFO"},"data_info" : {"type": "object","title": "DATA_INFO"},"error_message" : {"type": "string","title": "ERROR_MESSAGE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
@@ -2112,9 +2131,9 @@
                 "title": "TimeDiff"
            }
            ,        "TransformOptions": {
-         "properties" : {"JOIN" : {"$ref": "#/components/schemas/JoinOperator","title": "JOIN"},"CONCAT" : {"$ref": "#/components/schemas/ConcatOperator","title": "CONCAT"},"AGGREGATE" : {"$ref": "#/components/schemas/AggregateOperator","title": "AGGREGATE"},"QUERY" : {"$ref": "#/components/schemas/QueryOperator","title": "QUERY"},"EVAL" : {"$ref": "#/components/schemas/EvaluateOperator","title": "EVAL"},"PIVOT" : {"$ref": "#/components/schemas/PivotOperator","title": "PIVOT"}},
+         "properties" : {"JOIN" : {"$ref": "#/components/schemas/JoinOperator","title": "JOIN"},"CONCAT" : {"$ref": "#/components/schemas/ConcatOperator","title": "CONCAT"},"AGGREGATE" : {"$ref": "#/components/schemas/AggregateOperator","title": "AGGREGATE"},"QUERY" : {"$ref": "#/components/schemas/QueryOperator","title": "QUERY"},"EVAL" : {"$ref": "#/components/schemas/EvaluateOperator","title": "EVAL"},"PIVOT" : {"$ref": "#/components/schemas/PivotOperator","title": "PIVOT"},"ADD_LABELS" : {"$ref": "#/components/schemas/AddLabelsOperator","title": "ADD_LABELS"},"VALUE_MAPPING" : {"type": "string","title": "VALUE_MAPPING"}},
          "type": "object",
-         "required": ["JOIN","CONCAT","AGGREGATE","QUERY","EVAL","PIVOT"],
+         "required": ["JOIN","CONCAT","AGGREGATE","QUERY","EVAL","PIVOT","ADD_LABELS","VALUE_MAPPING"],
                 "title": "TransformOptions"
            }
            ,        "TransformPublicDataTableRequest": {
@@ -2128,6 +2147,19 @@
          "type": "object",
          "required": ["data_table_id"],
                 "title": "UpdatePublicDataTableRequest"
+           }
+           ,        "ValueMappingCases": {
+         "properties" : {"key" : {"type": "string","title": "KEY"},"operator" : {"type": "string","title": "OPERATOR"},"match" : {"type": "string","title": "MATCH"},"value" : {"type": "string","title": "VALUE"}},
+         "type": "object",
+         "required": ["key","operator","match","value"],
+                "title": "ValueMappingCases"
+           }
+           ,        "ValueMappingOperator": {
+         "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"field_type" : {"type": "string","title": "FIELD_TYPE"},"cases" : {"items": {"$ref": "#/components/schemas/ValueMappingCases"},
+               "type": "array","$ref": "#/components/schemas/ValueMappingCases","title": "CASES"},"else" : {"type": "string","title": "ELSE"},"condition" : {"type": "string","title": "CONDITION"}},
+         "type": "object",
+         "required": ["data_table_id","name","field_type","cases","else","condition"],
+                "title": "ValueMappingOperator"
            }
            ,        "CreatePublicFolderRequest": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"},"dashboards" : {"items": {"type": "object"},

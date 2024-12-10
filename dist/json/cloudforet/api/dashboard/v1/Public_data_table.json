@@ -156,6 +156,16 @@
               "name": "PIVOT",
               "number": "6",
               "description": ""
+            },
+            {
+              "name": "ADD_LABELS",
+              "number": "7",
+              "description": ""
+            },
+            {
+              "name": "VALUE_MAPPING",
+              "number": "8",
+              "description": ""
             }
           ]
         },
@@ -232,10 +242,92 @@
               "description": ""
             }
           ]
+        },
+        {
+          "name": "ValueMappingOperator",
+          "longName": "ValueMappingCases.ValueMappingOperator",
+          "fullName": "spaceone.api.dashboard.v1.ValueMappingCases.ValueMappingOperator",
+          "description": "",
+          "values": [
+            {
+              "name": "VALUE_MAPPING_OPERATOR_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "eq",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "regex",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "FieldType",
+          "longName": "ValueMappingOperator.FieldType",
+          "fullName": "spaceone.api.dashboard.v1.ValueMappingOperator.FieldType",
+          "description": "",
+          "values": [
+            {
+              "name": "FIELD_TYPE_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "LABEL",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DATA",
+              "number": "2",
+              "description": ""
+            }
+          ]
         }
       ],
       "extensions": [],
       "messages": [
+        {
+          "name": "AddLabelsOperator",
+          "longName": "AddLabelsOperator",
+          "fullName": "spaceone.api.dashboard.v1.AddLabelsOperator",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_table_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "labels",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
         {
           "name": "AddOptions",
           "longName": "AddOptions",
@@ -665,6 +757,30 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "right_keys",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "left_keys",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -765,6 +881,54 @@
           ]
         },
         {
+          "name": "PivotFieldOptions",
+          "longName": "PivotFieldOptions",
+          "fullName": "spaceone.api.dashboard.v1.PivotFieldOptions",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "labels",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "column",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "PivotOperator",
           "longName": "PivotOperator",
           "fullName": "spaceone.api.dashboard.v1.PivotOperator",
@@ -787,48 +951,96 @@
               "defaultValue": ""
             },
             {
-              "name": "index",
+              "name": "fields",
               "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "label": "",
+              "type": "PivotFieldOptions",
+              "longType": "PivotFieldOptions",
+              "fullType": "spaceone.api.dashboard.v1.PivotFieldOptions",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             },
             {
-              "name": "columns",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "values",
-              "description": "",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "aggregation",
+              "name": "function",
               "description": "+optional",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "select",
+              "description": "+optional",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "order_by",
+              "description": "+optional",
+              "label": "",
+              "type": "PivotOrderBy",
+              "longType": "PivotOrderBy",
+              "fullType": "spaceone.api.dashboard.v1.PivotOrderBy",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "limit",
+              "description": "+optional",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "PivotOrderBy",
+          "longName": "PivotOrderBy",
+          "fullName": "spaceone.api.dashboard.v1.PivotOrderBy",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "type",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "desc",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1385,6 +1597,30 @@
               "isoneof": true,
               "oneofdecl": "operator",
               "defaultValue": ""
+            },
+            {
+              "name": "ADD_LABELS",
+              "description": "",
+              "label": "",
+              "type": "AddLabelsOperator",
+              "longType": "AddLabelsOperator",
+              "fullType": "spaceone.api.dashboard.v1.AddLabelsOperator",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operator",
+              "defaultValue": ""
+            },
+            {
+              "name": "VALUE_MAPPING",
+              "description": "",
+              "label": "",
+              "type": "ValueMappingOperator",
+              "longType": "ValueMappingOperator",
+              "fullType": "spaceone.api.dashboard.v1.ValueMappingOperator",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "operator",
+              "defaultValue": ""
             }
           ]
         },
@@ -1537,6 +1773,150 @@
               "type": "Struct",
               "longType": "google.protobuf.Struct",
               "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ValueMappingCases",
+          "longName": "ValueMappingCases",
+          "fullName": "spaceone.api.dashboard.v1.ValueMappingCases",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "key",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "operator",
+              "description": "",
+              "label": "",
+              "type": "ValueMappingOperator",
+              "longType": "ValueMappingCases.ValueMappingOperator",
+              "fullType": "spaceone.api.dashboard.v1.ValueMappingCases.ValueMappingOperator",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "match",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ValueMappingOperator",
+          "longName": "ValueMappingOperator",
+          "fullName": "spaceone.api.dashboard.v1.ValueMappingOperator",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_table_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "field_type",
+              "description": "",
+              "label": "",
+              "type": "FieldType",
+              "longType": "ValueMappingOperator.FieldType",
+              "fullType": "spaceone.api.dashboard.v1.ValueMappingOperator.FieldType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "cases",
+              "description": "",
+              "label": "repeated",
+              "type": "ValueMappingCases",
+              "longType": "ValueMappingCases",
+              "fullType": "spaceone.api.dashboard.v1.ValueMappingCases",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "else",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "condition",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
