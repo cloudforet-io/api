@@ -15,7 +15,7 @@ service Region {
     // Creates a new Region. As the parameter `region_key`, which is automatically created when a Region is created, is in a form of `{provider}.{region_code}`, it is unique regardless of providers. You can also specify the latitude, longitude, and continent information in `tags`.
     rpc create (CreateRegionRequest) returns (RegionInfo) {
         option (google.api.http) = {
-            post: "/inventory/v2/region/create"
+            post: "/inventory-v2/v1/region/create"
             body: "*"
         };
     }
@@ -23,7 +23,7 @@ service Region {
     // Updates a specific Region. You can make changes in Region settings, including `name` and `tags`. The `tags` contain the continent, latitude, and longitude.
     rpc update (UpdateRegionRequest) returns (RegionInfo) {
         option (google.api.http) = {
-            post: "/inventory/v2/region/update"
+            post: "/inventory-v2/v1/region/update"
             body: "*"
         };
     }
@@ -31,7 +31,7 @@ service Region {
     // Deletes a specific Region. You must specify the `region_id` of the Region to delete.
     rpc delete (RegionRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/inventory/v2/region/delete"
+            post: "/inventory-v2/v1/region/delete"
             body: "*"
         };
     }
@@ -39,7 +39,7 @@ service Region {
     // Gets a specific Region. Prints detailed information about the Region, including `name`, `region_code`, and a location coordinate.
     rpc get (RegionRequest) returns (RegionInfo) {
         option (google.api.http) = {
-            post: "/inventory/v2/region/get"
+            post: "/inventory-v2/v1/region/get"
             body: "*"
         };
     }
@@ -47,14 +47,14 @@ service Region {
     // Gets a list of all Regions. You can use a query to get a filtered list of Regions.
     rpc list (RegionQuery) returns (RegionsInfo) {
         option (google.api.http) = {
-            post: "/inventory/v2/region/list"
+            post: "/inventory-v2/v1/region/list"
             body: "*"
         };
     }
 
     rpc stat (RegionStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/inventory/v2/region/stat"
+            post: "/inventory-v2/v1/region/stat"
             body: "*"
         };
     }
@@ -101,7 +101,7 @@ message RegionQuery {
     // +optional
     string provider = 6;
     // +optional
-    string exists_only = 7;
+    bool exists_only = 7;
     // +optional
     string workspace_id = 21;
 }
