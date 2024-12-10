@@ -1,9 +1,9 @@
 // A Region is a resource storing regional information from each cloud service provider. Regional data stored by the resource includes the latitude and longitude of the region.
 syntax = "proto3";
 
-package spaceone.api.inventory.v2;
+package spaceone.api.inventory_v2.v1;
 
-option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v2";
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory-v2/v1";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
@@ -61,12 +61,20 @@ service Region {
 }
 
 message CreateRegionRequest {
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string name = 1;
     string region_code = 2;
-    // +optional
     string provider = 3;
     // +optional
     google.protobuf.Struct tags = 4;
+    ResourceGroup resource_group = 20;
+    // +optional
+    string workspace_id = 21;
 }
 
 message UpdateRegionRequest {
@@ -89,22 +97,31 @@ message RegionQuery {
     // +optional
     string name = 3;
     // +optional
-    string region_key = 4;
-    // +optional
     string region_code = 5;
     // +optional
     string provider = 6;
+    // +optional
+    string exists_only = 7;
+    // +optional
+    string workspace_id = 21;
 }
 
 message RegionInfo {
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string region_id = 1;
     string name = 2;
-    string region_key = 3;
-    string region_code = 4;
-    string provider = 5;
-    google.protobuf.Struct tags = 6;
+    string region_code = 3;
+    string provider = 4;
+    google.protobuf.Struct tags = 5;
 
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
+    string workspace_id = 22;
 
     string created_at = 31;
     string updated_at = 32;
