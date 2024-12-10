@@ -23,10 +23,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	JobTask_Delete_FullMethodName = "/spaceone.api.inventory_v2.v1.JobTask/delete"
-	JobTask_Get_FullMethodName    = "/spaceone.api.inventory_v2.v1.JobTask/get"
-	JobTask_List_FullMethodName   = "/spaceone.api.inventory_v2.v1.JobTask/list"
-	JobTask_Stat_FullMethodName   = "/spaceone.api.inventory_v2.v1.JobTask/stat"
+	JobTask_Delete_FullMethodName    = "/spaceone.api.inventory_v2.v1.JobTask/delete"
+	JobTask_Get_FullMethodName       = "/spaceone.api.inventory_v2.v1.JobTask/get"
+	JobTask_GetDetail_FullMethodName = "/spaceone.api.inventory_v2.v1.JobTask/get_detail"
+	JobTask_List_FullMethodName      = "/spaceone.api.inventory_v2.v1.JobTask/list"
+	JobTask_Stat_FullMethodName      = "/spaceone.api.inventory_v2.v1.JobTask/stat"
 )
 
 // JobTaskClient is the client API for JobTask service.
@@ -37,6 +38,7 @@ type JobTaskClient interface {
 	Delete(ctx context.Context, in *JobTaskRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Gets a specific JobTask. Prints detailed information about the JobTask, including its state, updated or failure counts, and error log.
 	Get(ctx context.Context, in *JobTaskRequest, opts ...grpc.CallOption) (*JobTaskInfo, error)
+	GetDetail(ctx context.Context, in *JobTaskRequest, opts ...grpc.CallOption) (*JobTaskDetailInfo, error)
 	// Gets a list of all JobTasks in a specific Job. You can use a query to get a filtered list of JobTasks.
 	List(ctx context.Context, in *JobTaskQuery, opts ...grpc.CallOption) (*JobTasksInfo, error)
 	Stat(ctx context.Context, in *JobTaskStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -64,6 +66,16 @@ func (c *jobTaskClient) Get(ctx context.Context, in *JobTaskRequest, opts ...grp
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(JobTaskInfo)
 	err := c.cc.Invoke(ctx, JobTask_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobTaskClient) GetDetail(ctx context.Context, in *JobTaskRequest, opts ...grpc.CallOption) (*JobTaskDetailInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(JobTaskDetailInfo)
+	err := c.cc.Invoke(ctx, JobTask_GetDetail_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -98,6 +110,7 @@ type JobTaskServer interface {
 	Delete(context.Context, *JobTaskRequest) (*empty.Empty, error)
 	// Gets a specific JobTask. Prints detailed information about the JobTask, including its state, updated or failure counts, and error log.
 	Get(context.Context, *JobTaskRequest) (*JobTaskInfo, error)
+	GetDetail(context.Context, *JobTaskRequest) (*JobTaskDetailInfo, error)
 	// Gets a list of all JobTasks in a specific Job. You can use a query to get a filtered list of JobTasks.
 	List(context.Context, *JobTaskQuery) (*JobTasksInfo, error)
 	Stat(context.Context, *JobTaskStatQuery) (*_struct.Struct, error)
@@ -116,6 +129,9 @@ func (UnimplementedJobTaskServer) Delete(context.Context, *JobTaskRequest) (*emp
 }
 func (UnimplementedJobTaskServer) Get(context.Context, *JobTaskRequest) (*JobTaskInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedJobTaskServer) GetDetail(context.Context, *JobTaskRequest) (*JobTaskDetailInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDetail not implemented")
 }
 func (UnimplementedJobTaskServer) List(context.Context, *JobTaskQuery) (*JobTasksInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
@@ -180,6 +196,24 @@ func _JobTask_Get_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _JobTask_GetDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JobTaskRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobTaskServer).GetDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: JobTask_GetDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobTaskServer).GetDetail(ctx, req.(*JobTaskRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _JobTask_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(JobTaskQuery)
 	if err := dec(in); err != nil {
@@ -230,6 +264,10 @@ var JobTask_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "get",
 			Handler:    _JobTask_Get_Handler,
+		},
+		{
+			MethodName: "get_detail",
+			Handler:    _JobTask_GetDetail_Handler,
 		},
 		{
 			MethodName: "list",

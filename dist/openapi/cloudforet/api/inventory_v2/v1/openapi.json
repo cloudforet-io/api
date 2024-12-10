@@ -247,7 +247,7 @@
                "schema": {
                  "properties": {"job_id" : {"type": "string","title": "JOB_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"job_id\": \"job-123456789012\",\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"job_id\": \"job-123456789012\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -270,7 +270,7 @@
                "schema": {
                  "properties": {"job_id" : {"type": "string","title": "JOB_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"job_id\": \"job-123456789012\",\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"job_id\": \"job-123456789012\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -301,7 +301,7 @@
                "schema": {
                  "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"job_id" : {"type": "string","title": "JOB_ID" },"status" : {"type": "string","title": "STATUS" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"collector_id" : {"type": "string","title": "COLLECTOR_ID" },"plugin_id" : {"type": "string","title": "PLUGIN_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"page\": {\n           \"start\": 1,\n           \"limit\": 5\n       }\n   }\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -390,7 +390,7 @@
                "schema": {
                  "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\",\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -413,7 +413,7 @@
                "schema": {
                  "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\",\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\"\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -425,8 +425,37 @@
                  "schema": {"$ref": "#/components/schemas/JobTaskInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/JobTaskInfo"},"Default Example":{
-                     "value": "{\n     \"job_task_id\": \"job-task-123456789012\",\n     \"status\": \"FAILURE\",\n     \"updated_count\": 199,\n     \"failure_count\": 1,\n     \"errors\": [\n         {\n             \"error_code\": \"ERROR_PLUGIN\",\n             \"message\": \"{\\\"tags\\\": [\\\"Could not interpret the value as a list\\\"]}\",\n             \"additional\": {\n                 \"domain_id\": \"domain-123456789012\",\n                 \"resource_id\": \"eventarc-us-central1-function\",\n                 \"resource_type\": \"inventory.CloudService\",\n                 \"cloud_service_group\": \"Pub/Sub\",\n                 \"cloud_service_type\": \"Subscription\",\n                 \"provider\": \"google_cloud\"\n             }\n         }\n     ],\n     \"job_id\": \"job-123456789012\",\n     \"secret_id\": \"secret-123456789012\",\n     \"provider\": \"google_cloud\",\n     \"service_account_id\": \"sa-123456789012\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T11:00:02.588Z\",\n     \"started_at\": \"2022-01-01T11:00:02.819Z\",\n     \"finished_at\": \"2022-01-01T11:00:34.398Z\"\n}"
+                     "value": "{\n     \"job_task_id\": \"job-task-123456789012\",\n     \"status\": \"FAILURE\",\n     \"updated_count\": 199,\n     \"failure_count\": 1,\n     \"errors\": [\n         {\n             \"error_code\": \"ERROR_PLUGIN\",\n             \"message\": \"{\\\"tags\\\": [\\\"Could not interpret the value as a list\\\"]}\",\n             \"additional\": {\n                 \"domain_id\": \"domain-123456789012\",\n                 \"resource_id\": \"eventarc-us-central1-function\",\n                 \"resource_type\": \"inventory.CloudService\",\n                 \"cloud_service_group\": \"Pub/Sub\",\n                 \"cloud_service_type\": \"Subscription\",\n                 \"provider\": \"google_cloud\"\n             }\n         }\n     ],\n     \"job_id\": \"job-123456789012\",\n     \"secret_id\": \"secret-123456789012\",\n     \"provider\": \"google_cloud\",\n     \"service_account_id\": \"sa-123456789012\",\n     \"collector_id\": \"collector-123456789012\",\n     \"project_id\": \"project-123456789012\",\n     \"domain_id\": \"domain-123456789012\",\n     \"created_at\": \"2022-01-01T11:00:02.588Z\",\n     \"started_at\": \"2022-01-01T11:00:02.819Z\",\n     \"finished_at\": \"2022-01-01T11:00:34.398Z\"\n}"
                    }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/job-task/get-detail": {
+       "post": {
+         "tags": ["inventory-v2 > job-task"],
+         "summary": "Get Detail",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |job_task_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"job_task_id" : {"type": "string","title": "JOB_TASK_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"job_task_id\": \"job-task-123456789012\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/JobTaskDetailInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/JobTaskDetailInfo"}}
                }
              }}
          }
@@ -444,7 +473,7 @@
                "schema": {
                  "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"job_task_id" : {"type": "string","title": "JOB_TASK_ID" },"status" : {"type": "string","title": "STATUS" },"provider" : {"type": "string","title": "PROVIDER" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID" },"job_id" : {"type": "string","title": "JOB_ID" },"secret_id" : {"type": "string","title": "SECRET_ID" }                 }
                },
-               "examples":{"Default Example":{"value": "{\n   \"query\": {}\n}"},"Schema":{}
+               "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"status\",\n               \"value\": \"FAILURE\",\n               \"operator\": \"eq\"\n           }\n       ],\n       \"page\": {\n           \"start\": 1,\n           \"limit\": 5\n       }\n   }\n}"},"Schema":{}
                }
              }
            },"required": true
@@ -456,7 +485,7 @@
                  "schema": {"$ref": "#/components/schemas/JobTasksInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/JobTasksInfo"},"Default Example":{
-                     "value": "{\n   \"results\": [\n       {\n           \"job_task_id\": \"job_task-69b301d0fbfc\",\n           \"status\": \"SUCCESS\",\n           \"updated_count\": 55,\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"secret_id\": \"secret-957e407bfc15\",\n           \"provider\": \"aws\",\n           \"service_account_id\": \"sa-a41ff4765671\",\n           \"project_id\": \"project-77dffd3f7cd3\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.680Z\",\n           \"started_at\": \"2022-06-17T08:00:00.914Z\",\n           \"finished_at\": \"2022-06-17T08:05:48.933Z\"\n       },\n       {\n           \"job_task_id\": \"job_task-c5077338cf23\",\n           \"status\": \"SUCCESS\",\n           \"updated_count\": 1921,\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"secret_id\": \"secret-1cd7417c1889\",\n           \"provider\": \"aws\",\n           \"service_account_id\": \"sa-5e186fcc7c91\",\n           \"project_id\": \"project-18655561c535\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.582Z\",\n           \"started_at\": \"2022-06-17T08:00:00.814Z\",\n           \"finished_at\": \"2022-06-17T08:07:31.995Z\"\n       }\n   ],\n   \"total_count\": 4839\n}"
+                     "value": "{\n   \"results\": [\n       {\n           \"job_task_id\": \"job_task-69b301d0fbfc\",\n           \"status\": \"SUCCESS\",\n           \"updated_count\": 55,\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"secret_id\": \"secret-957e407bfc15\",\n           \"provider\": \"aws\",\n           \"service_account_id\": \"sa-a41ff4765671\",\n           \"project_id\": \"project-77dfad3f7cd3\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"workspace_id\": \"workspace-78099aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.680Z\",\n           \"started_at\": \"2022-06-17T08:00:00.914Z\",\n           \"updated_at\": \"2022-06-17T08:00:00.814Z\",\n           \"finished_at\": \"2022-06-17T08:05:48.933Z\"\n       },\n       {\n           \"job_task_id\": \"job_task-c5077338cf23\",\n           \"status\": \"SUCCESS\",\n           \"created_count\": 123,\n           \"updated_count\": 1921,\n           \"job_id\": \"job-587a3d3b4db3\",\n           \"secret_id\": \"secret-1cd7417c1889\",\n           \"provider\": \"aws\",\n           \"service_account_id\": \"sa-5e186fcc7c91\",\n           \"project_id\": \"project-18655561c535\",\n           \"workspace_id\": \"workspace-1c1b7b7b7b7b\",\n           \"domain_id\": \"domain-58010aa2e451\",\n           \"created_at\": \"2022-06-17T08:00:00.582Z\",\n           \"started_at\": \"2022-06-17T08:00:00.814Z\",\n           \"updated_at\": \"2022-06-17T08:00:00.814Z\",\n           \"finished_at\": \"2022-06-17T08:07:31.995Z\"\n       }\n   ],\n   \"total_count\": 2\n}"
                    }}
                }
              }}
@@ -1317,11 +1346,16 @@
          "required": ["error_code","message","additional"],
                 "title": "ErrorInfo"
            }
-           ,        "JobTaskInfo": {
-         "properties" : {"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"status" : {"type": "string","title": "STATUS"},"provider" : {"type": "string","title": "PROVIDER"},"created_count" : {"type": "integer","title": "CREATED_COUNT"},"updated_count" : {"type": "integer","title": "UPDATED_COUNT"},"failure_count" : {"type": "integer","title": "FAILURE_COUNT"},"deleted_count" : {"type": "integer","title": "DELETED_COUNT"},"disconnected_count" : {"type": "integer","title": "DISCONNECTED_COUNT"},"errors" : {"items": {"$ref": "#/components/schemas/ErrorInfo"},
-               "type": "array","$ref": "#/components/schemas/ErrorInfo","title": "ERRORS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"job_id" : {"type": "string","title": "JOB_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"started_at" : {"type": "string","title": "STARTED_AT"},"finished_at" : {"type": "string","title": "FINISHED_AT"}},
+           ,        "JobTaskDetailInfo": {
+         "properties" : {"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"created_info" : {"type": "object","title": "CREATED_INFO"},"updated_info" : {"type": "object","title": "UPDATED_INFO"},"failure_info" : {"type": "object","title": "FAILURE_INFO"},"deleted_info" : {"type": "object","title": "DELETED_INFO"},"disconnected_info" : {"type": "object","title": "DISCONNECTED_INFO"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"job_id" : {"type": "string","title": "JOB_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
          "type": "object",
-         "required": ["job_task_id","status","provider","created_count","updated_count","failure_count","deleted_count","disconnected_count","errors","domain_id","workspace_id","project_id","service_account_id","job_id","secret_id","created_at","started_at","finished_at"],
+         "required": ["job_task_id","created_info","updated_info","failure_info","deleted_info","disconnected_info","domain_id","workspace_id","project_id","job_id","created_at"],
+                "title": "JobTaskDetailInfo"
+           }
+           ,        "JobTaskInfo": {
+         "properties" : {"job_task_id" : {"type": "string","title": "JOB_TASK_ID"},"status" : {"type": "string","title": "STATUS"},"provider" : {"type": "string","title": "PROVIDER"},"created_count" : {"type": "integer","title": "CREATED_COUNT"},"updated_count" : {"type": "integer","title": "UPDATED_COUNT"},"failure_count" : {"type": "integer","title": "FAILURE_COUNT"},"deleted_count" : {"type": "integer","title": "DELETED_COUNT"},"disconnected_count" : {"type": "integer","title": "DISCONNECTED_COUNT"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"job_id" : {"type": "string","title": "JOB_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"started_at" : {"type": "string","title": "STARTED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"finished_at" : {"type": "string","title": "FINISHED_AT"}},
+         "type": "object",
+         "required": ["job_task_id","status","provider","created_count","updated_count","failure_count","deleted_count","disconnected_count","domain_id","workspace_id","project_id","collector_id","service_account_id","job_id","secret_id","created_at","started_at","updated_at","finished_at"],
                 "title": "JobTaskInfo"
            }
            ,        "JobTaskQuery": {

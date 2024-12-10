@@ -51,6 +51,11 @@ class JobTaskStub(object):
                 request_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_job__task__pb2.JobTaskRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_job__task__pb2.JobTaskInfo.FromString,
                 _registered_method=True)
+        self.get_detail = channel.unary_unary(
+                '/spaceone.api.inventory_v2.v1.JobTask/get_detail',
+                request_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_job__task__pb2.JobTaskRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_job__task__pb2.JobTaskDetailInfo.FromString,
+                _registered_method=True)
         self.list = channel.unary_unary(
                 '/spaceone.api.inventory_v2.v1.JobTask/list',
                 request_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_job__task__pb2.JobTaskQuery.SerializeToString,
@@ -80,6 +85,12 @@ class JobTaskServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def get_detail(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def list(self, request, context):
         """Gets a list of all JobTasks in a specific Job. You can use a query to get a filtered list of JobTasks.
         """
@@ -105,6 +116,11 @@ def add_JobTaskServicer_to_server(servicer, server):
                     servicer.get,
                     request_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_job__task__pb2.JobTaskRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_job__task__pb2.JobTaskInfo.SerializeToString,
+            ),
+            'get_detail': grpc.unary_unary_rpc_method_handler(
+                    servicer.get_detail,
+                    request_deserializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_job__task__pb2.JobTaskRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_inventory__v2_dot_v1_dot_job__task__pb2.JobTaskDetailInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
@@ -171,6 +187,33 @@ class JobTask(object):
             '/spaceone.api.inventory_v2.v1.JobTask/get',
             spaceone_dot_api_dot_inventory__v2_dot_v1_dot_job__task__pb2.JobTaskRequest.SerializeToString,
             spaceone_dot_api_dot_inventory__v2_dot_v1_dot_job__task__pb2.JobTaskInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def get_detail(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.inventory_v2.v1.JobTask/get_detail',
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_job__task__pb2.JobTaskRequest.SerializeToString,
+            spaceone_dot_api_dot_inventory__v2_dot_v1_dot_job__task__pb2.JobTaskDetailInfo.FromString,
             options,
             channel_credentials,
             insecure,

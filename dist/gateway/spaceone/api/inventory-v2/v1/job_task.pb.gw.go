@@ -14,7 +14,7 @@ import (
 	"io"
 	"net/http"
 
-	v1_0 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory-v2/v1"
+	extV1 "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory-v2/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -36,9 +36,9 @@ var (
 	_ = metadata.Join
 )
 
-func request_JobTask_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_JobTask_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq v1_0.JobTaskRequest
+		protoReq extV1.JobTaskRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -48,9 +48,9 @@ func request_JobTask_Delete_0(ctx context.Context, marshaler runtime.Marshaler, 
 	return msg, metadata, err
 }
 
-func local_request_JobTask_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_JobTask_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq v1_0.JobTaskRequest
+		protoReq extV1.JobTaskRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -60,9 +60,9 @@ func local_request_JobTask_Delete_0(ctx context.Context, marshaler runtime.Marsh
 	return msg, metadata, err
 }
 
-func request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq v1_0.JobTaskRequest
+		protoReq extV1.JobTaskRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -72,9 +72,9 @@ func request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshaler, cli
 	return msg, metadata, err
 }
 
-func local_request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq v1_0.JobTaskRequest
+		protoReq extV1.JobTaskRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -84,9 +84,33 @@ func local_request_JobTask_Get_0(ctx context.Context, marshaler runtime.Marshale
 	return msg, metadata, err
 }
 
-func request_JobTask_List_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_JobTask_GetDetail_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq v1_0.JobTaskQuery
+		protoReq extV1.JobTaskRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.GetDetail(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_JobTask_GetDetail_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq extV1.JobTaskRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.GetDetail(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_JobTask_List_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq extV1.JobTaskQuery
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -96,9 +120,9 @@ func request_JobTask_List_0(ctx context.Context, marshaler runtime.Marshaler, cl
 	return msg, metadata, err
 }
 
-func local_request_JobTask_List_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_JobTask_List_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq v1_0.JobTaskQuery
+		protoReq extV1.JobTaskQuery
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -108,9 +132,9 @@ func local_request_JobTask_List_0(ctx context.Context, marshaler runtime.Marshal
 	return msg, metadata, err
 }
 
-func request_JobTask_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client v1_0.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_JobTask_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.JobTaskClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq v1_0.JobTaskStatQuery
+		protoReq extV1.JobTaskStatQuery
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -120,9 +144,9 @@ func request_JobTask_Stat_0(ctx context.Context, marshaler runtime.Marshaler, cl
 	return msg, metadata, err
 }
 
-func local_request_JobTask_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server v1_0.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_JobTask_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.JobTaskServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq v1_0.JobTaskStatQuery
+		protoReq extV1.JobTaskStatQuery
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -137,7 +161,7 @@ func local_request_JobTask_Stat_0(ctx context.Context, marshaler runtime.Marshal
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterJobTaskHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
-func RegisterJobTaskHandlerServer(ctx context.Context, mux *runtime.ServeMux, server v1_0.JobTaskServer) error {
+func RegisterJobTaskHandlerServer(ctx context.Context, mux *runtime.ServeMux, server extV1.JobTaskServer) error {
 	mux.Handle(http.MethodPost, pattern_JobTask_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -177,6 +201,26 @@ func RegisterJobTaskHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			return
 		}
 		forward_JobTask_Get_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_JobTask_GetDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.inventory_v2.v1.JobTask/GetDetail", runtime.WithHTTPPathPattern("/inventory-v2/v1/job-task/get-detail"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_JobTask_GetDetail_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_JobTask_GetDetail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_JobTask_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -249,15 +293,15 @@ func RegisterJobTaskHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeM
 // RegisterJobTaskHandler registers the http handlers for service JobTask to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
 func RegisterJobTaskHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterJobTaskHandlerClient(ctx, mux, v1_0.NewJobTaskClient(conn))
+	return RegisterJobTaskHandlerClient(ctx, mux, extV1.NewJobTaskClient(conn))
 }
 
 // RegisterJobTaskHandlerClient registers the http handlers for service JobTask
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "v1_0.JobTaskClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "v1_0.JobTaskClient"
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "extV1.JobTaskClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "extV1.JobTaskClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "v1_0.JobTaskClient" to call the correct interceptors. This client ignores the HTTP middlewares.
-func RegisterJobTaskHandlerClient(ctx context.Context, mux *runtime.ServeMux, client v1_0.JobTaskClient) error {
+// "extV1.JobTaskClient" to call the correct interceptors. This client ignores the HTTP middlewares.
+func RegisterJobTaskHandlerClient(ctx context.Context, mux *runtime.ServeMux, client extV1.JobTaskClient) error {
 	mux.Handle(http.MethodPost, pattern_JobTask_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -291,6 +335,23 @@ func RegisterJobTaskHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			return
 		}
 		forward_JobTask_Get_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_JobTask_GetDetail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.inventory_v2.v1.JobTask/GetDetail", runtime.WithHTTPPathPattern("/inventory-v2/v1/job-task/get-detail"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_JobTask_GetDetail_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_JobTask_GetDetail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_JobTask_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -330,15 +391,17 @@ func RegisterJobTaskHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 }
 
 var (
-	pattern_JobTask_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"inventory-v2", "v1", "job-task", "delete"}, ""))
-	pattern_JobTask_Get_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"inventory-v2", "v1", "job-task", "get"}, ""))
-	pattern_JobTask_List_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"inventory-v2", "v1", "job-task", "list"}, ""))
-	pattern_JobTask_Stat_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"inventory-v2", "v1", "job-task", "stat"}, ""))
+	pattern_JobTask_Delete_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"inventory-v2", "v1", "job-task", "delete"}, ""))
+	pattern_JobTask_Get_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"inventory-v2", "v1", "job-task", "get"}, ""))
+	pattern_JobTask_GetDetail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"inventory-v2", "v1", "job-task", "get-detail"}, ""))
+	pattern_JobTask_List_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"inventory-v2", "v1", "job-task", "list"}, ""))
+	pattern_JobTask_Stat_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"inventory-v2", "v1", "job-task", "stat"}, ""))
 )
 
 var (
-	forward_JobTask_Delete_0 = runtime.ForwardResponseMessage
-	forward_JobTask_Get_0    = runtime.ForwardResponseMessage
-	forward_JobTask_List_0   = runtime.ForwardResponseMessage
-	forward_JobTask_Stat_0   = runtime.ForwardResponseMessage
+	forward_JobTask_Delete_0    = runtime.ForwardResponseMessage
+	forward_JobTask_Get_0       = runtime.ForwardResponseMessage
+	forward_JobTask_GetDetail_0 = runtime.ForwardResponseMessage
+	forward_JobTask_List_0      = runtime.ForwardResponseMessage
+	forward_JobTask_Stat_0      = runtime.ForwardResponseMessage
 )
