@@ -83,6 +83,8 @@ enum Operator {
   QUERY = 4;
   EVAL = 5;
   PIVOT = 6;
+  ADD_LABELS = 7;
+  VALUE_MAPPING = 8;
 }
 
 message AssetSource {
@@ -98,6 +100,17 @@ message CostSource {
   string data_key = 3;
 }
 
+message PivotFieldOptions{
+  repeated string labels = 1;
+  string column = 2;
+  string data = 3;
+}
+
+message PivotOrderBy {
+  string type = 1;
+  bool desc = 2;
+}
+
 message JoinOperator {
   enum JoinType {
     JOIN_TYPE_NONE = 0;
@@ -110,6 +123,8 @@ message JoinOperator {
   repeated string data_tables = 1;
   // +optional
   JoinType how = 2;
+  repeated string right_keys = 3;
+  repeated string left_keys = 4;
 }
 
 message ConcatOperator {
@@ -135,11 +150,46 @@ message EvaluateOperator {
 
 message PivotOperator {
   string data_table_id = 1;
-  repeated string index = 2;
-  repeated string columns = 3;
-  repeated string values = 4;
+  PivotFieldOptions fields = 2;
   // +optional
-  string aggregation = 5;
+  string function = 3;
+  // +optional
+  repeated string select = 4;
+  // +optional
+  PivotOrderBy order_by = 5;
+  // +optional
+  int32 limit = 6;
+}
+
+message AddLabelsOperator {
+  string data_table_id = 1;
+  google.protobuf.Struct labels = 2;
+}
+
+message ValueMappingCases {
+  enum ValueMappingOperator {
+    VALUE_MAPPING_OPERATOR_NONE = 0;
+    eq = 1;
+    regex = 2;
+  }
+  string key = 1;
+  ValueMappingOperator operator = 2;
+  string match = 3;
+  string value = 4;
+}
+
+message ValueMappingOperator {
+  enum FieldType {
+    FIELD_TYPE_NONE = 0;
+    LABEL = 1;
+    DATA = 2;
+  }
+  string data_table_id = 1;
+  string name = 2;
+  FieldType field_type = 3;
+  repeated ValueMappingCases cases = 4;
+  string else = 5;
+  string condition = 6;
 }
 
 message TimeDiff {
@@ -185,6 +235,8 @@ message TransformOptions {
     QueryOperator QUERY = 4;
     EvaluateOperator EVAL = 5;
     PivotOperator PIVOT = 6;
+    AddLabelsOperator ADD_LABELS = 7;
+    ValueMappingOperator VALUE_MAPPING = 8;
   }
 }
 
