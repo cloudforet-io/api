@@ -1,9 +1,9 @@
 // A Region is a resource storing regional information from each cloud service provider. Regional data stored by the resource includes the latitude and longitude of the region.
 syntax = "proto3";
 
-package spaceone.api.inventory.v2;
+package spaceone.api.inventory_v2.v1;
 
-option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory/v2";
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory-v2/v1";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
@@ -15,7 +15,7 @@ service Region {
     // Creates a new Region. As the parameter `region_key`, which is automatically created when a Region is created, is in a form of `{provider}.{region_code}`, it is unique regardless of providers. You can also specify the latitude, longitude, and continent information in `tags`.
     rpc create (CreateRegionRequest) returns (RegionInfo) {
         option (google.api.http) = {
-            post: "/inventory/v2/region/create"
+            post: "/inventory-v2/v1/region/create"
             body: "*"
         };
     }
@@ -23,7 +23,7 @@ service Region {
     // Updates a specific Region. You can make changes in Region settings, including `name` and `tags`. The `tags` contain the continent, latitude, and longitude.
     rpc update (UpdateRegionRequest) returns (RegionInfo) {
         option (google.api.http) = {
-            post: "/inventory/v2/region/update"
+            post: "/inventory-v2/v1/region/update"
             body: "*"
         };
     }
@@ -31,7 +31,7 @@ service Region {
     // Deletes a specific Region. You must specify the `region_id` of the Region to delete.
     rpc delete (RegionRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/inventory/v2/region/delete"
+            post: "/inventory-v2/v1/region/delete"
             body: "*"
         };
     }
@@ -39,7 +39,7 @@ service Region {
     // Gets a specific Region. Prints detailed information about the Region, including `name`, `region_code`, and a location coordinate.
     rpc get (RegionRequest) returns (RegionInfo) {
         option (google.api.http) = {
-            post: "/inventory/v2/region/get"
+            post: "/inventory-v2/v1/region/get"
             body: "*"
         };
     }
@@ -47,26 +47,34 @@ service Region {
     // Gets a list of all Regions. You can use a query to get a filtered list of Regions.
     rpc list (RegionQuery) returns (RegionsInfo) {
         option (google.api.http) = {
-            post: "/inventory/v2/region/list"
+            post: "/inventory-v2/v1/region/list"
             body: "*"
         };
     }
 
     rpc stat (RegionStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/inventory/v2/region/stat"
+            post: "/inventory-v2/v1/region/stat"
             body: "*"
         };
     }
 }
 
 message CreateRegionRequest {
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string name = 1;
     string region_code = 2;
-    // +optional
     string provider = 3;
     // +optional
     google.protobuf.Struct tags = 4;
+    ResourceGroup resource_group = 20;
+    // +optional
+    string workspace_id = 21;
 }
 
 message UpdateRegionRequest {
@@ -89,22 +97,31 @@ message RegionQuery {
     // +optional
     string name = 3;
     // +optional
-    string region_key = 4;
+    string region_code = 4;
     // +optional
-    string region_code = 5;
+    string provider = 5;
     // +optional
-    string provider = 6;
+    bool exists_only = 6;
+    // +optional
+    string workspace_id = 21;
 }
 
 message RegionInfo {
+    enum ResourceGroup {
+        RESOURCE_GROUP_NONE = 0;
+        DOMAIN = 1;
+        WORKSPACE = 2;
+    }
+
     string region_id = 1;
     string name = 2;
-    string region_key = 3;
-    string region_code = 4;
-    string provider = 5;
-    google.protobuf.Struct tags = 6;
+    string region_code = 3;
+    string provider = 4;
+    google.protobuf.Struct tags = 5;
 
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
+    string workspace_id = 22;
 
     string created_at = 31;
     string updated_at = 32;

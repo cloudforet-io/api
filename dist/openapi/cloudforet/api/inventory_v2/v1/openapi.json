@@ -868,6 +868,174 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/region/create": {
+       "post": {
+         "tags": ["inventory-v2 > region"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \nCreates a new Region. As the parameter `region_key`, which is automatically created when a Region is created, is in a form of `{provider}.{region_code}`, it is unique regardless of providers. You can also specify the latitude, longitude, and continent information in `tags`.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |region_code||string|True|\n |provider||string|True|\n |resource_group|DOMAIN, WORKSPACE |string|True|\n |tags||Struct||\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"name" : {"type": "string","title": "NAME" },"region_code" : {"type": "string","title": "REGION_CODE" },"provider" : {"type": "string","title": "PROVIDER" },"tags" : {"type": "object","title": "TAGS" },"resource_group" : {"type": "string","title": "RESOURCE_GROUP" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/RegionInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/RegionInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/region/update": {
+       "post": {
+         "tags": ["inventory-v2 > region"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \nUpdates a specific Region. You can make changes in Region settings, including `name` and `tags`. The `tags` contain the continent, latitude, and longitude.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |region_id||string|True|\n |name||string||\n |tags||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"region_id" : {"type": "string","title": "REGION_ID" },"name" : {"type": "string","title": "NAME" },"tags" : {"type": "object","title": "TAGS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/RegionInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/RegionInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/region/delete": {
+       "post": {
+         "tags": ["inventory-v2 > region"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific Region. You must specify the `region_id` of the Region to delete.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |region_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"region_id" : {"type": "string","title": "REGION_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/region/get": {
+       "post": {
+         "tags": ["inventory-v2 > region"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific Region. Prints detailed information about the Region, including `name`, `region_code`, and a location coordinate.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |region_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"region_id" : {"type": "string","title": "REGION_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/RegionInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/RegionInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/region/list": {
+       "post": {
+         "tags": ["inventory-v2 > region"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Regions. You can use a query to get a filtered list of Regions.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |region_id||string||\n |name||string||\n |region_code||string||\n |provider||string||\n |exists_only||boolean||\n |workspace_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"region_id" : {"type": "string","title": "REGION_ID" },"name" : {"type": "string","title": "NAME" },"region_code" : {"type": "string","title": "REGION_CODE" },"provider" : {"type": "string","title": "PROVIDER" },"exists_only" : {"type": "boolean","title": "EXISTS_ONLY" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/RegionsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/RegionsInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/region/stat": {
+       "post": {
+         "tags": ["inventory-v2 > region"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/inventory-v2/metric-example/create": {
        "post": {
          "tags": ["inventory-v2 > metric-example"],
@@ -1499,6 +1667,49 @@
          "type": "object",
          "required": ["results","total_count"],
                 "title": "MetricDatasInfo"
+           }
+           ,        "CreateRegionRequest": {
+         "properties" : {"name" : {"type": "string","title": "NAME"},"region_code" : {"type": "string","title": "REGION_CODE"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": ["name","region_code","provider","resource_group"],
+                "title": "CreateRegionRequest"
+           }
+           ,        "RegionInfo": {
+         "properties" : {"region_id" : {"type": "string","title": "REGION_ID"},"name" : {"type": "string","title": "NAME"},"region_code" : {"type": "string","title": "REGION_CODE"},"provider" : {"type": "string","title": "PROVIDER"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+         "type": "object",
+         "required": ["region_id","name","region_code","provider","tags","resource_group","domain_id","workspace_id","created_at","updated_at"],
+                "title": "RegionInfo"
+           }
+           ,        "RegionQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"region_id" : {"type": "string","title": "REGION_ID"},"name" : {"type": "string","title": "NAME"},"region_code" : {"type": "string","title": "REGION_CODE"},"provider" : {"type": "string","title": "PROVIDER"},"exists_only" : {"type": "boolean","title": "EXISTS_ONLY"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "RegionQuery"
+           }
+           ,        "RegionRequest": {
+         "properties" : {"region_id" : {"type": "string","title": "REGION_ID"}},
+         "type": "object",
+         "required": ["region_id"],
+                "title": "RegionRequest"
+           }
+           ,        "RegionStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "RegionStatQuery"
+           }
+           ,        "RegionsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/RegionInfo"},
+               "type": "array","$ref": "#/components/schemas/RegionInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "RegionsInfo"
+           }
+           ,        "UpdateRegionRequest": {
+         "properties" : {"region_id" : {"type": "string","title": "REGION_ID"},"name" : {"type": "string","title": "NAME"},"tags" : {"type": "object","title": "TAGS"}},
+         "type": "object",
+         "required": ["region_id"],
+                "title": "UpdateRegionRequest"
            }
            ,        "CreateMetricExampleRequest": {
          "properties" : {"metric_id" : {"type": "string","title": "METRIC_ID"},"name" : {"type": "string","title": "NAME"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"}},
