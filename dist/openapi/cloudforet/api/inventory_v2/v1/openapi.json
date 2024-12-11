@@ -1210,6 +1210,269 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/asset/create": {
+       "post": {
+         "tags": ["inventory-v2 > asset"],
+         "summary": "Create",
+         "operationId" : "",
+         "description": "### Description \nCreates a new Asset. A Asset instance is created based on data including the `resource`'s attribute values. When creating, the classification information defined by AssetType is also needed. The created Asset has collection information which is the collection history for the `resource` by plugin.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |asset_type_id||string|True|\n |provider||string|True|\n |data||Struct|True|\n |name||string||\n |account||string||\n |ip_addresses||array||\n |metadata||Struct||\n |tags||Struct||\n |region_code||string||\n |project_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"asset_type_id" : {"type": "string","title": "ASSET_TYPE_ID" },"provider" : {"type": "string","title": "PROVIDER" },"name" : {"type": "string","title": "NAME" },"account" : {"type": "string","title": "ACCOUNT" },"ip_addresses" : {"items": {}, "type": "array","title": "IP_ADDRESSES" },"data" : {"type": "object","title": "DATA" },"metadata" : {"type": "object","title": "METADATA" },"tags" : {"type": "object","title": "TAGS" },"region_code" : {"type": "string","title": "REGION_CODE" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"cloud_service_type\": \"Key\",\n   \"provider\": \"aws\",\n   \"cloud_service_group\": \"KMS\",\n   \"name\": \"cloud_service_test\",\n   \"account\": \"251340636361\",\n   \"launched_at\": \"2020-08-03T15:00:54.000Z\",\n   \"ip_addresses\": [],\n   \"data\": {\n       \"alias_arn\": null,\n       \"origin\": \"AWS_KMS\",\n       \"cloudwatch\": {\n           \"region_name\": \"ap-northeast-1\",\n           \"namespace\": \"AWS/KMS\",\n           \"dimensions\": [\n               {\n                   \"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n                   \"Name\": \"KeyId\"\n               }\n           ]\n       },\n       \"aws_account_id\": \"251340636361\",\n       \"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n       \"encryption_algorithms\": [\n           \"SYMMETRIC_DEFAULT\"\n       ],\n       \"key_usage\": \"ENCRYPT_DECRYPT\",\n       \"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_type_path\": \"defaultKeys\",\n       \"key_rotated\": false,\n       \"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n       \"key_state\": \"Enabled\",\n       \"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n       \"enabled\": true,\n       \"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_manager\": \"AWS\"\n   },\n   \"metadata\": {},\n   \"reference\": {\n       \"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n   },\n   \"tags\": {\n       \"a\": \"b\"\n   },\n   \"region_code\": \"ap-northeast-1\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/AssetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/AssetInfo"},"Default Example":{
+                     "value": "{\n   \"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n   \"name\": \"cloud_service_test\",\n   \"state\": \"ACTIVE\",\n   \"account\": \"251340636361\",\n   \"cloud_service_type\": \"Key\",\n   \"cloud_service_group\": \"KMS\",\n   \"provider\": \"aws\",\n   \"data\": {\n       \"alias_arn\": null,\n       \"origin\": \"AWS_KMS\",\n       \"cloudwatch\": {\n           \"region_name\": \"ap-northeast-1\",\n           \"namespace\": \"AWS/KMS\",\n           \"dimensions\": [\n               {\n                   \"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n                   \"Name\": \"KeyId\"\n               }\n           ]\n       },\n       \"aws_account_id\": \"251340636361\",\n       \"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n       \"encryption_algorithms\": [\n           \"SYMMETRIC_DEFAULT\"\n       ],\n       \"key_usage\": \"ENCRYPT_DECRYPT\",\n       \"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_type_path\": \"defaultKeys\",\n       \"key_rotated\": false,\n       \"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n       \"key_state\": \"Enabled\",\n       \"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n       \"enabled\": true,\n       \"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_manager\": \"AWS\"\n   },\n   \"metadata\": {\n       \"manual\": {}\n   },\n   \"reference\": {\n       \"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n   },\n   \"tags\": {\n       \"custom\": {\n             \"b\" : \"c\"\n       },\n       \"aws\" : {\n             \"env\": \"dev\"\n       }\n   },\n   \"collection_info\": {\n       \"service_account_id\": \"sa-abcd1234\",\n       \"secret_id\": \"secret-abcd1234\",\n       \"collector_id\": \"collector-abcd1234\",\n       \"last_collected_at\": \"2022-06-22T06:38:48.989Z\"\n   },\n   \"ip_addresses\": [],\n   \"region_code\": \"ap-northeast-1\",\n   \"workspace_id\": \"workspace-58010aa2e451\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T06:38:48.989Z\",\n   \"updated_at\": \"2022-06-22T06:38:48.989Z\",\n   \"launched_at\": \"2020-08-03T15:00:54.000Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/asset/update": {
+       "post": {
+         "tags": ["inventory-v2 > asset"],
+         "summary": "Update",
+         "operationId" : "",
+         "description": "### Description \nUpdates a specific Asset. You can make changes in Asset settings, except for the classification system of Asset and the information about the `resource` attribute value.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |cloud_service_id||string|True|\n |name||string||\n |account||string||\n |instance_type||string||\n |instance_size||float||\n |ip_addresses||array||\n |data||Struct||\n |metadata||Struct||\n |tags||Struct||\n |region_code||string||\n |project_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID" },"name" : {"type": "string","title": "NAME" },"account" : {"type": "string","title": "ACCOUNT" },"instance_type" : {"type": "string","title": "INSTANCE_TYPE" },"instance_size" : {"type": "float","title": "INSTANCE_SIZE" },"ip_addresses" : {"items": {}, "type": "array","title": "IP_ADDRESSES" },"data" : {"type": "object","title": "DATA" },"metadata" : {"type": "object","title": "METADATA" },"tags" : {"type": "object","title": "TAGS" },"region_code" : {"type": "string","title": "REGION_CODE" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n   \"name\": \"cloud_service_test2\",\n   \"ip_addresses\": [\n       \"1.1.1.1\",\n       \"2.2.2.2\"\n   ],\n   \"tags\": {\n       \"description\": \"spaceone\"\n   },\n   \"region_code\": \"ap-northeast-2\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/AssetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/AssetInfo"},"Default Example":{
+                     "value": "{\n   \"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n   \"name\": \"cloud_service_test\",\n   \"state\": \"ACTIVE\",\n   \"account\": \"251340636361\",\n   \"cloud_service_type\": \"Key\",\n   \"cloud_service_group\": \"KMS\",\n   \"provider\": \"aws\",\n   \"data\": {\n       \"alias_arn\": null,\n       \"origin\": \"AWS_KMS\",\n       \"cloudwatch\": {\n           \"region_name\": \"ap-northeast-1\",\n           \"namespace\": \"AWS/KMS\",\n           \"dimensions\": [\n               {\n                   \"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n                   \"Name\": \"KeyId\"\n               }\n           ]\n       },\n       \"aws_account_id\": \"251340636361\",\n       \"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n       \"encryption_algorithms\": [\n           \"SYMMETRIC_DEFAULT\"\n       ],\n       \"key_usage\": \"ENCRYPT_DECRYPT\",\n       \"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_type_path\": \"defaultKeys\",\n       \"key_rotated\": false,\n       \"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n       \"key_state\": \"Enabled\",\n       \"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n       \"enabled\": true,\n       \"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_manager\": \"AWS\"\n   },\n   \"metadata\": {\n       \"manual\": {}\n   },\n   \"reference\": {\n       \"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n   },\n   \"tags\": {\n       \"custom\": {\n             \"b\" : \"c\"\n       },\n       \"aws\" : {\n             \"env\": \"dev\"\n       }\n   },\n   \"collection_info\": {\n       \"service_account_id\": \"sa-abcd1234\",\n       \"secret_id\": \"secret-abcd1234\",\n       \"collector_id\": \"collector-abcd1234\",\n       \"last_collected_at\": \"2022-06-22T06:38:48.989Z\"\n   },\n   \"ip_addresses\": [],\n   \"region_code\": \"ap-northeast-1\",\n   \"workspace_id\": \"workspace-58010aa2e451\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T06:38:48.989Z\",\n   \"updated_at\": \"2022-06-22T06:38:48.989Z\",\n   \"launched_at\": \"2020-08-03T15:00:54.000Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/asset/delete": {
+       "post": {
+         "tags": ["inventory-v2 > asset"],
+         "summary": "Delete",
+         "operationId" : "",
+         "description": "### Description \nDeletes a specific Asset. You must specify the `cloud_service_id` of the Asset to delete.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |asset_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"asset_id" : {"type": "string","title": "ASSET_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"asset_id\": \"asset-fea2b0d32141\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response"}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/asset/get": {
+       "post": {
+         "tags": ["inventory-v2 > asset"],
+         "summary": "Get",
+         "operationId" : "",
+         "description": "### Description \nGets a specific Asset. Prints detailed information about the Asset, including its state, classification information, and attribute values.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |asset_id||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"asset_id" : {"type": "string","title": "ASSET_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"asset_id\": \"asset-fea2b0d32141\"\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/AssetInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/AssetInfo"},"Default Example":{
+                     "value": "{\n   \"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n   \"name\": \"cloud_service_test\",\n   \"state\": \"ACTIVE\",\n   \"account\": \"251340636361\",\n   \"cloud_service_type\": \"Key\",\n   \"cloud_service_group\": \"KMS\",\n   \"provider\": \"aws\",\n   \"data\": {\n       \"alias_arn\": null,\n       \"origin\": \"AWS_KMS\",\n       \"cloudwatch\": {\n           \"region_name\": \"ap-northeast-1\",\n           \"namespace\": \"AWS/KMS\",\n           \"dimensions\": [\n               {\n                   \"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n                   \"Name\": \"KeyId\"\n               }\n           ]\n       },\n       \"aws_account_id\": \"251340636361\",\n       \"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n       \"encryption_algorithms\": [\n           \"SYMMETRIC_DEFAULT\"\n       ],\n       \"key_usage\": \"ENCRYPT_DECRYPT\",\n       \"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_type_path\": \"defaultKeys\",\n       \"key_rotated\": false,\n       \"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n       \"key_state\": \"Enabled\",\n       \"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n       \"enabled\": true,\n       \"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"key_manager\": \"AWS\"\n   },\n   \"metadata\": {\n       \"manual\": {}\n   },\n   \"reference\": {\n       \"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n       \"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n   },\n   \"tags\": {\n       \"custom\": {\n             \"b\" : \"c\"\n       },\n       \"aws\" : {\n             \"env\": \"dev\"\n       }\n   },\n   \"collection_info\": {\n       \"service_account_id\": \"sa-abcd1234\",\n       \"secret_id\": \"secret-abcd1234\",\n       \"collector_id\": \"collector-abcd1234\",\n       \"last_collected_at\": \"2022-06-22T06:38:48.989Z\"\n   },\n   \"ip_addresses\": [],\n   \"region_code\": \"ap-northeast-1\",\n   \"workspace_id\": \"workspace-58010aa2e451\",\n   \"domain_id\": \"domain-58010aa2e451\",\n   \"created_at\": \"2022-06-22T06:38:48.989Z\",\n   \"updated_at\": \"2022-06-22T06:38:48.989Z\",\n   \"launched_at\": \"2020-08-03T15:00:54.000Z\"\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/asset/list": {
+       "post": {
+         "tags": ["inventory-v2 > asset"],
+         "summary": "List",
+         "operationId" : "",
+         "description": "### Description \nGets a list of all Assets. You can use a query to get a filtered list of Assets.",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |asset_id||string||\n |name||string||\n |state||string||\n |ip_address||string||\n |account||string||\n |asset_type_id||string||\n |provider||string||\n |region_id||string||\n |workspace_id||string||\n |project_id||string||\n |project_group_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"asset_id" : {"type": "string","title": "ASSET_ID" },"name" : {"type": "string","title": "NAME" },"state" : {"type": "string","title": "STATE" },"ip_address" : {"type": "string","title": "IP_ADDRESS" },"account" : {"type": "string","title": "ACCOUNT" },"asset_type_id" : {"type": "string","title": "ASSET_TYPE_ID" },"provider" : {"type": "string","title": "PROVIDER" },"region_id" : {"type": "string","title": "REGION_ID" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" },"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n   \"query\": {\n       \"filter\": [\n           {\n               \"key\": \"asset_type_id\",\n               \"value\": \"Key\",\n               \"operator\": \"eq\"\n           }\n       ]\n   }\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/AssetsInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/AssetsInfo"},"Default Example":{
+                     "value": "{\n   \"results\": [{\n       \"cloud_service_id\": \"cloud-svc-c00f38a173e1\",\n       \"name\": \"cloud_service_test2\",\n       \"state\": \"ACTIVE\",\n       \"account\": \"251340636361\",\n       \"cloud_service_type\": \"Key\",\n       \"cloud_service_group\": \"KMS\",\n       \"provider\": \"aws\",\n       \"data\": {\n           \"alias_arn\": null,\n           \"origin\": \"AWS_KMS\",\n           \"cloudwatch\": {\n               \"region_name\": \"ap-northeast-1\",\n               \"namespace\": \"AWS/KMS\",\n               \"dimensions\": [\n                   {\n                       \"Value\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n                       \"Name\": \"KeyId\"\n                   }\n               ]\n           },\n           \"aws_account_id\": \"251340636361\",\n           \"creation_date\": \"2020-07-09T09:39:03.097000+0000\",\n           \"encryption_algorithms\": [\n               \"SYMMETRIC_DEFAULT\"\n           ],\n           \"key_usage\": \"ENCRYPT_DECRYPT\",\n           \"key_id\": \"0drda5e1-c40f-45d7-a647-xxxxxxx\",\n           \"key_type_path\": \"defaultKeys\",\n           \"key_rotated\": false,\n           \"description\": \"Default master key that protects my Secrets Manager data when no other key is defined\",\n           \"key_state\": \"Enabled\",\n           \"customer_master_key_spec\": \"SYMMETRIC_DEFAULT\",\n           \"enabled\": true,\n           \"arn\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n           \"key_manager\": \"AWS\"\n       },\n       \"metadata\": {\n           \"manual\": {}\n       },\n       \"reference\": {\n           \"resource_id\": \"arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx\",\n           \"external_link\": \"https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/\"\n       },\n       \"tags\": {\n           \"description\": \"spaceone\"\n       },\n       \"collection_info\": {\n            \"service_account_id\": \"sa-abcd1234\",\n            \"secret_id\": \"secret-abcd1234\",\n            \"collector_id\": \"collector-abcd1234\",\n            \"last_collected_at\": \"2022-06-22T06:38:48.989Z\"\n       },\n       \"ip_addresses\": [\n           \"1.1.1.1\",\n           \"2.2.2.2\"\n       ],\n       \"region_code\": \"ap-northeast-1\",\n       \"workspace_id\": \"workspace-58010aa2e451\",\n       \"domain_id\": \"domain-58010aa2e451\",\n       \"created_at\": \"2022-06-22T06:38:48.989Z\",\n       \"updated_at\": \"2022-06-22T06:38:48.989Z\",\n       \"launched_at\": \"2020-08-03T15:00:54.000Z\"\n   }],\n   \"total_count\": 1\n}"
+                   }}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/asset/export": {
+       "post": {
+         "tags": ["inventory-v2 > asset"],
+         "summary": "Export",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |options||array|True|\n |file_format|EXCEL, CSV |string||\n |file_name||string||\n |timezone||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"options" : {"items": {"$ref": "#/components/schemas/ExportOption"}, "type": "array","title": "OPTIONS" },"file_format" : {"type": "string","title": "FILE_FORMAT" },"file_name" : {"type": "string","title": "FILE_NAME" },"timezone" : {"type": "string","title": "TIMEZONE" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/asset/history": {
+       "post": {
+         "tags": ["inventory-v2 > asset"],
+         "summary": "History",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |asset_id||string|True|\n |query||Query||\n |history_id||string||\n |action|CREATE, UPDATE, DELETE |string||\n |updated_by||string||\n |collector_id||string||\n |job_id||string||\n |user_id||string||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"history_id" : {"type": "string","title": "HISTORY_ID" },"asset_id" : {"type": "string","title": "ASSET_ID" },"action" : {"type": "string","title": "ACTION" },"updated_by" : {"type": "string","title": "UPDATED_BY" },"collector_id" : {"type": "string","title": "COLLECTOR_ID" },"job_id" : {"type": "string","title": "JOB_ID" },"user_id" : {"type": "string","title": "USER_ID" }                 }
+               },
+               "examples":{"Default Example":{"value": "{\n}"},"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/AssetHistoriesInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/AssetHistoriesInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/asset/analyze": {
+       "post": {
+         "tags": ["inventory-v2 > asset"],
+         "summary": "Analyze",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||AnalyzeQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/inventory-v2/asset/stat": {
+       "post": {
+         "tags": ["inventory-v2 > asset"],
+         "summary": "Stat",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"securitySchemes": {"HTTPBearer": {"type": "http","scheme": "bearer","bearerFormat": "JWT"}}
    },
    "components":{
@@ -1753,6 +2016,85 @@
          "type": "object",
          "required": ["example_id"],
                 "title": "UpdateMetricExampleRequest"
+           }
+           ,        "AssetAnalyzeQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/AnalyzeQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "AssetAnalyzeQuery"
+           }
+           ,        "AssetCreateRequest": {
+         "properties" : {"asset_type_id" : {"type": "string","title": "ASSET_TYPE_ID"},"provider" : {"type": "string","title": "PROVIDER"},"name" : {"type": "string","title": "NAME"},"account" : {"type": "string","title": "ACCOUNT"},"ip_addresses" : {"items": {"type": "string"},
+               "type": "array","title": "IP_ADDRESSES"},"data" : {"type": "object","title": "DATA"},"metadata" : {"type": "object","title": "METADATA"},"tags" : {"type": "object","title": "TAGS"},"region_code" : {"type": "string","title": "REGION_CODE"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": ["asset_type_id","provider","data"],
+                "title": "AssetCreateRequest"
+           }
+           ,        "AssetExportRequest": {
+         "properties" : {"options" : {"items": {"$ref": "#/components/schemas/ExportOption"},
+               "type": "array","$ref": "#/components/schemas/ExportOption","title": "OPTIONS"},"file_format" : {"type": "string","title": "FILE_FORMAT"},"file_name" : {"type": "string","title": "FILE_NAME"},"timezone" : {"type": "string","title": "TIMEZONE"}},
+         "type": "object",
+         "required": ["options"],
+                "title": "AssetExportRequest"
+           }
+           ,        "AssetHistoriesInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/AssetHistoryInfo"},
+               "type": "array","$ref": "#/components/schemas/AssetHistoryInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "AssetHistoriesInfo"
+           }
+           ,        "AssetHistoryInfo": {
+         "properties" : {"history_id" : {"type": "string","title": "HISTORY_ID"},"asset_id" : {"type": "string","title": "ASSET_ID"},"action" : {"type": "string","title": "ACTION"},"diff" : {"items": {"type": "object"},
+               "type": "array","title": "DIFF"},"diff_count" : {"type": "integer","title": "DIFF_COUNT"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"job_id" : {"type": "string","title": "JOB_ID"},"user_id" : {"type": "string","title": "USER_ID"},"created_at" : {"type": "string","title": "CREATED_AT"}},
+         "type": "object",
+         "required": ["history_id","asset_id","action","diff","diff_count","updated_by","domain_id","collector_id","job_id","user_id","created_at"],
+                "title": "AssetHistoryInfo"
+           }
+           ,        "AssetHistoryQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"history_id" : {"type": "string","title": "HISTORY_ID"},"asset_id" : {"type": "string","title": "ASSET_ID"},"action" : {"type": "string","title": "ACTION"},"updated_by" : {"type": "string","title": "UPDATED_BY"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"job_id" : {"type": "string","title": "JOB_ID"},"user_id" : {"type": "string","title": "USER_ID"}},
+         "type": "object",
+         "required": ["asset_id"],
+                "title": "AssetHistoryQuery"
+           }
+           ,        "AssetInfo": {
+         "properties" : {"asset_id" : {"type": "string","title": "ASSET_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"ip_addresses" : {"items": {"type": "string"},
+               "type": "array","title": "IP_ADDRESSES"},"account" : {"type": "string","title": "ACCOUNT"},"asset_type_id" : {"type": "string","title": "ASSET_TYPE_ID"},"provider" : {"type": "string","title": "PROVIDER"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"region_id" : {"type": "string","title": "REGION_ID"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"collector_id" : {"type": "string","title": "COLLECTOR_ID"},"service_account_id" : {"type": "string","title": "SERVICE_ACCOUNT_ID"},"secret_id" : {"type": "string","title": "SECRET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"deleted_at" : {"type": "string","title": "DELETED_AT"}},
+         "type": "object",
+         "required": ["asset_id","name","state","ip_addresses","account","asset_type_id","provider","data","tags","region_id","domain_id","workspace_id","project_id","collector_id","service_account_id","secret_id","created_at","updated_at","deleted_at"],
+                "title": "AssetInfo"
+           }
+           ,        "AssetQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"asset_id" : {"type": "string","title": "ASSET_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"ip_address" : {"type": "string","title": "IP_ADDRESS"},"account" : {"type": "string","title": "ACCOUNT"},"asset_type_id" : {"type": "string","title": "ASSET_TYPE_ID"},"provider" : {"type": "string","title": "PROVIDER"},"region_id" : {"type": "string","title": "REGION_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"project_group_id" : {"type": "string","title": "PROJECT_GROUP_ID"}},
+         "type": "object",
+         "required": [],
+                "title": "AssetQuery"
+           }
+           ,        "AssetRequest": {
+         "properties" : {"asset_id" : {"type": "string","title": "ASSET_ID"}},
+         "type": "object",
+         "required": ["asset_id"],
+                "title": "AssetRequest"
+           }
+           ,        "AssetStatQuery": {
+         "properties" : {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY"}},
+         "type": "object",
+         "required": ["query"],
+                "title": "AssetStatQuery"
+           }
+           ,        "AssetsInfo": {
+         "properties" : {"results" : {"items": {"$ref": "#/components/schemas/AssetInfo"},
+               "type": "array","$ref": "#/components/schemas/AssetInfo","title": "RESULTS"},"total_count" : {"type": "integer","title": "TOTAL_COUNT"}},
+         "type": "object",
+         "required": ["results","total_count"],
+                "title": "AssetsInfo"
+           }
+           ,        "UpdateAssetRequest": {
+         "properties" : {"cloud_service_id" : {"type": "string","title": "CLOUD_SERVICE_ID"},"name" : {"type": "string","title": "NAME"},"account" : {"type": "string","title": "ACCOUNT"},"instance_type" : {"type": "string","title": "INSTANCE_TYPE"},"instance_size" : {"type": "float","title": "INSTANCE_SIZE"},"ip_addresses" : {"items": {"type": "string"},
+               "type": "array","title": "IP_ADDRESSES"},"data" : {"type": "object","title": "DATA"},"metadata" : {"type": "object","title": "METADATA"},"tags" : {"type": "object","title": "TAGS"},"region_code" : {"type": "string","title": "REGION_CODE"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "type": "object",
+         "required": ["cloud_service_id"],
+                "title": "UpdateAssetRequest"
            }
                    },
       "Struct": {"properties": {"type": "object","title": "Struct"}},
