@@ -13,61 +13,61 @@ import "spaceone/api/core/v2/query.proto";
 service Webhook {
     rpc create (WebhookCreateRequest) returns (WebhookInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/webhook/create"
+            post: "/alert-manager/v1/webhook/create"
             body: "*"
         };
     }
     rpc update (WebhookUpdateRequest) returns (WebhookInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/webhook/update"
+            post: "/alert-manager/v1/webhook/update"
             body: "*"
         };
     }
     rpc update_plugin (WebhookUpdatePluginRequest) returns (WebhookInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/webhook/update-plugin"
+            post: "/alert-manager/v1/webhook/update-plugin"
             body: "*"
         };
     }
     rpc verify_plugin (WebhookRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/monitoring/v1/webhook/verify-plugin"
+            post: "/alert-manager/v1/webhook/verify-plugin"
             body: "*"
         };
     }
     rpc enable (WebhookRequest) returns (WebhookInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/webhook/enable"
+            post: "/alert-manager/v1/webhook/enable"
             body: "*"
         };
     }
     rpc disable (WebhookRequest) returns (WebhookInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/webhook/disable"
+            post: "/alert-manager/v1/webhook/disable"
             body: "*"
         };
     }
     rpc delete (WebhookRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/monitoring/v1/webhook/delete"
+            post: "/alert-manager/v1/webhook/delete"
             body: "*"
         };
     }
     rpc get (WebhookRequest) returns (WebhookInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/webhook/get"
+            post: "/alert-manager/v1/webhook/get"
             body: "*"
         };
     }
     rpc list (WebhookSearchQuery) returns (WebhooksInfo) {
         option (google.api.http) = {
-            post: "/monitoring/v1/webhook/list"
+            post: "/alert-manager/v1/webhook/list"
             body: "*"
         };
     }
     rpc stat (WebhookStatQuery) returns (google.protobuf.Struct) {
         option (google.api.http) = {
-            post: "/monitoring/v1/webhook/stat",
+            post: "/alert-manager/v1/webhook/stat",
             body: "*"
         };
     }
