@@ -4,9 +4,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.6.1
-// source: spaceone/api/inventory/v2/region.proto
+// source: spaceone/api/inventory_v2/v1/region.proto
 
-package v2
+package v1
 
 import (
 	context "context"
@@ -23,12 +23,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Region_Create_FullMethodName = "/spaceone.api.inventory.v2.Region/create"
-	Region_Update_FullMethodName = "/spaceone.api.inventory.v2.Region/update"
-	Region_Delete_FullMethodName = "/spaceone.api.inventory.v2.Region/delete"
-	Region_Get_FullMethodName    = "/spaceone.api.inventory.v2.Region/get"
-	Region_List_FullMethodName   = "/spaceone.api.inventory.v2.Region/list"
-	Region_Stat_FullMethodName   = "/spaceone.api.inventory.v2.Region/stat"
+	Region_Create_FullMethodName = "/spaceone.api.inventory_v2.v1.Region/create"
+	Region_Update_FullMethodName = "/spaceone.api.inventory_v2.v1.Region/update"
+	Region_Delete_FullMethodName = "/spaceone.api.inventory_v2.v1.Region/delete"
+	Region_Get_FullMethodName    = "/spaceone.api.inventory_v2.v1.Region/get"
+	Region_List_FullMethodName   = "/spaceone.api.inventory_v2.v1.Region/list"
+	Region_Stat_FullMethodName   = "/spaceone.api.inventory_v2.v1.Region/stat"
 )
 
 // RegionClient is the client API for Region service.
@@ -292,7 +292,7 @@ func _Region_Stat_Handler(srv interface{}, ctx context.Context, dec func(interfa
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Region_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "spaceone.api.inventory.v2.Region",
+	ServiceName: "spaceone.api.inventory_v2.v1.Region",
 	HandlerType: (*RegionServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -321,5 +321,5 @@ var Region_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "spaceone/api/inventory/v2/region.proto",
+	Metadata: "spaceone/api/inventory_v2/v1/region.proto",
 }

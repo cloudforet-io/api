@@ -1,20 +1,67 @@
 {
   "files": [
     {
-      "name": "spaceone/api/inventory/v2/region.proto",
+      "name": "spaceone/api/inventory_v2/v1/region.proto",
       "description": "A Region is a resource storing regional information from each cloud service provider. Regional data stored by the resource includes the latitude and longitude of the region.",
-      "package": "spaceone.api.inventory.v2",
+      "package": "spaceone.api.inventory_v2.v1",
       "hasEnums": false,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
-      "enums": [],
+      "enums": [
+        {
+          "name": "ResourceGroup",
+          "longName": "CreateRegionRequest.ResourceGroup",
+          "fullName": "spaceone.api.inventory_v2.v1.CreateRegionRequest.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ResourceGroup",
+          "longName": "RegionInfo.ResourceGroup",
+          "fullName": "spaceone.api.inventory_v2.v1.RegionInfo.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        }
+      ],
       "extensions": [],
       "messages": [
         {
           "name": "CreateRegionRequest",
           "longName": "CreateRegionRequest",
-          "fullName": "spaceone.api.inventory.v2.CreateRegionRequest",
+          "fullName": "spaceone.api.inventory_v2.v1.CreateRegionRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -47,7 +94,7 @@
             },
             {
               "name": "provider",
-              "description": "+optional",
+              "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -68,13 +115,37 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "CreateRegionRequest.ResourceGroup",
+              "fullType": "spaceone.api.inventory_v2.v1.CreateRegionRequest.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
         {
           "name": "RegionInfo",
           "longName": "RegionInfo",
-          "fullName": "spaceone.api.inventory.v2.RegionInfo",
+          "fullName": "spaceone.api.inventory_v2.v1.RegionInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -106,18 +177,6 @@
               "defaultValue": ""
             },
             {
-              "name": "region_key",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "region_code",
               "description": "",
               "label": "",
@@ -154,7 +213,31 @@
               "defaultValue": ""
             },
             {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "RegionInfo.ResourceGroup",
+              "fullType": "spaceone.api.inventory_v2.v1.RegionInfo.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -194,7 +277,7 @@
         {
           "name": "RegionQuery",
           "longName": "RegionQuery",
-          "fullName": "spaceone.api.inventory.v2.RegionQuery",
+          "fullName": "spaceone.api.inventory_v2.v1.RegionQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -238,18 +321,6 @@
               "defaultValue": ""
             },
             {
-              "name": "region_key",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
               "name": "region_code",
               "description": "+optional",
               "label": "",
@@ -272,13 +343,37 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "exists_only",
+              "description": "+optional",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
         {
           "name": "RegionRequest",
           "longName": "RegionRequest",
-          "fullName": "spaceone.api.inventory.v2.RegionRequest",
+          "fullName": "spaceone.api.inventory_v2.v1.RegionRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -302,7 +397,7 @@
         {
           "name": "RegionStatQuery",
           "longName": "RegionStatQuery",
-          "fullName": "spaceone.api.inventory.v2.RegionStatQuery",
+          "fullName": "spaceone.api.inventory_v2.v1.RegionStatQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -326,7 +421,7 @@
         {
           "name": "RegionsInfo",
           "longName": "RegionsInfo",
-          "fullName": "spaceone.api.inventory.v2.RegionsInfo",
+          "fullName": "spaceone.api.inventory_v2.v1.RegionsInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -339,7 +434,7 @@
               "label": "repeated",
               "type": "RegionInfo",
               "longType": "RegionInfo",
-              "fullType": "spaceone.api.inventory.v2.RegionInfo",
+              "fullType": "spaceone.api.inventory_v2.v1.RegionInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -362,7 +457,7 @@
         {
           "name": "UpdateRegionRequest",
           "longName": "UpdateRegionRequest",
-          "fullName": "spaceone.api.inventory.v2.UpdateRegionRequest",
+          "fullName": "spaceone.api.inventory_v2.v1.UpdateRegionRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -412,7 +507,7 @@
         {
           "name": "Region",
           "longName": "Region",
-          "fullName": "spaceone.api.inventory.v2.Region",
+          "fullName": "spaceone.api.inventory_v2.v1.Region",
           "description": "",
           "methods": [
             {
@@ -420,18 +515,18 @@
               "description": "Creates a new Region. As the parameter `region_key`, which is automatically created when a Region is created, is in a form of `{provider}.{region_code}`, it is unique regardless of providers. You can also specify the latitude, longitude, and continent information in `tags`.",
               "requestType": "CreateRegionRequest",
               "requestLongType": "CreateRegionRequest",
-              "requestFullType": "spaceone.api.inventory.v2.CreateRegionRequest",
+              "requestFullType": "spaceone.api.inventory_v2.v1.CreateRegionRequest",
               "requestStreaming": false,
               "responseType": "RegionInfo",
               "responseLongType": "RegionInfo",
-              "responseFullType": "spaceone.api.inventory.v2.RegionInfo",
+              "responseFullType": "spaceone.api.inventory_v2.v1.RegionInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v2/region/create",
+                      "pattern": "/inventory-v2/v1/region/create",
                       "body": "*"
                     }
                   ]
@@ -443,18 +538,18 @@
               "description": "Updates a specific Region. You can make changes in Region settings, including `name` and `tags`. The `tags` contain the continent, latitude, and longitude.",
               "requestType": "UpdateRegionRequest",
               "requestLongType": "UpdateRegionRequest",
-              "requestFullType": "spaceone.api.inventory.v2.UpdateRegionRequest",
+              "requestFullType": "spaceone.api.inventory_v2.v1.UpdateRegionRequest",
               "requestStreaming": false,
               "responseType": "RegionInfo",
               "responseLongType": "RegionInfo",
-              "responseFullType": "spaceone.api.inventory.v2.RegionInfo",
+              "responseFullType": "spaceone.api.inventory_v2.v1.RegionInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v2/region/update",
+                      "pattern": "/inventory-v2/v1/region/update",
                       "body": "*"
                     }
                   ]
@@ -466,7 +561,7 @@
               "description": "Deletes a specific Region. You must specify the `region_id` of the Region to delete.",
               "requestType": "RegionRequest",
               "requestLongType": "RegionRequest",
-              "requestFullType": "spaceone.api.inventory.v2.RegionRequest",
+              "requestFullType": "spaceone.api.inventory_v2.v1.RegionRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -477,7 +572,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v2/region/delete",
+                      "pattern": "/inventory-v2/v1/region/delete",
                       "body": "*"
                     }
                   ]
@@ -489,18 +584,18 @@
               "description": "Gets a specific Region. Prints detailed information about the Region, including `name`, `region_code`, and a location coordinate.",
               "requestType": "RegionRequest",
               "requestLongType": "RegionRequest",
-              "requestFullType": "spaceone.api.inventory.v2.RegionRequest",
+              "requestFullType": "spaceone.api.inventory_v2.v1.RegionRequest",
               "requestStreaming": false,
               "responseType": "RegionInfo",
               "responseLongType": "RegionInfo",
-              "responseFullType": "spaceone.api.inventory.v2.RegionInfo",
+              "responseFullType": "spaceone.api.inventory_v2.v1.RegionInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v2/region/get",
+                      "pattern": "/inventory-v2/v1/region/get",
                       "body": "*"
                     }
                   ]
@@ -512,18 +607,18 @@
               "description": "Gets a list of all Regions. You can use a query to get a filtered list of Regions.",
               "requestType": "RegionQuery",
               "requestLongType": "RegionQuery",
-              "requestFullType": "spaceone.api.inventory.v2.RegionQuery",
+              "requestFullType": "spaceone.api.inventory_v2.v1.RegionQuery",
               "requestStreaming": false,
               "responseType": "RegionsInfo",
               "responseLongType": "RegionsInfo",
-              "responseFullType": "spaceone.api.inventory.v2.RegionsInfo",
+              "responseFullType": "spaceone.api.inventory_v2.v1.RegionsInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v2/region/list",
+                      "pattern": "/inventory-v2/v1/region/list",
                       "body": "*"
                     }
                   ]
@@ -535,7 +630,7 @@
               "description": "",
               "requestType": "RegionStatQuery",
               "requestLongType": "RegionStatQuery",
-              "requestFullType": "spaceone.api.inventory.v2.RegionStatQuery",
+              "requestFullType": "spaceone.api.inventory_v2.v1.RegionStatQuery",
               "requestStreaming": false,
               "responseType": "Struct",
               "responseLongType": ".google.protobuf.Struct",
@@ -546,7 +641,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/inventory/v2/region/stat",
+                      "pattern": "/inventory-v2/v1/region/stat",
                       "body": "*"
                     }
                   ]
