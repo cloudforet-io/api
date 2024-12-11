@@ -1,0 +1,484 @@
+// A Asset is data of an `instance` of a `resource`. A Asset follows the pre-created classification system of a AssetType and indicates the property value of the `resource`.
+syntax = "proto3";
+
+package spaceone.api.inventory_v2.v1;
+
+option go_package = "github.com/cloudforet-io/api/dist/go/spaceone/api/inventory_v2/v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "spaceone/api/core/v2/query.proto";
+
+
+service Asset {
+
+  // Creates a new Asset. A Asset instance is created based on data including the `resource`'s attribute values. When creating, the classification information defined by AssetType is also needed. The created Asset has collection information which is the collection history for the `resource` by plugin.
+  rpc create (AssetCreateRequest) returns (AssetInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/asset/create"
+      body: "*"
+    };
+  }
+
+  // Updates a specific Asset. You can make changes in Asset settings, except for the classification system of Asset and the information about the `resource` attribute value.
+  rpc update (UpdateAssetRequest) returns (AssetInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/asset/update"
+      body: "*"
+    };
+  }
+
+  // Deletes a specific Asset. You must specify the `cloud_service_id` of the Asset to delete.
+  rpc delete (AssetRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/asset/delete"
+      body: "*"
+    };
+  }
+
+  // Gets a specific Asset. Prints detailed information about the Asset, including its state, classification information, and attribute values.
+  rpc get (AssetRequest) returns (AssetInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/asset/get"
+      body: "*"
+    };
+  }
+
+  // Gets a list of all Assets. You can use a query to get a filtered list of Assets.
+  rpc list (AssetQuery) returns (AssetsInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/asset/list"
+      body: "*"
+    };
+  }
+
+  rpc export (AssetExportRequest) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/asset/export"
+      body: "*"
+    };
+  }
+
+  rpc history (AssetHistoryQuery) returns (AssetHistoriesInfo) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/asset/history"
+      body: "*"
+    };
+  }
+
+  rpc analyze (AssetAnalyzeQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/asset/analyze"
+      body: "*"
+    };
+  }
+
+  rpc stat (AssetStatQuery) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/inventory-v2/v1/asset/stat"
+      body: "*"
+    };
+  }
+}
+
+//{
+//    "cloud_service_type": "Key",
+//    "provider": "aws",
+//    "cloud_service_group": "KMS",
+//    "name": "cloud_service_test",
+//    "account": "251340636361",
+//    "launched_at": "2020-08-03T15:00:54.000Z",
+//    "ip_addresses": [],
+//    "data": {
+//        "alias_arn": null,
+//        "origin": "AWS_KMS",
+//        "cloudwatch": {
+//            "region_name": "ap-northeast-1",
+//            "namespace": "AWS/KMS",
+//            "dimensions": [
+//                {
+//                    "Value": "0drda5e1-c40f-45d7-a647-xxxxxxx",
+//                    "Name": "KeyId"
+//                }
+//            ]
+//        },
+//        "aws_account_id": "251340636361",
+//        "creation_date": "2020-07-09T09:39:03.097000+0000",
+//        "encryption_algorithms": [
+//            "SYMMETRIC_DEFAULT"
+//        ],
+//        "key_usage": "ENCRYPT_DECRYPT",
+//        "key_id": "0drda5e1-c40f-45d7-a647-xxxxxxx",
+//        "key_type_path": "defaultKeys",
+//        "key_rotated": false,
+//        "description": "Default master key that protects my Secrets Manager data when no other key is defined",
+//        "key_state": "Enabled",
+//        "customer_master_key_spec": "SYMMETRIC_DEFAULT",
+//        "enabled": true,
+//        "arn": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
+//        "key_manager": "AWS"
+//    },
+//    "metadata": {},
+//    "reference": {
+//        "resource_id": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
+//        "external_link": "https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/"
+//    },
+//    "tags": {
+//        "a": "b"
+//    },
+//    "region_code": "ap-northeast-1"
+//}
+message AssetCreateRequest {
+  string asset_type_id = 1;
+  string provider = 2;
+  // +optional
+  string name = 4;
+  // +optional
+  string account = 5;
+    // +optional
+  repeated string ip_addresses = 10;
+  google.protobuf.Struct data = 11;
+  // +optional
+  google.protobuf.Struct metadata = 12;
+  // +optional
+  google.protobuf.Struct tags = 14;
+  // +optional
+  string region_code = 15;
+  // +optional
+  string project_id = 21;
+}
+
+//{
+//    "cloud_service_id": "cloud-svc-c00f38a173e1",
+//    "name": "cloud_service_test2",
+//    "ip_addresses": [
+//        "1.1.1.1",
+//        "2.2.2.2"
+//    ],
+//    "tags": {
+//        "description": "spaceone"
+//    },
+//    "region_code": "ap-northeast-2"
+//}
+message UpdateAssetRequest {
+  string cloud_service_id = 1;
+  // +optional
+  string name = 2;
+  // +optional
+  string account = 3;
+  // +optional
+  string instance_type = 4;
+  // +optional
+  float instance_size = 5;
+  // +optional
+  repeated string ip_addresses = 6;
+  // +optional
+  google.protobuf.Struct data = 11;
+  // +optional
+  google.protobuf.Struct metadata = 12;
+  // +optional
+  google.protobuf.Struct tags = 14;
+  // +optional
+  string region_code = 15;
+  // +optional
+  string project_id = 21;
+}
+
+//{
+//    "asset_id": "asset-fea2b0d32141"
+//}
+message AssetRequest {
+  string asset_id = 1;
+}
+
+//{
+//    "query": {
+//        "filter": [
+//            {
+//                "key": "asset_type_id",
+//                "value": "Key",
+//                "operator": "eq"
+//            }
+//        ]
+//    }
+//}
+message AssetQuery {
+  // +optional
+  spaceone.api.core.v2.Query query = 1;
+  // +optional
+  string asset_id  = 2;
+  // +optional
+  string name = 3;
+  // +optional
+  string state = 4;
+  // +optional
+  string ip_address = 5;
+  // +optional
+  string account = 6;
+  // +optional
+  string asset_type_id = 7;
+  // +optional
+  string provider = 8;
+  // +optional
+  string region_id = 9;
+  // +optional
+  string workspace_id = 21;
+  // +optional
+  string project_id = 22;
+  // +optional
+  string project_group_id = 23;
+}
+
+//{
+//    "cloud_service_id": "cloud-svc-c00f38a173e1",
+//    "name": "cloud_service_test",
+//    "state": "ACTIVE",
+//    "account": "251340636361",
+//    "cloud_service_type": "Key",
+//    "cloud_service_group": "KMS",
+//    "provider": "aws",
+//    "data": {
+//        "alias_arn": null,
+//        "origin": "AWS_KMS",
+//        "cloudwatch": {
+//            "region_name": "ap-northeast-1",
+//            "namespace": "AWS/KMS",
+//            "dimensions": [
+//                {
+//                    "Value": "0drda5e1-c40f-45d7-a647-xxxxxxx",
+//                    "Name": "KeyId"
+//                }
+//            ]
+//        },
+//        "aws_account_id": "251340636361",
+//        "creation_date": "2020-07-09T09:39:03.097000+0000",
+//        "encryption_algorithms": [
+//            "SYMMETRIC_DEFAULT"
+//        ],
+//        "key_usage": "ENCRYPT_DECRYPT",
+//        "key_id": "0drda5e1-c40f-45d7-a647-xxxxxxx",
+//        "key_type_path": "defaultKeys",
+//        "key_rotated": false,
+//        "description": "Default master key that protects my Secrets Manager data when no other key is defined",
+//        "key_state": "Enabled",
+//        "customer_master_key_spec": "SYMMETRIC_DEFAULT",
+//        "enabled": true,
+//        "arn": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
+//        "key_manager": "AWS"
+//    },
+//    "metadata": {
+//        "manual": {}
+//    },
+//    "reference": {
+//        "resource_id": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
+//        "external_link": "https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/"
+//    },
+//    "tags": {
+//        "custom": {
+//              "b" : "c"
+//        },
+//        "aws" : {
+//              "env": "dev"
+//        }
+//    },
+//    "collection_info": {
+//        "service_account_id": "sa-abcd1234",
+//        "secret_id": "secret-abcd1234",
+//        "collector_id": "collector-abcd1234",
+//        "last_collected_at": "2022-06-22T06:38:48.989Z"
+//    },
+//    "ip_addresses": [],
+//    "region_code": "ap-northeast-1",
+//    "workspace_id": "workspace-58010aa2e451",
+//    "domain_id": "domain-58010aa2e451",
+//    "created_at": "2022-06-22T06:38:48.989Z",
+//    "updated_at": "2022-06-22T06:38:48.989Z",
+//    "launched_at": "2020-08-03T15:00:54.000Z"
+//}
+message AssetInfo {
+  // This id value is unique at each domain.
+  string asset_id = 1;
+  // Name of cloud resource from CSP like AWS, Azure, GCP
+  string name = 2;
+  // State of cloud resource
+  string state = 3;
+  // IP addresses of cloud resource having public IP
+  repeated string ip_addresses = 4;
+  // Account ID of cloud resource
+  string account = 5;
+  // Classification of cloud resource
+  string asset_type_id = 8;
+
+  // Cloud Service provider like AWS, Azure, GCP
+  string provider = 10;
+  // Original data from CSP
+  google.protobuf.Struct data = 11;
+  // Tags from CSP
+  google.protobuf.Struct tags = 14;
+  // Collection information
+  string region_id = 17;
+  // Domain Id
+  string domain_id = 21;
+  // Workspace Id
+  string workspace_id = 22;
+  // Project Id
+  string project_id = 23;
+  string collector_id = 24;
+  string service_account_id = 25;
+  string secret_id = 26;
+
+  string created_at = 31;
+  string updated_at = 32;
+  string deleted_at = 33;
+}
+
+//{
+//    "results": [{
+//        "cloud_service_id": "cloud-svc-c00f38a173e1",
+//        "name": "cloud_service_test2",
+//        "state": "ACTIVE",
+//        "account": "251340636361",
+//        "cloud_service_type": "Key",
+//        "cloud_service_group": "KMS",
+//        "provider": "aws",
+//        "data": {
+//            "alias_arn": null,
+//            "origin": "AWS_KMS",
+//            "cloudwatch": {
+//                "region_name": "ap-northeast-1",
+//                "namespace": "AWS/KMS",
+//                "dimensions": [
+//                    {
+//                        "Value": "0drda5e1-c40f-45d7-a647-xxxxxxx",
+//                        "Name": "KeyId"
+//                    }
+//                ]
+//            },
+//            "aws_account_id": "251340636361",
+//            "creation_date": "2020-07-09T09:39:03.097000+0000",
+//            "encryption_algorithms": [
+//                "SYMMETRIC_DEFAULT"
+//            ],
+//            "key_usage": "ENCRYPT_DECRYPT",
+//            "key_id": "0drda5e1-c40f-45d7-a647-xxxxxxx",
+//            "key_type_path": "defaultKeys",
+//            "key_rotated": false,
+//            "description": "Default master key that protects my Secrets Manager data when no other key is defined",
+//            "key_state": "Enabled",
+//            "customer_master_key_spec": "SYMMETRIC_DEFAULT",
+//            "enabled": true,
+//            "arn": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
+//            "key_manager": "AWS"
+//        },
+//        "metadata": {
+//            "manual": {}
+//        },
+//        "reference": {
+//            "resource_id": "arn:aws:kms:ap-northeast-1:251340636361:key/0drda5e1-c40f-45d7-a647-xxxxxxx",
+//            "external_link": "https://console.aws.amazon.com/kms/home?region=ap-northeast-1#/kms/defaultKeys/0drda5e1-c40f-45d7-a647-xxxxxxx/"
+//        },
+//        "tags": {
+//            "description": "spaceone"
+//        },
+//        "collection_info": {
+//             "service_account_id": "sa-abcd1234",
+//             "secret_id": "secret-abcd1234",
+//             "collector_id": "collector-abcd1234",
+//             "last_collected_at": "2022-06-22T06:38:48.989Z"
+//        },
+//        "ip_addresses": [
+//            "1.1.1.1",
+//            "2.2.2.2"
+//        ],
+//        "region_code": "ap-northeast-1",
+//        "workspace_id": "workspace-58010aa2e451",
+//        "domain_id": "domain-58010aa2e451",
+//        "created_at": "2022-06-22T06:38:48.989Z",
+//        "updated_at": "2022-06-22T06:38:48.989Z",
+//        "launched_at": "2020-08-03T15:00:54.000Z"
+//    }],
+//    "total_count": 1
+//}
+message AssetsInfo {
+  repeated AssetInfo results = 1;
+  int32 total_count = 2;
+}
+
+message AssetExportRequest {
+  enum FileFormat {
+    NONE_FILE_FORMAT = 0;
+    EXCEL = 1;
+    CSV = 2;
+  }
+
+  repeated spaceone.api.core.v2.ExportOption options = 1;
+  // +optional
+  FileFormat file_format = 2;
+  // +optional
+  string file_name = 3;
+  // +optional
+  string timezone = 4;
+}
+
+//{
+//}
+message AssetHistoryQuery {
+      enum RecordAction {
+        NONE = 0;
+        CREATE = 1;
+        UPDATE = 2;
+        DELETE = 3;
+    }
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string history_id = 2;
+    string asset_id = 3;
+    // +optional
+    RecordAction action = 4;
+    // +optional
+    string updated_by = 5;
+    // +optional
+    string collector_id = 21;
+    // +optional
+    string job_id = 22;
+    // +optional
+    string user_id = 23;
+
+}
+
+message AssetAnalyzeQuery {
+  spaceone.api.core.v2.AnalyzeQuery query = 1;
+}
+
+message AssetStatQuery {
+  spaceone.api.core.v2.StatisticsQuery query = 1;
+}
+
+message AssetHistoryInfo {
+  enum Action {
+    NONE = 0;
+    CREATE = 1;
+    UPDATE = 2;
+    DELETE = 3;
+  }
+  string history_id = 1;
+  string asset_id = 2;
+  Action action = 3;
+  repeated google.protobuf.Struct diff = 4;
+  int32 diff_count = 5;
+  string updated_by = 6;
+
+  string domain_id = 21;
+  string collector_id = 22;
+  string job_id = 23;
+  string user_id = 24;
+
+  string created_at = 31;
+}
+
+message AssetHistoriesInfo {
+  repeated AssetHistoryInfo results = 1;
+  int32 total_count = 2;
+}
