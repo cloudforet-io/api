@@ -57,6 +57,11 @@ service Namespace {
 //
 //}
 message CreateNamespaceRequest {
+    enum ResourceGroup {  
+        RESOURCE_GROUP_NONE = 0;  
+        DOMAIN = 1;  
+        WORKSPACE = 2;  
+    }  
     // +optional
     string namespace_id = 1;
     string name = 2;
@@ -66,7 +71,7 @@ message CreateNamespaceRequest {
     // +optional
     google.protobuf.Struct tags = 5;
 
-    string resource_group = 20;
+    ResourceGroup resource_group = 20;
     // +optional
     string workspace_id = 21;
     string namespace_group_id = 22;
@@ -96,6 +101,11 @@ message NamespaceRequest {
 //
 //}
 message NamespaceQuery {
+    enum ResourceGroup {  
+        RESOURCE_GROUP_NONE = 0;  
+        DOMAIN = 1;  
+        WORKSPACE = 2;  
+    }  
     // +optional
     spaceone.api.core.v2.Query query = 1;
     // +optional
@@ -105,7 +115,7 @@ message NamespaceQuery {
     // +optional
     bool exist_only = 4;
 
-    string resource_group = 20;
+    ResourceGroup resource_group = 20;
     // +optional
     string workspace_id = 21;
     // +optional
@@ -116,6 +126,11 @@ message NamespaceQuery {
 //
 //}
 message NamespaceInfo {
+    enum ResourceGroup {  
+        RESOURCE_GROUP_NONE = 0;  
+        DOMAIN = 1;  
+        WORKSPACE = 2;  
+    }  
     string namespace_id = 1;
     string name = 2;
     string category = 3;
@@ -123,7 +138,7 @@ message NamespaceInfo {
     google.protobuf.Struct tags = 5;
     bool is_managed = 6;
     
-    string resource_group = 20;
+    ResourceGroup resource_group = 20;
     string domain_id = 21;
     string workspace_id = 22;
     string namespace_group_id = 23;
