@@ -132,6 +132,30 @@ func local_request_PrivateWidget_Load_0(ctx context.Context, marshaler runtime.M
 	return msg, metadata, err
 }
 
+func request_PrivateWidget_LoadSum_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateWidgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq extV1.LoadPrivateWidgetRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.LoadSum(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PrivateWidget_LoadSum_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PrivateWidgetServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq extV1.LoadPrivateWidgetRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.LoadSum(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_PrivateWidget_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PrivateWidgetClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq extV1.PrivateWidgetRequest
@@ -265,6 +289,26 @@ func RegisterPrivateWidgetHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 		forward_PrivateWidget_Load_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_PrivateWidget_LoadSum_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateWidget/LoadSum", runtime.WithHTTPPathPattern("/dashboard/v1/private-widget/load-sum"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PrivateWidget_LoadSum_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PrivateWidget_LoadSum_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_PrivateWidget_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -414,6 +458,23 @@ func RegisterPrivateWidgetHandlerClient(ctx context.Context, mux *runtime.ServeM
 		}
 		forward_PrivateWidget_Load_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_PrivateWidget_LoadSum_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.dashboard.v1.PrivateWidget/LoadSum", runtime.WithHTTPPathPattern("/dashboard/v1/private-widget/load-sum"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PrivateWidget_LoadSum_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PrivateWidget_LoadSum_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_PrivateWidget_Get_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -452,19 +513,21 @@ func RegisterPrivateWidgetHandlerClient(ctx context.Context, mux *runtime.ServeM
 }
 
 var (
-	pattern_PrivateWidget_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "private-widget", "create"}, ""))
-	pattern_PrivateWidget_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "private-widget", "update"}, ""))
-	pattern_PrivateWidget_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "private-widget", "delete"}, ""))
-	pattern_PrivateWidget_Load_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "private-widget", "load"}, ""))
-	pattern_PrivateWidget_Get_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "private-widget", "get"}, ""))
-	pattern_PrivateWidget_List_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "private-widget", "list"}, ""))
+	pattern_PrivateWidget_Create_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "private-widget", "create"}, ""))
+	pattern_PrivateWidget_Update_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "private-widget", "update"}, ""))
+	pattern_PrivateWidget_Delete_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "private-widget", "delete"}, ""))
+	pattern_PrivateWidget_Load_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "private-widget", "load"}, ""))
+	pattern_PrivateWidget_LoadSum_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "private-widget", "load-sum"}, ""))
+	pattern_PrivateWidget_Get_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "private-widget", "get"}, ""))
+	pattern_PrivateWidget_List_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"dashboard", "v1", "private-widget", "list"}, ""))
 )
 
 var (
-	forward_PrivateWidget_Create_0 = runtime.ForwardResponseMessage
-	forward_PrivateWidget_Update_0 = runtime.ForwardResponseMessage
-	forward_PrivateWidget_Delete_0 = runtime.ForwardResponseMessage
-	forward_PrivateWidget_Load_0   = runtime.ForwardResponseMessage
-	forward_PrivateWidget_Get_0    = runtime.ForwardResponseMessage
-	forward_PrivateWidget_List_0   = runtime.ForwardResponseMessage
+	forward_PrivateWidget_Create_0  = runtime.ForwardResponseMessage
+	forward_PrivateWidget_Update_0  = runtime.ForwardResponseMessage
+	forward_PrivateWidget_Delete_0  = runtime.ForwardResponseMessage
+	forward_PrivateWidget_Load_0    = runtime.ForwardResponseMessage
+	forward_PrivateWidget_LoadSum_0 = runtime.ForwardResponseMessage
+	forward_PrivateWidget_Get_0     = runtime.ForwardResponseMessage
+	forward_PrivateWidget_List_0    = runtime.ForwardResponseMessage
 )

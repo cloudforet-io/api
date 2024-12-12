@@ -570,6 +570,35 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/private-widget/load-sum": {
+       "post": {
+         "tags": ["dashboard > private-widget"],
+         "summary": "Load Sum",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
      },"/dashboard/private-widget/get": {
        "post": {
          "tags": ["dashboard > private-widget"],
@@ -1333,6 +1362,35 @@
        "post": {
          "tags": ["dashboard > public-widget"],
          "summary": "Load",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |query||TimeSeriesAnalyzeQuery|True|\n |vars||Struct||\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"query" : {"$ref": "#/components/schemas/TimeSeriesAnalyzeQuery","title": "QUERY" },"vars" : {"type": "object","title": "VARS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"type": "object"},
+                 "examples": {
+                   "Schema": {"type": "object"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/dashboard/public-widget/load-sum": {
+       "post": {
+         "tags": ["dashboard > public-widget"],
+         "summary": "Load Sum",
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {

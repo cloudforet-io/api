@@ -23,12 +23,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PublicWidget_Create_FullMethodName = "/spaceone.api.dashboard.v1.PublicWidget/create"
-	PublicWidget_Update_FullMethodName = "/spaceone.api.dashboard.v1.PublicWidget/update"
-	PublicWidget_Delete_FullMethodName = "/spaceone.api.dashboard.v1.PublicWidget/delete"
-	PublicWidget_Load_FullMethodName   = "/spaceone.api.dashboard.v1.PublicWidget/load"
-	PublicWidget_Get_FullMethodName    = "/spaceone.api.dashboard.v1.PublicWidget/get"
-	PublicWidget_List_FullMethodName   = "/spaceone.api.dashboard.v1.PublicWidget/list"
+	PublicWidget_Create_FullMethodName  = "/spaceone.api.dashboard.v1.PublicWidget/create"
+	PublicWidget_Update_FullMethodName  = "/spaceone.api.dashboard.v1.PublicWidget/update"
+	PublicWidget_Delete_FullMethodName  = "/spaceone.api.dashboard.v1.PublicWidget/delete"
+	PublicWidget_Load_FullMethodName    = "/spaceone.api.dashboard.v1.PublicWidget/load"
+	PublicWidget_LoadSum_FullMethodName = "/spaceone.api.dashboard.v1.PublicWidget/load_sum"
+	PublicWidget_Get_FullMethodName     = "/spaceone.api.dashboard.v1.PublicWidget/get"
+	PublicWidget_List_FullMethodName    = "/spaceone.api.dashboard.v1.PublicWidget/list"
 )
 
 // PublicWidgetClient is the client API for PublicWidget service.
@@ -39,6 +40,7 @@ type PublicWidgetClient interface {
 	Update(ctx context.Context, in *UpdatePublicWidgetRequest, opts ...grpc.CallOption) (*PublicWidgetInfo, error)
 	Delete(ctx context.Context, in *PublicWidgetRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Load(ctx context.Context, in *LoadPublicWidgetRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
+	LoadSum(ctx context.Context, in *LoadPublicWidgetRequest, opts ...grpc.CallOption) (*_struct.Struct, error)
 	Get(ctx context.Context, in *PublicWidgetRequest, opts ...grpc.CallOption) (*PublicWidgetInfo, error)
 	List(ctx context.Context, in *PublicWidgetQuery, opts ...grpc.CallOption) (*PublicWidgetsInfo, error)
 }
@@ -91,6 +93,16 @@ func (c *publicWidgetClient) Load(ctx context.Context, in *LoadPublicWidgetReque
 	return out, nil
 }
 
+func (c *publicWidgetClient) LoadSum(ctx context.Context, in *LoadPublicWidgetRequest, opts ...grpc.CallOption) (*_struct.Struct, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(_struct.Struct)
+	err := c.cc.Invoke(ctx, PublicWidget_LoadSum_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *publicWidgetClient) Get(ctx context.Context, in *PublicWidgetRequest, opts ...grpc.CallOption) (*PublicWidgetInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PublicWidgetInfo)
@@ -119,6 +131,7 @@ type PublicWidgetServer interface {
 	Update(context.Context, *UpdatePublicWidgetRequest) (*PublicWidgetInfo, error)
 	Delete(context.Context, *PublicWidgetRequest) (*empty.Empty, error)
 	Load(context.Context, *LoadPublicWidgetRequest) (*_struct.Struct, error)
+	LoadSum(context.Context, *LoadPublicWidgetRequest) (*_struct.Struct, error)
 	Get(context.Context, *PublicWidgetRequest) (*PublicWidgetInfo, error)
 	List(context.Context, *PublicWidgetQuery) (*PublicWidgetsInfo, error)
 	mustEmbedUnimplementedPublicWidgetServer()
@@ -142,6 +155,9 @@ func (UnimplementedPublicWidgetServer) Delete(context.Context, *PublicWidgetRequ
 }
 func (UnimplementedPublicWidgetServer) Load(context.Context, *LoadPublicWidgetRequest) (*_struct.Struct, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Load not implemented")
+}
+func (UnimplementedPublicWidgetServer) LoadSum(context.Context, *LoadPublicWidgetRequest) (*_struct.Struct, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoadSum not implemented")
 }
 func (UnimplementedPublicWidgetServer) Get(context.Context, *PublicWidgetRequest) (*PublicWidgetInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
@@ -242,6 +258,24 @@ func _PublicWidget_Load_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PublicWidget_LoadSum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoadPublicWidgetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PublicWidgetServer).LoadSum(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PublicWidget_LoadSum_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PublicWidgetServer).LoadSum(ctx, req.(*LoadPublicWidgetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PublicWidget_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PublicWidgetRequest)
 	if err := dec(in); err != nil {
@@ -300,6 +334,10 @@ var PublicWidget_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "load",
 			Handler:    _PublicWidget_Load_Handler,
+		},
+		{
+			MethodName: "load_sum",
+			Handler:    _PublicWidget_LoadSum_Handler,
 		},
 		{
 			MethodName: "get",

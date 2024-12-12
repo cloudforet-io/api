@@ -61,6 +61,11 @@ class PublicWidgetStub(object):
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.LoadPublicWidgetRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 _registered_method=True)
+        self.load_sum = channel.unary_unary(
+                '/spaceone.api.dashboard.v1.PublicWidget/load_sum',
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.LoadPublicWidgetRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
+                _registered_method=True)
         self.get = channel.unary_unary(
                 '/spaceone.api.dashboard.v1.PublicWidget/get',
                 request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.PublicWidgetRequest.SerializeToString,
@@ -100,6 +105,12 @@ class PublicWidgetServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def load_sum(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def get(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -132,6 +143,11 @@ def add_PublicWidgetServicer_to_server(servicer, server):
             ),
             'load': grpc.unary_unary_rpc_method_handler(
                     servicer.load,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.LoadPublicWidgetRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
+            ),
+            'load_sum': grpc.unary_unary_rpc_method_handler(
+                    servicer.load_sum,
                     request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.LoadPublicWidgetRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
@@ -252,6 +268,33 @@ class PublicWidget(object):
             request,
             target,
             '/spaceone.api.dashboard.v1.PublicWidget/load',
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.LoadPublicWidgetRequest.SerializeToString,
+            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def load_sum(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.dashboard.v1.PublicWidget/load_sum',
             spaceone_dot_api_dot_dashboard_dot_v1_dot_public__widget__pb2.LoadPublicWidgetRequest.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
