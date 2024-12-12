@@ -197,15 +197,10 @@ message TimeDiff {
     int32 years = 1;
     int32 months = 2;
   }
+  string data_name = 3;
 }
 
 message AddOptions {
-  enum DateFormat {
-    DATE_FORMAT_NONE = 0;
-    SINGLE = 1;
-    SEPARATE = 2;
-  }
-
   oneof source {
     AssetSource ASSET = 1;
     CostSource COST = 2;
@@ -219,10 +214,6 @@ message AddOptions {
   repeated spaceone.api.core.v2.Filter filter = 6;
   // +optional
   repeated spaceone.api.core.v2.Filter filter_or = 7;
-  // +optional
-  DateFormat date_format = 8;
-  // +optional
-  google.protobuf.Struct additional_labels = 9;
   // +optional
   TimeDiff timediff = 10;
 }
