@@ -40,6 +40,13 @@ service PrivateWidget{
     };
   }
 
+  rpc load_sum (LoadPrivateWidgetRequest) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/dashboard/v1/private-widget/load-sum"
+      body: "*"
+    };
+  }
+
   rpc get (PrivateWidgetRequest) returns (PrivateWidgetInfo) {
     option (google.api.http) = {
       post: "/dashboard/v1/private-widget/get"

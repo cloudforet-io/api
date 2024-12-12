@@ -40,6 +40,13 @@ service PublicWidget{
     };
   }
 
+  rpc load_sum (LoadPublicWidgetRequest) returns (google.protobuf.Struct) {
+    option (google.api.http) = {
+      post: "/dashboard/v1/public-widget/load-sum"
+      body: "*"
+    };
+  }
+
   rpc get (PublicWidgetRequest) returns (PublicWidgetInfo) {
     option (google.api.http) = {
       post: "/dashboard/v1/public-widget/get"
