@@ -40,7 +40,7 @@ service PrivateWidget{
     };
   }
 
-  rpc load_sum (LoadPrivateWidgetRequest) returns (google.protobuf.Struct) {
+  rpc load_sum (LoadSumPrivateWidgetRequest) returns (google.protobuf.Struct) {
     option (google.api.http) = {
       post: "/dashboard/v1/private-widget/load-sum"
       body: "*"
@@ -60,6 +60,17 @@ service PrivateWidget{
       body: "*"
     };
   }
+}
+
+
+message PrivateWidgetSort {
+  string key = 1;
+  bool desc = 2;
+}
+
+message PrivateWidgetPage {
+  int32 start = 1;
+  int32 limit = 2;
 }
 
 message CreatePrivateWidgetRequest {
@@ -123,9 +134,24 @@ message PrivateWidgetRequest {
 
 message LoadPrivateWidgetRequest {
   string widget_id = 1;
-  spaceone.api.core.v2.TimeSeriesAnalyzeQuery query = 2;
+  string granularity = 2;
+  string start = 3;
+  string end = 4;
   // +optional
-  google.protobuf.Struct vars = 3;
+  repeated PrivateWidgetSort sort = 5;
+  // +optional
+  PrivateWidgetPage page = 6;
+  // +optional
+  google.protobuf.Struct vars = 7;
+}
+
+message LoadSumPrivateWidgetRequest {
+  string widget_id = 1;
+  string granularity = 2;
+  string start = 3;
+  string end = 4;
+  // +optional
+  google.protobuf.Struct vars = 7;
 }
 
 message PrivateWidgetQuery {
