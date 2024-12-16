@@ -21,13 +21,15 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Task_Create_FullMethodName       = "/spaceone.api.opsflow.v1.Task/create"
-	Task_Update_FullMethodName       = "/spaceone.api.opsflow.v1.Task/update"
-	Task_ChangeStatus_FullMethodName = "/spaceone.api.opsflow.v1.Task/change_status"
-	Task_Delete_FullMethodName       = "/spaceone.api.opsflow.v1.Task/delete"
-	Task_Get_FullMethodName          = "/spaceone.api.opsflow.v1.Task/get"
-	Task_List_FullMethodName         = "/spaceone.api.opsflow.v1.Task/list"
-	Task_Stat_FullMethodName         = "/spaceone.api.opsflow.v1.Task/stat"
+	Task_Create_FullMethodName            = "/spaceone.api.opsflow.v1.Task/create"
+	Task_Update_FullMethodName            = "/spaceone.api.opsflow.v1.Task/update"
+	Task_UpdateDescription_FullMethodName = "/spaceone.api.opsflow.v1.Task/update_description"
+	Task_ChangeAssignee_FullMethodName    = "/spaceone.api.opsflow.v1.Task/change_assignee"
+	Task_ChangeStatus_FullMethodName      = "/spaceone.api.opsflow.v1.Task/change_status"
+	Task_Delete_FullMethodName            = "/spaceone.api.opsflow.v1.Task/delete"
+	Task_Get_FullMethodName               = "/spaceone.api.opsflow.v1.Task/get"
+	Task_List_FullMethodName              = "/spaceone.api.opsflow.v1.Task/list"
+	Task_Stat_FullMethodName              = "/spaceone.api.opsflow.v1.Task/stat"
 )
 
 // TaskClient is the client API for Task service.
@@ -36,6 +38,8 @@ const (
 type TaskClient interface {
 	Create(ctx context.Context, in *TaskCreateRequest, opts ...grpc.CallOption) (*TaskInfo, error)
 	Update(ctx context.Context, in *TaskUpdateRequest, opts ...grpc.CallOption) (*TaskInfo, error)
+	UpdateDescription(ctx context.Context, in *TaskUpdateDescriptionRequest, opts ...grpc.CallOption) (*TaskInfo, error)
+	ChangeAssignee(ctx context.Context, in *TaskChangeAssigneeRequest, opts ...grpc.CallOption) (*TaskInfo, error)
 	ChangeStatus(ctx context.Context, in *TaskChangeStatusRequest, opts ...grpc.CallOption) (*TaskInfo, error)
 	Delete(ctx context.Context, in *TaskRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *TaskRequest, opts ...grpc.CallOption) (*TaskInfo, error)
@@ -65,6 +69,26 @@ func (c *taskClient) Update(ctx context.Context, in *TaskUpdateRequest, opts ...
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TaskInfo)
 	err := c.cc.Invoke(ctx, Task_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *taskClient) UpdateDescription(ctx context.Context, in *TaskUpdateDescriptionRequest, opts ...grpc.CallOption) (*TaskInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TaskInfo)
+	err := c.cc.Invoke(ctx, Task_UpdateDescription_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *taskClient) ChangeAssignee(ctx context.Context, in *TaskChangeAssigneeRequest, opts ...grpc.CallOption) (*TaskInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TaskInfo)
+	err := c.cc.Invoke(ctx, Task_ChangeAssignee_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -127,6 +151,8 @@ func (c *taskClient) Stat(ctx context.Context, in *TaskStatQuery, opts ...grpc.C
 type TaskServer interface {
 	Create(context.Context, *TaskCreateRequest) (*TaskInfo, error)
 	Update(context.Context, *TaskUpdateRequest) (*TaskInfo, error)
+	UpdateDescription(context.Context, *TaskUpdateDescriptionRequest) (*TaskInfo, error)
+	ChangeAssignee(context.Context, *TaskChangeAssigneeRequest) (*TaskInfo, error)
 	ChangeStatus(context.Context, *TaskChangeStatusRequest) (*TaskInfo, error)
 	Delete(context.Context, *TaskRequest) (*empty.Empty, error)
 	Get(context.Context, *TaskRequest) (*TaskInfo, error)
@@ -147,6 +173,12 @@ func (UnimplementedTaskServer) Create(context.Context, *TaskCreateRequest) (*Tas
 }
 func (UnimplementedTaskServer) Update(context.Context, *TaskUpdateRequest) (*TaskInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedTaskServer) UpdateDescription(context.Context, *TaskUpdateDescriptionRequest) (*TaskInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDescription not implemented")
+}
+func (UnimplementedTaskServer) ChangeAssignee(context.Context, *TaskChangeAssigneeRequest) (*TaskInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeAssignee not implemented")
 }
 func (UnimplementedTaskServer) ChangeStatus(context.Context, *TaskChangeStatusRequest) (*TaskInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeStatus not implemented")
@@ -216,6 +248,42 @@ func _Task_Update_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskServer).Update(ctx, req.(*TaskUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Task_UpdateDescription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskUpdateDescriptionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskServer).UpdateDescription(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Task_UpdateDescription_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskServer).UpdateDescription(ctx, req.(*TaskUpdateDescriptionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Task_ChangeAssignee_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskChangeAssigneeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskServer).ChangeAssignee(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Task_ChangeAssignee_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskServer).ChangeAssignee(ctx, req.(*TaskChangeAssigneeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -324,6 +392,14 @@ var Task_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _Task_Update_Handler,
+		},
+		{
+			MethodName: "update_description",
+			Handler:    _Task_UpdateDescription_Handler,
+		},
+		{
+			MethodName: "change_assignee",
+			Handler:    _Task_ChangeAssignee_Handler,
 		},
 		{
 			MethodName: "change_status",

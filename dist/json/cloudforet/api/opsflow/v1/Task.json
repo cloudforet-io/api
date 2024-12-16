@@ -41,6 +41,42 @@
       "extensions": [],
       "messages": [
         {
+          "name": "TaskChangeAssigneeRequest",
+          "longName": "TaskChangeAssigneeRequest",
+          "fullName": "spaceone.api.opsflow.v1.TaskChangeAssigneeRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "task_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "assignee",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "TaskChangeStatusRequest",
           "longName": "TaskChangeStatusRequest",
           "fullName": "spaceone.api.opsflow.v1.TaskChangeStatusRequest",
@@ -641,6 +677,66 @@
           ]
         },
         {
+          "name": "TaskUpdateDescriptionRequest",
+          "longName": "TaskUpdateDescriptionRequest",
+          "fullName": "spaceone.api.opsflow.v1.TaskUpdateDescriptionRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "task_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "files",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "mentions",
+              "description": "",
+              "label": "",
+              "type": "Mentions",
+              "longType": "Mentions",
+              "fullType": "spaceone.api.opsflow.v1.Mentions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "TaskUpdateRequest",
           "longName": "TaskUpdateRequest",
           "fullName": "spaceone.api.opsflow.v1.TaskUpdateRequest",
@@ -681,54 +777,6 @@
               "type": "TaskPriority",
               "longType": "TaskPriority",
               "fullType": "spaceone.api.opsflow.v1.TaskPriority",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "files",
-              "description": "+optional",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "mentions",
-              "description": "+optional",
-              "label": "",
-              "type": "Mentions",
-              "longType": "Mentions",
-              "fullType": "spaceone.api.opsflow.v1.Mentions",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "assignee",
-              "description": "+optional",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -844,6 +892,52 @@
                     {
                       "method": "POST",
                       "pattern": "/opsflow/v1/task/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update_description",
+              "description": "",
+              "requestType": "TaskUpdateDescriptionRequest",
+              "requestLongType": "TaskUpdateDescriptionRequest",
+              "requestFullType": "spaceone.api.opsflow.v1.TaskUpdateDescriptionRequest",
+              "requestStreaming": false,
+              "responseType": "TaskInfo",
+              "responseLongType": "TaskInfo",
+              "responseFullType": "spaceone.api.opsflow.v1.TaskInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/opsflow/v1/task/update_description",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "change_assignee",
+              "description": "",
+              "requestType": "TaskChangeAssigneeRequest",
+              "requestLongType": "TaskChangeAssigneeRequest",
+              "requestFullType": "spaceone.api.opsflow.v1.TaskChangeAssigneeRequest",
+              "requestStreaming": false,
+              "responseType": "TaskInfo",
+              "responseLongType": "TaskInfo",
+              "responseFullType": "spaceone.api.opsflow.v1.TaskInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/opsflow/v1/task/change_assignee",
                       "body": "*"
                     }
                   ]

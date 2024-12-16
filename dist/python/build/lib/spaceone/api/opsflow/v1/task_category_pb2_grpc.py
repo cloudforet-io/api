@@ -3,7 +3,6 @@
 import grpc
 import warnings
 
-from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.opsflow.v1 import task_category_pb2 as spaceone_dot_api_dot_opsflow_dot_v1_dot_task__category__pb2
 
@@ -59,7 +58,7 @@ class TaskCategoryStub(object):
         self.delete = channel.unary_unary(
                 '/spaceone.api.opsflow.v1.TaskCategory/delete',
                 request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__category__pb2.TaskCategoryRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__category__pb2.TaskCategoryInfo.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
                 '/spaceone.api.opsflow.v1.TaskCategory/get',
@@ -144,7 +143,7 @@ def add_TaskCategoryServicer_to_server(servicer, server):
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
                     request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__category__pb2.TaskCategoryRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__category__pb2.TaskCategoryInfo.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
@@ -269,7 +268,7 @@ class TaskCategory(object):
             target,
             '/spaceone.api.opsflow.v1.TaskCategory/delete',
             spaceone_dot_api_dot_opsflow_dot_v1_dot_task__category__pb2.TaskCategoryRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__category__pb2.TaskCategoryInfo.FromString,
             options,
             channel_credentials,
             insecure,

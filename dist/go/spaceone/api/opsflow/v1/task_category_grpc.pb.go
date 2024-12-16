@@ -8,7 +8,6 @@ package v1
 
 import (
 	context "context"
-	empty "github.com/golang/protobuf/ptypes/empty"
 	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -37,7 +36,7 @@ type TaskCategoryClient interface {
 	Create(ctx context.Context, in *TaskCategoryCreateRequest, opts ...grpc.CallOption) (*TaskCategoryInfo, error)
 	Update(ctx context.Context, in *TaskCategoryUpdateRequest, opts ...grpc.CallOption) (*TaskCategoryInfo, error)
 	UpdateFields(ctx context.Context, in *TaskCategoryUpdateFieldsRequest, opts ...grpc.CallOption) (*TaskCategoryInfo, error)
-	Delete(ctx context.Context, in *TaskCategoryRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	Delete(ctx context.Context, in *TaskCategoryRequest, opts ...grpc.CallOption) (*TaskCategoryInfo, error)
 	Get(ctx context.Context, in *TaskCategoryRequest, opts ...grpc.CallOption) (*TaskCategoryInfo, error)
 	List(ctx context.Context, in *TaskCategorySearchQuery, opts ...grpc.CallOption) (*TaskCategoriesInfo, error)
 	Stat(ctx context.Context, in *TaskCategoryStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
@@ -81,9 +80,9 @@ func (c *taskCategoryClient) UpdateFields(ctx context.Context, in *TaskCategoryU
 	return out, nil
 }
 
-func (c *taskCategoryClient) Delete(ctx context.Context, in *TaskCategoryRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *taskCategoryClient) Delete(ctx context.Context, in *TaskCategoryRequest, opts ...grpc.CallOption) (*TaskCategoryInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(empty.Empty)
+	out := new(TaskCategoryInfo)
 	err := c.cc.Invoke(ctx, TaskCategory_Delete_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -128,7 +127,7 @@ type TaskCategoryServer interface {
 	Create(context.Context, *TaskCategoryCreateRequest) (*TaskCategoryInfo, error)
 	Update(context.Context, *TaskCategoryUpdateRequest) (*TaskCategoryInfo, error)
 	UpdateFields(context.Context, *TaskCategoryUpdateFieldsRequest) (*TaskCategoryInfo, error)
-	Delete(context.Context, *TaskCategoryRequest) (*empty.Empty, error)
+	Delete(context.Context, *TaskCategoryRequest) (*TaskCategoryInfo, error)
 	Get(context.Context, *TaskCategoryRequest) (*TaskCategoryInfo, error)
 	List(context.Context, *TaskCategorySearchQuery) (*TaskCategoriesInfo, error)
 	Stat(context.Context, *TaskCategoryStatQuery) (*_struct.Struct, error)
@@ -151,7 +150,7 @@ func (UnimplementedTaskCategoryServer) Update(context.Context, *TaskCategoryUpda
 func (UnimplementedTaskCategoryServer) UpdateFields(context.Context, *TaskCategoryUpdateFieldsRequest) (*TaskCategoryInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateFields not implemented")
 }
-func (UnimplementedTaskCategoryServer) Delete(context.Context, *TaskCategoryRequest) (*empty.Empty, error) {
+func (UnimplementedTaskCategoryServer) Delete(context.Context, *TaskCategoryRequest) (*TaskCategoryInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedTaskCategoryServer) Get(context.Context, *TaskCategoryRequest) (*TaskCategoryInfo, error) {

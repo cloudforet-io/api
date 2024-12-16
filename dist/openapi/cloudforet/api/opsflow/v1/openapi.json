@@ -44,11 +44,69 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_id||string|True|\n |name||string||\n |priority|HIGH, MEDIUM, LOW |string||\n |description||string||\n |files||array||\n |mentions||Mentions||\n |assignee||string||\n |data||Struct||\n |project_id||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_id||string|True|\n |name||string||\n |priority|HIGH, MEDIUM, LOW |string||\n |data||Struct||\n |project_id||string||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"task_id" : {"type": "string","title": "TASK_ID" },"name" : {"type": "string","title": "NAME" },"priority" : {"type": "string","title": "PRIORITY" },"description" : {"type": "string","title": "DESCRIPTION" },"files" : {"items": {}, "type": "array","title": "FILES" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" },"assignee" : {"type": "string","title": "ASSIGNEE" },"data" : {"type": "object","title": "DATA" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+                 "properties": {"task_id" : {"type": "string","title": "TASK_ID" },"name" : {"type": "string","title": "NAME" },"priority" : {"type": "string","title": "PRIORITY" },"data" : {"type": "object","title": "DATA" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TaskInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TaskInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/task/update_description": {
+       "post": {
+         "tags": ["opsflow > task"],
+         "summary": "Update Description",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_id||string|True|\n |description||string|True|\n |files||array|True|\n |mentions||Mentions|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"task_id" : {"type": "string","title": "TASK_ID" },"description" : {"type": "string","title": "DESCRIPTION" },"files" : {"items": {}, "type": "array","title": "FILES" },"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS" }                 }
+               },
+               "examples":{"Schema":{}
+               }
+             }
+           },"required": true
+         },
+         "responses": {
+           "200": {
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TaskInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TaskInfo"}}
+               }
+             }}
+         }
+          ,"security": [{"HTTPBearer": []}]        }
+     },"/opsflow/task/change_assignee": {
+       "post": {
+         "tags": ["opsflow > task"],
+         "summary": "Change Assignee",
+         "operationId" : "",
+         "description": "### Description \n",
+         "requestBody": {
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |task_id||string|True|\n |assignee||string|True|\n<br>",
+           "content": {
+             "application/json": {
+               "schema": {
+                 "properties": {"task_id" : {"type": "string","title": "TASK_ID" },"assignee" : {"type": "string","title": "ASSIGNEE" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -538,7 +596,13 @@
          },
          "responses": {
            "200": {
-             "description": "Successfull Response"}
+             "description": "Successfull Response","content":{
+               "application/json": {
+                 "schema": {"$ref": "#/components/schemas/TaskCategoryInfo"},
+                 "examples": {
+                   "Schema": {"$ref": "#/components/schemas/TaskCategoryInfo"}}
+               }
+             }}
          }
           ,"security": [{"HTTPBearer": []}]        }
      },"/opsflow/task-category/get": {
@@ -577,11 +641,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |category_id||string||\n |name||string||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||Query||\n |category_id||string||\n |name||string||\n |include_deleted||boolean||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"category_id" : {"type": "string","title": "CATEGORY_ID" },"name" : {"type": "string","title": "NAME" }                 }
+                 "properties": {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY" },"category_id" : {"type": "string","title": "CATEGORY_ID" },"name" : {"type": "string","title": "NAME" },"include_deleted" : {"type": "boolean","title": "INCLUDE_DELETED" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -829,7 +893,13 @@
    },
    "components":{
      "schemas": {
-     "TaskChangeStatusRequest": {
+     "TaskChangeAssigneeRequest": {
+         "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"assignee" : {"type": "string","title": "ASSIGNEE"}},
+         "type": "object",
+         "required": ["task_id","assignee"],
+                "title": "TaskChangeAssigneeRequest"
+           }
+           ,        "TaskChangeStatusRequest": {
          "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"status_id" : {"type": "string","title": "STATUS_ID"},"assignee" : {"type": "string","title": "ASSIGNEE"}},
          "type": "object",
          "required": ["task_id","status_id"],
@@ -867,9 +937,15 @@
          "required": ["query"],
                 "title": "TaskStatQuery"
            }
+           ,        "TaskUpdateDescriptionRequest": {
+         "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"description" : {"type": "string","title": "DESCRIPTION"},"files" : {"items": {"type": "string"},
+               "type": "array","title": "FILES"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"}},
+         "type": "object",
+         "required": ["task_id","description","files","mentions"],
+                "title": "TaskUpdateDescriptionRequest"
+           }
            ,        "TaskUpdateRequest": {
-         "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"name" : {"type": "string","title": "NAME"},"priority" : {"type": "string","title": "PRIORITY"},"description" : {"type": "string","title": "DESCRIPTION"},"files" : {"items": {"type": "string"},
-               "type": "array","title": "FILES"},"mentions" : {"$ref": "#/components/schemas/Mentions","title": "MENTIONS"},"assignee" : {"type": "string","title": "ASSIGNEE"},"data" : {"type": "object","title": "DATA"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
+         "properties" : {"task_id" : {"type": "string","title": "TASK_ID"},"name" : {"type": "string","title": "NAME"},"priority" : {"type": "string","title": "PRIORITY"},"data" : {"type": "object","title": "DATA"},"project_id" : {"type": "string","title": "PROJECT_ID"}},
          "type": "object",
          "required": ["task_id"],
                 "title": "TaskUpdateRequest"
@@ -1195,9 +1271,9 @@
            }
            ,        "TaskCategoryInfo": {
          "properties" : {"category_id" : {"type": "string","title": "CATEGORY_ID"},"name" : {"type": "string","title": "NAME"},"description" : {"type": "string","title": "DESCRIPTION"},"status_options" : {"$ref": "#/components/schemas/StatusOptions","title": "STATUS_OPTIONS"},"fields" : {"items": {"$ref": "#/components/schemas/TaskField"},
-               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"package_id" : {"type": "string","title": "PACKAGE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+               "type": "array","$ref": "#/components/schemas/TaskField","title": "FIELDS"},"state" : {"type": "string","title": "STATE"},"tags" : {"type": "object","title": "TAGS"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"package_id" : {"type": "string","title": "PACKAGE_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"},"deleted_at" : {"type": "string","title": "DELETED_AT"}},
          "type": "object",
-         "required": ["category_id","name","description","status_options","fields","tags","domain_id","package_id","created_at","updated_at"],
+         "required": ["category_id","name","description","status_options","fields","state","tags","domain_id","package_id","created_at","updated_at","deleted_at"],
                 "title": "TaskCategoryInfo"
            }
            ,        "TaskCategoryRequest": {
@@ -1207,7 +1283,7 @@
                 "title": "TaskCategoryRequest"
            }
            ,        "TaskCategorySearchQuery": {
-         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"name" : {"type": "string","title": "NAME"}},
+         "properties" : {"query" : {"$ref": "#/components/schemas/Query","title": "QUERY"},"category_id" : {"type": "string","title": "CATEGORY_ID"},"name" : {"type": "string","title": "NAME"},"include_deleted" : {"type": "boolean","title": "INCLUDE_DELETED"}},
          "type": "object",
          "required": [],
                 "title": "TaskCategorySearchQuery"

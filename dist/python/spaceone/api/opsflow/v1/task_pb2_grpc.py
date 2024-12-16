@@ -51,6 +51,16 @@ class TaskStub(object):
                 request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskUpdateRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskInfo.FromString,
                 _registered_method=True)
+        self.update_description = channel.unary_unary(
+                '/spaceone.api.opsflow.v1.Task/update_description',
+                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskUpdateDescriptionRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskInfo.FromString,
+                _registered_method=True)
+        self.change_assignee = channel.unary_unary(
+                '/spaceone.api.opsflow.v1.Task/change_assignee',
+                request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskChangeAssigneeRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskInfo.FromString,
+                _registered_method=True)
         self.change_status = channel.unary_unary(
                 '/spaceone.api.opsflow.v1.Task/change_status',
                 request_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskChangeStatusRequest.SerializeToString,
@@ -88,6 +98,18 @@ class TaskServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def update_description(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def change_assignee(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -134,6 +156,16 @@ def add_TaskServicer_to_server(servicer, server):
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskUpdateRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskInfo.SerializeToString,
+            ),
+            'update_description': grpc.unary_unary_rpc_method_handler(
+                    servicer.update_description,
+                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskUpdateDescriptionRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskInfo.SerializeToString,
+            ),
+            'change_assignee': grpc.unary_unary_rpc_method_handler(
+                    servicer.change_assignee,
+                    request_deserializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskChangeAssigneeRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskInfo.SerializeToString,
             ),
             'change_status': grpc.unary_unary_rpc_method_handler(
@@ -215,6 +247,60 @@ class Task(object):
             target,
             '/spaceone.api.opsflow.v1.Task/update',
             spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskUpdateRequest.SerializeToString,
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def update_description(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.opsflow.v1.Task/update_description',
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskUpdateDescriptionRequest.SerializeToString,
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskInfo.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def change_assignee(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/spaceone.api.opsflow.v1.Task/change_assignee',
+            spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskChangeAssigneeRequest.SerializeToString,
             spaceone_dot_api_dot_opsflow_dot_v1_dot_task__pb2.TaskInfo.FromString,
             options,
             channel_credentials,
