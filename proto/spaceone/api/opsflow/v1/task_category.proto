@@ -29,7 +29,7 @@ service TaskCategory {
             body: "*"
         };
     }
-    rpc delete (TaskCategoryRequest) returns (google.protobuf.Empty) {
+    rpc delete (TaskCategoryRequest) returns (TaskCategoryInfo) {
         option (google.api.http) = {
             post: "/opsflow/v1/task-category/delete"
             body: "*"
@@ -132,6 +132,8 @@ message TaskCategorySearchQuery {
     string category_id = 2;
     // +optional
     string name = 3;
+    // +optional
+    bool include_deleted = 4;
 }
 
 message TaskCategoryInfo {
@@ -140,6 +142,7 @@ message TaskCategoryInfo {
     string description = 3;
     StatusOptions status_options = 4;
     repeated TaskField fields = 5;
+    string state = 6;
     google.protobuf.Struct tags = 11;
 
     string domain_id = 21;
@@ -147,6 +150,7 @@ message TaskCategoryInfo {
 
     string created_at = 31;
     string updated_at = 32;
+    string deleted_at = 33;
 }
 
 message TaskCategoriesInfo {
