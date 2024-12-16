@@ -25,6 +25,18 @@ service Task {
             body: "*"
         };
     }
+    rpc update_description (TaskUpdateDescriptionRequest) returns (TaskInfo) {
+        option (google.api.http) = {
+            post: "/opsflow/v1/task/update_description"
+            body: "*"
+        };
+    }
+    rpc change_assignee (TaskChangeAssigneeRequest) returns (TaskInfo) {
+        option (google.api.http) = {
+            post: "/opsflow/v1/task/change_assignee"
+            body: "*"
+        };
+    }
     rpc change_status (TaskChangeStatusRequest) returns (TaskInfo) {
         option (google.api.http) = {
             post: "/opsflow/v1/task/change_status"
@@ -90,17 +102,21 @@ message TaskUpdateRequest {
     // +optional
     TaskPriority priority = 3;
     // +optional
-    string description = 4;
-    // +optional
-    repeated string files = 5;
-    // +optional
-    Mentions mentions = 6;
-    // +optional
-    string assignee = 7;
-    // +optional
-    google.protobuf.Struct data = 8;
+    google.protobuf.Struct data = 4;
     // +optional
     string project_id = 21;
+}
+
+message TaskUpdateDescriptionRequest {
+    string task_id = 1;
+    string description = 2;
+    repeated string files = 3;
+    Mentions mentions = 4;
+}
+
+message TaskChangeAssigneeRequest {
+    string task_id = 1;
+    string assignee = 2;
 }
 
 message TaskChangeStatusRequest {
