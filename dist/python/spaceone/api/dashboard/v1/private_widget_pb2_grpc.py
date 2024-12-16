@@ -63,7 +63,7 @@ class PrivateWidgetStub(object):
                 _registered_method=True)
         self.load_sum = channel.unary_unary(
                 '/spaceone.api.dashboard.v1.PrivateWidget/load_sum',
-                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__widget__pb2.LoadPrivateWidgetRequest.SerializeToString,
+                request_serializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__widget__pb2.LoadSumPrivateWidgetRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
@@ -148,7 +148,7 @@ def add_PrivateWidgetServicer_to_server(servicer, server):
             ),
             'load_sum': grpc.unary_unary_rpc_method_handler(
                     servicer.load_sum,
-                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__widget__pb2.LoadPrivateWidgetRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_dashboard_dot_v1_dot_private__widget__pb2.LoadSumPrivateWidgetRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
@@ -295,7 +295,7 @@ class PrivateWidget(object):
             request,
             target,
             '/spaceone.api.dashboard.v1.PrivateWidget/load_sum',
-            spaceone_dot_api_dot_dashboard_dot_v1_dot_private__widget__pb2.LoadPrivateWidgetRequest.SerializeToString,
+            spaceone_dot_api_dot_dashboard_dot_v1_dot_private__widget__pb2.LoadSumPrivateWidgetRequest.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,
