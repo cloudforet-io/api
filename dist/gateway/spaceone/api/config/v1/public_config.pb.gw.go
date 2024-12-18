@@ -110,7 +110,7 @@ func local_request_PublicConfig_Delete_0(ctx context.Context, marshaler runtime.
 
 func request_PublicConfig_Get_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PublicConfigClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq extV1.PublicConfigRequest
+		protoReq extV1.PublicConfigSearchQuery
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -122,13 +122,37 @@ func request_PublicConfig_Get_0(ctx context.Context, marshaler runtime.Marshaler
 
 func local_request_PublicConfig_Get_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PublicConfigServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq extV1.PublicConfigRequest
+		protoReq extV1.PublicConfigSearchQuery
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := server.Get(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_PublicConfig_GetAccessibleConfigs_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.PublicConfigClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq extV1.PublicConfigSearchQuery
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.GetAccessibleConfigs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PublicConfig_GetAccessibleConfigs_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.PublicConfigServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq extV1.PublicConfigSearchQuery
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.GetAccessibleConfigs(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -265,6 +289,26 @@ func RegisterPublicConfigHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			return
 		}
 		forward_PublicConfig_Get_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_PublicConfig_GetAccessibleConfigs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.config.v1.PublicConfig/GetAccessibleConfigs", runtime.WithHTTPPathPattern("/config/v1/public-config/get-accessible-configs"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PublicConfig_GetAccessibleConfigs_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PublicConfig_GetAccessibleConfigs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_PublicConfig_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -414,6 +458,23 @@ func RegisterPublicConfigHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		}
 		forward_PublicConfig_Get_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_PublicConfig_GetAccessibleConfigs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.config.v1.PublicConfig/GetAccessibleConfigs", runtime.WithHTTPPathPattern("/config/v1/public-config/get-accessible-configs"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PublicConfig_GetAccessibleConfigs_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PublicConfig_GetAccessibleConfigs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_PublicConfig_List_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -452,19 +513,21 @@ func RegisterPublicConfigHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_PublicConfig_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "public-config", "create"}, ""))
-	pattern_PublicConfig_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "public-config", "update"}, ""))
-	pattern_PublicConfig_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "public-config", "delete"}, ""))
-	pattern_PublicConfig_Get_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "public-config", "get"}, ""))
-	pattern_PublicConfig_List_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "public-config", "list"}, ""))
-	pattern_PublicConfig_Stat_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "public-config", "stat"}, ""))
+	pattern_PublicConfig_Create_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "public-config", "create"}, ""))
+	pattern_PublicConfig_Update_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "public-config", "update"}, ""))
+	pattern_PublicConfig_Delete_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "public-config", "delete"}, ""))
+	pattern_PublicConfig_Get_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "public-config", "get"}, ""))
+	pattern_PublicConfig_GetAccessibleConfigs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "public-config", "get-accessible-configs"}, ""))
+	pattern_PublicConfig_List_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "public-config", "list"}, ""))
+	pattern_PublicConfig_Stat_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "public-config", "stat"}, ""))
 )
 
 var (
-	forward_PublicConfig_Create_0 = runtime.ForwardResponseMessage
-	forward_PublicConfig_Update_0 = runtime.ForwardResponseMessage
-	forward_PublicConfig_Delete_0 = runtime.ForwardResponseMessage
-	forward_PublicConfig_Get_0    = runtime.ForwardResponseMessage
-	forward_PublicConfig_List_0   = runtime.ForwardResponseMessage
-	forward_PublicConfig_Stat_0   = runtime.ForwardResponseMessage
+	forward_PublicConfig_Create_0               = runtime.ForwardResponseMessage
+	forward_PublicConfig_Update_0               = runtime.ForwardResponseMessage
+	forward_PublicConfig_Delete_0               = runtime.ForwardResponseMessage
+	forward_PublicConfig_Get_0                  = runtime.ForwardResponseMessage
+	forward_PublicConfig_GetAccessibleConfigs_0 = runtime.ForwardResponseMessage
+	forward_PublicConfig_List_0                 = runtime.ForwardResponseMessage
+	forward_PublicConfig_Stat_0                 = runtime.ForwardResponseMessage
 )

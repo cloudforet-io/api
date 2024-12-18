@@ -23,12 +23,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PublicConfig_Create_FullMethodName = "/spaceone.api.config.v1.PublicConfig/create"
-	PublicConfig_Update_FullMethodName = "/spaceone.api.config.v1.PublicConfig/update"
-	PublicConfig_Delete_FullMethodName = "/spaceone.api.config.v1.PublicConfig/delete"
-	PublicConfig_Get_FullMethodName    = "/spaceone.api.config.v1.PublicConfig/get"
-	PublicConfig_List_FullMethodName   = "/spaceone.api.config.v1.PublicConfig/list"
-	PublicConfig_Stat_FullMethodName   = "/spaceone.api.config.v1.PublicConfig/stat"
+	PublicConfig_Create_FullMethodName               = "/spaceone.api.config.v1.PublicConfig/create"
+	PublicConfig_Update_FullMethodName               = "/spaceone.api.config.v1.PublicConfig/update"
+	PublicConfig_Delete_FullMethodName               = "/spaceone.api.config.v1.PublicConfig/delete"
+	PublicConfig_Get_FullMethodName                  = "/spaceone.api.config.v1.PublicConfig/get"
+	PublicConfig_GetAccessibleConfigs_FullMethodName = "/spaceone.api.config.v1.PublicConfig/get_accessible_configs"
+	PublicConfig_List_FullMethodName                 = "/spaceone.api.config.v1.PublicConfig/list"
+	PublicConfig_Stat_FullMethodName                 = "/spaceone.api.config.v1.PublicConfig/stat"
 )
 
 // PublicConfigClient is the client API for PublicConfig service.
@@ -38,7 +39,9 @@ type PublicConfigClient interface {
 	Create(ctx context.Context, in *CreatePublicConfigRequest, opts ...grpc.CallOption) (*PublicConfigInfo, error)
 	Update(ctx context.Context, in *UpdatePublicConfigRequest, opts ...grpc.CallOption) (*PublicConfigInfo, error)
 	Delete(ctx context.Context, in *PublicConfigRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	Get(ctx context.Context, in *PublicConfigRequest, opts ...grpc.CallOption) (*PublicConfigInfo, error)
+	Get(ctx context.Context, in *PublicConfigSearchQuery, opts ...grpc.CallOption) (*PublicConfigInfo, error)
+	// This API for retrieving domain scoped configs that are accessible to users.
+	GetAccessibleConfigs(ctx context.Context, in *PublicConfigSearchQuery, opts ...grpc.CallOption) (*PublicConfigsInfo, error)
 	List(ctx context.Context, in *PublicConfigSearchQuery, opts ...grpc.CallOption) (*PublicConfigsInfo, error)
 	Stat(ctx context.Context, in *PublicConfigStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
@@ -81,10 +84,20 @@ func (c *publicConfigClient) Delete(ctx context.Context, in *PublicConfigRequest
 	return out, nil
 }
 
-func (c *publicConfigClient) Get(ctx context.Context, in *PublicConfigRequest, opts ...grpc.CallOption) (*PublicConfigInfo, error) {
+func (c *publicConfigClient) Get(ctx context.Context, in *PublicConfigSearchQuery, opts ...grpc.CallOption) (*PublicConfigInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PublicConfigInfo)
 	err := c.cc.Invoke(ctx, PublicConfig_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *publicConfigClient) GetAccessibleConfigs(ctx context.Context, in *PublicConfigSearchQuery, opts ...grpc.CallOption) (*PublicConfigsInfo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PublicConfigsInfo)
+	err := c.cc.Invoke(ctx, PublicConfig_GetAccessibleConfigs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -118,7 +131,9 @@ type PublicConfigServer interface {
 	Create(context.Context, *CreatePublicConfigRequest) (*PublicConfigInfo, error)
 	Update(context.Context, *UpdatePublicConfigRequest) (*PublicConfigInfo, error)
 	Delete(context.Context, *PublicConfigRequest) (*empty.Empty, error)
-	Get(context.Context, *PublicConfigRequest) (*PublicConfigInfo, error)
+	Get(context.Context, *PublicConfigSearchQuery) (*PublicConfigInfo, error)
+	// This API for retrieving domain scoped configs that are accessible to users.
+	GetAccessibleConfigs(context.Context, *PublicConfigSearchQuery) (*PublicConfigsInfo, error)
 	List(context.Context, *PublicConfigSearchQuery) (*PublicConfigsInfo, error)
 	Stat(context.Context, *PublicConfigStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedPublicConfigServer()
@@ -140,8 +155,11 @@ func (UnimplementedPublicConfigServer) Update(context.Context, *UpdatePublicConf
 func (UnimplementedPublicConfigServer) Delete(context.Context, *PublicConfigRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedPublicConfigServer) Get(context.Context, *PublicConfigRequest) (*PublicConfigInfo, error) {
+func (UnimplementedPublicConfigServer) Get(context.Context, *PublicConfigSearchQuery) (*PublicConfigInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedPublicConfigServer) GetAccessibleConfigs(context.Context, *PublicConfigSearchQuery) (*PublicConfigsInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAccessibleConfigs not implemented")
 }
 func (UnimplementedPublicConfigServer) List(context.Context, *PublicConfigSearchQuery) (*PublicConfigsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
@@ -225,7 +243,7 @@ func _PublicConfig_Delete_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _PublicConfig_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PublicConfigRequest)
+	in := new(PublicConfigSearchQuery)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -237,7 +255,25 @@ func _PublicConfig_Get_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: PublicConfig_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublicConfigServer).Get(ctx, req.(*PublicConfigRequest))
+		return srv.(PublicConfigServer).Get(ctx, req.(*PublicConfigSearchQuery))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PublicConfig_GetAccessibleConfigs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublicConfigSearchQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PublicConfigServer).GetAccessibleConfigs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PublicConfig_GetAccessibleConfigs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PublicConfigServer).GetAccessibleConfigs(ctx, req.(*PublicConfigSearchQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -300,6 +336,10 @@ var PublicConfig_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "get",
 			Handler:    _PublicConfig_Get_Handler,
+		},
+		{
+			MethodName: "get_accessible_configs",
+			Handler:    _PublicConfig_GetAccessibleConfigs_Handler,
 		},
 		{
 			MethodName: "list",

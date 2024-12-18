@@ -568,9 +568,9 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "PublicConfigRequest",
-              "requestLongType": "PublicConfigRequest",
-              "requestFullType": "spaceone.api.config.v1.PublicConfigRequest",
+              "requestType": "PublicConfigSearchQuery",
+              "requestLongType": "PublicConfigSearchQuery",
+              "requestFullType": "spaceone.api.config.v1.PublicConfigSearchQuery",
               "requestStreaming": false,
               "responseType": "PublicConfigInfo",
               "responseLongType": "PublicConfigInfo",
@@ -582,6 +582,29 @@
                     {
                       "method": "POST",
                       "pattern": "/config/v1/public-config/get",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "get_accessible_configs",
+              "description": "This API for retrieving domain scoped configs that are accessible to users.",
+              "requestType": "PublicConfigSearchQuery",
+              "requestLongType": "PublicConfigSearchQuery",
+              "requestFullType": "spaceone.api.config.v1.PublicConfigSearchQuery",
+              "requestStreaming": false,
+              "responseType": "PublicConfigsInfo",
+              "responseLongType": "PublicConfigsInfo",
+              "responseFullType": "spaceone.api.config.v1.PublicConfigsInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/config/v1/public-config/get-accessible-configs",
                       "body": "*"
                     }
                   ]
