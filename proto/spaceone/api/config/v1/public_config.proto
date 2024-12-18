@@ -31,12 +31,21 @@ service PublicConfig {
       body: "*"
     };
   }
-  rpc get (PublicConfigRequest) returns (PublicConfigInfo) {
+  rpc get (PublicConfigSearchQuery) returns (PublicConfigInfo) {
     option (google.api.http) = {
       post: "/config/v1/public-config/get"
       body: "*"
     };
   }
+
+  // This API for retrieving domain scoped configs that are accessible to users.
+  rpc get_accessible_configs (PublicConfigSearchQuery) returns (PublicConfigsInfo) {
+    option (google.api.http) = {
+      post: "/config/v1/public-config/get-accessible-configs"
+      body: "*"
+    };
+  }
+
   rpc list (PublicConfigSearchQuery) returns (PublicConfigsInfo) {
     option (google.api.http) = {
       post: "/config/v1/public-config/list"
