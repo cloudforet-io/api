@@ -555,6 +555,42 @@
           ]
         },
         {
+          "name": "UpdatePasswordUserProfileRequest",
+          "longName": "UpdatePasswordUserProfileRequest",
+          "fullName": "spaceone.api.identity.v2.UpdatePasswordUserProfileRequest",
+          "description": "{\n  \"current_password\": \"password\",\n  \"new_password\": \"new_password\"\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "new_password",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "current_password",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "UpdateUserProfileRequest",
           "longName": "UpdateUserProfileRequest",
           "fullName": "spaceone.api.identity.v2.UpdateUserProfileRequest",
@@ -758,6 +794,29 @@
                     {
                       "method": "POST",
                       "pattern": "/identity/v2/user-profile/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "update_password",
+              "description": "",
+              "requestType": "UpdatePasswordUserProfileRequest",
+              "requestLongType": "UpdatePasswordUserProfileRequest",
+              "requestFullType": "spaceone.api.identity.v2.UpdatePasswordUserProfileRequest",
+              "requestStreaming": false,
+              "responseType": "UserInfo",
+              "responseLongType": "UserInfo",
+              "responseFullType": "spaceone.api.identity.v2.UserInfo",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/identity/v2/user-profile/update-password",
                       "body": "*"
                     }
                   ]
