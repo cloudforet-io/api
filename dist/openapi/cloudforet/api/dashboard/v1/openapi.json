@@ -548,11 +548,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |granularity||string|True|\n |start||string|True|\n |end||string|True|\n |sort||array||\n |page||PrivateWidgetPage||\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |granularity||string|True|\n |start||string|True|\n |end||string|True|\n |group_by||array||\n |sort||array||\n |page||PrivateWidgetPage||\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"granularity" : {"type": "string","title": "GRANULARITY" },"start" : {"type": "string","title": "START" },"end" : {"type": "string","title": "END" },"sort" : {"items": {"$ref": "#/components/schemas/PrivateWidgetSort"}, "type": "array","title": "SORT" },"page" : {"$ref": "#/components/schemas/PrivateWidgetPage","title": "PAGE" },"vars" : {"type": "object","title": "VARS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"granularity" : {"type": "string","title": "GRANULARITY" },"start" : {"type": "string","title": "START" },"end" : {"type": "string","title": "END" },"group_by" : {"items": {}, "type": "array","title": "GROUP_BY" },"sort" : {"items": {"$ref": "#/components/schemas/PrivateWidgetSort"}, "type": "array","title": "SORT" },"page" : {"$ref": "#/components/schemas/PrivateWidgetPage","title": "PAGE" },"vars" : {"type": "object","title": "VARS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1365,11 +1365,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |granularity||string|True|\n |start||string|True|\n |end||string|True|\n |sort||array||\n |page||PublicWidgetPage||\n |vars||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |widget_id||string|True|\n |granularity||string|True|\n |start||string|True|\n |end||string|True|\n |group_by||array||\n |sort||array||\n |page||PublicWidgetPage||\n |vars||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"granularity" : {"type": "string","title": "GRANULARITY" },"start" : {"type": "string","title": "START" },"end" : {"type": "string","title": "END" },"sort" : {"items": {"$ref": "#/components/schemas/PublicWidgetSort"}, "type": "array","title": "SORT" },"page" : {"$ref": "#/components/schemas/PublicWidgetPage","title": "PAGE" },"vars" : {"type": "object","title": "VARS" }                 }
+                 "properties": {"widget_id" : {"type": "string","title": "WIDGET_ID" },"granularity" : {"type": "string","title": "GRANULARITY" },"start" : {"type": "string","title": "START" },"end" : {"type": "string","title": "END" },"group_by" : {"items": {}, "type": "array","title": "GROUP_BY" },"sort" : {"items": {"$ref": "#/components/schemas/PublicWidgetSort"}, "type": "array","title": "SORT" },"page" : {"$ref": "#/components/schemas/PublicWidgetPage","title": "PAGE" },"vars" : {"type": "object","title": "VARS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -1977,7 +1977,8 @@
                 "title": "CreatePrivateWidgetRequest"
            }
            ,        "LoadPrivateWidgetRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"granularity" : {"type": "string","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"sort" : {"items": {"$ref": "#/components/schemas/PrivateWidgetSort"},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"granularity" : {"type": "string","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"group_by" : {"items": {"type": "string"},
+               "type": "array","title": "GROUP_BY"},"sort" : {"items": {"$ref": "#/components/schemas/PrivateWidgetSort"},
                "type": "array","$ref": "#/components/schemas/PrivateWidgetSort","title": "SORT"},"page" : {"$ref": "#/components/schemas/PrivateWidgetPage","title": "PAGE"},"vars" : {"type": "object","title": "VARS"}},
          "type": "object",
          "required": ["widget_id","granularity","start","end"],
@@ -2047,9 +2048,9 @@
            }
            ,        "PrivateDataTableInfo": {
          "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data_type" : {"type": "DataType","title": "DATA_TYPE"},"source_type" : {"type": "SourceType","title": "SOURCE_TYPE"},"operator" : {"type": "Operator","title": "OPERATOR"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"labels_info" : {"type": "object","title": "LABELS_INFO"},"data_info" : {"type": "object","title": "DATA_INFO"},"sort_keys" : {"items": {"type": "string"},
-               "type": "array","title": "SORT_KEYS"},"error_message" : {"type": "string","title": "ERROR_MESSAGE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+               "type": "array","title": "SORT_KEYS"},"cache_key" : {"type": "string","title": "CACHE_KEY"},"error_message" : {"type": "string","title": "ERROR_MESSAGE"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"user_id" : {"type": "string","title": "USER_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["data_table_id","name","state","data_type","source_type","operator","options","tags","labels_info","data_info","sort_keys","error_message","domain_id","user_id","dashboard_id","widget_id","created_at","updated_at"],
+         "required": ["data_table_id","name","state","data_type","source_type","operator","options","tags","labels_info","data_info","sort_keys","cache_key","error_message","domain_id","user_id","dashboard_id","widget_id","created_at","updated_at"],
                 "title": "PrivateDataTableInfo"
            }
            ,        "PrivateDataTableQuery": {
@@ -2172,9 +2173,9 @@
            }
            ,        "PublicDataTableInfo": {
          "properties" : {"data_table_id" : {"type": "string","title": "DATA_TABLE_ID"},"name" : {"type": "string","title": "NAME"},"state" : {"type": "string","title": "STATE"},"data_type" : {"type": "string","title": "DATA_TYPE"},"source_type" : {"type": "string","title": "SOURCE_TYPE"},"operator" : {"type": "string","title": "OPERATOR"},"options" : {"type": "object","title": "OPTIONS"},"tags" : {"type": "object","title": "TAGS"},"labels_info" : {"type": "object","title": "LABELS_INFO"},"data_info" : {"type": "object","title": "DATA_INFO"},"sort_keys" : {"items": {"type": "string"},
-               "type": "array","title": "SORT_KEYS"},"error_message" : {"type": "string","title": "ERROR_MESSAGE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
+               "type": "array","title": "SORT_KEYS"},"cache_key" : {"type": "string","title": "CACHE_KEY"},"error_message" : {"type": "string","title": "ERROR_MESSAGE"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"dashboard_id" : {"type": "string","title": "DASHBOARD_ID"},"widget_id" : {"type": "string","title": "WIDGET_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},
          "type": "object",
-         "required": ["data_table_id","name","state","data_type","source_type","operator","options","tags","labels_info","data_info","sort_keys","error_message","resource_group","domain_id","workspace_id","project_id","dashboard_id","widget_id","created_at","updated_at"],
+         "required": ["data_table_id","name","state","data_type","source_type","operator","options","tags","labels_info","data_info","sort_keys","cache_key","error_message","resource_group","domain_id","workspace_id","project_id","dashboard_id","widget_id","created_at","updated_at"],
                 "title": "PublicDataTableInfo"
            }
            ,        "PublicDataTableQuery": {
@@ -2298,7 +2299,8 @@
                 "title": "CreatePublicWidgetRequest"
            }
            ,        "LoadPublicWidgetRequest": {
-         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"granularity" : {"type": "string","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"sort" : {"items": {"$ref": "#/components/schemas/PublicWidgetSort"},
+         "properties" : {"widget_id" : {"type": "string","title": "WIDGET_ID"},"granularity" : {"type": "string","title": "GRANULARITY"},"start" : {"type": "string","title": "START"},"end" : {"type": "string","title": "END"},"group_by" : {"items": {"type": "string"},
+               "type": "array","title": "GROUP_BY"},"sort" : {"items": {"$ref": "#/components/schemas/PublicWidgetSort"},
                "type": "array","$ref": "#/components/schemas/PublicWidgetSort","title": "SORT"},"page" : {"$ref": "#/components/schemas/PublicWidgetPage","title": "PAGE"},"vars" : {"type": "object","title": "VARS"}},
          "type": "object",
          "required": ["widget_id","granularity","start","end"],
