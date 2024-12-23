@@ -1637,11 +1637,11 @@
          "operationId" : "",
          "description": "### Description \n",
          "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |escalation_policy_id||string|True|\n |name||string||\n |rules||array||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |tags||Struct||\n<br>",
+           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |escalation_policy_id||string|True|\n |name||string||\n |rules||array||\n |finish_condition|ACKNOWLEDGED, RESOLVED |string||\n |repeat||Repeat||\n |tags||Struct||\n<br>",
            "content": {
              "application/json": {
                "schema": {
-                 "properties": {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"name" : {"type": "string","title": "NAME" },"rules" : {"items": {"$ref": "#/components/schemas/EscalationRule"}, "type": "array","title": "RULES" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"tags" : {"type": "object","title": "TAGS" }                 }
+                 "properties": {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID" },"name" : {"type": "string","title": "NAME" },"rules" : {"items": {"$ref": "#/components/schemas/EscalationRule"}, "type": "array","title": "RULES" },"finish_condition" : {"type": "string","title": "FINISH_CONDITION" },"repeat" : {"$ref": "#/components/schemas/Repeat","title": "REPEAT" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -2929,7 +2929,7 @@
            }
            ,        "EscalationPolicyUpdateRequest": {
          "properties" : {"escalation_policy_id" : {"type": "string","title": "ESCALATION_POLICY_ID"},"name" : {"type": "string","title": "NAME"},"rules" : {"items": {"$ref": "#/components/schemas/EscalationRule"},
-               "type": "array","$ref": "#/components/schemas/EscalationRule","title": "RULES"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"tags" : {"type": "object","title": "TAGS"}},
+               "type": "array","$ref": "#/components/schemas/EscalationRule","title": "RULES"},"finish_condition" : {"type": "string","title": "FINISH_CONDITION"},"repeat" : {"$ref": "#/components/schemas/Repeat","title": "REPEAT"},"tags" : {"type": "object","title": "TAGS"}},
          "type": "object",
          "required": ["escalation_policy_id"],
                 "title": "EscalationPolicyUpdateRequest"
