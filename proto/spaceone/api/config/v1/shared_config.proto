@@ -23,12 +23,6 @@ service SharedConfig {
             body: "*"
         };
     }
-    rpc set (SetSharedConfigRequest) returns (SharedConfigInfo) {
-        option (google.api.http) = {
-            post: "/config/v1/shared-config/set"
-            body: "*"
-        };
-    }
     rpc delete (SharedConfigRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/config/v1/shared-config/delete"
@@ -45,12 +39,6 @@ service SharedConfig {
     rpc list (SharedConfigSearchQuery) returns (SharedConfigsInfo) {
         option (google.api.http) = {
             post: "/config/v1/shared-config/list"
-            body: "*"
-        };
-    }
-    rpc stat (SharedConfigStatQuery) returns (google.protobuf.Struct) {
-        option (google.api.http) = {
-            post: "/config/v1/shared-config/stat"
             body: "*"
         };
     }
@@ -85,13 +73,6 @@ message UpdateSharedConfigRequest {
     string workspace_id = 21;
     // +optional
     string project_id = 22;
-}
-
-message SetSharedConfigRequest {
-    string name = 1;
-    google.protobuf.Struct data = 2;
-    // +optional
-    google.protobuf.Struct tags = 3;
 }
 
 message SharedConfigRequest {
