@@ -1,20 +1,209 @@
 {
   "files": [
     {
-      "name": "spaceone/api/config/v1/public_config.proto",
+      "name": "spaceone/api/config/v1/shared_config.proto",
       "description": "",
       "package": "spaceone.api.config.v1",
       "hasEnums": false,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
-      "enums": [],
+      "enums": [
+        {
+          "name": "ResourceGroup",
+          "longName": "CreateSharedConfigRequest.ResourceGroup",
+          "fullName": "spaceone.api.config.v1.CreateSharedConfigRequest.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "PROJECT",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ResourceGroup",
+          "longName": "SharedConfigInfo.ResourceGroup",
+          "fullName": "spaceone.api.config.v1.SharedConfigInfo.ResourceGroup",
+          "description": "",
+          "values": [
+            {
+              "name": "RESOURCE_GROUP_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DOMAIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WORKSPACE",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "PROJECT",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        }
+      ],
       "extensions": [],
       "messages": [
         {
-          "name": "PublicConfigInfo",
-          "longName": "PublicConfigInfo",
-          "fullName": "spaceone.api.config.v1.PublicConfigInfo",
+          "name": "CreateSharedConfigRequest",
+          "longName": "CreateSharedConfigRequest",
+          "fullName": "spaceone.api.config.v1.CreateSharedConfigRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "CreateSharedConfigRequest.ResourceGroup",
+              "fullType": "spaceone.api.config.v1.CreateSharedConfigRequest.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SetSharedConfigRequest",
+          "longName": "SetSharedConfigRequest",
+          "fullName": "spaceone.api.config.v1.SetSharedConfigRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "data",
+              "description": "",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tags",
+              "description": "+optional",
+              "label": "",
+              "type": "Struct",
+              "longType": "google.protobuf.Struct",
+              "fullType": "google.protobuf.Struct",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "SharedConfigInfo",
+          "longName": "SharedConfigInfo",
+          "fullName": "spaceone.api.config.v1.SharedConfigInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -58,7 +247,43 @@
               "defaultValue": ""
             },
             {
+              "name": "resource_group",
+              "description": "",
+              "label": "",
+              "type": "ResourceGroup",
+              "longType": "SharedConfigInfo.ResourceGroup",
+              "fullType": "spaceone.api.config.v1.SharedConfigInfo.ResourceGroup",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "domain_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
               "description": "",
               "label": "",
               "type": "string",
@@ -96,9 +321,9 @@
           ]
         },
         {
-          "name": "PublicConfigRequest",
-          "longName": "PublicConfigRequest",
-          "fullName": "spaceone.api.config.v1.PublicConfigRequest",
+          "name": "SharedConfigRequest",
+          "longName": "SharedConfigRequest",
+          "fullName": "spaceone.api.config.v1.SharedConfigRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -116,13 +341,37 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
         {
-          "name": "PublicConfigSearchQuery",
-          "longName": "PublicConfigSearchQuery",
-          "fullName": "spaceone.api.config.v1.PublicConfigSearchQuery",
+          "name": "SharedConfigSearchQuery",
+          "longName": "SharedConfigSearchQuery",
+          "fullName": "spaceone.api.config.v1.SharedConfigSearchQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -156,9 +405,9 @@
           ]
         },
         {
-          "name": "PublicConfigStatQuery",
-          "longName": "PublicConfigStatQuery",
-          "fullName": "spaceone.api.config.v1.PublicConfigStatQuery",
+          "name": "SharedConfigStatQuery",
+          "longName": "SharedConfigStatQuery",
+          "fullName": "spaceone.api.config.v1.SharedConfigStatQuery",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -180,9 +429,9 @@
           ]
         },
         {
-          "name": "PublicConfigsInfo",
-          "longName": "PublicConfigsInfo",
-          "fullName": "spaceone.api.config.v1.PublicConfigsInfo",
+          "name": "SharedConfigsInfo",
+          "longName": "SharedConfigsInfo",
+          "fullName": "spaceone.api.config.v1.SharedConfigsInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -193,9 +442,9 @@
               "name": "results",
               "description": "",
               "label": "repeated",
-              "type": "PublicConfigInfo",
-              "longType": "PublicConfigInfo",
-              "fullType": "spaceone.api.config.v1.PublicConfigInfo",
+              "type": "SharedConfigInfo",
+              "longType": "SharedConfigInfo",
+              "fullType": "spaceone.api.config.v1.SharedConfigInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -216,9 +465,9 @@
           ]
         },
         {
-          "name": "SetPublicConfigRequest",
-          "longName": "SetPublicConfigRequest",
-          "fullName": "spaceone.api.config.v1.SetPublicConfigRequest",
+          "name": "UpdateSharedConfigRequest",
+          "longName": "UpdateSharedConfigRequest",
+          "fullName": "spaceone.api.config.v1.UpdateSharedConfigRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -260,34 +509,58 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "workspace_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project_id",
+              "description": "+optional",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         }
       ],
       "services": [
         {
-          "name": "PublicConfig",
-          "longName": "PublicConfig",
-          "fullName": "spaceone.api.config.v1.PublicConfig",
+          "name": "SharedConfig",
+          "longName": "SharedConfig",
+          "fullName": "spaceone.api.config.v1.SharedConfig",
           "description": "",
           "methods": [
             {
               "name": "create",
               "description": "",
-              "requestType": "SetPublicConfigRequest",
-              "requestLongType": "SetPublicConfigRequest",
-              "requestFullType": "spaceone.api.config.v1.SetPublicConfigRequest",
+              "requestType": "CreateSharedConfigRequest",
+              "requestLongType": "CreateSharedConfigRequest",
+              "requestFullType": "spaceone.api.config.v1.CreateSharedConfigRequest",
               "requestStreaming": false,
-              "responseType": "PublicConfigInfo",
-              "responseLongType": "PublicConfigInfo",
-              "responseFullType": "spaceone.api.config.v1.PublicConfigInfo",
+              "responseType": "SharedConfigInfo",
+              "responseLongType": "SharedConfigInfo",
+              "responseFullType": "spaceone.api.config.v1.SharedConfigInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/config/v1/public-config/create",
+                      "pattern": "/config/v1/shared-config/create",
                       "body": "*"
                     }
                   ]
@@ -297,20 +570,20 @@
             {
               "name": "update",
               "description": "",
-              "requestType": "SetPublicConfigRequest",
-              "requestLongType": "SetPublicConfigRequest",
-              "requestFullType": "spaceone.api.config.v1.SetPublicConfigRequest",
+              "requestType": "UpdateSharedConfigRequest",
+              "requestLongType": "UpdateSharedConfigRequest",
+              "requestFullType": "spaceone.api.config.v1.UpdateSharedConfigRequest",
               "requestStreaming": false,
-              "responseType": "PublicConfigInfo",
-              "responseLongType": "PublicConfigInfo",
-              "responseFullType": "spaceone.api.config.v1.PublicConfigInfo",
+              "responseType": "SharedConfigInfo",
+              "responseLongType": "SharedConfigInfo",
+              "responseFullType": "spaceone.api.config.v1.SharedConfigInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/config/v1/public-config/update",
+                      "pattern": "/config/v1/shared-config/update",
                       "body": "*"
                     }
                   ]
@@ -320,20 +593,20 @@
             {
               "name": "set",
               "description": "",
-              "requestType": "SetPublicConfigRequest",
-              "requestLongType": "SetPublicConfigRequest",
-              "requestFullType": "spaceone.api.config.v1.SetPublicConfigRequest",
+              "requestType": "SetSharedConfigRequest",
+              "requestLongType": "SetSharedConfigRequest",
+              "requestFullType": "spaceone.api.config.v1.SetSharedConfigRequest",
               "requestStreaming": false,
-              "responseType": "PublicConfigInfo",
-              "responseLongType": "PublicConfigInfo",
-              "responseFullType": "spaceone.api.config.v1.PublicConfigInfo",
+              "responseType": "SharedConfigInfo",
+              "responseLongType": "SharedConfigInfo",
+              "responseFullType": "spaceone.api.config.v1.SharedConfigInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/config/v1/public-config/set",
+                      "pattern": "/config/v1/shared-config/set",
                       "body": "*"
                     }
                   ]
@@ -343,9 +616,9 @@
             {
               "name": "delete",
               "description": "",
-              "requestType": "PublicConfigRequest",
-              "requestLongType": "PublicConfigRequest",
-              "requestFullType": "spaceone.api.config.v1.PublicConfigRequest",
+              "requestType": "SharedConfigRequest",
+              "requestLongType": "SharedConfigRequest",
+              "requestFullType": "spaceone.api.config.v1.SharedConfigRequest",
               "requestStreaming": false,
               "responseType": "Empty",
               "responseLongType": ".google.protobuf.Empty",
@@ -356,7 +629,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/config/v1/public-config/delete",
+                      "pattern": "/config/v1/shared-config/delete",
                       "body": "*"
                     }
                   ]
@@ -366,20 +639,20 @@
             {
               "name": "get",
               "description": "",
-              "requestType": "PublicConfigRequest",
-              "requestLongType": "PublicConfigRequest",
-              "requestFullType": "spaceone.api.config.v1.PublicConfigRequest",
+              "requestType": "SharedConfigSearchQuery",
+              "requestLongType": "SharedConfigSearchQuery",
+              "requestFullType": "spaceone.api.config.v1.SharedConfigSearchQuery",
               "requestStreaming": false,
-              "responseType": "PublicConfigInfo",
-              "responseLongType": "PublicConfigInfo",
-              "responseFullType": "spaceone.api.config.v1.PublicConfigInfo",
+              "responseType": "SharedConfigInfo",
+              "responseLongType": "SharedConfigInfo",
+              "responseFullType": "spaceone.api.config.v1.SharedConfigInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/config/v1/public-config/get",
+                      "pattern": "/config/v1/shared-config/get",
                       "body": "*"
                     }
                   ]
@@ -389,20 +662,20 @@
             {
               "name": "list",
               "description": "",
-              "requestType": "PublicConfigSearchQuery",
-              "requestLongType": "PublicConfigSearchQuery",
-              "requestFullType": "spaceone.api.config.v1.PublicConfigSearchQuery",
+              "requestType": "SharedConfigSearchQuery",
+              "requestLongType": "SharedConfigSearchQuery",
+              "requestFullType": "spaceone.api.config.v1.SharedConfigSearchQuery",
               "requestStreaming": false,
-              "responseType": "PublicConfigsInfo",
-              "responseLongType": "PublicConfigsInfo",
-              "responseFullType": "spaceone.api.config.v1.PublicConfigsInfo",
+              "responseType": "SharedConfigsInfo",
+              "responseLongType": "SharedConfigsInfo",
+              "responseFullType": "spaceone.api.config.v1.SharedConfigsInfo",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/config/v1/public-config/list",
+                      "pattern": "/config/v1/shared-config/list",
                       "body": "*"
                     }
                   ]
@@ -412,9 +685,9 @@
             {
               "name": "stat",
               "description": "",
-              "requestType": "PublicConfigStatQuery",
-              "requestLongType": "PublicConfigStatQuery",
-              "requestFullType": "spaceone.api.config.v1.PublicConfigStatQuery",
+              "requestType": "SharedConfigStatQuery",
+              "requestLongType": "SharedConfigStatQuery",
+              "requestFullType": "spaceone.api.config.v1.SharedConfigStatQuery",
               "requestStreaming": false,
               "responseType": "Struct",
               "responseLongType": ".google.protobuf.Struct",
@@ -425,7 +698,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/config/v1/public-config/stat",
+                      "pattern": "/config/v1/shared-config/stat",
                       "body": "*"
                     }
                   ]

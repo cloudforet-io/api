@@ -5,7 +5,7 @@ import warnings
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
-from spaceone.api.config.v1 import public_config_pb2 as spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2
+from spaceone.api.config.v1 import shared_config_pb2 as spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2
 
 GRPC_GENERATED_VERSION = '1.64.1'
 GRPC_VERSION = grpc.__version__
@@ -22,7 +22,7 @@ except ImportError:
 if _version_not_supported:
     warnings.warn(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in spaceone/api/config/v1/public_config_pb2_grpc.py depends on'
+        + f' but the generated code in spaceone/api/config/v1/shared_config_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -32,7 +32,7 @@ if _version_not_supported:
     )
 
 
-class PublicConfigStub(object):
+class SharedConfigStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -42,43 +42,43 @@ class PublicConfigStub(object):
             channel: A grpc.Channel.
         """
         self.create = channel.unary_unary(
-                '/spaceone.api.config.v1.PublicConfig/create',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.SetPublicConfigRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigInfo.FromString,
+                '/spaceone.api.config.v1.SharedConfig/create',
+                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.CreateSharedConfigRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.FromString,
                 _registered_method=True)
         self.update = channel.unary_unary(
-                '/spaceone.api.config.v1.PublicConfig/update',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.SetPublicConfigRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigInfo.FromString,
+                '/spaceone.api.config.v1.SharedConfig/update',
+                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.UpdateSharedConfigRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.FromString,
                 _registered_method=True)
         self.set = channel.unary_unary(
-                '/spaceone.api.config.v1.PublicConfig/set',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.SetPublicConfigRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigInfo.FromString,
+                '/spaceone.api.config.v1.SharedConfig/set',
+                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SetSharedConfigRequest.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.FromString,
                 _registered_method=True)
         self.delete = channel.unary_unary(
-                '/spaceone.api.config.v1.PublicConfig/delete',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigRequest.SerializeToString,
+                '/spaceone.api.config.v1.SharedConfig/delete',
+                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
         self.get = channel.unary_unary(
-                '/spaceone.api.config.v1.PublicConfig/get',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigInfo.FromString,
+                '/spaceone.api.config.v1.SharedConfig/get',
+                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigSearchQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.FromString,
                 _registered_method=True)
         self.list = channel.unary_unary(
-                '/spaceone.api.config.v1.PublicConfig/list',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigSearchQuery.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigsInfo.FromString,
+                '/spaceone.api.config.v1.SharedConfig/list',
+                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigSearchQuery.SerializeToString,
+                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigsInfo.FromString,
                 _registered_method=True)
         self.stat = channel.unary_unary(
-                '/spaceone.api.config.v1.PublicConfig/stat',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigStatQuery.SerializeToString,
+                '/spaceone.api.config.v1.SharedConfig/stat',
+                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigStatQuery.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
                 _registered_method=True)
 
 
-class PublicConfigServicer(object):
+class SharedConfigServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def create(self, request, context):
@@ -124,52 +124,52 @@ class PublicConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_PublicConfigServicer_to_server(servicer, server):
+def add_SharedConfigServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'create': grpc.unary_unary_rpc_method_handler(
                     servicer.create,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.SetPublicConfigRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.CreateSharedConfigRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.SetPublicConfigRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.UpdateSharedConfigRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.SerializeToString,
             ),
             'set': grpc.unary_unary_rpc_method_handler(
                     servicer.set,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.SetPublicConfigRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SetSharedConfigRequest.FromString,
+                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigRequest.FromString,
+                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigSearchQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.SerializeToString,
             ),
             'list': grpc.unary_unary_rpc_method_handler(
                     servicer.list,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigSearchQuery.FromString,
-                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigsInfo.SerializeToString,
+                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigSearchQuery.FromString,
+                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigsInfo.SerializeToString,
             ),
             'stat': grpc.unary_unary_rpc_method_handler(
                     servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigStatQuery.FromString,
+                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigStatQuery.FromString,
                     response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'spaceone.api.config.v1.PublicConfig', rpc_method_handlers)
+            'spaceone.api.config.v1.SharedConfig', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('spaceone.api.config.v1.PublicConfig', rpc_method_handlers)
+    server.add_registered_method_handlers('spaceone.api.config.v1.SharedConfig', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class PublicConfig(object):
+class SharedConfig(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -186,9 +186,9 @@ class PublicConfig(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.config.v1.PublicConfig/create',
-            spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.SetPublicConfigRequest.SerializeToString,
-            spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigInfo.FromString,
+            '/spaceone.api.config.v1.SharedConfig/create',
+            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.CreateSharedConfigRequest.SerializeToString,
+            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -213,9 +213,9 @@ class PublicConfig(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.config.v1.PublicConfig/update',
-            spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.SetPublicConfigRequest.SerializeToString,
-            spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigInfo.FromString,
+            '/spaceone.api.config.v1.SharedConfig/update',
+            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.UpdateSharedConfigRequest.SerializeToString,
+            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -240,9 +240,9 @@ class PublicConfig(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.config.v1.PublicConfig/set',
-            spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.SetPublicConfigRequest.SerializeToString,
-            spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigInfo.FromString,
+            '/spaceone.api.config.v1.SharedConfig/set',
+            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SetSharedConfigRequest.SerializeToString,
+            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -267,8 +267,8 @@ class PublicConfig(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.config.v1.PublicConfig/delete',
-            spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigRequest.SerializeToString,
+            '/spaceone.api.config.v1.SharedConfig/delete',
+            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
@@ -294,9 +294,9 @@ class PublicConfig(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.config.v1.PublicConfig/get',
-            spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigRequest.SerializeToString,
-            spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigInfo.FromString,
+            '/spaceone.api.config.v1.SharedConfig/get',
+            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigSearchQuery.SerializeToString,
+            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -321,9 +321,9 @@ class PublicConfig(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.config.v1.PublicConfig/list',
-            spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigSearchQuery.SerializeToString,
-            spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigsInfo.FromString,
+            '/spaceone.api.config.v1.SharedConfig/list',
+            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigSearchQuery.SerializeToString,
+            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigsInfo.FromString,
             options,
             channel_credentials,
             insecure,
@@ -348,8 +348,8 @@ class PublicConfig(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/spaceone.api.config.v1.PublicConfig/stat',
-            spaceone_dot_api_dot_config_dot_v1_dot_public__config__pb2.PublicConfigStatQuery.SerializeToString,
+            '/spaceone.api.config.v1.SharedConfig/stat',
+            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigStatQuery.SerializeToString,
             google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,
