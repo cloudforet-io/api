@@ -9,7 +9,6 @@ package v1
 import (
 	context "context"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,11 +22,9 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	SharedConfig_Create_FullMethodName = "/spaceone.api.config.v1.SharedConfig/create"
 	SharedConfig_Update_FullMethodName = "/spaceone.api.config.v1.SharedConfig/update"
-	SharedConfig_Set_FullMethodName    = "/spaceone.api.config.v1.SharedConfig/set"
 	SharedConfig_Delete_FullMethodName = "/spaceone.api.config.v1.SharedConfig/delete"
 	SharedConfig_Get_FullMethodName    = "/spaceone.api.config.v1.SharedConfig/get"
 	SharedConfig_List_FullMethodName   = "/spaceone.api.config.v1.SharedConfig/list"
-	SharedConfig_Stat_FullMethodName   = "/spaceone.api.config.v1.SharedConfig/stat"
 )
 
 // SharedConfigClient is the client API for SharedConfig service.
@@ -36,11 +33,9 @@ const (
 type SharedConfigClient interface {
 	Create(ctx context.Context, in *CreateSharedConfigRequest, opts ...grpc.CallOption) (*SharedConfigInfo, error)
 	Update(ctx context.Context, in *UpdateSharedConfigRequest, opts ...grpc.CallOption) (*SharedConfigInfo, error)
-	Set(ctx context.Context, in *SetSharedConfigRequest, opts ...grpc.CallOption) (*SharedConfigInfo, error)
 	Delete(ctx context.Context, in *SharedConfigRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *SharedConfigSearchQuery, opts ...grpc.CallOption) (*SharedConfigInfo, error)
 	List(ctx context.Context, in *SharedConfigSearchQuery, opts ...grpc.CallOption) (*SharedConfigsInfo, error)
-	Stat(ctx context.Context, in *SharedConfigStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
 type sharedConfigClient struct {
@@ -65,16 +60,6 @@ func (c *sharedConfigClient) Update(ctx context.Context, in *UpdateSharedConfigR
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SharedConfigInfo)
 	err := c.cc.Invoke(ctx, SharedConfig_Update_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *sharedConfigClient) Set(ctx context.Context, in *SetSharedConfigRequest, opts ...grpc.CallOption) (*SharedConfigInfo, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SharedConfigInfo)
-	err := c.cc.Invoke(ctx, SharedConfig_Set_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -111,27 +96,15 @@ func (c *sharedConfigClient) List(ctx context.Context, in *SharedConfigSearchQue
 	return out, nil
 }
 
-func (c *sharedConfigClient) Stat(ctx context.Context, in *SharedConfigStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(_struct.Struct)
-	err := c.cc.Invoke(ctx, SharedConfig_Stat_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // SharedConfigServer is the server API for SharedConfig service.
 // All implementations must embed UnimplementedSharedConfigServer
 // for forward compatibility.
 type SharedConfigServer interface {
 	Create(context.Context, *CreateSharedConfigRequest) (*SharedConfigInfo, error)
 	Update(context.Context, *UpdateSharedConfigRequest) (*SharedConfigInfo, error)
-	Set(context.Context, *SetSharedConfigRequest) (*SharedConfigInfo, error)
 	Delete(context.Context, *SharedConfigRequest) (*empty.Empty, error)
 	Get(context.Context, *SharedConfigSearchQuery) (*SharedConfigInfo, error)
 	List(context.Context, *SharedConfigSearchQuery) (*SharedConfigsInfo, error)
-	Stat(context.Context, *SharedConfigStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedSharedConfigServer()
 }
 
@@ -148,9 +121,6 @@ func (UnimplementedSharedConfigServer) Create(context.Context, *CreateSharedConf
 func (UnimplementedSharedConfigServer) Update(context.Context, *UpdateSharedConfigRequest) (*SharedConfigInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedSharedConfigServer) Set(context.Context, *SetSharedConfigRequest) (*SharedConfigInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Set not implemented")
-}
 func (UnimplementedSharedConfigServer) Delete(context.Context, *SharedConfigRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
@@ -159,9 +129,6 @@ func (UnimplementedSharedConfigServer) Get(context.Context, *SharedConfigSearchQ
 }
 func (UnimplementedSharedConfigServer) List(context.Context, *SharedConfigSearchQuery) (*SharedConfigsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
-func (UnimplementedSharedConfigServer) Stat(context.Context, *SharedConfigStatQuery) (*_struct.Struct, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
 }
 func (UnimplementedSharedConfigServer) mustEmbedUnimplementedSharedConfigServer() {}
 func (UnimplementedSharedConfigServer) testEmbeddedByValue()                      {}
@@ -220,24 +187,6 @@ func _SharedConfig_Update_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SharedConfig_Set_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetSharedConfigRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SharedConfigServer).Set(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SharedConfig_Set_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SharedConfigServer).Set(ctx, req.(*SetSharedConfigRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _SharedConfig_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SharedConfigRequest)
 	if err := dec(in); err != nil {
@@ -292,24 +241,6 @@ func _SharedConfig_List_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SharedConfig_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SharedConfigStatQuery)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SharedConfigServer).Stat(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SharedConfig_Stat_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SharedConfigServer).Stat(ctx, req.(*SharedConfigStatQuery))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // SharedConfig_ServiceDesc is the grpc.ServiceDesc for SharedConfig service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -326,10 +257,6 @@ var SharedConfig_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SharedConfig_Update_Handler,
 		},
 		{
-			MethodName: "set",
-			Handler:    _SharedConfig_Set_Handler,
-		},
-		{
 			MethodName: "delete",
 			Handler:    _SharedConfig_Delete_Handler,
 		},
@@ -340,10 +267,6 @@ var SharedConfig_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "list",
 			Handler:    _SharedConfig_List_Handler,
-		},
-		{
-			MethodName: "stat",
-			Handler:    _SharedConfig_Stat_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

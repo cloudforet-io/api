@@ -176,35 +176,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/public-config/stat": {
-       "post": {
-         "tags": ["config > public-config"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/config/user-config/create": {
        "post": {
          "tags": ["config > user-config"],
@@ -369,35 +340,6 @@
                  "schema": {"$ref": "#/components/schemas/UserConfigsInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/UserConfigsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/config/user-config/stat": {
-       "post": {
-         "tags": ["config > user-config"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
                }
              }}
          }
@@ -570,35 +512,6 @@
              }}
          }
           ,"security": [{"HTTPBearer": []}]        }
-     },"/config/domain-config/stat": {
-       "post": {
-         "tags": ["config > domain-config"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
      },"/config/shared-config/create": {
        "post": {
          "tags": ["config > shared-config"],
@@ -640,35 +553,6 @@
              "application/json": {
                "schema": {
                  "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" },"workspace_id" : {"type": "string","title": "WORKSPACE_ID" },"project_id" : {"type": "string","title": "PROJECT_ID" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"$ref": "#/components/schemas/SharedConfigInfo"},
-                 "examples": {
-                   "Schema": {"$ref": "#/components/schemas/SharedConfigInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/config/shared-config/set": {
-       "post": {
-         "tags": ["config > shared-config"],
-         "summary": "Set",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |name||string|True|\n |data||Struct|True|\n |tags||Struct||\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"name" : {"type": "string","title": "NAME" },"data" : {"type": "object","title": "DATA" },"tags" : {"type": "object","title": "TAGS" }                 }
                },
                "examples":{"Schema":{}
                }
@@ -763,35 +647,6 @@
                  "schema": {"$ref": "#/components/schemas/SharedConfigsInfo"},
                  "examples": {
                    "Schema": {"$ref": "#/components/schemas/SharedConfigsInfo"}}
-               }
-             }}
-         }
-          ,"security": [{"HTTPBearer": []}]        }
-     },"/config/shared-config/stat": {
-       "post": {
-         "tags": ["config > shared-config"],
-         "summary": "Stat",
-         "operationId" : "",
-         "description": "### Description \n",
-         "requestBody": {
-           "description": "\n| Key               | Description                                                   | Type      | Required|\n|-------------------|---------------------------------------------------------------|-----------|-------|\n |query||StatisticsQuery|True|\n<br>",
-           "content": {
-             "application/json": {
-               "schema": {
-                 "properties": {"query" : {"$ref": "#/components/schemas/StatisticsQuery","title": "QUERY" }                 }
-               },
-               "examples":{"Schema":{}
-               }
-             }
-           },"required": true
-         },
-         "responses": {
-           "200": {
-             "description": "Successfull Response","content":{
-               "application/json": {
-                 "schema": {"type": "object"},
-                 "examples": {
-                   "Schema": {"type": "object"}}
                }
              }}
          }
@@ -1123,12 +978,6 @@
          "type": "object",
          "required": ["name","data","resource_group"],
                 "title": "CreateSharedConfigRequest"
-           }
-           ,        "SetSharedConfigRequest": {
-         "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"}},
-         "type": "object",
-         "required": ["name","data"],
-                "title": "SetSharedConfigRequest"
            }
            ,        "SharedConfigInfo": {
          "properties" : {"name" : {"type": "string","title": "NAME"},"data" : {"type": "object","title": "DATA"},"tags" : {"type": "object","title": "TAGS"},"resource_group" : {"type": "string","title": "RESOURCE_GROUP"},"domain_id" : {"type": "string","title": "DOMAIN_ID"},"workspace_id" : {"type": "string","title": "WORKSPACE_ID"},"project_id" : {"type": "string","title": "PROJECT_ID"},"created_at" : {"type": "string","title": "CREATED_AT"},"updated_at" : {"type": "string","title": "UPDATED_AT"}},

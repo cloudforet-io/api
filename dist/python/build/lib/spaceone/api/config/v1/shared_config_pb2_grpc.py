@@ -4,7 +4,6 @@ import grpc
 import warnings
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
-from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from spaceone.api.config.v1 import shared_config_pb2 as spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2
 
 GRPC_GENERATED_VERSION = '1.64.1'
@@ -51,11 +50,6 @@ class SharedConfigStub(object):
                 request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.UpdateSharedConfigRequest.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.FromString,
                 _registered_method=True)
-        self.set = channel.unary_unary(
-                '/spaceone.api.config.v1.SharedConfig/set',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SetSharedConfigRequest.SerializeToString,
-                response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.FromString,
-                _registered_method=True)
         self.delete = channel.unary_unary(
                 '/spaceone.api.config.v1.SharedConfig/delete',
                 request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigRequest.SerializeToString,
@@ -71,11 +65,6 @@ class SharedConfigStub(object):
                 request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigSearchQuery.SerializeToString,
                 response_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigsInfo.FromString,
                 _registered_method=True)
-        self.stat = channel.unary_unary(
-                '/spaceone.api.config.v1.SharedConfig/stat',
-                request_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigStatQuery.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_struct__pb2.Struct.FromString,
-                _registered_method=True)
 
 
 class SharedConfigServicer(object):
@@ -88,12 +77,6 @@ class SharedConfigServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def update(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def set(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -117,12 +100,6 @@ class SharedConfigServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def stat(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_SharedConfigServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -134,11 +111,6 @@ def add_SharedConfigServicer_to_server(servicer, server):
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
                     request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.UpdateSharedConfigRequest.FromString,
-                    response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.SerializeToString,
-            ),
-            'set': grpc.unary_unary_rpc_method_handler(
-                    servicer.set,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SetSharedConfigRequest.FromString,
                     response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
@@ -155,11 +127,6 @@ def add_SharedConfigServicer_to_server(servicer, server):
                     servicer.list,
                     request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigSearchQuery.FromString,
                     response_serializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigsInfo.SerializeToString,
-            ),
-            'stat': grpc.unary_unary_rpc_method_handler(
-                    servicer.stat,
-                    request_deserializer=spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigStatQuery.FromString,
-                    response_serializer=google_dot_protobuf_dot_struct__pb2.Struct.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -215,33 +182,6 @@ class SharedConfig(object):
             target,
             '/spaceone.api.config.v1.SharedConfig/update',
             spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.UpdateSharedConfigRequest.SerializeToString,
-            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def set(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.config.v1.SharedConfig/set',
-            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SetSharedConfigRequest.SerializeToString,
             spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigInfo.FromString,
             options,
             channel_credentials,
@@ -324,33 +264,6 @@ class SharedConfig(object):
             '/spaceone.api.config.v1.SharedConfig/list',
             spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigSearchQuery.SerializeToString,
             spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigsInfo.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def stat(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/spaceone.api.config.v1.SharedConfig/stat',
-            spaceone_dot_api_dot_config_dot_v1_dot_shared__config__pb2.SharedConfigStatQuery.SerializeToString,
-            google_dot_protobuf_dot_struct__pb2.Struct.FromString,
             options,
             channel_credentials,
             insecure,

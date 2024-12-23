@@ -9,7 +9,6 @@ package v1
 import (
 	context "context"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -27,7 +26,6 @@ const (
 	PublicConfig_Delete_FullMethodName = "/spaceone.api.config.v1.PublicConfig/delete"
 	PublicConfig_Get_FullMethodName    = "/spaceone.api.config.v1.PublicConfig/get"
 	PublicConfig_List_FullMethodName   = "/spaceone.api.config.v1.PublicConfig/list"
-	PublicConfig_Stat_FullMethodName   = "/spaceone.api.config.v1.PublicConfig/stat"
 )
 
 // PublicConfigClient is the client API for PublicConfig service.
@@ -40,7 +38,6 @@ type PublicConfigClient interface {
 	Delete(ctx context.Context, in *PublicConfigRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *PublicConfigRequest, opts ...grpc.CallOption) (*PublicConfigInfo, error)
 	List(ctx context.Context, in *PublicConfigSearchQuery, opts ...grpc.CallOption) (*PublicConfigsInfo, error)
-	Stat(ctx context.Context, in *PublicConfigStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
 type publicConfigClient struct {
@@ -111,16 +108,6 @@ func (c *publicConfigClient) List(ctx context.Context, in *PublicConfigSearchQue
 	return out, nil
 }
 
-func (c *publicConfigClient) Stat(ctx context.Context, in *PublicConfigStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(_struct.Struct)
-	err := c.cc.Invoke(ctx, PublicConfig_Stat_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // PublicConfigServer is the server API for PublicConfig service.
 // All implementations must embed UnimplementedPublicConfigServer
 // for forward compatibility.
@@ -131,7 +118,6 @@ type PublicConfigServer interface {
 	Delete(context.Context, *PublicConfigRequest) (*empty.Empty, error)
 	Get(context.Context, *PublicConfigRequest) (*PublicConfigInfo, error)
 	List(context.Context, *PublicConfigSearchQuery) (*PublicConfigsInfo, error)
-	Stat(context.Context, *PublicConfigStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedPublicConfigServer()
 }
 
@@ -159,9 +145,6 @@ func (UnimplementedPublicConfigServer) Get(context.Context, *PublicConfigRequest
 }
 func (UnimplementedPublicConfigServer) List(context.Context, *PublicConfigSearchQuery) (*PublicConfigsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
-func (UnimplementedPublicConfigServer) Stat(context.Context, *PublicConfigStatQuery) (*_struct.Struct, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
 }
 func (UnimplementedPublicConfigServer) mustEmbedUnimplementedPublicConfigServer() {}
 func (UnimplementedPublicConfigServer) testEmbeddedByValue()                      {}
@@ -292,24 +275,6 @@ func _PublicConfig_List_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PublicConfig_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PublicConfigStatQuery)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PublicConfigServer).Stat(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PublicConfig_Stat_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublicConfigServer).Stat(ctx, req.(*PublicConfigStatQuery))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // PublicConfig_ServiceDesc is the grpc.ServiceDesc for PublicConfig service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -340,10 +305,6 @@ var PublicConfig_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "list",
 			Handler:    _PublicConfig_List_Handler,
-		},
-		{
-			MethodName: "stat",
-			Handler:    _PublicConfig_Stat_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

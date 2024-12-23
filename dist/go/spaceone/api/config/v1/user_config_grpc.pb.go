@@ -9,7 +9,6 @@ package v1
 import (
 	context "context"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	_struct "github.com/golang/protobuf/ptypes/struct"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -27,7 +26,6 @@ const (
 	UserConfig_Delete_FullMethodName = "/spaceone.api.config.v1.UserConfig/delete"
 	UserConfig_Get_FullMethodName    = "/spaceone.api.config.v1.UserConfig/get"
 	UserConfig_List_FullMethodName   = "/spaceone.api.config.v1.UserConfig/list"
-	UserConfig_Stat_FullMethodName   = "/spaceone.api.config.v1.UserConfig/stat"
 )
 
 // UserConfigClient is the client API for UserConfig service.
@@ -40,7 +38,6 @@ type UserConfigClient interface {
 	Delete(ctx context.Context, in *UserConfigRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	Get(ctx context.Context, in *UserConfigRequest, opts ...grpc.CallOption) (*UserConfigInfo, error)
 	List(ctx context.Context, in *UserConfigQuery, opts ...grpc.CallOption) (*UserConfigsInfo, error)
-	Stat(ctx context.Context, in *UserConfigStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error)
 }
 
 type userConfigClient struct {
@@ -111,16 +108,6 @@ func (c *userConfigClient) List(ctx context.Context, in *UserConfigQuery, opts .
 	return out, nil
 }
 
-func (c *userConfigClient) Stat(ctx context.Context, in *UserConfigStatQuery, opts ...grpc.CallOption) (*_struct.Struct, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(_struct.Struct)
-	err := c.cc.Invoke(ctx, UserConfig_Stat_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // UserConfigServer is the server API for UserConfig service.
 // All implementations must embed UnimplementedUserConfigServer
 // for forward compatibility.
@@ -131,7 +118,6 @@ type UserConfigServer interface {
 	Delete(context.Context, *UserConfigRequest) (*empty.Empty, error)
 	Get(context.Context, *UserConfigRequest) (*UserConfigInfo, error)
 	List(context.Context, *UserConfigQuery) (*UserConfigsInfo, error)
-	Stat(context.Context, *UserConfigStatQuery) (*_struct.Struct, error)
 	mustEmbedUnimplementedUserConfigServer()
 }
 
@@ -159,9 +145,6 @@ func (UnimplementedUserConfigServer) Get(context.Context, *UserConfigRequest) (*
 }
 func (UnimplementedUserConfigServer) List(context.Context, *UserConfigQuery) (*UserConfigsInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
-func (UnimplementedUserConfigServer) Stat(context.Context, *UserConfigStatQuery) (*_struct.Struct, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Stat not implemented")
 }
 func (UnimplementedUserConfigServer) mustEmbedUnimplementedUserConfigServer() {}
 func (UnimplementedUserConfigServer) testEmbeddedByValue()                    {}
@@ -292,24 +275,6 @@ func _UserConfig_List_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserConfig_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserConfigStatQuery)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserConfigServer).Stat(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserConfig_Stat_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserConfigServer).Stat(ctx, req.(*UserConfigStatQuery))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // UserConfig_ServiceDesc is the grpc.ServiceDesc for UserConfig service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -340,10 +305,6 @@ var UserConfig_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "list",
 			Handler:    _UserConfig_List_Handler,
-		},
-		{
-			MethodName: "stat",
-			Handler:    _UserConfig_Stat_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -84,30 +84,6 @@ func local_request_SharedConfig_Update_0(ctx context.Context, marshaler runtime.
 	return msg, metadata, err
 }
 
-func request_SharedConfig_Set_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SharedConfigClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq extV1.SetSharedConfigRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.Set(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_SharedConfig_Set_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.SharedConfigServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq extV1.SetSharedConfigRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.Set(ctx, &protoReq)
-	return msg, metadata, err
-}
-
 func request_SharedConfig_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SharedConfigClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq extV1.SharedConfigRequest
@@ -180,30 +156,6 @@ func local_request_SharedConfig_List_0(ctx context.Context, marshaler runtime.Ma
 	return msg, metadata, err
 }
 
-func request_SharedConfig_Stat_0(ctx context.Context, marshaler runtime.Marshaler, client extV1.SharedConfigClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq extV1.SharedConfigStatQuery
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.Stat(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_SharedConfig_Stat_0(ctx context.Context, marshaler runtime.Marshaler, server extV1.SharedConfigServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq extV1.SharedConfigStatQuery
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.Stat(ctx, &protoReq)
-	return msg, metadata, err
-}
-
 // RegisterSharedConfigHandlerServer registers the http handlers for service SharedConfig to "mux".
 // UnaryRPC     :call SharedConfigServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -249,26 +201,6 @@ func RegisterSharedConfigHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			return
 		}
 		forward_SharedConfig_Update_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_SharedConfig_Set_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.config.v1.SharedConfig/Set", runtime.WithHTTPPathPattern("/config/v1/shared-config/set"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_SharedConfig_Set_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_SharedConfig_Set_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_SharedConfig_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -329,26 +261,6 @@ func RegisterSharedConfigHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			return
 		}
 		forward_SharedConfig_List_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_SharedConfig_Stat_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/spaceone.api.config.v1.SharedConfig/Stat", runtime.WithHTTPPathPattern("/config/v1/shared-config/stat"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_SharedConfig_Stat_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_SharedConfig_Stat_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -424,23 +336,6 @@ func RegisterSharedConfigHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		}
 		forward_SharedConfig_Update_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_SharedConfig_Set_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.config.v1.SharedConfig/Set", runtime.WithHTTPPathPattern("/config/v1/shared-config/set"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_SharedConfig_Set_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_SharedConfig_Set_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	mux.Handle(http.MethodPost, pattern_SharedConfig_Delete_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -492,42 +387,21 @@ func RegisterSharedConfigHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		}
 		forward_SharedConfig_List_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_SharedConfig_Stat_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/spaceone.api.config.v1.SharedConfig/Stat", runtime.WithHTTPPathPattern("/config/v1/shared-config/stat"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_SharedConfig_Stat_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_SharedConfig_Stat_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	return nil
 }
 
 var (
 	pattern_SharedConfig_Create_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "shared-config", "create"}, ""))
 	pattern_SharedConfig_Update_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "shared-config", "update"}, ""))
-	pattern_SharedConfig_Set_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "shared-config", "set"}, ""))
 	pattern_SharedConfig_Delete_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "shared-config", "delete"}, ""))
 	pattern_SharedConfig_Get_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "shared-config", "get"}, ""))
 	pattern_SharedConfig_List_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "shared-config", "list"}, ""))
-	pattern_SharedConfig_Stat_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"config", "v1", "shared-config", "stat"}, ""))
 )
 
 var (
 	forward_SharedConfig_Create_0 = runtime.ForwardResponseMessage
 	forward_SharedConfig_Update_0 = runtime.ForwardResponseMessage
-	forward_SharedConfig_Set_0    = runtime.ForwardResponseMessage
 	forward_SharedConfig_Delete_0 = runtime.ForwardResponseMessage
 	forward_SharedConfig_Get_0    = runtime.ForwardResponseMessage
 	forward_SharedConfig_List_0   = runtime.ForwardResponseMessage
-	forward_SharedConfig_Stat_0   = runtime.ForwardResponseMessage
 )
