@@ -1,4 +1,3 @@
-// DomainConfig API which configure environments for domain
 syntax = "proto3";
 
 package spaceone.api.config.v1;
@@ -12,126 +11,84 @@ import "spaceone/api/core/v2/query.proto";
 
 
 service PublicConfig {
-  rpc create (CreatePublicConfigRequest) returns (PublicConfigInfo) {
-    option (google.api.http) = {
-      post: "/config/v1/public-config/create"
-      body: "*"
-    };
-  }
-  rpc update (UpdatePublicConfigRequest) returns (PublicConfigInfo) {
-    option (google.api.http) = {
-      post: "/config/v1/public-config/update"
-      body: "*"
-    };
-  }
-
-  rpc delete (PublicConfigRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/config/v1/public-config/delete"
-      body: "*"
-    };
-  }
-  rpc get (PublicConfigSearchQuery) returns (PublicConfigInfo) {
-    option (google.api.http) = {
-      post: "/config/v1/public-config/get"
-      body: "*"
-    };
-  }
-
-  // This API for retrieving domain scoped configs that are accessible to users.
-  rpc get_accessible_configs (PublicConfigSearchQuery) returns (PublicConfigsInfo) {
-    option (google.api.http) = {
-      post: "/config/v1/public-config/get-accessible-configs"
-      body: "*"
-    };
-  }
-
-  rpc list (PublicConfigSearchQuery) returns (PublicConfigsInfo) {
-    option (google.api.http) = {
-      post: "/config/v1/public-config/list"
-      body: "*"
-    };
-  }
-  rpc stat (PublicConfigStatQuery) returns (google.protobuf.Struct) {
-    option (google.api.http) = {
-      post: "/config/v1/public-config/stat"
-      body: "*"
-    };
-  }
+    rpc create (SetPublicConfigRequest) returns (PublicConfigInfo) {
+        option (google.api.http) = {
+            post: "/config/v1/public-config/create"
+            body: "*"
+        };
+    }
+    rpc update (SetPublicConfigRequest) returns (PublicConfigInfo) {
+        option (google.api.http) = {
+            post: "/config/v1/public-config/update"
+            body: "*"
+        };
+    }
+    rpc set (SetPublicConfigRequest) returns (PublicConfigInfo) {
+        option (google.api.http) = {
+            post: "/config/v1/public-config/set"
+            body: "*"
+        };
+    }
+    rpc delete (PublicConfigRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/config/v1/public-config/delete"
+            body: "*"
+        };
+    }
+    rpc get (PublicConfigRequest) returns (PublicConfigInfo) {
+        option (google.api.http) = {
+            post: "/config/v1/public-config/get"
+            body: "*"
+        };
+    }
+    rpc list (PublicConfigSearchQuery) returns (PublicConfigsInfo) {
+        option (google.api.http) = {
+            post: "/config/v1/public-config/list"
+            body: "*"
+        };
+    }
+    rpc stat (PublicConfigStatQuery) returns (google.protobuf.Struct) {
+        option (google.api.http) = {
+            post: "/config/v1/public-config/stat"
+            body: "*"
+        };
+    }
 }
 
-
-message CreatePublicConfigRequest {
-  enum ResourceGroup {
-    RESOURCE_GROUP_NONE = 0;
-    DOMAIN = 1;
-    WORKSPACE = 2;
-    PROJECT = 3;
-  }
-
-  string name = 1;
-  google.protobuf.Struct data = 2;
-  // +optional
-  google.protobuf.Struct tags = 3;
-  ResourceGroup resource_group = 20;
-  // +optional
-  string workspace_id = 21;
-  // +optional
-  string project_id = 22;
-}
-
-message UpdatePublicConfigRequest {
-  string name = 1;
-  google.protobuf.Struct data = 2;
-  // +optional
-  google.protobuf.Struct tags = 3;
-  // +optional
-  string workspace_id = 21;
-  // +optional
-  string project_id = 22;
-
+message SetPublicConfigRequest {
+    string name = 1;
+    google.protobuf.Struct data = 2;
+    // +optional
+    google.protobuf.Struct tags = 3;
 }
 
 message PublicConfigRequest {
-  string name = 1;
-  // +optional
-  string workspace_id = 21;
-  // +optional
-  string project_id = 22;
+    string name = 1;
 }
 
 message PublicConfigSearchQuery {
-  // +optional
-  spaceone.api.core.v2.Query query = 1;
-  // +optional
-  string name = 2;
+    // +optional
+    spaceone.api.core.v2.Query query = 1;
+    // +optional
+    string name = 2;
 }
 
 message PublicConfigInfo {
-  enum ResourceGroup {
-    RESOURCE_GROUP_NONE = 0;
-    DOMAIN = 1;
-    WORKSPACE = 2;
-    PROJECT = 3;
-  }
+    string name = 1;
+    google.protobuf.Struct data = 2;
+    google.protobuf.Struct tags = 3;
 
-  string name = 1;
-  google.protobuf.Struct data = 2;
-  google.protobuf.Struct tags = 3;
-  ResourceGroup resource_group = 20;
-  string domain_id = 21;
-  string workspace_id = 22;
-  string project_id = 23;
+    string domain_id = 21;
 
-  string created_at = 31;
-  string updated_at = 32;
+    string created_at = 31;
+    string updated_at = 32;
 }
 
 message PublicConfigsInfo {
-  repeated PublicConfigInfo results = 1;
-  int32 total_count = 2;
+    repeated PublicConfigInfo results = 1;
+    int32 total_count = 2;
 }
 
 message PublicConfigStatQuery {
-  spaceone.api.core.v2.StatisticsQuery query = 1;
+    spaceone.api.core.v2.StatisticsQuery query = 1;
 }
