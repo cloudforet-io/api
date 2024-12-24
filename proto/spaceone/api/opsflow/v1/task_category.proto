@@ -95,6 +95,8 @@ message TaskCategoryCreateRequest {
     // +optional
     repeated TaskField fields = 4;
     // +optional
+    google.protobuf.Struct vars = 5;
+    // +optional
     google.protobuf.Struct tags = 11;
     string package_id = 21;
 }
@@ -109,6 +111,8 @@ message TaskCategoryUpdateRequest {
     StatusOptions status_options = 4;
     // +optional
     bool force = 5;
+    // +optional
+    google.protobuf.Struct vars = 6;
     // +optional
     google.protobuf.Struct tags = 11;
     // +optional
@@ -143,6 +147,7 @@ message TaskCategoryInfo {
     StatusOptions status_options = 4;
     repeated TaskField fields = 5;
     string state = 6;
+    google.protobuf.Struct vars = 7;
     google.protobuf.Struct tags = 11;
 
     string domain_id = 21;

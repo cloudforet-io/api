@@ -65,6 +65,8 @@ message TaskTypeCreateRequest {
     // +optional
     repeated string assignee_pool = 4;
     // +optional
+    google.protobuf.Struct vars = 5;
+    // +optional
     google.protobuf.Struct tags = 11;
     string category_id = 21;
 }
@@ -77,6 +79,8 @@ message TaskTypeUpdateRequest {
     string description = 3;
     // +optional
     repeated string assignee_pool = 4;
+    // +optional
+    google.protobuf.Struct vars = 5;
     // +optional
     google.protobuf.Struct tags = 11;
     // +optional
@@ -110,6 +114,7 @@ message TaskTypeInfo {
     string description = 3;
     repeated TaskField fields = 4;
     repeated string assignee_pool = 5;
+    google.protobuf.Struct vars = 6;
     google.protobuf.Struct tags = 11;
 
     string domain_id = 21;
